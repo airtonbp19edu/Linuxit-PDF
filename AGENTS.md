@@ -50,3 +50,8 @@ entradas foram examinadas pelo backend direto `-noanalysis`. O projeto dessa
 rodada e as respostas completas estão em `analysis-local/`, ignorado pelo Git.
 Use `scripts/analyze_foxit_headless.py` para o backend complementar e preserve
 os manifestos anteriores ao gerar os metadados de uma nova rodada.
+
+Prioridade atual do usuário: etapa 10, conforme `docs/ETAPA-10.md`. O preparador
+`scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o
+original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
+Preparação e testes do kit não contam como observação dinâmica; casos `not_run`.

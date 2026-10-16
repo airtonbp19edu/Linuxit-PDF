@@ -1,0 +1,52 @@
+{
+  "schema": "linuxit-dynamic-readiness-v1",
+  "date_local": "2026-10-16",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "host": {
+    "caption": "Microsoft Windows 11 Home Single Language",
+    "version": "10.0.26200",
+    "architecture": "64 bits",
+    "edition_id": "CoreSingleLanguage",
+    "registry_product_name_is_legacy_label": true
+  },
+  "capabilities": {
+    "windows_sandbox_executable_present": false,
+    "windows_sandbox_supported_edition": false,
+    "wsl_installed": false,
+    "existing_virtual_machine_user_confirmed": false,
+    "vm_runtime_found_in_examined_paths": false,
+    "examined_vm_commands": ["WindowsSandbox.exe", "qemu-system-x86_64.exe", "VBoxManage.exe", "vmrun.exe", "docker.exe"],
+    "examined_program_directory_roots": ["A:/Programas", "C:/Program Files", "C:/Program Files (x86)"],
+    "optional_feature_query": "requires_administrator; state_unknown",
+    "system_configuration_changed": false,
+    "exhaustive_disk_inventory": false
+  },
+  "current_round": {
+    "status": "blocked_no_executable_isolated_guest",
+    "original_launched": false,
+    "original_identity_checked_before_and_after_preparation": true,
+    "runtime_control_executed": false,
+    "ui_observed": false,
+    "functional_cases_observed": 0,
+    "prepared_cases": 20,
+    "synthetic_pdf_inputs": 7,
+    "synthetic_text_control_inputs": 1,
+    "preparation_tests_passed": 5,
+    "kit_local_only": "analysis-local/dynamic/windows-01",
+    "validation": "testes/resultados/etapa-10-preparacao-windows-2026-10-16.json"
+  },
+  "historical_runtime": {
+    "evidence": "docs/windows-evidence/foxit-rea/dynamic-followup.json",
+    "wine_qemu_x86_control": "passed_in_previous_environment",
+    "foxit_ui": "not_reached; CInvalidArgException followed by INT 0x29",
+    "reexecuted_here": false
+  },
+  "next_requirement": "Disposable offline Windows guest with minimal mounts and a verified GUI control, or recovered Linux Wine/QEMU containment with startup failure diagnosed; then execute and examine actual case evidence.",
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/",
+    "https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-configure-using-wsb-file"
+  ],
+  "stage_10_complete": false,
+  "stage_10_verified_fraction": 0,
+  "functional_equivalence_verified": false
+}

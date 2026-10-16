@@ -71,3 +71,23 @@ mais delimitada; ainda não há observação de busca/impressão do original.
 Consulte `REA-BUSCA-IMPRESSAO.md` e
 `windows-evidence/foxit-rea/dynamic-followup.json`. Não foram alterados
 binários, contornadas proteções ou publicados logs/recursos proprietários.
+
+## Etapa 10 retomada no Windows
+
+Nesta rodada, o host foi identificado como Windows 11 Home Single Language,
+build 26200. O executável Windows Sandbox não está presente e a edição Home
+não é suportada por esse recurso. WSL não está instalado. Não foram encontrados
+runtimes de VM nos caminhos examinados; o usuário confirmou não ter uma VM.
+A consulta de recursos DISM exigiu administrador, portanto seu estado não foi
+inferido de uma consulta que falhou. Nenhuma configuração do sistema mudou.
+
+Foram preparados 20 cenários e um corpus sintético com hashes, junto de uma
+configuração Windows Sandbox para host compatível. Cinco testes portáveis do
+kit passaram. Esses testes verificam entradas, separação de observações e
+configuração de contenção; não executam o Foxit. O preparador real confirmou
+o hash esperado do original antes/depois e registrou os 20 casos como `not_run`.
+
+O procedimento está em [ETAPA-10.md](ETAPA-10.md). Os metadados publicados em
+`windows-evidence/foxit-rea/dynamic-readiness-windows.json` preservam o bloqueio.
+O kit local está em `analysis-local/dynamic/windows-01`, ignorado pelo Git.
+Não houve nova observação funcional nem alteração na paridade ou nos pesos.

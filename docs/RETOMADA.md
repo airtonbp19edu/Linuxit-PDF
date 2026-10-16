@@ -100,19 +100,25 @@ funcional com o Foxit continua pendente.
 
 ## Próxima sequência de trabalho
 
-1. Continuar as etapas 08/09 de análise dirigida por REA/Ghidra. O executável
+1. Prioridade atual solicitada: **etapa 10**. A preparação e os 20 cenários estão
+   em `docs/ETAPA-10.md`; `scripts/prepare_foxit_dynamic.py` gera o corpus e o kit
+   offline. O Windows 11 Home local não oferece Sandbox; WSL não está instalado
+   e o usuário não tem VM. Primeiro disponibilizar um guest Windows offline
+   descartável ou recuperar a contenção Linux/Wine, sem lançar o original no
+   perfil normal do host. Nenhum cenário Foxit foi observado nesta rodada.
+2. Continuar as etapas 08/09 de análise dirigida por REA/Ghidra. O executável
    original já foi localizado e validado. O projeto headless do ambiente
    anterior ainda não foi localizado; os caminhos `/workspace/foxit-rea-analysis`
    dos relatórios não existem nesta máquina. Preservar os resumos anteriores e
    registrar separadamente cada novo perfil e resultado.
-2. Completar os contratos de busca e impressão antes de ampliar sua implementação.
+3. Completar os contratos de busca e impressão antes de ampliar sua implementação.
    Preparar Linux com GTK 3/PyGObject/Cairo, Poppler e clientes CUPS para executar
    `scripts/run_tests.py --output <novo-arquivo.json>` com uma tela disponível.
-3. Seguir também a agenda existente: diagnosticar a `CInvalidArgException` do Foxit
+4. Seguir também a agenda existente: diagnosticar a `CInvalidArgException` do Foxit
    antes da UI, em contenção offline; completar os campos desconhecidos da
    estrutura de busca de 24 bytes; seguir os helpers e consumidores apontados
    pelas três rotinas de impressão já examinadas no marco Windows.
-4. Executar o mesmo corpus no original e no Linuxit para medir as diferenças.
+5. Executar o mesmo corpus no original e no Linuxit para medir as diferenças.
    Edição/persistência de marcadores, anotações, formulários e outras famílias
    continuam na matriz de pendências.
 

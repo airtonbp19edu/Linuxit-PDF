@@ -1,0 +1,87 @@
+{
+  "schema": "linuxit-dynamic-preparation-validation-v1",
+  "date_local": "2026-10-16",
+  "command": "python -m unittest discover -s tests -p test_dynamic_campaign.py -v",
+  "run": 5,
+  "passed": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 1.974,
+  "cases": [
+    {
+      "id": "test_corpus_has_real_geometry_password_attachment_and_negative_inputs",
+      "status": "passed"
+    },
+    {
+      "id": "test_existing_search_fixture_and_own_metadata_contract_are_preserved",
+      "status": "passed"
+    },
+    {
+      "id": "test_sandbox_disables_sharing_and_maps_only_three_dedicated_folders",
+      "status": "passed"
+    },
+    {
+      "id": "test_preparation_never_turns_expected_counts_into_observations_or_overwrites",
+      "status": "passed"
+    },
+    {
+      "id": "test_wrong_identity_and_overlapping_paths_fail_before_creating_output",
+      "status": "passed"
+    }
+  ],
+  "initial_terminal_sandbox_attempt": "TemporaryDirectory creation/cleanup denied; rerun outside terminal sandbox passed. No Foxit invocation in either attempt.",
+  "real_campaign_generated": true,
+  "real_campaign_hashes_and_xml_examined": true,
+  "syntax_files_parsed": 2,
+  "fixtures": [
+    {
+      "name": "busca-escopos.pdf",
+      "size": 7904,
+      "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+    },
+    {
+      "name": "busca-longa.pdf",
+      "size": 82663,
+      "sha256": "3dfce9fc83a6da03bfb47f52b824c62297f7a6c7eb758fc33e0dd22186a1ac2c"
+    },
+    {
+      "name": "com-anexo.pdf",
+      "size": 3377,
+      "sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74"
+    },
+    {
+      "name": "com-senha.pdf",
+      "size": 3390,
+      "sha256": "1922651f70d7af3934bac3715ede6cf933fe70022fe2ab9b0f5055b28b9f685e"
+    },
+    {
+      "name": "controle.txt",
+      "size": 67,
+      "sha256": "b4e81b193a7596beeaf4dd389a71245a6689c1221f66f3f5029ec261962e42d2"
+    },
+    {
+      "name": "geometria.pdf",
+      "size": 2980,
+      "sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7"
+    },
+    {
+      "name": "invalido.pdf",
+      "size": 39,
+      "sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e"
+    },
+    {
+      "name": "vazio.pdf",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "cases_not_run": 20,
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "original_unchanged": true,
+  "original_launched": false,
+  "guest_runtime_executed": false,
+  "foxit_differential_test": false,
+  "full_linux_gtk_suite_rerun": false,
+  "stage_10_complete": false
+}

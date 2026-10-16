@@ -298,21 +298,31 @@
           "status": "blocked",
           "evidence": [
             "docs/relatorio-dinamico.md",
-            "docs/windows-evidence/foxit-rea/dynamic-followup.json"
+            "docs/windows-evidence/foxit-rea/dynamic-followup.json",
+            "docs/ETAPA-10.md",
+            "docs/windows-evidence/foxit-rea/dynamic-readiness-windows.json"
           ],
-          "note": "Wine/i386 control passed under QEMU; original loads but exits before usable GUI, so criterion remains blocked."
+          "note": "Historical Wine/i386 control passed under QEMU, but original exited before usable UI. Current Windows 11 Home has no Sandbox executable; WSL is not installed and user has no VM. Stage-10 corpus and configuration prepared, not executed. No done check or weight change."
         },
         {
           "criterion": "Cenários locais observados e registrados",
           "weight": 4,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "testes/cenarios-dinamicos.json",
+            "docs/ETAPA-10.md"
+          ],
+          "note": "Twenty prepared cases remain not_run; expected own contracts are not Foxit observations."
         },
         {
           "criterion": "Integrações autorizadas e casos excepcionais observados",
           "weight": 4,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "testes/cenarios-dinamicos.json",
+            "docs/ETAPA-10.md"
+          ],
+          "note": "Synthetic error and local integration cases prepared, not observed; remote accounts and physical printing outside this campaign."
         }
       ],
       "verified_fraction": 0.0,
