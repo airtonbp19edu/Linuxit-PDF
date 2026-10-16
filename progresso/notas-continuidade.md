@@ -76,3 +76,19 @@ em `docs/COMO-CONTINUAR.md`. Não reiniciar as análises preservadas.
 Publicação: consulta Git autenticada confirmou a base remota; envio do novo
 marco será feito após esta anotação. A confirmação posterior será acrescentada
 ao final deste arquivo com o hash do marco já publicado.
+
+## 2026/10/16 às 20:15 (America/Sao_Paulo, UTC-03:00) — publicação confirmada
+
+Marco técnico publicado em `main`:
+[`c696ca939ec1d523786d570a74acd21ae20e11a7`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/c696ca939ec1d523786d570a74acd21ae20e11a7).
+O envio pelo Git normal passou, e `git ls-remote origin refs/heads/main`
+confirmou esse hash às 20:15. Não foi necessário instalar ou reconectar o
+plugin GitHub. O conector pode continuar ausente; a autenticação Git local
+funcionou nesta rodada e deve ser reconferida em futuras sessões.
+
+Esta anotação registra um commit já confirmado, sem tentar conter o hash do
+próprio commit. Após publicá-la, conferir novamente HEAD local/remoto e árvore
+limpa; o comprovante final fica em
+`analysis-local/github-round02-sync-verified.json`, fora dos arquivos versionados.
+Próximos alvos e limitações são os da nota das 20:14 e do relatório dos
+consumidores. Nenhuma atividade da etapa 10 foi marcada como concluída.
