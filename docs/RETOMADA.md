@@ -4,6 +4,9 @@ Contexto reconstruído em **16/10/2026**, a pedido do usuário, a partir do
 repositório e de seus registros de continuidade. Este arquivo permite seguir
 o desenvolvimento mesmo sem acesso ao chat original.
 
+Para os passos que o usuário precisa preparar e uma mensagem pronta para
+retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
+
 ## Base recuperada
 
 - Repositório: <https://github.com/airtonbp19edu/Linuxit-PDF>, branch `main`.

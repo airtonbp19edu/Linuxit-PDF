@@ -21,6 +21,7 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Hashes e manifesto](releases/manifest.json)
 - [Progresso e metodologia das 21 etapas](progresso/progresso.md)
 - [Retomada do desenvolvimento e ambiente local](docs/RETOMADA.md)
+- [O que preparar e como continuar a etapa 10](docs/COMO-CONTINUAR.md)
 - [Matriz de paridade](progresso/matriz-paridade.csv)
 - [Investigação REA do Foxit](docs/FOXIT-REA.md) e [continuação de busca/impressão](docs/REA-BUSCA-IMPRESSAO.md)
 - [Continuação da impressão no Windows e ferramentas verificadas](docs/REA-IMPRESSAO-WINDOWS.md)
