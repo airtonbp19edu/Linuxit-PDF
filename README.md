@@ -20,8 +20,10 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Baixar Flatpak 0.1.1](releases/LinuxitPDF-0.1.1-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Hashes e manifesto](releases/manifest.json)
 - [Progresso e metodologia das 21 etapas](progresso/progresso.md)
+- [Retomada do desenvolvimento e ambiente local](docs/RETOMADA.md)
 - [Matriz de paridade](progresso/matriz-paridade.csv)
 - [Investigação REA do Foxit](docs/FOXIT-REA.md) e [continuação de busca/impressão](docs/REA-BUSCA-IMPRESSAO.md)
+- [Continuação da impressão no Windows e ferramentas verificadas](docs/REA-IMPRESSAO-WINDOWS.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
@@ -45,7 +47,7 @@ PYTHONPATH=/workspace/.print-view-runtime/gi-cairo/usr/lib/python3/dist-packages
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-tests-novo.json
 ```
 
-A análise local identificou 3.276 arquivos, 141 módulos PE, 191 entradas de
+A análise local identificou 3.276 arquivos, 141 módulos PE, 194 entradas de
 funções examinadas e 9.973 registros internos de chamadas. O universo completo
 de funções/funcionalidades ainda não está fechado; registros não são funções
 únicas nem paridade verificada. Binários Foxit, templates completos, bancos

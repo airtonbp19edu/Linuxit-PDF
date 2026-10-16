@@ -4,6 +4,7 @@ from pathlib import Path
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--session-dir',type=Path,required=True,help='Directory containing queue/*.json; results must be empty')
 parser.add_argument('--rea',default='/workspace/.rea-cli/bin/rea')
+parser.add_argument('--node',help='Node executable when --rea points to scripts/rea.mjs')
 args=parser.parse_args()
 ROOT=args.session_dir.resolve()
 if (ROOT/'STOP').exists():parser.error('Remove STOP only when deliberately creating a fresh session')
@@ -14,8 +15,10 @@ def save_json(path,value):
     temporary.write_text(json.dumps(value,indent=2))
     temporary.replace(path)
 
-proc=subprocess.Popen([args.rea,'mcp'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,
-                      stderr=(ROOT/'logs/rea-stderr.log').open('wb'),text=True,bufsize=1)
+command=([args.node] if args.node else [])+[args.rea,'mcp']
+proc=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
+                      stderr=(ROOT/'logs/rea-stderr.log').open('wb'),text=True,
+                      encoding='utf-8',bufsize=1)
 save_json(ROOT/'server-pid.json',{'pid':proc.pid,'owner':'foxit-rea-session','started':time.time()})
 def emit(message):
     # A reconnect can close the launching tool's stdout; keep the owned session usable.

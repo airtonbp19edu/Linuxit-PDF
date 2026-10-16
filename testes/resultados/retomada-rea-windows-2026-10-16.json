@@ -1,0 +1,16 @@
+{
+  "date_local": "2026-10-16",
+  "status": "direct_backend_verified_with_REA_timeout_preserved",
+  "python_files_parsed": 102,
+  "catalog_entries": 194,
+  "previous_entries_preserved": 191,
+  "new_entries": 3,
+  "direct_decompilations_completed": 3,
+  "raw_outputs_technically_examined": true,
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "original_unchanged": true,
+  "rea_mcp_function_observations_completed": 0,
+  "rea_timeout_record": "docs/windows-evidence/foxit-rea/windows-readiness.json",
+  "historical_full_linux_suite_rerun": false,
+  "foxit_differential_test": false
+}

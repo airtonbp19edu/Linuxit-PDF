@@ -1,0 +1,133 @@
+{
+  "schema": "linuxit-windows-print-contracts-v1",
+  "date_local": "2026-10-16",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "metadata": "headless-cross-checks-windows-2026-10-16.json",
+  "original_executed": false,
+  "differential_equivalence_verified": false,
+  "constants": [
+    {
+      "address": "0x6573550",
+      "storage": "float32",
+      "value": 0.20000000298023224
+    },
+    {
+      "address": "0x53d8a20",
+      "storage": "float32",
+      "value": -0.20000000298023224
+    },
+    {
+      "address": "0x65735e0",
+      "storage": "float64",
+      "value": 0.5
+    }
+  ],
+  "functions": [
+    {
+      "entry_va": "0x1663410",
+      "body_bytes": 413,
+      "body_ranges": "[[01663410, 016635ac]]",
+      "result": "headless/windows-print-01/functions/0x1663410.json",
+      "result_sha256": "81078cf3851f75ff53051137cced172993370f7cd77d2ba61d8fb9a357f126f7",
+      "pseudocode_sha256": "8000b2099b1cbe64805051c75762c02102cd0cac94de53dac741df645112d566",
+      "reviewed": [
+        "decompiler output",
+        "assembly at arithmetic and dispatch sites"
+      ]
+    },
+    {
+      "entry_va": "0x1663a80",
+      "body_bytes": 1009,
+      "body_ranges": "[[01663a80, 01663e70]]",
+      "result": "headless/windows-print-01/functions/0x1663a80.json",
+      "result_sha256": "0b43bf07f72ee8c622d09eac70098522f27b5b76c6d2c55f0ae5f231d3e495d3",
+      "pseudocode_sha256": "6bf59bc9233b49ff64772027321ad8e779e2cb2b96fbdccbf1503f211e8ac900",
+      "reviewed": [
+        "decompiler output",
+        "assembly at arithmetic and dispatch sites"
+      ]
+    },
+    {
+      "entry_va": "0x1668ac0",
+      "body_bytes": 1184,
+      "body_ranges": "[[01668ac0, 01668f5f]]",
+      "result": "headless/windows-print-01/functions/0x1668ac0.json",
+      "result_sha256": "3125ca23e7942674c0b19bf7085672ae4911862cebe93b2243537e66d12e680f",
+      "pseudocode_sha256": "43800d37be2b4067add131c2cbbe2388512e1feb2d54cad99cefd649405335f2",
+      "reviewed": [
+        "decompiler output",
+        "assembly at arithmetic and dispatch sites"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "entry": "0x1668ac0",
+      "state": "observed",
+      "description": "Guards an indexed vector, initializes four integer outputs, branches on settings +0xb0 == 5, and uses physical dimensions, offsets, DPI, per-entry scale and grid-related fields.",
+      "sites": [
+        "0x1668b19",
+        "0x1668b69",
+        "0x1668b9a",
+        "0x1668bd1",
+        "0x1668c47",
+        "0x1668c64",
+        "0x1668ee2",
+        "0x1668f06"
+      ],
+      "unknowns": [
+        "Complete meanings of mode 5, flags +0x84/+0x88 and optional edge adjustments.",
+        "All geometry helpers and output-field semantics across both branches."
+      ]
+    },
+    {
+      "entry": "0x1663a80",
+      "state": "observed",
+      "description": "Traverses two collections using virtual counts at +0x10/+0xc and producers at +0x18/+0x14; initializes six float-sized values to identity-affine values; forwards outputs to 0x1655e00 and 0x16561c0; changes a guarded entry marker +8 from 0 to 1.",
+      "sites": [
+        "0x1663b7d",
+        "0x1663c0a",
+        "0x1663c14",
+        "0x1663cc2",
+        "0x1663e0c",
+        "0x1663e39"
+      ],
+      "unknowns": [
+        "Concrete types and visual roles of both collections.",
+        "Consumer behavior, lifecycle and failure propagation."
+      ]
+    },
+    {
+      "entry": "0x1663410",
+      "state": "observed",
+      "description": "Converts two pairs of integer bounds to origin/extent arguments; branches on helper 0x16584c0, checks lookup 0x1667c30 and forwards to 0x1665780 or 0x166fe90; returns failure when the required lookup is absent.",
+      "sites": [
+        "0x16634c6",
+        "0x1663534",
+        "0x1663541",
+        "0x1663552",
+        "0x1663562",
+        "0x166356b"
+      ],
+      "unknowns": [
+        "Exact object and parameter types.",
+        "Relationship of both dispatch paths to vector/raster or other output modes."
+      ]
+    }
+  ],
+  "next_entries": [
+    "0x1668750",
+    "0x1667fe0",
+    "0x1655e00",
+    "0x16561c0",
+    "0x1665780",
+    "0x166fe90"
+  ],
+  "limitations": [
+    "This is partial static analysis with Ghidra -noanalysis; signatures and function boundaries remain provisional.",
+    "Mode numbers and unidentified flags are not assigned guessed product names.",
+    "No Foxit source, pseudocode, assembly or proprietary resources are published.",
+    "No Linux implementation change, physical printing or behavioral equivalence follows from these observations alone."
+  ]
+}

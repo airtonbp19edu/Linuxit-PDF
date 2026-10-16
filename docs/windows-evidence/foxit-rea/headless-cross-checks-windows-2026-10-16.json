@@ -1,0 +1,49 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/windows-print-01/functions/0x1663410.json",
+      "result_sha256": "81078cf3851f75ff53051137cced172993370f7cd77d2ba61d8fb9a357f126f7",
+      "entry_va": "0x1663410",
+      "analyst_name": "analyst_entry_1663410",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 413,
+      "body_ranges": "[[01663410, 016635ac]]",
+      "pseudocode_sha256": "8000b2099b1cbe64805051c75762c02102cd0cac94de53dac741df645112d566",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-print-01/functions/0x1663a80.json",
+      "result_sha256": "0b43bf07f72ee8c622d09eac70098522f27b5b76c6d2c55f0ae5f231d3e495d3",
+      "entry_va": "0x1663a80",
+      "analyst_name": "analyst_entry_1663a80",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1009,
+      "body_ranges": "[[01663a80, 01663e70]]",
+      "pseudocode_sha256": "6bf59bc9233b49ff64772027321ad8e779e2cb2b96fbdccbf1503f211e8ac900",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-print-01/functions/0x1668ac0.json",
+      "result_sha256": "3125ca23e7942674c0b19bf7085672ae4911862cebe93b2243537e66d12e680f",
+      "entry_va": "0x1668ac0",
+      "analyst_name": "analyst_entry_1668ac0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1184,
+      "body_ranges": "[[01668ac0, 01668f5f]]",
+      "pseudocode_sha256": "43800d37be2b4067add131c2cbbe2388512e1feb2d54cad99cefd649405335f2",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

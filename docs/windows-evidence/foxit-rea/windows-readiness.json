@@ -1,0 +1,128 @@
+{
+  "schema": "linuxit-windows-rea-readiness-v1",
+  "date_local": "2026-10-16",
+  "versions": {
+    "rea": "6.5.0",
+    "node": "24.22.0",
+    "ghidra": "12.1.4",
+    "java": "21.0.12.1"
+  },
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "target_identity_verified": true,
+  "healthy": true,
+  "scope": {
+    "mode": "explicit",
+    "clients": [],
+    "providers": [
+      "ghidra"
+    ],
+    "skill": false,
+    "target": null
+  },
+  "scope_checks": [
+    {
+      "name": "node",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "24.22.0"
+    },
+    {
+      "name": "ghidra",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "A:\\Programas\\ghidra_12.1.4_PUBLIC"
+    },
+    {
+      "name": "ghidra-platform",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "win32"
+    },
+    {
+      "name": "ghidra-architecture",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "x64"
+    },
+    {
+      "name": "ghidra-installation",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "A:\\Programas\\ghidra_12.1.4_PUBLIC\\Ghidra\\application.properties"
+    },
+    {
+      "name": "ghidra-version",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "12.1.4"
+    },
+    {
+      "name": "ghidra-headless",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "A:\\Programas\\ghidra_12.1.4_PUBLIC\\support\\analyzeHeadless.bat"
+    },
+    {
+      "name": "ghidra-native_decompiler",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "A:\\Programas\\ghidra_12.1.4_PUBLIC\\Ghidra\\Features\\Decompiler\\os\\win_x86_64\\decompile.exe reports pe x86_64, which matches win32/x64"
+    },
+    {
+      "name": "ghidra-java",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "21.0.12.1; 64-bit; JDK; A:\\Programas\\Eclipse Temurin JDK; accepted a 64-bit full JDK 21 or newer"
+    },
+    {
+      "name": "ghidra-native_authority",
+      "ok": true,
+      "classification": "healthy",
+      "detail": "Verified Windows native Job Object, private DACL, and reparse-safe handle controls; local NTFS only."
+    }
+  ],
+  "mcp_catalog": {
+    "counts": {
+      "cli_commands": 153,
+      "mcp_tools": 207,
+      "mcp_prompts": 6
+    },
+    "digests": {
+      "tools_sha256": "805433f17bb4f709558ff20c04f96fe561fca2938fd0f459b1f8cc0f6b438ded",
+      "prompts_sha256": "7152916ab48bd2a9677a5ad9cdbde0a51dc53c113934952ad096e93f5f18aa7e",
+      "combined_sha256": "405725e736ec8dc8483435b970acbf20f9f26b9f1fd25203b992f5ab4cd2a4f4"
+    }
+  },
+  "host_boundary": "REA Windows x64 Ghidra P0; experimental",
+  "source_implementation_changes": [
+    "scripts/rea_mcp_queue.py accepts an explicit Node executable and uses UTF-8 for MCP pipes.",
+    "scripts/catalog_foxit_functions.py merges additional manifests by target digest and entry address."
+  ],
+  "attempts": [
+    {
+      "session": "windows-search-print-01",
+      "initialize": "passed",
+      "open_binary": "passed",
+      "function_queries_completed": 0,
+      "interruption": "Windows sandbox denied replacement of the driver current.json status file; original bytes unchanged."
+    },
+    {
+      "session": "windows-search-print-02",
+      "initialize": "passed",
+      "open_binary": "passed",
+      "server_identity": "REA 6.5.0",
+      "status": "Timed out before first function observation; session stopped.",
+      "function_queries_completed": 0,
+      "error_code": "cleanup_incomplete",
+      "error_message": "Analysis took too long. Try a smaller request, then run `rea doctor` if it continues.",
+      "elapsed_sec": 601.0421875000029,
+      "result_sha256": "8f1ce77d9e469769d1c3edd77d0feb7a4203c52931c74878fa18caeacb7932f6",
+      "cleanup": "Provider could not fully confirm temporary-directory cleanup; own JVM was checked and no longer running; local records retained."
+    }
+  ],
+  "limitations": [
+    "Scoped doctor readiness does not establish successful function decompilation.",
+    "No Foxit execution, UI observation, physical printing, or differential equivalence is asserted.",
+    "Full MCP results, source binary and temporary Ghidra database remain unversioned in analysis-local/."
+  ]
+}

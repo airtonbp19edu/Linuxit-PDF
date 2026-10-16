@@ -7,11 +7,12 @@ from pathlib import Path
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--evidence-root', type=Path, required=True)
+parser.add_argument('--output', type=Path, help='Separate metadata file for a new analysis round')
 args = parser.parse_args()
 root = args.evidence_root.resolve()
 repo = Path(__file__).resolve().parents[1]
-destination = repo / 'docs/windows-evidence/foxit-rea/headless-cross-checks.json'
-manifest = json.loads(destination.with_name('analysis-manifest.json').read_text())
+destination = args.output or repo / 'docs/windows-evidence/foxit-rea/headless-cross-checks.json'
+manifest = json.loads(destination.with_name('analysis-manifest.json').read_text(encoding='utf-8'))
 source = '90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6'
 rea_entries = {entry['entry_va'].lower() for entry in manifest['function_dossiers']
                if entry['subject_sha256'] == source}
@@ -22,7 +23,7 @@ for path in sorted((root / 'headless').rglob('0x*.json')):
     if not isinstance(data, dict) or 'entry_va' not in data or 'assembly' not in data:
         continue
     entries.append({
-        'result': str(path.relative_to(root)),
+        'result': path.relative_to(root).as_posix(),
         'result_sha256': hashlib.sha256(raw).hexdigest(),
         'entry_va': data['entry_va'],
         'analyst_name': data.get('analyst_name'),
@@ -45,5 +46,5 @@ result = {
         'Pseudocode and assembly remain outside the repository.',
     ],
 }
-destination.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+destination.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 print(json.dumps({key: result[key] for key in ('observation_count', 'distinct_entries')}))

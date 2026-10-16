@@ -1,0 +1,57 @@
+{
+  "date_local": "2026-10-16",
+  "purpose": "Validate project recovery on Windows; not the full Linux regression suite",
+  "source_commit": "0f08daa66d4bd5576f7c1386de1a8674e974bfba",
+  "source_files_verified": 211,
+  "python": "3.13.15",
+  "platform": "win32",
+  "checks": [
+    {
+      "name": "python_syntax",
+      "status": "passed",
+      "files": 101
+    },
+    {
+      "name": "fixture_metadata",
+      "status": "passed",
+      "pages": 2,
+      "bookmarks": 2,
+      "comments": 1
+    },
+    {
+      "name": "bookmark_search_destinations",
+      "status": "passed",
+      "hits": 2
+    },
+    {
+      "name": "comment_search_subject_and_content",
+      "status": "passed"
+    },
+    {
+      "name": "unicode_whole_words",
+      "status": "passed"
+    },
+    {
+      "name": "booklet_output_reopens",
+      "status": "passed",
+      "output_pages": 2
+    },
+    {
+      "name": "published_flatpak_sha256",
+      "status": "passed",
+      "bundles": 2
+    }
+  ],
+  "passed": 7,
+  "modules": {
+    "gi": false,
+    "cairo": false,
+    "PIL": true,
+    "cryptography": false
+  },
+  "limitations": [
+    "GTK/Cairo and WSL unavailable in this Windows environment.",
+    "The historical 37/37 Linux results were preserved; that suite was not rerun here.",
+    "No original Foxit differential test or physical printing was performed."
+  ]
+}
