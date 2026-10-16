@@ -1,0 +1,64 @@
+{
+  "subject_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "resource_id": 6359,
+  "code_region": "0x177240b..0x17724ad",
+  "exchange_helper": "0x4918b11",
+  "entries": [
+    {
+      "control_id": 7909,
+      "label": "Whole Words Only",
+      "object_relative_offset": "0x1d50"
+    },
+    {
+      "control_id": 7910,
+      "label": "Case-Sensitive",
+      "object_relative_offset": "0x1d54"
+    },
+    {
+      "control_id": 7911,
+      "label": "Include Bookmarks",
+      "object_relative_offset": "0x1d58"
+    },
+    {
+      "control_id": 7858,
+      "label": "Include Comments",
+      "object_relative_offset": "0x1d5c"
+    },
+    {
+      "control_id": 7913,
+      "label": "Include Page Text",
+      "object_relative_offset": "0x1d60"
+    },
+    {
+      "control_id": 7859,
+      "label": "Include Attachments",
+      "object_relative_offset": "0x1d64"
+    },
+    {
+      "control_id": 8036,
+      "label": "Proximity",
+      "object_relative_offset": "0x1d68"
+    },
+    {
+      "control_id": 8035,
+      "label": "Stemming",
+      "object_relative_offset": "0x1d6c"
+    },
+    {
+      "control_id": 7921,
+      "label": "Highlight All Text",
+      "object_relative_offset": "0x1d70"
+    }
+  ],
+  "evidence": [
+    "REA search_bytes: main-commands/results/070-search-option-bindings.json",
+    "GNU objdump bounded region: search-binding-second.asm",
+    "Direct Ghidra: headless/ddx-functions/0x4918b11.json"
+  ],
+  "exchange_behavior": "Control ID and object-relative field address are passed to 0x4918b11. The helper sends BM_SETCHECK (0xf1) from the stored state when the exchange direction is 0, otherwise reads BM_GETCHECK (0xf0) into the field.",
+  "limitations": [
+    "The C++ object class and all engine consumers are not fully recovered.",
+    "Checkbox binding does not establish stemming, Unicode normalization, proximity distance or highlight geometry algorithms.",
+    "Control IDs are joined to the matching dialog metadata; other instances of the same IDs require their own class/context."
+  ]
+}

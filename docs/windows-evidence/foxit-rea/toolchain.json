@@ -1,0 +1,191 @@
+{
+  "rea_version": "6.4.0",
+  "ghidra": {
+    "url": "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip",
+    "sha256": "ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db",
+    "version": "12.1.4"
+  },
+  "java_version": "21.0.12.1+1-1~deb13u1",
+  "doctor_scope": {
+    "mode": "explicit",
+    "clients": [],
+    "providers": [
+      "ghidra"
+    ],
+    "skill": false,
+    "target": null
+  },
+  "scope_healthy": true,
+  "audit_wide_environment_healthy": false,
+  "provider": {
+    "id": "ghidra",
+    "configured": true,
+    "available": true,
+    "providerVersion": "12.1.4",
+    "registrationEnvironment": {
+      "GHIDRA_INSTALL_DIR": "/workspace/ghidra-tools/ghidra_12.1.4_PUBLIC",
+      "JAVA_HOME": "/workspace/ghidra-tools/java/usr/lib/jvm/java-21-openjdk-amd64"
+    },
+    "checks": [
+      {
+        "name": "configuration",
+        "ok": true,
+        "code": null,
+        "detail": "/workspace/ghidra-tools/ghidra_12.1.4_PUBLIC",
+        "remediation": null,
+        "classification": "config_drift"
+      },
+      {
+        "name": "platform",
+        "ok": true,
+        "code": null,
+        "detail": "linux",
+        "remediation": null,
+        "classification": "unsupported_host"
+      },
+      {
+        "name": "architecture",
+        "ok": true,
+        "code": null,
+        "detail": "x64",
+        "remediation": null,
+        "classification": "unsupported_host"
+      },
+      {
+        "name": "installation",
+        "ok": true,
+        "code": null,
+        "detail": "/workspace/ghidra-tools/ghidra_12.1.4_PUBLIC/Ghidra/application.properties",
+        "remediation": null,
+        "classification": "config_drift"
+      },
+      {
+        "name": "version",
+        "ok": true,
+        "code": null,
+        "detail": "12.1.4",
+        "remediation": null,
+        "classification": "config_drift"
+      },
+      {
+        "name": "headless",
+        "ok": true,
+        "code": null,
+        "detail": "/workspace/ghidra-tools/ghidra_12.1.4_PUBLIC/support/analyzeHeadless",
+        "remediation": null,
+        "classification": "config_drift"
+      },
+      {
+        "name": "native_decompiler",
+        "ok": true,
+        "code": null,
+        "detail": "/workspace/ghidra-tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/Decompiler/os/linux_x86_64/decompile reports elf x86_64, which matches linux/x64",
+        "remediation": null,
+        "classification": "config_drift"
+      },
+      {
+        "name": "java",
+        "ok": true,
+        "code": null,
+        "detail": "21.0.12.1; 64-bit; JDK; /workspace/ghidra-tools/java/usr/lib/jvm/java-21-openjdk-amd64; accepted a 64-bit full JDK 21 or newer",
+        "remediation": null,
+        "classification": "config_drift"
+      }
+    ]
+  },
+  "limitations": [
+    "Explicit Ghidra readiness passed; audit-wide checks include an unsupported Debian 13 host declaration and missing unused engines/registrations.",
+    "Doctor readiness does not alone establish successful function analysis; see analysis manifest."
+  ],
+  "rea_source_build": {
+    "repository": "https://github.com/morluto/rea",
+    "commit": "b9b3a9098b072313119eccb3ae574faa57c3e517",
+    "package_version": "6.4.0",
+    "npm_version": "11.16.0",
+    "node_version": "24.19.0",
+    "path": "/workspace/rea/scripts/rea.mjs",
+    "build_command": "HUSKY=0 npx --yes --cache /workspace/.npm-cache npm@11.16.0 run build:cached",
+    "readiness_command": "node /workspace/rea/scripts/rea.mjs doctor --provider ghidra --format json",
+    "scoped_readiness_passed": true,
+    "reason": "Installed npm CLI lacks the source build capability REA_GHIDRA_DISABLED_ANALYZERS; default full main autoanalysis timed out after 30 minutes. No REA source modifications.",
+    "initial_session_node_version": "24.19.0",
+    "reproducible_node_version": "24.18.0",
+    "reproducible_setup_command": "bash scripts/setup-rea-source.sh",
+    "pinned_node_archive_sha256": "55aa7153f9d88f28d765fcdad5ae6945b5c0f98a36881703817e4c450fa76742",
+    "pinned_build_and_scoped_readiness_passed": true
+  },
+  "main_default_attempt": {
+    "result": "/workspace/foxit-rea-analysis/results/003-segments.json",
+    "elapsed_sec": 1801.678799872985,
+    "error_code": "provider_timeout",
+    "timeout_ms": 1800000,
+    "completed_autoanalysis": false
+  },
+  "focused_profile_requested": {
+    "seeds": 21,
+    "seed_sha256": "a3a5f3b42937ed6e39f9995decaa6993b0ab63277c4842b0d62cbc0750e7692b",
+    "disabled_analyzers": [
+      "Decompiler Switch Analysis",
+      "Decompiler Parameter ID",
+      "Function ID",
+      "Function Start Pre Search",
+      "Function Start Search",
+      "Function Start Search After Code",
+      "Function Start Search After Data",
+      "Disassemble Entry Points"
+    ],
+    "limitations": [
+      "Targeted profile does not provide exhaustive function discovery or whole-program switch recovery.",
+      "Selected functions are decompiled on demand; name/type recovery may be less complete."
+    ]
+  },
+  "minimum_profile_requested": {
+    "purpose": "Obtain selected command dossiers without whole-program RTTI/constant-propagation discovery. Complementary to broader focused profile, not exhaustive.",
+    "disabled_analyzers": [
+      "Decompiler Switch Analysis",
+      "Decompiler Parameter ID",
+      "Function ID",
+      "Function Start Pre Search",
+      "Function Start Search",
+      "Function Start Search After Code",
+      "Function Start Search After Data",
+      "Disassemble Entry Points",
+      "Windows x86 PE RTTI Analyzer",
+      "Windows x86 PE Exception Handling",
+      "x86 Constant Reference Analyzer",
+      "Create Address Tables"
+    ],
+    "seed_sha256": "a3a5f3b42937ed6e39f9995decaa6993b0ab63277c4842b0d62cbc0750e7692b"
+  },
+  "successful_main_profile": {
+    "purpose": "Selected command bodies; automatic no-return rediscovery/repair disabled in addition to broad function discovery.",
+    "disabled_analyzers": [
+      "Decompiler Switch Analysis",
+      "Decompiler Parameter ID",
+      "Function ID",
+      "Function Start Pre Search",
+      "Function Start Search",
+      "Function Start Search After Code",
+      "Function Start Search After Data",
+      "Disassemble Entry Points",
+      "Windows x86 PE RTTI Analyzer",
+      "Windows x86 PE Exception Handling",
+      "x86 Constant Reference Analyzer",
+      "Create Address Tables",
+      "Subroutine References",
+      "Non-Returning Functions - Discovered",
+      "Non-Returning Functions - Known"
+    ],
+    "seeds": 21,
+    "first_overview_elapsed_sec": 471.0936,
+    "discovered_procedure_entries": 5458,
+    "not_exhaustive": true
+  },
+  "final_recheck": {
+    "healthy": true,
+    "all_scoped_checks_passed": true,
+    "node": "24.18.0",
+    "execution_context": "Outside restricted subprocess sandbox",
+    "sandbox_observation": "Java runs directly; Node spawnSync reported EPERM even with successful Java status. The diagnostic outside this restriction passed. No REA source was changed."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "subject_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "sources": [
+    "UI message-map candidates in ui-command-map.json",
+    "Previous print assembly observations: https://github.com/airtonbp19edu/Print-and-View-PDF/blob/e01c947e63a34887094a1ef7a3f877309a580bdb/docs/windows-evidence/foxit-print-message-map.json"
+  ],
+  "status": "21 functions created by REA pre-analysis seed script; not proof of UI availability or complete behavior",
+  "labels": "analyst_entry_* are analyst-assigned hints, not recovered original symbols",
+  "profile": "See toolchain.json for disabled analyzers and source REA build identity"
+}

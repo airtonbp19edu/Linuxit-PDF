@@ -1,0 +1,29 @@
+{
+  "fx_files": 869,
+  "fx_integrity_and_xml_errors": 0,
+  "fx_catalog_repeat_identical": true,
+  "ui_catalog_repeat_identical": true,
+  "module_catalog_repeat_equal": true,
+  "mcp_queue_smoke_passed": true,
+  "mcp_error_pause_passed": true,
+  "scope": "Analysis helpers and tool setup only; app functionality, rendering speed, physical printing and Flatpak sandbox equivalence were not tested in this round.",
+  "dispatch_repeat_identical": true,
+  "dispatch_descriptors": 717,
+  "dispatch_registrations": 9973,
+  "dispatch_table_26_matches_ghidra_all_237_slots": true,
+  "standalone_ui_parser_repeat_identical": true,
+  "mcp_distinct_entries_by_module": {
+    "fxLuceneLib.dll": 51,
+    "Bookmark.fpi": 19,
+    "agnosticuilib.dll": 6,
+    "FoxitPDFReader.exe": 46
+  },
+  "mcp_distinct_entries_total": 122,
+  "direct_backend_cross_check_entries": 26,
+  "direct_backend_additional_main_entries": 5,
+  "source_executable_unchanged": true,
+  "final_fx_helper_repeat_identical": true,
+  "final_mcp_helper_request_and_persistent_log_passed": true,
+  "syntax_json_and_document_links_passed": true,
+  "final_doctor_outside_subprocess_restriction_healthy": true
+}

@@ -1,0 +1,236 @@
+{
+  "module_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "constructor_va": "0x10037e40",
+  "concrete_vtable_va": "0x100d841c",
+  "slots": [
+    {
+      "slot": 0,
+      "address": "0x100389f0",
+      "observation": "Destruição/liberação do objeto concreto; conferir ownership no consumidor.",
+      "evidence_id": "ev_dd059b498c12df162f861f3e04980de75aea9889916285b5c5a2512e0eac2f8e",
+      "query": "lucene/results/020-concrete-method-00.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 1,
+      "address": "0x100397d0",
+      "observation": "Abre FSDirectory e verifica se o caminho é diretório.",
+      "evidence_id": "ev_aa4cb3be5ff902a0bb0755d254217717c6dac739a6aebeb302e9f519abdbce5e",
+      "query": "lucene/results/021-concrete-method-01.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 2,
+      "address": "0x10042990",
+      "observation": "Consulta IndexReader::indexExists.",
+      "evidence_id": "ev_f683121fef38c1d6f6213668212f372b5ddc29a233ea1d68147b2f9d790ff261",
+      "query": "lucene/results/022-concrete-method-02.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 3,
+      "address": "0x10038a20",
+      "observation": "Adiciona campos a Document Lucene; há um ramo de compressão de texto.",
+      "evidence_id": "ev_b9107d8d27d1e082768aadf78d4f0487276c93ace2230df4846c9a21a63d2c64",
+      "query": "lucene/results/023-concrete-method-03.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 4,
+      "address": "0x10039a60",
+      "observation": "Abre IndexReader e usa path/docididx/onedocididx.",
+      "evidence_id": "ev_5b1df1a623cc1254da6a2b11fa31bd77bd934dcb744478317fb4cc06840e5f2c",
+      "query": "lucene/results/024-concrete-method-04.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 5,
+      "address": "0x10041880",
+      "observation": "Abre e fecha IndexReader sobre FSDirectory; contrato de saída pendente.",
+      "evidence_id": "ev_3614476f4b88579cb5e89e37fafe0fa31827b0aa5ac4d6170d76cd1648d0cfaa",
+      "query": "lucene/results/025-concrete-method-05.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 6,
+      "address": "0x10042530",
+      "observation": "Consulta metadados datepath/propdocididx/lastupdtt.",
+      "evidence_id": "ev_eb9ce805c862ffbc2193b0b9856fb168bafdd5e1b614071c8f07b5cedaebb56e",
+      "query": "lucene/results/026-concrete-method-06.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 7,
+      "address": "0x1003b750",
+      "observation": "Abre FSDirectory e verifica diretório; diferenças em relação ao slot 1 pendentes.",
+      "evidence_id": "ev_d0a5e5761dd1d911b0be51391b165b6d25becd2231a219972dcdf5759b4ca912",
+      "query": "lucene/results/027-concrete-method-07.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 8,
+      "address": "0x10039690",
+      "observation": "Valida objeto no campo +4; chama slot virtual +0xd8 com argumento 1; retorna -2 ou 0.",
+      "evidence_id": "ev_8506bfe66e9e84c9410f2fff3b9330c08ef0ea5252c0eebea439f2a33435bce9",
+      "query": "lucene/results/028-concrete-method-08.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 9,
+      "address": "0x10039940",
+      "observation": "Abre IndexReader e conserva estado; ownership ainda a confirmar.",
+      "evidence_id": "ev_c8db7b92e73f540a064e3b105451c6710fa539b0d65dac82ec09f4f73a35c216",
+      "query": "lucene/results/029-concrete-method-09.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 10,
+      "address": "0x10039730",
+      "observation": "Valida referência em +0xc e chama IndexReader::close; retorna -2 ou 0.",
+      "evidence_id": "ev_544fc8c1bce21d8ccaba124895a84390111b3ec86fe8af8db2980d942a51c087",
+      "query": "lucene/results/030-concrete-method-10.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 11,
+      "address": "0x1003ed50",
+      "observation": "Orquestra consulta e construção/combinação de SearchResult; modos ainda incompletos.",
+      "evidence_id": "ev_a57716ae420952e878c9039b1990c252758c79ee5bb3aa86304ca7008c4522e0",
+      "query": "lucene/results/031-concrete-method-11.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 12,
+      "address": "0x1003db40",
+      "observation": "Constrói filtros BooleanQuery/NumericRangeQuery, usa isattach/path/docididx.",
+      "evidence_id": "ev_9104645fbdd7f3bc3df17fe737ca396cb36f7688c998360bc374fe7e7eb249ed",
+      "query": "lucene/results/032-concrete-method-12.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 13,
+      "address": "0x1003e3d0",
+      "observation": "Rotina de consulta e composição de resultados; assinatura e modos pendentes.",
+      "evidence_id": "ev_4c9b04eaad00860d67bc16d33a5c3690876ea9291cedca9d2dde063b63205cde",
+      "query": "lucene/results/033-concrete-method-13.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 14,
+      "address": "0x1003a460",
+      "observation": "Abre/fecha IndexReader e usa FSDirectory; finalidade específica pendente.",
+      "evidence_id": "ev_75d6132a5a2ba14f94ed4add9719174d4aced0f9894c59bed127c226071cff00",
+      "query": "lucene/results/034-concrete-method-14.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 15,
+      "address": "0x1003b980",
+      "observation": "Aceita nulo; chama método virtual em +8 e libera objeto.",
+      "evidence_id": "ev_014b5ab7b6a2776ba4fbbc5622d53fe9a1562570f66c32bbfb5d5287736271c9",
+      "query": "lucene/results/035-concrete-method-15.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 16,
+      "address": "0x100414a0",
+      "observation": "Decompilado; contrato dos buffers e estrutura de saída pendente.",
+      "evidence_id": "ev_22df3cd483e4f53892227468232fc9b719f1f3e3869fde7bf91e238d302fdca1",
+      "query": "lucene/results/036-concrete-method-16.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 17,
+      "address": "0x1003a9e0",
+      "observation": "Abre/fecha IndexReader e usa FSDirectory; contrato específico pendente.",
+      "evidence_id": "ev_282c7164e628b2ddd959f4fce2d841f3cce3ae5e332d807e1beb05e6dd9c0838",
+      "query": "lucene/results/037-concrete-method-17.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 18,
+      "address": "0x1003b900",
+      "observation": "Libera cinco ponteiros do buffer recebido e zera os campos.",
+      "evidence_id": "ev_cbf2264403e0b1e58b5eb4901cf42fa57e390cf71b637848a9d0583ae455c239",
+      "query": "lucene/results/038-concrete-method-18.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 19,
+      "address": "0x10041670",
+      "observation": "Decompilado; contrato dos buffers e estrutura de saída pendente.",
+      "evidence_id": "ev_e13947f92877e12635d01bf8f44e169254b7b7fe43ac8e1fb01fa68e9fc24f8d",
+      "query": "lucene/results/039-concrete-method-19.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 20,
+      "address": "0x1003b150",
+      "observation": "Constrói FileHitTermList e copia pares de buffers UTF-16.",
+      "evidence_id": "ev_997fb0f291e631597aee0705d145f93b7f4f8213e2e720d4b942923d6264cabb",
+      "query": "lucene/results/040-concrete-method-20.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 21,
+      "address": "0x10039c90",
+      "observation": "Libera os dois buffers de cada registro de 8 bytes, depois o vetor e o objeto.",
+      "evidence_id": "ev_1f2c0ab764a6e52d306e12be01dd26e582c2365d1705c878536e0aecb107297a",
+      "query": "lucene/results/041-concrete-method-21.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 22,
+      "address": "0x1003af20",
+      "observation": "Abre/fecha IndexReader e usa FSDirectory; contrato específico pendente.",
+      "evidence_id": "ev_8635d5b9e6125cfb7b3d9309fa8e356a35ab9f367a9249dc7be275943121cf2e",
+      "query": "lucene/results/042-concrete-method-22.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 23,
+      "address": "0x1003b100",
+      "observation": "Chama IndexWriter::getLastDocFieldTermCnt; retorna -2, -20 ou 0 conforme os ramos.",
+      "evidence_id": "ev_f3c76a081c4e209ac562ea1432da892b67332b3ea0757178cffded1ca7c7231d",
+      "query": "lucene/results/043-concrete-method-23.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 24,
+      "address": "0x10039660",
+      "observation": "Chama IndexWriter::clearLastDocFieldTermMap; retorna -2 ou 0.",
+      "evidence_id": "ev_f855b663d59408a0858990e4d7e90f06c928104cfda03151363f320b83238921",
+      "query": "lucene/results/044-concrete-method-24.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 25,
+      "address": "0x1003b720",
+      "observation": "Aloca 12 bytes, zera campos e inicializa SearchResult; pode retornar nulo.",
+      "evidence_id": "ev_0da4a76738efe1ed0b09182eef9a2d19bd6b8f0fcabdca7d686f3a7abbaba58f",
+      "query": "lucene/results/045-concrete-method-25.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 26,
+      "address": "0x1003b700",
+      "observation": "Aloca 16 bytes, zera campos e inicializa fxIndexDocument; pode retornar nulo.",
+      "evidence_id": "ev_08e15673ef8edcff42518c2f22819c8b65bc2bc4bb9979fb1dd11d70acece861",
+      "query": "lucene/results/046-concrete-method-26.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    },
+    {
+      "slot": 27,
+      "address": "0x10039d30",
+      "observation": "Aceita nulo; com ponteiro válido delega ao slot virtual 0; destino dinâmico não resolvido.",
+      "evidence_id": "ev_999ee9a4f901239b281b2aa53df3249ac753ed654c982d5295800d6a401d4b93",
+      "query": "lucene/results/047-concrete-method-27.json",
+      "status": "decompiled; behavior contract partial; no dynamic equivalence test"
+    }
+  ],
+  "limitations": [
+    "Slot numbers are zero-based, specific to the sampled x86 interface.",
+    "Struct field meanings, enum names and event contexts remain unknown unless explicitly stated as observed.",
+    "This is behavior evidence for an independent implementation; the proprietary layout is not a portable application API."
+  ]
+}

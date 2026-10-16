@@ -1,0 +1,18 @@
+{
+  "source_module_sha256": "72dffa986861cfe7872f7c0fe2199361c73c5bc53fe4d5a3399690c251cd1c03",
+  "source_queries": [
+    "bookmarks/021-plugin-callback-1.json",
+    "bookmarks/040-bookmark-register-state-0.json"
+  ],
+  "reason": "Code pointers passed as callback registration arguments; default analysis did not define several exact entries. Analyst names are hypotheses, not original symbols.",
+  "addresses": [
+    "0x10042c30",
+    "0x10042cf0",
+    "0x10042d00",
+    "0x10042d10",
+    "0x10042d40",
+    "0x10042d60",
+    "0x10042da0",
+    "0x10044eb0"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "descriptor_count": 717,
+  "nonempty_descriptors": 683,
+  "declared_slots": 9973,
+  "decoded_registrations": 9973,
+  "complete_structural_callbacks": 717,
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "limitations": [
+    "Literal PUSH/PUSH/PUSH/CALL template recognition; a nonmatching callback remains partial.",
+    "Linear decoding stops at the first RET; callbacks with branches can have conditional or unvisited paths.",
+    "A complete structural slot list does not establish runtime callback invocation, availability, signatures or semantics.",
+    "Slots and registrations are not counts of unique product features or fully recovered functions."
+  ]
+}

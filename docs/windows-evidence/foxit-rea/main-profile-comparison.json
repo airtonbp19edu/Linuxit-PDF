@@ -1,0 +1,30 @@
+{
+  "same_input_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "compared": "Exact provider pseudocode text for 21 selected queries under 13- and 15-disabled-analyzer profiles",
+  "matches": [
+    "010-function-0x16dfb10.json",
+    "011-function-0x16dfa50.json",
+    "012-function-0x16dc5f0.json",
+    "013-function-0x16dc650.json",
+    "014-function-0x167e5d0.json",
+    "015-function-0x167e6d0.json",
+    "016-function-0x167ed50.json",
+    "017-function-0x16772e0.json",
+    "018-function-0x168fbd0.json",
+    "020-find-next-textview.json",
+    "021-search-panel-action.json",
+    "022-new-search.json",
+    "023-zoom-to.json",
+    "024-zoom-in.json",
+    "025-zoom-out.json",
+    "026-full-screen.json",
+    "027-print-current-tab.json",
+    "028-print-all-tabs.json",
+    "029-main-print.json",
+    "030-close-tab.json"
+  ],
+  "different": [
+    "031-open-folder.json"
+  ],
+  "interpretation": "Text equality supports repeatability for these entries, not correctness or complete behavior. Open-folder recovery differs and remains provisional."
+}

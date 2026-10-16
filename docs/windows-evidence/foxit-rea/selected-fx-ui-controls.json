@@ -1,0 +1,1240 @@
+{
+  "files": [
+    {
+      "path": "auiresources/Bookmark/ui/AddPageFromBM.ui.fx",
+      "source_sha256": "e7253a0ad3100e97ff44b33109bcdf97bdb9e2ccef6c27acbaee62fa80f6d235",
+      "decoded_sha256": "6d3304a8df97a9c7e80345556aefd62b988a7755dc526eba727a4829fe820da5",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "CAuiBM_AddPageFromBM",
+          "properties": {
+            "geometry": "0\n    0\n    656\n    428",
+            "windowTitle": "Add a new table of contents"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_2",
+          "properties": {
+            "title": "Text Style"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "sizePolicy": "0\n          0",
+            "minimumSize": "60\n          0",
+            "text": "&Title:",
+            "alignment": "Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter",
+            "buddy": "comboBoxNameTitle"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBoxNameTitle",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "180\n            0",
+            "maximumSize": "180\n            16777215"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBoxSizeTitle",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnColorTitle",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnBoldTitle",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnItalicTitle",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_2",
+          "properties": {
+            "minimumSize": "60\n          0",
+            "text": "&Content:",
+            "alignment": "Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter",
+            "buddy": "comboBoxNameContent"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBoxNameContent",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "180\n            0",
+            "maximumSize": "180\n            16777215"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBoxSizeContent",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnColorContent",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnBoldContent",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "btnItalicContent",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "24\n            24",
+            "maximumSize": "24\n            24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox",
+          "properties": {
+            "title": "Options"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_3",
+          "properties": {
+            "text": "&Orientation:",
+            "buddy": "comboBoxOrie"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBoxOrie",
+          "properties": {
+            "sizePolicy": "0\n            0",
+            "minimumSize": "160\n            0"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "radioButtonSelectlevels",
+          "properties": {
+            "sizePolicy": "0\n          0",
+            "minimumSize": "0\n          0",
+            "maximumSize": "16777215\n          16777215",
+            "text": "&Select the bookmark levels that should be converted into items in the table of contents."
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBoxBaseLevel",
+          "properties": {
+            "enabled": "false",
+            "text": "&Base level",
+            "checkable": "true",
+            "checked": "true"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBoxSubLevel1",
+          "properties": {
+            "text": "&Level 1"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBoxSubLevel2",
+          "properties": {
+            "text": "L&evel 2"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBoxSubLevel3",
+          "properties": {
+            "text": "Le&vel 3",
+            "checked": "false"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBoxSubLevel4",
+          "properties": {
+            "text": "Level &4"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "radioButtonAllLevels",
+          "properties": {
+            "text": "Co&nvert all bookmark levels into items in the table of contents."
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBoxSelectLevels",
+          "properties": {
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok",
+            "centerButtons": "false"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": []
+    },
+    {
+      "path": "auiresources/Bookmark/ui/AddStructureElements.ui.fx",
+      "source_sha256": "015d2e304380b1c18fe9bca48a19ca071d89e43a69fd794fecb0a052cffabb4d",
+      "decoded_sha256": "462d4bcb60d4e82df9de6291df0498f65f9b97fe95225323d89c75baf8c90a30",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "AddStructure",
+          "properties": {
+            "geometry": "0\n    0\n    583\n    350",
+            "windowTitle": "Structure Elements"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox",
+          "properties": {
+            "title": "Structure"
+          }
+        },
+        {
+          "class": "QListWidget",
+          "name": "listWidgetElement",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushButtonSelectAll",
+          "properties": {
+            "text": "&Select All"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushButtonClearAll",
+          "properties": {
+            "text": "C&lear All"
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": []
+    },
+    {
+      "path": "auiresources/Bookmark/ui/AppearancePropertyPage.ui.fx",
+      "source_sha256": "6999729c5b93bffa9895c36371d3463cdf8d96d5fbb18498692f1705f9b6df06",
+      "decoded_sha256": "14f1094217437347f157a36c688ce8994e7a8ac7c8fdfa2688445e1c90fd61b6",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "CAuiAppearancePropertyPage",
+          "properties": {
+            "geometry": "0\n    0\n    242\n    110",
+            "sizePolicy": "0\n    0",
+            "minimumSize": "0\n    0",
+            "maximumSize": "300\n    16777215",
+            "windowTitle": "Layer Properties"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_Style",
+          "properties": {
+            "text": "Style:",
+            "buddy": "comboBox_Style"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_Color",
+          "properties": {
+            "sizePolicy": "0\n       0",
+            "text": "Color:",
+            "buddy": "pushButton_Color"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushButton_Color",
+          "properties": {
+            "sizePolicy": "0\n       0",
+            "minimumSize": "24\n       24",
+            "maximumSize": "24\n       24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBox_Style",
+          "properties": {
+            "minimumSize": "100\n       0"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": []
+    },
+    {
+      "path": "auiresources/Bookmark/ui/CreateBookmarkDlg.ui.fx",
+      "source_sha256": "2d6443c60e393a6db830757d356faf4935b6bc3f7db1aa446415c2657e1e320e",
+      "decoded_sha256": "a2aa7c7f941e9a29ad765d43a79b8c6ce8a77773cb6a482bd40607788571f4bc",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "CreateBookmarkDlg",
+          "properties": {
+            "geometry": "0\n    0\n    707\n    521",
+            "windowTitle": "Auto Create Bookmarks"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_2",
+          "properties": {
+            "title": "Options"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "dontcheckBox",
+          "properties": {
+            "text": "Do &not create consecutive duplicate bookmarks"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_3",
+          "properties": {
+            "text": "Insert boo&kmarks:",
+            "buddy": "comboBox"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "StoppushButton",
+          "properties": {
+            "text": "Edit Stop &Words"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "RemovecheckBox",
+          "properties": {
+            "text": "Remo&ve non-alphanumeric characters"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "IgnorecheckBox",
+          "properties": {
+            "text": "&Ignore text that contains stop words:"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBox",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "loadButton",
+          "properties": {
+            "text": "&Load from File..."
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_3",
+          "properties": {
+            "title": "Page Range"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "IDC_SUBWINDOW_PAGESELECT",
+          "properties": {
+            "focusPolicy": "Qt::StrongFocus",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "lamplabel",
+          "properties": {
+            "sizePolicy": "0\n         0",
+            "minimumSize": "24\n         24",
+            "maximumSize": "24\n         24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "text": "This method is to define properties of the text that will be applied to bookmark titles. Bookmarks will be automatically created based on predefined text style, content and layout.",
+            "wordWrap": "true"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "SaveButton",
+          "properties": {
+            "text": "&Save to File..."
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "orientation": "Qt::Horizontal",
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox",
+          "properties": {
+            "title": "Bookmark Levels"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_2",
+          "properties": {
+            "text": "Tip: With your pointer select a sample text on the page and click \"Add...\" button to add a bookmark level rule."
+          }
+        },
+        {
+          "class": "QTreeView",
+          "name": "treeView",
+          "properties": {
+            "minimumSize": "0\n          180"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "AddButton",
+          "properties": {
+            "text": "&Add..."
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "EditButton",
+          "properties": {
+            "text": "&Edit..."
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "DuplicateButton",
+          "properties": {
+            "text": "&Duplicate"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "RemoveButton",
+          "properties": {
+            "text": "&Remove"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "ReAllhButton",
+          "properties": {
+            "text": "Re&move All"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "CreateBookmarkDlg",
+          "slot": "accept()",
+          "hints": "\n    "
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "CreateBookmarkDlg",
+          "slot": "reject()",
+          "hints": "\n    "
+        }
+      ]
+    },
+    {
+      "path": "auiresources/Bookmark/ui/EditStopWordsdlg.ui.fx",
+      "source_sha256": "898603cf0b372bc0d2c89fc077af710a0d20f83bea35cc6fe4e17af23272617c",
+      "decoded_sha256": "34333207bdfb8ea7833f08ef85cae5eeca200dccbe981c746e0cac773061725c",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "EditStopWordDlg",
+          "properties": {
+            "geometry": "0\n    0\n    400\n    327",
+            "windowTitle": "Edit Stop Words"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "text": "Text that contains these words will be ignored and not used to create bookmarks. Enter words in the area below, or close current dialog and then use \"Select Tool\" to copy text from the page. Each word or word sequence should appear on the seperate line.",
+            "wordWrap": "true"
+          }
+        },
+        {
+          "class": "QPlainTextEdit",
+          "name": "plainTextEdit",
+          "properties": {}
+        },
+        {
+          "class": "QCheckBox",
+          "name": "casecheckBox",
+          "properties": {
+            "text": "&Match text case"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "wholecheckBox",
+          "properties": {
+            "text": "Match &whole words"
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "orientation": "Qt::Horizontal",
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "EditStopWordDlg",
+          "slot": "accept()",
+          "hints": "\n    "
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "EditStopWordDlg",
+          "slot": "reject()",
+          "hints": "\n    "
+        }
+      ]
+    },
+    {
+      "path": "auiresources/Bookmark/ui/Fontnamedlg.ui.fx",
+      "source_sha256": "d8743740e7e84b85cda3582256ebc007ef6f477d222d64ecce2657a878e9f317",
+      "decoded_sha256": "bf792889ade5b7aa151e39417b6168efc082abef22da54b5247343608663927b",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "FontNameDlg",
+          "properties": {
+            "geometry": "0\n    0\n    376\n    311",
+            "windowTitle": "Select Font Name"
+          }
+        },
+        {
+          "class": "QListWidget",
+          "name": "listWidget",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushButton",
+          "properties": {
+            "text": "&Update Fonts"
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "orientation": "Qt::Horizontal",
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "FontNameDlg",
+          "slot": "accept()",
+          "hints": "\n    "
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "FontNameDlg",
+          "slot": "reject()",
+          "hints": "\n    "
+        }
+      ]
+    },
+    {
+      "path": "auiresources/Bookmark/ui/LevelSettingdlg.ui.fx",
+      "source_sha256": "a3d396f96c2dcddc00ae0f4d16895abca473b4b766c60972e7a9cb9c43878113",
+      "decoded_sha256": "44b76907ab1a0f61a499b15fa25cea14b8eb9c3f65917ce579bdfb423f5da6cd",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "LevelSettingDlg",
+          "properties": {
+            "geometry": "0\n    0\n    687\n    498",
+            "windowTitle": "Bookmark Level Settings"
+          }
+        },
+        {
+          "class": "QTabWidget",
+          "name": "tabWidget",
+          "properties": {
+            "currentIndex": "0"
+          }
+        },
+        {
+          "class": "QWidget",
+          "name": "tab",
+          "properties": {}
+        },
+        {
+          "class": "QLabel",
+          "name": "lamplabel",
+          "properties": {
+            "sizePolicy": "0\n             0",
+            "minimumSize": "24\n             24",
+            "maximumSize": "24\n             24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "text": "Use the options below to control precisely what text becomes a bookmark. Generally, the more options you use, the more accurate your set of bookmarks will be.",
+            "wordWrap": "true"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_2",
+          "properties": {
+            "text": "&Set Bookmark Level:",
+            "buddy": "levelcomboBox"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "levelcomboBox",
+          "properties": {}
+        },
+        {
+          "class": "QLabel",
+          "name": "label_3",
+          "properties": {
+            "text": "Bookmark Level &Name:",
+            "buddy": "NamelineEdit"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "NamelineEdit",
+          "properties": {}
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox",
+          "properties": {
+            "title": "Text Content"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_4",
+          "properties": {
+            "text": "&Find Text Content:",
+            "buddy": "lineEdit"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "lineEdit",
+          "properties": {}
+        },
+        {
+          "class": "QLabel",
+          "name": "Content_PNG",
+          "properties": {
+            "sizePolicy": "0\n              0",
+            "minimumSize": "16\n              16",
+            "maximumSize": "16\n              16",
+            "text": ""
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "MatchcheckBox",
+          "properties": {
+            "text": "&Match text case"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_2",
+          "properties": {
+            "title": "Text Style"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBox_2",
+          "properties": {}
+        },
+        {
+          "class": "QLabel",
+          "name": "IDC_PNG",
+          "properties": {
+            "sizePolicy": "0\n              0",
+            "minimumSize": "16\n              16",
+            "maximumSize": "16\n              16",
+            "text": ""
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "sizecheckBox",
+          "properties": {
+            "text": "Font Si&ze:"
+          }
+        },
+        {
+          "class": "QListWidget",
+          "name": "listWidget",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "AddButton",
+          "properties": {
+            "text": "&Add..."
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "AttributeButton",
+          "properties": {
+            "text": "Set Font Attri&butes from Selected Text"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "RemoveButton",
+          "properties": {
+            "text": "&Remove"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_5",
+          "properties": {
+            "sizePolicy": "0\n              0",
+            "text": "±",
+            "wordWrap": "true"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_6",
+          "properties": {
+            "text": "&points",
+            "buddy": "comboBox_2"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "FontNcheckBox",
+          "properties": {
+            "text": "Fon&t Name:"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBox",
+          "properties": {
+            "editable": "false"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_11",
+          "properties": {
+            "minimumSize": "16\n              16",
+            "maximumSize": "16\n              16",
+            "text": ""
+          }
+        },
+        {
+          "class": "QWidget",
+          "name": "tab_2",
+          "properties": {}
+        },
+        {
+          "class": "QLabel",
+          "name": "lamplabel_2",
+          "properties": {
+            "sizePolicy": "0\n             0",
+            "minimumSize": "24\n             24",
+            "maximumSize": "24\n             24",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_7",
+          "properties": {
+            "text": "Use the options below to preset text properties that will be applied to the new bookmark titles.",
+            "wordWrap": "true"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_3",
+          "properties": {
+            "title": "Appearance"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_8",
+          "properties": {
+            "sizePolicy": "0\n              0",
+            "text": "&Text Style:",
+            "alignment": "Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter",
+            "buddy": "stytlecomboBox"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_9",
+          "properties": {
+            "text": "Text &Color:",
+            "alignment": "Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter",
+            "buddy": "colorButton"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "colorButton",
+          "properties": {
+            "minimumSize": "16\n              16",
+            "maximumSize": "16\n              16",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_10",
+          "properties": {
+            "text": "&Zoom:",
+            "alignment": "Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter",
+            "buddy": "zoomcomboBox"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "zoomcomboBox",
+          "properties": {}
+        },
+        {
+          "class": "QComboBox",
+          "name": "stytlecomboBox",
+          "properties": {
+            "sizePolicy": "0\n              0",
+            "minimumSize": "120\n              0"
+          }
+        },
+        {
+          "class": "QGroupBox",
+          "name": "groupBox_4",
+          "properties": {
+            "title": "Text Case"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "Donotchange",
+          "properties": {
+            "text": "Do Not C&hange"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "sentenceradio",
+          "properties": {
+            "text": "Sen&tence case"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "Titleradio",
+          "properties": {
+            "text": "&Title Case"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "upperRadio",
+          "properties": {
+            "text": "&UPPERCASE"
+          }
+        },
+        {
+          "class": "QRadioButton",
+          "name": "lowerradio",
+          "properties": {
+            "text": "&lowercase"
+          }
+        },
+        {
+          "class": "QCheckBox",
+          "name": "InsertcheckBox",
+          "properties": {
+            "text": "&Insert this text before each title:"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "InsertlineEdit",
+          "properties": {}
+        },
+        {
+          "class": "QCheckBox",
+          "name": "AddcheckBox",
+          "properties": {
+            "text": "Add this text after &each title:"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "AddlineEdit",
+          "properties": {}
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "orientation": "Qt::Horizontal",
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "LevelSettingDlg",
+          "slot": "accept()",
+          "hints": "\n    "
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "LevelSettingDlg",
+          "slot": "reject()",
+          "hints": "\n    "
+        }
+      ]
+    },
+    {
+      "path": "auiresources/Bookmark/ui/Selectleveldlg.ui.fx",
+      "source_sha256": "9873fb1c00a50379c294fca400e423e01ca7fa4e945ae4af2ce5af0d3568bbbc",
+      "decoded_sha256": "659f6b9d2dac510df9f81e4055e5c004a6a1e525cdf05b30f648d4c5c39ac8f3",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "SelectlevelDlg",
+          "properties": {
+            "geometry": "0\n    0\n    450\n    121",
+            "windowTitle": "Select Bookmark Level"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "stylelabel",
+          "properties": {
+            "text": "Selected style:  xxxxx"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "text": "Set bookmark level:"
+          }
+        },
+        {
+          "class": "QComboBox",
+          "name": "comboBox",
+          "properties": {}
+        },
+        {
+          "class": "QCheckBox",
+          "name": "checkBox",
+          "properties": {
+            "text": "O&pen settings to edit level parameters"
+          }
+        },
+        {
+          "class": "QDialogButtonBox",
+          "name": "buttonBox",
+          "properties": {
+            "orientation": "Qt::Horizontal",
+            "standardButtons": "QDialogButtonBox::Cancel|QDialogButtonBox::Ok"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "SelectlevelDlg",
+          "slot": "accept()",
+          "hints": "\n    "
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "SelectlevelDlg",
+          "slot": "reject()",
+          "hints": "\n    "
+        }
+      ]
+    },
+    {
+      "path": "auiresources/DocProcess/ui/PrintJobPanelDlg.ui.fx",
+      "source_sha256": "c02fa44863f733b18acf1eb60a61fe110933783515cb52e684d56afb953125dd",
+      "decoded_sha256": "ae26b5ac0f28490ea7cd1ded4df62b2113ece99910d3803c08c6be412896d932",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "Dialog",
+          "properties": {
+            "geometry": "0\n    0\n    344\n    863",
+            "windowTitle": "Dialog"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label",
+          "properties": {
+            "sizePolicy": "0\n         0",
+            "minimumSize": "0\n         23",
+            "maximumSize": "16777215\n         23",
+            "text": "Name"
+          }
+        },
+        {
+          "class": "QTableWidget",
+          "name": "tableWidget",
+          "properties": {}
+        }
+      ],
+      "entries": [],
+      "connections": []
+    },
+    {
+      "path": "auiresources/FindTool/ui/searchreplace.ui.fx",
+      "source_sha256": "4437a6861ae237c5fa73758054e03d4b67060886bdb11e7aecc7e313f1d88f18",
+      "decoded_sha256": "5bf8a5822c062fae2d767e3a974c28d95126a0ddc3f0ad76e2ce505c96eaddde",
+      "ciphertext_checksum_valid": true,
+      "root": "ui",
+      "root_attributes": {
+        "version": "4.0"
+      },
+      "widgets": [
+        {
+          "class": "QDialog",
+          "name": "Dialog",
+          "properties": {
+            "geometry": "0\n    0\n    282\n    173",
+            "windowTitle": "Search&Repalce"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "lineEdit_FindWhat",
+          "properties": {
+            "minimumSize": "220\n         0"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushBut_Pre",
+          "properties": {
+            "text": "Previous"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushBut_Next",
+          "properties": {
+            "text": "Next"
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "label_ShowMore",
+          "properties": {
+            "sizePolicy": "0\n           0",
+            "minimumSize": "8\n           8",
+            "maximumSize": "8\n           8",
+            "text": ""
+          }
+        },
+        {
+          "class": "QLabel",
+          "name": "lab_Replace",
+          "properties": {
+            "text": "Replace"
+          }
+        },
+        {
+          "class": "QLineEdit",
+          "name": "lineEdt_RepalceWith",
+          "properties": {}
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushBut_Replace",
+          "properties": {
+            "text": "Replace"
+          }
+        },
+        {
+          "class": "QPushButton",
+          "name": "pushBut_ReplaceAll",
+          "properties": {
+            "text": "Replace All"
+          }
+        }
+      ],
+      "entries": [],
+      "connections": []
+    }
+  ],
+  "limitations": [
+    "Format-specific RC4 decoding and MD5 integrity check, not publisher authentication.",
+    "Templates/translations can include shared Editor functionality; runtime Reader availability is unproven.",
+    "A declared XML connection is not proof of its native implementation or Linux equivalence.",
+    "Root version attributes describe individual resources, not the current Reader executable version."
+  ]
+}
