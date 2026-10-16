@@ -10,3 +10,4 @@
 - 2026-10-16: etapa de busca/impressão retomada. Duas sessões REA e extrações complementares ampliaram o catálogo de 131 para 191 entradas; 152 REA + 39 diretas adicionais. Bits de consulta, layout parcial de 24 bytes, cancelamento, spooler e capacidades físicas documentados.
 - 2026-10-16: kernel x86 nativo rejeitado; controle Wine/i386 sob QEMU passou. Foxit carregou, mas encerrou antes da UI com CInvalidArgException; causa inicial não determinada, paridade permanece 0/25.
 - 2026-10-16: Linuxit 0.1.1 acrescentou controle de destaque e corrigiu callbacks/timers após fechamento. 37 testes passaram na fonte e no payload; cinco verificações do Flatpak instalado e launcher normal aprovados. Pesos/revisão do roteiro preservados; progresso geral continua 43,33%.
+- 2026-10-16: marco 0.1.1 publicado em `2872144904bdf5d0e0eda870b107f6068c989a10`; HEAD remoto e árvore limpa confirmados. O registro posterior mantém o hash já verificado, sem autorreferência.
