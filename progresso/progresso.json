@@ -597,15 +597,16 @@
         {
           "criterion": "Artefato publicado com instruções e limites",
           "weight": 1,
-          "status": "pending",
+          "status": "done",
           "evidence": [
             "releases/manifest.json",
-            "docs/instalacao.md"
+            "docs/instalacao.md",
+            "progresso/sincronizacao-git.json"
           ]
         }
       ],
-      "verified_fraction": 0.833333,
-      "earned_percent": 2.5
+      "verified_fraction": 1.0,
+      "earned_percent": 3.0
     },
     {
       "id": 21,
@@ -631,15 +632,18 @@
         {
           "criterion": "Sincronização e integridade final confirmadas",
           "weight": 1,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "progresso/sincronizacao-git.json",
+            "releases/SHA256SUMS"
+          ]
         }
       ],
-      "verified_fraction": 0.333333,
-      "earned_percent": 0.333333
+      "verified_fraction": 0.5,
+      "earned_percent": 0.5
     }
   ],
-  "general_progress_percent": 42.66,
+  "general_progress_percent": 43.33,
   "verified_functional_parity": {
     "percent": 0.0,
     "verified": 0,

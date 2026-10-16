@@ -65,8 +65,8 @@ manifesto e TSV dos pacotes. Instruções em `docs/instalacao.md`.
 
 Destino: https://github.com/airtonbp19edu/Linuxit-PDF, branch `main`.
 Marcos anteriores confirmados: `5312ae0` (análise/progresso) e `739ed14`
-(implementação/testes). O marco do pacote e sua confirmação são registrados
-em `progresso/sincronizacao-git.json` e no histórico, após o push.
+(implementação/testes). Pacote publicado e confirmado em `b709a4f04dea272b31bb0f1ae4d31d492c7bdf9b`.
+O marco do pacote e sua confirmação são registrados em `progresso/sincronizacao-git.json` e no histórico, após o push.
 Não há GitHub Release ou tag estável criada neste marco; o artefato é versionado
 no repositório. A confirmação atual de HEAD pode ser reproduzida pelo script
 `verify_git_sync.py` com comprovante fora da árvore.
@@ -86,3 +86,9 @@ não está fechado; quatro de 141 módulos têm investigação profunda dirigida
 
 A reconstrução integral continua pendente. O roteiro mantém bloqueios e próximas
 tarefas explícitos; nenhuma etapa aberta foi encerrada para aparentar 100%.
+
+Indicadores deste marco após a publicação confirmada: progresso geral **43,33%**;
+cobertura global **indeterminada** (medida parcial por módulo: 4/141);
+paridade funcional verificada **0%** (0/25 famílias); sincronização **100% dos
+artefatos publicáveis no commit confirmado**, com zero arquivos pendentes naquele
+registro. O HEAD posterior de documentação deve ser conferido pelo script remoto.
