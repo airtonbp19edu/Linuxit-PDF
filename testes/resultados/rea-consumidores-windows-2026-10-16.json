@@ -1,0 +1,36 @@
+{
+  "schema": "linuxit-static-followup-validation-v1",
+  "verified_at_local": "2026-10-16T20:14:30-03:00",
+  "timezone": "America/Sao_Paulo",
+  "rea_provider_checks": {
+    "passed": 10,
+    "total": 10
+  },
+  "direct_decompilations_completed_and_examined": 6,
+  "raw_result_and_pseudocode_hashes_verified": 6,
+  "catalog_entries": 200,
+  "previous_entries_preserved": 194,
+  "new_distinct_entries": 6,
+  "historical_metadata_files_unchanged": 2,
+  "independent_disassembly": {
+    "functions": 6,
+    "instructions": 1484,
+    "body_bytes": 4874,
+    "all_instruction_addresses_match": true
+  },
+  "python_files_parsed": 104,
+  "local_document_links_checked": 35,
+  "round_path_escape_rejected": true,
+  "metadata_not_written_on_invalid_round": true,
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "original_unchanged": true,
+  "new_project_saved": true,
+  "original_executed": false,
+  "rea_mcp_function_observations_completed_this_round": 0,
+  "full_linux_gtk_suite_rerun": false,
+  "foxit_differential_test": false,
+  "application_behavior_changed": false,
+  "new_flatpak_built": false,
+  "general_progress_percent": 43.33,
+  "functional_parity_verified": 0
+}

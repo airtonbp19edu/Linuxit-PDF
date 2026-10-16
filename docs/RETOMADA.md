@@ -7,6 +7,9 @@ o desenvolvimento mesmo sem acesso ao chat original.
 Para os passos que o usuário precisa preparar e uma mensagem pronta para
 retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 
+Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
+atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
+
 ## Base recuperada
 
 - Repositório: <https://github.com/airtonbp19edu/Linuxit-PDF>, branch `main`.
@@ -15,9 +18,10 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 - Os **211 arquivos** desse commit foram recuperados e conferidos por tamanho
   e hash de objeto Git, incluindo os dois Flatpaks publicados.
 - O Git local foi restaurado com o commit original e histórico raso, equivalente
-  a uma cópia com profundidade 1. O terminal ainda precisa de autenticação no
-  GitHub para buscar o histórico anterior ou enviar alterações. O conector
-  GitHub conectado permite consultar o remoto.
+  a uma cópia com profundidade 1. Na rodada posterior, a consulta autenticada
+  `git ls-remote` passou pelo terminal. O conector GitHub não é necessário se
+  essa autenticação continuar disponível; conferir novamente antes de publicar.
+  Consulte as notas datadas para o resultado do envio e o próximo ponto de retomada.
 
 O checkout foi verificado limpo antes de acrescentar este ponto de retomada,
 seus links e o relatório local de verificação. O usuário autorizou publicar a
@@ -42,7 +46,7 @@ em livreto/N-up/mosaico.
 O roteiro registrado está em **43,33%**. A cobertura global da engenharia
 reversa permanece indeterminada e a paridade diferencial comprovada está em
 **0/25 famílias identificadas**. A recuperação deste checkout não altera
-esses indicadores. O catálogo contém 194 entradas examinadas: 152 REA e 42
+esses indicadores. O catálogo contém 200 entradas examinadas: 152 REA e 48
 adicionais diretas.
 
 ## Onde trabalhar
@@ -88,6 +92,11 @@ As sessões completas ficam em `analysis-local/`, ignorado pelo Git. O driver
 no Windows. O suporte Ghidra do REA neste sistema é experimental.
 O [marco de impressão no Windows](REA-IMPRESSAO-WINDOWS.md) registra o timeout
 da análise MCP e as três novas rotinas examinadas com Ghidra direto.
+O [marco dos consumidores](REA-IMPRESSAO-CONSUMIDORES.md) acrescenta seis
+entradas examinadas e uma conferência independente das instruções com Capstone.
+REA 6.5.0 e seus dez controles Ghidra foram reconferidos; o novo projeto fica
+em `analysis-local/headless/windows-print-02`. O Git local autenticou em
+consulta ao remoto; veja as notas para a confirmação da publicação desta rodada.
 
 Foram aprovadas **7 verificações locais**: sintaxe de 101 arquivos Python;
 metadados do PDF sintético; busca em marcadores e seus destinos; busca em
@@ -119,8 +128,9 @@ funcional com o Foxit continua pendente.
    `scripts/run_tests.py --output <novo-arquivo.json>` com uma tela disponível.
 4. Seguir também a agenda existente: diagnosticar a `CInvalidArgException` do Foxit
    antes da UI, em contenção offline; completar os campos desconhecidos da
-   estrutura de busca de 24 bytes; seguir os helpers e consumidores apontados
-   pelas três rotinas de impressão já examinadas no marco Windows.
+   estrutura de busca de 24 bytes; seguir os dez próximos alvos apontados em
+   `REA-IMPRESSAO-CONSUMIDORES.md`. Os seis consumidores pendentes do primeiro
+   marco Windows já foram examinados; não repetir essa rodada.
 5. Executar o mesmo corpus no original e no Linuxit para medir as diferenças.
    Edição/persistência de marcadores, anotações, formulários e outras famílias
    continuam na matriz de pendências.

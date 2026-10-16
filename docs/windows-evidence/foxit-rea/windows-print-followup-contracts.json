@@ -1,0 +1,317 @@
+{
+  "schema": "linuxit-print-followup-contracts-v1",
+  "reviewed_at_local": "2026-10-16T20:12:30-03:00",
+  "timezone": "America/Sao_Paulo",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "metadata": "headless-cross-checks-windows-followup-2026-10-16.json",
+  "original_executed": false,
+  "differential_equivalence_verified": false,
+  "functions": [
+    {
+      "result": "headless/windows-print-02/functions/0x1655e00.json",
+      "result_sha256": "a8c1518d14f3452147877f9486394095f0735b2e40ff4be38cdd6c5cb753bcd1",
+      "entry_va": "0x1655e00",
+      "analyst_name": "analyst_entry_1655e00",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 953,
+      "body_ranges": "[[01655e00, 016561b8]]",
+      "pseudocode_sha256": "7d38101b18a530789f710c539ccc16a67e5863aa37502ec5dc79a8895f1b573c",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    },
+    {
+      "result": "headless/windows-print-02/functions/0x16561c0.json",
+      "result_sha256": "0d5b4594e30b07cc12b44c885a2a13c10bf9eaff133e1990828e68aa0a84019b",
+      "entry_va": "0x16561c0",
+      "analyst_name": "analyst_entry_16561c0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1282,
+      "body_ranges": "[[016561c0, 016566c1]]",
+      "pseudocode_sha256": "d163980d413e13bd186ecf6e5ddd9e85b7995aabbadad9b29a4db8af0c4ecb5f",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    },
+    {
+      "result": "headless/windows-print-02/functions/0x1665780.json",
+      "result_sha256": "309cd03d471b349773e3cabd033233962179c88f5533d1e8da3470ac46abe23b",
+      "entry_va": "0x1665780",
+      "analyst_name": "analyst_entry_1665780",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 676,
+      "body_ranges": "[[01665780, 01665a23]]",
+      "pseudocode_sha256": "45dc19ada32b1030124a9f673264dd4cddd9f302df9f289f9147ebdd5af5fc57",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    },
+    {
+      "result": "headless/windows-print-02/functions/0x1667fe0.json",
+      "result_sha256": "e0aaaf17c6ebdb6d570d24c77b03c5ba8d542021bed3ce1323af61573f51bc45",
+      "entry_va": "0x1667fe0",
+      "analyst_name": "analyst_entry_1667fe0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 417,
+      "body_ranges": "[[01667fe0, 01668180]]",
+      "pseudocode_sha256": "47d4022bc3862bb8475e1cff8c812b2c43ad984242051b6a80312f7e246ea83f",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    },
+    {
+      "result": "headless/windows-print-02/functions/0x1668750.json",
+      "result_sha256": "d83c0c275cb1e07f95499c61e31bd478e27d5db51bf9bdea9f479c34cf1f2353",
+      "entry_va": "0x1668750",
+      "analyst_name": "analyst_entry_1668750",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 867,
+      "body_ranges": "[[01668750, 01668ab2]]",
+      "pseudocode_sha256": "8970282ec5cb7710e844229d59370020a8b7ca096c25581c3c5795a83abb0c70",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    },
+    {
+      "result": "headless/windows-print-02/functions/0x166fe90.json",
+      "result_sha256": "db8125eaec7af8a2dec6736100875211f2e7a8f0cd348de2211c4c64088341aa",
+      "entry_va": "0x166fe90",
+      "analyst_name": "analyst_entry_166fe90",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 679,
+      "body_ranges": "[[0166fe90, 01670136]]",
+      "pseudocode_sha256": "cbb6d22c19e1738a7618e23de40724e1c8c14fdf3907084bb9a80fc987590b84",
+      "also_examined_through_mcp": false,
+      "reviewed": [
+        "decompiler output",
+        "assembly at branch and dispatch sites",
+        "independent instruction-address decoding with Capstone"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "entry": "0x1668750",
+      "state": "observed_partial_contract",
+      "description": "Clamps the initial two integer outputs to nonnegative values, calls 0x1667fe0, distinguishes last column/row, scales rectangle spans and adjusts extents using physical page metrics and conditionally DPI-dependent terms.",
+      "sites": [
+        "0x1668762",
+        "0x1668780",
+        "0x1668796",
+        "0x16687d3",
+        "0x16687b1",
+        "0x16687f8",
+        "0x1668854",
+        "0x1668a5f",
+        "0x1668aa4"
+      ],
+      "typing_warning": "Ghidra initially types stack slot EBP+0x20 as float, but 0x16687d3 performs a dword integer comparison; the slot is reused later. extraout register artifacts are not a verified ABI.",
+      "unknowns": [
+        "Full mode/flag meanings, margin units, orientation contracts and signatures."
+      ]
+    },
+    {
+      "entry": "0x1667fe0",
+      "state": "observed_partial_contract",
+      "description": "Reads a rectangle and associated state through object +0x5c, supplies zeros for an absent object, caches them at +0x44 and +0x54, then uses the first vector entry to build a transform and transform rectangle bounds. Empty vector enters diagnostic/trap path.",
+      "sites": [
+        "0x1667feb",
+        "0x1668005",
+        "0x166802d",
+        "0x1668043",
+        "0x166806c",
+        "0x16680b7",
+        "0x1668124",
+        "0x166814b",
+        "0x1668163",
+        "0x1668180"
+      ],
+      "unknowns": [
+        "Concrete rectangle provider and transform ABI; valid contexts for the empty-vector guard."
+      ]
+    },
+    {
+      "entry": "0x1655e00",
+      "state": "observed_partial_contract",
+      "description": "Guards missing input, builds reference-counted graphics state, extracts three low color bytes, copies a 24-byte transform into output +0x34, adjusts float translation components +0x44/+0x48 and submits through 0x1b5baf0, then releases temporary state.",
+      "sites": [
+        "0x1655e38",
+        "0x1655efc",
+        "0x1655f17",
+        "0x1656075",
+        "0x1656079",
+        "0x1656101",
+        "0x1656113",
+        "0x1656132",
+        "0x1656146"
+      ],
+      "unknowns": [
+        "Concrete graphics-object types and complete materialization behavior; no raster/vector classification asserted."
+      ]
+    },
+    {
+      "entry": "0x16561c0",
+      "state": "observed_partial_contract",
+      "description": "Uses font preparation via CreateFontIndirectW and frees its GDI handle with DeleteObject on the successful branch; a distinct fallback branch follows handle-creation failure. Copies four incoming words, writes bit pattern 0x42480000, updates position and submits via the same 0x1b5baf0 endpoint.",
+      "sites": [
+        "0x16563af",
+        "0x16563dc",
+        "0x16563ef",
+        "0x1656439",
+        "0x165646f",
+        "0x1656478",
+        "0x165662d",
+        "0x165664a"
+      ],
+      "unknowns": [
+        "Text encoding, font fallback behavior, units of float value 50 and final visual role of the collection."
+      ]
+    },
+    {
+      "entry": "0x1665780",
+      "state": "observed_partial_contract",
+      "description": "Skips an absent required object, establishes guarded state, enumerates virtual collection slots +0x64/+0x68 and handler +0x24 until success; combines this result with a capability byte and flags +0x8c/+0x90 to dispatch to 0x1665a30 or 0x1664c00, then releases state.",
+      "sites": [
+        "0x1665825",
+        "0x16658db",
+        "0x1665905",
+        "0x166592a",
+        "0x1665931",
+        "0x1665969",
+        "0x1665977",
+        "0x1665980",
+        "0x16659b6",
+        "0x16659d9",
+        "0x16659e5"
+      ],
+      "unknowns": [
+        "Concrete handler types and meaning of the selected output paths and flags."
+      ]
+    },
+    {
+      "entry": "0x166fe90",
+      "state": "observed_partial_contract",
+      "description": "Guards the input and lookup 0x1657560, obtains an output object from 0x2d226d0, initializes an identity-like six-float transform, calls the source virtual +0xc, populates options from settings +0x70 including 0xffffff, then invokes output virtual slots +4/+8/+0xc and disposal.",
+      "sites": [
+        "0x166ff3a",
+        "0x166ffa6",
+        "0x166ffad",
+        "0x1670012",
+        "0x167006a",
+        "0x167009f",
+        "0x16700ac",
+        "0x16700dd",
+        "0x16700e6",
+        "0x16700ed",
+        "0x16700f4"
+      ],
+      "unknowns": [
+        "Concrete output class, option semantics, rendering mode and error propagation."
+      ]
+    }
+  ],
+  "machine_cross_checks": {
+    "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "pefile_version": "2024.8.26",
+    "capstone_version": "5.0.6",
+    "entries": [
+      {
+        "entry": "0x1655e00",
+        "instruction_count": 288,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 953
+      },
+      {
+        "entry": "0x16561c0",
+        "instruction_count": 391,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 1282
+      },
+      {
+        "entry": "0x1665780",
+        "instruction_count": 221,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 676
+      },
+      {
+        "entry": "0x1667fe0",
+        "instruction_count": 141,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 417
+      },
+      {
+        "entry": "0x1668750",
+        "instruction_count": 251,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 867
+      },
+      {
+        "entry": "0x166fe90",
+        "instruction_count": 192,
+        "all_instruction_addresses_match": true,
+        "body_bytes_decoded": 679
+      }
+    ],
+    "imports": [
+      {
+        "iat": "0x531c484",
+        "dll": "GDI32.dll",
+        "name": "DeleteObject"
+      },
+      {
+        "iat": "0x531c494",
+        "dll": "GDI32.dll",
+        "name": "CreateFontIndirectW"
+      }
+    ],
+    "constant": {
+      "address": "0x6573e80",
+      "storage": "float64",
+      "bytes_hex": "0000000000000000",
+      "value": 0.0
+    },
+    "float_bit_pattern_0x42480000": 50.0,
+    "limitations": [
+      "Matching decoded instruction addresses does not prove function boundaries, signatures, semantics or functional equivalence."
+    ]
+  },
+  "next_entries": [
+    "0x166d050",
+    "0x165f5d0",
+    "0x16678c0",
+    "0x16678d0",
+    "0x16678e0",
+    "0x16678f0",
+    "0x1665a30",
+    "0x1664c00",
+    "0x2d226d0",
+    "0x1b5baf0"
+  ],
+  "limitations": [
+    "No full printing-flow reconstruction, GUI observation or physical printing equivalence.",
+    "Function types, boundaries, virtual targets and geometry meanings remain provisional.",
+    "Only metadata and independent observations are published; raw code and project remain local."
+  ]
+}

@@ -8,16 +8,25 @@ from pathlib import Path
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--evidence-root', type=Path, required=True)
 parser.add_argument('--output', type=Path, help='Separate metadata file for a new analysis round')
+parser.add_argument('--round', type=Path, help='One subdirectory under evidence-root/headless; requires matching source.json')
 args = parser.parse_args()
 root = args.evidence_root.resolve()
 repo = Path(__file__).resolve().parents[1]
 destination = args.output or repo / 'docs/windows-evidence/foxit-rea/headless-cross-checks.json'
 manifest = json.loads(destination.with_name('analysis-manifest.json').read_text(encoding='utf-8'))
 source = '90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6'
+scan = (root / 'headless').resolve()
+if args.round:
+    scan = (scan / args.round).resolve()
+    if not scan.is_relative_to((root / 'headless').resolve()) or not scan.is_dir():
+        parser.error('Round must be an existing directory inside evidence-root/headless')
+    identity = json.loads((scan / 'source.json').read_text(encoding='utf-8'))
+    if identity.get('source_sha256') != source:
+        parser.error('Round source identity differs from the preserved Foxit reference')
 rea_entries = {entry['entry_va'].lower() for entry in manifest['function_dossiers']
                if entry['subject_sha256'] == source}
 entries = []
-for path in sorted((root / 'headless').rglob('0x*.json')):
+for path in sorted(scan.rglob('0x*.json')):
     raw = path.read_bytes()
     data = json.loads(raw)
     if not isinstance(data, dict) or 'entry_va' not in data or 'assembly' not in data:

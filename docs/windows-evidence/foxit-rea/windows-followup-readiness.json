@@ -1,0 +1,71 @@
+{
+  "schema": "linuxit-rea-readiness-v1",
+  "date_local": "2026-10-16",
+  "timezone": "America/Sao_Paulo",
+  "healthy": true,
+  "provider": "ghidra",
+  "scope_checks": [
+    {
+      "name": "node",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-platform",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-architecture",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-installation",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-version",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-headless",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-native_decompiler",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-java",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-native_authority",
+      "ok": true,
+      "classification": "healthy"
+    }
+  ],
+  "cli_version": "6.5.0",
+  "jdk_version": "21.0.12.1",
+  "ghidra_version": "12.1.4",
+  "node_version": "24.22.0",
+  "mcp_catalog_tools": 207,
+  "native_mcp_registration_in_codex": "missing; local CLI driver available",
+  "original_executed": false,
+  "static_backend_current_round": "direct Ghidra headless -noanalysis using REA seed script",
+  "limitations": [
+    "Provider readiness is not a functional Foxit runtime or evidence of completed function analysis.",
+    "IDA, Hopper and jadx are not required or validated in this round."
+  ]
+}

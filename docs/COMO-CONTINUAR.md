@@ -21,6 +21,11 @@ rodada, e todos os cenários continuam `not_run`.
 | Paridade diferencial Foxit | 0/25 famílias identificadas |
 | Etapa 10 | Preparação verificada; execução bloqueada |
 
+Este quadro descreve o checkpoint `1d478a4`. Para o avanço posterior, consulte
+as [notas datadas](../progresso/notas-continuidade.md); a rodada de consumidores
+de impressão ampliou o catálogo para 200 entradas sem alterar o progresso
+geral ou a paridade.
+
 O bloqueio é o ambiente para observar o original: o computador usa Windows 11
 Home Single Language, sem Sandbox disponível, WSL não instalado e sem VM
 pronta. O [Windows Sandbox não suporta a edição Home](https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/).
@@ -90,6 +95,8 @@ Não atualizar ou substituir o Foxit usado como referência durante a campanha.
 
 Primeiro confirmar o estado Git e ler [RETOMADA.md](RETOMADA.md),
 [ETAPA-10.md](ETAPA-10.md) e [tarefas-pendentes.md](../progresso/tarefas-pendentes.md).
+As rodadas seguintes ficam nas [notas datadas de continuidade](../progresso/notas-continuidade.md),
+com horário de São Paulo, resultados, estado da publicação e próximos alvos.
 Preservar as análises REA/Ghidra existentes.
 
 Na VM offline, fornecer somente a pasta da referência e o corpus em leitura,
@@ -115,6 +122,8 @@ atualizar o progresso somente quando os critérios tiverem evidência real.
 
 > Retome o projeto https://github.com/airtonbp19edu/Linuxit-PDF pela branch main.
 > Leia AGENTS.md, docs/COMO-CONTINUAR.md, docs/RETOMADA.md e docs/ETAPA-10.md.
+> Leia também a última entrada de progresso/notas-continuidade.md para recuperar
+> o avanço técnico e o estado Git mais recentes sem depender do chat anterior.
 > O próximo trabalho é executar a etapa 10 em Windows isolado e offline.
 > Já existem 20 cenários preparados; nenhum foi observado no Foxit nesta rodada.
 > Preserve as análises REA/Ghidra e os indicadores: 43,33%, 194 entradas e

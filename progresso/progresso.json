@@ -234,8 +234,11 @@
           "status": "partial",
           "evidence": [
             "docs/REA-BUSCA-IMPRESSAO.md",
-            "docs/windows-evidence/foxit-rea/search-print-contracts.json"
-          ]
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+          ],
+          "note": "Six additional consumers/geometry routines examined; concrete types and complete printing behavior remain partial. No status or weight change."
         },
         {
           "criterion": "Fluxo completo de busca reconstruído",

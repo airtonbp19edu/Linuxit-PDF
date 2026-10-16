@@ -38,7 +38,7 @@ Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
 
 Marcos de busca/impressão: `docs/REA-BUSCA-IMPRESSAO.md` e metadados vinculados.
-Catálogo atual: 194 entradas (152 REA + 42 adicionais diretas), cobertura global
+Catálogo atual: 200 entradas (152 REA + 48 adicionais diretas), cobertura global
 indeterminada. Wine/QEMU passa no controle x86; o Foxit carrega mas termina com
 CInvalidArgException antes da UI. Não confunda isso com paridade funcional.
 Em Linux, use `/usr/bin/python3` para GTK/Cairo (Python 3.13); o Python do PATH pode ser
@@ -51,7 +51,23 @@ rodada e as respostas completas estão em `analysis-local/`, ignorado pelo Git.
 Use `scripts/analyze_foxit_headless.py` para o backend complementar e preserve
 os manifestos anteriores ao gerar os metadados de uma nova rodada.
 
+Continuação estática: `docs/REA-IMPRESSAO-CONSUMIDORES.md`. As seis entradas
+pendentes de geometria/consumidores foram examinadas e conferidas com Capstone.
+Projeto e resultados completos em `analysis-local/headless/windows-print-02`.
+Próximos alvos e ressalvas de tipagem constam no relatório. O gerador de
+metadados aceita `--round` para preservar a proveniência de cada rodada.
+
 Prioridade atual do usuário: etapa 10, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o
 original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
 Preparação e testes do kit não contam como observação dinâmica; casos `not_run`.
+
+## Notas de continuidade entre IAs
+
+A pedido do usuário em 16/10/2026, ao concluir cada rodada registre uma nota em
+`progresso/notas-continuidade.md`, com data e horário reais de São Paulo no
+formato `AAAA/MM/DD às HH:mm (America/Sao_Paulo, UTC-03:00)`. Informe o que foi
+feito, ferramentas/perfis, evidências locais e publicáveis, verificações,
+limitações, estado Git/publicação e o próximo passo concreto. Acrescente novas
+notas ao final; preserve notas anteriores. Não dependa do histórico do chat.
+Não declare publicação remota sem confirmação; registre bloqueios de acesso.

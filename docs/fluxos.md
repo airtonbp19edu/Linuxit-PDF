@@ -56,3 +56,28 @@ flowchart LR
 O diagrama não une os objetos de fábrica ao spooler por uma aresta ainda não
 demonstrada. Os caminhos completos e o comportamento dinâmico do original
 continuam parciais; endereços e provas em `REA-BUSCA-IMPRESSAO.md`.
+
+## Continuação dos consumidores e da geometria
+
+As seis entradas da rodada seguinte estendem os caminhos observados, conforme
+`REA-IMPRESSAO-CONSUMIDORES.md`. As setas mostram chamadas verificadas;
+não representam uma integração completa com o spooler ou equivalência visual.
+
+```mermaid
+flowchart TD
+  Collections[Produtor 0x1663a80] --> Graphic[Consumidor 0x1655e00]
+  Collections --> Font[Consumidor com fonte 0x16561c0]
+  Graphic --> Submit[Destino comum 0x1b5baf0]
+  Font --> Submit
+  Bounds[Despacho 0x1663410] --> Handlers[0x1665780]
+  Bounds --> Output[0x166fe90]
+  Handlers --> RouteA[0x1665a30]
+  Handlers --> RouteB[0x1664c00]
+  Output --> Factory[Objeto por 0x2d226d0 e chamadas virtuais]
+  Placement[Posicionamento 0x1668750] --> Rectangle[Limites transformados 0x1667fe0]
+```
+
+Assinaturas e tipos concretos permanecem provisórios. A montagem confirmou
+que um slot inicialmente comparado como inteiro foi tipado como float pelo
+decompilador devido ao reuso posterior; não transportar essa assinatura para
+o código próprio sem completar o contrato.
