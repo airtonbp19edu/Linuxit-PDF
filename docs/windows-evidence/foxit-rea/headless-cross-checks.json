@@ -313,9 +313,57 @@
       "body_ranges": "[[01a76b60, 01a76c15]]",
       "pseudocode_sha256": "ed3c5ed72f2bbe54b088ac350f06eaf8b5f33186d410d0c445c7ad2b310bab80",
       "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/print-dialog-functions/0x860610.json",
+      "result_sha256": "16994a36fbc596904efaba0adfb276c3bf5d9902abe0afbe925f580e8cc49590",
+      "entry_va": "0x860610",
+      "analyst_name": "analyst_print_frame_method",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 2613,
+      "body_ranges": "[[00860610, 00861044]]",
+      "pseudocode_sha256": "c0ed714f7b13427f23a1a36ed52d7d1e0bab5dbd8be5b531f60c901e354107fd",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/print-factories-functions/0x16475e0.json",
+      "result_sha256": "be828c7f16365c68e3afecd0bec0131ece185bffb49553b449a3e8aa72aa8715",
+      "entry_va": "0x16475e0",
+      "analyst_name": "analyst_print_factory_collection",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 205,
+      "body_ranges": "[[016475e0, 016476ac]]",
+      "pseudocode_sha256": "c455fb8372a9e26a8074347e8911ae380bc945ec1b62cdfc59aca48e4b9498a6",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/print-factories-functions/0x1647750.json",
+      "result_sha256": "30802e00c242170d2f35dfc1ba2c8107875b5af5b51c7589527aae7ba9078ac4",
+      "entry_va": "0x1647750",
+      "analyst_name": "analyst_print_factory_single",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 195,
+      "body_ranges": "[[01647750, 01647812]]",
+      "pseudocode_sha256": "bacf9d6453c15e744942282495cd60cdff61069f7cb84c71393c63e98d1deff8",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/print-factories-functions/0x861170.json",
+      "result_sha256": "e4cb18ea723d726257dfadb4c6268179842b68b3e598c202eadab2c439972210",
+      "entry_va": "0x861170",
+      "analyst_name": "analyst_print_followup_factory",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 414,
+      "body_ranges": "[[00861170, 0086130d]]",
+      "pseudocode_sha256": "f45e030983725da43ae483a3c079fb5dc8edef69e89766fba5c03117a3bd3208",
+      "also_examined_through_mcp": false
     }
   ],
-  "distinct_entries": 26,
+  "distinct_entries": 30,
   "limitations": [
     "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
     "Pseudocode and assembly remain outside the repository."

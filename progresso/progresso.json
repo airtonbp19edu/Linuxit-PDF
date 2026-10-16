@@ -1,0 +1,599 @@
+{
+  "schema": "linuxit-progress-v1",
+  "date_utc": "2026-10-16",
+  "phase": "A; incremental B only for sufficiently specified contracts",
+  "criteria_revision": 1,
+  "method": "Stage percentages supplied by the user sum to 100. Check weights are explicit complexity estimates fixed at this initial checkpoint; only done checks count. Unknown global coverage is not replaced by slot ratios.",
+  "stages": [
+    {
+      "id": 1,
+      "title": "Diagnóstico e preparação",
+      "weight_percent": 3,
+      "checks": [
+        {
+          "criterion": "Ferramentas e provedor exercitados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/toolchain.json"
+          ]
+        },
+        {
+          "criterion": "Escopo e destino configurados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "progresso/projeto.json"
+          ]
+        },
+        {
+          "criterion": "Publicação remota inicial confirmada",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "progresso/sincronizacao-git.json"
+          ]
+        },
+        {
+          "criterion": "Regras remotas de proteção consultáveis pela API",
+          "weight": 1,
+          "status": "unknown",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.8,
+      "earned_percent": 2.4
+    },
+    {
+      "id": 2,
+      "title": "Identificação dos arquivos",
+      "weight_percent": 3,
+      "checks": [
+        {
+          "criterion": "Todos os arquivos locais identificados por caminho/tamanho/hash",
+          "weight": 3,
+          "status": "done",
+          "evidence": [
+            "engenharia-reversa/inventario.json"
+          ]
+        },
+        {
+          "criterion": "Arquitetura, versão e identidade dos módulos PE",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/module-inventory.json"
+          ]
+        }
+      ],
+      "verified_fraction": 1.0,
+      "earned_percent": 3.0
+    },
+    {
+      "id": 3,
+      "title": "Identificação tecnológica",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "Fronteira Win32/MFC, plugins e Lucene identificados",
+          "weight": 3,
+          "status": "done",
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        },
+        {
+          "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.5,
+      "earned_percent": 2.0
+    },
+    {
+      "id": 4,
+      "title": "Extração e desempacotamento",
+      "weight_percent": 5,
+      "checks": [
+        {
+          "criterion": "Pasta completa e recursos externos analisados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "engenharia-reversa/inventario.json",
+            "docs/windows-evidence/foxit-rea/fx-resource-inventory.json"
+          ]
+        },
+        {
+          "criterion": "Correspondência integral ZIP → arquivo extraído verificada",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "engenharia-reversa/extracao.json"
+          ]
+        }
+      ],
+      "verified_fraction": 1.0,
+      "earned_percent": 5.0
+    },
+    {
+      "id": 5,
+      "title": "Mapeamento de dependências",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "Imports e módulos inventariados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/module-inventory.json"
+          ]
+        },
+        {
+          "criterion": "Grafo de dependências e ambiguidades documentados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "engenharia-reversa/dependencias.json",
+            "docs/dependencias.md"
+          ]
+        },
+        {
+          "criterion": "Ciclo de vida de todos os componentes reconstruído",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.428571,
+      "earned_percent": 1.714286
+    },
+    {
+      "id": 6,
+      "title": "Análise estática inicial",
+      "weight_percent": 5,
+      "checks": [
+        {
+          "criterion": "Amostras, recursos, imports, exports e comandos examinados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/analysis-manifest.json",
+            "docs/windows-evidence/foxit-rea/ui-command-map.json"
+          ]
+        },
+        {
+          "criterion": "Subsystemas iniciais e limites documentados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        }
+      ],
+      "verified_fraction": 1.0,
+      "earned_percent": 5.0
+    },
+    {
+      "id": 7,
+      "title": "Catalogação das funções",
+      "weight_percent": 5,
+      "checks": [
+        {
+          "criterion": "Entradas examinadas, proveniência e lacunas catalogadas",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "engenharia-reversa/funcoes.csv"
+          ]
+        },
+        {
+          "criterion": "Registro estrutural de slots catalogado",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/dispatch-catalog.json"
+          ]
+        },
+        {
+          "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
+          "weight": 6,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.333333,
+      "earned_percent": 1.666667
+    },
+    {
+      "id": 8,
+      "title": "Descompilação profunda",
+      "weight_percent": 10,
+      "checks": [
+        {
+          "criterion": "Formato FX e recuperação integral do corpus verificados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/validation.json"
+          ]
+        },
+        {
+          "criterion": "28 métodos concretos da interface de índice examinados",
+          "weight": 2,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/index-interface.json"
+          ]
+        },
+        {
+          "criterion": "Fluxo completo de impressão reconstruído",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Fluxo completo de busca reconstruído",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Demais famílias funcionais investigadas profundamente",
+          "weight": 12,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.130435,
+      "earned_percent": 1.304348
+    },
+    {
+      "id": 9,
+      "title": "Reconstrução dos fluxos internos",
+      "weight_percent": 7,
+      "checks": [
+        {
+          "criterion": "Fluxos parciais e contratos independentes documentados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        },
+        {
+          "criterion": "Diagramas e estados rastreáveis por subsistema",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Algoritmos completos de todas as famílias especificados",
+          "weight": 8,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.090909,
+      "earned_percent": 0.636364
+    },
+    {
+      "id": 10,
+      "title": "Análise dinâmica",
+      "weight_percent": 6,
+      "checks": [
+        {
+          "criterion": "Ambiente isolado e original executável validados",
+          "weight": 2,
+          "status": "blocked",
+          "evidence": [
+            "docs/relatorio-dinamico.md"
+          ]
+        },
+        {
+          "criterion": "Cenários locais observados e registrados",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Integrações autorizadas e casos excepcionais observados",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 11,
+      "title": "Engenharia reversa da interface",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "Recursos e controles inventariados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/ui-command-map.json",
+            "docs/windows-evidence/foxit-rea/selected-fx-ui-controls.json"
+          ]
+        },
+        {
+          "criterion": "Nove controles avançados ligados ao estado",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json"
+          ]
+        },
+        {
+          "criterion": "Disponibilidade e comportamento de todas as interações observados",
+          "weight": 6,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.25,
+      "earned_percent": 1.0
+    },
+    {
+      "id": 12,
+      "title": "Especificação funcional",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "25 obrigações e estados de evidência registrados",
+          "weight": 1,
+          "status": "done",
+          "evidence": [
+            "progresso/matriz-paridade.csv"
+          ]
+        },
+        {
+          "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Fase A consolidada sem lacunas não declaradas",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.125,
+      "earned_percent": 0.5
+    },
+    {
+      "id": 13,
+      "title": "Projeto de arquitetura",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "Arquitetura e proveniência da base própria documentadas",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Contratos portáveis e adaptadores definidos",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 14,
+      "title": "Criação do projeto",
+      "weight_percent": 3,
+      "checks": [
+        {
+          "criterion": "Código próprio com licenças e dependências preservadas",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Execução e testes reproduzíveis verificados",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 15,
+      "title": "Reconstrução da lógica principal",
+      "weight_percent": 9,
+      "checks": [
+        {
+          "criterion": "Busca por texto/escopos implementada e testada",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Impressão/imposição implementadas e testadas",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Todas as demais famílias implementadas e testadas",
+          "weight": 12,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 16,
+      "title": "Interface e integrações",
+      "weight_percent": 7,
+      "checks": [
+        {
+          "criterion": "Leitor Linux e preferências integrados e exercitados",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Busca e escopos integrados e exercitados",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Demais interações e integrações funcionais",
+          "weight": 10,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 17,
+      "title": "Compilação intermediária",
+      "weight_percent": 2,
+      "checks": [
+        {
+          "criterion": "Aplicação própria executada com fixture real",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Runtime empacotado executado com fixture real",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 18,
+      "title": "Testes comparativos",
+      "weight_percent": 7,
+      "checks": [
+        {
+          "criterion": "Fixtures e metodologia diferencial registradas",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Cenários diferenciais executados no original e na reconstrução",
+          "weight": 5,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Resultados e divergências por família disponíveis",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 19,
+      "title": "Correção de incompatibilidades",
+      "weight_percent": 4,
+      "checks": [
+        {
+          "criterion": "Regressões próprias encontradas e corrigidas",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Divergências originais medidas e corrigidas",
+          "weight": 6,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 20,
+      "title": "Geração dos pacotes",
+      "weight_percent": 3,
+      "checks": [
+        {
+          "criterion": "Flatpak gerado/importado e hash conferido",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Aplicativo instalado e funcional no sandbox real",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Artefato publicado com instruções e limites",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    },
+    {
+      "id": 21,
+      "title": "Auditoria e entrega final",
+      "weight_percent": 1,
+      "checks": [
+        {
+          "criterion": "Auditoria de fonte/licenças/testes/evidências",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "Sincronização e integridade final confirmadas",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verified_fraction": 0.0,
+      "earned_percent": 0.0
+    }
+  ],
+  "general_progress_percent": 24.22,
+  "verified_functional_parity": {
+    "percent": 0.0,
+    "verified": 0,
+    "identified_obligations": 25,
+    "denominator_complete": false
+  }
+}

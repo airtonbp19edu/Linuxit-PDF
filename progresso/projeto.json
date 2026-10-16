@@ -1,0 +1,20 @@
+{
+  "target": "Foxit Reader 2025.2.0.33046 x86",
+  "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "repository": "https://github.com/airtonbp19edu/Linuxit-PDF",
+  "branch": "main",
+  "target_platforms": [
+    "Linux (priority)",
+    "Windows (subsequent)"
+  ],
+  "package_format": "Flatpak",
+  "request_sha256": "e7cec89596a20deab64f03292312cd2a18bdd53a2c74b8e181a8b7ee954e24fc",
+  "scope": "Incremental independent implementation, reusing user-owned MIT Winux/Print&View code where applicable. Foxit only. No UPDF, no original proprietary code/assets redistribution.",
+  "progress_model": "21 weighted stages with binary evidence-backed checks; roadmap progress is not feature equivalence.",
+  "unknowns": [
+    "Global function denominator",
+    "Complete observable feature inventory",
+    "Original dynamic baseline",
+    "Native Windows and physical printing equivalence"
+  ]
+}

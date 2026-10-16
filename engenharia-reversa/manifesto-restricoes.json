@@ -1,0 +1,28 @@
+{
+  "original_files_local_only": 3276,
+  "original_inventory": "inventario.json",
+  "categories": [
+    {
+      "location": "Original Foxit folder and archive",
+      "reason": "No redistribution permission for proprietary binaries or resources is established."
+    },
+    {
+      "location": "/workspace/foxit-rea-analysis/*/results and headless/*functions",
+      "reason": "Full reconstructed pseudocode/assembly and raw provider responses remain local; publish analyst summaries, addresses and hashes only."
+    },
+    {
+      "location": "/workspace/foxit-rea-analysis/headless/project",
+      "reason": "Analysis database includes original program content; local only."
+    },
+    {
+      "location": "Future isolated dynamic prefix/screenshots",
+      "reason": "Review for proprietary content, identifiers and account data before any redistribution."
+    }
+  ],
+  "allowed": [
+    "Own source and tests",
+    "MIT user-owned baseline with license and provenance",
+    "Own technical summaries and metadata",
+    "Compiled independent application and dependency notices"
+  ]
+}

@@ -2,6 +2,11 @@
 
 ## Escopo atual
 
+Após o pedido mestre de 2026-10-16, a reconstrução incremental foi iniciada.
+Os resultados estáticos abaixo permanecem válidos para a amostra identificada;
+a implementação e seus testes são registrados separadamente, sem converter
+testes internos em equivalência Foxit.
+
 A pedido do usuário, esta etapa trata exclusivamente da engenharia reversa do
 Foxit Reader. O objetivo posterior é uma implementação própria no projeto Linuxit PDF,
 priorizando Linux e distribuição Flatpak, com uma fronteira de plataforma que
@@ -145,8 +150,8 @@ contadas por amostra: 51 em `fxLuceneLib.dll`, 19 em `Bookmark.fpi`, seis em
 perfis não aumentam essa contagem. Os nomes atribuídos pelo analista ou pelo
 FID não são automaticamente símbolos originais.
 
-O backend complementar decompilou 26 entradas do executável: 21 para comparação
-e cinco entradas adicionais, identificadas separadamente nos metadados.
+O backend complementar decompilou 30 entradas do executável: 21 para comparação
+e nove entradas adicionais, identificadas separadamente nos metadados.
 As 190 consultas MCP concluídas incluem inventários e leitura de bytes; não
 representam 190 funções. O manifesto conserva oito erros de consultas, perfis
 cancelados e pedidos não executados, sem convertê-los em sucessos.
@@ -289,6 +294,24 @@ objetos associados ao argumento e a comparação de uma referência de documento
 no objeto correspondente, há uma chamada a `0x860610` com `0, -1, -1`.
 Isso prolonga o caminho estático do comando de impressão. Não demonstra ainda
 a geometria de folhas, o diálogo completo, a rasterização ou a saída ao spooler.
+
+### Continuação dirigida do caminho de impressão
+
+A extração complementar de `0x860610` confirmou 2.613 bytes de corpo e chamadas
+a duas fábricas: `0x1647750` e `0x16475e0`. Elas foram definidas e examinadas
+separadamente (195 e 205 bytes). O código encaminha a criação para
+`0x1645c30` e `0x1645f50`, respectivamente. Os tipos/assinaturas inferidos pelo
+decompilador permanecem provisórios; os endereços e chamadas têm suporte em assembly.
+
+A rotina principal conserva um objeto por chamadas virtuais, obtém um retorno
+e pode entrar em um caminho de acompanhamento `0x861170` (414 bytes), com uma
+fábrica reutilizada e tratamento de um nome temporário com `DeleteFileW`.
+Não se atribui ainda uma mensagem ou um erro de impressão a cada retorno. O
+contrato observado de ciclo de vida não prova a composição geométrica das folhas,
+a rasterização ou a aceitação de trabalhos pelo spooler.
+
+Os quatro resultados novos são do backend direto, identificados em
+`headless-cross-checks.json`, sem serem contados como novas consultas MCP.
 
 ### Busca: controles, estado e concorrência
 
@@ -714,6 +737,7 @@ python3 scripts/manifest_foxit_rea.py \
 ```
 
 A próxima implementação Linux/Flatpak depende dos contratos ainda incompletos
-na matriz de cobertura e de testes funcionais independentes. Esta etapa não
-gerou um novo leitor, não verificou equivalência de todas as funções e não
-produziu um Flatpak do Linuxit PDF.
+na matriz de cobertura e de testes funcionais independentes. A etapa inicial, publicada em `f5073e4`, não gerou um novo leitor nem um
+Flatpak. A reconstrução incremental posterior é acompanhada em
+[`progresso`](../progresso/progresso.md); ela não demonstra equivalência de todas
+as funções do Foxit.
