@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Attempt a bounded offline observation; proprietary output remains local."""
-import argparse, hashlib, json, os, subprocess
+import argparse, hashlib, json, os, shutil, subprocess
 from pathlib import Path
 
 parser=argparse.ArgumentParser(description=__doc__)
@@ -8,6 +8,7 @@ parser.add_argument('--reference',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--display',default=':101')
 parser.add_argument('--timeout',type=int,default=30)
+parser.add_argument('--zlib-root',type=Path,help='Verified libz-mingw-w64 package extraction')
 parser.add_argument('--diagnose-imports',action='store_true')
 parser.add_argument('--probe-wine',action='store_true',help='Run only Wine --version in exactly the same containment')
 args=parser.parse_args()
@@ -19,6 +20,11 @@ output.mkdir(parents=True,exist_ok=False);(output/'state').mkdir()
 # never the host's real passwd/group or an existing profile.
 (output/'passwd').write_text(f'analyst:x:{os.getuid()}:{os.getgid()}:Analyst:/state:/bin/false\n')
 (output/'group').write_text(f'analyst:x:{os.getgid()}:\n')
+if args.zlib_root:
+    for arch, system in [('x86_64-w64-mingw32', 'system32'), ('i686-w64-mingw32', 'syswow64')]:
+        dll=args.zlib_root/'usr'/arch/'lib/zlib1.dll'
+        dest=output/'state/prefix/drive_c/windows'/system/'zlib1.dll'
+        dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(dll,dest)
 tools='/workspace/release-tools/local'
 command=['bwrap','--die-with-parent','--new-session','--unshare-all','--clearenv',
  '--ro-bind','/usr','/usr','--ro-bind','/lib','/lib','--ro-bind','/lib64','/lib64',
@@ -31,13 +37,14 @@ command=['bwrap','--die-with-parent','--new-session','--unshare-all','--clearenv
  '--setenv','PATH','/usr/bin:/bin','--setenv','DISPLAY',args.display,
  '--setenv','WINEPREFIX','/state/prefix','--setenv','WINEARCH','win64',
  '--setenv','WINESERVER',tools+'/usr/lib/wine/wineserver64',
+ '--setenv','WINELOADER',tools+'/usr/lib/wine/wine64',
  '--setenv','WINEDATADIR',tools+'/usr/share/wine',
  '--setenv','WINEDLLPATH',tools+'/usr/lib/x86_64-linux-gnu/wine',
  '--setenv','LD_LIBRARY_PATH',tools+'/usr/lib/x86_64-linux-gnu',
  '--setenv','WINEDLLOVERRIDES','mscoree,mshtml=',
  '--setenv','XDG_CACHE_HOME','/state/cache','--setenv','XDG_CONFIG_HOME','/state/config',
  '--setenv','WINEDEBUG','-all,+module' if args.diagnose_imports else '-all',
- '--chdir','/reference','--',tools+'/usr/lib/wine/wine64','/reference/FoxitPDFReader.exe']
+ '--chdir','/reference','--',tools+'/usr/lib/wine/wine64',r'Z:\reference\FoxitPDFReader.exe']
 if args.probe_wine:command[-1]='--version'
 # No credentials, session bus, account profiles or other workspace checkouts are mounted.
 with (output/'stdout.log').open('wb') as stdout,(output/'stderr.log').open('wb') as stderr:

@@ -52,5 +52,3 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(len(index.cache), 2)
         make_pdf(self.pdf, ['CHANGED'])
         with self.assertRaises(RuntimeError): index.search('CHANGED')
-
-

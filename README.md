@@ -11,13 +11,17 @@ cancelamento e navegação por resultados. A base e as adaptações têm
 [proveniência registrada](docs/proveniencia-base.json).
 
 Os 34 testes próprios passaram no código-fonte e no runtime empacotado.
-A instalação e execução do Flatpak no sandbox real estão em validação.
+O Flatpak também passou na instalação e execução real no sandbox: abertura,
+renderização, busca em marcadores/comentários e geração de livreto.
 Esses testes não demonstram equivalência integral com o Foxit; a recuperação
 de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 
+- [Baixar Flatpak 0.1.0](releases/LinuxitPDF-0.1.0-x86_64.flatpak) e [instalação](docs/instalacao.md)
+- [Hashes e manifesto](releases/manifest.json)
 - [Progresso e metodologia das 21 etapas](progresso/progresso.md)
 - [Matriz de paridade](progresso/matriz-paridade.csv)
 - [Investigação REA do Foxit](docs/FOXIT-REA.md)
+- [Captura do Flatpak em execução](testes/resultados/linuxit-flatpak-0.1.0.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
 

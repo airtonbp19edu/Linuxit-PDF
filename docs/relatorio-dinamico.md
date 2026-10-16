@@ -35,3 +35,23 @@ presentes; não se confirmou uma execução funcional do Foxit. Isso permanece
 um bloqueio de runtime, sem contagens ou comportamento do original inventados.
 As tentativas e os controles ficam no diretório local de evidências; somente
 o resumo técnico é publicado.
+
+## Dependências x86 e zlib verificadas
+
+O pacote Debian `libwine:i386=10.0~repack-6` foi obtido por índice APT assinado;
+seu SHA-256 `fef4802a6553a17eaa40003333a86fc697440d1d21c5824f2dbd1c444f01527b`
+foi conferido antes de extrair 809 DLLs Windows x86 para o runtime local. Não
+foram instaladas bibliotecas i386 no sistema. O runtime x64 já contém WOW64.
+
+O pacote `libz-mingw-w64=1.3.1+dfsg-2`, SHA-256
+`c4e6d6bfabe8b6d12c797736a3d762d83513b49f488d1aaf61d4526387a2dd3e`,
+forneceu a zlib para cada arquitetura no prefixo sintético. As importações
+anteriores indicavam conflito x86/x64 dessa dependência. Com as dependências,
+o log passou a mostrar o mapeamento das seções PE do executável Foxit, mas o
+lançamento ainda retornou `ShellExecuteEx failed` e código 1. Caminho Windows
+explícito e loader local não resolveram a inicialização.
+
+Mapear as seções do arquivo não comprova entrada no fluxo funcional ou uma
+janela utilizável. Nenhuma contagem de busca, fluxo de impressão ou equivalência
+do original foi observada. O bloqueio atual é a inicialização Windows/x86
+nessa contenção, não uma permissão de rede ou um mecanismo de licença a contornar.

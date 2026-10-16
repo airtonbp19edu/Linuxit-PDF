@@ -65,6 +65,7 @@ def build(flatpak, stage, repo, extra):
 <fontconfig><dir>/app/share/fonts</dir><dir>/usr/share/fonts</dir><dir>/run/host/fonts</dir>
 <cachedir prefix="xdg">fontconfig</cachedir></fontconfig>
 ''')
+    shutil.copytree('/usr/lib/x86_64-linux-gnu/ossl-modules', files / 'runtime-lib/ossl-modules')
     # All ELF dependencies, including libc, are paired with their own loader.
     # This avoids mixing a newer host-built extension with a different runtime libc.
     probes = list((files / 'libexec').iterdir()) + list(files.rglob('*.so'))
@@ -94,6 +95,7 @@ exec "$base/runtime-lib/ld-linux-x86-64.so.2" --library-path "$base/runtime-lib"
 base="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 export PYTHONHOME="$base/python"
 export PYTHONPATH="$base/python/lib/python3.13/site-packages"
+export OPENSSL_MODULES="$base/runtime-lib/ossl-modules"
 unset LD_LIBRARY_PATH
 export GI_TYPELIB_PATH="$base/lib/girepository-1.0"
 export GSETTINGS_SCHEMA_DIR="$base/share/glib-2.0/schemas"
@@ -140,6 +142,7 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
     sources |= {path for path in probes if path.exists()}
     sources |= {Path('/usr/lib/python3/dist-packages') / module / '__init__.py'
                 for module in ('gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser')}
+    sources |= set(Path('/usr/lib/x86_64-linux-gnu/ossl-modules').glob('*.so'))
     sources |= {Path(path) for path in (
         '/usr/lib/python3.13', '/usr/share/icons/Adwaita', '/usr/share/icons/hicolor',
         '/usr/share/fonts/truetype/dejavu', '/usr/share/mime', '/usr/share/glib-2.0/schemas')}

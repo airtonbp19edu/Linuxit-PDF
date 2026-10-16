@@ -17,6 +17,10 @@
     {
       "location": "Future isolated dynamic prefix/screenshots",
       "reason": "Review for proprietary content, identifiers and account data before any redistribution."
+    },
+    {
+      "location": "/workspace/linuxit-release/flatpak-before-* and interrupted stages",
+      "reason": "Superseded validation prototypes; not distributed as final packages."
     }
   ],
   "allowed": [

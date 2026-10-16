@@ -266,8 +266,10 @@
         {
           "criterion": "Diagramas e estados rastreáveis por subsistema",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/fluxos.md"
+          ]
         },
         {
           "criterion": "Algoritmos completos de todas as famílias especificados",
@@ -508,7 +510,8 @@
           "weight": 2,
           "status": "done",
           "evidence": [
-            "testes/resultados/flatpak-payload-0.1.0.json"
+            "testes/resultados/flatpak-payload-fixed-0.1.0.json",
+            "testes/resultados/flatpak-sandbox-0.1.0.json"
           ]
         }
       ],
@@ -523,8 +526,11 @@
         {
           "criterion": "Fixtures e metodologia diferencial registradas",
           "weight": 1,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/fixtures/README.md",
+            "docs/especificacao.md"
+          ]
         },
         {
           "criterion": "Cenários diferenciais executados no original e na reconstrução",
@@ -539,8 +545,8 @@
           "evidence": []
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.1,
+      "earned_percent": 0.7
     },
     {
       "id": 19,
@@ -574,24 +580,32 @@
         {
           "criterion": "Flatpak gerado/importado e hash conferido",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "releases/manifest.json",
+            "releases/SHA256SUMS"
+          ]
         },
         {
           "criterion": "Aplicativo instalado e funcional no sandbox real",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/flatpak-sandbox-0.1.0.json"
+          ]
         },
         {
           "criterion": "Artefato publicado com instruções e limites",
           "weight": 1,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "releases/manifest.json",
+            "docs/instalacao.md"
+          ]
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.833333,
+      "earned_percent": 2.5
     },
     {
       "id": 21,
@@ -601,8 +615,12 @@
         {
           "criterion": "Auditoria de fonte/licenças/testes/evidências",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/payload-source-integrity.json",
+            "releases/manifest.json",
+            "docs/pypdf-LICENSE.txt"
+          ]
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -617,11 +635,11 @@
           "evidence": []
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.333333,
+      "earned_percent": 0.333333
     }
   ],
-  "general_progress_percent": 39.13,
+  "general_progress_percent": 42.66,
   "verified_functional_parity": {
     "percent": 0.0,
     "verified": 0,
