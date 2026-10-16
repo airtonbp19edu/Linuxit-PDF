@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Linuxit PDF
+GenericName=Leitor e Impressor de PDF
+Comment=Leitura de PDF com impressão avançada, livreto, pôster e apresentação
+Exec=linuxit-pdf %f
+TryExec=linuxit-pdf
+Icon=linuxit-pdf
+Terminal=false
+Categories=Office;Viewer;
+MimeType=application/pdf;
+StartupWMClass=linuxit-pdf
+StartupNotify=true

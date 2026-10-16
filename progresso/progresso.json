@@ -377,18 +377,25 @@
         {
           "criterion": "Arquitetura e proveniência da base própria documentadas",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "docs/arquitetura.md",
+            "docs/proveniencia-base.json",
+            "LICENSE"
+          ]
         },
         {
           "criterion": "Contratos portáveis e adaptadores definidos",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "docs/arquitetura.md",
+            "docs/especificacao.md"
+          ]
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 1.0,
+      "earned_percent": 4.0
     },
     {
       "id": 14,
@@ -398,18 +405,25 @@
         {
           "criterion": "Código próprio com licenças e dependências preservadas",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "docs/proveniencia-base.json",
+            "docs/pypdf-LICENSE.txt",
+            "app/main.py"
+          ]
         },
         {
           "criterion": "Execução e testes reproduzíveis verificados",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "scripts/run_tests.py"
+          ]
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 1.0,
+      "earned_percent": 3.0
     },
     {
       "id": 15,
@@ -419,14 +433,20 @@
         {
           "criterion": "Busca por texto/escopos implementada e testada",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "app/search_engine.py"
+          ]
         },
         {
           "criterion": "Impressão/imposição implementadas e testadas",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "app/imposition.py"
+          ]
         },
         {
           "criterion": "Todas as demais famílias implementadas e testadas",
@@ -435,8 +455,8 @@
           "evidence": []
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.333333,
+      "earned_percent": 3.0
     },
     {
       "id": 16,
@@ -446,14 +466,19 @@
         {
           "criterion": "Leitor Linux e preferências integrados e exercitados",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json"
+          ]
         },
         {
           "criterion": "Busca e escopos integrados e exercitados",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "tests/test_search_scopes.py"
+          ]
         },
         {
           "criterion": "Demais interações e integrações funcionais",
@@ -462,8 +487,8 @@
           "evidence": []
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.333333,
+      "earned_percent": 2.333333
     },
     {
       "id": 17,
@@ -473,18 +498,22 @@
         {
           "criterion": "Aplicação própria executada com fixture real",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/source-0.1.0.json"
+          ]
         },
         {
           "criterion": "Runtime empacotado executado com fixture real",
           "weight": 2,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "testes/resultados/flatpak-payload-0.1.0.json"
+          ]
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 1.0,
+      "earned_percent": 2.0
     },
     {
       "id": 18,
@@ -521,8 +550,11 @@
         {
           "criterion": "Regressões próprias encontradas e corrigidas",
           "weight": 1,
-          "status": "pending",
-          "evidence": []
+          "status": "done",
+          "evidence": [
+            "tests/test_search_scopes.py",
+            "testes/resultados/source-0.1.0.json"
+          ]
         },
         {
           "criterion": "Divergências originais medidas e corrigidas",
@@ -531,8 +563,8 @@
           "evidence": []
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.142857,
+      "earned_percent": 0.571429
     },
     {
       "id": 20,
@@ -589,7 +621,7 @@
       "earned_percent": 0.0
     }
   ],
-  "general_progress_percent": 24.22,
+  "general_progress_percent": 39.13,
   "verified_functional_parity": {
     "percent": 0.0,
     "verified": 0,

@@ -116,7 +116,9 @@ inferências de tipos inadequadas e chamadas indiretas não resolvidas.
 
 Evidências completas, resultados MCP, logs, inventário de funções e
 decompilações ficam fora do código do aplicativo em
-`/workspace/foxit-rea-analysis`. O executável de referência não foi executado.
+`/workspace/foxit-rea-analysis`. A investigação estática não executou o binário; tentativas dinâmicas isoladas
+posteriores não confirmaram execução funcional do Foxit (ver
+[`relatório dinâmico`](relatorio-dinamico.md)).
 O Ghidra trabalha sobre uma cópia e sua base de análise; os bytes de entrada
 não são modificados.
 

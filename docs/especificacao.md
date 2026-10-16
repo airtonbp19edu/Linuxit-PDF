@@ -1,0 +1,64 @@
+# Contratos implementados e critérios de comparação
+
+A especificação distingue observações no Foxit, decisões próprias e obrigações
+não reconstruídas. A matriz em `progresso/matriz-paridade.csv` é o inventário
+funcional aberto; cada família precisa de casos adicionais antes de ser encerrada.
+
+## Busca por documento
+
+**Evidência Foxit:** os controles Whole Words, Case Sensitive, Include Page Text,
+Include Bookmarks e Include Comments são ligados ao estado da janela. O código
+observa trabalho ativo antes de retomá-lo. A ligação integral com o motor e os
+algoritmos de cada opção permanecem parciais (`FOXIT-REA.md`).
+
+**Contrato próprio implementado:** consulta literal de até 256 caracteres,
+normalização NFC e casefold opcional; palavra inteira considera letras,
+números, marcas Unicode e sublinhado. Ignorar acentos e unir hifenização são
+extensões herdadas da base própria, sem alegação de igualdade ao Foxit.
+
+As fontes são independentes: texto das páginas, títulos de marcadores, conteúdo
+e assunto de comentários. Autor do comentário não entra na busca nesta versão.
+A seleção inicial pesquisa apenas páginas. Com nenhuma fonte selecionada, a UI
+pede uma fonte e não inicia trabalho. A ordem é texto por página, marcadores e
+comentários; o limite global padrão é 5.000 ocorrências. Resultados das páginas
+conservam geometria. Marcadores e comentários navegam para a página associada,
+sem inventar retângulos de destaque; destinos sem página local continuam sem
+página. A hifenização só se aplica ao texto geométrico das páginas.
+
+Cancelamento interrompe a emissão de resultados. O modelo mantém a identidade
+do arquivo e rejeita PDF alterado; resultados antigos não atualizam outra
+consulta/documento. O processamento da estrutura PDF pelo pypdf não é
+interrompido no meio de uma chamada; o cancelamento é conferido antes/depois
+nas fronteiras de trabalho. As opções são capturadas por requisição imutável.
+
+**Testes próprios:** `tests/test_search_scopes.py`, testes anteriores de busca,
+GUI e regressão, com PDFs gerados pelo projeto. Verificam escopos, assunto,
+maiúsculas, limite, cancelamento, alteração de arquivo, destino ausente,
+Unicode e navegação da interface. São testes de implementação.
+
+**Critério diferencial pendente:** executar a mesma consulta/flags no Foxit com
+o mesmo PDF e registrar contagem, origem, ordem, destino e erros. Só então
+marcar os cenários correspondentes como equivalentes ou divergentes.
+
+**Não implementado:** busca em conteúdo de anexos, stemming, proximidade,
+coringas e índice persistente de coleções. Suas opções não são exibidas como
+se funcionassem. Busca em comentários não equivale a edição de anotações.
+
+## Impressão e visualização
+
+A base própria preserva preparação de PDF em livreto, N-up e mosaico, com
+prévia, CUPS e adaptador Windows. Testes reabrem saídas com pypdf e verificam
+quantidade/ordem de páginas; testes GTK exercitam a prévia. Essa geometria é
+código independente pré-existente, sem derivação do pseudocódigo Foxit.
+
+Os registros Foxit confirmam troca de modos, notificação, encaminhamento por
+documento e parte do ciclo de vida do objeto de impressão. Não confirmam ainda
+que a imposição própria reproduza toda geometria, margem, rotação ou escolha
+de papel do Foxit. Impressão física, estados de impressora e spooler precisam
+de casos reais, incluindo falhas e cancelamento.
+
+## Erros e limitações
+
+Casos de PDF inválido, senha, corrupção, assinaturas, XFA e serviços externos
+exigem especificações/corpus próprios. Não se converte presença de código ou
+controle em suporte funcional. As 25 famílias da matriz continuam abertas.

@@ -1,6 +1,6 @@
 # Progresso verificável
 
-Progresso geral do roteiro: **24.22%**. Cada etapa usa o peso do pedido; dentro dela, atividades têm pesos estimados, registrados no JSON. Somente atividades com estado `done` e evidência existente contam. Isso mede entregas do roteiro, não equivalência do aplicativo.
+Progresso geral do roteiro: **39.13%**. Cada etapa usa o peso do pedido; dentro dela, atividades têm pesos estimados, registrados no JSON. Somente atividades com estado `done` e evidência existente contam. Isso mede entregas do roteiro, não equivalência do aplicativo.
 
 Paridade Foxit verificada: **0/25 obrigações identificadas (0.00%)**. O inventário funcional permanece aberto. Testes próprios não contam como testes diferenciais.
 
@@ -20,13 +20,13 @@ Cobertura global de engenharia reversa: **não calculável** enquanto o universo
 | 10 — Análise dinâmica | 6% | 0.0% | 0.00% |
 | 11 — Engenharia reversa da interface | 4% | 25.0% | 1.00% |
 | 12 — Especificação funcional | 4% | 12.5% | 0.50% |
-| 13 — Projeto de arquitetura | 4% | 0.0% | 0.00% |
-| 14 — Criação do projeto | 3% | 0.0% | 0.00% |
-| 15 — Reconstrução da lógica principal | 9% | 0.0% | 0.00% |
-| 16 — Interface e integrações | 7% | 0.0% | 0.00% |
-| 17 — Compilação intermediária | 2% | 0.0% | 0.00% |
+| 13 — Projeto de arquitetura | 4% | 100.0% | 4.00% |
+| 14 — Criação do projeto | 3% | 100.0% | 3.00% |
+| 15 — Reconstrução da lógica principal | 9% | 33.3% | 3.00% |
+| 16 — Interface e integrações | 7% | 33.3% | 2.33% |
+| 17 — Compilação intermediária | 2% | 100.0% | 2.00% |
 | 18 — Testes comparativos | 7% | 0.0% | 0.00% |
-| 19 — Correção de incompatibilidades | 4% | 0.0% | 0.00% |
+| 19 — Correção de incompatibilidades | 4% | 14.3% | 0.57% |
 | 20 — Geração dos pacotes | 3% | 0.0% | 0.00% |
 | 21 — Auditoria e entrega final | 1% | 0.0% | 0.00% |
 

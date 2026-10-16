@@ -20,3 +20,18 @@ O helper `scripts/observe_foxit_isolated.py` conserva os resultados localmente.
 Nenhuma conta, autenticação, licença ou integração remota foi acionada.
 Equivalência dinâmica verificada: nenhuma. O controle `wine --version` falhou
 no ambiente isolado; não se afirma que o original tenha iniciado.
+
+## Diagnóstico e continuação
+
+O cadastro ausente de usuário foi isolado: um arquivo passwd/grupo sintético
+foi montado na contenção, sem expor o cadastro real do host. O controle
+`wine --version` passou com código 0. Na tentativa seguinte, o Wine informou
+`could not exec wineserver`; o caminho explícito de seu servidor corrigiu esse
+pré-requisito.
+
+A terceira tentativa criou o prefixo, mas terminou com código 53 e
+`C:\windows\syswow64\rundll32.exe: c0000135`. As DLLs x86 do Wine não estão
+presentes; não se confirmou uma execução funcional do Foxit. Isso permanece
+um bloqueio de runtime, sem contagens ou comportamento do original inventados.
+As tentativas e os controles ficam no diretório local de evidências; somente
+o resumo técnico é publicado.

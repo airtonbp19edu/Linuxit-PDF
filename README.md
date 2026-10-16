@@ -1,25 +1,47 @@
 # Linuxit PDF
 
-Projeto de leitor de PDF com prioridade para Linux e distribuição em Flatpak,
-com uma implementação própria que permita suporte posterior ao Windows.
+Leitor de PDF para Linux, com implementação própria a partir da base MIT
+Winux/Print&View e investigação incremental do Foxit Reader com REA/Ghidra.
+O código do original não é incorporado ao aplicativo.
 
-A etapa atual é a investigação do **Foxit Reader com REA e Ghidra**. O relatório
-registra resultados verificáveis, contratos propostos e lacunas por funcionalidade.
-Este repositório ainda não contém um leitor completo nem um pacote Flatpak.
+A versão 0.1.0 já contém navegação, seleção, apresentação, temas, prévia e
+preparação de impressão em livreto/N-up/mosaico. A busca pesquisa separadamente
+texto, marcadores e comentários, com filtros de palavra inteira e maiúsculas,
+cancelamento e navegação por resultados. A base e as adaptações têm
+[proveniência registrada](docs/proveniencia-base.json).
 
-- [Relatório da engenharia reversa do Foxit](docs/FOXIT-REA.md)
-- [Mapas, identidades e validações](docs/windows-evidence/foxit-rea/)
-- [Ferramentas próprias de análise](scripts/)
+Os 34 testes próprios passaram no código-fonte e no runtime empacotado.
+A instalação e execução do Flatpak no sandbox real estão em validação.
+Esses testes não demonstram equivalência integral com o Foxit; a recuperação
+de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 
-Foram examinadas 122 entradas de funções pelo REA/Ghidra em quatro módulos,
-com verificações complementares no backend Ghidra. O inventário inclui 141
-módulos, 869 recursos externos de interface/tradução e 9.973 registros internos
-de chamadas. Registros, textos e funções decompiladas não equivalem a
-funcionalidades inteiramente reconstruídas ou testadas.
+- [Progresso e metodologia das 21 etapas](progresso/progresso.md)
+- [Matriz de paridade](progresso/matriz-paridade.csv)
+- [Investigação REA do Foxit](docs/FOXIT-REA.md)
+- [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
+- [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
 
-As ferramentas analisam arquivos locais sem executar o Foxit. Os binários de
-referência, templates completos, bases Ghidra e decompilações permanecem fora
-deste repositório. A futura implementação deve usar os contratos de comportamento
-e validação independente, sem incorporar código ou recursos proprietários.
+Para executar o código no Linux, instale Python 3, GTK 3 com PyGObject/Cairo,
+Pillow, cryptography, Poppler e os clientes CUPS. O pypdf 6.20.1 acompanha o
+código com sua licença. Em Debian/Ubuntu:
 
-Para reproduzir a análise, consulte as instruções e os hashes no relatório.
+```bash
+sudo apt install python3-gi python3-cairo python3-gi-cairo python3-pil \
+  python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client
+bash scripts/run.sh testes/fixtures/busca-escopos.pdf
+```
+
+No ambiente de nuvem preparado, use o overlay documentado no relatório de
+instalação e uma tela X11 para executar os testes GTK:
+
+```bash
+DISPLAY=:101 \
+PYTHONPATH=/workspace/.print-view-runtime/gi-cairo/usr/lib/python3/dist-packages \
+/usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-tests-novo.json
+```
+
+A análise local identificou 3.276 arquivos, 141 módulos PE, 131 entradas de
+funções examinadas e 9.973 registros internos de chamadas. O universo completo
+de funções/funcionalidades ainda não está fechado; registros não são funções
+únicas nem paridade verificada. Binários Foxit, templates completos, bancos
+Ghidra e decompilações permanecem fora do repositório.
