@@ -8,8 +8,9 @@ funcional aberto; cada família precisa de casos adicionais antes de ser encerra
 
 **Evidência Foxit:** os controles Whole Words, Case Sensitive, Include Page Text,
 Include Bookmarks e Include Comments são ligados ao estado da janela. O código
-observa trabalho ativo antes de retomá-lo. A ligação integral com o motor e os
-algoritmos de cada opção permanecem parciais (`FOXIT-REA.md`).
+observa trabalho ativo antes de retomá-lo. A continuação confirmou bits de caixa/palavra inteira, um argumento de 24 bytes
+e consumidores da flag de cancelamento; o significado de todos os campos e os
+algoritmos permanecem parciais (`REA-BUSCA-IMPRESSAO.md`).
 
 **Contrato próprio implementado:** consulta literal de até 256 caracteres,
 normalização NFC e casefold opcional; palavra inteira considera letras,
@@ -31,7 +32,14 @@ consulta/documento. O processamento da estrutura PDF pelo pypdf não é
 interrompido no meio de uma chamada; o cancelamento é conferido antes/depois
 nas fronteiras de trabalho. As opções são capturadas por requisição imutável.
 
-**Testes próprios:** `tests/test_search_scopes.py`, testes anteriores de busca,
+A preferência **Destacar todas as ocorrências** vem ativa. Desativada, apenas
+a ocorrência selecionada é desenhada; a navegação move o destaque e o conjunto
+de resultados permanece igual. Alternar a preferência não inicia outra busca.
+Metadados sem coordenadas não recebem retângulos inventados. Fechar a janela
+cancela tarefas e timers; navegação agendada não acessa widgets destruídos.
+
+**Testes próprios:** `tests/test_search_highlights.py` verifica pixels e ciclo
+de vida com GTK/Cairo, além de `tests/test_search_scopes.py`, testes anteriores de busca,
 GUI e regressão, com PDFs gerados pelo projeto. Verificam escopos, assunto,
 maiúsculas, limite, cancelamento, alteração de arquivo, destino ausente,
 Unicode e navegação da interface. São testes de implementação.

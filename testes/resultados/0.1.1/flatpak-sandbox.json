@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": {
+    "opened_and_rendered": true,
+    "search_highlight_preference": true,
+    "bookmark_scope_navigation": true,
+    "comment_subject_navigation": true,
+    "booklet_pdf_written": true
+  },
+  "errors": [],
+  "elapsed_sec": 1.774360582999634,
+  "inside_flatpak": true,
+  "foxit_differential_test": false,
+  "physical_printing_verified": false,
+  "process_exit_code": 0
+}

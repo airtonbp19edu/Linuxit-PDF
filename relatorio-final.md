@@ -1,94 +1,81 @@
-# Relatório do marco Linuxit PDF 0.1.0 — projeto em andamento
+# Relatório do marco Linuxit PDF 0.1.1 — projeto em andamento
 
-Este documento registra o marco entregue, não o encerramento das 21 etapas.
-Os indicadores calculados e a metodologia estão em `progresso/progresso.md`.
+Foi aprofundada a análise de busca e impressão, preparado um runtime Windows
+x86 emulado e entregue um novo Flatpak com controle de destaque e correção
+do encerramento de tarefas da busca. A reconstrução integral continua aberta.
 
-## A. Engenharia reversa
+## Engenharia reversa
 
-Foram identificados 3.276 arquivos (499.053.838 bytes), todos relacionados ao
-ZIP original por CRC/hash, 141 módulos PE, 35 FPI e 869 arquivos externos FX.
-Há 122 entradas examinadas por REA/Ghidra, mais nove entradas complementares
-únicas pelo backend direto: 131 no catálogo consolidado. Não são 131 contratos
-funcionais completos. Foram catalogados 717 descritores e 9.973 slots internos;
-slots podem repetir destinos e não são funcionalidades únicas.
+O catálogo passou de 131 para **191 entradas distintas examinadas**: 152 pelo
+REA/Ghidra e 39 adicionais pelo backend direto. Foram preservadas 31 novas
+observações MCP, incluindo uma entrada já examinada. Um resultado excedeu o
+limite de resposta e foi recuperado integralmente do export; erros e perfis
+foram conservados. Não se contam repetições como novas funções.
 
-As observações cobrem parte de impressão/modos/ciclo de vida, busca/opções,
-zoom, indexação Lucene, plugin de marcadores e formato FX. Algoritmos completos
-de renderização, busca, imposição e várias famílias permanecem parciais.
-A execução funcional do Foxit não foi demonstrada na contenção Wine/WOW64,
-apesar da correção/verificação de dependências. Ver `docs/relatorio-dinamico.md`.
+A investigação confirmou bits de caixa/palavra inteira, parte do argumento
+de 24 bytes usado na busca por índice e consumidores de cancelamento. Na
+impressão, foram identificados construtores, chamadas StartDoc/StartPage e
+leitura de DPI, dimensões físicas e margens. A geometria e os motores completos
+ainda são parciais. Detalhes em [busca/impressão](docs/REA-BUSCA-IMPRESSAO.md).
 
-## B. Reconstrução
+## Observação do original
 
-Python 3, GTK 3/Cairo, Poppler, pypdf 6.20.1 e adaptadores CUPS/Windows. A base
-própria MIT Winux/Print&View foi reaproveitada com licença e manifesto de origem.
-Navegação, renderização, seleção, apresentação, temas, prévia e preparação de
-impressão vêm dessa base e de sua consolidação anterior.
+O controle Windows x86 passou sob Wine 10/QEMU-i386 em contenção offline. O
+Foxit chegou a carregar, mas terminou após CInvalidArgException, antes de uma
+interface utilizável. A causa inicial permanece em aberto. Nenhuma busca ou
+impressão do original foi validada; nenhum binário foi modificado para
+contornar esse encerramento. Ver [evidência dinâmica](docs/relatorio-dinamico.md).
 
-O marco acrescenta busca independente por páginas, títulos de marcadores e
-conteúdo/assunto de comentários, com filtros, limite global, cancelamento e
-destinos sem página tratados explicitamente. A especificação separa decisões
-próprias de evidências Foxit. Não foram implementados índice de coleção,
-proximidade/stemming, busca em anexos ou todas as operações de edição/serviços.
-O adaptador Windows foi preservado, mas não validado como Linuxit nativo.
+## Implementação e testes
 
-## C. Testes
+A opção **Destacar todas as ocorrências** permite alternar entre todos os
+destaques e apenas o selecionado, mantendo a pesquisa e a navegação. Também
+foram cancelados timers e navegação pendentes ao fechar a janela, corrigindo
+um erro de acesso a controles GTK já destruídos. O código é independente e
+continua baseado no Winux/Print&View próprio, com licença MIT preservada.
 
-- Código-fonte: 34 casos, 34 aprovados, zero falhas/erros/ignorados.
-- Payload corrigido: os mesmos 34 casos, 34 aprovados, zero ignorados.
-- Flatpak instalado: quatro verificações aprovadas, dentro do sandbox real,
-  para abertura/renderização, marcador, assunto de comentário e livreto PDF.
-- Launcher normal: abriu o PDF sintético; captura própria em `testes/resultados/`.
-- 81 arquivos do aplicativo empacotado conferidos contra a fonte por SHA-256.
+- Fonte: **37/37 testes aprovados**, sem falhas, erros ou ignorados.
+- Payload: os mesmos **37/37 testes aprovados**.
+- Flatpak instalado: **5/5 verificações** dentro do sandbox real.
+- Launcher normal: abriu o PDF sintético e sua janela foi capturada.
+- Os 81 arquivos do aplicativo no payload coincidem com a fonte por SHA-256.
 
-As execuções repetidas não aumentam a quantidade de testes únicos. Os testes
-usam dados próprios; não são diferenciais contra o Foxit. Paridade comprovada:
-**0/25 famílias identificadas (0%)**, com inventário funcional ainda incompleto.
-Impressão física, serviços externos e todos os PDFs/casos extremos não foram
-validados. Falhas intermediárias de empacotamento foram corrigidas na origem:
-bibliotecas privadas e provedor OpenSSL incluído, com avisos/licenças.
+As tentativas anteriores ficaram registradas: o Python 3.12 do PATH não
+carregava Cairo do sistema 3.13; depois, 35 casos passaram, mas um callback GTK
+gerou uma exceção fora do runner. Essa falha foi corrigida e ganhou regressões.
+O [histórico de validação](testes/resultados/0.1.1/validation-history.json)
+distingue os resultados finais dos intermediários.
 
-## D. Distribuição
+## Distribuição
 
-`releases/LinuxitPDF-0.1.0-x86_64.flatpak`, com 41.222.040 bytes. SHA-256:
+[LinuxitPDF-0.1.1-x86_64.flatpak](releases/LinuxitPDF-0.1.1-x86_64.flatpak),
+41.215.208 bytes. SHA-256:
 
 ```text
-8bcccba438cbf345df45db44ce08018987f499d0fbe009a15840b3301fd183fb
+58de72eff22ac9b42ce2792daf8877d9f5a846c5f8009a22ac036747ea130371
 ```
 
 ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel`, Freedesktop Platform
-25.08. Bundle local de desenvolvimento, sem assinatura digital; não há submissão
-ao Flathub nem declaração de versão estável. Dependências e revisões estão no
-manifesto e TSV dos pacotes. Instruções em `docs/instalacao.md`.
+25.08. O bundle não recebe assinatura digital. A instalação e as limitações
+estão em [instalação](docs/instalacao.md) e no [manifesto](releases/manifest.json).
+A versão anterior foi preservada. Não foram gerados DEB ou EXE neste marco.
 
-## E. Repositório
+## Indicadores e continuidade
 
-Destino: https://github.com/airtonbp19edu/Linuxit-PDF, branch `main`.
-Marcos anteriores confirmados: `5312ae0` (análise/progresso) e `739ed14`
-(implementação/testes). Pacote publicado e confirmado em `b709a4f04dea272b31bb0f1ae4d31d492c7bdf9b`.
-O marco do pacote e sua confirmação são registrados em `progresso/sincronizacao-git.json` e no histórico, após o push.
-Não há GitHub Release ou tag estável criada neste marco; o artefato é versionado
-no repositório. A confirmação atual de HEAD pode ser reproduzida pelo script
-`verify_git_sync.py` com comprovante fora da árvore.
+O roteiro permanece em **43,33%**, sem mudança dos pesos. A cobertura global
+de engenharia reversa é **indeterminada**: os quatro módulos entre 141 PE são
+uma medida parcial por módulo, não uma porcentagem de funções recuperadas.
+A paridade comprovada permanece em **0/25 famílias identificadas**. Os testes
+próprios não substituem testes diferenciais; impressão física e Windows nativo
+continuam pendentes.
 
-Os arquivos originais proprietários, templates completos, decompilações,
-bases Ghidra e protótipos reprovados ficam locais e estão classificados em
-`engenharia-reversa/manifesto-restricoes.json`. Não há credenciais publicadas.
+O destino é [Linuxit-PDF](https://github.com/airtonbp19edu/Linuxit-PDF), branch
+`main`. A confirmação remota fica no histórico e em
+`progresso/sincronizacao-git.json`; o comprovante de HEAD pode ser gerado fora
+da árvore com `scripts/verify_git_sync.py`. Arquivos proprietários, decompilações,
+bases Ghidra e protótipos intermediários permanecem fora do Git.
 
-## F. Resultado consolidado
-
-O progresso geral é a soma dos pesos das etapas multiplicados pelas atividades
-verificadas; a revisão inicial dos pesos permanece preservada. Publicação e
-sincronização são verificadas separadamente. A cobertura global de engenharia
-reversa permanece **indeterminada** porque o denominador de funções relevantes
-não está fechado; quatro de 141 módulos têm investigação profunda dirigida
-(2,84% com peso unitário por módulo, medida parcial que não representa o projeto).
-
-A reconstrução integral continua pendente. O roteiro mantém bloqueios e próximas
-tarefas explícitos; nenhuma etapa aberta foi encerrada para aparentar 100%.
-
-Indicadores deste marco após a publicação confirmada: progresso geral **43,33%**;
-cobertura global **indeterminada** (medida parcial por módulo: 4/141);
-paridade funcional verificada **0%** (0/25 famílias); sincronização **100% dos
-artefatos publicáveis no commit confirmado**, com zero arquivos pendentes naquele
-registro. O HEAD posterior de documentação deve ser conferido pelo script remoto.
+Próximos alvos: determinar a causa da exceção inicial do Foxit, completar os
+consumidores dos campos ainda desconhecidos da busca e seguir as transformações
+de impressão antes de afirmar equivalência. O [marco 0.1.0](docs/marcos/0.1.0.md)
+foi mantido como histórico.

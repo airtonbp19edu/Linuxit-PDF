@@ -1,0 +1,400 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "cases": [
+    {
+      "result": "dynamic/attempt-08/result.json",
+      "sha256": "5a9d19c97a5634a4d617c41b50bddcdb93d1410699c91d4682189e93caefee2a",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "original_launch_attempt",
+        "probe_architecture": null,
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/attempt-emulated32-01/result.json",
+      "sha256": "3b42d06b4ee0ccb863a3a5351bd6612a9cb2627afa6923083c6c15bf618ddfb5",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 29,
+        "mode": "original_launch_attempt",
+        "probe_architecture": null,
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 120,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/attempt-emulated32-02/result.json",
+      "sha256": "3b42d06b4ee0ccb863a3a5351bd6612a9cb2627afa6923083c6c15bf618ddfb5",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 29,
+        "mode": "original_launch_attempt",
+        "probe_architecture": null,
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 120,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/kernel-x86-probe/result.json",
+      "sha256": "f6e59fad0167ee22aa4ad2e2179151edf54701a53062766db350bbc03e8a809e",
+      "observed_result": {
+        "executed": false,
+        "errno": 8,
+        "error": "[Errno 8] Exec format error: '/workspace/foxit-rea-analysis/dynamic/kernel-x86-probe/exit32'"
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated-01/result.json",
+      "sha256": "2a4469fcb03cb26a54e6c1cdbecef2155cff4cd07a7a71acd6f5d8b6a794c220",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-01/result.json",
+      "sha256": "2a4469fcb03cb26a54e6c1cdbecef2155cff4cd07a7a71acd6f5d8b6a794c220",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-02/result.json",
+      "sha256": "93fa7d9fd27aee78a63ca66d83c3eae0d608b65c7d0a9acbfbb56a183802781e",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 127,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-03/result.json",
+      "sha256": "60d1e16b233dc6c043425d3b15cd2c4a26e47440427b48ef3cef1fb5fb612308",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 127,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-04/result.json",
+      "sha256": "2a4469fcb03cb26a54e6c1cdbecef2155cff4cd07a7a71acd6f5d8b6a794c220",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-05/result.json",
+      "sha256": "6e0376d3d35da02d8c7b7afbf9630118bc14b03a9f6882b8e281462413e7596d",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 53,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-06/result.json",
+      "sha256": "2a4469fcb03cb26a54e6c1cdbecef2155cff4cd07a7a71acd6f5d8b6a794c220",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-07/result.json",
+      "sha256": "2a4469fcb03cb26a54e6c1cdbecef2155cff4cd07a7a71acd6f5d8b6a794c220",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-08/result.json",
+      "sha256": "67c0051bb4fc9ec85cf1872125c231f2356490d12222bb3a60f862a5448cfb17",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 0,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-emulated32-final/result.json",
+      "sha256": "3cb4d06de5687c2307c41a1fd7e73968f9613ba75372c5ed9f27b74a896bf587",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 0,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 90,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true,
+        "elapsed_sec": 8.702,
+        "emulation": "qemu-i386",
+        "emulated_cpu": "max",
+        "wine_prefix_architecture": "win32",
+        "prefilled_wine32": true,
+        "expected_marker_seen": true,
+        "runtime_probe_passed": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-x64-01/result.json",
+      "sha256": "62c56701bd6b12c462670ab1b7dc1623f043a33f1bca79ac9db0b31ead55a71d",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 0,
+        "mode": "runtime_probe",
+        "probe_architecture": "x64",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-x86-01/result.json",
+      "sha256": "9eb5e8c5929706b6ab8596b2a68f10c9c19e6bebaea1eb8b7591617a63bc7988",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 53,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-x86-02/result.json",
+      "sha256": "9eb5e8c5929706b6ab8596b2a68f10c9c19e6bebaea1eb8b7591617a63bc7988",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 53,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-x86-03/result.json",
+      "sha256": "5ea2d493415ad7c368d4e82de52f791f0e3b672278a5d28fcc40d0a0b99afc9c",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    },
+    {
+      "result": "dynamic/runtime-probe-x86-04/result.json",
+      "sha256": "5ea2d493415ad7c368d4e82de52f791f0e3b672278a5d28fcc40d0a0b99afc9c",
+      "observed_result": {
+        "status": "exited",
+        "exit_code": 1,
+        "mode": "runtime_probe",
+        "probe_architecture": "x86",
+        "target_loaded": null,
+        "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+        "timeout_sec": 45,
+        "network": "separate namespace, no network access",
+        "original_mount": "read-only /reference",
+        "writable_state": "isolated /state and temporary /tmp",
+        "gui_shared": "dedicated virtual X server, no other app should use this display",
+        "functional_equivalence_verified": false,
+        "ui_observation_requires_separate_confirmation": true
+      }
+    }
+  ],
+  "kernel_native_x86": {
+    "executed": false,
+    "errno": 8,
+    "error": "[Errno 8] Exec format error: '/workspace/foxit-rea-analysis/dynamic/kernel-x86-probe/exit32'",
+    "qemu_i386": {
+      "executed": true,
+      "returncode": 0
+    }
+  },
+  "foxit_observation": {
+    "log": "dynamic/attempt-emulated32-02/stderr.log",
+    "sha256": "3ef09d3ede379f6f4eca519d2cfc4cfd252e48e72e961856fe31cf583b5dd41f",
+    "mapped_main_image_base": "0x83b0000",
+    "cxx_exception": "0xe06d7363",
+    "throw_info_runtime": "0xeab723c",
+    "throw_info_preferred_va": "0x6b0723c",
+    "catchable_types": [
+      "CInvalidArgException",
+      "CSimpleException",
+      "CException",
+      "CObject",
+      "void*"
+    ],
+    "subsequent_termination": {
+      "runtime_va": "0xcb555ee",
+      "preferred_va": "0x4ba55ee",
+      "instruction": "INT 0x29",
+      "ecx": 7
+    },
+    "usable_gui_seen": false,
+    "search_or_print_behavior_observed": false,
+    "root_cause": "Unresolved initialization failure; no protection bypass or binary patch attempted."
+  },
+  "limits": [
+    "A passing Windows cmd runtime probe is not Foxit functional validation.",
+    "No original screenshots or raw traces are redistributed."
+  ]
+}

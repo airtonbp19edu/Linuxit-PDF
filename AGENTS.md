@@ -23,12 +23,19 @@ progressivos; a antiga limitação a somente análise foi ampliada por esse pedi
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O pacote atual é 0.1.0, branch Flatpak `devel`. Não declare versão estável,
+- O pacote atual é 0.1.1, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 
 Fonte: `docs/especificacao.md`, `docs/FOXIT-REA.md`, `docs/proveniencia-base.json`.
-Testes: `scripts/run_tests.py` (GUI requer X11/Wayland), 34 casos neste marco.
+Testes: `scripts/run_tests.py` (GUI requer X11/Wayland), 37 casos neste marco.
 Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 `/app/lib` padrão. Use `runtime-lib`, loader pareado e módulos OpenSSL incluídos.
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
+
+Marcos de busca/impressão: `docs/REA-BUSCA-IMPRESSAO.md` e metadados vinculados.
+Catálogo atual: 191 entradas (152 REA + 39 adicionais diretas), cobertura global
+indeterminada. Wine/QEMU passa no controle x86; o Foxit carrega mas termina com
+CInvalidArgException antes da UI. Não confunda isso com paridade funcional.
+Use `/usr/bin/python3` para GTK/Cairo (Python 3.13); o Python do PATH pode ser
+3.12 e não carrega as extensões do sistema. Os pesos do roteiro não mudaram.

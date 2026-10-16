@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Check the installed Flatpak launcher on a virtual X11 display; capture own fixture UI."""
-import os,subprocess,time,json,re,signal
+import os,subprocess,time,json,re,signal,runpy
 from pathlib import Path
 import gi
 gi.require_version('Gdk','3.0');gi.require_version('GdkX11','3.0')
 from gi.repository import Gdk,GdkX11
 repo=Path(__file__).resolve().parents[1];out=Path(os.environ.get('LINUXIT_LAUNCH_RESULTS',repo/'testes/resultados'));out.mkdir(parents=True,exist_ok=True);fixture=repo/'testes/fixtures/busca-escopos.pdf'
 command=['dbus-run-session','--','flatpak','run','--user','--filesystem='+str(fixture.parent)+':ro','io.github.airtonbp19edu.LinuxitPDF//devel',str(fixture)]
-checks={};image_path=out/'linuxit-flatpak-0.1.0.png'
+version=runpy.run_path(str(repo/'app/version.py'))['VERSION']
+checks={};image_path=out/f'linuxit-flatpak-{version}.png'
 with (out/'normal-launch.log').open('wb') as log:
  proc=subprocess.Popen(command,stdout=log,stderr=log,start_new_session=True)
  try:
@@ -28,5 +29,5 @@ with (out/'normal-launch.log').open('wb') as log:
  finally:
   if proc.poll() is None:os.killpg(proc.pid,signal.SIGTERM)
   proc.wait(timeout=10)
-(out/'flatpak-normal-launch.json').write_text(json.dumps({'passed':all(checks.values()) and len(checks)==3,'checks':checks,'extra_access':'Read-only own synthetic fixture directory','screenshot':'linuxit-flatpak-0.1.0.png','foxit_differential_test':False},indent=2)+'\n')
+(out/'flatpak-normal-launch.json').write_text(json.dumps({'passed':all(checks.values()) and len(checks)==3,'checks':checks,'extra_access':'Read-only own synthetic fixture directory','screenshot':image_path.name,'foxit_differential_test':False},indent=2)+'\n')
 print(json.dumps(checks))

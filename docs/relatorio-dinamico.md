@@ -55,3 +55,19 @@ Mapear as seções do arquivo não comprova entrada no fluxo funcional ou uma
 janela utilizável. Nenhuma contagem de busca, fluxo de impressão ou equivalência
 do original foi observada. O bloqueio atual é a inicialização Windows/x86
 nessa contenção, não uma permissão de rede ou um mecanismo de licença a contornar.
+
+## Marco 0.1.1: controle x86 aprovado, original ainda sem UI
+
+A descrição anterior é o histórico. O kernel recusou um ELF x86 mínimo com
+ENOEXEC; ele passou sob QEMU-i386. Foi preparado um runtime inteiramente Wine
+x86 emulado, com componentes Debian autenticados e adaptadores para seus
+processos filhos. O controle `cmd.exe` passou, incluindo saída esperada.
+
+O Foxit carregou no novo runtime, mas encerrou sem janela utilizável após
+CInvalidArgException e término por INT 0x29. A causa inicial está em aberto.
+Isso substitui o bloqueio genérico anterior por uma falha de inicialização
+mais delimitada; ainda não há observação de busca/impressão do original.
+
+Consulte `REA-BUSCA-IMPRESSAO.md` e
+`windows-evidence/foxit-rea/dynamic-followup.json`. Não foram alterados
+binários, contornadas proteções ou publicados logs/recursos proprietários.

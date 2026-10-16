@@ -1,53 +1,43 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "development; full reconstruction incomplete",
   "application_id": "io.github.airtonbp19edu.LinuxitPDF",
   "flatpak_branch": "devel",
   "architecture": "x86_64",
   "runtime": "org.freedesktop.Platform/x86_64/25.08",
   "runtime_commit_tested": "b7aba340fd291e08bf26442d43a0e4adb6733da5a06d47ff4296a964af40cc8a",
-  "app_ostree_commit": "3ab1b3da4503b914a3cdaa462927611e693b1a880e821c43764460cd77121d73",
-  "source_commit_base": "739ed148f78fa156c0506253d67d1c647f928f4d",
+  "app_ostree_commit": "589f9e68239aabd3f5ed0426c95b60ef01254e7e6ce364c1dbbea247f3e86b6d",
+  "source_commit_base": "2a029ef8ef79c2bf7a1a9d0791a42f90383536db",
   "builder_sha256": "3ac83e5443f05b7764e32bdfb2db6ac7a271eb1c915371b6d81a930d5da8c3a1",
   "artifact": {
-    "file": "LinuxitPDF-0.1.0-x86_64.flatpak",
-    "bytes": 41222040,
-    "sha256": "8bcccba438cbf345df45db44ce08018987f499d0fbe009a15840b3301fd183fb",
+    "file": "LinuxitPDF-0.1.1-x86_64.flatpak",
+    "bytes": 41215208,
+    "sha256": "58de72eff22ac9b42ce2792daf8877d9f5a846c5f8009a22ac036747ea130371",
     "digitally_signed": false
   },
   "validation": {
     "source_regressions": {
-      "run": 34,
-      "passed": 34,
+      "run": 37,
+      "passed": 37,
+      "failures": 0,
+      "errors": 0,
       "skipped": 0
     },
-    "fixed_payload_regressions": {
-      "run": 34,
-      "passed": 34,
+    "payload_regressions": {
+      "run": 37,
+      "passed": 37,
+      "failures": 0,
+      "errors": 0,
       "skipped": 0
     },
-    "real_flatpak_sandbox_smoke": {
-      "passed": true,
-      "checks": {
-        "opened_and_rendered": true,
-        "bookmark_scope_navigation": true,
-        "comment_subject_navigation": true,
-        "booklet_pdf_written": true
-      },
-      "errors": [],
-      "elapsed_sec": 1.7521779439994134,
-      "inside_flatpak": true,
-      "foxit_differential_test": false,
-      "physical_printing_verified": false,
-      "harness_extra_access": "Read-only project scripts directory only. No external runtime libraries mounted."
-    },
-    "native_windows_verified": false,
-    "foxit_parity_verified": false,
-    "physical_printing_verified": false
+    "sandbox_smoke": "testes/resultados/0.1.1/flatpak-sandbox.json",
+    "normal_launcher": "testes/resultados/0.1.1/flatpak-normal-launch.json",
+    "foxit_differential_test": false
   },
   "source_payload_integrity": "../testes/resultados/payload-source-integrity.json",
   "restrictions": [
     "No original Foxit binaries, raw decompilation, full proprietary templates or credentials are included.",
     "Read-only panels and implemented subsets do not establish all Reader/Editor functionality."
-  ]
+  ],
+  "source_snapshot": "testes/resultados/0.1.1/payload-source-integrity.json"
 }

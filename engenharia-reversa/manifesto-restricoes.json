@@ -21,6 +21,14 @@
     {
       "location": "/workspace/linuxit-release/flatpak-before-* and interrupted stages",
       "reason": "Superseded validation prototypes; not distributed as final packages."
+    },
+    {
+      "location": "/workspace/foxit-rea-analysis/dynamic and emulation packages/runtime",
+      "reason": "Private investigation traces, prefixes and optional analysis tools; not part of the independent app distribution."
+    },
+    {
+      "location": "/workspace/linuxit-release/superseded/LinuxitPDF-0.1.1-before-close-fix.flatpak",
+      "reason": "Own intermediate bundle predating the lifecycle fix; not the published 0.1.1 package."
     }
   ],
   "allowed": [

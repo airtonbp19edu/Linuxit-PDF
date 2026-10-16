@@ -1,5 +1,12 @@
 # Foxit Reader: investigação com REA e Ghidra
 
+Atualização do marco **0.1.1**: [busca, impressão e execução emulada](REA-BUSCA-IMPRESSAO.md).
+O catálogo atual contém **191 entradas distintas**, com 152 pelo REA e 39
+adicionais pelo backend direto. O controle Wine x86 passou sob QEMU; o Foxit
+carregou, mas terminou antes da UI com exceção MFC. Os trechos abaixo registram
+a investigação acumulada; lacunas ampliadas ou resolvidas constam da continuação.
+
+
 ## Escopo atual
 
 Após o pedido mestre de 2026-10-16, a reconstrução incremental foi iniciada.

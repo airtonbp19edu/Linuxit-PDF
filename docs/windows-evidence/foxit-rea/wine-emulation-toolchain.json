@@ -1,0 +1,347 @@
+{
+  "packages": [
+    {
+      "Package": "libbrotli1",
+      "Version": "1.1.0-2+b7",
+      "Architecture": "i386",
+      "filename": "libbrotli1_1.1.0-2+b7_i386.deb",
+      "sha256": "696b5206497da474e9480c0a4700d0835ee34f90ee0e505091a9402e70fc1a71",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libbsd0",
+      "Version": "0.12.2-2",
+      "Architecture": "i386",
+      "filename": "libbsd0_0.12.2-2_i386.deb",
+      "sha256": "72dccfe87335f7c5efde97345b3ddf3157fdc5b0c441a8cb413722928ddcd510",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libbz2-1.0",
+      "Version": "1.0.8-6",
+      "Architecture": "i386",
+      "filename": "libbz2-1.0_1.0.8-6_i386.deb",
+      "sha256": "c23dee450dcee574135cbe004d463be3f413cdc017b22d8273c5ce0a18a7de10",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libc6",
+      "Version": "2.41-12+deb13u4",
+      "Architecture": "i386",
+      "filename": "libc6_2.41-12+deb13u4_i386.deb",
+      "sha256": "67bb4b54cf4bb6a380449dfa1852cd9135659f85360caa0e41d312f4b30e573a",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libexpat1",
+      "Version": "2.8.3-1~deb13u1",
+      "Architecture": "i386",
+      "filename": "libexpat1_2.8.3-1~deb13u1_i386.deb",
+      "sha256": "d0396d41674a2fb1946af2b131630534a2cf09d160c8ea13bc5bbaa7416f071a",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libffi8",
+      "Version": "3.4.8-2",
+      "Architecture": "i386",
+      "filename": "libffi8_3.4.8-2_i386.deb",
+      "sha256": "8bafefb38c320ca27796070c881595ce04d900c3b534ac142a494daf1fe1db13",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libfontconfig1",
+      "Version": "2.15.0-2.3",
+      "Architecture": "i386",
+      "filename": "libfontconfig1_2.15.0-2.3_i386.deb",
+      "sha256": "d24faaee293c8f76fd68dea181ac927ad8fb8ec18fcdf7e5bf6fe847678f227b",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libfreetype6",
+      "Version": "2.13.3+dfsg-1+deb13u1",
+      "Architecture": "i386",
+      "filename": "libfreetype6_2.13.3+dfsg-1+deb13u1_i386.deb",
+      "sha256": "fbe01c5a6e2654ed7c8fbb08b39c9b20cf19bd24554088d11762c330f7af1dd2",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libgcc-s1",
+      "Version": "14.2.0-19",
+      "Architecture": "i386",
+      "filename": "libgcc-s1_14.2.0-19_i386.deb",
+      "sha256": "a4c71fd856d2a48a7505a087b4186e3cca23f94603c05e3fb7c799b27e72f761",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libglib2.0-0t64",
+      "Version": "2.84.4-3~deb13u5",
+      "Architecture": "i386",
+      "filename": "libglib2.0-0t64_2.84.4-3~deb13u5_i386.deb",
+      "sha256": "e773e9c94f3c833ffa75fe8531cb16c8e9f4717cc76201badffeb45c1b4bf56c",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libgmp10",
+      "Version": "2:6.3.0+dfsg-3",
+      "Architecture": "i386",
+      "filename": "libgmp10_2%3a6.3.0+dfsg-3_i386.deb",
+      "sha256": "f005fef33ce70d6775070c60017f0d29a0c415f1b657b4cc622d1a556561615c",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libgnutls30t64",
+      "Version": "3.8.9-3+deb13u4",
+      "Architecture": "i386",
+      "filename": "libgnutls30t64_3.8.9-3+deb13u4_i386.deb",
+      "sha256": "8cf569d66f972184d90bdb424eb5b0af1245df4abb15f229d30b6c905d565265",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libhogweed6t64",
+      "Version": "3.10.1-1",
+      "Architecture": "i386",
+      "filename": "libhogweed6t64_3.10.1-1_i386.deb",
+      "sha256": "c947e90d9451239ebfa85f67ae0a6c3f9dc19b8bd9f0bb7c98a73dff33665592",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libidn2-0",
+      "Version": "2.3.8-2",
+      "Architecture": "i386",
+      "filename": "libidn2-0_2.3.8-2_i386.deb",
+      "sha256": "385d7ec787a45c8afbca118f30c770186004542011699ae0b51b37ed5f9a5b22",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libmd0",
+      "Version": "1.1.0-2+b1",
+      "Architecture": "i386",
+      "filename": "libmd0_1.1.0-2+b1_i386.deb",
+      "sha256": "42e150e95df064f5e9704cca46fc6d5755416681c96811cfa468e5a638dd425d",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libnettle8t64",
+      "Version": "3.10.1-1",
+      "Architecture": "i386",
+      "filename": "libnettle8t64_3.10.1-1_i386.deb",
+      "sha256": "6daa71300749e0ec1e0792dc4b1886ffae6668317d363aa13c2f30f3b8d96792",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libp11-kit0",
+      "Version": "0.25.5-3",
+      "Architecture": "i386",
+      "filename": "libp11-kit0_0.25.5-3_i386.deb",
+      "sha256": "87454329e53dab3176c2f61f50386ac2c42d6088a68fb882b3804f8bc0ba7660",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libpcre2-8-0",
+      "Version": "10.46-1~deb13u2",
+      "Architecture": "i386",
+      "filename": "libpcre2-8-0_10.46-1~deb13u2_i386.deb",
+      "sha256": "d73a12ec13f4bbd963ac737ee14773a2f89d4289b25c125e6642b0e3b159ed2e",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libpng16-16t64",
+      "Version": "1.6.48-1+deb13u5",
+      "Architecture": "i386",
+      "filename": "libpng16-16t64_1.6.48-1+deb13u5_i386.deb",
+      "sha256": "907c103a7d17b2b39661f93a9f4e439cf5fb4ac1ee03c9d3cd2243d3f82e8970",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libstdc++6",
+      "Version": "14.2.0-19",
+      "Architecture": "i386",
+      "filename": "libstdc++6_14.2.0-19_i386.deb",
+      "sha256": "b6020260b92a97ac33ae58a73b16f3ab31fed7632e9b861f7cd5fc393facd6ed",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libtasn1-6",
+      "Version": "4.20.0-2+deb13u1",
+      "Architecture": "i386",
+      "filename": "libtasn1-6_4.20.0-2+deb13u1_i386.deb",
+      "sha256": "e12a0eb8430e54eacdc4e650c93fb5c5db66594e0a3f5885127a3ab3ed275981",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libunistring5",
+      "Version": "1.3-2",
+      "Architecture": "i386",
+      "filename": "libunistring5_1.3-2_i386.deb",
+      "sha256": "d7f66009fe785d4964ca749ddf38602d692e944847dfdef1ccf76b4d30e050b2",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libwine",
+      "Version": "10.0~repack-6",
+      "Architecture": "i386",
+      "filename": "libwine_10.0~repack-6_i386.deb",
+      "sha256": "fef4802a6553a17eaa40003333a86fc697440d1d21c5824f2dbd1c444f01527b",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libx11-6",
+      "Version": "2:1.8.12-1",
+      "Architecture": "i386",
+      "filename": "libx11-6_2%3a1.8.12-1_i386.deb",
+      "sha256": "0a4ee67fffb3299953a9bd298c33e4f66d1b7f2f112eb83eb32c8e4351927741",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxau6",
+      "Version": "1:1.0.11-1",
+      "Architecture": "i386",
+      "filename": "libxau6_1%3a1.0.11-1_i386.deb",
+      "sha256": "1645415b2ea8b64268f87944b733b9f9a2f243f89eb73555120eaf459fa06a57",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxcb1",
+      "Version": "1.17.0-2+b1",
+      "Architecture": "i386",
+      "filename": "libxcb1_1.17.0-2+b1_i386.deb",
+      "sha256": "a4c421cf27ef4f66b32f650e3ac8bbd12bc8ec28b70a3be5dcc56dc3453e8d3e",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxcomposite1",
+      "Version": "1:0.4.6-1",
+      "Architecture": "i386",
+      "filename": "libxcomposite1_1%3a0.4.6-1_i386.deb",
+      "sha256": "74993ed9b8652244e862dbad8224b72a1fd634ee326abee8c7f7d3b3800e4a9c",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxcursor1",
+      "Version": "1:1.2.3-1",
+      "Architecture": "i386",
+      "filename": "libxcursor1_1%3a1.2.3-1_i386.deb",
+      "sha256": "730d69855b63ad950143bd3b1a4629b25633eaa691148e9fde1dfe38495da809",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxdmcp6",
+      "Version": "1:1.1.5-1",
+      "Architecture": "i386",
+      "filename": "libxdmcp6_1%3a1.1.5-1_i386.deb",
+      "sha256": "06b3a5d82fd69b1ff66e4e68fd4cf55f616864a29f456609a1f92b275b6126f7",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxext6",
+      "Version": "2:1.3.4-1+b3",
+      "Architecture": "i386",
+      "filename": "libxext6_2%3a1.3.4-1+b3_i386.deb",
+      "sha256": "9e15d0b7f325c70081acb33e21bf019a1bb7c9f0df262ece49bef91d072705a1",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxfixes3",
+      "Version": "1:6.0.0-2+b4",
+      "Architecture": "i386",
+      "filename": "libxfixes3_1%3a6.0.0-2+b4_i386.deb",
+      "sha256": "5ab7a33e21647a5398d422eff7426595c1bcbb8a58574c0cc8aa1a4f0a44c6cc",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxi6",
+      "Version": "2:1.8.2-1",
+      "Architecture": "i386",
+      "filename": "libxi6_2%3a1.8.2-1_i386.deb",
+      "sha256": "5a423e684387b8595cd9de0496279cef5a2bf54afd6a5c165d92b6e692e5a0fe",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxinerama1",
+      "Version": "2:1.1.4-3+b4",
+      "Architecture": "i386",
+      "filename": "libxinerama1_2%3a1.1.4-3+b4_i386.deb",
+      "sha256": "53618c19fc1f95d814e57a67b81d079ef6afef35f9fdc017193b3834b602ed00",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxrandr2",
+      "Version": "2:1.5.4-1+b3",
+      "Architecture": "i386",
+      "filename": "libxrandr2_2%3a1.5.4-1+b3_i386.deb",
+      "sha256": "b3940d28cd51c5fb295737085bcca24064f3288a3b98cea3f9f92a4dfa757c72",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxrender1",
+      "Version": "1:0.9.12-1",
+      "Architecture": "i386",
+      "filename": "libxrender1_1%3a0.9.12-1_i386.deb",
+      "sha256": "c1666fddcb0ded151fbe3a2569264761b4e8a18e862bcc2bce156aa0f06d3473",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libxxf86vm1",
+      "Version": "1:1.1.4-1+b4",
+      "Architecture": "i386",
+      "filename": "libxxf86vm1_1%3a1.1.4-1+b4_i386.deb",
+      "sha256": "b3f612262c335fde6536d4fa62df37640a5e376c29e8e484bfce70f7ee6eabd0",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "libz-mingw-w64",
+      "Version": "1.3.1+dfsg-2",
+      "Architecture": "all",
+      "filename": "libz-mingw-w64_1.3.1+dfsg-2_all.deb",
+      "sha256": "c4e6d6bfabe8b6d12c797736a3d762d83513b49f488d1aaf61d4526387a2dd3e",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "wine32",
+      "Version": "10.0~repack-6",
+      "Architecture": "i386",
+      "filename": "wine32_10.0~repack-6_i386.deb",
+      "sha256": "87a56e04e42eea5b050dad78c3a3e81b252ae60f7a853db255cc32f98586a6ec",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "zlib1g",
+      "Version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "Architecture": "i386",
+      "filename": "zlib1g_1%3a1.3.dfsg+really1.3.1-1+b1_i386.deb",
+      "sha256": "8950c79b1ade51f53b2f37863aec532cfaca3dff315e28f0c5b53902425c41ed",
+      "verified_against": "APT authenticated Debian trixie index"
+    },
+    {
+      "Package": "qemu-user",
+      "Version": "1:10.0.13+ds-0+deb13u1",
+      "Architecture": "amd64",
+      "filename": "qemu-user_1%3a10.0.13+ds-0+deb13u1_amd64.deb",
+      "sha256": "ca6ede739327a20ae5a3498230c8a3a9a072c586e131bc6bcc1201eb1725e336",
+      "verified_against": "APT authenticated Debian trixie index"
+    }
+  ],
+  "runtime_binaries": {
+    "qemu-tools/usr/bin/qemu-i386": {
+      "sha256": "3378bb95493e33dc6cb215a8d89c4aeb58d12201b817413a4c0449ffa5abb443",
+      "bytes": 14087856
+    },
+    "wine32-runtime/usr/lib/wine/wine": {
+      "sha256": "065a580aa2c9f6bec339e4a7376756dfda543080605c7b3da9dbf0097dd581a8",
+      "bytes": 13928
+    },
+    "wine32-runtime/usr/lib/wine/wine-emulated-loader": {
+      "sha256": "065a580aa2c9f6bec339e4a7376756dfda543080605c7b3da9dbf0097dd581a8",
+      "bytes": 13928
+    },
+    "wine32-runtime/usr/lib/wine/wine-preloader": {
+      "sha256": "f7ae1c369304f5ee3b170e3e05b732f6de9a14e1d6f2bd51396e48ef772da94d",
+      "bytes": 162
+    }
+  },
+  "scope": "Read-only, offline dynamic investigation only; excluded from Linuxit Flatpak.",
+  "notes": [
+    "Wine loader alias is byte-identical; preloader is an own shell adapter for child emulation.",
+    "Original packages were not installed system-wide. No host credential or session mount."
+  ]
+}

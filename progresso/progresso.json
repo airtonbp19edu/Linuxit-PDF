@@ -231,14 +231,20 @@
         {
           "criterion": "Fluxo completo de impressão reconstruído",
           "weight": 4,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          ]
         },
         {
           "criterion": "Fluxo completo de busca reconstruído",
           "weight": 4,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          ]
         },
         {
           "criterion": "Demais famílias funcionais investigadas profundamente",
@@ -291,8 +297,10 @@
           "weight": 2,
           "status": "blocked",
           "evidence": [
-            "docs/relatorio-dinamico.md"
-          ]
+            "docs/relatorio-dinamico.md",
+            "docs/windows-evidence/foxit-rea/dynamic-followup.json"
+          ],
+          "note": "Wine/i386 control passed under QEMU; original loads but exits before usable GUI, so criterion remains blocked."
         },
         {
           "criterion": "Cenários locais observados e registrados",
@@ -420,7 +428,8 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "scripts/run_tests.py"
+            "scripts/run_tests.py",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         }
       ],
@@ -438,7 +447,8 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "app/search_engine.py"
+            "app/search_engine.py",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -447,7 +457,8 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "app/imposition.py"
+            "app/imposition.py",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -470,7 +481,8 @@
           "weight": 3,
           "status": "done",
           "evidence": [
-            "testes/resultados/source-0.1.0.json"
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -479,7 +491,8 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "tests/test_search_scopes.py"
+            "tests/test_search_scopes.py",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -502,7 +515,8 @@
           "weight": 2,
           "status": "done",
           "evidence": [
-            "testes/resultados/source-0.1.0.json"
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -511,7 +525,8 @@
           "status": "done",
           "evidence": [
             "testes/resultados/flatpak-payload-fixed-0.1.0.json",
-            "testes/resultados/flatpak-sandbox-0.1.0.json"
+            "testes/resultados/flatpak-sandbox-0.1.0.json",
+            "testes/resultados/0.1.1/flatpak-sandbox.json"
           ]
         }
       ],
@@ -559,7 +574,8 @@
           "status": "done",
           "evidence": [
             "tests/test_search_scopes.py",
-            "testes/resultados/source-0.1.0.json"
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json"
           ]
         },
         {
@@ -591,7 +607,8 @@
           "weight": 3,
           "status": "done",
           "evidence": [
-            "testes/resultados/flatpak-sandbox-0.1.0.json"
+            "testes/resultados/flatpak-sandbox-0.1.0.json",
+            "testes/resultados/0.1.1/flatpak-sandbox.json"
           ]
         },
         {
@@ -620,7 +637,8 @@
           "evidence": [
             "testes/resultados/payload-source-integrity.json",
             "releases/manifest.json",
-            "docs/pypdf-LICENSE.txt"
+            "docs/pypdf-LICENSE.txt",
+            "testes/resultados/0.1.1/payload-source-integrity.json"
           ]
         },
         {

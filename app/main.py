@@ -453,6 +453,10 @@ class PDFWindow(Gtk.Window):
             options.pack_start(button, False, False, 0)
             self.find_options[key] = button
         container.pack_start(options, False, False, 0)
+        self.find_highlight_all = Gtk.CheckButton(label='Destacar todas as ocorrências')
+        self.find_highlight_all.set_active(True)
+        self.find_highlight_all.connect('toggled', lambda *_: self.interaction_layer.queue_draw())
+        options.pack_start(self.find_highlight_all, False, False, 0)
         scopes = Gtk.Box(spacing=12, margin_start=8, margin_end=8, margin_bottom=4)
         scopes.pack_start(Gtk.Label(label='Pesquisar em:'), False, False, 0)
         for key, label, active in [('include_page_text', 'Texto das páginas', True),
@@ -1221,6 +1225,8 @@ class PDFWindow(Gtk.Window):
         for pos, hit in enumerate(self.search_hits):
             if hit['page'] != self.page:
                 continue
+            if not self.find_highlight_all.get_active() and pos != self.search_pos:
+                continue
             cr.set_source_rgba(1.0, .55 if pos == self.search_pos else .85, .05, .40)
             for rect in hit['rects']:
                 x0, y0, x1, y1 = self._pdf_rect_to_display(rect, hit)
@@ -1596,6 +1602,12 @@ class PDFWindow(Gtk.Window):
 
     def _on_destroy(self, *_args):
         self.search_cancel.set()
+        self._search_scroll_pending = False
+        for name in ('search_timer', 'resize_timer', 'zoom_slider_timer'):
+            source = getattr(self, name, None)
+            if source is not None:
+                GLib.source_remove(source)
+                setattr(self, name, None)
         self.render_runner.shutdown(); self.prefetch_runner.shutdown()
         self.runner.shutdown()
         try: shutil.rmtree(self.cache_dir, ignore_errors=True)

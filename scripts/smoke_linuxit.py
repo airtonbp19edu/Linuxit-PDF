@@ -15,7 +15,7 @@ checks={};errors=[];started=time.monotonic();state='open'
 with tempfile.TemporaryDirectory(prefix='linuxit-smoke-') as directory:
     root=Path(directory);raw=root/'raw.pdf';pdf=root/'fixture.pdf'
     surface=cairo.PDFSurface(str(raw),420,595);cr=cairo.Context(surface);cr.set_font_size(18)
-    for text in ['alvo texto','segunda página']:
+    for text in ['alvo texto alvo','segunda página']:
         cr.move_to(40,70);cr.show_text(text);cr.show_page()
     surface.finish()
     writer=PdfWriter();writer.append(raw);writer.add_outline_item('ALVO marcador',1)
@@ -32,6 +32,23 @@ with tempfile.TemporaryDirectory(prefix='linuxit-smoke-') as directory:
             if errors:return finish()
             if state=='open' and window.displayed_page==0 and window.current_pixbuf:
                 checks['opened_and_rendered']=window.page_count==2 and window.get_title().endswith(' — Linuxit PDF')
+                window.find_entry.set_text('alvo');state='highlight'
+            elif state=='highlight' and not window.search_running and len(window.search_hits)==2:
+                def painted():
+                    surface=cairo.ImageSurface(cairo.FORMAT_ARGB32,window.current_pixbuf.get_width(),window.current_pixbuf.get_height())
+                    window._interaction_draw(window.interaction_layer,cairo.Context(surface));surface.flush()
+                    data=surface.get_data();values=[]
+                    for hit in window.search_hits:
+                        x0,y0,x1,y1=window._pdf_rect_to_display(hit['rects'][0],hit)
+                        offset=int((y0+y1)/2)*surface.get_stride()+int((x0+x1)/2)*4
+                        values.append(int.from_bytes(data[offset:offset+4],sys.byteorder)>>24)
+                    return [value>0 for value in values]
+                both=painted()==[True,True]
+                window.find_highlight_all.set_active(False)
+                first=painted()==[True,False]
+                window._find_next();second=painted()==[False,True]
+                window.find_highlight_all.set_active(True)
+                checks['search_highlight_preference']=both and first and second and painted()==[True,True]
                 window.find_options['include_page_text'].set_active(False)
                 window.find_options['include_bookmarks'].set_active(True)
                 window.find_entry.set_text('alvo');state='bookmark'
@@ -51,7 +68,7 @@ with tempfile.TemporaryDirectory(prefix='linuxit-smoke-') as directory:
     GLib.timeout_add(20,step)
     GLib.timeout_add_seconds(25,lambda:finish('Application smoke timeout'))
     Gtk.main()
-report={'passed':len(checks)==4 and all(checks.values()) and not errors,'checks':checks,'errors':errors,
+report={'passed':len(checks)==5 and all(checks.values()) and not errors,'checks':checks,'errors':errors,
         'elapsed_sec':time.monotonic()-started,'inside_flatpak':Path('/.flatpak-info').exists(),
         'foxit_differential_test':False,'physical_printing_verified':False}
 print(json.dumps(report,ensure_ascii=False))

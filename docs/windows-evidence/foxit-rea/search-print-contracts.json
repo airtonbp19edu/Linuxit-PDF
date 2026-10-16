@@ -1,0 +1,331 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "classification": "static observations; proposed portable behavior is separate; no differential equivalence",
+  "new_mcp_observations": 31,
+  "new_mcp_distinct_entries": 31,
+  "search": {
+    "query_flags": {
+      "function": "0x17790d0",
+      "field_offset": "0xc",
+      "case_sensitive_mask": "0x1",
+      "whole_words_mask": "0x2",
+      "support": [
+        {
+          "query": "search-print-02/queue/005-analyze_function.json",
+          "evidence_id": "ev_6e5687e9c830341ebdcfcbf59c9e88fb514ccbe59835d2d8274bb4dc3d15f233",
+          "entry_va": "0x17790d0"
+        }
+      ]
+    },
+    "index_option_copy": {
+      "function": "0x1783ac0",
+      "bytes": 24,
+      "stack_origin": "EBP-0x7c",
+      "fields": [
+        {
+          "offset": "0x0",
+          "size": 1,
+          "source": "query flags bit 0",
+          "meaning": "case-sensitive flag"
+        },
+        {
+          "offset": "0x1",
+          "size": 1,
+          "source": "query flags bit 1",
+          "meaning": "whole-word flag"
+        },
+        {
+          "offset": "0x2",
+          "size": 1,
+          "source": "dialog +0x1d64 != 0",
+          "meaning": "include attachments"
+        },
+        {
+          "offset": "0x3",
+          "size": 1,
+          "source": "constant 1",
+          "meaning": null
+        },
+        {
+          "offset": "0x4",
+          "size": 1,
+          "source": "dialog +0x1d68 != 0 only if scope flag +0x1da0 and query mode is 2; otherwise 0",
+          "meaning": "conditional proximity flag"
+        },
+        {
+          "offset": "0x5",
+          "size": 1,
+          "source": "dialog +0x1d74 != 0",
+          "meaning": null
+        },
+        {
+          "offset": "0x6",
+          "size": 1,
+          "source": "dialog +0x20e4 != 0",
+          "meaning": null
+        },
+        {
+          "offset": "0x7",
+          "size": 1,
+          "source": "dialog +0x20e0 != 0",
+          "meaning": null
+        },
+        {
+          "offset": "0x8",
+          "size": 4,
+          "source": "0/1/2 table indexed by scope/mode helper 0x1776b80",
+          "meaning": "mode value; complete UI semantics unverified"
+        },
+        {
+          "offset": "0xc",
+          "size": 4,
+          "source": "constant -1",
+          "meaning": null
+        },
+        {
+          "offset": "0x10",
+          "size": 4,
+          "source": "dialog +0x20ec",
+          "meaning": null
+        },
+        {
+          "offset": "0x14",
+          "size": 4,
+          "source": "dialog +0x1e54 after helper 0x177fc50 succeeds",
+          "meaning": null
+        }
+      ],
+      "support": [
+        {
+          "query": "search-print-02/queue/007-analyze_function.json",
+          "evidence_id": "ev_428d317a3e28025e689b1c0270c825f4a65bd8c3aad7b4a78af3bc09838b0996",
+          "entry_va": "0x1783ac0"
+        }
+      ],
+      "instruction_sites": [
+        "0x1783c29",
+        "0x1783c43",
+        "0x1783c48",
+        "0x1783c65",
+        "0x1783c9f",
+        "0x1783cb0",
+        "0x1783cc3",
+        "0x1783d10",
+        "0x1783efb",
+        "0x1783f0d"
+      ],
+      "limitations": [
+        "The 24-byte argument layout is observed. Not all field names or algorithms are recovered.",
+        "Copying this structure does not prove that every Reader search uses Lucene.",
+        "Stemming control +0x1d6c is not assigned a guessed field in this structure."
+      ]
+    },
+    "cancel_consumers": [
+      {
+        "function": "0x1794b40",
+        "read_field": "+0x1dd8",
+        "behavior": "Exits its bounded message pump when flag is nonzero; up to five messages. Escape WM_CHAR and a matching mouse release call New Search.",
+        "support": [
+          {
+            "query": "search-print-02/queue/011-analyze_function.json",
+            "evidence_id": "ev_99fcb90e74c32e90f700f2d70dc03fc6881a0f50f72210ecd3ca44f0b047e74b",
+            "entry_va": "0x1794b40"
+          }
+        ]
+      },
+      {
+        "function": "0x1767ea0",
+        "read_field": "object referenced by arg +0x1dd8",
+        "behavior": "Stops this iteration path when the flag is set; internal object type remains provisional.",
+        "support": [
+          {
+            "query": "search-print-02/queue/012-analyze_function.json",
+            "evidence_id": "ev_4a053391404dde3496f2f7e1420ce1ca92a7e08d9e5bdc12ec7204bf0a17695a",
+            "entry_va": "0x1767ea0"
+          }
+        ]
+      }
+    ],
+    "worker_entries": [
+      {
+        "entry": "0x1774a40",
+        "support": [
+          {
+            "query": "search-print-02/queue/003-analyze_function.json",
+            "evidence_id": "ev_c39b19631ddbbaa10469d89d5aab80c8667158b9fa4a0c59a24d1b65b031ea95",
+            "entry_va": "0x1774a40"
+          }
+        ]
+      },
+      {
+        "entry": "0x1784720",
+        "support": [
+          {
+            "query": "search-print-02/queue/004-analyze_function.json",
+            "evidence_id": "ev_8ed06c5562650dfd951e313fa4960ba4396ebd10e122ba9500ef2a2c36226a15",
+            "entry_va": "0x1784720"
+          }
+        ]
+      }
+    ],
+    "highlight": "Previously observed dialog +0x1d70 gates highlight-related virtual calls. Linuxit 0.1.1 adds an independent presentation preference; original default and full runtime behavior are unverified."
+  },
+  "printing": {
+    "object_vtable": "0x53d6bfc",
+    "constructors": [
+      {
+        "entry": "0x1645c30",
+        "support": [
+          {
+            "query": "search-print-01/queue/003-analyze_function.json",
+            "evidence_id": "ev_3210fd2c7eb2e9228b3b8dfab802f81230838022eae7076674914a5865d703d7",
+            "entry_va": "0x1645c30"
+          }
+        ]
+      },
+      {
+        "entry": "0x1645f50",
+        "support": [
+          {
+            "query": "search-print-01/queue/004-analyze_function.json",
+            "evidence_id": "ev_83351d323a0215d750c48fb7c06977c1e60b106184d16e20992d36b3a6e14bfd",
+            "entry_va": "0x1645f50"
+          }
+        ]
+      }
+    ],
+    "spool_functions": [
+      {
+        "entry": "0x166e180",
+        "apis": [
+          "StartDocW",
+          "EndDoc"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/014-analyze_function.json",
+            "evidence_id": "ev_d1977c084be915d6d6a8ce2b6df589ab78e070989a828843efc33fe82f61f67e",
+            "entry_va": "0x166e180"
+          }
+        ]
+      },
+      {
+        "entry": "0x166e960",
+        "apis": [
+          "StartDocW",
+          "EndDoc"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/015-analyze_function.json",
+            "evidence_id": "ev_0fe6edca01a9f0c4b46663f4265bdd1beb9a661af00ed404ce6acbc6e441647f",
+            "entry_va": "0x166e960"
+          }
+        ]
+      },
+      {
+        "entry": "0x1698cf0",
+        "apis": [
+          "StartDocW",
+          "EndDoc"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/016-analyze_function.json",
+            "evidence_id": "ev_5296526f314d61a70c8bb9a4d3b2b76c09a497ac9fbd31ffab98180ed7e6f3d4",
+            "entry_va": "0x1698cf0"
+          }
+        ]
+      },
+      {
+        "entry": "0x166d160",
+        "apis": [
+          "StartPage",
+          "EndPage"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/017-analyze_function.json",
+            "evidence_id": "ev_b48148734c553c891114a2a44d340bd1ab077d132d587967436cd06af74784d9",
+            "entry_va": "0x166d160"
+          }
+        ]
+      },
+      {
+        "entry": "0x166d410",
+        "apis": [
+          "StartPage",
+          "EndPage"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/018-analyze_function.json",
+            "evidence_id": "ev_9950f98270688ff4be00f507d6e5b33f3b54c22beb0e1dce6c7c7c3c94847654",
+            "entry_va": "0x166d410"
+          }
+        ]
+      },
+      {
+        "entry": "0x166f160",
+        "apis": [
+          "StartPage",
+          "EndPage"
+        ],
+        "support": [
+          {
+            "query": "search-print-02/queue/019-analyze_function.json",
+            "evidence_id": "ev_a3994e75f116c23a133ac228ce426212c39bba1f0c08f5ee05b4fa58fddd168e",
+            "entry_va": "0x166f160"
+          }
+        ]
+      }
+    ],
+    "printer_capabilities": {
+      "entry": "0x1684700",
+      "support": [
+        {
+          "query": "search-print-02/queue/020-analyze_function.json",
+          "evidence_id": "ev_93d1f85d0f2ddccc3238edda5ad67bbd2738d7d0a271ce491f7e632f5bf0fff3",
+          "entry_va": "0x1684700"
+        }
+      ],
+      "fields": [
+        {
+          "selector": "0x58",
+          "win32_name": "LOGPIXELSX",
+          "settings_field": "+0x144"
+        },
+        {
+          "selector": "0x5a",
+          "win32_name": "LOGPIXELSY",
+          "settings_field": "+0x148"
+        },
+        {
+          "selector": "0x6e",
+          "win32_name": "PHYSICALWIDTH",
+          "settings_field": "+0x160"
+        },
+        {
+          "selector": "0x6f",
+          "win32_name": "PHYSICALHEIGHT",
+          "settings_field": "+0x15c"
+        },
+        {
+          "selector": "0x70",
+          "win32_name": "PHYSICALOFFSETX",
+          "settings_field": "+0x120"
+        },
+        {
+          "selector": "0x71",
+          "win32_name": "PHYSICALOFFSETY",
+          "settings_field": "+0x124"
+        }
+      ]
+    },
+    "limitations": [
+      "These are static GDI paths; they do not demonstrate successful physical printing.",
+      "Full geometry, N-up/booklet mapping and raster/vector selection are not yet reconstructed.",
+      "Virtual dispatch linkage between every factory, dialog and spool routine is incomplete."
+    ]
+  }
+}

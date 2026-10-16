@@ -1,0 +1,31 @@
+{
+  "attempts": [
+    {
+      "result": "../source-0.1.1.json",
+      "status": "collection_failed",
+      "reason": "Python 3.12 from the tool PATH cannot load host Python 3.13 Cairo extensions; no application test method executed."
+    },
+    {
+      "result": "../source-0.1.1-system.json",
+      "status": "superseded",
+      "reason": "35 unittest cases passed, but a deferred GTK navigation callback raised after destruction; corrected and covered by two new lifecycle cases."
+    },
+    {
+      "result": "../source-0.1.1-fixed.json",
+      "status": "passed",
+      "run": 37
+    },
+    {
+      "result": "../payload-0.1.1.json",
+      "status": "passed",
+      "run": 37
+    },
+    {
+      "result": "flatpak-sandbox.json",
+      "status": "passed",
+      "checks": 5
+    }
+  ],
+  "independent_unique_tests": 37,
+  "foxit_differential_test": false
+}

@@ -37,3 +37,22 @@ Esse fluxo preservado da base própria não prova que a geometria resultante
 seja idêntica à do Foxit. Os testes internos verificam exemplos de ordem,
 quantidade, rotação e recorte; o spooler físico e os casos diferenciais estão
 pendentes.
+
+## Caminhos estáticos do Foxit examinados neste marco
+
+```mermaid
+flowchart LR
+  Boxes[Controles de busca] --> Flags[Bits de caixa e palavra inteira]
+  Flags --> Options[Argumento parcial de 24 bytes]
+  Options --> Index[Chamadas do caminho de índice]
+  NewSearch[New Search] --> Flag[Flag cooperativa]
+  Flag --> Consumers[Consumidores e processamento de mensagens]
+  Factory[Fábricas de impressão] --> Objects[Objetos e tabelas virtuais]
+  GDI[Caminhos GDI localizados] --> Doc[StartDoc / EndDoc]
+  Doc --> Pages[StartPage / EndPage]
+  Capabilities[DPI e limites físicos] --> Geometry[Consumidores geométricos pendentes]
+```
+
+O diagrama não une os objetos de fábrica ao spooler por uma aresta ainda não
+demonstrada. Os caminhos completos e o comportamento dinâmico do original
+continuam parciais; endereços e provas em `REA-BUSCA-IMPRESSAO.md`.

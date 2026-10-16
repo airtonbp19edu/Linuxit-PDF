@@ -1,0 +1,262 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "sessions": [
+    {
+      "session": "search-print-01",
+      "used_seeds": {
+        "path": "search-print-01/seeds-used.tsv",
+        "sha256": "9fd6adb53a3b6b00c28bb88040e2fc2dbe9c581829ff3d5193ef01f106b42262",
+        "entries": 7
+      },
+      "profile_sha256": "fbb455e0c3702eb203c0a6237407802c75b37988623bf62f954129759f89351b",
+      "results": [
+        {
+          "result": "search-print-01/results/001-open_binary.json",
+          "elapsed_sec": 0.7014162469999974,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/002-binary_overview.json",
+          "elapsed_sec": 219.09372076399995,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/003-analyze_function.json",
+          "elapsed_sec": 0.40200690400001804,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/004-analyze_function.json",
+          "elapsed_sec": 0.20184124299998984,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/005-analyze_function.json",
+          "elapsed_sec": 1.3221032139999807,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/006-analyze_function.json",
+          "elapsed_sec": 0.10597487400002592,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/007-analyze_function.json",
+          "elapsed_sec": 0.1007193800001005,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/008-analyze_function.json",
+          "elapsed_sec": 0.10058196500006034,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/009-analyze_function.json",
+          "elapsed_sec": 0.10085764400002972,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/010-worker.json",
+          "elapsed_sec": 0.10139639199996964,
+          "tool_error": true
+        },
+        {
+          "result": "search-print-01/results/011-worker.json",
+          "elapsed_sec": 0.10050698999998531,
+          "tool_error": true
+        },
+        {
+          "result": "search-print-01/results/012-export.json",
+          "elapsed_sec": 0.10037626300004376,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-01/results/013-close.json",
+          "elapsed_sec": 2.4077001829998608,
+          "tool_error": false
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "search-print-01/evidence-bundle",
+          "bytes": 5726500,
+          "sha256": "bebe19ba38d5281b610177dee3e99176d734846eb965872d137499f5ef343c08"
+        },
+        {
+          "path": "search-print-01/closed-snapshot.json",
+          "bytes": 11434697,
+          "sha256": "fa68b1ac42cdd21b3e3082b004e55d7b04e7ab9447caf7e2313cd2465f8d972d"
+        }
+      ]
+    },
+    {
+      "session": "search-print-02",
+      "used_seeds": {
+        "path": "search-print-02/seeds.tsv",
+        "sha256": "acd0c4e6a25e732b53f2eae654004008f9472c6c0299d3c095dc9f2943d7dfce",
+        "entries": 24
+      },
+      "profile_sha256": "fbb455e0c3702eb203c0a6237407802c75b37988623bf62f954129759f89351b",
+      "results": [
+        {
+          "result": "search-print-02/results/001-open_binary.json",
+          "elapsed_sec": 0.3006202829999438,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/002-binary_overview.json",
+          "elapsed_sec": 247.83037232900006,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/003-analyze_function.json",
+          "elapsed_sec": 1.703265497000075,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/004-analyze_function.json",
+          "elapsed_sec": 0.7088129829999161,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/005-analyze_function.json",
+          "elapsed_sec": 0.8062398209999628,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/006-analyze_function.json",
+          "elapsed_sec": 0.3078614319999815,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/007-analyze_function.json",
+          "elapsed_sec": 1.4435600209999393,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/008-analyze_function.json",
+          "elapsed_sec": 2.3367055999999593,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/009-analyze_function.json",
+          "elapsed_sec": 13.333430625999881,
+          "tool_error": true
+        },
+        {
+          "result": "search-print-02/results/009b-retained-pseudocode.json",
+          "elapsed_sec": 0.10047516300005555,
+          "tool_error": true
+        },
+        {
+          "result": "search-print-02/results/010-analyze_function.json",
+          "elapsed_sec": 2.32751826599997,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/011-analyze_function.json",
+          "elapsed_sec": 0.20687420400008705,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/012-analyze_function.json",
+          "elapsed_sec": 0.20467749399995228,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/013-analyze_function.json",
+          "elapsed_sec": 0.10108647199990628,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/014-analyze_function.json",
+          "elapsed_sec": 0.9496053240000037,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/015-analyze_function.json",
+          "elapsed_sec": 0.4086227349998808,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/016-analyze_function.json",
+          "elapsed_sec": 0.30264486499982013,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/017-analyze_function.json",
+          "elapsed_sec": 0.3052696439999636,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/018-analyze_function.json",
+          "elapsed_sec": 0.8034245290000399,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/019-analyze_function.json",
+          "elapsed_sec": 0.4051949530000911,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/020-analyze_function.json",
+          "elapsed_sec": 0.30185341199990035,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/021-analyze_function.json",
+          "elapsed_sec": 0.10222895399988374,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/022-analyze_function.json",
+          "elapsed_sec": 0.10049515900004735,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/023-analyze_function.json",
+          "elapsed_sec": 0.20103003300005184,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/024-analyze_function.json",
+          "elapsed_sec": 0.4022379180000826,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/025-analyze_function.json",
+          "elapsed_sec": 0.30677602900004786,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/026-analyze_function.json",
+          "elapsed_sec": 0.10306638399993062,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/027-export_evidence_bundle.json",
+          "elapsed_sec": 0.7016877750002095,
+          "tool_error": false
+        },
+        {
+          "result": "search-print-02/results/028-close_binary.json",
+          "elapsed_sec": 13.622132964000002,
+          "tool_error": false
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "search-print-02/evidence-bundle",
+          "bytes": 45589228,
+          "sha256": "5a713b0e2412af0d947665f753052a36f5f205cf48181bc5c6105bc255d1ee88"
+        },
+        {
+          "path": "search-print-02/closed-snapshot.json",
+          "bytes": 91109470,
+          "sha256": "d62c2f52750fb7e0d2dd1e29cc6ef4178bcebe6295824dd298452ba5d610f35b"
+        }
+      ]
+    }
+  ],
+  "note": "Exports/snapshots remain private; source files are immutable. Sessions are closed, not background tasks."
+}

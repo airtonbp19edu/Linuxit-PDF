@@ -1,0 +1,46 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "/workspace/Linuxit-PDF/app",
+  "python": "3.12.14",
+  "display_present": true,
+  "run": 7,
+  "passed": 0,
+  "failures": 0,
+  "errors": 7,
+  "skipped": 0,
+  "elapsed_sec": 0.0016211520000979363,
+  "cases": [
+    {
+      "id": "unittest.loader._FailedTest.test_consolidation",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_gui",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_regressions",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_search",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_search_highlights",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_search_scopes",
+      "status": "error"
+    },
+    {
+      "id": "unittest.loader._FailedTest.test_viewer",
+      "status": "error"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}
