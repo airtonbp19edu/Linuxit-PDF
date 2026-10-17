@@ -1100,3 +1100,19 @@ Contratos/matriz/retomada atualizados. Catálogo236/27 entradas novas, campanha
 17/17 e critérios amplos43,33%/0paridade preservados. Publicação preparada;
 próximo: commit/push autorizado, auditoria do pacote publicado reinstalado e
 continuação dos contratos/análises/implementação, mantendo VM/hardware separados.
+
+
+## 2026/10/17 às 15:44 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria0.1.4 confirmadas
+
+Push da entrega a81d60e157ab7766ad7addbf0517a197b9be86f9 confirmado por
+ls-remote e árvore limpa. Run39059125514 reinstalou o mesmo bundle0.1.4 sem
+rebuild:83 app/2803 dependências/214ELF/149 licenças conferidos, controles7/7
+e smoke5/5. Artefato12111125301/ZIPb716ed758caf88f86a171738d59175e9e5e8ca706a73548a0ca2ef7d83a521b7
+confere com GitHub. Quatro relatórios importados byte a byte para
+testes/resultados/0.1.4/audit/, mais revisão local com hashes. Suíte127 não
+repetida nesta auditoria; fonte/payload/sandbox da construção permanecem válidos.
+
+Checkpoints anteriores preservados. Próximo trabalho autorizado sem VM: ampliar
+a lógica PDF segundo contratos próprios verificáveis, mantendo referências
+Foxit não observadas em null. Etapas amplas21 abertas/43,33%/0paridade intactas.
+A confirmação/auditoria será salva no próximo commit, sem autorreferência.

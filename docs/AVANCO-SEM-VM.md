@@ -195,3 +195,18 @@ Este resultado supera as pendências de pacote/GTK da fonte0.1.4 nos checkpoints
 acima. Roteiro43,33%/paridade0/25 e21 critérios abertos permanecem; não foi
 encerrada toda a implementação. Próximo marco: auditoria do pacote publicado
 reinstalado, depois contratos/análises/implementação ainda viáveis.
+
+
+## Publicação e auditoria independente confirmadas
+
+Entrega publicada no commit[a81d60e](https://github.com/airtonbp19edu/Linuxit-PDF/commit/a81d60e157ab7766ad7addbf0517a197b9be86f9),
+com confirmação local/remota e árvore limpa. O[run39059125514](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39059125514)
+reinstalou esse mesmo bundle sem reconstrução e conferiu os bytes de83 arquivos
+app,2803 dependências,214ELF e149 arquivos de licença/créditos. Sete controles
+e novo smoke instalado5/5 passaram. A suíte127 por ambiente é da construção,
+sem nova execução integral nesta auditoria.
+
+[Auditoria examinada](../testes/resultados/0.1.4/audit/review.json). Raw/logs
+no-vm-audit-artifact-12111125301/ e no-vm-audit-logs-39059125514/ em
+analysis-local. Este checkpoint fecha a validação dessa entrega; contratos
+completos, demais famílias, desktop e referência original continuam abertos.

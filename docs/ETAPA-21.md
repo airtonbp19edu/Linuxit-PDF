@@ -1,5 +1,10 @@
 # Etapa 21 — auditoria incremental da entrega
 
+Atualização0.1.4: [avanço sem VM](AVANCO-SEM-VM.md). Pacote publicado
+reinstalado sem rebuild,83 app/2803 dependências/214ELF/149 licenças conferidos;
+sete controles e smoke5/5. As auditorias0.1.2/0.1.3 abaixo são históricas.
+Etapa21 continua50%, com encerramento pendente.
+
 Auditoria mais recente: [revisão geral em 17/10/2026](REVISAO-ETAPAS.md).
 O mesmo pacote publicado 0.1.3 foi reinstalado sem rebuild e auditado:
 83 arquivos app, 2.803 dependências, 214 ELF e 149 arquivos de licença/créditos;
