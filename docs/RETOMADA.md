@@ -49,6 +49,16 @@ reversa permanece indeterminada e a paridade diferencial comprovada está em
 esses indicadores. O catálogo contém 209 entradas examinadas: 152 REA e 57
 adicionais diretas.
 
+Em **17/10/2026**, a [etapa 12](ETAPA-12.md) avançou com contratos das 25
+famílias e 50 cenários planejados: 14 descrevem subconjuntos atuais e 11 são
+propostas futuras. A fonte estruturada é `docs/especificacao-funcional.json`;
+o [registro legível](contratos-funcionais.md) é gerado pelo validador. Dez
+verificações portáveis passaram, mas os 50 cenários completos seguem `not_run`.
+O detalhamento está `partial`, a fase A continua aberta e a etapa 12 permanece
+12,5% verificada. Próximo passo: especializar fixtures e tornar os casos
+executáveis, começando por abertura, busca, navegação e prévia; comparar com o
+Foxit na mesma fixture quando a VM estiver validada.
+
 ## Onde trabalhar
 
 - Interface e ciclo de vida: `app/main.py`.
@@ -56,7 +66,8 @@ adicionais diretas.
   `app/pdf_panels.py`.
 - Impressão e imposição: `app/imposition.py`, `app/print_window.py`,
   `app/worker_cli.py`, `app/cups_backend.py` e `app/windows_print.py`.
-- Contratos e arquitetura: `docs/especificacao.md`, `docs/arquitetura.md`.
+- Contratos e arquitetura: `docs/especificacao.md`, `docs/especificacao-funcional.json`,
+  `docs/contratos-funcionais.md`, `docs/ETAPA-12.md` e `docs/arquitetura.md`.
 - Investigação: `docs/FOXIT-REA.md`, `docs/REA-BUSCA-IMPRESSAO.md`,
   `docs/relatorio-dinamico.md` e `docs/windows-evidence/foxit-rea/`.
 - Agenda e indicadores: `progresso/tarefas-pendentes.md`, `projeto.json`,

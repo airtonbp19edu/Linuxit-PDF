@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-progress-v1",
-  "date_utc": "2026-10-16",
+  "date_utc": "2026-10-17",
   "phase": "A; incremental B only for sufficiently specified contracts",
   "criteria_revision": 1,
   "method": "Stage percentages supplied by the user sum to 100. Check weights are explicit complexity estimates fixed at this initial checkpoint; only done checks count. Unknown global coverage is not replaced by slot ratios.",
@@ -384,14 +384,24 @@
         {
           "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/ETAPA-12.md",
+            "docs/especificacao-funcional.json",
+            "docs/contratos-funcionais.md",
+            "testes/resultados/etapa-12-especificacao-2026-10-17.json"
+          ],
+          "note": "25 families and 50 planned cases detailed: 14 current subsets and 11 proposals. Ten portable source spot checks passed, not the full acceptance cases. Missing corpus, subfeatures and original behavior prevent closing the reference specification. Criteria and weights unchanged."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
           "weight": 4,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/ETAPA-12.md",
+            "docs/especificacao-funcional.json"
+          ],
+          "note": "Gaps are explicit, but the original inventory, subsystem contracts and dynamic observations remain incomplete. Phase A is not consolidated."
         }
       ],
       "verified_fraction": 0.125,

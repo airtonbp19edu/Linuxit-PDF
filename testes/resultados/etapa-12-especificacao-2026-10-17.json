@@ -1,0 +1,112 @@
+{
+  "schema": "linuxit-stage12-specification-validation-v1",
+  "verified_at_local": "2026-10-17T00:12:25-03:00",
+  "timezone": "America/Sao_Paulo",
+  "specification": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 14,
+    "proposed_only": 11,
+    "unique_test_references_checked": 19,
+    "unique_source_references_checked": 25,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "reference_specification_complete": false
+  },
+  "invalid_evidence_checks": [
+    {
+      "id": "missing_family",
+      "status": "passed"
+    },
+    {
+      "id": "invented_test",
+      "status": "passed"
+    },
+    {
+      "id": "proposed_contract_as_implemented",
+      "status": "passed"
+    },
+    {
+      "id": "invented_foxit_observation",
+      "status": "passed"
+    },
+    {
+      "id": "external_source_reference",
+      "status": "passed"
+    },
+    {
+      "id": "duplicate_acceptance_id",
+      "status": "passed"
+    },
+    {
+      "id": "unverified_parity_claim",
+      "status": "passed"
+    }
+  ],
+  "portable_source_spot_checks": {
+    "scope": "Portable spot checks of source subconditions; not execution of the full 50 acceptance plans.",
+    "checks": [
+      {
+        "id": "document_info_subset",
+        "status": "passed",
+        "pages": 2
+      },
+      {
+        "id": "bookmark_destinations_subset",
+        "status": "passed"
+      },
+      {
+        "id": "comment_fields_subset",
+        "status": "passed"
+      },
+      {
+        "id": "query_length_guard",
+        "status": "passed"
+      },
+      {
+        "id": "empty_and_precancelled_query",
+        "status": "passed"
+      },
+      {
+        "id": "unicode_word_boundary_subset",
+        "status": "passed"
+      },
+      {
+        "id": "changed_document_guard",
+        "status": "passed"
+      },
+      {
+        "id": "booklet_face_order_subset",
+        "status": "passed"
+      },
+      {
+        "id": "fractional_nup_guard",
+        "status": "passed"
+      },
+      {
+        "id": "empty_pdf_guard",
+        "status": "passed"
+      }
+    ],
+    "passed": 10,
+    "failed": 0,
+    "original_executed": false,
+    "gtk_suite_rerun": false,
+    "foxit_differential_test": false
+  },
+  "python_files_parsed": 106,
+  "local_document_links_checked": 127,
+  "generated_markdown_matches_json": true,
+  "application_behavior_changed": false,
+  "original_executed": false,
+  "new_rea_ghidra_function_observations": 0,
+  "source_original_rehashed_this_round": false,
+  "catalog_entries": 209,
+  "full_linux_gtk_suite_rerun": false,
+  "foxit_differential_test": false,
+  "new_flatpak_built": false,
+  "stage_12_complete": false,
+  "stage_12_verified_fraction": 0.125,
+  "general_progress_percent": 43.33,
+  "functional_parity_verified": 0
+}

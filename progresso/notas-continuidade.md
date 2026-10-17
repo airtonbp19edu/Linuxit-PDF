@@ -159,3 +159,45 @@ o commit da própria nota será verificado depois, sem autorreferência. Comprov
 final em `analysis-local/github-ui-sync-verified.json`, fora dos arquivos
 versionados. Continuar pelos alvos/ressalvas da nota das 23:58; observação da
 interface na VM continua pendente, sem aumentar artificialmente os indicadores.
+
+## 2026/10/17 às 00:12 (America/Sao_Paulo, UTC-03:00) — etapa 12: contratos detalhados
+
+O usuário pediu avançar a etapa 12 enquanto prepara a VM. Base local/remota
+conferida em `4a298a103efbecd8c58313723cd4861895f8dd20`. Detalhadas as 25 famílias
+da matriz em `docs/especificacao-funcional.json`; registro derivado em
+`docs/contratos-funcionais.md` e limites em `docs/ETAPA-12.md`. Há 50 cenários
+planejados, um nominal e um excepcional por família: 14 famílias descrevem
+subconjuntos atuais, 11 permanecem propostas futuras. Escopos, entradas, saídas,
+erros, efeitos, fontes, testes e lacunas explicitados. Valores esperados e
+observados no Foxit permanecem `null`; todos os 50 casos completos `not_run`.
+
+Ferramentas desta rodada: Python 3.13.15, AST, Git e módulos portáveis próprios
+com pypdf BSD já incluído. Nenhuma nova sessão REA/Ghidra, função do original
+examinada ou execução do Foxit. Catálogo preservado em 209 entradas. Materiais
+REA/Ghidra anteriores usados como referências estáticas, sem recontagem.
+
+Verificações: `scripts/validate_functional_spec.py` conferiu os IDs/estados da
+matriz, 19 referências distintas a testes e 25 fontes locais, IDs D/UI, fixtures
+existentes e coerência JSON/Markdown. Sete recusas de evidências inválidas
+passaram. Dez verificações portáveis de subcondições passaram: inspeção,
+destinos de marcadores, campos de comentários, limites/estados de busca,
+fronteiras Unicode, mudança do PDF, ordem de faces do livreto, N-up inválido e
+PDF vazio. Sintaxe de 106 arquivos Python e 127 links locais conferidos.
+Relatório publicável: `testes/resultados/etapa-12-especificacao-2026-10-17.json`.
+Scripts auxiliares/resultados completos preservados em
+`analysis-local/check_stage12_source.py`, `analysis-local/finalize_stage12.py`
+e `analysis-local/stage12-source-checks/`, ignorados pelo Git.
+
+O detalhamento da etapa 12 passa de `pending` a `partial`; consolidação da
+fase A continua pendente. Pesos/revisão não mudaram: etapa 12 12,5%, roteiro
+43,33%, paridade 0/25 e cobertura global desconhecida. Dez verificações
+portáveis não executam os 50 planos completos nem repetem a suíte GTK no Linux.
+Sem alteração de comportamento do aplicativo, novo pacote ou versão.
+
+Próximo passo: especializar o corpus e tornar os cenários executáveis por
+família; iniciar por abertura, busca, navegação e prévia. Quando a VM estiver
+validada, observar a mesma fixture no original e comparar resultados. Confirmar
+disponibilidade Reader para famílias futuras e resolver lacunas estáticas de
+busca/interface/impressão antes de promover propostas a contratos recuperados.
+Publicação deste marco ainda pendente; a nota seguinte registrará somente
+um hash cuja presença no remoto tenha sido conferida.

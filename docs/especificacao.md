@@ -4,6 +4,13 @@ A especificação distingue observações no Foxit, decisões próprias e obriga
 não reconstruídas. A matriz em `progresso/matriz-paridade.csv` é o inventário
 funcional aberto; cada família precisa de casos adicionais antes de ser encerrada.
 
+O detalhamento da etapa 12 está no [registro de contratos funcionais](contratos-funcionais.md)
+e em sua [fonte estruturada](especificacao-funcional.json): 25 famílias, entradas,
+saídas, erros, efeitos e 50 cenários de aceitação planejados. Subconjuntos atuais
+e propostas futuras estão identificados separadamente. A especificação de
+referência ainda é parcial; expectativas e observações Foxit desconhecidas
+permanecem nulas. Consulte também [ETAPA-12.md](ETAPA-12.md).
+
 ## Busca por documento
 
 **Evidência Foxit:** os controles Whole Words, Case Sensitive, Include Page Text,

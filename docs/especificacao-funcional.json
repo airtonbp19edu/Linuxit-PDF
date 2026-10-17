@@ -1,0 +1,2042 @@
+{
+  "schema": "linuxit-functional-spec-v1",
+  "authored_at_local": "2026-10-17T00:06:08-03:00",
+  "timezone": "America/Sao_Paulo",
+  "scope": "25 identified families; open inventory, not the full Foxit feature universe.",
+  "status": "draft_with_explicit_gaps",
+  "target": "Foxit Reader 2025.2.0.33046 x86",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "global_rules": {
+    "page_indices_internal": "zero_based",
+    "page_numbers_in_observation_reports": "one_based",
+    "unknown_original_values": null,
+    "inventory_complete": false,
+    "existing_test_reference_is_new_execution": false,
+    "proposed_requirement_is_implemented": false,
+    "static_evidence_is_runtime_availability": false,
+    "own_contract_is_foxit_parity": false
+  },
+  "families": [
+    {
+      "id": "open-render",
+      "name": "Abrir PDF e renderizar páginas",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF.",
+      "inputs": [
+        "Caminho de PDF local legível; página interna baseada em zero.",
+        "Viewport, tamanho solicitado e identidade do documento para cache."
+      ],
+      "outputs": [
+        "document_info: pages, sizes após CropBox/rotação intrínseca e metadata (title, author, subject, creator, producer).",
+        "Imagem de página concluída; render obsoleto não deve substituir o documento atual."
+      ],
+      "errors": [
+        {
+          "trigger": "Arquivo ausente, inválido, vazio ou protegido sem senha vazia válida",
+          "response": "Falha do parser/worker; abertura não pode ser registrada como bem-sucedida. Mensagens e preservação do documento anterior precisam de teste GUI.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Processo de renderização falha, excede tempo ou é cancelado",
+          "response": "Erro/cancelamento sem publicar imagem parcial; subprocesso cancelável tem prazo próprio.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Cache local pode ser criado; original permanece sem edição.",
+        "Abertura/fechamento muda o documento e invalida trabalhos da geração anterior."
+      ],
+      "source_refs": [
+        "app/rendering.py",
+        "app/main.py",
+        "app/async_core.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_ui_update_only",
+        "source_refs": [
+          "docs/ETAPA-11.md",
+          "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Comportamento Foxit para senha, corrupção, recuperação e todos os estados de abertura.",
+          "O leitor atual não possui um fluxo completo de entrada de senha."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_cache_distinguishes_documents"
+        },
+        {
+          "path": "tests/test_viewer.py",
+          "test": "test_latest_renderer_skips_obsolete_queue_entries"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D01",
+        "D02",
+        "D13",
+        "D14",
+        "D15",
+        "D19",
+        "D20"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-01-1",
+          "kind": "nominal",
+          "given": "busca-escopos.pdf legível.",
+          "when": "Inspecionar e abrir as duas páginas.",
+          "expected_linuxit": "pages=2; tamanhos positivos; a imagem de cada página pertence ao documento aberto.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-01-2",
+          "kind": "exception",
+          "given": "Arquivo inexistente ou PDF inválido.",
+          "when": "Solicitar inspeção/abertura.",
+          "expected_linuxit": "O parser/worker falha; não produzir uma página válida fictícia.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "navigation",
+      "name": "Navegação/rotação/zoom",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF.",
+      "inputs": [
+        "Documento carregado e índice solicitado; indicação UI usa página baseada em um.",
+        "Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro."
+      ],
+      "outputs": [
+        "Página exibida, zoom/posição e orientação atualizados.",
+        "Resultados de busca/miniaturas navegam para destinos conhecidos."
+      ],
+      "errors": [
+        {
+          "trigger": "Página ou entrada textual fora do domínio",
+          "response": "Não acessar índice inexistente; registrar a política atual de clamp/entrada no teste GUI.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Render antigo termina depois de nova navegação",
+          "response": "A geração atual prevalece; callback antigo não substitui a página selecionada.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Estado de leitura local; não altera a árvore de páginas do arquivo.",
+        "Zoom/rotação devem conservar consistência entre texto, seleção e imagem."
+      ],
+      "source_refs": [
+        "app/main.py",
+        "app/page_cache.py",
+        "app/rendering.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/ETAPA-11.md",
+          "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+          "docs/windows-evidence/foxit-rea/zoom-presets.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Limites e modos efetivos Foxit dependem da classe/estado ativo.",
+          "Updaters de zoom só enviam desabilitação nos limites; política completa não foi reconstruída."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_gui.py",
+          "test": "test_search_navigation_selection_and_rotation"
+        },
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_intrinsic_rotation_and_cropbox_match_text_geometry"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D03",
+        "UI03",
+        "UI04"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-02-1",
+          "kind": "nominal",
+          "given": "PDF de duas páginas na primeira página.",
+          "when": "Navegar para a segunda e girar a visualização.",
+          "expected_linuxit": "Página selecionada é a segunda; transformação visual permanece coerente com a geometria.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-02-2",
+          "kind": "exception",
+          "given": "Render da página anterior ainda em andamento.",
+          "when": "Mudar página e aguardar os callbacks.",
+          "expected_linuxit": "O resultado obsoleto não toma o lugar da página atual.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "presentation",
+      "name": "Apresentação ajustar/preencher",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Apresentação GTK com ajustar/preencher, pan, zoom e ponteiro; não implica suporte a mídia embutida.",
+      "inputs": [
+        "Documento, tamanhos de página, página inicial e dimensões do monitor/view.",
+        "Ações de navegação, fit/fill, pan e cor do ponteiro."
+      ],
+      "outputs": [
+        "Janela de apresentação com página assíncrona e imagem centralizada/recortada segundo o modo.",
+        "Estado de erro visível quando a renderização falha."
+      ],
+      "errors": [
+        {
+          "trigger": "Renderização falha",
+          "response": "A janela registra o erro; não reutilizar imagem de documento diferente.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Janela fecha durante tarefa",
+          "response": "Cancelar/descartar tarefas e impedir atualização de widgets destruídos.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Estado de tela/ponteiro é local; original não é modificado."
+      ],
+      "source_refs": [
+        "app/presentation.py",
+        "app/page_cache.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Ajuste/preenchimento, atalhos e múltiplos monitores do original não foram observados."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_viewer.py",
+          "test": "test_presentation_fit_fill_center_and_error"
+        },
+        {
+          "path": "tests/test_viewer.py",
+          "test": "test_presentation_handles_portrait_and_landscape"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D03"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-03-1",
+          "kind": "nominal",
+          "given": "Página retrato e viewport paisagem.",
+          "when": "Alternar ajustar página e preencher.",
+          "expected_linuxit": "A escala e o centro respeitam o modo próprio; não atribuir esse cálculo ao Foxit.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-03-2",
+          "kind": "exception",
+          "given": "Worker retorna falha de imagem.",
+          "when": "Entregar o erro à apresentação.",
+          "expected_linuxit": "Exibir estado de falha, mantendo o ciclo de vida da janela válido.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-text",
+      "name": "Busca literal/palavra inteira/maiúsculas",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Busca literal em texto de páginas, com caixa/palavra inteira e extensões próprias de acentos/hifenização.",
+      "inputs": [
+        "Consulta de até 256 caracteres; opções imutáveis; max_hits padrão 5000.",
+        "Identidade do arquivo, cancelamento e callback de lotes por página."
+      ],
+      "outputs": [
+        "Lista ordenada de ocorrências com source=page_text, page, width, height, rects, text e snippet.",
+        "Somente geometria conhecida é destacada; texto segue NFC/casefold segundo a opção."
+      ],
+      "errors": [
+        {
+          "trigger": "Consulta maior que 256 caracteres",
+          "response": "ValueError; nenhuma busca é iniciada.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Arquivo mudou após indexação",
+          "response": "RuntimeError pedindo reabertura; não reutilizar resultados antigos.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Consulta vazia, max_hits<=0 ou cancelamento prévio",
+          "response": "Lista vazia; cancelamento posterior preserva apenas resultados já emitidos.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Cache limitado por páginas e identidade do arquivo.",
+        "Sem fonte selecionada, a UI pede uma fonte; preferência de destaque não refaz a busca."
+      ],
+      "source_refs": [
+        "app/search_engine.py",
+        "app/main.py",
+        "app/rendering.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-BUSCA-IMPRESSAO.md",
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Normalização e algoritmos completos do Foxit; ordem/limites/destaques precisam de comparação."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search.py",
+          "test": "test_options_and_real_pdf"
+        },
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_global_limit_progress_and_cancel_cover_metadata"
+        },
+        {
+          "path": "tests/test_search_highlights.py",
+          "test": "test_highlight_preference_and_navigation_change_pixels_without_new_search"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D04",
+        "D05",
+        "D06",
+        "D10",
+        "D11",
+        "D12",
+        "UI08"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-04-1",
+          "kind": "nominal",
+          "given": "Fixture de busca; só páginas, sem caixa/palavra inteira.",
+          "when": "Pesquisar alvo.",
+          "expected_linuxit": "Contrato próprio: três ocorrências; palavra inteira reduz para duas.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-04-2",
+          "kind": "exception",
+          "given": "Consulta com 257 caracteres.",
+          "when": "Chamar TextSearchIndex.search.",
+          "expected_linuxit": "ValueError antes de extrair páginas.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-bookmarks",
+      "name": "Busca em marcadores",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Pesquisa em títulos de marcadores; leitura e navegação não equivalem a edição/persistência.",
+      "inputs": [
+        "Consulta e flags; include_bookmarks=True, demais fontes conforme seleção.",
+        "Títulos, nível e destinos locais conhecidos; página ausente fica null."
+      ],
+      "outputs": [
+        "Hits source=bookmark, rects=[] e destino local ou page=null.",
+        "Na busca combinada, marcadores vêm após o texto de páginas no contrato próprio."
+      ],
+      "errors": [
+        {
+          "trigger": "Destino não resolvido",
+          "response": "Resultado continua sem página; não inventar destino nem retângulo.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Documento mudou",
+          "response": "Rejeitar o cache e pedir reabertura.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Metadados são cacheados por identidade; seleção pode navegar, sem editar o outline."
+      ],
+      "source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-BUSCA-IMPRESSAO.md",
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+          "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Classe dos IDs 7911/7913 e comportamento de busca/navegação Foxit.",
+          "A junção estrutural de ID 7913 ao handler de +0x1d58 continua ambígua."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_bookmark_without_local_page_is_not_given_a_fake_destination"
+        },
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_ui_toggles_scopes_and_navigates_bookmark_result"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D07",
+        "UI06"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-05-1",
+          "kind": "nominal",
+          "given": "Fixture com dois títulos contendo alvo, só marcadores.",
+          "when": "Pesquisar alvo e selecionar os resultados.",
+          "expected_linuxit": "Dois hits; um aponta à segunda página e outro permanece page=null; rects=[] em ambos.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-05-2",
+          "kind": "exception",
+          "given": "Hit de marcador sem destino local.",
+          "when": "Selecionar esse resultado.",
+          "expected_linuxit": "Não fabricar página de destino ou retângulo de destaque.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-comments",
+      "name": "Busca em comentários",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Busca em assunto/conteúdo de comentários, sem pesquisar autor no contrato atual.",
+      "inputs": [
+        "Consulta, flags e include_comments=True; comentários com página associada.",
+        "As demais fontes podem ficar desativadas."
+      ],
+      "outputs": [
+        "Hits source=comment, página conhecida e rects=[].",
+        "Assunto e conteúdo são pesquisáveis; autor é apenas metadado de painel."
+      ],
+      "errors": [
+        {
+          "trigger": "Sem texto pesquisável ou termo ausente",
+          "response": "Nenhum hit correspondente; não tratar ausência como falha de motor.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Cache pertence a arquivo alterado",
+          "response": "Falhar e pedir reabertura antes de publicar novos resultados.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "A leitura não cria nem altera anotações; pode navegar à página."
+      ],
+      "source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-BUSCA-IMPRESSAO.md",
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Campos e tipos pesquisados no Foxit; política de autor, assunto, replies e ordem."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_comment_subject_and_contents_are_searchable_without_author"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D08",
+        "D09"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-06-1",
+          "kind": "nominal",
+          "given": "Só comentários da fixture.",
+          "when": "Pesquisar assunto, depois alvo.",
+          "expected_linuxit": "Uma ocorrência em cada consulta; o campo assunto é separado do conteúdo.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-06-2",
+          "kind": "exception",
+          "given": "Só comentários, consulta Autor.",
+          "when": "Pesquisar com o contrato atual.",
+          "expected_linuxit": "Zero hits pelo autor, mesmo que o painel o exponha.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-attachments",
+      "name": "Busca em anexos",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: buscar texto em anexos suportados, preservando a origem de cada hit.",
+      "inputs": [
+        "PDF com anexos, consulta, seletor de escopo e formatos de anexo explicitamente suportados.",
+        "Limites de tamanho, recursão, tempo e cancelamento ainda a definir por contrato de formato."
+      ],
+      "outputs": [
+        "Proposta: hits com caminho/identidade do anexo e localização interna distinguíveis da página principal."
+      ],
+      "errors": [
+        {
+          "trigger": "Anexo binário, cifrado ou formato sem extrator",
+          "response": "Proposta: registrar anexo não pesquisado e razão, sem prometer que zero hits implica cobertura total.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Anexo excede limite ou contém recursão",
+          "response": "Proposta: interromper esse ramo e informar resultado parcial.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: extração temporária controlada, sem executar anexos ou modificar o original."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-BUSCA-IMPRESSAO.md",
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Travessia completa, extratores, formatos, limites, ordenação e associação de resultados no original."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [
+        "D16"
+      ],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-07-1",
+          "kind": "nominal",
+          "given": "PDF sintético com anexo textual contendo alvo; fixture ainda a especializar.",
+          "when": "Pesquisar incluindo anexos.",
+          "expected_linuxit": "Proposta: ao menos um hit identifica o anexo e não recebe uma página principal fictícia.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-07-2",
+          "kind": "exception",
+          "given": "Mesmo PDF com um anexo não suportado.",
+          "when": "Pesquisar incluindo anexos.",
+          "expected_linuxit": "Proposta: indicar que esse anexo não foi pesquisado; não declarar cobertura integral.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-index",
+      "name": "Índice persistente/pesquisa de coleção",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: índice persistente de coleção com identidade, atualização e consulta cancelável.",
+      "inputs": [
+        "Lista explícita de diretórios/documentos locais e versão do índice.",
+        "Consulta e política de inclusão/atualização; não indexar perfis pessoais implicitamente."
+      ],
+      "outputs": [
+        "Proposta: índice versionado e hits identificando documento, posição e estado de atualização."
+      ],
+      "errors": [
+        {
+          "trigger": "Documento movido/alterado ou entrada obsoleta",
+          "response": "Proposta: invalidar/reindexar a entrada e marcar resultados desatualizados.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Índice corrompido ou disco sem espaço",
+          "response": "Proposta: falhar sem substituir um índice íntegro por saída incompleta.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: escrita apenas no diretório de índice autorizado; fontes permanecem intactas."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/windows-evidence/foxit-rea/index-interface.json",
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Formato e manutenção do índice completo, exclusões, locking, recuperação e disponibilidade Reader."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-08-1",
+          "kind": "nominal",
+          "given": "Coleção sintética de dois documentos e índice em pasta nova.",
+          "when": "Construir índice e consultar um termo presente em um documento.",
+          "expected_linuxit": "Proposta: hit identifica o documento correto e a versão do índice.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-08-2",
+          "kind": "exception",
+          "given": "Uma fonte foi alterada após indexação.",
+          "when": "Consultar sem atualização completa.",
+          "expected_linuxit": "Proposta: resultado não deve ser apresentado como atual sem indicar/iniciar atualização.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "search-language",
+      "name": "Stemming/proximidade/coringas",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: semânticas distintas de stemming, proximidade e coringas; não confundir com busca literal própria.",
+      "inputs": [
+        "Consulta, idioma, modo e parâmetros de proximidade/coringas explícitos.",
+        "Escopo e analisador de texto versionado."
+      ],
+      "outputs": [
+        "Proposta: hits acompanhados do modo/analisador usado; resultados reprodutíveis para o corpus definido."
+      ],
+      "errors": [
+        {
+          "trigger": "Sintaxe ou combinação de flags não suportada",
+          "response": "Proposta: rejeitar a consulta com motivo; não reinterpretar silenciosamente como busca literal.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Expansão de termos excede limite",
+          "response": "Proposta: limitar e indicar truncamento ou recusar a consulta.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: cancelamento e limites compartilhados com a consulta; original intacto."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-BUSCA-IMPRESSAO.md",
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+          "docs/ETAPA-11.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Stemming por idioma, distância/proximidade, escaping, expansão e combinações com índice."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [
+        "UI07"
+      ],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-09-1",
+          "kind": "nominal",
+          "given": "Corpus sintético com duas palavras separadas por distâncias conhecidas.",
+          "when": "Executar proximidade com duas distâncias explícitas.",
+          "expected_linuxit": "Proposta: a diferença de hits decorre da distância registrada e é reproduzível.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-09-2",
+          "kind": "exception",
+          "given": "Consulta com coringa/operador cuja sintaxe não foi implementada.",
+          "when": "Executar esse modo.",
+          "expected_linuxit": "Proposta: erro claro, sem alegar equivalência ao Foxit.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "selection",
+      "name": "Seleção/cópia/snapshot",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
+      "inputs": [
+        "Retângulo em pixels e transformação da página atual.",
+        "Mapa de palavras ou imagem da página; ação de copiar/snapshot."
+      ],
+      "outputs": [
+        "Texto de palavras intersectadas, agrupado por bloco/linha; cópia para clipboard.",
+        "Snapshot de região visual ou exportação de página em PNG segundo a ação."
+      ],
+      "errors": [
+        {
+          "trigger": "Nenhuma palavra intersecta a seleção",
+          "response": "Status de nenhum texto; não copiar texto inventado.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Extração falha ou documento/página muda",
+          "response": "Erro ou descarte do resultado antigo; não copiar conteúdo de outro documento.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Pode alterar clipboard ou gerar arquivo solicitado; não editar PDF.",
+        "Permissões PDF e seleção semântica completa não estão estabelecidas."
+      ],
+      "source_refs": [
+        "app/main.py",
+        "app/rendering.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Ordem lógica, texto bidirecional, permissões de cópia, snapping e coordenadas de todos os modos do original."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_gui.py",
+          "test": "test_search_navigation_selection_and_rotation"
+        },
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_intrinsic_rotation_and_cropbox_match_text_geometry"
+        }
+      ],
+      "dynamic_case_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-10-1",
+          "kind": "nominal",
+          "given": "PDF sintético e retângulo contendo uma palavra conhecida.",
+          "when": "Selecionar e copiar.",
+          "expected_linuxit": "Clipboard contém a palavra selecionada; a seleção acompanha a transformação da imagem.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-10-2",
+          "kind": "exception",
+          "given": "Retângulo sobre região sem texto.",
+          "when": "Concluir seleção de texto.",
+          "expected_linuxit": "Status informa ausência de texto; nenhum conteúdo fictício é produzido.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "printing",
+      "name": "Prévia/plano de impressão",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
+      "inputs": [
+        "PDF, intervalo, subconjunto par/ímpar, ordem, papel, orientação e modo.",
+        "Destino save-pdf, impressora CUPS ou adaptador Windows; opções específicas do backend."
+      ],
+      "outputs": [
+        "PDF preparado e prévia; em salvar PDF, arquivo no destino solicitado.",
+        "Em CUPS, resposta de aceitação/erro do comando lp; Windows usa o adaptador próprio."
+      ],
+      "errors": [
+        {
+          "trigger": "Nenhuma impressora ou comando lp ausente",
+          "response": "Backend recusa envio com mensagem; salvar PDF é um destino independente.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Worker de preparação falha ou ultrapassa prazo",
+          "response": "Erro; não enviar ao spooler saída reconhecida como incompleta.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Rasterização excede 45 MP por página",
+          "response": "Recusar a preparação como imagem; DPI atual é limitado entre 72 e 600.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Gera PDF temporário; impressão física tem efeito externo somente após ação de envio.",
+        "Testes nesta fase devem usar salvar/cancelar ou backend simulado; sem impressoras do host na VM."
+      ],
+      "source_refs": [
+        "app/print_window.py",
+        "app/worker_cli.py",
+        "app/cups_backend.py",
+        "app/windows_print.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Predefinições, margens, fontes, flags, spooler físico e estados completos do original."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_gui.py",
+          "test": "test_booklet_preview_sides_binding_and_submit"
+        },
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_manual_booklet_sides_are_not_duplex"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D17",
+        "UI02",
+        "UI05"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-11-1",
+          "kind": "nominal",
+          "given": "Fixture e destino Salvar como PDF.",
+          "when": "Preparar saída e reabri-la.",
+          "expected_linuxit": "Arquivo reabre e preserva o plano escolhido; sucesso de geração não é prova de impressão física.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-11-2",
+          "kind": "exception",
+          "given": "Comando lp indisponível.",
+          "when": "Solicitar envio ao CUPS.",
+          "expected_linuxit": "RuntimeError explícito; nenhum sucesso de envio é reportado.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "imposition",
+      "name": "Livreto/N-up/mosaico",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Composição independente em livreto, N-up e mosaico, herdada da base MIT e adaptada.",
+      "inputs": [
+        "Índices selecionados, ordem, papel e orientação.",
+        "N-up em {1,2,4,6,9,16}; livreto com binding/lados; mosaico com escala/sobreposição/área imprimível."
+      ],
+      "outputs": [
+        "PDF de faces/folhas; ordem e páginas em branco conforme modo.",
+        "Livreto separa ambas/frente/verso; frente/verso manual não solicita duplex automático."
+      ],
+      "errors": [
+        {
+          "trigger": "N-up fora do conjunto, incluindo quantidade fracionária",
+          "response": "ValueError; não preparar saída como se a quantidade fosse válida.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Mosaico excede limites próprios de folhas",
+          "response": "ValueError; limitar a expansão do trabalho antes de gerar saída excessiva.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Somente arquivo de saída; nenhum envio físico nesta função.",
+        "Escalas e margens próprias não são apresentadas como geometria reconstruída do Foxit."
+      ],
+      "source_refs": [
+        "app/imposition.py",
+        "app/worker_cli.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_booklet_generated_sides_and_binding"
+        },
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_nup_worker_rejects_fractional_count"
+        },
+        {
+          "path": "tests/test_regressions.py",
+          "test": "test_worker_prepares_nup_and_poster"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D18"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-12-1",
+          "kind": "nominal",
+          "given": "PDF sintético de oito páginas.",
+          "when": "Gerar livreto em ambos os lados e reabrir.",
+          "expected_linuxit": "Quatro faces; ordem das duplas própria verificável, sem alterar o original.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-12-2",
+          "kind": "exception",
+          "given": "pages_per_sheet=4.5.",
+          "when": "Preparar modo multiple.",
+          "expected_linuxit": "ValueError, sem aceitar silenciosamente uma quantidade inteira diferente.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "bookmarks-edit",
+      "name": "Criar/mover/gravar marcadores",
+      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual: painel de títulos/níveis/destinos somente leitura. Criar/mover/gravar marcadores permanece requisito futuro.",
+      "inputs": [
+        "PDF e outline; títulos, níveis e destinos locais ou ausentes.",
+        "Edição futura exigirá operação explícita e destino de cópia."
+      ],
+      "outputs": [
+        "Atual: lista de marcadores com title, page e level.",
+        "Proposta futura: outline alterado em cópia, conservando títulos/destinos não editados."
+      ],
+      "errors": [
+        {
+          "trigger": "Destino ausente ou não resolvido",
+          "response": "Painel mantém page=null; não inventar página.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Outline parcial ou objeto malformado",
+          "response": "Leitura tolera partes não resolvidas; integridade completa e diagnóstico detalhado ainda são lacunas.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Atual não grava outline nem PDF; edição/undo/persistência não implementados."
+      ],
+      "source_refs": [
+        "app/pdf_panels.py"
+      ],
+      "foxit": {
+        "evidence_state": "static_code_partial",
+        "source_refs": [
+          "docs/FOXIT-REA.md",
+          "docs/ETAPA-11.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_bookmark_without_local_page_is_not_given_a_fake_destination"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D07",
+        "UI09",
+        "UI10"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-13-1",
+          "kind": "nominal",
+          "given": "Fixture com dois marcadores.",
+          "when": "Inspecionar o painel.",
+          "expected_linuxit": "Dois títulos, nível registrado e destino local conhecido ou null; nenhuma escrita no PDF.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-13-2",
+          "kind": "exception",
+          "given": "Marcador sem página local.",
+          "when": "Exibir seu destino.",
+          "expected_linuxit": "Não atribuir a primeira página por padrão.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "annotations",
+      "name": "Anotações/undo/gravação",
+      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual: leitura de comentários/anotações de tipos selecionados. Criar/editar/undo/gravar são futuros.",
+      "inputs": [
+        "PDF com /Annots; subtype, /Contents, /Subj, /T e página.",
+        "Tipos atuais incluem nota, texto, destaque, sublinhado, desenho e outros enumerados no painel."
+      ],
+      "outputs": [
+        "Atual: page, type, author, text de exibição, contents e subject separados.",
+        "Proposta futura: alterações serializadas com aparência e histórico em cópia."
+      ],
+      "errors": [
+        {
+          "trigger": "Anotação individual não pode ser decodificada",
+          "response": "O painel ignora esse objeto e continua; não afirmar inventário integral.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Tipo não pertence ao conjunto lido",
+          "response": "Não é exposto como comentário suportado por essa rotina.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Atual não muda anotação, undo ou arquivo."
+      ],
+      "source_refs": [
+        "app/pdf_panels.py",
+        "app/search_engine.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search_scopes.py",
+          "test": "test_comment_subject_and_contents_are_searchable_without_author"
+        }
+      ],
+      "dynamic_case_refs": [
+        "D08",
+        "D09",
+        "D19"
+      ],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-14-1",
+          "kind": "nominal",
+          "given": "Fixture com nota contendo assunto e conteúdo distintos.",
+          "when": "Inspecionar o painel.",
+          "expected_linuxit": "Assunto separado, comentário alvo e autor permanecem campos distintos na página conhecida.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-14-2",
+          "kind": "exception",
+          "given": "Objeto de anotação isolado inválido.",
+          "when": "Ler os demais comentários.",
+          "expected_linuxit": "A falha de um objeto não deve ser reportada como criação/edição bem-sucedida de anotação.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "forms",
+      "name": "AcroForm/XFA/eventos",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: separar AcroForm de XFA e tratar campos, validação, eventos e persistência por tecnologia.",
+      "inputs": [
+        "PDF sintético com campos e valores tipados, tecnologia identificada e operação de edição.",
+        "Política explícita para JavaScript/eventos e arquivo de saída."
+      ],
+      "outputs": [
+        "Proposta: valores/estados de campo e cópia reabrível; suporte declarado por tecnologia, sem prometer XFA por presença de AcroForm."
+      ],
+      "errors": [
+        {
+          "trigger": "Valor não passa validação de campo",
+          "response": "Proposta: recusar/indicar o erro sem registrar valor como aceito.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Tecnologia/evento não suportado",
+          "response": "Proposta: declarar limitação; não executar código ou alegar persistência de campo não compreendido.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: operações sobre cópia sintética; original e ações externas preservados."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-15-1",
+          "kind": "nominal",
+          "given": "AcroForm sintético de texto e escolha, fixture ainda a criar.",
+          "when": "Alterar valores e salvar cópia.",
+          "expected_linuxit": "Proposta: reabrir a cópia preserva valores e tipos definidos no corpus.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-15-2",
+          "kind": "exception",
+          "given": "Campo com restrição conhecida e valor inválido.",
+          "when": "Tentar confirmar a edição.",
+          "expected_linuxit": "Proposta: erro identificável e valor anterior preservado.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "attachments",
+      "name": "Anexos/portfólios",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: listar/extrair anexos locais e separar portfólios de anexos comuns.",
+      "inputs": [
+        "PDF com nomes e conteúdo de anexos; pasta nova de extração autorizada.",
+        "Política para nomes duplicados, caminhos e tamanhos."
+      ],
+      "outputs": [
+        "Proposta: inventário com tamanho/hash e arquivos extraídos cujo conteúdo coincide com os streams de origem."
+      ],
+      "errors": [
+        {
+          "trigger": "Nome contém caminho absoluto ou travessia ..",
+          "response": "Proposta: normalizar/recusar o nome, impedindo escrita fora da pasta de extração.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Arquivo de destino já existe",
+          "response": "Proposta: conflito explícito, sem sobrescrita silenciosa.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: extrair sem executar anexos; fontes não são alteradas."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Estruturas de portfólio, nomes, recursos suportados, salvamento e política de conflitos."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [
+        "D16"
+      ],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-16-1",
+          "kind": "nominal",
+          "given": "PDF sintético com nota-sintetica.txt.",
+          "when": "Extrair para pasta nova.",
+          "expected_linuxit": "Proposta: bytes e hash do arquivo extraído coincidem com o anexo; nada é executado.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-16-2",
+          "kind": "exception",
+          "given": "Nome de anexo ../fora.txt.",
+          "when": "Extrair.",
+          "expected_linuxit": "Proposta: não escrever fora da pasta escolhida e informar o tratamento do nome.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "signatures",
+      "name": "Assinaturas/certificados",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: distinguir aparência de assinatura, assinatura criptográfica e validação de certificado.",
+      "inputs": [
+        "PDF de laboratório assinado e material de confiança de teste; nenhum certificado pessoal.",
+        "Operação de inspecionar/validar; assinatura futura exige chave e autorização separadas."
+      ],
+      "outputs": [
+        "Proposta: estado de integridade criptográfica separado de confiança/tempo/revogação e da aparência visual."
+      ],
+      "errors": [
+        {
+          "trigger": "Sem dados de confiança/revogação offline",
+          "response": "Proposta: resultado indeterminado para essa dimensão; não apresentar validade global.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Bytes assinados foram alterados",
+          "response": "Proposta: informar falha de integridade mesmo se a aparência continuar visível.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: validação local não assina nem altera PDF; nenhuma chave real ou serviço remoto nesta fase."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Fluxos Reader, assinatura versus validação, cadeias, políticas e comportamento offline; plugins não provam suporte completo."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-17-1",
+          "kind": "nominal",
+          "given": "PDF assinado por certificado sintético e trust store de laboratório.",
+          "when": "Inspecionar assinatura offline.",
+          "expected_linuxit": "Proposta: relatar integridade, confiança e indisponibilidade de revogação como dimensões distintas.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-17-2",
+          "kind": "exception",
+          "given": "Cópia com modificação dentro da região assinada.",
+          "when": "Revalidar.",
+          "expected_linuxit": "Proposta: falha de integridade, sem confundir a imagem da assinatura com prova criptográfica.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "security",
+      "name": "Senhas/permissões/RMS",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: senha e permissões PDF separadas de RMS/serviços externos. Atual só tenta senha vazia.",
+      "inputs": [
+        "PDF cifrado sintético, senha conhecida de laboratório e política de permissões.",
+        "Cancelar/abrir, sem recuperar senha nem contornar mecanismos do documento."
+      ],
+      "outputs": [
+        "Proposta: abertura autenticada ou recusa; permissões e proteção externa identificadas separadamente."
+      ],
+      "errors": [
+        {
+          "trigger": "Senha incorreta ou cancelamento",
+          "response": "Proposta: não expor conteúdo como se autenticado e não gravar senha em logs.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "RMS requer serviço indisponível offline",
+          "response": "Proposta: declarar indisponibilidade, sem bypass nem falso estado desbloqueado.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: manter segredo apenas no escopo necessário; original cifrado permanece íntegro."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [
+        "D15"
+      ],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-18-1",
+          "kind": "nominal",
+          "given": "PDF cifrado com senha sintética conhecida.",
+          "when": "Abrir com a senha correta em ambiente de teste.",
+          "expected_linuxit": "Proposta: conteúdo autorizado acessível; senha não aparece no relatório de evidências.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-18-2",
+          "kind": "exception",
+          "given": "Mesmo PDF com senha errada ou cancelamento.",
+          "when": "Tentar abrir.",
+          "expected_linuxit": "Proposta: recusa/cancelamento distinto de sucesso; original inalterado.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "accessibility",
+      "name": "Acessibilidade/voz",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: estrutura acessível, teclado e leitura por voz com ordem e tecnologia assistiva verificadas.",
+      "inputs": [
+        "PDF marcado sintético, idioma, foco e ação por teclado.",
+        "Tecnologia assistiva/voz identificada; texto alternativo e ordem lógica de referência."
+      ],
+      "outputs": [
+        "Proposta: nomes/papéis/estados acessíveis e sequência de leitura comparável ao corpus, sem alegar conformidade ainda."
+      ],
+      "errors": [
+        {
+          "trigger": "PDF sem tags ou ordem incompleta",
+          "response": "Proposta: indicar limitação e distinguir extração visual de ordem semântica.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Síntese de voz indisponível",
+          "response": "Proposta: informar indisponibilidade sem travar navegação/fechamento.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: áudio apenas quando solicitado; sem envio de conteúdo a serviço externo implícito."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [
+        "UI10"
+      ],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-19-1",
+          "kind": "nominal",
+          "given": "PDF de duas colunas com tags e ordem esperada, fixture a criar.",
+          "when": "Percorrer por teclado/leitor de tela.",
+          "expected_linuxit": "Proposta: sequência e nomes registrados contra a ordem definida no corpus.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-19-2",
+          "kind": "exception",
+          "given": "Mesmo teste sem serviço de voz instalado.",
+          "when": "Solicitar leitura por voz.",
+          "expected_linuxit": "Proposta: indisponibilidade explícita e UI responsiva.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "measurement",
+      "name": "Medição/calibração",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
+      "inputs": [
+        "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
+        "Página usa a escala base de 72 pontos por polegada."
+      ],
+      "outputs": [
+        "Distância euclidiana em cm, exibida com duas casas decimais.",
+        "Não calcular área/perímetro/calibração como se implementados."
+      ],
+      "errors": [
+        {
+          "trigger": "Não há imagem ou tamanhos de página",
+          "response": "A função retorna sem atualizar medida.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Documento usa escala/calibração especial",
+          "response": "A igualdade com medida física/especializada não foi estabelecida; exigir contrato de calibração futuro.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Somente status/overlay de leitura; não cria anotação de medida no PDF."
+      ],
+      "source_refs": [
+        "app/main.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Unidades, calibração, snapping, precisão, áreas e perímetros do original."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-20-1",
+          "kind": "nominal",
+          "given": "Imagem e página com escala conhecida; pontos separados por 72 pontos PDF.",
+          "when": "Medir o segmento horizontal.",
+          "expected_linuxit": "Contrato próprio: 2,54 cm, formatado com duas casas decimais.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-20-2",
+          "kind": "exception",
+          "given": "Página sem pixbuf/tamanhos disponíveis.",
+          "when": "Concluir gesto de medida.",
+          "expected_linuxit": "Nenhuma nova medida válida é publicada.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "layers-media",
+      "name": "Camadas/mídia/3D",
+      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
+      "inputs": [
+        "PDF com /OCProperties e /OCGs; nomes de camadas.",
+        "Mídia/3D exigirá identificar formato, ação e isolamento próprios."
+      ],
+      "outputs": [
+        "Atual: lista de nomes de camadas; não implica motor de composição de OCG nem playback."
+      ],
+      "errors": [
+        {
+          "trigger": "OCProperties ausente ou não decodificável",
+          "response": "Painel fornece lista vazia; não alegar suporte a camadas inexistentes.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "PDF contém mídia/3D não implementados",
+          "response": "Nenhum fluxo de reprodução equivalente é estabelecido pelo painel de nomes.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Leitura não muda visibilidade persistida nem executa conteúdo embutido."
+      ],
+      "source_refs": [
+        "app/pdf_panels.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        }
+      ],
+      "acceptance_cases": [
+        {
+          "id": "S12-21-1",
+          "kind": "nominal",
+          "given": "PDF sintético com OCGs nomeados, fixture a criar.",
+          "when": "Inspecionar painel.",
+          "expected_linuxit": "Lista os nomes lidos, sem anunciar reprodução de mídia ou alteração de camada.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-21-2",
+          "kind": "exception",
+          "given": "PDF sem OCProperties.",
+          "when": "Inspecionar painel.",
+          "expected_linuxit": "layers=[]; não criar uma camada fictícia.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "preferences",
+      "name": "Preferências/tema/persistência",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit.",
+      "inputs": [
+        "Modo system, light ou dark e arquivo de configuração em perfil sintético.",
+        "JSON existente com chaves conhecidas e de versões futuras."
+      ],
+      "outputs": [
+        "Modo válido e aparência aplicada; persistência preserva chaves desconhecidas.",
+        "Falha de leitura/configuração inválida recai em modo system conforme o caminho de leitura/migração."
+      ],
+      "errors": [
+        {
+          "trigger": "Modo fora do conjunto ao salvar",
+          "response": "ValueError; não aceitar um modo arbitrário.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "JSON inválido/arquivo ausente",
+          "response": "Leitura tolerante e tentativa de migração, sem impor arquivo inválido como preferência válida.",
+          "basis": "current_linuxit_source"
+        }
+      ],
+      "state_and_side_effects": [
+        "Grava preferences.json próprio de forma temporária/atômica; não muda configuração do Foxit."
+      ],
+      "source_refs": [
+        "app/appearance.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Defaults, esquemas de persistência e dependências de todas as preferências do original."
+        ]
+      },
+      "existing_test_refs": [
+        {
+          "path": "tests/test_viewer.py",
+          "test": "test_theme_persistence_and_contrast"
+        },
+        {
+          "path": "tests/test_consolidation.py",
+          "test": "test_fresh_system_theme_initializes_and_migrates_legacy"
+        }
+      ],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-22-1",
+          "kind": "nominal",
+          "given": "Configuração com modo dark e uma chave desconhecida.",
+          "when": "Salvar modo light e reabrir a preferência.",
+          "expected_linuxit": "Modo light preservado e chave desconhecida conservada.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-22-2",
+          "kind": "exception",
+          "given": "Modo inventado ao salvar.",
+          "when": "Chamar save_mode.",
+          "expected_linuxit": "ValueError, sem tratar o modo como suportado.",
+          "expected_basis": "current_linuxit_source",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "cloud",
+      "name": "Nuvem/colaboração",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados.",
+      "inputs": [
+        "Provedor, operação, documento e autorização específica; testes iniciais usam backend local simulado.",
+        "Credenciais/serviços reais ficam fora desta campanha."
+      ],
+      "outputs": [
+        "Proposta: resultado remoto com identidade/versão ou indisponibilidade; nenhuma publicação implícita."
+      ],
+      "errors": [
+        {
+          "trigger": "Sem rede ou token expirado",
+          "response": "Proposta: estado offline/autenticação necessária; sem repetir envio silenciosamente.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Conflito de versão ou cancelamento",
+          "response": "Proposta: preservar a cópia local e pedir resolução explícita antes de substituir conteúdo remoto.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: operações remotas somente em tarefa especificamente autorizada; não implementar transmissão nesta etapa."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Contratos por provedor, serviços disponíveis, autorização, colaboração e conflitos; presença de plugins não valida APIs."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-23-1",
+          "kind": "nominal",
+          "given": "Backend simulado de coleção remota e documento sintético.",
+          "when": "Simular download de uma versão identificada.",
+          "expected_linuxit": "Proposta: receber os bytes/versionamento corretos sem usar conta real.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-23-2",
+          "kind": "exception",
+          "given": "Mesmo provedor simulado em estado offline.",
+          "when": "Solicitar sincronização.",
+          "expected_linuxit": "Proposta: indicar indisponibilidade e preservar a cópia local; nenhum falso sucesso.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "conversion",
+      "name": "Criação/conversão",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: separar criação PDF de exportação/reformatação e identificar o que existe no Reader versus Editor.",
+      "inputs": [
+        "Formato fonte sintético explicitamente suportado, opções e caminho novo de saída.",
+        "Nenhum recurso pago/Editor é presumido por aparecer em um template."
+      ],
+      "outputs": [
+        "Proposta: arquivo reabrível no formato declarado e relatório de perdas/limitações.",
+        "Exportar página PNG já existente não significa conversão completa para formatos editáveis."
+      ],
+      "errors": [
+        {
+          "trigger": "Formato ou recurso não suportado",
+          "response": "Proposta: recusar com identificação do formato, sem criar saída com extensão enganosa.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Falha durante conversão",
+          "response": "Proposta: não apresentar arquivo parcial como exportação concluída.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: fontes intactas e saída separada; sem serviço remoto implícito."
+      ],
+      "source_refs": [],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Inventário real Reader/Editor, fidelidade, formatos, OCR e serviços; não implementado como família completa."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-24-1",
+          "kind": "nominal",
+          "given": "Fonte sintética de formato escolhido e contrato ainda a especializar.",
+          "when": "Converter para PDF em caminho novo.",
+          "expected_linuxit": "Proposta: PDF reabre e conserva páginas/texto dentro da tolerância que o contrato de formato definir.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-24-2",
+          "kind": "exception",
+          "given": "Formato fora da lista suportada.",
+          "when": "Solicitar conversão.",
+          "expected_linuxit": "Proposta: recusa explícita; não apenas renomear extensão.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    },
+    {
+      "id": "platform",
+      "name": "Integrações de sistema/atualização",
+      "matrix_implementation": "pending adoption and verification",
+      "contract_kind": "proposed_only",
+      "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
+      "inputs": [
+        "Ação específica do sistema, arquivo autorizado pelo portal ou artefato de atualização identificado.",
+        "Backend/ambiente versionados; nenhum instalador ou atualização é executado pela especificação."
+      ],
+      "outputs": [
+        "Proposta: autorização/handle do portal ou cancelamento; atualização com origem/estado verificável e política própria.",
+        "O Flatpak devel e os adaptadores existentes são evidências parciais, não paridade de todas as integrações Windows."
+      ],
+      "errors": [
+        {
+          "trigger": "Portal cancelado ou acesso revogado",
+          "response": "Proposta: não usar caminhos não autorizados e preservar o documento atual.",
+          "basis": "proposed_independent_requirement"
+        },
+        {
+          "trigger": "Atualização sem integridade/origem verificável",
+          "response": "Proposta: não instalar; manter a versão corrente utilizável.",
+          "basis": "proposed_independent_requirement"
+        }
+      ],
+      "state_and_side_effects": [
+        "Proposta: associações, instalações e alterações do sistema exigem tarefa/escopo explícitos; esta etapa não as executa."
+      ],
+      "source_refs": [
+        "docs/instalacao.md",
+        "app/platform_runtime.py",
+        "app/cups_backend.py"
+      ],
+      "foxit": {
+        "evidence_state": "resource_or_module_inventory_only",
+        "source_refs": [
+          "docs/FOXIT-REA.md"
+        ],
+        "runtime_observed": false,
+        "unresolved": [
+          "Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows."
+        ]
+      },
+      "existing_test_refs": [],
+      "dynamic_case_refs": [],
+      "fixture_refs": [],
+      "acceptance_cases": [
+        {
+          "id": "S12-25-1",
+          "kind": "nominal",
+          "given": "Desktop Linux/Flatpak de teste e PDF selecionado em portal.",
+          "when": "Conceder acesso e abrir o arquivo.",
+          "expected_linuxit": "Proposta: abrir apenas o recurso autorizado, registrando ambiente e URI/caminho aplicável.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        },
+        {
+          "id": "S12-25-2",
+          "kind": "exception",
+          "given": "Portal foi cancelado pelo usuário.",
+          "when": "Retornar à aplicação.",
+          "expected_linuxit": "Proposta: nenhum acesso ampliado nem sucesso falso; documento corrente preservado.",
+          "expected_basis": "proposed_independent_requirement",
+          "foxit_expected": null,
+          "foxit_observed": null,
+          "execution_status": "not_run"
+        }
+      ],
+      "parity": "not_verified"
+    }
+  ],
+  "stage12_assessment": {
+    "detailed_contract_check": "partial",
+    "phase_a_consolidated": false,
+    "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
+  }
+}

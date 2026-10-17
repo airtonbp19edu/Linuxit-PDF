@@ -63,6 +63,15 @@ interface examinadas, dez associações contextuais conferidas e ambiguidade
 dos IDs 7911/7913 preservada. Não promover tabelas/estados de templates a
 comportamento observado. Próximos alvos e lacunas constam no relatório.
 
+Em 17/10/2026 o usuário pediu também a etapa 12. Contratos estruturados em
+`docs/especificacao-funcional.json`, registro derivado em
+`docs/contratos-funcionais.md` e limites em `docs/ETAPA-12.md`: 25 famílias,
+50 cenários planejados, 14 subconjuntos atuais e 11 propostas. Validar com
+`scripts/validate_functional_spec.py --check-render docs/contratos-funcionais.md`.
+Detalhamento parcial, fase A aberta; testes próprios e propostas não são
+observações do original. Preparar casos executáveis por família enquanto a
+VM não está disponível, preservando os indicadores e os critérios existentes.
+
 A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o
 original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
