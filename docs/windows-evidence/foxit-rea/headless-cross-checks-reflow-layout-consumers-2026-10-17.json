@@ -1,0 +1,49 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/reflow-layout-consumers-2026-10-17/functions/0x15cc140.json",
+      "result_sha256": "9d93bbf1307f695afdb21a9234720b6e69535484d69719af6d753dfdf56d07c5",
+      "entry_va": "0x15cc140",
+      "analyst_name": "analyst_entry_15cc140",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 622,
+      "body_ranges": "[[015cc140, 015cc3ad]]",
+      "pseudocode_sha256": "617639eb9aaee3aab8f95d6672a327bf436ed00f11164e7657f48e77492edea5",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/reflow-layout-consumers-2026-10-17/functions/0x15cc3b0.json",
+      "result_sha256": "ea4a0718050f30ca2f5578a21aeef5edbdb01f59dc83f905c43d55811b851303",
+      "entry_va": "0x15cc3b0",
+      "analyst_name": "analyst_entry_15cc3b0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 339,
+      "body_ranges": "[[015cc3b0, 015cc502]]",
+      "pseudocode_sha256": "0b554c000f4df4a0df360c952816a6d99dba52bd57ab901850301b067ccb0473",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/reflow-layout-consumers-2026-10-17/functions/0x15ccab0.json",
+      "result_sha256": "53ead2d62dabe011dbb073f7e0b32de0ad7480a037f480b3df6089fbf0556420",
+      "entry_va": "0x15ccab0",
+      "analyst_name": "analyst_entry_15ccab0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 387,
+      "body_ranges": "[[015ccab0, 015ccc32]]",
+      "pseudocode_sha256": "c33fcb0d69f12d721352f6117cf9d099b30587c30af7e9bb0121b95d2258dcf6",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

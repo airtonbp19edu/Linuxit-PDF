@@ -1,0 +1,39 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/reflow-layout-consumers-2026-10-17",
+  "entries": [
+    {
+      "entry": "0x15cc140",
+      "instructions": 192,
+      "body_bytes": 622,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "9d93bbf1307f695afdb21a9234720b6e69535484d69719af6d753dfdf56d07c5",
+      "pseudocode_sha256": "617639eb9aaee3aab8f95d6672a327bf436ed00f11164e7657f48e77492edea5"
+    },
+    {
+      "entry": "0x15cc3b0",
+      "instructions": 97,
+      "body_bytes": 339,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ea4a0718050f30ca2f5578a21aeef5edbdb01f59dc83f905c43d55811b851303",
+      "pseudocode_sha256": "0b554c000f4df4a0df360c952816a6d99dba52bd57ab901850301b067ccb0473"
+    },
+    {
+      "entry": "0x15ccab0",
+      "instructions": 123,
+      "body_bytes": 387,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "53ead2d62dabe011dbb073f7e0b32de0ad7480a037f480b3df6089fbf0556420",
+      "pseudocode_sha256": "c33fcb0d69f12d721352f6117cf9d099b30587c30af7e9bb0121b95d2258dcf6"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

@@ -32,8 +32,8 @@ O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
 A [campanha sem VM](docs/AVANCO-SEM-VM.md) aprovou os 17 subconjuntos próprios
 com os mesmos arquivos/protocolos da etapa18; quatro bloqueios Poppler resolvidos.
-O catálogo tem256 entradas examinadas (152REA+104diretas), incluindo
-[quatro acessores de layout de reflow](docs/REA-REFLOW-LAYOUT.md) na retomada;
+O catálogo tem259 entradas examinadas (152REA+107diretas), incluindo
+[três métodos de geometria de reflow](docs/REA-REFLOW-GEOMETRIA.md) na retomada;
 cobertura global desconhecida.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
 Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.

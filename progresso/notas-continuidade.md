@@ -1409,3 +1409,36 @@ Projetos/respostas integrais ignorados. Registro da interrupção e próximos pa
 em docs/RETOMADA-INTERRUPCAO-2026-10-17.md. Nuvem adiada; pesos/paridade preservados.
 Próximo: commit/push técnico, confirmar remoto e auditoria instalada do mesmo
 bundle sem reconstruir; continuar contratos locais/estática sem reiniciar análises.
+
+
+## 2026/10/17 às 20:21 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria0.1.8 confirmadas
+
+Entrega técnica `c6b273fdf44f2e260f0ddae092397158cf65237c` confirmada no GitHub e árvore limpa por recibo externo.
+Auditoria https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39078571081 reinstalou mesmo bundle, sem rebuild;
+97app/2804runtime/215ELF/150avisos de pacotes conferidos. Sete controles do auditor
+e cinco novos smoke checks passaram. Suítes267/267 em cada ambiente são evidência
+anterior do builder, não repetidas nesta auditoria. ZIPc1dc5765bdc714f23853d9bc9288e043461bfa7c56d3d052affc02d3272d5afe igual ao digest
+GitHub, artefato12117961659; quatro relatórios raw copiados byte a byte e revisão
+em testes/resultados/0.1.8/audit/. Catálogo256/23subconjuntos/2propostas,
+35módulos/40interfaces,43,33% e paridade0/25 mantidos. Original não executado.
+Nuvem adiada. Próximo concreto: consumidores/escritores campos+5c/+60/+4/+8 e
+slots layout+04/+08/+1c (15cc3b0/15cc140/15ccab0), campos de busca/IDs7911/7913;
+continuar demais formulários/undo/anotações/formatos e plataforma própria.
+Desktop/AT-SPI/impressora e original em VM ainda pendentes. Não reiniciar lotes
+examinados; fontes, relatórios, nove bundles e licenças preservados.
+
+
+## 2026/10/17 às 20:22 (America/Sao_Paulo, UTC-03:00) — três consumidores de layout examinados
+
+Ghidra12.1.4 -noanalysis/Temurin21/REAseed, Capstone5.0.6 e PE conferidos:
+15cc3b0/15cc140/15ccab0,1.348bytes/412instruções. Três ponteiros vtable exatos
+e máscara0x7fffffff conferidos. Saídas de quatro inteiros/predicado e consumo
+this+4/+8 refinam hipótese geométrica, sem tipagem/ownership/runtime completos.
+Precondição de índice e receptores ECX preservados como lacunas. Relatório
+docs/REA-REFLOW-GEOMETRIA.md; resultados completos ignorados por rodada nova.
+Catálogo259(152REA+107diretas); slots não somados como funções. Não repetir sete
+métodos de layout já examinados. Próximos15cc510/15cc520/15ccd20/15cbc10/15c9c60,
+métricas this+98 e escritores dos campos, conferindo catálogo antes de seeds.
+Aplicação/Flatpak0.1.8 permanece idêntico ao auditado; nenhuma suíte completa
+repetida por esta análise. Roteiro43,33%,paridade0/25 e nuvem adiada preservados.
+Próximo: publicar esta nota e evidência da auditoria e confirmar remoto limpo.

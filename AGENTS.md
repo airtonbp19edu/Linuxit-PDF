@@ -4,12 +4,12 @@ Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
 [Segurança, acessibilidade e edição local](docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
 cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
 **267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
-39 métodos portáveis e16 GTK novos. Publicação e auditoria independente: consultar o último registro nas notas.
+39 métodos portáveis e16 GTK novos. Publicação confirmada; auditoria independente do mesmo bundle aprovada (7+5 controles).
 **Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
 35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **256** (152 REA + 104 diretas). Após os dois helpers Win32 de
-sincronização, quatro acessores de layout foram examinados:20 bytes/dez instruções. [Evidência estática](docs/REA-REFLOW-LAYOUT.md).
+Catálogo **259** (152 REA + 107 diretas). Após quatro acessores,
+três métodos de limites/predicado foram examinados:1.348 bytes/412 instruções. [Evidência estática](docs/REA-REFLOW-GEOMETRIA.md).
 Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
 Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 

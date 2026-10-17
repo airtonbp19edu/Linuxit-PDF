@@ -1034,7 +1034,7 @@
       "earned_percent": 3.0,
       "current_delivery": {
         "version": "0.1.8",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078",
         "evidence": [
           "docs/SEGURANCA-ACESSIBILIDADE.md",
@@ -1042,7 +1042,9 @@
           "testes/resultados/0.1.8/validation-review.json"
         ],
         "stable_release": false,
-        "original_observations": 0
+        "original_observations": 0,
+        "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+        "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00"
       },
       "delivery_history": [
         {
@@ -1159,9 +1161,11 @@
             "testes/resultados/0.1.6/audit/review.json",
             "testes/resultados/0.1.6/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.7/audit/review.json",
-            "testes/resultados/0.1.7/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.8/audit/review.json",
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
           ],
-          "note": "Published 0.1.7 reinstalled without rebuild:92 application/2803 dependency/214 ELF/149 package notices verified. Seven new auditor controls and five installed smoke checks passed. Full212-case suites remain build-time evidence, not rerun by this audit. Status/weight preserved."
+          "note": "Published0.1.8 reinstalled without rebuild:97 app/2804 dependency/215ELF/150package notices verified. Seven auditor controls and five fresh smoke checks passed. Full267-case suites are prior build-time evidence, not rerun by this audit. Status/weight preserved."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1177,7 +1181,9 @@
             "testes/resultados/0.1.6/audit/review.json",
             "testes/resultados/0.1.6/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.7/audit/review.json",
-            "testes/resultados/0.1.7/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.8/audit/review.json",
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 21 open criteria across 14 stages, including actionable UI/implementation/static work and original VM/differential dependencies. Passing a delivery audit does not close these obligations."
         },
@@ -1195,33 +1201,35 @@
             "testes/resultados/0.1.6/audit/review.json",
             "testes/resultados/0.1.6/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.7/audit/review.json",
-            "testes/resultados/0.1.7/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.8/audit/review.json",
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.7",
-        "reviewed_at_local": "2026-10-17T18:44:53-03:00",
+        "version": "0.1.8",
+        "reviewed_at_local": "2026-10-17T20:21:46-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39072088580",
-        "audit_code_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39078571081",
+        "audit_code_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
-        "installed_application_files_verified": 92,
-        "installed_runtime_files_verified": 2803,
-        "installed_elf_files_verified": 214,
-        "copyright_notices_present_and_hashed": 149,
+        "installed_application_files_verified": 97,
+        "installed_runtime_files_verified": 2804,
+        "installed_elf_files_verified": 215,
+        "copyright_notices_present_and_hashed": 150,
         "unfinished_criteria_count": 21,
         "stage21_complete": false,
         "full_regression_suite_rerun": false,
-        "evidence": [
-          "docs/CRIACAO-IMAGENS.md",
-          "testes/resultados/0.1.7/audit/review.json"
-        ],
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
-        "next_action": "Follow exact reflow helpers1f21a80/1f21ac0, remaining static fields and own security/signature/accessibility/cloud/platform contracts. Original observations require offline VM."
+        "evidence": [
+          "docs/SEGURANCA-ACESSIBILIDADE.md",
+          "testes/resultados/0.1.8/audit/review.json"
+        ],
+        "next_action": "Continue remaining local forms/undo/formats/platform contracts; static15cc510/15cc520/15ccd20/15cbc10/15c9c60 and this+98 metrics, field writers/preconditions; consult catalog before new seeds. Cloud deferred. Desktop/devices/original VM remain pending."
       },
       "delivery_audit_history": [
         {
@@ -1341,6 +1349,28 @@
           ],
           "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
           "next_action": "Continue own image-to-PDF creation and other remaining non-VM work. Original observations require offline VM."
+        },
+        {
+          "version": "0.1.7",
+          "reviewed_at_local": "2026-10-17T18:44:53-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39072088580",
+          "audit_code_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 92,
+          "installed_runtime_files_verified": 2803,
+          "installed_elf_files_verified": 214,
+          "copyright_notices_present_and_hashed": 149,
+          "unfinished_criteria_count": 21,
+          "stage21_complete": false,
+          "full_regression_suite_rerun": false,
+          "evidence": [
+            "docs/CRIACAO-IMAGENS.md",
+            "testes/resultados/0.1.7/audit/review.json"
+          ],
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
+          "next_action": "Follow exact reflow helpers1f21a80/1f21ac0, remaining static fields and own security/signature/accessibility/cloud/platform contracts. Original observations require offline VM."
         }
       ]
     }
@@ -1370,16 +1400,18 @@
     "date_local": "2026-10-17T20:16:26-03:00",
     "report": "docs/SEGURANCA-ACESSIBILIDADE.md",
     "source_and_package_version": "0.1.8",
-    "new_static_entries_examined": 6,
-    "catalog_entries": 256,
+    "new_static_entries_examined": 9,
+    "catalog_entries": 259,
     "complete_tests_per_environment": 267,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_publication",
-    "independent_installed_audit_passed": false,
-    "cloud_deferred_by_user": true
+    "publication_state": "confirmed_at_recorded_commit",
+    "independent_installed_audit_passed": true,
+    "cloud_deferred_by_user": true,
+    "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+    "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00"
   },
   "no_vm_execution_history": [
     {

@@ -1,0 +1,30 @@
+{
+  "schema": "linuxit-vtable-pointer-join-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "entries": [
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x4",
+      "entry_va": "0x15cc3b0",
+      "pointer_bytes_hex": "b0c35c01",
+      "matches": true
+    },
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x8",
+      "entry_va": "0x15cc140",
+      "pointer_bytes_hex": "40c15c01",
+      "matches": true
+    },
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x1c",
+      "entry_va": "0x15ccab0",
+      "pointer_bytes_hex": "b0ca5c01",
+      "matches": true
+    }
+  ],
+  "mask_06573ec0_hex": "ffffff7fffffff7fffffff7fffffff7f",
+  "original_executed": false,
+  "runtime_virtual_dispatch_observed": false
+}

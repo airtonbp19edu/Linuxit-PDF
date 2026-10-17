@@ -18,7 +18,7 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
 |03|50%|RTTI confirmou renderers/reflow e demais classes; fronteiras restantes ainda abertas.|
 |05|42,9%|ImageRenderer eReflowViewer identificados; seguir recursos/slots e demais ciclos de vida.|
-|07|33,3%|256 entradas(152REA+104diretas),quatro acessores novos na retomada; inventário global/tipos incompletos.|
+|07|33,3%|259 entradas(152REA+107diretas),sete métodos de layout novos na retomada; inventário global/tipos incompletos.|
 |08|13,0%|Completar fluxo/algoritmos restantes e campos3/5/6/7/12/16/20 da busca; não repetir dez alvos desta continuação.|
 |09|9,1%|Arestas de renderer/clip/reflow refinadas; algoritmos/tipos/ownership universais pendentes.|
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|

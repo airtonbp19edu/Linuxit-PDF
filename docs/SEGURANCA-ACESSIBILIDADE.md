@@ -85,3 +85,12 @@ com descendente real e limpeza temporária foi exercitado no Linux.
 OpenSSL empacotado com loader/runtime pareados. Smoke5/5 e launcher3/3.
 Sete capturas com hashes conferidos e imagens examinadas. Oito pacotes anteriores
 preservados. [Revisão](../testes/resultados/0.1.8/validation-review.json).
+
+## Publicação e auditoria independente — 2026-10-17T20:21:46-03:00
+
+Entrega `c6b273fdf44f2e260f0ddae092397158cf65237c` confirmada no remoto. [Auditoria](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39078571081)
+reinstalou o mesmo bundle publicado, sem rebuild:97 arquivos app,2.804 runtime,
+215ELF e150 avisos de pacotes conferidos. Sete controles do auditor e cinco novos
+smoke checks passaram. As suítes completas267/267 continuam evidência do builder,
+não foram repetidas pela auditoria. [Revisão](../testes/resultados/0.1.8/audit/review.json).
+Projeto ainda incompleto; pesos/paridade e nuvem adiada preservados.

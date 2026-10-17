@@ -7,10 +7,10 @@ runtime2.804 arquivos/215ELF/150 avisos de pacotes. Smoke5/5, launcher3/3.
 [Revisão](testes/resultados/0.1.8/validation-review.json). Publicação e auditoria
 independente são confirmadas nas [notas datadas](progresso/notas-continuidade.md).
 
-Catálogo256 entradas(152REA+104diretas),35 módulos/40 interfaces,
+Catálogo259 entradas(152REA+107diretas),35 módulos/40 interfaces,
 23 subconjuntos parciais/duas propostas em25 famílias. Nuvem adiada pelo usuário.
-Quatro novos acessores/20bytes/dez instruções examinados estaticamente:
-[evidência](docs/REA-REFLOW-LAYOUT.md). Original não executado.
+Após quatro acessores, três métodos de limites/predicado foram examinados:
+1.348bytes/412instruções, [evidência](docs/REA-REFLOW-GEOMETRIA.md). Original não executado.
 
 Roteiro43,33%,37 critérios done/21 abertos; paridade0/25. Ainda há trabalho sem
 VM (contratos locais/estática), ambientes externos (desktop/AT-SPI/impressora)
