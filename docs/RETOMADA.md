@@ -77,11 +77,21 @@ próprios; resultados em `testes/resultados/etapa-14-projeto-2026-10-17.json`.
 GUI/Linux/Flatpak não foram repetidos. Próxima etapa do roteiro: 15, com
 contratos suficientes e escopo sem IA; demais pendências continuam registradas.
 
+A [etapa 15](ETAPA-15.md) avançou sem VM: listagem/extração própria de anexos
+planos pelo worker, com 14 testes portáveis aprovados. A especificação atual
+tem 15 subconjuntos e 10 propostas; a arquitetura tem 20 módulos e 13 interfaces.
+O critério abrangente da etapa 15 está `partial`, mantendo 33,3% verificados e
+roteiro 43,33%. Mudanças somente no código-fonte em desenvolvimento após o
+Flatpak 0.1.1. Ainda faltam integração GTK/Linux, portfólios e casos complexos;
+a comparação com o original segue pendente da VM/contenção. Próximo passo
+concreto: integrar listagem/extração à UI em Linux e testar com o novo corpus.
+
 ## Onde trabalhar
 
 - Interface e ciclo de vida: `app/main.py`.
 - Busca, geometria e metadados: `app/search_engine.py`, `app/rendering.py` e
   `app/pdf_panels.py`.
+- Listagem/extração de anexos: `app/pdf_attachments.py` e comandos do worker.
 - Impressão e imposição: `app/imposition.py`, `app/print_window.py`,
   `app/worker_cli.py`, `app/cups_backend.py` e `app/windows_print.py`.
 - Contratos e arquitetura: `docs/especificacao.md`, `docs/especificacao-funcional.json`,

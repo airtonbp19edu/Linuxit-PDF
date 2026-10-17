@@ -8,7 +8,7 @@ investigação, e seus binários, templates e descompilações ficam nos materia
 privados de análise. O código da aplicação é independente.
 
 A arquitetura descreve o código atual e pontos de extensão planejados. O
-[inventário estruturado](arquitetura-componentes.json) cobre os **19 módulos
+[inventário estruturado](arquitetura-componentes.json) cobre os **20 módulos
 Python próprios na raiz de `app/`**, sem contar módulos de terceiros como
 componentes novos. As **25 famílias** estão ligadas à
 [especificação funcional](especificacao-funcional.json). As extensões futuras
@@ -19,6 +19,10 @@ de IA do Foxit e recursos generativos das análises e da implementação.
 O inventário histórico é preservado; as fronteiras futuras descritas aqui
 abrangem somente funcionalidades autorizadas sem IA.
 
+Continuação da etapa 15: backend de anexos acrescentado ao código-fonte em
+desenvolvimento após o Flatpak 0.1.1. O artefato publicado permanece no marco
+anterior; a integração GTK e novos testes completos Linux ainda estão pendentes.
+
 ## Componentes atuais
 
 | Fronteira | Módulos | Responsabilidade e limites |
@@ -26,7 +30,7 @@ abrangem somente funcionalidades autorizadas sem IA.
 | Interface GTK | `main`, `presentation`, `print_window` | Documento e ações, apresentação, opções e prévia. Parte da coordenação ainda está diretamente nas janelas. |
 | Aparência GTK | `appearance`, `themes` | Persistência e aplicação de system/light/dark; compatibilidade com nomes legados. |
 | Agendamento GLib | `async_core` | Filas, eventos de cancelamento e entrega de callbacks por geração. Requer GLib, inclusive para testes desse agendador. |
-| Serviços PDF | `search_engine`, `pdf_panels`, `imposition` | Busca, inspeção somente leitura e composição PDF. Marcas/legendas de mosaico têm dependência condicional de Cairo. |
+| Serviços PDF | `search_engine`, `pdf_panels`, `pdf_attachments`, `imposition` | Busca, inspeção, extração local de anexos e composição PDF. Marcas/legendas de mosaico têm dependência condicional de Cairo. |
 | Processos | `rendering`, `worker_cli`, `platform_runtime` | Poppler, inspeção e preparação por linha de comando, escolha de Python e opções do sistema. |
 | Impressão | `cups_backend`, `windows_print` | Filas/capacidades/envio CUPS e adaptador Win32/GTK. O contrato físico e a entrega Windows continuam pendentes. |
 | Suporte | `page_cache`, `cancel_state`, `pdf_dependency`, `version` | LRU de imagens, evento por thread, localização do pypdf e versão. |
@@ -60,7 +64,8 @@ ainda usam chamadas diretas e dicionários; não há uma camada universal de plu
 | Busca | `SearchOptions` imutável e `TextSearchIndex.search`; limite global, origens page/bookmark/comment, destino opcional e geometria conhecida. | [search_engine.py](../app/search_engine.py) |
 | Painéis | `inspect_document_panels` devolve marcadores, comentários e nomes de camadas. A inspeção atual não grava alterações. | [pdf_panels.py](../app/pdf_panels.py) |
 | Preparação PDF | `prepare_output(input_path, output_path, job)`; opções semânticas em dicionário. Prévia e saída usam a geometria própria. | [imposition.py](../app/imposition.py) |
-| Worker | Argumentos `info`, `panels`, `prepare`; os dois primeiros devolvem JSON, `prepare` recebe opções JSON em stdin e devolve o caminho. Erros usam status não zero/stderr. | [worker_cli.py](../app/worker_cli.py) |
+| Worker | `info`, `panels` e `attachments` devolvem JSON; `prepare` recebe JSON e devolve caminho; `extract-attachment` recebe índice/hash em JSON e devolve JSON da extração. Erros usam status não zero/stderr. | [worker_cli.py](../app/worker_cli.py) |
+| Anexos | Listagem sem decodificar payload; extração por índice/hash para pasta escolhida, com criação exclusiva e verificação de nome. Catálogo plano somente, sem GUI. | [pdf_attachments.py](../app/pdf_attachments.py) |
 | Entrega assíncrona | `submit` identifica canal/geração; callback é entregue via GLib somente se atual e janela/runner aberto. | [async_core.py](../app/async_core.py) |
 | Backend | `print_file` recebe o PDF já preparado e opções do dispositivo. Aceitação do trabalho não comprova papel impresso. | [cups_backend.py](../app/cups_backend.py) |
 | Python de worker | `worker_python` usa o interpretador configurado pelo runtime e ajustes específicos do Windows. | [platform_runtime.py](../app/platform_runtime.py) |
@@ -89,9 +94,10 @@ imediato de todos os workers ao fechar uma janela.
 indisponíveis no Windows. Isso limita trabalho da implementação própria;
 a contenção offline exigida para observar o Foxit continua separada.
 
-A revisão de imports confirmou **sete módulos cujo fechamento local não
+A revisão de imports confirmou **oito módulos cujo fechamento local não
 importa GTK/GLib via `gi` nem Cairo**: `cancel_state`, `page_cache`,
-`pdf_dependency`, `pdf_panels`, `platform_runtime`, `rendering` e `search_engine`.
+`pdf_dependency`, `pdf_panels`, `platform_runtime`, `rendering`, `search_engine`
+e `pdf_attachments`.
 Isso permite parte das verificações portáveis, sem garantir a presença de
 Poppler ou o comportamento em todas as plataformas.
 
@@ -117,9 +123,9 @@ O fato de um módulo poder ser importado no Windows não comprova essa entrega.
 
 ## Evolução das famílias ainda abertas
 
-As 14 famílias com subconjuntos atuais mantêm seus módulos existentes. A
+As 15 famílias com subconjuntos atuais mantêm seus módulos existentes. A
 estrutura não promove painéis somente leitura a edição, nem nomes de OCGs a
-controle de camadas ou reprodução de mídia. As onze famílias classificadas
+controle de camadas ou reprodução de mídia. As dez famílias classificadas
 como propostas na etapa 12 continuam assim, inclusive a família completa de
 integração de plataforma apesar dos adaptadores parciais existentes.
 
@@ -132,8 +138,9 @@ integração de plataforma apesar dos adaptadores parciais existentes.
 | Camadas, mídia, 3D e conversão | Contratos por tecnologia/formato e disponibilidade Reader confirmada; não adotar um controle extraído como prova de suporte. |
 | Nuvem e sistema | Adaptadores por provedor/plataforma com falhas e estados locais testáveis. |
 
-Essas fronteiras são decisões de planejamento, sem novos módulos de recurso
-implementados nesta rodada. As fases A e B avançam por contrato suficiente;
+As fronteiras ainda futuras são decisões de planejamento. A extração de anexos
+planos foi implementada na etapa 15 e permanece distinta dessas extensões.
+As fases A e B avançam por contrato suficiente;
 a análise das demais famílias permanece aberta. Paridade exige observação do
 original e resultado diferencial. Consulte [ETAPA-13.md](ETAPA-13.md) e o
 [registro de pendências](../progresso/pendencias-analises.md).

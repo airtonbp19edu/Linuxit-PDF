@@ -1,5 +1,10 @@
 # Etapa 12 — especificação funcional com lacunas explícitas
 
+Este relatório conserva o marco inicial de 14 subconjuntos/11 propostas.
+A [continuação na etapa 15](ETAPA-15.md) implementou o backend de anexos planos;
+o registro estruturado atual tem 15 subconjuntos/10 propostas. A especificação
+de referência e a fase A continuam abertas.
+
 Em **17/10/2026**, os contratos das 25 famílias identificadas foram organizados
 em [JSON estruturado](especificacao-funcional.json) e no
 [registro legível](contratos-funcionais.md). Há **50 cenários de aceitação

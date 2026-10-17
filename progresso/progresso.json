@@ -503,8 +503,14 @@
         {
           "criterion": "Todas as demais famílias implementadas e testadas",
           "weight": 12,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/ETAPA-15.md",
+            "app/pdf_attachments.py",
+            "tests/test_pdf_attachments.py",
+            "testes/resultados/etapa-15-anexos-tests-2026-10-17.json"
+          ],
+          "note": "Independent flat-catalog attachment backend and worker implemented; 14 portable tests passed. GUI, portfolios and the remaining families are pending; no Foxit differential verification. Existing criterion and weights preserved."
         }
       ],
       "verified_fraction": 0.333333,

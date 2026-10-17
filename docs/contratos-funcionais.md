@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 14 subconjuntos implementados e 11 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 15 subconjuntos implementados e 10 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -29,7 +29,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Criar/mover/gravar marcadores](#bookmarks-edit) | Subconjunto atual; lacunas abertas |
 | [Anotações/undo/gravação](#annotations) | Subconjunto atual; lacunas abertas |
 | [AcroForm/XFA/eventos](#forms) | Proposta; não implementado |
-| [Anexos/portfólios](#attachments) | Proposta; não implementado |
+| [Anexos/portfólios](#attachments) | Subconjunto atual; lacunas abertas |
 | [Assinaturas/certificados](#signatures) | Proposta; não implementado |
 | [Senhas/permissões/RMS](#security) | Proposta; não implementado |
 | [Acessibilidade/voz](#accessibility) | Proposta; não implementado |
@@ -637,36 +637,45 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Anexos/portfólios
 
-Requisito futuro: listar/extrair anexos locais e separar portfólios de anexos comuns.
+Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles plano. GUI, portfólios, árvores /Kids e anexos exclusivos de anotações ficam pendentes.
 
 **Entradas**
 
-- PDF com nomes e conteúdo de anexos; pasta nova de extração autorizada.
-- Política para nomes duplicados, caminhos e tamanhos.
+- PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.
+- Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.
 
 **Saídas**
 
-- Proposta: inventário com tamanho/hash e arquivos extraídos cujo conteúdo coincide com os streams de origem.
+- Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.
+- Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.
 
 **Erros e casos excepcionais**
 
-- Nome contém caminho absoluto ou travessia ..: Proposta: normalizar/recusar o nome, impedindo escrita fora da pasta de extração.
-- Arquivo de destino já existe: Proposta: conflito explícito, sem sobrescrita silenciosa.
+- Caminhos, nomes reservados, caracteres de controle ou nome fora do limite: Recusar extração antes de criar arquivo; a listagem conserva o nome e indica a recusa.
+- Destino já existe, inclusive outra entrada com o mesmo nome: FileExistsError, sem sobrescrita; escolher outra pasta para extrair essa entrada.
+- PDF mudou, índice/hash inválido, pasta ausente ou payload acima de 64 MiB: Falha explícita antes da gravação; tamanho real é checado após decodificar o stream.
+- Portfólio /Collection, árvore /Kids ou senha não vazia necessária: Recurso ainda não suportado; não apresentar inventário vazio como sucesso.
 
 **Estado e efeitos**
 
-- Proposta: extrair sem executar anexos; fontes não são alteradas.
+- Extrai somente a entrada solicitada, sem executar ou abrir seu conteúdo; nenhum acesso remoto.
+- Nomes não são normalizados/renomeados silenciosamente; payloads não são lidos durante listagem.
+- A pasta deve ser controlada pelo usuário; não há garantia contra outro processo trocando diretórios durante a gravação.
+- Limites de parsing/memória não são impostos pela checagem de 64 MiB após descompressão; usar o worker e seus limites onde disponíveis.
 
 **Critérios planejados**
 
-- **S12-16-1** (nominal, proposta futura, `not_run`): dado PDF sintético com nota-sintetica.txt. Ação: Extrair para pasta nova. Esperado: Proposta: bytes e hash do arquivo extraído coincidem com o anexo; nada é executado.
-- **S12-16-2** (exception, proposta futura, `not_run`): dado Nome de anexo ../fora.txt. Ação: Extrair. Esperado: Proposta: não escrever fora da pasta escolhida e informar o tratamento do nome.
+- **S12-16-1** (nominal, contrato próprio atual, `not_run`): dado anexos-simples.pdf e uma pasta existente nova e vazia. Ação: Listar, usar o índice e SHA-256 devolvidos e extrair nota-sintetica.txt. Esperado: Bytes, tamanho e hash coincidem com anexos-simples.json; nada é executado.
+- **S12-16-2** (exception, contrato próprio atual, `not_run`): dado Nome de anexo ../fora.txt. Ação: Extrair. Esperado: A listagem marca o nome como não permitido e a extração falha sem criar arquivo fora ou dentro da pasta.
 
 **Lacunas da referência Foxit**
 
-- Estruturas de portfólio, nomes, recursos suportados, salvamento e política de conflitos.
+- Política e comportamento Foxit ainda não observados; backend atual é contrato independente.
+- Portfólios, árvores /Kids, UI de anexos, leitura por anotações isoladas e fluxo de senha continuam pendentes.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 

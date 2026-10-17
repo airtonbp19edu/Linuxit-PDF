@@ -342,3 +342,66 @@ própria nota será conferido ao fim, sem autorreferência. Comprovante final em
 bloqueio de publicação nesta rodada. Retomar pela nota das 00:32 e pela etapa
 15 quando autorizada, preservando a exclusão da IA, os critérios existentes
 e as pendências de análise/VM.
+
+## 2026/10/17 às 00:47 (America/Sao_Paulo, UTC-03:00) — etapa 15: anexos planos sem VM
+
+O usuário pediu a próxima etapa que não dependesse de VM. Retomada a etapa 15,
+com base local limpa e remoto confirmado em
+`4db1b254079ddde86a0c3779937432d8da518e08`. Implementado contrato próprio de
+listagem/extração local de anexos planos em `app/pdf_attachments.py`, com o pypdf
+BSD já incluído; nenhuma análise nova do Foxit ou recurso de IA.
+
+O worker recebeu `attachments` e `extract-attachment`. Listagem mantém índices
+distintos para nomes duplicados e não decodifica payloads. Extração exige o
+SHA-256 da listagem, revalida identidade, recusa nomes perigosos e grava com
+criação exclusiva, preservando destinos existentes e o PDF. Retorna tamanho
+real/hash; não executa anexos. Limites próprios: 1.000 entradas na listagem,
+64 MiB no payload real após decodificação. Esse limite não garante memória
+máxima do parser. Pasta de saída deve ser controlada pelo usuário.
+
+Subconjunto explícito: catálogo plano `/Names/EmbeddedFiles`; /Collection,
+/Kids e senha não vazia retornam erro. GUI, portfólios, anexos exclusivos de
+anotações e busca em anexos continuam pendentes. Código-fonte em desenvolvimento
+após o Flatpak 0.1.1; não foi gerado pacote nem declarada versão estável nova.
+Contrato/uso: `docs/ETAPA-15.md`; matriz e especificação atualizadas somente para
+a família attachments: 15 subconjuntos/10 propostas, ainda 25 famílias abertas.
+Os 50 planos completos de comparação não foram encerrados por testes próprios.
+
+Ferramentas: Python 3.13.15, pypdf 6.20.1, unittest, AST e Git no Windows atual.
+Nenhuma sessão nova REA/Ghidra ou execução do original. Catálogo original
+preservado em 209 entradas. Arquitetura atual: 20 módulos/13 interfaces, oito
+fechamentos locais sem gi/Cairo. O verificador estrutural passa a declarar
+ausência de teste de comportamento pela checagem, em vez de afirmar que o
+comportamento do aplicativo não mudou em rodadas futuras.
+
+**14/14 testes portáveis passaram**, sem skips: bytes/hash/original, nomes
+duplicados/perigosos, conflitos, identidade antes/durante leitura, limites,
+PDF inválido, recursos não suportados e protocolo real de subprocesso. Seis
+regressões dos comandos anteriores também passaram. Corpus público próprio em
+`testes/fixtures/anexos-simples.pdf` e `.json`, com extração e hashes conferidos
+em `analysis-local/stage15-fixture-check/`. Sintaxe de 110 arquivos Python e
+213 links locais conferidos; registros de arquitetura/especificação válidos.
+
+Resultados publicáveis: `testes/resultados/etapa-15-anexos-tests-2026-10-17.json`,
+`etapa-15-worker-regression-2026-10-17.json` e `etapa-15-anexos-2026-10-17.json`.
+O último conserva hashes de fontes, testes, corpus e limites. Auxiliares em
+`analysis-local/record_stage15_contract.py`, `verify_stage15.py` e
+`check_stage15_links.py`; logs anteriores em
+`analysis-local/project-stage15-regression-2026-10-17/`, ignorados pelo Git.
+
+A primeira tentativa de 12 testes falhou ainda no setUp por WinError 5 na
+pasta temporária do sandbox. Não era falha funcional do backend nem limite
+de tokens. Os testes passaram usando pasta gravável do projeto; o runner agora
+aceita `--pattern` e `--temp-dir`, sem mudar a seleção padrão da suíte completa,
+e registra explicitamente a execução de subconjunto. Rodada final:
+`python scripts/run_tests.py --pattern test_pdf_attachments.py --temp-dir analysis-local/test-temp-stage15-final --output testes/resultados/etapa-15-anexos-tests-2026-10-17.json`.
+Preservar relatórios existentes e usar nomes novos ao repetir.
+
+Critério amplo da etapa 15: `pending` → `partial`; pesos, nomes e revisão
+inalterados. Fração da 15 permanece 33,3%, roteiro 43,33%, paridade 0/25.
+Nenhuma suíte completa GTK/Linux, comparação Foxit, impressão física ou Flatpak
+repetida; as pendências de VM permanecem separadas das de implementação.
+Próximo passo sem VM: integrar listagem/extração em GTK/Linux e exercitar UI
+com o corpus; ampliar portfólios/árvores complexas só com contratos próprios
+suficientes. Publicação deste marco ainda pendente; nota seguinte usará hash
+já confirmado e comprovante final fora dos arquivos versionados.

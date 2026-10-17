@@ -1,5 +1,9 @@
 # Etapa 14 — projeto existente conferido
 
+Continuação posterior: [etapa 15](ETAPA-15.md), com backend de anexos no
+código-fonte e critérios ainda parciais. As verificações abaixo são deste
+marco anterior e permanecem preservadas.
+
 Em **17/10/2026**, a etapa de criação do projeto foi conferida a partir do
 código já existente. Seus dois critérios já estavam `done`; a base foi
 preservada e a versão continua **0.1.1**, em desenvolvimento. Esta rodada

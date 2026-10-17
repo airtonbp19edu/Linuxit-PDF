@@ -1,0 +1,12 @@
+{
+  "provenance": "Own synthetic PDF generated with the pinned BSD pypdf; no Foxit resources.",
+  "pdf_sha256": "2e87c2d10327756305b9db95fddb51e06fe675d9a7b9d8bc199df08a538492ce",
+  "attachments": [
+    {
+      "name": "nota-sintetica.txt",
+      "content_utf8": "Anexo sintetico Linuxit: alvo\n",
+      "sha256": "e76ffda88c45942c35f2137d9217e3f3710396b9420c961f2a40ac776a367189",
+      "size_bytes": 30
+    }
+  ]
+}

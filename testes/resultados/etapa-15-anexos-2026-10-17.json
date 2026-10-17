@@ -1,0 +1,63 @@
+{
+  "schema": "linuxit-stage15-attachments-validation-v1",
+  "verified_at_local": "2026-10-17T00:46:39-03:00",
+  "timezone": "America/Sao_Paulo",
+  "source_snapshots": {
+    "app/pdf_attachments.py": "cd804bcada70ec73f3b4fc77d78c7bf092c0240820da528f97d0da462ff62615",
+    "app/worker_cli.py": "25298216711633c9d521c1617e62027048e2500c18bf2eb5815f973725dafd26",
+    "scripts/run_tests.py": "58f8de640149852c7c74cc3dfa0a1966dbfc70bbd205140012110c2984a1d75d",
+    "tests/test_pdf_attachments.py": "a8c1698cb0c2f3f481167f09a52ca578d6a6bc121b3ab4e28a2ff76d4f985afa"
+  },
+  "portable_tests": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "report": "testes/resultados/etapa-15-anexos-tests-2026-10-17.json"
+  },
+  "previous_worker_regressions": {
+    "passed": 6,
+    "failed": 0,
+    "report": "testes/resultados/etapa-15-worker-regression-2026-10-17.json"
+  },
+  "public_fixture_bytes_and_hash_verified": true,
+  "private_fixture_check": "analysis-local/stage15-fixture-check",
+  "functional_spec": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 15,
+    "proposed_only": 10,
+    "unique_test_references_checked": 23,
+    "unique_source_references_checked": 26,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "reference_specification_complete": false
+  },
+  "modules": 20,
+  "interface_refs": 13,
+  "no_gtk_or_cairo_import_closures": 8,
+  "python_files_parsed": 110,
+  "local_document_links_checked": 213,
+  "criteria_weights_and_revision_unchanged": true,
+  "status_changes": [
+    [
+      15,
+      "pending",
+      "partial"
+    ]
+  ],
+  "general_progress_percent": 43.33,
+  "stage15_verified_fraction": 0.333333,
+  "unfinished_criteria_registered": 21,
+  "catalog_entries": 209,
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "foxit_differential_test": false,
+  "full_linux_gtk_suite_rerun": false,
+  "source_changes_unreleased": true,
+  "published_flatpak_version": "0.1.1",
+  "new_flatpak_built": false,
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "environment_issue_resolved": "Initial test setUp failed with WinError 5 in sandbox temp; final portable run used a writable workspace temp parent. This is not a token exhaustion event."
+}

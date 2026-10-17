@@ -1320,32 +1320,49 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: listar/extrair anexos locais e separar portfólios de anexos comuns.",
+      "matrix_implementation": "backend subset: flat EmbeddedFiles list/extract; GUI and portfolios pending; see docs/ETAPA-15.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles plano. GUI, portfólios, árvores /Kids e anexos exclusivos de anotações ficam pendentes.",
       "inputs": [
-        "PDF com nomes e conteúdo de anexos; pasta nova de extração autorizada.",
-        "Política para nomes duplicados, caminhos e tamanhos."
+        "PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.",
+        "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário."
       ],
       "outputs": [
-        "Proposta: inventário com tamanho/hash e arquivos extraídos cujo conteúdo coincide com os streams de origem."
+        "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.",
+        "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original."
       ],
       "errors": [
         {
-          "trigger": "Nome contém caminho absoluto ou travessia ..",
-          "response": "Proposta: normalizar/recusar o nome, impedindo escrita fora da pasta de extração.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Caminhos, nomes reservados, caracteres de controle ou nome fora do limite",
+          "response": "Recusar extração antes de criar arquivo; a listagem conserva o nome e indica a recusa.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Arquivo de destino já existe",
-          "response": "Proposta: conflito explícito, sem sobrescrita silenciosa.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Destino já existe, inclusive outra entrada com o mesmo nome",
+          "response": "FileExistsError, sem sobrescrita; escolher outra pasta para extrair essa entrada.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "PDF mudou, índice/hash inválido, pasta ausente ou payload acima de 64 MiB",
+          "response": "Falha explícita antes da gravação; tamanho real é checado após decodificar o stream.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Portfólio /Collection, árvore /Kids ou senha não vazia necessária",
+          "response": "Recurso ainda não suportado; não apresentar inventário vazio como sucesso.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: extrair sem executar anexos; fontes não são alteradas."
+        "Extrai somente a entrada solicitada, sem executar ou abrir seu conteúdo; nenhum acesso remoto.",
+        "Nomes não são normalizados/renomeados silenciosamente; payloads não são lidos durante listagem.",
+        "A pasta deve ser controlada pelo usuário; não há garantia contra outro processo trocando diretórios durante a gravação.",
+        "Limites de parsing/memória não são impostos pela checagem de 64 MiB após descompressão; usar o worker e seus limites onde disponíveis."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/pdf_attachments.py",
+        "app/worker_cli.py"
+      ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
@@ -1353,22 +1370,45 @@
         ],
         "runtime_observed": false,
         "unresolved": [
-          "Estruturas de portfólio, nomes, recursos suportados, salvamento e política de conflitos."
+          "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
+          "Portfólios, árvores /Kids, UI de anexos, leitura por anotações isoladas e fluxo de senha continuam pendentes."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_pdf_attachments.py",
+          "test": "test_listing_keeps_duplicate_entries_and_does_not_decode_payloads"
+        },
+        {
+          "path": "tests/test_pdf_attachments.py",
+          "test": "test_extract_preserves_binary_content_hash_and_original"
+        },
+        {
+          "path": "tests/test_pdf_attachments.py",
+          "test": "test_unsafe_pdf_names_are_reported_and_refused_without_writes"
+        },
+        {
+          "path": "tests/test_pdf_attachments.py",
+          "test": "test_worker_protocol_lists_extracts_and_reports_conflict"
+        }
+      ],
       "dynamic_case_refs": [
         "D16"
       ],
-      "fixture_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/anexos-simples.pdf",
+          "status": "existing"
+        }
+      ],
       "acceptance_cases": [
         {
           "id": "S12-16-1",
           "kind": "nominal",
-          "given": "PDF sintético com nota-sintetica.txt.",
-          "when": "Extrair para pasta nova.",
-          "expected_linuxit": "Proposta: bytes e hash do arquivo extraído coincidem com o anexo; nada é executado.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "anexos-simples.pdf e uma pasta existente nova e vazia.",
+          "when": "Listar, usar o índice e SHA-256 devolvidos e extrair nota-sintetica.txt.",
+          "expected_linuxit": "Bytes, tamanho e hash coincidem com anexos-simples.json; nada é executado.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -1378,8 +1418,8 @@
           "kind": "exception",
           "given": "Nome de anexo ../fora.txt.",
           "when": "Extrair.",
-          "expected_linuxit": "Proposta: não escrever fora da pasta escolhida e informar o tratamento do nome.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "A listagem marca o nome como não permitido e a extração falha sem criar arquivo fora ou dentro da pasta.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -2042,5 +2082,6 @@
     "phase_a_consolidated": false,
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
-  "scope_exclusions_ref": "progresso/projeto.json"
+  "scope_exclusions_ref": "progresso/projeto.json",
+  "updated_at_local": "2026-10-17T00:42:23-03:00"
 }

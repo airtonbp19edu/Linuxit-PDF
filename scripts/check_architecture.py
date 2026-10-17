@@ -151,7 +151,7 @@ def check():
             'confirmed_token_exhaustion_events': 0, 'recorded_execution_timeouts': 2,
             'stage_13_design_verified_fraction': stage13['verified_fraction'],
             'general_progress_percent': progress['general_progress_percent'],
-            'full_application_implemented': False, 'application_behavior_changed': False,
+            'full_application_implemented': False, 'application_behavior_tested_by_this_check': False,
             'original_executed': False, 'new_rea_ghidra_observations': 0,
             'gtk_suite_rerun': False, 'new_flatpak_built': False}
 

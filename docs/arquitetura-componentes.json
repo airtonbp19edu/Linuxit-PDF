@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T00:20:00-03:00",
+  "reviewed_at_local": "2026-10-17T00:42:23-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.1",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -119,6 +119,12 @@
       "path": "app/version.py",
       "boundary": "shared_support",
       "responsibility": "Versão publicada da implementação."
+    },
+    {
+      "id": "pdf_attachments",
+      "path": "app/pdf_attachments.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Listagem e extração local de anexos em catálogo plano, por índice/hash, sem GTK."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -128,7 +134,8 @@
     "pdf_panels",
     "platform_runtime",
     "rendering",
-    "search_engine"
+    "search_engine",
+    "pdf_attachments"
   ],
   "interface_refs": [
     {
@@ -174,6 +181,14 @@
     {
       "path": "app/platform_runtime.py",
       "symbol": "worker_python"
+    },
+    {
+      "path": "app/pdf_attachments.py",
+      "symbol": "list_attachments"
+    },
+    {
+      "path": "app/pdf_attachments.py",
+      "symbol": "extract_attachment"
     }
   ],
   "family_assignments": [
@@ -321,9 +336,12 @@
     },
     {
       "id": "attachments",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
-      "future_boundary": "Inspeção/extração local com identidade e política de nomes.",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_attachments.py",
+        "app/worker_cli.py"
+      ],
+      "future_boundary": "Integração GTK, portfólios, árvores /Kids e anexos por anotação; busca em anexos pertence a outra família.",
       "future_boundary_implemented": false
     },
     {
@@ -436,5 +454,6 @@
   "scope_exclusions_ref": "progresso/projeto.json",
   "excluded_feature_ids": [
     "foxit-ai"
-  ]
+  ],
+  "source_changes_unreleased": true
 }

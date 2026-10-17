@@ -39,7 +39,8 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 
 Fonte: `docs/especificacao.md`, `docs/FOXIT-REA.md`, `docs/proveniencia-base.json`.
-Testes: `scripts/run_tests.py` (GUI requer X11/Wayland), 37 casos neste marco.
+Testes: `scripts/run_tests.py` (GUI requer X11/Wayland); 37 casos históricos do
+marco 0.1.1 e 14 novos testes portáveis de anexos. Suíte completa não repetida.
 Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 `/app/lib` padrão. Use `runtime-lib`, loader pareado e módulos OpenSSL incluídos.
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
@@ -83,7 +84,7 @@ Em 17/10/2026 o usuário pediu seguir a etapa 13 e registrar as pendências por
 VM e possíveis limites de tokens. Ver `docs/ETAPA-13.md`,
 `docs/arquitetura-componentes.json` e `progresso/pendencias-analises.md`/`.json`.
 Os dois critérios de projeto da etapa 13 já estavam `done`; não aumentar os
-indicadores por esta revisão. `scripts/check_architecture.py` confere 19 módulos,
+indicadores por esta revisão. `scripts/check_architecture.py` confere os módulos,
 25 famílias e todos os critérios ainda abertos. Marcas/legendas de mosaico
 dependem de Cairo; a ausência desse import faz o ramo retornar sem as marcas.
 Preservar a distinção entre VM, análise estática, implementação e runtime Linux.
@@ -98,6 +99,18 @@ de entrada e seis controles de worker, sem GTK/Foxit; resultados completos
 em `analysis-local/project-stage14-2026-10-17/`. Os dois critérios já estavam
 `done`; suíte Linux/GUI/Flatpak não foi repetida. Próxima etapa do roteiro: 15,
 com contratos suficientes e dentro do escopo sem IA, mantendo as pendências.
+
+Etapa 15 iniciada sem VM em 17/10/2026: `docs/ETAPA-15.md`. Backend próprio
+`app/pdf_attachments.py` e comandos worker `attachments`/`extract-attachment`
+listam/extraem anexos de catálogo plano por índice/hash, sem sobrescrita.
+14 testes portáveis passaram. GUI, /Kids, portfólios, senha e anexos exclusivos
+de anotações continuam pendentes; tamanho real só é limitado após decodificação.
+Fonte em desenvolvimento após o Flatpak 0.1.1, sem pacote novo. Arquitetura atual:
+20 módulos/13 interfaces; especificação atual: 15 subconjuntos/10 propostas.
+Critério amplo da etapa 15 `partial`; pesos e roteiro 43,33% preservados.
+Runner aceita `--pattern test_pdf_attachments.py --temp-dir <pasta-gravavel>`
+e registra que a execução é parcial. Próximo passo: integrar em GTK/Linux e
+validar a UI; comparação Foxit segue dependente da contenção offline.
 
 A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o

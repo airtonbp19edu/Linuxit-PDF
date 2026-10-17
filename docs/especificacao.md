@@ -78,6 +78,14 @@ de casos reais, incluindo falhas e cancelamento.
 
 ## Erros e limitações
 
+O contrato próprio de [anexos da etapa 15](ETAPA-15.md) lista e extrai entradas
+de catálogo plano `/Names/EmbeddedFiles`, por índice e hash do documento. Mantém
+nomes duplicados como entradas distintas, recusa nomes perigosos e usa criação
+exclusiva para preservar arquivos existentes. Tamanho declarado e real são
+distintos; o limite de 64 MiB do payload real é aplicado após descompressão.
+Esse backend ainda não tem UI e não implementa portfólios, /Kids, senha não
+vazia ou anexos exclusivos de anotações. Seus testes não são paridade Foxit.
+
 Casos de PDF inválido, senha, corrupção, assinaturas, XFA e serviços externos
 exigem especificações/corpus próprios. Não se converte presença de código ou
 controle em suporte funcional. As 25 famílias da matriz continuam abertas.

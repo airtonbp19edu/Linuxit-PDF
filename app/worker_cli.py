@@ -87,6 +87,24 @@ def main(argv):
         from pdf_panels import inspect_document_panels
         print(json.dumps(inspect_document_panels(argv[2]), ensure_ascii=False))
         return
+    if cmd == 'attachments':
+        from pdf_attachments import list_attachments
+        print(json.dumps(list_attachments(argv[2]), ensure_ascii=True))
+        return
+    if cmd == 'extract-attachment':
+        if len(argv) != 4:
+            raise SystemExit(2)
+        from pdf_attachments import extract_attachment
+        try:
+            request = json.load(sys.stdin)
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            raise RuntimeError('Opções de extração inválidas.') from exc
+        if not isinstance(request, dict):
+            raise ValueError('A extração requer um objeto JSON com index e source_sha256.')
+        result = extract_attachment(argv[2], request.get('index'), argv[3],
+                                    source_sha256=request.get('source_sha256'))
+        print(json.dumps(result, ensure_ascii=True))
+        return
     if cmd == 'prepare':
         if len(argv) < 4:
             raise SystemExit(2)

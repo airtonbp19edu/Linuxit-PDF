@@ -2,10 +2,11 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Revisão atual: [etapa 14](../docs/ETAPA-14.md), com base preservada e seis controles
-portáveis aprovados; os dois critérios já estavam verificados. IA do Foxit e
+Trabalho atual: [etapa 15](../docs/ETAPA-15.md), backend de anexos planos
+implementado com 14 testes portáveis aprovados. Critério amplo `partial`;
+integrar listagem/extração à UI em Linux como próximo passo sem VM. IA do Foxit e
 recursos generativos foram excluídos pelo usuário: [escopo](../docs/ESCOPO.md).
-Próxima etapa do roteiro: 15, com contratos suficientes e sem IA.
+Portfólios, /Kids, senha não vazia e anexos por anotação ainda não implementados.
 Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
 e `.json`: 21 critérios, 14 etapas. Causas VM/análise/implementação/runtime
 separadas; timeouts registrados e causa por tokens ainda não confirmada.
@@ -29,7 +30,7 @@ comportamento recuperado do Foxit. Comparação diferencial depende da VM.
 
 1. Ler `projeto.json`, `progresso.json`, matriz de paridade e histórico. Conferir Git local/remoto; não reiniciar a análise geral.
 2. Retomar os resultados REA/Ghidra e o projeto headless preservado. O main default expirou; usar seeds/perfil dirigido e registrar novos resultados separadamente.
-3. Prioridade solicitada: etapa 10. Seguir `docs/ETAPA-10.md` e os 20 cenários de `testes/cenarios-dinamicos.json`. O kit foi gerado e passou em cinco testes de preparação, mas não executou o original. Windows 11 Home local sem Sandbox, WSL não instalado, usuário sem VM. Disponibilizar guest Windows offline descartável ou recuperar a contenção Linux/Wine. No histórico Wine/i386 sob QEMU, cmd.exe passou, mas Foxit encerrou após CInvalidArgException e INT 0x29 antes da UI; preservar contenção e bytes do original.
+3. Pendência de ambiente: etapa 10. Seguir `docs/ETAPA-10.md` e os 20 cenários de `testes/cenarios-dinamicos.json`. O kit foi gerado e passou em cinco testes de preparação, mas não executou o original. Windows 11 Home local sem Sandbox, WSL não instalado, usuário sem VM. Disponibilizar guest Windows offline descartável ou recuperar a contenção Linux/Wine. No histórico Wine/i386 sob QEMU, cmd.exe passou, mas Foxit encerrou após CInvalidArgException e INT 0x29 antes da UI; preservar contenção e bytes do original.
 4. Executar o corpus sintético no original e comparar busca/escopos/ordem/navegação. Os 20 casos da nova campanha continuam `not_run`; preparação não é observação. Paridade permanece 0/25 famílias enquanto não houver testes diferenciais.
 5. Construtores, pontos GDI StartDoc/StartPage, as três entradas do primeiro marco Windows e as seis de geometria/consumidores já foram examinados. Ver `docs/REA-IMPRESSAO-CONSUMIDORES.md`; esse marco tinha 200 entradas (152 REA + 48 diretas exclusivas), antes das nove entradas de interface que elevaram o catálogo a 209. Seguir `0x166d050`, `0x165f5d0`, `0x16678c0`, `0x16678d0`, `0x16678e0`, `0x16678f0`, `0x1665a30`, `0x1664c00`, `0x2d226d0` e `0x1b5baf0`. Não copiar assinaturas provisórias: uma comparação inteira usa slot tipado como float pelo decompilador. Ainda não há geometria completa, imposição ou impressão física equivalente. Projetos locais preservados em `analysis-local/headless/windows-print-01` e `windows-print-02`; resultados novos são do backend direto `-noanalysis`, com conferência Capstone.
 6. Workers e parte do argumento de 24 bytes já examinados; ver docs/REA-BUSCA-IMPRESSAO.md. Completar significado dos bytes 3/5/6/7 e dwords 12/16/20, stemming e caminhos completos de anexos. Não exibir controles sem implementação.
