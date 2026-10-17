@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T00:42:23-03:00",
+  "reviewed_at_local": "2026-10-17T01:01:38-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -299,17 +299,18 @@
       "stage_id": 16,
       "stage_title": "Interface e integrações",
       "criterion": "Demais interações e integrações funcionais",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
         "implementation",
         "linux_runtime",
         "platform_integration"
       ],
       "evidence_refs": [
-        "docs/instalacao.md",
-        "progresso/matriz-paridade.csv"
+        "docs/ETAPA-16.md",
+        "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json",
+        "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json"
       ],
-      "next_action": "Integrar famílias implementadas e validar GUI/portais/plataformas em ambiente adequado.",
+      "next_action": "Executar os quatro testes do painel e a suíte gráfica em GTK/Linux com tela e Poppler; depois ampliar outras interações. Controlador portável já testado; isso não é validação visual.",
       "token_exhaustion_confirmed": null
     },
     {

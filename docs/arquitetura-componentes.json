@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T00:42:23-03:00",
+  "reviewed_at_local": "2026-10-17T01:01:38-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.1",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -125,6 +125,12 @@
       "path": "app/pdf_attachments.py",
       "boundary": "portable_pdf_services",
       "responsibility": "Listagem e extração local de anexos em catálogo plano, por índice/hash, sem GTK."
+    },
+    {
+      "id": "attachment_tasks",
+      "path": "app/attachment_tasks.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Coordenação portável do painel, tokens de seleção/documento e chamadas UTF-8 ao worker; sem GTK."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -135,7 +141,8 @@
     "platform_runtime",
     "rendering",
     "search_engine",
-    "pdf_attachments"
+    "pdf_attachments",
+    "attachment_tasks"
   ],
   "interface_refs": [
     {
@@ -189,6 +196,14 @@
     {
       "path": "app/pdf_attachments.py",
       "symbol": "extract_attachment"
+    },
+    {
+      "path": "app/attachment_tasks.py",
+      "symbol": "AttachmentPanelController"
+    },
+    {
+      "path": "app/attachment_tasks.py",
+      "symbol": "invoke_attachment_worker"
     }
   ],
   "family_assignments": [
@@ -339,9 +354,11 @@
       "contract_kind": "implemented_subset",
       "current_source_refs": [
         "app/pdf_attachments.py",
-        "app/worker_cli.py"
+        "app/worker_cli.py",
+        "app/attachment_tasks.py",
+        "app/main.py"
       ],
-      "future_boundary": "Integração GTK, portfólios, árvores /Kids e anexos por anotação; busca em anexos pertence a outra família.",
+      "future_boundary": "Execução real GTK/Linux, portfólios, /Kids e anexos por anotação. Painel já ligado no código-fonte, sem validação visual atual.",
       "future_boundary_implemented": false
     },
     {

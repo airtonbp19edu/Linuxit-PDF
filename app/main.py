@@ -26,6 +26,7 @@ from search_engine import TextSearchIndex
 from page_cache import PageCache
 from themes import load_theme, read_theme, save_theme
 from platform_runtime import worker_python, subprocess_options
+from attachment_tasks import AttachmentPanelController, display_attachment_name
 
 APP_DIR = Path(__file__).resolve().parent
 WORKER = APP_DIR / 'worker_cli.py'
@@ -341,6 +342,7 @@ class PDFWindow(Gtk.Window):
                 self._command_button('user-bookmarks-symbolic','Marcadores',lambda *_: self._show_side_panel(1)),
                 self._command_button('mail-message-new-symbolic','Comentários',lambda *_: self._show_side_panel(2)),
                 self._command_button('view-grid-symbolic','Camadas',lambda *_: self._show_side_panel(3)),
+                self._command_button('mail-attachment-symbolic','Anexos',lambda *_: self._show_side_panel(4)),
             ]),
             self._ribbon_group('Visualização', [
                 self._command_button('object-rotate-left-symbolic','Girar ←',lambda *_: self._rotate(-90)),
@@ -551,6 +553,8 @@ class PDFWindow(Gtk.Window):
         self._set_sidebar_visible(True)
         for i, btn in enumerate(getattr(self, 'sidebar_rail_buttons', [])):
             btn.set_active(i == index)
+        if index == 4:
+            self.attachment_controller.ensure_loaded()
 
     def _build_body(self):
         self.body_paned = Gtk.Paned(orientation=Gtk.Orientation.HORIZONTAL)
@@ -566,6 +570,7 @@ class PDFWindow(Gtk.Window):
             ('user-bookmarks-symbolic','Marcadores',1),
             ('mail-message-new-symbolic','Comentários',2),
             ('view-grid-symbolic','Camadas',3),
+            ('mail-attachment-symbolic','Anexos',4),
         ]:
             self.sidebar_rail.pack_start(self._sidebar_rail_button(icon, tip, idx), False, False, 0)
         hide_btn = Gtk.Button.new_from_icon_name('go-previous-symbolic', Gtk.IconSize.BUTTON)
@@ -609,6 +614,7 @@ class PDFWindow(Gtk.Window):
         self.layer_list = Gtk.ListBox(); self.layer_list.set_selection_mode(Gtk.SelectionMode.NONE)
         self.layer_scroll = Gtk.ScrolledWindow(); self.layer_scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC); self.layer_scroll.add(self.layer_list)
         self.sidebar_notebook.append_page(panel_with_title('Camadas', self.layer_scroll), None)
+        self.sidebar_notebook.append_page(panel_with_title('Anexos', self._build_attachment_panel()), None)
         self.sidebar_container.pack_start(self.sidebar_notebook, True, True, 0)
         self.body_paned.pack1(self.sidebar_container, resize=False, shrink=True)
 
@@ -736,6 +742,7 @@ class PDFWindow(Gtk.Window):
         self.search_cancel.set(); self.search_index = None; self.search_running = False
         self.runner.invalidate('main-render'); self.runner.invalidate('search'); self.runner.invalidate('panels')
         self.runner.invalidate('selection-words')
+        self.attachment_controller.set_document(None)
         self.filepath = None; self.page_count = 0; self.page_sizes = []; self.metadata = {}; self.page = 0
         self.search_hits = []; self.search_pos = -1
         self._search_scroll_pending = False
@@ -1081,6 +1088,9 @@ class PDFWindow(Gtk.Window):
         if not self.filepath:
             return
         path = self.filepath
+        self.attachment_controller.set_document(path)
+        if self.sidebar_visible and self.sidebar_notebook.get_current_page() == 4:
+            self.attachment_controller.ensure_loaded()
         self._clear_side_panels()
         self.bookmark_list.add(self._info_row('Carregando marcadores…'))
         self.comment_list.add(self._info_row('Carregando comentários…'))
@@ -1135,6 +1145,90 @@ class PDFWindow(Gtk.Window):
     def _bookmark_activated(self, _box, row):
         page = getattr(row, 'page_index', None)
         if page is not None: self.goto_page(page)
+
+    # ---------- attachments ----------
+    def _build_attachment_panel(self):
+        panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6, margin=6)
+        self.attachment_status = Gtk.Label(xalign=0)
+        self.attachment_status.set_line_wrap(True)
+        panel.pack_start(self.attachment_status, False, False, 0)
+        controls = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+        self.attachment_refresh = Gtk.Button(label='Atualizar')
+        self.attachment_refresh.connect('clicked', lambda *_: self.attachment_controller.refresh())
+        self.attachment_save = Gtk.Button(label='Salvar selecionado…')
+        self.attachment_save.connect('clicked', self._save_selected_attachment)
+        controls.pack_start(self.attachment_refresh, False, False, 0)
+        controls.pack_start(self.attachment_save, False, False, 0)
+        panel.pack_start(controls, False, False, 0)
+        self.attachment_list = Gtk.ListBox()
+        self.attachment_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
+        self.attachment_list.connect('row-selected', self._attachment_selected)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scroll.add(self.attachment_list)
+        panel.pack_start(scroll, True, True, 0)
+        self._attachment_items, self._attachment_rows, self._attachment_rendering = None, {}, False
+        self.attachment_controller = AttachmentPanelController(self.runner, self._update_attachment_panel)
+        self.attachment_controller.set_document(None)
+        return panel
+
+    def _update_attachment_panel(self, state):
+        self._attachment_rendering = True
+        try:
+            self.attachment_status.set_text(state['message'])
+            self.attachment_refresh.set_sensitive(state['can_refresh'])
+            self.attachment_save.set_sensitive(state['can_extract'])
+            if self._attachment_items != state['items']:
+                for row in self.attachment_list.get_children():
+                    self.attachment_list.remove(row)
+                self._attachment_rows = {}
+                for item in state['items']:
+                    row = Gtk.ListBoxRow()
+                    row.attachment_index = item['index']
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3, margin=6)
+                    name = display_attachment_name(item['name'])
+                    label = Gtk.Label(label=name, xalign=0)
+                    label.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+                    label.set_max_width_chars(24)
+                    label.set_tooltip_text(name)
+                    box.pack_start(label, False, False, 0)
+                    size = item['declared_size_bytes']
+                    detail = (f'{size} bytes informados' if size is not None else 'Tamanho não informado')
+                    if not item['filename_allowed']:
+                        detail = item.get('filename_error') or 'Nome não permitido para salvar.'
+                    secondary = Gtk.Label(label=detail, xalign=0)
+                    secondary.set_line_wrap(True)
+                    secondary.get_style_context().add_class('muted')
+                    box.pack_start(secondary, False, False, 0)
+                    row.add(box)
+                    self.attachment_list.add(row)
+                    self._attachment_rows[item['index']] = row
+                self._attachment_items = state['items']
+                self.attachment_list.show_all()
+            self.attachment_list.select_row(self._attachment_rows.get(state['selected_index']))
+        finally:
+            self._attachment_rendering = False
+
+    def _attachment_selected(self, _box, row):
+        if not self._attachment_rendering:
+            self.attachment_controller.select(getattr(row, 'attachment_index', None))
+
+    def _save_selected_attachment(self, *_args):
+        selection = self.attachment_controller.selection_token()
+        if selection is None or self.attachment_controller.extracting:
+            return
+        dialog = Gtk.FileChooserDialog(title='Escolher pasta para salvar o anexo', parent=self,
+                                       action=Gtk.FileChooserAction.SELECT_FOLDER)
+        dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar nesta pasta', Gtk.ResponseType.OK)
+        dialog.set_modal(True)
+        dialog.set_destroy_with_parent(True)
+        try:
+            response = dialog.run()
+            directory = dialog.get_filename() if response == Gtk.ResponseType.OK else None
+        finally:
+            dialog.destroy()
+        if directory:
+            self.attachment_controller.extract(directory, selection)
 
     def _comment_activated(self, _box, row):
         page = getattr(row, 'page_index', None)
@@ -1589,6 +1683,13 @@ class PDFWindow(Gtk.Window):
         if key == 'F11': self._fullscreen_toggle(); return True
         if key == 'Escape' and self.find_revealer.get_reveal_child(): self._hide_find(); return True
         if isinstance(self.get_focus(), (Gtk.Entry, Gtk.SpinButton, Gtk.TextView)): return False
+        focus = self.get_focus()
+        while focus is not None:
+            if focus is self.attachment_list and key in (
+                    'Up', 'Down', 'Left', 'Right', 'Home', 'End', 'Page_Up', 'Page_Down',
+                    'Return', 'KP_Enter', 'space'):
+                return False
+            focus = focus.get_parent()
         if key in ('Page_Down','Right','Down'): self.goto_page(self.page + 1); return True
         if key in ('Page_Up','Left','Up'): self.goto_page(self.page - 1); return True
         if key == 'Home': self.goto_page(0); return True
@@ -1601,6 +1702,8 @@ class PDFWindow(Gtk.Window):
         dlg.format_secondary_text(str(text)); dlg.run(); dlg.destroy()
 
     def _on_destroy(self, *_args):
+        if hasattr(self, 'attachment_controller'):
+            self.attachment_controller.close()
         self.search_cancel.set()
         self._search_scroll_pending = False
         for name in ('search_timer', 'resize_timer', 'zoom_slider_timer'):

@@ -1,0 +1,100 @@
+{
+  "schema": "linuxit-stage16-attachment-panel-validation-v1",
+  "verified_at_local": "2026-10-17T01:05:56-03:00",
+  "timezone": "America/Sao_Paulo",
+  "source_snapshots": {
+    "app/main.py": "ad254bd8a7579fe6c6670faa3ddbdf1a5ddc61274f1f253d34ef1c45f5a8f938",
+    "app/attachment_tasks.py": "bdcb24ffbd1dd0b1108a69af9b4e3b0e8a64c5174f0938b647fcbafbc3c314ea",
+    "tests/test_attachment_tasks.py": "22b4a8dfb41c4d4daa22bd2dd6e2b2b43b309af76c4610063d399878cd4abd1b",
+    "tests/test_attachment_panel_gtk.py": "a8e31f02b2c21cb5203875cc68bf66574db0b99d18bc8875c1c24fcc35cc1729"
+  },
+  "initial_controller_run": {
+    "passed": 13,
+    "failures": 1,
+    "issue": "Worker stderr decoded with replacement characters; fixed by explicit UTF-8 mode."
+  },
+  "final_controller_run": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "report": "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json"
+  },
+  "gtk_run": {
+    "passed": 0,
+    "failed": 0,
+    "skipped": 4,
+    "report": "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json"
+  },
+  "source_ui_wired": true,
+  "gtk_widgets_or_layout_verified": false,
+  "source_binding_calls_checked": {
+    "_build_body": [
+      "self._build_attachment_panel"
+    ],
+    "_show_side_panel": [
+      "self.attachment_controller.ensure_loaded"
+    ],
+    "_load_side_panels": [
+      "self.attachment_controller.set_document"
+    ],
+    "_clear_document_state": [
+      "self.attachment_controller.set_document"
+    ],
+    "_on_destroy": [
+      "self.attachment_controller.close"
+    ],
+    "_save_selected_attachment": [
+      "self.attachment_controller.selection_token",
+      "self.attachment_controller.extract"
+    ]
+  },
+  "binding_check_executes_gtk": false,
+  "functional_spec": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 15,
+    "proposed_only": 10,
+    "unique_test_references_checked": 26,
+    "unique_source_references_checked": 27,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "reference_specification_complete": false
+  },
+  "application_modules": 21,
+  "interface_refs": 15,
+  "no_gtk_or_cairo_import_closures": 9,
+  "python_files_parsed": 113,
+  "local_document_links_checked": 221,
+  "backend_worker_and_original_catalog_unchanged": true,
+  "criteria_weights_and_revision_unchanged": true,
+  "status_changes": [
+    [
+      16,
+      "pending",
+      "partial"
+    ]
+  ],
+  "stage16_complete": false,
+  "stage16_verified_fraction": 0.333333,
+  "general_progress_percent": 43.33,
+  "unfinished_criteria_registered": 21,
+  "environment": {
+    "gi_available": false,
+    "cairo_available": false,
+    "display_present": false,
+    "wsl_status_code": 1,
+    "wsl_status_text": "O Subsistema do Windows para Linux não está instalado. Você pode instalar executando 'wsl.exe --install'.\r\r\nPara obter mais informações, visite https://aka.ms/wslinstall\r\r\n"
+  },
+  "private_results": "analysis-local/stage16-verification",
+  "catalog_entries": 209,
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "foxit_differential_test": false,
+  "full_linux_gtk_suite_rerun": false,
+  "source_changes_unreleased": true,
+  "published_flatpak_version": "0.1.1",
+  "new_flatpak_built": false,
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ]
+}

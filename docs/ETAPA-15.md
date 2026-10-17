@@ -1,5 +1,9 @@
 # Etapa 15 — backend de anexos sem depender da VM
 
+Continuação na [etapa 16](ETAPA-16.md): painel Anexos conectado ao código GTK,
+controlador portável testado e execução visual ainda pendente. O marco abaixo
+registra a entrega inicial do backend, antes dessa integração.
+
 Em **17/10/2026**, foi implementado um contrato próprio de listagem e extração
 local de anexos. É um avanço de código da etapa 15, com a IA do Foxit
 [fora do escopo](ESCOPO.md). As funções ficam no código-fonte em desenvolvimento;

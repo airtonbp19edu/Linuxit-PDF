@@ -83,8 +83,10 @@ de catálogo plano `/Names/EmbeddedFiles`, por índice e hash do documento. Mant
 nomes duplicados como entradas distintas, recusa nomes perigosos e usa criação
 exclusiva para preservar arquivos existentes. Tamanho declarado e real são
 distintos; o limite de 64 MiB do payload real é aplicado após descompressão.
-Esse backend ainda não tem UI e não implementa portfólios, /Kids, senha não
-vazia ou anexos exclusivos de anotações. Seus testes não são paridade Foxit.
+O [painel da etapa 16](ETAPA-16.md) está ligado no código GTK, com controlador
+portável testado; a execução visual ainda está pendente. Portfólios, /Kids,
+senha não vazia e anexos exclusivos de anotações continuam não implementados.
+Esses testes não são paridade Foxit.
 
 Casos de PDF inválido, senha, corrupção, assinaturas, XFA e serviços externos
 exigem especificações/corpus próprios. Não se converte presença de código ou

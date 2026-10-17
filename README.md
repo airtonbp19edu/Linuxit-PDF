@@ -14,8 +14,9 @@ ou somente a selecionada, sem refazer a pesquisa. A base e as adaptações têm
 [proveniência registrada](docs/proveniencia-base.json).
 
 No código-fonte em desenvolvimento após esse pacote, há também
-[listagem e extração local de anexos pelo worker](docs/ETAPA-15.md), com
-14 testes portáveis aprovados. A integração gráfica e um novo Flatpak seguem pendentes.
+[listagem e extração local de anexos](docs/ETAPA-15.md), com backend testado.
+O [painel Anexos está ligado ao código GTK](docs/ETAPA-16.md); seus 14 testes
+portáveis de controle passaram, e a execução visual GTK/Linux segue pendente.
 
 Os 37 testes próprios passaram no código-fonte e no runtime empacotado.
 O Flatpak também passou na instalação e execução real no sandbox: abertura,
@@ -38,6 +39,7 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Etapa 13: arquitetura revisada e fronteiras verificadas](docs/ETAPA-13.md)
 - [Etapa 14: base do projeto e execução portável conferidas](docs/ETAPA-14.md)
 - [Etapa 15: backend de anexos e validação sem VM](docs/ETAPA-15.md)
+- [Etapa 16: painel Anexos, controlador testado e validação GTK pendente](docs/ETAPA-16.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)

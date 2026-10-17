@@ -1,8 +1,9 @@
 # Etapa 13 — revisão do projeto de arquitetura
 
 O marco abaixo tinha 19 módulos/11 interfaces. A [etapa 15](ETAPA-15.md)
-acrescentou o backend de anexos: o inventário atual tem 20 módulos/13 interfaces,
-sem alterar os critérios de projeto já verificados.
+acrescentou o backend de anexos; a [etapa 16](ETAPA-16.md) ligou o painel no
+código. O inventário atual tem 21 módulos/15 interfaces, sem alterar os critérios
+de projeto já verificados.
 
 Em **17/10/2026**, a arquitetura foi revisada para a versão **0.1.1**, seguindo
 os contratos detalhados da etapa 12. Os dois critérios da etapa 13 já estavam

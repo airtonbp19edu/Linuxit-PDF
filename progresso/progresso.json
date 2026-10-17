@@ -543,8 +543,15 @@
         {
           "criterion": "Demais interações e integrações funcionais",
           "weight": 10,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/ETAPA-16.md",
+            "app/main.py",
+            "app/attachment_tasks.py",
+            "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json",
+            "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json"
+          ],
+          "note": "Attachment panel wired in source; 14 portable controller/worker tests passed. Four real GTK cases are skipped due to missing GTK/display; widget execution, remaining integrations and Foxit differential behavior are not verified. Criterion/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,

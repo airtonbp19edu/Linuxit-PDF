@@ -637,17 +637,19 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Anexos/portfólios
 
-Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles plano. GUI, portfólios, árvores /Kids e anexos exclusivos de anotações ficam pendentes.
+Atual: backend/worker e código GTK de painel para listar/salvar anexo do catálogo plano. Controlador portável testado; execução GTK ainda pendente. Portfólios, /Kids e anexos exclusivos de anotações ficam pendentes.
 
 **Entradas**
 
 - PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.
 - Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.
+- No painel: selecionar entrada, escolher pasta e confirmar; cancelar não inicia extração.
 
 **Saídas**
 
 - Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.
 - Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.
+- Código da UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; widgets ainda não executados neste ambiente.
 
 **Erros e casos excepcionais**
 
@@ -655,6 +657,7 @@ Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles 
 - Destino já existe, inclusive outra entrada com o mesmo nome: FileExistsError, sem sobrescrita; escolher outra pasta para extrair essa entrada.
 - PDF mudou, índice/hash inválido, pasta ausente ou payload acima de 64 MiB: Falha explícita antes da gravação; tamanho real é checado após decodificar o stream.
 - Portfólio /Collection, árvore /Kids ou senha não vazia necessária: Recurso ainda não suportado; não apresentar inventário vazio como sucesso.
+- Seleção/documento mudou durante a escolha de pasta ou resultado assíncrono tornou-se obsoleto: Token de seleção inválido não inicia extração; callbacks antigos não substituem dados/estado do novo documento.
 
 **Estado e efeitos**
 
@@ -662,6 +665,7 @@ Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles 
 - Nomes não são normalizados/renomeados silenciosamente; payloads não são lidos durante listagem.
 - A pasta deve ser controlada pelo usuário; não há garantia contra outro processo trocando diretórios durante a gravação.
 - Limites de parsing/memória não são impostos pela checagem de 64 MiB após descompressão; usar o worker e seus limites onde disponíveis.
+- Extração já autorizada pode terminar após troca de documento; status antigo não é aplicado ao novo. Fechar janela bloqueia tarefas ainda não iniciadas/callbacks, sem garantir interrupção de subprocesso já em execução.
 
 **Critérios planejados**
 
@@ -671,11 +675,11 @@ Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles 
 **Lacunas da referência Foxit**
 
 - Política e comportamento Foxit ainda não observados; backend atual é contrato independente.
-- Portfólios, árvores /Kids, UI de anexos, leitura por anotações isoladas e fluxo de senha continuam pendentes.
+- Execução do painel GTK/Linux, portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado.
 
-Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [app/attachment_tasks.py](../app/attachment_tasks.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 

@@ -1320,16 +1320,18 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "backend subset: flat EmbeddedFiles list/extract; GUI and portfolios pending; see docs/ETAPA-15.md",
+      "matrix_implementation": "source UI+backend subset: flat attachment panel/list/extract; GTK execution and portfolios pending; see docs/ETAPA-16.md",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: backend/worker lista e extrai um anexo do catálogo /Names/EmbeddedFiles plano. GUI, portfólios, árvores /Kids e anexos exclusivos de anotações ficam pendentes.",
+      "scope": "Atual: backend/worker e código GTK de painel para listar/salvar anexo do catálogo plano. Controlador portável testado; execução GTK ainda pendente. Portfólios, /Kids e anexos exclusivos de anotações ficam pendentes.",
       "inputs": [
         "PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.",
-        "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário."
+        "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.",
+        "No painel: selecionar entrada, escolher pasta e confirmar; cancelar não inicia extração."
       ],
       "outputs": [
         "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.",
-        "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original."
+        "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.",
+        "Código da UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; widgets ainda não executados neste ambiente."
       ],
       "errors": [
         {
@@ -1351,17 +1353,25 @@
           "trigger": "Portfólio /Collection, árvore /Kids ou senha não vazia necessária",
           "response": "Recurso ainda não suportado; não apresentar inventário vazio como sucesso.",
           "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Seleção/documento mudou durante a escolha de pasta ou resultado assíncrono tornou-se obsoleto",
+          "response": "Token de seleção inválido não inicia extração; callbacks antigos não substituem dados/estado do novo documento.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
         "Extrai somente a entrada solicitada, sem executar ou abrir seu conteúdo; nenhum acesso remoto.",
         "Nomes não são normalizados/renomeados silenciosamente; payloads não são lidos durante listagem.",
         "A pasta deve ser controlada pelo usuário; não há garantia contra outro processo trocando diretórios durante a gravação.",
-        "Limites de parsing/memória não são impostos pela checagem de 64 MiB após descompressão; usar o worker e seus limites onde disponíveis."
+        "Limites de parsing/memória não são impostos pela checagem de 64 MiB após descompressão; usar o worker e seus limites onde disponíveis.",
+        "Extração já autorizada pode terminar após troca de documento; status antigo não é aplicado ao novo. Fechar janela bloqueia tarefas ainda não iniciadas/callbacks, sem garantir interrupção de subprocesso já em execução."
       ],
       "source_refs": [
         "app/pdf_attachments.py",
-        "app/worker_cli.py"
+        "app/worker_cli.py",
+        "app/attachment_tasks.py",
+        "app/main.py"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -1371,7 +1381,7 @@
         "runtime_observed": false,
         "unresolved": [
           "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
-          "Portfólios, árvores /Kids, UI de anexos, leitura por anotações isoladas e fluxo de senha continuam pendentes."
+          "Execução do painel GTK/Linux, portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado."
         ]
       },
       "existing_test_refs": [
@@ -1390,6 +1400,18 @@
         {
           "path": "tests/test_pdf_attachments.py",
           "test": "test_worker_protocol_lists_extracts_and_reports_conflict"
+        },
+        {
+          "path": "tests/test_attachment_tasks.py",
+          "test": "test_stale_listing_callback_cannot_replace_a_new_document"
+        },
+        {
+          "path": "tests/test_attachment_tasks.py",
+          "test": "test_real_worker_extracts_selected_attachment_and_restores_buttons"
+        },
+        {
+          "path": "tests/test_attachment_tasks.py",
+          "test": "test_refresh_invalidates_the_selection_captured_before_a_dialog"
         }
       ],
       "dynamic_case_refs": [
@@ -2083,5 +2105,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T00:42:23-03:00"
+  "updated_at_local": "2026-10-17T01:01:38-03:00"
 }

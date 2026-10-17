@@ -86,12 +86,22 @@ Flatpak 0.1.1. Ainda faltam integração GTK/Linux, portfólios e casos complexo
 a comparação com o original segue pendente da VM/contenção. Próximo passo
 concreto: integrar listagem/extração à UI em Linux e testar com o novo corpus.
 
+A [etapa 16](ETAPA-16.md) conectou o painel Anexos ao código GTK, com carga sob
+demanda, seleção e escolha de pasta. O controlador portável passou em 14 testes
+após corrigir UTF-8 do worker. **Os quatro testes GTK não foram executados**:
+faltam GTK/tela e WSL continua não instalado. Critério abrangente `partial`,
+sem aumento dos percentuais; código-fonte em desenvolvimento, sem novo Flatpak.
+Arquitetura atual: 21 módulos/15 interfaces. Próximo passo: rodar os testes reais
+do painel e a suíte completa em Linux com GTK/Poppler e tela, sem exigir a VM
+do Foxit. Não promover testes do controlador a validação visual.
+
 ## Onde trabalhar
 
 - Interface e ciclo de vida: `app/main.py`.
 - Busca, geometria e metadados: `app/search_engine.py`, `app/rendering.py` e
   `app/pdf_panels.py`.
 - Listagem/extração de anexos: `app/pdf_attachments.py` e comandos do worker.
+- Controle do painel Anexos: `app/attachment_tasks.py`, ligado à janela GTK.
 - Impressão e imposição: `app/imposition.py`, `app/print_window.py`,
   `app/worker_cli.py`, `app/cups_backend.py` e `app/windows_print.py`.
 - Contratos e arquitetura: `docs/especificacao.md`, `docs/especificacao-funcional.json`,

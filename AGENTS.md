@@ -40,7 +40,8 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
 
 Fonte: `docs/especificacao.md`, `docs/FOXIT-REA.md`, `docs/proveniencia-base.json`.
 Testes: `scripts/run_tests.py` (GUI requer X11/Wayland); 37 casos históricos do
-marco 0.1.1 e 14 novos testes portáveis de anexos. Suíte completa não repetida.
+marco 0.1.1, 14 testes do backend de anexos e 14 do controlador portável.
+Quatro testes GTK do painel estão sem execução; suíte completa não repetida.
 Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 `/app/lib` padrão. Use `runtime-lib`, loader pareado e módulos OpenSSL incluídos.
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
@@ -111,6 +112,18 @@ Critério amplo da etapa 15 `partial`; pesos e roteiro 43,33% preservados.
 Runner aceita `--pattern test_pdf_attachments.py --temp-dir <pasta-gravavel>`
 e registra que a execução é parcial. Próximo passo: integrar em GTK/Linux e
 validar a UI; comparação Foxit segue dependente da contenção offline.
+
+Etapa 16 em 17/10/2026: `docs/ETAPA-16.md`. Painel Anexos ligado no código de
+`app/main.py`, com Atualizar/Salvar selecionado e escolha de pasta. Coordenação
+em `app/attachment_tasks.py`: carga sob demanda, gerações e seleção capturada
+antes do diálogo; extração já autorizada pode concluir após trocar documento,
+sem atualizar o status do novo. 14 testes portáveis passaram após corrigir
+UTF-8 do subprocesso. Quatro testes reais GTK ficaram `skipped` por ausência
+de GTK/tela; não declarar widgets/layout validados. WSL reconfirmado ausente.
+Arquitetura atual: 21 módulos/15 referências de interfaces, nove fechamentos
+sem gi/Cairo. Critério amplo da 16 `partial`, pesos e roteiro 43,33% preservados.
+Fonte após o Flatpak 0.1.1, sem pacote novo. Próximo passo: executar os quatro
+testes GTK e a suíte Linux com tela/Poppler, preservando relatórios anteriores.
 
 A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o

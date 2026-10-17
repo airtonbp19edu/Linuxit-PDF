@@ -416,3 +416,62 @@ nota será conferido depois, sem autorreferência. Comprovante final em
 bloqueio de publicação nesta rodada. Retomar pela nota das 00:47 e
 `docs/ETAPA-15.md`: integração GTK/Linux do backend e casos complexos pendentes,
 mantendo a exclusão da IA, as limitações de teste e o Flatpak 0.1.1 anterior.
+
+## 2026/10/17 às 01:06 (America/Sao_Paulo, UTC-03:00) — etapa 16: painel Anexos no código
+
+O usuário pediu a próxima etapa sem VM. Avançada a integração da etapa 16,
+com base local limpa e remoto confirmado em
+`b065c9928b50c191ba7458328754104ed8eda6eb`. Painel Anexos adicionado à barra
+lateral e Exibir em `app/main.py`, com Atualizar, seleção e Salvar selecionado…
+para pasta escolhida. Código-fonte após o Flatpak 0.1.1, sem pacote novo.
+
+Novo `app/attachment_tasks.py` coordena carga sob demanda, seleção imutável
+por geração/documento/índice/hash e mensagens/status. Callbacks obsoletos não
+substituem o documento atual; atualizar a lista ou trocar documento durante
+o diálogo invalida a seleção anterior. Cancelar não grava. Extração já
+confirmada pode concluir após trocar documento, sem substituir o status do
+novo; fechar janela bloqueia tarefas ainda não iniciadas/callbacks, sem
+prometer parar subprocesso já iniciado. Nomes recusados ficam visíveis com
+motivo e botão desativado. Não há abertura/execução automática do conteúdo.
+
+**14/14 testes portáveis do controlador passaram**, com callbacks adiados
+controlados e workers reais sobre PDFs próprios. Cobrem concorrência, seleção,
+erros e efeitos em arquivo. A primeira rodada foi 13/14: stderr acentuado era
+decodificado incorretamente no Windows. O comando do worker usa agora `-X utf8`;
+o teste de erro de portfólio passou na rodada corrigida. Ambos os relatórios
+foram preservados; isso é falha/correção de codificação, não esgotamento de tokens.
+
+**0 testes GTK aprovados; 4 skipped.** São casos reais de painel/salvar/conflito,
+cancelar pasta, mudar documento durante diálogo e nome inválido em
+`tests/test_attachment_panel_gtk.py`. Não foram executados por ausência de
+gi/Cairo/tela. Os testes portáveis usam runner controlado e não validam layout,
+widgets nem dispatch GLib real. Não transformar esses resultados em aprovação
+da GUI. `wsl --list --quiet` reconfirmou WSL não instalado, sem instalá-lo.
+
+Ferramentas: Python 3.13.15, unittest, AST e Git; nenhuma sessão nova REA/Ghidra,
+observação do original ou recurso IA. Backend `pdf_attachments.py`, worker CLI,
+catálogo original e decisão de escopo preservados em relação à base. Arquitetura
+atual: 21 módulos/15 referências de interfaces, nove fechamentos locais sem
+gi/Cairo. Especificação/matriz seguem 25 famílias, 15 subconjuntos/10 propostas.
+Sintaxe de 113 arquivos e 221 links locais conferidos, além das ligações AST
+da janela a criação/carga/limpeza/fechamento/salvamento do painel. Ligações AST
+também não executam GTK. Pesos e revisão preservados; somente o critério amplo
+da etapa 16 mudou `pending` → `partial`.
+
+Relatório: `docs/ETAPA-16.md`. Evidências em `testes/resultados/`:
+`etapa-16-controlador-tests-2026-10-17.json`,
+`etapa-16-controlador-tests-fixed-2026-10-17.json`,
+`etapa-16-gtk-disponibilidade-2026-10-17.json` e
+`etapa-16-painel-anexos-2026-10-17.json`. O resumo conserva hashes das fontes,
+status pass/fail/skip separados e limitações. Dados locais/diagnóstico bruto
+em `analysis-local/stage16-verification/`; coletor ajustado para ler também
+stderr UTF-16 do WSL, preservando o registro original. Auxiliares em
+`analysis-local/record_stage16_contract.py` e `verify_stage16.py`, ignorados.
+
+Etapa 16 mantém 33,3% verificados, roteiro 43,33%, catálogo Foxit 209 e paridade
+0/25. Sem suíte completa Linux, renderização visual do novo painel, impressão
+física ou Flatpak novo. Próximo passo sem VM do Foxit: executar os quatro testes
+GTK e a suíte completa em Linux com GTK/Poppler e tela, inspecionar o painel e
+corrigir achados. As pendências do runtime Linux e da VM do original continuam
+separadas. Publicação deste marco ainda pendente; a nota seguinte usará hash
+previamente confirmado e o comprovante final ficará fora dos arquivos versionados.

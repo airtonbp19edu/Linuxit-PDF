@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_attachment_panel_gtk.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 4,
+  "passed": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 4,
+  "elapsed_sec": 0.0025134999959846027,
+  "cases": [
+    {
+      "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_cancelled_folder_dialog_writes_nothing",
+      "status": "skipped",
+      "reason": "Requires GTK 3 and a real X11/Wayland display"
+    },
+    {
+      "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_document_change_during_folder_dialog_invalidates_selection",
+      "status": "skipped",
+      "reason": "Requires GTK 3 and a real X11/Wayland display"
+    },
+    {
+      "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_panel_saves_selected_file_and_shows_conflict_without_overwrite",
+      "status": "skipped",
+      "reason": "Requires GTK 3 and a real X11/Wayland display"
+    },
+    {
+      "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_unsafe_selected_row_disables_saving",
+      "status": "skipped",
+      "reason": "Requires GTK 3 and a real X11/Wayland display"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

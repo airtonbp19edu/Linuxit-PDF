@@ -2,9 +2,9 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Trabalho atual: [etapa 15](../docs/ETAPA-15.md), backend de anexos planos
-implementado com 14 testes portáveis aprovados. Critério amplo `partial`;
-integrar listagem/extração à UI em Linux como próximo passo sem VM. IA do Foxit e
+Trabalho atual: [etapa 16](../docs/ETAPA-16.md), painel Anexos ligado ao código GTK,
+com 14 testes do controlador aprovados. Quatro testes GTK seguem sem execução;
+executá-los em runtime Linux com GTK/Poppler/tela, sem exigir a VM do Foxit. IA do Foxit e
 recursos generativos foram excluídos pelo usuário: [escopo](../docs/ESCOPO.md).
 Portfólios, /Kids, senha não vazia e anexos por anotação ainda não implementados.
 Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
@@ -25,7 +25,7 @@ Foram detalhadas 25 famílias, com 50 cenários planejados; o critério está
 Especializar as fixtures e transformar os cenários em casos executáveis,
 começando pelos subconjuntos de abertura, busca, navegação e prévia.
 Conferir o registro derivado com `scripts/validate_functional_spec.py`.
-Onze famílias continuam propostas; não adotar requisitos próprios como
+Dez famílias continuam propostas; não adotar requisitos próprios como
 comportamento recuperado do Foxit. Comparação diferencial depende da VM.
 
 1. Ler `projeto.json`, `progresso.json`, matriz de paridade e histórico. Conferir Git local/remoto; não reiniciar a análise geral.

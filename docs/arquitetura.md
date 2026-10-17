@@ -8,7 +8,7 @@ investigação, e seus binários, templates e descompilações ficam nos materia
 privados de análise. O código da aplicação é independente.
 
 A arquitetura descreve o código atual e pontos de extensão planejados. O
-[inventário estruturado](arquitetura-componentes.json) cobre os **20 módulos
+[inventário estruturado](arquitetura-componentes.json) cobre os **21 módulos
 Python próprios na raiz de `app/`**, sem contar módulos de terceiros como
 componentes novos. As **25 famílias** estão ligadas à
 [especificação funcional](especificacao-funcional.json). As extensões futuras
@@ -21,7 +21,12 @@ abrangem somente funcionalidades autorizadas sem IA.
 
 Continuação da etapa 15: backend de anexos acrescentado ao código-fonte em
 desenvolvimento após o Flatpak 0.1.1. O artefato publicado permanece no marco
-anterior; a integração GTK e novos testes completos Linux ainda estão pendentes.
+anterior; a execução real GTK e novos testes completos Linux ainda estão pendentes.
+
+Na etapa 16, o painel Anexos foi ligado ao código GTK com um controlador
+portável em `attachment_tasks`. A lógica passou em 14 testes com workers reais;
+widgets/layout ainda não foram executados. Essa pendência exige runtime GTK,
+separadamente da contenção usada para observar o Foxit.
 
 ## Componentes atuais
 
@@ -31,7 +36,7 @@ anterior; a integração GTK e novos testes completos Linux ainda estão pendent
 | Aparência GTK | `appearance`, `themes` | Persistência e aplicação de system/light/dark; compatibilidade com nomes legados. |
 | Agendamento GLib | `async_core` | Filas, eventos de cancelamento e entrega de callbacks por geração. Requer GLib, inclusive para testes desse agendador. |
 | Serviços PDF | `search_engine`, `pdf_panels`, `pdf_attachments`, `imposition` | Busca, inspeção, extração local de anexos e composição PDF. Marcas/legendas de mosaico têm dependência condicional de Cairo. |
-| Processos | `rendering`, `worker_cli`, `platform_runtime` | Poppler, inspeção e preparação por linha de comando, escolha de Python e opções do sistema. |
+| Processos | `rendering`, `worker_cli`, `platform_runtime`, `attachment_tasks` | Poppler, workers, coordenação portável de anexos, escolha de Python e opções do sistema. |
 | Impressão | `cups_backend`, `windows_print` | Filas/capacidades/envio CUPS e adaptador Win32/GTK. O contrato físico e a entrega Windows continuam pendentes. |
 | Suporte | `page_cache`, `cancel_state`, `pdf_dependency`, `version` | LRU de imagens, evento por thread, localização do pypdf e versão. |
 | Inicialização Windows | `windows_bootstrap` | Prepara caminhos de runtime Windows; não é evidência de distribuição Windows validada. |
@@ -65,7 +70,8 @@ ainda usam chamadas diretas e dicionários; não há uma camada universal de plu
 | Painéis | `inspect_document_panels` devolve marcadores, comentários e nomes de camadas. A inspeção atual não grava alterações. | [pdf_panels.py](../app/pdf_panels.py) |
 | Preparação PDF | `prepare_output(input_path, output_path, job)`; opções semânticas em dicionário. Prévia e saída usam a geometria própria. | [imposition.py](../app/imposition.py) |
 | Worker | `info`, `panels` e `attachments` devolvem JSON; `prepare` recebe JSON e devolve caminho; `extract-attachment` recebe índice/hash em JSON e devolve JSON da extração. Erros usam status não zero/stderr. | [worker_cli.py](../app/worker_cli.py) |
-| Anexos | Listagem sem decodificar payload; extração por índice/hash para pasta escolhida, com criação exclusiva e verificação de nome. Catálogo plano somente, sem GUI. | [pdf_attachments.py](../app/pdf_attachments.py) |
+| Anexos | Listagem sem decodificar payload; extração por índice/hash para pasta escolhida, com criação exclusiva e verificação de nome. Catálogo plano somente. | [pdf_attachments.py](../app/pdf_attachments.py) |
+| Controle do painel | Carga sob demanda, seleção capturada antes do diálogo e filtros de geração; worker UTF-8 e mensagens sem traceback. Widgets GTK ainda sem execução real. | [attachment_tasks.py](../app/attachment_tasks.py) |
 | Entrega assíncrona | `submit` identifica canal/geração; callback é entregue via GLib somente se atual e janela/runner aberto. | [async_core.py](../app/async_core.py) |
 | Backend | `print_file` recebe o PDF já preparado e opções do dispositivo. Aceitação do trabalho não comprova papel impresso. | [cups_backend.py](../app/cups_backend.py) |
 | Python de worker | `worker_python` usa o interpretador configurado pelo runtime e ajustes específicos do Windows. | [platform_runtime.py](../app/platform_runtime.py) |
@@ -94,10 +100,10 @@ imediato de todos os workers ao fechar uma janela.
 indisponíveis no Windows. Isso limita trabalho da implementação própria;
 a contenção offline exigida para observar o Foxit continua separada.
 
-A revisão de imports confirmou **oito módulos cujo fechamento local não
+A revisão de imports confirmou **nove módulos cujo fechamento local não
 importa GTK/GLib via `gi` nem Cairo**: `cancel_state`, `page_cache`,
 `pdf_dependency`, `pdf_panels`, `platform_runtime`, `rendering`, `search_engine`
-e `pdf_attachments`.
+`pdf_attachments` e `attachment_tasks`.
 Isso permite parte das verificações portáveis, sem garantir a presença de
 Poppler ou o comportamento em todas as plataformas.
 
