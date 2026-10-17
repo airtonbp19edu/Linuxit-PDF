@@ -592,32 +592,42 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: buscar texto em anexos suportados, preservando a origem de cada hit.",
+      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
-        "PDF com anexos, consulta, seletor de escopo e formatos de anexo explicitamente suportados.",
-        "Limites de tamanho, recursão, tempo e cancelamento ainda a definir por contrato de formato."
+        "PDF host, consulta literal/coringa/proximidade, flags e seletor de anexos.",
+        "Até100 anexos;2MiB por payload/8MiB total,100 páginas e2MiB de texto por anexo; limites pós-decodificação."
       ],
       "outputs": [
-        "Proposta: hits com caminho/identidade do anexo e localização interna distinguíveis da página principal."
+        "Hits com índice/nome/SHA256 do anexo, hash do host e página interna; sem página/retângulo do host inventado.",
+        "Omissões e possível corte expostos separadamente, inclusive na UI."
       ],
       "errors": [
         {
-          "trigger": "Anexo binário, cifrado ou formato sem extrator",
-          "response": "Proposta: registrar anexo não pesquisado e razão, sem prometer que zero hits implica cobertura total.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Formato não suportado, bytes inválidos, PDF cifrado ou limite",
+          "response": "Omitir esse anexo com razão e declarar pesquisa parcial.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Anexo excede limite ou contém recursão",
-          "response": "Proposta: interromper esse ramo e informar resultado parcial.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Host alterado/estrutura inválida ou worker indisponível",
+          "response": "Falhar sem afirmar cobertura completa; cancelar encerra o worker.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: extração temporária controlada, sem executar anexos ou modificar o original."
+        "Sem execução/exportação de anexos ou alteração da fonte; worker cancelável.",
+        "Sem OCR, recursão de anexos internos, portfólios ou senha; limite real aplicado após extração."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/attachment_search.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/pdf_attachments.py",
+        "app/search_engine.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "foxit": {
         "evidence_state": "static_code_partial",
         "source_refs": [
@@ -629,19 +639,38 @@
           "Travessia completa, extratores, formatos, limites, ordenação e associação de resultados no original."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_attachment_search.py",
+          "test": "test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope"
+        },
+        {
+          "path": "tests/test_attachment_search.py",
+          "test": "test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions"
+        },
+        {
+          "path": "tests/test_attachment_search.py",
+          "test": "test_cancellation_terminates_the_actual_child_and_does_not_create_files"
+        }
+      ],
       "dynamic_case_refs": [
         "D16"
       ],
-      "fixture_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-avancada/manifest.json",
+          "status": "existing",
+          "description": "Manifesto de três PDFs sintéticos próprios, sem execução Foxit."
+        }
+      ],
       "acceptance_cases": [
         {
           "id": "S12-07-1",
           "kind": "nominal",
           "given": "PDF sintético com anexo textual contendo alvo; fixture ainda a especializar.",
           "when": "Pesquisar incluindo anexos.",
-          "expected_linuxit": "Proposta: ao menos um hit identifica o anexo e não recebe uma página principal fictícia.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Encontrar o termo no anexo suportado e identificar índice/nome/página interna sem destino principal fictício.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -651,44 +680,62 @@
           "kind": "exception",
           "given": "Mesmo PDF com um anexo não suportado.",
           "when": "Pesquisar incluindo anexos.",
-          "expected_linuxit": "Proposta: indicar que esse anexo não foi pesquisado; não declarar cobertura integral.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Informar o anexo omitido e seu motivo; UI deve indicar anexos parciais.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T18:03:43-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
+        }
+      ]
     },
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: índice persistente de coleção com identidade, atualização e consulta cancelável.",
+      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
-        "Lista explícita de diretórios/documentos locais e versão do índice.",
-        "Consulta e política de inclusão/atualização; não indexar perfis pessoais implicitamente."
+        "Lista explícita de1–100 PDFs e arquivo .linuxit-index.json escolhido para criação/atualização.",
+        "Consulta/flags/mode; até64MiB por fonte/256MiB total,1000 páginas,16MiB texto e64MiB índice."
       ],
       "outputs": [
-        "Proposta: índice versionado e hits identificando documento, posição e estado de atualização."
+        "Índice próprio versionado com SHA256 do corpo/fontes; varredura de texto durante consulta, sem formato Lucene/FTS.",
+        "Hits identificam caminho absoluto/SHA256/página e fontes alteradas são excluídas;5000 hits/350 linhas na UI com aviso."
       ],
       "errors": [
         {
-          "trigger": "Documento movido/alterado ou entrada obsoleta",
-          "response": "Proposta: invalidar/reindexar a entrada e marcar resultados desatualizados.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Fonte ausente/alterada após indexação",
+          "response": "Excluir seus hits e indicar atualização explícita; revalidar antes de abrir resultado.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Índice corrompido ou disco sem espaço",
-          "response": "Proposta: falhar sem substituir um índice íntegro por saída incompleta.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Índice inválido, fonte criptografada ou falha de gravação",
+          "response": "Recusar operação; preservar índice anterior íntegro e limpar temporário em falhas tratadas.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: escrita apenas no diretório de índice autorizado; fontes permanecem intactas."
+        "Não varrer pastas automaticamente nem alterar PDFs; gravação só no destino escolhido.",
+        "Índice contém texto e caminhos locais; não é portátil entre máquinas e não faz OCR.",
+        "Atualização revalida fontes/índice e usa temporário/os.replace; cancelamento forçado pode deixar temporário ou ocorrer após commit."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/collection_index.py",
+        "app/collection_window.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "foxit": {
         "evidence_state": "static_code_partial",
         "source_refs": [
@@ -700,17 +747,36 @@
           "Formato e manutenção do índice completo, exclusões, locking, recuperação e disponibilidade Reader."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_collection_index.py",
+          "test": "test_build_reopen_worker_and_query_preserve_sources_and_real_pages"
+        },
+        {
+          "path": "tests/test_collection_index.py",
+          "test": "test_changed_missing_sources_are_excluded_until_explicit_rebuild"
+        },
+        {
+          "path": "tests/test_collection_index.py",
+          "test": "test_update_failure_preserves_old_index_and_removes_temporary"
+        }
+      ],
       "dynamic_case_refs": [],
-      "fixture_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-avancada/manifest.json",
+          "status": "existing",
+          "description": "Manifesto de três PDFs sintéticos próprios, sem execução Foxit."
+        }
+      ],
       "acceptance_cases": [
         {
           "id": "S12-08-1",
           "kind": "nominal",
           "given": "Coleção sintética de dois documentos e índice em pasta nova.",
           "when": "Construir índice e consultar um termo presente em um documento.",
-          "expected_linuxit": "Proposta: hit identifica o documento correto e a versão do índice.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Criar/reabrir índice e localizar termo no PDF/página corretos, sem alterar fontes.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -720,44 +786,62 @@
           "kind": "exception",
           "given": "Uma fonte foi alterada após indexação.",
           "when": "Consultar sem atualização completa.",
-          "expected_linuxit": "Proposta: resultado não deve ser apresentado como atual sem indicar/iniciar atualização.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Excluir a fonte alterada e indicar que precisa atualizar o índice.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T18:03:43-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
+        }
+      ]
     },
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: semânticas distintas de stemming, proximidade e coringas; não confundir com busca literal própria.",
+      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
-        "Consulta, idioma, modo e parâmetros de proximidade/coringas explícitos.",
-        "Escopo e analisador de texto versionado."
+        "Consulta de até256 caracteres antes da normalização e modo explícito.",
+        "Coringa: um padrão até64 caracteres normalizados, até8* ou?; proximidade:2–8 palavras ordenadas/distância total0–50."
       ],
       "outputs": [
-        "Proposta: hits acompanhados do modo/analisador usado; resultados reprodutíveis para o corpus definido."
+        "Hits não sobrepostos; proximidade destaca intervalo com palavras intermediárias, sem cruzar bloco/página do documento.",
+        "Mesma semântica para páginas, metadados, anexos e coleção, respeitando fronteiras de extração."
       ],
       "errors": [
         {
-          "trigger": "Sintaxe ou combinação de flags não suportada",
-          "response": "Proposta: rejeitar a consulta com motivo; não reinterpretar silenciosamente como busca literal.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Padrão/sintaxe/modo ou distância inválida",
+          "response": "Erro explícito, sem reinterpretar silenciosamente como literal.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Expansão de termos excede limite",
-          "response": "Proposta: limitar e indicar truncamento ou recusar a consulta.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Palavra acima de4096 caracteres nos modos avançados",
+          "response": "Recusar operação ou omitir anexo com razão; não executar regex nem expansão ilimitada.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: cancelamento e limites compartilhados com a consulta; original intacto."
+        "Preservar modo literal, inclusive* e? literais e casefold com expansão Unicode.",
+        "NFC/casefold e opção de acentos compartilhados; palavra inteira só precisa de flag no modo literal.",
+        "Stemming não implementado e não exposto como recurso funcional."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/search_matching.py",
+        "app/search_engine.py",
+        "app/attachment_search.py",
+        "app/collection_index.py",
+        "app/main.py",
+        "app/collection_window.py"
+      ],
       "foxit": {
         "evidence_state": "static_code_partial",
         "source_refs": [
@@ -770,19 +854,38 @@
           "Stemming por idioma, distância/proximidade, escaping, expansão e combinações com índice."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_search_modes.py",
+          "test": "test_proximity_uses_total_intervening_words_and_query_order"
+        },
+        {
+          "path": "tests/test_search_modes.py",
+          "test": "test_invalid_syntax_distance_and_expansion_are_rejected"
+        },
+        {
+          "path": "tests/test_search_modes.py",
+          "test": "test_page_geometry_keeps_owner_rectangles_for_both_modes"
+        }
+      ],
       "dynamic_case_refs": [
         "UI07"
       ],
-      "fixture_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/busca-avancada/manifest.json",
+          "status": "existing",
+          "description": "Manifesto de três PDFs sintéticos próprios, sem execução Foxit."
+        }
+      ],
       "acceptance_cases": [
         {
           "id": "S12-09-1",
           "kind": "nominal",
           "given": "Corpus sintético com duas palavras separadas por distâncias conhecidas.",
           "when": "Executar proximidade com duas distâncias explícitas.",
-          "expected_linuxit": "Proposta: a diferença de hits decorre da distância registrada e é reproduzível.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Duas consultas com distâncias diferentes produzem hits conforme distância total/ordem documentadas.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -792,14 +895,22 @@
           "kind": "exception",
           "given": "Consulta com coringa/operador cuja sintaxe não foi implementada.",
           "when": "Executar esse modo.",
-          "expected_linuxit": "Proposta: erro claro, sem alegar equivalência ao Foxit.",
-          "expected_basis": "proposed_independent_requirement",
+          "expected_linuxit": "Recusar sintaxe/operador não suportado sem trocar silenciosamente para literal.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T18:03:43-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
+        }
+      ]
     },
     {
       "id": "selection",
@@ -2258,5 +2369,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T16:14:01-03:00"
+  "updated_at_local": "2026-10-17T18:03:43-03:00"
 }

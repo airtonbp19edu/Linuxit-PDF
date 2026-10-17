@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T15:55:41-03:00",
+  "reviewed_at_local": "2026-10-17T18:03:43-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.5",
+  "application_version": "0.1.6",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -143,6 +143,36 @@
       "path": "app/edit_tasks.py",
       "boundary": "process_and_platform",
       "responsibility": "Invoca worker de cópia com JSON UTF-8 e valida confirmações/erros sem GTK."
+    },
+    {
+      "id": "search_matching",
+      "path": "app/search_matching.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Normalização Unicode e consultas literal/coringa/proximidade com limites próprios."
+    },
+    {
+      "id": "attachment_search",
+      "path": "app/attachment_search.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Busca worker em anexos UTF-8/PDF, com omissões/identidades e sem execução."
+    },
+    {
+      "id": "search_tasks",
+      "path": "app/search_tasks.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Protocolo JSON cancelável com término do worker e limites de resposta/tempo."
+    },
+    {
+      "id": "collection_index",
+      "path": "app/collection_index.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Snapshot local versionado de texto de PDFs explícitos, identidade/frescura e atualização validada."
+    },
+    {
+      "id": "collection_window",
+      "path": "app/collection_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Seleção explícita, atualização/consulta de índice e abertura do resultado na página correta."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -156,7 +186,11 @@
     "pdf_attachments",
     "attachment_tasks",
     "pdf_changes",
-    "edit_tasks"
+    "edit_tasks",
+    "search_matching",
+    "attachment_search",
+    "search_tasks",
+    "collection_index"
   ],
   "interface_refs": [
     {
@@ -230,6 +264,38 @@
     {
       "path": "app/edit_tasks.py",
       "symbol": "invoke_edit_worker"
+    },
+    {
+      "path": "app/search_matching.py",
+      "symbol": "query_spans"
+    },
+    {
+      "path": "app/attachment_search.py",
+      "symbol": "search_attachment_text"
+    },
+    {
+      "path": "app/attachment_search.py",
+      "symbol": "invoke_attachment_search"
+    },
+    {
+      "path": "app/search_tasks.py",
+      "symbol": "run_search_worker"
+    },
+    {
+      "path": "app/collection_index.py",
+      "symbol": "build_index"
+    },
+    {
+      "path": "app/collection_index.py",
+      "symbol": "search_index"
+    },
+    {
+      "path": "app/collection_index.py",
+      "symbol": "invoke_collection"
+    },
+    {
+      "path": "app/collection_window.py",
+      "symbol": "CollectionWindow"
     }
   ],
   "family_assignments": [
@@ -298,23 +364,45 @@
     },
     {
       "id": "search-attachments",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
-      "future_boundary": "Provedor de conteúdo de anexos, ligado à busca por origem.",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/attachment_search.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/pdf_attachments.py",
+        "app/search_engine.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
+      "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false
     },
     {
       "id": "search-index",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
-      "future_boundary": "Índice de coleção persistente, separado do cache por documento.",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/collection_index.py",
+        "app/collection_window.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
+      "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false
     },
     {
       "id": "search-language",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
-      "future_boundary": "Modos de consulta explícitos com semântica documentada.",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/search_matching.py",
+        "app/search_engine.py",
+        "app/attachment_search.py",
+        "app/collection_index.py",
+        "app/main.py",
+        "app/collection_window.py"
+      ],
+      "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false
     },
     {

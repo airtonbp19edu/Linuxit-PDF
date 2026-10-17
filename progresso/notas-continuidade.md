@@ -1209,3 +1209,22 @@ pedem seus ambientes. Original exige VM offline ainda pendente. Causa de
 interrupção/tokens:null; timeouts antigos não são prova de esgotamento.
 Esta confirmação/auditoria será publicada em commit posterior e o últimoHEAD
 será verificado novamente por recibo fora da árvore para evitar autorreferência.
+
+
+## 2026/10/17 às 18:02 (America/Sao_Paulo, UTC-03:00) — fonte0.1.6 e continuação estática
+
+Pedido reiterado de avançar sem VM. Cinco entradas16664e0/1b8a7a0/1b8ae20/
+15c6550/872f20 examinadas em cópia do projeto final anterior, Ghidra12.1.4
+direto-noanalysis/JDK21/seed REA. Capstone517 instruções/1572bytes conferidos;
+catálogo245(152REA+93diretas). 1b8ae20 é caminho auxiliar de preparação/contexto,
+refinando hipótese anterior de finalização. Raw/projeto privados; metadados e
+checagem publicáveis. Próximos alvos1c68ca0/15c5010/20a6f70, campos de busca eIDs.
+
+Fonte própria0.1.6 acrescenta anexos textuais/PDF em worker cancelável, modos
+coringa/proximidade e índice persistente JSON de PDFs explicitamente selecionados.
+Oito métodos de modos e12 de anexos passaram; dez iniciais de índice passaram,
+mais dois controles em execução. Seis testes reais GTK preparados, ainda sem
+execução Linux. Nenhum original executado; limites/omissões documentados em
+`docs/BUSCA-COLECOES.md`. Não contar testes portáveis como GUI ou paridade.
+Pacote0.1.5 permanece publicado e intacto. Próximo: validar fonte Linux/GTK,
+corrigir falhas, depois construir e auditar0.1.6. Causa por tokens/interrupção:null.

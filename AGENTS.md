@@ -1,5 +1,12 @@
 # Linuxit PDF — continuidade do projeto
 
+Fonte em desenvolvimento **0.1.6**: `docs/BUSCA-COLECOES.md`. Busca em anexos,
+coringas/proximidade e coleção persistente;32 métodos portáveis aprovados,
+seis GTK aguardam Linux.28 módulos/26 interfaces,19 subconjuntos/seis propostas.
+Catálogo245(152REA+93diretas); nova rodada5 entradas/517 instruções/1572bytes.
+Entrega publicada/auditada permanece0.1.5 até validar um novo pacote.
+Os checkpoints históricos abaixo não substituem este estado da fonte.
+
 Marco atual: fonte/Flatpak 0.1.5/devel, `docs/RETOMADA.md` e
 `docs/COPIA-EDITADA.md`.152/152 em fonte/payload/sandbox, zero skips;
 smoke 5/5, launcher 3/3. Três operações próprias em cópia nova: marcador, nota e
@@ -47,7 +54,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O pacote atual é 0.1.4 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.5 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

@@ -1,5 +1,12 @@
 # Retomada do Linuxit PDF
 
+Fonte em desenvolvimento **0.1.6**: `docs/BUSCA-COLECOES.md`. Busca em anexos,
+coringas/proximidade e coleção persistente;32 métodos portáveis aprovados,
+seis GTK aguardam Linux.28 módulos/26 interfaces,19 subconjuntos/seis propostas.
+Catálogo245(152REA+93diretas); nova rodada5 entradas/517 instruções/1572bytes.
+Entrega publicada/auditada permanece0.1.5 até validar um novo pacote.
+Os checkpoints históricos abaixo não substituem este estado da fonte.
+
 Atualizado em 2026-10-17T16:14:01-03:00. Pedido ativo: avançar as frentes sem VM,
 publicar cada marco e registrar evidências para outras IAs.
 

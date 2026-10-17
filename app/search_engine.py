@@ -5,19 +5,9 @@ from dataclasses import dataclass
 
 from pdf_panels import inspect_document_panels
 import threading
-import unicodedata
+from search_matching import normalized, literal_spans, query_spans, validate_query
 
 from rendering import document_info, extract_page_words
-
-
-def normalized(text, match_case=False, ignore_accents=False):
-    text = unicodedata.normalize('NFC', text)
-    if not match_case:
-        text = text.casefold()
-    if ignore_accents:
-        text = ''.join(c for c in unicodedata.normalize('NFD', text)
-                       if unicodedata.category(c) != 'Mn')
-    return text
 
 
 @dataclass(frozen=True)
@@ -30,33 +20,17 @@ class SearchOptions:
     include_page_text: bool = True
     include_bookmarks: bool = False
     include_comments: bool = False
+    include_attachments: bool = False
+    mode: str = "literal"
+    proximity_distance: int = 0
 
     def text_options(self):
         return {key: getattr(self, key) for key in
-                ('match_case', 'whole_words', 'ignore_accents', 'join_hyphens')}
-
-
-def literal_spans(text, needle, whole_words=False):
-    """Non-overlapping literal matches on normalized strings; no regex execution."""
-    if not needle:
-        return
-    def is_word(character):
-        return character == '_' or unicodedata.category(character)[0] in 'LNM'
-    start = 0
-    while True:
-        pos = text.find(needle, start)
-        if pos < 0:
-            return
-        end = pos + len(needle)
-        bounded = ((pos == 0 or not is_word(text[pos - 1]))
-                   and (end == len(text) or not is_word(text[end])))
-        if not whole_words or bounded:
-            yield pos, end
-        start = end
+                ('match_case', 'whole_words', 'ignore_accents', 'join_hyphens', 'mode', 'proximity_distance')}
 
 
 def page_hits(data, query, page_index, match_case=False, whole_words=False,
-              ignore_accents=False, join_hyphens=False):
+              ignore_accents=False, join_hyphens=False, mode="literal", proximity_distance=0):
     needle = ' '.join(normalized(query, match_case, ignore_accents).split())
     if not needle:
         return []
@@ -77,7 +51,7 @@ def page_hits(data, query, page_index, match_case=False, whole_words=False,
             folded = normalized(word['text'], match_case, ignore_accents)
             chars.extend(folded); owners.extend([idx] * len(folded))
         text = ''.join(chars)
-        for pos, end in literal_spans(text, needle, whole_words):
+        for pos, end in query_spans(text, needle, whole_words, mode, proximity_distance):
             selected = sorted({owner for owner in owners[pos:end] if owner is not None})
             if not selected:
                 continue
@@ -161,16 +135,15 @@ class TextSearchIndex:
                 if not isinstance(page, int) or not 0 <= page < self.page_count:
                     page = None
                 width, height = self.page_sizes[page] if page is not None else (0, 0)
-                for _ in literal_spans(haystack, needle, options.whole_words):
+                for _ in query_spans(haystack, needle, options.whole_words, options.mode, options.proximity_distance):
                     if cancel is not None and cancel.is_set():
                         return
                     yield {'source': source, 'page': page, 'width': width, 'height': height,
                            'rects': [], 'text': text, 'snippet': ' '.join(text.split())[:180]}
 
-    def search(self, query, max_hits=5000, cancel=None, on_page=None, **kwargs):
-        if len(query) > 256:
-            raise ValueError('A pesquisa deve ter no máximo 256 caracteres.')
+    def search(self, query, max_hits=5000, cancel=None, on_page=None, on_notice=None, **kwargs):
         options = SearchOptions(**kwargs)
+        validate_query(query, options.mode, options.proximity_distance)
         if not query.strip() or max_hits <= 0 or (cancel is not None and cancel.is_set()):
             return []
         if self._identity() != self.identity:
@@ -198,4 +171,18 @@ class TextSearchIndex:
                     on_page(self.page_count if options.include_page_text else 0, [hit])
                 if len(hits) >= max_hits:
                     break
+        if options.include_attachments and len(hits) < max_hits and not (cancel is not None and cancel.is_set()):
+            from attachment_search import invoke_attachment_search
+            report = invoke_attachment_search(self.path, query, options, min(5000, max_hits - len(hits)), cancel)
+            if self._identity() != self.identity:
+                raise RuntimeError('O PDF foi alterado durante a pesquisa. Reabra o documento.')
+            if cancel is None or not cancel.is_set():
+                for hit in report['hits']:
+                    if cancel is not None and cancel.is_set():
+                        break
+                    hits.append(hit)
+                    if on_page is not None:
+                        on_page(self.page_count if options.include_page_text else 0, [hit])
+                if on_notice is not None:
+                    on_notice({'omissions': report['omissions'], 'limit_reached': report['limit_reached']})
         return hits

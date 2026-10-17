@@ -711,12 +711,12 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "source_payload_and_installed_sandbox_passed",
+        "status": "source0.1.6_changed_since_delivery0.1.5",
         "date_local": "2026-10-17T16:14:01-03:00",
-        "scope": "Current0.1.5 bounded copy edits and all prior own regressions; no Foxit parity.",
+        "scope": "New attachment/mode/collection search in own source.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "passed",
-        "new_flatpak": "built_and_installed_full_suite_passed",
+        "linux_source_runtime": "pending_for0.1.6",
+        "new_flatpak": "not_built_for0.1.6",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
@@ -746,17 +746,32 @@
           "testes/resultados/0.1.5/sandbox-tests.json",
           "testes/resultados/0.1.5/validation-review.json"
         ],
-        "next_action": "Delivery0.1.5 published and independently audited. Continue remaining static/contracts/implementation/desktop obligations; original comparisons require offline guest.",
-        "source_changed_since_candidate": false,
-        "source_changes_since_candidate": [],
+        "next_action": "Run complete Linux suite and six new GTK methods; build0.1.6 only after source passes.",
+        "source_changed_since_candidate": true,
+        "source_changes_since_candidate": [
+          "app/main.py",
+          "app/search_engine.py",
+          "app/version.py",
+          "app/worker_cli.py",
+          "app/attachment_search.py",
+          "app/collection_index.py",
+          "app/collection_window.py",
+          "app/search_matching.py",
+          "app/search_tasks.py"
+        ],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
         "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
-        "source_commit_tested": "979a288d3c6407162dbbbe2b7df24991f58984f8",
-        "full_source_tests_passed": 152
+        "source_commit_tested": null,
+        "full_source_tests_passed": null,
+        "previous_source_verification": {
+          "version": "0.1.5",
+          "source_commit": "979a288d3c6407162dbbbe2b7df24991f58984f8",
+          "tests": 152
+        }
       }
     },
     {
@@ -1233,7 +1248,8 @@
     "publication_state": "confirmed_at_recorded_commit",
     "independent_installed_audit_passed": true,
     "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
-    "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
+    "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00",
+    "unreleased_source_version": "0.1.6"
   },
   "no_vm_execution_history": [
     {

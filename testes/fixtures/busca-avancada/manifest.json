@@ -1,0 +1,20 @@
+{
+  "scope": "Own synthetic fixtures only; no original execution or differential results.",
+  "files": [
+    {
+      "file": "anexos.pdf",
+      "bytes": 2431,
+      "sha256": "4c4d7dba27add3d8826fc41455b5f1b0e745aa0aa27d83f347aef27dcbc262ac"
+    },
+    {
+      "file": "colecao-dois.pdf",
+      "bytes": 682,
+      "sha256": "f04c197fa695d0d30d9cdee016f60bfaf8b954d03216f90b50bd580cf0d7965f"
+    },
+    {
+      "file": "colecao-um.pdf",
+      "bytes": 951,
+      "sha256": "80b4cd711250c1b82d7815c32e4cc5fc01cab4d61c741a1ad73be0c6ead29d8c"
+    }
+  ]
+}

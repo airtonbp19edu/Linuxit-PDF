@@ -250,6 +250,7 @@ class PDFWindow(Gtk.Window):
                 menu = Gtk.Menu()
                 for text, callback in (
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
+                    ('Pesquisar em coleção…', self._show_collection),
                     ('Novo marcador na página atual…', lambda: self._begin_copy_edit('add-bookmark')),
                     ('Adicionar nota na página atual…', lambda: self._begin_copy_edit('add-note')),
                     ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
@@ -466,13 +467,36 @@ class PDFWindow(Gtk.Window):
         scopes.pack_start(Gtk.Label(label='Pesquisar em:'), False, False, 0)
         for key, label, active in [('include_page_text', 'Texto das páginas', True),
                                    ('include_bookmarks', 'Marcadores', False),
-                                   ('include_comments', 'Comentários', False)]:
+                                   ('include_comments', 'Comentários', False),
+                                   ('include_attachments', 'Anexos (texto/PDF)', False)]:
             button = Gtk.CheckButton(label=label)
             button.set_active(active)
             button.connect('toggled', self._find_changed)
             scopes.pack_start(button, False, False, 0)
             self.find_options[key] = button
         container.pack_start(scopes, False, False, 0)
+        modes = Gtk.Box(spacing=8, margin_start=8, margin_end=8, margin_bottom=4)
+        modes.pack_start(Gtk.Label(label='Modo:'), False, False, 0)
+        self.find_mode = Gtk.ComboBoxText()
+        for value, label in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'),
+                             ('proximity', 'Proximidade ordenada')]:
+            self.find_mode.append(value, label)
+        self.find_mode.set_active_id('literal')
+        self.find_mode.get_accessible().set_name('Modo de pesquisa')
+        self.find_distance = Gtk.SpinButton.new_with_range(0, 50, 1)
+        self.find_distance.set_sensitive(False)
+        self.find_distance.set_tooltip_text('Total máximo de palavras intermediárias entre os termos, na ordem consultada.')
+        self.find_distance.get_accessible().set_name('Distância de proximidade')
+        def mode_changed(*_):
+            self.find_distance.set_sensitive(self.find_mode.get_active_id() == 'proximity')
+            self.find_options['whole_words'].set_sensitive(self.find_mode.get_active_id() == 'literal')
+            self._find_changed()
+        self.find_mode.connect('changed', mode_changed)
+        self.find_distance.connect('value-changed', self._find_changed)
+        modes.pack_start(self.find_mode, False, False, 0)
+        modes.pack_start(Gtk.Label(label='Distância:'), False, False, 0)
+        modes.pack_start(self.find_distance, False, False, 0)
+        container.pack_start(modes, False, False, 0)
         self.find_results_toggle = Gtk.ToggleButton(label='Resultados')
         self.find_results_toggle.connect('toggled', lambda b: self.find_results_revealer.set_reveal_child(b.get_active()))
         options.pack_start(self.find_results_toggle, False, False, 0)
@@ -705,7 +729,7 @@ class PDFWindow(Gtk.Window):
             path = dlg.get_filename(); dlg.destroy(); self.open_document(path); return
         dlg.destroy()
 
-    def open_document(self, path):
+    def open_document(self, path, initial_page=0):
         path = os.path.abspath(path)
         if not os.path.isfile(path):
             self._error('Arquivo não encontrado.')
@@ -734,7 +758,7 @@ class PDFWindow(Gtk.Window):
             self._set_actions_enabled(True)
             self._start_thumb_build()
             self._load_side_panels()
-            self.goto_page(0, force=True)
+            self.goto_page(min(max(0, initial_page), self.page_count - 1), force=True)
         self.runner.submit('document-info', task, ok, lambda e: self._load_failed(path, e))
 
     def _load_failed(self, path, exc):
@@ -755,6 +779,7 @@ class PDFWindow(Gtk.Window):
             self.prefetch_runner.invalidate(str(key))
         self.prefetch_tasks.clear()
         self.search_cancel.set(); self.search_index = None; self.search_running = False
+        self.search_notices = []
         self.runner.invalidate('main-render'); self.runner.invalidate('search'); self.runner.invalidate('panels')
         self.runner.invalidate('selection-words')
         self.attachment_controller.set_document(None)
@@ -1448,9 +1473,15 @@ class PDFWindow(Gtk.Window):
             hit = self.search_hits[idx]
             row = Gtk.ListBoxRow()
             row.hit_index = idx
-            source = {'bookmark': 'Marcador', 'comment': 'Comentário', 'page_text': 'Texto'}.get(hit.get('source'), 'Texto')
+            source = {'bookmark': 'Marcador', 'comment': 'Comentário', 'page_text': 'Texto',
+                      'attachment': 'Anexo'}.get(hit.get('source'), 'Texto')
             destination = f"Pág. {hit['page'] + 1}" if hit['page'] is not None else 'Sem página local'
+            if hit.get('source') == 'attachment':
+                destination = display_attachment_name(hit['attachment_name'])
+                if hit.get('attachment_page') is not None:
+                    destination += f" · pág. {hit['attachment_page'] + 1} do anexo"
             label = Gtk.Label(label=f"{source} • {destination} • {hit['snippet']}", xalign=0)
+            label.set_tooltip_text(label.get_text())
             label.set_ellipsize(Pango.EllipsizeMode.END)
             label.set_margin_start(9)
             label.set_margin_end(9)
@@ -1470,6 +1501,8 @@ class PDFWindow(Gtk.Window):
             GLib.source_remove(self.search_timer)
             self.search_timer = None
         self.search_hits = []
+        self.search_notices = []
+        self.find_status.set_tooltip_text(None)
         self.search_pos = -1
         self._search_scroll_pending = False
         self._find_update_results()
@@ -1520,6 +1553,8 @@ class PDFWindow(Gtk.Window):
         self.search_running = False
         self.runner.invalidate('search')
         self.search_hits = []; self.search_pos = -1
+        self.search_notices = []
+        self.find_status.set_tooltip_text(None)
         self._search_scroll_pending = False
         self._find_update_results()
         self.interaction_layer.queue_draw()
@@ -1535,12 +1570,15 @@ class PDFWindow(Gtk.Window):
         if not query:
             self.search_hits = []; self.search_pos = -1; self.find_status.set_text(''); return False
         if not any(self.find_options[key].get_active() for key in
-                   ('include_page_text', 'include_bookmarks', 'include_comments')):
+                   ('include_page_text', 'include_bookmarks', 'include_comments', 'include_attachments')):
             self.find_status.set_text('Selecione ao menos uma fonte de pesquisa.')
             return False
         self.find_status.set_text('Pesquisando…')
         cancel = threading.Event(); self.search_cancel = cancel
         options = {key: button.get_active() for key, button in self.find_options.items()}
+        options.update(mode=self.find_mode.get_active_id(), proximity_distance=self.find_distance.get_value_as_int())
+        notices = []
+        self.search_notices = []
         if self.search_index is None:
             self.search_index = TextSearchIndex(path, self.page_count, page_sizes=self.page_sizes)
         index = self.search_index
@@ -1561,6 +1599,7 @@ class PDFWindow(Gtk.Window):
             if cancel.is_set() or self.search_cancel is not cancel or path != self.filepath: return
             self.search_running = False
             self.search_hits = hits
+            self.search_notices = notices
             self.search_pos = min(max(0, self.search_pos), len(hits) - 1) if hits else -1
             self._update_find_status()
             self.interaction_layer.queue_draw()
@@ -1568,7 +1607,8 @@ class PDFWindow(Gtk.Window):
             if not cancel.is_set():
                 self.search_running = False
                 self.find_status.set_text(f'Erro: {exc}')
-        self.runner.submit('search', lambda: index.search(query, cancel=cancel, on_page=progress, **options), ok, error)
+        self.runner.submit('search', lambda: index.search(query, cancel=cancel, on_page=progress,
+                                                        on_notice=notices.append, **options), ok, error)
         return False
 
     def _update_find_status(self):
@@ -1578,6 +1618,14 @@ class PDFWindow(Gtk.Window):
                      if self.find_options['include_page_text'].get_active() else ' • fontes do documento')
         elif len(self.search_hits) >= 5000:
             text += ' • limite de resultados'
+        notices = getattr(self, 'search_notices', [])
+        omissions = [item for notice in notices for item in notice['omissions']]
+        if omissions:
+            text += ' • anexos parciais'
+        if any(notice['limit_reached'] for notice in notices):
+            text += ' • limite em anexos'
+        detail = '\n'.join(display_attachment_name(f"{item['name']}: {item['reason']}") for item in omissions[:12])
+        self.find_status.set_tooltip_text(detail or None)
         self.find_status.set_text(text)
         self._find_update_results()
 
@@ -1590,6 +1638,15 @@ class PDFWindow(Gtk.Window):
         self._select_search_hit(self.search_pos - 1)
 
     # ---------- tools ----------
+    def _show_collection(self, *_args):
+        from collection_window import CollectionWindow
+        window = getattr(self, 'collection_window', None)
+        if window is None or window.closed:
+            window = CollectionWindow(self, lambda path, page: self.open_document(path, initial_page=page))
+            self.collection_window = window
+            window.show_all()
+        window.present()
+
     def _begin_copy_edit(self, kind):
         if not self.filepath or self.page_count < 1 or getattr(self, '_copy_edit_busy', False):
             return

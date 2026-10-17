@@ -4,6 +4,7 @@ cd "$(git rev-parse --show-toplevel)"
 results="$PWD/dist/ci-results"
 mkdir -p "$results"
 export PYTHONUTF8=1
+export LINUXIT_SEARCH_CAPTURE_DIR="$results/search-ui"
 export XDG_CONFIG_HOME="$PWD/analysis-local/ci-config"
 export XDG_CACHE_HOME="$PWD/analysis-local/ci-cache"
 openbox --sm-disable >"$results/openbox.log" 2>&1 &

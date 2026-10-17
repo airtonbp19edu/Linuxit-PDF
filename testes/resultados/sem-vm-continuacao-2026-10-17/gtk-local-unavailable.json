@@ -1,0 +1,50 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_search_extensions_gtk.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 6,
+  "passed": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 6,
+  "elapsed_sec": 0.002165999998396728,
+  "cases": [
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_attachment_scope_displays_partial_coverage_and_distinct_identity",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    },
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_closing_collection_terminates_pending_worker_without_callbacks",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    },
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_collection_build_query_and_open_result_on_its_actual_page",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    },
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_collection_changed_result_is_refused_before_opening",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    },
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_mode_controls_geometry_distance_and_bad_syntax",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    },
+    {
+      "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_old_attachment_results_do_not_repopulate_another_document",
+      "status": "skipped",
+      "reason": "Requires GTK3 and X11"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

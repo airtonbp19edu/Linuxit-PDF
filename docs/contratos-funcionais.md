@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 16 subconjuntos implementados e 9 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 19 subconjuntos implementados e 6 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -20,9 +20,9 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Busca literal/palavra inteira/maiúsculas](#search-text) | Subconjunto atual; lacunas abertas |
 | [Busca em marcadores](#search-bookmarks) | Subconjunto atual; lacunas abertas |
 | [Busca em comentários](#search-comments) | Subconjunto atual; lacunas abertas |
-| [Busca em anexos](#search-attachments) | Proposta; não implementado |
-| [Índice persistente/pesquisa de coleção](#search-index) | Proposta; não implementado |
-| [Stemming/proximidade/coringas](#search-language) | Proposta; não implementado |
+| [Busca em anexos](#search-attachments) | Subconjunto atual; lacunas abertas |
+| [Índice persistente/pesquisa de coleção](#search-index) | Subconjunto atual; lacunas abertas |
+| [Stemming/proximidade/coringas](#search-language) | Subconjunto atual; lacunas abertas |
 | [Seleção/cópia/snapshot](#selection) | Subconjunto atual; lacunas abertas |
 | [Prévia/plano de impressão](#printing) | Subconjunto atual; lacunas abertas |
 | [Livreto/N-up/mosaico](#imposition) | Subconjunto atual; lacunas abertas |
@@ -291,36 +291,40 @@ Relacionados aos planos dinâmicos/UI: D08, D09.
 
 ## Busca em anexos
 
-Requisito futuro: buscar texto em anexos suportados, preservando a origem de cada hit.
+Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.
 
 **Entradas**
 
-- PDF com anexos, consulta, seletor de escopo e formatos de anexo explicitamente suportados.
-- Limites de tamanho, recursão, tempo e cancelamento ainda a definir por contrato de formato.
+- PDF host, consulta literal/coringa/proximidade, flags e seletor de anexos.
+- Até100 anexos;2MiB por payload/8MiB total,100 páginas e2MiB de texto por anexo; limites pós-decodificação.
 
 **Saídas**
 
-- Proposta: hits com caminho/identidade do anexo e localização interna distinguíveis da página principal.
+- Hits com índice/nome/SHA256 do anexo, hash do host e página interna; sem página/retângulo do host inventado.
+- Omissões e possível corte expostos separadamente, inclusive na UI.
 
 **Erros e casos excepcionais**
 
-- Anexo binário, cifrado ou formato sem extrator: Proposta: registrar anexo não pesquisado e razão, sem prometer que zero hits implica cobertura total.
-- Anexo excede limite ou contém recursão: Proposta: interromper esse ramo e informar resultado parcial.
+- Formato não suportado, bytes inválidos, PDF cifrado ou limite: Omitir esse anexo com razão e declarar pesquisa parcial.
+- Host alterado/estrutura inválida ou worker indisponível: Falhar sem afirmar cobertura completa; cancelar encerra o worker.
 
 **Estado e efeitos**
 
-- Proposta: extração temporária controlada, sem executar anexos ou modificar o original.
+- Sem execução/exportação de anexos ou alteração da fonte; worker cancelável.
+- Sem OCR, recursão de anexos internos, portfólios ou senha; limite real aplicado após extração.
 
 **Critérios planejados**
 
-- **S12-07-1** (nominal, proposta futura, `not_run`): dado PDF sintético com anexo textual contendo alvo; fixture ainda a especializar. Ação: Pesquisar incluindo anexos. Esperado: Proposta: ao menos um hit identifica o anexo e não recebe uma página principal fictícia.
-- **S12-07-2** (exception, proposta futura, `not_run`): dado Mesmo PDF com um anexo não suportado. Ação: Pesquisar incluindo anexos. Esperado: Proposta: indicar que esse anexo não foi pesquisado; não declarar cobertura integral.
+- **S12-07-1** (nominal, contrato próprio atual, `not_run`): dado PDF sintético com anexo textual contendo alvo; fixture ainda a especializar. Ação: Pesquisar incluindo anexos. Esperado: Encontrar o termo no anexo suportado e identificar índice/nome/página interna sem destino principal fictício.
+- **S12-07-2** (exception, contrato próprio atual, `not_run`): dado Mesmo PDF com um anexo não suportado. Ação: Pesquisar incluindo anexos. Esperado: Informar o anexo omitido e seu motivo; UI deve indicar anexos parciais.
 
 **Lacunas da referência Foxit**
 
 - Travessia completa, extratores, formatos, limites, ordenação e associação de resultados no original.
 
-Fontes: [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json).
+Fontes: [app/attachment_search.py](../app/attachment_search.py), [app/search_tasks.py](../app/search_tasks.py), [app/search_matching.py](../app/search_matching.py), [app/pdf_attachments.py](../app/pdf_attachments.py), [app/search_engine.py](../app/search_engine.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope](../tests/test_attachment_search.py); [test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions](../tests/test_attachment_search.py); [test_cancellation_terminates_the_actual_child_and_does_not_create_files](../tests/test_attachment_search.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 
@@ -328,71 +332,81 @@ Relacionados aos planos dinâmicos/UI: D16.
 
 ## Índice persistente/pesquisa de coleção
 
-Requisito futuro: índice persistente de coleção com identidade, atualização e consulta cancelável.
+Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.
 
 **Entradas**
 
-- Lista explícita de diretórios/documentos locais e versão do índice.
-- Consulta e política de inclusão/atualização; não indexar perfis pessoais implicitamente.
+- Lista explícita de1–100 PDFs e arquivo .linuxit-index.json escolhido para criação/atualização.
+- Consulta/flags/mode; até64MiB por fonte/256MiB total,1000 páginas,16MiB texto e64MiB índice.
 
 **Saídas**
 
-- Proposta: índice versionado e hits identificando documento, posição e estado de atualização.
+- Índice próprio versionado com SHA256 do corpo/fontes; varredura de texto durante consulta, sem formato Lucene/FTS.
+- Hits identificam caminho absoluto/SHA256/página e fontes alteradas são excluídas;5000 hits/350 linhas na UI com aviso.
 
 **Erros e casos excepcionais**
 
-- Documento movido/alterado ou entrada obsoleta: Proposta: invalidar/reindexar a entrada e marcar resultados desatualizados.
-- Índice corrompido ou disco sem espaço: Proposta: falhar sem substituir um índice íntegro por saída incompleta.
+- Fonte ausente/alterada após indexação: Excluir seus hits e indicar atualização explícita; revalidar antes de abrir resultado.
+- Índice inválido, fonte criptografada ou falha de gravação: Recusar operação; preservar índice anterior íntegro e limpar temporário em falhas tratadas.
 
 **Estado e efeitos**
 
-- Proposta: escrita apenas no diretório de índice autorizado; fontes permanecem intactas.
+- Não varrer pastas automaticamente nem alterar PDFs; gravação só no destino escolhido.
+- Índice contém texto e caminhos locais; não é portátil entre máquinas e não faz OCR.
+- Atualização revalida fontes/índice e usa temporário/os.replace; cancelamento forçado pode deixar temporário ou ocorrer após commit.
 
 **Critérios planejados**
 
-- **S12-08-1** (nominal, proposta futura, `not_run`): dado Coleção sintética de dois documentos e índice em pasta nova. Ação: Construir índice e consultar um termo presente em um documento. Esperado: Proposta: hit identifica o documento correto e a versão do índice.
-- **S12-08-2** (exception, proposta futura, `not_run`): dado Uma fonte foi alterada após indexação. Ação: Consultar sem atualização completa. Esperado: Proposta: resultado não deve ser apresentado como atual sem indicar/iniciar atualização.
+- **S12-08-1** (nominal, contrato próprio atual, `not_run`): dado Coleção sintética de dois documentos e índice em pasta nova. Ação: Construir índice e consultar um termo presente em um documento. Esperado: Criar/reabrir índice e localizar termo no PDF/página corretos, sem alterar fontes.
+- **S12-08-2** (exception, contrato próprio atual, `not_run`): dado Uma fonte foi alterada após indexação. Ação: Consultar sem atualização completa. Esperado: Excluir a fonte alterada e indicar que precisa atualizar o índice.
 
 **Lacunas da referência Foxit**
 
 - Formato e manutenção do índice completo, exclusões, locking, recuperação e disponibilidade Reader.
 
-Fontes: [docs/windows-evidence/foxit-rea/index-interface.json](../docs/windows-evidence/foxit-rea/index-interface.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/collection_index.py](../app/collection_index.py), [app/collection_window.py](../app/collection_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/search_matching.py](../app/search_matching.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/windows-evidence/foxit-rea/index-interface.json](../docs/windows-evidence/foxit-rea/index-interface.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_build_reopen_worker_and_query_preserve_sources_and_real_pages](../tests/test_collection_index.py); [test_changed_missing_sources_are_excluded_until_explicit_rebuild](../tests/test_collection_index.py); [test_update_failure_preserves_old_index_and_removes_temporary](../tests/test_collection_index.py).
 
 <a id="search-language"></a>
 
 ## Stemming/proximidade/coringas
 
-Requisito futuro: semânticas distintas de stemming, proximidade e coringas; não confundir com busca literal própria.
+Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.
 
 **Entradas**
 
-- Consulta, idioma, modo e parâmetros de proximidade/coringas explícitos.
-- Escopo e analisador de texto versionado.
+- Consulta de até256 caracteres antes da normalização e modo explícito.
+- Coringa: um padrão até64 caracteres normalizados, até8* ou?; proximidade:2–8 palavras ordenadas/distância total0–50.
 
 **Saídas**
 
-- Proposta: hits acompanhados do modo/analisador usado; resultados reprodutíveis para o corpus definido.
+- Hits não sobrepostos; proximidade destaca intervalo com palavras intermediárias, sem cruzar bloco/página do documento.
+- Mesma semântica para páginas, metadados, anexos e coleção, respeitando fronteiras de extração.
 
 **Erros e casos excepcionais**
 
-- Sintaxe ou combinação de flags não suportada: Proposta: rejeitar a consulta com motivo; não reinterpretar silenciosamente como busca literal.
-- Expansão de termos excede limite: Proposta: limitar e indicar truncamento ou recusar a consulta.
+- Padrão/sintaxe/modo ou distância inválida: Erro explícito, sem reinterpretar silenciosamente como literal.
+- Palavra acima de4096 caracteres nos modos avançados: Recusar operação ou omitir anexo com razão; não executar regex nem expansão ilimitada.
 
 **Estado e efeitos**
 
-- Proposta: cancelamento e limites compartilhados com a consulta; original intacto.
+- Preservar modo literal, inclusive* e? literais e casefold com expansão Unicode.
+- NFC/casefold e opção de acentos compartilhados; palavra inteira só precisa de flag no modo literal.
+- Stemming não implementado e não exposto como recurso funcional.
 
 **Critérios planejados**
 
-- **S12-09-1** (nominal, proposta futura, `not_run`): dado Corpus sintético com duas palavras separadas por distâncias conhecidas. Ação: Executar proximidade com duas distâncias explícitas. Esperado: Proposta: a diferença de hits decorre da distância registrada e é reproduzível.
-- **S12-09-2** (exception, proposta futura, `not_run`): dado Consulta com coringa/operador cuja sintaxe não foi implementada. Ação: Executar esse modo. Esperado: Proposta: erro claro, sem alegar equivalência ao Foxit.
+- **S12-09-1** (nominal, contrato próprio atual, `not_run`): dado Corpus sintético com duas palavras separadas por distâncias conhecidas. Ação: Executar proximidade com duas distâncias explícitas. Esperado: Duas consultas com distâncias diferentes produzem hits conforme distância total/ordem documentadas.
+- **S12-09-2** (exception, contrato próprio atual, `not_run`): dado Consulta com coringa/operador cuja sintaxe não foi implementada. Ação: Executar esse modo. Esperado: Recusar sintaxe/operador não suportado sem trocar silenciosamente para literal.
 
 **Lacunas da referência Foxit**
 
 - Stemming por idioma, distância/proximidade, escaping, expansão e combinações com índice.
 
-Fontes: [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
+Fontes: [app/search_matching.py](../app/search_matching.py), [app/search_engine.py](../app/search_engine.py), [app/attachment_search.py](../app/attachment_search.py), [app/collection_index.py](../app/collection_index.py), [app/main.py](../app/main.py), [app/collection_window.py](../app/collection_window.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_proximity_uses_total_intervening_words_and_query_order](../tests/test_search_modes.py); [test_invalid_syntax_distance_and_expansion_are_rejected](../tests/test_search_modes.py); [test_page_geometry_keeps_owner_rectangles_for_both_modes](../tests/test_search_modes.py).
 
 Relacionados aos planos dinâmicos/UI: UI07.
 

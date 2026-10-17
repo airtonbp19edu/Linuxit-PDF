@@ -1,0 +1,73 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/no-vm-continuation-2026-10-17/functions/0x15c6550.json",
+      "result_sha256": "6016e0d617efc361fdc8a22445760a71b1ee4747bcf3ed54ddae04fa076542e6",
+      "entry_va": "0x15c6550",
+      "analyst_name": "analyst_entry_15c6550",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 163,
+      "body_ranges": "[[015c6550, 015c65f2]]",
+      "pseudocode_sha256": "fb506481ad7f006bc3cf5d592ae74e378dfd5767d87e73a4317809fb9ea29bf3",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/no-vm-continuation-2026-10-17/functions/0x16664e0.json",
+      "result_sha256": "63f37b735bf832d2434e05bf6b8c4d85a18266be43b81d34f027a9c3bd5027a7",
+      "entry_va": "0x16664e0",
+      "analyst_name": "analyst_entry_16664e0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 834,
+      "body_ranges": "[[016664e0, 01666821]]",
+      "pseudocode_sha256": "b7bd8bf517428b891c237227304127bf431988789b5dabe7b77fc7558b6e3c3d",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/no-vm-continuation-2026-10-17/functions/0x1b8a7a0.json",
+      "result_sha256": "08e155d6a0b153591c4d9027c305a151c4e33299a78a9cc100764c326ac6e337",
+      "entry_va": "0x1b8a7a0",
+      "analyst_name": "analyst_entry_1b8a7a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 106,
+      "body_ranges": "[[01b8a7a0, 01b8a809]]",
+      "pseudocode_sha256": "bf852c36a12b746002d95a448e313f930c6fe1feb18da7898a0c3fdd30cb9c81",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/no-vm-continuation-2026-10-17/functions/0x1b8ae20.json",
+      "result_sha256": "f97399ea67bf587a45f774f2049ae317735ccad539ecebd6fc0a48ea81eb7133",
+      "entry_va": "0x1b8ae20",
+      "analyst_name": "analyst_entry_1b8ae20",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 451,
+      "body_ranges": "[[01b8ae20, 01b8afe2]]",
+      "pseudocode_sha256": "8bfa7138e4be73c6203caa262e4cbb420f4170ff39d4f0e384af82824e81b656",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/no-vm-continuation-2026-10-17/functions/0x872f20.json",
+      "result_sha256": "30a7356a9edee6758df9ce2d4d9dc8539df472ee2877b4fa4a3fb83945ab6e53",
+      "entry_va": "0x872f20",
+      "analyst_name": "analyst_entry_872f20",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 18,
+      "body_ranges": "[[00872f20, 00872f31]]",
+      "pseudocode_sha256": "16d3bc043fc43548f0a23875879fae5499ea23b8e6ef13442e13ad757fed23ba",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 5,
+  "distinct_entries": 5,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

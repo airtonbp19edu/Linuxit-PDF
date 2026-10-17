@@ -35,6 +35,7 @@ jobs:
             set -euo pipefail
             cd "$GITHUB_WORKSPACE"
             export PYTHONUTF8=1
+            export LINUXIT_SEARCH_CAPTURE_DIR="$GITHUB_WORKSPACE/dist/no-vm-results/search-ui"
             export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-source-XXXXXX)"
             chmod 700 "$XDG_RUNTIME_DIR"
             mkdir -p dist/no-vm-results

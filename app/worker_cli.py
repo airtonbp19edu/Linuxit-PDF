@@ -87,6 +87,21 @@ def main(argv):
         from pdf_panels import inspect_document_panels
         print(json.dumps(inspect_document_panels(argv[2]), ensure_ascii=False))
         return
+    if cmd in {'index-build', 'index-search'}:
+        from collection_index import build_index, search_index
+        raw = sys.stdin.buffer.read(256 * 1024 + 1)
+        if len(raw) > 256 * 1024:
+            raise ValueError('Pedido de coleção acima de 256 KiB.')
+        action = build_index if cmd == 'index-build' else search_index
+        print(json.dumps(action(argv[2], json.loads(raw)), ensure_ascii=True))
+        return
+    if cmd == 'search-attachments':
+        from attachment_search import search_attachment_text
+        raw = sys.stdin.buffer.read(65537)
+        if len(raw) > 65536:
+            raise ValueError('Pedido de busca acima de 64 KiB.')
+        print(json.dumps(search_attachment_text(argv[2], json.loads(raw)), ensure_ascii=True))
+        return
     if cmd == 'edit-info':
         from pdf_changes import inspect_editable_document
         print(json.dumps(inspect_editable_document(argv[2]), ensure_ascii=True))
