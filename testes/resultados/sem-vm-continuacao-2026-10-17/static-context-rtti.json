@@ -1,0 +1,27 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "rtti_classes": [
+    {
+      "vtable": "0x541b7bc",
+      "locator": "0x65ad484",
+      "type_descriptor": "0x6ccf134",
+      "decorated_type_name": ".?AVCPDF_ImageRenderer@@",
+      "scope": "Exact MSVC RTTI identity for constructor vtable; no runtime availability claim."
+    },
+    {
+      "vtable": "0x53d31f8",
+      "locator": "0x6597d10",
+      "type_descriptor": "0x6cc032c",
+      "decorated_type_name": ".?AVCReflowViewerEx@@",
+      "scope": "Exact MSVC RTTI identity for constructor vtable; no runtime availability claim."
+    },
+    {
+      "vtable": "0x53d2b38",
+      "locator": "0x6597afc",
+      "type_descriptor": "0x6cc02b4",
+      "decorated_type_name": ".?AVIPDFViewer@@",
+      "scope": "Exact MSVC RTTI identity for constructor vtable; no runtime availability claim."
+    }
+  ],
+  "original_executed": false
+}

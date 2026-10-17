@@ -35,6 +35,13 @@ def wait_for(predicate, timeout=20):
 def capture(window, name):
     destination = os.environ.get('LINUXIT_SEARCH_CAPTURE_DIR')
     if not destination:return
+    # Worker/model completion precedes GTK's next painted frame. Preserve a
+    # rendered result, rather than the previously displayed busy state.
+    settled = []
+    def settle():settled.append(True);return False
+    window.queue_draw()
+    GLib.timeout_add(160, settle)
+    wait_for(lambda: bool(settled))
     folder = Path(destination);folder.mkdir(parents=True, exist_ok=True)
     allocation = window.get_allocation()
     pixbuf = Gdk.pixbuf_get_from_window(window.get_window(), 0, 0, allocation.width, allocation.height)

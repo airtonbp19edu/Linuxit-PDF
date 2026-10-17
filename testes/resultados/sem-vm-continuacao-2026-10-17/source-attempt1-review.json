@@ -1,0 +1,15 @@
+{
+  "source_commit": "cb3c514d006b6f87725fdc824caa5b861f99da79",
+  "ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069391926",
+  "tests": 190,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "campaign_own_checks": 17,
+  "gtk_methods": 6,
+  "artifact_id": 12114263494,
+  "zip_sha256": "59b6300e717d5a8d1803cc64af5287ab8e12c96a9000b493628e5eeb35634d88",
+  "screenshot_review": "Native paint lagged after worker/model completion; screenshot-only timing fix required. Application tests passed.",
+  "packaging_attempt_cancelled": 39069595028,
+  "original_executed": false
+}

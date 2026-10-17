@@ -651,6 +651,14 @@
         {
           "path": "tests/test_attachment_search.py",
           "test": "test_cancellation_terminates_the_actual_child_and_does_not_create_files"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_attachment_scope_displays_partial_coverage_and_distinct_identity"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_old_attachment_results_do_not_repopulate_another_document"
         }
       ],
       "dynamic_case_refs": [
@@ -759,6 +767,18 @@
         {
           "path": "tests/test_collection_index.py",
           "test": "test_update_failure_preserves_old_index_and_removes_temporary"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_collection_build_query_and_open_result_on_its_actual_page"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_collection_changed_result_is_refused_before_opening"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_closing_collection_terminates_pending_worker_without_callbacks"
         }
       ],
       "dynamic_case_refs": [],
@@ -866,6 +886,10 @@
         {
           "path": "tests/test_search_modes.py",
           "test": "test_page_geometry_keeps_owner_rectangles_for_both_modes"
+        },
+        {
+          "path": "tests/test_search_extensions_gtk.py",
+          "test": "test_mode_controls_geometry_distance_and_bad_syntax"
         }
       ],
       "dynamic_case_refs": [
@@ -2369,5 +2393,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T18:03:43-03:00"
+  "updated_at_local": "2026-10-17T18:09:20-03:00"
 }

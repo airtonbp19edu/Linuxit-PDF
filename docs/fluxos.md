@@ -139,3 +139,10 @@ terminar; retorno1 não é confirmação de impressão física.0x1b8d860 configu
 recursos e referências compartilhadas, com tipos de chamada ainda provisórios.
 0x880490 inicializa sob demanda objeto por área cliente/estado de rolagem;
 classe e disponibilidade visual não confirmadas. [Evidências](AVANCO-SEM-VM.md).
+
+
+A continuação0.1.6 confirmou por RTTI **CPDF_ImageRenderer** em1c68ca0 e
+**CReflowViewerEx/IPDFViewer** em15c5010. O objeto criado por15c6550/880490
+agora tem contexto de reflow identificado.0x20a6f70 pode retornar1 para clip
+vazio; não tratar esse retorno como sucesso de impressão. Assinaturas/stack
+permanecem provisórias. [Evidências](BUSCA-COLECOES.md).

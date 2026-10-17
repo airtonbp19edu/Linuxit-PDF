@@ -324,7 +324,7 @@ Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotaçõ
 
 Fontes: [app/attachment_search.py](../app/attachment_search.py), [app/search_tasks.py](../app/search_tasks.py), [app/search_matching.py](../app/search_matching.py), [app/pdf_attachments.py](../app/pdf_attachments.py), [app/search_engine.py](../app/search_engine.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope](../tests/test_attachment_search.py); [test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions](../tests/test_attachment_search.py); [test_cancellation_terminates_the_actual_child_and_does_not_create_files](../tests/test_attachment_search.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope](../tests/test_attachment_search.py); [test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions](../tests/test_attachment_search.py); [test_cancellation_terminates_the_actual_child_and_does_not_create_files](../tests/test_attachment_search.py); [test_attachment_scope_displays_partial_coverage_and_distinct_identity](../tests/test_search_extensions_gtk.py); [test_old_attachment_results_do_not_repopulate_another_document](../tests/test_search_extensions_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 
@@ -366,7 +366,7 @@ Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escol
 
 Fontes: [app/collection_index.py](../app/collection_index.py), [app/collection_window.py](../app/collection_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/search_matching.py](../app/search_matching.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/windows-evidence/foxit-rea/index-interface.json](../docs/windows-evidence/foxit-rea/index-interface.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_build_reopen_worker_and_query_preserve_sources_and_real_pages](../tests/test_collection_index.py); [test_changed_missing_sources_are_excluded_until_explicit_rebuild](../tests/test_collection_index.py); [test_update_failure_preserves_old_index_and_removes_temporary](../tests/test_collection_index.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_build_reopen_worker_and_query_preserve_sources_and_real_pages](../tests/test_collection_index.py); [test_changed_missing_sources_are_excluded_until_explicit_rebuild](../tests/test_collection_index.py); [test_update_failure_preserves_old_index_and_removes_temporary](../tests/test_collection_index.py); [test_collection_build_query_and_open_result_on_its_actual_page](../tests/test_search_extensions_gtk.py); [test_collection_changed_result_is_refused_before_opening](../tests/test_search_extensions_gtk.py); [test_closing_collection_terminates_pending_worker_without_callbacks](../tests/test_search_extensions_gtk.py).
 
 <a id="search-language"></a>
 
@@ -406,7 +406,7 @@ Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios;
 
 Fontes: [app/search_matching.py](../app/search_matching.py), [app/search_engine.py](../app/search_engine.py), [app/attachment_search.py](../app/attachment_search.py), [app/collection_index.py](../app/collection_index.py), [app/main.py](../app/main.py), [app/collection_window.py](../app/collection_window.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_proximity_uses_total_intervening_words_and_query_order](../tests/test_search_modes.py); [test_invalid_syntax_distance_and_expansion_are_rejected](../tests/test_search_modes.py); [test_page_geometry_keeps_owner_rectangles_for_both_modes](../tests/test_search_modes.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_proximity_uses_total_intervening_words_and_query_order](../tests/test_search_modes.py); [test_invalid_syntax_distance_and_expansion_are_rejected](../tests/test_search_modes.py); [test_page_geometry_keeps_owner_rectangles_for_both_modes](../tests/test_search_modes.py); [test_mode_controls_geometry_distance_and_bad_syntax](../tests/test_search_extensions_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: UI07.
 

@@ -103,3 +103,34 @@ rodada privada e saída nova. Não prova tipos/semântica nem conta helpers duas
 Próximos alvos:1c68ca0 e15c5010 para classes;20a6f70 para consumidor de imagem;
 campos3/5/6/7/12/16/20 da busca e IDs7911/7913 continuam incompletos. Não repetir
 os cinco alvos examinados nem alterar pesos/paridade por contagem de funções.
+
+
+## Fonte Linux e revisão das capturas
+
+Run39069391926/cb3c514: **190/190**, zero falhas/erros/skips; seis métodos GTK,
+smoke5/5 e campanha preservada17/17 aprovados. [Primeira revisão](../testes/resultados/sem-vm-continuacao-2026-10-17/source-attempt1-review.json).
+As capturas mostraram o frame anterior à repintura após completar o modelo.
+Corrigida a sincronização **do teste**, aguardando a repintura, sem alterar
+aplicativo. Construção39069595028 cancelada para repetir evidência visual;
+não é falha de funcionamento nem dado do Foxit.
+
+## Classes e consumidor — segunda rodada
+
+Mais três entradas examinadas em cópia do projeto:372 instruções/1651bytes
+conferidos por Capstone. Total desta continuação: **oito entradas novas**,
+889 instruções/3223bytes. Catálogo **248 =152 REA +96 diretas exclusivas**.
+
+| Entrada | Bytes | Resultado parcial |
+|---|---:|---|
+|0x1c68ca0|264|Construtor instala vtable0x541b7bc; RTTI identifica **CPDF_ImageRenderer**. Liga o auxiliar da fábrica de tipo3 ao renderer de imagem; não fecha o pipeline gráfico.|
+|0x15c5010|1254|Construtor instala vtables base0x53d2b38 (**IPDFViewer**) e derivada0x53d31f8 (**CReflowViewerEx**), com recursos/configuração intermediários. A fábrica15c6550 e objeto criado por880490 pertencem ao caminho de reflow; demais getters e disponibilidade visual continuam parciais.|
+|0x20a6f70|133|Compõe retângulo de destino, intersecta com clip+1c/+20/+24/+28 e encaminha slot virtual+0x64 do dispositivo. Retorna1 quando região é vazia, sem provar saída física bem-sucedida.|
+
+[Metadados](windows-evidence/foxit-rea/headless-cross-checks-no-vm-context-2026-10-17.json),
+[checagem de instruções](../testes/resultados/sem-vm-continuacao-2026-10-17/static-context-machine-checks.json)
+e [joins exatos de RTTI](../testes/resultados/sem-vm-continuacao-2026-10-17/static-context-rtti.json).
+Raw/projeto: `analysis-local/headless/no-vm-context-2026-10-17/`.
+Limites: stack/signatura de15c5010 provisórias; nomes não provam disponibilidade
+Reader, UI completa ou classificação de todos os objetos. IDs7911/7913 não
+foram resolvidos. Próximos alvos:15c9c90/15c5e00 para recursos de reflow e slots
+virtuais de CPDF_ImageRenderer; campos incompletos da busca permanecem abertos.

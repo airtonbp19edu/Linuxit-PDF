@@ -1228,3 +1228,24 @@ execução Linux. Nenhum original executado; limites/omissões documentados em
 `docs/BUSCA-COLECOES.md`. Não contar testes portáveis como GUI ou paridade.
 Pacote0.1.5 permanece publicado e intacto. Próximo: validar fonte Linux/GTK,
 corrigir falhas, depois construir e auditar0.1.6. Causa por tokens/interrupção:null.
+
+
+## 2026/10/17 às 18:09 (America/Sao_Paulo, UTC-03:00) — fonte Linux aprovada e classes identificadas
+
+Fontecb3c514 publicada/confirmada; run39069391926 passou190/190 sem falhas/erros/
+skips, seis métodos GTK novos, smoke5/5 e campanha17/17. Artefato12114263494,
+ZIP59b6300e717d5a8d1803cc64af5287ab8e12c96a9000b493628e5eeb35634d88 confere
+com GitHub. Evidências copiadas byte a byte. Capturas mostraram frame anterior
+à repintura, apesar dos estados/testes corretos. Ajustado apenas o sincronismo
+do teste; cancelada construção39069595028 para repetir evidência visual.
+
+Segunda rodada3 entradas1c68ca0/15c5010/20a6f70 examinadas;372 instruções/
+1651bytes. RTTI CPDF_ImageRenderer, CReflowViewerEx eIPDFViewer; fábricaUIagora
+situada emreflow. Clip vazio pode retornar1 sem saída gráfica. Totaldesta
+continuação8 novas entradas/248catálogo,889 instruções/3223bytes. Raw privados
+em analysis-local/headless/no-vm-context-2026-10-17, metadados/checks publicáveis.
+Próximos alvos15c9c90/15c5e00, slotsImageRenderer e campos da busca. Tipagem,
+UI completa, paridade e origem da causa por tokens continuam sem fechamento.
+
+Próximo: repetir fonte/capturas no novo commit do teste, examinar imagens,
+construir/preservar0.1.6 e auditar instalação. Pacote0.1.5 permanece intacto.
