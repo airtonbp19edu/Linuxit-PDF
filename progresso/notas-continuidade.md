@@ -331,3 +331,14 @@ dentro do escopo sem IA. Retomar os cenários próprios/corpus e alvos estático
 já registrados; observar D01–D20/UI01–UI10 somente na contenção offline validada.
 Publicação deste marco ainda pendente; a nota seguinte registrará um hash
 confirmado no remoto e o comprovante final ficará em `analysis-local/`.
+
+## 2026/10/17 às 00:33 (America/Sao_Paulo, UTC-03:00) — etapa 14 e escopo publicados
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`39e176cc3665abcc48f73f0e52f55492032f1871`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/39e176cc3665abcc48f73f0e52f55492032f1871).
+Árvore limpa após o envio. Esta nota usa um hash já confirmado; o commit da
+própria nota será conferido ao fim, sem autorreferência. Comprovante final em
+`analysis-local/github-stage14-sync-verified.json`, ignorado pelo Git. Sem
+bloqueio de publicação nesta rodada. Retomar pela nota das 00:32 e pela etapa
+15 quando autorizada, preservando a exclusão da IA, os critérios existentes
+e as pendências de análise/VM.
