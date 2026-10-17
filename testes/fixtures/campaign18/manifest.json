@@ -1,0 +1,47 @@
+{
+  "schema": "linuxit-preserved-synthetic-corpus-v1",
+  "origin": "Own generated synthetic PDF/text fixtures from scripts/prepare_foxit_dynamic.py; no Foxit resources or data.",
+  "baseline_ref": "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+  "fixtures": [
+    {
+      "name": "busca-escopos.pdf",
+      "size": 7904,
+      "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+    },
+    {
+      "name": "busca-longa.pdf",
+      "size": 82663,
+      "sha256": "3dfce9fc83a6da03bfb47f52b824c62297f7a6c7eb758fc33e0dd22186a1ac2c"
+    },
+    {
+      "name": "com-anexo.pdf",
+      "size": 3377,
+      "sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74"
+    },
+    {
+      "name": "com-senha.pdf",
+      "size": 3390,
+      "sha256": "1922651f70d7af3934bac3715ede6cf933fe70022fe2ab9b0f5055b28b9f685e"
+    },
+    {
+      "name": "controle.txt",
+      "size": 67,
+      "sha256": "b4e81b193a7596beeaf4dd389a71245a6689c1221f66f3f5029ec261962e42d2"
+    },
+    {
+      "name": "geometria.pdf",
+      "size": 2980,
+      "sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7"
+    },
+    {
+      "name": "invalido.pdf",
+      "size": 39,
+      "sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e"
+    },
+    {
+      "name": "vazio.pdf",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

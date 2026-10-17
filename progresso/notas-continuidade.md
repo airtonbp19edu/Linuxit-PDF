@@ -964,3 +964,25 @@ quatro subconjuntos Poppler do corpus18 e demais pendências explícitas.
 
 Sincronizacao-git.json registra o commit técnico confirmado para evitar
 autorreferência. Confirmar o HEAD seguinte por recibo fora da árvore.
+
+
+## 2026/10/17 às 15:10 (America/Sao_Paulo, UTC-03:00) — execução das frentes sem VM iniciada
+
+Pedido atual: realizar todas as etapas restantes que puderem avançar sem VM.
+Primeiro lote prepara execução Linux dos 17 subconjuntos da etapa18, com os
+mesmos oito arquivos próprios preservados e verificados por SHA-256. Copiados
+para testes/fixtures/campaign18/ sem templates ou dados Foxit; manifesto liga
+aos hashes históricos. Novo carregador recusa bytes/manifestos alterados;
+cinco controles portáveis passaram. Workflow manual no-vm-validation.yml
+executará Poppler e suíte completa fonte, sem executar Foxit. Entrega0.1.3
+e seus relatórios permanecem inalterados; ainda não há resultado Linux novo.
+
+Preparados 14 alvos estáticos já registrados: dez consumidores de impressão
+e quatro helpers UI. Seeds em docs/windows-evidence/foxit-rea/no-vm-2026-10-17-seeds.tsv;
+rodada Ghidra direta nova, sem autoanálise integral e sem repetir os projetos
+passados. JDK21.0.12.1 e Node24.22.0 reconferidos. Salvar resultados completos
+em analysis-local/headless/no-vm-2026-10-17/ e examinar antes de catalogar.
+VM/hardware/serviços externos e contratos completos desconhecidos continuam
+separados; não promover testes próprios a paridade nem declarar todas as
+obrigações encerradas por ausência de VM. Estado Git: alterações preparadas
+para primeiro commit/push; próximo passo executar workflow e lote Ghidra.

@@ -2,3 +2,6 @@
 *.png binary
 *.pdf binary
 *.flatpak binary
+
+# The preserved comparison corpus is bound to exact byte hashes.
+testes/fixtures/campaign18/controle.txt -text whitespace=cr-at-eol

@@ -1,0 +1,60 @@
+name: Preserved corpus and Linux validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: debian:13
+    steps:
+      - name: Install source test dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
+            dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme
+      - name: Check out source and synthetic corpus
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Prepare test user
+        run: |
+          useradd --create-home --uid 1001 linuxit-test
+          chown -R linuxit-test:linuxit-test "$GITHUB_WORKSPACE"
+      - name: Run complete source suite and preserved corpus
+        run: |
+          runuser -u linuxit-test -- bash -c '
+            set -euo pipefail
+            cd "$GITHUB_WORKSPACE"
+            export PYTHONUTF8=1
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-source-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            mkdir -p dist/no-vm-results
+            /usr/bin/python3 scripts/run_comparison_campaign.py run \
+              --corpus-manifest testes/fixtures/campaign18/manifest.json \
+              --work-dir analysis-local/linux-preserved-campaign \
+              --output dist/no-vm-results/preserved-campaign.json
+            /usr/bin/python3 -c "import json; r=json.load(open(\"dist/no-vm-results/preserved-campaign.json\")); assert r[\"own_contract_passed\"]==17 and r[\"blocked_runtime\"]==0 and r[\"errors\"]==0 and not r[\"foxit_observations\"]"
+            exec dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/check_intermediate.py \
+              --profile linux --work-dir analysis-local/linux-source-validation \
+              --output dist/no-vm-results/source-intermediate.json
+          '
+      - name: Preserve own test evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linuxit-no-vm-${{ github.sha }}
+          path: |
+            dist/no-vm-results/
+            analysis-local/linux-source-validation/*.stderr
+            analysis-local/linux-source-validation/*.stdout
+          if-no-files-found: warn
+          retention-days: 14

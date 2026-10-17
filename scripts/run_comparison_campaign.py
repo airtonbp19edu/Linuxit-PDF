@@ -245,7 +245,28 @@ def compare_records(campaign, observations, evidence_root):
             'automatic_parity_update': False, 'whole_family_equivalence_verified': False}
 
 
-def collect(work):
+def preserved_corpus(manifest_path, destination):
+    """Copy the exact synthetic stage-18 inputs, checking the recorded hashes."""
+    manifest_path = manifest_path.resolve(strict=True)
+    manifest = read(manifest_path)
+    require(manifest['schema'] == 'linuxit-preserved-synthetic-corpus-v1', 'Unknown corpus manifest')
+    baseline = read(ROOT / 'testes/resultados/etapa-18-campanha-final-2026-10-17.json')['fixtures']
+    require(manifest['fixtures'] == baseline, 'Corpus differs from preserved stage-18 identities')
+    sources = []
+    for item in baseline:
+        name = item['name']
+        require(Path(name).name == name and '/' not in name and '\\' not in name, 'Unsafe fixture name')
+        source = manifest_path.parent / name
+        require(not source.is_symlink() and source.is_file(), 'Missing or symlinked fixture: ' + name)
+        require(source.stat().st_size == item['size'] and sha(source) == item['sha256'], 'Fixture changed: ' + name)
+        sources.append((name, source))
+    destination.mkdir(parents=True, exist_ok=False)
+    for name, source in sources:
+        shutil.copyfile(source, destination / name)
+    return baseline
+
+
+def collect(work, corpus_manifest=None):
     from check_intermediate import app_snapshot
     from prepare_foxit_dynamic import build_corpus
     plan = load_plan()
@@ -254,7 +275,8 @@ def collect(work):
     local = (ROOT / 'analysis-local').resolve()
     require(work != local and work.is_relative_to(local) and not work.exists(), 'Use a new child directory under analysis-local/')
     work.mkdir(parents=True)
-    fixtures = build_corpus(work / 'input')
+    fixtures = (preserved_corpus(corpus_manifest, work / 'input') if corpus_manifest
+                else build_corpus(work / 'input'))
     fixture_hashes = {item['name']: item['sha256'] for item in fixtures}
     campaign = {'schema': 'linuxit-comparison-campaign-v1',
                 'date_local': datetime.now(timezone(timedelta(hours=-3))).isoformat(timespec='seconds'),
@@ -321,6 +343,7 @@ def main():
     run = commands.add_parser('run')
     run.add_argument('--work-dir', type=Path, required=True)
     run.add_argument('--output', type=Path, required=True)
+    run.add_argument('--corpus-manifest', type=Path, help='Reuse the exact preserved synthetic stage-18 bytes')
     internal = commands.add_parser('probe')
     internal.add_argument('--request', type=Path, required=True)
     internal.add_argument('--input', type=Path, required=True)
@@ -338,7 +361,7 @@ def main():
         parser.error('Use a new report path; previous evidence is preserved')
     try:
         if args.command == 'run':
-            result = collect(args.work_dir)
+            result = collect(args.work_dir, args.corpus_manifest)
             success = result['source_unchanged'] and result['fixtures_unchanged'] and result['errors'] == 0 and result['own_observed_subchecks'] == result['own_contract_passed']
             summary = {key: result[key] for key in ('own_observed_subchecks', 'own_contract_passed', 'blocked_runtime', 'errors', 'foxit_observations')}
         else:

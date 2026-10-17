@@ -1,0 +1,2 @@
+LINUXIT_RUNTIME_PROBE
+Controle de interface do ambiente isolado.
