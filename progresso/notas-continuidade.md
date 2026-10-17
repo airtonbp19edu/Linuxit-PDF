@@ -213,3 +213,57 @@ autorreferência. Comprovante final em
 Continuar pelos contratos/ressalvas da nota das 00:12 e por `docs/ETAPA-12.md`;
 os 50 casos completos permanecem planejados, a fase A aberta e os indicadores
 preservados. Nenhum bloqueio de publicação nesta rodada.
+
+## 2026/10/17 às 00:23 (America/Sao_Paulo, UTC-03:00) — etapa 13 e pendências de análise
+
+O usuário pediu seguir a etapa 13 e registrar etapas parciais por falta da VM
+ou possíveis limites de tokens. Base local limpa e remoto confirmados em
+`052da732b410fa9919d4050a21d4f1e1eb8bafdb`. Os dois critérios de projeto da etapa
+13 já estavam `done`; foram reexaminados e detalhados para a versão 0.1.1.
+Não houve mudança de critérios, pesos, revisão ou estados das atividades.
+
+Entregas: `docs/ETAPA-13.md`, revisão de `docs/arquitetura.md` e inventário em
+`docs/arquitetura-componentes.json`, com 19 módulos próprios, 11 interfaces e
+vínculo com as 25 famílias da etapa 12. As propostas permanecem futuras.
+O ciclo adiado rendering/search_engine, a coordenação ainda nas janelas e a
+diferença entre cancelamento cooperativo, entrega por geração e timeout de
+subprocesso foram explicitados. Inspeção do código confirmou import condicional
+Cairo em `imposition._merge_poster_marks`: se indisponível, o ramo retorna sem
+marcas/legendas. Esse módulo foi excluído da garantia de fechamento sem
+GTK/Cairo; sete módulos satisfazem a checagem de imports local. Não alterar a
+implementação por uma suposição de arquitetura idealizada.
+
+`progresso/pendencias-analises.md` e `.json` cobrem exatamente os 21 critérios
+ainda abertos em 14 etapas, com estado atual, motivo/evidência e próximo passo.
+Dependência direta de observação/comparação do original: 10/11/12/18/19; a 21
+depende também desses resultados. 11/12 têm trabalho sem VM; 03/05/07/08/09
+ainda exigem análise, 15/16 implementação/integração e 01 acesso a regras pela
+API. Não atribuir todas as pendências à VM. A etapa 13 de projeto está verificada
+pelos critérios existentes e não se torna parcial por falta dela.
+
+Relatórios examinados comprovam provider_timeout após 1.801,7 s e tentativa
+MCP automática limitada a 600 s; não comprovam esgotamento de tokens. A lista
+de eventos confirmados de tokens fica vazia e o campo por pendência `null`.
+Não há afirmação sobre o conteúdo dos chats perdidos. Risco de interrupção
+futura de contexto/tokens tratado com checkpoint após cada lote e antes de
+mudar de etapa: identidade, perfil, alvos examinados/pendentes, evidências,
+último resultado conferido, próxima ação, causa comprovada ou nula e Git.
+
+Ferramentas: Python 3.13.15, AST e Git; nenhuma sessão nova REA/Ghidra ou
+execução Foxit. `scripts/check_architecture.py` conferiu módulos/símbolos,
+fechamentos de imports, famílias e completude do registro de pendências.
+Resultado examinado em `testes/resultados/etapa-13-arquitetura-2026-10-17.json`:
+hashes dos 19 módulos, 18 arquivos de evidência de pendências, sintaxe de 107
+arquivos e 72 links locais conferidos. Registro da etapa 12 continua válido.
+Comparação com o progresso do commit base confirmou critérios/estados/pesos
+preservados. Auxiliares em `analysis-local/build_stage13_records.py` e
+`analysis-local/finalize_stage13.py`, ignorados pelo Git.
+
+Etapa 13: 100% dos dois critérios de projeto; roteiro 43,33%, paridade 0/25,
+catálogo 209. Fonte do aplicativo inalterada, sem suíte GTK repetida ou Flatpak
+novo. Próximo passo sem VM: especializar fixtures e tornar os casos próprios
+da etapa 12 executáveis, incluindo marcas/legendas de mosaico em Linux/Cairo;
+para análise estática seguir os quatro helpers da interface e os dez alvos
+de impressão já registrados. Na VM validada, observar D01–D20 e UI01–UI10.
+Publicação do marco ainda pendente; a nota seguinte registrará um hash já
+confirmado no remoto, e o comprovante final ficará fora dos arquivos versionados.

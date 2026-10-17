@@ -29,6 +29,8 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Consumidores e geometria de impressão: seis entradas adicionais](docs/REA-IMPRESSAO-CONSUMIDORES.md)
 - [Etapa 11: condições estáticas da interface e validação pendente](docs/ETAPA-11.md)
 - [Etapa 12: contratos das 25 famílias e cenários de aceitação planejados](docs/ETAPA-12.md)
+- [Etapa 13: arquitetura revisada e fronteiras verificadas](docs/ETAPA-13.md)
+- [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)

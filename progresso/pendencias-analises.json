@@ -1,0 +1,386 @@
+{
+  "schema": "linuxit-analysis-pendencies-v1",
+  "reviewed_at_local": "2026-10-17T00:20:00-03:00",
+  "timezone": "America/Sao_Paulo",
+  "progress_source": "progresso/progresso.json",
+  "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
+  "confirmed_token_exhaustion_events": [],
+  "token_evidence_scope": "No token exhaustion evidence found in the examined project reports/continuity notes; this does not prove absence in lost chats.",
+  "token_exhaustion_risk": "possible_future_interruption",
+  "unconfirmed_cause_value": null,
+  "execution_limits": [
+    {
+      "kind": "provider_timeout",
+      "elapsed_seconds": 1801.7,
+      "limit_seconds": 1800,
+      "evidence_ref": "docs/FOXIT-REA.md",
+      "outcome": "Full autoanalysis not completed; directed profiles later yielded examined results.",
+      "is_token_exhaustion": false
+    },
+    {
+      "kind": "analysis_timeout",
+      "limit_seconds": 600,
+      "evidence_ref": "docs/REA-IMPRESSAO-WINDOWS.md",
+      "outcome": "REA MCP attempt yielded zero new function observations; later direct -noanalysis results catalogued separately.",
+      "is_token_exhaustion": false
+    }
+  ],
+  "checkpoints": {
+    "required_fields": [
+      "local_datetime_with_timezone",
+      "stage_and_family",
+      "source_identity",
+      "tool_and_profile",
+      "targets_started",
+      "targets_examined",
+      "pending_targets",
+      "raw_result_paths",
+      "public_evidence_paths",
+      "last_verified_result",
+      "next_command_or_action",
+      "interruption_cause_or_null",
+      "git_publication_state"
+    ],
+    "policy": "Save a checkpoint after each bounded target batch and before switching stages. On context/token interruption keep unfinished work pending/partial and resume from last examined result; do not count saved-but-unexamined output."
+  },
+  "unfinished_criteria": [
+    {
+      "stage_id": 1,
+      "stage_title": "Diagnóstico e preparação",
+      "criterion": "Regras remotas de proteção consultáveis pela API",
+      "criterion_status": "unknown",
+      "blocker_categories": [
+        "remote_api_access"
+      ],
+      "evidence_refs": [
+        "progresso/progresso.json"
+      ],
+      "next_action": "Consultar regras de proteção pela API quando houver acesso; Git push/ls-remote não comprovam essas regras.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 3,
+      "stage_title": "Identificação tecnológica",
+      "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis"
+      ],
+      "evidence_refs": [
+        "docs/FOXIT-REA.md"
+      ],
+      "next_action": "Delimitar motor PDF e subsistemas ainda desconhecidos com consultas dirigidas e identidades preservadas.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 5,
+      "stage_title": "Mapeamento de dependências",
+      "criterion": "Ciclo de vida de todos os componentes reconstruído",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis"
+      ],
+      "evidence_refs": [
+        "docs/dependencias.md"
+      ],
+      "next_action": "Seguir criação/destruição dos componentes ainda não ligados no grafo.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 7,
+      "stage_title": "Catalogação das funções",
+      "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis",
+        "open_inventory"
+      ],
+      "evidence_refs": [
+        "engenharia-reversa/funcoes.csv",
+        "docs/FOXIT-REA.md"
+      ],
+      "next_action": "Expandir catálogo por entradas examinadas; definir universo antes de calcular cobertura global.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 8,
+      "stage_title": "Descompilação profunda",
+      "criterion": "Fluxo completo de impressão reconstruído",
+      "criterion_status": "partial",
+      "blocker_categories": [
+        "static_analysis"
+      ],
+      "evidence_refs": [
+        "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+        "docs/REA-BUSCA-IMPRESSAO.md"
+      ],
+      "next_action": "Continuar os dez alvos de impressão e os campos 3/5/6/7 e 12/16/20 da estrutura de busca, em rodadas separadas.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 8,
+      "stage_title": "Descompilação profunda",
+      "criterion": "Fluxo completo de busca reconstruído",
+      "criterion_status": "partial",
+      "blocker_categories": [
+        "static_analysis"
+      ],
+      "evidence_refs": [
+        "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+        "docs/REA-BUSCA-IMPRESSAO.md"
+      ],
+      "next_action": "Continuar os dez alvos de impressão e os campos 3/5/6/7 e 12/16/20 da estrutura de busca, em rodadas separadas.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 8,
+      "stage_title": "Descompilação profunda",
+      "criterion": "Demais famílias funcionais investigadas profundamente",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis"
+      ],
+      "evidence_refs": [
+        "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+        "docs/REA-BUSCA-IMPRESSAO.md"
+      ],
+      "next_action": "Continuar os dez alvos de impressão e os campos 3/5/6/7 e 12/16/20 da estrutura de busca, em rodadas separadas.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 9,
+      "stage_title": "Reconstrução dos fluxos internos",
+      "criterion": "Diagramas e estados rastreáveis por subsistema",
+      "criterion_status": "partial",
+      "blocker_categories": [
+        "static_analysis",
+        "specification"
+      ],
+      "evidence_refs": [
+        "docs/fluxos.md"
+      ],
+      "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 9,
+      "stage_title": "Reconstrução dos fluxos internos",
+      "criterion": "Algoritmos completos de todas as famílias especificados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis",
+        "specification"
+      ],
+      "evidence_refs": [
+        "docs/fluxos.md"
+      ],
+      "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 10,
+      "stage_title": "Análise dinâmica",
+      "criterion": "Ambiente isolado e original executável validados",
+      "criterion_status": "blocked",
+      "blocker_categories": [
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-10.md",
+        "testes/cenarios-dinamicos.json"
+      ],
+      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 10,
+      "stage_title": "Análise dinâmica",
+      "criterion": "Cenários locais observados e registrados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-10.md",
+        "testes/cenarios-dinamicos.json"
+      ],
+      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 10,
+      "stage_title": "Análise dinâmica",
+      "criterion": "Integrações autorizadas e casos excepcionais observados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-10.md",
+        "testes/cenarios-dinamicos.json"
+      ],
+      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 11,
+      "stage_title": "Engenharia reversa da interface",
+      "criterion": "Disponibilidade e comportamento de todas as interações observados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "static_analysis",
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-11.md",
+        "testes/cenarios-interface.json"
+      ],
+      "next_action": "Seguir 0x859920, 0x687ae0, 0x5f5370 e 0x48f10ef; resolver IDs 7911/7913 e observar UI01–UI10 no guest.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 12,
+      "stage_title": "Especificação funcional",
+      "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
+      "criterion_status": "partial",
+      "blocker_categories": [
+        "specification",
+        "fixture_and_acceptance",
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-12.md",
+        "docs/especificacao-funcional.json"
+      ],
+      "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 12,
+      "stage_title": "Especificação funcional",
+      "criterion": "Fase A consolidada sem lacunas não declaradas",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "specification",
+        "fixture_and_acceptance",
+        "offline_vm",
+        "original_observation"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-12.md",
+        "docs/especificacao-funcional.json"
+      ],
+      "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 15,
+      "stage_title": "Reconstrução da lógica principal",
+      "criterion": "Todas as demais famílias implementadas e testadas",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "implementation",
+        "specification"
+      ],
+      "evidence_refs": [
+        "progresso/matriz-paridade.csv",
+        "docs/contratos-funcionais.md"
+      ],
+      "next_action": "Implementar incrementalmente famílias com contratos suficientes; não confundir painéis com edição.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 16,
+      "stage_title": "Interface e integrações",
+      "criterion": "Demais interações e integrações funcionais",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "implementation",
+        "linux_runtime",
+        "platform_integration"
+      ],
+      "evidence_refs": [
+        "docs/instalacao.md",
+        "progresso/matriz-paridade.csv"
+      ],
+      "next_action": "Integrar famílias implementadas e validar GUI/portais/plataformas em ambiente adequado.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 18,
+      "stage_title": "Testes comparativos",
+      "criterion": "Cenários diferenciais executados no original e na reconstrução",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "offline_vm",
+        "original_observation",
+        "differential_test",
+        "fixture_and_acceptance"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-10.md",
+        "docs/ETAPA-12.md"
+      ],
+      "next_action": "Executar a mesma fixture/opções no original e no Linuxit; registrar resultados e divergências.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 18,
+      "stage_title": "Testes comparativos",
+      "criterion": "Resultados e divergências por família disponíveis",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "offline_vm",
+        "original_observation",
+        "differential_test",
+        "fixture_and_acceptance"
+      ],
+      "evidence_refs": [
+        "docs/ETAPA-10.md",
+        "docs/ETAPA-12.md"
+      ],
+      "next_action": "Executar a mesma fixture/opções no original e no Linuxit; registrar resultados e divergências.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 19,
+      "stage_title": "Correção de incompatibilidades",
+      "criterion": "Divergências originais medidas e corrigidas",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "differential_test",
+        "offline_vm"
+      ],
+      "evidence_refs": [
+        "progresso/matriz-paridade.csv",
+        "docs/especificacao.md"
+      ],
+      "next_action": "Medir primeiro as divergências do original; corrigir por caso e repetir o diferencial, além de regressões próprias.",
+      "token_exhaustion_confirmed": null
+    },
+    {
+      "stage_id": 21,
+      "stage_title": "Auditoria e entrega final",
+      "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
+      "criterion_status": "pending",
+      "blocker_categories": [
+        "incomplete_prior_stages",
+        "final_audit"
+      ],
+      "evidence_refs": [
+        "progresso/progresso.json",
+        "progresso/matriz-paridade.csv"
+      ],
+      "next_action": "Reauditar obrigações, lacunas e evidências após conclusão dos contratos e diferenciais; não declarar entrega completa agora.",
+      "token_exhaustion_confirmed": null
+    }
+  ],
+  "general_progress_percent": 43.33,
+  "criteria_revision": 1,
+  "stage_13_is_partial_due_to_vm": false
+}

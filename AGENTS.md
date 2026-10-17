@@ -72,6 +72,19 @@ Detalhamento parcial, fase A aberta; testes próprios e propostas não são
 observações do original. Preparar casos executáveis por família enquanto a
 VM não está disponível, preservando os indicadores e os critérios existentes.
 
+Em 17/10/2026 o usuário pediu seguir a etapa 13 e registrar as pendências por
+VM e possíveis limites de tokens. Ver `docs/ETAPA-13.md`,
+`docs/arquitetura-componentes.json` e `progresso/pendencias-analises.md`/`.json`.
+Os dois critérios de projeto da etapa 13 já estavam `done`; não aumentar os
+indicadores por esta revisão. `scripts/check_architecture.py` confere 19 módulos,
+25 famílias e todos os critérios ainda abertos. Marcas/legendas de mosaico
+dependem de Cairo; a ausência desse import faz o ramo retornar sem as marcas.
+Preservar a distinção entre VM, análise estática, implementação e runtime Linux.
+Os timeouts documentados de 1.801,7 s e 600 s não comprovam esgotamento de tokens.
+Só atribuir uma interrupção a tokens com evidência; causa desconhecida fica
+`null`. Salvar checkpoint após cada lote de alvos e antes de trocar de etapa,
+com resultados examinados/pendentes, perfil, evidências, próximo passo e Git.
+
 A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o
 original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.

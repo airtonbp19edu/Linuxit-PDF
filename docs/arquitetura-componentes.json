@@ -1,0 +1,436 @@
+{
+  "schema": "linuxit-architecture-v1",
+  "reviewed_at_local": "2026-10-17T00:20:00-03:00",
+  "timezone": "America/Sao_Paulo",
+  "application_version": "0.1.1",
+  "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
+  "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
+  "modules": [
+    {
+      "id": "main",
+      "path": "app/main.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Orquestra documento, ações, seleção, busca e envio de impressão."
+    },
+    {
+      "id": "presentation",
+      "path": "app/presentation.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Janela de apresentação, navegação, pan e ponteiro."
+    },
+    {
+      "id": "print_window",
+      "path": "app/print_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Opções semânticas, plano e prévia de impressão."
+    },
+    {
+      "id": "appearance",
+      "path": "app/appearance.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Persistência de aparência e aplicação das preferências GTK."
+    },
+    {
+      "id": "themes",
+      "path": "app/themes.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Compatibilidade dos nomes legados de tema com o controlador atual."
+    },
+    {
+      "id": "async_core",
+      "path": "app/async_core.py",
+      "boundary": "glib_scheduler",
+      "responsibility": "Filas, cancelamento cooperativo e entrega por geração via GLib."
+    },
+    {
+      "id": "search_engine",
+      "path": "app/search_engine.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Opções imutáveis, índice por documento, busca em texto e metadados."
+    },
+    {
+      "id": "pdf_panels",
+      "path": "app/pdf_panels.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Inspeção somente leitura de marcadores, comentários e nomes de camadas."
+    },
+    {
+      "id": "imposition",
+      "path": "app/imposition.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Seleção de páginas e composição independente de PDF."
+    },
+    {
+      "id": "rendering",
+      "path": "app/rendering.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Inspeção pypdf e operações Poppler com timeout/cancelamento."
+    },
+    {
+      "id": "worker_cli",
+      "path": "app/worker_cli.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Comandos info/panels/prepare; preparação PDF e rasterização opcional."
+    },
+    {
+      "id": "platform_runtime",
+      "path": "app/platform_runtime.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Seleção do Python de worker e opções de subprocesso."
+    },
+    {
+      "id": "cups_backend",
+      "path": "app/cups_backend.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Adaptador de filas, capacidades e envio; encaminha operações Windows."
+    },
+    {
+      "id": "windows_print",
+      "path": "app/windows_print.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Enumeração Win32 e diálogo GTK de impressão; validação nativa pendente."
+    },
+    {
+      "id": "windows_bootstrap",
+      "path": "app/windows_bootstrap.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Preparação do runtime Windows; não é uma entrega Windows validada."
+    },
+    {
+      "id": "page_cache",
+      "path": "app/page_cache.py",
+      "boundary": "shared_support",
+      "responsibility": "Cache LRU de imagens com limites de memória."
+    },
+    {
+      "id": "cancel_state",
+      "path": "app/cancel_state.py",
+      "boundary": "shared_support",
+      "responsibility": "Evento de cancelamento local à thread."
+    },
+    {
+      "id": "pdf_dependency",
+      "path": "app/pdf_dependency.py",
+      "boundary": "shared_support",
+      "responsibility": "Disponibiliza a cópia pypdf com licença preservada."
+    },
+    {
+      "id": "version",
+      "path": "app/version.py",
+      "boundary": "shared_support",
+      "responsibility": "Versão publicada da implementação."
+    }
+  ],
+  "no_gtk_or_cairo_import_closure": [
+    "cancel_state",
+    "page_cache",
+    "pdf_dependency",
+    "pdf_panels",
+    "platform_runtime",
+    "rendering",
+    "search_engine"
+  ],
+  "interface_refs": [
+    {
+      "path": "app/search_engine.py",
+      "symbol": "SearchOptions"
+    },
+    {
+      "path": "app/search_engine.py",
+      "symbol": "TextSearchIndex.search"
+    },
+    {
+      "path": "app/pdf_panels.py",
+      "symbol": "inspect_document_panels"
+    },
+    {
+      "path": "app/rendering.py",
+      "symbol": "document_info"
+    },
+    {
+      "path": "app/rendering.py",
+      "symbol": "render_page"
+    },
+    {
+      "path": "app/imposition.py",
+      "symbol": "prepare_output"
+    },
+    {
+      "path": "app/async_core.py",
+      "symbol": "BackgroundRunner.submit"
+    },
+    {
+      "path": "app/async_core.py",
+      "symbol": "BackgroundRunner.shutdown"
+    },
+    {
+      "path": "app/worker_cli.py",
+      "symbol": "main"
+    },
+    {
+      "path": "app/cups_backend.py",
+      "symbol": "print_file"
+    },
+    {
+      "path": "app/platform_runtime.py",
+      "symbol": "worker_python"
+    }
+  ],
+  "family_assignments": [
+    {
+      "id": "open-render",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/rendering.py",
+        "app/main.py",
+        "app/async_core.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "navigation",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/main.py",
+        "app/page_cache.py",
+        "app/rendering.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "presentation",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/presentation.py",
+        "app/page_cache.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "search-text",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/search_engine.py",
+        "app/main.py",
+        "app/rendering.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "search-bookmarks",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "search-comments",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "search-attachments",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Provedor de conteúdo de anexos, ligado à busca por origem.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "search-index",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Índice de coleção persistente, separado do cache por documento.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "search-language",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Modos de consulta explícitos com semântica documentada.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "selection",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/main.py",
+        "app/rendering.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "printing",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/print_window.py",
+        "app/worker_cli.py",
+        "app/cups_backend.py",
+        "app/windows_print.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "imposition",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/imposition.py",
+        "app/worker_cli.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "bookmarks-edit",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_panels.py"
+      ],
+      "future_boundary": "Modelo de edição e gravação em cópia, além do painel atual.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "annotations",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_panels.py",
+        "app/search_engine.py"
+      ],
+      "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "forms",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "attachments",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Inspeção/extração local com identidade e política de nomes.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "signatures",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Verificação criptográfica e confiança separadas da aparência visual.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "security",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Entrada de senha e permissões locais; RMS tratado como integração distinta.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "accessibility",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Estrutura acessível e adaptador de tecnologia assistiva.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "measurement",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/main.py"
+      ],
+      "future_boundary": "Calibração e unidades além da distância simples atual.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "layers-media",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_panels.py"
+      ],
+      "future_boundary": "Visibilidade OCG, mídia e 3D como contratos distintos.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "preferences",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/appearance.py"
+      ],
+      "future_boundary": null,
+      "future_boundary_implemented": null
+    },
+    {
+      "id": "cloud",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Adaptadores por provedor com laboratório local antes de contas reais.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "conversion",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [],
+      "future_boundary": "Importação/exportação por formato e disponibilidade Reader/Editor.",
+      "future_boundary_implemented": false
+    },
+    {
+      "id": "platform",
+      "contract_kind": "proposed_only",
+      "current_source_refs": [
+        "app/platform_runtime.py",
+        "app/cups_backend.py"
+      ],
+      "future_boundary": "Portais, associações e atualização com testes próprios por plataforma.",
+      "future_boundary_implemented": false
+    }
+  ],
+  "known_couplings": [
+    {
+      "modules": [
+        "rendering",
+        "search_engine"
+      ],
+      "detail": "rendering.search_text imports TextSearchIndex inside the compatibility function; search_engine imports rendering at module scope. This is a deferred cycle, not an acyclic architecture."
+    },
+    {
+      "modules": [
+        "main",
+        "print_window",
+        "cups_backend",
+        "windows_print"
+      ],
+      "detail": "UI and adapters still use dictionaries and direct calls; there is no universal plugin/service abstraction."
+    },
+    {
+      "modules": [
+        "imposition"
+      ],
+      "detail": "Poster cut marks/labels import Cairo inside _merge_poster_marks. Missing Cairo returns without these marks; basic PDF composition does not establish this capability."
+    }
+  ],
+  "runtime_limitations": [
+    "No new GTK/Linux execution in this Windows round.",
+    "A background thread/worker is not an offline VM and does not authorize running Foxit.",
+    "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
+    "Windows delivery, portals and physical printing remain unverified.",
+    "Static import checks do not prove all dynamic dependencies or runtime behavior."
+  ],
+  "stage_13_design_criteria_verified": true,
+  "full_application_implemented": false,
+  "foxit_parity_verified": false
+}

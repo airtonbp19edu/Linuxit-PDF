@@ -3,6 +3,7 @@
   "date_utc": "2026-10-17",
   "phase": "A; incremental B only for sufficiently specified contracts",
   "criteria_revision": 1,
+  "unfinished_criteria_register": "progresso/pendencias-analises.json",
   "method": "Stage percentages supplied by the user sum to 100. Check weights are explicit complexity estimates fixed at this initial checkpoint; only done checks count. Unknown global coverage is not replaced by slot ratios.",
   "stages": [
     {
@@ -418,6 +419,8 @@
           "status": "done",
           "evidence": [
             "docs/arquitetura.md",
+            "docs/ETAPA-13.md",
+            "docs/arquitetura-componentes.json",
             "docs/proveniencia-base.json",
             "LICENSE"
           ]
@@ -428,8 +431,11 @@
           "status": "done",
           "evidence": [
             "docs/arquitetura.md",
-            "docs/especificacao.md"
-          ]
+            "docs/especificacao.md",
+            "docs/arquitetura-componentes.json",
+            "testes/resultados/etapa-13-arquitetura-2026-10-17.json"
+          ],
+          "note": "Existing design criteria re-examined for 0.1.1: 19 modules, 11 interface references and 25 family assignments. Conditional Cairo dependency and deferred search/render cycle documented. Design verification is not full implementation, runtime validation or Foxit parity; status/weights unchanged."
         }
       ],
       "verified_fraction": 1.0,

@@ -2,6 +2,13 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
+Revisão atual: [etapa 13](../docs/ETAPA-13.md), com seus dois critérios de projeto
+já verificados. Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
+e `.json`: 21 critérios, 14 etapas. Causas VM/análise/implementação/runtime
+separadas; timeouts registrados e causa por tokens ainda não confirmada.
+Salvar checkpoint por lote e antes de mudar de etapa, com alvo restante e
+publicação. Validar o registro com `python scripts/check_architecture.py`.
+
 Trabalho paralelo autorizado: etapa 11 estática, conforme [relatório](../docs/ETAPA-11.md).
 Nove entradas examinadas; catálogo 209. Seguir `0x859920`, `0x687ae0`, `0x5f5370`
 e `0x48f10ef`; esclarecer contexto dos IDs 7911/7913. Validar UI01–UI10 na VM.

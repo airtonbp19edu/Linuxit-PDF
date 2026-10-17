@@ -1,0 +1,226 @@
+{
+  "schema": "linuxit-stage13-architecture-validation-v1",
+  "verified_at_local": "2026-10-17T00:23:04-03:00",
+  "timezone": "America/Sao_Paulo",
+  "application_version": "0.1.1",
+  "application_modules": 19,
+  "module_snapshots": [
+    {
+      "path": "app/main.py",
+      "sha256": "2e46c39176cb48dacab9ba9a30b08c30b3337c5cdc4adb61542e9d0a8521d979",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/presentation.py",
+      "sha256": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/print_window.py",
+      "sha256": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/appearance.py",
+      "sha256": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/themes.py",
+      "sha256": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/async_core.py",
+      "sha256": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+      "boundary": "glib_scheduler"
+    },
+    {
+      "path": "app/search_engine.py",
+      "sha256": "ad3e6e92862c947e2932ebbb1148ce8df08c3001b88c5b5dfb8f8132458d1814",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/pdf_panels.py",
+      "sha256": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/imposition.py",
+      "sha256": "8a19f036dd11e5a6eef38d17f09777e61c9b6c4a3cd21c71b7da1b6b29a1ac37",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/rendering.py",
+      "sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/worker_cli.py",
+      "sha256": "aa2f2fa1922e3b58c8131f1b852f246162a01990318053e8c5b03970f05e8fbb",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/platform_runtime.py",
+      "sha256": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/cups_backend.py",
+      "sha256": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_print.py",
+      "sha256": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_bootstrap.py",
+      "sha256": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/page_cache.py",
+      "sha256": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/cancel_state.py",
+      "sha256": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/pdf_dependency.py",
+      "sha256": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/version.py",
+      "sha256": "c90ed399395bec24be2df9ae33d368366893e0d2766879e91e96e5fd5b322424",
+      "boundary": "shared_support"
+    }
+  ],
+  "documented_interfaces": 11,
+  "family_assignments": 25,
+  "no_gtk_or_cairo_import_closures": {
+    "cancel_state": [
+      "cancel_state"
+    ],
+    "page_cache": [
+      "page_cache"
+    ],
+    "pdf_dependency": [
+      "pdf_dependency"
+    ],
+    "pdf_panels": [
+      "pdf_panels"
+    ],
+    "platform_runtime": [
+      "platform_runtime"
+    ],
+    "rendering": [
+      "cancel_state",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine"
+    ],
+    "search_engine": [
+      "cancel_state",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine"
+    ]
+  },
+  "internal_import_edges": {
+    "main": [
+      "async_core",
+      "cups_backend",
+      "page_cache",
+      "pdf_panels",
+      "platform_runtime",
+      "presentation",
+      "print_window",
+      "rendering",
+      "search_engine",
+      "themes",
+      "windows_print"
+    ],
+    "presentation": [
+      "async_core",
+      "page_cache",
+      "rendering"
+    ],
+    "print_window": [
+      "cups_backend",
+      "imposition",
+      "rendering",
+      "windows_print"
+    ],
+    "appearance": [],
+    "themes": [
+      "appearance"
+    ],
+    "async_core": [
+      "cancel_state"
+    ],
+    "search_engine": [
+      "pdf_panels",
+      "rendering"
+    ],
+    "pdf_panels": [],
+    "imposition": [
+      "pdf_dependency"
+    ],
+    "rendering": [
+      "cancel_state",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_engine"
+    ],
+    "worker_cli": [
+      "imposition",
+      "pdf_panels",
+      "rendering"
+    ],
+    "platform_runtime": [],
+    "cups_backend": [
+      "windows_print"
+    ],
+    "windows_print": [
+      "rendering"
+    ],
+    "windows_bootstrap": [
+      "main"
+    ],
+    "page_cache": [],
+    "cancel_state": [],
+    "pdf_dependency": [],
+    "version": []
+  },
+  "import_check_scope": "AST includes conditional/deferred imports; no dynamic import or runtime proof.",
+  "unfinished_criteria_registered": 21,
+  "unfinished_stages_registered": 14,
+  "blocker_evidence_files_checked": 18,
+  "confirmed_token_exhaustion_events": 0,
+  "recorded_execution_timeouts": 2,
+  "stage_13_design_verified_fraction": 1.0,
+  "general_progress_percent": 43.33,
+  "full_application_implemented": false,
+  "application_behavior_changed": false,
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "gtk_suite_rerun": false,
+  "new_flatpak_built": false,
+  "criteria_weights_and_statuses_preserved_from_baseline": true,
+  "criteria_revision_preserved": true,
+  "application_source_unchanged": true,
+  "python_files_parsed": 107,
+  "local_document_links_checked": 72,
+  "stage_12_register_still_valid": true,
+  "catalog_entries": 209
+}

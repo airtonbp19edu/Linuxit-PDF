@@ -59,6 +59,14 @@ O detalhamento está `partial`, a fase A continua aberta e a etapa 12 permanece
 executáveis, começando por abertura, busca, navegação e prévia; comparar com o
 Foxit na mesma fixture quando a VM estiver validada.
 
+A [etapa 13](ETAPA-13.md) foi revisada em **17/10/2026** para a versão 0.1.1:
+19 módulos, 11 interfaces e vínculo com as 25 famílias. Seus dois critérios de
+projeto já estavam concluídos; permanecem 100% sem fechar a implementação.
+O [registro de pendências](../progresso/pendencias-analises.md) cobre os 21
+critérios abertos, distingue VM/análise/código/runtime e fixa checkpoints para
+interrupções. Timeouts de execução estão documentados; esgotamento de tokens
+não foi confirmado nos relatórios examinados. Causas desconhecidas ficam nulas.
+
 ## Onde trabalhar
 
 - Interface e ciclo de vida: `app/main.py`.
@@ -67,7 +75,8 @@ Foxit na mesma fixture quando a VM estiver validada.
 - Impressão e imposição: `app/imposition.py`, `app/print_window.py`,
   `app/worker_cli.py`, `app/cups_backend.py` e `app/windows_print.py`.
 - Contratos e arquitetura: `docs/especificacao.md`, `docs/especificacao-funcional.json`,
-  `docs/contratos-funcionais.md`, `docs/ETAPA-12.md` e `docs/arquitetura.md`.
+  `docs/contratos-funcionais.md`, `docs/ETAPA-12.md`, `docs/arquitetura.md`,
+  `docs/arquitetura-componentes.json` e `docs/ETAPA-13.md`.
 - Investigação: `docs/FOXIT-REA.md`, `docs/REA-BUSCA-IMPRESSAO.md`,
   `docs/relatorio-dinamico.md` e `docs/windows-evidence/foxit-rea/`.
 - Agenda e indicadores: `progresso/tarefas-pendentes.md`, `projeto.json`,
@@ -122,6 +131,11 @@ históricos e as verificações locais são de implementação própria; a compa
 funcional com o Foxit continua pendente.
 
 ## Próxima sequência de trabalho
+
+Consultar primeiro o [registro completo de pendências](../progresso/pendencias-analises.md)
+e verificar sua coerência com `python scripts/check_architecture.py`.
+Cada lote deve terminar com checkpoint datado e próximo alvo exato. A revisão
+da etapa 13 não exige repetir a importação geral nem as rodadas concluídas.
 
 O usuário autorizou avançar a etapa 11 estaticamente enquanto prepara a VM.
 [ETAPA-11.md](ETAPA-11.md) registra nove entradas novas, condições de atualização
