@@ -1030,3 +1030,21 @@ e testes/resultados/sem-vm-2026-10-17/static-machine-checks.json. Etapas amplas
 permanecem parciais; pesos43,33%/paridade0/25 intactos. Próximo: publicar esse
 checkpoint de fonte0.1.4 e executar Linux/GTK; novos helpers estáticos dirigidos
 165f620/165f970/166a5b0/1665090/1b93280 e vtable619fa3c permanecem abertos.
+
+
+## 2026/10/17 às 15:23 (America/Sao_Paulo, UTC-03:00) — correção do cenário GTK novo
+
+Run39057656179/fonte07a52ad: campanha17/17 passou; suíte127 casos com126
+aprovados euma falha no novo teste GTK. O cenário chamava novamente o botão
+do painel já visível, ocultando-o antes da carga do novo documento. Corrigida
+a sequência do teste para verificar atualização automática do painel visível,
+sem alterar a lógica da aplicação nem afrouxar suas asserções de extração.
+Falha preservada em testes/resultados/sem-vm-2026-10-17/source-0.1.4-attempt1.json;
+raw analysis-local/no-vm-artifact-12110077860/, ZIP1280a8012c10998244159bbe449f45f588c005fb9113997e133ef32943fb4e2e
+confere com GitHub. Nenhum pacote0.1.4 aprovado por essa tentativa.
+
+Lote complementar estático em cópia do projeto já concluiu sete seeds, ainda
+aguarda exame técnico antes de catalogar. Runner agora permite copiar projeto
+preservado e exige identidade registrada antes de processar novos seeds; fonte
+do projeto anterior permanece intacta. Próximo: nova validação Linux e exame
+dos sete resultados. Estado Git: correção preparada para commit/push autorizado.

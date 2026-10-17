@@ -166,9 +166,12 @@ class AttachmentGTKTests(unittest.TestCase):
         target = self.root / 'nested.pdf'
         writer.write(target)
         self.window.open_document(str(target))
-        self.window._show_side_panel(4)
+        # The panel is already visible from setUp; clicking it again hides it.
+        # Opening the next document must refresh that visible panel automatically.
         wait_for(lambda: self.window.attachment_controller.source_sha256 is not None
                  and len(self.window.attachment_controller.items) == 2)
+        self.assertEqual(self.window.filepath, str(target))
+        self.assertTrue(self.window.sidebar_visible)
         items = self.window.attachment_controller.items
         self.assertEqual([i['name'] for i in items], ['nested.txt', 'page-note.txt'])
         self.assertEqual([(i['origin'], i['page']) for i in items], [('catalog', None), ('annotation', 0)])

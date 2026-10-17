@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import shutil
 
 
 SOURCE_SHA256 = '90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6'
@@ -24,6 +25,8 @@ def main():
     parser.add_argument('--ghidra', type=Path, required=True)
     parser.add_argument('--java-home', type=Path, required=True)
     parser.add_argument('--rea-root', type=Path, required=True)
+    parser.add_argument('--project-snapshot', type=Path,
+                        help='Copy a completed local project before processing new seeds; never modifies it')
     args = parser.parse_args()
     target, seeds, output = (p.resolve() for p in (args.target, args.seeds, args.output))
     ghidra, java_home, rea = (p.resolve() for p in (args.ghidra, args.java_home, args.rea_root))
@@ -39,8 +42,22 @@ def main():
     for path in (seeds, java, support, seed_script):
         if not path.is_file():
             parser.error(f'Required file missing: {path}')
-    for name in ('project', 'home', 'tmp', 'config', 'cache'):
+    snapshot = args.project_snapshot.resolve() if args.project_snapshot else None
+    if snapshot:
+        local = Path(__file__).resolve().parents[1] / 'analysis-local'
+        if not snapshot.is_relative_to(local.resolve()) or not (snapshot / 'foxit-selected.gpr').is_file():
+            parser.error('Project snapshot must be a preserved foxit-selected project inside analysis-local/')
+        recorded_source = snapshot.parent / 'source.json'
+        if not recorded_source.is_file() or json.loads(recorded_source.read_text(encoding='utf-8')).get('source_sha256') != SOURCE_SHA256:
+            parser.error('Project snapshot has no matching preserved target identity')
+        if any(snapshot.glob('*.lock')):
+            parser.error('Source project appears to be in use; preserve it without copying active locks')
+    for name in ('home', 'tmp', 'config', 'cache'):
         (output / name).mkdir(parents=True, exist_ok=False)
+    if snapshot:
+        shutil.copytree(snapshot, output / 'project')
+    else:
+        (output / 'project').mkdir()
     properties = [f'-Duser.home={output / "home"}',
                   f'-Djava.io.tmpdir={output / "tmp"}',
                   f'-Dapplication.settingsdir={output / "config"}',
@@ -57,12 +74,14 @@ def main():
                '-XX:CICompilerCount=2', '-Djava.awt.headless=true', *properties,
                '-cp', str(ghidra / 'Ghidra/Framework/Utility/lib/Utility.jar'),
                'ghidra.Ghidra', 'ghidra.app.util.headless.AnalyzeHeadless',
-               str(output / 'project'), 'foxit-selected', '-import', str(target), '-noanalysis',
+               str(output / 'project'), 'foxit-selected',
+               *(['-process', 'FoxitPDFReader.exe'] if snapshot else ['-import', str(target)]), '-noanalysis',
                '-scriptPath', f'{scripts / "ghidra"};{seed_script.parent}',
                '-preScript', 'ReaGhidraApplySeeds.java', str(seeds),
                '-postScript', 'FoxitSelectedFunctions.java', str(seeds), str(output / 'functions'),
                '-log', str(output / 'ghidra.log'), '-scriptlog', str(output / 'script.log')]
     source = {'target': str(target), 'source_sha256': SOURCE_SHA256,
+              'project_snapshot': str(snapshot) if snapshot else None,
               'seeds_sha256': digest(seeds), 'command': command,
               'mode': 'Direct Ghidra headless -noanalysis; not REA MCP Evidence',
               'limitations': 'Types, function boundaries and behavior remain provisional; no differential equivalence.'}
