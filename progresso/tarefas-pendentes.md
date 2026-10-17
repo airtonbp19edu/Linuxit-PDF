@@ -2,13 +2,15 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Marco atual: [etapa 21](../docs/ETAPA-21.md), auditoria da instalação do bundle
-publicado 0.1.2 aprovada. Novos sete controles do auditor e smoke 5/5; os 104/104
-por ambiente da etapa 20 são históricos. App e pacotes preservados.
-Próximo trabalho sem VM: retomar etapa 16, medir geometria dos widgets laterais,
-corrigir o cabeçalho recortado e verificar testes GTK/captura. Validar desktop
-real, portais, acessibilidade e impressão física; ampliar contratos/famílias.
-Etapa21 continua 50%, encerramento pending, com 21 critérios abertos em 14 etapas.
+Marco atual: [retomada da etapa 16](../docs/ETAPA-16-LAYOUT.md), painel lateral
+corrigido e Flatpak 0.1.3 validado:114/114 em fonte/payload/sandbox, zero skips;
+antes 0/10 e depois 10/10 na geometria, capturas examinadas. Auditoria0.1.2 da21
+preservada. Encerramento continua pending:21 critérios abertos em14 etapas.
+Próximo trabalho sem VM: repetir quatro subconjuntos Poppler no corpus
+`analysis-local/comparison-stage18-final/`, sem mudar os bytes preservados.
+Depois ampliar contratos/famílias e validar desktop/portais/acessibilidade e
+impressão física. Pedido760 px ficou 924 px devido a outros controles; registrar
+limitação ao trabalhar em largura mínima, sem confundir com recorte já corrigido.
 Comparação Foxit continua na [etapa 18](../docs/ETAPA-18.md): preservar o kit
 `analysis-local/comparison-stage18-final/`; quatro subconjuntos do corpus
 anterior ainda precisam ser repetidos com Poppler, e nenhuma observação do

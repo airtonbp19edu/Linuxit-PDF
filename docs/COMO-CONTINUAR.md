@@ -7,10 +7,10 @@ Enquanto isso, autorizou avançar a parte estática da interface na
 [etapa 11](ETAPA-11.md). As notas datadas registram os resultados posteriores
 ao checkpoint inicial deste guia.
 
-Continuação atual: [etapa 21](ETAPA-21.md), auditoria incremental do bundle
-0.1.2 instalado aprovada, com sete controles do auditor e smoke 5/5. O roteiro
-continua parcial; próximo trabalho sem VM é corrigir o cabeçalho lateral na
-etapa 16 e validar geometria GTK/captura, mantendo os critérios abertos.
+Continuação atual: [layout da etapa 16](ETAPA-16-LAYOUT.md), recorte lateral
+corrigido e Flatpak 0.1.3 com 114/114 por ambiente fonte/payload/sandbox.
+Próximo trabalho sem VM: repetir os quatro subconjuntos Poppler no mesmo
+corpus preservado da etapa 18, mantendo os critérios ainda abertos.
 Para a comparação Foxit, conservar `analysis-local/comparison-stage18-final/`
 e usar os mesmos PDFs na VM offline. O Foxit continua sem observação utilizável;
 testes próprios não mudam a paridade. O quadro abaixo é histórico, de 16/10.

@@ -1,6 +1,6 @@
 # Arquitetura da implementação independente
 
-Revisão de **17/10/2026**, referente ao **Linuxit 0.1.2**, com Linux como destino
+Revisão de **17/10/2026**, referente ao **Linuxit 0.1.3**, com Linux como destino
 prioritário. A base própria MIT Print&View 3.4.0/Winux tem
 [proveniência preservada](proveniencia-base.json); o pypdf tem
 [licença BSD preservada](pypdf-LICENSE.txt). Os contratos Foxit orientam a
@@ -22,8 +22,8 @@ abrangem somente funcionalidades autorizadas sem IA.
 As etapas 15/16 acrescentaram backend, controlador e painel de anexos. A
 [etapa 20](ETAPA-20.md) validou a fonte e o Flatpak 0.1.2: 104 testes completos
 em cada ambiente fonte/payload/sandbox, incluindo cinco casos GTK do painel.
-O layout completo ainda exige ajustes e desktop real: a captura virtual mostra
-cabeçalho lateral recortado. A contenção para observar Foxit continua separada.
+A [retomada da16](ETAPA-16-LAYOUT.md) corrigiu o recorte lateral no 0.1.3,
+com nova suíte 114 por ambiente e capturas conferidas. Desktop real continua pendente. A contenção para observar Foxit continua separada.
 
 ## Componentes atuais
 
@@ -114,7 +114,7 @@ ser usados para validar essa capacidade.
 
 O desenvolvimento e os testes completos ocorrem pelo código-fonte no Linux,
 com GTK 3, Cairo, Poppler e clientes CUPS. Flatpak é gerado nos marcos de
-entrega, mantendo o ID próprio e a branch `devel`; a versão atual é 0.1.2 de desenvolvimento.
+entrega, mantendo o ID próprio e a branch `devel`; a versão atual é 0.1.3 de desenvolvimento.
 O [empacotador](../scripts/build_flatpak.py) conserva o loader pareado,
 `runtime-lib`, os módulos OpenSSL e avisos de licenças. Os detalhes operacionais
 e testes históricos estão em [instalacao.md](instalacao.md).

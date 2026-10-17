@@ -34,16 +34,16 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O pacote atual é 0.1.2 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O pacote atual é 0.1.3 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 
 Fonte: `docs/especificacao.md`, `docs/FOXIT-REA.md`, `docs/proveniencia-base.json`.
-Testes: `scripts/run_tests.py` (GUI requer X11/Wayland). Etapa 20/0.1.2:
-104/104 na fonte Linux, payload e Flatpak instalado, zero falhas/erros/skips;
-inclui cinco casos GTK do painel/barra lateral (os quatro antes pendentes).
-Captura virtual tem cabeçalho lateral recortado; desktop/layout completos,
-acessibilidade, portais e impressão física ainda pendentes.
+Testes: `scripts/run_tests.py` (GUI requer X11/Wayland). Atual0.1.3:
+114/114 na fonte Linux, payload e Flatpak instalado, zero falhas/erros/skips;
+inclui três métodos de geometria lateral, cinco do painel e sete do auditor.
+Recorte lateral corrigido e capturas examinadas. Desktop/acessibilidade,
+portais/impressão física pendentes; pedido 760 resulta924 por outros controles.
 Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 `/app/lib` padrão. Use `runtime-lib`, loader pareado e módulos OpenSSL incluídos.
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
@@ -133,6 +133,21 @@ original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
 Preparação e testes do kit não contam como observação dinâmica; casos `not_run`.
 
 ## Notas de continuidade entre IAs
+
+Retomada16/layout: `docs/ETAPA-16-LAYOUT.md`. Run39040860414, fonte
+64f76865381b35b4f8204131ef547f210d5d09db. GtkPaned shrink=False preserva mínimo
+lateral: antes mínimo221/divisor158/x=-63; depois divisor221/x=0. Mesmo oráculo
+corrigido:0/10 antes,10/10 depois. Primeiro diagnóstico comparava só pai/filho
+ambos deslocados; passed:true inicial não foi adotado. Três métodos GTK novos
+cobrem cinco painéis/duas larguras, divisor/ocultação/leitura e anexo longo.
+114/114 em cada suíte fonte/payload/sandbox, smoke 5/5, launcher 3/3. Versão0.1.3,
+83 arquivos fonte/payload iguais; 2803 arquivos de dependências/149 pacotes
+atribuídos. Relatórios em `testes/resultados/0.1.3/`; raw/logs ignorados em
+`analysis-local/sidebar-release-artifact-12104530284/`. Capturas examinadas;
+pedido 760 virou924 de largura real, não afirmar suporte real a 760. Notas20/21
+abaixo são históricas quanto ao recorte; pesos/paridade/21 critérios abertos
+preservados. Próximo passo: quatro subconjuntos Poppler no corpus preservado18;
+original exige VM offline, desktop/portais/acessibilidade/impressão pendentes.
 
 Etapa 21: `docs/ETAPA-21.md`. Auditor `scripts/audit_delivery.py`, receita
 manual `delivery-audit.yml` e `scripts/ci_audit_delivery.sh`. Run 39039390847,

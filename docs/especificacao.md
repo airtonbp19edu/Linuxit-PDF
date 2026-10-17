@@ -98,3 +98,12 @@ Esses testes não são paridade Foxit.
 Casos de PDF inválido, senha, corrupção, assinaturas, XFA e serviços externos
 exigem especificações/corpus próprios. Não se converte presença de código ou
 controle em suporte funcional. As 25 famílias da matriz continuam abertas.
+
+
+## Geometria do painel lateral
+
+A [retomada da etapa 16](ETAPA-16-LAYOUT.md) usa o mínimo calculado pelo GTK
+para manter título e ícones na área visível. Cinco painéis/duas larguras,
+divisor/ocultação/leitura e anexo longo foram testados no 0.1.3. Pedido760 px
+resulta924 px por outros controles; não se afirma suporte a 760 reais. Esse é
+um contrato próprio de layout, sem observação/comparação Foxit.

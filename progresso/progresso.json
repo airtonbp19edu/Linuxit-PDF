@@ -561,13 +561,43 @@
             "testes/resultados/0.1.2/payload-tests.json",
             "testes/resultados/0.1.2/sandbox-tests.json",
             "testes/resultados/0.1.2/sandbox-smoke.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "docs/ETAPA-16-LAYOUT.md",
+            "testes/resultados/0.1.3/sidebar-before.json",
+            "testes/resultados/0.1.3/sidebar-after.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/validation-review.json"
           ],
-          "note": "Five real GTK attachment/sidebar tests passed in each complete 104-case Linux/source/payload/sandbox suite. Callback recursion fixed. Virtual X11 capture has clipped sidebar header; full desktop/layout/accessibility/platform integrations and remaining families remain pending. Status/weights unchanged."
+          "note": "Sidebar clipping reproduced: minimum221, pane158, x=-63. shrink=False fixed visible allocation; ten geometry scenarios and three new GTK methods passed. Complete Linux/source/payload/sandbox suites passed for0.1.3. Remaining integrations/desktop/accessibility/physical printing and families remain partial; status/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
-      "earned_percent": 2.333333
+      "earned_percent": 2.333333,
+      "current_sidebar_layout": {
+        "date_local": "2026-10-17T11:35:04.620699-03:00",
+        "version": "0.1.3",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414",
+        "source_commit": "64f76865381b35b4f8204131ef547f210d5d09db",
+        "before_scenarios_passed": 0,
+        "after_scenarios_passed": 10,
+        "complete_tests_per_environment": 114,
+        "limits": [
+          "760px requested results in 924px actual window minimum from other controls; 760px support not claimed.",
+          "Virtual X11 only; real desktop, accessibility, portals and physical printing remain open.",
+          "No Foxit observation or differential parity; roadmap criteria/weights unchanged."
+        ],
+        "evidence": [
+          "docs/ETAPA-16-LAYOUT.md",
+          "testes/resultados/0.1.3/sidebar-before.json",
+          "testes/resultados/0.1.3/sidebar-after.json",
+          "testes/resultados/0.1.3/source-intermediate.json",
+          "testes/resultados/0.1.3/payload-tests.json",
+          "testes/resultados/0.1.3/sandbox-tests.json",
+          "testes/resultados/0.1.3/validation-review.json"
+        ]
+      }
     },
     {
       "id": 17,
@@ -612,8 +642,8 @@
       "earned_percent": 2.0,
       "current_source_revalidation": {
         "status": "verified_linux_and_flatpak_subset",
-        "date_local": "2026-10-17T10:51:28.575850-03:00",
-        "scope": "Current source 0.1.2, including attachments, CropBox preservation and GTK sidebar recursion fix; own tests only.",
+        "date_local": "2026-10-17T11:35:04.620699-03:00",
+        "scope": "Current0.1.3 source including sidebar allocation fix; own tests only.",
         "portable_source_candidate": "historical_snapshot_preserved",
         "linux_source_runtime": "passed",
         "new_flatpak": "built_installed_tested",
@@ -626,9 +656,16 @@
           "testes/resultados/0.1.2/payload-tests.json",
           "testes/resultados/0.1.2/sandbox-tests.json",
           "testes/resultados/0.1.2/sandbox-smoke.json",
-          "testes/resultados/0.1.2/validation-review.json"
+          "testes/resultados/0.1.2/validation-review.json",
+          "docs/ETAPA-16-LAYOUT.md",
+          "testes/resultados/0.1.3/sidebar-before.json",
+          "testes/resultados/0.1.3/sidebar-after.json",
+          "testes/resultados/0.1.3/source-intermediate.json",
+          "testes/resultados/0.1.3/payload-tests.json",
+          "testes/resultados/0.1.3/sandbox-tests.json",
+          "testes/resultados/0.1.3/validation-review.json"
         ],
-        "next_action": "Validate real desktop layout/portals/accessibility and physical printing; original comparisons require offline VM.",
+        "next_action": "Repeat remaining Poppler subsets in preserved corpus; real desktop/accessibility/portals/physical printing and original VM remain open.",
         "source_changed_since_candidate": false,
         "source_changes_since_candidate": [],
         "additional_source_evidence": [
@@ -637,7 +674,7 @@
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
         "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
-        "source_commit_tested": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899"
+        "source_commit_tested": "64f76865381b35b4f8204131ef547f210d5d09db"
       }
     },
     {
@@ -757,10 +794,17 @@
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
-          "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json"
+          "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json",
+          "docs/ETAPA-16-LAYOUT.md",
+          "testes/resultados/0.1.3/sidebar-before.json",
+          "testes/resultados/0.1.3/sidebar-after.json",
+          "testes/resultados/0.1.3/source-intermediate.json",
+          "testes/resultados/0.1.3/payload-tests.json",
+          "testes/resultados/0.1.3/sandbox-tests.json",
+          "testes/resultados/0.1.3/validation-review.json"
         ],
-        "next_action": "Measure original divergences only in offline VM. Follow up clipped sidebar layout and other implementation gaps.",
-        "runtime_revalidated_at_local": "2026-10-17T10:51:28.575850-03:00",
+        "next_action": "Sidebar geometry fixed in0.1.3; original divergences still require offline VM.",
+        "runtime_revalidated_at_local": "2026-10-17T11:35:04.620699-03:00",
         "runtime_evidence": [
           "docs/ETAPA-20.md",
           "testes/resultados/0.1.2/source-intermediate.json",
@@ -769,7 +813,7 @@
           "testes/resultados/0.1.2/sandbox-smoke.json",
           "testes/resultados/0.1.2/validation-review.json"
         ],
-        "source_commit_tested": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899"
+        "source_commit_tested": "64f76865381b35b4f8204131ef547f210d5d09db"
       }
     },
     {
@@ -786,7 +830,9 @@
             "releases/SHA256SUMS",
             "docs/ETAPA-20.md",
             "releases/manifest-0.1.2.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
           ]
         },
         {
@@ -798,7 +844,9 @@
             "testes/resultados/0.1.1/flatpak-sandbox.json",
             "docs/ETAPA-20.md",
             "releases/manifest-0.1.2.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
           ]
         },
         {
@@ -811,37 +859,32 @@
             "progresso/sincronizacao-git.json",
             "docs/ETAPA-20.md",
             "releases/manifest-0.1.2.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
           ]
         }
       ],
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.2",
-        "date_local": "2026-10-17T10:51:28.575850-03:00",
-        "source_commit": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39037892892",
+        "version": "0.1.3",
+        "date_local": "2026-10-17T11:35:04.620699-03:00",
+        "source_commit": "64f76865381b35b4f8204131ef547f210d5d09db",
+        "status": "built_installed_tested; publication pending",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414",
         "evidence": [
-          "docs/ETAPA-20.md",
-          "testes/resultados/0.1.2/source-intermediate.json",
-          "testes/resultados/0.1.2/payload-tests.json",
-          "testes/resultados/0.1.2/sandbox-tests.json",
-          "testes/resultados/0.1.2/sandbox-smoke.json",
-          "testes/resultados/0.1.2/validation-review.json",
-          "releases/manifest-0.1.2.json"
+          "docs/ETAPA-16-LAYOUT.md",
+          "testes/resultados/0.1.3/sidebar-before.json",
+          "testes/resultados/0.1.3/sidebar-after.json",
+          "testes/resultados/0.1.3/source-intermediate.json",
+          "testes/resultados/0.1.3/payload-tests.json",
+          "testes/resultados/0.1.3/sandbox-tests.json",
+          "testes/resultados/0.1.3/validation-review.json",
+          "releases/manifest-0.1.3.json"
         ],
-        "original_observations": 0,
         "stable_release": false,
-        "runtime_provenance": {
-          "files": 2803,
-          "elf_files": 214,
-          "debian_packages": 149,
-          "evidence": "testes/resultados/0.1.2/runtime-origins.json"
-        },
-        "confirmed_delivery_commit": "c1205f64717bb8c1d556965a54079166025c5196",
-        "publication_confirmed_at_local": "2026-10-17T10:54:34.631091-03:00"
+        "original_observations": 0
       }
     },
     {
@@ -902,7 +945,7 @@
         "copyright_notices_present_and_hashed": 149,
         "unfinished_criteria_count": 21,
         "stage21_complete": false,
-        "next_action": "Resume stage16 sidebar layout with GTK geometry/screenshot checks, then stage18 remaining own corpus checks; keep original VM work separate.",
+        "next_action": "Historical0.1.2 audit preserved; sidebar clipping subsequently fixed/tested in0.1.3. Continue remaining Poppler/desktop/VM and implementation obligations.",
         "evidence": [
           "docs/ETAPA-21.md",
           "scripts/audit_delivery.py",
@@ -911,7 +954,8 @@
         ],
         "publication_state": "confirmed_at_recorded_commit",
         "confirmed_audit_commit": "ba1f5e1494759edad9cb9002d3a8802ae6d66b3e",
-        "publication_confirmed_at_local": "2026-10-17T11:15:30.749796-03:00"
+        "publication_confirmed_at_local": "2026-10-17T11:15:30.749796-03:00",
+        "subsequent_delivery_ref": "docs/ETAPA-16-LAYOUT.md"
       }
     }
   ],

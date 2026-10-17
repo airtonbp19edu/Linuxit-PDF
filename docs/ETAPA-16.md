@@ -1,5 +1,8 @@
 # Etapa 16 — integração do painel Anexos
 
+Retomada posterior: [geometria corrigida e pacote 0.1.3](ETAPA-16-LAYOUT.md),
+114/114 por ambiente e capturas examinadas; o histórico abaixo foi preservado.
+
 Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
 fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
 fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo

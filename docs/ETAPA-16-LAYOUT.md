@@ -1,35 +1,69 @@
-# Etapa 16 — correção de geometria do painel lateral
+# Etapa 16 — geometria do painel lateral corrigida
 
-Retomada em 17/10/2026, após a auditoria incremental da etapa 21. A captura do
-Flatpak 0.1.2 mostrou recorte no cabeçalho e na barra de ícones lateral.
-O código usa posição inicial de 158 px e permite `shrink=True` no primeiro
-filho de GtkPaned. A hipótese é alocação menor que o mínimo dos widgets;
-ainda precisa ser confirmada por medição GTK, antes da correção.
+O recorte de títulos e ícones foi corrigido no **0.1.3/devel**, em 17/10/2026.
+O GtkPaned agora respeita o mínimo solicitado pelo painel lateral. A correção
+passou em dez cenários de geometria e na suíte completa dos três ambientes.
+Desktop real, acessibilidade, portais, impressão física e comparação Foxit
+continuam pendentes; critérios amplos e pesos do roteiro permanecem parciais.
 
-`scripts/check_sidebar_layout.py` mede cinco painéis em janelas solicitadas de
-1180 e 760 px, origem/extensão de título, notebook e botões, mínimo solicitado
-e área do leitor. Salva duas capturas da própria aplicação. O modo
-`--observe-only` pode terminar com código zero e **passed:false**; isso é
-observação de regressão, nunca aprovação do layout. Resultados e imagens serão
-preservados por rodada. Comparação Foxit e VM não fazem parte desse teste.
+## Diagnóstico e critério de aprovação
 
-Próximo passo: medir a fonte atual no Linux, corrigir a causa, executar testes
-GTK e comparar as medidas/capturas. Fonte e pacote 0.1.2 ainda não alterados.
-Critérios/pesos, roteiro 43,33% e paridade 0/25 permanecem preservados.
+A fonte anterior tinha mínimo 221px, divisor 158px e origem do painel x=-63:
+o GTK conservava a largura do filho, deslocando-o para fora do corpo visível.
+A captura confirmou o recorte. `shrink=False` impede esse encolhimento do espaço.
 
+O primeiro diagnóstico (run 39040540957) comparava filhos apenas com um pai
+também deslocado e retornava passed:true. Esse resultado era insuficiente e
+não foi adotado como aprovação. O oráculo foi corrigido para conferir o corpo
+visível e o mínimo do divisor, com guardas independentes de origem>=0 nos testes.
+A rodada final executou tanto a fonte anterior 76d901e quanto a corrigida 64f7686
+sob esse mesmo oráculo. Raw inicial preservado em
+`analysis-local/sidebar-artifact-12104400034/` e notas datadas.
 
-Diagnóstico examinado: run39040540957, app do commit76d901e. O painel tinha
-mínimo/alocação221, espaço158 e origemx=-63; título começava emx=-18. A captura
-confirma recorte. O primeiro oráculo marcava passed:true porque comparava apenas
-filhos com um ancestral também deslocado; essa aprovação era insuficiente e
-não foi adotada. O oráculo agora exige contenção no corpo visível e posição do
-divisor compatível com o mínimo. Raw inicial em
-`analysis-local/sidebar-artifact-12104400034/`, ZIP SHA
-46cc77d640bf78facb7b2c42945fe3cbbb30ef67a9a57e3af52e6c7bd241e132.
+[`scripts/check_sidebar_layout.py`](../scripts/check_sidebar_layout.py) mede
+cinco painéis em duas larguras solicitadas e salva capturas. `--observe-only`
+não converte falhas em aprovação: o JSON preserva passed:false da baseline.
+O código da aplicação só alterou a política de encolhimento do painel, além
+da versão. Os testes estão em
+[`tests/test_sidebar_layout_gtk.py`](../tests/test_sidebar_layout_gtk.py).
 
-Correção em preparação: `shrink=False` no painel lateral, preservando o mínimo
-calculado pelo GTK. Três testes reais cobrem cinco painéis/duas larguras,
-divisor/ocultar/restaurar/leitura e nome longo de anexo. Fonte candidata0.1.3;
-Flatpak publicado continua0.1.2 até nova validação. O CI de build repetirá a
-fonte anterior e a atual com o mesmo oráculo corrigido, depois a suíte completa,
-payload e sandbox. Nenhuma aprovação ainda atribuída a essa correção.
+## Resultado conferido — 17/10/2026 às 11:35
+
+O [run 39040860414](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414) passou no commit `64f76865381b35b4f8204131ef547f210d5d09db`.
+Com o mesmo oráculo corrigido e ambiente, a fonte anterior passou **0/10**
+cenários e a corrigida passou **10/10**. [Antes](../testes/resultados/0.1.3/sidebar-before.json)
+e [depois](../testes/resultados/0.1.3/sidebar-after.json) registram as medidas e hashes das imagens.
+
+| Primeira página, janela 1180 | Antes | Depois |
+|---|---:|---:|
+| Mínimo do painel | 221 | 221 |
+| Posição do divisor | 158 | 221 |
+| Origem X do painel | -63 | 0 |
+| Origem X do título | -18 | 45 |
+
+Capturas antes/depois e lançamento normal examinadas: barra de ícones e títulos
+ficam dentro da área visível após a correção. [Captura do pacote](../testes/resultados/0.1.3/linuxit-flatpak-0.1.3.png).
+Os três novos métodos GTK passaram em cada suíte completa: painéis em duas
+larguras, divisor/ocultar/mostrar/modo de leitura e nome longo de anexo.
+Foram **114/114 testes em cada ambiente fonte, payload e sandbox**,
+zero falhas/erros/skips. Smoke 5/5 e launcher 3/3 passaram. Os testes incluem
+os controles do auditor acrescentados na etapa 21; não são contagens de funções.
+
+Bundle [0.1.3/devel](../releases/LinuxitPDF-0.1.3-x86_64.flatpak),
+35591904 bytes, SHA-256 `9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a76926030b10d3120`.
+Fonte/payload: 83 arquivos iguais;
+runtime 2803 arquivos atribuídos/149 pacotes.
+Ver [revisão](../testes/resultados/0.1.3/validation-review.json) e [manifesto](../releases/manifest-0.1.3.json).
+As três entregas anteriores foram preservadas.
+
+Limite medido: pedido 760px resultou em janela mínima 924px por outros controles;
+não se afirma suporte a 760px reais. A correção usa o mínimo calculado pelo GTK,
+conforme a API [GtkPaned.pack1](https://docs.gtk.org/gtk3/method.Paned.pack1.html),
+A largura acompanha o mínimo calculado. Desktop real, acessibilidade,
+portais e impressão física continuam pendentes, assim como a VM do original.
+Nenhuma nova observação Foxit, REA/Ghidra ou paridade diferencial. Pesos/status
+do roteiro preservados: 43,33%, paridade 0/25 e cobertura global desconhecida.
+
+Próximo passo sem VM: repetir os quatro subconjuntos Poppler no corpus
+preservado da etapa 18; depois ampliar contratos/implementação e integrações.
+Confirmação remota desta entrega será acrescentada após push e comparação HEAD.

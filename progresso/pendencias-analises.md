@@ -25,10 +25,10 @@ por essa exclusão; pendências e pesos permanecem preservados.
 | 11 — Interface | 25% | **VM para observar UI01–UI10**, além de trabalho estático: seguir `0x859920`, `0x687ae0`, `0x5f5370`, `0x48f10ef` e resolver contexto dos IDs 7911/7913. Ver [ETAPA-11.md](../docs/ETAPA-11.md). |
 | 12 — Especificação | 12,5% | **VM para confirmar a referência**, além de corpus, subfunções, análises e critérios ainda incompletos. Os 50 cenários completos seguem planejados; especializar fixtures e executar primeiro os subconjuntos próprios. Ver [ETAPA-12.md](../docs/ETAPA-12.md). |
 | 15 — Lógica | 33,3% | Anexos planos, controlador e painel verificados em Linux/Flatpak 0.1.2. Demais famílias, /Kids, portfólios, senha e anexos por anotação continuam pendentes. |
-| 16 — Interface | 33,3% | Cinco casos GTK do painel/barra lateral passaram em cada suíte 0.1.2. Cabeçalho lateral recortado na captura virtual, desktop real, acessibilidade, portais e outras integrações ainda precisam de trabalho. |
+| 16 — Interface | 33,3% | Recorte lateral corrigido no 0.1.3; 114/114 por suíte e dez cenários de geometria passaram. Desktop real, acessibilidade, portais e demais interações/famílias continuam pendentes. |
 | 18 — Comparativos | 10% | [Campanha preparada](../docs/ETAPA-18.md): 13 subconjuntos próprios aprovados, quatro bloqueados por Poppler e 16 controles do comparador aprovados. **VM/contenção para observar o original** no mesmo corpus/opções, importar evidências e revisar divergências por família. Zero comparações reais até aqui. |
 | 19 — Incompatibilidades | 14,3% | Correções próprias de CropBox/memória e recursão GTK verificadas em [Linux/Flatpak 0.1.2](../docs/ETAPA-20.md). Divergências Foxit só podem ser medidas após observação na VM offline. |
-| 21 — Auditoria final | 50% | [Auditoria incremental 0.1.2 aprovada](../docs/ETAPA-21.md); 21 critérios abertos preservados. Retomar layout/contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
+| 21 — Auditoria final | 50% | [Auditoria incremental 0.1.2 aprovada](../docs/ETAPA-21.md); 21 critérios abertos preservados. Layout lateral corrigido no 0.1.3; retomar contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

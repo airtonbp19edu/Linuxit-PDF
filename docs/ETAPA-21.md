@@ -76,12 +76,11 @@ relatórios e executam o smoke. Nenhum original Foxit entra no runner.
 
 ## O que falta e como continuar
 
-O recorte do cabeçalho lateral, já visto na captura da etapa 20, **continua como
-trabalho possível sem VM**. Primeiro retomar a etapa 16: medir geometria mínima
-dos widgets, corrigir o recorte e verificar por testes GTK/captura antes de gerar
-outro pacote. Depois repetir os quatro subconjuntos Poppler no mesmo corpus
-preservado da etapa 18; não substituir seus bytes nem promover testes próprios
-a comparações com o original.
+Após esta auditoria, o [recorte lateral foi corrigido no 0.1.3](ETAPA-16-LAYOUT.md),
+com comparação antes/depois e nova suíte completa114 por ambiente. A auditoria
+0.1.2 acima continua como snapshot histórico preservado. Próximo trabalho sem
+VM: repetir os quatro subconjuntos Poppler no mesmo corpus da etapa 18. Não
+substituir seus bytes nem promover testes próprios a observações do original.
 
 Desktop real, portais, acessibilidade e impressão física continuam pendentes.
 O CI registrou aviso AT-SPI indisponível, sem traceback; tecnologias assistivas

@@ -10,19 +10,19 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
-Checkpoint mais recente: [etapa 21](ETAPA-21.md). Bundle 0.1.2/devel
-reinstalado sem rebuild e auditado: 83 arquivos da aplicação, 2.803 dependências,
-214 ELF e 149 avisos conferidos nos bytes da instalação. Sete controles do
-auditor e novo smoke GTK 5/5 passaram; fonte e bundles não foram alterados.
-Os 104/104 por ambiente da [etapa 20](ETAPA-20.md) são evidência histórica
-preservada, sem repetição completa nesta rodada.
+Checkpoint mais recente: [retomada da etapa 16](ETAPA-16-LAYOUT.md),
+Flatpak **0.1.3/devel**. Recorte lateral corrigido: painel deixa de ser deslocado
+para fora da janela ao respeitar seu mínimo GTK. Mesmo oráculo: antes 0/10,
+depois 10/10; capturas examinadas. **114/114 em cada suíte fonte/payload/sandbox**,
+zero falhas/erros/skips; três métodos GTK novos, smoke 5/5 e launcher 3/3.
+As entregas anteriores, inclusive a auditoria0.1.2 da21, foram preservadas.
 
-Etapa 21 segue 50%, com encerramento pendente: 21 critérios abertos em 14 etapas,
-roteiro 43,33% e paridade 0/25. Próximo trabalho concreto: retomar etapa 16,
-corrigir cabeçalho lateral recortado e verificar geometria/captura GTK. Depois
-repetir quatro subconjuntos Poppler no corpus preservado da etapa 18. Desktop real,
-acessibilidade, portais e impressão física pendentes; comparação original exige
-VM offline. O roteiro tem 21 etapas; a continuidade retorna às pendências já registradas.
+Próximo trabalho sem VM: repetir os quatro subconjuntos Poppler no mesmo corpus
+preservado da etapa 18. Depois ampliar contratos/implementação e integração
+com desktop. Janela solicitada 760 ficou 924 px; esse limite de outros controles
+permanece explícito. Desktop real, acessibilidade, portais, impressão física
+e VM original pendentes. Os 21 critérios abertos/pesos, roteiro43,33% e
+paridade0/25 permanecem; etapa 21 continua50%, encerramento pending.
 
 A [etapa 18](ETAPA-18.md) preparou a campanha com 17 subconjuntos
 de backend: 13 observados/aprovados e quatro bloqueados por Poppler. Dezesseis
@@ -68,7 +68,7 @@ históricos, sem investigar ou implementar IA nas próximas rodadas.
 Preservar a proveniência e manter código, recursos e decompilações Foxit fora
 da implementação e do Git.
 
-A versão de entrega é **0.1.2 de desenvolvimento**, Flatpak `devel`, ID
+A versão de entrega é **0.1.3 de desenvolvimento**, Flatpak `devel`, ID
 `io.github.airtonbp19edu.LinuxitPDF`. O leitor já possui navegação, zoom,
 rotação, seleção, apresentação, temas, painéis de metadados, busca em texto,
 marcadores e comentários, controle dos destaques e preparação de impressão

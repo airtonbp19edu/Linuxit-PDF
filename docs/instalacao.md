@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.2 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.3 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.2-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.3-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -19,6 +19,14 @@ A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+
+## Marco0.1.3: painel lateral corrigido
+
+[Geometria antes/depois](ETAPA-16-LAYOUT.md):0/10 na fonte anterior e10/10
+na corrigida, capturas examinadas. Suíte114/114 em fonte/payload/sandbox,
+zero skips; smoke 5/5 e launcher 3/3. A correção preserva o mínimo do painel GTK.
+Janela solicitada 760 px fica 924 px por outros controles; desktop e integrações
+continuam pendentes. Os resultados históricos abaixo continuam preservados.
 
 ## Evidência do marco 0.1.2
 
@@ -70,7 +78,7 @@ python3 scripts/build_flatpak.py \
   --extra-runtime /workspace/.print-view-runtime
 ```
 
-Use um stage novo. A saída é `dist/LinuxitPDF-0.1.2-x86_64.flatpak`.
+Use um stage novo. A saída é `dist/LinuxitPDF-0.1.3-x86_64.flatpak`.
 O builder inclui avisos/licenças, versões dos pacotes e módulos OpenSSL.
 Reproduzir o mesmo conteúdo exige a mesma revisão da fonte e os pacotes
 registrados no manifesto; não se afirma build idêntico bit a bit em outro host.

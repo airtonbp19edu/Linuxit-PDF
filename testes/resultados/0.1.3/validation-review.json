@@ -1,0 +1,196 @@
+{
+  "schema": "linuxit-sidebar-delivery-review-v1",
+  "date_local": "2026-10-17T11:35:04.620699-03:00",
+  "timezone": "America/Sao_Paulo",
+  "version": "0.1.3",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414",
+  "source_commit": "64f76865381b35b4f8204131ef547f210d5d09db",
+  "bundle": {
+    "file": "LinuxitPDF-0.1.3-x86_64.flatpak",
+    "bytes": 35591904,
+    "sha256": "9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a76926030b10d3120",
+    "digitally_signed": false
+  },
+  "github_artifact_id": 12104530284,
+  "github_archive_sha256": "ebfdcdaf0890b9964c1a99a99e92b09d7cce42acfd8631f9bb5197b27b57d198",
+  "github_digest_matches": true,
+  "sealed_report_hashes_verified": 9,
+  "complete_tests_per_environment": 114,
+  "skipped": 0,
+  "baseline_source_commit": "76d901e8007c4ced339492be7fb1f5e0081bff05",
+  "same_corrected_geometry_oracle_used": true,
+  "before_scenarios_passed": 0,
+  "after_scenarios_passed": 10,
+  "before_first_panel": {
+    "panel": "Páginas",
+    "window_size": [
+      1180,
+      780
+    ],
+    "sidebar": [
+      -63,
+      103,
+      221,
+      636
+    ],
+    "notebook": [
+      -25,
+      103,
+      182,
+      636
+    ],
+    "title": [
+      -18,
+      110,
+      134,
+      26
+    ],
+    "title_pixels": [
+      59,
+      17
+    ],
+    "rail_buttons": [
+      [
+        -63,
+        105,
+        37,
+        34
+      ],
+      [
+        -63,
+        140,
+        37,
+        34
+      ],
+      [
+        -63,
+        175,
+        37,
+        34
+      ],
+      [
+        -63,
+        210,
+        37,
+        34
+      ],
+      [
+        -63,
+        245,
+        37,
+        34
+      ]
+    ],
+    "sidebar_minimum": 221,
+    "paned_position": 158,
+    "checks": {
+      "sidebar_meets_minimum_width": true,
+      "pane_respects_sidebar_minimum": false,
+      "sidebar_inside_body": false,
+      "rail_buttons_visible": true,
+      "rail_buttons_inside_body": false,
+      "title_visible_in_sidebar": true,
+      "title_visible_in_notebook": true,
+      "title_inside_body": false,
+      "title_text_fits": true,
+      "close_button_visible": true,
+      "viewer_has_space": true
+    },
+    "passed": false,
+    "requested_window_width": 1180
+  },
+  "after_first_panel": {
+    "panel": "Páginas",
+    "window_size": [
+      1180,
+      780
+    ],
+    "sidebar": [
+      0,
+      103,
+      221,
+      636
+    ],
+    "notebook": [
+      38,
+      103,
+      182,
+      636
+    ],
+    "title": [
+      45,
+      110,
+      134,
+      26
+    ],
+    "title_pixels": [
+      59,
+      17
+    ],
+    "rail_buttons": [
+      [
+        0,
+        105,
+        37,
+        34
+      ],
+      [
+        0,
+        140,
+        37,
+        34
+      ],
+      [
+        0,
+        175,
+        37,
+        34
+      ],
+      [
+        0,
+        210,
+        37,
+        34
+      ],
+      [
+        0,
+        245,
+        37,
+        34
+      ]
+    ],
+    "sidebar_minimum": 221,
+    "paned_position": 221,
+    "checks": {
+      "sidebar_meets_minimum_width": true,
+      "pane_respects_sidebar_minimum": true,
+      "sidebar_inside_body": true,
+      "rail_buttons_visible": true,
+      "rail_buttons_inside_body": true,
+      "title_visible_in_sidebar": true,
+      "title_visible_in_notebook": true,
+      "title_inside_body": true,
+      "title_text_fits": true,
+      "close_button_visible": true,
+      "viewer_has_space": true
+    },
+    "passed": true,
+    "requested_window_width": 1180
+  },
+  "sidebar_test_methods_in_each_complete_suite": 3,
+  "source_payload_files_matched": 83,
+  "runtime_files_attributed": 2803,
+  "debian_packages_attributed": 149,
+  "screenshots_examined": true,
+  "first_observation_oracle_incomplete_and_not_used_for_approval": true,
+  "limits": [
+    "760px requested results in 924px actual window minimum from other controls; 760px support not claimed.",
+    "Virtual X11 only; real desktop, accessibility, portals and physical printing remain open.",
+    "No Foxit observation or differential parity; roadmap criteria/weights unchanged."
+  ],
+  "raw_paths": [
+    "analysis-local/sidebar-release-artifact-12104530284/",
+    "analysis-local/sidebar-release-logs-39040860414/"
+  ],
+  "publication_state": "imported and examined; remote confirmation pending"
+}
