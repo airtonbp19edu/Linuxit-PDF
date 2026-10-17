@@ -134,6 +134,20 @@ Preparação e testes do kit não contam como observação dinâmica; casos `not
 
 ## Notas de continuidade entre IAs
 
+Etapa 21: `docs/ETAPA-21.md`. Auditor `scripts/audit_delivery.py`, receita
+manual `delivery-audit.yml` e `scripts/ci_audit_delivery.sh`. Run 39039390847,
+código 2e6671825317a7e7846193973113f090365db4f9: bundle 0.1.2 publicado
+reinstalado sem rebuild, deployment/OSTree/runtime conferidos, bytes de 83
+arquivos app e 2803 de dependências/214 ELF, 149 avisos presentes e hasheados.
+Sete controles sintéticos e novo smoke instalado 5/5 passaram. Suíte completa
+104/104 da20 não foi repetida; app, versão e bundles preservados. Relatórios em
+`testes/resultados/etapa-21/`, raw em `analysis-local/stage21-artifact-12103157602/`.
+37 critérios done recebem conferência de links, sem repetir toda REA; 21 abertos
+em 14 etapas preservados. Critério de encerramento21 permanece pending (50%);
+pesos/paridade intactos. Próximo trabalho sem VM: retomar16 para medir/corrigir
+recorte lateral com GTK/captura, depois quatro subconjuntos Poppler no corpus da etapa 18.
+O roteiro tem 21 etapas; VM original, fase A e implementação ainda abertas.
+
 Etapa 20: `docs/ETAPA-20.md`, entrega 0.1.2/devel. Workflow manual
 `.github/workflows/linux-flatpak.yml` em Debian 13, Xvfb/Openbox e sandbox Flatpak
 aninhado no runner efêmero; não alterar Windows ou executar Foxit no CI.

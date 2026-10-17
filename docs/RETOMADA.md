@@ -10,16 +10,19 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
-Checkpoint mais recente: [etapa 20](ETAPA-20.md), Flatpak **0.1.2/devel**
-gerado e instalado em Debian 13 no GitHub Actions. Suíte completa: 104/104 em
-cada ambiente (fonte, payload e sandbox), zero skips; smoke GTK 5/5 e launcher
-3/3. Cinco casos GTK de anexos/barra lateral passaram, incluindo os quatro
-antes não executados. Corrigida recursão dos botões da barra lateral.
-83 hashes da aplicação fonte/payload conferidos; entregas 0.1.0/0.1.1 preservadas.
-Captura própria examinada: página renderizada, cabeçalho lateral recortado na
-tela virtual. Desktop real, acessibilidade, portais e impressão física pendentes.
-Próximo passo do roteiro: auditoria incremental da etapa 21, mantendo os critérios
-abertos; comparação original continua exigindo a VM offline. Nenhum Foxit no CI.
+Checkpoint mais recente: [etapa 21](ETAPA-21.md). Bundle 0.1.2/devel
+reinstalado sem rebuild e auditado: 83 arquivos da aplicação, 2.803 dependências,
+214 ELF e 149 avisos conferidos nos bytes da instalação. Sete controles do
+auditor e novo smoke GTK 5/5 passaram; fonte e bundles não foram alterados.
+Os 104/104 por ambiente da [etapa 20](ETAPA-20.md) são evidência histórica
+preservada, sem repetição completa nesta rodada.
+
+Etapa 21 segue 50%, com encerramento pendente: 21 critérios abertos em 14 etapas,
+roteiro 43,33% e paridade 0/25. Próximo trabalho concreto: retomar etapa 16,
+corrigir cabeçalho lateral recortado e verificar geometria/captura GTK. Depois
+repetir quatro subconjuntos Poppler no corpus preservado da etapa 18. Desktop real,
+acessibilidade, portais e impressão física pendentes; comparação original exige
+VM offline. O roteiro tem 21 etapas; a continuidade retorna às pendências já registradas.
 
 A [etapa 18](ETAPA-18.md) preparou a campanha com 17 subconjuntos
 de backend: 13 observados/aprovados e quatro bloqueados por Poppler. Dezesseis

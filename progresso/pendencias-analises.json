@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T10:51:28.575850-03:00",
+  "reviewed_at_local": "2026-10-17T11:10:34.042024-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -391,9 +391,11 @@
       ],
       "evidence_refs": [
         "progresso/progresso.json",
-        "progresso/matriz-paridade.csv"
+        "progresso/matriz-paridade.csv",
+        "docs/ETAPA-21.md",
+        "testes/resultados/etapa-21/review.json"
       ],
-      "next_action": "Reauditar obrigações, lacunas e evidências após conclusão dos contratos e diferenciais; não declarar entrega completa agora.",
+      "next_action": "Auditoria incremental do bundle 0.1.2 passou. Retomar layout lateral na etapa16 e demais contratos/análises/implementação; concluir comparações na VM offline antes de encerrar obrigações. 21 critérios abertos preservados.",
       "token_exhaustion_confirmed": null
     }
   ],

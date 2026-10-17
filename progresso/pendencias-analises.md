@@ -28,7 +28,7 @@ por essa exclusão; pendências e pesos permanecem preservados.
 | 16 — Interface | 33,3% | Cinco casos GTK do painel/barra lateral passaram em cada suíte 0.1.2. Cabeçalho lateral recortado na captura virtual, desktop real, acessibilidade, portais e outras integrações ainda precisam de trabalho. |
 | 18 — Comparativos | 10% | [Campanha preparada](../docs/ETAPA-18.md): 13 subconjuntos próprios aprovados, quatro bloqueados por Poppler e 16 controles do comparador aprovados. **VM/contenção para observar o original** no mesmo corpus/opções, importar evidências e revisar divergências por família. Zero comparações reais até aqui. |
 | 19 — Incompatibilidades | 14,3% | Correções próprias de CropBox/memória e recursão GTK verificadas em [Linux/Flatpak 0.1.2](../docs/ETAPA-20.md). Divergências Foxit só podem ser medidas após observação na VM offline. |
-| 21 — Auditoria final | 50% | Depende da implementação, análises e comparações ainda abertas, incluindo a VM. Auditar novamente as obrigações antes de declarar conclusão. |
+| 21 — Auditoria final | 50% | [Auditoria incremental 0.1.2 aprovada](../docs/ETAPA-21.md); 21 critérios abertos preservados. Retomar layout/contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

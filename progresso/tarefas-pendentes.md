@@ -2,12 +2,13 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Marco atual: [etapa 20](../docs/ETAPA-20.md), entrega 0.1.2/devel com
-104/104 testes em cada ambiente Linux/fonte, payload e sandbox, sem skips.
-Painel Anexos exercitado; CropBox/memória e recursão da barra lateral corrigidos.
-Próximo passo: auditoria incremental da etapa 21 e ajustes de interface,
-incluindo cabeçalho lateral recortado na captura X11 virtual. Validar desktop
-real, portais, acessibilidade e impressão física. Critérios amplos seguem parciais.
+Marco atual: [etapa 21](../docs/ETAPA-21.md), auditoria da instalação do bundle
+publicado 0.1.2 aprovada. Novos sete controles do auditor e smoke 5/5; os 104/104
+por ambiente da etapa 20 são históricos. App e pacotes preservados.
+Próximo trabalho sem VM: retomar etapa 16, medir geometria dos widgets laterais,
+corrigir o cabeçalho recortado e verificar testes GTK/captura. Validar desktop
+real, portais, acessibilidade e impressão física; ampliar contratos/famílias.
+Etapa21 continua 50%, encerramento pending, com 21 critérios abertos em 14 etapas.
 Comparação Foxit continua na [etapa 18](../docs/ETAPA-18.md): preservar o kit
 `analysis-local/comparison-stage18-final/`; quatro subconjuntos do corpus
 anterior ainda precisam ser repetidos com Poppler, e nenhuma observação do

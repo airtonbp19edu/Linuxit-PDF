@@ -857,14 +857,23 @@
             "testes/resultados/payload-source-integrity.json",
             "releases/manifest.json",
             "docs/pypdf-LICENSE.txt",
-            "testes/resultados/0.1.1/payload-source-integrity.json"
-          ]
+            "testes/resultados/0.1.1/payload-source-integrity.json",
+            "docs/ETAPA-21.md",
+            "scripts/audit_delivery.py",
+            "testes/resultados/etapa-21/installed-delivery-audit.json",
+            "testes/resultados/etapa-21/review.json"
+          ],
+          "note": "Current 0.1.2 bundle reinstalled without rebuild. 83 app and 2803 dependency files, 214 ELF and 149 copyright notices checked; seven auditor controls and five fresh installed smoke checks passed. Existing done status/weight preserved; historical REA/104-case suites not reexecuted."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
           "weight": 3,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/ETAPA-21.md",
+            "testes/resultados/etapa-21/review.json"
+          ],
+          "note": "Remains pending: 21 open criteria across 14 stages, including actionable UI/implementation/static work and original VM/differential dependencies. Passing a delivery audit does not close these obligations."
         },
         {
           "criterion": "Sincronização e integridade final confirmadas",
@@ -877,7 +886,30 @@
         }
       ],
       "verified_fraction": 0.5,
-      "earned_percent": 0.5
+      "earned_percent": 0.5,
+      "current_delivery_audit": {
+        "reviewed_at_local": "2026-10-17T11:10:34.042024-03:00",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39039390847",
+        "audit_code_commit": "2e6671825317a7e7846193973113f090365db4f9",
+        "version": "0.1.2",
+        "status": "incremental_delivery_audit_passed; project_incomplete",
+        "published_bundle_unchanged": true,
+        "new_auditor_controls_passed": 7,
+        "new_installed_smoke_checks_passed": 5,
+        "installed_application_files_verified": 83,
+        "installed_runtime_files_verified": 2803,
+        "installed_elf_files_verified": 214,
+        "copyright_notices_present_and_hashed": 149,
+        "unfinished_criteria_count": 21,
+        "stage21_complete": false,
+        "next_action": "Resume stage16 sidebar layout with GTK geometry/screenshot checks, then stage18 remaining own corpus checks; keep original VM work separate.",
+        "evidence": [
+          "docs/ETAPA-21.md",
+          "scripts/audit_delivery.py",
+          "testes/resultados/etapa-21/installed-delivery-audit.json",
+          "testes/resultados/etapa-21/review.json"
+        ]
+      }
     }
   ],
   "general_progress_percent": 43.33,

@@ -1,33 +1,94 @@
 # Etapa 21 — auditoria incremental da entrega
 
-Iniciada em 17/10/2026 após a entrega 0.1.2/devel. O aplicativo e o bundle
-publicado serão preservados. Esta etapa não encerra a reconstrução: continuam
-abertos os contratos, a implementação de várias famílias, a observação do
-original na VM offline e validações de desktop/integração/impressão física.
+A auditoria do **Flatpak 0.1.2/devel publicado** passou em **17/10/2026**.
+Foi instalado o mesmo bundle, sem reconstrução, em Debian 13 com tela Xvfb,
+Openbox e usuário dedicado no runner efêmero. O [run 39039390847](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39039390847)
+executou o auditor no commit `2e6671825317a7e7846193973113f090365db4f9`.
+A aplicação e os três bundles publicados foram preservados.
 
-[`scripts/audit_delivery.py`](../scripts/audit_delivery.py) verifica a identidade
-do bundle e das três entregas, os sete relatórios selados do CI, a igualdade
-entre fonte atual/snapshot/commit testado, populações e contagens de testes,
-licenças MIT/BSD, inventário de dependências e registro de critérios abertos.
-Atividades históricas `done` recebem conferência estrutural de links; não se
-repete toda a engenharia reversa nem se converte arquivo existente em nova
-prova de comportamento.
+O resultado aprova a auditoria incremental dessa entrega. **A etapa 21 continua
+50% verificada**, com o critério de encerramento `pending`: há 21 critérios
+abertos em 14 etapas. O roteiro permanece 43,33%, a paridade Foxit 0/25 e a
+cobertura global desconhecida. A fase A e a implementação seguem parciais.
 
-O modo `--installed-root` confere o deployment informado pelo próprio Flatpak,
-o commit OSTree e o runtime registrados, todos os bytes de dependências e da
-aplicação, os ELF realmente presentes e os avisos de cada pacote. O fluxo manual
-[delivery-audit.yml](../.github/workflows/delivery-audit.yml) instala o **bundle já
-publicado**, sem reconstrução, em usuário/runner Linux efêmero, e executa um novo
-smoke GTK no sandbox. Nenhum original Foxit é transferido ou executado.
+## Evidência examinada
 
-Sete controles sintéticos de recusa passaram localmente, incluindo dependência
-alterada, licença ausente, ELF não catalogado, duplicidade, caminho externo e
-skip em relatório. A auditoria local passou. Resultado instalado/Linux ainda
-pendente neste checkpoint; os relatórios finais serão incorporados após exame.
-Os 104 testes por ambiente da etapa 20 são evidência histórica preservada;
-a nova suíte de controles do auditor é uma execução parcial separada.
+- [Auditoria do repositório](../testes/resultados/etapa-21/repository-audit.json):
+  três checksums, sete relatórios selados, fonte atual/snapshot/commit testado,
+  mesma população de testes e licenças/metadados MIT/BSD conferidos.
+- [Auditoria da instalação real](../testes/resultados/etapa-21/installed-delivery-audit.json):
+  deployment, commit OSTree e runtime iguais aos registrados; **83 arquivos da
+  aplicação**, **2.803 arquivos de dependências**, **214 ELF** realmente presentes
+  e catalogados, **149 avisos de copyright** presentes, não vazios e hasheados.
+- [Sete controles do auditor](../testes/resultados/etapa-21/auditor-controls.json):
+  incluem recusa de bytes alterados, licença ausente, ELF fora do catálogo,
+  arquivo sem origem, derivação desconhecida, duplicidade, caminho externo e
+  relatório com skip. São testes sintéticos de validação do auditor.
+- [Novo smoke no sandbox](../testes/resultados/etapa-21/published-bundle-smoke.json):
+  5/5, cobrindo abrir/renderizar, preferência de destaques, navegação de marcador,
+  comentário e geração de livreto. Zero erros no relatório.
+- [Revisão e hashes das evidências](../testes/resultados/etapa-21/review.json).
 
-Os critérios/pesos da etapa 21 permanecem: auditoria histórica `done`, encerramento
-de obrigações `pending`, sincronização histórica `done`. A fração de 50% e o
-roteiro 43,33% não aumentam pela criação deste verificador. Paridade 0/25 e
-cobertura global desconhecida. O recorte de cabeçalho lateral continua pendente.
+O SHA-256 do bundle continua
+`9d29459d7aff8ca6859cda0846cd698d285b36c3a8de2f463ff87002740cd7ba`.
+O ZIP do artefato 12103157602 conferiu com o digest GitHub
+`dfaf5cb282c5a9dbb4aaa78be4ee8eb6bd9a49cac39fcfc28c4e1921fe7155b4`.
+Raw e logs completos ficam em `analysis-local/stage21-artifact-12103157602/`
+e `analysis-local/stage21-logs-39039390847/`, ignorados pelo Git.
+
+Os **104 testes por ambiente da etapa 20 não foram repetidos**. Seus relatórios
+foram conferidos como evidência histórica da mesma aplicação/bundle; nesta
+rodada houve sete controles do auditor e cinco controles de execução novos.
+Não somar essas contagens como funcionalidades ou paridade.
+
+## Critérios preservados
+
+| Critério da etapa 21 | Estado | Resultado desta rodada |
+|---|---|---|
+| Auditoria de fonte/licenças/testes/evidências | `done` histórico | Nova conferência da entrega 0.1.2 acrescentada. |
+| Obrigações viáveis encerradas e bloqueios declarados | `pending` | Permanecem 21 critérios abertos, incluindo trabalho possível sem VM. |
+| Sincronização e integridade final confirmadas | `done` histórico | Publicar este marco e conferir HEAD remoto ao final. |
+
+Os 58 critérios foram cruzados com o registro: links dos 37 `done` históricos
+conferidos, e todos os 21 não concluídos conservados. Isso **não reexecuta a
+engenharia reversa histórica** nem promove a presença de arquivos a evidência
+nova de comportamento. Nenhum critério/peso/status foi alterado.
+
+## Verificação reproduzível
+
+[`scripts/audit_delivery.py`](../scripts/audit_delivery.py) exige evidências
+consistentes e um caminho de saída novo. O Git deve conter o commit de fonte
+apontado no manifesto; o código `app/` deve corresponder à entrega auditada.
+
+```bash
+python3 scripts/audit_delivery.py --output /tmp/linuxit-audit-novo.json
+python3 scripts/audit_delivery.py \
+  --installed-root "$(flatpak info --user --show-location io.github.airtonbp19edu.LinuxitPDF//devel)/files" \
+  --output /tmp/linuxit-instalado-audit-novo.json
+```
+
+O modo instalado lê o deployment informado pelo Flatpak e recusa outro
+commit/runtime. Os bytes de runtime, código próprio e avisos são lidos da
+instalação, independentemente do stage usado para criar o bundle.
+O fluxo manual [delivery-audit.yml](../.github/workflows/delivery-audit.yml) e
+[`scripts/ci_audit_delivery.sh`](../scripts/ci_audit_delivery.sh) preservam
+relatórios e executam o smoke. Nenhum original Foxit entra no runner.
+
+## O que falta e como continuar
+
+O recorte do cabeçalho lateral, já visto na captura da etapa 20, **continua como
+trabalho possível sem VM**. Primeiro retomar a etapa 16: medir geometria mínima
+dos widgets, corrigir o recorte e verificar por testes GTK/captura antes de gerar
+outro pacote. Depois repetir os quatro subconjuntos Poppler no mesmo corpus
+preservado da etapa 18; não substituir seus bytes nem promover testes próprios
+a comparações com o original.
+
+Desktop real, portais, acessibilidade e impressão física continuam pendentes.
+O CI registrou aviso AT-SPI indisponível, sem traceback; tecnologias assistivas
+não foram validadas. A [lista completa de pendências](../progresso/pendencias-analises.md)
+separa análise estática, contratos, implementação, runtime e observação original.
+A comparação Foxit exige a VM offline; os 20 cenários dinâmicos e os 50 casos
+completos de aceitação continuam sem execução completa. IA permanece excluída.
+
+A confirmação da publicação deste marco será registrada após push e conferência
+do HEAD real, sem autorreferência no commit.

@@ -1,0 +1,23 @@
+{
+  "schema": "linuxit-stage21-structural-verification-v1",
+  "date_local": "2026-10-17T11:14:05.187449-03:00",
+  "application_source_unchanged": true,
+  "all_three_bundles_unchanged": true,
+  "release_metadata_git_normalized_unchanged": true,
+  "four_ci_report_hashes_verified": true,
+  "previous_notes_preserved": true,
+  "criteria_weights_statuses_unchanged": true,
+  "python_ast_files": 121,
+  "changed_markdown_links": 95,
+  "architecture_modules": 21,
+  "interfaces": 15,
+  "functional_families": 25,
+  "test_references": 32,
+  "source_references": 27,
+  "open_criteria": 21,
+  "open_stages": 14,
+  "general_progress_percent": 43.33,
+  "verified_foxit_parity": 0,
+  "original_executed": false,
+  "full_suite_repeated": false
+}

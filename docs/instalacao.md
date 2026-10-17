@@ -125,3 +125,12 @@ o executável nem reutilize um perfil real para contornar essa falha.
 Os pacotes extraídos e os adaptadores estão preservados no workspace; não são
 processos ativos. Uma nova sessão precisa iniciar novamente a tela e o D-Bus
 privados para os testes que os utilizam.
+
+
+## Auditoria de uma entrega já publicada
+
+A [etapa 21](ETAPA-21.md) reinstalou o bundle 0.1.2 sem rebuild, conferiu os
+bytes/avisos do deployment e passou em novo smoke do sandbox. O comando
+`scripts/audit_delivery.py` compara a fonte atual com o snapshot da entrega,
+exigindo o commit testado no histórico Git; recusa saída existente. Consulte
+o relatório para comandos local/instalado e os limites da auditoria.
