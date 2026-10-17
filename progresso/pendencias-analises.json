@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T18:29:54-03:00",
+  "reviewed_at_local": "2026-10-17T18:40:30-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -74,9 +74,10 @@
         "docs/FOXIT-REA.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "RTTI now identifies CPDF_ImageRenderer and CReflowViewerEx/IPDFViewer in examined constructors, in addition to prior classes. Remaining subsystem boundaries and availability still open.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -91,9 +92,10 @@
         "docs/dependencias.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "Image renderer constructor and reflow factory clarified; follow remaining renderer slots and reflow resources15c9c90/15c5e00. Lifecycle of every component remains incomplete.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -110,9 +112,10 @@
         "docs/FOXIT-REA.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "248 examined entries (152REA+96direct);8 new this continuation. Inventory and provisional types remain open; no global coverage percentage.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -128,9 +131,10 @@
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "31 new entries examined in this request. Follow0x16664e0 and remaining render/output paths; retain provisional types, flags and physical-output limits.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -146,9 +150,10 @@
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "Complete24-byte search fields3/5/6/7/12/16/20, stemming and embedded attachment consumers with separate directed rounds.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -164,9 +169,10 @@
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "Investigate remaining in-scope families against existing inventory; exclude AI. Current directed print/UI observations do not close other families.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -182,9 +188,10 @@
         "docs/fluxos.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -200,9 +207,10 @@
         "docs/fluxos.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -277,9 +285,10 @@
         "testes/cenarios-interface.json",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/REA-REFLOW.md"
       ],
-      "next_action": "15c6550/880490 factory now confirmed CReflowViewerEx by constructor RTTI; unrelated class context and IDs7911/7913 unresolved. ObserveUI01-UI10 in offline guest.",
+      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -302,7 +311,7 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
+      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -325,7 +334,7 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
+      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -349,7 +358,7 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
+      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -376,7 +385,7 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
+      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -472,7 +481,7 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
+      "next_action": "Publish/audit0.1.7 and preserve previous bundles.21 broad criteria still open, including non-VM static/implementation work and external runtime/original VM dependencies.",
       "token_exhaustion_confirmed": null
     }
   ],

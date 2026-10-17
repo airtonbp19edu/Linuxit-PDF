@@ -1,6 +1,6 @@
 # Criação de PDF a partir de imagens
 
-Fonte 0.1.7 em desenvolvimento após o pacote 0.1.6. Contrato próprio, sem
+Fonte/pacote 0.1.7 validado após o marco 0.1.6. Contrato próprio, sem
 observação dinâmica do Foxit e sem alteração de pesos ou critérios do roteiro.
 
 Em **Arquivo → Criar PDF de imagens…**, selecione PNG/JPEG, organize as páginas
@@ -44,7 +44,7 @@ Testes em [test_pdf_creation.py](../tests/test_pdf_creation.py) e
 [test_creation_gtk.py](../tests/test_creation_gtk.py): pixels, ordem, orientação,
 transparência, limites, arquivos inválidos, publicação exclusiva, falhas,
 worker real, fluxo GTK, abertura/renderização Poppler e cancelamento real.
-Os relatórios desta rodada serão acrescentados após examinados. O pacote
+Os relatórios desta rodada foram examinados e estão ligados abaixo. O pacote
 0.1.6 e seus relatórios anteriores permanecem preservados.
 
 A família conversão ganha somente este subconjunto. Exportação para formatos
@@ -55,3 +55,17 @@ abertos. Os 50 planos completos de aceitação e a paridade 0/25 não mudaram.
 [Backend](../testes/resultados/creation-portable-2026-10-17.json),
 [worker](../testes/resultados/creation-search-worker-regression-2026-10-17.json).
 São execuções parciais, sem GTK/Linux local.
+
+## Fonte Linux validada
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071317244): **212/212**, zero falhas/erros/skips; 17 métodos novos do backend e cinco GTK.
+Abertura e pixels renderizados por Poppler conferidos, assim como a captura da janela.
+Campanha anterior preservada: 17/17, nenhuma observação Foxit.
+[Relatórios e revisão](../testes/resultados/criacao-imagens-2026-10-17/review.json).
+A construção Flatpak foi validada, com confirmação de publicação/auditoria nas notas.
+
+## Marco Flatpak 0.1.7
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606):212/212 em cada suíte fonte/payload/sandbox, sem falhas/erros/skips.
+92 arquivos da aplicação e runtime conferidos; smoke 5/5, launcher 3/3.
+[Revisão](../testes/resultados/0.1.7/validation-review.json). Sete versões anteriores preservadas.

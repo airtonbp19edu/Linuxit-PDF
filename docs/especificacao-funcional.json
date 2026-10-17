@@ -2247,7 +2247,7 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "source 0.1.7 implemented subset: ordered PNG/JPEG to new RGB PDF; see docs/CRIACAO-IMAGENS.md",
+      "matrix_implementation": "source/package 0.1.7 implemented subset: ordered PNG/JPEG to new RGB PDF; Linux source/payload/installed sandbox212/212 each; see docs/CRIACAO-IMAGENS.md",
       "contract_kind": "implemented_subset",
       "scope": "Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados.",
       "inputs": [
@@ -2475,5 +2475,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T18:29:54-03:00"
+  "updated_at_local": "2026-10-17T18:40:30-03:00"
 }

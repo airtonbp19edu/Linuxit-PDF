@@ -18,17 +18,17 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
 |03|50%|RTTI confirmou renderers/reflow e demais classes; fronteiras restantes ainda abertas.|
 |05|42,9%|ImageRenderer eReflowViewer identificados; seguir recursos/slots e demais ciclos de vida.|
-|07|33,3%|248 entradas(152REA+96diretas),8 novas nesta continuação; inventário global/tipos incompletos.|
-|08|13,0%|Completar fluxo/algoritmos restantes e campos3/5/6/7/12/16/20 da busca; não repetir oito alvos.|
+|07|33,3%|250 entradas(152REA+98diretas),duas novas nesta rodada; inventário global/tipos incompletos.|
+|08|13,0%|Completar fluxo/algoritmos restantes e campos3/5/6/7/12/16/20 da busca; não repetir dez alvos desta continuação.|
 |09|9,1%|Arestas de renderer/clip/reflow refinadas; algoritmos/tipos/ownership universais pendentes.|
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
 |11|25%|CReflowViewerEx esclarece fábricaUI; IDs7911/7913 e demais contextos não resolvidos. UI01–UI10 exigem original.|
-|12|12,5%|25 famílias,19 subconjuntos/seis propostas,50 planos completos not_run; referência original parcial.|
-|15|33,3%|Busca em anexos/modos/coleção na0.1.6,190/190 por ambiente; demais operações/seis propostas ainda abertas.|
-|16|33,3%|Seis novos métodos GTK/capturas passaram, com painéis/cópias/layout anteriores. Desktop/portais/AT-SPI/impressora abertos.|
-|18|10%|Corpus preservado17/17 repetido na0.1.6; zero comparações originais.|
+|12|12,5%|25 famílias,20 subconjuntos/cinco propostas,50 planos completos not_run; referência original parcial.|
+|15|33,3%|Criação PNG/JPEG e buscas na0.1.7,212/212 por ambiente; demais operações/cinco propostas ainda abertas.|
+|16|33,3%|Cinco novos métodos GTK de criação passaram, junto das buscas/painéis/cópias/layout anteriores. Desktop/portais/AT-SPI/impressora abertos.|
+|18|10%|Corpus preservado17/17 repetido na0.1.7; zero comparações originais.|
 |19|14,3%|Regressões próprias aprovadas; divergências Foxit ainda dependem de observação offline.|
-|21|50%|Entrega 0.1.6 validada; publicação/auditoria nas notas.21 critérios amplos ainda abertos.|
+|21|50%|Entrega 0.1.7 validada; publicação/auditoria nas notas.21 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

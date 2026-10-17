@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.6 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.7 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.6-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.7-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -19,6 +19,14 @@ A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+
+## Marco 0.1.7: criação a partir de imagens
+
+[Contrato](CRIACAO-IMAGENS.md): PNG/JPEG em ordem ajustável, resolução de 72–600 DPI,
+orientação EXIF e transparência branca. Novo PDF RGB, com fontes preservadas.
+17 métodos novos do backend e cinco GTK passaram nas três suítes de 212 casos,
+sem falhas/erros/skips; 92 arquivos app conferidos, smoke 5/5 e launcher 3/3.
+Demais formatos/OCR continuam pendentes. [Revisão](../testes/resultados/0.1.7/validation-review.json).
 
 ## Marco 0.1.6: buscas e coleção
 
@@ -167,3 +175,6 @@ bytes/avisos do deployment e passou em novo smoke do sandbox. O comando
 `scripts/audit_delivery.py` compara a fonte atual com o snapshot da entrega,
 exigindo o commit testado no histórico Git; recusa saída existente. Consulte
 o relatório para comandos local/instalado e os limites da auditoria.
+
+A versão 0.1.7 inclui [criação PNG/JPEG](CRIACAO-IMAGENS.md).
+A auditoria independente do bundle publicado recebe relatório separado; veja as notas atuais.

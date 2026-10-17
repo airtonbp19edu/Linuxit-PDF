@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T18:29:54-03:00",
+  "reviewed_at_local": "2026-10-17T18:40:30-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.7",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -617,7 +617,7 @@
     }
   ],
   "runtime_limitations": [
-    "Published 0.1.6 source/payload/sandbox190/190 retained. New source0.1.7 image creation portable16 passed; new GTK/Linux/Flatpak execution pending.",
+    "Current 0.1.7 source/payload/installed Flatpak verified212/212 in Debian13/X11 CI; real desktop/portals/AT-SPI/physical printer remain unverified.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
     "Windows delivery, portals and physical printing remain unverified.",
@@ -630,5 +630,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": true
+  "source_changes_unreleased": false
 }

@@ -1,20 +1,21 @@
-# Relatório de desenvolvimento — Linuxit PDF0.1.6
+# Relatório de desenvolvimento — Linuxit PDF 0.1.7
 
-Fonte/pacote 0.1.6:190/190 em cada suíte fonte/payload/sandbox, zero falhas/erros/
-skips, smoke 5/5 e launcher 3/3.32 controles portáveis e seis GTK novos.
-Busca em anexos UTF-8/PDF com omissões explícitas, coringas/proximidade ordenada
-e índice JSON persistente de PDFs escolhidos, com exclusão de fontes alteradas.
-[Contrato](docs/BUSCA-COLECOES.md), [revisão](testes/resultados/0.1.6/validation-review.json)
-e [manifesto](releases/manifest-0.1.6.json).
+Fonte/Flatpak **0.1.7/devel**: [criação de PDF de PNG/JPEG](docs/CRIACAO-IMAGENS.md),
+com ordem ajustável, DPI, orientação EXIF, transparência branca e destino novo.
+**212/212** em cada suíte fonte/payload/sandbox, zero falhas/erros/skips;
+17 métodos novos do backend e cinco GTK. Campanha preservada 17/17,
+smoke 5/5 e launcher 3/3. Capturas e hashes examinados.
 
-Catálogo 248(152REA+96diretas); oito entradas novas/889 instruções/3.223 bytes.
-RTTI CPDF_ImageRenderer eCReflowViewerEx/IPDFViewer confirmados; tipos, fluxos
-eIDs restantes abertos.28 módulos/26 interfaces; 19 subconjuntos/seis propostas.
-Roteiro 43,33%, paridade 0/25,50 planos completos not_run. Ainda há trabalho sem VM.
+30 módulos/29 interfaces; 20 subconjuntos/cinco propostas em 25 famílias.
+Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 instruções/
+467bytes nesta rodada, com RTTI IPDFViewerLayout/CReflowViewerLayout.
+[Análise](docs/REA-REFLOW.md). Original não executado; sem paridade diferencial.
 
-[Retomada](docs/RETOMADA.md) e [notas datadas](progresso/notas-continuidade.md)
-registram confirmação remota/auditoria e próximos alvos. Não é entrega estável
-nem reconstrução completa; original continua sem execução funcional observada.
+37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
+Ainda há trabalho sem VM. Publicação/auditoria são registradas nas notas;
+aprovação do pacote não encerra os demais contratos ou etapas.
+
+[Retomada](docs/RETOMADA.md), [revisão](testes/resultados/0.1.7/validation-review.json) e [notas](progresso/notas-continuidade.md).
 
 ## Relatório histórico preservado — marco0.1.1
 

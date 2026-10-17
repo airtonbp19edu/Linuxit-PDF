@@ -1,0 +1,44 @@
+{
+  "schema": "linuxit-image-creation-delivery-review-v1",
+  "date_local": "2026-10-17T18:40:30-03:00",
+  "version": "0.1.7",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606",
+  "source_commit": "5a6028791a3aa4306c014970a2934c39bb649943",
+  "bundle": {
+    "file": "LinuxitPDF-0.1.7-x86_64.flatpak",
+    "bytes": 35614064,
+    "sha256": "093ee6c7ed6ab6a1c4974da836fedb3414e147dfa0554ddae9eac8ee575c9070",
+    "digitally_signed": false
+  },
+  "artifact_id": 12115651420,
+  "archive_sha256": "84c377c46596afdea57a6580e6e6a9b51a84098b3127d38fac9fd01d50536a6e",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 212,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_portable_methods": 17,
+  "new_gtk_methods": 5,
+  "source_payload_files": 92,
+  "runtime_files": 2803,
+  "elf_files": 214,
+  "debian_packages": 149,
+  "sealed_ci_reports_verified": 9,
+  "own_preserved_cases_passed": 17,
+  "screenshots_examined": true,
+  "screenshot_hashes": {
+    "attachment-search.png": "e3e403e062d2ea205ef9eb6598ff0478d47704cd93042b0f2a8836dc35b209db",
+    "collection-search.png": "635e16c995d721b7c5b5b50b7839ed91109e8d2c607e93f60f9771cb4c356dd5",
+    "image-creation.png": "73b27690809d35e155078b67fbb12c4adc8961dafd4624ce25239ec1b09ab3ac",
+    "proximity-search.png": "64bcb4b73941c3646fb290dd751ec57daa44bf44c4306379c84d3df6d378b920"
+  },
+  "original_executed": false,
+  "project_complete": false,
+  "criteria_status_or_weights_changed": false,
+  "limitations": [
+    "Only ordered static PNG/JPEG to new RGB PDF, not full format conversion/OCR/Office export.",
+    "EXIF orientation applied; ICC/metadata not preserved, no color-managed print fidelity.",
+    "Cancellation can leave staging/partial/completed destination; verify before retry.",
+    "Real desktop/portals/AT-SPI/physical printing/accounts and original VM comparisons remain pending."
+  ]
+}

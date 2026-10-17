@@ -1,33 +1,26 @@
 # Retomada do Linuxit PDF
 
-Fonte 0.1.7 em desenvolvimento: [criação PNG/JPEG](CRIACAO-IMAGENS.md).
-17 testes portáveis e 12 regressões do worker passaram localmente; GTK/Linux e novo pacote aguardam execução.
-O pacote publicado permanece 0.1.6, com auditoria independente confirmada.
-20 subconjuntos e cinco propostas não significam implementação completa; VM,
-paridade e demais pendências continuam abertas.
+Atualizado em 2026-10-17T18:40:30-03:00.
+Fonte/Flatpak **0.1.7/devel**: [criação de PDF de PNG/JPEG](CRIACAO-IMAGENS.md),
+com ordem ajustável, DPI, orientação EXIF, transparência branca e destino novo.
+**212/212** em cada suíte fonte/payload/sandbox, zero falhas/erros/skips;
+17 métodos novos do backend e cinco GTK. Campanha preservada 17/17,
+smoke 5/5 e launcher 3/3. Capturas e hashes examinados.
 
+30 módulos/29 interfaces; 20 subconjuntos/cinco propostas em 25 famílias.
+Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 instruções/
+467bytes nesta rodada, com RTTI IPDFViewerLayout/CReflowViewerLayout.
+[Análise](REA-REFLOW.md). Original não executado; sem paridade diferencial.
 
-Atualizado em 2026-10-17T18:19:25-03:00. Fonte/Flatpak **0.1.6/devel**.
-[Busca em anexos, modos e coleção](BUSCA-COLECOES.md):190/190 em cada suíte
-fonte/payload/sandbox, zero falhas/erros/skips; smoke 5/5 e launcher 3/3.
-32 métodos portáveis e seis GTK novos; capturas examinadas após corrigir o
-sincronismo da fotografia, sem alterar o aplicativo. Campanha preservada 17/17.
+37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
+Ainda há trabalho sem VM. Publicação/auditoria são registradas nas notas;
+aprovação do pacote não encerra os demais contratos ou etapas.
 
-[LinuxitPDF-0.1.6-x86_64.flatpak](../releases/LinuxitPDF-0.1.6-x86_64.flatpak),
-35.601.808 bytes, SHA-256 `a71bca023a6bd2f671ffb7049a101a59ade185ef25bb5d3f8f0ddfeb7c399d05`.
-[Revisão](../testes/resultados/0.1.6/validation-review.json) e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299).
-Publicação/auditoria independente devem ser consultadas nas últimas notas.
-
-28 módulos/26 interfaces; 19 subconjuntos/seis propostas em 25 famílias.
-Catálogo **248** (152 REA + 96 diretas),8 entradas novas/889 instruções/3.223 bytes
-nesta continuação. Raw/projetos em `analysis-local/headless/no-vm-continuation-2026-10-17/`
-e `no-vm-context-2026-10-17/`. RTTI confirmou CPDF_ImageRenderer e
-CReflowViewerEx/IPDFViewer. Não repetir os oito alvos examinados.
-
-Roteiro **43,33%**, paridade **0/25**; 37 critérios done/21 abertos em 14 etapas.
-Ainda há trabalho sem VM: tipos/campos/fluxos, operações PDF e seis propostas.
-Stemming, OCR, formatos adicionais, desktop real/portais/AT-SPI/impressão física
-e serviços externos continuam pendentes; original depende de contenção offline.
+[LinuxitPDF-0.1.7-x86_64.flatpak](../releases/LinuxitPDF-0.1.7-x86_64.flatpak),
+35614064 bytes; SHA-256 `093ee6c7ed6ab6a1c4974da836fedb3414e147dfa0554ddae9eac8ee575c9070`.
+[Revisão](../testes/resultados/0.1.7/validation-review.json) e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606).
+Sete pacotes anteriores preservados. Próximos alvos exatos nas notas e análise;
+não repetir as duas entradas ou os oito alvos anteriores já examinados.
 
 ## Primeiro ao retomar
 
@@ -42,10 +35,10 @@ e serviços externos continuam pendentes; original depende de contenção offlin
 
 ## Próximas frentes
 
-- Estática03/05/07/08/09/11:15c9c90,15c5e00 e slots CPDF_ImageRenderer;
+- Estática03/05/07/08/09/11:1f21a80/1f21ac0 e slots CPDF_ImageRenderer/CReflowViewerLayout;
   tipos/ownership, campos desconhecidos da busca e contexto dos IDs7911/7913.
-- Contratos12/lógica15/UI16: ampliar operações e as seis famílias propostas,
-  mantendo19 subconjuntos parciais.28 módulos/26 interfaces documentados.
+- Contratos12/lógica15/UI16: ampliar operações e as cinco famílias propostas,
+  mantendo20 subconjuntos parciais.30 módulos/29 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/
@@ -86,7 +79,7 @@ Não lançar Foxit no host normal; [preparação da contenção](COMO-CONTINUAR.
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-testes-novos.json
 ```
 
-O último comando exige dependências Linux e tela para completar190 testes sem
+O último comando exige dependências Linux e tela para completar212 testes sem
 skips. Fluxos manuais de CI: `no-vm-validation.yml` (fonte/corpus),
 `linux-flatpak.yml` (fonte/payload/sandbox) e `delivery-audit.yml` (bundle
 publicado reinstalado sem rebuild). Fontes/licenças, builder pareado e

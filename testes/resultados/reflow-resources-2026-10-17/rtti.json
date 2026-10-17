@@ -1,0 +1,20 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "rtti_classes": [
+    {
+      "vtable": "0x53d2f74",
+      "locator": "0x6597c2c",
+      "type_descriptor": "0x6cac1d0",
+      "decorated_type_name": ".?AVIPDFViewerLayout@@",
+      "scope": "Exact MSVC RTTI identity for constructor vtable; types/availability otherwise provisional."
+    },
+    {
+      "vtable": "0x53d34bc",
+      "locator": "0x6597da8",
+      "type_descriptor": "0x6cc036c",
+      "decorated_type_name": ".?AVCReflowViewerLayout@@",
+      "scope": "Exact MSVC RTTI identity for constructor vtable; types/availability otherwise provisional."
+    }
+  ],
+  "original_executed": false
+}

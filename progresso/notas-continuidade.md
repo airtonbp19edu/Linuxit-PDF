@@ -1300,3 +1300,37 @@ Código pós-pacote0.1.6; manifesto e sete bundles preservados.20 subconjuntos/c
 propostas; pesos43,33%, paridade0/25 e21 critérios abertos inalterados. Sem nova
 análise REA/Ghidra neste lote. Próximo: suíte Linux completa/Poppler, examinar
 captura e corrigir falhas antes do marco Flatpak0.1.7.
+
+
+## 2026/10/17 às 18:34 (America/Sao_Paulo, UTC-03:00) — fonte 0.1.7 e reflow examinados
++
++CI39071317244/5a60287:212/212 em Debian13/Python3.13/GTK3/X11/Poppler,
++zero falhas/erros/skips.17 métodos portáveis e cinco GTK novos. Captura real da
++criação examinada: ordem, DPI, resultado e controles legíveis. Campanha anterior
++17/17 repetida sem alterar as oito fixtures. ZIP194212bytes/SHA12fa1cddfabc568ae9780a21815b0c2466e8b3f806d5b0fcecadfa391332552a
++conferido com digest GitHub. Evidência em testes/resultados/criacao-imagens-2026-10-17;
++completo em analysis-local/no-vm-artifact-12114799597. Flatpak ainda em construção.
++
++Em paralelo local, Ghidra12.1.4/JDK21 com REA seed script/-noanalysis examinou
++15c5e00/15c9c90 em cópia do projeto anterior.111 instruções/467bytes conferidos
++por Capstone5.0.6/pefile2024.8.26; RTTI exato IPDFViewerLayout/CReflowViewerLayout.
++Body do primeiro inclui tail-helper compartilhado, sem contagem extra. Catálogo
++250(152REA+98diretas); tipos/algoritmos/ownership seguem parciais. docs/REA-REFLOW.md
++documenta próximos helpers1f21a80/1f21ac0; raw somente analysis-local/headless/reflow-resources-2026-10-17.
++Nenhuma execução original, peso alterado ou evidência de limite de tokens.
++Próximo: examinar as três suítes e capturas do pacote0.1.7, preservar versões
++anteriores e publicar somente após hashes/licenças conferidos.
+
+
+## 2026/10/17 às 18:40 (America/Sao_Paulo, UTC-03:00) — Flatpak 0.1.7 validado
+
+Builder https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606, fonte 5a6028791a3aa4306c014970a2934c39bb649943:212/212 em cada suíte fonte,
+payload e sandbox, zero falhas/erros/skips.17 métodos backend/cinco GTK novos.
+92 arquivos app, 2803runtime/214ELF/149pacotes atribuídos; smoke5/5 e launcher3/3.
+Bundle 35614064bytes/SHA256093ee6c7ed6ab6a1c4974da836fedb3414e147dfa0554ddae9eac8ee575c9070; artefato12115651420,
+ZIP84c377c46596afdea57a6580e6e6a9b51a84098b3127d38fac9fd01d50536a6e igual ao digest GitHub. Relatórios copiados byte a byte;
+capturas/hash examinados.30 módulos/29 interfaces,20 subconjuntos/cinco propostas;
+catálogo250, duas entradas novas examinadas nesta rodada. Critérios/pesos43,33%
+e paridade0/25 mantidos. Próximo: publicar e confirmar remoto; auditoria independente
+reinstala este mesmo bundle sem rebuild. Outros contratos/estática/runtime e
+observação Foxit na VM permanecem abertos; não há declaração de conclusão global.

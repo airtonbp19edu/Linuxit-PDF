@@ -397,7 +397,7 @@
             "docs/REVISAO-ETAPAS.md",
             "testes/resultados/revisao-etapas-2026-10-17/review.json"
           ],
-          "note": "Current specification validated: 25 families, 50 full acceptance plans not_run, 15 implemented subsets and 10 proposals. Initial 14/11 report retained historically. Missing original behavior and subfeature/corpus coverage keep reference specification partial; criteria/weights unchanged."
+          "note": "Current specification:25 families,50 full acceptance plans not_run,20 implemented subsets and5 proposals. Historical reports retained; missing original behavior and unsupported subfeatures keep reference specification partial. Criteria/weights unchanged."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
@@ -711,25 +711,26 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "date_local": "2026-10-17T18:29:54-03:00",
-        "status": "unreleased_source_portable_subset_passed",
+        "date_local": "2026-10-17T18:40:30-03:00",
+        "status": "source_payload_and_installed_sandbox_passed",
         "scope": "Own 0.1.7 PNG/JPEG creation, not original parity.",
-        "linux_source_runtime": "pending",
-        "new_flatpak": "not_built",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "app/pdf_creation.py",
-          "app/creation_window.py",
-          "app/worker_cli.py",
-          "app/main.py",
-          "app/search_tasks.py",
-          "app/version.py"
-        ],
+        "linux_source_runtime": "passed",
+        "new_flatpak": "built_and_installed_full_suite_passed",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "evidence": [
           "docs/CRIACAO-IMAGENS.md",
-          "testes/resultados/creation-portable-initial-2026-10-17.json"
+          "testes/resultados/creation-portable-initial-2026-10-17.json",
+          "testes/resultados/criacao-imagens-2026-10-17/source-intermediate.json",
+          "testes/resultados/criacao-imagens-2026-10-17/review.json",
+          "testes/resultados/0.1.7/source-intermediate.json",
+          "testes/resultados/0.1.7/payload-tests.json",
+          "testes/resultados/0.1.7/sandbox-tests.json",
+          "testes/resultados/0.1.7/validation-review.json"
         ],
-        "next_action": "Run full Linux source suite and GTK, inspect captures, then build at delivery milestone."
+        "next_action": "Publish and independently audit the same 0.1.7 bundle, then continue remaining non-VM work.",
+        "source_commit_tested": "5a6028791a3aa4306c014970a2934c39bb649943",
+        "full_source_tests_passed": 212
       },
       "source_revalidation_history": [
         {
@@ -1014,18 +1015,16 @@
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.6",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299",
+        "version": "0.1.7",
+        "status": "validated_prepared_for_publication",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606",
         "evidence": [
-          "docs/BUSCA-COLECOES.md",
-          "testes/resultados/0.1.6/validation-review.json",
-          "releases/manifest-0.1.6.json"
+          "docs/CRIACAO-IMAGENS.md",
+          "releases/manifest-0.1.7.json",
+          "testes/resultados/0.1.7/validation-review.json"
         ],
         "stable_release": false,
-        "original_observations": 0,
-        "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
-        "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00"
+        "original_observations": 0
       },
       "delivery_history": [
         {
@@ -1081,6 +1080,20 @@
           "original_observations": 0,
           "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
           "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
+        },
+        {
+          "version": "0.1.6",
+          "status": "published_confirmed_at_recorded_commit",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299",
+          "evidence": [
+            "docs/BUSCA-COLECOES.md",
+            "testes/resultados/0.1.6/validation-review.json",
+            "releases/manifest-0.1.6.json"
+          ],
+          "stable_release": false,
+          "original_observations": 0,
+          "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
+          "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00"
         }
       ]
     },
@@ -1294,22 +1307,19 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-17T18:19:25-03:00",
-    "report": "docs/BUSCA-COLECOES.md",
-    "source_and_package_version": "0.1.6",
-    "new_static_entries_examined": 8,
-    "catalog_entries": 248,
+    "date_local": "2026-10-17T18:40:30-03:00",
+    "report": "docs/CRIACAO-IMAGENS.md",
+    "source_and_package_version": "0.1.7",
+    "new_static_entries_examined": 2,
+    "catalog_entries": 250,
     "own_preserved_corpus_cases_passed": 17,
-    "complete_tests_per_environment": 190,
+    "complete_tests_per_environment": 212,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
-    "independent_installed_audit_passed": true,
-    "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
-    "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00",
-    "unreleased_source_version": "0.1.7"
+    "publication_state": "validated_prepared_for_publication",
+    "independent_installed_audit_passed": false
   },
   "no_vm_execution_history": [
     {
@@ -1345,6 +1355,24 @@
       "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
       "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00",
       "unreleased_source_version": "0.1.6"
+    },
+    {
+      "date_local": "2026-10-17T18:19:25-03:00",
+      "report": "docs/BUSCA-COLECOES.md",
+      "source_and_package_version": "0.1.6",
+      "new_static_entries_examined": 8,
+      "catalog_entries": 250,
+      "own_preserved_corpus_cases_passed": 17,
+      "complete_tests_per_environment": 190,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "independent_installed_audit_passed": true,
+      "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
+      "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00",
+      "unreleased_source_version": "0.1.7"
     }
   ]
 }
