@@ -671,11 +671,11 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "source_changed_since_last_linux_delivery",
+        "status": "linux_source_passed_flatpak0.1.4_pending",
         "date_local": "2026-10-17T11:35:04.620699-03:00",
         "scope": "Current0.1.3 source including sidebar allocation fix; own tests only.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "pending_for_0.1.4",
+        "linux_source_runtime": "passed_for_0.1.4",
         "new_flatpak": "not_built_for_0.1.4",
         "evidence": [
           "docs/ETAPA-17.md",
@@ -693,7 +693,8 @@
           "testes/resultados/0.1.3/source-intermediate.json",
           "testes/resultados/0.1.3/payload-tests.json",
           "testes/resultados/0.1.3/sandbox-tests.json",
-          "testes/resultados/0.1.3/validation-review.json"
+          "testes/resultados/0.1.3/validation-review.json",
+          "testes/resultados/sem-vm-2026-10-17/source-0.1.4-passed.json"
         ],
         "next_action": "Validate new attachment tree/annotation code with full Linux/GTK suite then build/test Flatpak0.1.4; preserve0.1.3 delivery.",
         "source_changed_since_candidate": true,
@@ -708,7 +709,8 @@
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
         "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
-        "source_commit_tested": "64f76865381b35b4f8204131ef547f210d5d09db"
+        "source_commit_tested": "b1dde48b9dbed92db7e5ae5734e8a4e29250aaaa",
+        "full_source_tests_passed": 127
       }
     },
     {

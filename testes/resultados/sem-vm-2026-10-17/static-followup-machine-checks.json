@@ -1,0 +1,55 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "entries": [
+    {
+      "entry": "0x165f620",
+      "instructions": 24,
+      "body_bytes": 58,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x165f970",
+      "instructions": 88,
+      "body_bytes": 274,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1665090",
+      "instructions": 502,
+      "body_bytes": 1770,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x166a5b0",
+      "instructions": 67,
+      "body_bytes": 165,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1b93280",
+      "instructions": 47,
+      "body_bytes": 135,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x8595e0",
+      "instructions": 7,
+      "body_bytes": 20,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x880450",
+      "instructions": 10,
+      "body_bytes": 31,
+      "all_instruction_addresses_match": true
+    }
+  ],
+  "original_executed": false,
+  "copied_project_source_identity_verified": true,
+  "limitations": [
+    "0x1665090 contains unresolved stack/type artifacts; signatures and some argument meanings remain provisional.",
+    "Static observations do not establish full output or runtime class availability."
+  ]
+}

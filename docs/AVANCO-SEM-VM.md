@@ -50,7 +50,7 @@ inclui `0x48f10c5`. Intervalos de corpo não são novas funções únicas. Essa
 observação refina a interpretação dos consumidores anteriores e não transforma
 inserção em lista em saída gráfica observada. Os IDs 7911/7913 continuam ambíguos.
 
-Catálogo: **223 entradas**, 152 REA e 71 exclusivas diretas. Não há denominador
+Catálogo após esse primeiro lote: **223 entradas**, 152 REA e 71 exclusivas diretas. Não há denominador
 global de funções; roteiro e paridade não aumentam por contagem de descompilações.
 Ver [metadados da rodada](windows-evidence/foxit-rea/headless-cross-checks-no-vm-2026-10-17.json).
 Projeto, pseudocódigo, montagem e conferência completa permanecem em
@@ -73,7 +73,11 @@ de teto de memória de parsing/descompressão.
 
 Sete métodos portáveis novos passaram, assim como 14 regressões do backend e
 14 do controlador. O novo método GTK cobre árvore/anotação e extração pelo
-worker real; **validação Linux dessa nova fonte ainda em execução/preparação**.
+worker real; **validação da fonte Linux concluída: 127/127, zero falhas/erros/skips**
+no [run39057905077](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39057905077),
+fonte b1dde48; seis métodos GTK do painel, incluindo a extensão, passaram.
+A primeira tentativa126/127 falhou pela sequência do próprio teste, que
+ocultava o painel; foi preservada e corrigida sem alterar a aplicação.
 Portfólios, senha não vazia e demais famílias permanecem abertos.
 A entrega publicada continua 0.1.3 até construir/testar um pacote novo.
 
@@ -97,3 +101,32 @@ A entrega publicada continua 0.1.3 até construir/testar um pacote novo.
 
 Os 21 critérios amplos continuam abertos nos estados originais. Os novos lotes
 fecham pendências delimitadas; não representam encerramento de todas as etapas.
+
+
+## Segundo lote estático — projeto preservado reutilizado
+
+Sete novas entradas foram examinadas em cópia do projeto anterior, sem
+reimportar o executável. Capstone conferiu745 instruções/2453bytes. Catálogo
+atual: **230 entradas (152 REA +78 diretas)**, sem mudar pesos/paridade.
+
+| Entrada | Corpo | Resultado parcial |
+|---|---:|---|
+| `0x165f620` |58 bytes| Dois fatores obtidos por chamadas com argumentos0/1, reduzidos em um, multiplicam as duas dimensões de entrada. Origem dos fatores ainda pendente. |
+| `0x165f970` |274 bytes| Aloca objeto0x34 e chama preparação com dimensões, modo0x620/0x220/0x18 e passo condicional largura×3. Tipo concreto, formato e política de falhas ainda parciais. |
+| `0x166a5b0` |165 bytes| Dimensões de configuração menos duas margens; modos3/6 usam dimensões fornecidas, demais modos limitam por retângulo e opcionalmente ajustam offsets positivos. Nomes visuais não confirmados. |
+| `0x1665090` |1770 bytes| Copia80 bytes de contexto, ajusta offsets conforme modo3/6 e monta opções/transformação antes de0x1666020; sinaliza progresso por interface. Assinatura/stack do decompilador ainda contêm artefatos; não transportar pseudocódigo para a implementação. |
+| `0x1b93280` |135 bytes| Guarda argumentos, transita0→1 quando entradas requeridas existem e chama0x1b89510; entradas inválidas/estado anterior resultam3. Não estabelece toda a máquina de estados nem a semântica de2. |
+| `0x8595e0` |20 bytes| Getter condicional para objeto encadeado por+0xfc/+0x90. Identidade da classe ainda não fechada. |
+| `0x880450` |31 bytes| Escolhe retorno de0x880470 ou campo+0x30c conforme estado indireto+0x244/+0x1d4. Objeto atual e disponibilidade Reader ainda não comprovados. |
+
+[Metadados](windows-evidence/foxit-rea/headless-cross-checks-no-vm-followup-2026-10-17.json)
+e [conferência independente](../testes/resultados/sem-vm-2026-10-17/static-followup-machine-checks.json).
+Raw/projeto: `analysis-local/headless/no-vm-followup-2026-10-17/`. Nenhuma
+execução original. Próximos alvos dirigidos:165ef50,209a850,209c440,1666020,
+1b89510 e880470; tipos completos/ownership e campos de busca ainda abertos.
+
+[Suíte Linux0.1.4 aprovada](../testes/resultados/sem-vm-2026-10-17/source-0.1.4-passed.json)
+e [campanha0.1.4](../testes/resultados/sem-vm-2026-10-17/campaign-0.1.4-passed.json)
+foram conferidas; artefato12110296519, ZIPcccd4b35ff89c9e3b7a62e43c3205d487874807d25d7af494df9a9aee6b9ca36
+igual ao digest GitHub. Empacotamento0.1.4 é o próximo marco; não usar essa
+prova da fonte para afirmar payload/sandbox ainda não executados.

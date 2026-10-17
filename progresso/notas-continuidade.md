@@ -1048,3 +1048,21 @@ aguarda exame técnico antes de catalogar. Runner agora permite copiar projeto
 preservado e exige identidade registrada antes de processar novos seeds; fonte
 do projeto anterior permanece intacta. Próximo: nova validação Linux e exame
 dos sete resultados. Estado Git: correção preparada para commit/push autorizado.
+
+
+## 2026/10/17 às 15:26 (America/Sao_Paulo, UTC-03:00) — fonte0.1.4 Linux aprovada; estática complementar
+
+Run39057905077/b1dde48:127/127 fonteLinux, zero falhas/erros/skips, smoke5/5
+e17/17 subconjuntos do corpus/protocolos preservados passaram. Seis métodosGTK
+do painel, sete novos de árvores/anotações e regressões anteriores incluídos.
+Artefato12110296519/ZIPcccd4b35ff89c9e3b7a62e43c3205d487874807d25d7af494df9a9aee6b9ca36
+conferido; evidências publicáveis em testes/resultados/sem-vm-2026-10-17/.
+
+Sete resultados estáticos complementares examinados em cópia do projeto prévio:
+745 instruções/2453bytes conferidos; catálogo230(152REA+78diretas). Metadados
+headless-cross-checks-no-vm-followup-2026-10-17.json; raw/projeto no-vm-followup-2026-10-17
+em analysis-local/headless/. Tipos/stack ainda parciais; não copiar pseudocódigo.
+Detalhes/limites em docs/AVANCO-SEM-VM.md. Sem Foxit/paridade; pesos preservados.
+
+Próximo: construir Flatpak0.1.4 no workflow já existente, executar fonte/payload/
+sandbox e auditar licenças/integridade antes de publicar. Entrega0.1.3 intacta.
