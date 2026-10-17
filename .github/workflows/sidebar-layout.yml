@@ -1,0 +1,62 @@
+name: Sidebar layout geometry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linuxit-sidebar-layout-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  linux-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: debian:13
+      # Needed for the nested Flatpak sandbox on this ephemeral hosted runner.
+      options: --privileged
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install Debian build and GUI test dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            python3-pil python3-cryptography python3-cffi python3-pycparser \
+            gir1.2-gtk-3.0 poppler-utils cups-client flatpak bubblewrap \
+            dbus dbus-x11 xvfb xauth x11-utils openbox fonts-dejavu-core \
+            adwaita-icon-theme librsvg2-common shared-mime-info libglib2.0-bin openssl appstream
+      - name: Check out requested revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare isolated CI user and system bus
+        run: |
+          useradd --create-home --uid 1001 linuxit-ci
+          chown -R linuxit-ci:linuxit-ci "$GITHUB_WORKSPACE"
+          mkdir -p /run/dbus
+          dbus-uuidgen --ensure
+          dbus-daemon --system --fork --nopidfile
+      - name: Measure original sidebar geometry
+        run: |
+          runuser -u linuxit-ci -- bash -c '
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-runtime-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            exec dbus-run-session -- xvfb-run -a -s "-screen 0 1600x1200x24" /usr/bin/python3 scripts/check_sidebar_layout.py --observe-only --output dist/sidebar-layout.json --screenshots dist/sidebar-images
+          '
+      - name: Preserve layout measurements
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linuxit-sidebar-${{ github.sha }}
+          path: |
+            dist/sidebar-layout.json
+            dist/sidebar-images/
+          if-no-files-found: warn
+          retention-days: 14
