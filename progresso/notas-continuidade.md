@@ -636,3 +636,17 @@ Plano e modelo vazio já foram copiados, com hashes conferidos, para
 instrução/coleta adicionais, não novas fixtures PDF; os oito arquivos do
 corpus original da campanha seguem intactos. Diretório pronto para o futuro
 mount somente leitura; observações preenchidas devem ir para Results na VM.
+
+## 2026/10/17 às 01:53 (America/Sao_Paulo, UTC-03:00) — etapa 18 publicada
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`65d9c685084018e336644f4f8bebf1928bc71cfa`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/65d9c685084018e336644f4f8bebf1928bc71cfa).
+HEAD local/remoto iguais e árvore limpa após o envio. Esta nota usa o hash já
+verificado; seu próprio commit será conferido ao fim, sem autorreferência.
+Comprovante final em `analysis-local/github-stage18-sync-verified.json`,
+ignorado pelo Git. Sem bloqueio de publicação. Retomar por `docs/ETAPA-18.md`
+e pela nota das 01:50: 13 subconjuntos próprios aprovados, quatro bloqueados por
+Poppler, 16 testes sintéticos do comparador aprovados e zero comparações reais
+Foxit. Kit local preservado na pasta da campanha final, com plano/modelo em
+input; preparar runtime Linux e depois a observação do original na VM offline.
+Critérios diferenciais ainda pendentes; IA excluída e Flatpak 0.1.1 preservado.
