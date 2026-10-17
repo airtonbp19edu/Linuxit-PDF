@@ -11,6 +11,7 @@ configure_pdf_library()
 
 from pypdf import PdfReader, PdfWriter, Transformation  # type: ignore  # noqa: E402
 from pypdf._page import PageObject  # type: ignore  # noqa: E402
+from pypdf.generic import NameObject, RectangleObject  # type: ignore  # noqa: E402
 
 PT_PER_MM = 72.0 / 25.4
 MAX_POSTER_TILES = 100
@@ -129,11 +130,22 @@ def _reader(path):
 
 def _normalized_page(page):
     p = copy.copy(page)
+    # A shallow copy retains the reader's page reference. Detach it so pypdf's
+    # replace_contents() cannot replace the original reader's content stream.
+    p.indirect_reference = None
     try:
         if getattr(p, 'rotation', 0):
             p.transfer_rotation_to_content()
     except Exception:
         pass
+    left, bottom = float(p.cropbox.left), float(p.cropbox.bottom)
+    if left or bottom:
+        p.add_transformation(Transformation().translate(-left, -bottom))
+        for key in ('/MediaBox', '/CropBox', '/BleedBox', '/TrimBox', '/ArtBox'):
+            if key in p:
+                box = RectangleObject(p[key])
+                p[NameObject(key)] = RectangleObject((float(box.left) - left, float(box.bottom) - bottom,
+                                                     float(box.right) - left, float(box.top) - bottom))
     return p
 
 

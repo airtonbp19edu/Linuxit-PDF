@@ -2,7 +2,10 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Trabalho atual: [etapa 18](../docs/ETAPA-18.md), campanha comparativa preparada:
+Trabalho atual: [etapa 19](../docs/ETAPA-19.md), correções próprias de CropBox e
+preservação do conteúdo de origem em memória, com nove testes portáveis.
+Validar a fonte atual no Linux antes do novo Flatpak. Comparativos seguem na
+[etapa 18](../docs/ETAPA-18.md), campanha preparada:
 13 verificações próprias passaram, quatro bloqueadas por Poppler; 16 controles
 do comparador passaram. Nenhum resultado Foxit: observar o mesmo corpus na VM
 e revisar evidências antes de concluir diferenças/paridade. Seguir também a

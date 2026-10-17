@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T01:50:09-03:00",
+  "reviewed_at_local": "2026-10-17T10:06:51-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -368,9 +368,10 @@
       ],
       "evidence_refs": [
         "progresso/matriz-paridade.csv",
-        "docs/especificacao.md"
+        "docs/especificacao.md",
+        "docs/ETAPA-19.md"
       ],
-      "next_action": "Medir primeiro as divergências do original; corrigir por caso e repetir o diferencial, além de regressões próprias.",
+      "next_action": "Dois defeitos próprios de impressão corrigidos e testados portavelmente; ainda medir divergências originais na VM offline antes de atribuir/corrigir incompatibilidade Foxit. Validar fonte atual em Linux/GTK e novo pacote separadamente.",
       "token_exhaustion_confirmed": null
     },
     {

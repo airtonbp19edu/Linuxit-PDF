@@ -1,0 +1,35 @@
+{
+  "schema": "linuxit-stage19-verification-v1",
+  "verified_at_local": "2026-10-17T10:08:41-03:00",
+  "python_syntax_files": 118,
+  "local_markdown_links": 93,
+  "source_snapshots": {
+    "app/imposition.py": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+    "tests/test_imposition_cropbox.py": "f9e3584c97367007efe7e2f10d4b35b2998df4a9a23a0fda384e0991e35cef5d"
+  },
+  "changed_application_files": [
+    "app/imposition.py"
+  ],
+  "own_defects_reproduced_and_fixed": 2,
+  "portable_test_methods_passed": 9,
+  "preserved_corpus_subchecks_passed": 13,
+  "poppler_subchecks_blocked": 4,
+  "corpus_fixture_and_protocol_hashes_equal": true,
+  "private_proof_artifacts_checked": 4,
+  "all_progress_criteria_statuses_weights_unchanged": true,
+  "previous_stage17_snapshot_marked_historical": true,
+  "original_observations": 0,
+  "foxit_differential_comparisons": 0,
+  "gtk_linux_full_suite_rerun": false,
+  "new_flatpak_built": false,
+  "published_release_unchanged": true,
+  "vendor_and_licenses_unchanged": true,
+  "general_progress_percent": 43.33,
+  "verified_foxit_parity": "0/25",
+  "global_coverage": null,
+  "limitations": [
+    "Own source fixes with vector text-baseline evidence; no original or physical-printer equivalence.",
+    "No GTK/raster execution in this Windows round; poster marks/labels and complex annotation/form/XObject geometry were not validated.",
+    "Initial test report counts 20 failed assertions including subtests across 8 methods; final report contains 9 passed methods."
+  ]
+}

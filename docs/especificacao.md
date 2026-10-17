@@ -70,6 +70,12 @@ prévia, CUPS e adaptador Windows. Testes reabrem saídas com pypdf e verificam
 quantidade/ordem de páginas; testes GTK exercitam a prévia. Essa geometria é
 código independente pré-existente, sem derivação do pseudocódigo Foxit.
 
+A [correção própria da etapa 19](ETAPA-19.md), na fonte posterior ao pacote
+0.1.1, normaliza a origem do CropBox e desvincula a cópia da referência da
+página original antes de transformar o conteúdo. Nove testes portáveis
+verificam posições no PDF, rotações, modos e preservação da origem em memória.
+Não foram executados GTK, rasterização ou impressão física nesta rodada.
+
 Os registros Foxit confirmam troca de modos, notificação, encaminhamento por
 documento e parte do ciclo de vida do objeto de impressão. Não confirmam ainda
 que a imposição própria reproduza toda geometria, margem, rotação ou escolha

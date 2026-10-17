@@ -1,0 +1,89 @@
+{
+  "schema": "linuxit-stage19-cropbox-measurement-v1",
+  "verified_at_local": "2026-10-17T10:03:55-03:00",
+  "baseline_commit": "255cb708f20cbcb1a6484e7baba8c86b908fd8b8",
+  "baseline_imposition_sha256": "8a19f036dd11e5a6eef38d17f09777e61c9b6c4a3cd21c71b7da1b6b29a1ac37",
+  "current_imposition_sha256": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+  "method": "Own PDFs, same pinned pypdf runtime, text baselines read from output streams after nested PDF transforms. No raster/GUI/physical-printing claim.",
+  "input_crop_dimensions_points": [
+    200,
+    300
+  ],
+  "input_shift_points": [
+    70,
+    80
+  ],
+  "measurements": {
+    "before": {
+      "reference_baseline": [
+        "MARK 001",
+        217.637795,
+        300.944882
+      ],
+      "shifted_baseline": [
+        "MARK 001",
+        287.637795,
+        380.944882
+      ],
+      "absolute_error_points": [
+        69.99999999999997,
+        80.0
+      ]
+    },
+    "after": {
+      "reference_baseline": [
+        "MARK 001",
+        217.637795,
+        300.944882
+      ],
+      "shifted_baseline": [
+        "MARK 001",
+        217.637795,
+        300.944882
+      ],
+      "absolute_error_points": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "source_memory": {
+    "before": {
+      "source_content_unchanged": false,
+      "source_geometry_unchanged": true
+    },
+    "after": {
+      "source_content_unchanged": true,
+      "source_geometry_unchanged": true
+    }
+  },
+  "input_files_unchanged": true,
+  "private_artifacts": [
+    {
+      "file": "analysis-local/stage19-measurements/before-plain.pdf",
+      "sha256": "51a6cfb4b41238d45ca22b6425bfbc3c6d3bdc1ee13d98af48018325954bce94"
+    },
+    {
+      "file": "analysis-local/stage19-measurements/before-shifted.pdf",
+      "sha256": "436930610dafd893d797e1db8b7e5141fb252910de5a75181ee4b44b42139567"
+    },
+    {
+      "file": "analysis-local/stage19-measurements/after-plain.pdf",
+      "sha256": "51a6cfb4b41238d45ca22b6425bfbc3c6d3bdc1ee13d98af48018325954bce94"
+    },
+    {
+      "file": "analysis-local/stage19-measurements/after-shifted.pdf",
+      "sha256": "aebad13832e68c796d11712c12d2dd0ea8a1af4ffcf6cbd157ed699c47ec5dee"
+    }
+  ],
+  "fixture_generator": "tests/test_imposition_cropbox.py",
+  "regression_report": "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json",
+  "own_regression_subchecks_passed": 13,
+  "poppler_subchecks_blocked": 4,
+  "foxit_observations": 0,
+  "new_flatpak_built": false,
+  "limitations": [
+    "Own application regression fixes; not measured Foxit incompatibilities.",
+    "No GTK, Poppler raster validation, PDF/UA validation, arbitrary PDF/XObject corpus or physical printer tested."
+  ]
+}

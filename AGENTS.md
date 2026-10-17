@@ -132,6 +132,17 @@ Preparação e testes do kit não contam como observação dinâmica; casos `not
 
 ## Notas de continuidade entre IAs
 
+Etapa 19: `docs/ETAPA-19.md`. Normalização de impressão em `app/imposition.py`
+agora desvincula a cópia da referência indireta e desloca conteúdo/caixas para
+a origem do CropBox após rotação. Corrige deslocamento e mutação do stream do
+reader em memória; não deriva geometria Foxit. Nove testes portáveis passaram
+em `tests/test_imposition_cropbox.py`; mosaico foi testado sem marcas/legendas.
+Regressão copiou os mesmos oito arquivos da etapa 18: 13 subconjuntos aprovados,
+quatro bloqueados por Poppler. Dados em `analysis-local/stage19-measurements/`;
+kit anterior da VM preservado. Snapshots antigos não aprovam esta nova fonte;
+GTK/Linux completo e novo Flatpak continuam pendentes. Critério diferencial
+da 19 segue pending; pesos, paridade e versão publicada preservados.
+
 Etapa 18: `docs/ETAPA-18.md`, `testes/plano-comparativo.json` e
 `scripts/run_comparison_campaign.py`. São 17 subconjuntos ligados a D01–D20;
 13 verificações próprias passaram e quatro dependem de Poppler. Dezesseis

@@ -10,7 +10,13 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
-Checkpoint mais recente: [etapa 18](ETAPA-18.md), campanha com 17 subconjuntos
+Checkpoint mais recente: [etapa 19](ETAPA-19.md), correção própria da origem do
+CropBox e da mutação indevida de conteúdo em memória ao normalizar rotação.
+Nove testes portáveis passaram; regressão dos mesmos bytes do corpus anterior
+passou em 13 subconjuntos, com quatro bloqueados por Poppler. Fonte modificada
+após os snapshots das etapas 17/18; GUI/Linux e novo Flatpak ainda pendentes.
+
+A [etapa 18](ETAPA-18.md) preparou a campanha com 17 subconjuntos
 de backend: 13 observados/aprovados e quatro bloqueados por Poppler. Dezesseis
 testes do comparador passaram; modelo Foxit vazio importado com zero
 comparações. Preservar a mesma pasta `analysis-local/comparison-stage18-final/`

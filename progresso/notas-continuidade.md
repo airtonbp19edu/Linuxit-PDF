@@ -650,3 +650,83 @@ Poppler, 16 testes sintéticos do comparador aprovados e zero comparações reai
 Foxit. Kit local preservado na pasta da campanha final, com plano/modelo em
 input; preparar runtime Linux e depois a observação do original na VM offline.
 Critérios diferenciais ainda pendentes; IA excluída e Flatpak 0.1.1 preservado.
+
+## 2026/10/17 às 10:06 (America/Sao_Paulo, UTC-03:00) — etapa 19, duas correções próprias de impressão
+
+Pedido: próxima etapa, sem VM disponível no checkpoint anterior. Reproduzidos
+dois defeitos do código próprio de imposição: origem de CropBox ignorada na
+colocação do conteúdo e mutação do stream de uma página do reader em memória
+durante normalização da rotação. Corrigidos em `app/imposition.py`: cópia
+desvinculada da referência indireta antes de transformar; conteúdo e caixas
+deslocados para origem do recorte após rotação. Biblioteca pypdf BSD intacta;
+base própria MIT preservada, sem código Foxit incorporado ou proteções alteradas.
+
+Controle quantitativo com PDF próprio de recorte 200x300 pt e origem 70,80:
+marcador saía em 287,637795/380,944882, em vez de 217,637795/300,944882 pt.
+Erro antes 70/80 pt; depois 0/0. O arquivo de entrada nunca foi regravado.
+Outra reprodução confirmou stream do reader alterado antes e preservado
+depois, com geometria original preservada em ambos. Versão anterior carregada
+do commit-base 255cb708f20cbcb1a6484e7baba8c86b908fd8b8 no mesmo runtime pypdf para o
+controle antes/depois. Fonte anterior, PDFs e provas completos privados em
+`analysis-local/stage19-measurements/`; público só medições/hashes/limites.
+
+**9/9 métodos de regressão passaram, sem falhas/skips**, com PDFs gerados por
+`tests/test_imposition_cropbox.py`. Casos: recortes positivos/negativos,
+tamanho real/ajuste, rotações 0/90/180/270, N-up seis por folha nas quatro
+ordens oferecidas, livreto esquerda/direita/ambas/frente/verso com brancos,
+worker real de três modos, mosaico folha única/tiles com rotação, origem zero
+e preservação do conteúdo/geometria em memória. Mosaico testado sem marcas ou
+legendas, pois Cairo não está disponível. Método de medição usa baselines e
+matrizes do PDF reaberto; não é renderização/pixels ou impressão física.
+
+Antes do patch, oito métodos rodaram com um sucesso e 20 falhas de asserção
+incluindo subcasos. O JSON inicial mantém a contagem unittest; a lista `cases`
+não enumera todos os subcasos falhos, limitação do runner registrada no guia.
+Após o patch, os mesmos oito passaram. Acrescentado o caso de mosaico e
+repetida a suíte: nove passaram. As três saídas foram preservadas, sem somar
+subcasos como métodos independentes e sem confundir falhas com tokens.
+
+Regressão dos 17 subconjuntos da etapa 18: **13 passaram, quatro bloqueados
+por pdftotext**. O auxiliar privado trocou apenas a fábrica do corpus por cópia
+byte a byte dos oito arquivos preservados; probes/APIs/contratos reais mantidos.
+Hashes de fixture e protocolo idênticos; kit antigo da VM e arquivos de input
+intactos. Nova campanha em `analysis-local/stage19-measurements/campaign/` e
+relatório com a fonte atual, zero observações Foxit e campos originais null.
+
+Ferramentas/perfis: Python 3.13.15, pypdf 6.20.1, unittest, subprocessos do
+worker, AST/Git e medidas de transformações de PDF. Nenhuma nova sessão
+REA/Ghidra ou execução do original; catálogo continua 209. IA/generativos
+excluídos. Sem GTK/Linux completo, Poppler, impressora ou Flatpak novo.
+Interrupção por tokens não constatada; pendências/diferencial continuam com
+causa null onde não confirmada.
+
+Relatório `docs/ETAPA-19.md`; evidências publicáveis em `testes/resultados/`:
+`etapa-19-cropbox-before-2026-10-17.json`,
+`etapa-19-cropbox-after-2026-10-17.json`,
+`etapa-19-cropbox-final-2026-10-17.json`,
+`etapa-19-cropbox-medidas-2026-10-17.json` e
+`etapa-19-campanha-regressao-2026-10-17.json`. Especificação adiciona quatro
+referências de testes; os 50 cenários completos não foram reclassificados.
+Etapa 17 explicitamente marcada como snapshot portável anterior à alteração;
+etapa 18 registra a regressão da fonte nova sem mudar seus critérios.
+
+Critérios/status/pesos/revisão preservados: etapa 19 14,3%, roteiro 43,33%,
+paridade 0/25 e cobertura global desconhecida/null. Critério de regressões
+próprias já done recebeu evidências técnicas; divergências Foxit seguem pending.
+Pacote publicado 0.1.1/devel intacto; esta correção e anexos são fonte posterior.
+Próximo passo: testar/inspecionar fonte atual em Linux com GTK/Cairo/Poppler e
+painel Anexos; depois gerar/testar Flatpak do novo marco. Observar original
+na VM offline antes de medir/corrigir incompatibilidades Foxit.
+Publicação desta rodada ainda pendente; confirmar remoto e registrar hash já
+verificado em nota posterior, sem autorreferência.
+
+Conferência final da etapa 19 às 10:08: sintaxe de 118 arquivos Python e
+93 links locais aprovados; quatro PDFs de prova com hashes conferidos,
+corpus/protocolos iguais e somente `app/imposition.py` alterado no aplicativo.
+Arquitetura: 21 módulos, 15 interfaces e nove fechamentos locais sem gi/Cairo;
+especificação: 25 famílias, 50 casos planejados, 30 referências de testes e
+27 fontes. Resumo em `testes/resultados/etapa-19-verificacao-2026-10-17.json`.
+Ambiente nativo reconferido: Python 3.13.15/Windows sem gi, Cairo, cryptography,
+Poppler e Flatpak; WSL retorna 1 informando que não está instalado. Diagnóstico
+e stdout/stderr completos em `analysis-local/stage19-environment/`. Não foi
+instalado ou habilitado componente do sistema para essa verificação.

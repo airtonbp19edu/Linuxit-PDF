@@ -995,7 +995,8 @@
       ],
       "outputs": [
         "PDF de faces/folhas; ordem e páginas em branco conforme modo.",
-        "Livreto separa ambas/frente/verso; frente/verso manual não solicita duplex automático."
+        "Livreto separa ambas/frente/verso; frente/verso manual não solicita duplex automático.",
+        "Na fonte pós-0.1.1, conteúdo/caixas são normalizados para a origem do CropBox após rotação; a cópia não substitui o stream do reader original. Ver docs/ETAPA-19.md."
       ],
       "errors": [
         {
@@ -1040,6 +1041,22 @@
         {
           "path": "tests/test_regressions.py",
           "test": "test_worker_prepares_nup_and_poster"
+        },
+        {
+          "path": "tests/test_imposition_cropbox.py",
+          "test": "test_actual_size_centers_the_visible_crop_not_the_media_origin"
+        },
+        {
+          "path": "tests/test_imposition_cropbox.py",
+          "test": "test_intrinsic_rotation_keeps_shifted_crop_aligned"
+        },
+        {
+          "path": "tests/test_imposition_cropbox.py",
+          "test": "test_inputs_and_in_memory_page_geometry_are_preserved"
+        },
+        {
+          "path": "tests/test_imposition_cropbox.py",
+          "test": "test_poster_single_sheet_and_tiles_keep_crop_placement_without_marks"
         }
       ],
       "dynamic_case_refs": [

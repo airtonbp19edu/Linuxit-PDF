@@ -590,7 +590,7 @@
         "status": "partial",
         "date_local": "2026-10-17T01:28:46-03:00",
         "scope": "Source after published Flatpak 0.1.1, including attachment backend and panel. Separate from historical done criteria.",
-        "portable_source_candidate": "verified",
+        "portable_source_candidate": "historical_snapshot_verified",
         "linux_source_runtime": "not_run",
         "new_flatpak": "not_built",
         "evidence": [
@@ -598,7 +598,17 @@
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
           "testes/resultados/etapa-17-linux-indisponivel-2026-10-17.json"
         ],
-        "next_action": "Run check_intermediate.py --profile linux with GTK/Cairo/Poppler/CUPS and X11; inspect panel, then build/test the next Flatpak milestone."
+        "next_action": "Run Linux profile against current source including the stage-19 CropBox fix and all new tests; historical portable candidate is a previous snapshot. Inspect GTK before new Flatpak.",
+        "source_changed_since_candidate": true,
+        "source_changes_since_candidate": [
+          "app/imposition.py"
+        ],
+        "additional_source_evidence": [
+          "docs/ETAPA-19.md",
+          "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
+          "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
+        ],
+        "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00"
       }
     },
     {
@@ -652,7 +662,16 @@
           "testes/resultados/etapa-18-controles-extended-tests-2026-10-17.json",
           "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
         ],
-        "next_action": "Run four text subsets with Poppler/Linux and GTK validation separately. In offline VM, observe the identical campaign input and review evidence before interpreting recorded comparisons."
+        "next_action": "Run four text subsets with Poppler/Linux and GTK validation separately. In offline VM, observe the identical campaign input and review evidence before interpreting recorded comparisons.",
+        "latest_own_regression_after_source_change": {
+          "date_local": "2026-10-17T10:06:51-03:00",
+          "source_change": "app/imposition.py",
+          "evidence": "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json",
+          "identical_fixture_and_protocol_hashes": true,
+          "own_contract_passed": 13,
+          "blocked_runtime": 4,
+          "foxit_observations": 0
+        }
       }
     },
     {
@@ -667,8 +686,14 @@
           "evidence": [
             "tests/test_search_scopes.py",
             "testes/resultados/source-0.1.0.json",
-            "testes/resultados/source-0.1.1-fixed.json"
-          ]
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/ETAPA-19.md",
+            "tests/test_imposition_cropbox.py",
+            "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
+            "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
+            "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json"
+          ],
+          "note": "Two own imposition defects reproduced and fixed: crop-origin offset and reader content mutation during rotation. Nine portable methods and 13 existing-corpus subchecks passed; four Poppler subsets remain blocked. No Foxit divergence measured; status/weight unchanged."
         },
         {
           "criterion": "Divergências originais medidas e corrigidas",
@@ -678,7 +703,28 @@
         }
       ],
       "verified_fraction": 0.142857,
-      "earned_percent": 0.571429
+      "earned_percent": 0.571429,
+      "current_source_fixes": {
+        "status": "verified_portable_subset",
+        "date_local": "2026-10-17T10:06:51-03:00",
+        "own_defects_fixed": [
+          "crop_origin_placement_offset",
+          "reader_content_mutation_during_rotation"
+        ],
+        "portable_test_methods_passed": 9,
+        "reused_corpus_subchecks_passed": 13,
+        "poppler_subchecks_blocked": 4,
+        "original_divergences_measured": 0,
+        "gtk_linux_full_suite_rerun": false,
+        "new_flatpak_built": false,
+        "evidence": [
+          "docs/ETAPA-19.md",
+          "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
+          "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
+          "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json"
+        ],
+        "next_action": "Validate and inspect the current source in Linux/GTK/Poppler, then build/test the next Flatpak milestone. Measure Foxit divergences only after offline original observations."
+      }
     },
     {
       "id": 20,
