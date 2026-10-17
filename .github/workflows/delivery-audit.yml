@@ -1,0 +1,56 @@
+name: Audit published development delivery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linuxit-delivery-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  installed-delivery-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: debian:13
+      options: --privileged
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install audit and virtual display dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 flatpak bubblewrap dbus dbus-x11 xvfb xauth openbox
+      - name: Check out published bundle and audit source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Prepare dedicated CI user and bus
+        run: |
+          useradd --create-home --uid 1001 linuxit-audit
+          chown -R linuxit-audit:linuxit-audit "$GITHUB_WORKSPACE"
+          mkdir -p /run/dbus
+          dbus-uuidgen --ensure
+          dbus-daemon --system --fork --nopidfile
+      - name: Audit existing bundle bytes, licenses and installed application
+        run: |
+          runuser -u linuxit-audit -- bash -c '
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-audit-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            exec dbus-run-session -- xvfb-run -a bash scripts/ci_audit_delivery.sh
+          '
+      - name: Preserve audit evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linuxit-delivery-audit-${{ github.sha }}
+          path: dist/stage21-results/
+          if-no-files-found: warn
+          retention-days: 14
