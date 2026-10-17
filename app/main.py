@@ -1201,6 +1201,8 @@ class PDFWindow(Gtk.Window):
                     box.pack_start(label, False, False, 0)
                     size = item['declared_size_bytes']
                     detail = (f'{size} bytes informados' if size is not None else 'Tamanho não informado')
+                    if item.get('origin') == 'annotation' and type(item.get('page')) is int:
+                        detail = f'Anotação · página {item["page"] + 1} · {detail}'
                     if not item['filename_allowed']:
                         detail = item.get('filename_error') or 'Nome não permitido para salvar.'
                     secondary = Gtk.Label(label=detail, xalign=0)

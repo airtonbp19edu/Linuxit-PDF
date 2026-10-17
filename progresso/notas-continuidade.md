@@ -986,3 +986,47 @@ VM/hardware/serviços externos e contratos completos desconhecidos continuam
 separados; não promover testes próprios a paridade nem declarar todas as
 obrigações encerradas por ausência de VM. Estado Git: alterações preparadas
 para primeiro commit/push; próximo passo executar workflow e lote Ghidra.
+
+
+## 2026/10/17 às 15:16 (America/Sao_Paulo, UTC-03:00) — campanha Poppler concluída; fonte0.1.4 iniciada
+
+CI run39057011186/b8125e2 aprovado: mesmos oito arquivos e17 protocolos da18
+conferidos por hashes;17/17 subconjuntos próprios, quatro antes bloqueados agora
+aprovados, zero erros/bloqueios. Suíte fonte Linux119/119, zero skips, smoke5/5.
+Artefato12109996977 ZIP454e5e63245698bd53195796cc25bb84949210a3bcf22f409b824e13ecaad5de
+confere com GitHub. Evidências examinadas em testes/resultados/sem-vm-2026-10-17/;
+raw/logs analysis-local/no-vm-artifact-12109996977/ e no-vm-logs-39057011186/.
+Fonte testada foi0.1.3; não aprova as alterações posteriores. Original0, paridade0/25.
+
+Fonte em desenvolvimento agora0.1.4: árvores de anexos/Kids aninhadas e anexos
+de anotação, ordem/índice/hash e extração sem sobrescrita preservados. Guardas
+para ciclos, nós repetidos, limite64 níveis/4000 nós e estruturas inválidas.
+Sete métodos novos portáveis,14 regressões backend e14 controlador passaram.
+Novo caso GTK cobre árvore/anotação pelo worker real, ainda não executado nesta
+fonte. Limite64MiB continua após decodificação; portfólios/senha pendentes.
+Entrega atual permanece0.1.3; nenhum Flatpak0.1.4 construído ainda. Indicador
+17 marca fonte alterada até teste Linux/pacote novos. Lote estático14 alvos
+ainda em execução em analysis-local/headless/no-vm-2026-10-17/.
+
+Próximo passo: examinar lote estático, validar GUI/fonte0.1.4 e atualizar contratos
+antes de gerar novo pacote. Pesos/status dos critérios gerais não alterados.
+
+
+## 2026/10/17 às 15:19 (America/Sao_Paulo, UTC-03:00) — lote estático14 examinado
+
+Ghidra direto -noanalysis concluiu os14 alvos; pseudocódigo e montagem lidos.
+Capstone5.0.6/pefile2024.8.26 confirmaram1075 instruções/3372bytes. Catálogo
+223 entradas (152REA+71diretas); originais inalterados e não executados.
+REA CLI6.5.0, JDK21.0.12.1, Node24.22.0 confirmados; sem sessão MCP nova.
+0x1b5baf0 é inserção em estrutura encadeada/tail-jump: não adotar como prova de
+saída gráfica. 0x48f10ef inclui helper anterior no corpo Ghidra, assinatura
+parcial. Escala por72 e truncamento SSE examinados; UI continua com classes
+e7911/7913 não resolvidos. Detalhes e14 próximos contratos em
+docs/AVANCO-SEM-VM.md; metadados novos preservam rodadas anteriores.
+
+Raw/projeto em analysis-local/headless/no-vm-2026-10-17/; metadados/checagem
+publicáveis em docs/windows-evidence/foxit-rea/headless-cross-checks-no-vm-2026-10-17.json
+e testes/resultados/sem-vm-2026-10-17/static-machine-checks.json. Etapas amplas
+permanecem parciais; pesos43,33%/paridade0/25 intactos. Próximo: publicar esse
+checkpoint de fonte0.1.4 e executar Linux/GTK; novos helpers estáticos dirigidos
+165f620/165f970/166a5b0/1665090/1b93280 e vtable619fa3c permanecem abertos.

@@ -1,0 +1,22 @@
+{
+  "schema": "linuxit-preserved-campaign-review-v1",
+  "date_local": "2026-10-17T15:16:15-03:00",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39057011186",
+  "source_commit": "b8125e23fa699c40cf1cf69b7e91f3493cbb73bd",
+  "version_tested": "0.1.3",
+  "identical_fixture_and_protocol_hashes": true,
+  "own_contract_passed": 17,
+  "previously_poppler_blocked_now_passed": 4,
+  "blocked_runtime": 0,
+  "source_full_suite_passed": 119,
+  "source_full_suite_skipped": 0,
+  "foxit_observations": 0,
+  "artifact_id": 12109996977,
+  "zip_sha256": "454e5e63245698bd53195796cc25bb84949210a3bcf22f409b824e13ecaad5de",
+  "github_digest_matches": true,
+  "new_application_changes_tested": false,
+  "limits": [
+    "This source run predates the new attachment tree/annotation changes.",
+    "Not complete original/dynamic/acceptance cases or family parity."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_attachment_trees.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 7,
+  "passed": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 2.050317900000664,
+  "cases": [
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_annotation_only_files_are_listed_and_extracted_in_page_order",
+      "status": "passed",
+      "elapsed_sec": 0.19784530000106315
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_annotation_without_file_spec_is_an_error",
+      "status": "passed",
+      "elapsed_sec": 0.06208089999927324
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_cycles_and_repeated_nodes_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.42341940000187606
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_listing_nested_tree_never_decodes_payload",
+      "status": "passed",
+      "elapsed_sec": 0.15457379999861587
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_malformed_tree_nodes_fail_instead_of_silent_truncation",
+      "status": "passed",
+      "elapsed_sec": 0.9084633000020403
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_nested_tree_preserves_duplicate_name_indices_and_bytes",
+      "status": "passed",
+      "elapsed_sec": 0.18839700000171433
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_tree_depth_and_node_limits_fail_explicitly",
+      "status": "passed",
+      "elapsed_sec": 0.11212030000024242
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

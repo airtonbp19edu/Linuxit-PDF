@@ -1,5 +1,13 @@
 # Linuxit PDF — continuidade do projeto
 
+Execução atual sem VM: `docs/AVANCO-SEM-VM.md`. Campanha preservada18
+17/17 com Poppler e fonte119/119 passaram em b8125e2 (antes da extensão).
+Lote14 estático examinado: catálogo223 (152REA+71diretas), Capstone1075
+instruções/3372bytes; originais/raw foraGit. Fonte0.1.4 em desenvolvimento:
+Kids/anotações com7 testes novos e14+14 regressões; GUI/pacote novos pendentes.
+Entrega publicada continua0.1.3. As antigas quatro pendências Poppler foram
+resolvidas para aquela fonte; repetir na nova, sem marcar paridade Foxit.
+
 Revisão atual das 21 etapas: `docs/REVISAO-ETAPAS.md` e
 `testes/resultados/revisao-etapas-2026-10-17/review.json`. Em 17/10/2026,
 0.1.3 reinstalado sem rebuild: 83 arquivos app, 2803 de dependências, 214 ELF

@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_pdf_attachments.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 14,
+  "passed": 14,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 9.531422100000782,
+  "cases": [
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_attachment_count_limit_is_not_silent_truncation",
+      "status": "passed",
+      "elapsed_sec": 0.06579749999946216
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_declared_and_actual_size_limits_are_checked",
+      "status": "passed",
+      "elapsed_sec": 0.13550150000082795
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_duplicate_names_are_selected_by_index_and_never_overwrite",
+      "status": "passed",
+      "elapsed_sec": 0.11374950000026729
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_empty_catalog_returns_an_empty_list",
+      "status": "passed",
+      "elapsed_sec": 0.086867699999857
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_existing_destination_is_not_replaced",
+      "status": "passed",
+      "elapsed_sec": 0.08660779999991064
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_extract_preserves_binary_content_hash_and_original",
+      "status": "passed",
+      "elapsed_sec": 0.11031390000061947
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_invalid_index_hash_and_destination_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.08105740000246442
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_invalid_pdf_is_not_reported_as_an_empty_inventory",
+      "status": "passed",
+      "elapsed_sec": 0.03501490000053309
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_listing_keeps_duplicate_entries_and_does_not_decode_payloads",
+      "status": "passed",
+      "elapsed_sec": 0.050287499998376006
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_password_and_portfolio_are_explicitly_unsupported",
+      "status": "passed",
+      "elapsed_sec": 0.19676499999695807
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_source_changed_during_decode_leaves_no_output",
+      "status": "passed",
+      "elapsed_sec": 0.09062300000005052
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_source_hash_prevents_extracting_from_a_changed_pdf",
+      "status": "passed",
+      "elapsed_sec": 0.13389920000190614
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_unsafe_pdf_names_are_reported_and_refused_without_writes",
+      "status": "passed",
+      "elapsed_sec": 1.017926599997736
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_worker_protocol_lists_extracts_and_reports_conflict",
+      "status": "passed",
+      "elapsed_sec": 7.320207700002356
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

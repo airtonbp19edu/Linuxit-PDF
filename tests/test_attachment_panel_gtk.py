@@ -13,6 +13,7 @@ sys.path.insert(0, str(APP))
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfWriter
+from pypdf.generic import ArrayObject, DictionaryObject, NameObject, RectangleObject
 
 try:
     import gi
@@ -149,6 +150,34 @@ class AttachmentGTKTests(unittest.TestCase):
         self.window.attachment_list.select_row(self.window._attachment_rows[entry['index']])
         self.assertFalse(self.window.attachment_save.get_sensitive())
         self.assertIsNone(self.window.attachment_controller.selection_token())
+
+    def test_nested_catalog_and_annotation_attachment_save_through_real_worker(self):
+        writer = PdfWriter()
+        writer.add_blank_page(100, 100)
+        writer.add_attachment('nested.txt', b'nested catalog')
+        writer.add_attachment('page-note.txt', b'page attachment')
+        tree = writer.root_object['/Names']['/EmbeddedFiles']
+        pairs = tree.pop('/Names')
+        leaf = writer._add_object(DictionaryObject({NameObject('/Names'): ArrayObject(pairs[:2])}))
+        tree[NameObject('/Kids')] = ArrayObject([DictionaryObject({NameObject('/Kids'): ArrayObject([leaf])})])
+        writer.pages[0][NameObject('/Annots')] = ArrayObject([DictionaryObject({
+            NameObject('/Subtype'): NameObject('/FileAttachment'), NameObject('/FS'): pairs[3],
+            NameObject('/Rect'): RectangleObject([0, 0, 10, 10])})])
+        target = self.root / 'nested.pdf'
+        writer.write(target)
+        self.window.open_document(str(target))
+        self.window._show_side_panel(4)
+        wait_for(lambda: self.window.attachment_controller.source_sha256 is not None
+                 and len(self.window.attachment_controller.items) == 2)
+        items = self.window.attachment_controller.items
+        self.assertEqual([i['name'] for i in items], ['nested.txt', 'page-note.txt'])
+        self.assertEqual([(i['origin'], i['page']) for i in items], [('catalog', None), ('annotation', 0)])
+        self.window.attachment_list.select_row(self.window._attachment_rows[1])
+        chooser = FolderChoice(Gtk.ResponseType.OK, self.output)
+        with patch('main.Gtk.FileChooserDialog', return_value=chooser):
+            self.window._save_selected_attachment()
+        wait_for(lambda: not self.window.attachment_controller.extracting)
+        self.assertEqual((self.output / 'page-note.txt').read_bytes(), b'page attachment')
 
 
 if __name__ == '__main__':

@@ -1341,18 +1341,18 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "implemented subset: flat attachment panel/list/extract verified in Linux/Flatpak 0.1.3; portfolios pending; see docs/ETAPA-16-LAYOUT.md",
+      "matrix_implementation": "source0.1.4 subset: catalog trees and page annotation attachments; flat subset validated in Linux/Flatpak0.1.3; new GTK/payload pending; see docs/AVANCO-SEM-VM.md",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados também nas suítes Linux/Flatpak 0.1.3. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.",
+      "scope": "Fonte0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; sete métodos novos e regressões portáveis passaram. Novas GUI/Linux/payload pendentes; entrega0.1.3 conserva validação anterior. Portfólios e senha não vazia pendentes.",
       "inputs": [
-        "PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.",
+        "PDF local com catálogo plano ou árvore de anexos /Kids e anexos de anotação /FileAttachment; listagem não decodifica payloads.",
         "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.",
         "No painel: selecionar entrada, escolher pasta e confirmar; cancelar não inicia extração."
       ],
       "outputs": [
-        "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.",
+        "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido. Origem catalog/annotation e página de anotação em base zero; índice distinto para cada referência.",
         "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.",
-        "UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; cinco testes GTK passaram em cada suíte Linux/payload/sandbox. Layout completo não foi aprovado."
+        "UI: lista sob demanda e salva selecionado; fonte0.1.4 mostra página da anotação. Novo caso GTK árvore/anotação ainda não executado; seis casos previstos. Entrega0.1.3 teve cinco métodos do painel e três de layout aprovados."
       ],
       "errors": [
         {
@@ -1371,13 +1371,18 @@
           "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Portfólio /Collection, árvore /Kids ou senha não vazia necessária",
+          "trigger": "Portfólio /Collection ou senha não vazia necessária",
           "response": "Recurso ainda não suportado; não apresentar inventário vazio como sucesso.",
           "basis": "current_linuxit_source"
         },
         {
           "trigger": "Seleção/documento mudou durante a escolha de pasta ou resultado assíncrono tornou-se obsoleto",
           "response": "Token de seleção inválido não inicia extração; callbacks antigos não substituem dados/estado do novo documento.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Ciclos/nós repetidos, profundidade acima64, mais4000 nós ou estrutura Kids/Names inválida",
+          "response": "Falha explícita na listagem; não truncar silenciosamente. Limite1000 entradas no conjunto catálogo/anotações.",
           "basis": "current_linuxit_source"
         }
       ],
@@ -1402,7 +1407,7 @@
         "runtime_observed": false,
         "unresolved": [
           "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
-          "Portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado. Desktop/layout e acessibilidade exigem validação adicional."
+          "Portfólios completos e senha não vazia continuam pendentes; extensão própria de árvores/anotações não prova comportamento Foxit. Desktop e acessibilidade pendentes."
         ]
       },
       "existing_test_refs": [
@@ -1445,6 +1450,10 @@
         {
           "path": "tests/test_sidebar_layout_gtk.py",
           "test": "test_long_attachment_name_keeps_header_and_save_button_inside_panel"
+        },
+        {
+          "path": "tests/test_attachment_trees.py",
+          "test": "test_nested_tree_preserves_duplicate_name_indices_and_bytes"
         }
       ],
       "dynamic_case_refs": [

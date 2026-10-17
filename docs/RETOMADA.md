@@ -1,5 +1,13 @@
 # Retomada do Linuxit PDF
 
+Execução atual sem VM: `docs/AVANCO-SEM-VM.md`. Campanha preservada18
+17/17 com Poppler e fonte119/119 passaram em b8125e2 (antes da extensão).
+Lote14 estático examinado: catálogo223 (152REA+71diretas), Capstone1075
+instruções/3372bytes; originais/raw foraGit. Fonte0.1.4 em desenvolvimento:
+Kids/anotações com7 testes novos e14+14 regressões; GUI/pacote novos pendentes.
+Entrega publicada continua0.1.3. As antigas quatro pendências Poppler foram
+resolvidas para aquela fonte; repetir na nova, sem marcar paridade Foxit.
+
 Última revisão: [situação das 21 etapas](REVISAO-ETAPAS.md), em 17/10/2026.
 Flatpak 0.1.3 publicado reinstalado e auditado: 83 arquivos app, 2.803 de
 dependências, 214 ELF e 149 arquivos de licença/créditos; controles 7/7 e novo

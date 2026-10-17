@@ -1,4 +1,4 @@
-"""Independent, local extraction of flat catalog EmbeddedFiles; no attachment execution."""
+"""Independent extraction of catalog and page attachments; no attachment execution."""
 from contextlib import contextmanager
 import hashlib
 from pathlib import Path
@@ -8,10 +8,12 @@ import unicodedata
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader
-from pypdf.generic import DictionaryObject, NullObject
+from pypdf.generic import ArrayObject, DictionaryObject, EmbeddedFile, NullObject
 
 MAX_ATTACHMENTS = 1000
 MAX_ATTACHMENT_BYTES = 64 * 1024 * 1024
+MAX_TREE_DEPTH = 64
+MAX_TREE_NODES = 4000
 
 
 def _stream_hash(stream):
@@ -44,18 +46,78 @@ def _document(path, expected_sha256=None):
                 tree = tree.get_object()
                 if not isinstance(tree, DictionaryObject):
                     raise ValueError('Estrutura /EmbeddedFiles inválida.')
-                if '/Kids' in tree:
-                    raise NotImplementedError('Árvores de anexos com /Kids ainda não são suportadas.')
         yield reader, identity
         if _stream_hash(stream) != identity:
             raise ValueError('O PDF foi alterado durante a leitura dos anexos.')
 
 
+def _catalog_entries(reader):
+    names = reader.root_object.get('/Names')
+    if names is None or isinstance(names, NullObject):
+        return
+    tree = names.get_object().get('/EmbeddedFiles')
+    if tree is None or isinstance(tree, NullObject):
+        return
+    visited = set()
+    def walk(value, depth=0):
+        node = value.get_object()
+        if not isinstance(node, DictionaryObject):
+            raise ValueError('Nó da árvore de anexos inválido.')
+        if id(node) in visited:
+            raise ValueError('Árvore de anexos contém ciclo ou referência repetida.')
+        visited.add(id(node))
+        if depth > MAX_TREE_DEPTH or len(visited) > MAX_TREE_NODES:
+            raise ValueError('Árvore de anexos excede o limite de profundidade ou nós.')
+        if '/Kids' in node and '/Names' in node:
+            raise ValueError('Nó de anexos mistura /Kids e /Names.')
+        if '/Kids' in node:
+            kids = node['/Kids']
+            if not isinstance(kids, ArrayObject):
+                raise ValueError('Filhos /Kids de anexos inválidos.')
+            for child in kids:
+                yield from walk(child, depth + 1)
+        elif '/Names' in node:
+            pairs = node['/Names']
+            if not isinstance(pairs, ArrayObject) or len(pairs) % 2:
+                raise ValueError('Lista /Names de anexos inválida.')
+            for offset in range(0, len(pairs), 2):
+                name, spec = pairs[offset], pairs[offset + 1].get_object()
+                if not isinstance(name, str) or not isinstance(spec, DictionaryObject):
+                    raise ValueError('Par nome/arquivo de anexo inválido.')
+                yield EmbeddedFile(name=name, pdf_object=spec, parent=pairs), 'catalog', None
+    yield from walk(tree)
+
+
+def _all_entries(reader):
+    yield from _catalog_entries(reader)
+    for page_number, page in enumerate(reader.pages):
+        annotations = page.get('/Annots')
+        if annotations is None or isinstance(annotations, NullObject):
+            continue
+        annotations = annotations.get_object()
+        if not isinstance(annotations, ArrayObject):
+            raise ValueError('Lista de anotações inválida.')
+        for reference in annotations:
+            annotation = reference.get_object()
+            if not isinstance(annotation, DictionaryObject):
+                raise ValueError('Anotação inválida.')
+            if annotation.get('/Subtype') != '/FileAttachment':
+                continue
+            spec = annotation.get('/FS')
+            spec = spec.get_object() if spec is not None else None
+            if not isinstance(spec, DictionaryObject):
+                raise ValueError('Anexo de anotação sem especificação de arquivo válida.')
+            name = spec.get('/UF') or spec.get('/F')
+            if not isinstance(name, str):
+                raise ValueError('Anexo de anotação sem nome válido.')
+            yield EmbeddedFile(name=name, pdf_object=spec), 'annotation', page_number
+
+
 def _entries(reader):
-    for index, entry in enumerate(reader.attachment_list):
+    for index, item in enumerate(_all_entries(reader)):
         if index >= MAX_ATTACHMENTS:
             raise ValueError(f'O PDF excede o limite de {MAX_ATTACHMENTS} anexos.')
-        yield index, entry
+        yield index, item
 
 
 def _filename(name):
@@ -84,7 +146,7 @@ def list_attachments(path):
     """List metadata without decoding payloads. Sizes are declared, not measured."""
     items = []
     with _document(path) as (reader, identity):
-        for index, entry in _entries(reader):
+        for index, (entry, origin, page) in _entries(reader):
             name = _name(entry)
             try:
                 _filename(name)
@@ -92,9 +154,10 @@ def list_attachments(path):
             except ValueError as exc:
                 filename_error = str(exc)
             items.append({'index': index, 'name': name, 'declared_size_bytes': _declared_size(entry),
-                          'filename_allowed': filename_error is None, 'filename_error': filename_error})
+                          'filename_allowed': filename_error is None, 'filename_error': filename_error,
+                          'origin': origin, 'page': page})
     return {'schema': 'linuxit-attachments-v1', 'source_sha256': identity,
-            'supported_scope': 'flat_catalog_embedded_files', 'attachments': items}
+            'supported_scope': 'catalog_name_tree_and_page_annotations', 'attachments': items}
 
 
 def extract_attachment(path, index, directory, *, source_sha256):
@@ -107,7 +170,7 @@ def extract_attachment(path, index, directory, *, source_sha256):
     if not destination.is_dir():
         raise NotADirectoryError('O destino deve ser uma pasta existente escolhida para extração.')
     with _document(path, source_sha256) as (reader, identity):
-        selected = next((entry for number, entry in _entries(reader) if number == index), None)
+        selected = next((item[0] for number, item in _entries(reader) if number == index), None)
         if selected is None:
             raise ValueError('Anexo não encontrado; liste os anexos novamente.')
         name = _filename(_name(selected))

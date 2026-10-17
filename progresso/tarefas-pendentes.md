@@ -1,5 +1,13 @@
 # Retomada
 
+Execução atual sem VM: `docs/AVANCO-SEM-VM.md`. Campanha preservada18
+17/17 com Poppler e fonte119/119 passaram em b8125e2 (antes da extensão).
+Lote14 estático examinado: catálogo223 (152REA+71diretas), Capstone1075
+instruções/3372bytes; originais/raw foraGit. Fonte0.1.4 em desenvolvimento:
+Kids/anotações com7 testes novos e14+14 regressões; GUI/pacote novos pendentes.
+Entrega publicada continua0.1.3. As antigas quatro pendências Poppler foram
+resolvidas para aquela fonte; repetir na nova, sem marcar paridade Foxit.
+
 Revisão mais recente: [21 etapas conferidas](../docs/REVISAO-ETAPAS.md).
 O pacote 0.1.3 foi novamente instalado/auditado, sem rebuild: controles 7/7 e
 smoke 5/5. A matriz agora referencia os cinco métodos GTK de anexos aprovados.

@@ -671,12 +671,12 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "verified_linux_and_flatpak_subset",
+        "status": "source_changed_since_last_linux_delivery",
         "date_local": "2026-10-17T11:35:04.620699-03:00",
         "scope": "Current0.1.3 source including sidebar allocation fix; own tests only.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "passed",
-        "new_flatpak": "built_installed_tested",
+        "linux_source_runtime": "pending_for_0.1.4",
+        "new_flatpak": "not_built_for_0.1.4",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
@@ -695,9 +695,13 @@
           "testes/resultados/0.1.3/sandbox-tests.json",
           "testes/resultados/0.1.3/validation-review.json"
         ],
-        "next_action": "Repeat remaining Poppler subsets in preserved corpus; real desktop/accessibility/portals/physical printing and original VM remain open.",
-        "source_changed_since_candidate": false,
-        "source_changes_since_candidate": [],
+        "next_action": "Validate new attachment tree/annotation code with full Linux/GTK suite then build/test Flatpak0.1.4; preserve0.1.3 delivery.",
+        "source_changed_since_candidate": true,
+        "source_changes_since_candidate": [
+          "app/pdf_attachments.py",
+          "app/main.py",
+          "app/version.py"
+        ],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
@@ -743,11 +747,11 @@
       "earned_percent": 0.7,
       "current_preparation": {
         "status": "partial",
-        "date_local": "2026-10-17T01:50:09-03:00",
+        "date_local": "2026-10-17T15:16:15-03:00",
         "backend_subchecks_planned": 17,
-        "backend_subchecks_observed": 13,
-        "backend_subchecks_own_contract_passed": 13,
-        "blocked_without_poppler": 4,
+        "backend_subchecks_observed": 17,
+        "backend_subchecks_own_contract_passed": 17,
+        "blocked_without_poppler": 0,
         "comparator_synthetic_controls_passed": 16,
         "original_observations": 0,
         "real_differential_comparisons": 0,
@@ -756,9 +760,11 @@
           "docs/ETAPA-18.md",
           "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
           "testes/resultados/etapa-18-controles-extended-tests-2026-10-17.json",
-          "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
+          "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json",
+          "testes/resultados/sem-vm-2026-10-17/preserved-campaign.json",
+          "testes/resultados/sem-vm-2026-10-17/campaign-review.json"
         ],
-        "next_action": "Run four text subsets with Poppler/Linux and GTK validation separately. In offline VM, observe the identical campaign input and review evidence before interpreting recorded comparisons.",
+        "next_action": "Original comparisons still require offline VM. Rerun the same campaign for the new0.1.4 source; b8125e2 tested0.1.3 only.",
         "latest_own_regression_after_source_change": {
           "date_local": "2026-10-17T10:06:51-03:00",
           "source_change": "app/imposition.py",
@@ -766,7 +772,8 @@
           "identical_fixture_and_protocol_hashes": true,
           "own_contract_passed": 13,
           "blocked_runtime": 4,
-          "foxit_observations": 0
+          "foxit_observations": 0,
+          "superseded_by": "testes/resultados/sem-vm-2026-10-17/campaign-review.json"
         }
       }
     },

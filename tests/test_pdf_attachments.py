@@ -164,11 +164,11 @@ class AttachmentTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'limite'):
                 attachments.list_attachments(self.pdf)
 
-    def test_password_portfolio_and_kids_are_explicitly_unsupported(self):
+    def test_password_and_portfolio_are_explicitly_unsupported(self):
         self.make_pdf([('note.txt', b'data')], encrypted=True)
         with self.assertRaisesRegex(ValueError, 'senha'):
             attachments.list_attachments(self.pdf)
-        for option in ('portfolio', 'kids'):
+        for option in ('portfolio',):
             with self.subTest(option=option):
                 self.make_pdf([('note.txt', b'data')], **{option: True})
                 with self.assertRaises(NotImplementedError):

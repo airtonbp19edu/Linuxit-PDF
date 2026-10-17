@@ -1,0 +1,1511 @@
+{
+  "schema": "linuxit-comparison-campaign-v1",
+  "date_local": "2026-10-17T15:12:18-03:00",
+  "platform": "linux",
+  "python": "3.13.5",
+  "git_head": "b8125e23fa699c40cf1cf69b7e91f3493cbb73bd",
+  "plan_sha256": "b16d3aa3d9e367f03abcc59434a2b6801c546547bfbeed115841cbf748eefb36",
+  "source_files": {
+    "appearance.py": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+    "async_core.py": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+    "attachment_tasks.py": "bdcb24ffbd1dd0b1108a69af9b4e3b0e8a64c5174f0938b647fcbafbc3c314ea",
+    "cancel_state.py": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+    "cups_backend.py": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282",
+    "imposition.py": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+    "main.py": "f6a625fd327ed6563dc3d1bc1567913267a2f57379a4fe2913d766d1b53c6735",
+    "page_cache.py": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+    "pdf_attachments.py": "cd804bcada70ec73f3b4fc77d78c7bf092c0240820da528f97d0da462ff62615",
+    "pdf_dependency.py": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5",
+    "pdf_panels.py": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
+    "platform_runtime.py": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+    "presentation.py": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+    "print_window.py": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+    "rendering.py": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+    "search_engine.py": "ad3e6e92862c947e2932ebbb1148ce8df08c3001b88c5b5dfb8f8132458d1814",
+    "style-dark.css": "953be596e18feb2adb245b981770489f3a08852285b93df59aeb686a461c50fe",
+    "style.css": "6b8c2e35197b3228e6129352798a6933fbf07e4bb5ea527bcd929251c380829b",
+    "themes.py": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+    "vendor/pypdf/__init__.py": "d7786f1b3cb2e52e28b1085f0ea150fa7f029baad252b29af7415c790871f7df",
+    "vendor/pypdf/_cmap.py": "d298554fd352442d4384e13395f1f5e768a5f3916baa1deaa599eb017fe1cc60",
+    "vendor/pypdf/_codecs/__init__.py": "bd56ce01215af54c771e42b4228dd415aba640fe0970d2f1f63341353351d980",
+    "vendor/pypdf/_codecs/_codecs.py": "f377c8779e1713e6916f798d8bfa75a2526d67375487df07b3159708e193b512",
+    "vendor/pypdf/_codecs/adobe_glyphs.py": "69ac4e46ea50409ee46cb0c76e35a280b67aa60f06f7fe5ea832a2349c72923e",
+    "vendor/pypdf/_codecs/core_font_metrics.py": "dbb26cac9a39511246215ed90ce09427259f066e8b0567aaeefdce5b3a05f21f",
+    "vendor/pypdf/_codecs/pdfdoc.py": "c5f4af30562cbf1b9a490d14bbdbd90ca681d16bbce61d6e0a20758bdac07145",
+    "vendor/pypdf/_codecs/std.py": "0f240cb84a40184a52f6ecb58d67f87278fe92a4a13ce0228f9b08ed0d580fc1",
+    "vendor/pypdf/_codecs/symbol.py": "08fe958d172c72b9bcca6007f74c6977155a7a5c22e8c49bd536f5c0d0e1d359",
+    "vendor/pypdf/_codecs/zapfding.py": "e39a9c635d716c1c2da21ebfb7467fef33631bbfaa238d752d14155d828faf65",
+    "vendor/pypdf/_configuration.py": "dd2b41d34cedc9113c33be3555c662b6692f038d0d8ae29a2ea0ad9fb49823a9",
+    "vendor/pypdf/_crypt_providers/__init__.py": "c5441b160310bca31a38e4f7454756ddb4bc7d94a147c3c13b3eab7ac7f05855",
+    "vendor/pypdf/_crypt_providers/_base.py": "34505711d85bae0f64d353d57cd37f93b94401897606481720e8b9a1f53ff91f",
+    "vendor/pypdf/_crypt_providers/_cryptography.py": "33183bb4201aa15e950085a97ee874e2af254be0aaeb9ab0de643d7e93100526",
+    "vendor/pypdf/_crypt_providers/_fallback.py": "81772ba3f2bbab82180cbe57195471a059978d75cc6ba4e57830f0c56c828f81",
+    "vendor/pypdf/_crypt_providers/_pycryptodome.py": "bd9102129a13f4ebe9a46ebb74aec456de51e5aa491bd5fce588a3479ed2a6f6",
+    "vendor/pypdf/_doc_common.py": "ec79163bf5cc977b2a723feba53473e6ebe5896bd97ce428012d3b0651026103",
+    "vendor/pypdf/_encryption.py": "44f9db6e619c04fd81d37c1c8dc2a65ed0a87e4fd014f9940e03c236cf0c6231",
+    "vendor/pypdf/_page.py": "a431cf8af6baed1a7f7e0dd19fb4ffe6f6fdc6417932305f8400517d30afd96e",
+    "vendor/pypdf/_page_labels.py": "55ae47e2e1fcec75ea33d3f97478c1fae1684883414cd8ee04a0a066dec40e06",
+    "vendor/pypdf/_protocols.py": "4e4ea32b83d1f71cc4ec44e7a9a7f6ef5494299913b3a2254672d118f9588ff7",
+    "vendor/pypdf/_reader.py": "dedbfa826d5e1660e6d5718d3b10c52de975ad5eefd9a3bb8518487ec8ad4390",
+    "vendor/pypdf/_text_extraction/__init__.py": "08ee4beeccbae52c021c87c61eed6f9bbfeaef5a9ea1f994170921a2de15e4fb",
+    "vendor/pypdf/_text_extraction/_layout_mode/__init__.py": "56adb80f37575f9af91995d319579011c9212ed332099acdf207db4a506efecc",
+    "vendor/pypdf/_text_extraction/_layout_mode/_fixed_width_page.py": "6200c194cdf49dde9b70900a1600e314e040b885875ee519de3815f6b22ee8b6",
+    "vendor/pypdf/_text_extraction/_layout_mode/_text_state_manager.py": "b1600d432c5add07cb442b02a0b6daf228b737457c0ea92184f35274c02d68f4",
+    "vendor/pypdf/_text_extraction/_layout_mode/_text_state_params.py": "a0c4b8cb2f4763835c4ebded2f1272235182e1c759e46cc3ad43f425ac5f5261",
+    "vendor/pypdf/_text_extraction/_text_extractor.py": "376ae42d43e318bda3603734a3493cb2ae8084d0bdad9a8f4a92c76c3021eede",
+    "vendor/pypdf/_utils.py": "1f1e47f3b8ee728f3a05143eef5e370684cd54ddf751fe631ccf1d3eabc14309",
+    "vendor/pypdf/_version.py": "3d176cbc1f25f912bda4dac8a2424cffb162e969c4bf94a837d8289bdb54e0f9",
+    "vendor/pypdf/_writer.py": "598baaa8215415d1d12fbc732eb79b07767101550a86d6e945fffa9bcf1210f4",
+    "vendor/pypdf/actions/__init__.py": "d8bdd81ef60846bab097640490991e4b63bd6b521eb0356ed696e24854299518",
+    "vendor/pypdf/actions/_actions.py": "9ad300bde70c006ba9484e0d78296103c0dcdafa75038248f3bde6a988cd6c4b",
+    "vendor/pypdf/annotations/__init__.py": "7f693ffa3027dfd082076ecac50fdef771a29e7ce40076d49e749e1899758f21",
+    "vendor/pypdf/annotations/_base.py": "608453cd3764aa3f035164939b2d1fae47d3af88e87b91d41b344e5287f8a08a",
+    "vendor/pypdf/annotations/_markup_annotations.py": "c210635217f7c5195cae67829cd82a1679ad2767fb07c2289f82b8e88f74a079",
+    "vendor/pypdf/annotations/_non_markup_annotations.py": "fd2cd3ce864ce01dff1bf57a33ff266c9e7b630d2d024f601db347ea5211ab70",
+    "vendor/pypdf/constants.py": "579bd3b09defab4b63ac63f7effb4713ade10722c8c7799b8566aa80917c3624",
+    "vendor/pypdf/errors.py": "070d56f61c4eb03830ab053a628436974f89894c93aba979423542afe5b81850",
+    "vendor/pypdf/filters.py": "7567a0838190cd5e03508d9e945ab11bf4fe1822a80834b5bf958c58efa76aa9",
+    "vendor/pypdf/generic/__init__.py": "56ba9d61fb5010278f0d4dab5d532012a45a60547ccce57f7ef260a35f71feec",
+    "vendor/pypdf/generic/_appearance_stream.py": "4f572ec49a2c290b0389ed7b30758ac21855f1c3b8efc71eeb013e29ebfe22b4",
+    "vendor/pypdf/generic/_base.py": "90c50d931fdc97db44bf57894fa2fe6239ece307e1b831896e54e5c2de6698b7",
+    "vendor/pypdf/generic/_color.py": "2b10852d96453098d4b9b2f437ad85042a552b37038403c1f6719ba29e3c795c",
+    "vendor/pypdf/generic/_data_structures.py": "a29bb9c51e8a87872c3196fe74ac9a191cc0361556615d6513928f0f5ab134f2",
+    "vendor/pypdf/generic/_files.py": "d28b3ece6aa1cec4ed623e83ab52e2cd70fd592118e5855508415352223d9ebd",
+    "vendor/pypdf/generic/_fit.py": "607a2571a31e1c67d84fdb0d1a3dbfd04b52a09619d9a261b4aa9525c03887f9",
+    "vendor/pypdf/generic/_font.py": "ce07922ffa1f27b84fb25c41f2612aa409ba8319fae4c38e0248da8b60c79ef3",
+    "vendor/pypdf/generic/_image_inline.py": "a708cc06e98c88b0972a6367e6513282b0fd35599c8429c26ff0573a0058f7cc",
+    "vendor/pypdf/generic/_image_xobject.py": "5c4d6498633962f41592771f24993dfd9742b30d73f783a60c2a0c72ed2f05cd",
+    "vendor/pypdf/generic/_link.py": "90835ae593a2a461f163f616fdf231178cf44d134a970c388d161a1822d34116",
+    "vendor/pypdf/generic/_outline.py": "3c4b924f86fe2a6010203009d05872c4dec036626376c59a4ddc4aa3b862ab78",
+    "vendor/pypdf/generic/_rectangle.py": "ec7ac97ce31ab906ad0368245a17074a4cc1ec5e245a671afba90d03a1d5a3a3",
+    "vendor/pypdf/generic/_utils.py": "0dcef7c1b7cfeb17d2f962d63fa77b98d116c9b0cee7779de94dbb243f5f1df9",
+    "vendor/pypdf/generic/_viewerpref.py": "20912ec8cd304ebd6a36004e0bede202e3c1e4f9630ee771f7de14a2c3eb05dc",
+    "vendor/pypdf/pagerange.py": "0209c3144e2959cf34d1800cfec3dc1afcb6f747f70f93588abaf6e478753b46",
+    "vendor/pypdf/papersizes.py": "e93cf9b1f34dff724e51aa58f3753e95a928867a57600d2148440d98e54b14bf",
+    "vendor/pypdf/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vendor/pypdf/types.py": "b09ef01f393b111fc227b90ffacf2ef5ac459e40979c5a6bf27cdc8f50314dab",
+    "vendor/pypdf/xmp.py": "0853e82701b820b96d14ecfdd9f49cf04f1a734ce2314ff0e9b16976e753d494",
+    "version.py": "93dcf4a9530c55290670cca82349c079415fad39bbbc46cdadb45f798def5e0d",
+    "windows_bootstrap.py": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+    "windows_print.py": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+    "worker_cli.py": "25298216711633c9d521c1617e62027048e2500c18bf2eb5815f973725dafd26"
+  },
+  "fixtures": [
+    {
+      "name": "busca-escopos.pdf",
+      "size": 7904,
+      "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+    },
+    {
+      "name": "busca-longa.pdf",
+      "size": 82663,
+      "sha256": "3dfce9fc83a6da03bfb47f52b824c62297f7a6c7eb758fc33e0dd22186a1ac2c"
+    },
+    {
+      "name": "com-anexo.pdf",
+      "size": 3377,
+      "sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74"
+    },
+    {
+      "name": "com-senha.pdf",
+      "size": 3390,
+      "sha256": "1922651f70d7af3934bac3715ede6cf933fe70022fe2ab9b0f5055b28b9f685e"
+    },
+    {
+      "name": "controle.txt",
+      "size": 67,
+      "sha256": "b4e81b193a7596beeaf4dd389a71245a6689c1221f66f3f5029ec261962e42d2"
+    },
+    {
+      "name": "geometria.pdf",
+      "size": 2980,
+      "sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7"
+    },
+    {
+      "name": "invalido.pdf",
+      "size": 39,
+      "sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e"
+    },
+    {
+      "name": "vazio.pdf",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "cases": [
+    {
+      "id": "C18-D02-info",
+      "dynamic_case_ref": "D02",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "info",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Quantidade de páginas aceita pelo parser. Não mede renderização, diálogos ou texto visível.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 2
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "da0ef9f27b872579f647d2842ccca1dda459bf46f90866dc370244c24f5a570a",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "pages": 2
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D04-literal",
+      "dynamic_case_ref": "D04",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 3,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "5ea8217b564e00c05a7db7e56639e2daa8f4f423df72623bd0c65c5ab6d23f69",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 3,
+          "hits": [
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "page_text",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D05-whole",
+      "dynamic_case_ref": "D05",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": true,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 2,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "ad660e79fc1e302e42583e9ede4977e688fa1d71f7a33ab12cfe57f2610a7001",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 2,
+          "hits": [
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "page_text",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D06-case",
+      "dynamic_case_ref": "D06",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "ALVO",
+        "options": {
+          "match_case": true,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "0caa555bde3b727dafaf03969cab290220b567865fc76b0722c071f70b1f055e",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 1,
+          "hits": [
+            {
+              "source": "page_text",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D07-bookmarks",
+      "dynamic_case_ref": "D07",
+      "family_ids": [
+        "search-bookmarks"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 2,
+        "hits": [
+          {
+            "source": "bookmark",
+            "page": 2
+          },
+          {
+            "source": "bookmark",
+            "page": null
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "744cfef2697c7297c8972de2f75061957c8f04e6db718ab1eec01d085ff89d6e",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 2,
+          "hits": [
+            {
+              "source": "bookmark",
+              "page": 2
+            },
+            {
+              "source": "bookmark",
+              "page": null
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D08-comments",
+      "dynamic_case_ref": "D08",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "eed0c51766883c939b35ce805864b3c3868c8ff7c50f7849b4bc101f1f70b176",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 1,
+          "hits": [
+            {
+              "source": "comment",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D09-subject",
+      "dynamic_case_ref": "D09",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "assunto",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "5cbcb77d9d9d978861428d3c2839e00427785315fa750d427253eef4ff8223bd",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 1,
+          "hits": [
+            {
+              "source": "comment",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D09-author",
+      "dynamic_case_ref": "D09",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "Autor",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "41b7ef62e79a53145efd8b9e5cc9596eba13d026ff57c491ceba3a163dfd109b",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 0,
+          "hits": []
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D10-scopes",
+      "dynamic_case_ref": "D10",
+      "family_ids": [
+        "search-text",
+        "search-bookmarks",
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 6,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "bookmark",
+            "page": 2
+          },
+          {
+            "source": "bookmark",
+            "page": null
+          },
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "82a4284ff2c8764b961829fd6d70313a1a9c2dae2962d32bae39d6363773e188",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 6,
+          "hits": [
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "page_text",
+              "page": 1
+            },
+            {
+              "source": "bookmark",
+              "page": 2
+            },
+            {
+              "source": "bookmark",
+              "page": null
+            },
+            {
+              "source": "comment",
+              "page": 1
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D11-empty",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "e6d8d9c71c70122bac5b43a094819ee3ff76345a703aae36bcd2517ce4766a7f",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 0,
+          "hits": []
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D11-missing",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "termo-inexistente-123",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "9995b59886953ea6a7f646f1c72c2b2d0ff07311b6ea36d6d20e222fbae394cb",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 0,
+          "hits": []
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D11-no-sources",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "4b63c397f11ebf9507c93f762da7a6bd3be90f2bf3889f49986da5a80f65beec",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "count": 0,
+          "hits": []
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D13-rejected",
+      "dynamic_case_ref": "D13",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "invalido.pdf",
+      "kind": "invalid",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Aceitação do documento pelo parser; registrar separadamente a mensagem/estado de UI no caso D completo. Erro de ambiente não é documento recusado.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "accepted": false
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e",
+      "protocol_sha256": "e68bbe28b4c5711ff842a8f15961fe25141866445db045ba1ed06ac38ff06c7d",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "accepted": false
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D14-rejected",
+      "dynamic_case_ref": "D14",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "vazio.pdf",
+      "kind": "invalid",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Aceitação do documento pelo parser; registrar separadamente a mensagem/estado de UI no caso D completo. Erro de ambiente não é documento recusado.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "accepted": false
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "protocol_sha256": "c0b9548968bbe513a5d30ea9fea4f92975bfa8228b129649bca0e916ca9a2a8b",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "accepted": false
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D16-attachment",
+      "dynamic_case_ref": "D16",
+      "family_ids": [
+        "attachments"
+      ],
+      "fixture": "com-anexo.pdf",
+      "kind": "attachments",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Listar catálogo plano, salvar cada anexo em pasta nova e comparar nome, bytes e SHA-256. Não executar anexos; não mede seleção/diálogos/portfólios.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "entries": [
+          {
+            "name": "nota-sintetica.txt",
+            "size": 22,
+            "sha256": "4f6ef251b0d92548051e3239c050a6c0735554e79c03c3668166b30a05d9d5fb"
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74",
+      "protocol_sha256": "ca05b77bc8f4198be2dee56ff430be9d07e00fc9661767ec1976bc09f89ba433",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "entries": [
+            {
+              "name": "nota-sintetica.txt",
+              "size": 22,
+              "sha256": "4f6ef251b0d92548051e3239c050a6c0735554e79c03c3668166b30a05d9d5fb"
+            }
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D18-booklet",
+      "dynamic_case_ref": "D18",
+      "family_ids": [
+        "imposition"
+      ],
+      "fixture": "geometria.pdf",
+      "kind": "prepare",
+      "parameters": {
+        "print_mode": "booklet",
+        "paper_size": "A4",
+        "booklet_binding": "left",
+        "booklet_sides": "both",
+        "booklet_safety_mm": 5.0,
+        "booklet_gutter_mm": 3.0
+      },
+      "observable_version": 1,
+      "measurement": "Gerar PDF de saída sem impressora; reabrir e extrair rótulos PAGE nnn em ordem de conteúdo por página. Para comparar Foxit é preciso PDF de saída equivalente, com mesmas opções; prévia visual não equivale à ordem do stream. Sem exportação, marcar unavailable_in_context. Não mede geometria, margens reais, rasterização ou impressão física.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 4,
+        "content_labels": [
+          [
+            8,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "protocol_sha256": "2ae32f361cc1a6b9a443226d4590dba98fd0ae814c05946fccf759a192abdf02",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "pages": 4,
+          "content_labels": [
+            [
+              8,
+              1
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "C18-D18-nup",
+      "dynamic_case_ref": "D18",
+      "family_ids": [
+        "imposition"
+      ],
+      "fixture": "geometria.pdf",
+      "kind": "prepare",
+      "parameters": {
+        "print_mode": "multiple",
+        "paper_size": "A4",
+        "orientation": "portrait",
+        "pages_per_sheet": 4,
+        "number_up_layout": "lrtb",
+        "nup_margin_mm": 4.0
+      },
+      "observable_version": 1,
+      "measurement": "Gerar PDF de saída sem impressora; reabrir e extrair rótulos PAGE nnn em ordem de conteúdo por página. Para comparar Foxit é preciso PDF de saída equivalente, com mesmas opções; prévia visual não equivale à ordem do stream. Sem exportação, marcar unavailable_in_context. Não mede geometria, margens reais, rasterização ou impressão física.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 2,
+        "content_labels": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ]
+        ]
+      },
+      "expected_basis": "own_contract_only",
+      "fixture_sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "protocol_sha256": "1457b89112a1e360b996a2924b5c67c005cc4335f45131ac4f32a4d827c20459",
+      "linuxit": {
+        "status": "observed",
+        "metrics": {
+          "pages": 2,
+          "content_labels": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              5,
+              6,
+              7,
+              8
+            ]
+          ]
+        },
+        "own_contract_passed": true
+      },
+      "foxit": {
+        "status": "not_run",
+        "metrics": null,
+        "evidence": []
+      }
+    }
+  ],
+  "source_unchanged": true,
+  "whole_dynamic_cases_completed": 0,
+  "foxit_executed": false,
+  "foxit_observations": 0,
+  "full_gtk_suite_executed": false,
+  "flatpak_built": false,
+  "limitations": [
+    "Own backend subsets, not complete D cases or S12 acceptance cases.",
+    "No original execution. Own expectations never populate original observations.",
+    "Output label order is PDF content-stream order, not visual placement/geometry."
+  ],
+  "fixtures_unchanged": true,
+  "own_observed_subchecks": 17,
+  "own_contract_passed": 17,
+  "blocked_runtime": 0,
+  "errors": 0,
+  "comparison": {
+    "schema": "linuxit-recorded-comparison-v1",
+    "cases": [
+      {
+        "id": "C18-D02-info",
+        "family_ids": [
+          "open-render"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D04-literal",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D05-whole",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D06-case",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D07-bookmarks",
+        "family_ids": [
+          "search-bookmarks"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D08-comments",
+        "family_ids": [
+          "search-comments"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D09-subject",
+        "family_ids": [
+          "search-comments"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D09-author",
+        "family_ids": [
+          "search-comments"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D10-scopes",
+        "family_ids": [
+          "search-text",
+          "search-bookmarks",
+          "search-comments"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D11-empty",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D11-missing",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D11-no-sources",
+        "family_ids": [
+          "search-text"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D13-rejected",
+        "family_ids": [
+          "open-render"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D14-rejected",
+        "family_ids": [
+          "open-render"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D16-attachment",
+        "family_ids": [
+          "attachments"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D18-booklet",
+        "family_ids": [
+          "imposition"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      },
+      {
+        "id": "C18-D18-nup",
+        "family_ids": [
+          "imposition"
+        ],
+        "status": "awaiting_original",
+        "differences": []
+      }
+    ],
+    "recorded_metric_cases": 0,
+    "matches": 0,
+    "differences": 0,
+    "manual_evidence_requires_review": true,
+    "foxit_executed_by_this_tool": false,
+    "automatic_parity_update": false,
+    "whole_family_equivalence_verified": false
+  },
+  "families": [
+    {
+      "id": "open-render",
+      "planned_subchecks": 3,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "navigation",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "presentation",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-text",
+      "planned_subchecks": 7,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-bookmarks",
+      "planned_subchecks": 2,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-comments",
+      "planned_subchecks": 4,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-attachments",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-index",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "search-language",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "selection",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "printing",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "imposition",
+      "planned_subchecks": 2,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "bookmarks-edit",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "annotations",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "forms",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "attachments",
+      "planned_subchecks": 1,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "signatures",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "security",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "accessibility",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "measurement",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "layers-media",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "preferences",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "cloud",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "conversion",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    },
+    {
+      "id": "platform",
+      "planned_subchecks": 0,
+      "foxit_observations": 0,
+      "equivalence": "not_verified"
+    }
+  ],
+  "full_dynamic_cases": [
+    {
+      "id": "D01",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D02",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D02-info"
+      ]
+    },
+    {
+      "id": "D03",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D04",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D04-literal"
+      ]
+    },
+    {
+      "id": "D05",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D05-whole"
+      ]
+    },
+    {
+      "id": "D06",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D06-case"
+      ]
+    },
+    {
+      "id": "D07",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D07-bookmarks"
+      ]
+    },
+    {
+      "id": "D08",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D08-comments"
+      ]
+    },
+    {
+      "id": "D09",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D09-subject",
+        "C18-D09-author"
+      ]
+    },
+    {
+      "id": "D10",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D10-scopes"
+      ]
+    },
+    {
+      "id": "D11",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D11-empty",
+        "C18-D11-missing",
+        "C18-D11-no-sources"
+      ]
+    },
+    {
+      "id": "D12",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D13",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D13-rejected"
+      ]
+    },
+    {
+      "id": "D14",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D14-rejected"
+      ]
+    },
+    {
+      "id": "D15",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D16",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D16-attachment"
+      ]
+    },
+    {
+      "id": "D17",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D18",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": [
+        "C18-D18-booklet",
+        "C18-D18-nup"
+      ]
+    },
+    {
+      "id": "D19",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    },
+    {
+      "id": "D20",
+      "linuxit_full_case_status": "not_run",
+      "foxit_status": "not_run",
+      "backend_subcheck_refs": []
+    }
+  ]
+}

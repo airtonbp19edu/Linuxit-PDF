@@ -638,27 +638,28 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Anexos/portfólios
 
-Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados também nas suítes Linux/Flatpak 0.1.3. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.
+Fonte0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; sete métodos novos e regressões portáveis passaram. Novas GUI/Linux/payload pendentes; entrega0.1.3 conserva validação anterior. Portfólios e senha não vazia pendentes.
 
 **Entradas**
 
-- PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.
+- PDF local com catálogo plano ou árvore de anexos /Kids e anexos de anotação /FileAttachment; listagem não decodifica payloads.
 - Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.
 - No painel: selecionar entrada, escolher pasta e confirmar; cancelar não inicia extração.
 
 **Saídas**
 
-- Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.
+- Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido. Origem catalog/annotation e página de anotação em base zero; índice distinto para cada referência.
 - Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.
-- UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; cinco testes GTK passaram em cada suíte Linux/payload/sandbox. Layout completo não foi aprovado.
+- UI: lista sob demanda e salva selecionado; fonte0.1.4 mostra página da anotação. Novo caso GTK árvore/anotação ainda não executado; seis casos previstos. Entrega0.1.3 teve cinco métodos do painel e três de layout aprovados.
 
 **Erros e casos excepcionais**
 
 - Caminhos, nomes reservados, caracteres de controle ou nome fora do limite: Recusar extração antes de criar arquivo; a listagem conserva o nome e indica a recusa.
 - Destino já existe, inclusive outra entrada com o mesmo nome: FileExistsError, sem sobrescrita; escolher outra pasta para extrair essa entrada.
 - PDF mudou, índice/hash inválido, pasta ausente ou payload acima de 64 MiB: Falha explícita antes da gravação; tamanho real é checado após decodificar o stream.
-- Portfólio /Collection, árvore /Kids ou senha não vazia necessária: Recurso ainda não suportado; não apresentar inventário vazio como sucesso.
+- Portfólio /Collection ou senha não vazia necessária: Recurso ainda não suportado; não apresentar inventário vazio como sucesso.
 - Seleção/documento mudou durante a escolha de pasta ou resultado assíncrono tornou-se obsoleto: Token de seleção inválido não inicia extração; callbacks antigos não substituem dados/estado do novo documento.
+- Ciclos/nós repetidos, profundidade acima64, mais4000 nós ou estrutura Kids/Names inválida: Falha explícita na listagem; não truncar silenciosamente. Limite1000 entradas no conjunto catálogo/anotações.
 
 **Estado e efeitos**
 
@@ -676,11 +677,11 @@ Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; 
 **Lacunas da referência Foxit**
 
 - Política e comportamento Foxit ainda não observados; backend atual é contrato independente.
-- Portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado. Desktop/layout e acessibilidade exigem validação adicional.
+- Portfólios completos e senha não vazia continuam pendentes; extensão própria de árvores/anotações não prova comportamento Foxit. Desktop e acessibilidade pendentes.
 
 Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [app/attachment_tasks.py](../app/attachment_tasks.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py); [test_panel_saves_selected_file_and_shows_conflict_without_overwrite](../tests/test_attachment_panel_gtk.py); [test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks](../tests/test_attachment_panel_gtk.py); [test_long_attachment_name_keeps_header_and_save_button_inside_panel](../tests/test_sidebar_layout_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py); [test_panel_saves_selected_file_and_shows_conflict_without_overwrite](../tests/test_attachment_panel_gtk.py); [test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks](../tests/test_attachment_panel_gtk.py); [test_long_attachment_name_keeps_header_and_save_button_inside_panel](../tests/test_sidebar_layout_gtk.py); [test_nested_tree_preserves_duplicate_name_indices_and_bytes](../tests/test_attachment_trees.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 

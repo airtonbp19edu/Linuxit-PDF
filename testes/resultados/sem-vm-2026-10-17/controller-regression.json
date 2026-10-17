@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_attachment_tasks.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 14,
+  "passed": 14,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 46.63417059999847,
+  "cases": [
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_cancelled_selection_starts_no_extraction",
+      "status": "passed",
+      "elapsed_sec": 5.306115099996532
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_close_prevents_queued_extraction_and_late_widget_notifications",
+      "status": "passed",
+      "elapsed_sec": 3.051853299999493
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_conflict_is_readable_and_does_not_replace_existing_content",
+      "status": "passed",
+      "elapsed_sec": 5.900258700003178
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_display_names_remove_controls_without_interpreting_markup",
+      "status": "passed",
+      "elapsed_sec": 0.03299699999843142
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_invalid_extraction_confirmation_does_not_claim_success",
+      "status": "passed",
+      "elapsed_sec": 2.4060190000018338
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_no_document_and_lazy_loading_do_not_start_workers",
+      "status": "passed",
+      "elapsed_sec": 0.02994140000009793
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_real_listing_populates_selection_and_repeated_show_is_cached",
+      "status": "passed",
+      "elapsed_sec": 2.7477017999990494
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_real_worker_extracts_selected_attachment_and_restores_buttons",
+      "status": "passed",
+      "elapsed_sec": 4.9273329000025115
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_refresh_invalidates_the_selection_captured_before_a_dialog",
+      "status": "passed",
+      "elapsed_sec": 4.270610299998225
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_stale_listing_callback_cannot_replace_a_new_document",
+      "status": "passed",
+      "elapsed_sec": 6.848977900001046
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_switching_document_keeps_authorized_job_but_not_its_old_status",
+      "status": "passed",
+      "elapsed_sec": 6.798030400001153
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_unsafe_name_cannot_be_extracted_even_if_selected",
+      "status": "passed",
+      "elapsed_sec": 1.9824848999996902
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_unsupported_pdf_is_an_error_not_an_empty_success",
+      "status": "passed",
+      "elapsed_sec": 2.276101400002517
+    },
+    {
+      "id": "test_attachment_tasks.AttachmentWorkflowTests.test_worker_timeout_and_invalid_protocol_are_reported_without_tracebacks",
+      "status": "passed",
+      "elapsed_sec": 0.051495199997589225
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}
