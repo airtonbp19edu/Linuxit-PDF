@@ -201,3 +201,15 @@ disponibilidade Reader para famílias futuras e resolver lacunas estáticas de
 busca/interface/impressão antes de promover propostas a contratos recuperados.
 Publicação deste marco ainda pendente; a nota seguinte registrará somente
 um hash cuja presença no remoto tenha sido conferida.
+
+## 2026/10/17 às 00:13 (America/Sao_Paulo, UTC-03:00) — etapa 12 publicada
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`76893ea50b3465c426413d4229b981c46bf06550`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/76893ea50b3465c426413d4229b981c46bf06550).
+Árvore limpa após o envio; autenticação Git disponível. Esta nota registra um
+hash já confirmado; o commit da própria nota será verificado depois, sem
+autorreferência. Comprovante final em
+`analysis-local/github-stage12-sync-verified.json`, ignorado pelo Git.
+Continuar pelos contratos/ressalvas da nota das 00:12 e por `docs/ETAPA-12.md`;
+os 50 casos completos permanecem planejados, a fase A aberta e os indicadores
+preservados. Nenhum bloqueio de publicação nesta rodada.
