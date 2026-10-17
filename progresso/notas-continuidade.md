@@ -1442,3 +1442,23 @@ métricas this+98 e escritores dos campos, conferindo catálogo antes de seeds.
 Aplicação/Flatpak0.1.8 permanece idêntico ao auditado; nenhuma suíte completa
 repetida por esta análise. Roteiro43,33%,paridade0/25 e nuvem adiada preservados.
 Próximo: publicar esta nota e evidência da auditoria e confirmar remoto limpo.
+
+
+## 2026/10/17 às 20:51 (America/Sao_Paulo, UTC-03:00) — fonte0.1.9 pastas sincronizadas
+
+Usuário autorizou aplicar fluxo de pastas locais sincronizadas e pediu separar VM.
+Pasta explícita por seletor nativo, preferência/últimas pastas separadas do tema,
+atalhos abrir/salvar e esquecer sem apagar arquivos. Sem contas/API/upload próprios.
+Novo worker copy-file recusa fonte alterada externamente e destino existente.
+Cópias simples/editadas/imagens/senhas publicam nome final completo via operação
+atômica sem substituição; falhas/temporários e limites documentados. Temporários
+.linuxit-* podem ser vistos pelo cliente externo; não há transação remota ou
+garantia após término forçado. Guia docs/PASTAS-SINCRONIZADAS.md inclui tabela VM.
+15 portáveis novos e20segurança/17criação/16edição passaram localmente;53regressões.
+Relatórios raw em testes/resultados/0.1.9-portable/.8 GTK novos pendentes; total290
+métodos declarados.37módulos/49interfaces;23subconjuntos/2propostas mantidos.
+Builder prepara dois controles de pasta sintética fora HOME sem/com concessão;
+isso não comprova interação com portal ou cliente real. Fonte0.1.9 ainda sem
+pacote/publicação neste checkpoint;0.1.8 permanece pacote atual. Pesos43,33% e
+paridade0/25 intactos, original não executado. Próximo: validadores, commit/push,
+suíte Linux completa e Flatpak; examinar evidências e auditar mesmo pacote publicado.

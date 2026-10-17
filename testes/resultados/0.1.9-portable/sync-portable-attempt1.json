@@ -1,0 +1,95 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_sync_folders.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 15,
+  "passed": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 7.003207599998859,
+  "cases": [
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_cancelled_worker_does_not_begin_copy",
+      "status": "passed",
+      "elapsed_sec": 0.05654779999895254
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_existing_file_and_destination_race_are_never_overwritten",
+      "status": "passed",
+      "elapsed_sec": 0.19122730000526644
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_final_name_is_absent_while_real_copy_is_in_progress",
+      "status": "passed",
+      "elapsed_sec": 0.30294449999928474
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_hard_link_fallback_is_exclusive_and_publishes_complete_inode",
+      "status": "passed",
+      "elapsed_sec": 0.1206261999977869
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_invalid_requests_remote_paths_and_same_source_destination_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.14989780000178143
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_source_changed_before_or_during_copy_refuses_publication",
+      "status": "passed",
+      "elapsed_sec": 0.15805099999852246
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_unsupported_atomic_filesystem_is_refused_without_unsafe_fallback",
+      "status": "passed",
+      "elapsed_sec": 0.11894829999801004
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_worker_roundtrip_preserves_source_and_never_claims_remote_sync",
+      "status": "passed",
+      "elapsed_sec": 4.343098600002122
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_write_flush_and_publication_failures_leave_no_final_or_staging_file",
+      "status": "passed",
+      "elapsed_sec": 0.4020068000027095
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_corrupt_oversized_and_malicious_settings_fall_back_without_network",
+      "status": "passed",
+      "elapsed_sec": 0.1853415000005043
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_failed_preference_replacement_preserves_previous_bytes",
+      "status": "passed",
+      "elapsed_sec": 0.23663220000162255
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_forget_preserves_files_and_other_folder_preferences",
+      "status": "passed",
+      "elapsed_sec": 0.2094504999986384
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_invalid_relative_missing_and_unknown_settings_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.022819499994511716
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_last_open_save_and_source_are_fallbacks_for_unavailable_preference",
+      "status": "passed",
+      "elapsed_sec": 0.27379300000029616
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_sync_folder_roundtrip_is_separate_from_theme_and_contains_no_account",
+      "status": "passed",
+      "elapsed_sec": 0.21758439999393886
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

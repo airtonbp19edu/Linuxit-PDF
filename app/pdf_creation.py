@@ -1,5 +1,6 @@
 """Own bounded PNG/JPEG to RGB PDF creation, with no source modification."""
 from io import BytesIO
+from local_files import publish_copy
 import hashlib
 import math
 from pathlib import Path
@@ -120,9 +121,11 @@ def create_pdf_from_images(destination, request):
                              zip((page.mediabox.width, page.mediabox.height), source['page_points'])), 'Dimensões inválidas no PDF gerado.')
         for source in sources:
             _require(_sha(source['path']) == source['sha256'], 'Uma imagem mudou durante a criação. Selecione as fontes novamente.')
-        with temporary.open('rb') as source, destination.open('xb') as output:
-            created = True
-            shutil.copyfileobj(source, output, 64 * 1024)
+        def unchanged():
+            for source in sources:
+                _require(_sha(source['path']) == source['sha256'], 'Uma imagem mudou durante a criação. Selecione as fontes novamente.')
+        publish_copy(temporary,destination,unchanged)
+        created = True
         return {'schema': 'linuxit-image-pdf-result-v1', 'path': str(destination), 'pages': len(paths),
                 'dpi': dpi, 'sources': sources, 'output_sha256': _sha(destination)}
     except BaseException:

@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T20:22:38-03:00",
+  "reviewed_at_local": "2026-10-17T20:51:10-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -338,9 +338,10 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "testes/resultados/0.1.8/audit/review.json"
+        "testes/resultados/0.1.8/audit/review.json",
+        "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Published0.1.8 audited without rebuild:97app/2804runtime/215ELF/150notices; auditor7 and fresh smoke5 passed, full267 suites are prior build evidence. Continue remaining local forms/undo/formats/platform and desktop/device work; cloud deferred, original VM pending.",
+      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -363,9 +364,10 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "testes/resultados/0.1.8/audit/review.json"
+        "testes/resultados/0.1.8/audit/review.json",
+        "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Published0.1.8 audited without rebuild:97app/2804runtime/215ELF/150notices; auditor7 and fresh smoke5 passed, full267 suites are prior build evidence. Continue remaining local forms/undo/formats/platform and desktop/device work; cloud deferred, original VM pending.",
+      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -389,9 +391,10 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "testes/resultados/0.1.8/audit/review.json"
+        "testes/resultados/0.1.8/audit/review.json",
+        "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Published0.1.8 audited without rebuild:97app/2804runtime/215ELF/150notices; auditor7 and fresh smoke5 passed, full267 suites are prior build evidence. Continue remaining local forms/undo/formats/platform and desktop/device work; cloud deferred, original VM pending.",
+      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -418,9 +421,10 @@
         "docs/BUSCA-COLECOES.md",
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "testes/resultados/0.1.8/audit/review.json"
+        "testes/resultados/0.1.8/audit/review.json",
+        "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Published0.1.8 audited without rebuild:97app/2804runtime/215ELF/150notices; auditor7 and fresh smoke5 passed, full267 suites are prior build evidence. Continue remaining local forms/undo/formats/platform and desktop/device work; cloud deferred, original VM pending.",
+      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -517,9 +521,10 @@
         "docs/CRIACAO-IMAGENS.md",
         "testes/resultados/0.1.7/audit/review.json",
         "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
-        "testes/resultados/0.1.8/audit/review.json"
+        "testes/resultados/0.1.8/audit/review.json",
+        "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Published0.1.8 audited without rebuild:97app/2804runtime/215ELF/150notices; auditor7 and fresh smoke5 passed, full267 suites are prior build evidence. Continue remaining local forms/undo/formats/platform and desktop/device work; cloud deferred, original VM pending.",
+      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
       "token_exhaustion_confirmed": null
     }
   ],

@@ -1,5 +1,12 @@
 # Tarefas atuais e ponto de retomada
 
+Fonte **0.1.9 em desenvolvimento**, após pacote0.1.8: [pastas sincronizadas locais](../docs/PASTAS-SINCRONIZADAS.md).
+15 controles portáveis novos e53 regressões passaram;8 GTK novos ainda sem execução.
+37 módulos/49 interfaces. Próximo: suíte completa290 no Linux e Flatpak, incluindo
+concessão específica fora de HOME. Portais reais/cliente de sincronização: desktop,
+sem VM Foxit. APIs remotas de nuvem continuam adiadas. Registros abaixo históricos.
+
+
 Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
 [Segurança, acessibilidade e edição local](../docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
 cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.

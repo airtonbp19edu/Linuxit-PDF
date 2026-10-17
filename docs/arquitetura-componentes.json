@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T20:16:26-03:00",
+  "reviewed_at_local": "2026-10-17T20:51:10-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.8",
+  "application_version": "0.1.9",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -215,6 +215,18 @@
       "path": "app/accessible_reader.py",
       "boundary": "GTK adapter",
       "responsibility": "Current-page extracted text via native ATK.Text and background worker."
+    },
+    {
+      "id": "local_files",
+      "path": "app/local_files.py",
+      "boundary": "portable local filesystem",
+      "responsibility": "Folder preferences, source identity and complete exclusive publication of new copies; no remote sync."
+    },
+    {
+      "id": "folder_dialogs",
+      "path": "app/folder_dialogs.py",
+      "boundary": "GTK adapter",
+      "responsibility": "Preferred folder shortcuts and explicit native directory selection."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -235,7 +247,8 @@
     "collection_index",
     "pdf_creation",
     "pdf_security",
-    "pdf_signatures"
+    "pdf_signatures",
+    "local_files"
   ],
   "interface_refs": [
     {
@@ -397,6 +410,42 @@
     {
       "path": "app/accessible_reader.py",
       "symbol": "AccessibleTextWindow"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "read_folders"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "remember_folder"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "preferred_folder"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "file_stamp"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "publish_copy"
+    },
+    {
+      "path": "app/local_files.py",
+      "symbol": "copy_local_document"
+    },
+    {
+      "path": "app/folder_dialogs.py",
+      "symbol": "prepare_chooser"
+    },
+    {
+      "path": "app/folder_dialogs.py",
+      "symbol": "remember_selection"
+    },
+    {
+      "path": "app/folder_dialogs.py",
+      "symbol": "choose_sync_folder"
     }
   ],
   "family_assignments": [
@@ -406,7 +455,9 @@
       "current_source_refs": [
         "app/rendering.py",
         "app/main.py",
-        "app/async_core.py"
+        "app/async_core.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -420,7 +471,9 @@
         "app/rendering.py",
         "app/pdf_changes.py",
         "app/edit_tasks.py",
-        "app/worker_cli.py"
+        "app/worker_cli.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -549,7 +602,9 @@
         "app/pdf_changes.py",
         "app/edit_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Modelo de edição e gravação em cópia, além do painel atual.",
       "future_boundary_implemented": false
@@ -563,7 +618,9 @@
         "app/pdf_changes.py",
         "app/edit_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
@@ -575,7 +632,9 @@
         "app/pdf_changes.py",
         "app/edit_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false
@@ -613,7 +672,9 @@
         "app/security_window.py",
         "app/search_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Entrada de senha e permissões locais; RMS tratado como integração distinta.",
       "future_boundary_implemented": false
@@ -653,7 +714,9 @@
       "id": "preferences",
       "contract_kind": "implemented_subset",
       "current_source_refs": [
-        "app/appearance.py"
+        "app/appearance.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -673,7 +736,9 @@
         "app/creation_window.py",
         "app/search_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Importação/exportação por formato e disponibilidade Reader/Editor.",
       "future_boundary_implemented": false
@@ -714,7 +779,7 @@
     }
   ],
   "runtime_limitations": [
-    "Current 0.1.8 source/payload/installed Flatpak verified267/267 in Debian13/X11 CI; actual desktop/portals/AT-SPI/physical printer remain unverified.",
+    "Source0.1.9 portable controls passed, Linux/GTK/Flatpak pending; published0.1.8 remains current. Real desktop portals and sync client are separate unverified environments.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
     "Windows delivery, portals and physical printing remain unverified.",
@@ -727,5 +792,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

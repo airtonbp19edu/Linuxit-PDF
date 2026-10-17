@@ -79,6 +79,12 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'copy-file':
+        from local_files import copy_local_document
+        raw = sys.stdin.buffer.read(16385)
+        if len(raw) > 16384:raise ValueError('Pedido de cópia acima do limite.')
+        print(json.dumps(copy_local_document(argv[2],json.loads(raw)),ensure_ascii=True))
+        return
     if cmd == 'signature-info':
         from pdf_signatures import inspect_pdf_signatures
         raw = sys.stdin.buffer.read(16385)

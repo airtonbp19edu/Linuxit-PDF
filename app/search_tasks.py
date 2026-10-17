@@ -13,7 +13,7 @@ MAX_REPLY = 16 * 1024 * 1024
 
 
 def run_search_worker(command, path, request, cancel=None, timeout=120):
-    if command not in {'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info'}:
+    if command not in {'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file'}:
         raise ValueError('Comando de pesquisa inválido.')
     if cancel is not None and cancel.is_set():
         return None

@@ -43,6 +43,17 @@ version="$(/usr/bin/python3 -c 'import sys; sys.path.insert(0,"app"); from versi
 bundle="$PWD/dist/LinuxitPDF-$version-x86_64.flatpak"
 flatpak install --user --noninteractive -y --no-related "$bundle" >"$results/app-install.log" 2>&1
 app=io.github.airtonbp19edu.LinuxitPDF//devel
+# An explicit, narrow grant outside HOME is tested separately from desktop portals.
+sync_fixture="$(mktemp -d /var/tmp/linuxit-sync-folder-XXXXXX)"
+/usr/bin/python3 -c 'import sys; sys.path.insert(0,"app"); from pdf_dependency import configure_pdf_library; configure_pdf_library(); from pypdf import PdfWriter; w=PdfWriter(); w.add_blank_page(100,100); w.write(sys.argv[1])' "$sync_fixture/source.pdf"
+flatpak run --user --nofilesystem=home --filesystem="$PWD/scripts:ro" \
+  --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" \
+  "$PWD/scripts/check_synced_folder_access.py" --folder "$sync_fixture" --expect-denied \
+  >"$results/sync-folder-denied.json"
+flatpak run --user --nofilesystem=home --filesystem="$PWD/scripts:ro" --filesystem="$sync_fixture:rw" \
+  --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" \
+  "$PWD/scripts/check_synced_folder_access.py" --folder "$sync_fixture" \
+  >"$results/sync-folder-granted.json"
 flatpak run --user --filesystem="$PWD:ro" --filesystem="$results:rw" \
   --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" \
   "$PWD/scripts/run_tests.py" --app /app/share/linuxit-pdf --output "$results/sandbox-tests.json" \

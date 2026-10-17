@@ -1,5 +1,6 @@
 """Own copy-only PDF edits; never overwrite inputs or execute PDF actions."""
 from contextlib import contextmanager
+from local_files import publish_copy
 import hashlib
 import math
 from pathlib import Path
@@ -260,9 +261,10 @@ def save_edited_copy(path, destination, *, source_sha256, operations):
             with temporary.open('rb') as stream:
                 _require(len(PdfReader(stream, strict=True).pages) == len(reader.pages), 'A cópia gerada não preservou as páginas.')
         _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')
-        with temporary.open('rb') as source, destination.open('xb') as output:
-            created = True
-            shutil.copyfileobj(source, output, 64 * 1024)
+        def unchanged():
+            _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')
+        publish_copy(temporary,destination,unchanged)
+        created = True
         return {'schema': 'linuxit-copy-edit-result-v1', 'source_sha256': identity,
                 'output_sha256': _sha(destination), 'path': str(destination),
                 'pages': len(writer.pages), 'operations_applied': len(operations)}

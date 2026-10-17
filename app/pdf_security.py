@@ -4,6 +4,7 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+from local_files import publish_copy
 
 from pdf_changes import _editable, _sha, _inherited
 from pdf_dependency import configure_pdf_library
@@ -119,9 +120,8 @@ def protect_pdf_copy(path, request):
                 _require(len(check.pages) == len(reader.pages) and _permissions(entry['/P']) == request['permissions'],
                          'A cópia não preservou páginas ou permissões esperadas.')
         _require(_sha(path) == identity, 'O PDF mudou durante a preparação da cópia.')
-        with temporary.open('rb') as source:
-            fd = os.open(destination, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600);created = True
-            with os.fdopen(fd, 'wb') as output:shutil.copyfileobj(source, output, 65536)
+        publish_copy(temporary,destination,lambda:_require(_sha(path) == identity, 'O PDF mudou durante a preparação da cópia.'))
+        created = True
         return {'schema': 'linuxit-protected-copy-v1', 'path': str(destination), 'source_sha256': identity,
                 'output_sha256': _sha(destination), 'pages': len(writer.pages),
                 'algorithm': 'AES-256', 'permissions': dict(request['permissions'])}
@@ -184,9 +184,8 @@ def unprotect_owner_copy(path, request):
                 check = PdfReader(output, strict=True)
                 _require(not check.is_encrypted and len(check.pages) == len(reader.pages), 'Não foi possível verificar a cópia sem senha.')
         _require(_sha(path) == identity, 'O PDF mudou durante a preparação da cópia.')
-        with temporary.open('rb') as source:
-            fd = os.open(destination, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600);created = True
-            with os.fdopen(fd, 'wb') as output:shutil.copyfileobj(source, output, 65536)
+        publish_copy(temporary,destination,lambda:_require(_sha(path) == identity, 'O PDF mudou durante a preparação da cópia.'))
+        created = True
         return {'schema':'linuxit-owner-copy-v1','source_sha256':identity,'path':str(destination),
                 'output_sha256':_sha(destination),'pages':len(writer.pages),'algorithm':'none'}
     except SecurityError:raise

@@ -39,3 +39,9 @@ a fase A nem resolve as pendências da VM.
 Em 2026-10-17T19:20:19-03:00, o usuário decidiu: **“Deixar nuvem para depois”**.
 A integração de nuvem fica adiada; a família permanece no inventário das 25,
 sem alteração dos pesos ou critérios. Prioridade atual: operações PDF locais.
+
+
+Em 2026-10-17T20:51:10-03:00, o usuário autorizou o [fluxo de pastas sincronizadas](PASTAS-SINCRONIZADAS.md).
+O Linuxit trabalha com arquivos locais; o cliente externo gerencia a nuvem.
+APIs de provedor, login, upload e colaboração remota continuam adiados.
+Nenhuma família foi removida ou peso alterado.

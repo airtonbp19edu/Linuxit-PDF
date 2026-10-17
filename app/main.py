@@ -27,6 +27,9 @@ from page_cache import PageCache
 from themes import load_theme, read_theme, save_theme
 from platform_runtime import worker_python, subprocess_options
 from attachment_tasks import AttachmentPanelController, display_attachment_name
+from local_files import read_folders, remember_folder, file_stamp
+from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder
+from search_tasks import run_search_worker
 
 APP_DIR = Path(__file__).resolve().parent
 WORKER = APP_DIR / 'worker_cli.py'
@@ -71,6 +74,7 @@ class PDFWindow(Gtk.Window):
         _cleanup_stale_render_caches()
         self.cache_dir = tempfile.mkdtemp(prefix='linuxit-pdf-cache-')
         self.filepath = None
+        self._document_stamp = None
         self.page_count = 0
         self.page_sizes = []
         self.metadata = {}
@@ -250,6 +254,9 @@ class PDFWindow(Gtk.Window):
                 menu = Gtk.Menu()
                 for text, callback in (
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
+                    ('Escolher pasta sincronizada…', self._choose_sync_folder),
+                    ('Abrir PDF da pasta sincronizada…', self._open_sync_folder),
+                    ('Esquecer pasta sincronizada', self._forget_sync_folder),
                     ('Pesquisar em coleção…', self._show_collection),
                     ('Criar PDF de imagens…', self._show_creation),
                     ('Senhas e permissões…', self._show_security),
@@ -736,10 +743,37 @@ class PDFWindow(Gtk.Window):
     def _choose_open(self, *_args):
         dlg = Gtk.FileChooserDialog(title='Abrir PDF', parent=self, action=Gtk.FileChooserAction.OPEN)
         dlg.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Abrir', Gtk.ResponseType.OK)
+        prepare_chooser(dlg)
         filt = Gtk.FileFilter(); filt.set_name('Documentos PDF'); filt.add_mime_type('application/pdf'); filt.add_pattern('*.pdf'); dlg.add_filter(filt)
         if dlg.run() == Gtk.ResponseType.OK:
-            path = dlg.get_filename(); dlg.destroy(); self.open_document(path); return
+            path = dlg.get_filename(); dlg.destroy(); remember_selection(path); self.open_document(path); return
         dlg.destroy()
+
+    def _choose_sync_folder(self, *_args):
+        try:
+            path = choose_sync_folder(self)
+            if path:self.status_file.set_text('Pasta local preferida: '+path+'. O sincronizador gerencia o envio.')
+            return path
+        except (OSError,ValueError) as exc:self._error(str(exc))
+
+    def _open_sync_folder(self, *_args):
+        folder = read_folders().get('sync_folder')
+        if not folder or not Path(folder).is_dir():
+            if not self._choose_sync_folder():return
+        self._choose_open()
+
+    def _forget_sync_folder(self, *_args):
+        try:
+            remember_folder('sync_folder',None)
+            self.status_file.set_text('Pasta preferida removida. Os arquivos e a sincronização externa foram preservados.')
+        except OSError as exc:self._error(str(exc))
+
+    def _source_unchanged(self):
+        try:
+            if self.filepath and file_stamp(self.filepath) == self._document_stamp:return True
+        except OSError:pass
+        self._error('O PDF foi alterado externamente ou está indisponível. Reabra o documento antes de salvar a cópia.')
+        return False
 
     def open_document(self, path, initial_page=0):
         path = os.path.abspath(path)
@@ -748,6 +782,8 @@ class PDFWindow(Gtk.Window):
             return
         self._clear_document_state()
         self.filepath = path
+        try:self._document_stamp = file_stamp(path)
+        except OSError as exc:self._error(str(exc));return
         self.status_file.set_text(f'Abrindo {Path(path).name}…')
         self._set_actions_enabled(False)
 
@@ -778,6 +814,8 @@ class PDFWindow(Gtk.Window):
             self._clear_document_state(); self._error(str(exc))
 
     def _clear_document_state(self):
+        self._document_stamp = None
+        self.runner.invalidate('local-copy')
         text_window = getattr(self, 'accessible_text_window', None)
         if text_window is not None and not text_window.closed:text_window.destroy()
         self._edit_generation = getattr(self, '_edit_generation', 0) + 1
@@ -1278,6 +1316,7 @@ class PDFWindow(Gtk.Window):
         dialog.set_modal(True)
         dialog.set_destroy_with_parent(True)
         try:
+            prepare_chooser(dialog,'save',self.filepath)
             response = dialog.run()
             directory = dialog.get_filename() if response == Gtk.ResponseType.OK else None
         finally:
@@ -1694,6 +1733,7 @@ class PDFWindow(Gtk.Window):
     def _begin_copy_edit(self, kind):
         if not self.filepath or self.page_count < 1 or getattr(self, '_copy_edit_busy', False):
             return
+        if not self._source_unchanged():return
         from edit_tasks import invoke_edit_worker
         path, page = self.filepath, self.page
         generation = getattr(self, '_edit_generation', 0)
@@ -1716,7 +1756,7 @@ class PDFWindow(Gtk.Window):
             def saved(result):
                 if current():
                     self._copy_edit_busy = False
-                    self.status_file.set_text(f'Cópia alterada salva: {Path(result["path"]).name}')
+                    self.status_file.set_text(f'Cópia alterada salva localmente: {Path(result["path"]).name}. Envio gerenciado pelo sincronizador.')
             self.runner.submit('copy-edit-save', lambda: invoke_edit_worker('copy-edit', path, destination, request),
                                saved, failed)
         def failed(error):
@@ -1732,8 +1772,11 @@ class PDFWindow(Gtk.Window):
         dialog.set_destroy_with_parent(True)
         dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar em arquivo novo', Gtk.ResponseType.OK)
         dialog.set_current_name(f'{Path(path).stem}-editado.pdf')
+        prepare_chooser(dialog,'save',path)
         try:
-            return dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
+            result = dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
+            remember_selection(result,'save')
+            return result
         finally:
             dialog.destroy()
 
@@ -1840,13 +1883,25 @@ class PDFWindow(Gtk.Window):
         finally:dialog.destroy()
 
     def _save_copy(self, *_args):
-        if not self.filepath: return
+        if not self.filepath or not self._source_unchanged(): return
+        path, stamp, generation = self.filepath, self._document_stamp, getattr(self,'_edit_generation',0)
         dlg = Gtk.FileChooserDialog(title='Salvar cópia', parent=self, action=Gtk.FileChooserAction.SAVE)
-        dlg.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar', Gtk.ResponseType.OK); dlg.set_do_overwrite_confirmation(True); dlg.set_current_name(Path(self.filepath).name)
+        dlg.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar cópia nova', Gtk.ResponseType.OK)
+        dlg.set_current_name(Path(path).stem+'-copia.pdf');prepare_chooser(dlg,'save',path)
         if dlg.run() == Gtk.ResponseType.OK:
             dest = dlg.get_filename(); dlg.destroy()
-            try: shutil.copy2(self.filepath, dest); self.status_file.set_text(f'Cópia salva: {Path(dest).name}')
-            except Exception as e: self._error(str(e))
+            if self.filepath != path or generation != getattr(self,'_edit_generation',0):return
+            remember_selection(dest,'save')
+            self.status_file.set_text('Preparando cópia local…')
+            def task():
+                from cancel_state import get_event
+                return run_search_worker('copy-file',path,{'destination':dest,'source_stamp':stamp},get_event())
+            def saved(result):
+                if self.filepath == path and generation == getattr(self,'_edit_generation',0) and result:
+                    self.status_file.set_text(f'Cópia salva localmente: {Path(dest).name}. Envio gerenciado pelo sincronizador.')
+            def failed(exc):
+                if self.filepath == path and generation == getattr(self,'_edit_generation',0):self._error(str(exc))
+            self.runner.submit('local-copy',task,saved,failed)
             return
         dlg.destroy()
 

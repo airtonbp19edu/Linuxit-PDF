@@ -6,6 +6,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from async_core import BackgroundRunner
 from pdf_security import invoke_security, PERMISSION_FLAGS
+from folder_dialogs import prepare_chooser, remember_selection
 
 
 class SecurityWindow(Gtk.Window):
@@ -50,7 +51,11 @@ class SecurityWindow(Gtk.Window):
             modal=True, action=Gtk.FileChooserAction.SAVE if save else Gtk.FileChooserAction.OPEN)
         dialog.set_destroy_with_parent(True);dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Selecionar', Gtk.ResponseType.OK)
         if save:dialog.set_current_name(Path(self.path.get_text()).stem+'-copia.pdf')
-        try:return dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
+        prepare_chooser(dialog,'save' if save else 'open',self.path.get_text() or None)
+        try:
+            result = dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
+            remember_selection(result,'save' if save else 'open')
+            return result
         finally:dialog.destroy()
 
     def _browse(self, *_):
@@ -91,7 +96,7 @@ class SecurityWindow(Gtk.Window):
         request = {'destination':destination, 'source_sha256':info['source_sha256'], 'user_password':values['user'],
                    'owner_password':values['owner'], 'permissions':{key:c.get_active() for key, c in self.permissions.items()}}
         self._submit(lambda cancel:invoke_security('protect-copy', path, request, cancel),
-            lambda result:self.status.set_text(f"Cópia AES-256 criada e verificada: {Path(result['path']).name}. Guarde suas senhas."))
+            lambda result:self.status.set_text(f"Cópia AES-256 criada e verificada: {Path(result['path']).name}. Salva localmente; envio gerenciado pelo sincronizador. Guarde suas senhas."))
 
     def _unprotect(self, *_):
         if self.busy or self.closed:return
@@ -103,7 +108,7 @@ class SecurityWindow(Gtk.Window):
         if not destination or self.closed or self.info is not info or self.path.get_text() != path:return
         request = {'destination':destination,'source_sha256':info['source_sha256'],'owner_password':password}
         self._submit(lambda cancel:invoke_security('owner-copy',path,request,cancel),
-            lambda result:self.status.set_text(f"Cópia sem senha criada pelo proprietário: {Path(result['path']).name}. O original foi preservado."))
+            lambda result:self.status.set_text(f"Cópia sem senha criada pelo proprietário: {Path(result['path']).name}. Salva localmente; envio gerenciado pelo sincronizador. O original foi preservado."))
 
     def _submit(self, task, success):
         self.cancel = threading.Event();cancel = self.cancel;self.busy = True

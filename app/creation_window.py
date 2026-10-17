@@ -1,6 +1,7 @@
 """GTK workflow for explicitly ordered images and a new PDF destination."""
 import hashlib
 from pathlib import Path
+from folder_dialogs import prepare_chooser, remember_selection
 import threading
 
 import gi
@@ -65,9 +66,12 @@ class CreationWindow(Gtk.Window):
             filter_ = Gtk.FileFilter();filter_.set_name('Imagens PNG/JPEG')
             for mime in ('image/png', 'image/jpeg'):filter_.add_mime_type(mime)
             dialog.add_filter(filter_)
+        prepare_chooser(dialog,'save' if save else 'open')
         try:
             if dialog.run() != Gtk.ResponseType.OK:return None
-            return dialog.get_filename() if save else dialog.get_filenames()
+            result = dialog.get_filename() if save else dialog.get_filenames()
+            remember_selection(result if save else (result[0] if result else None),'save' if save else 'open')
+            return result
         finally:dialog.destroy()
 
     def _refresh(self, selected=None):
