@@ -1,0 +1,58 @@
+{
+  "schema": "linuxit-stage18-verification-v1",
+  "verified_at_local": "2026-10-17T01:51:23-03:00",
+  "python_syntax_files": 117,
+  "local_markdown_links": 91,
+  "app_source_files_preserved": 83,
+  "own_subchecks_passed": 13,
+  "poppler_subchecks_blocked": 4,
+  "comparator_synthetic_tests_passed": 16,
+  "cli_refusal_controls": [
+    {
+      "id": "existing_report",
+      "return_code": 2,
+      "passed": true
+    },
+    {
+      "id": "existing_work",
+      "return_code": 1,
+      "passed": true
+    },
+    {
+      "id": "bad_protocol",
+      "return_code": 1,
+      "passed": true
+    }
+  ],
+  "original_metrics_recorded": 0,
+  "original_comparisons": 0,
+  "whole_dynamic_cases_completed": 0,
+  "recording_metadata_copied_into_private_input": [
+    {
+      "file": "plano-comparativo.json",
+      "sha256": "3fd1de80f87518be125da7fcb98e5061802c104ecbc78f2807638581555cdc96",
+      "role": "recording_metadata_not_a_PDF_fixture"
+    },
+    {
+      "file": "observacoes-comparativas-template.json",
+      "sha256": "1cb6771f51b79ab5acc0308eeed4784576d0786acc9b3bf4823b53ebdacb2540",
+      "role": "recording_metadata_not_a_PDF_fixture"
+    }
+  ],
+  "metadata_directory": "analysis-local/comparison-stage18-final/input",
+  "source_snapshots": {
+    "scripts/run_comparison_campaign.py": "854313395b16843f3763b9d4dac7d6b2b927fe4a2aa0b0fd4dbfa61b6b74ceac",
+    "tests/test_comparison_campaign.py": "827e8ea61e9280acc049241269715ce632773068cfd0a03433b4c10f05362703",
+    "testes/plano-comparativo.json": "3fd1de80f87518be125da7fcb98e5061802c104ecbc78f2807638581555cdc96"
+  },
+  "all_progress_criteria_statuses_weights_unchanged": true,
+  "new_flatpak_built": false,
+  "foxit_executed": false,
+  "global_coverage": null,
+  "general_progress_percent": 43.33,
+  "foxit_parity": "0/25",
+  "limitations": [
+    "Own backend measurements; no GUI/Linux runtime, original execution or full acceptance cases.",
+    "Synthetic comparator tests are not original evidence. Manual records require review; hash integrity does not prove origin."
+  ]
+}

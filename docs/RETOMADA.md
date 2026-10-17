@@ -10,7 +10,14 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
-Checkpoint mais recente: [etapa 17](ETAPA-17.md), verificação de uma cópia da
+Checkpoint mais recente: [etapa 18](ETAPA-18.md), campanha com 17 subconjuntos
+de backend: 13 observados/aprovados e quatro bloqueados por Poppler. Dezesseis
+testes do comparador passaram; modelo Foxit vazio importado com zero
+comparações. Preservar a mesma pasta `analysis-local/comparison-stage18-final/`
+para a futura observação do original: corpus em `input/`, modelo JSON na raiz.
+Sem execução do Foxit, paridade 0/25 e critérios diferenciais ainda pendentes.
+
+A [etapa 17](ETAPA-17.md) oferece a verificação de uma cópia da
 fonte atual com hashes, compilação Python e testes portáveis. O comando
 `scripts/check_intermediate.py --profile linux` exige a suíte completa sem
 skips e smoke GTK antes de aprovar esse runtime. Neste Windows, o perfil Linux

@@ -1,0 +1,559 @@
+{
+  "schema": "linuxit-comparison-plan-v1",
+  "scope": "17 observable subsets of the existing D01-D20 campaign; no full acceptance-case or GUI completion.",
+  "dynamic_plan_ref": "testes/cenarios-dinamicos.json",
+  "functional_spec_ref": "docs/especificacao-funcional.json",
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "page_numbers": "one_based_or_null_when_no_destination",
+  "cases": [
+    {
+      "id": "C18-D02-info",
+      "dynamic_case_ref": "D02",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "info",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Quantidade de páginas aceita pelo parser. Não mede renderização, diálogos ou texto visível.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 2
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D04-literal",
+      "dynamic_case_ref": "D04",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 3,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D05-whole",
+      "dynamic_case_ref": "D05",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": true,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 2,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D06-case",
+      "dynamic_case_ref": "D06",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "ALVO",
+        "options": {
+          "match_case": true,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D07-bookmarks",
+      "dynamic_case_ref": "D07",
+      "family_ids": [
+        "search-bookmarks"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 2,
+        "hits": [
+          {
+            "source": "bookmark",
+            "page": 2
+          },
+          {
+            "source": "bookmark",
+            "page": null
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D08-comments",
+      "dynamic_case_ref": "D08",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D09-subject",
+      "dynamic_case_ref": "D09",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "assunto",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D09-author",
+      "dynamic_case_ref": "D09",
+      "family_ids": [
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "Autor",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D10-scopes",
+      "dynamic_case_ref": "D10",
+      "family_ids": [
+        "search-text",
+        "search-bookmarks",
+        "search-comments"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": true,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 6,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "bookmark",
+            "page": 2
+          },
+          {
+            "source": "bookmark",
+            "page": null
+          },
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D11-empty",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D11-missing",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "termo-inexistente-123",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": true,
+          "include_comments": true
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D11-no-sources",
+      "dynamic_case_ref": "D11",
+      "family_ids": [
+        "search-text"
+      ],
+      "fixture": "busca-escopos.pdf",
+      "kind": "search",
+      "parameters": {
+        "query": "alvo",
+        "options": {
+          "match_case": false,
+          "whole_words": false,
+          "ignore_accents": false,
+          "join_hyphens": false,
+          "include_page_text": false,
+          "include_bookmarks": false,
+          "include_comments": false
+        }
+      },
+      "observable_version": 1,
+      "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "count": 0,
+        "hits": []
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D13-rejected",
+      "dynamic_case_ref": "D13",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "invalido.pdf",
+      "kind": "invalid",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Aceitação do documento pelo parser; registrar separadamente a mensagem/estado de UI no caso D completo. Erro de ambiente não é documento recusado.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "accepted": false
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D14-rejected",
+      "dynamic_case_ref": "D14",
+      "family_ids": [
+        "open-render"
+      ],
+      "fixture": "vazio.pdf",
+      "kind": "invalid",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Aceitação do documento pelo parser; registrar separadamente a mensagem/estado de UI no caso D completo. Erro de ambiente não é documento recusado.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "accepted": false
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D16-attachment",
+      "dynamic_case_ref": "D16",
+      "family_ids": [
+        "attachments"
+      ],
+      "fixture": "com-anexo.pdf",
+      "kind": "attachments",
+      "parameters": {},
+      "observable_version": 1,
+      "measurement": "Listar catálogo plano, salvar cada anexo em pasta nova e comparar nome, bytes e SHA-256. Não executar anexos; não mede seleção/diálogos/portfólios.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "entries": [
+          {
+            "name": "nota-sintetica.txt",
+            "size": 22,
+            "sha256": "4f6ef251b0d92548051e3239c050a6c0735554e79c03c3668166b30a05d9d5fb"
+          }
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D18-booklet",
+      "dynamic_case_ref": "D18",
+      "family_ids": [
+        "imposition"
+      ],
+      "fixture": "geometria.pdf",
+      "kind": "prepare",
+      "parameters": {
+        "print_mode": "booklet",
+        "paper_size": "A4",
+        "booklet_binding": "left",
+        "booklet_sides": "both",
+        "booklet_safety_mm": 5.0,
+        "booklet_gutter_mm": 3.0
+      },
+      "observable_version": 1,
+      "measurement": "Gerar PDF de saída sem impressora; reabrir e extrair rótulos PAGE nnn em ordem de conteúdo por página. Para comparar Foxit é preciso PDF de saída equivalente, com mesmas opções; prévia visual não equivale à ordem do stream. Sem exportação, marcar unavailable_in_context. Não mede geometria, margens reais, rasterização ou impressão física.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 4,
+        "content_labels": [
+          [
+            8,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    },
+    {
+      "id": "C18-D18-nup",
+      "dynamic_case_ref": "D18",
+      "family_ids": [
+        "imposition"
+      ],
+      "fixture": "geometria.pdf",
+      "kind": "prepare",
+      "parameters": {
+        "print_mode": "multiple",
+        "paper_size": "A4",
+        "orientation": "portrait",
+        "pages_per_sheet": 4,
+        "number_up_layout": "lrtb",
+        "nup_margin_mm": 4.0
+      },
+      "observable_version": 1,
+      "measurement": "Gerar PDF de saída sem impressora; reabrir e extrair rótulos PAGE nnn em ordem de conteúdo por página. Para comparar Foxit é preciso PDF de saída equivalente, com mesmas opções; prévia visual não equivale à ordem do stream. Sem exportação, marcar unavailable_in_context. Não mede geometria, margens reais, rasterização ou impressão física.",
+      "scope": "backend_observable_subset; not the full dynamic/GUI case",
+      "expected_linuxit": {
+        "pages": 2,
+        "content_labels": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ]
+        ]
+      },
+      "expected_basis": "own_contract_only"
+    }
+  ],
+  "automatic_parity_update": false
+}

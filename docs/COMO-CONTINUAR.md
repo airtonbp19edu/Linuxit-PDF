@@ -7,6 +7,12 @@ Enquanto isso, autorizou avançar a parte estática da interface na
 [etapa 11](ETAPA-11.md). As notas datadas registram os resultados posteriores
 ao checkpoint inicial deste guia.
 
+Continuação atual: [etapa 18](ETAPA-18.md). A campanha registra resultados
+próprios e gera modelo de observações para preencher na VM, com hashes de
+fixture/opções e evidências. Conservar `analysis-local/comparison-stage18-final/`
+localmente e usar os mesmos PDFs no original. O Foxit continua sem observação;
+testes do backend e do comparador não mudam a paridade.
+
 ## O que já está salvo
 
 O código, os relatórios técnicos, os testes e os indicadores estão no GitHub.

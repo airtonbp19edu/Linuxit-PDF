@@ -554,3 +554,85 @@ Sem bloqueio de publicação. Retomar por `docs/ETAPA-17.md` e pela nota das 01:
 novo pendentes. A VM do Foxit continua necessária só para a observação do
 original e comparação diferencial. IA excluída; pacote publicado 0.1.1/devel
 e todos os critérios/pesos preservados.
+
+## 2026/10/17 às 01:50 (America/Sao_Paulo, UTC-03:00) — etapa 18, campanha comparativa preparada
+
+Pedido: próxima etapa sem depender da VM. Criados `testes/plano-comparativo.json`
+e `scripts/run_comparison_campaign.py`: 17 verificações de subconjuntos do
+backend ligadas aos cenários D existentes e seis das 25 famílias. O corpus da
+etapa 10 foi reutilizado pelo gerador próprio, sem abrir/importar originais.
+Fonte do aplicativo, licenças e Flatpak 0.1.1/devel não foram modificados.
+
+**13 verificações próprias passaram; quatro bloqueadas por falta de pdftotext**.
+Resultados examinados: duas páginas; marcadores em página 2/null; comentários
+e assunto em página 1; autor, consulta vazia/inexistente/sem fontes com zero;
+PDF inválido/vazio recusados pelo parser; anexo salvo com 22 bytes/hash; livreto
+com quatro páginas e rótulos 8,1/2,7/6,3/4,5; N-up com duas páginas e rótulos
+1,2,3,4/5,6,7,8. Ordem extraída do conteúdo PDF não prova posicionamento visual,
+margens, geometria ou impressão física. D04/D05/D06/D10 continuam com medidas
+null e `blocked_runtime`. Não foi simulada extração de texto para aprová-los.
+
+**16 testes do comparador passaram**, com registros/evidências inventados para
+controle, nunca Foxit. Cobrem integridade/vínculo de fixture e protocolo,
+identidade antes/depois e sessão offline declarada, evidência ausente/alterada,
+caminho externo, duplicatas, valores desconhecidos/contagens incoerentes,
+destino base 1/null e ordem. Mostram que esperado próprio não vira observado
+original, erro/indisponibilidade são inconclusivos e app bloqueado não compara.
+Uma primeira bateria de 14 passou; a ampliação para 16 fortaleceu o vínculo
+do protocolo da própria campanha e a distinção entre tipos. Ambos preservados.
+
+Execução CLI com modelo original vazio confirmou **0 medidas Foxit, 0 matches,
+0 diferenças e 17 aguardando original**. O importador futuro valida registros
+e hashes, sem iniciar o original e sem provar sozinho a origem da evidência
+manual. Igualdade das medidas registradas precisa de revisão; não aprova
+família nem altera automaticamente a paridade. Exit 0 no compare indica
+importação válida, inclusive se houver diferenças. Corpus/protocolo devem ser
+os mesmos nas duas observações; o modelo tem medidas originais null.
+
+Ferramentas/perfis: Python 3.13.15, subprocessos sobre APIs reais próprias,
+pypdf BSD 6.20.1, unittest, SHA-256 e Git; Windows, sem GTK/Poppler/WSL utilizável
+no checkpoint anterior. Nenhuma nova sessão REA/Ghidra, execução do original,
+GUI Linux, pacote ou impressão física. IA/generativos continuam excluídos.
+Nenhum esgotamento de tokens confirmado; lacunas continuam classificadas por
+VM/observação/implementação/runtime, com causas de tokens null.
+
+Evidências publicáveis: `docs/ETAPA-18.md`, plano e relatórios
+`testes/resultados/etapa-18-campanha-2026-10-17.json`,
+`etapa-18-campanha-final-2026-10-17.json`,
+`etapa-18-controles-tests-2026-10-17.json`,
+`etapa-18-controles-extended-tests-2026-10-17.json` e
+`etapa-18-comparacao-sem-original-2026-10-17.json` nessa pasta.
+Dados completos privados: `analysis-local/comparison-stage18/` e
+`analysis-local/comparison-stage18-final/` (corpus `input/`, saídas/probes e
+modelo `foxit-observations-template.json`). Conservar a pasta final para a VM;
+copiar plano/modelo para input antes de compartilhá-la somente leitura.
+
+Critérios/status/pesos/revisão preservados; método já done recebe evidências,
+os dois critérios diferenciais seguem pending e o checkpoint de preparação é
+partial separado. Todos os 20 casos dinâmicos completos e os 50 de aceitação
+seguem sem execução completa; não usar os 13 subconjuntos como esses casos.
+Etapa 18 10%, roteiro 43,33%, paridade 0/25, catálogo 209, cobertura global
+desconhecida/null. Pendências/retomada atualizadas, sem mudar a matriz.
+
+Próximo passo: rodar a campanha com Poppler em Linux e a validação GTK da etapa
+17; quando a VM estiver pronta, observar exatamente o mesmo corpus e opções,
+importar e revisar as evidências. Etapa 19 diferencial só avança após medir
+divergências originais. Publicação desta rodada ainda pendente; confirmar o
+remoto e acrescentar uma nota com hash já verificado, sem autorreferência.
+
+O auxiliar local de registro encontrou inicialmente KeyError ao usar `items`
+em vez da chave existente `unfinished_criteria`; corrigido antes da nota e da
+verificação final. Isso não foi erro de execução do aplicativo nem limite de tokens.
+
+Conferência adicional às 01:51: sintaxe de 117 arquivos Python e 91 links locais
+aprovados; CLI recusou relatório/diretório existentes e protocolo divergente,
+sem sobrescrita ou relatório enganoso. Arquitetura e contratos coerentes;
+83 arquivos da aplicação, pacotes, planos D/UI/S12 e todos os critérios/status/
+pesos/revisão idênticos à base. Resumo com hashes em
+`testes/resultados/etapa-18-verificacao-2026-10-17.json`.
+Plano e modelo vazio já foram copiados, com hashes conferidos, para
+`analysis-local/comparison-stage18-final/input/plano-comparativo.json` e
+`observacoes-comparativas-template.json` nessa pasta. São dois arquivos de
+instrução/coleta adicionais, não novas fixtures PDF; os oito arquivos do
+corpus original da campanha seguem intactos. Diretório pronto para o futuro
+mount somente leitura; observações preenchidas devem ir para Results na VM.

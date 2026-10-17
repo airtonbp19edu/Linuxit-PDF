@@ -2,8 +2,12 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Trabalho atual: [etapa 17](../docs/ETAPA-17.md), verificador da cópia intermediária
-com perfis portável e Linux separados. O painel da [etapa 16](../docs/ETAPA-16.md)
+Trabalho atual: [etapa 18](../docs/ETAPA-18.md), campanha comparativa preparada:
+13 verificações próprias passaram, quatro bloqueadas por Poppler; 16 controles
+do comparador passaram. Nenhum resultado Foxit: observar o mesmo corpus na VM
+e revisar evidências antes de concluir diferenças/paridade. Seguir também a
+[etapa 17](../docs/ETAPA-17.md), com perfis portável e Linux separados.
+O painel da [etapa 16](../docs/ETAPA-16.md)
 tem 14 testes do controlador aprovados. Quatro testes GTK seguem sem execução;
 usar `scripts/check_intermediate.py --profile linux` com GTK/Poppler/tela,
 sem exigir a VM do Foxit. A fonte atual ainda não está em Flatpak novo. IA do Foxit e

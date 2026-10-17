@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T01:01:38-03:00",
+  "reviewed_at_local": "2026-10-17T01:50:09-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -322,13 +322,17 @@
         "offline_vm",
         "original_observation",
         "differential_test",
-        "fixture_and_acceptance"
+        "fixture_and_acceptance",
+        "linux_runtime"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
-        "docs/ETAPA-12.md"
+        "docs/ETAPA-12.md",
+        "docs/ETAPA-18.md",
+        "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+        "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
       ],
-      "next_action": "Executar a mesma fixture/opções no original e no Linuxit; registrar resultados e divergências.",
+      "next_action": "Campanha preparada: 13 subconjuntos próprios aprovados; quatro exigem Poppler. Observar o mesmo corpus/protocolo na VM offline, importar e examinar evidências. Zero comparações Foxit reais; igualdade de medidas não aprova família automaticamente.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -340,13 +344,17 @@
         "offline_vm",
         "original_observation",
         "differential_test",
-        "fixture_and_acceptance"
+        "fixture_and_acceptance",
+        "linux_runtime"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
-        "docs/ETAPA-12.md"
+        "docs/ETAPA-12.md",
+        "docs/ETAPA-18.md",
+        "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+        "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
       ],
-      "next_action": "Executar a mesma fixture/opções no original e no Linuxit; registrar resultados e divergências.",
+      "next_action": "Campanha preparada: 13 subconjuntos próprios aprovados; quatro exigem Poppler. Observar o mesmo corpus/protocolo na VM offline, importar e examinar evidências. Zero comparações Foxit reais; igualdade de medidas não aprova família automaticamente.",
       "token_exhaustion_confirmed": null
     },
     {

@@ -132,6 +132,16 @@ Preparação e testes do kit não contam como observação dinâmica; casos `not
 
 ## Notas de continuidade entre IAs
 
+Etapa 18: `docs/ETAPA-18.md`, `testes/plano-comparativo.json` e
+`scripts/run_comparison_campaign.py`. São 17 subconjuntos ligados a D01–D20;
+13 verificações próprias passaram e quatro dependem de Poppler. Dezesseis
+controles do comparador passaram; são dados sintéticos, nunca observação Foxit.
+Conservar `analysis-local/comparison-stage18-final/` e seu corpus para a VM.
+Importador exige hash de fixture/protocolo/evidência e registro de contenção;
+igualdade de medidas manuais não aprova automaticamente uma família. Os 20
+casos dinâmicos e 50 de aceitação continuam sem execução completa; critérios
+diferenciais da etapa 18 pendentes, pesos e paridade 0/25 preservados.
+
 Etapa 17: `docs/ETAPA-17.md` e `scripts/check_intermediate.py`. Criar diretórios
 e relatórios novos por rodada. `portable` compila/testa uma cópia de `app/`,
 sem aprovar GUI/Linux. `linux` exige dependências/tela X11, suíte completa sem

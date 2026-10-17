@@ -19,6 +19,8 @@ O [painel Anexos está ligado ao código GTK](docs/ETAPA-16.md); seus 14 testes
 portáveis de controle passaram, e a execução visual GTK/Linux segue pendente.
 A [etapa 17](docs/ETAPA-17.md) oferece um verificador da cópia intermediária:
 compilação Python, hashes e testes portáveis separados da aprovação GTK/Linux.
+A [etapa 18](docs/ETAPA-18.md) registra 13 verificações próprias de uma campanha
+comparativa; quatro dependem de Poppler e a observação do Foxit aguarda a VM.
 
 Os 37 testes próprios passaram no código-fonte e no runtime empacotado.
 O Flatpak também passou na instalação e execução real no sandbox: abertura,
@@ -43,6 +45,7 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Etapa 15: backend de anexos e validação sem VM](docs/ETAPA-15.md)
 - [Etapa 16: painel Anexos, controlador testado e validação GTK pendente](docs/ETAPA-16.md)
 - [Etapa 17: fonte intermediária e comando de validação Linux](docs/ETAPA-17.md)
+- [Etapa 18: campanha comparativa e importação de observações offline](docs/ETAPA-18.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)

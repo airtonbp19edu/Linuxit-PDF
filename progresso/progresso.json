@@ -612,7 +612,12 @@
           "status": "done",
           "evidence": [
             "testes/fixtures/README.md",
-            "docs/especificacao.md"
+            "docs/especificacao.md",
+            "docs/ETAPA-18.md",
+            "testes/plano-comparativo.json",
+            "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+            "testes/resultados/etapa-18-controles-extended-tests-2026-10-17.json",
+            "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
           ]
         },
         {
@@ -629,7 +634,26 @@
         }
       ],
       "verified_fraction": 0.1,
-      "earned_percent": 0.7
+      "earned_percent": 0.7,
+      "current_preparation": {
+        "status": "partial",
+        "date_local": "2026-10-17T01:50:09-03:00",
+        "backend_subchecks_planned": 17,
+        "backend_subchecks_observed": 13,
+        "backend_subchecks_own_contract_passed": 13,
+        "blocked_without_poppler": 4,
+        "comparator_synthetic_controls_passed": 16,
+        "original_observations": 0,
+        "real_differential_comparisons": 0,
+        "whole_dynamic_cases_completed": 0,
+        "evidence": [
+          "docs/ETAPA-18.md",
+          "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+          "testes/resultados/etapa-18-controles-extended-tests-2026-10-17.json",
+          "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
+        ],
+        "next_action": "Run four text subsets with Poppler/Linux and GTK validation separately. In offline VM, observe the identical campaign input and review evidence before interpreting recorded comparisons."
+      }
     },
     {
       "id": 19,
