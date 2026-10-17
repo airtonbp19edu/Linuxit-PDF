@@ -50,5 +50,5 @@
     "analysis-local/stage21-logs-39039390847/"
   ],
   "next_action": "Resume stage16 sidebar layout with GTK geometry/screenshot checks, then stage18 remaining own corpus checks; keep original VM work separate.",
-  "publication_state": "examined locally; publication pending"
+  "publication_state": "Audit milestone published; real remote HEAD and clean tree confirmed at ba1f5e1494759edad9cb9002d3a8802ae6d66b3e"
 }

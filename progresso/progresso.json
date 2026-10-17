@@ -908,7 +908,10 @@
           "scripts/audit_delivery.py",
           "testes/resultados/etapa-21/installed-delivery-audit.json",
           "testes/resultados/etapa-21/review.json"
-        ]
+        ],
+        "publication_state": "confirmed_at_recorded_commit",
+        "confirmed_audit_commit": "ba1f5e1494759edad9cb9002d3a8802ae6d66b3e",
+        "publication_confirmed_at_local": "2026-10-17T11:15:30.749796-03:00"
       }
     }
   ],

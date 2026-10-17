@@ -847,3 +847,10 @@ Relatórios examinados em `testes/resultados/etapa-21/`; ZIP 12103157602 conferi
 ### 2026/10/17 às 11:14 (America/Sao_Paulo, UTC-03:00) — verificações finais da etapa 21
 
 Arquitetura e registro de pendências passaram; especificação/registro renderizado conferidos (25 famílias, 50 casos completos não executados, 32 referências de teste e 27 de fonte). Verificação estrutural examinou 121 arquivos Python e 95 links modificados, quatro hashes de relatórios CI, os três bundles e os metadados de release com normalização Git explícita. Notas anteriores preservadas como prefixo; app e releases sem mudança desde4ea78dd. Auditoria local novamente aprovada após atualizar os registros. Evidência `testes/resultados/etapa-21/verificacao-estrutural.json`. Workflow confirmado completed/success. Próximo passo: publicar os relatórios, confirmar HEAD remoto e registrar publicação sem autorreferência.
+
+
+## 2026/10/17 às 11:15 (America/Sao_Paulo, UTC-03:00) — publicação confirmada da etapa 21
+
+Commit técnico `ba1f5e1494759edad9cb9002d3a8802ae6d66b3e` enviado e confirmado: `git ls-remote` igual ao HEAD local, árvore limpa, `git fsck --full` retornou0 (árvore dangling informativa preservada). Quatro hashes dos relatórios CI conferidos também nos blobs Git. Código do auditor, receita Linux, resultados instalados e pendências/notas publicados; app e bundles preservados. Sincronização registra este commit técnico; a nota atual terá commit próprio e recibo externo para o HEAD final.
+
+Etapa21 continua50%, roteiro43,33%, paridade0/25, 21 critérios abertos em14 etapas. Não houve novo original/REA/Ghidra nem teste completo dos104 casos; nesta rodada foram sete controles do auditor e cinco de smoke novos. Próximo trabalho: etapa16, medir/corrigir cabeçalho lateral e validar geometria/captura GTK. VM, desktop/acessibilidade/portais/impressão física, contratos e demais famílias continuam pendentes.

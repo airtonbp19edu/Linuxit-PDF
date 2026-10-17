@@ -47,7 +47,7 @@ Não somar essas contagens como funcionalidades ou paridade.
 |---|---|---|
 | Auditoria de fonte/licenças/testes/evidências | `done` histórico | Nova conferência da entrega 0.1.2 acrescentada. |
 | Obrigações viáveis encerradas e bloqueios declarados | `pending` | Permanecem 21 critérios abertos, incluindo trabalho possível sem VM. |
-| Sincronização e integridade final confirmadas | `done` histórico | Publicar este marco e conferir HEAD remoto ao final. |
+| Sincronização e integridade final confirmadas | `done` histórico | Marco técnico publicado e HEAD remoto confirmado em `ba1f5e1`. |
 
 Os 58 critérios foram cruzados com o registro: links dos 37 `done` históricos
 conferidos, e todos os 21 não concluídos conservados. Isso **não reexecuta a
@@ -90,5 +90,8 @@ separa análise estática, contratos, implementação, runtime e observação or
 A comparação Foxit exige a VM offline; os 20 cenários dinâmicos e os 50 casos
 completos de aceitação continuam sem execução completa. IA permanece excluída.
 
-A confirmação da publicação deste marco será registrada após push e conferência
-do HEAD real, sem autorreferência no commit.
+Publicação técnica [`ba1f5e1`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/ba1f5e1494759edad9cb9002d3a8802ae6d66b3e)
+confirmada em 17/10/2026 às 11:15 (America/Sao_Paulo, UTC-03:00): HEAD
+local/remoto iguais, árvore limpa e `git fsck --full` com retorno 0. Os quatro
+relatórios CI também conferem nos blobs Git. Esta nota será enviada em commit
+seguinte; o HEAD final é conferido por recibo externo, sem autorreferência.
