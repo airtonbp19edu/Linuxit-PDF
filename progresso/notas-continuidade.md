@@ -1273,3 +1273,17 @@ Relatórios selados e populações iguais conferidos.28 módulos/26 interfaces,1
 subconjuntos/seis propostas, catálogo248/8 novas entradas. Critérios/estados/
 pesos43,33% e0/25 paridade intactos. Próximo: publicar, confirmar remoto, reinstalar
 mesmo bundle e auditar sem rebuild; continuar demais frentes ainda abertas.
+
+
+## 2026/10/17 às 18:24 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria 0.1.6 confirmadas
+
+Entrega técnica `e66c2d0d97d15d9f51171b2140c0ec49a00b20a8` confirmada no GitHub com árvore limpa por recibo externo.
+A auditoria independente [39070599134](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39070599134) reinstalou o bundle publicado sem reconstruí-lo;
+90 arquivos da aplicação, 2803 do runtime, 214 ELF e 149 avisos de licenças conferidos.
+Sete controles do auditor e cinco verificações funcionais no sandbox passaram.
+As três suítes de 190 casos são evidência do builder anterior, não uma nova execução nesta auditoria.
+ZIP SHA-256 `1a4501707856064692c3fd66f2182b23ce57d89f6ce9b19932b99b84eab6d63d` igual ao digest GitHub; quatro relatórios copiados byte a byte
+para `testes/resultados/0.1.6/audit/`; arquivo completo em `analysis-local/no-vm-audit-artifact-12114588036/`.
+Sem execução do original, alteração de pesos ou fechamento dos 21 critérios amplos restantes.
+Próximo lote: criação própria de PDFs a partir de PNG/JPEG, com seleção explícita, limites e cópia nova;
+depois validar fonte Linux e registrar separadamente do pacote 0.1.6. IA permanece fora do escopo.
