@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Bundle the Debian 13 Python/GTK runtime into a real Flatpak application."""
 import argparse
+import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -20,20 +22,33 @@ def build(flatpak, stage, repo, extra):
     files = stage / 'files'
     for name in ['bin', 'lib', 'runtime-lib', 'libexec', 'share', 'etc']:
         (files / name).mkdir(parents=True, exist_ok=True)
+    runtime_sources = {}
+
+    def runtime_file(origin, target):
+        shutil.copy2(origin, target)
+        runtime_sources[target.relative_to(files).as_posix()] = Path(origin)
+
+    def runtime_tree(origin, target, **options):
+        origin = Path(origin)
+        shutil.copytree(origin, target, **options)
+        for path in target.rglob('*'):
+            if path.is_file():
+                runtime_sources[path.relative_to(files).as_posix()] = origin / path.relative_to(target)
+
     ignore = shutil.ignore_patterns('__pycache__', '*.pyc', 'test', 'tests', 'idlelib', 'tkinter')
     shutil.copytree(ROOT / 'app', files / 'share/linuxit-pdf', ignore=ignore)
-    shutil.copytree('/usr/lib/python3.13', files / 'python/lib/python3.13', ignore=ignore)
+    runtime_tree('/usr/lib/python3.13', files / 'python/lib/python3.13', ignore=ignore)
     site = files / 'python/lib/python3.13/site-packages'
     site.mkdir()
     for module in ['gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser']:
         origin = Path('/usr/lib/python3/dist-packages') / module
         if origin.exists():
-            shutil.copytree(origin, site / module, ignore=ignore)
+            runtime_tree(origin, site / module, ignore=ignore)
     for origin in Path('/usr/lib/python3/dist-packages').glob('_cffi_backend*.so'):
-        shutil.copy2(origin, site)
+        runtime_file(origin, site / origin.name)
     adapter = extra / 'gi-cairo/usr/lib/python3/dist-packages/gi'
     for origin in adapter.glob('_gi_cairo*.so'):
-        shutil.copy2(origin, site / 'gi')
+        runtime_file(origin, site / 'gi' / origin.name)
     if not list((site / 'gi').glob('_gi_cairo*.so')):
         raise RuntimeError('python3-gi-cairo is required in the runtime overlay.')
     binaries = {'python3': Path('/usr/bin/python3.13')}
@@ -46,16 +61,16 @@ def build(flatpak, stage, repo, extra):
                 raise RuntimeError('An actual ELF executable is required: ' + origin)
         binaries[name] = Path(origin)
     for name, origin in binaries.items():
-        shutil.copy2(origin, files / 'libexec' / name)
-    shutil.copytree('/usr/lib/x86_64-linux-gnu/girepository-1.0', files / 'lib/girepository-1.0')
+        runtime_file(origin, files / 'libexec' / name)
+    runtime_tree('/usr/lib/x86_64-linux-gnu/girepository-1.0', files / 'lib/girepository-1.0')
     pix = Path('/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0')
-    shutil.copytree(pix, files / 'lib/gdk-pixbuf-2.0/2.10.0')
+    runtime_tree(pix, files / 'lib/gdk-pixbuf-2.0/2.10.0')
     cache = files / 'lib/gdk-pixbuf-2.0/2.10.0/loaders.cache'
     cache.write_text(cache.read_text().replace('/usr/lib/x86_64-linux-gnu/', '/app/lib/'))
-    shutil.copytree('/usr/share/glib-2.0/schemas', files / 'share/glib-2.0/schemas')
-    shutil.copytree('/usr/share/fonts/truetype/dejavu', files / 'share/fonts/truetype/dejavu')
-    shutil.copytree('/usr/share/icons/Adwaita', files / 'share/icons/Adwaita')
-    shutil.copytree('/usr/share/mime', files / 'share/mime')
+    runtime_tree('/usr/share/glib-2.0/schemas', files / 'share/glib-2.0/schemas')
+    runtime_tree('/usr/share/fonts/truetype/dejavu', files / 'share/fonts/truetype/dejavu')
+    runtime_tree('/usr/share/icons/Adwaita', files / 'share/icons/Adwaita')
+    runtime_tree('/usr/share/mime', files / 'share/mime')
     shutil.copytree(ROOT / 'assets/icons', files / 'share/icons/hicolor', dirs_exist_ok=True)
     for icon in (files / 'share/icons/hicolor').rglob('linuxit-pdf.png'):
         shutil.copy2(icon, icon.with_name(APP_ID + '.png'))
@@ -65,7 +80,7 @@ def build(flatpak, stage, repo, extra):
 <fontconfig><dir>/app/share/fonts</dir><dir>/usr/share/fonts</dir><dir>/run/host/fonts</dir>
 <cachedir prefix="xdg">fontconfig</cachedir></fontconfig>
 ''')
-    shutil.copytree('/usr/lib/x86_64-linux-gnu/ossl-modules', files / 'runtime-lib/ossl-modules')
+    runtime_tree('/usr/lib/x86_64-linux-gnu/ossl-modules', files / 'runtime-lib/ossl-modules')
     # All ELF dependencies, including libc, are paired with their own loader.
     # This avoids mixing a newer host-built extension with a different runtime libc.
     probes = list((files / 'libexec').iterdir()) + list(files.rglob('*.so'))
@@ -80,9 +95,9 @@ def build(flatpak, stage, repo, extra):
             if Path(path).is_file():
                 libraries.add(Path(path))
     for library in sorted(libraries):
-        shutil.copy2(library, files / 'runtime-lib' / library.name)
+        runtime_file(library, files / 'runtime-lib' / library.name)
     loader = Path('/lib64/ld-linux-x86-64.so.2').resolve()
-    shutil.copy2(loader, files / 'runtime-lib/ld-linux-x86-64.so.2')
+    runtime_file(loader, files / 'runtime-lib/ld-linux-x86-64.so.2')
     for name in binaries:
         wrapper = files / 'bin' / name
         wrapper.write_text('''#!/bin/sh
@@ -137,29 +152,75 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
     # Preserve installed Debian copyright notices for every bundled ELF package.
     notices = docs / 'runtime-copyright'
     notices.mkdir()
-    packages = set()
-    sources = libraries | set(binaries.values())
-    sources |= {path for path in probes if path.exists()}
-    sources |= {Path('/usr/lib/python3/dist-packages') / module / '__init__.py'
-                for module in ('gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser')}
-    sources |= set(Path('/usr/lib/x86_64-linux-gnu/ossl-modules').glob('*.so'))
-    sources |= {Path(path) for path in (
-        '/usr/lib/python3.13', '/usr/share/icons/Adwaita', '/usr/share/icons/hicolor',
-        '/usr/share/fonts/truetype/dejavu', '/usr/share/mime', '/usr/share/glib-2.0/schemas')}
-    result = subprocess.run(['dpkg-query', '-S', *map(str, sorted(sources))], capture_output=True, text=True)
+    # Resolve both names on merged-/usr Debian. Looking up only /lib paths
+    # silently omitted most native dependencies from the previous manifest.
+    # Track every copied runtime file, including Python/data/typelibs, rather
+    # than asking dpkg about paths inside the staging directory.
+    generated_inputs = {
+        'mime': [*Path('/usr/share/mime/packages').glob('*.xml'), Path('/usr/bin/update-mime-database')],
+        'schemas': [*Path('/usr/share/glib-2.0/schemas').glob('*.xml'),
+                    *Path('/usr/share/glib-2.0/schemas').glob('*.gschema.override'),
+                    Path('/usr/bin/glib-compile-schemas')],
+        'icons': [Path('/usr/share/icons/Adwaita/index.theme')],
+        'pixbuf': [*pix.glob('loaders/*.so'), Path('/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0')],
+    }
+    sources = set(runtime_sources.values()) | {p for group in generated_inputs.values() for p in group}
+    lookup = {alias for p in sources for alias in (p, p.resolve())}
+    result = subprocess.run(['dpkg-query', '-S', *map(str, sorted(lookup))], capture_output=True, text=True)
+    owners_by_path = {}
     for line in result.stdout.splitlines():
         if ': ' not in line:
             continue
         # dpkg can also emit diversion notices; they are not package identities.
-        owners = [part.strip() for part in line.split(': ', 1)[0].split(',')]
+        identity, path = line.split(': ', 1)
+        owners = [part.strip() for part in identity.split(',')]
         if all(re.fullmatch(r'[a-z0-9][a-z0-9+.-]*(?::[a-z0-9-]+)?', part) for part in owners):
-            packages.update(part.split(':')[0] for part in owners)
+            owners_by_path.setdefault(path, set()).update(owners)
+
+    def owners(path):
+        return owners_by_path.get(str(path), set()) | owners_by_path.get(str(path.resolve()), set())
+
+    generated_owners = {}
+    for group, inputs in generated_inputs.items():
+        known = set()
+        for path in inputs:
+            if not owners(path):
+                raise RuntimeError('Unowned input for generated runtime data: ' + str(path))
+            known.update(owners(path))
+        generated_owners[group] = known
+    records, packages = [], set()
+    for name, origin in sorted(runtime_sources.items()):
+        package_owners, derivation, overlay_notice = owners(origin), None, None
+        if not package_owners:
+            if origin.is_relative_to(extra / 'gi-cairo'):
+                overlay_notice = 'python3-gi-cairo.txt'
+            elif origin.is_relative_to(Path('/usr/share/mime')) and not origin.is_relative_to(Path('/usr/share/mime/packages')):
+                derivation = 'mime'
+            elif origin == Path('/usr/share/glib-2.0/schemas/gschemas.compiled'):
+                derivation = 'schemas'
+            elif origin == Path('/usr/share/icons/Adwaita/icon-theme.cache'):
+                derivation = 'icons'
+            elif origin == pix / 'loaders.cache':
+                derivation = 'pixbuf'
+            else:
+                raise RuntimeError('Missing Debian provenance for bundled file: ' + str(origin))
+            if derivation:
+                package_owners = generated_owners[derivation]
+        packages.update(package_owners)
+        payload = files / name
+        records.append({'file': name, 'source': str(origin),
+                        'source_resolved': str(origin.resolve()),
+                        'packages': sorted(package_owners),
+                        'generated_from_group': derivation, 'overlay_notice': overlay_notice,
+                        'sha256': hashlib.sha256(payload.read_bytes()).hexdigest(),
+                        'source_sha256': hashlib.sha256(origin.read_bytes()).hexdigest(),
+                        'elf': payload.read_bytes()[:4] == b'\x7fELF'})
     package_versions = []
     for package in sorted(packages):
-        copyright = Path('/usr/share/doc') / package / 'copyright'
+        copyright = Path('/usr/share/doc') / package.split(':')[0] / 'copyright'
         if not copyright.exists():
             raise RuntimeError('Missing copyright notice for bundled package: ' + package)
-        shutil.copy2(copyright, notices / (package + '.txt'))
+        shutil.copy2(copyright, notices / (package.replace(':', '_') + '.txt'))
         record = subprocess.run(['dpkg-query', '-W', '-f', '${binary:Package}\t${Version}\t${source:Package}\t${source:Version}\n', package],
                                 check=True, capture_output=True, text=True)
         package_versions.append(record.stdout.strip())
@@ -168,6 +229,14 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
             raise RuntimeError('Missing license for runtime overlay: ' + str(path))
         shutil.copy2(path, notices / 'python3-gi-cairo.txt')
     (docs / 'runtime-packages.tsv').write_text('binary_package\tversion\tsource_package\tsource_version\n' + '\n'.join(package_versions) + '\n')
+    (docs / 'runtime-origins.json').write_text(json.dumps({
+        'schema': 'linuxit-bundled-runtime-origins-v1', 'all_files_attributed': True,
+        'files_audited': len(records), 'elf_files_audited': sum(r['elf'] for r in records),
+        'debian_packages': len(packages),
+        'scope': 'Copied third-party runtime files; own source/assets, generated wrappers and notice files are recorded separately.',
+        'generated_input_groups': {group: [{'file': str(p), 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
+                                            for p in inputs] for group, inputs in generated_inputs.items()},
+        'files': records}, indent=2) + '\n')
     shutil.copytree('/usr/share/common-licenses', docs / 'runtime-common-licenses')
     shutil.copy2(ROOT / 'docs/cups-client-copyright.txt', notices / 'cups-client.txt')
     (stage / 'metadata').write_text(f'''[Application]

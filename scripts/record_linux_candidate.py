@@ -72,6 +72,14 @@ def main():
         packages = args.stage / 'files/share/doc/linuxit-pdf/runtime-packages.tsv'
         require(not (reports / 'runtime-packages.tsv').exists(), 'Preserve previous package manifest')
         shutil.copy2(packages, reports / 'runtime-packages.tsv')
+        origins_path = args.stage / 'files/share/doc/linuxit-pdf/runtime-origins.json'
+        origins = read(origins_path)
+        require(origins['all_files_attributed'] is True
+                and origins['files_audited'] == len(origins['files']) > 0
+                and all(row['packages'] or row['overlay_notice'] for row in origins['files']),
+                'Bundled runtime provenance incomplete')
+        require(not (reports / 'runtime-origins.json').exists(), 'Preserve previous runtime audit')
+        shutil.copy2(origins_path, reports / 'runtime-origins.json')
         def output(*command):
             return subprocess.check_output(command, cwd=ROOT, text=True).strip()
         result = {'schema': 'linuxit-linux-candidate-v1', 'date_utc': datetime.now(timezone.utc).isoformat(),
@@ -86,6 +94,9 @@ def main():
             'validation': {name: {key: suite[key] for key in ('run', 'passed', 'failures', 'errors', 'skipped')}
                            for name, suite in suites.items()},
             'source_payload_matched_files': integrity_report['matched_files'],
+            'bundled_runtime_files_audited': origins['files_audited'],
+            'bundled_elf_files_audited': origins['elf_files_audited'],
+            'bundled_debian_packages': origins['debian_packages'],
             'sandbox_smoke_checks_passed': 5, 'normal_launcher_checks_passed': 3,
             'report_hashes': {path.name: sha(path) for path in reports.glob('*.json')},
             'foxit_differential_test': False, 'physical_printing_verified': False,

@@ -1,0 +1,11 @@
+{
+  "schema": "linuxit-stage20-runtime-audit-checkpoint-v1",
+  "date_local": "2026-10-17T10:45:22.753781-03:00",
+  "status": "first_functional_candidate_withheld; revised_builder_pending_linux",
+  "first_ci_run": 39036788146,
+  "first_bundle_sha256": "c0df14e23b126a51bec430146d114ac2d5768248b59f40471b266c1b206ba944",
+  "finding": "Runtime package inventory omitted native dependency owners: dpkg records merged-/usr paths, while ldd returned /lib. Staged native extension paths also had no dpkg owner. Only 25 packages were listed; important libc/OpenSSL/SVG provenance missing.",
+  "action": "Do not publish first bundle. Track every copied third-party runtime file, query lexical and resolved Debian paths, require package owners/copyrights, record derived caches and overlay notice provenance. Rebuild and repeat all Linux/payload/sandbox checks.",
+  "original_used": false,
+  "criteria_status_or_weights_changed": false
+}
