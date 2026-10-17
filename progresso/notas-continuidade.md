@@ -943,3 +943,24 @@ Próximo passo imediato: publicar a revisão preparada, confirmar remoto e salva
 nota da publicação; desenvolvimento seguinte continua nos quatro subconjuntos
 Poppler do corpus preservado18. Evidência local adicional:
 analysis-local/stage-review-2026-10-17/repository-audit-resumed.json.
+
+
+## 2026/10/17 às 15:05 (America/Sao_Paulo, UTC-03:00) — publicação da revisão confirmada
+
+Revisão das 21 etapas publicada no commit 496c8a6a9db59206dff5d3f092a092556031af06.
+Push concluído; ls-remote retornou o mesmo HEAD e a árvore estava limpa.
+A revisão automática voltou a funcionar após o limite temporário anterior;
+não houve desvio da aprovação. Relatório docs/REVISAO-ETAPAS.md e onze JSONs
+em testes/resultados/revisao-etapas-2026-10-17/. Código, testes, scripts e
+quatro bundles anteriores preservados; pesos/estados,43,33% e paridade0/25 intactos.
+
+Conferência pós-publicação encontrou dois hashes de metadados calculados sobre
+CRLF local (architecture.json/project.json), enquanto Git armazena LF. Ambos
+foram normalizados e os hashes em review.json recalculados sobre bytes Git;
+conteúdo técnico e quatro relatórios CI importados permanecem idênticos. Esse
+ajuste e a confirmação seguem em commit posterior, sem reescrever o histórico.
+Suíte completa e Foxit não foram repetidos; próximas tarefas continuam nos
+quatro subconjuntos Poppler do corpus18 e demais pendências explícitas.
+
+Sincronizacao-git.json registra o commit técnico confirmado para evitar
+autorreferência. Confirmar o HEAD seguinte por recibo fora da árvore.

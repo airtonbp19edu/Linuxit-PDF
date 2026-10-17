@@ -18,5 +18,6 @@
     "new_acceptance_executions": 0,
     "foxit_observations": 0,
     "reference_specification_complete": false
-  }
+  },
+  "review_evidence_hash_basis": "Git LF blob bytes; architecture/project metadata hashes corrected for Windows newline normalization."
 }

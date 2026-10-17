@@ -999,7 +999,9 @@
           "testes/resultados/revisao-etapas-2026-10-17/auditor-controls.json",
           "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
         ],
-        "publication_state": "prepared_not_yet_published"
+        "publication_state": "confirmed_at_recorded_commit",
+        "confirmed_audit_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
+        "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
       },
       "delivery_audit_history": [
         {
@@ -1049,6 +1051,8 @@
     "criteria_reviewed": 58,
     "criteria_status_or_weights_changed": false,
     "new_foxit_observations": 0,
-    "publication_state": "prepared_not_yet_published"
+    "publication_state": "confirmed_at_recorded_commit",
+    "confirmed_review_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
+    "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   }
 }

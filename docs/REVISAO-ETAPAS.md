@@ -106,3 +106,13 @@ da implementação e do Git. Não foi identificado esgotamento comprovado de tok
 
 Cada nova rodada deve acrescentar sua nota datada, evidência e confirmação
 remota. Esta revisão não cria uma etapa 22 nem encerra as obrigações restantes.
+
+
+Publicação da revisão confirmada em 17/10/2026 às 15:05
+(America/Sao_Paulo, UTC-03:00), commit
+[`496c8a6`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/496c8a6a9db59206dff5d3f092a092556031af06).
+HEAD local/remoto iguais e árvore limpa após o push. Na conferência dos blobs
+Git, os hashes de dois relatórios locais Windows foram ajustados à serialização
+LF do repositório; conteúdo técnico e quatro relatórios CI permaneceram iguais.
+A nota de confirmação e esse ajuste de metadados seguem em commit posterior;
+o HEAD final é verificado por recibo externo, sem autorreferência.

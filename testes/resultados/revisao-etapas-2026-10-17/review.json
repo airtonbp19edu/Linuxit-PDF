@@ -839,8 +839,8 @@
     "installed-delivery-audit.json": "073e7b3e77a3ffe2018b4e48f6782f46a1c08ab516d527a8a04e8326000d7a2e",
     "auditor-controls.json": "12765d1f2d70e8e71a23476860d454572368ba236be88c209eea3b33cbed1c1c",
     "published-bundle-smoke.json": "ff3293a44216c45d8ab918318e9541d3be4c54b70543730e219eea525c766f8b",
-    "architecture.json": "379dd49023d15fb30c5d1f942726f220e28d5076d502ba777380c58b4b6f2f48",
-    "project.json": "5222dafc2743baed1053722ca227d5cc27ba0f019e717cd227e12fe9a150eb29",
+    "architecture.json": "c229a221d9c90ecf0eda376b7028cae2561349bcaca2d6b114976bc49cead585",
+    "project.json": "438bf4a9f507a4a37fe7aef547744c3c6a7f60a0b44b1253402b457163dfe611",
     "historical-evidence-review.json": "969b4179ad985fe996a5508ff48464bcf264a381a0ea5604ee26e29bf94d9b71",
     "remote-rules.json": "8a48b382d80aa3dd922c57bb70c03cbd4b6931afd50a1b346a01fab697ddedb5",
     "functional-spec.json": "472b9ff50f7cf40f15f269c7e2dfc31302088cd64cc5c2b24739428f9fe35f31"
@@ -852,6 +852,16 @@
     "No fresh VM availability diagnosis; offline original containment still unresolved by last recorded state.",
     "Actual924px window minimum, real desktop, accessibility, portals, physical printing and four same-corpus Poppler subsets remain open."
   ],
-  "publication_state": "prepared_not_yet_published",
-  "structural_verification_ref": "testes/resultados/revisao-etapas-2026-10-17/structural-verification.json"
+  "publication_state": "confirmed_at_recorded_commit",
+  "structural_verification_ref": "testes/resultados/revisao-etapas-2026-10-17/structural-verification.json",
+  "confirmed_review_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
+  "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00",
+  "evidence_hash_basis": "SHA256 of repository LF bytes; local Windows architecture/project reports normalized before recalculating metadata.",
+  "post_publication_metadata_correction": {
+    "files": [
+      "architecture.json",
+      "project.json"
+    ],
+    "cause": "Git LF normalization of two Windows-generated JSON reports; no report contents, CI evidence, application or package changed."
+  }
 }

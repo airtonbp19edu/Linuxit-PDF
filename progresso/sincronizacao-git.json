@@ -1,20 +1,20 @@
 {
   "repository": "https://github.com/airtonbp19edu/Linuxit-PDF",
   "branch": "main",
-  "last_confirmed_remote_commit": "e0306110ba0cd5f364e400aead2212343b80e263",
+  "last_confirmed_remote_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
   "status": "confirmed_at_recorded_commit",
   "sync_percent": 100,
   "measurement": "Tracked content compared to confirmed remote tree; this status file records the previous confirmed commit to avoid a self-referential commit hash.",
   "pending_publicable_files_at_recording": 0,
   "confirmation": {
     "branch": "main",
-    "local_head": "e0306110ba0cd5f364e400aead2212343b80e263",
-    "confirmed_remote_head": "e0306110ba0cd5f364e400aead2212343b80e263",
+    "local_head": "496c8a6a9db59206dff5d3f092a092556031af06",
+    "confirmed_remote_head": "496c8a6a9db59206dff5d3f092a092556031af06",
     "worktree_clean": true,
     "synchronized": true,
     "publicable_tracked_artifacts_percent": 100,
-    "method": "Real ls-remote comparison and empty status at confirmed0.1.3 technical delivery; ignored/original materials excluded."
+    "method": "Successful push plus real ls-remote comparison and empty status at confirmed stage review commit; ignored originals excluded."
   },
-  "note": "Records the confirmed0.1.3 technical delivery. Final bookkeeping HEAD is verified with an external receipt to avoid self-reference.",
-  "date_local": "2026-10-17T11:41:04.365186-03:00"
+  "note": "Records the confirmed stage-review technical commit. Subsequent publication note and LF hash metadata correction are verified by a final external receipt to avoid self-reference.",
+  "date_local": "2026-10-17T15:05:29-03:00"
 }
