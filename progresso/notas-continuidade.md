@@ -475,3 +475,14 @@ GTK e a suíte completa em Linux com GTK/Poppler e tela, inspecionar o painel e
 corrigir achados. As pendências do runtime Linux e da VM do original continuam
 separadas. Publicação deste marco ainda pendente; a nota seguinte usará hash
 previamente confirmado e o comprovante final ficará fora dos arquivos versionados.
+
+## 2026/10/17 às 01:08 (America/Sao_Paulo, UTC-03:00) — etapa 16 publicada
+
+Marco técnico publicado por Git normal e confirmado por `git ls-remote`:
+[`73f7786883c183ea948bf45dcdc427f308c2894d`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/73f7786883c183ea948bf45dcdc427f308c2894d).
+Árvore limpa após o envio. Esta nota usa hash já confirmado; o commit da
+própria nota será conferido ao fim, sem autorreferência. Comprovante final em
+`analysis-local/github-stage16-sync-verified.json`, ignorado pelo Git. Sem
+bloqueio de publicação. Retomar pela nota das 01:06 e `docs/ETAPA-16.md`,
+preservando a distinção entre 14 testes portáveis aprovados e quatro GTK
+sem execução, a exclusão da IA e o Flatpak 0.1.1 do marco anterior.
