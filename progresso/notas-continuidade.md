@@ -745,3 +745,36 @@ GTK/Linux completo e pacote novo continuam pendentes; WSL ausente reconfirmado.
 Fonte nova não está no Flatpak publicado 0.1.1/devel. Nenhuma divergência
 Foxit foi medida; aguardar original na VM offline. Pesos, paridade e exclusão
 da IA preservados.
+
+## 2026/10/17 às 10:21 (America/Sao_Paulo, UTC-03:00) — etapa 20, preparação de execução Linux no GitHub
+
+Usuário autorizou seguir a próxima etapa após concluir a 19. Marco da 19 e nota
+publicados/confirmados: técnico `6e1220da352e35607910a4eb5a7ebf16389042ea`,
+HEAD `35e106ccb8c2c1702bcc2008a2025a1cad7f4bd8`; comprovante ignorado em
+`analysis-local/github-stage19-sync-verified.json`. Árvore estava limpa.
+
+Host continua Windows sem gi/Cairo/Poppler/Flatpak, WSL retorna não instalado.
+A API do repositório confirmou Actions já habilitado e permissão para workflow
+pela autenticação Git existente. Nenhuma credencial salva no Git ou exibida.
+Preparado workflow manual `.github/workflows/linux-flatpak.yml`: runner Linux
+efêmero com Debian 13, usuário CI, tela/buses dedicados e sandbox Flatpak
+aninhado. Checkout sem persistir credenciais, token somente contents:read e
+ações oficiais fixadas nos commits consultados da API. Container privilegiado
+é restrito ao runner efêmero, necessário para o sandbox aninhado; não altera
+o host Windows. Original não é transferido ou executado.
+
+Fonte candidata 0.1.2 (devel), arquitetura/metainfo alinhados. Pacote publicado
+0.1.1 e seu manifesto permanecem intactos. Fluxo exige suíte completa Linux
+sem skips e smoke, build pelo builder original, igualdade fonte/payload, suíte
+do payload e do sandbox instalado, smoke e launcher/captura. Metadados finais
+só são gerados após os controles. Nada disso ainda foi executado neste
+checkpoint; não há artefato 0.1.2 aprovado nem mudança dos critérios/pesos.
+
+Ferramentas: Git/API, Python, consulta às fontes oficiais GitHub e verificação
+AST/arquitetura. Nenhuma nova REA/Ghidra ou observação original, IA excluída.
+Estado/receitas em docs/ETAPA-20.md. Próximo passo: publicar este checkpoint,
+disparar workflow manual no commit exato, acompanhar resultados, corrigir
+falhas e só então importar artefato/relatórios verificados. Capacidade do GitHub
+salva em analysis-local/stage20-github-capabilities.json e SHAs das ações em
+analysis-local/stage20-action-pins.json. Não é confirmação de build/publicação
+do candidato; confirmação remota deste checkpoint será registrada depois.
