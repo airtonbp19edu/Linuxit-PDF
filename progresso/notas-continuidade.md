@@ -405,3 +405,14 @@ Próximo passo sem VM: integrar listagem/extração em GTK/Linux e exercitar UI
 com o corpus; ampliar portfólios/árvores complexas só com contratos próprios
 suficientes. Publicação deste marco ainda pendente; nota seguinte usará hash
 já confirmado e comprovante final fora dos arquivos versionados.
+
+## 2026/10/17 às 00:49 (America/Sao_Paulo, UTC-03:00) — etapa 15 publicada
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`8dc53c2aa96ada4dc5e8fa12963841f94188115d`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/8dc53c2aa96ada4dc5e8fa12963841f94188115d).
+Árvore limpa após o envio. Esta nota usa hash já confirmado; o commit da própria
+nota será conferido depois, sem autorreferência. Comprovante final em
+`analysis-local/github-stage15-sync-verified.json`, ignorado pelo Git. Sem
+bloqueio de publicação nesta rodada. Retomar pela nota das 00:47 e
+`docs/ETAPA-15.md`: integração GTK/Linux do backend e casos complexos pendentes,
+mantendo a exclusão da IA, as limitações de teste e o Flatpak 0.1.1 anterior.
