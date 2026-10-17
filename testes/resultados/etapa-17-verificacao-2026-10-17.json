@@ -1,0 +1,37 @@
+{
+  "schema": "linuxit-stage17-verification-v1",
+  "verified_at_local": "2026-10-17T01:29:43-03:00",
+  "python_syntax_files": 115,
+  "local_markdown_links": 58,
+  "app_source_files": 83,
+  "portable_test_cases_passed": 32,
+  "refusal_controls": [
+    {
+      "case": "existing_work_directory",
+      "return_code": 2,
+      "passed": true
+    },
+    {
+      "case": "existing_report",
+      "return_code": 2,
+      "passed": true
+    }
+  ],
+  "all_progress_criteria_statuses_weights_unchanged": true,
+  "application_source_unchanged": true,
+  "published_release_unchanged": true,
+  "new_script_snapshots": {
+    "scripts/check_intermediate.py": "4d4d74615ff5cf29bc6249dc102386f90e9840744abff0ddd3ebfd5550fac62c",
+    "tests/test_intermediate_check.py": "85f21f4dad50bd45bfcb96c657e87b4b437b01ece10a1b390a387c59b143f3a9"
+  },
+  "linux_tests_executed": 0,
+  "new_flatpak_built": false,
+  "foxit_executed": false,
+  "global_reverse_engineering_coverage": null,
+  "general_progress_percent": 43.33,
+  "functional_parity_verified": "0/25",
+  "limitations": [
+    "Own portable candidate validation only; GTK/Linux current source and new Flatpak remain unverified.",
+    "Refusal controls use existing result bytes and existing staging, which were preserved."
+  ]
+}

@@ -569,7 +569,8 @@
           "evidence": [
             "testes/resultados/source-0.1.0.json",
             "testes/resultados/source-0.1.1-fixed.json"
-          ]
+          ],
+          "note": "Historical execution evidence for version 0.1.1 retained. Current post-0.1.1 source has only portable candidate validation; GTK/Linux and a new Flatpak are pending. See current_source_revalidation and docs/ETAPA-17.md. Existing status/weight unchanged."
         },
         {
           "criterion": "Runtime empacotado executado com fixture real",
@@ -579,11 +580,26 @@
             "testes/resultados/flatpak-payload-fixed-0.1.0.json",
             "testes/resultados/flatpak-sandbox-0.1.0.json",
             "testes/resultados/0.1.1/flatpak-sandbox.json"
-          ]
+          ],
+          "note": "Historical execution evidence for version 0.1.1 retained. Current post-0.1.1 source has only portable candidate validation; GTK/Linux and a new Flatpak are pending. See current_source_revalidation and docs/ETAPA-17.md. Existing status/weight unchanged."
         }
       ],
       "verified_fraction": 1.0,
-      "earned_percent": 2.0
+      "earned_percent": 2.0,
+      "current_source_revalidation": {
+        "status": "partial",
+        "date_local": "2026-10-17T01:28:46-03:00",
+        "scope": "Source after published Flatpak 0.1.1, including attachment backend and panel. Separate from historical done criteria.",
+        "portable_source_candidate": "verified",
+        "linux_source_runtime": "not_run",
+        "new_flatpak": "not_built",
+        "evidence": [
+          "docs/ETAPA-17.md",
+          "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
+          "testes/resultados/etapa-17-linux-indisponivel-2026-10-17.json"
+        ],
+        "next_action": "Run check_intermediate.py --profile linux with GTK/Cairo/Poppler/CUPS and X11; inspect panel, then build/test the next Flatpak milestone."
+      }
     },
     {
       "id": 18,

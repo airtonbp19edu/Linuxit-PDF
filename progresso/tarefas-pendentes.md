@@ -2,9 +2,11 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Trabalho atual: [etapa 16](../docs/ETAPA-16.md), painel Anexos ligado ao código GTK,
-com 14 testes do controlador aprovados. Quatro testes GTK seguem sem execução;
-executá-los em runtime Linux com GTK/Poppler/tela, sem exigir a VM do Foxit. IA do Foxit e
+Trabalho atual: [etapa 17](../docs/ETAPA-17.md), verificador da cópia intermediária
+com perfis portável e Linux separados. O painel da [etapa 16](../docs/ETAPA-16.md)
+tem 14 testes do controlador aprovados. Quatro testes GTK seguem sem execução;
+usar `scripts/check_intermediate.py --profile linux` com GTK/Poppler/tela,
+sem exigir a VM do Foxit. A fonte atual ainda não está em Flatpak novo. IA do Foxit e
 recursos generativos foram excluídos pelo usuário: [escopo](../docs/ESCOPO.md).
 Portfólios, /Kids, senha não vazia e anexos por anotação ainda não implementados.
 Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)

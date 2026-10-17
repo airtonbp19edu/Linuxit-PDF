@@ -10,6 +10,13 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
+Checkpoint mais recente: [etapa 17](ETAPA-17.md), verificação de uma cópia da
+fonte atual com hashes, compilação Python e testes portáveis. O comando
+`scripts/check_intermediate.py --profile linux` exige a suíte completa sem
+skips e smoke GTK antes de aprovar esse runtime. Neste Windows, o perfil Linux
+é recusado por falta do ambiente. A aprovação histórica do Flatpak 0.1.1 não
+valida as novas etapas 15/16; ainda faltam GTK/Linux atual e um pacote novo.
+
 ## Base recuperada
 
 - Repositório: <https://github.com/airtonbp19edu/Linuxit-PDF>, branch `main`.

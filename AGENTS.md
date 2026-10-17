@@ -132,6 +132,13 @@ Preparação e testes do kit não contam como observação dinâmica; casos `not
 
 ## Notas de continuidade entre IAs
 
+Etapa 17: `docs/ETAPA-17.md` e `scripts/check_intermediate.py`. Criar diretórios
+e relatórios novos por rodada. `portable` compila/testa uma cópia de `app/`,
+sem aprovar GUI/Linux. `linux` exige dependências/tela X11, suíte completa sem
+skips e smoke GTK. Critérios históricos `done` da 17 pertencem à versão 0.1.1;
+a revalidação da fonte posterior é separada e ainda parcial. Não atualizar o
+manifesto da versão publicada sem gerar/testar um novo pacote.
+
 A pedido do usuário em 16/10/2026, ao concluir cada rodada registre uma nota em
 `progresso/notas-continuidade.md`, com data e horário reais de São Paulo no
 formato `AAAA/MM/DD às HH:mm (America/Sao_Paulo, UTC-03:00)`. Informe o que foi

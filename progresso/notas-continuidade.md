@@ -486,3 +486,57 @@ própria nota será conferido ao fim, sem autorreferência. Comprovante final em
 bloqueio de publicação. Retomar pela nota das 01:06 e `docs/ETAPA-16.md`,
 preservando a distinção entre 14 testes portáveis aprovados e quatro GTK
 sem execução, a exclusão da IA e o Flatpak 0.1.1 do marco anterior.
+
+## 2026/10/17 às 01:28 (America/Sao_Paulo, UTC-03:00) — etapa 17, cópia intermediária da fonte
+
+Pedido atual: próxima etapa sem depender da VM do Foxit. Criado
+`scripts/check_intermediate.py`, com perfis `portable` e `linux`. Uma cópia
+isolada de `app/` e avisos MIT/BSD fica em diretório novo sob `analysis-local/`;
+hashes são conferidos antes/depois dos testes. Não é instalador nem pacote
+Flatpak. Testes/runner continuam no checkout e recebem a cópia por
+`PRINT_VIEW_TEST_APP`. Sem alterações ao código do aplicativo nesta rodada.
+
+**80 módulos Python da cópia compilaram; 32/32 testes portáveis passaram**,
+sem falhas/skips: 14 do backend, 14 do controlador e quatro do verificador.
+Workers reais e PDFs próprios verificam listagem, extração e estados de erro.
+Os quatro controles do verificador rejeitam app diferente, contagens/casos
+inconsistentes, skips, suíte vazia/incompleta e alterações na fonte. Isso não
+valida GUI/Linux. O perfil `portable` registra `linux_source_runtime_passed: false`.
+
+O perfil `linux` foi exercitado neste Windows e retornou erro esperado de
+pré-requisitos, **zero testes Linux executados/aprovados**. Ele exige Linux,
+GTK/PyGObject/Cairo e ponte GI, Pillow/cryptography, Poppler/CUPS e X11 funcional;
+depois exige suíte completa sem skips e cinco verificações GTK reais. Os quatro
+casos do painel da etapa 16 continuam sem execução. Usar `/usr/bin/python3`
+em Linux; X11/Xwayland ou `xvfb-run` porque testes antigos dependem de DISPLAY.
+
+Comparação de hashes com o manifesto preservado do payload 0.1.1:
+2 arquivos novos, 2 alterados,
+0 removidos, 79 iguais. Não foi feita nova
+extração do Flatpak. Manifesto/pacote publicado 0.1.1/devel preservados. A
+fonte pós-0.1.1 ainda precisa de validação Linux e novo empacotamento.
+
+Ferramentas: Python 3.13.15, py_compile, unittest, SHA-256 e Git. Nenhuma nova
+sessão REA/Ghidra ou execução original; IA/generativos continuam excluídos.
+Evidências publicáveis: `docs/ETAPA-17.md`, `testes/resultados/etapa-17-fonte-portavel-2026-10-17.json` e `testes/resultados/etapa-17-linux-indisponivel-2026-10-17.json`.
+Cópias/bytecode/logs privados em `analysis-local/intermediate-stage17-portable/`
+e `analysis-local/intermediate-stage17-linux/`. Este coletor local só registra
+evidências examinadas e preserva critérios/pesos. Não houve esgotamento de
+tokens confirmado. As pendências da VM do original e do runtime Linux são distintas.
+
+Os critérios históricos da 17 já estavam `done` pela versão 0.1.1; não usá-los
+como aprovação do novo painel. Novo campo `current_source_revalidation`
+registra o checkpoint parcial sem mudar nenhum critério/status/peso/revisão.
+Roteiro 43,33%, paridade 0/25, catálogo 209, cobertura global desconhecida/null.
+Próximo passo: executar o perfil Linux, corrigir achados e inspecionar o painel,
+então gerar/testar o Flatpak do novo marco. Etapa 18 diferencial aguarda o
+original em contenção offline; preparação própria não conta como paridade.
+Publicação desta rodada pendente; confirmar o remoto e registrar hash já
+verificado em nota posterior, sem autorreferência.
+
+Conferência adicional às 01:29: dois controles CLI recusaram diretório e
+relatório existentes com saída 2, sem sobrescrever nada. Sintaxe de 115 arquivos
+Python e 58 links locais passou, além de arquitetura e contratos. Resumo em
+`testes/resultados/etapa-17-verificacao-2026-10-17.json`, com hashes do novo
+verificador/teste. Todas as fontes do aplicativo e os pacotes publicados são
+idênticos ao HEAD anterior; critérios/status/pesos/revisão também preservados.
