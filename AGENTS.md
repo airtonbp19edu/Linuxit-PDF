@@ -34,14 +34,16 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O pacote atual é 0.1.1, branch Flatpak `devel`. Não declare versão estável,
+- O pacote atual é 0.1.2 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 
 Fonte: `docs/especificacao.md`, `docs/FOXIT-REA.md`, `docs/proveniencia-base.json`.
-Testes: `scripts/run_tests.py` (GUI requer X11/Wayland); 37 casos históricos do
-marco 0.1.1, 14 testes do backend de anexos e 14 do controlador portável.
-Quatro testes GTK do painel estão sem execução; suíte completa não repetida.
+Testes: `scripts/run_tests.py` (GUI requer X11/Wayland). Etapa 20/0.1.2:
+104/104 na fonte Linux, payload e Flatpak instalado, zero falhas/erros/skips;
+inclui cinco casos GTK do painel/barra lateral (os quatro antes pendentes).
+Captura virtual tem cabeçalho lateral recortado; desktop/layout completos,
+acessibilidade, portais e impressão física ainda pendentes.
 Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 `/app/lib` padrão. Use `runtime-lib`, loader pareado e módulos OpenSSL incluídos.
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
@@ -131,6 +133,22 @@ original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
 Preparação e testes do kit não contam como observação dinâmica; casos `not_run`.
 
 ## Notas de continuidade entre IAs
+
+Etapa 20: `docs/ETAPA-20.md`, entrega 0.1.2/devel. Workflow manual
+`.github/workflows/linux-flatpak.yml` em Debian 13, Xvfb/Openbox e sandbox Flatpak
+aninhado no runner efêmero; não alterar Windows ou executar Foxit no CI.
+Run 39037892892, fonte e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899: 104/104 em
+cada suíte fonte/payload/sandbox, 83 arquivos fonte/payload iguais, smoke 5/5,
+launcher 3/3. Runtime auditado: 2803 arquivos, 214 ELF e 149 pacotes Debian
+com avisos; `runtime-origins.json` acompanha o bundle/relatórios. Cinco casos GTK passaram; recursão dos botões laterais corrigida.
+Bundle SHA-256 9d29459d7aff8ca6859cda0846cd698d285b36c3a8de2f463ff87002740cd7ba.
+Relatórios em `testes/resultados/0.1.2/`, raw em
+`analysis-local/stage20-artifact-12103031377/`. Captura examinada mostra
+cabeçalho lateral recortado; acessibilidade sem bus AT-SPI no CI não validada.
+Fonte/testes atuais superam as pendências de GTK/pacote das notas históricas
+15/16/17/19 abaixo. A campanha de 17 subconjuntos no mesmo corpus da etapa 18
+não foi repetida nesta rodada; preservar kit da VM. Critérios/pesos e paridade
+não mudaram. Próximo roteiro: 21, auditoria incremental sem encerrar obrigações.
 
 Etapa 19: `docs/ETAPA-19.md`. Normalização de impressão em `app/imposition.py`
 agora desvincula a cópia da referência indireta e desloca conteúdo/caixas para

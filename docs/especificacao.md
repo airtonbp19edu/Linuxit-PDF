@@ -90,7 +90,8 @@ nomes duplicados como entradas distintas, recusa nomes perigosos e usa criação
 exclusiva para preservar arquivos existentes. Tamanho declarado e real são
 distintos; o limite de 64 MiB do payload real é aplicado após descompressão.
 O [painel da etapa 16](ETAPA-16.md) está ligado no código GTK, com controlador
-portável testado; a execução visual ainda está pendente. Portfólios, /Kids,
+portável testado e cinco casos GTK aprovados em cada suíte Linux/payload/sandbox
+0.1.2; layout completo e desktop real ainda pendentes. Portfólios, /Kids,
 senha não vazia e anexos exclusivos de anotações continuam não implementados.
 Esses testes não são paridade Foxit.
 

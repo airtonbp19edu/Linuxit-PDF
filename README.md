@@ -6,32 +6,28 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
-A versão 0.1.1 já contém navegação, seleção, apresentação, temas, prévia e
-preparação de impressão em livreto/N-up/mosaico. A busca pesquisa separadamente
-texto, marcadores e comentários, com filtros de palavra inteira e maiúsculas,
-cancelamento e navegação por resultados. É possível destacar todas as ocorrências
-ou somente a selecionada, sem refazer a pesquisa. A base e as adaptações têm
-[proveniência registrada](docs/proveniencia-base.json).
+A versão **0.1.2 de desenvolvimento** contém navegação, seleção, apresentação,
+temas, busca em texto/marcadores/comentários e preparação de impressão em
+livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo
+plano, as correções de origem do CropBox e preservação da página em memória,
+além da correção de recursão nos botões da barra lateral.
+A base e as adaptações têm [proveniência registrada](docs/proveniencia-base.json).
 
-No código-fonte em desenvolvimento após esse pacote, há também
-[listagem e extração local de anexos](docs/ETAPA-15.md), com backend testado.
-O [painel Anexos está ligado ao código GTK](docs/ETAPA-16.md); seus 14 testes
-portáveis de controle passaram, e a execução visual GTK/Linux segue pendente.
-A [etapa 17](docs/ETAPA-17.md) oferece um verificador da cópia intermediária:
-compilação Python, hashes e testes portáveis separados da aprovação GTK/Linux.
-A [etapa 18](docs/ETAPA-18.md) registra 13 verificações próprias de uma campanha
-comparativa; quatro dependem de Poppler e a observação do Foxit aguarda a VM.
-A [etapa 19](docs/ETAPA-19.md) corrigiu deslocamentos de páginas recortadas na
-preparação da impressão e a alteração indevida da página de origem em memória.
-Nove testes portáveis passaram; a correção ainda não está no Flatpak publicado.
+Na [etapa 20](docs/ETAPA-20.md), **104 testes próprios passaram em cada ambiente**:
+fonte Linux, payload e Flatpak instalado, sem falhas/erros/skips. Foram conferidos
+83 arquivos fonte/payload, smoke GTK e lançamento normal com captura da janela.
+O teste usa Debian 13 e tela X11 virtual; não comprova todos os layouts,
+acessibilidade, impressão física ou equivalência Foxit. O cabeçalho lateral
+aparece recortado na captura virtual e permanece como ajuste de interface.
+Portfólios, /Kids, senha de anexos e demais famílias continuam pendentes.
+O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
-Os 37 testes próprios passaram no código-fonte e no runtime empacotado.
-O Flatpak também passou na instalação e execução real no sandbox: abertura,
-renderização, busca em marcadores/comentários e geração de livreto.
-Esses testes não demonstram equivalência integral com o Foxit; a recuperação
-de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
+A campanha comparativa da [etapa 18](docs/ETAPA-18.md) conserva 13 verificações
+próprias e quatro subconjuntos ainda não repetidos com Poppler no mesmo corpus.
+O kit privado preservado deve ser usado na VM offline para observar o Foxit.
+Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
 
-- [Baixar Flatpak 0.1.1](releases/LinuxitPDF-0.1.1-x86_64.flatpak) e [instalação](docs/instalacao.md)
+- [Baixar Flatpak 0.1.2](releases/LinuxitPDF-0.1.2-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Hashes e manifesto](releases/manifest.json)
 - [Progresso e metodologia das 21 etapas](progresso/progresso.md)
 - [Retomada do desenvolvimento e ambiente local](docs/RETOMADA.md)
@@ -46,12 +42,13 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Etapa 13: arquitetura revisada e fronteiras verificadas](docs/ETAPA-13.md)
 - [Etapa 14: base do projeto e execução portável conferidas](docs/ETAPA-14.md)
 - [Etapa 15: backend de anexos e validação sem VM](docs/ETAPA-15.md)
-- [Etapa 16: painel Anexos, controlador testado e validação GTK pendente](docs/ETAPA-16.md)
+- [Etapa 16: painel Anexos e controlador](docs/ETAPA-16.md)
 - [Etapa 17: fonte intermediária e comando de validação Linux](docs/ETAPA-17.md)
 - [Etapa 18: campanha comparativa e importação de observações offline](docs/ETAPA-18.md)
 - [Etapa 19: correções de posicionamento de páginas recortadas](docs/ETAPA-19.md)
+- [Etapa 20: Flatpak 0.1.2, testes Linux e limites](docs/ETAPA-20.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
-- [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
+- [Captura do Flatpak em execução](testes/resultados/0.1.2/linuxit-flatpak-0.1.2.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
 

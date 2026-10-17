@@ -2,19 +2,16 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Trabalho atual: [etapa 19](../docs/ETAPA-19.md), correções próprias de CropBox e
-preservação do conteúdo de origem em memória, com nove testes portáveis.
-Validar a fonte atual no Linux antes do novo Flatpak. Comparativos seguem na
-[etapa 18](../docs/ETAPA-18.md), campanha preparada:
-13 verificações próprias passaram, quatro bloqueadas por Poppler; 16 controles
-do comparador passaram. Nenhum resultado Foxit: observar o mesmo corpus na VM
-e revisar evidências antes de concluir diferenças/paridade. Seguir também a
-[etapa 17](../docs/ETAPA-17.md), com perfis portável e Linux separados.
-O painel da [etapa 16](../docs/ETAPA-16.md)
-tem 14 testes do controlador aprovados. Quatro testes GTK seguem sem execução;
-usar `scripts/check_intermediate.py --profile linux` com GTK/Poppler/tela,
-sem exigir a VM do Foxit. A fonte atual ainda não está em Flatpak novo. IA do Foxit e
-recursos generativos foram excluídos pelo usuário: [escopo](../docs/ESCOPO.md).
+Marco atual: [etapa 20](../docs/ETAPA-20.md), entrega 0.1.2/devel com
+104/104 testes em cada ambiente Linux/fonte, payload e sandbox, sem skips.
+Painel Anexos exercitado; CropBox/memória e recursão da barra lateral corrigidos.
+Próximo passo: auditoria incremental da etapa 21 e ajustes de interface,
+incluindo cabeçalho lateral recortado na captura X11 virtual. Validar desktop
+real, portais, acessibilidade e impressão física. Critérios amplos seguem parciais.
+Comparação Foxit continua na [etapa 18](../docs/ETAPA-18.md): preservar o kit
+`analysis-local/comparison-stage18-final/`; quatro subconjuntos do corpus
+anterior ainda precisam ser repetidos com Poppler, e nenhuma observação do
+original foi importada. IA permanece [fora do escopo](../docs/ESCOPO.md).
 Portfólios, /Kids, senha não vazia e anexos por anotação ainda não implementados.
 Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
 e `.json`: 21 critérios, 14 etapas. Causas VM/análise/implementação/runtime

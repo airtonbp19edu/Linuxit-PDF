@@ -1337,9 +1337,9 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "source UI+backend subset: flat attachment panel/list/extract; GTK execution and portfolios pending; see docs/ETAPA-16.md",
+      "matrix_implementation": "implemented subset: flat attachment panel/list/extract verified in Linux/Flatpak; portfolios pending; see docs/ETAPA-20.md",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: backend/worker e código GTK de painel para listar/salvar anexo do catálogo plano. Controlador portável testado; execução GTK ainda pendente. Portfólios, /Kids e anexos exclusivos de anotações ficam pendentes.",
+      "scope": "Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados em Linux/Flatpak 0.1.2. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.",
       "inputs": [
         "PDF local com catálogo plano de anexos; operação de listar sem decodificar payloads.",
         "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.",
@@ -1348,7 +1348,7 @@
       "outputs": [
         "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.",
         "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.",
-        "Código da UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; widgets ainda não executados neste ambiente."
+        "UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; cinco testes GTK passaram em cada suíte Linux/payload/sandbox. Layout completo não foi aprovado."
       ],
       "errors": [
         {
@@ -1398,7 +1398,7 @@
         "runtime_observed": false,
         "unresolved": [
           "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
-          "Execução do painel GTK/Linux, portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado."
+          "Portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado. Desktop/layout e acessibilidade exigem validação adicional."
         ]
       },
       "existing_test_refs": [
@@ -1429,6 +1429,14 @@
         {
           "path": "tests/test_attachment_tasks.py",
           "test": "test_refresh_invalidates_the_selection_captured_before_a_dialog"
+        },
+        {
+          "path": "tests/test_attachment_panel_gtk.py",
+          "test": "test_panel_saves_selected_file_and_shows_conflict_without_overwrite"
+        },
+        {
+          "path": "tests/test_attachment_panel_gtk.py",
+          "test": "test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks"
         }
       ],
       "dynamic_case_refs": [

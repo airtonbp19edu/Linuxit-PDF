@@ -10,11 +10,16 @@ retomar em outro chat, leia [Como continuar](COMO-CONTINUAR.md).
 Leia também as [notas datadas de continuidade](../progresso/notas-continuidade.md),
 atualizadas a cada rodada com horário de São Paulo, evidências e próximo passo.
 
-Checkpoint mais recente: [etapa 19](ETAPA-19.md), correção própria da origem do
-CropBox e da mutação indevida de conteúdo em memória ao normalizar rotação.
-Nove testes portáveis passaram; regressão dos mesmos bytes do corpus anterior
-passou em 13 subconjuntos, com quatro bloqueados por Poppler. Fonte modificada
-após os snapshots das etapas 17/18; GUI/Linux e novo Flatpak ainda pendentes.
+Checkpoint mais recente: [etapa 20](ETAPA-20.md), Flatpak **0.1.2/devel**
+gerado e instalado em Debian 13 no GitHub Actions. Suíte completa: 104/104 em
+cada ambiente (fonte, payload e sandbox), zero skips; smoke GTK 5/5 e launcher
+3/3. Cinco casos GTK de anexos/barra lateral passaram, incluindo os quatro
+antes não executados. Corrigida recursão dos botões da barra lateral.
+83 hashes da aplicação fonte/payload conferidos; entregas 0.1.0/0.1.1 preservadas.
+Captura própria examinada: página renderizada, cabeçalho lateral recortado na
+tela virtual. Desktop real, acessibilidade, portais e impressão física pendentes.
+Próximo passo do roteiro: auditoria incremental da etapa 21, mantendo os critérios
+abertos; comparação original continua exigindo a VM offline. Nenhum Foxit no CI.
 
 A [etapa 18](ETAPA-18.md) preparou a campanha com 17 subconjuntos
 de backend: 13 observados/aprovados e quatro bloqueados por Poppler. Dezesseis
@@ -27,8 +32,8 @@ A [etapa 17](ETAPA-17.md) oferece a verificação de uma cópia da
 fonte atual com hashes, compilação Python e testes portáveis. O comando
 `scripts/check_intermediate.py --profile linux` exige a suíte completa sem
 skips e smoke GTK antes de aprovar esse runtime. Neste Windows, o perfil Linux
-é recusado por falta do ambiente. A aprovação histórica do Flatpak 0.1.1 não
-valida as novas etapas 15/16; ainda faltam GTK/Linux atual e um pacote novo.
+é recusado por falta do ambiente. A aprovação histórica do Flatpak 0.1.1 foi preservada; a etapa 20 acrescenta
+validação da fonte atual e do novo pacote, sem validar todo desktop ou Foxit.
 
 ## Base recuperada
 
@@ -60,7 +65,7 @@ históricos, sem investigar ou implementar IA nas próximas rodadas.
 Preservar a proveniência e manter código, recursos e decompilações Foxit fora
 da implementação e do Git.
 
-A versão publicada é **0.1.1**, Flatpak `devel`, ID
+A versão de entrega é **0.1.2 de desenvolvimento**, Flatpak `devel`, ID
 `io.github.airtonbp19edu.LinuxitPDF`. O leitor já possui navegação, zoom,
 rotação, seleção, apresentação, temas, painéis de metadados, busca em texto,
 marcadores e comentários, controle dos destaques e preparação de impressão

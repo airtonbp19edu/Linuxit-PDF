@@ -1,5 +1,10 @@
 # Etapa 17 — verificação da compilação intermediária
 
+Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
+fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
+fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo
+preserva os resultados e limites da rodada original.
+
 Em **17/10/2026**, foi acrescentado um verificador reproduzível da fonte atual:
 [`scripts/check_intermediate.py`](../scripts/check_intermediate.py). Ele cria uma
 cópia isolada de `app/`, preserva as licenças MIT/BSD, registra SHA-256 de cada

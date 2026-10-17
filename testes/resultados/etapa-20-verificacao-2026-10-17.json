@@ -1,0 +1,25 @@
+{
+  "schema": "linuxit-stage20-structural-verification-v1",
+  "date_local": "2026-10-17T10:52:15.874762-03:00",
+  "source_commit_tested": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899",
+  "source_files_match_examined_ci": 83,
+  "python_ast_files_checked": 119,
+  "changed_markdown_links_checked": 274,
+  "previous_notes_preserved": true,
+  "all_previous_bundles_and_manifests_preserved": true,
+  "all_three_release_sha256s_verified": true,
+  "raw_ci_report_hashes_verified": 7,
+  "runtime_files_attributed": 2803,
+  "elf_files_attributed": 214,
+  "runtime_packages_recorded": 149,
+  "transformed_runtime_files": [
+    "lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+  ],
+  "criteria_weights_statuses_unchanged": true,
+  "general_progress_percent": 43.33,
+  "parity_verified": 0,
+  "functional_families": 25,
+  "acceptance_cases_executed": 0,
+  "foxit_executed": false,
+  "check_scope": "Imported CI provenance plus local syntax/links/metadata; not a repeat of Linux tests."
+}

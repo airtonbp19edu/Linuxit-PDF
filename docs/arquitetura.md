@@ -1,6 +1,6 @@
 # Arquitetura da implementação independente
 
-Revisão de **17/10/2026**, referente ao **Linuxit 0.1.1**, com Linux como destino
+Revisão de **17/10/2026**, referente ao **Linuxit 0.1.2**, com Linux como destino
 prioritário. A base própria MIT Print&View 3.4.0/Winux tem
 [proveniência preservada](proveniencia-base.json); o pypdf tem
 [licença BSD preservada](pypdf-LICENSE.txt). Os contratos Foxit orientam a
@@ -19,14 +19,11 @@ de IA do Foxit e recursos generativos das análises e da implementação.
 O inventário histórico é preservado; as fronteiras futuras descritas aqui
 abrangem somente funcionalidades autorizadas sem IA.
 
-Continuação da etapa 15: backend de anexos acrescentado ao código-fonte em
-desenvolvimento após o Flatpak 0.1.1. O artefato publicado permanece no marco
-anterior; a execução real GTK e novos testes completos Linux ainda estão pendentes.
-
-Na etapa 16, o painel Anexos foi ligado ao código GTK com um controlador
-portável em `attachment_tasks`. A lógica passou em 14 testes com workers reais;
-widgets/layout ainda não foram executados. Essa pendência exige runtime GTK,
-separadamente da contenção usada para observar o Foxit.
+As etapas 15/16 acrescentaram backend, controlador e painel de anexos. A
+[etapa 20](ETAPA-20.md) validou a fonte e o Flatpak 0.1.2: 104 testes completos
+em cada ambiente fonte/payload/sandbox, incluindo cinco casos GTK do painel.
+O layout completo ainda exige ajustes e desktop real: a captura virtual mostra
+cabeçalho lateral recortado. A contenção para observar Foxit continua separada.
 
 ## Componentes atuais
 
@@ -71,7 +68,7 @@ ainda usam chamadas diretas e dicionários; não há uma camada universal de plu
 | Preparação PDF | `prepare_output(input_path, output_path, job)`; opções semânticas em dicionário. Prévia e saída usam a geometria própria. | [imposition.py](../app/imposition.py) |
 | Worker | `info`, `panels` e `attachments` devolvem JSON; `prepare` recebe JSON e devolve caminho; `extract-attachment` recebe índice/hash em JSON e devolve JSON da extração. Erros usam status não zero/stderr. | [worker_cli.py](../app/worker_cli.py) |
 | Anexos | Listagem sem decodificar payload; extração por índice/hash para pasta escolhida, com criação exclusiva e verificação de nome. Catálogo plano somente. | [pdf_attachments.py](../app/pdf_attachments.py) |
-| Controle do painel | Carga sob demanda, seleção capturada antes do diálogo e filtros de geração; worker UTF-8 e mensagens sem traceback. Widgets GTK ainda sem execução real. | [attachment_tasks.py](../app/attachment_tasks.py) |
+| Controle do painel | Carga sob demanda, seleção capturada antes do diálogo e filtros de geração; worker UTF-8 e mensagens sem traceback. Cinco casos GTK aprovados em cada suíte 0.1.2; desktop/layout completos pendentes. | [attachment_tasks.py](../app/attachment_tasks.py) |
 | Entrega assíncrona | `submit` identifica canal/geração; callback é entregue via GLib somente se atual e janela/runner aberto. | [async_core.py](../app/async_core.py) |
 | Backend | `print_file` recebe o PDF já preparado e opções do dispositivo. Aceitação do trabalho não comprova papel impresso. | [cups_backend.py](../app/cups_backend.py) |
 | Python de worker | `worker_python` usa o interpretador configurado pelo runtime e ajustes específicos do Windows. | [platform_runtime.py](../app/platform_runtime.py) |
@@ -117,7 +114,7 @@ ser usados para validar essa capacidade.
 
 O desenvolvimento e os testes completos ocorrem pelo código-fonte no Linux,
 com GTK 3, Cairo, Poppler e clientes CUPS. Flatpak é gerado nos marcos de
-entrega, mantendo o ID próprio e a branch `devel`; a versão continua 0.1.1.
+entrega, mantendo o ID próprio e a branch `devel`; a versão atual é 0.1.2 de desenvolvimento.
 O [empacotador](../scripts/build_flatpak.py) conserva o loader pareado,
 `runtime-lib`, os módulos OpenSSL e avisos de licenças. Os detalhes operacionais
 e testes históricos estão em [instalacao.md](instalacao.md).

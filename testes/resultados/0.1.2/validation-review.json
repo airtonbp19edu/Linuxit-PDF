@@ -1,0 +1,63 @@
+{
+  "schema": "linuxit-delivery-review-v1",
+  "reviewed_at_local": "2026-10-17T10:51:28.575850-03:00",
+  "timezone": "America/Sao_Paulo",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39037892892",
+  "source_commit": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899",
+  "github_artifact_id": 12103031377,
+  "github_archive_sha256": "e174c761da208fdb5eaa4be65556d3f6ba366dd6b662678f280cf4e60aaaa67d",
+  "download_digest_matches_github": true,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.2-x86_64.flatpak",
+    "bytes": 35584088,
+    "sha256": "9d29459d7aff8ca6859cda0846cd698d285b36c3a8de2f463ff87002740cd7ba",
+    "digitally_signed": false
+  },
+  "source_payload_and_local_source_files_match": 83,
+  "complete_suite_counts": {
+    "source": {
+      "run": 104,
+      "passed": 104,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 104,
+      "passed": 104,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 104,
+      "passed": 104,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "attachment_gtk_cases_passed_per_suite": 5,
+  "source_and_sandbox_smoke_checks_passed_each": 5,
+  "normal_launcher_checks_passed": 3,
+  "normal_launcher_capture_examined": "testes/resultados/0.1.2/linuxit-flatpak-0.1.2.png",
+  "capture_findings": "Own synthetic PDF page rendered, toolbar and navigation visible. Sidebar header is clipped at this virtual X11 size; layout needs follow-up. Capture is not exhaustive visual approval.",
+  "log_review": "No traceback/recursion or formal test failure in successful round. AT-SPI accessibility bus unavailable in CI; assistive technology not verified.",
+  "original_executed": false,
+  "foxit_differential_test": false,
+  "physical_printing_verified": false,
+  "previous_bundle_0_1_1_unchanged": true,
+  "roadmap_criteria_status_or_weights_changed": false,
+  "stage18_identical_corpus_17_subchecks_rerun": false,
+  "raw_evidence": [
+    "analysis-local/stage20-artifact-12103031377/",
+    "analysis-local/stage20-logs-39037892892/"
+  ],
+  "publication_state": "Imported and examined locally; remote publication to be confirmed in a later continuity note.",
+  "raw_ci_report_hashes_verified": 7,
+  "runtime_files_attributed": 2803,
+  "runtime_elf_files_attributed": 214,
+  "debian_packages_with_copyright": 149,
+  "runtime_provenance_evidence": "testes/resultados/0.1.2/runtime-origins.json",
+  "previous_functional_candidate_withheld": true
+}

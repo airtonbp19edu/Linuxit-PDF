@@ -1,5 +1,10 @@
 # Etapa 19 — correções próprias de impressão
 
+Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
+fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
+fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo
+preserva os resultados e limites da rodada original.
+
 Em **17/10/2026**, foram reproduzidos e corrigidos dois defeitos da
 implementação própria em [`app/imposition.py`](../app/imposition.py).
 O trabalho usa PDFs sintéticos e não depende da VM do Foxit. Não houve nova

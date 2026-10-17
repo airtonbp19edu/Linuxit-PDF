@@ -508,9 +508,15 @@
             "docs/ETAPA-15.md",
             "app/pdf_attachments.py",
             "tests/test_pdf_attachments.py",
-            "testes/resultados/etapa-15-anexos-tests-2026-10-17.json"
+            "testes/resultados/etapa-15-anexos-tests-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ],
-          "note": "Independent flat-catalog attachment backend and worker implemented; 14 portable tests passed. GUI, portfolios and the remaining families are pending; no Foxit differential verification. Existing criterion and weights preserved."
+          "note": "Flat catalog attachment backend/controller and GTK panel verified by own tests in Linux, payload and installed Flatpak 0.1.2. Portfolios, /Kids, password and remaining families remain partial; no original observation. Status/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -549,9 +555,15 @@
             "app/main.py",
             "app/attachment_tasks.py",
             "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json",
-            "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json"
+            "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ],
-          "note": "Attachment panel wired in source; 14 portable controller/worker tests passed. Four real GTK cases are skipped due to missing GTK/display; widget execution, remaining integrations and Foxit differential behavior are not verified. Criterion/weights unchanged."
+          "note": "Five real GTK attachment/sidebar tests passed in each complete 104-case Linux/source/payload/sandbox suite. Callback recursion fixed. Virtual X11 capture has clipped sidebar header; full desktop/layout/accessibility/platform integrations and remaining families remain pending. Status/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -568,9 +580,15 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "testes/resultados/source-0.1.1-fixed.json"
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ],
-          "note": "Historical execution evidence for version 0.1.1 retained. Current post-0.1.1 source has only portable candidate validation; GTK/Linux and a new Flatpak are pending. See current_source_revalidation and docs/ETAPA-17.md. Existing status/weight unchanged."
+          "note": "Historical 0.1.1 evidence retained; current 0.1.2 source and installed Flatpak now also verified. Existing done status/weight unchanged."
         },
         {
           "criterion": "Runtime empacotado executado com fixture real",
@@ -579,36 +597,47 @@
           "evidence": [
             "testes/resultados/flatpak-payload-fixed-0.1.0.json",
             "testes/resultados/flatpak-sandbox-0.1.0.json",
-            "testes/resultados/0.1.1/flatpak-sandbox.json"
+            "testes/resultados/0.1.1/flatpak-sandbox.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ],
-          "note": "Historical execution evidence for version 0.1.1 retained. Current post-0.1.1 source has only portable candidate validation; GTK/Linux and a new Flatpak are pending. See current_source_revalidation and docs/ETAPA-17.md. Existing status/weight unchanged."
+          "note": "Historical 0.1.1 evidence retained; current 0.1.2 source and installed Flatpak now also verified. Existing done status/weight unchanged."
         }
       ],
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "partial",
-        "date_local": "2026-10-17T01:28:46-03:00",
-        "scope": "Source after published Flatpak 0.1.1, including attachment backend and panel. Separate from historical done criteria.",
-        "portable_source_candidate": "historical_snapshot_verified",
-        "linux_source_runtime": "not_run",
-        "new_flatpak": "not_built",
+        "status": "verified_linux_and_flatpak_subset",
+        "date_local": "2026-10-17T10:51:28.575850-03:00",
+        "scope": "Current source 0.1.2, including attachments, CropBox preservation and GTK sidebar recursion fix; own tests only.",
+        "portable_source_candidate": "historical_snapshot_preserved",
+        "linux_source_runtime": "passed",
+        "new_flatpak": "built_installed_tested",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
-          "testes/resultados/etapa-17-linux-indisponivel-2026-10-17.json"
+          "testes/resultados/etapa-17-linux-indisponivel-2026-10-17.json",
+          "docs/ETAPA-20.md",
+          "testes/resultados/0.1.2/source-intermediate.json",
+          "testes/resultados/0.1.2/payload-tests.json",
+          "testes/resultados/0.1.2/sandbox-tests.json",
+          "testes/resultados/0.1.2/sandbox-smoke.json",
+          "testes/resultados/0.1.2/validation-review.json"
         ],
-        "next_action": "Run Linux profile against current source including the stage-19 CropBox fix and all new tests; historical portable candidate is a previous snapshot. Inspect GTK before new Flatpak.",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "app/imposition.py"
-        ],
+        "next_action": "Validate real desktop layout/portals/accessibility and physical printing; original comparisons require offline VM.",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
-        "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00"
+        "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
+        "source_commit_tested": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899"
       }
     },
     {
@@ -691,7 +720,13 @@
             "tests/test_imposition_cropbox.py",
             "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
             "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
-            "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json"
+            "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ],
           "note": "Two own imposition defects reproduced and fixed: crop-origin offset and reader content mutation during rotation. Nine portable methods and 13 existing-corpus subchecks passed; four Poppler subsets remain blocked. No Foxit divergence measured; status/weight unchanged."
         },
@@ -705,25 +740,36 @@
       "verified_fraction": 0.142857,
       "earned_percent": 0.571429,
       "current_source_fixes": {
-        "status": "verified_portable_subset",
-        "date_local": "2026-10-17T10:06:51-03:00",
+        "status": "verified_own_linux_and_flatpak_subset",
+        "date_local": "2026-10-17T10:51:28.575850-03:00",
         "own_defects_fixed": [
           "crop_origin_placement_offset",
-          "reader_content_mutation_during_rotation"
+          "reader_content_mutation_during_rotation",
+          "gtk_sidebar_recursive_clicked_signal"
         ],
         "portable_test_methods_passed": 9,
         "reused_corpus_subchecks_passed": 13,
         "poppler_subchecks_blocked": 4,
         "original_divergences_measured": 0,
-        "gtk_linux_full_suite_rerun": false,
-        "new_flatpak_built": false,
+        "gtk_linux_full_suite_rerun": true,
+        "new_flatpak_built": true,
         "evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
           "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json"
         ],
-        "next_action": "Validate and inspect the current source in Linux/GTK/Poppler, then build/test the next Flatpak milestone. Measure Foxit divergences only after offline original observations."
+        "next_action": "Measure original divergences only in offline VM. Follow up clipped sidebar layout and other implementation gaps.",
+        "runtime_revalidated_at_local": "2026-10-17T10:51:28.575850-03:00",
+        "runtime_evidence": [
+          "docs/ETAPA-20.md",
+          "testes/resultados/0.1.2/source-intermediate.json",
+          "testes/resultados/0.1.2/payload-tests.json",
+          "testes/resultados/0.1.2/sandbox-tests.json",
+          "testes/resultados/0.1.2/sandbox-smoke.json",
+          "testes/resultados/0.1.2/validation-review.json"
+        ],
+        "source_commit_tested": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899"
       }
     },
     {
@@ -737,7 +783,10 @@
           "status": "done",
           "evidence": [
             "releases/manifest.json",
-            "releases/SHA256SUMS"
+            "releases/SHA256SUMS",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ]
         },
         {
@@ -746,7 +795,10 @@
           "status": "done",
           "evidence": [
             "testes/resultados/flatpak-sandbox-0.1.0.json",
-            "testes/resultados/0.1.1/flatpak-sandbox.json"
+            "testes/resultados/0.1.1/flatpak-sandbox.json",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ]
         },
         {
@@ -756,12 +808,39 @@
           "evidence": [
             "releases/manifest.json",
             "docs/instalacao.md",
-            "progresso/sincronizacao-git.json"
+            "progresso/sincronizacao-git.json",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json"
           ]
         }
       ],
       "verified_fraction": 1.0,
-      "earned_percent": 3.0
+      "earned_percent": 3.0,
+      "current_delivery": {
+        "version": "0.1.2",
+        "date_local": "2026-10-17T10:51:28.575850-03:00",
+        "source_commit": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899",
+        "status": "built_installed_tested; publication to be confirmed",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39037892892",
+        "evidence": [
+          "docs/ETAPA-20.md",
+          "testes/resultados/0.1.2/source-intermediate.json",
+          "testes/resultados/0.1.2/payload-tests.json",
+          "testes/resultados/0.1.2/sandbox-tests.json",
+          "testes/resultados/0.1.2/sandbox-smoke.json",
+          "testes/resultados/0.1.2/validation-review.json",
+          "releases/manifest-0.1.2.json"
+        ],
+        "original_observations": 0,
+        "stable_release": false,
+        "runtime_provenance": {
+          "files": 2803,
+          "elf_files": 214,
+          "debian_packages": 149,
+          "evidence": "testes/resultados/0.1.2/runtime-origins.json"
+        }
+      }
     },
     {
       "id": 21,

@@ -1,5 +1,10 @@
 # Etapa 16 — integração do painel Anexos
 
+Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
+fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
+fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo
+preserva os resultados e limites da rodada original.
+
 Em **17/10/2026**, o backend da etapa 15 foi ligado ao código da interface GTK.
 Há um painel **Anexos** na barra lateral e em **Exibir → Anexos**, com listagem,
 **Atualizar** e **Salvar selecionado…**. Esta entrega é de código-fonte em

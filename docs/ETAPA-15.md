@@ -1,5 +1,10 @@
 # Etapa 15 — backend de anexos sem depender da VM
 
+Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
+fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
+fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo
+preserva os resultados e limites da rodada original.
+
 Continuação na [etapa 16](ETAPA-16.md): painel Anexos conectado ao código GTK,
 controlador portável testado e execução visual ainda pendente. O marco abaixo
 registra a entrega inicial do backend, antes dessa integração.

@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T10:06:51-03:00",
+  "reviewed_at_local": "2026-10-17T10:51:28.575850-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -290,9 +290,11 @@
       "evidence_refs": [
         "docs/ETAPA-15.md",
         "app/pdf_attachments.py",
-        "testes/resultados/etapa-15-anexos-tests-2026-10-17.json"
+        "testes/resultados/etapa-15-anexos-tests-2026-10-17.json",
+        "docs/ETAPA-20.md",
+        "testes/resultados/0.1.2/validation-review.json"
       ],
-      "next_action": "Backend de anexos planos já implementado/testado; integrar GUI no Linux e ampliar famílias por contratos suficientes. Portfólios, /Kids e anexos por anotação continuam pendentes.",
+      "next_action": "Backend/controlador/painel de anexos planos testados em Linux/Flatpak 0.1.2. Ampliar famílias por contratos suficientes; portfólios, /Kids, senha e anexos por anotação continuam pendentes.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -308,9 +310,11 @@
       "evidence_refs": [
         "docs/ETAPA-16.md",
         "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json",
-        "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json"
+        "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json",
+        "docs/ETAPA-20.md",
+        "testes/resultados/0.1.2/validation-review.json"
       ],
-      "next_action": "Executar os quatro testes do painel e a suíte gráfica em GTK/Linux com tela e Poppler; depois ampliar outras interações. Controlador portável já testado; isso não é validação visual.",
+      "next_action": "Cinco casos GTK de anexos/barra lateral passaram em cada suíte Linux/payload/sandbox 0.1.2. Ajustar cabeçalho lateral recortado na captura virtual e validar desktop real, portais, acessibilidade e demais integrações.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -369,9 +373,11 @@
       "evidence_refs": [
         "progresso/matriz-paridade.csv",
         "docs/especificacao.md",
-        "docs/ETAPA-19.md"
+        "docs/ETAPA-19.md",
+        "docs/ETAPA-20.md",
+        "testes/resultados/0.1.2/validation-review.json"
       ],
-      "next_action": "Dois defeitos próprios de impressão corrigidos e testados portavelmente; ainda medir divergências originais na VM offline antes de atribuir/corrigir incompatibilidade Foxit. Validar fonte atual em Linux/GTK e novo pacote separadamente.",
+      "next_action": "Correções próprias de CropBox/memória e sinais GTK verificadas em Linux/Flatpak 0.1.2. Medir divergências originais na VM offline antes de atribuir incompatibilidade Foxit.",
       "token_exhaustion_confirmed": null
     },
     {

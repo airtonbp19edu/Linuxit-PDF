@@ -638,7 +638,7 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Anexos/portfólios
 
-Atual: backend/worker e código GTK de painel para listar/salvar anexo do catálogo plano. Controlador portável testado; execução GTK ainda pendente. Portfólios, /Kids e anexos exclusivos de anotações ficam pendentes.
+Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados em Linux/Flatpak 0.1.2. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.
 
 **Entradas**
 
@@ -650,7 +650,7 @@ Atual: backend/worker e código GTK de painel para listar/salvar anexo do catál
 
 - Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido.
 - Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.
-- Código da UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; widgets ainda não executados neste ambiente.
+- UI: lista sob demanda, seleção, Salvar selecionado e estados de carga/erro; cinco testes GTK passaram em cada suíte Linux/payload/sandbox. Layout completo não foi aprovado.
 
 **Erros e casos excepcionais**
 
@@ -676,11 +676,11 @@ Atual: backend/worker e código GTK de painel para listar/salvar anexo do catál
 **Lacunas da referência Foxit**
 
 - Política e comportamento Foxit ainda não observados; backend atual é contrato independente.
-- Execução do painel GTK/Linux, portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado.
+- Portfólios, /Kids, anexos exclusivos de anotações e senha continuam pendentes; comportamento Foxit não observado. Desktop/layout e acessibilidade exigem validação adicional.
 
 Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [app/attachment_tasks.py](../app/attachment_tasks.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py); [test_panel_saves_selected_file_and_shows_conflict_without_overwrite](../tests/test_attachment_panel_gtk.py); [test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks](../tests/test_attachment_panel_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D16.
 
