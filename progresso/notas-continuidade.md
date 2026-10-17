@@ -730,3 +730,18 @@ Ambiente nativo reconferido: Python 3.13.15/Windows sem gi, Cairo, cryptography,
 Poppler e Flatpak; WSL retorna 1 informando que não está instalado. Diagnóstico
 e stdout/stderr completos em `analysis-local/stage19-environment/`. Não foi
 instalado ou habilitado componente do sistema para essa verificação.
+
+## 2026/10/17 às 10:12 (America/Sao_Paulo, UTC-03:00) — etapa 19 publicada
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`6e1220da352e35607910a4eb5a7ebf16389042ea`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/6e1220da352e35607910a4eb5a7ebf16389042ea).
+HEAD local/remoto iguais e árvore limpa após o envio. Esta nota usa hash já
+verificado; seu próprio commit será conferido ao fim, sem autorreferência.
+Comprovante final em `analysis-local/github-stage19-sync-verified.json`,
+ignorado pelo Git. Sem bloqueio de publicação. Retomar por `docs/ETAPA-19.md`
+e pela nota das 10:06: duas correções próprias, nove métodos portáveis e 13
+subconjuntos do corpus preservado aprovados, quatro bloqueados por Poppler.
+GTK/Linux completo e pacote novo continuam pendentes; WSL ausente reconfirmado.
+Fonte nova não está no Flatpak publicado 0.1.1/devel. Nenhuma divergência
+Foxit foi medida; aguardar original na VM offline. Pesos, paridade e exclusão
+da IA preservados.
