@@ -1140,3 +1140,44 @@ Entrega publicada/auditada permanece0.1.4. Próximo: concluir controles, validar
 Linux/GTK e iterar em qualquer falha antes de gerar pacote. Evidências locais
 em analysis-local/copy-edit-*.json e edit-adapter-tests.json; relatório atual
 será docs/COPIA-EDITADA.md. Nenhum Foxit executado/paridade alegada.
+
+
+## 2026/10/17 às 16:08 (America/Sao_Paulo, UTC-03:00) — fonte 0.1.5 e quarto lote estático
+
+Fonte979a288 publicada/confirmada por ls-remote. Run39060689958 passou152/152
+com zero falhas/erros/skips, incluindo cinco métodos GTK novos; campanha17/17.
+ZIP12111217423/hash1468fe6840a5f028e82b5fcc28c16609957b1df6b7001dded85e250ec55b07a6
+igual ao digest GitHub. Relatórios fonte/campanha copiados byte a byte para
+`testes/resultados/copia-editada-2026-10-17/`; revisão local examinada.
+
+Quatro alvos880490/1666490/1b8a2b0/1b8d860 examinados com Ghidra direto
+12.1.4 -noanalysis em cópia do projeto core, JDK21 e script de seeds REA.
+Capstone929 instruções/2919 bytes conferidos;31 novas entradas no pedido,
+catálogo240(152REA+88diretas),3934 instruções/12315bytes nos quatro lotes.
+Raw em analysis-local/headless/no-vm-final-2026-10-17; metadados e conferência
+publicáveis. Reforçada distinção entre continuação de auxiliar e impressão
+física concluída; tipos/ownership ainda parciais. Próximos alvos:16664e0,
+1b8a7a0,1b8ae20,15c6550,872f20 e campos de busca; IDs7911/7913 não resolvidos.
+
+Empacotamento0.1.5 em andamento no run39060979871; pacote0.1.4 preservado.
+Próximo: examinar payload/sandbox, importar novo marco somente se passar,
+publicar e reinstalar/auditar sem rebuild. Critérios/pesos43,33% e0paridade
+intactos; nenhum original executado. Causa de interrupção/token:null.
+
+
+## 2026/10/17 às 16:14 (America/Sao_Paulo, UTC-03:00) — entrega0.1.5 validada
+
+Fonte`979a288d3c6407162dbbbe2b7df24991f58984f8` no run39060979871:152/152 em fonte/payload/sandbox,
+zero falhas/erros/skips; smoke5/5, launcher3/3. Bundle35588656bytes,
+SHA2564294654075a70e033c60e8173bd3f815446f2ce58f930a31c4591a4a4723667b; ZIPbf7c18bc79f63f7107a59125e5d00f7ddf36269e2bf4d34857e19dada3a002a1 confere com GitHub.
+85app/2803runtime/
+214ELF/149pacotes atribuídos.
+Relatórios selados conferidos, todos os25 métodos novos presentes em cada suíte.
+Manifests/hashes e cinco entregas anteriores preservados. Retomada/tarefas
+consolidadas, textos antigos arquivados intactos; notas anteriores preservadas.
+
+31 novos alvos/240catálogo;16 subconjuntos/nove propostas,23 módulos/18interfaces.
+Ainda há trabalho sem VM;21 critérios abertos/43,33%/0paridade preservados.
+Desktop/portais/AT-SPI/impressão física e observação original continuam pendentes.
+Publicação preparada; próximo: commit/push, confirmar remoto e reinstalar/auditar
+este mesmo pacote sem rebuild. Não declarar auditoria/publicação sem prova.

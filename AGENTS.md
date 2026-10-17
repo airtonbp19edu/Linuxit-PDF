@@ -1,38 +1,17 @@
 # Linuxit PDF — continuidade do projeto
 
-Fonte atual em desenvolvimento: 0.1.5, `docs/COPIA-EDITADA.md`. Marcador,
-nota e campo Tx em cópia nova;16 testes portáveis e quatro controles worker
-aprovados, cinco GTK ainda aguardam Linux.23 módulos/18 interfaces,16
-subconjuntos/nove propostas. Entrega publicada/auditada permanece0.1.4.
-Nenhum pacote0.1.5 aprovado ainda; indicadores de revalidação marcam fonte alterada.
+Marco atual: fonte/Flatpak 0.1.5/devel, `docs/RETOMADA.md` e
+`docs/COPIA-EDITADA.md`.152/152 em fonte/payload/sandbox, zero skips;
+smoke 5/5, launcher 3/3. Três operações próprias em cópia nova: marcador, nota e
+campo Tx.23 módulos/18 interfaces;16 subconjuntos/nove propostas. Campanha
+preservada 17/17 com Poppler resolvida. Catálogo 240 (152 REA + 88 diretas),31 entradas
+novas em quatro lotes;3.934 instruções/12315bytes Capstone. Históricos0.1.0–0.1.4
+preservados. Publicação/auditoria: consultar notas/progresso/manifesto atuais.
 
-Marco atual0.1.4: `docs/AVANCO-SEM-VM.md` e `testes/resultados/0.1.4/`.
-127/127 em fonte/payload/sandbox, seis métodos GTK do painel e sete de árvores/
-anotações; smoke5/5, launcher3/3,83 arquivos app iguais. Campanha preservada18
-17/17 com Poppler resolvida. Catálogo236(152REA+84diretas),27 entradas novas
-examinadas/3005 instruções/9396bytes. Quatro pacotes anteriores preservados.
-Checkpoints abaixo são históricos quando indicam GTK/Poppler/pacote pendentes.
-Portfólios, senha não vazia, contratos completos, desktop/portais/AT-SPI e
-impressão física continuam abertos; Foxit exige VM offline. Pesos/paridade intactos.
-
-Execução atual sem VM: `docs/AVANCO-SEM-VM.md`. Campanha preservada18
-17/17 com Poppler e fonte119/119 passaram em b8125e2 (antes da extensão).
-Lote14 estático examinado: catálogo223 (152REA+71diretas), Capstone1075
-instruções/3372bytes; originais/raw foraGit. Fonte0.1.4 em desenvolvimento:
-Kids/anotações com7 testes novos e14+14 regressões; GUI/pacote novos pendentes.
-Entrega publicada continua0.1.3. As antigas quatro pendências Poppler foram
-resolvidas para aquela fonte; repetir na nova, sem marcar paridade Foxit.
-
-Revisão atual das 21 etapas: `docs/REVISAO-ETAPAS.md` e
-`testes/resultados/revisao-etapas-2026-10-17/review.json`. Em 17/10/2026,
-0.1.3 reinstalado sem rebuild: 83 arquivos app, 2803 de dependências, 214 ELF
-e 149 arquivos de licença/créditos conferidos; sete controles e smoke 5/5.
-Suítes completas 114/114 por ambiente são da entrega anterior, não repetidas
-nesta revisão. 37 critérios done/21 abertos em14 etapas; pesos intactos.
-API main protected=false, detalhes de regras403; critério1 segue unknown.
-Os checkpoints históricos abaixo não reabrem testes GTK/pacote já validados.
-Próximo passo sem VM: quatro subconjuntos Poppler no corpus preservado18.
-
+37 critérios done/21 abertos em 14 etapas,43,33% e0/25 paridade intactos.
+**Ainda há análise/contratos/implementação sem VM**; as etapas amplas não foram
+encerradas. Próximos alvos em `docs/AVANCO-SEM-VM.md`. O restante abaixo contém
+checkpoints históricos; não reabrir pendências GTK/Poppler/pacote já resolvidas.
 
 Ponto de retomada e estado do ambiente local: `docs/RETOMADA.md`.
 Desenvolva e teste pelo código-fonte no Linux; gere Flatpak nos marcos de

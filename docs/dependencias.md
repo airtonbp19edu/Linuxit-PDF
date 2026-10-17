@@ -36,3 +36,8 @@ CXFA_RenderContext para três vtables ligadas aos corpos examinados.
 TypeDescriptors de CPDF_Parser e handlers de segurança corroboram fronteiras
 internas, com os [limites registrados](../testes/resultados/sem-vm-2026-10-17/technology-boundaries.json).
 Isso não prova disponibilidade ou ciclo de vida integral de cada subsistema.
+
+A fonte/pacote0.1.5 mantém essas dependências licenciadas para cópias com
+marcador/nota/campo Tx. A preparação0x1b8d860 e o auxiliar0x1b8a2b0 foram
+examinados estaticamente, com retenção/liberação parcial de recursos; isso
+não fecha o ciclo de vida de todo componente. [Quarto lote](AVANCO-SEM-VM.md).

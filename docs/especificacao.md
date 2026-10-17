@@ -92,7 +92,7 @@ exclusiva para preservar arquivos existentes. Tamanho declarado e real são
 distintos; o limite de 64 MiB do payload real é aplicado após descompressão.
 O [painel da etapa 16](ETAPA-16.md) está ligado no código GTK, com controlador
 portável testado. Seis métodos GTK do painel passaram na suíte da fonte Linux
-0.1.4; payload/sandbox novos ainda em validação. As entregas 0.1.2/0.1.3 têm
+0.1.4 e0.1.5, incluindo payload/sandbox. As entregas 0.1.2/0.1.3 têm
 suas evidências históricas preservadas. Portfólios e senha não vazia continuam
 não implementados. Ciclos/nós repetidos, pares inválidos, mais de 4.000 nós,
 profundidade acima de 64 e mais de 1.000 entradas causam falha explícita.
@@ -110,3 +110,12 @@ para manter título e ícones na área visível. Cinco painéis/duas larguras,
 divisor/ocultação/leitura e anexo longo foram testados no 0.1.3. Pedido760 px
 resulta924 px por outros controles; não se afirma suporte a 760 reais. Esse é
 um contrato próprio de layout, sem observação/comparação Foxit.
+
+## Alterações em cópia nova
+
+A fonte/pacote0.1.5 acrescenta marcador principal, nota Text e campo AcroForm
+Tx em arquivo novo, preservando a origem e recusando sobrescrita. Limites e
+falhas em [COPIA-EDITADA.md](COPIA-EDITADA.md).16 testes do backend, quatro do
+worker e cinco métodos GTK passaram em cada suíte completa152/152 da fonte,
+payload e sandbox. Não implementa edição arbitrária, undo, XFA/portfólio ou
+alteração de PDF criptografado/assinado. Não há observação Foxit/paridade.

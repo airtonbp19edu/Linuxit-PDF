@@ -129,3 +129,13 @@ flowchart TD
 Extração já autorizada pode concluir após trocar o documento; callbacks antigos
 não atualizam a nova janela. A leitura não executa o conteúdo incorporado.
 O limite de 64 MiB é posterior à descompressão e não constitui limite de memória.
+
+
+## Continuação estática adicional em17/10/2026
+
+0x1666490 calcula fator limitado inferiormente a1 conforme campo+0x8c e
+encaminha0x16664e0.0x1b8a2b0 prepara/continua auxiliar+0xe4 e o libera ao
+terminar; retorno1 não é confirmação de impressão física.0x1b8d860 configura
+recursos e referências compartilhadas, com tipos de chamada ainda provisórios.
+0x880490 inicializa sob demanda objeto por área cliente/estado de rolagem;
+classe e disponibilidade visual não confirmadas. [Evidências](AVANCO-SEM-VM.md).

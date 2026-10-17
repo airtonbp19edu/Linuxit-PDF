@@ -1,7 +1,7 @@
 # Cópias com marcador, nota e campo de texto — fonte 0.1.5
 
-Continuação do pedido de executar as frentes sem VM. A entrega publicada e
-auditada permanece **0.1.4**; o código descrito aqui está em desenvolvimento.
+Continuação do pedido de executar as frentes sem VM. A entrega **0.1.5/devel** passou nas suítes completas de fonte, payload e
+sandbox instalado; o projeto permanece em desenvolvimento.
 Os contratos abaixo são próprios, sem observação dinâmica do Foxit e sem
 incorporar código ou recursos do original.
 
@@ -61,7 +61,7 @@ têm regressão em PDF sintético. O conteúdo do PDF não é executado. A cópi
   worker real/Unicode/conflito, protocolo inválido, timeout e comando inválido.
 - [Cinco métodos GTK](../tests/test_copy_edit_gtk.py) preparados para executar
   os três diálogos reais com worker, cancelamentos, contexto obsoleto, conflito
-  e repetição de cliques. **Ainda sem execução Linux neste checkpoint.**
+  e repetição de cliques. **Cinco métodos passaram em Linux com tela X11 virtual.**
 
 [Resultados portáveis](../testes/resultados/copia-editada-2026-10-17/backend-portable.json)
 e [controles do worker](../testes/resultados/copia-editada-2026-10-17/worker-adapter.json).
@@ -75,5 +75,12 @@ nove propostas em 25 famílias. O subconjunto de formulários passou de proposta
 a código próprio, com revisão explícita dos dois casos planejados; todos seguem
 `not_run` como cenários completos. Critérios/pesos do roteiro permanecem iguais.
 
-Próximo passo: executar a suíte completa Linux com tela, corrigir qualquer falha
-e só depois gerar e validar o Flatpak 0.1.5.
+Suíte completa da fonte Linux: **152/152**, zero falhas/erros/skips, incluindo
+os cinco métodos GTK e smoke 5/5. Campanha preservada 17/17 repetida na fonte.
+[Revisão dos relatórios](../testes/resultados/copia-editada-2026-10-17/linux-source-review.json),
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060689958).
+A construção do [Flatpak 0.1.5](../releases/LinuxitPDF-0.1.5-x86_64.flatpak)
+aprovou **152/152 em cada ambiente fonte/payload/sandbox**, zero falhas/erros/skips,
+smoke 5/5 e launcher 3/3. Hashes e limites na
+[revisão da entrega](../testes/resultados/0.1.5/validation-review.json).
+A confirmação de publicação e auditoria independente fica nas notas datadas.

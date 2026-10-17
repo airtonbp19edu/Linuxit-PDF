@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.4 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.5 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.4-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.5-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -20,15 +20,24 @@ acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
 
-## Marco0.1.4: árvores/anotações e campanha preservada
+## Marco 0.1.5: alterações em cópia nova
+
+[Contrato e verificações](COPIA-EDITADA.md): marcador principal, nota Text e
+campo Tx, com preservação da origem e recusa de sobrescrita.152/152 em
+fonte/payload/sandbox, zero skips; cinco métodos GTK novos, smoke 5/5 e
+launcher 3/3.85 arquivos app iguais; runtime com 2.803 arquivos/214ELF/149
+pacotes atribuídos. Limites de criptografia/assinaturas/XFA/portfólios e
+integração com desktop permanecem explícitos.
+
+## Marco 0.1.4: árvores/anotações e campanha preservada
 
 [Avanço sem VM](AVANCO-SEM-VM.md):127/127 em fonte/payload/sandbox, zero
 skips; seis métodos GTK do painel e sete novos de árvores/anotações. Campanha
 17/17 com os mesmos hashes/protocolos da etapa18. Fonte/payload83 arquivos
-iguais, smoke5/5, launcher3/3; runtime2803 arquivos/214ELF/149 pacotes atribuídos.
+iguais, smoke 5/5, launcher 3/3; runtime 2.803 arquivos/214ELF/149 pacotes atribuídos.
 Capturas examinadas; portfólios, senha, desktop e original permanecem pendentes.
 
-## Marco0.1.3: painel lateral corrigido
+## Marco 0.1.3: painel lateral corrigido
 
 [Geometria antes/depois](ETAPA-16-LAYOUT.md):0/10 na fonte anterior e10/10
 na corrigida, capturas examinadas. Suíte114/114 em fonte/payload/sandbox,

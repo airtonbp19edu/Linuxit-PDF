@@ -210,3 +210,60 @@ sem nova execução integral nesta auditoria.
 no-vm-audit-artifact-12111125301/ e no-vm-audit-logs-39059125514/ em
 analysis-local. Este checkpoint fecha a validação dessa entrega; contratos
 completos, demais famílias, desktop e referência original continuam abertos.
+
+
+## Quarto lote estático — continuação dos consumidores
+
+Quatro entradas adicionais examinadas em cópia do projeto do terceiro lote,
+sem repetir a importação nem executar o original. Perfil Ghidra 12.1.4
+`-noanalysis`, REA seed script, JDK 21; Capstone 5.0.6/pefile conferiram
+**929 instruções/2.919 bytes**. Total da execução: **31 entradas adicionais**,
+catálogo **240 (152 REA + 88 exclusivas diretas)**; 3.934 instruções/12.315 bytes
+conferidos nos quatro lotes. Tipos completos e cobertura global permanecem abertos.
+
+| Entrada | Corpo | Contrato parcial examinado |
+|---|---:|---|
+| `0x1666490` | 78 bytes | Encaminha a `0x16664e0` com fator 1 até 300; acima disso usa divisão inteira do campo `+0x8c` por 300 mais 1. Não confirma unidade nem qualidade visual. |
+| `0x1b8a2b0` | 1.082 bytes | Alterna preparação e continuação por objeto auxiliar `+0xe4`; retorno 1 enquanto a chamada virtual indica continuação. Ao terminar libera o auxiliar e pode tratar região/saída intermediária. Não equivale a sucesso de impressão física. |
+| `0x1b8d860` | 1.445 bytes | Inicializa contexto, escolhe recursos por flags/modos, retém ou cria objeto compartilhado e decrementa referências anteriores atomicamente. Tipagem de 22 argumentos é provisória; não é contrato completo de API nem posse universal. |
+| `0x880490` | 314 bytes | Inicialização sob demanda do objeto `+0x3e4` usando área cliente e estado de barra de rolagem. Consulta `GetClientRect`, `GetScrollBarInfo` e `GetSystemMetrics`; encaminha dimensão e configuração a fábrica. Rótulo/classe ativa não confirmado. |
+
+[Metadados](windows-evidence/foxit-rea/headless-cross-checks-no-vm-final-2026-10-17.json)
+e [conferência independente](../testes/resultados/sem-vm-2026-10-17/static-final-machine-checks.json).
+Raw/projeto: `analysis-local/headless/no-vm-final-2026-10-17/`. Hash do original
+idêntico ao manifesto; nenhuma implementação foi transcrita do pseudocódigo.
+
+Próximos alvos específicos: `0x16664e0` (consumidor do fator), `0x1b8a7a0` e
+`0x1b8ae20` (fábrica/finalização auxiliar), `0x15c6550` e `0x872f20` (contexto
+UI). Os campos da busca e os IDs 7911/7913 continuam sem solução completa.
+
+## Fonte 0.1.5 e contratos próprios adicionais
+
+Marcador principal, nota `/Text` e campo AcroForm `/Tx` podem ser gravados em
+**cópia nova**, pelo menu Arquivo. Fonte preservada, conflito recusado, contexto
+obsoleto descartado, criptografia/assinatura/XFA/portfólio recusados. Limites
+precisos em [Cópia editada](COPIA-EDITADA.md). Não há paridade Foxit presumida.
+
+O [run 39060689958](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060689958),
+fonte `979a288d3c6407162dbbbe2b7df24991f58984f8`, aprovou **152/152 testes Linux**,
+zero falhas/erros/skips. Inclui 16 do backend, quatro do adaptador e cinco métodos
+GTK novos, usando diálogos reais/worker. Campanha preservada: 17/17 novamente.
+[Relatórios conferidos](../testes/resultados/copia-editada-2026-10-17/linux-source-review.json).
+Empacotamento 0.1.5 iniciado; a publicação anterior 0.1.4 permanece válida.
+
+
+## Entrega0.1.5 validada
+
+[Run39060979871](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060979871), fonte`979a288d3c6407162dbbbe2b7df24991f58984f8`:
+**152/152 em fonte, payload e sandbox**, zero falhas/erros/skips; cinco métodos
+GTK novos, smoke5/5 e launcher3/3. 85 arquivos app
+iguais por SHA-256; 2803 arquivos runtime,
+214 ELF e 149 pacotes atribuídos.
+Bundle`LinuxitPDF-0.1.5-x86_64.flatpak`, 35588656 bytes,
+SHA-256`4294654075a70e033c60e8173bd3f815446f2ce58f930a31c4591a4a4723667b`. Cinco entregas anteriores preservadas.
+
+[Revisão](../testes/resultados/0.1.5/validation-review.json),
+[retomada consolidada](RETOMADA.md) e
+[pendências atuais](../progresso/tarefas-pendentes.md).21 critérios amplos
+continuam abertos; há trabalho estático e de implementação sem VM. A auditoria
+de pacote não fecha faseA, todas as25 famílias nem paridade Foxit.

@@ -1103,7 +1103,7 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source0.1.5 implemented subset: append top-level bookmark; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source0.1.5 implemented subset: append top-level bookmark; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada.",
       "inputs": [
@@ -1167,6 +1167,18 @@
         {
           "path": "tests/test_pdf_changes.py",
           "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_real_dialogs_and_worker_create_bookmark_note_and_form_copies"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_reopening_same_document_during_dialog_blocks_stale_save"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_existing_destination_is_preserved_and_busy_state_is_released"
         }
       ],
       "dynamic_case_refs": [
@@ -1209,7 +1221,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source0.1.5 implemented subset: create Text note on a page; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source0.1.5 implemented subset: create Text note on a page; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes.",
       "inputs": [
@@ -1273,6 +1285,18 @@
         {
           "path": "tests/test_pdf_changes.py",
           "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_real_dialogs_and_worker_create_bookmark_note_and_form_copies"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_reopening_same_document_during_dialog_blocks_stale_save"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_existing_destination_is_preserved_and_busy_state_is_released"
         }
       ],
       "dynamic_case_refs": [
@@ -1315,7 +1339,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados.",
       "inputs": [
@@ -1374,6 +1398,26 @@
         {
           "path": "tests/test_pdf_changes.py",
           "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_real_dialogs_and_worker_create_bookmark_note_and_form_copies"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_reopening_same_document_during_dialog_blocks_stale_save"
+        },
+        {
+          "path": "tests/test_copy_edit_gtk.py",
+          "test": "test_existing_destination_is_preserved_and_busy_state_is_released"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_nested_field_inherits_read_only_and_max_length"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_form_max_length_and_value_types_are_enforced"
         }
       ],
       "dynamic_case_refs": [],
@@ -2214,5 +2258,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T01:01:38-03:00"
+  "updated_at_local": "2026-10-17T16:14:01-03:00"
 }

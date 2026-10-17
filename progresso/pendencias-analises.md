@@ -13,22 +13,22 @@ por essa exclusão; pendências e pesos permanecem preservados.
 
 ## Causas e próximos passos
 
-| Etapa | Fração já verificada | O que falta e como retomar |
+| Etapa | Fração verificada | Estado atual e próximo passo |
 |---|---:|---|
-| 01 — Diagnóstico | 80% | API da branch retornou protected=false; detalhes de proteção/regras/rulesets retornaram 403 por limitação de plano. Critério detalhado segue unknown; nenhuma configuração alterada. Não depende da VM. |
-| 03 — Tecnologia | 50% | Análise estática das fronteiras do motor PDF e dos demais subsistemas; continuar consultas dirigidas em [FOXIT-REA.md](../docs/FOXIT-REA.md). |
-| 05 — Dependências | 42,9% | Completar o ciclo de vida dos componentes no [grafo preservado](../docs/dependencias.md); análise estática ainda viável sem VM. |
-| 07 — Catálogo | 33,3% | O universo relevante não está fechado. Expandir as 223 entradas examinadas sem contar slots como funções únicas; manter cobertura global desconhecida. |
-| 08 — Descompilação | 13,0% | Busca e impressão parciais, demais famílias abertas. Seguir alvos de [impressão](../docs/REA-IMPRESSAO-CONSUMIDORES.md) e campos incompletos de [busca](../docs/REA-BUSCA-IMPRESSAO.md). Timeout de execução histórico não é esgotamento de tokens. |
-| 09 — Fluxos | 9,1% | Completar arestas, estados, tipos e algoritmos a partir dos [fluxos parciais](../docs/fluxos.md); não conectar objetos sem prova. |
-| 10 — Dinâmica | 0% | **Ambiente offline pendente**: Windows 11 Home local sem Sandbox, WSL ausente e VM ainda não disponibilizada, segundo o último diagnóstico/retorno do usuário. Validar VM ou contenção equivalente antes de executar o original; observar D01–D20. Kit pronto não é observação. |
-| 11 — Interface | 25% | **VM para observar UI01–UI10**, além de trabalho estático: seguir `0x859920`, `0x687ae0`, `0x5f5370`, `0x48f10ef` e resolver contexto dos IDs 7911/7913. Ver [ETAPA-11.md](../docs/ETAPA-11.md). |
-| 12 — Especificação | 12,5% | **VM para confirmar a referência**, além de corpus, subfunções, análises e critérios ainda incompletos. Os 50 cenários completos seguem planejados; especializar fixtures e executar primeiro os subconjuntos próprios. Ver [ETAPA-12.md](../docs/ETAPA-12.md). |
-| 15 — Lógica | 33,3% | Anexos planos, controlador e cinco métodos GTK do painel verificados também nas suítes Linux/Flatpak 0.1.3. Demais famílias, /Kids, portfólios, senha e anexos por anotação continuam pendentes. |
-| 16 — Interface | 33,3% | Recorte lateral corrigido no 0.1.3; 114/114 por suíte e dez cenários de geometria passaram. Desktop real, acessibilidade, portais e demais interações/famílias continuam pendentes. |
-| 18 — Comparativos | 10% | [Campanha preparada](../docs/ETAPA-18.md): 17 subconjuntos próprios aprovados no mesmo corpus/protocolos com Poppler/Linux; 16 controles históricos do comparador aprovados. **VM/contenção para observar o original** no mesmo corpus/opções, importar evidências e revisar divergências por família. Zero comparações reais até aqui. |
-| 19 — Incompatibilidades | 14,3% | Correções próprias de CropBox/memória, recursão GTK e recorte lateral verificadas nas suítes [Linux/Flatpak 0.1.3](../docs/ETAPA-16-LAYOUT.md). Divergências Foxit só podem ser medidas após observação na VM offline. |
-| 21 — Auditoria final | 50% | [Auditoria instalada 0.1.3 aprovada](../docs/REVISAO-ETAPAS.md); 21 critérios abertos preservados. Layout lateral corrigido no 0.1.3; retomar contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
+| 01 — Diagnóstico | 80% | Detalhes de proteção/regras recusados por API403 do plano; metadado main protected=false. Sem alteração de segurança/faturamento. |
+| 03 — Tecnologia | 50% | RTTI confirmou três classes ligadas às vtables e candidatos CPDF parser/segurança. Restantes fronteiras/subsistemas ainda abertos. |
+| 05 — Dependências | 42,9% | Configuração compartilhada/referências examinadas; seguir1b8a7a0/1b8ae20 para fábrica/finalização auxiliar. Ciclos de vida restantes não fechados. |
+| 07 — Catálogo | 33,3% |240 entradas (152 REA+88 diretas);31 novas neste pedido. Universo relevante/tipos ainda abertos, cobertura global indeterminada. |
+| 08 — Descompilação | 13,0% | Quatro lotes novos examinados. Seguir16664e0, demais render/saída e campos3/5/6/7/12/16/20 da busca. Não repetir lotes concluídos. |
+| 09 — Fluxos | 9,1% | Estados/continuação/recursos refinados, sem fechamento universal. Completar arestas, tipos, algoritmos e ownership com provas. |
+| 10 — Dinâmica | 0% | VM/contenção offline pendente; original não observado. Kit/cenáriosD01–D20 preparados permanecem not_run. |
+| 11 — Interface | 25% | Alvos antigos e880490 examinados; seguir15c6550/872f20, identificar classe/IDs7911/7913. ObservarUI01–UI10 no guest. |
+| 12 — Especificação | 12,5% |25 famílias/16 subconjuntos/nove propostas.50 planos completos not_run. Ampliar contratos/fixtures próprios sem VM; confirmar referência na contenção. |
+| 15 — Lógica | 33,3% | Anexos Kids/anotações e cópias com marcador/nota/Tx em 0.1.5;152/152 por ambiente. Expandir demais operações/famílias, portfólios/senha conforme contrato. |
+| 16 — Interface | 33,3% | Seis métodos GTK de anexos, cinco novos de cópia e layout aprovados no X11 virtual. Desktop/portal/AT-SPI/impressora e demais interações abertos. |
+| 18 — Comparativos | 10% |17/17 subconjuntos próprios no corpus/protocolos preservados, repetidos na0.1.5; Poppler resolvido. Zero comparações originais; requer VM offline. |
+| 19 — Incompatibilidades | 14,3% | Regressões próprias de CropBox/memória/GTK/layout aprovadas na0.1.5. Divergências Foxit só após observar original. |
+| 21 — Auditoria final | 50% | Entrega 0.1.5 validada; confirmar publicação/auditoria nas notas.21 critérios amplos abertos, incluindo trabalho ainda viável sem VM. |
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.
@@ -73,5 +73,5 @@ retomar no primeiro alvo pendente e preservar os anteriores. Uma nova IA não
 precisa refazer a análise inicial nem supor resultados ausentes.
 
 Conferir coerência do registro com `python scripts/check_architecture.py`.
-Progresso geral **43,33%**, paridade **0/25**, catálogo **223** e pesos/revisão
+Progresso geral **43,33%**, paridade **0/25**, catálogo **240** e pesos/revisão
 permanecem preservados nesta revisão.

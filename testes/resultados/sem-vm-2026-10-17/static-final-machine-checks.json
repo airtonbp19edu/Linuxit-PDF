@@ -1,0 +1,62 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "entries": [
+    {
+      "entry": "0x1666490",
+      "instructions": 27,
+      "body_bytes": 78,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "fa245f3a48700a5288486bf3ec3be04618f3d97adef14c2f2b8b6615886f4679",
+      "pseudocode_sha256": "4bb6a10e789b7773ba81466383024267bbc5bd9d753588967a4e327dd98531f6"
+    },
+    {
+      "entry": "0x1b8a2b0",
+      "instructions": 367,
+      "body_bytes": 1082,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4cbfb0bdeffcc7865b5ac6bb086186833be28af71ba985aac31435c622e869c4",
+      "pseudocode_sha256": "8f46e8286661732b127e12c5780768d0d757e58c64345e209faf57c7669946cc"
+    },
+    {
+      "entry": "0x1b8d860",
+      "instructions": 439,
+      "body_bytes": 1445,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "2ad453f1a5d60e73f40a8c48f5d8756751bc91f3c05c5c7bf6ec54e129159ddc",
+      "pseudocode_sha256": "54fd01dbe45202c90e64c654b8be216968a1837afde7fa2f9d2914d8ebba4a60"
+    },
+    {
+      "entry": "0x880490",
+      "instructions": 96,
+      "body_bytes": 314,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "8409e498e271f64c4b78f5ae682e0a78a143390fe964bfa5922ab03131778b09",
+      "pseudocode_sha256": "918bf4411cfc693301ece0da2b630e41500f6e18898ba62b074e5da603438c97"
+    }
+  ],
+  "imports": [
+    {
+      "iat": "0x531d00c",
+      "dll": "USER32.dll",
+      "name": "GetScrollBarInfo"
+    },
+    {
+      "iat": "0x531d23c",
+      "dll": "USER32.dll",
+      "name": "GetSystemMetrics"
+    },
+    {
+      "iat": "0x531d254",
+      "dll": "USER32.dll",
+      "name": "GetClientRect"
+    }
+  ],
+  "original_executed": false,
+  "limitations": [
+    "Instruction address agreement does not establish complete semantics or types.",
+    "0x1b8d860 has a provisional22-argument decompiler signature; no ready-to-copy API.",
+    "UI client geometry and deferred processing are static observations, not Foxit user behavior."
+  ]
+}

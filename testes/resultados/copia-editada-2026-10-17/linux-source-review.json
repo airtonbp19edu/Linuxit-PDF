@@ -1,0 +1,16 @@
+{
+  "source_commit": "979a288d3c6407162dbbbe2b7df24991f58984f8",
+  "ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060689958",
+  "artifact_id": 12111217423,
+  "zip_sha256": "1468fe6840a5f028e82b5fcc28c16609957b1df6b7001dded85e250ec55b07a6",
+  "tests": 152,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_gtk_methods": 5,
+  "own_checks_not_foxit_parity": true,
+  "reports_sha256": {
+    "linux-source.json": "3f700beb9bc2308a9130505aa11dd00430629374476a2b676251b6c996ba4fe2",
+    "preserved-campaign.json": "363cf4f31216172dd7d9d00ab1fcf2f58645056b2b93c5e7bfe7c473f0bbf670"
+  }
+}
