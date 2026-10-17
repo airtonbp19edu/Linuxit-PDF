@@ -46,7 +46,7 @@ em livreto/N-up/mosaico.
 O roteiro registrado está em **43,33%**. A cobertura global da engenharia
 reversa permanece indeterminada e a paridade diferencial comprovada está em
 **0/25 famílias identificadas**. A recuperação deste checkout não altera
-esses indicadores. O catálogo contém 200 entradas examinadas: 152 REA e 48
+esses indicadores. O catálogo contém 209 entradas examinadas: 152 REA e 57
 adicionais diretas.
 
 ## Onde trabalhar
@@ -112,7 +112,15 @@ funcional com o Foxit continua pendente.
 
 ## Próxima sequência de trabalho
 
-1. Prioridade atual solicitada: **etapa 10**. A preparação e os 20 cenários estão
+O usuário autorizou avançar a etapa 11 estaticamente enquanto prepara a VM.
+[ETAPA-11.md](ETAPA-11.md) registra nove entradas novas, condições de atualização
+e uma ambiguidade de IDs que precisa de contexto de classe. Os próximos alvos
+da interface são `0x859920`, `0x687ae0`, `0x5f5370` e `0x48f10ef`. Projeto e
+resultados completos ficam em `analysis-local/headless/windows-ui-01`. Os dez
+cenários de interface continuam sem observação; o preparador os inclui em
+campanhas novas. A fração verificada da etapa 11 permanece 25%.
+
+1. Pendência de ambiente: **etapa 10**. A preparação e os 20 cenários estão
    em `docs/ETAPA-10.md`; `scripts/prepare_foxit_dynamic.py` gera o corpus e o kit
    offline. O Windows 11 Home local não oferece Sandbox; WSL não está instalado
    e o usuário não tem VM. Primeiro disponibilizar um guest Windows offline

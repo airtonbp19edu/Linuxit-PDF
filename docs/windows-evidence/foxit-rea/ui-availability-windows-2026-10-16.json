@@ -1,0 +1,419 @@
+{
+  "schema": "linuxit-ui-availability-static-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "decompilation_metadata": "headless-cross-checks-ui-2026-10-16.json",
+  "selected_contextual_routes": [
+    {
+      "source": "menu",
+      "resource_id": 88,
+      "language": 1033,
+      "control_id": 57601,
+      "label": "Ope&n",
+      "handler_va": "0x803920",
+      "map_file_offset": "0x61500f8",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        57601,
+        57601
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x803920.json",
+      "decompilation_sha256": "2d33b6be500f0f95078a1767661bec7dee31a87edd1c3e9347499ecd25deac7b",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "menu",
+      "resource_id": 88,
+      "language": 1033,
+      "control_id": 57607,
+      "label": "&Print",
+      "handler_va": "0x861470",
+      "map_file_offset": "0x6895350",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        57607,
+        57607
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x861470.json",
+      "decompilation_sha256": "280ebac62d23e6cd420918183be3f013273880450f2a7516b523489bdda129d0",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "menu",
+      "resource_id": 88,
+      "language": 1033,
+      "control_id": 1289,
+      "label": "&Next Page",
+      "handler_va": "0x85d1a0",
+      "map_file_offset": "0x6894ab0",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        1289,
+        1289
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x85d1a0.json",
+      "decompilation_sha256": "df675d51798491c5ea68bc7d856874df50727ffab18dfd6784adbf108b34e6a7",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "menu",
+      "resource_id": 88,
+      "language": 1033,
+      "control_id": 1360,
+      "label": "Zoom &In",
+      "handler_va": "0x85ddd0",
+      "map_file_offset": "0x68953e0",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        1360,
+        1360
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x85ddd0.json",
+      "decompilation_sha256": "19b2f619195e46f3ba83911490ae175ee00a468507df95036158032c5866d5bf",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "menu",
+      "resource_id": 88,
+      "language": 1033,
+      "control_id": 1362,
+      "label": "Zoom &Out",
+      "handler_va": "0x85de30",
+      "map_file_offset": "0x6894c48",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        1362,
+        1362
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x85de30.json",
+      "decompilation_sha256": "138aa3337b0332e066cf0bcfa662dabed1f7206290de6dd9752c1364b470bc1d",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "menu",
+      "resource_id": 645,
+      "language": 1033,
+      "control_id": 1275,
+      "label": "Print All &Tabs",
+      "handler_va": "0x80eab0",
+      "map_file_offset": "0x6150338",
+      "message": "0x111",
+      "notification": "0xffffffff",
+      "id_range": [
+        1275,
+        1275
+      ],
+      "signature_enum": 66,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x80eab0.json",
+      "decompilation_sha256": "10d9d6e449a01fe2bacfc5dabcaa7d09b4d0a34870fa2313b15e50c561878baf",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "dialog",
+      "resource_id": 6359,
+      "language": 1033,
+      "control_id": 7913,
+      "label": "Include Page Text",
+      "handler_va": "0x1788db0",
+      "map_file_offset": "0x4fdfd30",
+      "message": "0x111",
+      "notification": "0x0",
+      "id_range": [
+        7913,
+        7913
+      ],
+      "signature_enum": 58,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x1788db0.json",
+      "decompilation_sha256": "d7d4c53a521b15455a0ee8dd0eaa7594320db306be457fe276eaf9a8e0dbfbed",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "dialog",
+      "resource_id": 6359,
+      "language": 1033,
+      "control_id": 7911,
+      "label": "Include Bookmarks",
+      "handler_va": "0x1788db0",
+      "map_file_offset": "0x4fdfd18",
+      "message": "0x111",
+      "notification": "0x0",
+      "id_range": [
+        7911,
+        7911
+      ],
+      "signature_enum": 58,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x1788db0.json",
+      "decompilation_sha256": "d7d4c53a521b15455a0ee8dd0eaa7594320db306be457fe276eaf9a8e0dbfbed",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "dialog",
+      "resource_id": 6359,
+      "language": 1033,
+      "control_id": 8036,
+      "label": "Proximity",
+      "handler_va": "0x1788e10",
+      "map_file_offset": "0x4fdfd90",
+      "message": "0x111",
+      "notification": "0x0",
+      "id_range": [
+        8036,
+        8036
+      ],
+      "signature_enum": 58,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x1788e10.json",
+      "decompilation_sha256": "3760d56016c34c0ad1bc00416249df37e548dc19486a7c3a2e9b34de5b18bc8a",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    },
+    {
+      "source": "dialog",
+      "resource_id": 6359,
+      "language": 1033,
+      "control_id": 7921,
+      "label": "Highlight All Text",
+      "handler_va": "0x1788d70",
+      "map_file_offset": "0x4fdfd78",
+      "message": "0x111",
+      "notification": "0x0",
+      "id_range": [
+        7921,
+        7921
+      ],
+      "signature_enum": 58,
+      "table_bytes_verified": true,
+      "decompilation_result": "headless/windows-ui-01/functions/0x1788d70.json",
+      "decompilation_sha256": "6d1ca2a0def532ee226ebc3a833c810ce2dc8bf954571f528edf7ca40aa71259",
+      "registration_class_verified": false,
+      "runtime_availability_observed": false,
+      "status": "structural route and function body examined; runtime/class join pending"
+    }
+  ],
+  "distinct_handlers": 9,
+  "retained_fx_declarations": [
+    {
+      "path": "auiresources/Bookmark/ui/AddPageFromBM.ui.fx",
+      "source_sha256": "e7253a0ad3100e97ff44b33109bcdf97bdb9e2ccef6c27acbaee62fa80f6d235",
+      "widgets_in_existing_metadata": 25,
+      "explicit_states": [
+        {
+          "name": "checkBoxBaseLevel",
+          "class": "QCheckBox",
+          "declarations": {
+            "enabled": "false",
+            "checkable": "true",
+            "checked": "true"
+          }
+        },
+        {
+          "name": "checkBoxSubLevel3",
+          "class": "QCheckBox",
+          "declarations": {
+            "checked": "false"
+          }
+        }
+      ],
+      "declared_connections": [],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/AddStructureElements.ui.fx",
+      "source_sha256": "015d2e304380b1c18fe9bca48a19ca071d89e43a69fd794fecb0a052cffabb4d",
+      "widgets_in_existing_metadata": 6,
+      "explicit_states": [],
+      "declared_connections": [],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/AppearancePropertyPage.ui.fx",
+      "source_sha256": "6999729c5b93bffa9895c36371d3463cdf8d96d5fbb18498692f1705f9b6df06",
+      "widgets_in_existing_metadata": 5,
+      "explicit_states": [],
+      "declared_connections": [],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/CreateBookmarkDlg.ui.fx",
+      "source_sha256": "2d6443c60e393a6db830757d356faf4935b6bc3f7db1aa446415c2657e1e320e",
+      "widgets_in_existing_metadata": 23,
+      "explicit_states": [
+        {
+          "name": "IDC_SUBWINDOW_PAGESELECT",
+          "class": "QLabel",
+          "declarations": {
+            "focusPolicy": "Qt::StrongFocus"
+          }
+        }
+      ],
+      "declared_connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "CreateBookmarkDlg",
+          "slot": "accept()",
+          "endpoints_present_in_metadata": true
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "CreateBookmarkDlg",
+          "slot": "reject()",
+          "endpoints_present_in_metadata": true
+        }
+      ],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/EditStopWordsdlg.ui.fx",
+      "source_sha256": "898603cf0b372bc0d2c89fc077af710a0d20f83bea35cc6fe4e17af23272617c",
+      "widgets_in_existing_metadata": 6,
+      "explicit_states": [],
+      "declared_connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "EditStopWordDlg",
+          "slot": "accept()",
+          "endpoints_present_in_metadata": true
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "EditStopWordDlg",
+          "slot": "reject()",
+          "endpoints_present_in_metadata": true
+        }
+      ],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/Fontnamedlg.ui.fx",
+      "source_sha256": "d8743740e7e84b85cda3582256ebc007ef6f477d222d64ecce2657a878e9f317",
+      "widgets_in_existing_metadata": 4,
+      "explicit_states": [],
+      "declared_connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "FontNameDlg",
+          "slot": "accept()",
+          "endpoints_present_in_metadata": true
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "FontNameDlg",
+          "slot": "reject()",
+          "endpoints_present_in_metadata": true
+        }
+      ],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/LevelSettingdlg.ui.fx",
+      "source_sha256": "a3d396f96c2dcddc00ae0f4d16895abca473b4b766c60972e7a9cb9c43878113",
+      "widgets_in_existing_metadata": 48,
+      "explicit_states": [],
+      "declared_connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "LevelSettingDlg",
+          "slot": "accept()",
+          "endpoints_present_in_metadata": true
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "LevelSettingDlg",
+          "slot": "reject()",
+          "endpoints_present_in_metadata": true
+        }
+      ],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/Bookmark/ui/Selectleveldlg.ui.fx",
+      "source_sha256": "9873fb1c00a50379c294fca400e423e01ca7fa4e945ae4af2ce5af0d3568bbbc",
+      "widgets_in_existing_metadata": 6,
+      "explicit_states": [],
+      "declared_connections": [
+        {
+          "sender": "buttonBox",
+          "signal": "accepted()",
+          "receiver": "SelectlevelDlg",
+          "slot": "accept()",
+          "endpoints_present_in_metadata": true
+        },
+        {
+          "sender": "buttonBox",
+          "signal": "rejected()",
+          "receiver": "SelectlevelDlg",
+          "slot": "reject()",
+          "endpoints_present_in_metadata": true
+        }
+      ],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/DocProcess/ui/PrintJobPanelDlg.ui.fx",
+      "source_sha256": "c02fa44863f733b18acf1eb60a61fe110933783515cb52e684d56afb953125dd",
+      "widgets_in_existing_metadata": 3,
+      "explicit_states": [],
+      "declared_connections": [],
+      "runtime_instantiation_observed": false
+    },
+    {
+      "path": "auiresources/FindTool/ui/searchreplace.ui.fx",
+      "source_sha256": "4437a6861ae237c5fa73758054e03d4b67060886bdb11e7aecc7e313f1d88f18",
+      "widgets_in_existing_metadata": 9,
+      "explicit_states": [],
+      "declared_connections": [],
+      "runtime_instantiation_observed": false
+    }
+  ],
+  "original_executed": false,
+  "dynamic_interactions_observed": 0,
+  "limitations": [
+    "Identical control IDs in different dialogs/classes do not prove identical behavior.",
+    "Message-map bytes and examined function bodies do not identify the active runtime class.",
+    "Template enabled/checked/focus declarations may be changed by code or feature availability.",
+    "Connections and control existence do not prove that a dialog is reachable in Reader.",
+    "This static inventory does not complete the stage-11 runtime interaction criterion."
+  ]
+}

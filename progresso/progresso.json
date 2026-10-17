@@ -357,7 +357,12 @@
           "criterion": "Disponibilidade e comportamento de todas as interações observados",
           "weight": 6,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/ETAPA-11.md",
+            "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+            "testes/cenarios-interface.json"
+          ],
+          "note": "Nine UI routines and ten contextual table entries examined statically. No runtime interactions observed; class ownership and shared IDs 7911/7913 remain unresolved. Criterion stays pending; weights unchanged."
         }
       ],
       "verified_fraction": 0.25,

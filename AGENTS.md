@@ -38,7 +38,7 @@ Empacotamento: `scripts/build_flatpak.py`; não misture bibliotecas nativas com
 A instalação em desktop e o cenário do sandbox estão em `docs/instalacao.md`.
 
 Marcos de busca/impressão: `docs/REA-BUSCA-IMPRESSAO.md` e metadados vinculados.
-Catálogo atual: 200 entradas (152 REA + 48 adicionais diretas), cobertura global
+Catálogo atual: 209 entradas (152 REA + 57 adicionais diretas), cobertura global
 indeterminada. Wine/QEMU passa no controle x86; o Foxit carrega mas termina com
 CInvalidArgException antes da UI. Não confunda isso com paridade funcional.
 Em Linux, use `/usr/bin/python3` para GTK/Cairo (Python 3.13); o Python do PATH pode ser
@@ -57,7 +57,13 @@ Projeto e resultados completos em `analysis-local/headless/windows-print-02`.
 Próximos alvos e ressalvas de tipagem constam no relatório. O gerador de
 metadados aceita `--round` para preservar a proveniência de cada rodada.
 
-Prioridade atual do usuário: etapa 10, conforme `docs/ETAPA-10.md`. O preparador
+Trabalho atual autorizado: avançar a parte estática da etapa 11 enquanto o
+usuário prepara a VM da etapa 10. Ver `docs/ETAPA-11.md`: nove entradas de
+interface examinadas, dez associações contextuais conferidas e ambiguidade
+dos IDs 7911/7913 preservada. Não promover tabelas/estados de templates a
+comportamento observado. Próximos alvos e lacunas constam no relatório.
+
+A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o
 original. Windows 11 Home local sem Sandbox, WSL ausente, usuário sem VM.
 Preparação e testes do kit não contam como observação dinâmica; casos `not_run`.

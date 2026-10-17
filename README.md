@@ -27,6 +27,7 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Investigação REA do Foxit](docs/FOXIT-REA.md) e [continuação de busca/impressão](docs/REA-BUSCA-IMPRESSAO.md)
 - [Continuação da impressão no Windows e ferramentas verificadas](docs/REA-IMPRESSAO-WINDOWS.md)
 - [Consumidores e geometria de impressão: seis entradas adicionais](docs/REA-IMPRESSAO-CONSUMIDORES.md)
+- [Etapa 11: condições estáticas da interface e validação pendente](docs/ETAPA-11.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
@@ -50,7 +51,7 @@ PYTHONPATH=/workspace/.print-view-runtime/gi-cairo/usr/lib/python3/dist-packages
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-tests-novo.json
 ```
 
-A análise local identificou 3.276 arquivos, 141 módulos PE, 200 entradas de
+A análise local identificou 3.276 arquivos, 141 módulos PE, 209 entradas de
 funções examinadas e 9.973 registros internos de chamadas. O universo completo
 de funções/funcionalidades ainda não está fechado; registros não são funções
 únicas nem paridade verificada. Binários Foxit, templates completos, bancos

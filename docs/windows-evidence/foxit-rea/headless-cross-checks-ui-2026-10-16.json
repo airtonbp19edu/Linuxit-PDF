@@ -1,0 +1,121 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/windows-ui-01/functions/0x1788d70.json",
+      "result_sha256": "6d1ca2a0def532ee226ebc3a833c810ce2dc8bf954571f528edf7ca40aa71259",
+      "entry_va": "0x1788d70",
+      "analyst_name": "analyst_entry_1788d70",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 32,
+      "body_ranges": "[[01788d70, 01788d8f]]",
+      "pseudocode_sha256": "6f52a89c4c49c92dfd0f3ace3a668336b1203a611e8bbc87a65e67e287a45d1c",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x1788db0.json",
+      "result_sha256": "d7d4c53a521b15455a0ee8dd0eaa7594320db306be457fe276eaf9a8e0dbfbed",
+      "entry_va": "0x1788db0",
+      "analyst_name": "analyst_entry_1788db0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 32,
+      "body_ranges": "[[01788db0, 01788dcf]]",
+      "pseudocode_sha256": "16ce23e037cb50540b98bc56f9334b3c4dded71c66028a8dcfbf7bc891057f32",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x1788e10.json",
+      "result_sha256": "3760d56016c34c0ad1bc00416249df37e548dc19486a7c3a2e9b34de5b18bc8a",
+      "entry_va": "0x1788e10",
+      "analyst_name": "analyst_entry_1788e10",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 32,
+      "body_ranges": "[[01788e10, 01788e2f]]",
+      "pseudocode_sha256": "19e7ffab39d5a2534dab06e5ec89e290ad5f4f1bb91536eb0a6a941f33a68c71",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x803920.json",
+      "result_sha256": "2d33b6be500f0f95078a1767661bec7dee31a87edd1c3e9347499ecd25deac7b",
+      "entry_va": "0x803920",
+      "analyst_name": "analyst_entry_803920",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 39,
+      "body_ranges": "[[00803920, 00803946]]",
+      "pseudocode_sha256": "90ab6ea162a9a18e53ef5a8a031c0005e9fe4047a1e8d85fbf77f29590da4c6c",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x80eab0.json",
+      "result_sha256": "10d9d6e449a01fe2bacfc5dabcaa7d09b4d0a34870fa2313b15e50c561878baf",
+      "entry_va": "0x80eab0",
+      "analyst_name": "analyst_entry_80eab0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 121,
+      "body_ranges": "[[0080eab0, 0080eb28]]",
+      "pseudocode_sha256": "f3a4427deb82fd84e1d81990ddb08c8e1749a356945032a03bb764f95e6798e0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x85d1a0.json",
+      "result_sha256": "df675d51798491c5ea68bc7d856874df50727ffab18dfd6784adbf108b34e6a7",
+      "entry_va": "0x85d1a0",
+      "analyst_name": "analyst_entry_85d1a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 93,
+      "body_ranges": "[[0085d1a0, 0085d1fc]]",
+      "pseudocode_sha256": "5549f2518e217db43fcb66c9c85779477ca8a48b66e30b9bff700fdda76b569f",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x85ddd0.json",
+      "result_sha256": "19b2f619195e46f3ba83911490ae175ee00a468507df95036158032c5866d5bf",
+      "entry_va": "0x85ddd0",
+      "analyst_name": "analyst_entry_85ddd0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 71,
+      "body_ranges": "[[0085ddd0, 0085de16]]",
+      "pseudocode_sha256": "32cdfa82bf5f2d2d48e388d4f023350f3993569c609ac16ad2ca21bde576f289",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x85de30.json",
+      "result_sha256": "138aa3337b0332e066cf0bcfa662dabed1f7206290de6dd9752c1364b470bc1d",
+      "entry_va": "0x85de30",
+      "analyst_name": "analyst_entry_85de30",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 71,
+      "body_ranges": "[[0085de30, 0085de76]]",
+      "pseudocode_sha256": "5cb3eb34e9b3d3063694136ab9441e21b00072647b9f8f3e032716e9010ed40e",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/windows-ui-01/functions/0x861470.json",
+      "result_sha256": "280ebac62d23e6cd420918183be3f013273880450f2a7516b523489bdda129d0",
+      "entry_va": "0x861470",
+      "analyst_name": "analyst_entry_861470",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 150,
+      "body_ranges": "[[00861470, 00861505]]",
+      "pseudocode_sha256": "f13bd646b7813367bddd79e3eb57f10861c61bd65386860ef0977ddc17a8b574",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 9,
+  "distinct_entries": 9,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

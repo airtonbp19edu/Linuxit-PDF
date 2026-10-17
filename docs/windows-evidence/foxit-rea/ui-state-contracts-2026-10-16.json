@@ -1,0 +1,259 @@
+{
+  "schema": "linuxit-ui-static-contracts-v1",
+  "reviewed_at_local": "2026-10-16T23:54:59-03:00",
+  "timezone": "America/Sao_Paulo",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "metadata": "headless-cross-checks-ui-2026-10-16.json",
+  "contextual_routes": "ui-availability-windows-2026-10-16.json",
+  "observations": [
+    {
+      "entry": "0x803920",
+      "label_context": "Open candidate, resource 88 / ID 57601",
+      "observed": "Calls IsWindowVisible on this+0x20 and forwards normalized 0/1 through virtual slot +0 of the update object. Tail-call arguments are visible in assembly although omitted in decompiler output.",
+      "sites": [
+        "0x803926",
+        "0x803937",
+        "0x80393b",
+        "0x80393d",
+        "0x803945"
+      ],
+      "unknown": "Active registration class, window identity and effective global Open availability."
+    },
+    {
+      "entry": "0x861470",
+      "label_context": "Print candidate, resource 88 / ID 57607",
+      "observed": "Forwards false through update slot +0 when 0x687ae0 is nonzero, when nested object type callback +0x304 returns 5 and capability +0x110(0x20) is false, or when final 0x5f5370 returns zero. The remaining path sends no explicit true.",
+      "sites": [
+        "0x86147c",
+        "0x861483",
+        "0x86148b",
+        "0x8614ae",
+        "0x8614b4",
+        "0x8614bd",
+        "0x8614d2",
+        "0x8614e8",
+        "0x8614f1",
+        "0x8614f8"
+      ],
+      "unknown": "Meaning of global predicate, type code and capability mask; surrounding update chain and class context."
+    },
+    {
+      "entry": "0x85d1a0",
+      "label_context": "Next Page candidate, resource 88 / ID 1289",
+      "observed": "Forwards true when two global-object callbacks +0x284 and +0x564 succeed; otherwise forwards result of 0x859920 with command ID 0x509 (1289).",
+      "sites": [
+        "0x85d1ae",
+        "0x85d1c6",
+        "0x85d1d2",
+        "0x85d1e3",
+        "0x85d1ec",
+        "0x85d1f4"
+      ],
+      "unknown": "Underlying page-range logic and meaning of both global callbacks."
+    },
+    {
+      "entry": "0x85ddd0",
+      "label_context": "Zoom In candidate, resource 88 / ID 1360",
+      "observed": "When a view is returned by 0x8595e0, obtains zoom through 0x880450 and virtual +0x58; sends false at finite zoom >=64.0. Other paths make no update call in this body.",
+      "sites": [
+        "0x85ddd6",
+        "0x85dded",
+        "0x85ddf9",
+        "0x85de0b",
+        "0x85de0f"
+      ],
+      "unknown": "Who enables this control on other paths; exact view class and all non-finite/plugin cases."
+    },
+    {
+      "entry": "0x85de30",
+      "label_context": "Zoom Out candidate, resource 88 / ID 1362",
+      "observed": "Uses the same view/zoom callbacks and sends false at finite zoom <=0.01. Other paths make no update call in this body.",
+      "sites": [
+        "0x85de36",
+        "0x85de4d",
+        "0x85de4f",
+        "0x85de5c",
+        "0x85de6b",
+        "0x85de6f"
+      ],
+      "unknown": "Surrounding enable/default policy and actual UI range in each context."
+    },
+    {
+      "entry": "0x80eab0",
+      "label_context": "Print All Tabs candidate, resource 645 / ID 1275",
+      "observed": "Enumerates objects through virtual count +0x1cc/item +0x1d0, counts nonnull objects accepted by 0x48f10ef with descriptor 0x6552ed4, and sends true only when the qualifying count is greater than one.",
+      "sites": [
+        "0x80eacb",
+        "0x80eae5",
+        "0x80eaf6",
+        "0x80eaff",
+        "0x80eb09",
+        "0x80eb17",
+        "0x80eb21"
+      ],
+      "unknown": "Descriptor/type meaning; qualifying count must not be equated to every visible tab."
+    },
+    {
+      "entry": "0x1788db0",
+      "label_context": "Shared structural candidate for IDs 7911 and 7913 in resource 6359",
+      "observed": "Reads BM_GETCHECK (0xf0) from HWND at this+0x780 and writes this+0x1d58. It does not write page-text field +0x1d60 in this body.",
+      "sites": [
+        "0x1788db7",
+        "0x1788dbc",
+        "0x1788dc2",
+        "0x1788dc8"
+      ],
+      "unknown": "Why the same structural handler is associated with both labels; do not claim that it implements both independent toggles. Previous DDX bindings remain separate evidence."
+    },
+    {
+      "entry": "0x1788e10",
+      "label_context": "Proximity candidate, resource 6359 / ID 8036",
+      "observed": "Reads BM_GETCHECK from HWND at this+0xa00 and stores this+0x1d68; no search-engine call is present in this 32-byte body.",
+      "sites": [
+        "0x1788e17",
+        "0x1788e1c",
+        "0x1788e22",
+        "0x1788e28"
+      ],
+      "unknown": "Availability conditions, search semantics and downstream consumers."
+    },
+    {
+      "entry": "0x1788d70",
+      "label_context": "Highlight All Text candidate, resource 6359 / ID 7921",
+      "observed": "Reads BM_GETCHECK from HWND at this+0xb00 and stores this+0x1d70; no explicit repaint/search call is present in this 32-byte body.",
+      "sites": [
+        "0x1788d77",
+        "0x1788d7c",
+        "0x1788d82",
+        "0x1788d88"
+      ],
+      "unknown": "When other code applies the stored preference; navigation and rendering effects require observation."
+    }
+  ],
+  "machine_cross_checks": {
+    "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "pefile_version": "2024.8.26",
+    "capstone_version": "5.0.6",
+    "entries": [
+      {
+        "entry": "0x1788d70",
+        "instructions": 10,
+        "body_bytes": 32,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x1788db0",
+        "instructions": 10,
+        "body_bytes": 32,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x1788e10",
+        "instructions": 10,
+        "body_bytes": 32,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x803920",
+        "instructions": 15,
+        "body_bytes": 39,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x80eab0",
+        "instructions": 54,
+        "body_bytes": 121,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x85d1a0",
+        "instructions": 37,
+        "body_bytes": 93,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x85ddd0",
+        "instructions": 26,
+        "body_bytes": 71,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x85de30",
+        "instructions": 26,
+        "body_bytes": 71,
+        "all_instruction_addresses_match": true
+      },
+      {
+        "entry": "0x861470",
+        "instructions": 54,
+        "body_bytes": 150,
+        "all_instruction_addresses_match": true
+      }
+    ],
+    "imports": [
+      {
+        "iat": "0x531d258",
+        "dll": "USER32.dll",
+        "name": "IsWindowVisible"
+      },
+      {
+        "iat": "0x531d25c",
+        "dll": "USER32.dll",
+        "name": "SendMessageW"
+      }
+    ],
+    "zoom_comparison_constants": [
+      {
+        "address": "0x6573808",
+        "storage": "float64",
+        "value": 64.0
+      },
+      {
+        "address": "0x65735a0",
+        "storage": "float64",
+        "value": 0.01
+      }
+    ],
+    "original_unchanged": true,
+    "original_executed": false,
+    "limitations": [
+      "Instruction-address agreement does not prove class ownership, full signatures, availability or runtime behavior."
+    ]
+  },
+  "static_update_slot_interpretation": "Update slot +0 and notification 0xffffffff are consistent with MFC-style command enable updates; active registration class/runtime not established.",
+  "ambiguity": {
+    "resource": 6359,
+    "ids": [
+      7911,
+      7913
+    ],
+    "handler": "0x1788db0",
+    "observed_write": "0x1d58",
+    "page_text_ddx_field": "0x1d60",
+    "resolved": false
+  },
+  "template_summary": {
+    "files": 10,
+    "widgets_in_retained_metadata": 135,
+    "explicit_state_records": 3,
+    "declared_connections": 10
+  },
+  "next_entries": [
+    "0x859920",
+    "0x687ae0",
+    "0x5f5370",
+    "0x48f10ef"
+  ],
+  "original_executed": false,
+  "stage_11_complete": false,
+  "dynamic_interactions_observed": 0,
+  "differential_equivalence_verified": false,
+  "limitations": [
+    "Identical control IDs in different dialogs/classes do not prove identical behavior.",
+    "Message-map bytes and examined function bodies do not identify the active runtime class.",
+    "Template enabled/checked/focus declarations may be changed by code or feature availability.",
+    "Connections and control existence do not prove that a dialog is reachable in Reader.",
+    "This static inventory does not complete the stage-11 runtime interaction criterion."
+  ]
+}

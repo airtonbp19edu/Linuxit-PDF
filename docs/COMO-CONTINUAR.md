@@ -2,7 +2,10 @@
 
 Ponto de retomada salvo em **16/10/2026**, branch `main` do
 [Linuxit-PDF](https://github.com/airtonbp19edu/Linuxit-PDF).
-O próximo trabalho solicitado é **executar a etapa 10 — análise dinâmica**.
+O usuário está preparando o ambiente da **etapa 10 — análise dinâmica**.
+Enquanto isso, autorizou avançar a parte estática da interface na
+[etapa 11](ETAPA-11.md). As notas datadas registram os resultados posteriores
+ao checkpoint inicial deste guia.
 
 ## O que já está salvo
 

@@ -2,6 +2,12 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
+Trabalho paralelo autorizado: etapa 11 estática, conforme [relatório](../docs/ETAPA-11.md).
+Nove entradas examinadas; catálogo 209. Seguir `0x859920`, `0x687ae0`, `0x5f5370`
+e `0x48f10ef`; esclarecer contexto dos IDs 7911/7913. Validar UI01–UI10 na VM.
+Os critérios da etapa 11 continuam 25% verificados; condições estáticas não
+substituem a observação de disponibilidade/comportamento.
+
 1. Ler `projeto.json`, `progresso.json`, matriz de paridade e histórico. Conferir Git local/remoto; não reiniciar a análise geral.
 2. Retomar os resultados REA/Ghidra e o projeto headless preservado. O main default expirou; usar seeds/perfil dirigido e registrar novos resultados separadamente.
 3. Prioridade solicitada: etapa 10. Seguir `docs/ETAPA-10.md` e os 20 cenários de `testes/cenarios-dinamicos.json`. O kit foi gerado e passou em cinco testes de preparação, mas não executou o original. Windows 11 Home local sem Sandbox, WSL não instalado, usuário sem VM. Disponibilizar guest Windows offline descartável ou recuperar a contenção Linux/Wine. No histórico Wine/i386 sob QEMU, cmd.exe passou, mas Foxit encerrou após CInvalidArgException e INT 0x29 antes da UI; preservar contenção e bytes do original.

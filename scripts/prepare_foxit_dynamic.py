@@ -136,6 +136,8 @@ def prepare(reference, output):
     scenarios = json.loads((ROOT / 'testes/cenarios-dinamicos.json').read_text(encoding='utf-8'))
     shutil.copyfile(ROOT / 'testes/cenarios-dinamicos.json', inputs / 'cenarios.json')
     shutil.copyfile(ROOT / 'docs/ETAPA-10.md', inputs / 'roteiro.md')
+    shutil.copyfile(ROOT / 'testes/cenarios-interface.json', inputs / 'cenarios-interface.json')
+    shutil.copyfile(ROOT / 'docs/ETAPA-11.md', inputs / 'roteiro-interface.md')
     report = {'schema': 'linuxit-dynamic-campaign-v1',
               'target_sha256': TARGET_SHA256, 'readiness': host_readiness(),
               'fixtures': fixtures, 'original_launched': False,
