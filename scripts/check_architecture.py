@@ -51,6 +51,11 @@ def check():
     pending = read_json('progresso/pendencias-analises.json')
     progress = read_json('progresso/progresso.json')
     spec = read_json('docs/especificacao-funcional.json')
+    project = read_json('progresso/projeto.json')
+    excluded = [item['id'] for item in project['scope_exclusions']]
+    for data in (architecture, pending):
+        require(data['scope_exclusions_ref'] == 'progresso/projeto.json' and
+                data['excluded_feature_ids'] == excluded, 'Scope exclusion drift')
     require(architecture['schema'] == 'linuxit-architecture-v1', 'Unknown architecture schema')
     require(pending['schema'] == 'linuxit-analysis-pendencies-v1', 'Unknown pendencies schema')
     for data in (architecture, pending):
@@ -135,6 +140,7 @@ def check():
             'verified_at_local': datetime.now(timezone(timedelta(hours=-3))).isoformat(timespec='seconds'),
             'timezone': 'America/Sao_Paulo', 'application_version': version,
             'application_modules': len(trees), 'module_snapshots': snapshots,
+            'excluded_feature_ids': excluded,
             'documented_interfaces': len(architecture['interface_refs']),
             'family_assignments': len(assignments), 'no_gtk_or_cairo_import_closures': closures,
             'internal_import_edges': {k: sorted(v & trees.keys()) for k, v in imports.items()},

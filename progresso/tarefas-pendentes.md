@@ -2,8 +2,11 @@
 
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
-Revisão atual: [etapa 13](../docs/ETAPA-13.md), com seus dois critérios de projeto
-já verificados. Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
+Revisão atual: [etapa 14](../docs/ETAPA-14.md), com base preservada e seis controles
+portáveis aprovados; os dois critérios já estavam verificados. IA do Foxit e
+recursos generativos foram excluídos pelo usuário: [escopo](../docs/ESCOPO.md).
+Próxima etapa do roteiro: 15, com contratos suficientes e sem IA.
+Todas as pendências estão em [pendencias-analises.md](pendencias-analises.md)
 e `.json`: 21 critérios, 14 etapas. Causas VM/análise/implementação/runtime
 separadas; timeouts registrados e causa por tokens ainda não confirmada.
 Salvar checkpoint por lote e antes de mudar de etapa, com alvo restante e

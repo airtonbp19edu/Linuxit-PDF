@@ -382,5 +382,9 @@
   ],
   "general_progress_percent": 43.33,
   "criteria_revision": 1,
-  "stage_13_is_partial_due_to_vm": false
+  "stage_13_is_partial_due_to_vm": false,
+  "scope_exclusions_ref": "progresso/projeto.json",
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ]
 }

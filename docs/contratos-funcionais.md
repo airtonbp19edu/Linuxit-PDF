@@ -10,6 +10,8 @@ Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem
 
 Índices internos de página usam base zero; páginas em relatórios de observação usam base um.
 
+O assistente de IA do Foxit e recursos generativos estão fora do escopo por decisão do usuário em 17/10/2026; ver [escopo do projeto](ESCOPO.md). As 25 famílias atuais e os registros históricos são preservados.
+
 | Família | Estado do contrato |
 |---|---|
 | [Abrir PDF e renderizar páginas](#open-render) | Subconjunto atual; lacunas abertas |

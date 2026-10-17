@@ -278,3 +278,56 @@ Comprovante final: `analysis-local/github-stage13-sync-verified.json`, ignorado
 pelo Git. Sem bloqueio de publicação nesta rodada. Retomar pelo registro de
 pendências e checkpoint da nota das 00:23; não repetir análises concluídas,
 atribuir lacunas a tokens sem prova ou contar planejamento como implementação.
+
+## 2026/10/17 às 00:32 (America/Sao_Paulo, UTC-03:00) — escopo sem IA e etapa 14
+
+O usuário declarou zero interesse na IA integrada do Foxit, autorizou deixá-la
+de fora e pediu seguir à etapa 14. Base local limpa e remoto confirmados em
+`791ae8e5eb8b7e2dc3bc6d276ccf8345f5a8ef0a`. A exclusão é explícita em
+`docs/ESCOPO.md`, `scope_exclusions` de `progresso/projeto.json` e `AGENTS.md`:
+assistente IA e recursos generativos ficam fora de análise, implementação e
+paridade futuras. Chat/resumo/tradução/explicação por IA estão incluídos na
+exclusão. Os registros gerais anteriores de `plugins/AiAssistant.fpi` e rótulos
+são preservados como inventário incidental; não foram alvos das últimas
+rodadas dirigidas. Nenhum recurso de IA foi implementado no Linuxit.
+
+As 25 famílias existentes não tinham obrigação dedicada de IA; matriz e
+catálogo ficaram byte a byte preservados após normalização de fim de linha.
+Operações PDF e colaboração sem IA continuam no escopo. Pesos, nomes/estados
+dos critérios e revisão do roteiro não mudaram. Especificação, arquitetura e
+pendências apontam à mesma decisão; verificadores rejeitam divergência de
+escopo. O hash do pedido inicial foi mantido como proveniência histórica.
+
+Etapa 14: o projeto já estava criado e seus dois critérios `done`. Conservaram-se
+a base MIT, proveniência Winux/Print&View, pypdf 6.20.1 BSD, estrutura e pontos
+de entrada. Relatório e instruções em `docs/ETAPA-14.md`.
+Novo `scripts/check_project.py` confere arquivos essenciais, licenças, versão,
+entrada Linux e executa seis controles portáveis de worker em subprocessos:
+info, painéis, livreto, comando ausente, JSON inválido e PDF vazio. **6/6
+passaram**, com reabertura real do PDF gerado; fixture/arquivos conferidos
+inalterados. Logs e PDFs em `analysis-local/project-stage14-2026-10-17/`,
+ignorados pelo Git; resultado publicável em
+`testes/resultados/etapa-14-projeto-2026-10-17.json`.
+
+Ferramentas: Python 3.13.15, pypdf vendorizado, AST e Git; nenhuma sessão nova
+REA/Ghidra nem execução Foxit. Duas verificações de recusa por escopo passaram;
+arquitetura e registro da etapa 12 continuam válidos. Sintaxe de 108 arquivos
+e 189 links locais conferidos. A comparação com o commit base confirmou
+os 19 módulos do app, matriz e catálogo inalterados e critérios/pesos/estados
+preservados. Auxiliares da rodada em `analysis-local/record_stage14_scope.py`
+e `analysis-local/finalize_stage14.py`, ignorados pelo Git.
+
+O ambiente Python/PATH examinado não tem gi/Cairo/cryptography, Poppler, CUPS
+ou Flatpak; Pillow está disponível. GUI, marcas Cairo de mosaico, impressão
+física e os 50 cenários completos não foram executados. Os resultados Linux
+37/37, payload 37/37 e sandbox 5/5 continuam históricos; não foram repetidos.
+Etapa 14 mantém 100% dos critérios existentes, roteiro 43,33%, paridade 0/25
+e catálogo 209; sem versão/pacote novo. Pendências de VM/análise e causas de
+interrupção desconhecidas continuam no registro, sem atribuir esgotamento de
+tokens onde não foi comprovado.
+
+Próxima etapa do roteiro: 15, lógica principal por contratos suficientes,
+dentro do escopo sem IA. Retomar os cenários próprios/corpus e alvos estáticos
+já registrados; observar D01–D20/UI01–UI10 somente na contenção offline validada.
+Publicação deste marco ainda pendente; a nota seguinte registrará um hash
+confirmado no remoto e o comprovante final ficará em `analysis-local/`.

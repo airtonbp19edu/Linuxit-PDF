@@ -1,0 +1,107 @@
+{
+  "schema": "linuxit-stage14-project-check-v1",
+  "verified_at_local": "2026-10-17T00:29:06-03:00",
+  "timezone": "America/Sao_Paulo",
+  "python": "3.13.15",
+  "platform": "win32",
+  "version": "0.1.1",
+  "vendored_pypdf_version": "6.20.1",
+  "required_project_files": {
+    "app/main.py": "2e46c39176cb48dacab9ba9a30b08c30b3337c5cdc4adb61542e9d0a8521d979",
+    "app/worker_cli.py": "aa2f2fa1922e3b58c8131f1b852f246162a01990318053e8c5b03970f05e8fbb",
+    "app/version.py": "c90ed399395bec24be2df9ae33d368366893e0d2766879e91e96e5fd5b322424",
+    "scripts/run.sh": "3c507773fb09b906c888584d56b0b12100bbc6d8a2b755bf96fea73dc3332a63",
+    "scripts/run_tests.py": "bad3dfabfd788ddc34079878f95ed69017c32209ad7a24ee6ec2a6248e9672ee",
+    "scripts/build_flatpak.py": "3ac83e5443f05b7764e32bdfb2db6ac7a271eb1c915371b6d81a930d5da8c3a1",
+    "LICENSE": "5a273be8649105d5642b5f964d920e27310c540002019f3db45fa7cab8e462f4",
+    "docs/proveniencia-base.json": "474564ae832b219a70084981c79bc21bbdda03aa27ab66d1a7913f959d9e19ad",
+    "docs/pypdf-LICENSE.txt": "a97ac230e5f33ef10a5367a850eb01f91f1a0b064e34742c7794d2294557f524",
+    "docs/pypdf-artifact.json": "9ed155279e7f7c98dacd841b4f36036ada016d4dc6e17c75f4f5a262df6b6b73",
+    "assets/linuxit-pdf.desktop": "3f2f62722a99963c859f75532832d5d451e0fa1dad28710b7c457bebea986f3a",
+    "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+  },
+  "provenance_commit": "e01c947e63a34887094a1ef7a3f877309a580bdb",
+  "structural_licenses_and_entrypoints_checked": true,
+  "worker_cases": [
+    {
+      "id": "worker_info",
+      "status": "passed",
+      "return_code": 0
+    },
+    {
+      "id": "worker_panels",
+      "status": "passed",
+      "return_code": 0
+    },
+    {
+      "id": "worker_prepare_booklet",
+      "status": "passed",
+      "return_code": 0
+    },
+    {
+      "id": "worker_missing_command",
+      "status": "passed",
+      "return_code": 2
+    },
+    {
+      "id": "worker_malformed_job",
+      "status": "passed",
+      "return_code": 1
+    },
+    {
+      "id": "worker_empty_pdf",
+      "status": "passed",
+      "return_code": 1
+    }
+  ],
+  "passed": 6,
+  "failed": 0,
+  "source_and_fixture_unchanged": true,
+  "runtime_availability": {
+    "python_modules": {
+      "gi": false,
+      "cairo": false,
+      "PIL": true,
+      "cryptography": false
+    },
+    "path_commands": {
+      "pdftocairo": false,
+      "pdftotext": false,
+      "pdfunite": false,
+      "lp": false,
+      "lpstat": false,
+      "flatpak": false
+    }
+  },
+  "private_results": "analysis-local/project-stage14-2026-10-17",
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "full_linux_gtk_suite_rerun": false,
+  "gui_launched": false,
+  "original_executed": false,
+  "foxit_differential_test": false,
+  "new_flatpak_built": false,
+  "limitations": [
+    "Portable worker checks do not execute the 50 full acceptance plans or prove Foxit parity.",
+    "No GTK startup, Poppler image rendering, Cairo poster marks or physical printer exercised.",
+    "License file/provenance checks do not re-audit the complete historical Flatpak payload."
+  ],
+  "scope_guard_checks_passed": [
+    "functional_spec_refuses_missing_ai_exclusion",
+    "architecture_refuses_scope_drift"
+  ],
+  "python_files_parsed": 108,
+  "local_document_links_checked": 189,
+  "architecture_and_stage12_registers_valid": true,
+  "unfinished_criteria_registered": 21,
+  "application_modules_unchanged": true,
+  "parity_matrix_and_function_catalog_unchanged": true,
+  "criteria_weights_statuses_revision_preserved": true,
+  "general_progress_percent": 43.33,
+  "stage14_verified_fraction": 1.0,
+  "catalog_entries": 209,
+  "verified_parity_families": 0,
+  "new_rea_ghidra_observations": 0,
+  "full_acceptance_scenarios_executed": 0
+}

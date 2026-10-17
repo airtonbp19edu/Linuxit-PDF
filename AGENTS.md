@@ -11,6 +11,13 @@ Linux/Flatpak tem prioridade, com Windows posteriormente. UPDF permanece fora
 do escopo. O pedido mestre autoriza reconstrução incremental, testes e pushes
 progressivos; a antiga limitação a somente análise foi ampliada por esse pedido.
 
+Decisão do usuário em 17/10/2026: assistente de IA do Foxit e recursos
+generativos estão fora da engenharia reversa, implementação e paridade.
+Fonte: `docs/ESCOPO.md` e `scope_exclusions` de `progresso/projeto.json`.
+Preservar o inventário histórico de AiAssistant.fpi; não criar alvos/cenários
+ou funcionalidades de IA. As 25 famílias atuais permanecem, com operações
+PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
+
 - Preserve trabalho de outros colaboradores, sem reset destrutivo ou force push.
 - Use REA/Ghidra com seus comandos realmente disponíveis. Registre identidades,
   perfis, falhas, inferências e lacunas; não conte slots como funções únicas.
@@ -84,6 +91,13 @@ Os timeouts documentados de 1.801,7 s e 600 s não comprovam esgotamento de toke
 Só atribuir uma interrupção a tokens com evidência; causa desconhecida fica
 `null`. Salvar checkpoint após cada lote de alvos e antes de trocar de etapa,
 com resultados examinados/pendentes, perfil, evidências, próximo passo e Git.
+
+Etapa 14 conferida em 17/10/2026: `docs/ETAPA-14.md`. O projeto já estava
+criado; conservar base e licenças. `scripts/check_project.py` verifica pontos
+de entrada e seis controles de worker, sem GTK/Foxit; resultados completos
+em `analysis-local/project-stage14-2026-10-17/`. Os dois critérios já estavam
+`done`; suíte Linux/GUI/Flatpak não foi repetida. Próxima etapa do roteiro: 15,
+com contratos suficientes e dentro do escopo sem IA, mantendo as pendências.
 
 A etapa 10 permanece pendente, conforme `docs/ETAPA-10.md`. O preparador
 `scripts/prepare_foxit_dynamic.py` gera 20 cenários e kit offline sem executar o

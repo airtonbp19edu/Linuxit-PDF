@@ -453,7 +453,9 @@
           "evidence": [
             "docs/proveniencia-base.json",
             "docs/pypdf-LICENSE.txt",
-            "app/main.py"
+            "app/main.py",
+            "docs/ETAPA-14.md",
+            "testes/resultados/etapa-14-projeto-2026-10-17.json"
           ]
         },
         {
@@ -463,8 +465,11 @@
           "evidence": [
             "testes/resultados/source-0.1.0.json",
             "scripts/run_tests.py",
-            "testes/resultados/source-0.1.1-fixed.json"
-          ]
+            "testes/resultados/source-0.1.1-fixed.json",
+            "scripts/check_project.py",
+            "testes/resultados/etapa-14-projeto-2026-10-17.json"
+          ],
+          "note": "Existing project retained and rechecked: six portable worker controls passed. Historical full Linux/GTK runs remain separate; no new GUI/Flatpak execution, feature completion or Foxit parity. Existing done status and weights unchanged. User excluded Foxit generative AI; current 25 families remain unchanged."
         }
       ],
       "verified_fraction": 1.0,

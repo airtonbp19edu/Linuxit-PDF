@@ -9,6 +9,12 @@ a investigação acumulada; lacunas ampliadas ou resolvidas constam da continua�
 
 ## Escopo atual
 
+Decisão posterior em **17/10/2026**: o assistente de IA do Foxit e recursos
+generativos ficam [fora do escopo](ESCOPO.md). Registros gerais anteriores
+de `AiAssistant.fpi` e rótulos do assistente são preservados como inventário;
+não são alvos para aprofundamento ou implementação. As rodadas descritas
+abaixo mantêm sua proveniência e seus limites históricos.
+
 Após o pedido mestre de 2026-10-16, a reconstrução incremental foi iniciada.
 Os resultados estáticos abaixo permanecem válidos para a amostra identificada;
 a implementação e seus testes são registrados separadamente, sem converter

@@ -6,6 +6,11 @@ não concluídos em 14 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
 `blocked` e `unknown` continuam distintos e não ganham peso por terem uma nota.
 
+Em 17/10/2026, o usuário excluiu o assistente de IA e recursos generativos do
+Foxit. Aplicar o [escopo autorizado](../docs/ESCOPO.md) a todos os próximos
+alvos e contratos. Nenhuma das 25 famílias atuais foi removida ou concluída
+por essa exclusão; pendências e pesos permanecem preservados.
+
 ## Causas e próximos passos
 
 | Etapa | Fração já verificada | O que falta e como retomar |

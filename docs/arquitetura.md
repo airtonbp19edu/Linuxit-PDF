@@ -14,6 +14,11 @@ componentes novos. As **25 famílias** estão ligadas à
 [especificação funcional](especificacao-funcional.json). As extensões futuras
 têm estado explícito de não implementadas.
 
+O [escopo autorizado](ESCOPO.md), atualizado em 17/10/2026, exclui o assistente
+de IA do Foxit e recursos generativos das análises e da implementação.
+O inventário histórico é preservado; as fronteiras futuras descritas aqui
+abrangem somente funcionalidades autorizadas sem IA.
+
 ## Componentes atuais
 
 | Fronteira | Módulos | Responsabilidade e limites |

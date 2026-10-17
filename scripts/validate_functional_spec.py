@@ -27,6 +27,13 @@ def validate(spec):
     require(spec['timezone'] == 'America/Sao_Paulo', 'Wrong continuity timezone')
     require(spec['status'] == 'draft_with_explicit_gaps', 'Draft status must remain explicit')
     require(spec['global_rules']['inventory_complete'] is False, 'Global inventory is still open')
+    project = json.loads(local_file(spec['scope_exclusions_ref']).read_text(encoding='utf-8'))
+    excluded = project['scope_exclusions']
+    require(spec['global_rules']['excluded_feature_ids'] == [item['id'] for item in excluded],
+            'Scope exclusions differ from the user decision')
+    require(any(item['id'] == 'foxit-ai' and item['future_reverse_engineering'] is False
+                and item['future_implementation'] is False and item['required_for_parity'] is False
+                for item in excluded), 'Foxit AI is excluded by the user')
     for rule in ('existing_test_reference_is_new_execution', 'proposed_requirement_is_implemented',
                  'static_evidence_is_runtime_availability', 'own_contract_is_foxit_parity'):
         require(spec['global_rules'][rule] is False, 'Invalid evidence rule: ' + rule)
@@ -98,6 +105,8 @@ def render(spec, summary):
              'Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem outros documentos '
              'continuam dependendo da criação/especialização do corpus descrito em sua condição inicial.', '',
              'Índices internos de página usam base zero; páginas em relatórios de observação usam base um.', '',
+             'O assistente de IA do Foxit e recursos generativos estão fora do escopo por decisão do usuário '
+             'em 17/10/2026; ver [escopo do projeto](ESCOPO.md). As 25 famílias atuais e os registros históricos são preservados.', '',
              '| Família | Estado do contrato |', '|---|---|']
     for family in spec['families']:
         label = 'Subconjunto atual; lacunas abertas' if family['contract_kind'] == 'implemented_subset' else 'Proposta; não implementado'

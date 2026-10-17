@@ -9,12 +9,31 @@
   ],
   "package_format": "Flatpak",
   "request_sha256": "e7cec89596a20deab64f03292312cd2a18bdd53a2c74b8e181a8b7ee954e24fc",
-  "scope": "Incremental independent implementation, reusing user-owned MIT Winux/Print&View code where applicable. Foxit only. No UPDF, no original proprietary code/assets redistribution.",
+  "scope": "Incremental independent implementation, reusing user-owned MIT Winux/Print&View code where applicable. Foxit only. No UPDF, no original proprietary code/assets redistribution. Foxit AI Assistant and other generative AI features are excluded by user decision on 2026-10-17.",
   "progress_model": "21 weighted stages with binary evidence-backed checks; roadmap progress is not feature equivalence.",
   "unknowns": [
     "Global function denominator",
-    "Complete observable feature inventory",
+    "Complete in-scope observable feature inventory (AI excluded)",
     "Original dynamic baseline",
     "Native Windows and physical printing equivalence"
+  ],
+  "scope_exclusions": [
+    {
+      "id": "foxit-ai",
+      "description": "Assistente de IA do Foxit e recursos generativos, incluindo chat, resumo, tradução e explicação por IA.",
+      "decided_at_local": "2026-10-17T00:28:07-03:00",
+      "timezone": "America/Sao_Paulo",
+      "authority": "Explicit user instruction: zero interesse na IA integrada; pode deixar de fora.",
+      "future_reverse_engineering": false,
+      "future_implementation": false,
+      "required_for_parity": false,
+      "preserve_historical_inventory": true,
+      "historical_inventory_refs": [
+        "docs/windows-evidence/foxit-rea/module-inventory.json",
+        "docs/windows-evidence/foxit-rea/ui-command-map.json"
+      ],
+      "existing_family_ids_removed": [],
+      "note": "AiAssistant.fpi was inventoried incidentally. Keep historical evidence; 25 current families contain no dedicated AI obligation. Non-AI cloud collaboration and local PDF operations remain in scope."
+    }
   ]
 }

@@ -4,6 +4,10 @@ A especificação distingue observações no Foxit, decisões próprias e obriga
 não reconstruídas. A matriz em `progresso/matriz-paridade.csv` é o inventário
 funcional aberto; cada família precisa de casos adicionais antes de ser encerrada.
 
+O [escopo autorizado](ESCOPO.md) exclui o assistente de IA do Foxit e recursos
+generativos, por decisão do usuário em 17/10/2026. As 25 famílias atuais não
+incluíam uma obrigação dedicada de IA e permanecem inalteradas.
+
 O detalhamento da etapa 12 está no [registro de contratos funcionais](contratos-funcionais.md)
 e em sua [fonte estruturada](especificacao-funcional.json): 25 famílias, entradas,
 saídas, erros, efeitos e 50 cenários de aceitação planejados. Subconjuntos atuais

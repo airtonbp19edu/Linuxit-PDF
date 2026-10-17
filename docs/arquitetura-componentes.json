@@ -432,5 +432,9 @@
   ],
   "stage_13_design_criteria_verified": true,
   "full_application_implemented": false,
-  "foxit_parity_verified": false
+  "foxit_parity_verified": false,
+  "scope_exclusions_ref": "progresso/projeto.json",
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ]
 }

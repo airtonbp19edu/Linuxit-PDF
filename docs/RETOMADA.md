@@ -34,6 +34,9 @@ Desenvolver uma implementação independente com contratos funcionais do Foxit
 Reader **2025.2.0.33046 x86** como referência. A base própria MIT
 Winux/Print&View e o pypdf distribuído com sua licença já foram integrados.
 **Linux/Flatpak tem prioridade; Windows vem depois.** UPDF está fora do escopo.
+Em **17/10/2026**, o usuário excluiu também o assistente de IA do Foxit e
+recursos generativos: ver [ESCOPO.md](ESCOPO.md). Preservar inventários
+históricos, sem investigar ou implementar IA nas próximas rodadas.
 Preservar a proveniência e manter código, recursos e decompilações Foxit fora
 da implementação e do Git.
 
@@ -66,6 +69,13 @@ O [registro de pendências](../progresso/pendencias-analises.md) cobre os 21
 critérios abertos, distingue VM/análise/código/runtime e fixa checkpoints para
 interrupções. Timeouts de execução estão documentados; esgotamento de tokens
 não foi confirmado nos relatórios examinados. Causas desconhecidas ficam nulas.
+
+A [etapa 14](ETAPA-14.md) foi conferida em **17/10/2026**: o projeto existente
+mantém licenças/proveniência e os dois critérios já concluídos. O novo
+`scripts/check_project.py` passou em seis controles portáveis de subprocessos
+próprios; resultados em `testes/resultados/etapa-14-projeto-2026-10-17.json`.
+GUI/Linux/Flatpak não foram repetidos. Próxima etapa do roteiro: 15, com
+contratos suficientes e escopo sem IA; demais pendências continuam registradas.
 
 ## Onde trabalhar
 

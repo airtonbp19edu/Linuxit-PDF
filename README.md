@@ -3,6 +3,8 @@
 Leitor de PDF para Linux, com implementação própria a partir da base MIT
 Winux/Print&View e investigação incremental do Foxit Reader com REA/Ghidra.
 O código do original não é incorporado ao aplicativo.
+O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
+conforme a decisão do usuário em 17/10/2026.
 
 A versão 0.1.1 já contém navegação, seleção, apresentação, temas, prévia e
 preparação de impressão em livreto/N-up/mosaico. A busca pesquisa separadamente
@@ -30,6 +32,7 @@ de várias famílias funcionais e o suporte nativo Windows continuam pendentes.
 - [Etapa 11: condições estáticas da interface e validação pendente](docs/ETAPA-11.md)
 - [Etapa 12: contratos das 25 famílias e cenários de aceitação planejados](docs/ETAPA-12.md)
 - [Etapa 13: arquitetura revisada e fronteiras verificadas](docs/ETAPA-13.md)
+- [Etapa 14: base do projeto e execução portável conferidas](docs/ETAPA-14.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
 - [Captura do Flatpak em execução](testes/resultados/0.1.1/linuxit-flatpak-0.1.1.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)

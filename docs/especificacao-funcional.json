@@ -14,7 +14,10 @@
     "existing_test_reference_is_new_execution": false,
     "proposed_requirement_is_implemented": false,
     "static_evidence_is_runtime_availability": false,
-    "own_contract_is_foxit_parity": false
+    "own_contract_is_foxit_parity": false,
+    "excluded_feature_ids": [
+      "foxit-ai"
+    ]
   },
   "families": [
     {
@@ -2038,5 +2041,6 @@
     "detailed_contract_check": "partial",
     "phase_a_consolidated": false,
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
-  }
+  },
+  "scope_exclusions_ref": "progresso/projeto.json"
 }
