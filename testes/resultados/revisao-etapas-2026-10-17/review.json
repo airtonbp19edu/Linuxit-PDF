@@ -1,0 +1,857 @@
+{
+  "schema": "linuxit-stage-review-v1",
+  "date_local": "2026-10-17T11:57:28-03:00",
+  "timezone": "America/Sao_Paulo",
+  "review_base_commit": "8cb933d0c1a230eef9d71f793a082832fd2b8164",
+  "version": "0.1.3",
+  "general_progress_percent": 43.33,
+  "criteria_revision": 1,
+  "criteria_status_or_weights_changed": false,
+  "done_criteria": 37,
+  "unfinished_criteria": 21,
+  "unfinished_stages": 14,
+  "completed_stage_criteria": [
+    2,
+    4,
+    6,
+    13,
+    14,
+    17,
+    20
+  ],
+  "verified_foxit_families": 0,
+  "identified_families": 25,
+  "global_reverse_engineering_coverage": null,
+  "complete_acceptance_cases_not_run": 50,
+  "new_original_observations": 0,
+  "new_rea_ghidra_observations": 0,
+  "new_flatpak_built": false,
+  "new_full_regression_suite_executed": false,
+  "historical_complete_tests_per_environment": 114,
+  "new_worker_controls_passed": 6,
+  "new_auditor_controls_passed": 7,
+  "new_installed_smoke_checks_passed": 5,
+  "ci": {
+    "run_id": 39042492785,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39042492785",
+    "code_commit": "8cb933d0c1a230eef9d71f793a082832fd2b8164",
+    "artifact_id": 12103979848,
+    "artifact_zip_sha256": "84da060de75273d665b1b24187235f41fc5c15d088630754fea5be4c29f050db",
+    "artifact_github_digest_matched": true
+  },
+  "corrections": [
+    "attachments matrix GTK status",
+    "current catalog 191 to209",
+    "current specification 14/11 to15/10",
+    "current architecture19/11 to21/15",
+    "current stage17 and19 runtime references0.1.3",
+    "current installed delivery audit0.1.3",
+    "historical checkpoints explicitly distinguished in continuation guides"
+  ],
+  "stages": [
+    {
+      "id": 1,
+      "title": "Diagnóstico e preparação",
+      "verified_fraction": 0.8,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Ferramentas e provedor exercitados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/toolchain.json"
+          ]
+        },
+        {
+          "criterion": "Escopo e destino configurados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "progresso/projeto.json"
+          ]
+        },
+        {
+          "criterion": "Publicação remota inicial confirmada",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "progresso/sincronizacao-git.json"
+          ]
+        },
+        {
+          "criterion": "Regras remotas de proteção consultáveis pela API",
+          "status": "unknown",
+          "weight": 1,
+          "evidence": [
+            "testes/resultados/revisao-etapas-2026-10-17/remote-rules.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Identificação dos arquivos",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Todos os arquivos locais identificados por caminho/tamanho/hash",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "engenharia-reversa/inventario.json"
+          ]
+        },
+        {
+          "criterion": "Arquitetura, versão e identidade dos módulos PE",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/module-inventory.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Identificação tecnológica",
+      "verified_fraction": 0.5,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Fronteira Win32/MFC, plugins e Lucene identificados",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        },
+        {
+          "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
+          "status": "pending",
+          "weight": 3,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Extração e desempacotamento",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Pasta completa e recursos externos analisados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "engenharia-reversa/inventario.json",
+            "docs/windows-evidence/foxit-rea/fx-resource-inventory.json"
+          ]
+        },
+        {
+          "criterion": "Correspondência integral ZIP → arquivo extraído verificada",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "engenharia-reversa/extracao.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Mapeamento de dependências",
+      "verified_fraction": 0.428571,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Imports e módulos inventariados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/module-inventory.json"
+          ]
+        },
+        {
+          "criterion": "Grafo de dependências e ambiguidades documentados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "engenharia-reversa/dependencias.json",
+            "docs/dependencias.md"
+          ]
+        },
+        {
+          "criterion": "Ciclo de vida de todos os componentes reconstruído",
+          "status": "pending",
+          "weight": 4,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Análise estática inicial",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Amostras, recursos, imports, exports e comandos examinados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/analysis-manifest.json",
+            "docs/windows-evidence/foxit-rea/ui-command-map.json"
+          ]
+        },
+        {
+          "criterion": "Subsystemas iniciais e limites documentados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Catalogação das funções",
+      "verified_fraction": 0.333333,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Entradas examinadas, proveniência e lacunas catalogadas",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "engenharia-reversa/funcoes.csv"
+          ]
+        },
+        {
+          "criterion": "Registro estrutural de slots catalogado",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/dispatch-catalog.json"
+          ]
+        },
+        {
+          "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
+          "status": "pending",
+          "weight": 6,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Descompilação profunda",
+      "verified_fraction": 0.130435,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Formato FX e recuperação integral do corpus verificados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/validation.json"
+          ]
+        },
+        {
+          "criterion": "28 métodos concretos da interface de índice examinados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/index-interface.json"
+          ]
+        },
+        {
+          "criterion": "Fluxo completo de impressão reconstruído",
+          "status": "partial",
+          "weight": 4,
+          "evidence": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+          ]
+        },
+        {
+          "criterion": "Fluxo completo de busca reconstruído",
+          "status": "partial",
+          "weight": 4,
+          "evidence": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          ]
+        },
+        {
+          "criterion": "Demais famílias funcionais investigadas profundamente",
+          "status": "pending",
+          "weight": 12,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Reconstrução dos fluxos internos",
+      "verified_fraction": 0.090909,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Fluxos parciais e contratos independentes documentados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/FOXIT-REA.md"
+          ]
+        },
+        {
+          "criterion": "Diagramas e estados rastreáveis por subsistema",
+          "status": "partial",
+          "weight": 2,
+          "evidence": [
+            "docs/fluxos.md"
+          ]
+        },
+        {
+          "criterion": "Algoritmos completos de todas as famílias especificados",
+          "status": "pending",
+          "weight": 8,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Análise dinâmica",
+      "verified_fraction": 0.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Ambiente isolado e original executável validados",
+          "status": "blocked",
+          "weight": 2,
+          "evidence": [
+            "docs/relatorio-dinamico.md",
+            "docs/windows-evidence/foxit-rea/dynamic-followup.json",
+            "docs/ETAPA-10.md",
+            "docs/windows-evidence/foxit-rea/dynamic-readiness-windows.json"
+          ]
+        },
+        {
+          "criterion": "Cenários locais observados e registrados",
+          "status": "pending",
+          "weight": 4,
+          "evidence": [
+            "testes/cenarios-dinamicos.json",
+            "docs/ETAPA-10.md"
+          ]
+        },
+        {
+          "criterion": "Integrações autorizadas e casos excepcionais observados",
+          "status": "pending",
+          "weight": 4,
+          "evidence": [
+            "testes/cenarios-dinamicos.json",
+            "docs/ETAPA-10.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Engenharia reversa da interface",
+      "verified_fraction": 0.25,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Recursos e controles inventariados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/ui-command-map.json",
+            "docs/windows-evidence/foxit-rea/selected-fx-ui-controls.json"
+          ]
+        },
+        {
+          "criterion": "Nove controles avançados ligados ao estado",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json"
+          ]
+        },
+        {
+          "criterion": "Disponibilidade e comportamento de todas as interações observados",
+          "status": "pending",
+          "weight": 6,
+          "evidence": [
+            "docs/ETAPA-11.md",
+            "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+            "testes/cenarios-interface.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Especificação funcional",
+      "verified_fraction": 0.125,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "25 obrigações e estados de evidência registrados",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "progresso/matriz-paridade.csv"
+          ]
+        },
+        {
+          "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
+          "status": "partial",
+          "weight": 3,
+          "evidence": [
+            "docs/ETAPA-12.md",
+            "docs/especificacao-funcional.json",
+            "docs/contratos-funcionais.md",
+            "testes/resultados/etapa-12-especificacao-2026-10-17.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+          ]
+        },
+        {
+          "criterion": "Fase A consolidada sem lacunas não declaradas",
+          "status": "pending",
+          "weight": 4,
+          "evidence": [
+            "docs/ETAPA-12.md",
+            "docs/especificacao-funcional.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Projeto de arquitetura",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Arquitetura e proveniência da base própria documentadas",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/arquitetura.md",
+            "docs/ETAPA-13.md",
+            "docs/arquitetura-componentes.json",
+            "docs/proveniencia-base.json",
+            "LICENSE"
+          ]
+        },
+        {
+          "criterion": "Contratos portáveis e adaptadores definidos",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/arquitetura.md",
+            "docs/especificacao.md",
+            "docs/arquitetura-componentes.json",
+            "testes/resultados/etapa-13-arquitetura-2026-10-17.json",
+            "testes/resultados/revisao-etapas-2026-10-17/architecture.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Criação do projeto",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Código próprio com licenças e dependências preservadas",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "docs/proveniencia-base.json",
+            "docs/pypdf-LICENSE.txt",
+            "app/main.py",
+            "docs/ETAPA-14.md",
+            "testes/resultados/etapa-14-projeto-2026-10-17.json"
+          ]
+        },
+        {
+          "criterion": "Execução e testes reproduzíveis verificados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "scripts/run_tests.py",
+            "testes/resultados/source-0.1.1-fixed.json",
+            "scripts/check_project.py",
+            "testes/resultados/etapa-14-projeto-2026-10-17.json",
+            "testes/resultados/revisao-etapas-2026-10-17/project.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Reconstrução da lógica principal",
+      "verified_fraction": 0.333333,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Busca por texto/escopos implementada e testada",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "app/search_engine.py",
+            "testes/resultados/source-0.1.1-fixed.json"
+          ]
+        },
+        {
+          "criterion": "Impressão/imposição implementadas e testadas",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "app/imposition.py",
+            "testes/resultados/source-0.1.1-fixed.json"
+          ]
+        },
+        {
+          "criterion": "Todas as demais famílias implementadas e testadas",
+          "status": "partial",
+          "weight": 12,
+          "evidence": [
+            "docs/ETAPA-15.md",
+            "app/pdf_attachments.py",
+            "tests/test_pdf_attachments.py",
+            "testes/resultados/etapa-15-anexos-tests-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Interface e integrações",
+      "verified_fraction": 0.333333,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Leitor Linux e preferências integrados e exercitados",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json"
+          ]
+        },
+        {
+          "criterion": "Busca e escopos integrados e exercitados",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "tests/test_search_scopes.py",
+            "testes/resultados/source-0.1.1-fixed.json"
+          ]
+        },
+        {
+          "criterion": "Demais interações e integrações funcionais",
+          "status": "partial",
+          "weight": 10,
+          "evidence": [
+            "docs/ETAPA-16.md",
+            "app/main.py",
+            "app/attachment_tasks.py",
+            "testes/resultados/etapa-16-controlador-tests-fixed-2026-10-17.json",
+            "testes/resultados/etapa-16-gtk-disponibilidade-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "docs/ETAPA-16-LAYOUT.md",
+            "testes/resultados/0.1.3/sidebar-before.json",
+            "testes/resultados/0.1.3/sidebar-after.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/validation-review.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Compilação intermediária",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Aplicação própria executada com fixture real",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
+          ]
+        },
+        {
+          "criterion": "Runtime empacotado executado com fixture real",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "testes/resultados/flatpak-payload-fixed-0.1.0.json",
+            "testes/resultados/flatpak-sandbox-0.1.0.json",
+            "testes/resultados/0.1.1/flatpak-sandbox.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Testes comparativos",
+      "verified_fraction": 0.1,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Fixtures e metodologia diferencial registradas",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "testes/fixtures/README.md",
+            "docs/especificacao.md",
+            "docs/ETAPA-18.md",
+            "testes/plano-comparativo.json",
+            "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
+            "testes/resultados/etapa-18-controles-extended-tests-2026-10-17.json",
+            "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json"
+          ]
+        },
+        {
+          "criterion": "Cenários diferenciais executados no original e na reconstrução",
+          "status": "pending",
+          "weight": 5,
+          "evidence": []
+        },
+        {
+          "criterion": "Resultados e divergências por família disponíveis",
+          "status": "pending",
+          "weight": 4,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Correção de incompatibilidades",
+      "verified_fraction": 0.142857,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Regressões próprias encontradas e corrigidas",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "tests/test_search_scopes.py",
+            "testes/resultados/source-0.1.0.json",
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/ETAPA-19.md",
+            "tests/test_imposition_cropbox.py",
+            "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
+            "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json",
+            "testes/resultados/etapa-19-campanha-regressao-2026-10-17.json",
+            "docs/ETAPA-20.md",
+            "testes/resultados/0.1.2/source-intermediate.json",
+            "testes/resultados/0.1.2/payload-tests.json",
+            "testes/resultados/0.1.2/sandbox-tests.json",
+            "testes/resultados/0.1.2/sandbox-smoke.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/ETAPA-16-LAYOUT.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+          ]
+        },
+        {
+          "criterion": "Divergências originais medidas e corrigidas",
+          "status": "pending",
+          "weight": 6,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Geração dos pacotes",
+      "verified_fraction": 1.0,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Flatpak gerado/importado e hash conferido",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "releases/manifest.json",
+            "releases/SHA256SUMS",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
+          ]
+        },
+        {
+          "criterion": "Aplicativo instalado e funcional no sandbox real",
+          "status": "done",
+          "weight": 3,
+          "evidence": [
+            "testes/resultados/flatpak-sandbox-0.1.0.json",
+            "testes/resultados/0.1.1/flatpak-sandbox.json",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
+          ]
+        },
+        {
+          "criterion": "Artefato publicado com instruções e limites",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "releases/manifest.json",
+            "docs/instalacao.md",
+            "progresso/sincronizacao-git.json",
+            "docs/ETAPA-20.md",
+            "releases/manifest-0.1.2.json",
+            "testes/resultados/0.1.2/validation-review.json",
+            "releases/manifest-0.1.3.json",
+            "testes/resultados/0.1.3/validation-review.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Auditoria e entrega final",
+      "verified_fraction": 0.5,
+      "review_scope": "Recorded technical evidence examined; new structured cross-checks/worker and installed delivery checks identified separately in docs/REVISAO-ETAPAS.md. No blanket rerun of historical criteria.",
+      "criteria": [
+        {
+          "criterion": "Auditoria de fonte/licenças/testes/evidências",
+          "status": "done",
+          "weight": 2,
+          "evidence": [
+            "testes/resultados/payload-source-integrity.json",
+            "releases/manifest.json",
+            "docs/pypdf-LICENSE.txt",
+            "testes/resultados/0.1.1/payload-source-integrity.json",
+            "docs/ETAPA-21.md",
+            "scripts/audit_delivery.py",
+            "testes/resultados/etapa-21/installed-delivery-audit.json",
+            "testes/resultados/etapa-21/review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/auditor-controls.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+          ]
+        },
+        {
+          "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
+          "status": "pending",
+          "weight": 3,
+          "evidence": [
+            "docs/ETAPA-21.md",
+            "testes/resultados/etapa-21/review.json"
+          ]
+        },
+        {
+          "criterion": "Sincronização e integridade final confirmadas",
+          "status": "done",
+          "weight": 1,
+          "evidence": [
+            "progresso/sincronizacao-git.json",
+            "releases/SHA256SUMS"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "repository-audit.json": "26f7f790c4b3a3268bc12fb348900fa47c4f25340d9605875a47f35666d77faa",
+    "installed-delivery-audit.json": "073e7b3e77a3ffe2018b4e48f6782f46a1c08ab516d527a8a04e8326000d7a2e",
+    "auditor-controls.json": "12765d1f2d70e8e71a23476860d454572368ba236be88c209eea3b33cbed1c1c",
+    "published-bundle-smoke.json": "ff3293a44216c45d8ab918318e9541d3be4c54b70543730e219eea525c766f8b",
+    "architecture.json": "379dd49023d15fb30c5d1f942726f220e28d5076d502ba777380c58b4b6f2f48",
+    "project.json": "5222dafc2743baed1053722ca227d5cc27ba0f019e717cd227e12fe9a150eb29",
+    "historical-evidence-review.json": "969b4179ad985fe996a5508ff48464bcf264a381a0ea5604ee26e29bf94d9b71",
+    "remote-rules.json": "8a48b382d80aa3dd922c57bb70c03cbd4b6931afd50a1b346a01fab697ddedb5",
+    "functional-spec.json": "472b9ff50f7cf40f15f269c7e2dfc31302088cd64cc5c2b24739428f9fe35f31"
+  },
+  "limitations": [
+    "Original behavior, global coverage and complete family equivalence unverified.",
+    "Source/payload/sandbox114-case suites checked through sealed prior reports; not rerun in this review.",
+    "All original-folder hashes, extraction and deep decompilation not repeated.",
+    "No fresh VM availability diagnosis; offline original containment still unresolved by last recorded state.",
+    "Actual924px window minimum, real desktop, accessibility, portals, physical printing and four same-corpus Poppler subsets remain open."
+  ],
+  "publication_state": "prepared_not_yet_published",
+  "structural_verification_ref": "testes/resultados/revisao-etapas-2026-10-17/structural-verification.json"
+}

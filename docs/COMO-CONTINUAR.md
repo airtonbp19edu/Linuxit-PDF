@@ -1,5 +1,11 @@
 # Como continuar o Linuxit PDF
 
+Consulte primeiro a [revisão das 21 etapas](REVISAO-ETAPAS.md), de 17/10/2026.
+O pacote atual é 0.1.3/devel, auditado também após reinstalação. A preparação
+da VM continua pendente segundo o último retorno; os quadros históricos
+abaixo não substituem o estado atual dos testes e da entrega.
+
+
 Ponto de retomada salvo em **16/10/2026**, branch `main` do
 [Linuxit-PDF](https://github.com/airtonbp19edu/Linuxit-PDF).
 O usuário está preparando o ambiente da **etapa 10 — análise dinâmica**.

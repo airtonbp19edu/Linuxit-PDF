@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "python_ast_files_checked": 123,
+  "changed_markdown_links_checked": 248,
+  "stage_criteria_status_weights_unchanged": true,
+  "prior_continuity_notes_preserved": true,
+  "application_scripts_tests_assets_and_all_releases_unchanged": true,
+  "sealed_review_reports_sha256_matched": 9,
+  "complete_acceptance_executions": 0,
+  "original_executed": false,
+  "functional_validation": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 15,
+    "proposed_only": 10,
+    "unique_test_references_checked": 34,
+    "unique_source_references_checked": 27,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "reference_specification_complete": false
+  }
+}

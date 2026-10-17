@@ -15,7 +15,7 @@ por essa exclusão; pendências e pesos permanecem preservados.
 
 | Etapa | Fração já verificada | O que falta e como retomar |
 |---|---:|---|
-| 01 — Diagnóstico | 80% | Acesso às regras remotas de proteção pela API continua desconhecido. Git push/ls-remote não prova essas regras. Não depende da VM. |
+| 01 — Diagnóstico | 80% | API da branch retornou protected=false; detalhes de proteção/regras/rulesets retornaram 403 por limitação de plano. Critério detalhado segue unknown; nenhuma configuração alterada. Não depende da VM. |
 | 03 — Tecnologia | 50% | Análise estática das fronteiras do motor PDF e dos demais subsistemas; continuar consultas dirigidas em [FOXIT-REA.md](../docs/FOXIT-REA.md). |
 | 05 — Dependências | 42,9% | Completar o ciclo de vida dos componentes no [grafo preservado](../docs/dependencias.md); análise estática ainda viável sem VM. |
 | 07 — Catálogo | 33,3% | O universo relevante não está fechado. Expandir as 209 entradas examinadas sem contar slots como funções únicas; manter cobertura global desconhecida. |
@@ -24,11 +24,11 @@ por essa exclusão; pendências e pesos permanecem preservados.
 | 10 — Dinâmica | 0% | **Ambiente offline pendente**: Windows 11 Home local sem Sandbox, WSL ausente e VM ainda não disponibilizada, segundo o último diagnóstico/retorno do usuário. Validar VM ou contenção equivalente antes de executar o original; observar D01–D20. Kit pronto não é observação. |
 | 11 — Interface | 25% | **VM para observar UI01–UI10**, além de trabalho estático: seguir `0x859920`, `0x687ae0`, `0x5f5370`, `0x48f10ef` e resolver contexto dos IDs 7911/7913. Ver [ETAPA-11.md](../docs/ETAPA-11.md). |
 | 12 — Especificação | 12,5% | **VM para confirmar a referência**, além de corpus, subfunções, análises e critérios ainda incompletos. Os 50 cenários completos seguem planejados; especializar fixtures e executar primeiro os subconjuntos próprios. Ver [ETAPA-12.md](../docs/ETAPA-12.md). |
-| 15 — Lógica | 33,3% | Anexos planos, controlador e painel verificados em Linux/Flatpak 0.1.2. Demais famílias, /Kids, portfólios, senha e anexos por anotação continuam pendentes. |
+| 15 — Lógica | 33,3% | Anexos planos, controlador e cinco métodos GTK do painel verificados também nas suítes Linux/Flatpak 0.1.3. Demais famílias, /Kids, portfólios, senha e anexos por anotação continuam pendentes. |
 | 16 — Interface | 33,3% | Recorte lateral corrigido no 0.1.3; 114/114 por suíte e dez cenários de geometria passaram. Desktop real, acessibilidade, portais e demais interações/famílias continuam pendentes. |
 | 18 — Comparativos | 10% | [Campanha preparada](../docs/ETAPA-18.md): 13 subconjuntos próprios aprovados, quatro bloqueados por Poppler e 16 controles do comparador aprovados. **VM/contenção para observar o original** no mesmo corpus/opções, importar evidências e revisar divergências por família. Zero comparações reais até aqui. |
-| 19 — Incompatibilidades | 14,3% | Correções próprias de CropBox/memória e recursão GTK verificadas em [Linux/Flatpak 0.1.2](../docs/ETAPA-20.md). Divergências Foxit só podem ser medidas após observação na VM offline. |
-| 21 — Auditoria final | 50% | [Auditoria incremental 0.1.2 aprovada](../docs/ETAPA-21.md); 21 critérios abertos preservados. Layout lateral corrigido no 0.1.3; retomar contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
+| 19 — Incompatibilidades | 14,3% | Correções próprias de CropBox/memória, recursão GTK e recorte lateral verificadas nas suítes [Linux/Flatpak 0.1.3](../docs/ETAPA-16-LAYOUT.md). Divergências Foxit só podem ser medidas após observação na VM offline. |
+| 21 — Auditoria final | 50% | [Auditoria instalada 0.1.3 aprovada](../docs/REVISAO-ETAPAS.md); 21 critérios abertos preservados. Layout lateral corrigido no 0.1.3; retomar contratos/análise/implementação e comparações na VM antes de encerrar obrigações. |
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

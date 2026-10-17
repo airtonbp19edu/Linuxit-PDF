@@ -32,10 +32,11 @@ próprias e quatro subconjuntos ainda não repetidos com Poppler no mesmo corpus
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
 Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
 
-A [etapa 21](docs/ETAPA-21.md) preserva a auditoria da instalação 0.1.2:
+A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 2.803 arquivos de dependências, 214 ELF e 149 arquivos de licença e créditos conferidos.
-Sete controles do auditor e um novo smoke 5/5 passaram; os 104 testes daquela entrega
-foram preservados, antes da nova suíte 114 do 0.1.3. Os 21 critérios abertos permanecem registrados.
+Sete controles do auditor e um novo smoke 5/5 passaram. Os relatórios das
+suítes completas 114/114 do 0.1.3 foram conferidos, sem repetir essas suítes
+nesta revisão. Os 21 critérios abertos permanecem registrados.
 
 - [Baixar Flatpak 0.1.3](releases/LinuxitPDF-0.1.3-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Hashes e manifesto](releases/manifest.json)

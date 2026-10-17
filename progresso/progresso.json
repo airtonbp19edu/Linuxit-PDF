@@ -39,7 +39,10 @@
           "criterion": "Regras remotas de proteção consultáveis pela API",
           "weight": 1,
           "status": "unknown",
-          "evidence": []
+          "evidence": [
+            "testes/resultados/revisao-etapas-2026-10-17/remote-rules.json"
+          ],
+          "note": "Read-only API: main protected=false (200); protection, applicable rules and rulesets endpoints returned 403 with plan limitation. Detailed rules still not consultable; unknown preserved. No settings changed."
         }
       ],
       "verified_fraction": 0.8,
@@ -390,9 +393,11 @@
             "docs/ETAPA-12.md",
             "docs/especificacao-funcional.json",
             "docs/contratos-funcionais.md",
-            "testes/resultados/etapa-12-especificacao-2026-10-17.json"
+            "testes/resultados/etapa-12-especificacao-2026-10-17.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
           ],
-          "note": "25 families and 50 planned cases detailed: 14 current subsets and 11 proposals. Ten portable source spot checks passed, not the full acceptance cases. Missing corpus, subfeatures and original behavior prevent closing the reference specification. Criteria and weights unchanged."
+          "note": "Current specification validated: 25 families, 50 full acceptance plans not_run, 15 implemented subsets and 10 proposals. Initial 14/11 report retained historically. Missing original behavior and subfeature/corpus coverage keep reference specification partial; criteria/weights unchanged."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
@@ -433,9 +438,10 @@
             "docs/arquitetura.md",
             "docs/especificacao.md",
             "docs/arquitetura-componentes.json",
-            "testes/resultados/etapa-13-arquitetura-2026-10-17.json"
+            "testes/resultados/etapa-13-arquitetura-2026-10-17.json",
+            "testes/resultados/revisao-etapas-2026-10-17/architecture.json"
           ],
-          "note": "Existing design criteria re-examined for 0.1.1: 19 modules, 11 interface references and 25 family assignments. Conditional Cairo dependency and deferred search/render cycle documented. Design verification is not full implementation, runtime validation or Foxit parity; status/weights unchanged."
+          "note": "Current 0.1.3 structural review: 21 modules, 15 interface references, 25 family assignments and nine no-GTK/Cairo import closures. Historical 0.1.1 report (19/11) retained. Design verification is not complete implementation or Foxit parity; criteria/weights unchanged."
         }
       ],
       "verified_fraction": 1.0,
@@ -467,9 +473,10 @@
             "scripts/run_tests.py",
             "testes/resultados/source-0.1.1-fixed.json",
             "scripts/check_project.py",
-            "testes/resultados/etapa-14-projeto-2026-10-17.json"
+            "testes/resultados/etapa-14-projeto-2026-10-17.json",
+            "testes/resultados/revisao-etapas-2026-10-17/project.json"
           ],
-          "note": "Existing project retained and rechecked: six portable worker controls passed. Historical full Linux/GTK runs remain separate; no new GUI/Flatpak execution, feature completion or Foxit parity. Existing done status and weights unchanged. User excluded Foxit generative AI; current 25 families remain unchanged."
+          "note": "Existing project retained; six own portable worker controls passed again on 0.1.3 in this review. Linux/GTK full suites114/114 belong to the prior delivery and were not repeated here. Existing done status and weights unchanged; no original observation or Foxit parity."
         }
       ],
       "verified_fraction": 1.0,
@@ -514,9 +521,16 @@
             "testes/resultados/0.1.2/payload-tests.json",
             "testes/resultados/0.1.2/sandbox-tests.json",
             "testes/resultados/0.1.2/sandbox-smoke.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
           ],
-          "note": "Flat catalog attachment backend/controller and GTK panel verified by own tests in Linux, payload and installed Flatpak 0.1.2. Portfolios, /Kids, password and remaining families remain partial; no original observation. Status/weights unchanged."
+          "note": "Flat attachments backend/controller/panel verified in Linux, payload and installed Flatpak 0.1.3 suites: 14 backend, 14 controller and five attachment GTK methods. Historical 0.1.2 reports retained. Portfolios, /Kids, non-empty passwords, annotation-only attachments and other families remain open; no original observation."
         }
       ],
       "verified_fraction": 0.333333,
@@ -618,9 +632,16 @@
             "testes/resultados/0.1.2/payload-tests.json",
             "testes/resultados/0.1.2/sandbox-tests.json",
             "testes/resultados/0.1.2/sandbox-smoke.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
           ],
-          "note": "Historical 0.1.1 evidence retained; current 0.1.2 source and installed Flatpak now also verified. Existing done status/weight unchanged."
+          "note": "Historical 0.1.1/0.1.2 evidence retained. Current 0.1.3 complete source/payload/sandbox suites passed 114/114 each with no failures/errors/skips; installed bundle independently audited in this review, smoke 5/5. Full suite not rerun during review; original comparison still absent."
         },
         {
           "criterion": "Runtime empacotado executado com fixture real",
@@ -635,9 +656,16 @@
             "testes/resultados/0.1.2/payload-tests.json",
             "testes/resultados/0.1.2/sandbox-tests.json",
             "testes/resultados/0.1.2/sandbox-smoke.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
           ],
-          "note": "Historical 0.1.1 evidence retained; current 0.1.2 source and installed Flatpak now also verified. Existing done status/weight unchanged."
+          "note": "Historical 0.1.1/0.1.2 evidence retained. Current 0.1.3 complete source/payload/sandbox suites passed 114/114 each with no failures/errors/skips; installed bundle independently audited in this review, smoke 5/5. Full suite not rerun during review; original comparison still absent."
         }
       ],
       "verified_fraction": 1.0,
@@ -765,7 +793,14 @@
             "testes/resultados/0.1.2/payload-tests.json",
             "testes/resultados/0.1.2/sandbox-tests.json",
             "testes/resultados/0.1.2/sandbox-smoke.json",
-            "testes/resultados/0.1.2/validation-review.json"
+            "testes/resultados/0.1.2/validation-review.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/sandbox-smoke.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/ETAPA-16-LAYOUT.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
           ],
           "note": "Two own imposition defects reproduced and fixed: crop-origin offset and reader content mutation during rotation. Nine portable methods and 13 existing-corpus subchecks passed; four Poppler subsets remain blocked. No Foxit divergence measured; status/weight unchanged."
         },
@@ -784,7 +819,8 @@
         "own_defects_fixed": [
           "crop_origin_placement_offset",
           "reader_content_mutation_during_rotation",
-          "gtk_sidebar_recursive_clicked_signal"
+          "gtk_sidebar_recursive_clicked_signal",
+          "gtk_sidebar_minimum_width_clipping"
         ],
         "portable_test_methods_passed": 9,
         "reused_corpus_subchecks_passed": 13,
@@ -808,14 +844,14 @@
         "next_action": "Sidebar geometry fixed in0.1.3; original divergences still require offline VM.",
         "runtime_revalidated_at_local": "2026-10-17T11:35:04.620699-03:00",
         "runtime_evidence": [
-          "docs/ETAPA-20.md",
-          "testes/resultados/0.1.2/source-intermediate.json",
-          "testes/resultados/0.1.2/payload-tests.json",
-          "testes/resultados/0.1.2/sandbox-tests.json",
-          "testes/resultados/0.1.2/sandbox-smoke.json",
-          "testes/resultados/0.1.2/validation-review.json"
+          "testes/resultados/0.1.3/source-intermediate.json",
+          "testes/resultados/0.1.3/payload-tests.json",
+          "testes/resultados/0.1.3/sandbox-tests.json",
+          "testes/resultados/0.1.3/sandbox-smoke.json",
+          "testes/resultados/0.1.3/validation-review.json"
         ],
-        "source_commit_tested": "64f76865381b35b4f8204131ef547f210d5d09db"
+        "source_commit_tested": "64f76865381b35b4f8204131ef547f210d5d09db",
+        "reviewed_at_local": "2026-10-17T11:57:28-03:00"
       }
     },
     {
@@ -908,9 +944,14 @@
             "docs/ETAPA-21.md",
             "scripts/audit_delivery.py",
             "testes/resultados/etapa-21/installed-delivery-audit.json",
-            "testes/resultados/etapa-21/review.json"
+            "testes/resultados/etapa-21/review.json",
+            "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+            "testes/resultados/revisao-etapas-2026-10-17/auditor-controls.json",
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json",
+            "docs/REVISAO-ETAPAS.md",
+            "testes/resultados/revisao-etapas-2026-10-17/review.json"
           ],
-          "note": "Current 0.1.2 bundle reinstalled without rebuild. 83 app and 2803 dependency files, 214 ELF and 149 copyright notices checked; seven auditor controls and five fresh installed smoke checks passed. Existing done status/weight preserved; historical REA/104-case suites not reexecuted."
+          "note": "Published 0.1.3 bundle reinstalled without rebuild: 83 application and 2803 dependency files, 214 ELF and 149 package license/credit files checked. Seven auditor controls and five fresh installed smoke checks passed. Historical complete 114-case suites and REA were not rerun. Existing status/weight preserved."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -935,10 +976,10 @@
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "reviewed_at_local": "2026-10-17T11:10:34.042024-03:00",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39039390847",
-        "audit_code_commit": "2e6671825317a7e7846193973113f090365db4f9",
-        "version": "0.1.2",
+        "reviewed_at_local": "2026-10-17T11:57:28-03:00",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39042492785",
+        "audit_code_commit": "8cb933d0c1a230eef9d71f793a082832fd2b8164",
+        "version": "0.1.3",
         "status": "incremental_delivery_audit_passed; project_incomplete",
         "published_bundle_unchanged": true,
         "new_auditor_controls_passed": 7,
@@ -949,18 +990,46 @@
         "copyright_notices_present_and_hashed": 149,
         "unfinished_criteria_count": 21,
         "stage21_complete": false,
-        "next_action": "Historical0.1.2 audit preserved; sidebar clipping subsequently fixed/tested in0.1.3. Continue remaining Poppler/desktop/VM and implementation obligations.",
+        "full_regression_suite_rerun": false,
+        "next_action": "Run four preserved-corpus Poppler subsets; continue static contracts, implementation and real desktop verification. Original comparisons require offline VM.",
         "evidence": [
-          "docs/ETAPA-21.md",
-          "scripts/audit_delivery.py",
-          "testes/resultados/etapa-21/installed-delivery-audit.json",
-          "testes/resultados/etapa-21/review.json"
+          "docs/REVISAO-ETAPAS.md",
+          "testes/resultados/revisao-etapas-2026-10-17/review.json",
+          "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
+          "testes/resultados/revisao-etapas-2026-10-17/auditor-controls.json",
+          "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
         ],
-        "publication_state": "confirmed_at_recorded_commit",
-        "confirmed_audit_commit": "ba1f5e1494759edad9cb9002d3a8802ae6d66b3e",
-        "publication_confirmed_at_local": "2026-10-17T11:15:30.749796-03:00",
-        "subsequent_delivery_ref": "docs/ETAPA-16-LAYOUT.md"
-      }
+        "publication_state": "prepared_not_yet_published"
+      },
+      "delivery_audit_history": [
+        {
+          "reviewed_at_local": "2026-10-17T11:10:34.042024-03:00",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39039390847",
+          "audit_code_commit": "2e6671825317a7e7846193973113f090365db4f9",
+          "version": "0.1.2",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "published_bundle_unchanged": true,
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 83,
+          "installed_runtime_files_verified": 2803,
+          "installed_elf_files_verified": 214,
+          "copyright_notices_present_and_hashed": 149,
+          "unfinished_criteria_count": 21,
+          "stage21_complete": false,
+          "next_action": "Historical0.1.2 audit preserved; sidebar clipping subsequently fixed/tested in0.1.3. Continue remaining Poppler/desktop/VM and implementation obligations.",
+          "evidence": [
+            "docs/ETAPA-21.md",
+            "scripts/audit_delivery.py",
+            "testes/resultados/etapa-21/installed-delivery-audit.json",
+            "testes/resultados/etapa-21/review.json"
+          ],
+          "publication_state": "confirmed_at_recorded_commit",
+          "confirmed_audit_commit": "ba1f5e1494759edad9cb9002d3a8802ae6d66b3e",
+          "publication_confirmed_at_local": "2026-10-17T11:15:30.749796-03:00",
+          "subsequent_delivery_ref": "docs/ETAPA-16-LAYOUT.md"
+        }
+      ]
     }
   ],
   "general_progress_percent": 43.33,
@@ -969,5 +1038,17 @@
     "verified": 0,
     "identified_obligations": 25,
     "denominator_complete": false
+  },
+  "latest_stage_review": {
+    "date_local": "2026-10-17T11:57:28-03:00",
+    "evidence": [
+      "docs/REVISAO-ETAPAS.md",
+      "testes/resultados/revisao-etapas-2026-10-17/review.json"
+    ],
+    "stages_reviewed": 21,
+    "criteria_reviewed": 58,
+    "criteria_status_or_weights_changed": false,
+    "new_foxit_observations": 0,
+    "publication_state": "prepared_not_yet_published"
   }
 }

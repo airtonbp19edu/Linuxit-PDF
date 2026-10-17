@@ -1,0 +1,37 @@
+{
+  "date_local": "2026-10-17T11:54:53-03:00",
+  "passed": true,
+  "scope": "Structured contents and cross-record identities examined; original executable hash read without execution. Historical extraction/decompilation not rerun.",
+  "inventory_files": 3276,
+  "inventory_bytes": 499053838,
+  "module_inventory_hashes_matched": 141,
+  "dependency_edges_checked": 1503,
+  "dependency_resolution_counts": {
+    "external_or_ambiguous": 976,
+    "bundled": 527
+  },
+  "fx_records_matched_to_inventory": 869,
+  "historical_fx_integrity_errors": 0,
+  "examined_catalog_entries": 209,
+  "catalog_by_origin": {
+    "REA/Ghidra dossier": 152,
+    "Supplementary direct Ghidra": 57
+  },
+  "dispatch_tables": 717,
+  "structural_slots_not_unique_functions": 9973,
+  "index_interface_slots": 28,
+  "checkbox_bindings": 9,
+  "ui_static_observations": 9,
+  "followup_print_entries": 6,
+  "ui_id_7911_7913_ambiguity_resolved": false,
+  "original_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "historical_dynamic_cases_not_run": 20,
+  "historical_own_campaign_passed": 13,
+  "historical_poppler_blocked": 4,
+  "original_folder_all_hashes_rerun": false,
+  "archive_reextracted": false,
+  "deep_decompilation_rerun": false,
+  "global_reverse_engineering_coverage": null
+}

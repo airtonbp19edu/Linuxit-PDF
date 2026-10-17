@@ -1,5 +1,11 @@
 # Etapa 15 — backend de anexos sem depender da VM
 
+Estado atual: [revisão das 21 etapas](REVISAO-ETAPAS.md). A entrega
+0.1.3 passou nas suítes completas 114/114 por ambiente, incluindo cinco métodos
+GTK de anexos; seu pacote publicado foi reinstalado e auditado. O checkpoint
+inicial abaixo permanece histórico; a implementação ampla segue parcial.
+
+
 Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
 fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
 fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo

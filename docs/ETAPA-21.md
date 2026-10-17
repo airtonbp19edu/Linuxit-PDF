@@ -1,5 +1,12 @@
 # Etapa 21 — auditoria incremental da entrega
 
+Auditoria mais recente: [revisão geral em 17/10/2026](REVISAO-ETAPAS.md).
+O mesmo pacote publicado 0.1.3 foi reinstalado sem rebuild e auditado:
+83 arquivos app, 2.803 dependências, 214 ELF e 149 arquivos de licença/créditos;
+controles 7/7, smoke novo 5/5. O relato abaixo preserva a rodada do 0.1.2.
+Encerramento continua pending, sem mudar pesos ou paridade.
+
+
 A auditoria do **Flatpak 0.1.2/devel publicado** passou em **17/10/2026**.
 Foi instalado o mesmo bundle, sem reconstrução, em Debian 13 com tela Xvfb,
 Openbox e usuário dedicado no runner efêmero. O [run 39039390847](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39039390847)

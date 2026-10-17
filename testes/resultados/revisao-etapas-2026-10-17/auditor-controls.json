@@ -1,0 +1,55 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "/__w/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.13.5",
+  "test_pattern": "test_delivery_audit.py",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 7,
+  "passed": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 0.01736442199999999,
+  "cases": [
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_changed_runtime_bytes_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0027397770000021637
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_complete_synthetic_payload_includes_hashed_notice",
+      "status": "passed",
+      "elapsed_sec": 0.00279127199999607
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_duplicate_inventory_and_escaping_paths_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0016419149999933325
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_missing_notice_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0024287980000110565
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_skips_and_duplicate_test_ids_cannot_approve_evidence",
+      "status": "passed",
+      "elapsed_sec": 0.0027963729999953557
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_unattributed_file_and_unknown_derivation_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0020920519999947373
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_uncatalogued_native_file_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.002383855000005042
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

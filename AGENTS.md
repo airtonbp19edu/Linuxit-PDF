@@ -1,5 +1,16 @@
 # Linuxit PDF — continuidade do projeto
 
+Revisão atual das 21 etapas: `docs/REVISAO-ETAPAS.md` e
+`testes/resultados/revisao-etapas-2026-10-17/review.json`. Em 17/10/2026,
+0.1.3 reinstalado sem rebuild: 83 arquivos app, 2803 de dependências, 214 ELF
+e 149 arquivos de licença/créditos conferidos; sete controles e smoke 5/5.
+Suítes completas 114/114 por ambiente são da entrega anterior, não repetidas
+nesta revisão. 37 critérios done/21 abertos em14 etapas; pesos intactos.
+API main protected=false, detalhes de regras403; critério1 segue unknown.
+Os checkpoints históricos abaixo não reabrem testes GTK/pacote já validados.
+Próximo passo sem VM: quatro subconjuntos Poppler no corpus preservado18.
+
+
 Ponto de retomada e estado do ambiente local: `docs/RETOMADA.md`.
 Desenvolva e teste pelo código-fonte no Linux; gere Flatpak nos marcos de
 entrega, conforme a preferência confirmada pelo usuário em 16/10/2026.
@@ -68,7 +79,7 @@ Projeto e resultados completos em `analysis-local/headless/windows-print-02`.
 Próximos alvos e ressalvas de tipagem constam no relatório. O gerador de
 metadados aceita `--round` para preservar a proveniência de cada rodada.
 
-Trabalho atual autorizado: avançar a parte estática da etapa 11 enquanto o
+Checkpoint histórico da etapa 11, cujo trabalho estático segue autorizado enquanto o
 usuário prepara a VM da etapa 10. Ver `docs/ETAPA-11.md`: nove entradas de
 interface examinadas, dez associações contextuais conferidas e ambiguidade
 dos IDs 7911/7913 preservada. Não promover tabelas/estados de templates a

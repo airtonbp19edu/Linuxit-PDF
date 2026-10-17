@@ -1,0 +1,36 @@
+{
+  "read_only": true,
+  "queries": {
+    "/branches/main": {
+      "status": 200,
+      "data": {
+        "name": "main",
+        "protected": false,
+        "protection": {
+          "enabled": false,
+          "required_status_checks": {
+            "enforcement_level": "off",
+            "contexts": [],
+            "checks": []
+          }
+        },
+        "protection_url": "https://api.github.com/repos/airtonbp19edu/Linuxit-PDF/branches/main/protection"
+      }
+    },
+    "/branches/main/protection": {
+      "status": 403,
+      "message": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+    },
+    "/rules/branches/main": {
+      "status": 403,
+      "message": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+    },
+    "/rulesets": {
+      "status": 403,
+      "message": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+    }
+  },
+  "date_local": "2026-10-17T11:54:06-03:00",
+  "scope": "Read-only API requests; no protection, visibility or billing changed.",
+  "criterion_closed": false
+}

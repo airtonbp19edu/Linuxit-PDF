@@ -885,3 +885,61 @@ Auditoria local do novo manifesto aprovada; arquitetura e registro renderizado p
 Commit técnico `e0306110ba0cd5f364e400aead2212343b80e263` enviado e confirmado por ls-remote igual ao HEAD local e árvore limpa. Bundle0.1.3/devel, manifesto, nove relatórios CI, cinco capturas, testes/registros e instruções publicados. `git fsck --full` retornou0 (árvore dangling informativa preservada); nove hashes de relatórios conferidos nos blobs Git. Fonte testada64f7686; SHA do bundle9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a76926030b10d3120. Nenhum executável alterado após testes114/114 por ambiente.
 
 Sincronização registra este commit técnico; a nota atual terá commit próprio e recibo final externo. Próximo trabalho sem VM: quatro subconjuntos Poppler no corpus preservado18, sem trocar bytes. Recorte lateral encerrado no subconjunto testado; demais critérios de interface e etapa21 seguem parciais, roteiro43,33%, paridade0/25. Desktop/acessibilidade/portais/impressão física e VM original permanecem pendentes.
+
+
+## 2026/10/17 às 11:57 (America/Sao_Paulo, UTC-03:00) — revisão das 21 etapas
+
+Revisados os 58 critérios e conteúdos técnicos de inventário, extração, módulos,
+dependências, FX, catálogo e contratos estáticos; 3.276 arquivos, 141 PE, 869 FX
+e 209 entradas (152 REA + 57 diretas) coerentes. Hash do executável original
+reconferido somente por leitura; nenhuma execução Foxit, nova descompilação
+ou observação original. Não repetidos extração e hashes de toda a pasta.
+
+Ferramentas/perfis: Python 3.13/stdlib no Windows; check_architecture (21 módulos,
+15 interfaces, 25 famílias, nove fechamentos sem GTK/Cairo), validador funcional
+(15 subconjuntos/dez propostas, 50 casos not_run), seis controles worker aprovados.
+Git/API somente leitura: main protected=false; três endpoints detalhados403
+por limitação de plano, sem mudar proteções/conta. Critério1 segue unknown.
+
+Auditoria Linux/Flatpak manual run39042492785, código8cb933d0c1a230eef9d71f793a082832fd2b8164:
+0.1.3 publicado reinstalado sem rebuild, 83 arquivos app, 2803 dependências,
+214 ELF e149 arquivos de licença/créditos conferidos. Controles7/7 e novo
+smoke5/5. SHA bundle9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a76926030b10d3120;
+artefato12103979848 ZIP84da060de75273d665b1b24187235f41fc5c15d088630754fea5be4c29f050db
+igual ao digest GitHub. Suítes completas anteriores114/114 por ambiente tiveram
+seus nove relatórios selados conferidos, sem nova execução completa.
+
+Matriz de anexos corrigida (cinco GTK aprovados), catálogo atual209 e notas
+atualizadas de contratos/arquitetura/runtime. Checkpoints e notas anteriores
+preservados. Relatório docs/REVISAO-ETAPAS.md; evidências publicáveis em
+testes/resultados/revisao-etapas-2026-10-17/; raw/logs em analysis-local/stage21-artifact-12103979848/,
+analysis-local/stage21-logs-39042492785/ e analysis-local/stage-review-2026-10-17/.
+
+37 done/21 critérios abertos em14 etapas, pesos/estados intactos; roteiro43,33%,
+paridade0/25, cobertura global null e causa por tokens não comprovada. Etapas
+02/04/06/13/14/17/20 têm critérios concluídos; implementação/fase A abertas.
+Próximo passo: quatro subconjuntos Poppler no corpus preservado18, depois
+contratos/estática/implementação e desktop/portais/acessibilidade/impressão.
+VM offline necessária à observação do original; não diagnosticada novamente.
+
+Git inicial limpo e local/remoto8cb933d confirmados; revisão preparada para
+commit/push autorizado, ainda sem afirmar sua publicação. Conferir remoto
+após publicar e gerar recibo final fora da árvore, evitando autorreferência.
+
+
+## 2026/10/17 às 15:04 (America/Sao_Paulo, UTC-03:00) — retomada da publicação da revisão
+
+O usuário pediu retomar após a tentativa de commit/push ser impedida antes
+da execução: a revisão automática de aprovação informou limite de uso e não
+conseguiu concluir. Isso foi falha de revisão por cota, sem avaliação de risco;
+não comprova esgotamento de tokens das análises REA/Ghidra. Nenhum comando de
+commit/push daquela tentativa foi executado. Nesta retomada a consulta remota
+voltou a funcionar e confirmou main em8cb933d0c1a230eef9d71f793a082832fd2b8164.
+
+Arquitetura e especificação novamente coerentes; auditoria local de integridade
+do0.1.3 aprovada. Relatórios públicos conservam seus hashes. Suíte114 completa
+e Foxit não foram executados novamente; pesos/estados/paridade preservados.
+Próximo passo imediato: publicar a revisão preparada, confirmar remoto e salvar
+nota da publicação; desenvolvimento seguinte continua nos quatro subconjuntos
+Poppler do corpus preservado18. Evidência local adicional:
+analysis-local/stage-review-2026-10-17/repository-audit-resumed.json.

@@ -638,7 +638,7 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Anexos/portfólios
 
-Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados em Linux/Flatpak 0.1.2. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.
+Atual: backend/worker e painel GTK para listar/salvar anexo do catálogo plano; testados também nas suítes Linux/Flatpak 0.1.3. Portfólios, /Kids, senha e anexos exclusivos de anotações ficam pendentes.
 
 **Entradas**
 

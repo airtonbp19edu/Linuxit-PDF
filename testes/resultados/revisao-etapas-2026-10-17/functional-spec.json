@@ -1,0 +1,11 @@
+{
+  "families": 25,
+  "acceptance_cases": 50,
+  "implemented_subsets": 15,
+  "proposed_only": 10,
+  "unique_test_references_checked": 34,
+  "unique_source_references_checked": 27,
+  "new_acceptance_executions": 0,
+  "foxit_observations": 0,
+  "reference_specification_complete": false
+}

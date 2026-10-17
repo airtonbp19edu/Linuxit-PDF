@@ -1,5 +1,11 @@
 # Retomada
 
+Revisão mais recente: [21 etapas conferidas](../docs/REVISAO-ETAPAS.md).
+O pacote 0.1.3 foi novamente instalado/auditado, sem rebuild: controles 7/7 e
+smoke 5/5. A matriz agora referencia os cinco métodos GTK de anexos aprovados.
+Os próximos trabalhos abaixo permanecem abertos; pesos e critérios intactos.
+
+
 Preparação do usuário para desbloquear a etapa 10: [Como continuar](../docs/COMO-CONTINUAR.md).
 
 Marco atual: [retomada da etapa 16](../docs/ETAPA-16-LAYOUT.md), painel lateral

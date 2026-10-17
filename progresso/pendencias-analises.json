@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T11:35:04.620699-03:00",
+  "reviewed_at_local": "2026-10-17T11:57:28-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -53,9 +53,10 @@
         "remote_api_access"
       ],
       "evidence_refs": [
-        "progresso/progresso.json"
+        "progresso/progresso.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
-      "next_action": "Consultar regras de proteção pela API quando houver acesso; Git push/ls-remote não comprovam essas regras.",
+      "next_action": "Detailed protection/rules/ruleset API endpoints returned 403 (plan limitation); branch metadata says protected=false. Recheck detailed read access if availability changes, without changing settings or billing.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -255,7 +256,8 @@
       ],
       "evidence_refs": [
         "docs/ETAPA-12.md",
-        "docs/especificacao-funcional.json"
+        "docs/especificacao-funcional.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
       "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
       "token_exhaustion_confirmed": null
@@ -273,7 +275,8 @@
       ],
       "evidence_refs": [
         "docs/ETAPA-12.md",
-        "docs/especificacao-funcional.json"
+        "docs/especificacao-funcional.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
       "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
       "token_exhaustion_confirmed": null
@@ -292,9 +295,10 @@
         "app/pdf_attachments.py",
         "testes/resultados/etapa-15-anexos-tests-2026-10-17.json",
         "docs/ETAPA-20.md",
-        "testes/resultados/0.1.2/validation-review.json"
+        "testes/resultados/0.1.2/validation-review.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
-      "next_action": "Backend/controlador/painel de anexos planos testados em Linux/Flatpak 0.1.2. Ampliar famílias por contratos suficientes; portfólios, /Kids, senha e anexos por anotação continuam pendentes.",
+      "next_action": "Backend/controlador e cinco métodos GTK de anexos planos aprovados nas suítes Linux/Flatpak 0.1.3. Ampliar famílias por contratos suficientes; portfólios, /Kids, senha não vazia e anexos por anotação continuam pendentes.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -314,7 +318,8 @@
         "docs/ETAPA-20.md",
         "testes/resultados/0.1.2/validation-review.json",
         "docs/ETAPA-16-LAYOUT.md",
-        "testes/resultados/0.1.3/validation-review.json"
+        "testes/resultados/0.1.3/validation-review.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
       "next_action": "Recorte lateral corrigido/testado no0.1.3. Validar desktop real, portais, acessibilidade e impressão física; ampliar demais interações/famílias.",
       "token_exhaustion_confirmed": null
@@ -377,9 +382,10 @@
         "docs/especificacao.md",
         "docs/ETAPA-19.md",
         "docs/ETAPA-20.md",
-        "testes/resultados/0.1.2/validation-review.json"
+        "testes/resultados/0.1.2/validation-review.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
-      "next_action": "Correções próprias de CropBox/memória e sinais GTK verificadas em Linux/Flatpak 0.1.2. Medir divergências originais na VM offline antes de atribuir incompatibilidade Foxit.",
+      "next_action": "Correções próprias de CropBox/memória, sinais GTK e recorte lateral verificadas nas suítes Linux/Flatpak 0.1.3. Medir divergências originais na VM offline antes de atribuir incompatibilidade Foxit.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -395,9 +401,10 @@
         "progresso/progresso.json",
         "progresso/matriz-paridade.csv",
         "docs/ETAPA-21.md",
-        "testes/resultados/etapa-21/review.json"
+        "testes/resultados/etapa-21/review.json",
+        "docs/REVISAO-ETAPAS.md"
       ],
-      "next_action": "Auditoria0.1.2 preservada e recorte lateral resolvido no0.1.3; retomar subconjuntos Poppler/corpus e demais contratos/análises/implementação. Comparações originais requerem VM offline.",
+      "next_action": "Auditoria instalada do0.1.3 aprovada; retomar quatro subconjuntos Poppler no corpus preservado e demais contratos/análises/implementação/desktop. Comparações originais requerem VM offline.",
       "token_exhaustion_confirmed": null
     }
   ],

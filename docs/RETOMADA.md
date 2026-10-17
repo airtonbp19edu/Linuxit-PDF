@@ -1,5 +1,14 @@
 # Retomada do Linuxit PDF
 
+Última revisão: [situação das 21 etapas](REVISAO-ETAPAS.md), em 17/10/2026.
+Flatpak 0.1.3 publicado reinstalado e auditado: 83 arquivos app, 2.803 de
+dependências, 214 ELF e 149 arquivos de licença/créditos; controles 7/7 e novo
+smoke 5/5. Suítes completas anteriores: 114/114 por ambiente. Matriz e notas
+atuais corrigidas; 43,33%, paridade 0/25 e 21 critérios abertos preservados.
+Os relatos por etapa abaixo conservam seus checkpoints históricos; pendências
+antigas de GTK/pacote foram superadas pelas entregas 0.1.2/0.1.3.
+
+
 Contexto reconstruído em **16/10/2026**, a pedido do usuário, a partir do
 repositório e de seus registros de continuidade. Este arquivo permite seguir
 o desenvolvimento mesmo sem acesso ao chat original.
