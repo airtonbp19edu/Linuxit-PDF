@@ -251,6 +251,7 @@ class PDFWindow(Gtk.Window):
                 for text, callback in (
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
                     ('Pesquisar em coleção…', self._show_collection),
+                    ('Criar PDF de imagens…', self._show_creation),
                     ('Novo marcador na página atual…', lambda: self._begin_copy_edit('add-bookmark')),
                     ('Adicionar nota na página atual…', lambda: self._begin_copy_edit('add-note')),
                     ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
@@ -1638,6 +1639,14 @@ class PDFWindow(Gtk.Window):
         self._select_search_hit(self.search_pos - 1)
 
     # ---------- tools ----------
+    def _show_creation(self, *_args):
+        from creation_window import CreationWindow
+        window = getattr(self, 'creation_window', None)
+        if window is None or window.closed:
+            window = CreationWindow(self, self.open_document)
+            self.creation_window = window
+        window.show_all();window.present()
+
     def _show_collection(self, *_args):
         from collection_window import CollectionWindow
         window = getattr(self, 'collection_window', None)

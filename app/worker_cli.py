@@ -79,6 +79,13 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'images-to-pdf':
+        from pdf_creation import create_pdf_from_images
+        raw = sys.stdin.buffer.read(256 * 1024 + 1)
+        if len(raw) > 256 * 1024:
+            raise ValueError('Pedido de criação acima de 256 KiB.')
+        print(json.dumps(create_pdf_from_images(argv[2], json.loads(raw)), ensure_ascii=True))
+        return
     if cmd == 'info':
         info = document_info(argv[2])
         print(json.dumps(info, ensure_ascii=False))

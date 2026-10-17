@@ -1,5 +1,12 @@
 # Linuxit PDF — continuidade do projeto
 
+Fonte 0.1.7 em desenvolvimento: [criação PNG/JPEG](docs/CRIACAO-IMAGENS.md).
+17 testes portáveis e 12 regressões do worker passaram localmente; GTK/Linux e novo pacote aguardam execução.
+O pacote publicado permanece 0.1.6, com auditoria independente confirmada.
+20 subconjuntos e cinco propostas não significam implementação completa; VM,
+paridade e demais pendências continuam abertas.
+
+
 Marco atual: fonte/Flatpak 0.1.6/devel; `docs/BUSCA-COLECOES.md` e
 `docs/RETOMADA.md`.190/190 em fonte/payload/sandbox, zero skips; smoke 5/5,
 launcher 3/3. Busca em anexos UTF-8/PDF, coringas/proximidade e índice persistente

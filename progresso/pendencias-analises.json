@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T18:19:25-03:00",
+  "reviewed_at_local": "2026-10-17T18:29:54-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -299,9 +299,10 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
+      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -321,9 +322,10 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
+      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -344,9 +346,10 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "0.1.6 source/payload/sandbox190/190: own attachment search, wildcard/proximity and persistent collection subsets.19 implemented subsets/6proposals remain incomplete; expand next contracts without AI.",
+      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -370,9 +373,10 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Six new search GTK methods and screenshots passed, alongside prior panels/copy operations. Real desktop/portals/AT-SPI/physical printer and other interactions remain pending.",
+      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -465,9 +469,10 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/CRIACAO-IMAGENS.md"
       ],
-      "next_action": "Publish/audit0.1.6 incremental delivery; preserve previous audits. Continue remaining independent/static/contracts/platform work and original VM comparisons; do not close all stages.",
+      "next_action": "Image creation own subset added in source0.1.7: validate full Linux/GTK and deliver separately from published0.1.6.20 subsets/5proposals still incomplete; original VM comparisons and other work remain pending.",
       "token_exhaustion_confirmed": null
     }
   ],

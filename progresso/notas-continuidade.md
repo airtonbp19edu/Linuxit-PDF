@@ -1287,3 +1287,16 @@ para `testes/resultados/0.1.6/audit/`; arquivo completo em `analysis-local/no-vm
 Sem execução do original, alteração de pesos ou fechamento dos 21 critérios amplos restantes.
 Próximo lote: criação própria de PDFs a partir de PNG/JPEG, com seleção explícita, limites e cópia nova;
 depois validar fonte Linux e registrar separadamente do pacote 0.1.6. IA permanece fora do escopo.
+
+
+## 2026/10/17 às 18:29 (America/Sao_Paulo, UTC-03:00) — criação PNG/JPEG, fonte 0.1.7
+
+Backend próprio, janela GTK, seleção ordenada/DPI, RGB Flate, orientação EXIF,
+transparência branca, hashes e publicação exclusiva implementados.16 testes
+portáveis reais passaram localmente em Python3.13.15/Pillow12.3.0/pypdf6.20.1.
+Fixture fixada e cinco testes GTK aguardam Linux; não declarar widgets testados.
+Pillow já existente, nenhuma nova dependência ou material proprietário incorporado.
+Código pós-pacote0.1.6; manifesto e sete bundles preservados.20 subconjuntos/cinco
+propostas; pesos43,33%, paridade0/25 e21 critérios abertos inalterados. Sem nova
+análise REA/Ghidra neste lote. Próximo: suíte Linux completa/Poppler, examinar
+captura e corrigir falhas antes do marco Flatpak0.1.7.

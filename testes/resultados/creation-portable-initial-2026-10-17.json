@@ -1,0 +1,100 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_pdf_creation.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 16,
+  "passed": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 7.108968199998344,
+  "cases": [
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_alpha_and_palette_transparency_are_composited_on_white",
+      "status": "passed",
+      "elapsed_sec": 0.30181050000101095
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_byte_and_output_budgets_leave_no_partial_file",
+      "status": "passed",
+      "elapsed_sec": 0.217395800002123
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_cancelled_request_and_excessive_json_never_start_worker",
+      "status": "passed",
+      "elapsed_sec": 0.017232299996976508
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_changed_or_missing_source_refuses_publication",
+      "status": "passed",
+      "elapsed_sec": 0.4245480999998108
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_corrupt_unsupported_animated_and_truncated_inputs_leave_no_output",
+      "status": "passed",
+      "elapsed_sec": 0.808484099998168
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_destination_appearing_during_conversion_is_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.14690199999677134
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_exif_orientation_applied_and_private_metadata_not_copied",
+      "status": "passed",
+      "elapsed_sec": 0.11625270000149612
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_existing_destination_and_source_never_overwritten",
+      "status": "passed",
+      "elapsed_sec": 0.03750269999727607
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_grayscale_and_cmyk_inputs_become_rgb",
+      "status": "passed",
+      "elapsed_sec": 0.18872149999879184
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_invalid_request_duplicates_paths_dpi_and_destination",
+      "status": "passed",
+      "elapsed_sec": 0.03193219999957364
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_invalid_worker_protocol_not_presented_as_saved",
+      "status": "passed",
+      "elapsed_sec": 0.016449300001113443
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_order_dimensions_lossless_rgb_and_source_identity",
+      "status": "passed",
+      "elapsed_sec": 0.15926720000061323
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_partial_final_write_removed_on_handled_failure",
+      "status": "passed",
+      "elapsed_sec": 0.128978199998528
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_pixel_and_image_count_budgets_checked_before_page_creation",
+      "status": "passed",
+      "elapsed_sec": 0.1565575999993598
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_real_worker_roundtrip_and_existing_destination_error",
+      "status": "passed",
+      "elapsed_sec": 4.224403799998981
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_writer_failure_removes_staging",
+      "status": "passed",
+      "elapsed_sec": 0.12680079999699956
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

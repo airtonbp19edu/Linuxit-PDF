@@ -1,0 +1,80 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_attachment_search.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 12,
+  "passed": 12,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 7.193501300000207,
+  "cases": [
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_advanced_modes_use_same_rules_in_attachment_worker",
+      "status": "passed",
+      "elapsed_sec": 0.03697049999755109
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_cancellation_after_a_hit_stops_model_emission",
+      "status": "passed",
+      "elapsed_sec": 2.4048676999991585
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_cancellation_terminates_the_actual_child_and_does_not_create_files",
+      "status": "passed",
+      "elapsed_sec": 0.19969139999739127
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_changed_source_during_decode_is_not_a_successful_report",
+      "status": "passed",
+      "elapsed_sec": 0.06865579999794136
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope",
+      "status": "passed",
+      "elapsed_sec": 3.944350800000393
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_entry_page_and_hit_limits_are_explicit",
+      "status": "passed",
+      "elapsed_sec": 0.0515878000005614
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_invalid_request_fails_before_opening_source",
+      "status": "passed",
+      "elapsed_sec": 0.003795299999183044
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_size_budget_declared_and_decoded_limits_do_not_hide_partial_state",
+      "status": "passed",
+      "elapsed_sec": 0.10802479999983916
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_timeout_terminates_the_actual_child_and_reports_failure",
+      "status": "passed",
+      "elapsed_sec": 0.1264030999991519
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_tree_and_annotation_references_keep_separate_indices",
+      "status": "passed",
+      "elapsed_sec": 0.03701839999848744
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions",
+      "status": "passed",
+      "elapsed_sec": 0.17041149999931804
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_utf8_bom_case_accents_and_whole_words_preserve_source",
+      "status": "passed",
+      "elapsed_sec": 0.0381243000010727
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

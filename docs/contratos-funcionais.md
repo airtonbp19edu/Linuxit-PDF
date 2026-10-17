@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 19 subconjuntos implementados e 6 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 20 subconjuntos implementados e 5 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -37,7 +37,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Camadas/mídia/3D](#layers-media) | Subconjunto atual; lacunas abertas |
 | [Preferências/tema/persistência](#preferences) | Subconjunto atual; lacunas abertas |
 | [Nuvem/colaboração](#cloud) | Proposta; não implementado |
-| [Criação/conversão](#conversion) | Proposta; não implementado |
+| [Criação/conversão](#conversion) | Subconjunto atual; lacunas abertas |
 | [Integrações de sistema/atualização](#platform) | Proposta; não implementado |
 
 <a id="open-render"></a>
@@ -971,37 +971,40 @@ Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 ## Criação/conversão
 
-Requisito futuro: separar criação PDF de exportação/reformatação e identificar o que existe no Reader versus Editor.
+Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados.
 
 **Entradas**
 
-- Formato fonte sintético explicitamente suportado, opções e caminho novo de saída.
-- Nenhum recurso pago/Editor é presumido por aparecer em um template.
+- Lista explícita ordenada de 1–100 PNG/JPEG distintos; DPI inteiro 72–600; caminho .pdf novo.
 
 **Saídas**
 
-- Proposta: arquivo reabrível no formato declarado e relatório de perdas/limitações.
-- Exportar página PNG já existente não significa conversão completa para formatos editáveis.
+- PDF reaberto com páginas e dimensões verificadas, orientação EXIF aplicada e transparência sobre branco.
+- Confirmação com hashes de fontes/resultado, tamanhos de página e DPI. RGB Flate sem nova perda JPEG; sem gestão ICC.
 
 **Erros e casos excepcionais**
 
-- Formato ou recurso não suportado: Proposta: recusar com identificação do formato, sem criar saída com extensão enganosa.
-- Falha durante conversão: Proposta: não apresentar arquivo parcial como exportação concluída.
+- Formato inválido/animado, limite excedido ou fonte alterada: Recusar lote inteiro e remover temporários em falha tratada; nenhuma fonte é alterada.
+- Destino existente ou que aparece durante a conversão: Recusar criação sem sobrescrever arquivo.
+- Cancelamento/fechamento da janela: Encerrar worker e descartar callbacks antigos; avisar para conferir destino, pois pode haver temporário/saída parcial ou já concluída.
 
 **Estado e efeitos**
 
-- Proposta: fontes intactas e saída separada; sem serviço remoto implícito.
+- Fontes intactas; sem varredura, serviço remoto ou execução de anexos.
+- Metadados EXIF/ICC não são copiados. Limites e garantia de limpeza somente para falhas tratadas constam no contrato.
 
 **Critérios planejados**
 
-- **S12-24-1** (nominal, proposta futura, `not_run`): dado Fonte sintética de formato escolhido e contrato ainda a especializar. Ação: Converter para PDF em caminho novo. Esperado: Proposta: PDF reabre e conserva páginas/texto dentro da tolerância que o contrato de formato definir.
-- **S12-24-2** (exception, proposta futura, `not_run`): dado Formato fora da lista suportada. Ação: Solicitar conversão. Esperado: Proposta: recusa explícita; não apenas renomear extensão.
+- **S12-24-1** (nominal, contrato próprio atual, `not_run`): dado PNG/JPEG sintéticos ordenados e DPI suportado. Ação: Converter para PDF em caminho novo. Esperado: Criar novo PDF RGB com orientação, ordem e dimensões declaradas; fontes intactas.
+- **S12-24-2** (exception, contrato próprio atual, `not_run`): dado Arquivo GIF ou PNG/JPEG inválido. Ação: Solicitar conversão. Esperado: Recusar lote sem criar saída concluída e sem substituir arquivo existente.
 
 **Lacunas da referência Foxit**
 
 - Inventário real Reader/Editor, fidelidade, formatos, OCR e serviços; não implementado como família completa.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_creation.py](../app/pdf_creation.py), [app/creation_window.py](../app/creation_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/CRIACAO-IMAGENS.md](../docs/CRIACAO-IMAGENS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_order_dimensions_lossless_rgb_and_source_identity](../tests/test_pdf_creation.py); [test_alpha_and_palette_transparency_are_composited_on_white](../tests/test_pdf_creation.py); [test_exif_orientation_applied_and_private_metadata_not_copied](../tests/test_pdf_creation.py); [test_corrupt_unsupported_animated_and_truncated_inputs_leave_no_output](../tests/test_pdf_creation.py); [test_partial_final_write_removed_on_handled_failure](../tests/test_pdf_creation.py); [test_ordered_creation_opens_actual_pdf_and_poppler_renders_pixels](../tests/test_creation_gtk.py); [test_cancel_and_destroy_kill_real_worker_without_stale_callbacks](../tests/test_creation_gtk.py); [test_pinned_fixture_manifest_matches_sources_and_oriented_dimensions](../tests/test_pdf_creation.py).
 
 <a id="platform"></a>
 

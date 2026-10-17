@@ -1,5 +1,12 @@
 # Retomada do Linuxit PDF
 
+Fonte 0.1.7 em desenvolvimento: [criação PNG/JPEG](CRIACAO-IMAGENS.md).
+17 testes portáveis e 12 regressões do worker passaram localmente; GTK/Linux e novo pacote aguardam execução.
+O pacote publicado permanece 0.1.6, com auditoria independente confirmada.
+20 subconjuntos e cinco propostas não significam implementação completa; VM,
+paridade e demais pendências continuam abertas.
+
+
 Atualizado em 2026-10-17T18:19:25-03:00. Fonte/Flatpak **0.1.6/devel**.
 [Busca em anexos, modos e coleção](BUSCA-COLECOES.md):190/190 em cada suíte
 fonte/payload/sandbox, zero falhas/erros/skips; smoke 5/5 e launcher 3/3.

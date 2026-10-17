@@ -1,0 +1,25 @@
+{
+  "schema": "linuxit-image-creation-fixtures-v1",
+  "provenance": "Own synthetic Pillow images; MIT; no Foxit material.",
+  "images": [
+    {
+      "file": "transparencia.png",
+      "sha256": "e3c1c6c1487947c43922b948c5209a5866048eb861d4f1278a4ff31029d75745",
+      "bytes": 115,
+      "page_points_at_72_dpi": [
+        40,
+        20
+      ]
+    },
+    {
+      "file": "orientacao.jpg",
+      "sha256": "69b41bd3a4d73a26b82fdaf51a714b4c1d2807ed6a6985d3eeb2f6bb89461658",
+      "bytes": 689,
+      "page_points_at_72_dpi": [
+        40,
+        20
+      ]
+    }
+  ],
+  "original_executed": false
+}

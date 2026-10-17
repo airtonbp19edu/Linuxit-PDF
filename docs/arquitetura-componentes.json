@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T18:19:25-03:00",
+  "reviewed_at_local": "2026-10-17T18:29:54-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.6",
+  "application_version": "0.1.7",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -173,6 +173,18 @@
       "path": "app/collection_window.py",
       "boundary": "gtk_ui",
       "responsibility": "Seleção explícita, atualização/consulta de índice e abertura do resultado na página correta."
+    },
+    {
+      "id": "pdf_creation",
+      "path": "app/pdf_creation.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Cria PDF RGB de imagens escolhidas com limites, hashes e destino novo."
+    },
+    {
+      "id": "creation_window",
+      "path": "app/creation_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Seleção/ordem/DPI, criação cancelável e abertura do PDF criado."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -190,7 +202,8 @@
     "search_matching",
     "attachment_search",
     "search_tasks",
-    "collection_index"
+    "collection_index",
+    "pdf_creation"
   ],
   "interface_refs": [
     {
@@ -296,6 +309,18 @@
     {
       "path": "app/collection_window.py",
       "symbol": "CollectionWindow"
+    },
+    {
+      "path": "app/pdf_creation.py",
+      "symbol": "create_pdf_from_images"
+    },
+    {
+      "path": "app/pdf_creation.py",
+      "symbol": "invoke_image_creation"
+    },
+    {
+      "path": "app/creation_window.py",
+      "symbol": "CreationWindow"
     }
   ],
   "family_assignments": [
@@ -545,8 +570,14 @@
     },
     {
       "id": "conversion",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_creation.py",
+        "app/creation_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "future_boundary": "Importação/exportação por formato e disponibilidade Reader/Editor.",
       "future_boundary_implemented": false
     },
@@ -586,7 +617,7 @@
     }
   ],
   "runtime_limitations": [
-    "Current0.1.6 source/payload/installed Flatpak verified190/190 in Debian13/X11 CI; real desktop/portals/AT-SPI/physical printer remain unverified.",
+    "Published 0.1.6 source/payload/sandbox190/190 retained. New source0.1.7 image creation portable16 passed; new GTK/Linux/Flatpak execution pending.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
     "Windows delivery, portals and physical printing remain unverified.",
@@ -599,5 +630,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }
