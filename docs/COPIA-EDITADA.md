@@ -84,3 +84,12 @@ aprovou **152/152 em cada ambiente fonte/payload/sandbox**, zero falhas/erros/sk
 smoke 5/5 e launcher 3/3. Hashes e limites na
 [revisão da entrega](../testes/resultados/0.1.5/validation-review.json).
 A confirmação de publicação e auditoria independente fica nas notas datadas.
+
+
+Entrega0.1.5 publicada em `539bccb46fb3d5fddca4b70bef5a0c70aadce9a5`,
+HEAD remoto/local e árvore limpa confirmados. A
+[auditoria independente](../testes/resultados/0.1.5/audit/review.json)
+reinstalou o mesmo bundle sem rebuild:85 arquivos app/2803 dependências/214 ELF/
+149 arquivos de licença-créditos conferidos; controles7/7 e novo smoke5/5.
+Suítes152/152 não foram repetidas nesta auditoria. O registro posterior é
+verificado externamente para evitar autorreferência de hash Git.

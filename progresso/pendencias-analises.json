@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T16:14:01-03:00",
+  "reviewed_at_local": "2026-10-17T16:19:21-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -446,7 +446,7 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md"
       ],
-      "next_action": "Publish/reinstall/audit0.1.5, preserve prior audits. Static/contracts/implementation/real desktop work remains as well as VM comparisons; do not close obligations from package audit alone.",
+      "next_action": "Delivery0.1.5 published/reinstalled/audited without rebuild; seven controls and fresh smoke5/5 passed. Continue static/contracts/implementation/real desktop and original VM comparisons; stage21 remains pending.",
       "token_exhaustion_confirmed": null
     }
   ],

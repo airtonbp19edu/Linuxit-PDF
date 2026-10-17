@@ -267,3 +267,17 @@ SHA-256`4294654075a70e033c60e8173bd3f815446f2ce58f930a31c4591a4a4723667b`. Cinco
 [pendências atuais](../progresso/tarefas-pendentes.md).21 critérios amplos
 continuam abertos; há trabalho estático e de implementação sem VM. A auditoria
 de pacote não fecha faseA, todas as25 famílias nem paridade Foxit.
+
+
+## Publicação e auditoria confirmadas
+
+Entrega0.1.5 publicada em `539bccb46fb3d5fddca4b70bef5a0c70aadce9a5`, árvore limpa e HEAD remoto iguais.
+[Run39061762374](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39061762374) reinstalou o mesmo bundle sem rebuild:85 arquivos app,
+2803 dependências,214 ELF e149 arquivos de licença/créditos byte-verificados;
+controles7/7 e novo smoke5/5. [Quatro relatórios e revisão](../testes/resultados/0.1.5/audit/review.json)
+preservados. As suítes completas152/152 são da construção anterior; não foram
+repetidas nesta auditoria. A publicação desta nota será verificada externamente.
+
+Etapas13/14/17/20 têm critérios delimitados concluídos;21 continua parcial.
+Há análise/contratos/implementação sem VM e pendências de desktop/serviços,
+além da observação Foxit. Não marcar todas as etapas como concluídas.

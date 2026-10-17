@@ -746,7 +746,7 @@
           "testes/resultados/0.1.5/sandbox-tests.json",
           "testes/resultados/0.1.5/validation-review.json"
         ],
-        "next_action": "Publish validated0.1.5 and independently reinstall/audit; continue remaining contracts/static/runtime obligations.",
+        "next_action": "Delivery0.1.5 published and independently audited. Continue remaining static/contracts/implementation/desktop obligations; original comparisons require offline guest.",
         "source_changed_since_candidate": false,
         "source_changes_since_candidate": [],
         "additional_source_evidence": [
@@ -982,7 +982,7 @@
       "earned_percent": 3.0,
       "current_delivery": {
         "version": "0.1.5",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060979871",
         "evidence": [
           "docs/COPIA-EDITADA.md",
@@ -990,7 +990,9 @@
           "releases/manifest-0.1.5.json"
         ],
         "stable_release": false,
-        "original_observations": 0
+        "original_observations": 0,
+        "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
+        "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
       },
       "delivery_history": [
         {
@@ -1059,9 +1061,11 @@
             "docs/REVISAO-ETAPAS.md",
             "testes/resultados/revisao-etapas-2026-10-17/review.json",
             "testes/resultados/0.1.4/audit/review.json",
-            "testes/resultados/0.1.4/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.4/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.5/audit/review.json",
+            "testes/resultados/0.1.5/audit/installed-delivery-audit.json"
           ],
-          "note": "Published 0.1.3 bundle reinstalled without rebuild: 83 application and 2803 dependency files, 214 ELF and 149 package license/credit files checked. Seven auditor controls and five fresh installed smoke checks passed. Historical complete 114-case suites and REA were not rerun. Existing status/weight preserved."
+          "note": "Published0.1.5 reinstalled without rebuild:85application/2803dependency/214ELF/149package notices byte-verified; seven auditor controls and five fresh installed smoke checks passed. Full152-case suites remain build-time evidence, not rerun in this audit. Existing status/weight preserved."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1071,7 +1075,9 @@
             "docs/ETAPA-21.md",
             "testes/resultados/etapa-21/review.json",
             "testes/resultados/0.1.4/audit/review.json",
-            "testes/resultados/0.1.4/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.4/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.5/audit/review.json",
+            "testes/resultados/0.1.5/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 21 open criteria across 14 stages, including actionable UI/implementation/static work and original VM/differential dependencies. Passing a delivery audit does not close these obligations."
         },
@@ -1083,29 +1089,32 @@
             "progresso/sincronizacao-git.json",
             "releases/SHA256SUMS",
             "testes/resultados/0.1.4/audit/review.json",
-            "testes/resultados/0.1.4/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.4/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.5/audit/review.json",
+            "testes/resultados/0.1.5/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.4",
-        "reviewed_at_local": "2026-10-17T15:44:21-03:00",
+        "version": "0.1.5",
+        "reviewed_at_local": "2026-10-17T16:19:21-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39059125514",
-        "audit_code_commit": "a81d60e157ab7766ad7addbf0517a197b9be86f9",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39061762374",
+        "audit_code_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
-        "installed_application_files_verified": 83,
+        "installed_application_files_verified": 85,
         "installed_runtime_files_verified": 2803,
         "installed_elf_files_verified": 214,
         "copyright_notices_present_and_hashed": 149,
         "unfinished_criteria_count": 21,
         "stage21_complete": false,
+        "full_regression_suite_rerun": false,
         "evidence": [
-          "docs/AVANCO-SEM-VM.md",
-          "testes/resultados/0.1.4/audit/review.json"
+          "docs/COPIA-EDITADA.md",
+          "testes/resultados/0.1.5/audit/review.json"
         ],
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit"
       },
@@ -1164,6 +1173,26 @@
           "publication_state": "confirmed_at_recorded_commit",
           "confirmed_audit_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
           "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
+        },
+        {
+          "version": "0.1.4",
+          "reviewed_at_local": "2026-10-17T15:44:21-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39059125514",
+          "audit_code_commit": "a81d60e157ab7766ad7addbf0517a197b9be86f9",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 83,
+          "installed_runtime_files_verified": 2803,
+          "installed_elf_files_verified": 214,
+          "copyright_notices_present_and_hashed": 149,
+          "unfinished_criteria_count": 21,
+          "stage21_complete": false,
+          "evidence": [
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/audit/review.json"
+          ],
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit"
         }
       ]
     }
@@ -1201,8 +1230,10 @@
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_publication",
-    "independent_installed_audit_passed": false
+    "publication_state": "confirmed_at_recorded_commit",
+    "independent_installed_audit_passed": true,
+    "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
+    "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
   },
   "no_vm_execution_history": [
     {

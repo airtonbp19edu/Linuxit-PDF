@@ -31,7 +31,7 @@ O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
 A [campanha sem VM](docs/AVANCO-SEM-VM.md) aprovou os 17 subconjuntos próprios
 com os mesmos arquivos/protocolos da etapa18; quatro bloqueios Poppler resolvidos.
-Foram examinadas31 novas entradas estáticas; catálogo 240, sem cobertura global presumida.
+Foram examinadas 31 novas entradas estáticas; catálogo 240, sem cobertura global presumida.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
 Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
 
@@ -40,6 +40,9 @@ A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 Sete controles do auditor e um novo smoke 5/5 passaram. Os relatórios das
 suítes completas 114/114 do 0.1.3 foram conferidos, sem repetir essas suítes
 nesta revisão. Os 21 critérios abertos permanecem registrados.
+A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
+passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
+sete controles e novo smoke5/5. Esta auditoria não repete as suítes152/152.
 
 - [Baixar Flatpak 0.1.5](releases/LinuxitPDF-0.1.5-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Execução das frentes sem VM e entrega 0.1.5](docs/AVANCO-SEM-VM.md)

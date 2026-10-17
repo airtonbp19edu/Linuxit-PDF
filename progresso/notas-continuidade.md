@@ -1181,3 +1181,31 @@ Ainda há trabalho sem VM;21 critérios abertos/43,33%/0paridade preservados.
 Desktop/portais/AT-SPI/impressão física e observação original continuam pendentes.
 Publicação preparada; próximo: commit/push, confirmar remoto e reinstalar/auditar
 este mesmo pacote sem rebuild. Não declarar auditoria/publicação sem prova.
+
+
+## 2026/10/17 às 16:19 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria0.1.5 confirmadas
+
+Push técnico`539bccb46fb3d5fddca4b70bef5a0c70aadce9a5` confirmado por ls-remote/verify_git_sync e árvore limpa;
+recibo externo no TEMP LinuxitPDF-0.1.5-delivery-sync-20261017-161629.json.
+Run39061762374 reinstalou o mesmo bundle0.1.5 sem rebuild:85 app/2803runtime/
+214ELF/149licenças byte-verificados. Controles7/7 e novo smoke5/5. As suítes
+completas152/152 de fonte/payload/sandbox pertencem à construção anterior,
+não repetidas na auditoria. Artefato12111836809/ZIPd0084823304456d2620519ae23294de21de85439bf7339fbbdfdd0a0941a4458
+confere com digest GitHub; quatro relatórios copiados byte a byte para
+`testes/resultados/0.1.5/audit/` e revisão examinada com hashes. Logs/raw privados
+preservados.15 arquivos versionados anteriores comprovadamente intactos.
+
+Pedido sem VM avançou em análise, contratos, código, UI, testes, pacote e
+publicação. Catálogo240/31 novas entradas,3934 instruções/12315bytes;16
+subconjuntos/nove propostas,23 módulos/18 interfaces. Ainda há trabalho sem VM,
+explicitamente em tarefas/pendencias; nenhum encerramento universal declarado.
+Pesos/estados dos58 critérios preservados:37 done/21 abertos,43,33%,0/25 paridade,
+inventário global aberto. Nenhuma execução do original ou recurso de IA.
+
+Próximo lote concreto: seguir16664e0/1b8a7a0/1b8ae20/15c6550/872f20 nos projetos
+preservados, fechar tipos/ownership e campos da busca; ampliar contratos e
+operações nas famílias ainda incompletas. Desktop/portais/AT-SPI/impressora
+pedem seus ambientes. Original exige VM offline ainda pendente. Causa de
+interrupção/tokens:null; timeouts antigos não são prova de esgotamento.
+Esta confirmação/auditoria será publicada em commit posterior e o últimoHEAD
+será verificado novamente por recibo fora da árvore para evitar autorreferência.

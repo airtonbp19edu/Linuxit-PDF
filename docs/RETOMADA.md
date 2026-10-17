@@ -87,3 +87,12 @@ skips. Fluxos manuais de CI: `no-vm-validation.yml` (fonte/corpus),
 `linux-flatpak.yml` (fonte/payload/sandbox) e `delivery-audit.yml` (bundle
 publicado reinstalado sem rebuild). Fontes/licenças, builder pareado e
 `runtime-lib` devem ser preservados. Instruções: [instalação](instalacao.md).
+
+
+Entrega0.1.5 publicada em `539bccb46fb3d5fddca4b70bef5a0c70aadce9a5`,
+HEAD remoto/local e árvore limpa confirmados. A
+[auditoria independente](../testes/resultados/0.1.5/audit/review.json)
+reinstalou o mesmo bundle sem rebuild:85 arquivos app/2803 dependências/214 ELF/
+149 arquivos de licença-créditos conferidos; controles7/7 e novo smoke5/5.
+Suítes152/152 não foram repetidas nesta auditoria. O registro posterior é
+verificado externamente para evitar autorreferência de hash Git.
