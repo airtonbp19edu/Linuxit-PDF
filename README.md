@@ -6,7 +6,7 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
-A versão **0.1.7 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.8 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,
@@ -21,8 +21,8 @@ calculado pelo GTK: títulos e ícones ficam visíveis, inclusive ao redimension
 ocultar/restaurar o painel e alternar o modo de leitura. Dez cenários de
 geometria passaram, comparados com dez falhas na fonte anterior.
 
-**212 testes próprios passaram em cada ambiente**: fonte Linux, payload e
-Flatpak instalado, sem falhas/erros/skips. Foram conferidos 92 arquivos da
+**267 testes próprios passaram em cada ambiente**: fonte Linux, payload e
+Flatpak instalado, sem falhas/erros/skips. Foram conferidos 97 arquivos da
 aplicação e nove relatórios selados; smoke GTK 5/5 e launcher 3/3 passaram.
 Teste em Debian 13/tela X11 virtual; desktop real, acessibilidade, portais,
 impressão física e comparação Foxit continuam pendentes. A janela solicitada
@@ -32,8 +32,9 @@ O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
 A [campanha sem VM](docs/AVANCO-SEM-VM.md) aprovou os 17 subconjuntos próprios
 com os mesmos arquivos/protocolos da etapa18; quatro bloqueios Poppler resolvidos.
-O catálogo tem 250 entradas examinadas, incluindo duas novas de layout de reflow
-[nesta rodada](docs/REA-REFLOW.md); cobertura global desconhecida.
+O catálogo tem256 entradas examinadas (152REA+104diretas), incluindo
+[quatro acessores de layout de reflow](docs/REA-REFLOW-LAYOUT.md) na retomada;
+cobertura global desconhecida.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
 Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
 
@@ -46,7 +47,7 @@ A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 
-- [Baixar Flatpak 0.1.7](releases/LinuxitPDF-0.1.7-x86_64.flatpak) e [instalação](docs/instalacao.md)
+- [Baixar Flatpak 0.1.8](releases/LinuxitPDF-0.1.8-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Execução das frentes sem VM e entrega 0.1.5](docs/AVANCO-SEM-VM.md)
 - [Hashes e manifesto](releases/manifest.json)
 - [Progresso e metodologia das 21 etapas](progresso/progresso.md)
@@ -70,7 +71,7 @@ sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 - [Etapa 20: Flatpak 0.1.2, testes Linux e limites](docs/ETAPA-20.md)
 - [Etapa 21: auditoria do pacote publicado e obrigações abertas](docs/ETAPA-21.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
-- [Captura do Flatpak em execução](testes/resultados/0.1.7/linuxit-flatpak-0.1.7.png)
+- [Captura do Flatpak em execução](testes/resultados/0.1.8/linuxit-flatpak-0.1.8.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
 
@@ -93,7 +94,7 @@ PYTHONPATH=/workspace/.print-view-runtime/gi-cairo/usr/lib/python3/dist-packages
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-tests-novo.json
 ```
 
-A análise local identificou 3.276 arquivos, 141 módulos PE, 250 entradas de
+A análise local identificou 3.276 arquivos, 141 módulos PE, 252 entradas de
 funções examinadas e 9.973 registros internos de chamadas. O universo completo
 de funções/funcionalidades ainda não está fechado; registros não são funções
 únicas nem paridade verificada. Binários Foxit, templates completos, bancos
@@ -108,3 +109,8 @@ A [auditoria independente da 0.1.7](testes/resultados/0.1.7/audit/review.json)
 reinstalou o mesmo pacote publicado e conferiu os arquivos/licenças: sete
 controles e cinco verificações funcionais passaram. As suítes de 212 casos
 são evidências da construção; não foram repetidas nesta auditoria.
+
+
+A 0.1.8 inclui [operações locais de segurança, texto acessível, integridade CMS
+e edição ampliada em cópias](docs/SEGURANCA-ACESSIBILIDADE.md).
+267/267 testes próprios por ambiente Linux; nuvem adiada pelo usuário.

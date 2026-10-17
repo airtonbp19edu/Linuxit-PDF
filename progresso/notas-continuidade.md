@@ -1380,3 +1380,32 @@ no Windows/Python3.13, após diretório privado por tarefa. Relatórios copiados
 a byte em testes/resultados/0.1.8-portable/. Arquitetura35/40 e especificação25/50,
 23subconjuntos/2propostas conferidas. Descoberta estática267 métodos; execução Linux
 completa/GTK/Flatpak ainda pendente. Preparado commit fonte e envio autorizado.
+
+
+## 2026/10/17 às 20:16 (America/Sao_Paulo, UTC-03:00) — Flatpak 0.1.8 validado
+
+Builder https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078, fonte da13d8600326213d26dbc662f02f4f06ef40d320:267/267 em cada suíte fonte/payload/
+sandbox, zero falhas/erros/skips.39 métodos portáveis e16 GTK novos; ATK.Text,
+foco F6 e cancelamento real de descendente/limpeza temporária exercitados.
+97 app/2804runtime/215ELF/150avisos; smoke5/5,launcher3/3.
+Bundle 35984232bytes SHA256f7c4673819b42a5d8778b79308cfd8aa8ff8da0bc245cb6865fee88f5aea229e; artefato12116387596,
+ZIP385e914187094364af2626b1711c2448e97707fb02599fbc48b4a55d9c564846 igual ao digest GitHub. Relatórios selados copiados byte a byte;
+sete capturas/hash examinados.35módulos/40interfaces,23subconjuntos/2propostas;
+catálogo252. Nuvem adiada explicitamente pelo usuário. Roteiro43,33% e paridade0/25
+preservados; original não executado. Próximo: publicar/confirmar remoto, auditar
+mesmo bundle sem rebuild, continuar contratos locais e estática restantes.
+
+
+## 2026/10/17 às 20:17 (America/Sao_Paulo, UTC-03:00) — local/remoto verificados e retomada
+
+Local/online iguais em da13d8600326213d26dbc662f02f4f06ef40d320, nenhum trabalho
+alheio novo. Fonte Linux/GTK267/267+campanha17/17 preservadas. Builder39074818078
+terminou com sucesso durante a pausa; bundle0.1.8 baixado e todas as três suítes267
+sem falhas/erros/skips, hashes9 relatórios/97app/2804runtime/215ELF/150pacotes
+conferidos; sete capturas examinadas. Relatórios raw copiados sem reformatar.
+Oito bundles anteriores preservados. Quatro acessores de layout examinados nesta
+retomada,20bytes/dez instruções, ponteiros exatos e Capstone conferidos; catálogo256.
+Projetos/respostas integrais ignorados. Registro da interrupção e próximos passos
+em docs/RETOMADA-INTERRUPCAO-2026-10-17.md. Nuvem adiada; pesos/paridade preservados.
+Próximo: commit/push técnico, confirmar remoto e auditoria instalada do mesmo
+bundle sem reconstruir; continuar contratos locais/estática sem reiniciar análises.

@@ -1,21 +1,22 @@
-# Relatório de desenvolvimento — Linuxit PDF 0.1.7
+# Relatório de desenvolvimento — Linuxit PDF 0.1.8
 
-Fonte/Flatpak **0.1.7/devel**: [criação de PDF de PNG/JPEG](docs/CRIACAO-IMAGENS.md),
-com ordem ajustável, DPI, orientação EXIF, transparência branca e destino novo.
-**212/212** em cada suíte fonte/payload/sandbox, zero falhas/erros/skips;
-17 métodos novos do backend e cinco GTK. Campanha preservada 17/17,
-smoke 5/5 e launcher 3/3. Capturas e hashes examinados.
+Segurança por senha conhecida/AES-256/cópia owner, texto ATK/F6, integridade CMS
+offline e edição ampliada em cópias. [Contrato](docs/SEGURANCA-ACESSIBILIDADE.md).
+Fonte/payload/sandbox267/267 cada, zero falhas/erros/skips,97 arquivos app;
+runtime2.804 arquivos/215ELF/150 avisos de pacotes. Smoke5/5, launcher3/3.
+[Revisão](testes/resultados/0.1.8/validation-review.json). Publicação e auditoria
+independente são confirmadas nas [notas datadas](progresso/notas-continuidade.md).
 
-30 módulos/29 interfaces; 20 subconjuntos/cinco propostas em 25 famílias.
-Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 instruções/
-467bytes nesta rodada, com RTTI IPDFViewerLayout/CReflowViewerLayout.
-[Análise](docs/REA-REFLOW.md). Original não executado; sem paridade diferencial.
+Catálogo256 entradas(152REA+104diretas),35 módulos/40 interfaces,
+23 subconjuntos parciais/duas propostas em25 famílias. Nuvem adiada pelo usuário.
+Quatro novos acessores/20bytes/dez instruções examinados estaticamente:
+[evidência](docs/REA-REFLOW-LAYOUT.md). Original não executado.
 
-37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
-Ainda há trabalho sem VM. Publicação/auditoria são registradas nas notas;
-aprovação do pacote não encerra os demais contratos ou etapas.
+Roteiro43,33%,37 critérios done/21 abertos; paridade0/25. Ainda há trabalho sem
+VM (contratos locais/estática), ambientes externos (desktop/AT-SPI/impressora)
+e comparações originais dependentes de contenção offline. Não é conclusão global.
 
-[Retomada](docs/RETOMADA.md), [revisão](testes/resultados/0.1.7/validation-review.json) e [notas](progresso/notas-continuidade.md).
+[Retomada](docs/RETOMADA.md). Registros anteriores preservados abaixo.
 
 ## Relatório histórico preservado — marco0.1.1
 

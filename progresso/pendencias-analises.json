@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T19:20:19-03:00",
+  "reviewed_at_local": "2026-10-17T20:17:24-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -76,9 +76,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -95,9 +96,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -116,9 +118,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -136,9 +139,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -156,9 +160,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -176,9 +181,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -196,9 +202,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -216,9 +223,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -295,9 +303,10 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md"
+        "docs/REA-REFLOW-SINCRONIZACAO.md",
+        "docs/REA-REFLOW-LAYOUT.md"
       ],
-      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
+      "next_action": "Catalog256(152REA+104exclusive direct). Four CReflowViewerLayout accessors and exact vtable joins examined; follow field writers/consumers and slots+04/+08/+1c(15cc3b0/15cc140/15ccab0), renderer slots, search fields/types/ownership and UI7911/7913. Do not repeat prior helpers/accessors.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -321,7 +330,7 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
+      "next_action": "Source/package0.1.8 bounded security/accessibility/CMS/copy-edit subsets verified267/267 per environment.23 subsets/2 proposals, cloud deferred. Continue remaining forms/undo/formats/platform contracts and real desktop/device checks; full families and original comparisons still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -345,7 +354,7 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
+      "next_action": "Source/package0.1.8 bounded security/accessibility/CMS/copy-edit subsets verified267/267 per environment.23 subsets/2 proposals, cloud deferred. Continue remaining forms/undo/formats/platform contracts and real desktop/device checks; full families and original comparisons still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -370,7 +379,7 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
+      "next_action": "Source/package0.1.8 bounded security/accessibility/CMS/copy-edit subsets verified267/267 per environment.23 subsets/2 proposals, cloud deferred. Continue remaining forms/undo/formats/platform contracts and real desktop/device checks; full families and original comparisons still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -398,7 +407,7 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
+      "next_action": "Source/package0.1.8 bounded security/accessibility/CMS/copy-edit subsets verified267/267 per environment.23 subsets/2 proposals, cloud deferred. Continue remaining forms/undo/formats/platform contracts and real desktop/device checks; full families and original comparisons still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -496,7 +505,7 @@
         "testes/resultados/0.1.7/audit/review.json",
         "testes/resultados/0.1.7/audit/installed-delivery-audit.json"
       ],
-      "next_action": "Publication and independent installed audit0.1.7 confirmed at technical commit d8dd8e3. Continue21 broad criteria: exact static targets, remaining own functionality and external desktop/services/original VM dependencies. Incremental approval does not close all obligations.",
+      "next_action": "Publish/audit same0.1.8 bundle, preserve eight previous bundles.21 broad criteria remain open; continue viable local implementation/static work. Cloud deferred; original requires offline VM.",
       "token_exhaustion_confirmed": null
     }
   ],

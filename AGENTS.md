@@ -1,14 +1,15 @@
 # Linuxit PDF — continuidade do projeto
 
-Fonte **0.1.8 em desenvolvimento**; pacote publicado **0.1.7/devel**.
+Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
 [Segurança, acessibilidade e edição local](docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
 cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
-Testes portáveis examinados; nova suíte Linux/GTK/Flatpak ainda pendente.
+**267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
+39 métodos portáveis e16 GTK novos. Publicação e auditoria independente: consultar o último registro nas notas.
 **Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
 35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **252** (152 REA + 100 diretas): dois helpers Win32 de sincronização
-examinados, 70 bytes/32 instruções. [Evidência estática](docs/REA-REFLOW-SINCRONIZACAO.md).
+Catálogo **256** (152 REA + 104 diretas). Após os dois helpers Win32 de
+sincronização, quatro acessores de layout foram examinados:20 bytes/dez instruções. [Evidência estática](docs/REA-REFLOW-LAYOUT.md).
 Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
 Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 
@@ -48,7 +49,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.7 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.8 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

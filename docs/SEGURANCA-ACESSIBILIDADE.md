@@ -1,7 +1,7 @@
 # Segurança, acessibilidade e edição local — fonte 0.1.8
 
-Subconjuntos próprios, após o pacote 0.1.7. A validação Linux e o Flatpak 0.1.8
-serão registrados quando concluídos; esta preparação não é pacote publicado.
+Subconjuntos próprios, após o pacote 0.1.7. Fonte e Flatpak 0.1.8 validados
+no CI Linux; confirmação da publicação e auditoria independente nas notas.
 Nuvem adiada pelo usuário. Nenhuma observação dinâmica do Foxit nesta rodada.
 
 No menu Arquivo:
@@ -69,8 +69,19 @@ pdf_signatures.py, signature_window.py, pdf_changes.py e adaptadores worker.
 Testes próprios: test_pdf_security.py, test_extended_edits.py,
 test_pdf_signatures.py, test_security_accessibility_gtk.py, test_signature_gtk.py.
 Relatórios portáveis examinados são publicados em testes/resultados/0.1.8-portable/.
-Testes GTK/Linux e entrega receberão relatórios separados quando executados.
+Testes GTK/Linux e entrega em testes/resultados/0.1.8/.
 Os 50 planos completos permanecem not_run; paridade Foxit permanece 0/25.
 
 Portáveis examinados:20/20 segurança,9/9 edição ampliada,10/10 CMS e12/12
 regressão worker no Windows. Esses51 controles não substituem267 casos Linux.
+
+## Marco Linux/Flatpak examinado
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078):267/267 em cada ambiente fonte, payload e sandbox instalado,
+zero falhas/erros/skips.39 métodos portáveis novos e16 GTK: segurança7,
+texto/acessibilidade6, edição ampliada1, assinaturas2. Cancelamento de worker
+com descendente real e limpeza temporária foi exercitado no Linux.
+97 arquivos app, 2804runtime/215ELF/150pacotes;
+OpenSSL empacotado com loader/runtime pareados. Smoke5/5 e launcher3/3.
+Sete capturas com hashes conferidos e imagens examinadas. Oito pacotes anteriores
+preservados. [Revisão](../testes/resultados/0.1.8/validation-review.json).

@@ -1,14 +1,15 @@
 # Retomada do Linuxit PDF
 
-Fonte **0.1.8 em desenvolvimento**; pacote publicado **0.1.7/devel**.
+Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
 [Segurança, acessibilidade e edição local](SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
 cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
-Testes portáveis examinados; nova suíte Linux/GTK/Flatpak ainda pendente.
+**267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
+39 métodos portáveis e16 GTK novos. Publicação e auditoria independente: consultar o último registro nas notas.
 **Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
 35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **252** (152 REA + 100 diretas): dois helpers Win32 de sincronização
-examinados, 70 bytes/32 instruções. [Evidência estática](REA-REFLOW-SINCRONIZACAO.md).
+Catálogo **256** (152 REA + 104 diretas). Após os dois helpers Win32 de
+sincronização, quatro acessores de layout foram examinados:20 bytes/dez instruções. [Evidência estática](REA-REFLOW-LAYOUT.md).
 Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
 Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 
@@ -27,10 +28,10 @@ Os registros abaixo são históricos; os marcos publicados permanecem preservado
 
 ## Próximas frentes
 
-- Estática03/05/07/08/09/11:1f21a80/1f21ac0 e slots CPDF_ImageRenderer/CReflowViewerLayout;
+- Estática03/05/07/08/09/11:Slots CPDF_ImageRenderer/CReflowViewerLayout; não repetir helpers1f21a80/1f21ac0 nem os quatro acessores do novo relatório;
   tipos/ownership, campos desconhecidos da busca e contexto dos IDs7911/7913.
-- Contratos12/lógica15/UI16: ampliar operações e as cinco famílias propostas,
-  mantendo20 subconjuntos parciais.30 módulos/29 interfaces documentados.
+- Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
+  23 subconjuntos parciais e35 módulos/40 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/

@@ -1,0 +1,48 @@
+{
+  "schema": "linuxit-local-security-accessibility-delivery-v1",
+  "date_local": "2026-10-17T20:16:26-03:00",
+  "version": "0.1.8",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078",
+  "source_commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+  "bundle": {
+    "file": "LinuxitPDF-0.1.8-x86_64.flatpak",
+    "bytes": 35984232,
+    "sha256": "f7c4673819b42a5d8778b79308cfd8aa8ff8da0bc245cb6865fee88f5aea229e",
+    "digitally_signed": false
+  },
+  "artifact_id": 12116387596,
+  "archive_sha256": "385e914187094364af2626b1711c2448e97707fb02599fbc48b4a55d9c564846",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 267,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_portable_methods": 39,
+  "new_gtk_methods": 16,
+  "source_payload_files": 97,
+  "runtime_files": 2804,
+  "elf_files": 215,
+  "debian_packages": 150,
+  "sealed_ci_reports_verified": 9,
+  "screenshots_examined": true,
+  "screenshot_hashes": {
+    "accessible-page-text.png": "ce92d1af578c33ac29ba053db7d263d0a9be4ccb61dd8078aefa8b14f9d1e55a",
+    "attachment-search.png": "e3e403e062d2ea205ef9eb6598ff0478d47704cd93042b0f2a8836dc35b209db",
+    "collection-search.png": "f618a036f0d41a6630c94095378a70c98cac7372b802a27a08af06b693d5e7c7",
+    "image-creation.png": "1e42d7379a881b3928641af1313f5487157fffdf3a75d419fa05d15b6489c40a",
+    "pdf-security.png": "41b085c64215d53f6a083d913e5a921ed6bfdcbfc2ea096bede0862a521fc0f6",
+    "proximity-search.png": "5d01b323461a053e67632ae786ff919af5f4e3193c7c777b54b2f3af32f3b8a4",
+    "signature-integrity.png": "5d97308176b68a08957732fa43f64a6072b8973a0c3dadc49749d8b44559ec9e"
+  },
+  "original_executed": false,
+  "project_complete": false,
+  "criteria_status_or_weights_changed": false,
+  "cloud_deferred_by_user": true,
+  "limitations": [
+    "Only known-password security inspection, AES-256 copies and owner-authorized plaintext copies; no viewer password integration or RMS.",
+    "CMS integrity only, without trust/revocation/timestamp/legal validity; no signing or full PAdES/LTV.",
+    "ATK.Text and keyboard tests in X11 do not establish real screen-reader experience, semantic order, speech/OCR or full accessibility.",
+    "Forced cancellation may leave a partial/completed output; no secure erasure guarantee.",
+    "Other forms/undo/formats/platform, real desktop/devices and original VM comparisons remain open."
+  ]
+}

@@ -1,20 +1,21 @@
 # Tarefas atuais e ponto de retomada
 
-Fonte **0.1.8 em desenvolvimento**; pacote publicado **0.1.7/devel**.
+Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
 [Segurança, acessibilidade e edição local](../docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
 cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
-Testes portáveis examinados; nova suíte Linux/GTK/Flatpak ainda pendente.
+**267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
+39 métodos portáveis e16 GTK novos. Publicação e auditoria independente: consultar o último registro nas notas.
 **Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
 35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **252** (152 REA + 100 diretas): dois helpers Win32 de sincronização
-examinados, 70 bytes/32 instruções. [Evidência estática](../docs/REA-REFLOW-SINCRONIZACAO.md).
+Catálogo **256** (152 REA + 104 diretas). Após os dois helpers Win32 de
+sincronização, quatro acessores de layout foram examinados:20 bytes/dez instruções. [Evidência estática](../docs/REA-REFLOW-LAYOUT.md).
 Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
 Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Marco 0.1.8|Suíte completa Linux/GTK, pacote e auditoria instalada|CI Linux autorizado, sem VM Foxit|
+|Marco 0.1.8|Publicação e auditoria do mesmo pacote; verificar último registro nas notas|CI Linux autorizado, sem VM Foxit|
 |Estática|Slots layout/renderer; busca campos3/5/6/7/12/16/20; tipos/ownership e IDs7911/7913|Sem VM; original não observado|
 |Operações locais|Demais formulários, undo/anotações, formatos/OCR e contratos incompletos|Implementação própria e testes|
 |Acessibilidade|Orca/AT-SPI, ordem semântica, voz e desktop real|Ambiente de desktop, distinto da VM Foxit|

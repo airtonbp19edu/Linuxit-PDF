@@ -121,7 +121,7 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
       "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte.",
       "inputs": [
@@ -1246,7 +1246,7 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes.",
       "inputs": [
@@ -1369,7 +1369,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes.",
       "inputs": [
@@ -1757,7 +1757,7 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
       "contract_kind": "implemented_subset",
       "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
@@ -1908,7 +1908,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes.",
       "inputs": [
@@ -2123,7 +2123,7 @@
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
       "contract_kind": "implemented_subset",
       "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
@@ -2864,5 +2864,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T19:20:19-03:00"
+  "updated_at_local": "2026-10-17T20:16:26-03:00"
 }

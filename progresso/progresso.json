@@ -712,21 +712,21 @@
       "earned_percent": 2.0,
       "current_source_revalidation": {
         "version": "0.1.8",
-        "date_local": "2026-10-17T19:20:19-03:00",
-        "status": "portable_subsets_examined; linux_pending",
-        "new_flatpak": "not_built",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "security",
-          "accessibility",
-          "signature integrity",
-          "extended copy edits",
-          "private worker temporary directories"
-        ],
+        "date_local": "2026-10-17T20:16:26-03:00",
+        "status": "source_payload_and_installed_sandbox_passed",
+        "new_flatpak": "built_and_installed_full_suite_passed",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "evidence": [
-          "docs/SEGURANCA-ACESSIBILIDADE.md"
+          "docs/SEGURANCA-ACESSIBILIDADE.md",
+          "testes/resultados/0.1.8/source-intermediate.json",
+          "testes/resultados/0.1.8/payload-tests.json",
+          "testes/resultados/0.1.8/sandbox-tests.json",
+          "testes/resultados/0.1.8/validation-review.json"
         ],
-        "next_action": "Publish source checkpoint; run full Linux source/GTK suite and build/test Flatpak milestone."
+        "next_action": "Publish and independently audit this same bundle; continue remaining local contracts and static work.",
+        "source_commit_tested": "da13d8600326213d26dbc662f02f4f06ef40d320",
+        "full_source_tests_passed": 267
       },
       "source_revalidation_history": [
         {
@@ -1033,18 +1033,16 @@
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.7",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606",
+        "version": "0.1.8",
+        "status": "validated_prepared_for_publication",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078",
         "evidence": [
-          "docs/CRIACAO-IMAGENS.md",
-          "releases/manifest-0.1.7.json",
-          "testes/resultados/0.1.7/validation-review.json"
+          "docs/SEGURANCA-ACESSIBILIDADE.md",
+          "releases/manifest-0.1.8.json",
+          "testes/resultados/0.1.8/validation-review.json"
         ],
         "stable_release": false,
-        "original_observations": 0,
-        "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
-        "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00"
+        "original_observations": 0
       },
       "delivery_history": [
         {
@@ -1114,6 +1112,20 @@
           "original_observations": 0,
           "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
           "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00"
+        },
+        {
+          "version": "0.1.7",
+          "status": "published_confirmed_at_recorded_commit",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606",
+          "evidence": [
+            "docs/CRIACAO-IMAGENS.md",
+            "releases/manifest-0.1.7.json",
+            "testes/resultados/0.1.7/validation-review.json"
+          ],
+          "stable_release": false,
+          "original_observations": 0,
+          "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+          "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00"
         }
       ]
     },
@@ -1355,22 +1367,19 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-17T18:40:30-03:00",
-    "report": "docs/CRIACAO-IMAGENS.md",
-    "source_and_package_version": "0.1.7",
-    "new_static_entries_examined": 2,
-    "catalog_entries": 250,
-    "own_preserved_corpus_cases_passed": 17,
-    "complete_tests_per_environment": 212,
+    "date_local": "2026-10-17T20:16:26-03:00",
+    "report": "docs/SEGURANCA-ACESSIBILIDADE.md",
+    "source_and_package_version": "0.1.8",
+    "new_static_entries_examined": 6,
+    "catalog_entries": 256,
+    "complete_tests_per_environment": 267,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
-    "independent_installed_audit_passed": true,
-    "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
-    "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00",
-    "unreleased_source_version": "0.1.8"
+    "publication_state": "validated_prepared_for_publication",
+    "independent_installed_audit_passed": false,
+    "cloud_deferred_by_user": true
   },
   "no_vm_execution_history": [
     {
@@ -1424,6 +1433,36 @@
       "confirmed_delivery_commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
       "publication_confirmed_at_local": "2026-10-17T18:24:59-03:00",
       "unreleased_source_version": "0.1.7"
+    },
+    {
+      "date_local": "2026-10-17T18:40:30-03:00",
+      "report": "docs/CRIACAO-IMAGENS.md",
+      "source_and_package_version": "0.1.7",
+      "new_static_entries_examined": 2,
+      "catalog_entries": 250,
+      "own_preserved_corpus_cases_passed": 17,
+      "complete_tests_per_environment": 212,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "independent_installed_audit_passed": true,
+      "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+      "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00",
+      "unreleased_source_version": "0.1.8"
     }
-  ]
+  ],
+  "latest_resume": {
+    "date_local": "2026-10-17T20:17:24-03:00",
+    "local_and_remote_checked_equal_at_source_commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+    "other_collaborator_changes_found": false,
+    "previous_unpublished_source_reports_preserved": true,
+    "builder_completed_during_interruption": true,
+    "builder_run": 39074818078,
+    "builder_result": "success",
+    "source_payload_sandbox_cases_passed_each": 267,
+    "original_executed": false,
+    "cloud_deferred_by_user": true
+  }
 }

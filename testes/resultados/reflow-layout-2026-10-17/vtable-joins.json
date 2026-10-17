@@ -1,0 +1,37 @@
+{
+  "schema": "linuxit-vtable-pointer-join-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "class_identity_basis": "Prior constructor/RTTI CReflowViewerLayout evidence; no runtime dispatch observed.",
+  "entries": [
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0xc",
+      "entry_va": "0x15cbc70",
+      "pointer_bytes_hex": "70bc5c01",
+      "matches": true
+    },
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x10",
+      "entry_va": "0x15cbc60",
+      "pointer_bytes_hex": "60bc5c01",
+      "matches": true
+    },
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x14",
+      "entry_va": "0x15cc600",
+      "pointer_bytes_hex": "00c65c01",
+      "matches": true
+    },
+    {
+      "vtable_va": "0x53d34bc",
+      "slot_offset": "0x18",
+      "entry_va": "0x15cc610",
+      "pointer_bytes_hex": "10c65c01",
+      "matches": true
+    }
+  ],
+  "slots_counted_as_unique_functions": false,
+  "original_executed": false
+}

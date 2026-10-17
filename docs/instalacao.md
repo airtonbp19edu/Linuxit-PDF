@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.7 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.8 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.7-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.8-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -20,13 +20,25 @@ acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
 
+## Marco 0.1.8: segurança, acessibilidade e operações locais
+
+[Contrato e limites](SEGURANCA-ACESSIBILIDADE.md): inspeção de senha/permissões,
+cópias AES-256 e cópias sem senha com autenticação owner, texto ATK e foco F6,
+integridade CMS offline e renomear marcador/atualizar nota/girar em cópia.
+Não aprova confiança de certificado nem conformidade de acessibilidade integral.
+267/267 testes próprios por ambiente fonte/payload/sandbox, zero skips;
+39 métodos portáveis e16 GTK novos,97 arquivos app conferidos.
+Runtime:2.804 arquivos,215ELF e150 pacotes com avisos/proveniência preservados.
+Smoke5/5 e launcher3/3. [Revisão](../testes/resultados/0.1.8/validation-review.json).
+Publicação e auditoria independente do mesmo bundle: consultar notas atuais.
+Nuvem adiada pelo usuário; desktop real, portais e impressora física pendentes.
+
 ## Marco 0.1.7: criação a partir de imagens
 
-[Contrato](CRIACAO-IMAGENS.md): PNG/JPEG em ordem ajustável, resolução de 72–600 DPI,
-orientação EXIF e transparência branca. Novo PDF RGB, com fontes preservadas.
-17 métodos novos do backend e cinco GTK passaram nas três suítes de 212 casos,
-sem falhas/erros/skips; 92 arquivos app conferidos, smoke 5/5 e launcher 3/3.
-Demais formatos/OCR continuam pendentes. [Revisão](../testes/resultados/0.1.7/validation-review.json).
+[Contrato](CRIACAO-IMAGENS.md): PNG/JPEG em ordem ajustável,72–600DPI,
+orientação EXIF e transparência branca.17 métodos backend e cinco GTK novos,
+212/212 por ambiente,92 arquivos app; demais formatos/OCR continuam pendentes.
+[Revisão histórica](../testes/resultados/0.1.7/validation-review.json).
 
 ## Marco 0.1.6: buscas e coleção
 
@@ -176,6 +188,9 @@ bytes/avisos do deployment e passou em novo smoke do sandbox. O comando
 exigindo o commit testado no histórico Git; recusa saída existente. Consulte
 o relatório para comandos local/instalado e os limites da auditoria.
 
-A versão 0.1.7 inclui [criação PNG/JPEG](CRIACAO-IMAGENS.md).
-A [auditoria independente do bundle publicado](../testes/resultados/0.1.7/audit/review.json)
+A versão 0.1.8 inclui [criação PNG/JPEG](CRIACAO-IMAGENS.md).
+A [auditoria independente do bundle publicado](../testes/resultados/0.1.8/audit/review.json)
 foi aprovada; veja as notas para a confirmação remota e os próximos trabalhos.
+
+A versão0.1.8 acrescenta [segurança/acessibilidade/CMS](SEGURANCA-ACESSIBILIDADE.md),
+com validação de integridade separada da confiança e sem serviço de nuvem.

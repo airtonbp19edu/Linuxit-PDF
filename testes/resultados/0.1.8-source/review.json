@@ -1,0 +1,26 @@
+{
+  "schema": "linuxit-source-ci-review-v1",
+  "date_local": "2026-10-17T19:26:11-03:00",
+  "source_commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074817393",
+  "artifact_id": 12116776968,
+  "archive_sha256": "02b987a1bb9d343bc2ca344077f62c3d5349d8eefcab212c0c055477ddfa5ae9",
+  "github_digest_matches": true,
+  "full_suite_passed": 267,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "preserved_own_cases_passed": 17,
+  "new_foxit_observations": 0,
+  "screenshots_examined": true,
+  "screenshot_hashes": {
+    "accessible-page-text.png": "3abf9b8c15559b5b5e09c38a803c7fecea9cc9bb275b612ccaf602a57a3f49c0",
+    "attachment-search.png": "3bca0d678c1a28a3f98c1eb991be80cf2adcdb71d5063da32f31362601d57c06",
+    "collection-search.png": "dc14b3d313edf232da05dca721debd2730733af42a30280611d85841135ebe95",
+    "image-creation.png": "7f63091bd4959fb08bb61f6a131f053bf6731b6e0683f9ce6d7b63be1ac0efd2",
+    "pdf-security.png": "45a32c6dd32f05a1b8ef456a68b2b95c078ca3d6cbf382bcd084215e4628ba43",
+    "proximity-search.png": "d3af06d827803e4a0ddfefd117b50c4ae3dff3a5276ac5ee373881d4d2c3b9cb",
+    "signature-integrity.png": "b82fad2a494a13b595e4489543efc4c394976a2a7f4fd2f6c759a4323cbb4113"
+  },
+  "flatpak_validated_by_this_run": false
+}
