@@ -540,3 +540,17 @@ Python e 58 links locais passou, além de arquitetura e contratos. Resumo em
 `testes/resultados/etapa-17-verificacao-2026-10-17.json`, com hashes do novo
 verificador/teste. Todas as fontes do aplicativo e os pacotes publicados são
 idênticos ao HEAD anterior; critérios/status/pesos/revisão também preservados.
+
+## 2026/10/17 às 01:31 (America/Sao_Paulo, UTC-03:00) — etapa 17 publicada
+
+Marco técnico enviado por Git normal e confirmado por `git ls-remote`:
+[`6ab035f0f598542ab11b81de838bcfd4d5381991`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/6ab035f0f598542ab11b81de838bcfd4d5381991).
+HEAD local/remoto iguais e árvore limpa após o envio. Esta nota registra hash
+já verificado; o commit da própria nota será conferido ao fim, sem
+autorreferência. Comprovante final em
+`analysis-local/github-stage17-sync-verified.json`, ignorado pelo Git.
+Sem bloqueio de publicação. Retomar por `docs/ETAPA-17.md` e pela nota das 01:28:
+32 testes portáveis aprovados; execução Linux/GTK da fonte atual e Flatpak
+novo pendentes. A VM do Foxit continua necessária só para a observação do
+original e comparação diferencial. IA excluída; pacote publicado 0.1.1/devel
+e todos os critérios/pesos preservados.
