@@ -53,7 +53,7 @@
     "analysis-local/stage20-artifact-12103031377/",
     "analysis-local/stage20-logs-39037892892/"
   ],
-  "publication_state": "Imported and examined locally; remote publication to be confirmed in a later continuity note.",
+  "publication_state": "Technical delivery published and real remote HEAD/clean tree confirmed at c1205f64717bb8c1d556965a54079166025c5196",
   "raw_ci_report_hashes_verified": 7,
   "runtime_files_attributed": 2803,
   "runtime_elf_files_attributed": 214,

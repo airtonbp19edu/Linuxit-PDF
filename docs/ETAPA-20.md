@@ -4,7 +4,7 @@ Continuação autorizada em **17/10/2026**, após as correções da etapa 19.
 O Flatpak **0.1.2**, branch `devel`, passou em 104/104 testes próprios em
 cada ambiente fonte Linux, payload e sandbox instalado, sem skips. O pacote
 e as evidências foram baixados e conferidos; versões anteriores preservadas.
-A confirmação remota da entrega será registrada após o push.
+Publicação remota confirmada no commit técnico `c1205f6`; detalhes ao final.
 
 O host Windows não oferece GTK/Poppler/Flatpak e WSL continua ausente.
 Foi verificado acesso ao GitHub Actions já habilitado no próprio repositório.
@@ -86,8 +86,8 @@ global desconhecida e pesos/estados dos critérios preservados: roteiro 43,33%.
 
 Próximo roteiro: auditoria incremental da etapa 21. Corrigir layout, validar
 desktop/plataforma e retomar contratos/famílias ainda parciais. Observar o Foxit
-apenas quando a VM offline estiver validada. A confirmação da publicação remota
-será acrescentada após push e comparação do HEAD real.
+apenas quando a VM offline estiver validada. A publicação técnica foi confirmada no remoto; o registro abaixo preserva
+o commit verificado sem autorreferência.
 
 
 ## Auditoria do runtime antes da distribuição
@@ -111,3 +111,14 @@ ponte GI/Cairo, typelibs, módulos Python e dados copiados. Loader pareado,
 `runtime-lib`, módulos OpenSSL, base MIT e pypdf BSD preservados. A rodada final
 repetiu e passou nos 104 testes em cada ambiente, smoke e launcher. A auditoria
 registra proveniência/distribuição e não afirma suporte completo ou paridade.
+
+
+## Publicação confirmada — 17/10/2026 às 10:54
+
+Entrega técnica [`c1205f6`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/c1205f64717bb8c1d556965a54079166025c5196)
+confirmada por `git ls-remote`, HEAD igual e árvore limpa. `git fsck --full`
+retornou 0; sete hashes dos relatórios CI conferidos também nos blobs Git
+normalizados. O workflow final 39037892892 terminou `success`. Bundle,
+manifestos, captura, testes, auditoria de runtime e instruções estão no remoto.
+Esta nota acrescenta somente o registro; o HEAD posterior será conferido
+novamente por recibo externo, evitando registrar o hash do próprio commit.

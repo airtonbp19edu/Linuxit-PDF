@@ -1,19 +1,20 @@
 {
   "repository": "https://github.com/airtonbp19edu/Linuxit-PDF",
   "branch": "main",
-  "last_confirmed_remote_commit": "2872144904bdf5d0e0eda870b107f6068c989a10",
+  "last_confirmed_remote_commit": "c1205f64717bb8c1d556965a54079166025c5196",
   "status": "confirmed_at_recorded_commit",
   "sync_percent": 100,
   "measurement": "Tracked content compared to confirmed remote tree; this status file records the previous confirmed commit to avoid a self-referential commit hash.",
   "pending_publicable_files_at_recording": 0,
   "confirmation": {
     "branch": "main",
-    "local_head": "2872144904bdf5d0e0eda870b107f6068c989a10",
-    "confirmed_remote_head": "2872144904bdf5d0e0eda870b107f6068c989a10",
+    "local_head": "c1205f64717bb8c1d556965a54079166025c5196",
+    "confirmed_remote_head": "c1205f64717bb8c1d556965a54079166025c5196",
     "worktree_clean": true,
     "synchronized": true,
     "publicable_tracked_artifacts_percent": 100,
-    "method": "Real ls-remote HEAD comparison and empty git status; ignored staging/caches and restricted original materials are not publicable artifacts."
+    "method": "Real ls-remote HEAD comparison and empty git status at the technical delivery commit. Ignored raw/original materials are excluded."
   },
-  "note": "This file records the already-pushed package milestone. The following bookkeeping commit cannot embed its own SHA; final HEAD is verified again with the external receipt script."
+  "note": "Records the confirmed 0.1.2 technical delivery. The following bookkeeping commit cannot embed its own SHA; final HEAD is verified again with an external receipt.",
+  "date_local": "2026-10-17T10:54:34.631091-03:00"
 }

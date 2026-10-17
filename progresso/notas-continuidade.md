@@ -819,3 +819,10 @@ Captura final e logs examinados; pendências de layout lateral/desktop real/aces
 ### 2026/10/17 às 10:52 (America/Sao_Paulo, UTC-03:00) — conferência final da etapa 20
 
 `scripts/check_architecture.py` passou (21 módulos, 15 interfaces, 21 critérios abertos em 14 etapas). Especificação/registro renderizado conferidos: 25 famílias, 50 casos completos ainda sem execução, 32 referências de teste e 27 de fonte, 15 subconjuntos/10 propostas. Verificação estrutural examinou 119 arquivos Python e 274 links alterados, sete hashes de relatórios CI, três hashes de bundles e preservação dos manifestos/notas antigos. Runtime: 2803 arquivos/214 ELF/149 pacotes atribuídos; somente loaders.cache difere do insumo pela reescrita documentada de caminhos. Evidência `testes/resultados/etapa-20-verificacao-2026-10-17.json`. Pesos/status do roteiro preservados: 43,33%, paridade 0/25, cobertura global nula. Envio da entrega será confirmado separadamente.
+
+
+## 2026/10/17 às 10:54 (America/Sao_Paulo, UTC-03:00) — publicação confirmada da etapa 20
+
+Commit técnico `c1205f64717bb8c1d556965a54079166025c5196` enviado e confirmado por `git ls-remote`: HEAD local/remoto iguais e árvore limpa. Flatpak 0.1.2/devel, manifesto, SHA256SUMS, relatórios e instruções publicados. `git fsck --full` retornou 0 (árvore dangling informativa preservada); os sete relatórios selados também conferem nos blobs Git, após normalização de finais de linha. Workflow 39037892892 confirmado `completed/success`.
+
+Fonte testada permanece e8f9c2e, bundle SHA `9d29459d7aff8ca6859cda0846cd698d285b36c3a8de2f463ff87002740cd7ba`; nenhum código executável mudou depois dos testes. Registro de sincronização aponta este commit técnico, sem autorreferência. Esta nota/documentação será enviada em commit seguinte e HEAD final conferido com `scripts/verify_git_sync.py` em recibo fora do checkout. Próximo ponto: etapa 21, auditoria incremental; manter implementação/paridade parciais e pendências de VM, layout lateral, desktop, acessibilidade, portais e impressão física.

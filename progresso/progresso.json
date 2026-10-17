@@ -821,7 +821,7 @@
         "version": "0.1.2",
         "date_local": "2026-10-17T10:51:28.575850-03:00",
         "source_commit": "e8f9c2e4f48dfc1e5b3cf2a8a6cfe97edb0ee899",
-        "status": "built_installed_tested; publication to be confirmed",
+        "status": "published_confirmed_at_recorded_commit",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39037892892",
         "evidence": [
           "docs/ETAPA-20.md",
@@ -839,7 +839,9 @@
           "elf_files": 214,
           "debian_packages": 149,
           "evidence": "testes/resultados/0.1.2/runtime-origins.json"
-        }
+        },
+        "confirmed_delivery_commit": "c1205f64717bb8c1d556965a54079166025c5196",
+        "publication_confirmed_at_local": "2026-10-17T10:54:34.631091-03:00"
       }
     },
     {
