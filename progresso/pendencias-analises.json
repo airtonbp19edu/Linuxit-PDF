@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T16:19:21-03:00",
+  "reviewed_at_local": "2026-10-17T18:19:25-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -56,7 +56,8 @@
         "progresso/progresso.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Detailed protection/rules/ruleset API endpoints returned 403 (plan limitation); branch metadata says protected=false. Recheck detailed read access if availability changes, without changing settings or billing.",
       "token_exhaustion_confirmed": null
@@ -72,9 +73,10 @@
       "evidence_refs": [
         "docs/FOXIT-REA.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "RTTI confirms CFX_DIBitmap, CXFA_RenderContext and CReader_PrintMgrEx; CPDF parser/security names inventoried. Identify remaining subsystem boundaries; do not infer complete engine or availability.",
+      "next_action": "RTTI now identifies CPDF_ImageRenderer and CReflowViewerEx/IPDFViewer in examined constructors, in addition to prior classes. Remaining subsystem boundaries and availability still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -88,9 +90,10 @@
       "evidence_refs": [
         "docs/dependencias.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "Follow auxiliary creation/finalization at0x1b8a7a0/0x1b8ae20 after examined0x1b8a2b0 and shared-reference setup0x1b8d860; other component lifecycles remain open.",
+      "next_action": "Image renderer constructor and reflow factory clarified; follow remaining renderer slots and reflow resources15c9c90/15c5e00. Lifecycle of every component remains incomplete.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -106,9 +109,10 @@
         "engenharia-reversa/funcoes.csv",
         "docs/FOXIT-REA.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "240 examined entries (152REA+88exclusive direct); close relevant function inventory and provisional signatures before global coverage.",
+      "next_action": "248 examined entries (152REA+96direct);8 new this continuation. Inventory and provisional types remain open; no global coverage percentage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -123,7 +127,8 @@
         "docs/REA-IMPRESSAO-CONSUMIDORES.md",
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "31 new entries examined in this request. Follow0x16664e0 and remaining render/output paths; retain provisional types, flags and physical-output limits.",
       "token_exhaustion_confirmed": null
@@ -140,7 +145,8 @@
         "docs/REA-IMPRESSAO-CONSUMIDORES.md",
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Complete24-byte search fields3/5/6/7/12/16/20, stemming and embedded attachment consumers with separate directed rounds.",
       "token_exhaustion_confirmed": null
@@ -157,7 +163,8 @@
         "docs/REA-IMPRESSAO-CONSUMIDORES.md",
         "docs/REA-BUSCA-IMPRESSAO.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Investigate remaining in-scope families against existing inventory; exclude AI. Current directed print/UI observations do not close other families.",
       "token_exhaustion_confirmed": null
@@ -174,7 +181,8 @@
       "evidence_refs": [
         "docs/fluxos.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
       "token_exhaustion_confirmed": null
@@ -191,7 +199,8 @@
       "evidence_refs": [
         "docs/fluxos.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Completar arestas, tipos e algoritmos com provas locais; preservar fluxos parciais sem unir objetos por inferência.",
       "token_exhaustion_confirmed": null
@@ -209,7 +218,8 @@
         "docs/ETAPA-10.md",
         "testes/cenarios-dinamicos.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
       "token_exhaustion_confirmed": null
@@ -227,7 +237,8 @@
         "docs/ETAPA-10.md",
         "testes/cenarios-dinamicos.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
       "token_exhaustion_confirmed": null
@@ -245,7 +256,8 @@
         "docs/ETAPA-10.md",
         "testes/cenarios-dinamicos.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
       "token_exhaustion_confirmed": null
@@ -264,9 +276,10 @@
         "docs/ETAPA-11.md",
         "testes/cenarios-interface.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "Previously queued UI targets examined; follow0x15c6550/0x872f20 after0x880490. Class context and IDs7911/7913 unresolved. ObserveUI01-UI10 in offline guest.",
+      "next_action": "15c6550/880490 factory now confirmed CReflowViewerEx by constructor RTTI; unrelated class context and IDs7911/7913 unresolved. ObserveUI01-UI10 in offline guest.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -285,7 +298,8 @@
         "docs/especificacao-funcional.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
       "token_exhaustion_confirmed": null
@@ -306,7 +320,8 @@
         "docs/especificacao-funcional.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Especializar corpus, executar casos próprios por família e preencher referência apenas com observação; fase A permanece aberta.",
       "token_exhaustion_confirmed": null
@@ -328,9 +343,10 @@
         "testes/resultados/0.1.2/validation-review.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "0.1.5 source/payload/sandbox152/152 passed: nested/annotation attachments plus bounded bookmark/note/Tx copies. Expand remaining nine proposed families and incomplete operations in16 subsets; no full-family parity claim.",
+      "next_action": "0.1.6 source/payload/sandbox190/190: own attachment search, wildcard/proximity and persistent collection subsets.19 implemented subsets/6proposals remain incomplete; expand next contracts without AI.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -353,9 +369,10 @@
         "testes/resultados/0.1.3/validation-review.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "Five new copy-edit GTK methods and prior panels passed in X11 virtual source/payload/sandbox. Validate real desktop/portals/AT-SPI/physical printer and remaining interactions.",
+      "next_action": "Six new search GTK methods and screenshots passed, alongside prior panels/copy operations. Real desktop/portals/AT-SPI/physical printer and other interactions remain pending.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -377,9 +394,10 @@
         "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
         "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "17/17 own checks rerun on preserved corpus/protocols for0.1.5; all original observations and full acceptance plans remain not_run. Import original evidence only after offline containment.",
+      "next_action": "17/17 own checks repeated on preserved corpus/protocols for0.1.6; no original observations imported. Full acceptance plans and original differential work still require separate execution/containment.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -401,9 +419,10 @@
         "testes/resultados/etapa-18-campanha-final-2026-10-17.json",
         "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "17/17 own checks rerun on preserved corpus/protocols for0.1.5; all original observations and full acceptance plans remain not_run. Import original evidence only after offline containment.",
+      "next_action": "17/17 own checks repeated on preserved corpus/protocols for0.1.6; no original observations imported. Full acceptance plans and original differential work still require separate execution/containment.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -423,7 +442,8 @@
         "testes/resultados/0.1.2/validation-review.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
       "next_action": "Own CropBox/memory/GTK/sidebar corrections and new copy-edit regressions passed0.1.5; original divergences remain unmeasured pending offline guest.",
       "token_exhaustion_confirmed": null
@@ -444,9 +464,10 @@
         "testes/resultados/etapa-21/review.json",
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md"
+        "docs/COPIA-EDITADA.md",
+        "docs/BUSCA-COLECOES.md"
       ],
-      "next_action": "Delivery0.1.5 published/reinstalled/audited without rebuild; seven controls and fresh smoke5/5 passed. Continue static/contracts/implementation/real desktop and original VM comparisons; stage21 remains pending.",
+      "next_action": "Publish/audit0.1.6 incremental delivery; preserve previous audits. Continue remaining independent/static/contracts/platform work and original VM comparisons; do not close all stages.",
       "token_exhaustion_confirmed": null
     }
   ],

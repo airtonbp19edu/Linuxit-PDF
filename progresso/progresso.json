@@ -711,12 +711,12 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "source0.1.6_changed_since_delivery0.1.5",
-        "date_local": "2026-10-17T16:14:01-03:00",
-        "scope": "New attachment/mode/collection search in own source.",
+        "status": "source_payload_and_installed_sandbox_passed",
+        "date_local": "2026-10-17T18:19:25-03:00",
+        "scope": "Own0.1.6 embedded/advanced/collection search and all prior regressions.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "pending_for0.1.6",
-        "new_flatpak": "not_built_for0.1.6",
+        "linux_source_runtime": "passed",
+        "new_flatpak": "built_and_installed_full_suite_passed",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
@@ -744,29 +744,24 @@
           "testes/resultados/0.1.5/source-intermediate.json",
           "testes/resultados/0.1.5/payload-tests.json",
           "testes/resultados/0.1.5/sandbox-tests.json",
-          "testes/resultados/0.1.5/validation-review.json"
+          "testes/resultados/0.1.5/validation-review.json",
+          "docs/BUSCA-COLECOES.md",
+          "testes/resultados/0.1.6/source-intermediate.json",
+          "testes/resultados/0.1.6/payload-tests.json",
+          "testes/resultados/0.1.6/sandbox-tests.json",
+          "testes/resultados/0.1.6/validation-review.json"
         ],
-        "next_action": "Run complete Linux suite and six new GTK methods; build0.1.6 only after source passes.",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "app/main.py",
-          "app/search_engine.py",
-          "app/version.py",
-          "app/worker_cli.py",
-          "app/attachment_search.py",
-          "app/collection_index.py",
-          "app/collection_window.py",
-          "app/search_matching.py",
-          "app/search_tasks.py"
-        ],
+        "next_action": "Publish0.1.6 and audit the same installed bundle; continue remaining independent contracts/static/runtime obligations.",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
         "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
-        "source_commit_tested": null,
-        "full_source_tests_passed": null,
+        "source_commit_tested": "ca7fe1223c5d03548c26cc123d1c941d1aceaa29",
+        "full_source_tests_passed": 190,
         "previous_source_verification": {
           "version": "0.1.5",
           "source_commit": "979a288d3c6407162dbbbe2b7df24991f58984f8",
@@ -996,18 +991,16 @@
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.5",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060979871",
+        "version": "0.1.6",
+        "status": "validated_prepared_for_publication",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299",
         "evidence": [
-          "docs/COPIA-EDITADA.md",
-          "testes/resultados/0.1.5/validation-review.json",
-          "releases/manifest-0.1.5.json"
+          "docs/BUSCA-COLECOES.md",
+          "testes/resultados/0.1.6/validation-review.json",
+          "releases/manifest-0.1.6.json"
         ],
         "stable_release": false,
-        "original_observations": 0,
-        "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
-        "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
+        "original_observations": 0
       },
       "delivery_history": [
         {
@@ -1049,6 +1042,20 @@
           "original_observations": 0,
           "confirmed_delivery_commit": "a81d60e157ab7766ad7addbf0517a197b9be86f9",
           "publication_confirmed_at_local": "2026-10-17T15:44:21-03:00"
+        },
+        {
+          "version": "0.1.5",
+          "status": "published_confirmed_at_recorded_commit",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060979871",
+          "evidence": [
+            "docs/COPIA-EDITADA.md",
+            "testes/resultados/0.1.5/validation-review.json",
+            "releases/manifest-0.1.5.json"
+          ],
+          "stable_release": false,
+          "original_observations": 0,
+          "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
+          "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00"
         }
       ]
     },
@@ -1234,22 +1241,19 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-17T16:14:01-03:00",
-    "report": "docs/AVANCO-SEM-VM.md",
-    "source_and_package_version": "0.1.5",
-    "new_static_entries_examined": 31,
-    "catalog_entries": 240,
+    "date_local": "2026-10-17T18:19:25-03:00",
+    "report": "docs/BUSCA-COLECOES.md",
+    "source_and_package_version": "0.1.6",
+    "new_static_entries_examined": 8,
+    "catalog_entries": 248,
     "own_preserved_corpus_cases_passed": 17,
-    "complete_tests_per_environment": 152,
+    "complete_tests_per_environment": 190,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
-    "independent_installed_audit_passed": true,
-    "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
-    "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00",
-    "unreleased_source_version": "0.1.6"
+    "publication_state": "validated_prepared_for_publication",
+    "independent_installed_audit_passed": false
   },
   "no_vm_execution_history": [
     {
@@ -1267,6 +1271,24 @@
       "confirmed_delivery_commit": "a81d60e157ab7766ad7addbf0517a197b9be86f9",
       "publication_confirmed_at_local": "2026-10-17T15:44:21-03:00",
       "independent_installed_audit_passed": true
+    },
+    {
+      "date_local": "2026-10-17T16:14:01-03:00",
+      "report": "docs/AVANCO-SEM-VM.md",
+      "source_and_package_version": "0.1.5",
+      "new_static_entries_examined": 31,
+      "catalog_entries": 240,
+      "own_preserved_corpus_cases_passed": 17,
+      "complete_tests_per_environment": 152,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "independent_installed_audit_passed": true,
+      "confirmed_delivery_commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
+      "publication_confirmed_at_local": "2026-10-17T16:19:21-03:00",
+      "unreleased_source_version": "0.1.6"
     }
   ]
 }

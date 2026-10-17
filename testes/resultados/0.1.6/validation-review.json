@@ -1,0 +1,48 @@
+{
+  "schema": "linuxit-search-delivery-review-v1",
+  "date_local": "2026-10-17T18:19:25-03:00",
+  "version": "0.1.6",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299",
+  "source_commit": "ca7fe1223c5d03548c26cc123d1c941d1aceaa29",
+  "bundle": {
+    "file": "LinuxitPDF-0.1.6-x86_64.flatpak",
+    "bytes": 35601808,
+    "sha256": "a71bca023a6bd2f671ffb7049a101a59ade185ef25bb5d3f8f0ddfeb7c399d05",
+    "digitally_signed": false
+  },
+  "artifact_id": 12115166272,
+  "archive_sha256": "a7e86c2f4b7006c870a2df459fd5f54a9ee5156f1b1fb04d589c32d1121f47ad",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 190,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_query_methods": 8,
+  "new_attachment_methods": 12,
+  "new_collection_methods": 12,
+  "new_gtk_methods": 6,
+  "source_payload_files": 90,
+  "runtime_files": 2803,
+  "elf_files": 214,
+  "debian_packages": 149,
+  "sealed_ci_report_hashes_verified": 9,
+  "own_preserved_corpus_passed": 17,
+  "screenshot_review_pending": false,
+  "original_executed": false,
+  "project_complete": false,
+  "criteria_status_or_weights_changed": false,
+  "limits": [
+    "Own bounded search contracts; stemming/OCR/recursive attachments and full formats remain pending.",
+    "Local index stores clear text and absolute paths chosen explicitly; no implicit directory scan.",
+    "Declared/decoded size guards do not bound parser/decompression memory; worker resources/cancellation are separate.",
+    "Real desktop/portals/AT-SPI/physical printing/services and original VM comparisons remain pending.",
+    "Main window760px request yields924px minimum in existing layout tests."
+  ],
+  "screenshots_examined": true,
+  "screenshots": {
+    "search-ui/attachment-search.png": "e3e403e062d2ea205ef9eb6598ff0478d47704cd93042b0f2a8836dc35b209db",
+    "search-ui/collection-search.png": "1dd5a762b31c5efa2618b115bd8005879350c8dfaafc9b27b90d98c83e3b8219",
+    "search-ui/proximity-search.png": "64bcb4b73941c3646fb290dd751ec57daa44bf44c4306379c84d3df6d378b920",
+    "linuxit-flatpak-0.1.6.png": "1d9dff131084b1428f9fe8a905efac6fc6db987b1da49ff1d876e3b0cd664117"
+  }
+}

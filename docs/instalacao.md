@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.5 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.6 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.5-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.6-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -19,6 +19,14 @@ A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+
+## Marco 0.1.6: buscas e coleção
+
+[Contrato](BUSCA-COLECOES.md):190/190 por ambiente fonte/payload/sandbox,
+zero skips, seis métodos GTK novos, smoke 5/5 e launcher 3/3. Busca em anexos
+UTF-8/PDF com omissões explícitas, coringas/proximidade e índice local de PDFs
+escolhidos. Sem stemming/OCR, recursão de anexos ou pesquisa implícita de pastas.
+O índice contém texto/caminhos locais; os limites e a atualização estão no contrato.
 
 ## Marco 0.1.5: alterações em cópia nova
 

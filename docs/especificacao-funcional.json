@@ -592,7 +592,7 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
@@ -708,7 +708,7 @@
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
@@ -826,7 +826,7 @@
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "source0.1.6 implemented subset; Linux/GTK/payload validation pending; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
@@ -2393,5 +2393,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T18:09:20-03:00"
+  "updated_at_local": "2026-10-17T18:19:25-03:00"
 }

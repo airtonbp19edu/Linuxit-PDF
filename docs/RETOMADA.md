@@ -1,36 +1,26 @@
 # Retomada do Linuxit PDF
 
-Fonte em desenvolvimento **0.1.6**: `docs/BUSCA-COLECOES.md`. Busca em anexos,
-coringas/proximidade e coleção persistente;32 métodos portáveis aprovados,
-seis GTK aguardam Linux.28 módulos/26 interfaces,19 subconjuntos/seis propostas.
-Catálogo245(152REA+93diretas); nova rodada5 entradas/517 instruções/1572bytes.
-Entrega publicada/auditada permanece0.1.5 até validar um novo pacote.
-Os checkpoints históricos abaixo não substituem este estado da fonte.
+Atualizado em 2026-10-17T18:19:25-03:00. Fonte/Flatpak **0.1.6/devel**.
+[Busca em anexos, modos e coleção](BUSCA-COLECOES.md):190/190 em cada suíte
+fonte/payload/sandbox, zero falhas/erros/skips; smoke 5/5 e launcher 3/3.
+32 métodos portáveis e seis GTK novos; capturas examinadas após corrigir o
+sincronismo da fotografia, sem alterar o aplicativo. Campanha preservada 17/17.
 
-Atualizado em 2026-10-17T16:14:01-03:00. Pedido ativo: avançar as frentes sem VM,
-publicar cada marco e registrar evidências para outras IAs.
+[LinuxitPDF-0.1.6-x86_64.flatpak](../releases/LinuxitPDF-0.1.6-x86_64.flatpak),
+35.601.808 bytes, SHA-256 `a71bca023a6bd2f671ffb7049a101a59ade185ef25bb5d3f8f0ddfeb7c399d05`.
+[Revisão](../testes/resultados/0.1.6/validation-review.json) e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299).
+Publicação/auditoria independente devem ser consultadas nas últimas notas.
 
-## Estado atual
+28 módulos/26 interfaces; 19 subconjuntos/seis propostas em 25 famílias.
+Catálogo **248** (152 REA + 96 diretas),8 entradas novas/889 instruções/3.223 bytes
+nesta continuação. Raw/projetos em `analysis-local/headless/no-vm-continuation-2026-10-17/`
+e `no-vm-context-2026-10-17/`. RTTI confirmou CPDF_ImageRenderer e
+CReflowViewerEx/IPDFViewer. Não repetir os oito alvos examinados.
 
-**Fonte e Flatpak 0.1.5/devel**, entrega incremental em Linux x86_64.
-[Novas operações](COPIA-EDITADA.md): marcador principal, nota Text e campo
-AcroForm Tx em cópia nova; preserva fonte e recusa sobrescrita. Anexos de
-árvores Kids e anotações, busca e impressão anteriores continuam presentes.
-
-**152/152 testes em cada ambiente**: fonte Linux, payload e sandbox instalado;
-zero falhas/erros/skips, smoke 5/5 e launcher 3/3. Inclui cinco métodos GTK novos
-com diálogos reais e worker. [Relatórios](../testes/resultados/0.1.5/validation-review.json)
-e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39060979871). A campanha preservada passou 17/17, mesmos oito arquivos e protocolos.
-
-Catálogo **240 entradas** (152 REA +88 exclusivas diretas). Nesta execução:
-31 entradas novas em quatro lotes; Capstone conferiu 3.934 instruções/12.315 bytes.
-Raw e projetos em `analysis-local/headless/no-vm-*-2026-10-17/`, ignorados.
-[Resultados e alvos](AVANCO-SEM-VM.md); **não repetir** lotes examinados.
-
-Roteiro **43,33%**, paridade **0/25**, cobertura global de RE desconhecida.
-37 critérios concluídos e 21 abertos em 14 etapas; pesos/estados preservados.
-A auditoria/publicação deve ser consultada no manifesto, progresso e últimas
-[notas datadas](../progresso/notas-continuidade.md), sem presumir estado remoto.
+Roteiro **43,33%**, paridade **0/25**; 37 critérios done/21 abertos em 14 etapas.
+Ainda há trabalho sem VM: tipos/campos/fluxos, operações PDF e seis propostas.
+Stemming, OCR, formatos adicionais, desktop real/portais/AT-SPI/impressão física
+e serviços externos continuam pendentes; original depende de contenção offline.
 
 ## Primeiro ao retomar
 
@@ -45,10 +35,10 @@ A auditoria/publicação deve ser consultada no manifesto, progresso e últimas
 
 ## Próximas frentes
 
-- Estática03/05/07/08/09/11:16664e0,1b8a7a0,1b8ae20,15c6550,872f20;
+- Estática03/05/07/08/09/11:15c9c90,15c5e00 e slots CPDF_ImageRenderer;
   tipos/ownership, campos desconhecidos da busca e contexto dos IDs7911/7913.
-- Contratos12/lógica15/UI16: ampliar operações e as nove famílias propostas,
-  mantendo16 subconjuntos parciais.23 módulos/18 interfaces documentados.
+- Contratos12/lógica15/UI16: ampliar operações e as seis famílias propostas,
+  mantendo19 subconjuntos parciais.28 módulos/26 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/
@@ -89,17 +79,8 @@ Não lançar Foxit no host normal; [preparação da contenção](COMO-CONTINUAR.
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-testes-novos.json
 ```
 
-O último comando exige dependências Linux e tela para completar152 testes sem
+O último comando exige dependências Linux e tela para completar190 testes sem
 skips. Fluxos manuais de CI: `no-vm-validation.yml` (fonte/corpus),
 `linux-flatpak.yml` (fonte/payload/sandbox) e `delivery-audit.yml` (bundle
 publicado reinstalado sem rebuild). Fontes/licenças, builder pareado e
 `runtime-lib` devem ser preservados. Instruções: [instalação](instalacao.md).
-
-
-Entrega0.1.5 publicada em `539bccb46fb3d5fddca4b70bef5a0c70aadce9a5`,
-HEAD remoto/local e árvore limpa confirmados. A
-[auditoria independente](../testes/resultados/0.1.5/audit/review.json)
-reinstalou o mesmo bundle sem rebuild:85 arquivos app/2803 dependências/214 ELF/
-149 arquivos de licença-créditos conferidos; controles7/7 e novo smoke5/5.
-Suítes152/152 não foram repetidas nesta auditoria. O registro posterior é
-verificado externamente para evitar autorreferência de hash Git.

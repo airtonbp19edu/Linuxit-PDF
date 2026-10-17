@@ -1,0 +1,70 @@
+{
+  "schema": "linuxit-linux-candidate-v1",
+  "date_utc": "2026-10-17T21:16:52.179570+00:00",
+  "version": "0.1.6",
+  "status": "development; full reconstruction incomplete",
+  "application_id": "io.github.airtonbp19edu.LinuxitPDF",
+  "flatpak_branch": "devel",
+  "architecture": "x86_64",
+  "runtime": "org.freedesktop.Platform/x86_64/25.08",
+  "runtime_commit_tested": "b7aba340fd291e08bf26442d43a0e4adb6733da5a06d47ff4296a964af40cc8a",
+  "app_ostree_commit": "c98903fe11b09cfb5b3656ff8d6490c9b2e858081f9473db2251f1d17fd2ed79",
+  "source_commit": "ca7fe1223c5d03548c26cc123d1c941d1aceaa29",
+  "builder_sha256": "7c30f5511212b4b40f9ae3dca9d4c96d817724d5e90c817a8fb6771a916cf592",
+  "artifact": {
+    "file": "LinuxitPDF-0.1.6-x86_64.flatpak",
+    "bytes": 35601808,
+    "sha256": "a71bca023a6bd2f671ffb7049a101a59ade185ef25bb5d3f8f0ddfeb7c399d05",
+    "digitally_signed": false
+  },
+  "validation": {
+    "source": {
+      "run": 190,
+      "passed": 190,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 190,
+      "passed": 190,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 190,
+      "passed": 190,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_payload_matched_files": 90,
+  "bundled_runtime_files_audited": 2803,
+  "bundled_elf_files_audited": 214,
+  "bundled_debian_packages": 149,
+  "sandbox_smoke_checks_passed": 5,
+  "normal_launcher_checks_passed": 3,
+  "report_hashes": {
+    "sidebar-before.json": "1aa5423c0ad6dd99e8c02a0b1c20f726eb996e4e30beab251a13b81838acde22",
+    "source-payload-integrity.json": "fa72c285b6acc2d779454f6622f7da7ad6addb2a7d0eddf987c6857d76689d3b",
+    "sandbox-smoke.json": "e7910166481df383b089485735bab82b2ce2d2637837bc79848d6f5da56763c9",
+    "source-intermediate.json": "0f18184e726e0f8fcd52a92334d4976031a842491d9bf66915735f45d2876f7f",
+    "sidebar-after.json": "72a28db25178b92266ef57406abf93e05dcc22312842740168d67572f7608712",
+    "sandbox-tests.json": "25317bc3ccb15bdd17ace60b6195d6d3b4ce63039665148f51aa0400e7908817",
+    "payload-tests.json": "12ebf6ccd3351a68321b2decfb0ded6a977c201f66be5162d3b86249c46fe2ac",
+    "flatpak-normal-launch.json": "c10dab272d32d13bf8359d1a342bf4a4c35cb0377ff7cc0320f37947424491ea",
+    "runtime-origins.json": "287db0396a0bc6eae490e3e3c37c637b4c2ea255bd90ad25b1ea3bf9d00edb7c"
+  },
+  "foxit_differential_test": false,
+  "physical_printing_verified": false,
+  "restrictions": [
+    "Development build, not complete Foxit reconstruction.",
+    "Only own application and licensed dependencies; no proprietary originals or reverse-engineering payloads."
+  ],
+  "source_snapshot": "testes/resultados/0.1.6/source-payload-integrity.json",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299",
+  "examined_reports_directory": "testes/resultados/0.1.6/",
+  "runtime_packages": "releases/runtime-packages-0.1.6.tsv"
+}

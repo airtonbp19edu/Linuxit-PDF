@@ -1,0 +1,38 @@
+{
+  "date_local": "2026-10-17T18:12:15-03:00",
+  "source_commit": "ca7fe1223c5d03548c26cc123d1c941d1aceaa29",
+  "ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069765892",
+  "tests": 190,
+  "skipped": 0,
+  "errors": 0,
+  "failures": 0,
+  "gtk_methods": 6,
+  "own_preserved_corpus_passed": 17,
+  "zip_sha256": "6cbbdd42f525043490a2b9698cb6c426100798ddebbfdef486e05ad8ecb8d946",
+  "github_digest_matches": true,
+  "images_examined": [
+    {
+      "file": "attachment-search.png",
+      "scope": "Own GTK UI, not Foxit observation",
+      "width": 1180,
+      "height": 780,
+      "sha256": "3bca0d678c1a28a3f98c1eb991be80cf2adcdb71d5063da32f31362601d57c06"
+    },
+    {
+      "file": "collection-search.png",
+      "scope": "Own GTK UI, not Foxit observation",
+      "width": 808,
+      "height": 500,
+      "sha256": "0185760fb602f9f18f5b6322a857512c52371d15617c625a2fb847a9bbf1a72f"
+    },
+    {
+      "file": "proximity-search.png",
+      "scope": "Own GTK UI, not Foxit observation",
+      "width": 1180,
+      "height": 780,
+      "sha256": "51b4c389768db97691a1ddc8d251bc312d85ed2eb3123663606152c6254db835"
+    }
+  ],
+  "application_source_changed_for_screenshot_fix": false,
+  "original_executed": false
+}

@@ -1,6 +1,6 @@
 # Pendências de análise e pontos de retomada
 
-Revisão em **17/10/2026**, solicitada pelo usuário ao avançar a etapa 13.
+Revisão em **17/10/2026**, atualizada durante a continuação sem VM; os critérios da etapa13 foram preservados.
 A [fonte estruturada](pendencias-analises.json) registra **todos os 21 critérios
 não concluídos em 14 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
@@ -13,22 +13,22 @@ por essa exclusão; pendências e pesos permanecem preservados.
 
 ## Causas e próximos passos
 
-| Etapa | Fração verificada | Estado atual e próximo passo |
+| Etapa | Fração verificada | Estado e próximo passo |
 |---|---:|---|
-| 01 — Diagnóstico | 80% | Detalhes de proteção/regras recusados por API403 do plano; metadado main protected=false. Sem alteração de segurança/faturamento. |
-| 03 — Tecnologia | 50% | RTTI confirmou três classes ligadas às vtables e candidatos CPDF parser/segurança. Restantes fronteiras/subsistemas ainda abertos. |
-| 05 — Dependências | 42,9% | Configuração compartilhada/referências examinadas; seguir1b8a7a0/1b8ae20 para fábrica/finalização auxiliar. Ciclos de vida restantes não fechados. |
-| 07 — Catálogo | 33,3% |240 entradas (152 REA+88 diretas);31 novas neste pedido. Universo relevante/tipos ainda abertos, cobertura global indeterminada. |
-| 08 — Descompilação | 13,0% | Quatro lotes novos examinados. Seguir16664e0, demais render/saída e campos3/5/6/7/12/16/20 da busca. Não repetir lotes concluídos. |
-| 09 — Fluxos | 9,1% | Estados/continuação/recursos refinados, sem fechamento universal. Completar arestas, tipos, algoritmos e ownership com provas. |
-| 10 — Dinâmica | 0% | VM/contenção offline pendente; original não observado. Kit/cenáriosD01–D20 preparados permanecem not_run. |
-| 11 — Interface | 25% | Alvos antigos e880490 examinados; seguir15c6550/872f20, identificar classe/IDs7911/7913. ObservarUI01–UI10 no guest. |
-| 12 — Especificação | 12,5% |25 famílias/16 subconjuntos/nove propostas.50 planos completos not_run. Ampliar contratos/fixtures próprios sem VM; confirmar referência na contenção. |
-| 15 — Lógica | 33,3% | Anexos Kids/anotações e cópias com marcador/nota/Tx em 0.1.5;152/152 por ambiente. Expandir demais operações/famílias, portfólios/senha conforme contrato. |
-| 16 — Interface | 33,3% | Seis métodos GTK de anexos, cinco novos de cópia e layout aprovados no X11 virtual. Desktop/portal/AT-SPI/impressora e demais interações abertos. |
-| 18 — Comparativos | 10% |17/17 subconjuntos próprios no corpus/protocolos preservados, repetidos na0.1.5; Poppler resolvido. Zero comparações originais; requer VM offline. |
-| 19 — Incompatibilidades | 14,3% | Regressões próprias de CropBox/memória/GTK/layout aprovadas na0.1.5. Divergências Foxit só após observar original. |
-| 21 — Auditoria final | 50% | Entrega 0.1.5 validada; confirmar publicação/auditoria nas notas.21 critérios amplos abertos, incluindo trabalho ainda viável sem VM. |
+|01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
+|03|50%|RTTI confirmou renderers/reflow e demais classes; fronteiras restantes ainda abertas.|
+|05|42,9%|ImageRenderer eReflowViewer identificados; seguir recursos/slots e demais ciclos de vida.|
+|07|33,3%|248 entradas(152REA+96diretas),8 novas nesta continuação; inventário global/tipos incompletos.|
+|08|13,0%|Completar fluxo/algoritmos restantes e campos3/5/6/7/12/16/20 da busca; não repetir oito alvos.|
+|09|9,1%|Arestas de renderer/clip/reflow refinadas; algoritmos/tipos/ownership universais pendentes.|
+|10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
+|11|25%|CReflowViewerEx esclarece fábricaUI; IDs7911/7913 e demais contextos não resolvidos. UI01–UI10 exigem original.|
+|12|12,5%|25 famílias,19 subconjuntos/seis propostas,50 planos completos not_run; referência original parcial.|
+|15|33,3%|Busca em anexos/modos/coleção na0.1.6,190/190 por ambiente; demais operações/seis propostas ainda abertas.|
+|16|33,3%|Seis novos métodos GTK/capturas passaram, com painéis/cópias/layout anteriores. Desktop/portais/AT-SPI/impressora abertos.|
+|18|10%|Corpus preservado17/17 repetido na0.1.6; zero comparações originais.|
+|19|14,3%|Regressões próprias aprovadas; divergências Foxit ainda dependem de observação offline.|
+|21|50%|Entrega 0.1.6 validada; publicação/auditoria nas notas.21 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.
@@ -73,5 +73,5 @@ retomar no primeiro alvo pendente e preservar os anteriores. Uma nova IA não
 precisa refazer a análise inicial nem supor resultados ausentes.
 
 Conferir coerência do registro com `python scripts/check_architecture.py`.
-Progresso geral **43,33%**, paridade **0/25**, catálogo **240** e pesos/revisão
+Progresso geral **43,33%**, paridade **0/25**, catálogo **248** e pesos/revisão
 permanecem preservados nesta revisão.

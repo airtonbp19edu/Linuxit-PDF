@@ -1,19 +1,20 @@
-# Relatório de desenvolvimento — Linuxit PDF0.1.5
+# Relatório de desenvolvimento — Linuxit PDF0.1.6
 
-Fonte e Flatpak 0.1.5/devel,152/152 em cada ambiente fonte/payload/sandbox,
-zero falhas/erros/skips; smoke 5/5 e launcher 3/3. Três novas operações próprias
-em cópia nova: marcador principal, nota Text e campo Tx. Anexos Kids/anotações
-e correções anteriores preservados. [Contrato](docs/COPIA-EDITADA.md),
-[revisão](testes/resultados/0.1.5/validation-review.json) e
-[manifesto](releases/manifest-0.1.5.json). Confirmação remota/auditoria nas notas.
+Fonte/pacote 0.1.6:190/190 em cada suíte fonte/payload/sandbox, zero falhas/erros/
+skips, smoke 5/5 e launcher 3/3.32 controles portáveis e seis GTK novos.
+Busca em anexos UTF-8/PDF com omissões explícitas, coringas/proximidade ordenada
+e índice JSON persistente de PDFs escolhidos, com exclusão de fontes alteradas.
+[Contrato](docs/BUSCA-COLECOES.md), [revisão](testes/resultados/0.1.6/validation-review.json)
+e [manifesto](releases/manifest-0.1.6.json).
 
-Campanha preservada 17/17 com Poppler;31 entradas estáticas novas, catálogo 240.
-23 módulos/18 interfaces,16 subconjuntos/nove propostas,50 cenários completos
-not_run. Pesos/estados43,33% e0/25 paridade mantidos. Há trabalho estático e de
-implementação sem VM, além da observação Foxit e integrações externas pendentes.
+Catálogo 248(152REA+96diretas); oito entradas novas/889 instruções/3.223 bytes.
+RTTI CPDF_ImageRenderer eCReflowViewerEx/IPDFViewer confirmados; tipos, fluxos
+eIDs restantes abertos.28 módulos/26 interfaces; 19 subconjuntos/seis propostas.
+Roteiro 43,33%, paridade 0/25,50 planos completos not_run. Ainda há trabalho sem VM.
 
-[Retomada atual](docs/RETOMADA.md) e [frentes executadas](docs/AVANCO-SEM-VM.md).
-Não é versão estável nem encerramento da reconstrução.
+[Retomada](docs/RETOMADA.md) e [notas datadas](progresso/notas-continuidade.md)
+registram confirmação remota/auditoria e próximos alvos. Não é entrega estável
+nem reconstrução completa; original continua sem execução funcional observada.
 
 ## Relatório histórico preservado — marco0.1.1
 

@@ -59,9 +59,13 @@ Unicode e navegação da interface. São testes de implementação.
 o mesmo PDF e registrar contagem, origem, ordem, destino e erros. Só então
 marcar os cenários correspondentes como equivalentes ou divergentes.
 
-**Não implementado:** busca em conteúdo de anexos, stemming, proximidade,
-coringas e índice persistente de coleções. Suas opções não são exibidas como
-se funcionassem. Busca em comentários não equivale a edição de anotações.
+A fonte/pacote 0.1.6 acrescenta [busca em anexos, coringas/proximidade e coleção
+persistente](BUSCA-COLECOES.md). São contratos próprios limitados: UTF-8 e texto
+PDF, padrões por palavra e proximidade ordenada, índice JSON de seleção explícita.
+Omissões, corte e fontes desatualizadas são informados. **Stemming**, OCR,
+recursão de anexos e demais formatos/serviços continuam não implementados.
+Os novos testes GTK exercitam as buscas e a abertura da página da coleção;
+não constituem observação Foxit ou execução completa dos50 planos de aceitação.
 
 ## Impressão e visualização
 

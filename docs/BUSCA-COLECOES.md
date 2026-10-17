@@ -1,7 +1,7 @@
 # Busca em anexos, consultas e coleções — fonte 0.1.6
 
-Continuação autorizada sem VM em17/10/2026. A entrega publicada/auditada ainda
-é0.1.5; esta fonte precisa da validação Linux/GTK antes do novo pacote.
+Continuação autorizada sem VM em17/10/2026. A entrega 0.1.6 passou em fonte/payload/sandbox; a publicação e auditoria
+independente são registradas nas notas. O projeto segue em desenvolvimento.
 São contratos próprios; nenhum original executado nem semântica Foxit presumida.
 
 ## Anexos
@@ -72,7 +72,7 @@ ocorrer após a troca atômica ou deixar temporário; conferir antes de repetir.
 
 ## Verificações e lacunas
 
-Oito métodos dos modos e12 dos anexos passaram; 12 controles do índice
+Oito métodos dos modos e 12 dos anexos passaram; 12 controles do índice
 também passaram, incluindo falha de criação parcial e alteração concorrente.
 Seis métodos GTK preparados; no Windows ficaram skipped por falta de GTK/tela.
 [Relatórios portáveis](../testes/resultados/sem-vm-continuacao-2026-10-17/).
@@ -108,7 +108,7 @@ os cinco alvos examinados nem alterar pesos/paridade por contagem de funções.
 ## Fonte Linux e revisão das capturas
 
 Run39069391926/cb3c514: **190/190**, zero falhas/erros/skips; seis métodos GTK,
-smoke5/5 e campanha preservada17/17 aprovados. [Primeira revisão](../testes/resultados/sem-vm-continuacao-2026-10-17/source-attempt1-review.json).
+smoke 5/5 e campanha preservada 17/17 aprovados. [Primeira revisão](../testes/resultados/sem-vm-continuacao-2026-10-17/source-attempt1-review.json).
 As capturas mostraram o frame anterior à repintura após completar o modelo.
 Corrigida a sincronização **do teste**, aguardando a repintura, sem alterar
 aplicativo. Construção39069595028 cancelada para repetir evidência visual;
@@ -118,7 +118,7 @@ não é falha de funcionamento nem dado do Foxit.
 
 Mais três entradas examinadas em cópia do projeto:372 instruções/1651bytes
 conferidos por Capstone. Total desta continuação: **oito entradas novas**,
-889 instruções/3223bytes. Catálogo **248 =152 REA +96 diretas exclusivas**.
+889 instruções/3.223 bytes. Catálogo **248 =152 REA +96 diretas exclusivas**.
 
 | Entrada | Bytes | Resultado parcial |
 |---|---:|---|
@@ -134,3 +134,17 @@ Limites: stack/signatura de15c5010 provisórias; nomes não provam disponibilida
 Reader, UI completa ou classificação de todos os objetos. IDs7911/7913 não
 foram resolvidos. Próximos alvos:15c9c90/15c5e00 para recursos de reflow e slots
 virtuais de CPDF_ImageRenderer; campos incompletos da busca permanecem abertos.
+
+
+[Repetição ca7fe12/run39069765892](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069765892)
+aprovou190/190, zero falhas/erros/skips e campanha17/17. As três capturas agora
+mostram resultados/contagens e destaque após a repintura; foram examinadas.
+[Revisão dos hashes e imagens](../testes/resultados/sem-vm-continuacao-2026-10-17/linux-source-review.json).
+A construção do0.1.6 foi retomada nesse commit; a versão publicada ainda é0.1.5.
+
+
+## Flatpak 0.1.6 validado
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299):190/190 em fonte/payload/sandbox, zero falhas/erros/skips.
+90app/2803runtime/214ELF/149pacotes atribuídos; smoke 5/5 e launcher 3/3.
+[Revisão](../testes/resultados/0.1.6/validation-review.json). Seis pacotes anteriores preservados.

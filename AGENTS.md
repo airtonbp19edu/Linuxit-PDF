@@ -1,24 +1,18 @@
 # Linuxit PDF — continuidade do projeto
 
-Fonte em desenvolvimento **0.1.6**: `docs/BUSCA-COLECOES.md`. Busca em anexos,
-coringas/proximidade e coleção persistente;32 métodos portáveis aprovados,
-seis GTK aguardam Linux.28 módulos/26 interfaces,19 subconjuntos/seis propostas.
-Catálogo245(152REA+93diretas); nova rodada5 entradas/517 instruções/1572bytes.
-Entrega publicada/auditada permanece0.1.5 até validar um novo pacote.
-Os checkpoints históricos abaixo não substituem este estado da fonte.
+Marco atual: fonte/Flatpak 0.1.6/devel; `docs/BUSCA-COLECOES.md` e
+`docs/RETOMADA.md`.190/190 em fonte/payload/sandbox, zero skips; smoke 5/5,
+launcher 3/3. Busca em anexos UTF-8/PDF, coringas/proximidade e índice persistente
+local de PDFs explícitos.32 métodos portáveis/seis GTK novos aprovados.28 módulos/
+26 interfaces,19 subconjuntos/seis propostas. Campanha preservada 17/17.
+Catálogo 248(152REA+96diretas),8 novas entradas/889 instruções/3.223 bytes.
+RTTI CPDF_ImageRenderer e CReflowViewerEx/IPDFViewer confirmados; restantes tipos,
+campos de busca eIDs7911/7913 abertos. Históricos0.1.0–0.1.5 preservados.
 
-Marco atual: fonte/Flatpak 0.1.5/devel, `docs/RETOMADA.md` e
-`docs/COPIA-EDITADA.md`.152/152 em fonte/payload/sandbox, zero skips;
-smoke 5/5, launcher 3/3. Três operações próprias em cópia nova: marcador, nota e
-campo Tx.23 módulos/18 interfaces;16 subconjuntos/nove propostas. Campanha
-preservada 17/17 com Poppler resolvida. Catálogo 240 (152 REA + 88 diretas),31 entradas
-novas em quatro lotes;3.934 instruções/12315bytes Capstone. Históricos0.1.0–0.1.4
-preservados. Publicação/auditoria: consultar notas/progresso/manifesto atuais.
-
-37 critérios done/21 abertos em 14 etapas,43,33% e0/25 paridade intactos.
-**Ainda há análise/contratos/implementação sem VM**; as etapas amplas não foram
-encerradas. Próximos alvos em `docs/AVANCO-SEM-VM.md`. O restante abaixo contém
-checkpoints históricos; não reabrir pendências GTK/Poppler/pacote já resolvidas.
+37 critérios done/21 abertos em 14 etapas; 43,33% e 0/25 paridade intactos.
+Ainda há análise/contratos/implementação sem VM. Publicação/auditoria nas notas.
+Os registros por etapa abaixo são históricos; não reabrir GTK/Poppler/pacotes
+já verificados. Não interpretar aprovação própria como paridade Foxit.
 
 Ponto de retomada e estado do ambiente local: `docs/RETOMADA.md`.
 Desenvolva e teste pelo código-fonte no Linux; gere Flatpak nos marcos de
@@ -54,7 +48,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.5 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.6 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

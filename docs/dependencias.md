@@ -41,3 +41,10 @@ A fonte/pacote0.1.5 mantém essas dependências licenciadas para cópias com
 marcador/nota/campo Tx. A preparação0x1b8d860 e o auxiliar0x1b8a2b0 foram
 examinados estaticamente, com retenção/liberação parcial de recursos; isso
 não fecha o ciclo de vida de todo componente. [Quarto lote](AVANCO-SEM-VM.md).
+
+
+A 0.1.6 acrescenta somente código próprio/stdlib às dependências existentes:
+modos de consulta, leitura de anexos e snapshot JSON de coleção. Não inclui
+Lucene, stemming, OCR, serviço de nuvem ou código Foxit. RTTI agora liga
+CPDF_ImageRenderer eCReflowViewerEx/IPDFViewer às fábricas examinadas;
+ciclo de vida e disponibilidade completos continuam abertos. [Rodadas](BUSCA-COLECOES.md).

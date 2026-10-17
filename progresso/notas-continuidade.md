@@ -1249,3 +1249,27 @@ UI completa, paridade e origem da causa por tokens continuam sem fechamento.
 
 Próximo: repetir fonte/capturas no novo commit do teste, examinar imagens,
 construir/preservar0.1.6 e auditar instalação. Pacote0.1.5 permanece intacto.
+
+
+## 2026/10/17 às 18:12 (America/Sao_Paulo, UTC-03:00) — capturas após repintura aprovadas
+
+Run39069765892/ca7fe12 passou190/190, zero falhas/erros/skips, seis métodos GTK
+novos e corpus17/17. Capturas das buscas anexos/proximidade/coleção examinadas:
+contagens/resultados aparecem e proximidade destacaalpha+x+beta. Nenhuma
+mudança no aplicativo para essa correção; apenas sincronismo da captura.
+ZIP12113794453/6cbbdd42f525043490a2b9698cb6c426100798ddebbfdef486e05ad8ecb8d946
+igual ao digest GitHub. Provas preservadas em sem-vm-continuacao-2026-10-17.
+Construção0.1.6 retomada parafonteca7fe12;0.1.5 continua preservado. Próximo:
+conferir três suítes do pacote, imagens/hashes/licenças, publicar e reinstalar
+sem rebuild. Peso/estados/paridade intactos; nenhuma execução Foxit.
+
+
+## 2026/10/17 às 18:19 (America/Sao_Paulo, UTC-03:00) — Flatpak0.1.6 validado
+
+CIhttps://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39069918299:190/190 por suíte fonte/payload/sandbox, zero falhas/erros/skips,
+32 portáveis/6GTK novos, smoke5/5 e launcher3/3. Bundle35601808bytes,
+SHA256a71bca023a6bd2f671ffb7049a101a59ade185ef25bb5d3f8f0ddfeb7c399d05; artefato12115166272/ZIPa7e86c2f4b7006c870a2df459fd5f54a9ee5156f1b1fb04d589c32d1121f47adconferecomGitHub.
+Relatórios selados e populações iguais conferidos.28 módulos/26 interfaces,19
+subconjuntos/seis propostas, catálogo248/8 novas entradas. Critérios/estados/
+pesos43,33% e0/25 paridade intactos. Próximo: publicar, confirmar remoto, reinstalar
+mesmo bundle e auditar sem rebuild; continuar demais frentes ainda abertas.
