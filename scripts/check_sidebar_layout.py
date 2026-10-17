@@ -46,14 +46,19 @@ def snapshot(window):
     header = wrapper.get_children()[0]
     label, close = header.get_children()
     sidebar = rect(window.sidebar_container, window)
+    body = rect(window.body_paned, window)
     notebook = rect(window.sidebar_notebook, window)
     title = rect(label, window)
     title_pixels = label.get_layout().get_pixel_size()
     buttons = [rect(button, window) for button in window.sidebar_rail_buttons]
     checks = {'sidebar_meets_minimum_width': sidebar[2] >= window.sidebar_container.get_preferred_width()[0],
+              'pane_respects_sidebar_minimum': window.body_paned.get_position() >= window.sidebar_container.get_preferred_width()[0],
+              'sidebar_inside_body': contained(sidebar, body),
               'rail_buttons_visible': all(contained(button, sidebar) for button in buttons),
+              'rail_buttons_inside_body': all(contained(button, body) for button in buttons),
               'title_visible_in_sidebar': contained(title, sidebar),
               'title_visible_in_notebook': contained(title, notebook),
+              'title_inside_body': contained(title, body),
               'title_text_fits': title_pixels[0] <= title[2],
               'close_button_visible': contained(rect(close, window), sidebar),
               'viewer_has_space': window.viewer_scroll.get_allocated_width() >= 180}
@@ -100,7 +105,9 @@ def main():
                 window.resize(width, 780 if width == 1180 else 500)
                 settle(.3)
                 for index in range(5):
-                    scenarios.append(show_panel(window, index))
+                    measurement = show_panel(window, index)
+                    measurement['requested_window_width'] = width
+                    scenarios.append(measurement)
                     if width == 1180 and index in (0, 4):
                         pixbuf = Gdk.pixbuf_get_from_window(window.get_window(), 0, 0, window.get_allocated_width(), window.get_allocated_height())
                         path = args.screenshots / ('sidebar-' + str(index) + '.png')

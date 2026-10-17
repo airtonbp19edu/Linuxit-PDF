@@ -16,3 +16,20 @@ preservados por rodada. Comparação Foxit e VM não fazem parte desse teste.
 Próximo passo: medir a fonte atual no Linux, corrigir a causa, executar testes
 GTK e comparar as medidas/capturas. Fonte e pacote 0.1.2 ainda não alterados.
 Critérios/pesos, roteiro 43,33% e paridade 0/25 permanecem preservados.
+
+
+Diagnóstico examinado: run39040540957, app do commit76d901e. O painel tinha
+mínimo/alocação221, espaço158 e origemx=-63; título começava emx=-18. A captura
+confirma recorte. O primeiro oráculo marcava passed:true porque comparava apenas
+filhos com um ancestral também deslocado; essa aprovação era insuficiente e
+não foi adotada. O oráculo agora exige contenção no corpo visível e posição do
+divisor compatível com o mínimo. Raw inicial em
+`analysis-local/sidebar-artifact-12104400034/`, ZIP SHA
+46cc77d640bf78facb7b2c42945fe3cbbb30ef67a9a57e3af52e6c7bd241e132.
+
+Correção em preparação: `shrink=False` no painel lateral, preservando o mínimo
+calculado pelo GTK. Três testes reais cobrem cinco painéis/duas larguras,
+divisor/ocultar/restaurar/leitura e nome longo de anexo. Fonte candidata0.1.3;
+Flatpak publicado continua0.1.2 até nova validação. O CI de build repetirá a
+fonte anterior e a atual com o mesmo oráculo corrigido, depois a suíte completa,
+payload e sandbox. Nenhuma aprovação ainda atribuída a essa correção.

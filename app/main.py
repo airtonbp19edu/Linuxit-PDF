@@ -624,7 +624,8 @@ class PDFWindow(Gtk.Window):
         self.sidebar_notebook.append_page(panel_with_title('Camadas', self.layer_scroll), None)
         self.sidebar_notebook.append_page(panel_with_title('Anexos', self._build_attachment_panel()), None)
         self.sidebar_container.pack_start(self.sidebar_notebook, True, True, 0)
-        self.body_paned.pack1(self.sidebar_container, resize=False, shrink=True)
+        # A smaller pane makes GTK shift the minimum-width child offscreen.
+        self.body_paned.pack1(self.sidebar_container, resize=False, shrink=False)
 
         self.viewer_scroll = Gtk.ScrolledWindow(); self.viewer_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.viewer_scroll.add_events(Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK)

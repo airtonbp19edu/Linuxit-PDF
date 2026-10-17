@@ -10,6 +10,14 @@ openbox --sm-disable >"$results/openbox.log" 2>&1 &
 window_manager=$!
 trap 'kill "$window_manager" 2>/dev/null || true' EXIT
 
+# Reproduce the previous own source under the same corrected geometry oracle.
+mkdir -p analysis-local/sidebar-baseline
+git archive 76d901e8007c4ced339492be7fb1f5e0081bff05 app | tar -x -C analysis-local/sidebar-baseline
+PRINT_VIEW_TEST_APP="$PWD/analysis-local/sidebar-baseline/app" /usr/bin/python3 scripts/check_sidebar_layout.py \
+  --observe-only --output "$results/sidebar-before.json" --screenshots "$results/sidebar-before"
+/usr/bin/python3 scripts/check_sidebar_layout.py \
+  --output "$results/sidebar-after.json" --screenshots "$results/sidebar-after"
+
 /usr/bin/python3 scripts/check_intermediate.py --profile linux \
   --work-dir analysis-local/ci-source --output "$results/source-intermediate.json" \
   >"$results/source.log" 2>&1
