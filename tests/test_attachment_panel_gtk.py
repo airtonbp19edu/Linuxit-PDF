@@ -73,6 +73,11 @@ class AttachmentGTKTests(unittest.TestCase):
         self.output.mkdir()
         self.quit_patch = patch.object(Gtk, 'main_quit')
         self.quit_patch.start()
+        self.callback_errors = []
+        self.hook_patch = patch.object(sys, 'excepthook',
+                                      lambda *error: self.callback_errors.append(error))
+        self.hook_patch.start()
+        self.addCleanup(self.hook_patch.stop)
         load_css()
         self.errors = []
         self.window = PDFWindow()
@@ -82,11 +87,29 @@ class AttachmentGTKTests(unittest.TestCase):
         self.assertFalse(self.window.attachment_controller.requested)
         self.window._show_side_panel(4)
         wait_for(lambda: self.window.attachment_controller.source_sha256 is not None)
+        self.assertTrue(self.window.sidebar_visible)
+        self.assertEqual(self.window.sidebar_notebook.get_current_page(), 4)
 
     def tearDown(self):
         self.window.destroy()
         self.quit_patch.stop()
         self.temp.cleanup()
+        self.assertEqual(self.callback_errors, [], 'Unhandled exception in GTK signal callback')
+
+    def test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks(self):
+        window = self.window
+        for index in (1, 0, 4):
+            window.sidebar_rail_buttons[index].clicked()
+            self.assertTrue(window.sidebar_visible)
+            self.assertEqual(window.sidebar_notebook.get_current_page(), index)
+            self.assertEqual([button.get_active() for button in window.sidebar_rail_buttons],
+                             [i == index for i in range(5)])
+        window.sidebar_rail_buttons[4].clicked()
+        self.assertFalse(window.sidebar_visible)
+        self.assertFalse(any(button.get_active() for button in window.sidebar_rail_buttons))
+        window._toggle_sidebar()
+        self.assertTrue(window.sidebar_visible)
+        self.assertTrue(window.sidebar_rail_buttons[4].get_active())
 
     def test_panel_saves_selected_file_and_shows_conflict_without_overwrite(self):
         self.assertEqual(len(self.window.attachment_list.get_children()), 2)

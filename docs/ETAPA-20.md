@@ -37,3 +37,6 @@ Estado deste checkpoint: **fluxo preparado; execução Linux ainda pendente**.
 Os critérios históricos da etapa 20 para 0.1.1 permanecem preservados. Não
 usar a existência do workflow nem o número do candidato como prova de build.
 Resultados e confirmação Git serão acrescentados após a execução real.
+
+
+Primeira execução real: run `39036345773`, commit `0c89ea04ffcddf525fef7955f0142b035bf030ec`. A fonte executou 103 casos: 101 passaram, uma falha e um erro, zero skips; smoke GTK 5/5. Ver [relatório preservado](../testes/resultados/etapa-20-linux-attempt1-2026-10-17.json). Foram corrigidos o isolamento dos controles sintéticos de TEMP e a recursão de sinais GTK da barra lateral, esta última encontrada no stderr. A próxima rodada deve comprovar as correções; a primeira não aprovou pacote.

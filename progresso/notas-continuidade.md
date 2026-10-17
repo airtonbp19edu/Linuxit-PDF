@@ -778,3 +778,13 @@ falhas e só então importar artefato/relatórios verificados. Capacidade do Git
 salva em analysis-local/stage20-github-capabilities.json e SHAs das ações em
 analysis-local/stage20-action-pins.json. Não é confirmação de build/publicação
 do candidato; confirmação remota deste checkpoint será registrada depois.
+
+
+## 2026/10/17 às 10:29 (America/Sao_Paulo, UTC-03:00) — etapa 20, primeira execução Linux
+
+- GitHub Actions executou o commit `0c89ea04ffcddf525fef7955f0142b035bf030ec` em Debian 13 com Xvfb/Openbox. Run `39036345773`: suíte de fonte com 103 casos, 101 aprovados, uma falha e um erro, zero skips; smoke GTK 5/5. Não foi gerado/aprovado pacote nessa rodada.
+- Relatório examinado em `testes/resultados/etapa-20-linux-attempt1-2026-10-17.json`; logs completos ignorados em `analysis-local/stage20-logs-39036345773/` e `analysis-local/stage20-artifact-12101954551/`. Download do artefato conferido contra SHA-256 do GitHub `abc2ceaa412a8dd989f819bca9f21cb8c6e22aae8c857d2177c3e12705ad6043`.
+- Os dois casos formais interrompidos eram controles sintéticos do preparador que presumiam TEMP fora do checkout. Os testes agora montam um checkout sintético dedicado e exercitam a mesma regra de contenção; `scripts/prepare_foxit_dynamic.py` não foi alterado. Cinco testes locais desse módulo passaram com TEMP dentro da árvore. Nenhum original foi usado.
+- Stderr também revelou recursão nos sinais GTK da barra lateral, apesar de quatro testes de anexos marcarem sucesso. `app/main.py` bloqueia somente o handler de navegação durante sincronização programática dos botões. Os testes GTK passam a capturar exceções de callbacks, conferir painel visível e exercitar troca/ocultação/restauração. Essa correção ainda aguarda a nova execução Linux.
+- Adicionado loader SVG do Debian às dependências de CI para ícones Adwaita. Uma tentativa duplicada no commit antigo (`39036707765`) foi cancelada (API 202); o helper privado agora exige árvore limpa, remoto igual e recibo inexistente antes do dispatch. A composição da nota falhou inicialmente por tzdata ausente no Python Windows; horário foi obtido com o offset UTC-03:00 do ambiente, sem instalar dependências.
+- Fonte candidata 0.1.2; entrega 0.1.1 preservada, pesos/paridade inalterados. Próximo passo: publicar estas correções, disparar outra execução e examinar cada resultado antes de aprovar o bundle.

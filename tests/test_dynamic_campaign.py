@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -19,6 +20,17 @@ class DynamicCampaignTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
+        # Exercise containment against a synthetic checkout even when the test
+        # runner deliberately places TEMP inside the real checkout.
+        checkout = self.root / 'synthetic-checkout'
+        for name in ('testes/fixtures/busca-escopos.pdf', 'testes/cenarios-dinamicos.json',
+                     'testes/cenarios-interface.json', 'docs/ETAPA-10.md', 'docs/ETAPA-11.md'):
+            target = checkout / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / name, target)
+        self.root_patch = patch.object(campaign, 'ROOT', checkout.resolve())
+        self.root_patch.start()
+        self.addCleanup(self.root_patch.stop)
 
     def tearDown(self):
         self.temp.cleanup()
@@ -117,7 +129,7 @@ class DynamicCampaignTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'overlap'):
             campaign.prepare(reference, reference / 'campaign')
         with self.assertRaisesRegex(ValueError, 'outside the checkout'):
-            campaign.prepare(ROOT, output)
+            campaign.prepare(campaign.ROOT, output)
 
 
 def sha256_bytes(content):

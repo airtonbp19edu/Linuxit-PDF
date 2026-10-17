@@ -504,9 +504,19 @@ class PDFWindow(Gtk.Window):
         btn.set_image(Gtk.Image.new_from_icon_name(icon, Gtk.IconSize.BUTTON))
         btn.set_tooltip_text(tooltip)
         btn.get_style_context().add_class('sidebar-rail-button')
-        btn.connect('clicked', lambda *_: self._show_side_panel(page_index))
+        btn._sidebar_click_handler = btn.connect('clicked', lambda *_: self._show_side_panel(page_index))
         self.sidebar_rail_buttons.append(btn)
         return btn
+
+    def _sync_sidebar_rail(self, index):
+        # GtkToggleButton.set_active can emit clicked. Synchronize indicators
+        # without treating programmatic changes as another navigation request.
+        for i, btn in enumerate(getattr(self, 'sidebar_rail_buttons', [])):
+            btn.handler_block(btn._sidebar_click_handler)
+            try:
+                btn.set_active(i == index)
+            finally:
+                btn.handler_unblock(btn._sidebar_click_handler)
 
     def _set_sidebar_visible(self, visible):
         """Show/hide the whole sidebar, including the icon rail.
@@ -536,8 +546,7 @@ class PDFWindow(Gtk.Window):
                 self.body_paned.set_position(0)
             self.sidebar_container.set_no_show_all(True)
             self.sidebar_container.hide()
-            for btn in getattr(self, 'sidebar_rail_buttons', []):
-                btn.set_active(False)
+            self._sync_sidebar_rail(None)
         # Fit modes depend on available viewport width.
         if self.filepath and self.zoom_mode != 'percent':
             GLib.idle_add(lambda: (self.request_render(), False)[1])
@@ -551,8 +560,7 @@ class PDFWindow(Gtk.Window):
             return
         self.sidebar_notebook.set_current_page(index)
         self._set_sidebar_visible(True)
-        for i, btn in enumerate(getattr(self, 'sidebar_rail_buttons', [])):
-            btn.set_active(i == index)
+        self._sync_sidebar_rail(index)
         if index == 4:
             self.attachment_controller.ensure_loaded()
 
@@ -636,8 +644,7 @@ class PDFWindow(Gtk.Window):
         self.sidebar_last_position = 158
         self.body_paned.set_position(self.sidebar_last_position)
         self.sidebar_notebook.set_current_page(0)
-        for i, btn in enumerate(self.sidebar_rail_buttons):
-            btn.set_active(i == 0)
+        self._sync_sidebar_rail(0)
         return self.body_paned
 
     def _build_status(self):
@@ -1060,8 +1067,7 @@ class PDFWindow(Gtk.Window):
         self._set_sidebar_visible(not self.sidebar_visible)
         if self.sidebar_visible:
             idx = max(0, self.sidebar_notebook.get_current_page())
-            for i, btn in enumerate(getattr(self, 'sidebar_rail_buttons', [])):
-                btn.set_active(i == idx)
+            self._sync_sidebar_rail(idx)
 
     # ---------- side panels ----------
     def _clear_listbox(self, box):
