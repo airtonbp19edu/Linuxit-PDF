@@ -1,0 +1,22 @@
+{
+  "schema": "linuxit-installed-audit-review-v1",
+  "date_local": "2026-10-17T18:44:53-03:00",
+  "version": "0.1.7",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39072088580",
+  "audit_code_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+  "artifact_id": 12115224313,
+  "zip_sha256": "7d86b00fd0e4d400437ddeab0e864a3cc4ba50832165b5c9795de18601b68780",
+  "github_digest_matches": true,
+  "new_controls_passed": 7,
+  "new_installed_smoke_checks_passed": 5,
+  "all_installed_files_verified": true,
+  "full_suite_rerun": false,
+  "source_full_suite_previously_passed_per_environment": 212,
+  "evidence_hashes": {
+    "repository-audit.json": "320cc941d1f4c3187666e21b57edfeda57839b0211fdb56634870100e02fad0a",
+    "installed-delivery-audit.json": "a81175ab107096ef495407f29a00fb6118cdf542c5b29752297c8b730d5067f4",
+    "auditor-controls.json": "95f21c5149ea3b5fa49d8230e6f98545ebe81f2a7326342505d254b60ddef118",
+    "published-bundle-smoke.json": "f1f0d142f2e4440e6cbdc15134b8b26ee3cbd478e43d8ff7d9691a138df53eb9"
+  },
+  "project_complete": false
+}

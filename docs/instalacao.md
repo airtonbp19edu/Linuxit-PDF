@@ -177,4 +177,5 @@ exigindo o commit testado no histórico Git; recusa saída existente. Consulte
 o relatório para comandos local/instalado e os limites da auditoria.
 
 A versão 0.1.7 inclui [criação PNG/JPEG](CRIACAO-IMAGENS.md).
-A auditoria independente do bundle publicado recebe relatório separado; veja as notas atuais.
+A [auditoria independente do bundle publicado](../testes/resultados/0.1.7/audit/review.json)
+foi aprovada; veja as notas para a confirmação remota e os próximos trabalhos.

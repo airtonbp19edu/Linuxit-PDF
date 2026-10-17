@@ -479,9 +479,11 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/CRIACAO-IMAGENS.md"
+        "docs/CRIACAO-IMAGENS.md",
+        "testes/resultados/0.1.7/audit/review.json",
+        "testes/resultados/0.1.7/audit/installed-delivery-audit.json"
       ],
-      "next_action": "Publish/audit0.1.7 and preserve previous bundles.21 broad criteria still open, including non-VM static/implementation work and external runtime/original VM dependencies.",
+      "next_action": "Publication and independent installed audit0.1.7 confirmed at technical commit d8dd8e3. Continue21 broad criteria: exact static targets, remaining own functionality and external desktop/services/original VM dependencies. Incremental approval does not close all obligations.",
       "token_exhaustion_confirmed": null
     }
   ],

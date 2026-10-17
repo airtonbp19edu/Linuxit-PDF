@@ -103,3 +103,8 @@ Ghidra e decompilações permanecem fora do repositório.
 A 0.1.7 acrescenta [criação de PDF de PNG/JPEG](docs/CRIACAO-IMAGENS.md),
 com ordem/DPI e fontes preservadas.17 testes novos do backend e cinco GTK
 passaram nas três suítes de 212 casos. Demais formatos/OCR continuam pendentes.
+
+A [auditoria independente da 0.1.7](testes/resultados/0.1.7/audit/review.json)
+reinstalou o mesmo pacote publicado e conferiu os arquivos/licenças: sete
+controles e cinco verificações funcionais passaram. As suítes de 212 casos
+são evidências da construção; não foram repetidas nesta auditoria.

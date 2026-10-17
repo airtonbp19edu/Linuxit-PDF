@@ -1334,3 +1334,19 @@ catálogo250, duas entradas novas examinadas nesta rodada. Critérios/pesos43,33
 e paridade0/25 mantidos. Próximo: publicar e confirmar remoto; auditoria independente
 reinstala este mesmo bundle sem rebuild. Outros contratos/estática/runtime e
 observação Foxit na VM permanecem abertos; não há declaração de conclusão global.
+
+
+## 2026/10/17 às 18:44 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria 0.1.7 confirmadas
+
+Entrega técnica `d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa` confirmada no GitHub com árvore limpa por recibo externo.
+A auditoria independente [39072088580](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39072088580) reinstalou o bundle publicado sem reconstruí-lo;
+92 arquivos da aplicação, 2803 do runtime, 214 ELF e 149 avisos de licenças conferidos.
+Sete controles do auditor e cinco verificações funcionais no sandbox passaram.
+As três suítes de 212 casos são evidência do builder anterior, não uma nova execução nesta auditoria.
+ZIP SHA-256 `7d86b00fd0e4d400437ddeab0e864a3cc4ba50832165b5c9795de18601b68780` igual ao digest GitHub; quatro relatórios copiados byte a byte
+para `testes/resultados/0.1.7/audit/`; arquivo completo em `analysis-local/no-vm-audit-artifact-12115224313/`.
+Sem execução do original, alteração de pesos ou fechamento dos 21 critérios amplos restantes.
+Próximos alvos estáticos: helpers1f21a80/1f21ac0 e slots de layout/renderer, sem repetir o lote examinado.
+Implementação própria: ampliar segurança/assinaturas/acessibilidade/nuvem/plataforma e demais operações
+parciais. Serviços, certificados e desktop real exigem ambientes específicos; original exige VM offline.
+IA permanece fora do escopo. Esta rodada foi publicada sem encerrar todos os critérios amplos.

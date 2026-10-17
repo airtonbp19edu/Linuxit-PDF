@@ -69,3 +69,8 @@ A construção Flatpak foi validada, com confirmação de publicação/auditoria
 [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606):212/212 em cada suíte fonte/payload/sandbox, sem falhas/erros/skips.
 92 arquivos da aplicação e runtime conferidos; smoke 5/5, launcher 3/3.
 [Revisão](../testes/resultados/0.1.7/validation-review.json). Sete versões anteriores preservadas.
+
+[Auditoria independente aprovada](../testes/resultados/0.1.7/audit/review.json):
+mesmo bundle reinstalado sem rebuild, 92 arquivos app/2803 runtime/214 ELF/149
+avisos de licenças conferidos; sete controles novos e smoke 5/5. As três suítes
+de 212 permanecem evidência do builder, sem nova execução nesta auditoria.

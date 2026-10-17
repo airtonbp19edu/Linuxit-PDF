@@ -13,13 +13,14 @@ Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 inst
 [Análise](REA-REFLOW.md). Original não executado; sem paridade diferencial.
 
 37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
-Ainda há trabalho sem VM. Publicação/auditoria são registradas nas notas;
+Ainda há trabalho sem VM. Publicação e auditoria 0.1.7 confirmadas;
 aprovação do pacote não encerra os demais contratos ou etapas.
 
 [LinuxitPDF-0.1.7-x86_64.flatpak](../releases/LinuxitPDF-0.1.7-x86_64.flatpak),
 35614064 bytes; SHA-256 `093ee6c7ed6ab6a1c4974da836fedb3414e147dfa0554ddae9eac8ee575c9070`.
 [Revisão](../testes/resultados/0.1.7/validation-review.json) e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606).
-Sete pacotes anteriores preservados. Próximos alvos exatos nas notas e análise;
+[Auditoria independente](../testes/resultados/0.1.7/audit/review.json) aprovada,
+sem reconstruir o bundle publicado. Sete pacotes anteriores preservados. Próximos alvos exatos nas notas e análise;
 não repetir as duas entradas ou os oito alvos anteriores já examinados.
 
 ## Primeiro ao retomar

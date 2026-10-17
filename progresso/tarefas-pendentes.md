@@ -24,7 +24,7 @@ aprovação do pacote não encerra os demais contratos ou etapas.
 |Runtime|Desktop real, portais, AT-SPI, impressora física e Windows posterior|Ambientes/dispositivos, distinto da VM Foxit|
 |10/18/19|ObservarD01–D20/UI01–UI10 e comparar corpus/protocolos preservados|VM/contenção offline pendente|
 |01|Reconsultar regras remotas somente se acesso mudar;403 por plano preservado|Não alterar segurança/faturamento|
-|21|Confirmar publicação/auditoria nas notas; manter21 critérios amplos abertos|Git/CI e demais obrigações|
+|21|Auditoria0.1.7 aprovada; continuar os21 critérios amplos abertos|Git/CI e demais obrigações|
 
 50 planos completos continuam not_run;212 testes próprios não são comparações
 Foxit. [Notas datadas](notas-continuidade.md) e [registro](pendencias-analises.json).
