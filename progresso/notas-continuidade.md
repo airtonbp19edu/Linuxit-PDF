@@ -149,3 +149,13 @@ teste diferencial ou Flatpak novo. Próximos alvos: `0x859920`, `0x687ae0`,
 `0x5f5370` e `0x48f10ef`; esclarecer classes e IDs 7911/7913. Executar UI01–UI10
 com D01–D20 quando a VM estiver validada. Publicação será confirmada a seguir
 com o hash do marco já verificado.
+
+## 2026/10/16 às 23:59 (America/Sao_Paulo, UTC-03:00) — etapa 11 publicada
+
+Marco técnico publicado e confirmado por `git ls-remote`:
+[`62f9925d2f8c7ec722371671b27b527aea2e888e`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/62f9925d2f8c7ec722371671b27b527aea2e888e).
+A árvore estava limpa após o envio. Esta nota registra um hash já confirmado;
+o commit da própria nota será verificado depois, sem autorreferência. Comprovante
+final em `analysis-local/github-ui-sync-verified.json`, fora dos arquivos
+versionados. Continuar pelos alvos/ressalvas da nota das 23:58; observação da
+interface na VM continua pendente, sem aumentar artificialmente os indicadores.
