@@ -267,3 +267,14 @@ para análise estática seguir os quatro helpers da interface e os dez alvos
 de impressão já registrados. Na VM validada, observar D01–D20 e UI01–UI10.
 Publicação do marco ainda pendente; a nota seguinte registrará um hash já
 confirmado no remoto, e o comprovante final ficará fora dos arquivos versionados.
+
+## 2026/10/17 às 00:24 (America/Sao_Paulo, UTC-03:00) — etapa 13 publicada
+
+Marco técnico publicado por Git normal e confirmado com `git ls-remote`:
+[`6cb0820be25b8a1e56f4106642b3fce528af1182`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/6cb0820be25b8a1e56f4106642b3fce528af1182).
+Árvore limpa após o envio. Esta nota registra um hash previamente confirmado;
+o commit da própria nota será verificado ao fim, sem autorreferência.
+Comprovante final: `analysis-local/github-stage13-sync-verified.json`, ignorado
+pelo Git. Sem bloqueio de publicação nesta rodada. Retomar pelo registro de
+pendências e checkpoint da nota das 00:23; não repetir análises concluídas,
+atribuir lacunas a tokens sem prova ou contar planejamento como implementação.
