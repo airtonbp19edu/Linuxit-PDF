@@ -250,6 +250,9 @@ class PDFWindow(Gtk.Window):
                 menu = Gtk.Menu()
                 for text, callback in (
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
+                    ('Novo marcador na página atual…', lambda: self._begin_copy_edit('add-bookmark')),
+                    ('Adicionar nota na página atual…', lambda: self._begin_copy_edit('add-note')),
+                    ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
                     ('Imprimir…', self._print), ('Propriedades do documento', self._properties),
                     ('Fechar PDF', self._close_document)):
                     item = Gtk.MenuItem(label=text)
@@ -739,6 +742,10 @@ class PDFWindow(Gtk.Window):
             self._clear_document_state(); self._error(str(exc))
 
     def _clear_document_state(self):
+        self._edit_generation = getattr(self, '_edit_generation', 0) + 1
+        self._copy_edit_busy = False
+        self.runner.invalidate('copy-edit-info')
+        self.runner.invalidate('copy-edit-save')
         self._render_request_key = None
         self._render_pending = False
         self.render_runner.invalidate('main-render')
@@ -1583,6 +1590,112 @@ class PDFWindow(Gtk.Window):
         self._select_search_hit(self.search_pos - 1)
 
     # ---------- tools ----------
+    def _begin_copy_edit(self, kind):
+        if not self.filepath or self.page_count < 1 or getattr(self, '_copy_edit_busy', False):
+            return
+        from edit_tasks import invoke_edit_worker
+        path, page = self.filepath, self.page
+        generation = getattr(self, '_edit_generation', 0)
+        self._copy_edit_busy = True
+        def current():
+            return self.filepath == path and getattr(self, '_edit_generation', 0) == generation
+        def prepared(info):
+            if not current():
+                return
+            operation = self._copy_edit_operation_dialog(kind, info, page)
+            if operation is None or not current():
+                if current(): self._copy_edit_busy = False
+                return
+            destination = self._copy_edit_destination_dialog(path)
+            if not destination or not current():
+                if current(): self._copy_edit_busy = False
+                return
+            request = {'source_sha256': info['source_sha256'], 'operations': [operation]}
+            self.status_file.set_text('Preparando cópia com alterações…')
+            def saved(result):
+                if current():
+                    self._copy_edit_busy = False
+                    self.status_file.set_text(f'Cópia alterada salva: {Path(result["path"]).name}')
+            self.runner.submit('copy-edit-save', lambda: invoke_edit_worker('copy-edit', path, destination, request),
+                               saved, failed)
+        def failed(error):
+            if current():
+                self._copy_edit_busy = False
+                self._error(str(error))
+        self.runner.submit('copy-edit-info', lambda: invoke_edit_worker('edit-info', path), prepared,
+                           failed)
+
+    def _copy_edit_destination_dialog(self, path):
+        dialog = Gtk.FileChooserDialog(title='Salvar cópia com alterações', parent=self, action=Gtk.FileChooserAction.SAVE)
+        dialog.set_modal(True)
+        dialog.set_destroy_with_parent(True)
+        dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar em arquivo novo', Gtk.ResponseType.OK)
+        dialog.set_current_name(f'{Path(path).stem}-editado.pdf')
+        try:
+            return dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
+        finally:
+            dialog.destroy()
+
+    def _copy_edit_operation_dialog(self, kind, info, page):
+        titles = {'add-bookmark': 'Novo marcador', 'add-note': 'Adicionar nota',
+                  'fill-text-fields': 'Preencher campo de texto'}
+        if kind not in titles:
+            return None
+        fields = [field for field in info['text_fields'] if not field['read_only']]
+        if kind == 'fill-text-fields' and not fields:
+            self._error('Este PDF não possui campos de texto editáveis suportados.')
+            return None
+        dialog = Gtk.Dialog(title=titles[kind], transient_for=self, modal=True)
+        dialog.set_destroy_with_parent(True)
+        dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Preparar cópia…', Gtk.ResponseType.OK)
+        dialog.set_default_size(420, -1)
+        box = dialog.get_content_area()
+        box.set_spacing(8)
+        box.set_border_width(12)
+        hint = Gtk.Label(label='A alteração será salva em uma cópia nova. O PDF aberto será preservado.', xalign=0)
+        hint.set_line_wrap(True)
+        box.add(hint)
+        entry = Gtk.Entry()
+        combo = None
+        text = None
+        if kind == 'add-bookmark':
+            entry.set_text(f'Página {page + 1}')
+            entry.get_accessible().set_name('Título do marcador')
+            box.add(Gtk.Label(label=f'Título do marcador para a página {page + 1}', xalign=0))
+            box.add(entry)
+        elif kind == 'add-note':
+            box.add(Gtk.Label(label=f'Texto da nota na página {page + 1}', xalign=0))
+            text = Gtk.TextView()
+            text.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+            text.get_accessible().set_name('Texto da nota')
+            scroll = Gtk.ScrolledWindow()
+            scroll.set_min_content_height(140)
+            scroll.add(text)
+            box.add(scroll)
+        else:
+            combo = Gtk.ComboBoxText()
+            combo.get_accessible().set_name('Campo de texto do formulário')
+            for field in fields:
+                combo.append_text(field['name'])
+            combo.connect('changed', lambda widget: entry.set_text(fields[widget.get_active()]['value']))
+            combo.set_active(0)
+            entry.get_accessible().set_name('Novo valor do campo')
+            box.add(combo)
+            box.add(entry)
+        dialog.show_all()
+        try:
+            if dialog.run() != Gtk.ResponseType.OK:
+                return None
+            if kind == 'add-bookmark':
+                return {'kind': kind, 'title': entry.get_text(), 'page': page}
+            if kind == 'add-note':
+                buffer = text.get_buffer()
+                return {'kind': kind, 'text': buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True),
+                        'page': page, 'rect': None}
+            return {'kind': kind, 'values': {fields[combo.get_active()]['name']: entry.get_text()}}
+        finally:
+            dialog.destroy()
+
     def _save_copy(self, *_args):
         if not self.filepath: return
         dlg = Gtk.FileChooserDialog(title='Salvar cópia', parent=self, action=Gtk.FileChooserAction.SAVE)

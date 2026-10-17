@@ -87,6 +87,22 @@ def main(argv):
         from pdf_panels import inspect_document_panels
         print(json.dumps(inspect_document_panels(argv[2]), ensure_ascii=False))
         return
+    if cmd == 'edit-info':
+        from pdf_changes import inspect_editable_document
+        print(json.dumps(inspect_editable_document(argv[2]), ensure_ascii=True))
+        return
+    if cmd == 'copy-edit':
+        if len(argv) != 4:
+            raise SystemExit(2)
+        from pdf_changes import save_edited_copy
+        raw = sys.stdin.buffer.read(1024 * 1024 + 1)
+        if len(raw) > 1024 * 1024:
+            raise ValueError('O pedido de alterações excede 1 MiB.')
+        request = json.loads(raw.decode('utf-8'))
+        if not isinstance(request, dict) or set(request) != {'source_sha256', 'operations'}:
+            raise ValueError('Pedido de alterações inválido.')
+        print(json.dumps(save_edited_copy(argv[2], argv[3], **request), ensure_ascii=True))
+        return
     if cmd == 'attachments':
         from pdf_attachments import list_attachments
         print(json.dumps(list_attachments(argv[2]), ensure_ascii=True))

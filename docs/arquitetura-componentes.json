@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T01:01:38-03:00",
+  "reviewed_at_local": "2026-10-17T15:55:41-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.4",
+  "application_version": "0.1.5",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -131,6 +131,18 @@
       "path": "app/attachment_tasks.py",
       "boundary": "process_and_platform",
       "responsibility": "Coordenação portável do painel, tokens de seleção/documento e chamadas UTF-8 ao worker; sem GTK."
+    },
+    {
+      "id": "pdf_changes",
+      "path": "app/pdf_changes.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Operações próprias de marcador/nota/AcroForm Tx em cópia exclusiva; valida identidade e recusa estruturas protegidas/não suportadas."
+    },
+    {
+      "id": "edit_tasks",
+      "path": "app/edit_tasks.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Invoca worker de cópia com JSON UTF-8 e valida confirmações/erros sem GTK."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -142,7 +154,9 @@
     "rendering",
     "search_engine",
     "pdf_attachments",
-    "attachment_tasks"
+    "attachment_tasks",
+    "pdf_changes",
+    "edit_tasks"
   ],
   "interface_refs": [
     {
@@ -204,6 +218,18 @@
     {
       "path": "app/attachment_tasks.py",
       "symbol": "invoke_attachment_worker"
+    },
+    {
+      "path": "app/pdf_changes.py",
+      "symbol": "inspect_editable_document"
+    },
+    {
+      "path": "app/pdf_changes.py",
+      "symbol": "save_edited_copy"
+    },
+    {
+      "path": "app/edit_tasks.py",
+      "symbol": "invoke_edit_worker"
     }
   ],
   "family_assignments": [
@@ -327,7 +353,11 @@
       "id": "bookmarks-edit",
       "contract_kind": "implemented_subset",
       "current_source_refs": [
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
       ],
       "future_boundary": "Modelo de edição e gravação em cópia, além do painel atual.",
       "future_boundary_implemented": false
@@ -337,15 +367,24 @@
       "contract_kind": "implemented_subset",
       "current_source_refs": [
         "app/pdf_panels.py",
-        "app/search_engine.py"
+        "app/search_engine.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
     },
     {
       "id": "forms",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false
     },
@@ -472,5 +511,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

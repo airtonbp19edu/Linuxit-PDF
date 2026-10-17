@@ -1,5 +1,11 @@
 # Retomada
 
+Fonte atual em desenvolvimento: 0.1.5, `docs/COPIA-EDITADA.md`. Marcador,
+nota e campo Tx em cópia nova;16 testes portáveis e quatro controles worker
+aprovados, cinco GTK ainda aguardam Linux.23 módulos/18 interfaces,16
+subconjuntos/nove propostas. Entrega publicada/auditada permanece0.1.4.
+Nenhum pacote0.1.5 aprovado ainda; indicadores de revalidação marcam fonte alterada.
+
 Marco atual0.1.4: `docs/AVANCO-SEM-VM.md` e `testes/resultados/0.1.4/`.
 127/127 em fonte/payload/sandbox, seis métodos GTK do painel e sete de árvores/
 anotações; smoke5/5, launcher3/3,83 arquivos app iguais. Campanha preservada18

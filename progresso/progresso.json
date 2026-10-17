@@ -711,12 +711,12 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "verified_linux_and_flatpak_subset",
+        "status": "source0.1.5_changed_since_delivery0.1.4",
         "date_local": "2026-10-17T15:37:46-03:00",
         "scope": "Current0.1.4 catalog-tree and annotation attachment source; own tests only.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "passed",
-        "new_flatpak": "built_installed_tested",
+        "linux_source_runtime": "pending_for0.1.5",
+        "new_flatpak": "not_built_for0.1.5",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
@@ -741,9 +741,15 @@
           "testes/resultados/0.1.4/sandbox-tests.json",
           "testes/resultados/0.1.4/validation-review.json"
         ],
-        "next_action": "Continue remaining static/contracts/implementation and real desktop checks; original differential cases require offline VM.",
-        "source_changed_since_candidate": false,
-        "source_changes_since_candidate": [],
+        "next_action": "Validate new copy-only PDF operations in full Linux/GTK source suite, then build/test0.1.5. Delivery0.1.4 remains intact.",
+        "source_changed_since_candidate": true,
+        "source_changes_since_candidate": [
+          "app/pdf_changes.py",
+          "app/edit_tasks.py",
+          "app/worker_cli.py",
+          "app/main.py",
+          "app/version.py"
+        ],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",

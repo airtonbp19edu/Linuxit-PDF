@@ -1103,34 +1103,46 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "matrix_implementation": "source0.1.5 implemented subset: append top-level bookmark; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: painel de títulos/níveis/destinos somente leitura. Criar/mover/gravar marcadores permanece requisito futuro.",
+      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada.",
       "inputs": [
-        "PDF e outline; títulos, níveis e destinos locais ou ausentes.",
-        "Edição futura exigirá operação explícita e destino de cópia."
+        "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
       ],
       "outputs": [
-        "Atual: lista de marcadores com title, page e level.",
-        "Proposta futura: outline alterado em cópia, conservando títulos/destinos não editados."
+        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
+        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
       ],
       "errors": [
         {
-          "trigger": "Destino ausente ou não resolvido",
-          "response": "Painel mantém page=null; não inventar página.",
+          "trigger": "Fonte mudou ou destino já existe, inclusive o próprio original",
+          "response": "Recusar a gravação; não sobrescrever arquivos.",
           "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Outline parcial ou objeto malformado",
-          "response": "Leitura tolera partes não resolvidas; integridade completa e diagnóstico detalhado ainda são lacunas.",
+          "trigger": "PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection",
+          "response": "Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
+          "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
           "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Atual não grava outline nem PDF; edição/undo/persistência não implementados."
+        "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
+        "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
+        "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
       ],
       "source_refs": [
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
       ],
       "foxit": {
         "evidence_state": "static_code_partial",
@@ -1147,6 +1159,14 @@
         {
           "path": "tests/test_search_scopes.py",
           "test": "test_bookmark_without_local_page_is_not_given_a_fake_destination"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_combined_copy_preserves_source_metadata_attachment_and_previous_objects"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
         }
       ],
       "dynamic_case_refs": [
@@ -1189,35 +1209,47 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "matrix_implementation": "source0.1.5 implemented subset: create Text note on a page; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: leitura de comentários/anotações de tipos selecionados. Criar/editar/undo/gravar são futuros.",
+      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes.",
       "inputs": [
-        "PDF com /Annots; subtype, /Contents, /Subj, /T e página.",
-        "Tipos atuais incluem nota, texto, destaque, sublinhado, desenho e outros enumerados no painel."
+        "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
       ],
       "outputs": [
-        "Atual: page, type, author, text de exibição, contents e subject separados.",
-        "Proposta futura: alterações serializadas com aparência e histórico em cópia."
+        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
+        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
       ],
       "errors": [
         {
-          "trigger": "Anotação individual não pode ser decodificada",
-          "response": "O painel ignora esse objeto e continua; não afirmar inventário integral.",
+          "trigger": "Fonte mudou ou destino já existe, inclusive o próprio original",
+          "response": "Recusar a gravação; não sobrescrever arquivos.",
           "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Tipo não pertence ao conjunto lido",
-          "response": "Não é exposto como comentário suportado por essa rotina.",
+          "trigger": "PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection",
+          "response": "Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
+          "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
           "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Atual não muda anotação, undo ou arquivo."
+        "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
+        "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
+        "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
       ],
       "source_refs": [
         "app/pdf_panels.py",
-        "app/search_engine.py"
+        "app/search_engine.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -1233,6 +1265,14 @@
         {
           "path": "tests/test_search_scopes.py",
           "test": "test_comment_subject_and_contents_are_searchable_without_author"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_combined_copy_preserves_source_metadata_attachment_and_previous_objects"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
         }
       ],
       "dynamic_case_refs": [
@@ -1275,32 +1315,46 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: separar AcroForm de XFA e tratar campos, validação, eventos e persistência por tecnologia.",
+      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux/GTK/payload validation pending; see docs/COPIA-EDITADA.md",
+      "contract_kind": "implemented_subset",
+      "scope": "Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados.",
       "inputs": [
-        "PDF sintético com campos e valores tipados, tecnologia identificada e operação de edição.",
-        "Política explícita para JavaScript/eventos e arquivo de saída."
+        "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
       ],
       "outputs": [
-        "Proposta: valores/estados de campo e cópia reabrível; suporte declarado por tecnologia, sem prometer XFA por presença de AcroForm."
+        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
+        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
       ],
       "errors": [
         {
-          "trigger": "Valor não passa validação de campo",
-          "response": "Proposta: recusar/indicar o erro sem registrar valor como aceito.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Fonte mudou ou destino já existe, inclusive o próprio original",
+          "response": "Recusar a gravação; não sobrescrever arquivos.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Tecnologia/evento não suportado",
-          "response": "Proposta: declarar limitação; não executar código ou alegar persistência de campo não compreendido.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection",
+          "response": "Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
+          "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: operações sobre cópia sintética; original e ações externas preservados."
+        "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
+        "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
+        "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
@@ -1312,17 +1366,26 @@
           "Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_combined_copy_preserves_source_metadata_attachment_and_previous_objects"
+        },
+        {
+          "path": "tests/test_pdf_changes.py",
+          "test": "test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported"
+        }
+      ],
       "dynamic_case_refs": [],
       "fixture_refs": [],
       "acceptance_cases": [
         {
           "id": "S12-15-1",
           "kind": "nominal",
-          "given": "AcroForm sintético de texto e escolha, fixture ainda a criar.",
-          "when": "Alterar valores e salvar cópia.",
-          "expected_linuxit": "Proposta: reabrir a cópia preserva valores e tipos definidos no corpus.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "AcroForm sintético com campo Tx editável, sem XFA ou assinatura.",
+          "when": "Preencher o campo Tx e salvar cópia nova.",
+          "expected_linuxit": "Reabrir a cópia confirma o texto; páginas e original são preservados. Widgets de escolha não estão neste subconjunto.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -1330,10 +1393,10 @@
         {
           "id": "S12-15-2",
           "kind": "exception",
-          "given": "Campo com restrição conhecida e valor inválido.",
-          "when": "Tentar confirmar a edição.",
-          "expected_linuxit": "Proposta: erro identificável e valor anterior preservado.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "AcroForm sintético com campo Tx ReadOnly ou MaxLen excedido.",
+          "when": "Tentar alterar o campo e salvar cópia.",
+          "expected_linuxit": "Recusar a operação sem saída nova; preservar o original.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"

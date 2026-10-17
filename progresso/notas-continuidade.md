@@ -1116,3 +1116,27 @@ Checkpoints anteriores preservados. Próximo trabalho autorizado sem VM: ampliar
 a lógica PDF segundo contratos próprios verificáveis, mantendo referências
 Foxit não observadas em null. Etapas amplas21 abertas/43,33%/0paridade intactas.
 A confirmação/auditoria será salva no próximo commit, sem autorreferência.
+
+
+## 2026/10/17 às 15:55 (America/Sao_Paulo, UTC-03:00) — fonte 0.1.5: cópias com alterações
+
+Continuação autorizada sem VM: backend próprio pdf_changes e adaptador
+edit_tasks, comandos edit-info/copy-edit e três ações no menu Arquivo. Acrescenta
+marcador de nível principal, nota Text e valor de campo Tx AcroForm em cópia
+nova, sem alterar a fonte. Recusa documentos criptografados, Sig/Perms/XFA/
+Collection; respeita ReadOnly e MaxLen herdados. Limites de pedido/lote/texto,
+retângulo/CropBox, hash antes/depois e criação exclusiva. Temp/cópia podem
+permanecer após término forçado; adapter informa conferir destino no timeout.
+
+16 testes portáveis reais passaram. Primeiro lote de14 detectou que a visão
+get_fields do pypdf omite MaxLen; corrigida consulta à referência real e
+herança, com novo caso ReadOnly/MaxLen em subcampo. Quatro controles de adapter
+e cinco testes reais GTK preparados; GUI/Linux/pacote da0.1.5 ainda pendentes.
+Fonte contém23 módulos/18 interfaces; especificação16 subconjuntos/9 propostas,
+50 cenários completos ainda not_run. Revisão explícita da proposta de formulários
+para subconjunto Tx, sem mudar pesos/estados dos critérios do roteiro.
+
+Entrega publicada/auditada permanece0.1.4. Próximo: concluir controles, validar
+Linux/GTK e iterar em qualquer falha antes de gerar pacote. Evidências locais
+em analysis-local/copy-edit-*.json e edit-adapter-tests.json; relatório atual
+será docs/COPIA-EDITADA.md. Nenhum Foxit executado/paridade alegada.

@@ -1,0 +1,20 @@
+{
+  "schema": "linuxit-copy-edit-portable-review-v1",
+  "date_local": "2026-10-17T16:01:41-03:00",
+  "version": "0.1.5",
+  "backend_methods_passed": 16,
+  "adapter_methods_passed": 4,
+  "gtk_methods_executed": 0,
+  "original_executed": false,
+  "source_sha256": {
+    "app/pdf_changes.py": "16d84c48bf900deeec4a41bda6816b1dc4d577f3eb58a694002f59480d30171f",
+    "app/edit_tasks.py": "76513870fc88aad8581a6e79167923c7fc2d65533778d1627c8c61278dd0e753",
+    "app/worker_cli.py": "b307df07d87150a93fc8f418e477dadcfe7944990f70ebe14fddb9e6e0d8ffaf",
+    "app/main.py": "1a771d69c9e23b3a028bb575abca31189b8afe9a1b8fda5432ae307fea75091a",
+    "app/version.py": "cbb50acb4fd9fb14b8ee10e14ca77bd2a93a8a7a11c9a64229c3f4d2426335ce"
+  },
+  "limits": [
+    "Own synthetic PDFs only; GUI/Linux/payload not yet validated.",
+    "Not complete functional acceptance cases or original parity."
+  ]
+}

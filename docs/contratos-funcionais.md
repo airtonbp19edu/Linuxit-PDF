@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 15 subconjuntos implementados e 10 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 16 subconjuntos implementados e 9 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -28,7 +28,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Livreto/N-up/mosaico](#imposition) | Subconjunto atual; lacunas abertas |
 | [Criar/mover/gravar marcadores](#bookmarks-edit) | Subconjunto atual; lacunas abertas |
 | [Anotações/undo/gravação](#annotations) | Subconjunto atual; lacunas abertas |
-| [AcroForm/XFA/eventos](#forms) | Proposta; não implementado |
+| [AcroForm/XFA/eventos](#forms) | Subconjunto atual; lacunas abertas |
 | [Anexos/portfólios](#attachments) | Subconjunto atual; lacunas abertas |
 | [Assinaturas/certificados](#signatures) | Proposta; não implementado |
 | [Senhas/permissões/RMS](#security) | Proposta; não implementado |
@@ -523,26 +523,30 @@ Relacionados aos planos dinâmicos/UI: D18.
 
 ## Criar/mover/gravar marcadores
 
-Atual: painel de títulos/níveis/destinos somente leitura. Criar/mover/gravar marcadores permanece requisito futuro.
+Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada.
 
 **Entradas**
 
-- PDF e outline; títulos, níveis e destinos locais ou ausentes.
-- Edição futura exigirá operação explícita e destino de cópia.
+- PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
+- Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
 
 **Saídas**
 
-- Atual: lista de marcadores com title, page e level.
-- Proposta futura: outline alterado em cópia, conservando títulos/destinos não editados.
+- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
+- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
 
 **Erros e casos excepcionais**
 
-- Destino ausente ou não resolvido: Painel mantém page=null; não inventar página.
-- Outline parcial ou objeto malformado: Leitura tolera partes não resolvidas; integridade completa e diagnóstico detalhado ainda são lacunas.
+- Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
+- PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
+- Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
 
 **Estado e efeitos**
 
-- Atual não grava outline nem PDF; edição/undo/persistência não implementados.
+- Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.
+- Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
+- Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
+- Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
 
 **Critérios planejados**
 
@@ -553,9 +557,9 @@ Atual: painel de títulos/níveis/destinos somente leitura. Criar/mover/gravar m
 
 - Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py).
 
 Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
@@ -563,26 +567,30 @@ Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
 ## Anotações/undo/gravação
 
-Atual: leitura de comentários/anotações de tipos selecionados. Criar/editar/undo/gravar são futuros.
+Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes.
 
 **Entradas**
 
-- PDF com /Annots; subtype, /Contents, /Subj, /T e página.
-- Tipos atuais incluem nota, texto, destaque, sublinhado, desenho e outros enumerados no painel.
+- PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
+- Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
 
 **Saídas**
 
-- Atual: page, type, author, text de exibição, contents e subject separados.
-- Proposta futura: alterações serializadas com aparência e histórico em cópia.
+- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
+- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
 
 **Erros e casos excepcionais**
 
-- Anotação individual não pode ser decodificada: O painel ignora esse objeto e continua; não afirmar inventário integral.
-- Tipo não pertence ao conjunto lido: Não é exposto como comentário suportado por essa rotina.
+- Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
+- PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
+- Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
 
 **Estado e efeitos**
 
-- Atual não muda anotação, undo ou arquivo.
+- Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.
+- Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
+- Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
+- Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
 
 **Critérios planejados**
 
@@ -593,9 +601,9 @@ Atual: leitura de comentários/anotações de tipos selecionados. Criar/editar/u
 
 - Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_and_contents_are_searchable_without_author](../tests/test_search_scopes.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_and_contents_are_searchable_without_author](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py).
 
 Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
@@ -603,36 +611,43 @@ Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
 ## AcroForm/XFA/eventos
 
-Requisito futuro: separar AcroForm de XFA e tratar campos, validação, eventos e persistência por tecnologia.
+Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados.
 
 **Entradas**
 
-- PDF sintético com campos e valores tipados, tecnologia identificada e operação de edição.
-- Política explícita para JavaScript/eventos e arquivo de saída.
+- PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
+- Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
 
 **Saídas**
 
-- Proposta: valores/estados de campo e cópia reabrível; suporte declarado por tecnologia, sem prometer XFA por presença de AcroForm.
+- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
+- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
 
 **Erros e casos excepcionais**
 
-- Valor não passa validação de campo: Proposta: recusar/indicar o erro sem registrar valor como aceito.
-- Tecnologia/evento não suportado: Proposta: declarar limitação; não executar código ou alegar persistência de campo não compreendido.
+- Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
+- PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
+- Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
 
 **Estado e efeitos**
 
-- Proposta: operações sobre cópia sintética; original e ações externas preservados.
+- Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.
+- Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
+- Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
+- Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
 
 **Critérios planejados**
 
-- **S12-15-1** (nominal, proposta futura, `not_run`): dado AcroForm sintético de texto e escolha, fixture ainda a criar. Ação: Alterar valores e salvar cópia. Esperado: Proposta: reabrir a cópia preserva valores e tipos definidos no corpus.
-- **S12-15-2** (exception, proposta futura, `not_run`): dado Campo com restrição conhecida e valor inválido. Ação: Tentar confirmar a edição. Esperado: Proposta: erro identificável e valor anterior preservado.
+- **S12-15-1** (nominal, contrato próprio atual, `not_run`): dado AcroForm sintético com campo Tx editável, sem XFA ou assinatura. Ação: Preencher o campo Tx e salvar cópia nova. Esperado: Reabrir a cópia confirma o texto; páginas e original são preservados. Widgets de escolha não estão neste subconjunto.
+- **S12-15-2** (exception, contrato próprio atual, `not_run`): dado AcroForm sintético com campo Tx ReadOnly ou MaxLen excedido. Ação: Tentar alterar o campo e salvar cópia. Esperado: Recusar a operação sem saída nova; preservar o original.
 
 **Lacunas da referência Foxit**
 
 - Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+Fontes: [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py).
 
 <a id="attachments"></a>
 
