@@ -878,3 +878,10 @@ Bundle0.1.3 35591904 bytes, SHA 9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a
 ### 2026/10/17 às 11:39 (America/Sao_Paulo, UTC-03:00) — verificação final do layout0.1.3
 
 Auditoria local do novo manifesto aprovada; arquitetura e registro renderizado passaram (21 módulos/15 interfaces, 25 famílias, 34 referências de teste/27 de fonte, 50 casos completos não executados). Prova estrutural em `testes/resultados/0.1.3/verificacao-estrutural.json`:123 AST Python,260 links modificados, nove hashes de relatórios CI, cinco capturas hasheadas e quatro bundles conferidos. Versões anteriores e prefixo de notas preservados; pesos/status mantidos43,33%/0paridade. Próximo passo: publicar entrega e confirmar Git.
+
+
+## 2026/10/17 às 11:41 (America/Sao_Paulo, UTC-03:00) — publicação confirmada do layout0.1.3
+
+Commit técnico `e0306110ba0cd5f364e400aead2212343b80e263` enviado e confirmado por ls-remote igual ao HEAD local e árvore limpa. Bundle0.1.3/devel, manifesto, nove relatórios CI, cinco capturas, testes/registros e instruções publicados. `git fsck --full` retornou0 (árvore dangling informativa preservada); nove hashes de relatórios conferidos nos blobs Git. Fonte testada64f7686; SHA do bundle9aa8abf269136f84ff7cb1e6e5e990490245bec26b06979a76926030b10d3120. Nenhum executável alterado após testes114/114 por ambiente.
+
+Sincronização registra este commit técnico; a nota atual terá commit próprio e recibo final externo. Próximo trabalho sem VM: quatro subconjuntos Poppler no corpus preservado18, sem trocar bytes. Recorte lateral encerrado no subconjunto testado; demais critérios de interface e etapa21 seguem parciais, roteiro43,33%, paridade0/25. Desktop/acessibilidade/portais/impressão física e VM original permanecem pendentes.

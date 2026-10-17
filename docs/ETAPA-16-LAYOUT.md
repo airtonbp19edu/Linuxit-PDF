@@ -66,4 +66,8 @@ do roteiro preservados: 43,33%, paridade 0/25 e cobertura global desconhecida.
 
 Próximo passo sem VM: repetir os quatro subconjuntos Poppler no corpus
 preservado da etapa 18; depois ampliar contratos/implementação e integrações.
-Confirmação remota desta entrega será acrescentada após push e comparação HEAD.
+Entrega técnica[`e030611`](https://github.com/airtonbp19edu/Linuxit-PDF/commit/e0306110ba0cd5f364e400aead2212343b80e263)
+confirmada em 17/10/2026 às 11:41 (America/Sao_Paulo, UTC-03:00):
+HEAD local/remoto iguais e árvore limpa. `git fsck --full` retornou0, e os
+nove relatórios selados também conferem nos blobs Git. Esta nota será enviada
+em commit próprio, com confirmação final por recibo externo.
