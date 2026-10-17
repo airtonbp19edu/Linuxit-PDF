@@ -18,3 +18,21 @@ que suas funções estejam habilitadas no Reader.
 A aplicação própria usa Python 3, GTK 3/Cairo, Poppler e pypdf 6.20.1; impressão
 Linux via CUPS. O adaptador Windows anterior é preservado, mas ainda não foi
 validado como Linuxit. As licenças da base e do pypdf permanecem no código.
+
+As rodadas estáticas sem VM de 17/10/2026 aprofundaram consumidores de
+impressão e getters da interface, conforme [registro](AVANCO-SEM-VM.md).
+Alocação/preparação de buffers e polling de estados foram localizados dentro
+do executável. Isso não identifica todos os motores/subsistemas nem fecha o
+ciclo de vida dos 141 módulos: imports, objetos construídos, callbacks e
+componentes carregados em execução continuam sendo evidências distintas.
+
+A extensão própria de anexos 0.1.4 usa a mesma versão pypdf BSD já distribuída;
+nenhuma dependência ou recurso Foxit foi incorporado para ler árvores e
+anotações. O novo pacote deverá preservar o loader pareado, bibliotecas em
+`runtime-lib`, módulos OpenSSL e a atribuição individual dos arquivos de runtime.
+
+A leitura de RTTI confirmou CReader_PrintMgrEx, CFX_DIBitmap e
+CXFA_RenderContext para três vtables ligadas aos corpos examinados.
+TypeDescriptors de CPDF_Parser e handlers de segurança corroboram fronteiras
+internas, com os [limites registrados](../testes/resultados/sem-vm-2026-10-17/technology-boundaries.json).
+Isso não prova disponibilidade ou ciclo de vida integral de cada subsistema.

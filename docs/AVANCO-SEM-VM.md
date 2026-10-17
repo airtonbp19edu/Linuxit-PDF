@@ -130,3 +130,68 @@ e [campanha0.1.4](../testes/resultados/sem-vm-2026-10-17/campaign-0.1.4-passed.j
 foram conferidas; artefato12110296519, ZIPcccd4b35ff89c9e3b7a62e43c3205d487874807d25d7af494df9a9aee6b9ca36
 igual ao digest GitHub. Empacotamento0.1.4 é o próximo marco; não usar essa
 prova da fonte para afirmar payload/sandbox ainda não executados.
+
+
+## Terceiro lote e identidades de tipo
+
+Mais seis entradas examinadas e Capstone1185 instruções/3571bytes. Total
+desta execução: **27 entradas adicionais**, catálogo **236 (152REA+84diretas)**;
+3005 instruções/9396bytes conferidos nos três lotes. Nenhuma função foi
+contada novamente por aparecer como destino de salto em outro corpo.
+
+- `0x165ef50`(81bytes): quando modo+0xa8 é1, seleciona fatores+0xe8/+0xec
+  ou seu produto; demais casos retornam1. Isso prolonga a expressão de escala
+  em165f620 sem definir o nome visual de todos os modos.
+- `0x209a850`(53bytes): constrói objeto cuja vtable tem RTTI
+  **CFX_DIBitmap**, confirmado por CompleteObjectLocator e TypeDescriptor.
+- `0x209c440`(772bytes): valida dimensões/bits/stride, calcula stride alinhado
+  quando ausente, tenta armazenamento e retorna0/1. Formatos têm baixo byte
+  usado como bits por pixel; não presumir ordem de canais e todas as flags.
+- `0x1666020`(1131bytes): configura e processa o bitmap/contexto, espera
+  estado2/3 ou cancelamento e libera auxiliares. A assinatura de stack
+  continua parcial; saída final segue por consumidores ainda não examinados.
+- `0x1b89510`(1509bytes): itera estruturas de conteúdo/regiões no estado1,
+  mantém cursor e consulta callback de pausa entre lotes; ao completar
+  a iteração escreve2. Isso não é confirmação de impressão física concluída.
+- `0x880470`(25bytes): inicializa por880490 se+0x3e4 estiver vazio e retorna
+  esse campo. Identidade da classe/instância ativa ainda não demonstrada.
+
+A ligação RTTI também confirmou **CXFA_RenderContext** na vtable619fa3c,
+do objeto criado por2d226d0, e **CReader_PrintMgrEx** em53d6bfc, usado pelas
+construções de impressão anteriores. O ramo de blocos possui objeto bitmap
+comprovado; isso não transforma toda saída de impressão em raster. A classe
+XFA identifica uma fronteira estática de formulários, sem validar XFA no Reader.
+
+Foram encontrados544 candidatos estruturais de TypeDescriptor nos prefixos
+CPDF(234), CFX(172), CXFA(112) e CJS(26), limitados ao executável principal.
+CPDF_Parser e os handlers de segurança têm nomes estáticos registrados; isso
+não fecha todos os motores/subsistemas nem demonstra quais classes são ativas.
+A lista completa permanece ignorada, sem copiar código ou recursos para o app.
+
+[Metadados das seis entradas](windows-evidence/foxit-rea/headless-cross-checks-no-vm-core-2026-10-17.json),
+[bytes/RTTI conferidos](../testes/resultados/sem-vm-2026-10-17/static-core-machine-checks.json)
+e [fronteiras tecnológicas e limites](../testes/resultados/sem-vm-2026-10-17/technology-boundaries.json).
+Raw/projeto: `analysis-local/headless/no-vm-core-2026-10-17/`. Originais não
+executados. Próximos consumidores:880490,1666490,1b8a2b0,1b8d860 e tipos dos
+argumentos/flags. Campos de busca3/5/6/7/12/16/20 e stemming continuam parciais.
+
+
+## Marco Flatpak0.1.4 examinado
+
+Run39058122147/fonte1ed350f8765904c74fb1cf8e794dcc978f7b3b03: **127/127
+em cada ambiente fonte/payload/sandbox**, zero falhas/erros/skips. Populações
+de testes iguais; seis métodos GTK do painel e sete de árvores/anotações.
+83 arquivos fonte/payload idênticos; nove relatórios selados, smoke5/5 e
+launcher3/3. Runtime2803 arquivos,214ELF e149 pacotes com atribuição/licenças.
+Capturas de execução e painel Anexos foram examinadas.
+
+Bundle: `LinuxitPDF-0.1.4-x86_64.flatpak`,35587224 bytes, SHA-256
+`ac18251fce149471f1dbf21d555cfc66394f7a4576d7cfd44f6666044be9abb4`.
+Artefato12110248359/ZIPe4a8da036ea3728bb6bb8fd35eae5524e27d21cfd3dd41bc5bb2e095bffaf59b
+confere com GitHub. A nova versão conserva todos os quatro pacotes anteriores.
+[Revisão da entrega](../testes/resultados/0.1.4/validation-review.json).
+
+Este resultado supera as pendências de pacote/GTK da fonte0.1.4 nos checkpoints
+acima. Roteiro43,33%/paridade0/25 e21 critérios abertos permanecem; não foi
+encerrada toda a implementação. Próximo marco: auditoria do pacote publicado
+reinstalado, depois contratos/análises/implementação ainda viáveis.

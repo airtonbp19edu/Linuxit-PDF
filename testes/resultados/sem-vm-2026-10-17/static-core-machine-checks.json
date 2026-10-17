@@ -1,0 +1,72 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "entries": [
+    {
+      "entry": "0x165ef50",
+      "instructions": 27,
+      "body_bytes": 81,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1666020",
+      "instructions": 382,
+      "body_bytes": 1131,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1b89510",
+      "instructions": 502,
+      "body_bytes": 1509,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x209a850",
+      "instructions": 17,
+      "body_bytes": 53,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x209c440",
+      "instructions": 249,
+      "body_bytes": 772,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x880470",
+      "instructions": 8,
+      "body_bytes": 25,
+      "all_instruction_addresses_match": true
+    }
+  ],
+  "rtti_classes": [
+    {
+      "vtable": "0x5717728",
+      "locator": "0x65b1208",
+      "type_descriptor": "0x6c9c528",
+      "decorated_type_name": ".?AVCFX_DIBitmap@@",
+      "scope": "Static MSVC RTTI identity; no runtime availability or complete engine equivalence."
+    },
+    {
+      "vtable": "0x619fa3c",
+      "locator": "0x65cfba8",
+      "type_descriptor": "0x6ce4d64",
+      "decorated_type_name": ".?AVCXFA_RenderContext@@",
+      "scope": "Static MSVC RTTI identity; no runtime availability or complete engine equivalence."
+    },
+    {
+      "vtable": "0x53d6bfc",
+      "locator": "0x65985a8",
+      "type_descriptor": "0x6cc0a10",
+      "decorated_type_name": ".?AVCReader_PrintMgrEx@@",
+      "scope": "Static MSVC RTTI identity; no runtime availability or complete engine equivalence."
+    }
+  ],
+  "original_executed": false,
+  "limitations": [
+    "Decompiler signatures and stack in0x1666020 remain provisional.",
+    "CFX_DIBitmap establishes an intermediate bitmap object, not every final printer output mode.",
+    "CXFA_RenderContext is an optional XFA path; complete form/XFA behavior remains unobserved."
+  ]
+}

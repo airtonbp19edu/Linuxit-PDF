@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.3 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.4 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.3-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.4-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -19,6 +19,14 @@ A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+
+## Marco0.1.4: árvores/anotações e campanha preservada
+
+[Avanço sem VM](AVANCO-SEM-VM.md):127/127 em fonte/payload/sandbox, zero
+skips; seis métodos GTK do painel e sete novos de árvores/anotações. Campanha
+17/17 com os mesmos hashes/protocolos da etapa18. Fonte/payload83 arquivos
+iguais, smoke5/5, launcher3/3; runtime2803 arquivos/214ELF/149 pacotes atribuídos.
+Capturas examinadas; portfólios, senha, desktop e original permanecem pendentes.
 
 ## Marco0.1.3: painel lateral corrigido
 

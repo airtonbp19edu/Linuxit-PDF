@@ -1,0 +1,58 @@
+{
+  "schema": "linuxit-static-engine-boundaries-v1",
+  "date_local": "2026-10-17T15:31:42-03:00",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "scope": "Main executable only; bounded PDF/graphics/XFA/JS prefixes, AI not targeted. Type-descriptor structural candidates, not runtime instances.",
+  "structural_type_descriptor_candidates": 544,
+  "candidate_prefix_counts": {
+    "CPDF": 234,
+    "CFX": 172,
+    "CXFA": 112,
+    "CJS": 26
+  },
+  "selected_candidates": [
+    {
+      "name": "CPDF_SecurityHandler",
+      "decorated_name": ".?AVCPDF_SecurityHandler@@",
+      "type_descriptor": "0x6c9c450",
+      "type_info_vtable": "0x64c1d74",
+      "file_offset": "0x689a450"
+    },
+    {
+      "name": "CFX_DIBitmap",
+      "decorated_name": ".?AVCFX_DIBitmap@@",
+      "type_descriptor": "0x6c9c528",
+      "type_info_vtable": "0x64c1d74",
+      "file_offset": "0x689a528"
+    },
+    {
+      "name": "CPDF_StandardSecurityHandler",
+      "decorated_name": ".?AVCPDF_StandardSecurityHandler@@",
+      "type_descriptor": "0x6ccdf70",
+      "type_info_vtable": "0x64c1d74",
+      "file_offset": "0x68cbf70"
+    },
+    {
+      "name": "CPDF_Parser",
+      "decorated_name": ".?AVCPDF_Parser@@",
+      "type_descriptor": "0x6cce234",
+      "type_info_vtable": "0x64c1d74",
+      "file_offset": "0x68cc234"
+    },
+    {
+      "name": "CXFA_RenderContext",
+      "decorated_name": ".?AVCXFA_RenderContext@@",
+      "type_descriptor": "0x6ce4d64",
+      "type_info_vtable": "0x64c1d74",
+      "file_offset": "0x68e2d64"
+    }
+  ],
+  "vtable_rtti_joins_ref": "testes/resultados/sem-vm-2026-10-17/static-core-machine-checks.json",
+  "original_executed": false,
+  "all_subsystem_boundaries_identified": false,
+  "limitations": [
+    "Prefix counts are bounded structural metadata candidates, not functions or active product features.",
+    "Names alone do not establish Reader availability, complete class layouts or exact engine version.",
+    "No security protections bypassed or original resources copied into the application."
+  ]
+}

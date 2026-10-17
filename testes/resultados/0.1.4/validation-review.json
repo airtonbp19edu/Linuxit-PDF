@@ -1,0 +1,39 @@
+{
+  "schema": "linuxit-no-vm-delivery-review-v1",
+  "date_local": "2026-10-17T15:37:46-03:00",
+  "timezone": "America/Sao_Paulo",
+  "version": "0.1.4",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39058122147",
+  "source_commit": "1ed350f8765904c74fb1cf8e794dcc978f7b3b03",
+  "bundle": {
+    "file": "LinuxitPDF-0.1.4-x86_64.flatpak",
+    "bytes": 35587224,
+    "sha256": "ac18251fce149471f1dbf21d555cfc66394f7a4576d7cfd44f6666044be9abb4",
+    "digitally_signed": false
+  },
+  "github_artifact_id": 12110248359,
+  "github_archive_sha256": "e4a8da036ea3728bb6bb8fd35eae5524e27d21cfd3dd41bc5bb2e095bffaf59b",
+  "github_digest_matches": true,
+  "sealed_report_hashes_verified": 9,
+  "complete_tests_per_environment": 127,
+  "skipped": 0,
+  "source_payload_matched_files": 83,
+  "runtime_files": 2803,
+  "elf_files": 214,
+  "debian_packages": 149,
+  "attachment_gtk_methods_per_environment": 6,
+  "attachment_tree_methods_per_environment": 7,
+  "sidebar_geometry_scenarios_passed": 10,
+  "sandbox_smoke_checks": 5,
+  "launcher_checks": 3,
+  "screenshots_examined": true,
+  "new_original_observations": 0,
+  "project_complete": false,
+  "criteria_status_or_weights_changed": false,
+  "limits": [
+    "Desktop/portals/accessibility/physical printer and original differential cases remain open.",
+    "Portfolio and non-empty password attachment support remain pending.",
+    "64MiB limit is after decompression; tree/node/entry guards do not bound parser memory.",
+    "760px requested produces924px actual minimum; no760px support claim."
+  ]
+}

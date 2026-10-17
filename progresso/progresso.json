@@ -494,7 +494,12 @@
           "evidence": [
             "testes/resultados/source-0.1.0.json",
             "app/search_engine.py",
-            "testes/resultados/source-0.1.1-fixed.json"
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -504,7 +509,12 @@
           "evidence": [
             "testes/resultados/source-0.1.0.json",
             "app/imposition.py",
-            "testes/resultados/source-0.1.1-fixed.json"
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -528,9 +538,14 @@
             "testes/resultados/0.1.3/sandbox-smoke.json",
             "testes/resultados/0.1.3/validation-review.json",
             "docs/REVISAO-ETAPAS.md",
-            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+            "testes/resultados/revisao-etapas-2026-10-17/review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ],
-          "note": "Flat attachments backend/controller/panel verified in Linux, payload and installed Flatpak 0.1.3 suites: 14 backend, 14 controller and five attachment GTK methods. Historical 0.1.2 reports retained. Portfolios, /Kids, non-empty passwords, annotation-only attachments and other families remain open; no original observation."
+          "note": "Own0.1.4 attachment catalog trees and page annotation files verified:7 new backend methods,14 backend/14 controller regressions and6 GTK panel methods in source/payload/installed sandbox127/127 suites. Portfolios, non-empty passwords and remaining families still partial; no Foxit observation."
         }
       ],
       "verified_fraction": 0.333333,
@@ -547,7 +562,12 @@
           "status": "done",
           "evidence": [
             "testes/resultados/source-0.1.0.json",
-            "testes/resultados/source-0.1.1-fixed.json"
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -557,7 +577,12 @@
           "evidence": [
             "testes/resultados/source-0.1.0.json",
             "tests/test_search_scopes.py",
-            "testes/resultados/source-0.1.1-fixed.json"
+            "testes/resultados/source-0.1.1-fixed.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -582,7 +607,12 @@
             "testes/resultados/0.1.3/source-intermediate.json",
             "testes/resultados/0.1.3/payload-tests.json",
             "testes/resultados/0.1.3/sandbox-tests.json",
-            "testes/resultados/0.1.3/validation-review.json"
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ],
           "note": "Sidebar clipping reproduced: minimum221, pane158, x=-63. shrink=False fixed visible allocation; ten geometry scenarios and three new GTK methods passed. Complete Linux/source/payload/sandbox suites passed for0.1.3. Remaining integrations/desktop/accessibility/physical printing and families remain partial; status/weights unchanged."
         }
@@ -639,7 +669,12 @@
             "testes/resultados/0.1.3/sandbox-smoke.json",
             "testes/resultados/0.1.3/validation-review.json",
             "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
-            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ],
           "note": "Historical 0.1.1/0.1.2 evidence retained. Current 0.1.3 complete source/payload/sandbox suites passed 114/114 each with no failures/errors/skips; installed bundle independently audited in this review, smoke 5/5. Full suite not rerun during review; original comparison still absent."
         },
@@ -663,7 +698,12 @@
             "testes/resultados/0.1.3/sandbox-smoke.json",
             "testes/resultados/0.1.3/validation-review.json",
             "testes/resultados/revisao-etapas-2026-10-17/installed-delivery-audit.json",
-            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json"
+            "testes/resultados/revisao-etapas-2026-10-17/published-bundle-smoke.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ],
           "note": "Historical 0.1.1/0.1.2 evidence retained. Current 0.1.3 complete source/payload/sandbox suites passed 114/114 each with no failures/errors/skips; installed bundle independently audited in this review, smoke 5/5. Full suite not rerun during review; original comparison still absent."
         }
@@ -671,12 +711,12 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "status": "linux_source_passed_flatpak0.1.4_pending",
-        "date_local": "2026-10-17T11:35:04.620699-03:00",
-        "scope": "Current0.1.3 source including sidebar allocation fix; own tests only.",
+        "status": "verified_linux_and_flatpak_subset",
+        "date_local": "2026-10-17T15:37:46-03:00",
+        "scope": "Current0.1.4 catalog-tree and annotation attachment source; own tests only.",
         "portable_source_candidate": "historical_snapshot_preserved",
-        "linux_source_runtime": "passed_for_0.1.4",
-        "new_flatpak": "not_built_for_0.1.4",
+        "linux_source_runtime": "passed",
+        "new_flatpak": "built_installed_tested",
         "evidence": [
           "docs/ETAPA-17.md",
           "testes/resultados/etapa-17-fonte-portavel-2026-10-17.json",
@@ -694,22 +734,23 @@
           "testes/resultados/0.1.3/payload-tests.json",
           "testes/resultados/0.1.3/sandbox-tests.json",
           "testes/resultados/0.1.3/validation-review.json",
-          "testes/resultados/sem-vm-2026-10-17/source-0.1.4-passed.json"
+          "testes/resultados/sem-vm-2026-10-17/source-0.1.4-passed.json",
+          "docs/AVANCO-SEM-VM.md",
+          "testes/resultados/0.1.4/source-intermediate.json",
+          "testes/resultados/0.1.4/payload-tests.json",
+          "testes/resultados/0.1.4/sandbox-tests.json",
+          "testes/resultados/0.1.4/validation-review.json"
         ],
-        "next_action": "Validate new attachment tree/annotation code with full Linux/GTK suite then build/test Flatpak0.1.4; preserve0.1.3 delivery.",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "app/pdf_attachments.py",
-          "app/main.py",
-          "app/version.py"
-        ],
+        "next_action": "Continue remaining static/contracts/implementation and real desktop checks; original differential cases require offline VM.",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "additional_source_evidence": [
           "docs/ETAPA-19.md",
           "testes/resultados/etapa-19-cropbox-final-2026-10-17.json",
           "testes/resultados/etapa-19-cropbox-medidas-2026-10-17.json"
         ],
         "reviewed_after_change_at_local": "2026-10-17T10:06:51-03:00",
-        "source_commit_tested": "b1dde48b9dbed92db7e5ae5734e8a4e29250aaaa",
+        "source_commit_tested": "1ed350f8765904c74fb1cf8e794dcc978f7b3b03",
         "full_source_tests_passed": 127
       }
     },
@@ -809,7 +850,12 @@
             "testes/resultados/0.1.3/sandbox-smoke.json",
             "testes/resultados/0.1.3/validation-review.json",
             "docs/ETAPA-16-LAYOUT.md",
-            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+            "testes/resultados/revisao-etapas-2026-10-17/review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ],
           "note": "Two own imposition defects reproduced and fixed: crop-origin offset and reader content mutation during rotation. Nine portable methods and 13 existing-corpus subchecks passed; four Poppler subsets remain blocked. No Foxit divergence measured; status/weight unchanged."
         },
@@ -879,7 +925,12 @@
             "releases/manifest-0.1.2.json",
             "testes/resultados/0.1.2/validation-review.json",
             "releases/manifest-0.1.3.json",
-            "testes/resultados/0.1.3/validation-review.json"
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -893,7 +944,12 @@
             "releases/manifest-0.1.2.json",
             "testes/resultados/0.1.2/validation-review.json",
             "releases/manifest-0.1.3.json",
-            "testes/resultados/0.1.3/validation-review.json"
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         },
         {
@@ -908,33 +964,57 @@
             "releases/manifest-0.1.2.json",
             "testes/resultados/0.1.2/validation-review.json",
             "releases/manifest-0.1.3.json",
-            "testes/resultados/0.1.3/validation-review.json"
+            "testes/resultados/0.1.3/validation-review.json",
+            "docs/AVANCO-SEM-VM.md",
+            "testes/resultados/0.1.4/source-intermediate.json",
+            "testes/resultados/0.1.4/payload-tests.json",
+            "testes/resultados/0.1.4/sandbox-tests.json",
+            "testes/resultados/0.1.4/validation-review.json"
           ]
         }
       ],
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.3",
-        "date_local": "2026-10-17T11:35:04.620699-03:00",
-        "source_commit": "64f76865381b35b4f8204131ef547f210d5d09db",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414",
+        "version": "0.1.4",
+        "date_local": "2026-10-17T15:37:46-03:00",
+        "source_commit": "1ed350f8765904c74fb1cf8e794dcc978f7b3b03",
+        "status": "examined_prepared_for_publication",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39058122147",
         "evidence": [
-          "docs/ETAPA-16-LAYOUT.md",
-          "testes/resultados/0.1.3/sidebar-before.json",
-          "testes/resultados/0.1.3/sidebar-after.json",
-          "testes/resultados/0.1.3/source-intermediate.json",
-          "testes/resultados/0.1.3/payload-tests.json",
-          "testes/resultados/0.1.3/sandbox-tests.json",
-          "testes/resultados/0.1.3/validation-review.json",
-          "releases/manifest-0.1.3.json"
+          "docs/AVANCO-SEM-VM.md",
+          "testes/resultados/0.1.4/source-intermediate.json",
+          "testes/resultados/0.1.4/payload-tests.json",
+          "testes/resultados/0.1.4/sandbox-tests.json",
+          "testes/resultados/0.1.4/validation-review.json",
+          "releases/manifest-0.1.4.json"
         ],
         "stable_release": false,
-        "original_observations": 0,
-        "confirmed_delivery_commit": "e0306110ba0cd5f364e400aead2212343b80e263",
-        "publication_confirmed_at_local": "2026-10-17T11:41:04.365186-03:00"
-      }
+        "original_observations": 0
+      },
+      "delivery_history": [
+        {
+          "version": "0.1.3",
+          "date_local": "2026-10-17T11:35:04.620699-03:00",
+          "source_commit": "64f76865381b35b4f8204131ef547f210d5d09db",
+          "status": "published_confirmed_at_recorded_commit",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39040860414",
+          "evidence": [
+            "docs/ETAPA-16-LAYOUT.md",
+            "testes/resultados/0.1.3/sidebar-before.json",
+            "testes/resultados/0.1.3/sidebar-after.json",
+            "testes/resultados/0.1.3/source-intermediate.json",
+            "testes/resultados/0.1.3/payload-tests.json",
+            "testes/resultados/0.1.3/sandbox-tests.json",
+            "testes/resultados/0.1.3/validation-review.json",
+            "releases/manifest-0.1.3.json"
+          ],
+          "stable_release": false,
+          "original_observations": 0,
+          "confirmed_delivery_commit": "e0306110ba0cd5f364e400aead2212343b80e263",
+          "publication_confirmed_at_local": "2026-10-17T11:41:04.365186-03:00"
+        }
+      ]
     },
     {
       "id": 21,
@@ -1063,5 +1143,18 @@
     "publication_state": "confirmed_at_recorded_commit",
     "confirmed_review_commit": "496c8a6a9db59206dff5d3f092a092556031af06",
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
+  },
+  "current_no_vm_execution": {
+    "date_local": "2026-10-17T15:37:46-03:00",
+    "report": "docs/AVANCO-SEM-VM.md",
+    "source_and_package_version": "0.1.4",
+    "new_static_entries_examined": 27,
+    "catalog_entries": 236,
+    "own_preserved_corpus_cases_passed": 17,
+    "complete_tests_per_environment": 127,
+    "all_remaining_stages_complete": false,
+    "criteria_status_or_weights_changed": false,
+    "original_observations": 0,
+    "publication_state": "prepared_not_yet_published"
   }
 }

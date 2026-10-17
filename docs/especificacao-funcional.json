@@ -933,7 +933,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
-          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
+          "docs/AVANCO-SEM-VM.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1026,7 +1027,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
-          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+          "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
+          "docs/AVANCO-SEM-VM.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1302,7 +1304,8 @@
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
-          "docs/FOXIT-REA.md"
+          "docs/FOXIT-REA.md",
+          "docs/AVANCO-SEM-VM.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1341,9 +1344,9 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "source0.1.4 subset: catalog trees and page annotation attachments; flat subset validated in Linux/Flatpak0.1.3; new GTK/payload pending; see docs/AVANCO-SEM-VM.md",
+      "matrix_implementation": "implemented subset: catalog trees and page annotation attachments verified in Linux/Flatpak0.1.4; portfolios/password pending; see docs/AVANCO-SEM-VM.md",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; sete métodos novos e regressões portáveis passaram. Novas GUI/Linux/payload pendentes; entrega0.1.3 conserva validação anterior. Portfólios e senha não vazia pendentes.",
+      "scope": "Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; backend, controlador e seis métodos GTK testados em fonte/payload/Flatpak127/127. Portfólios e senha não vazia pendentes.",
       "inputs": [
         "PDF local com catálogo plano ou árvore de anexos /Kids e anexos de anotação /FileAttachment; listagem não decodifica payloads.",
         "Índice da entrada, SHA-256 da listagem e pasta de destino existente controlada pelo usuário.",
@@ -1352,7 +1355,7 @@
       "outputs": [
         "Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido. Origem catalog/annotation e página de anotação em base zero; índice distinto para cada referência.",
         "Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.",
-        "UI: lista sob demanda e salva selecionado; fonte0.1.4 mostra página da anotação. Novo caso GTK árvore/anotação ainda não executado; seis casos previstos. Entrega0.1.3 teve cinco métodos do painel e três de layout aprovados."
+        "UI: lista sob demanda, salva seleção e mostra página da anotação. Seis métodos GTK do painel passaram em fonte/payload/sandbox0.1.4; desktop/portais/acessibilidade pendentes."
       ],
       "errors": [
         {
@@ -1591,7 +1594,8 @@
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
-          "docs/FOXIT-REA.md"
+          "docs/FOXIT-REA.md",
+          "docs/AVANCO-SEM-VM.md"
         ],
         "runtime_observed": false,
         "unresolved": [

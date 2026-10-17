@@ -2,8 +2,8 @@
 
 Atualização do marco **0.1.1**: [busca, impressão e execução emulada](REA-BUSCA-IMPRESSAO.md).
 O marco 0.1.1 descrito na continuação tinha **191 entradas distintas**.
-O catálogo atual contém **209 entradas**, com 152 pelo REA e 57 adicionais
-pelo backend direto; ver a [revisão das etapas](REVISAO-ETAPAS.md). O controle Wine x86 passou sob QEMU; o Foxit
+O catálogo atual contém **236 entradas**, com 152 pelo REA e 84 adicionais
+pelo backend direto; ver o [avanço sem VM](AVANCO-SEM-VM.md). O controle Wine x86 passou sob QEMU; o Foxit
 carregou, mas terminou antes da UI com exceção MFC. Os trechos abaixo registram
 a investigação acumulada; lacunas ampliadas ou resolvidas constam da continuação.
 

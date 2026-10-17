@@ -471,7 +471,7 @@ Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio nã
 
 - Predefinições, margens, fontes, flags, spooler físico e estados completos do original.
 
-Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json).
+Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_preview_sides_binding_and_submit](../tests/test_gui.py); [test_manual_booklet_sides_are_not_duplex](../tests/test_regressions.py).
 
@@ -513,7 +513,7 @@ Composição independente em livreto, N-up e mosaico, herdada da base MIT e adap
 
 - Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit.
 
-Fontes: [app/imposition.py](../app/imposition.py), [app/worker_cli.py](../app/worker_cli.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json).
+Fontes: [app/imposition.py](../app/imposition.py), [app/worker_cli.py](../app/worker_cli.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_generated_sides_and_binding](../tests/test_regressions.py); [test_nup_worker_rejects_fractional_count](../tests/test_regressions.py); [test_worker_prepares_nup_and_poster](../tests/test_regressions.py); [test_actual_size_centers_the_visible_crop_not_the_media_origin](../tests/test_imposition_cropbox.py); [test_intrinsic_rotation_keeps_shifted_crop_aligned](../tests/test_imposition_cropbox.py); [test_inputs_and_in_memory_page_geometry_are_preserved](../tests/test_imposition_cropbox.py); [test_poster_single_sheet_and_tiles_keep_crop_placement_without_marks](../tests/test_imposition_cropbox.py).
 
@@ -632,13 +632,13 @@ Requisito futuro: separar AcroForm de XFA e tratar campos, validação, eventos 
 
 - Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 <a id="attachments"></a>
 
 ## Anexos/portfólios
 
-Fonte0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; sete métodos novos e regressões portáveis passaram. Novas GUI/Linux/payload pendentes; entrega0.1.3 conserva validação anterior. Portfólios e senha não vazia pendentes.
+Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; backend, controlador e seis métodos GTK testados em fonte/payload/Flatpak127/127. Portfólios e senha não vazia pendentes.
 
 **Entradas**
 
@@ -650,7 +650,7 @@ Fonte0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; sete
 
 - Listagem com índices distintos, nomes, tamanho declarado opcional e indicação de nome permitido; tamanho declarado não é tamanho medido. Origem catalog/annotation e página de anotação em base zero; índice distinto para cada referência.
 - Extração retorna nome/caminho, tamanho real e hash SHA-256 dos bytes; mantém o PDF original.
-- UI: lista sob demanda e salva selecionado; fonte0.1.4 mostra página da anotação. Novo caso GTK árvore/anotação ainda não executado; seis casos previstos. Entrega0.1.3 teve cinco métodos do painel e três de layout aprovados.
+- UI: lista sob demanda, salva seleção e mostra página da anotação. Seis métodos GTK do painel passaram em fonte/payload/sandbox0.1.4; desktop/portais/acessibilidade pendentes.
 
 **Erros e casos excepcionais**
 
@@ -753,7 +753,7 @@ Requisito futuro: senha e permissões PDF separadas de RMS/serviços externos. A
 
 - Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 Relacionados aos planos dinâmicos/UI: D15.
 

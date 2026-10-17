@@ -1,5 +1,14 @@
 # Retomada
 
+Marco atual0.1.4: `docs/AVANCO-SEM-VM.md` e `testes/resultados/0.1.4/`.
+127/127 em fonte/payload/sandbox, seis métodos GTK do painel e sete de árvores/
+anotações; smoke5/5, launcher3/3,83 arquivos app iguais. Campanha preservada18
+17/17 com Poppler resolvida. Catálogo236(152REA+84diretas),27 entradas novas
+examinadas/3005 instruções/9396bytes. Quatro pacotes anteriores preservados.
+Checkpoints abaixo são históricos quando indicam GTK/Poppler/pacote pendentes.
+Portfólios, senha não vazia, contratos completos, desktop/portais/AT-SPI e
+impressão física continuam abertos; Foxit exige VM offline. Pesos/paridade intactos.
+
 Execução atual sem VM: `docs/AVANCO-SEM-VM.md`. Campanha preservada18
 17/17 com Poppler e fonte119/119 passaram em b8125e2 (antes da extensão).
 Lote14 estático examinado: catálogo223 (152REA+71diretas), Capstone1075

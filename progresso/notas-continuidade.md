@@ -1066,3 +1066,37 @@ Detalhes/limites em docs/AVANCO-SEM-VM.md. Sem Foxit/paridade; pesos preservados
 
 Próximo: construir Flatpak0.1.4 no workflow já existente, executar fonte/payload/
 sandbox e auditar licenças/integridade antes de publicar. Entrega0.1.3 intacta.
+
+
+## 2026/10/17 às 15:31 (America/Sao_Paulo, UTC-03:00) — seis consumidores e RTTI examinados
+
+Terceiro lote: seis entradas,1185 instruções/3571bytes conferidos. Total
+27 entradas novas/3005 instruções/9396bytes; catálogo236(152REA+84diretas).
+RTTI PE ligou vtables a CFX_DIBitmap, CXFA_RenderContext e CReader_PrintMgrEx;
+544 candidatos de tipo por prefixo não são funções nem recursos disponíveis.
+Fronteira CPDF_Parser/segurança e iteração1b89510 com final2 documentadas;
+assinaturas/flags e saída final permanecem parciais. Não incorporar pseudocódigo.
+
+Raw/projeto no-vm-core-2026-10-17 em analysis-local/headless/; metadados novos
+e static-core-machine-checks/technology-boundaries em testes/resultados/sem-vm-2026-10-17/.
+Fluxos/dependências/contratos atualizados. Original não executado ou alterado;
+0/25 paridade e pesos43,33% preservados. BuildFlatpak run39058122147 ainda
+em andamento, fonte1ed350f; aplicação fonte permanece idêntica. Próximo: obter
+e examinar todos os relatórios/payload/sandbox e depois auditar pacote instalado.
+
+
+## 2026/10/17 às 15:37 (America/Sao_Paulo, UTC-03:00) — Flatpak0.1.4 examinado e importado
+
+Run39058122147/fonte1ed350f:127/127 em fonte/payload/sandbox, zero falhas/erros/
+skips;83 arquivos iguais, nove relatórios selados, smoke5/5, launcher3/3.
+Runtime2803 arquivos/214ELF/149 pacotes/licenças atribuídos. Capturas examinadas.
+Artefato12110248359/ZIPe4a8da036ea3728bb6bb8fd35eae5524e27d21cfd3dd41bc5bb2e095bffaf59b
+conferiu com GitHub; bundle35587224 bytes, SHAac18251fce149471f1dbf21d555cfc66394f7a4576d7cfd44f6666044be9abb4.
+Relatórios em testes/resultados/0.1.4/, raw/logs no-vm-release-artifact-12110248359
+e no-vm-release-logs-39058122147 em analysis-local/. Quatro entregas antigas
+preservadas. Fonte/bundle0.1.4 correspondem; não há código Foxit na implementação.
+
+Contratos/matriz/retomada atualizados. Catálogo236/27 entradas novas, campanha
+17/17 e critérios amplos43,33%/0paridade preservados. Publicação preparada;
+próximo: commit/push autorizado, auditoria do pacote publicado reinstalado e
+continuação dos contratos/análises/implementação, mantendo VM/hardware separados.

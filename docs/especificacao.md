@@ -84,15 +84,18 @@ de casos reais, incluindo falhas e cancelamento.
 
 ## Erros e limitações
 
-O contrato próprio de [anexos da etapa 15](ETAPA-15.md) lista e extrai entradas
-de catálogo plano `/Names/EmbeddedFiles`, por índice e hash do documento. Mantém
+O contrato próprio de [anexos](AVANCO-SEM-VM.md), ampliado na fonte 0.1.4,
+lista e extrai entradas de catálogo `/Names/EmbeddedFiles`, incluindo árvores
+`/Kids` aninhadas, e anexos de anotação `/FileAttachment`, por índice e hash. Mantém
 nomes duplicados como entradas distintas, recusa nomes perigosos e usa criação
 exclusiva para preservar arquivos existentes. Tamanho declarado e real são
 distintos; o limite de 64 MiB do payload real é aplicado após descompressão.
 O [painel da etapa 16](ETAPA-16.md) está ligado no código GTK, com controlador
-portável testado e cinco casos GTK aprovados em cada suíte Linux/payload/sandbox
-0.1.2; layout completo e desktop real ainda pendentes. Portfólios, /Kids,
-senha não vazia e anexos exclusivos de anotações continuam não implementados.
+portável testado. Seis métodos GTK do painel passaram na suíte da fonte Linux
+0.1.4; payload/sandbox novos ainda em validação. As entregas 0.1.2/0.1.3 têm
+suas evidências históricas preservadas. Portfólios e senha não vazia continuam
+não implementados. Ciclos/nós repetidos, pares inválidos, mais de 4.000 nós,
+profundidade acima de 64 e mais de 1.000 entradas causam falha explícita.
 Esses testes não são paridade Foxit.
 
 Casos de PDF inválido, senha, corrupção, assinaturas, XFA e serviços externos

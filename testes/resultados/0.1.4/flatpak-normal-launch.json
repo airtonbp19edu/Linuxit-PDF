@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": {
+    "expected_document_window": true,
+    "captured_window_pixels": true,
+    "normal_flatpak_command": true
+  },
+  "extra_access": "Read-only own synthetic fixture directory",
+  "screenshot": "linuxit-flatpak-0.1.4.png",
+  "foxit_differential_test": false
+}

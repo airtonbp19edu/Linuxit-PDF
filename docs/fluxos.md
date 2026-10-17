@@ -67,7 +67,7 @@ não representam uma integração completa com o spooler ou equivalência visual
 flowchart TD
   Collections[Produtor 0x1663a80] --> Graphic[Consumidor 0x1655e00]
   Collections --> Font[Consumidor com fonte 0x16561c0]
-  Graphic --> Submit[Destino comum 0x1b5baf0]
+  Graphic --> Submit[Inserção em estrutura 0x1b5baf0]
   Font --> Submit
   Bounds[Despacho 0x1663410] --> Handlers[0x1665780]
   Bounds --> Output[0x166fe90]
@@ -81,3 +81,51 @@ Assinaturas e tipos concretos permanecem provisórios. A montagem confirmou
 que um slot inicialmente comparado como inteiro foi tipado como float pelo
 decompilador devido ao reuso posterior; não transportar essa assinatura para
 o código próprio sem completar o contrato.
+
+## Continuação estática de 17/10/2026
+
+Os 21 alvos das duas primeiras rodadas sem VM foram examinados e conferidos
+com Capstone. As ligações abaixo são chamadas estáticas; não ligam uma
+estrutura encadeada a uma impressora sem examinar seus consumidores.
+Detalhes e limites: [avanço sem VM](AVANCO-SEM-VM.md).
+
+```mermaid
+flowchart TD
+  Route[0x1665780: seleção parcial] --> A[0x1665a30]
+  Route --> B[0x1664c00: iteração em blocos]
+  A --> Start[0x1b93280: inicialização de estado]
+  Start --> Continue[0x1b89510: iteração cooperativa, final2]
+  B --> Size[0x166a5b0: limites e offsets]
+  B --> Buffer[0x165f970: preparação de objeto e dimensões]
+  Buffer --> Setup[0x209c440: armazenamento CFX_DIBitmap]
+  B --> Tile[0x1665090: contexto de bloco]
+  Tile --> Process[0x1666020: processamento e limpeza]
+  A --> Poll[Estado 2/3 ou cancelamento cooperativo]
+  Insert[0x1b5baf0] --> List[0x1f21ff0: inserção de nó]
+```
+
+Há estados/defaults e relações de chamada suficientes para aprofundamento,
+mas não para nomear todas as flags, reconstruir assinaturas ou declarar o
+fluxo integral de impressão. A assinatura de `0x1665090` tem artefatos de stack;
+corpos de funções anteriores incluem destinos de salto em outros intervalos.
+Os getters UI não identificaram a classe ativa; IDs 7911/7913 seguem ambíguos.
+
+## Anexos da implementação independente — fonte 0.1.4
+
+```mermaid
+flowchart TD
+  PDF[PDF e identidade SHA-256] --> Catalog[Percorrer árvore do catálogo]
+  Catalog --> Guard{Estrutura e limites válidos?}
+  Guard -- não --> Error[Erro explícito; sem inventário truncado]
+  Guard -- sim --> Annot[Enumerar anexos de anotação por página]
+  Annot --> List[Indexar referências, origem e página]
+  List --> Select[Capturar seleção e hash antes do diálogo]
+  Select --> Valid{Documento e geração ainda atuais?}
+  Valid -- não --> Cancel[Não iniciar extração]
+  Valid -- sim --> Read[Validar nome, ler uma entrada e revalidar hash]
+  Read --> Create[Criação exclusiva do destino]
+```
+
+Extração já autorizada pode concluir após trocar o documento; callbacks antigos
+não atualizam a nova janela. A leitura não executa o conteúdo incorporado.
+O limite de 64 MiB é posterior à descompressão e não constitui limite de memória.
