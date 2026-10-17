@@ -148,6 +148,7 @@ class SearchExtensionGTKTests(unittest.TestCase):
         import search_tasks
         original = subprocess.Popen
         def delayed(argv, **kwargs):
+            if 'index-search' not in argv:return original(argv, **kwargs)
             child = original([sys.executable, '-c', 'import time;time.sleep(30)'], **kwargs)
             self.children.append(child);return child
         w = self.collection();w.index_entry.set_text(str(self.root/'index.linuxit-index.json'));w.query.set_text('alpha')

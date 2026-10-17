@@ -1462,3 +1462,16 @@ isso não comprova interação com portal ou cliente real. Fonte0.1.9 ainda sem
 pacote/publicação neste checkpoint;0.1.8 permanece pacote atual. Pesos43,33% e
 paridade0/25 intactos, original não executado. Próximo: validadores, commit/push,
 suíte Linux completa e Flatpak; examinar evidências e auditar mesmo pacote publicado.
+
+
+## 2026/10/17 às 20:55 (America/Sao_Paulo, UTC-03:00) — primeiro ensaio Linux preservado
+
+Builder39080654708 interrompeu após fonte290 casos:285pass/4errors/1fail,zero skips.
+Os23casos novos passaram. Quatro doubles FolderChoice de anexos não expunham
+set_current_folder/add_shortcut_folder; foram atualizados sem remover asserções.
+O interceptador de cancelamento de coleção capturava Popen de renderizações
+concorrentes; restringido ao comando index-search. TesteGtknovo agora ignora
+corretamente ausência de gi no Windows. Aplicação não mudou por esses reparos.
+Relatório raw/revisão em testes/resultados/0.1.9-attempt1/,ZIP/digest preservados.
+Não contar tentativa como suíte aprovada/pacote entregue. Próximo: novo commit,
+reexecutar fonte/Flatpak completos e examinar os controles de concessão de pasta.

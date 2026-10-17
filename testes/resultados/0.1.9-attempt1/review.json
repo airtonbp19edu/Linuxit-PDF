@@ -1,0 +1,16 @@
+{
+  "date_local": "2026-10-17T20:55:54-03:00",
+  "ci_run": 39080654708,
+  "artifact_id": 12118822079,
+  "zip_sha256": "ae1614e69eac1d735fcd9b3b4acaf10b6058299d52bb7b5cd9c37cd4ad846f98",
+  "full_source_run": 290,
+  "passed": 285,
+  "failures": 1,
+  "errors": 4,
+  "skipped": 0,
+  "all_23_new_cases_passed": true,
+  "app_change_required": false,
+  "correction": "Attachment dialog doubles implement newly-used folder methods. Collection cancellation interceptor now targets index-search only, avoiding unrelated background rendering processes. Native-folder GTK tests skip cleanly without gi.",
+  "original_executed": false,
+  "package_published": false
+}

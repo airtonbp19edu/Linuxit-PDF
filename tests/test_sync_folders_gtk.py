@@ -7,7 +7,8 @@ from unittest.mock import patch,Mock
 
 from test_security_accessibility_gtk import _UISetup,Gtk,GLib,wait_for,capture
 import local_files as local
-import folder_dialogs as folders
+if Gtk is not None:import folder_dialogs as folders
+else:folders=None
 
 
 @unittest.skipUnless(Gtk is not None and bool(os.environ.get('DISPLAY')),'Requires GTK3 and X11')

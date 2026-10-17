@@ -47,6 +47,12 @@ class FolderChoice:
         pass
     def set_destroy_with_parent(self, value):
         pass
+    def set_current_folder(self, folder):
+        self.initial_folder = folder
+        return True
+    def add_shortcut_folder(self, folder):
+        self.shortcut_folder = folder
+        return True
     def run(self):
         if self.during_dialog:
             self.during_dialog()
