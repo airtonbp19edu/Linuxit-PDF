@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T18:40:30-03:00",
+  "reviewed_at_local": "2026-10-17T19:20:19-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -75,9 +75,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -93,9 +94,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -113,9 +115,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -132,9 +135,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -151,9 +155,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -170,9 +175,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -189,9 +195,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -208,9 +215,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -286,9 +294,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md"
+        "docs/REA-REFLOW.md",
+        "docs/REA-REFLOW-SINCRONIZACAO.md"
       ],
-      "next_action": "Catalog250(152REA+98exclusive direct); IPDFViewerLayout/CReflowViewerLayout identified. Follow1f21a80/1f21ac0 and renderer/layout virtual slots; remaining search fields/types/ownership/UI7911/7913 still open. Do not redo15c5e00/15c9c90.",
+      "next_action": "Catalog252(152REA+100exclusive direct); Enter/LeaveCriticalSection helpers confirmed, do not redo. Follow layout/renderer slots, search fields/types/ownership and UI7911/7913.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -309,9 +318,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/CRIACAO-IMAGENS.md"
+        "docs/CRIACAO-IMAGENS.md",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
+      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -332,9 +342,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/CRIACAO-IMAGENS.md"
+        "docs/CRIACAO-IMAGENS.md",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
+      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -356,9 +367,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/CRIACAO-IMAGENS.md"
+        "docs/CRIACAO-IMAGENS.md",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
+      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -383,9 +395,10 @@
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
-        "docs/CRIACAO-IMAGENS.md"
+        "docs/CRIACAO-IMAGENS.md",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
-      "next_action": "Source/package0.1.7 image creation subset verified212/212 in each environment.20 subsets/5proposals remain incomplete: signatures/security/accessibility/cloud/platform plus missing operations/formats/OCR. Desktop/services/devices separate from original VM.",
+      "next_action": "Source0.1.8 security/accessibility/signature-integrity/copy-edit subsets need full Linux/GTK/Flatpak validation.23 subsets/2 proposals; cloud deferred by user. Remaining forms/undo/OCR/format/platform and desktop/device work still open.",
       "token_exhaustion_confirmed": null
     },
     {

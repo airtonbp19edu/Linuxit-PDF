@@ -13,6 +13,8 @@ if args.app:os.environ['PRINT_VIEW_TEST_APP']=str(args.app.resolve())
 if args.temp_dir:
     args.temp_dir.mkdir(parents=True,exist_ok=True)
     tempfile.tempdir=str(args.temp_dir.resolve())
+    # Nested workers must use the same explicitly writable test area.
+    for name in ('TMPDIR','TEMP','TMP'):os.environ[name]=tempfile.tempdir
 class RecordedResult(unittest.TextTestResult):
     def startTest(self,test):self.started=time.monotonic();super().startTest(test)
     def addSuccess(self,test):self.records.append({'id':test.id(),'status':'passed','elapsed_sec':time.monotonic()-self.started});super().addSuccess(test)

@@ -34,3 +34,8 @@ Pesos e critérios das 21 etapas permanecem inalterados. Progresso geral
 43,33%, catálogo histórico 209 e paridade comprovada 0/25 permanecem iguais.
 O inventário funcional autorizado ainda está aberto; a exclusão não fecha
 a fase A nem resolve as pendências da VM.
+
+
+Em 2026-10-17T19:20:19-03:00, o usuário decidiu: **“Deixar nuvem para depois”**.
+A integração de nuvem fica adiada; a família permanece no inventário das 25,
+sem alteração dos pesos ou critérios. Prioridade atual: operações PDF locais.

@@ -121,9 +121,9 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF.",
+      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte.",
       "inputs": [
         "Documento carregado e índice solicitado; indicação UI usa página baseada em um.",
         "Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro."
@@ -151,7 +151,11 @@
       "source_refs": [
         "app/main.py",
         "app/page_cache.py",
-        "app/rendering.py"
+        "app/rendering.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
       "foxit": {
         "evidence_state": "static_code_partial",
@@ -178,6 +182,10 @@
         {
           "path": "tests/test_sidebar_layout_gtk.py",
           "test": "test_five_panel_headers_fit_default_and_small_window"
+        },
+        {
+          "path": "tests/test_extended_edits.py",
+          "test": "test_combined_edits_preserve_tree_destinations_geometry_and_source"
         }
       ],
       "dynamic_case_refs": [
@@ -1238,9 +1246,9 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source0.1.5 implemented subset: append top-level bookmark; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada.",
+      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
@@ -1277,7 +1285,8 @@
         "app/pdf_changes.py",
         "app/edit_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
       "foxit": {
         "evidence_state": "static_code_partial",
@@ -1314,6 +1323,10 @@
         {
           "path": "tests/test_copy_edit_gtk.py",
           "test": "test_existing_destination_is_preserved_and_busy_state_is_released"
+        },
+        {
+          "path": "tests/test_extended_edits.py",
+          "test": "test_combined_edits_preserve_tree_destinations_geometry_and_source"
         }
       ],
       "dynamic_case_refs": [
@@ -1356,9 +1369,9 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source0.1.5 implemented subset: create Text note on a page; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes.",
+      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
@@ -1396,7 +1409,8 @@
         "app/pdf_changes.py",
         "app/edit_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -1432,6 +1446,10 @@
         {
           "path": "tests/test_copy_edit_gtk.py",
           "test": "test_existing_destination_is_preserved_and_busy_state_is_released"
+        },
+        {
+          "path": "tests/test_extended_edits.py",
+          "test": "test_combined_edits_preserve_tree_destinations_geometry_and_source"
         }
       ],
       "dynamic_case_refs": [
@@ -1739,32 +1757,34 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: distinguir aparência de assinatura, assinatura criptográfica e validação de certificado.",
+      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
-        "PDF de laboratório assinado e material de confiança de teste; nenhum certificado pessoal.",
-        "Operação de inspecionar/validar; assinatura futura exige chave e autorização separadas."
+        "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
       "outputs": [
-        "Proposta: estado de integridade criptográfica separado de confiança/tempo/revogação e da aparência visual."
+        "Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede."
       ],
       "errors": [
         {
-          "trigger": "Sem dados de confiança/revogação offline",
-          "response": "Proposta: resultado indeterminado para essa dimensão; não apresentar validade global.",
-          "basis": "proposed_independent_requirement"
-        },
-        {
-          "trigger": "Bytes assinados foram alterados",
-          "response": "Proposta: informar falha de integridade mesmo se a aparência continuar visível.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Entrada não suportada, falha de autenticação/integridade ou cancelamento",
+          "response": "ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: validação local não assina nem altera PDF; nenhuma chave real ou serviço remoto nesta fase."
+        "Falha de CMS pode ser adulteração ou algoritmo não suportado; nunca atesta confiança/caráter jurídico.",
+        "Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/pdf_signatures.py",
+        "app/signature_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
+      ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
@@ -1775,17 +1795,66 @@
           "Fluxos Reader, assinatura versus validação, cadeias, políticas e comportamento offline; plugins não provam suporte completo."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_real_detached_cms_integrity_is_separate_from_certificate_trust"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_modified_signed_bytes_fail_cryptographic_verification"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_appended_bytes_report_only_signed_revision_coverage"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_unsupported_filter_or_invalid_byte_range_never_report_verified"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_der_bounds_and_padding_are_checked"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_unsigned_fields_and_count_limit_are_explicit"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_encrypted_pdf_input_size_and_invalid_request_are_refused"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_missing_verifier_and_source_changes_do_not_approve_integrity"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_real_worker_roundtrip_and_cancelled_request"
+        },
+        {
+          "path": "tests/test_pdf_signatures.py",
+          "test": "test_invalid_worker_confirmation_is_rejected"
+        },
+        {
+          "path": "tests/test_signature_gtk.py",
+          "test": "test_integrity_ui_reports_verification_without_certificate_trust"
+        },
+        {
+          "path": "tests/test_signature_gtk.py",
+          "test": "test_unsigned_and_encrypted_inputs_have_distinct_results"
+        }
+      ],
       "dynamic_case_refs": [],
       "fixture_refs": [],
       "acceptance_cases": [
         {
           "id": "S12-17-1",
           "kind": "nominal",
-          "given": "PDF assinado por certificado sintético e trust store de laboratório.",
-          "when": "Inspecionar assinatura offline.",
-          "expected_linuxit": "Proposta: relatar integridade, confiança e indisponibilidade de revogação como dimensões distintas.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos.",
+          "when": "Executar o subconjunto local descrito.",
+          "expected_linuxit": "Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -1793,46 +1862,81 @@
         {
           "id": "S12-17-2",
           "kind": "exception",
-          "given": "Cópia com modificação dentro da região assinada.",
-          "when": "Revalidar.",
-          "expected_linuxit": "Proposta: falha de integridade, sem confundir a imagem da assinatura com prova criptográfica.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "Entrada inválida ou recurso explicitamente não suportado.",
+          "when": "Solicitar a operação local.",
+          "expected_linuxit": "ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T19:20:19-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Own bounded implementation, not recovered Foxit runtime behavior.",
+          "previous_acceptance_cases": [
+            {
+              "id": "S12-17-1",
+              "kind": "nominal",
+              "given": "PDF assinado por certificado sintético e trust store de laboratório.",
+              "when": "Inspecionar assinatura offline.",
+              "expected_linuxit": "Proposta: relatar integridade, confiança e indisponibilidade de revogação como dimensões distintas.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            },
+            {
+              "id": "S12-17-2",
+              "kind": "exception",
+              "given": "Cópia com modificação dentro da região assinada.",
+              "when": "Revalidar.",
+              "expected_linuxit": "Proposta: falha de integridade, sem confundir a imagem da assinatura com prova criptográfica.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: senha e permissões PDF separadas de RMS/serviços externos. Atual só tenta senha vazia.",
+      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes.",
       "inputs": [
-        "PDF cifrado sintético, senha conhecida de laboratório e política de permissões.",
-        "Cancelar/abrir, sem recuperar senha nem contornar mecanismos do documento."
+        "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
+        "Fonte SHA-256, seis permissões declaradas e destino novo."
       ],
       "outputs": [
-        "Proposta: abertura autenticada ou recusa; permissões e proteção externa identificadas separadamente."
+        "Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado."
       ],
       "errors": [
         {
-          "trigger": "Senha incorreta ou cancelamento",
-          "response": "Proposta: não expor conteúdo como se autenticado e não gravar senha em logs.",
-          "basis": "proposed_independent_requirement"
-        },
-        {
-          "trigger": "RMS requer serviço indisponível offline",
-          "response": "Proposta: declarar indisponibilidade, sem bypass nem falso estado desbloqueado.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Entrada não suportada, falha de autenticação/integridade ou cancelamento",
+          "response": "Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: manter segredo apenas no escopo necessário; original cifrado permanece íntegro."
+        "Segredos por stdin; mensagens fixas, sem recuperação de senha ou chamada de serviço RMS.",
+        "Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/pdf_security.py",
+        "app/security_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
+      ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
@@ -1844,7 +1948,116 @@
           "Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_unencrypted_inspection_identity_pages_and_permissions"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_aes256_roundtrip_roles_permissions_metadata_and_attachments"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_each_permission_flag_and_accessibility_bit_are_preserved"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_encrypted_inspection_correct_wrong_and_missing_credentials"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_new_password_limits_and_distinct_roles"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_invalid_protocol_and_permission_types_rejected"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_encrypted_source_not_unprotected_or_rewritten"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_signed_xfa_portfolio_and_permissions_sources_refused"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_stale_source_and_source_size_page_output_limits"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_existing_destination_and_source_never_overwritten"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_handled_partial_write_removed_and_error_sanitized"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_concurrent_destination_preserved"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_real_worker_secret_transport_and_error_channel"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_cancellation_and_invalid_confirmation_never_report_success"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_validation_limit_and_source_change"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_refuses_encrypted_pdf_even_with_empty_password"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_only_owner_authentication_can_create_unprotected_copy"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_owner_copy_stale_destination_and_partial_failure_are_safe"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_owner_copy_refuses_special_restrictions_and_signature_fields"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_inspect_protect_and_secrets_cleared_without_source_change"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_encrypted_inspection_wrong_and_owner_credentials"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_password_mismatch_and_cancelled_destination_create_nothing"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_document_change_during_destination_dialog_discards_request"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_cancel_and_destroy_stop_actual_security_process"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_owner_copy_is_readable_by_main_reader_and_original_is_preserved"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_owner_copy_rejects_opening_password_and_clears_it"
+        }
+      ],
       "dynamic_case_refs": [
         "D15"
       ],
@@ -1853,10 +2066,10 @@
         {
           "id": "S12-18-1",
           "kind": "nominal",
-          "given": "PDF cifrado com senha sintética conhecida.",
-          "when": "Abrir com a senha correta em ambiente de teste.",
-          "expected_linuxit": "Proposta: conteúdo autorizado acessível; senha não aparece no relatório de evidências.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
+          "when": "Executar o subconjunto local descrito.",
+          "expected_linuxit": "Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -1864,46 +2077,81 @@
         {
           "id": "S12-18-2",
           "kind": "exception",
-          "given": "Mesmo PDF com senha errada ou cancelamento.",
-          "when": "Tentar abrir.",
-          "expected_linuxit": "Proposta: recusa/cancelamento distinto de sucesso; original inalterado.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "Entrada inválida ou recurso explicitamente não suportado.",
+          "when": "Solicitar a operação local.",
+          "expected_linuxit": "Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T19:20:19-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Own bounded implementation, not recovered Foxit runtime behavior.",
+          "previous_acceptance_cases": [
+            {
+              "id": "S12-18-1",
+              "kind": "nominal",
+              "given": "PDF cifrado com senha sintética conhecida.",
+              "when": "Abrir com a senha correta em ambiente de teste.",
+              "expected_linuxit": "Proposta: conteúdo autorizado acessível; senha não aparece no relatório de evidências.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            },
+            {
+              "id": "S12-18-2",
+              "kind": "exception",
+              "given": "Mesmo PDF com senha errada ou cancelamento.",
+              "when": "Tentar abrir.",
+              "expected_linuxit": "Proposta: recusa/cancelamento distinto de sucesso; original inalterado.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "pending adoption and verification",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: estrutura acessível, teclado e leitura por voz com ordem e tecnologia assistiva verificadas.",
+      "matrix_implementation": "source 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux/Flatpak validation pending",
+      "contract_kind": "implemented_subset",
+      "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
-        "PDF marcado sintético, idioma, foco e ação por teclado.",
-        "Tecnologia assistiva/voz identificada; texto alternativo e ordem lógica de referência."
+        "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
+        "Foco e estado do documento/geração capturados antes da tarefa."
       ],
       "outputs": [
-        "Proposta: nomes/papéis/estados acessíveis e sequência de leitura comparável ao corpus, sem alegar conformidade ainda."
+        "Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta."
       ],
       "errors": [
         {
-          "trigger": "PDF sem tags ou ordem incompleta",
-          "response": "Proposta: indicar limitação e distinguir extração visual de ordem semântica.",
-          "basis": "proposed_independent_requirement"
-        },
-        {
-          "trigger": "Síntese de voz indisponível",
-          "response": "Proposta: informar indisponibilidade sem travar navegação/fechamento.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Entrada não suportada, falha de autenticação/integridade ou cancelamento",
+          "response": "PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: áudio apenas quando solicitado; sem envio de conteúdo a serviço externo implícito."
+        "Troca de documento/fechamento cancela worker e descarta atualização antiga.",
+        "Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro."
       ],
-      "source_refs": [],
+      "source_refs": [
+        "app/accessible_reader.py",
+        "app/pdf_security.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
+      ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
         "source_refs": [
@@ -1914,7 +2162,112 @@
           "APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader."
         ]
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_unencrypted_inspection_identity_pages_and_permissions"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_aes256_roundtrip_roles_permissions_metadata_and_attachments"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_each_permission_flag_and_accessibility_bit_are_preserved"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_encrypted_inspection_correct_wrong_and_missing_credentials"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_new_password_limits_and_distinct_roles"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_invalid_protocol_and_permission_types_rejected"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_encrypted_source_not_unprotected_or_rewritten"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_signed_xfa_portfolio_and_permissions_sources_refused"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_stale_source_and_source_size_page_output_limits"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_existing_destination_and_source_never_overwritten"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_handled_partial_write_removed_and_error_sanitized"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_concurrent_destination_preserved"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_real_worker_secret_transport_and_error_channel"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_cancellation_and_invalid_confirmation_never_report_success"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_validation_limit_and_source_change"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_refuses_encrypted_pdf_even_with_empty_password"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_only_owner_authentication_can_create_unprotected_copy"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_owner_copy_stale_destination_and_partial_failure_are_safe"
+        },
+        {
+          "path": "tests/test_pdf_security.py",
+          "test": "test_owner_copy_refuses_special_restrictions_and_signature_fields"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_real_poppler_text_is_exposed_through_atk_text_interface"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_no_text_and_encrypted_pages_have_explicit_limits"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_obsolete_page_text_does_not_replace_newer_page"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_f6_focus_regions_names_and_list_arrow_delegation"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_text_limit_and_document_close_clear_the_accessible_window"
+        },
+        {
+          "path": "tests/test_security_accessibility_gtk.py",
+          "test": "test_closing_text_worker_terminates_its_real_descendant_on_linux"
+        }
+      ],
       "dynamic_case_refs": [
         "UI10"
       ],
@@ -1923,10 +2276,10 @@
         {
           "id": "S12-19-1",
           "kind": "nominal",
-          "given": "PDF de duas colunas com tags e ordem esperada, fixture a criar.",
-          "when": "Percorrer por teclado/leitor de tela.",
-          "expected_linuxit": "Proposta: sequência e nomes registrados contra a ordem definida no corpus.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
+          "when": "Executar o subconjunto local descrito.",
+          "expected_linuxit": "Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -1934,16 +2287,48 @@
         {
           "id": "S12-19-2",
           "kind": "exception",
-          "given": "Mesmo teste sem serviço de voz instalado.",
-          "when": "Solicitar leitura por voz.",
-          "expected_linuxit": "Proposta: indisponibilidade explícita e UI responsiva.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "Entrada inválida ou recurso explicitamente não suportado.",
+          "when": "Solicitar a operação local.",
+          "expected_linuxit": "PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_revisions": [
+        {
+          "date_local": "2026-10-17T19:20:19-03:00",
+          "from": "proposed_only",
+          "to": "implemented_subset",
+          "reason": "Own bounded implementation, not recovered Foxit runtime behavior.",
+          "previous_acceptance_cases": [
+            {
+              "id": "S12-19-1",
+              "kind": "nominal",
+              "given": "PDF de duas colunas com tags e ordem esperada, fixture a criar.",
+              "when": "Percorrer por teclado/leitor de tela.",
+              "expected_linuxit": "Proposta: sequência e nomes registrados contra a ordem definida no corpus.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            },
+            {
+              "id": "S12-19-2",
+              "kind": "exception",
+              "given": "Mesmo teste sem serviço de voz instalado.",
+              "when": "Solicitar leitura por voz.",
+              "expected_linuxit": "Proposta: indisponibilidade explícita e UI responsiva.",
+              "expected_basis": "proposed_independent_requirement",
+              "foxit_expected": null,
+              "foxit_observed": null,
+              "execution_status": "not_run"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "measurement",
@@ -2181,7 +2566,7 @@
       "name": "Nuvem/colaboração",
       "matrix_implementation": "pending adoption and verification",
       "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados.",
+      "scope": "Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados. Adiado por decisão explícita do usuário: Deixar nuvem para depois. Família preservada, sem alteração de pesos.",
       "inputs": [
         "Provedor, operação, documento e autorização específica; testes iniciais usam backend local simulado.",
         "Credenciais/serviços reais ficam fora desta campanha."
@@ -2242,7 +2627,11 @@
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "deferred_by_user": {
+        "date_local": "2026-10-17T19:20:19-03:00",
+        "decision": "Deixar nuvem para depois"
+      }
     },
     {
       "id": "conversion",
@@ -2475,5 +2864,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T18:40:30-03:00"
+  "updated_at_local": "2026-10-17T19:20:19-03:00"
 }

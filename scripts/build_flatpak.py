@@ -52,7 +52,7 @@ def build(flatpak, stage, repo, extra):
     if not list((site / 'gi').glob('_gi_cairo*.so')):
         raise RuntimeError('python3-gi-cairo is required in the runtime overlay.')
     binaries = {'python3': Path('/usr/bin/python3.13')}
-    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions'):
+    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions', 'openssl'):
         origin = str(Path('/usr/bin') / name) if (Path('/usr/bin') / name).exists() else str(extra / 'usr/bin' / name)
         if not Path(origin).exists():
             raise RuntimeError('Required executable missing: ' + name)

@@ -35,5 +35,17 @@
       "existing_family_ids_removed": [],
       "note": "AiAssistant.fpi was inventoried incidentally. Keep historical evidence; 25 current families contain no dedicated AI obligation. Non-AI cloud collaboration and local PDF operations remain in scope."
     }
+  ],
+  "deferred_features": [
+    {
+      "id": "cloud",
+      "decision": "Deixar nuvem para depois",
+      "recorded_at_local": "2026-10-17T19:20:19-03:00",
+      "timezone": "America/Sao_Paulo",
+      "authority": "Explicit user answer in this task; prioritize local PDF operations.",
+      "status": "deferred_by_user",
+      "removed_from_scope": false,
+      "criteria_or_weights_changed": false
+    }
   ]
 }

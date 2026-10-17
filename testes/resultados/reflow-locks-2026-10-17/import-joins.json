@@ -1,0 +1,17 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "imports": [
+    {
+      "iat_va": "0x531cb70",
+      "library": "KERNEL32.dll",
+      "name": "EnterCriticalSection"
+    },
+    {
+      "iat_va": "0x531cb74",
+      "library": "KERNEL32.dll",
+      "name": "LeaveCriticalSection"
+    }
+  ],
+  "original_executed": false,
+  "semantic_scope": "Exact IAT join only; does not close all component lifecycles."
+}

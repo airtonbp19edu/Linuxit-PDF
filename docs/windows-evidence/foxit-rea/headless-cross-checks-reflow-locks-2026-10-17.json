@@ -1,0 +1,37 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/reflow-locks-2026-10-17/functions/0x1f21a80.json",
+      "result_sha256": "8bcb0aab7e938910944d688a91e791fe2c35d04a71f388500579f270a5b92a4f",
+      "entry_va": "0x1f21a80",
+      "analyst_name": "analyst_entry_1f21a80",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 35,
+      "body_ranges": "[[01f21a80, 01f21a94] [01f22620, 01f2262d]]",
+      "pseudocode_sha256": "5cca9b322819a501323cc9b45e84e0cdac19e499d50c6d7528e4206f7d17b663",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/reflow-locks-2026-10-17/functions/0x1f21ac0.json",
+      "result_sha256": "cb53b137c482844af7fd3bb7ec19d6eb6529328dd1375de94538fde8dab8d414",
+      "entry_va": "0x1f21ac0",
+      "analyst_name": "analyst_entry_1f21ac0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 35,
+      "body_ranges": "[[01f21ac0, 01f21ad4] [01f22650, 01f2265d]]",
+      "pseudocode_sha256": "3fba5af1702ce448cf25bcd39629036384ed8a81d283dd10c9170151999e492c",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 2,
+  "distinct_entries": 2,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

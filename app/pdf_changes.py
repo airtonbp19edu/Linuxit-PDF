@@ -11,7 +11,7 @@ from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Text
-from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject
+from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject, TextStringObject
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -87,6 +87,49 @@ def _editable(path, expected=None):
         yield reader, fields, identity
 
 
+def _outline_nodes(reader):
+    root = reader.root_object.get('/Outlines')
+    if root is None:return []
+    rows, seen = [], set()
+    title_bytes = 0
+    def walk(parent, prefix):
+        nonlocal title_bytes
+        _require(len(prefix) < 32, 'Árvore de marcadores acima do limite de 32 níveis.')
+        current = parent.get('/First');index = 0
+        while current is not None:
+            node = current.get_object()
+            _require(isinstance(node, DictionaryObject) and id(node) not in seen and len(rows) < 2048,
+                     'Árvore de marcadores inválida ou acima do limite de 2048 entradas.')
+            seen.add(id(node));path = prefix + [index]
+            title = node.get('/Title', '')
+            _require(isinstance(title, str) and len(title.encode('utf-8')) <= 4096, 'Título de marcador inválido ou acima do limite.')
+            title_bytes += len(title.encode('utf-8'))
+            _require(title_bytes <= 1024**2, 'Títulos de marcadores acima do limite total de 1 MiB.')
+            rows.append((path, node))
+            if '/First' in node:walk(node, path)
+            current = node.get('/Next');index += 1
+    walk(root.get_object(), [])
+    return rows
+
+
+def _note_records(reader):
+    rows, truncated, text_bytes = [], False, 0
+    for page_index, page in enumerate(reader.pages):
+        annots = page.get('/Annots')
+        if annots is None or not isinstance(annots.get_object(), ArrayObject):continue
+        for index, ref in enumerate(annots.get_object()):
+            note = ref.get_object()
+            if not isinstance(note, DictionaryObject) or note.get('/Subtype') != '/Text':continue
+            text, author = note.get('/Contents', ''), note.get('/T', '')
+            if int(note.get('/F', 0)) & (64 | 128 | 512):continue
+            if not isinstance(text, str) or not isinstance(author, str) or len(text.encode('utf-8')) > MAX_TEXT_BYTES or len(author.encode('utf-8')) > 4096:continue
+            cost = len(text.encode('utf-8')) + len(author.encode('utf-8'))
+            if len(rows) >= 2000 or text_bytes + cost > 1024**2:truncated = True;continue
+            text_bytes += cost
+            rows.append({'page':page_index,'index':index,'text':text,'author':author})
+    return rows, truncated
+
+
 def inspect_editable_document(path):
     """Describe the bounded edit contract without decoding embedded payloads."""
     with _editable(path) as (reader, fields, identity):
@@ -100,6 +143,8 @@ def inspect_editable_document(path):
                 _require(isinstance(value, str), 'Valor original de campo de texto inválido.')
                 result['text_fields'].append({'name': name, 'value': value,
                                              'read_only': bool(int(_inherited(field, '/Ff', 0)) & 1)})
+        result['bookmarks'] = [{'path':p, 'title':n.get('/Title', '')} for p, n in _outline_nodes(reader)]
+        result['notes'], result['notes_truncated'] = _note_records(reader)
     _require(_sha(path) == identity, 'O PDF foi alterado durante a leitura.')
     return result
 
@@ -112,7 +157,32 @@ def _page(writer, index):
 def _apply(writer, operation):
     _require(isinstance(operation, dict), 'Cada alteração deve ser um objeto JSON.')
     kind = operation.get('kind')
-    if kind == 'add-bookmark':
+    if kind == 'rotate-page':
+        _require(set(operation) == {'kind','page','angle'} and type(operation['angle']) is int
+                 and operation['angle'] in (-270,-180,-90,90,180,270), 'Rotação inválida; use múltiplos de 90 graus até 270.')
+        _page(writer, operation['page']).rotate(operation['angle'])
+    elif kind == 'rename-bookmark':
+        _require(set(operation) == {'kind','path','title'}, 'Opções de marcador inválidas.')
+        path = operation['path']
+        _require(isinstance(path, list) and 1 <= len(path) <= 32 and all(type(i) is int and 0 <= i < 2048 for i in path), 'Caminho de marcador inválido.')
+        matches = [node for address, node in _outline_nodes(writer) if address == path]
+        _require(len(matches) == 1, 'Marcador não encontrado no documento atual.')
+        matches[0][NameObject('/Title')] = TextStringObject(_text(operation['title'], 'Título', 4096))
+    elif kind == 'update-note':
+        _require(set(operation) == {'kind','page','index','text','author'}, 'Opções de nota inválidas.')
+        page = _page(writer, operation['page']);annots = page.get('/Annots')
+        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'A página não possui anotações suportadas.')
+        annots = annots.get_object();index = operation['index']
+        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
+        note = annots[index].get_object()
+        _require(isinstance(note, DictionaryObject) and note.get('/Subtype') == '/Text'
+                 and not (int(note.get('/F', 0)) & (64 | 128 | 512)), 'A anotação deve ser uma nota Text sem bloqueio de edição.')
+        note[NameObject('/Contents')] = TextStringObject(_text(operation['text'], 'Texto'))
+        author = operation['author']
+        _require(isinstance(author, str) and len(author.encode('utf-8')) <= 4096, 'Autor inválido.')
+        if author:note[NameObject('/T')] = TextStringObject(author)
+        else:note.pop('/T', None)
+    elif kind == 'add-bookmark':
         _require(set(operation) == {'kind', 'title', 'page'}, 'Opções de marcador inválidas.')
         _page(writer, operation['page'])
         writer.add_outline_item(_text(operation['title'], 'Título', 4096), operation['page'])

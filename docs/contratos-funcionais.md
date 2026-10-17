@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 20 subconjuntos implementados e 5 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 23 subconjuntos implementados e 2 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -30,9 +30,9 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Anotações/undo/gravação](#annotations) | Subconjunto atual; lacunas abertas |
 | [AcroForm/XFA/eventos](#forms) | Subconjunto atual; lacunas abertas |
 | [Anexos/portfólios](#attachments) | Subconjunto atual; lacunas abertas |
-| [Assinaturas/certificados](#signatures) | Proposta; não implementado |
-| [Senhas/permissões/RMS](#security) | Proposta; não implementado |
-| [Acessibilidade/voz](#accessibility) | Proposta; não implementado |
+| [Assinaturas/certificados](#signatures) | Subconjunto atual; lacunas abertas |
+| [Senhas/permissões/RMS](#security) | Subconjunto atual; lacunas abertas |
+| [Acessibilidade/voz](#accessibility) | Subconjunto atual; lacunas abertas |
 | [Medição/calibração](#measurement) | Subconjunto atual; lacunas abertas |
 | [Camadas/mídia/3D](#layers-media) | Subconjunto atual; lacunas abertas |
 | [Preferências/tema/persistência](#preferences) | Subconjunto atual; lacunas abertas |
@@ -86,7 +86,7 @@ Relacionados aos planos dinâmicos/UI: D01, D02, D13, D14, D15, D19, D20.
 
 ## Navegação/rotação/zoom
 
-Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF.
+Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte.
 
 **Entradas**
 
@@ -118,9 +118,9 @@ Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem grav
 - Limites e modos efetivos Foxit dependem da classe/estado ativo.
 - Updaters de zoom só enviam desabilitação nos limites; política completa não foi reconstruída.
 
-Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json).
+Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py); [test_five_panel_headers_fit_default_and_small_window](../tests/test_sidebar_layout_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py); [test_five_panel_headers_fit_default_and_small_window](../tests/test_sidebar_layout_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py).
 
 Relacionados aos planos dinâmicos/UI: D03, UI03, UI04.
 
@@ -537,7 +537,7 @@ Relacionados aos planos dinâmicos/UI: D18.
 
 ## Criar/mover/gravar marcadores
 
-Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada.
+Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes.
 
 **Entradas**
 
@@ -571,9 +571,9 @@ Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar c
 
 - Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py).
 
 Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
@@ -581,7 +581,7 @@ Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
 ## Anotações/undo/gravação
 
-Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes.
+Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes.
 
 **Entradas**
 
@@ -615,9 +615,9 @@ Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de lei
 
 - Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_and_contents_are_searchable_without_author](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_and_contents_are_searchable_without_author](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py).
 
 Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
@@ -718,71 +718,74 @@ Relacionados aos planos dinâmicos/UI: D16.
 
 ## Assinaturas/certificados
 
-Requisito futuro: distinguir aparência de assinatura, assinatura criptográfica e validação de certificado.
+Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.
 
 **Entradas**
 
-- PDF de laboratório assinado e material de confiança de teste; nenhum certificado pessoal.
-- Operação de inspecionar/validar; assinatura futura exige chave e autorização separadas.
+- PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos.
 
 **Saídas**
 
-- Proposta: estado de integridade criptográfica separado de confiança/tempo/revogação e da aparência visual.
+- Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede.
 
 **Erros e casos excepcionais**
 
-- Sem dados de confiança/revogação offline: Proposta: resultado indeterminado para essa dimensão; não apresentar validade global.
-- Bytes assinados foram alterados: Proposta: informar falha de integridade mesmo se a aparência continuar visível.
+- Entrada não suportada, falha de autenticação/integridade ou cancelamento: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.
 
 **Estado e efeitos**
 
-- Proposta: validação local não assina nem altera PDF; nenhuma chave real ou serviço remoto nesta fase.
+- Falha de CMS pode ser adulteração ou algoritmo não suportado; nunca atesta confiança/caráter jurídico.
+- Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro.
 
 **Critérios planejados**
 
-- **S12-17-1** (nominal, proposta futura, `not_run`): dado PDF assinado por certificado sintético e trust store de laboratório. Ação: Inspecionar assinatura offline. Esperado: Proposta: relatar integridade, confiança e indisponibilidade de revogação como dimensões distintas.
-- **S12-17-2** (exception, proposta futura, `not_run`): dado Cópia com modificação dentro da região assinada. Ação: Revalidar. Esperado: Proposta: falha de integridade, sem confundir a imagem da assinatura com prova criptográfica.
+- **S12-17-1** (nominal, contrato próprio atual, `not_run`): dado PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos. Ação: Executar o subconjunto local descrito. Esperado: Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede.
+- **S12-17-2** (exception, contrato próprio atual, `not_run`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.
 
 **Lacunas da referência Foxit**
 
 - Fluxos Reader, assinatura versus validação, cadeias, políticas e comportamento offline; plugins não provam suporte completo.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_signatures.py](../app/pdf_signatures.py), [app/signature_window.py](../app/signature_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_real_detached_cms_integrity_is_separate_from_certificate_trust](../tests/test_pdf_signatures.py); [test_modified_signed_bytes_fail_cryptographic_verification](../tests/test_pdf_signatures.py); [test_appended_bytes_report_only_signed_revision_coverage](../tests/test_pdf_signatures.py); [test_unsupported_filter_or_invalid_byte_range_never_report_verified](../tests/test_pdf_signatures.py); [test_der_bounds_and_padding_are_checked](../tests/test_pdf_signatures.py); [test_unsigned_fields_and_count_limit_are_explicit](../tests/test_pdf_signatures.py); [test_encrypted_pdf_input_size_and_invalid_request_are_refused](../tests/test_pdf_signatures.py); [test_missing_verifier_and_source_changes_do_not_approve_integrity](../tests/test_pdf_signatures.py); [test_real_worker_roundtrip_and_cancelled_request](../tests/test_pdf_signatures.py); [test_invalid_worker_confirmation_is_rejected](../tests/test_pdf_signatures.py); [test_integrity_ui_reports_verification_without_certificate_trust](../tests/test_signature_gtk.py); [test_unsigned_and_encrypted_inputs_have_distinct_results](../tests/test_signature_gtk.py).
 
 <a id="security"></a>
 
 ## Senhas/permissões/RMS
 
-Requisito futuro: senha e permissões PDF separadas de RMS/serviços externos. Atual só tenta senha vazia.
+Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes.
 
 **Entradas**
 
-- PDF cifrado sintético, senha conhecida de laboratório e política de permissões.
-- Cancelar/abrir, sem recuperar senha nem contornar mecanismos do documento.
+- PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.
+- Fonte SHA-256, seis permissões declaradas e destino novo.
 
 **Saídas**
 
-- Proposta: abertura autenticada ou recusa; permissões e proteção externa identificadas separadamente.
+- Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado.
 
 **Erros e casos excepcionais**
 
-- Senha incorreta ou cancelamento: Proposta: não expor conteúdo como se autenticado e não gravar senha em logs.
-- RMS requer serviço indisponível offline: Proposta: declarar indisponibilidade, sem bypass nem falso estado desbloqueado.
+- Entrada não suportada, falha de autenticação/integridade ou cancelamento: Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita.
 
 **Estado e efeitos**
 
-- Proposta: manter segredo apenas no escopo necessário; original cifrado permanece íntegro.
+- Segredos por stdin; mensagens fixas, sem recuperação de senha ou chamada de serviço RMS.
+- Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro.
 
 **Critérios planejados**
 
-- **S12-18-1** (nominal, proposta futura, `not_run`): dado PDF cifrado com senha sintética conhecida. Ação: Abrir com a senha correta em ambiente de teste. Esperado: Proposta: conteúdo autorizado acessível; senha não aparece no relatório de evidências.
-- **S12-18-2** (exception, proposta futura, `not_run`): dado Mesmo PDF com senha errada ou cancelamento. Ação: Tentar abrir. Esperado: Proposta: recusa/cancelamento distinto de sucesso; original inalterado.
+- **S12-18-1** (nominal, contrato próprio atual, `not_run`): dado PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis. Ação: Executar o subconjunto local descrito. Esperado: Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado.
+- **S12-18-2** (exception, contrato próprio atual, `not_run`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita.
 
 **Lacunas da referência Foxit**
 
 - Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+Fontes: [app/pdf_security.py](../app/pdf_security.py), [app/security_window.py](../app/security_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted_inspection_identity_pages_and_permissions](../tests/test_pdf_security.py); [test_aes256_roundtrip_roles_permissions_metadata_and_attachments](../tests/test_pdf_security.py); [test_each_permission_flag_and_accessibility_bit_are_preserved](../tests/test_pdf_security.py); [test_encrypted_inspection_correct_wrong_and_missing_credentials](../tests/test_pdf_security.py); [test_new_password_limits_and_distinct_roles](../tests/test_pdf_security.py); [test_invalid_protocol_and_permission_types_rejected](../tests/test_pdf_security.py); [test_encrypted_source_not_unprotected_or_rewritten](../tests/test_pdf_security.py); [test_signed_xfa_portfolio_and_permissions_sources_refused](../tests/test_pdf_security.py); [test_stale_source_and_source_size_page_output_limits](../tests/test_pdf_security.py); [test_existing_destination_and_source_never_overwritten](../tests/test_pdf_security.py); [test_handled_partial_write_removed_and_error_sanitized](../tests/test_pdf_security.py); [test_concurrent_destination_preserved](../tests/test_pdf_security.py); [test_real_worker_secret_transport_and_error_channel](../tests/test_pdf_security.py); [test_cancellation_and_invalid_confirmation_never_report_success](../tests/test_pdf_security.py); [test_accessible_text_validation_limit_and_source_change](../tests/test_pdf_security.py); [test_accessible_text_refuses_encrypted_pdf_even_with_empty_password](../tests/test_pdf_security.py); [test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel](../tests/test_pdf_security.py); [test_only_owner_authentication_can_create_unprotected_copy](../tests/test_pdf_security.py); [test_owner_copy_stale_destination_and_partial_failure_are_safe](../tests/test_pdf_security.py); [test_owner_copy_refuses_special_restrictions_and_signature_fields](../tests/test_pdf_security.py); [test_inspect_protect_and_secrets_cleared_without_source_change](../tests/test_security_accessibility_gtk.py); [test_encrypted_inspection_wrong_and_owner_credentials](../tests/test_security_accessibility_gtk.py); [test_password_mismatch_and_cancelled_destination_create_nothing](../tests/test_security_accessibility_gtk.py); [test_document_change_during_destination_dialog_discards_request](../tests/test_security_accessibility_gtk.py); [test_cancel_and_destroy_stop_actual_security_process](../tests/test_security_accessibility_gtk.py); [test_owner_copy_is_readable_by_main_reader_and_original_is_preserved](../tests/test_security_accessibility_gtk.py); [test_owner_copy_rejects_opening_password_and_clears_it](../tests/test_security_accessibility_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D15.
 
@@ -790,36 +793,38 @@ Relacionados aos planos dinâmicos/UI: D15.
 
 ## Acessibilidade/voz
 
-Requisito futuro: estrutura acessível, teclado e leitura por voz com ordem e tecnologia assistiva verificadas.
+Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.
 
 **Entradas**
 
-- PDF marcado sintético, idioma, foco e ação por teclado.
-- Tecnologia assistiva/voz identificada; texto alternativo e ordem lógica de referência.
+- PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.
+- Foco e estado do documento/geração capturados antes da tarefa.
 
 **Saídas**
 
-- Proposta: nomes/papéis/estados acessíveis e sequência de leitura comparável ao corpus, sem alegar conformidade ainda.
+- Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta.
 
 **Erros e casos excepcionais**
 
-- PDF sem tags ou ordem incompleta: Proposta: indicar limitação e distinguir extração visual de ordem semântica.
-- Síntese de voz indisponível: Proposta: informar indisponibilidade sem travar navegação/fechamento.
+- Entrada não suportada, falha de autenticação/integridade ou cancelamento: PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo.
 
 **Estado e efeitos**
 
-- Proposta: áudio apenas quando solicitado; sem envio de conteúdo a serviço externo implícito.
+- Troca de documento/fechamento cancela worker e descarta atualização antiga.
+- Fonte preservada; workers limitados e temporários privados. Limpeza sem garantia de apagamento seguro.
 
 **Critérios planejados**
 
-- **S12-19-1** (nominal, proposta futura, `not_run`): dado PDF de duas colunas com tags e ordem esperada, fixture a criar. Ação: Percorrer por teclado/leitor de tela. Esperado: Proposta: sequência e nomes registrados contra a ordem definida no corpus.
-- **S12-19-2** (exception, proposta futura, `not_run`): dado Mesmo teste sem serviço de voz instalado. Ação: Solicitar leitura por voz. Esperado: Proposta: indisponibilidade explícita e UI responsiva.
+- **S12-19-1** (nominal, contrato próprio atual, `not_run`): dado PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8. Ação: Executar o subconjunto local descrito. Esperado: Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta.
+- **S12-19-2** (exception, contrato próprio atual, `not_run`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo.
 
 **Lacunas da referência Foxit**
 
 - APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader.
 
-Fontes: [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/accessible_reader.py](../app/accessible_reader.py), [app/pdf_security.py](../app/pdf_security.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted_inspection_identity_pages_and_permissions](../tests/test_pdf_security.py); [test_aes256_roundtrip_roles_permissions_metadata_and_attachments](../tests/test_pdf_security.py); [test_each_permission_flag_and_accessibility_bit_are_preserved](../tests/test_pdf_security.py); [test_encrypted_inspection_correct_wrong_and_missing_credentials](../tests/test_pdf_security.py); [test_new_password_limits_and_distinct_roles](../tests/test_pdf_security.py); [test_invalid_protocol_and_permission_types_rejected](../tests/test_pdf_security.py); [test_encrypted_source_not_unprotected_or_rewritten](../tests/test_pdf_security.py); [test_signed_xfa_portfolio_and_permissions_sources_refused](../tests/test_pdf_security.py); [test_stale_source_and_source_size_page_output_limits](../tests/test_pdf_security.py); [test_existing_destination_and_source_never_overwritten](../tests/test_pdf_security.py); [test_handled_partial_write_removed_and_error_sanitized](../tests/test_pdf_security.py); [test_concurrent_destination_preserved](../tests/test_pdf_security.py); [test_real_worker_secret_transport_and_error_channel](../tests/test_pdf_security.py); [test_cancellation_and_invalid_confirmation_never_report_success](../tests/test_pdf_security.py); [test_accessible_text_validation_limit_and_source_change](../tests/test_pdf_security.py); [test_accessible_text_refuses_encrypted_pdf_even_with_empty_password](../tests/test_pdf_security.py); [test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel](../tests/test_pdf_security.py); [test_only_owner_authentication_can_create_unprotected_copy](../tests/test_pdf_security.py); [test_owner_copy_stale_destination_and_partial_failure_are_safe](../tests/test_pdf_security.py); [test_owner_copy_refuses_special_restrictions_and_signature_fields](../tests/test_pdf_security.py); [test_real_poppler_text_is_exposed_through_atk_text_interface](../tests/test_security_accessibility_gtk.py); [test_no_text_and_encrypted_pages_have_explicit_limits](../tests/test_security_accessibility_gtk.py); [test_obsolete_page_text_does_not_replace_newer_page](../tests/test_security_accessibility_gtk.py); [test_f6_focus_regions_names_and_list_arrow_delegation](../tests/test_security_accessibility_gtk.py); [test_text_limit_and_document_close_clear_the_accessible_window](../tests/test_security_accessibility_gtk.py); [test_closing_text_worker_terminates_its_real_descendant_on_linux](../tests/test_security_accessibility_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: UI10.
 
@@ -936,7 +941,7 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_theme_persi
 
 ## Nuvem/colaboração
 
-Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados.
+Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados. Adiado por decisão explícita do usuário: Deixar nuvem para depois. Família preservada, sem alteração de pesos.
 
 **Entradas**
 

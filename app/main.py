@@ -252,8 +252,14 @@ class PDFWindow(Gtk.Window):
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
                     ('Pesquisar em coleção…', self._show_collection),
                     ('Criar PDF de imagens…', self._show_creation),
+                    ('Senhas e permissões…', self._show_security),
+                    ('Verificar assinaturas…', self._show_signatures),
+                    ('Texto da página… (Ctrl+Shift+T)', self._show_accessible_text),
                     ('Novo marcador na página atual…', lambda: self._begin_copy_edit('add-bookmark')),
+                    ('Renomear marcador em cópia…', lambda: self._begin_copy_edit('rename-bookmark')),
                     ('Adicionar nota na página atual…', lambda: self._begin_copy_edit('add-note')),
+                    ('Editar nota da página em cópia…', lambda: self._begin_copy_edit('update-note')),
+                    ('Girar página em cópia…', lambda: self._begin_copy_edit('rotate-page')),
                     ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
                     ('Imprimir…', self._print), ('Propriedades do documento', self._properties),
                     ('Fechar PDF', self._close_document)):
@@ -294,6 +300,7 @@ class PDFWindow(Gtk.Window):
         nav_col.pack_start(self._command_button('go-first-symbolic','Primeira',lambda *_: self.goto_page(0), compact=True), False, False, 0)
         nav_col.pack_start(self._command_button('go-previous-symbolic','Anterior',lambda *_: self.goto_page(self.page-1), compact=True), False, False, 0)
         self.page_entry = Gtk.Entry(); self.page_entry.set_width_chars(4); self.page_entry.set_text('0')
+        self.page_entry.get_accessible().set_name('Página para navegar')
         self.page_entry.connect('activate', self._page_entry_activate)
         self.page_entry.connect('focus-out-event', lambda *_: (self._page_entry_activate(self.page_entry), False)[1])
         nav_col.pack_start(self.page_entry, False, False, 1)
@@ -441,6 +448,7 @@ class PDFWindow(Gtk.Window):
         box.get_style_context().add_class('findbar')
         box.pack_start(Gtk.Label(label='Localizar:'), False, False, 0)
         self.find_entry = Gtk.Entry(); self.find_entry.set_hexpand(True)
+        self.find_entry.get_accessible().set_name('Texto para localizar no PDF')
         self.find_entry.connect('changed', self._find_changed)
         self.find_entry.connect('activate', lambda *_: self._find_next())
         box.pack_start(self.find_entry, True, True, 0)
@@ -663,6 +671,8 @@ class PDFWindow(Gtk.Window):
         self.page_frame = Gtk.Frame(); self.page_frame.get_style_context().add_class('page-frame')
         self.page_overlay = Gtk.Overlay(); self.page_image = Gtk.Image(); self.page_overlay.add(self.page_image)
         self.interaction_layer = Gtk.DrawingArea(); self.interaction_layer.set_app_paintable(True); self.interaction_layer.set_can_focus(True)
+        self.interaction_layer.get_accessible().set_name('Página do documento PDF')
+        self.interaction_layer.get_accessible().set_description('Use F6 para mudar de região e Ctrl+Shift+T para acessar o texto da página.')
         self.interaction_layer.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK)
         self.interaction_layer.connect('draw', self._interaction_draw); self.interaction_layer.connect('button-press-event', self._interaction_press)
         self.interaction_layer.connect('button-release-event', self._interaction_release); self.interaction_layer.connect('motion-notify-event', self._interaction_motion)
@@ -687,6 +697,7 @@ class PDFWindow(Gtk.Window):
         pprev = Gtk.Button.new_from_icon_name('go-previous-symbolic', Gtk.IconSize.MENU); pprev.set_relief(Gtk.ReliefStyle.NONE); pprev.connect('clicked', lambda *_: self.goto_page(self.page-1))
         nav.pack_start(pprev, False, False, 0)
         self.status_page_entry = Gtk.Entry(); self.status_page_entry.set_width_chars(4); self.status_page_entry.set_text('0'); self.status_page_entry.connect('activate', self._status_page_activate)
+        self.status_page_entry.get_accessible().set_name('Página atual')
         nav.pack_start(self.status_page_entry, False, False, 0)
         self.status_page = Gtk.Label(label='de 0'); nav.pack_start(self.status_page, False, False, 0)
         pnxt = Gtk.Button.new_from_icon_name('go-next-symbolic', Gtk.IconSize.MENU); pnxt.set_relief(Gtk.ReliefStyle.NONE); pnxt.connect('clicked', lambda *_: self.goto_page(self.page+1)); nav.pack_start(pnxt, False, False, 0)
@@ -767,6 +778,8 @@ class PDFWindow(Gtk.Window):
             self._clear_document_state(); self._error(str(exc))
 
     def _clear_document_state(self):
+        text_window = getattr(self, 'accessible_text_window', None)
+        if text_window is not None and not text_window.closed:text_window.destroy()
         self._edit_generation = getattr(self, '_edit_generation', 0) + 1
         self._copy_edit_busy = False
         self.runner.invalidate('copy-edit-info')
@@ -1639,6 +1652,28 @@ class PDFWindow(Gtk.Window):
         self._select_search_hit(self.search_pos - 1)
 
     # ---------- tools ----------
+    def _show_signatures(self, *_args):
+        from signature_window import SignatureWindow
+        window = getattr(self, 'signature_window', None)
+        if window is None or window.closed:
+            window = SignatureWindow(self, self.filepath);self.signature_window = window
+        window.show_all();window.present()
+
+    def _show_security(self, *_args):
+        from security_window import SecurityWindow
+        window = getattr(self, 'security_window', None)
+        if window is None or window.closed:
+            window = SecurityWindow(self, self.filepath);self.security_window = window
+        window.show_all();window.present()
+
+    def _show_accessible_text(self, *_args):
+        if not self.filepath or not self.page_count:return
+        from accessible_reader import AccessibleTextWindow
+        window = getattr(self, 'accessible_text_window', None)
+        if window is None or window.closed:
+            window = AccessibleTextWindow(self);self.accessible_text_window = window
+        window.show_all();window.present();window.load(self.filepath, self.page, self.page_count)
+
     def _show_creation(self, *_args):
         from creation_window import CreationWindow
         window = getattr(self, 'creation_window', None)
@@ -1703,6 +1738,8 @@ class PDFWindow(Gtk.Window):
             dialog.destroy()
 
     def _copy_edit_operation_dialog(self, kind, info, page):
+        if kind in {'rotate-page', 'rename-bookmark', 'update-note'}:
+            return self._extended_edit_dialog(kind, info, page)
         titles = {'add-bookmark': 'Novo marcador', 'add-note': 'Adicionar nota',
                   'fill-text-fields': 'Preencher campo de texto'}
         if kind not in titles:
@@ -1761,6 +1798,46 @@ class PDFWindow(Gtk.Window):
             return {'kind': kind, 'values': {fields[combo.get_active()]['name']: entry.get_text()}}
         finally:
             dialog.destroy()
+
+    def _extended_edit_dialog(self, kind, info, page):
+        titles = {'rotate-page':'Girar página em cópia', 'rename-bookmark':'Renomear marcador', 'update-note':'Editar nota'}
+        records = info.get('bookmarks', []) if kind == 'rename-bookmark' else [n for n in info.get('notes', []) if n['page'] == page]
+        if kind != 'rotate-page' and not records:
+            self._error('Não há marcadores ou notas editáveis suportados para esta operação.');return None
+        dialog = Gtk.Dialog(title=titles[kind], transient_for=self, modal=True)
+        dialog.set_destroy_with_parent(True);dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Preparar cópia…', Gtk.ResponseType.OK)
+        dialog.set_default_size(460, -1)
+        box = dialog.get_content_area();box.set_spacing(8);box.set_border_width(12)
+        hint = Gtk.Label(label='A alteração será salva em um arquivo novo, preservando o PDF aberto.', xalign=0);hint.set_line_wrap(True);box.add(hint)
+        if kind == 'update-note' and info.get('notes_truncated'):
+            hint.set_text(hint.get_text()+' A lista de notas está limitada; algumas entradas não foram listadas.')
+        combo = Gtk.ComboBoxText();box.add(combo)
+        entry = Gtk.Entry();text = Gtk.TextView();text.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        if kind == 'rotate-page':
+            combo.get_accessible().set_name('Rotação da página')
+            for label in ('90° horário', '180°', '90° anti-horário'):combo.append_text(label)
+        else:
+            combo.get_accessible().set_name('Marcador' if kind == 'rename-bookmark' else 'Nota Text')
+            for record in records:
+                label = record['title'] if kind == 'rename-bookmark' else f"Nota {record['index'] + 1}: {record['text'][:70]}"
+                combo.append_text(display_attachment_name(label))
+            if kind == 'rename-bookmark':
+                entry.get_accessible().set_name('Novo título do marcador');box.add(entry)
+                combo.connect('changed', lambda c:entry.set_text(records[c.get_active()]['title']))
+            else:
+                text.get_accessible().set_name('Novo texto da nota')
+                scroll = Gtk.ScrolledWindow();scroll.set_min_content_height(140);scroll.add(text);box.add(scroll)
+                combo.connect('changed', lambda c:text.get_buffer().set_text(records[c.get_active()]['text']))
+        combo.set_active(0);dialog.show_all()
+        try:
+            if dialog.run() != Gtk.ResponseType.OK:return None
+            if kind == 'rotate-page':return {'kind':kind,'page':page,'angle':(90,180,-90)[combo.get_active()]}
+            record = records[combo.get_active()]
+            if kind == 'rename-bookmark':return {'kind':kind,'path':record['path'],'title':entry.get_text()}
+            buffer = text.get_buffer()
+            return {'kind':kind,'page':page,'index':record['index'],
+                    'text':buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True),'author':record['author']}
+        finally:dialog.destroy()
 
     def _save_copy(self, *_args):
         if not self.filepath: return
@@ -1856,8 +1933,27 @@ class PDFWindow(Gtk.Window):
         self.runner.submit('print-job', task, done, lambda e: self._error(str(e)))
 
     # ---------- keyboard ----------
+    def _focus_region(self, reverse=False):
+        areas = [self.interaction_layer]
+        areas.extend(getattr(self, name) for name in ('thumb_list', 'bookmark_list', 'comment_list', 'layer_list', 'attachment_list'))
+        if self.find_revealer.get_reveal_child():areas.append(self.find_entry)
+        areas.append(self.status_page_entry)
+        areas = [a for a in areas if a.get_mapped() and a.get_sensitive()]
+        focus = self.get_focus()
+        index = next((i for i, a in enumerate(areas) if focus is a or (focus and focus.is_ancestor(a))), -1)
+        direction = -1 if reverse else 1
+        for offset in range(1, len(areas)+1):
+            area = areas[(index + direction * offset) % len(areas)]
+            if isinstance(area, Gtk.ListBox):
+                if area.child_focus(Gtk.DirectionType.TAB_BACKWARD if reverse else Gtk.DirectionType.TAB_FORWARD):return True
+            else:area.grab_focus();return True
+        return False
+
     def _on_key(self, _w, event):
         key = Gdk.keyval_name(event.keyval) or ''; ctrl = bool(event.state & Gdk.ModifierType.CONTROL_MASK)
+        shift = bool(event.state & Gdk.ModifierType.SHIFT_MASK)
+        if ctrl and shift and key.lower() == 't':self._show_accessible_text();return True
+        if key == 'F6':return self._focus_region(reverse=shift)
         if ctrl and key.lower() == 'o': self._choose_open(); return True
         if ctrl and key.lower() == 'p': self._print(); return True
         if ctrl and key.lower() == 'f': self._show_find(); return True
@@ -1873,7 +1969,7 @@ class PDFWindow(Gtk.Window):
         if isinstance(self.get_focus(), (Gtk.Entry, Gtk.SpinButton, Gtk.TextView)): return False
         focus = self.get_focus()
         while focus is not None:
-            if focus is self.attachment_list and key in (
+            if isinstance(focus, (Gtk.ListBox, Gtk.TreeView, Gtk.FlowBox)) and key in (
                     'Up', 'Down', 'Left', 'Right', 'Home', 'End', 'Page_Up', 'Page_Down',
                     'Return', 'KP_Enter', 'space'):
                 return False

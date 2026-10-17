@@ -79,6 +79,26 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'signature-info':
+        from pdf_signatures import inspect_pdf_signatures
+        raw = sys.stdin.buffer.read(16385)
+        if len(raw) > 16384:raise ValueError('Pedido de assinaturas acima do limite.')
+        print(json.dumps(inspect_pdf_signatures(argv[2],json.loads(raw)),ensure_ascii=True))
+        return
+    if cmd in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy'}:
+        # Never emit a traceback or library exception containing a password.
+        from pdf_security import inspect_pdf_security, protect_pdf_copy, extract_accessible_text, unprotect_owner_copy, SecurityError
+        try:
+            raw = sys.stdin.buffer.read(16385)
+            if len(raw) > 16384:raise SecurityError('Pedido de segurança acima do limite.')
+            action = {'security-info':inspect_pdf_security, 'protect-copy':protect_pdf_copy, 'accessible-text':extract_accessible_text, 'owner-copy':unprotect_owner_copy}[cmd]
+            result = action(argv[2], json.loads(raw))
+        except SecurityError as exc:
+            print('ValueError: ' + str(exc), file=sys.stderr);raise SystemExit(1) from None
+        except Exception:
+            print('ValueError: Não foi possível concluir a operação de segurança.', file=sys.stderr);raise SystemExit(1) from None
+        print(json.dumps(result, ensure_ascii=True))
+        return
     if cmd == 'images-to-pdf':
         from pdf_creation import create_pdf_from_images
         raw = sys.stdin.buffer.read(256 * 1024 + 1)

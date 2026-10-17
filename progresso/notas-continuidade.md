@@ -1350,3 +1350,33 @@ Próximos alvos estáticos: helpers1f21a80/1f21ac0 e slots de layout/renderer, s
 Implementação própria: ampliar segurança/assinaturas/acessibilidade/nuvem/plataforma e demais operações
 parciais. Serviços, certificados e desktop real exigem ambientes específicos; original exige VM offline.
 IA permanece fora do escopo. Esta rodada foi publicada sem encerrar todos os critérios amplos.
+
+
+## 2026/10/17 às 19:20 (America/Sao_Paulo, UTC-03:00) — checkpoint fonte 0.1.8
+
+Pedido em andamento: executar tudo que for possível sem VM; usuário adiou nuvem.
+Implementados subconjuntos próprios: AES-256 R6, autenticação e cópia plaintext
+somente owner, texto da página/ATK/F6, CMS offline sem confiança de cadeia,
+renomear marcador/atualizar nota/girar em cópia. Credenciais por stdin; erros
+sanitizados; diretório privado por worker e encerramento de grupo POSIX.
+Testes sintéticos, sem chave pessoal; Windows .NET SignedCms e PyCA50.0.2 em
+analysis-local/security-python-deps (ignorado). Linux usa OpenSSL e GTK/Poppler.
+Controles portáveis novos em repetição após limpeza privada; relatórios finais
+serão examinados antes da publicação. Falha inicial de teste CMS foi fixture
+escapada e diretório temporário não propagado, corrigidos; não é falha Foxit.
+Dois helpers estáticos Enter/LeaveCriticalSection examinados com Ghidra12.1.4
+-noanalysis/Temurin21/Capstone5.0.6; catálogo252, 70bytes/32instruções novos.
+Projetos/respostas completos ignorados; metadados públicos e relatório ligados.
+35 módulos/40 interfaces;23 subconjuntos/2propostas.25 famílias e pesos mantidos,
+43,33%/0paridade,50planos not_run. Original não executado. Pacote atual0.1.7;
+fonte0.1.8 ainda não publicada neste instante. Próximo: conferir portáveis,
+validadores, commit/push confirmado e suíte Linux/GTK/Flatpak; preservar marcos.
+
+
+## 2026/10/17 às 19:21 (America/Sao_Paulo, UTC-03:00) — portáveis conferidos
+
+20/20 segurança,9/9 edição ampliada,10/10 CMS e12/12 regressão do worker passaram
+no Windows/Python3.13, após diretório privado por tarefa. Relatórios copiados byte
+a byte em testes/resultados/0.1.8-portable/. Arquitetura35/40 e especificação25/50,
+23subconjuntos/2propostas conferidas. Descoberta estática267 métodos; execução Linux
+completa/GTK/Flatpak ainda pendente. Preparado commit fonte e envio autorizado.

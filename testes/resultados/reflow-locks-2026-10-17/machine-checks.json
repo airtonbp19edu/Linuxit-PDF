@@ -1,0 +1,31 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/reflow-locks-2026-10-17",
+  "entries": [
+    {
+      "entry": "0x1f21a80",
+      "instructions": 16,
+      "body_bytes": 35,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "8bcb0aab7e938910944d688a91e791fe2c35d04a71f388500579f270a5b92a4f",
+      "pseudocode_sha256": "5cca9b322819a501323cc9b45e84e0cdac19e499d50c6d7528e4206f7d17b663"
+    },
+    {
+      "entry": "0x1f21ac0",
+      "instructions": 16,
+      "body_bytes": 35,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "cb53b137c482844af7fd3bb7ec19d6eb6529328dd1375de94538fde8dab8d414",
+      "pseudocode_sha256": "3fba5af1702ce448cf25bcd39629036384ed8a81d283dd10c9170151999e492c"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

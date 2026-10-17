@@ -19,7 +19,7 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
             python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
-            dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme
+            dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme openssl
       - name: Check out source and synthetic corpus
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

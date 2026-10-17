@@ -1,0 +1,457 @@
+{
+  "schema": "linuxit-stage13-architecture-validation-v1",
+  "verified_at_local": "2026-10-17T19:20:44-03:00",
+  "timezone": "America/Sao_Paulo",
+  "application_version": "0.1.8",
+  "application_modules": 35,
+  "module_snapshots": [
+    {
+      "path": "app/main.py",
+      "sha256": "70d71af8cefa82c3d66e9925f4985181df8e61e9f4b69e1bb7460f92940c0628",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/presentation.py",
+      "sha256": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/print_window.py",
+      "sha256": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/appearance.py",
+      "sha256": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/themes.py",
+      "sha256": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/async_core.py",
+      "sha256": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+      "boundary": "glib_scheduler"
+    },
+    {
+      "path": "app/search_engine.py",
+      "sha256": "4e075e08ed5e868e2c75e46c8114f189602b233640f87cb54ccd4e5c394ed171",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/pdf_panels.py",
+      "sha256": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/imposition.py",
+      "sha256": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/rendering.py",
+      "sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/worker_cli.py",
+      "sha256": "cde4d656b84ba070ea4816b59b80d8b46ebcc8d39b5790a39d94b60604253cba",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/platform_runtime.py",
+      "sha256": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/cups_backend.py",
+      "sha256": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_print.py",
+      "sha256": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_bootstrap.py",
+      "sha256": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/page_cache.py",
+      "sha256": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/cancel_state.py",
+      "sha256": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/pdf_dependency.py",
+      "sha256": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/version.py",
+      "sha256": "7c049d308722368d92fec8afb30c73e428bbaf514f0dacd1b67d91e40e1f9f7d",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/pdf_attachments.py",
+      "sha256": "c347ff91587f5d778515126796b4818cd56c2ef8453943be910920ba0dec269f",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/attachment_tasks.py",
+      "sha256": "bdcb24ffbd1dd0b1108a69af9b4e3b0e8a64c5174f0938b647fcbafbc3c314ea",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/pdf_changes.py",
+      "sha256": "602bc90d05f3980e87e3313a03e8466110753aeaa63f6f2858acaec0764af982",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/edit_tasks.py",
+      "sha256": "76513870fc88aad8581a6e79167923c7fc2d65533778d1627c8c61278dd0e753",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/search_matching.py",
+      "sha256": "714efb2fd0970f45a238126bd7260a883a3f6ddb67b360a3499c0f72939d1ddd",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/attachment_search.py",
+      "sha256": "57c88501ca87033c5db5bea9b2f8bf774bb8eec7ec007ef6a6f50efda4d2d1c7",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/search_tasks.py",
+      "sha256": "ef00e7dfec0903eeb30a1133ff6f9d156f96be8dfdf3c79a1f0a345761547d8e",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/collection_index.py",
+      "sha256": "766b7a02f38a1e99c98b8ee5c863b39e3169ab763add37f1552df9f0aceba1fe",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/collection_window.py",
+      "sha256": "eaa085603b1b041ba8b2d449903554e323fab37493fec6fc8f94e0f6d368b223",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_creation.py",
+      "sha256": "1d915c8ecdbc5cbf279d96d52c01fd6edb801965dd74660bd5068f6951af7634",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/creation_window.py",
+      "sha256": "e721b06dd73a7965c20bb4a140f99125ac65924d887e6f03869077ad4ddf6c01",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "sha256": "8daa91e04bf11196cea81f7a372934ba428b042e115211908c66bf9a6b3ddc47",
+      "boundary": "portable worker backend"
+    },
+    {
+      "path": "app/pdf_signatures.py",
+      "sha256": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441",
+      "boundary": "portable worker backend"
+    },
+    {
+      "path": "app/security_window.py",
+      "sha256": "adbbe24560b7707d44d1de4235a7c68cfb82cb59d0708f50c0d7b13d5c1ac2de",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/signature_window.py",
+      "sha256": "b260e51a589191b660ea0279578985cf1e23174f4998574a22175d4f0a687344",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/accessible_reader.py",
+      "sha256": "258aef743f7de190c148bcc97f3477923ba6dcec4fab8c59bdfabc871afd6b07",
+      "boundary": "GTK adapter"
+    }
+  ],
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "documented_interfaces": 40,
+  "family_assignments": 25,
+  "no_gtk_or_cairo_import_closures": {
+    "cancel_state": [
+      "cancel_state"
+    ],
+    "page_cache": [
+      "page_cache"
+    ],
+    "pdf_dependency": [
+      "pdf_dependency"
+    ],
+    "pdf_panels": [
+      "pdf_panels"
+    ],
+    "platform_runtime": [
+      "platform_runtime"
+    ],
+    "rendering": [
+      "attachment_search",
+      "cancel_state",
+      "pdf_attachments",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_engine": [
+      "attachment_search",
+      "cancel_state",
+      "pdf_attachments",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_attachments": [
+      "pdf_attachments",
+      "pdf_dependency"
+    ],
+    "attachment_tasks": [
+      "attachment_tasks",
+      "platform_runtime"
+    ],
+    "pdf_changes": [
+      "pdf_changes",
+      "pdf_dependency"
+    ],
+    "edit_tasks": [
+      "edit_tasks",
+      "platform_runtime"
+    ],
+    "search_matching": [
+      "search_matching"
+    ],
+    "attachment_search": [
+      "attachment_search",
+      "pdf_attachments",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_tasks": [
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "collection_index": [
+      "collection_index",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_creation": [
+      "pdf_creation",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "pdf_security": [
+      "attachment_search",
+      "cancel_state",
+      "pdf_attachments",
+      "pdf_changes",
+      "pdf_dependency",
+      "pdf_panels",
+      "pdf_security",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_signatures": [
+      "pdf_changes",
+      "pdf_dependency",
+      "pdf_signatures",
+      "platform_runtime",
+      "search_tasks"
+    ]
+  },
+  "internal_import_edges": {
+    "main": [
+      "accessible_reader",
+      "async_core",
+      "attachment_tasks",
+      "collection_window",
+      "creation_window",
+      "cups_backend",
+      "edit_tasks",
+      "page_cache",
+      "pdf_panels",
+      "platform_runtime",
+      "presentation",
+      "print_window",
+      "rendering",
+      "search_engine",
+      "security_window",
+      "signature_window",
+      "themes",
+      "windows_print"
+    ],
+    "presentation": [
+      "async_core",
+      "page_cache",
+      "rendering"
+    ],
+    "print_window": [
+      "cups_backend",
+      "imposition",
+      "rendering",
+      "windows_print"
+    ],
+    "appearance": [],
+    "themes": [
+      "appearance"
+    ],
+    "async_core": [
+      "cancel_state"
+    ],
+    "search_engine": [
+      "attachment_search",
+      "pdf_panels",
+      "rendering",
+      "search_matching"
+    ],
+    "pdf_panels": [],
+    "imposition": [
+      "pdf_dependency"
+    ],
+    "rendering": [
+      "cancel_state",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_engine"
+    ],
+    "worker_cli": [
+      "attachment_search",
+      "collection_index",
+      "imposition",
+      "pdf_attachments",
+      "pdf_changes",
+      "pdf_creation",
+      "pdf_panels",
+      "pdf_security",
+      "pdf_signatures",
+      "rendering"
+    ],
+    "platform_runtime": [],
+    "cups_backend": [
+      "windows_print"
+    ],
+    "windows_print": [
+      "rendering"
+    ],
+    "windows_bootstrap": [
+      "main"
+    ],
+    "page_cache": [],
+    "cancel_state": [],
+    "pdf_dependency": [],
+    "version": [],
+    "pdf_attachments": [
+      "pdf_dependency"
+    ],
+    "attachment_tasks": [
+      "platform_runtime"
+    ],
+    "pdf_changes": [
+      "pdf_dependency"
+    ],
+    "edit_tasks": [
+      "platform_runtime"
+    ],
+    "search_matching": [],
+    "attachment_search": [
+      "pdf_attachments",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_tasks": [
+      "platform_runtime"
+    ],
+    "collection_index": [
+      "pdf_dependency",
+      "search_matching",
+      "search_tasks"
+    ],
+    "collection_window": [
+      "async_core",
+      "attachment_tasks",
+      "collection_index"
+    ],
+    "pdf_creation": [
+      "pdf_dependency",
+      "search_tasks"
+    ],
+    "creation_window": [
+      "async_core",
+      "attachment_tasks",
+      "pdf_creation"
+    ],
+    "pdf_security": [
+      "pdf_changes",
+      "pdf_dependency",
+      "rendering",
+      "search_tasks"
+    ],
+    "pdf_signatures": [
+      "pdf_changes",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "security_window": [
+      "async_core",
+      "pdf_security"
+    ],
+    "signature_window": [
+      "async_core",
+      "attachment_tasks",
+      "pdf_signatures"
+    ],
+    "accessible_reader": [
+      "async_core",
+      "cancel_state",
+      "pdf_security"
+    ]
+  },
+  "import_check_scope": "AST includes conditional/deferred imports; no dynamic import or runtime proof.",
+  "unfinished_criteria_registered": 21,
+  "unfinished_stages_registered": 14,
+  "blocker_evidence_files_checked": 42,
+  "confirmed_token_exhaustion_events": 0,
+  "recorded_execution_timeouts": 2,
+  "stage_13_design_verified_fraction": 1.0,
+  "general_progress_percent": 43.33,
+  "full_application_implemented": false,
+  "application_behavior_tested_by_this_check": false,
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "gtk_suite_rerun": false,
+  "new_flatpak_built": false
+}

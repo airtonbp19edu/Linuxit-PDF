@@ -1,27 +1,18 @@
 # Retomada do Linuxit PDF
 
-Atualizado em 2026-10-17T18:40:30-03:00.
-Fonte/Flatpak **0.1.7/devel**: [criação de PDF de PNG/JPEG](CRIACAO-IMAGENS.md),
-com ordem ajustável, DPI, orientação EXIF, transparência branca e destino novo.
-**212/212** em cada suíte fonte/payload/sandbox, zero falhas/erros/skips;
-17 métodos novos do backend e cinco GTK. Campanha preservada 17/17,
-smoke 5/5 e launcher 3/3. Capturas e hashes examinados.
+Fonte **0.1.8 em desenvolvimento**; pacote publicado **0.1.7/devel**.
+[Segurança, acessibilidade e edição local](SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
+cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
+Testes portáveis examinados; nova suíte Linux/GTK/Flatpak ainda pendente.
+**Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
-30 módulos/29 interfaces; 20 subconjuntos/cinco propostas em 25 famílias.
-Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 instruções/
-467bytes nesta rodada, com RTTI IPDFViewerLayout/CReflowViewerLayout.
-[Análise](REA-REFLOW.md). Original não executado; sem paridade diferencial.
+35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
+Catálogo **252** (152 REA + 100 diretas): dois helpers Win32 de sincronização
+examinados, 70 bytes/32 instruções. [Evidência estática](REA-REFLOW-SINCRONIZACAO.md).
+Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
+Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 
-37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
-Ainda há trabalho sem VM. Publicação e auditoria 0.1.7 confirmadas;
-aprovação do pacote não encerra os demais contratos ou etapas.
-
-[LinuxitPDF-0.1.7-x86_64.flatpak](../releases/LinuxitPDF-0.1.7-x86_64.flatpak),
-35614064 bytes; SHA-256 `093ee6c7ed6ab6a1c4974da836fedb3414e147dfa0554ddae9eac8ee575c9070`.
-[Revisão](../testes/resultados/0.1.7/validation-review.json) e [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39071324606).
-[Auditoria independente](../testes/resultados/0.1.7/audit/review.json) aprovada,
-sem reconstruir o bundle publicado. Sete pacotes anteriores preservados. Próximos alvos exatos nas notas e análise;
-não repetir as duas entradas ou os oito alvos anteriores já examinados.
+Os registros abaixo são históricos; os marcos publicados permanecem preservados.
 
 ## Primeiro ao retomar
 

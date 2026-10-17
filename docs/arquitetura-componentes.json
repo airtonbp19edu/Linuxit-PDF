@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T18:40:30-03:00",
+  "reviewed_at_local": "2026-10-17T19:20:19-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.7",
+  "application_version": "0.1.8",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -185,6 +185,36 @@
       "path": "app/creation_window.py",
       "boundary": "gtk_ui",
       "responsibility": "Seleção/ordem/DPI, criação cancelável e abertura do PDF criado."
+    },
+    {
+      "id": "pdf_security",
+      "path": "app/pdf_security.py",
+      "boundary": "portable worker backend",
+      "responsibility": "Known-password authentication, AES-256 new copies, owner-authorized plaintext copies and bounded accessible text."
+    },
+    {
+      "id": "pdf_signatures",
+      "path": "app/pdf_signatures.py",
+      "boundary": "portable worker backend",
+      "responsibility": "Bounded offline CMS integrity, without certificate trust evaluation."
+    },
+    {
+      "id": "security_window",
+      "path": "app/security_window.py",
+      "boundary": "GTK adapter",
+      "responsibility": "Password/permissions UI with bounded worker and secret-field clearing."
+    },
+    {
+      "id": "signature_window",
+      "path": "app/signature_window.py",
+      "boundary": "GTK adapter",
+      "responsibility": "Read-only integrity inspection and cancellation."
+    },
+    {
+      "id": "accessible_reader",
+      "path": "app/accessible_reader.py",
+      "boundary": "GTK adapter",
+      "responsibility": "Current-page extracted text via native ATK.Text and background worker."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -203,7 +233,9 @@
     "attachment_search",
     "search_tasks",
     "collection_index",
-    "pdf_creation"
+    "pdf_creation",
+    "pdf_security",
+    "pdf_signatures"
   ],
   "interface_refs": [
     {
@@ -321,6 +353,50 @@
     {
       "path": "app/creation_window.py",
       "symbol": "CreationWindow"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "inspect_pdf_security"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "protect_pdf_copy"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "unprotect_owner_copy"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "extract_accessible_text"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "invoke_security"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "symbol": "invoke_accessible_text"
+    },
+    {
+      "path": "app/pdf_signatures.py",
+      "symbol": "inspect_pdf_signatures"
+    },
+    {
+      "path": "app/pdf_signatures.py",
+      "symbol": "invoke_signature_inspection"
+    },
+    {
+      "path": "app/security_window.py",
+      "symbol": "SecurityWindow"
+    },
+    {
+      "path": "app/signature_window.py",
+      "symbol": "SignatureWindow"
+    },
+    {
+      "path": "app/accessible_reader.py",
+      "symbol": "AccessibleTextWindow"
     }
   ],
   "family_assignments": [
@@ -341,7 +417,10 @@
       "current_source_refs": [
         "app/main.py",
         "app/page_cache.py",
-        "app/rendering.py"
+        "app/rendering.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -515,22 +594,40 @@
     },
     {
       "id": "signatures",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_signatures.py",
+        "app/signature_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "future_boundary": "Verificação criptográfica e confiança separadas da aparência visual.",
       "future_boundary_implemented": false
     },
     {
       "id": "security",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/pdf_security.py",
+        "app/security_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "future_boundary": "Entrada de senha e permissões locais; RMS tratado como integração distinta.",
       "future_boundary_implemented": false
     },
     {
       "id": "accessibility",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/accessible_reader.py",
+        "app/pdf_security.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ],
       "future_boundary": "Estrutura acessível e adaptador de tecnologia assistiva.",
       "future_boundary_implemented": false
     },
@@ -617,7 +714,7 @@
     }
   ],
   "runtime_limitations": [
-    "Current 0.1.7 source/payload/installed Flatpak verified212/212 in Debian13/X11 CI; real desktop/portals/AT-SPI/physical printer remain unverified.",
+    "Source 0.1.8 unreleased, portable subsets under verification; current published 0.1.7 passed 212/212 per environment. New GTK/Linux/Flatpak checks pending.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
     "Windows delivery, portals and physical printing remain unverified.",
@@ -630,5 +727,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

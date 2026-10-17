@@ -1,32 +1,29 @@
 # Tarefas atuais e ponto de retomada
 
-Fonte/Flatpak **0.1.7/devel**: [criação de PDF de PNG/JPEG](../docs/CRIACAO-IMAGENS.md),
-com ordem ajustável, DPI, orientação EXIF, transparência branca e destino novo.
-**212/212** em cada suíte fonte/payload/sandbox, zero falhas/erros/skips;
-17 métodos novos do backend e cinco GTK. Campanha preservada 17/17,
-smoke 5/5 e launcher 3/3. Capturas e hashes examinados.
+Fonte **0.1.8 em desenvolvimento**; pacote publicado **0.1.7/devel**.
+[Segurança, acessibilidade e edição local](../docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
+cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
+Testes portáveis examinados; nova suíte Linux/GTK/Flatpak ainda pendente.
+**Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
 
-30 módulos/29 interfaces; 20 subconjuntos/cinco propostas em 25 famílias.
-Catálogo **250** (152 REA + 98 diretas); duas entradas novas de reflow/111 instruções/
-467bytes nesta rodada, com RTTI IPDFViewerLayout/CReflowViewerLayout.
-[Análise](../docs/REA-REFLOW.md). Original não executado; sem paridade diferencial.
-
-37 critérios done/21 abertos em 14 etapas; roteiro **43,33%**, paridade **0/25**.
-Ainda há trabalho sem VM. Publicação/auditoria são registradas nas notas;
-aprovação do pacote não encerra os demais contratos ou etapas.
+35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
+Catálogo **252** (152 REA + 100 diretas): dois helpers Win32 de sincronização
+examinados, 70 bytes/32 instruções. [Evidência estática](../docs/REA-REFLOW-SINCRONIZACAO.md).
+Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
+Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|03/05/07/08/09/11|Helpers1f21a80/1f21ac0, slots de layout/renderer; tipos, ownership, campos da busca eIDs7911/7913|Estática sem VM; UI original não observada|
-|12/15/16|Expandir operações e cinco propostas: assinaturas, segurança, acessibilidade, nuvem e integração de sistema|Parte própria sem VM; contas/equipamentos exigem ambiente externo|
-|Criação/conversão|Formatos adicionais, OCR, exportação editável e demais operações PDF|Contrato próprio e implementação pendentes|
-|Busca|Stemming/idiomas, formatos/recursão de anexos, demais requisitos de índice|Análise/contratos/implementação|
-|Runtime|Desktop real, portais, AT-SPI, impressora física e Windows posterior|Ambientes/dispositivos, distinto da VM Foxit|
-|10/18/19|ObservarD01–D20/UI01–UI10 e comparar corpus/protocolos preservados|VM/contenção offline pendente|
-|01|Reconsultar regras remotas somente se acesso mudar;403 por plano preservado|Não alterar segurança/faturamento|
-|21|Auditoria0.1.7 aprovada; continuar os21 critérios amplos abertos|Git/CI e demais obrigações|
+|Marco 0.1.8|Suíte completa Linux/GTK, pacote e auditoria instalada|CI Linux autorizado, sem VM Foxit|
+|Estática|Slots layout/renderer; busca campos3/5/6/7/12/16/20; tipos/ownership e IDs7911/7913|Sem VM; original não observado|
+|Operações locais|Demais formulários, undo/anotações, formatos/OCR e contratos incompletos|Implementação própria e testes|
+|Acessibilidade|Orca/AT-SPI, ordem semântica, voz e desktop real|Ambiente de desktop, distinto da VM Foxit|
+|Assinaturas|Cadeia/tempo/revogação e formatos adicionais|Contrato e material de confiança de laboratório|
+|Nuvem|Adiada explicitamente pelo usuário|Retomar somente em nova priorização|
+|Sistema|Portais/desktop, impressora física e Windows posterior|Ambientes/dispositivos externos|
+|10/18/19|D01–D20 e UI01–UI10, comparar corpus preservado|VM/contenção offline pendente|
+|01|Reconsultar regras GitHub se acesso mudar;403 por plano preservado|Sem alterar segurança/faturamento|
 
-50 planos completos continuam not_run;212 testes próprios não são comparações
-Foxit. [Notas datadas](notas-continuidade.md) e [registro](pendencias-analises.json).
-Preservar relatórios, fixtures e versões anteriores. Não reexecutar campanhas
-estáveis sem mudanças ou preocupação concreta. Causa de tokens permanece null.
+50 planos completos continuam not_run. Testes próprios não são observações Foxit.
+Preservar corpus/relatórios/pacotes e [notas datadas](notas-continuidade.md).
+Timeout não comprova esgotamento de tokens; causa não confirmada fica null.
