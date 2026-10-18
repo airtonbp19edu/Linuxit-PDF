@@ -1,0 +1,27 @@
+{
+  "schema": "linuxit-edit-draft-source-review-v1",
+  "date_local": "2026-10-18T01:57:06-03:00",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098594089",
+  "source_commit": "7b0b1572626cc603221a0e70a5006fb1b6eff6f7",
+  "artifact_id": 12125596640,
+  "archive_sha256": "ac2d47e82abe56656b4875c1419d8779c1e74943790dfd98c1c9fdbeca53ab4c",
+  "github_digest_matches": true,
+  "complete_tests": 327,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_portable_methods": 29,
+  "new_gtk_methods": 8,
+  "preserved_own_corpus_cases": 17,
+  "gtk_smoke_checks": 5,
+  "screenshot_examined": true,
+  "screenshot_observations": "Editor content visible, action/page controls, two draft rows and undo/redo/save/status fit in680px client area. Desktop accessibility not validated.",
+  "evidence_hashes": {
+    "preserved-campaign.json": "70306c9ab33f3c7d3dfdbf2675280d5455803a5bc0fe5248eb34a59aabb777c7",
+    "source-intermediate.json": "5b37cbcec68bd9419841fb5f7300e4f57749fb8182314014f0dad0b266ab945f",
+    "search-ui/edit-draft.png": "c75d688285317363174a206bf5ade85bd2daed0f09bd5f1c29b7e83537b2260e"
+  },
+  "scope": "Pinned editor source before subsequent image-format additions; does not approve the later changed source or any new Flatpak.",
+  "original_executed": false,
+  "parity_verified": false
+}

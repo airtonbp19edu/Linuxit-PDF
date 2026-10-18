@@ -30,6 +30,40 @@ class PDFCreationTests(unittest.TestCase):
         with Image.new(mode, size, color) as image:image.save(path, **options)
         return path
 
+    def test_bmp_webp_and_single_tiff_preserve_pixels_dimensions_and_order(self):
+        sources = [self.image('solid.bmp',(12,8),'red'),self.image('solid.webp',(9,6),'blue',lossless=True),
+                   self.image('solid.tiff',(10,15),'green',compression='tiff_lzw')]
+        before = [p.read_bytes() for p in sources]
+        result = self.create(sources,dpi=72);reader = PdfReader(self.output)
+        self.assertEqual([s['format'] for s in result['sources']],['BMP','WEBP','TIFF'])
+        for page,size,color in zip(reader.pages,((12,8),(9,6),(10,15)),((255,0,0),(0,0,255),(0,128,0))):
+            self.assertEqual([float(page.mediabox.width),float(page.mediabox.height)],list(size))
+            pixels = page['/Resources']['/XObject']['/Im1'].get_data()
+            self.assertEqual(pixels,bytes(color)*(size[0]*size[1]))
+        self.assertEqual([p.read_bytes() for p in sources],before)
+
+    def test_webp_alpha_is_composited_over_white(self):
+        source = self.image('alpha.webp',(1,1),(255,0,0,128),mode='RGBA',lossless=True)
+        self.create([source]);pixels = PdfReader(self.output).pages[0]['/Resources']['/XObject']['/Im1'].get_data()
+        self.assertEqual(pixels,bytes((255,127,127)))
+
+    def test_multiframe_tiff_and_animated_webp_are_refused_without_output(self):
+        for suffix,options in (('tiff',{}),('webp',{'lossless':True,'duration':100})):
+            source = self.root/('multi.'+suffix)
+            with Image.new('RGB',(4,4),'red') as first,Image.new('RGB',(4,4),'blue') as second:
+                first.save(source,save_all=True,append_images=[second],**options)
+            with self.assertRaisesRegex(ValueError,'quadros'):self.create([source])
+            self.assertFalse(self.output.exists())
+
+    def test_bmp_renamed_as_jpeg_is_identified_by_content(self):
+        source = self.image('source.bmp',(4,3),'red');renamed = self.root/'source.jpg';source.rename(renamed)
+        result = self.create([renamed]);self.assertEqual(result['sources'][0]['format'],'BMP')
+
+    def test_real_worker_supports_compressed_tiff_without_external_conversion(self):
+        source = self.image('worker.tiff',(5,7),'blue',compression='tiff_lzw')
+        result = creation.invoke_image_creation(self.output,{'paths':[str(source)],'dpi':144})
+        self.assertEqual(result['sources'][0]['format'],'TIFF');self.assertEqual(len(PdfReader(self.output).pages),1)
+
     def create(self, paths=None, dpi=144):
         return creation.create_pdf_from_images(self.output, {'paths': [str(p) for p in (paths or [self.first, self.second])], 'dpi': dpi})
 

@@ -1,4 +1,4 @@
-"""Own bounded PNG/JPEG to RGB PDF creation, with no source modification."""
+"""Own bounded single-frame image to RGB PDF creation; inputs stay intact."""
 from io import BytesIO
 from local_files import publish_copy
 import hashlib
@@ -22,6 +22,7 @@ MAX_TOTAL_BYTES = 256 * 1024**2
 MAX_IMAGE_PIXELS = 45_000_000
 MAX_TOTAL_PIXELS = 150_000_000
 MAX_OUTPUT_BYTES = 128 * 1024**2
+SUPPORTED_FORMATS = frozenset({'PNG','JPEG','BMP','WEBP','TIFF'})
 
 
 def _require(value, message):
@@ -39,7 +40,7 @@ def validate_request(request):
     paths, dpi = request['paths'], request['dpi']
     _require(type(dpi) is int and 72 <= dpi <= 600, 'A resolução deve ser um inteiro de 72 a 600 DPI.')
     _require(isinstance(paths, list) and 1 <= len(paths) <= MAX_IMAGES,
-             f'Escolha de 1 a {MAX_IMAGES} imagens PNG/JPEG.')
+             f'Escolha de 1 a {MAX_IMAGES} imagens PNG/JPEG/BMP/WebP/TIFF simples.')
     _require(all(isinstance(p, str) and p and '\x00' not in p for p in paths), 'Caminho de imagem inválido.')
     resolved = [Path(p).resolve() for p in paths]
     _require(len(set(resolved)) == len(resolved), 'Remova as imagens repetidas da lista.')
@@ -92,7 +93,7 @@ def create_pdf_from_images(destination, request):
                 with warnings.catch_warnings():
                     warnings.simplefilter('error', Image.DecompressionBombWarning)
                     with Image.open(BytesIO(data)) as source:
-                        _require(source.format in {'PNG', 'JPEG'}, 'Somente imagens PNG e JPEG são suportadas.')
+                        _require(source.format in SUPPORTED_FORMATS, 'Formato não suportado; use PNG, JPEG, BMP, WebP ou TIFF simples.')
                         _require(getattr(source, 'n_frames', 1) == 1, 'Imagens animadas ou com múltiplos quadros não são suportadas.')
                         pixels = source.width * source.height
                         _require(0 < pixels <= MAX_IMAGE_PIXELS, 'Uma imagem excede o limite de 45 megapixels.')
@@ -108,7 +109,7 @@ def create_pdf_from_images(destination, request):
                                                 'format': source.format, 'pixels': list(rgb.size),
                                                 'page_points': list(points)})
             except (OSError, SyntaxError, Image.DecompressionBombError, Image.DecompressionBombWarning) as exc:
-                raise ValueError('Não foi possível decodificar uma imagem PNG/JPEG válida dentro dos limites.') from exc
+                raise ValueError('Não foi possível decodificar uma imagem válida dentro dos formatos e limites suportados.') from exc
         with tempfile.NamedTemporaryFile(dir=destination.parent, prefix='.linuxit-images-', suffix='.pdf', delete=False) as stream:
             temporary = Path(stream.name)
             writer.write(stream)

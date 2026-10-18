@@ -1798,3 +1798,26 @@ ambiente preservados. Critérios/pesos/43,33%/21abertos/paridade0/25 intactos.
 Próximo:validar contratos/arquitetura,commit/push eCI fonte Linux, corrigir UI
 se necessário; só depois gerar novo Flatpak e auditar. Nuvem remota adiada/IA excluída.
 Ainda não publicado neste checkpoint; registrar confirmação remota depois.
+
+
+## 2026/10/18 às 01:57 (America/Sao_Paulo, UTC-03:00) — editor Linux327/327 e formatos extras
+
+Fonte do editor7b0b1572626cc603221a0e70a5006fb1b6eff6f7 publicada. CI39098594089
+passou327/327, zero falhas/erros/skips; oito métodos GTK novos, smoke5/5 e
+corpus próprio17/17. ZIP do artefato12125596640 conferido com digest GitHub
+ac2d47e82abe56656b4875c1419d8779c1e74943790dfd98c1c9fdbeca53ab4c. Relatórios
+e captura do editor copiados byte a byte para testes/resultados/0.1.10-source/;
+captura examinada, controles e status visíveis. Não é aprovação da fonte posterior.
+
+Acrescentados BMP/WebP/TIFF simples à criação de PDF, preservando RGB/EXIF/alpha,
+limites e publicação exclusiva.22 testes portáveis passaram, cinco novos; um GTK
+novo preparado. TIFF multipágina/animações eOCR continuam pendentes. O teste de
+renderização do editor agora também exige pixel amarelo na área do destaque.
+Fonte continua0.1.10; último Flatpak0.1.9 preservado. Contratos e referências
+de testes atualizados. Escrita de progresso.json falhou uma vez com Errno22;
+repetição passou, causa não confirmada. Sem esgotamento de tokens comprovado.
+
+Próximo:commit/push da fonte posterior e buildCI com suíte atual completa333
+em fonte/payload/sandbox; só importar pacote após conferir hashes, populações
+e resultados. Roteiro43,33%,21 critérios abertos/paridade0/25 preservados.
+IA excluída/nuvem remota adiada/original não executado.

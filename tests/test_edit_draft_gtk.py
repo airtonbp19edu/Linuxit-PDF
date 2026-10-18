@@ -140,7 +140,9 @@ class EditDraftGTKTests(unittest.TestCase):
         wait_for(lambda:not self.window.busy and target.exists())
         png=render_page_to_png(target,0,self.root/'render.png',dpi=96)
         pix=GdkPixbuf.Pixbuf.new_from_file(str(png));self.assertEqual(pix.get_width(),267)
-        self.assertTrue(any(v!=255 for v in pix.get_pixels()))
+        offset = round((300-215)*96/72)*pix.get_rowstride()+round(80*96/72)*pix.get_n_channels()
+        red,green,blue = pix.get_pixels()[offset:offset+3]
+        self.assertGreater(red,200);self.assertGreater(green,200);self.assertLess(blue,100)
         self.assertEqual(hashlib.sha256(self.source.read_bytes()).hexdigest(),self.window.session.identity)
 
 

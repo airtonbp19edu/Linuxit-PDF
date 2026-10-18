@@ -55,6 +55,19 @@ class CreationGTKTests(unittest.TestCase):
         pixel = self.parent.current_pixbuf.get_pixels()[:3]
         self.assertGreater(pixel[2], 240);self.assertLess(pixel[0], 20)
 
+    def test_bmp_webp_tiff_selection_worker_and_opening(self):
+        sources=[]
+        for name,options in (('new.bmp',{}),('new.webp',{'lossless':True}),('new.tiff',{'compression':'tiff_lzw'})):
+            path=self.root/name
+            with Image.new('RGB',(20,15),'green') as image:image.save(path,**options)
+            sources.append(str(path))
+        with patch.object(self.window,'_choose',return_value=sources):self.window._add()
+        self.create();wait_for(lambda:not self.window.busy and self.window.result is not None)
+        self.assertEqual([s['format'] for s in self.window.result['sources']],['BMP','WEBP','TIFF'])
+        self.window._open();wait_for(lambda:self.parent.page_count==3 and self.parent.current_pixbuf is not None)
+        pixel=self.parent.current_pixbuf.get_pixels()[:3]
+        self.assertLess(pixel[0],20);self.assertGreater(pixel[1],100);self.assertLess(pixel[2],20)
+
     def test_dialog_cancellation_and_existing_destination_preserve_files(self):
         w = self.window;self.choose_images()
         with patch.object(w, '_choose', return_value=None):w._create()

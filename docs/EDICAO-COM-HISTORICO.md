@@ -85,3 +85,12 @@ Testes: `tests/test_advanced_edits.py`, `tests/test_edit_history.py`,
 Catálogo REA preservado em 323 entradas. Original não executado; equivalência
 Foxit continua 0/25, roteiro 43,33% e 21 critérios amplos abertos. Formatos/OCR,
 demais anotações, formulários e integrações ainda precisam de trabalho próprio.
+
+## Primeira validação Linux do editor
+
+[CI327/327](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098594089),
+fonte7b0b1572626cc603221a0e70a5006fb1b6eff6f7: zero falhas/erros/skips; oito
+GTK novos passaram, smoke5/5 e corpus próprio17/17. Captura do editor examinada.
+[Revisão](../testes/resultados/0.1.10-source/review.json). Este resultado pertence
+ao commit do editor; as adições posteriores de formatos e a conferência de
+pixel amarelo exigem a próxima validação integral da fonte/payload/sandbox.

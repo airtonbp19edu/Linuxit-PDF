@@ -1,5 +1,13 @@
 # Criação de PDF a partir de imagens
 
+Atualização da fonte **0.1.10**, em validação: aceita **BMP, WebP e TIFF de um
+quadro**, além de PNG/JPEG, reconhecidos pelo conteúdo. Limites, RGB/EXIF,
+transparência sobre branco, ordem e publicação exclusiva permanecem. WebP animado,
+TIFF multipágina e demais animações são recusados. OCR permanece pendente.
+22 métodos portáveis passaram; um método GTK novo e a fonte/pacote atual ainda
+precisam de execução Linux. Os registros abaixo descrevem o marco anterior0.1.7.
+
+
 Fonte/pacote 0.1.7 validado após o marco 0.1.6. Contrato próprio, sem
 observação dinâmica do Foxit e sem alteração de pesos ou critérios do roteiro.
 

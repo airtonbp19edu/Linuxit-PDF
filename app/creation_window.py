@@ -26,7 +26,7 @@ class CreationWindow(Gtk.Window):
         self.open_result = open_result
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         box.set_border_width(14);self.add(box)
-        hint = Gtk.Label(label='PNG/JPEG · uma imagem por página · transparência branca · sem OCR', xalign=0)
+        hint = Gtk.Label(label='PNG/JPEG/BMP/WebP/TIFF simples · uma imagem por página · transparência branca · sem OCR', xalign=0)
         hint.set_line_wrap(True);box.pack_start(hint, False, False, 0)
         bar = Gtk.Box(spacing=6);box.pack_start(bar, False, False, 0)
         self.controls = []
@@ -54,7 +54,7 @@ class CreationWindow(Gtk.Window):
         self.connect('destroy', self._destroy)
 
     def _choose(self, save=False):
-        dialog = Gtk.FileChooserDialog(title='Salvar novo PDF' if save else 'Escolher imagens PNG/JPEG',
+        dialog = Gtk.FileChooserDialog(title='Salvar novo PDF' if save else 'Escolher imagens',
                                       transient_for=self, modal=True,
                                       action=Gtk.FileChooserAction.SAVE if save else Gtk.FileChooserAction.OPEN)
         dialog.set_destroy_with_parent(True)
@@ -63,8 +63,8 @@ class CreationWindow(Gtk.Window):
             dialog.set_current_name('imagens.pdf')
         else:
             dialog.set_select_multiple(True)
-            filter_ = Gtk.FileFilter();filter_.set_name('Imagens PNG/JPEG')
-            for mime in ('image/png', 'image/jpeg'):filter_.add_mime_type(mime)
+            filter_ = Gtk.FileFilter();filter_.set_name('Imagens PNG/JPEG/BMP/WebP/TIFF simples')
+            for mime in ('image/png', 'image/jpeg', 'image/bmp', 'image/x-ms-bmp', 'image/webp', 'image/tiff'):filter_.add_mime_type(mime)
             dialog.add_filter(filter_)
         prepare_chooser(dialog,'save' if save else 'open')
         try:
