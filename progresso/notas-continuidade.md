@@ -1963,3 +1963,26 @@ do mesmo bundle instalado, depois TIFF multipágina e demais contratos locais.
 Desktop/portal/cliente/AT-SPI/impressora e original em VM offline seguem pendentes.
 APIs de nuvem adiadas/IA excluída; sem evidência de esgotamento de tokens.
 Publicação deste pacote ainda requer confirmação após o commit preparado.
+
+
+## 2026/10/18 às 10:46 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria OCR0.1.11 confirmadas
+
+Entrega técnica `2664f4ae7db5be45aec461f8bba1a456138585b8` confirmada no GitHub com árvore limpa por recibo
+externo. Download público sem login retornou HTTP200, 44671928 bytes,
+SHA256 30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02, idêntico ao bundle testado.
+Auditoria https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39132852906 reinstalou mesmo bundle sem rebuild:
+105app/2849runtime/224ELF/162avisos conferidos, incluindo modelos
+Tesseract por/eng. Sete controles e cinco novos smoke checks passaram. Suítes
+363/363 em cada ambiente são do builder; não repetidas nesta auditoria.
+Artefato 12138502084, ZIP SHA256 e4276a53e7a655c0b529ee24d1995d51ba62d03f3458cf06485f01935f61f353, igual ao digest GitHub.
+Quatro relatórios copiados byte a byte, revisão em testes/resultados/0.1.11/audit/;
+raw em analysis-local/no-vm-audit-artifact-12138502084/. Ferramentas Git/API/Python
+e CI Debian13/Xvfb/Flatpak. Roteiro43,93%,38done/20abertos/13etapas, paridade0/25,
+catálogo323 e arquitetura43/57 preservados. Nenhum critério/peso alterado.
+Sem VM nem original; não houve nova REA ou modificação de rede/proteções Windows.
+OCR é cópia rasterizada limitada e pode errar. Nuvem adiada/IA excluída.
+Próximo: TIFF multipágina e demais contratos próprios; desktop/portal/concessão
+persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos próprios.
+Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
+Este registro recebe commit/push e comprovante final externo separados, evitando
+autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.

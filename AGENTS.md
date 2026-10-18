@@ -8,7 +8,8 @@ limites e páginas sem texto detectado explícitos. Modelos locais com proveniê
 **363/363 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips. Novos: 20 controles de orquestração, cinco Linux com OCR
 real e cinco GTK. Integridade de 105 arquivos app e 11 relatórios CI conferida;
-smoke 5/5 e launcher 3/3. Publicação/auditoria desta entrega nas notas mais recentes.
+smoke 5/5 e launcher 3/3. Publicação confirmada; auditoria independente do mesmo
+bundle aprovada com sete controles e cinco novos smoke checks, sem rebuild.
 Esses testes não são paridade Foxit. Evidências anteriores preservadas.
 
 [Editor de cópia e histórico](docs/EDICAO-COM-HISTORICO.md) e PNG/JPEG/BMP/WebP/TIFF

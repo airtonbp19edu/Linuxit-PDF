@@ -8,7 +8,8 @@ limites e páginas sem texto detectado explícitos. Modelos locais com proveniê
 **363/363 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips. Novos: 20 controles de orquestração, cinco Linux com OCR
 real e cinco GTK. Integridade de 105 arquivos app e 11 relatórios CI conferida;
-smoke 5/5 e launcher 3/3. Publicação/auditoria desta entrega nas notas mais recentes.
+smoke 5/5 e launcher 3/3. Publicação confirmada; auditoria independente do mesmo
+bundle aprovada com sete controles e cinco novos smoke checks, sem rebuild.
 Esses testes não são paridade Foxit. Evidências anteriores preservadas.
 
 [Editor de cópia e histórico](../docs/EDICAO-COM-HISTORICO.md) e PNG/JPEG/BMP/WebP/TIFF
@@ -29,7 +30,7 @@ Windows foi alterada nesta rodada; original exige validar isolamento primeiro.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Entrega 0.1.11|Fonte/payload/sandbox aprovados; confirmar publicação e auditoria independente|Sem VM Foxit|
+|Entrega 0.1.11|Publicação e auditoria independente confirmadas; preservar evidências|Concluída neste marco, sem VM Foxit|
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
 |Operações locais|TIFF multipágina, demais formulários/anotações, OCR ampliado e plataforma|Implementação própria sem VM|
 |Estática|Tamanhos/alocação e chamadores dos arrays; provedor ativo/offsets restantes da busca; contexto0x138 e serviços de imagem; comportamento7911/7913|REA/Ghidra sem executar original|

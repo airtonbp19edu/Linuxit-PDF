@@ -20,6 +20,11 @@ Se necessário, abra essa página no navegador habitual.
 O arquivo 0.1.11 tem **44.671.928 bytes** (aproximadamente 42,6 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
+O [download público da 0.1.11](../testes/resultados/0.1.11/download-integrity-2026-10-18.json)
+foi conferido sem login: HTTP200, tamanho e SHA-256 completos.
+A [auditoria independente](../testes/resultados/0.1.11/audit/review.json) reinstalou
+o mesmo bundle e aprovou cinco novos smoke checks.
+
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 

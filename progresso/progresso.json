@@ -1126,7 +1126,7 @@
       "current_delivery": {
         "version": "0.1.11",
         "date_local": "2026-10-18T10:42:03-03:00",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "source_commit": "4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39131964575",
         "source_payload_sandbox_tests_passed_each": 363,
@@ -1135,7 +1135,10 @@
           "docs/OCR-LOCAL.md",
           "releases/manifest-0.1.11.json",
           "testes/resultados/0.1.11/validation-review.json"
-        ]
+        ],
+        "confirmed_delivery_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+        "publication_confirmed_at_local": "2026-10-18T10:46:50-03:00",
+        "stable_release": false
       },
       "delivery_history": [
         {
@@ -1303,9 +1306,11 @@
             "testes/resultados/0.1.9/audit/review.json",
             "testes/resultados/0.1.9/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.10/audit/review.json",
-            "testes/resultados/0.1.10/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.11/audit/review.json",
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
           ],
-          "note": "Published 0.1.10 reinstalled without rebuild: 103 app, 2804 dependency files, 215 ELF and 150 package notices verified. Seven controls and five fresh smoke checks passed. Full 333-case suites remain prior build-time evidence. Status/weight preserved."
+          "note": "Published0.1.11 reinstalled without rebuild, application/runtime/model files and notices verified. Seven auditor controls and five fresh smoke checks passed. Full363-case suites remain build-time evidence, not rerun by this audit."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1327,7 +1332,9 @@
             "testes/resultados/0.1.9/audit/review.json",
             "testes/resultados/0.1.9/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.10/audit/review.json",
-            "testes/resultados/0.1.10/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.11/audit/review.json",
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 20 open criteria across 13 stages, including own implementation/static/desktop work and original VM/differential dependencies. Delivery audit does not close these obligations."
         },
@@ -1351,33 +1358,35 @@
             "testes/resultados/0.1.9/audit/review.json",
             "testes/resultados/0.1.9/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.10/audit/review.json",
-            "testes/resultados/0.1.10/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.11/audit/review.json",
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.10",
-        "reviewed_at_local": "2026-10-18T02:15:50-03:00",
+        "version": "0.1.11",
+        "reviewed_at_local": "2026-10-18T10:46:50-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39099821029",
-        "audit_code_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39132852906",
+        "audit_code_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
-        "installed_application_files_verified": 103,
-        "installed_runtime_files_verified": 2804,
-        "installed_elf_files_verified": 215,
-        "copyright_notices_present_and_hashed": 150,
+        "installed_application_files_verified": 105,
+        "installed_runtime_files_verified": 2849,
+        "installed_elf_files_verified": 224,
+        "copyright_notices_present_and_hashed": 162,
         "unfinished_criteria_count": 20,
         "stage21_complete": false,
         "full_regression_suite_rerun": false,
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
         "evidence": [
-          "docs/EDICAO-COM-HISTORICO.md",
-          "testes/resultados/0.1.10/audit/review.json"
+          "docs/OCR-LOCAL.md",
+          "testes/resultados/0.1.11/audit/review.json"
         ],
-        "next_action": "Continue OCR and remaining own local contracts; real Linux desktop portal, persistent grants, sync client, AT-SPI and printer need their environments. Original D01-D20/UI01-UI10 and differential validation require offline containment. Cloud APIs deferred."
+        "next_action": "Continue TIFF multipage/remaining local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
       },
       "delivery_audit_history": [
         {
@@ -1563,6 +1572,28 @@
             "testes/resultados/0.1.9/audit/review.json"
           ],
           "next_action": "Test real desktop portal/grant persistence and actual synchronization client without Foxit VM; original D01-D20/UI01-UI10 and differential closure require offline VM. Direct cloud APIs remain deferred."
+        },
+        {
+          "version": "0.1.10",
+          "reviewed_at_local": "2026-10-18T02:15:50-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39099821029",
+          "audit_code_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 103,
+          "installed_runtime_files_verified": 2804,
+          "installed_elf_files_verified": 215,
+          "copyright_notices_present_and_hashed": 150,
+          "unfinished_criteria_count": 20,
+          "stage21_complete": false,
+          "full_regression_suite_rerun": false,
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
+          "evidence": [
+            "docs/EDICAO-COM-HISTORICO.md",
+            "testes/resultados/0.1.10/audit/review.json"
+          ],
+          "next_action": "Continue OCR and remaining own local contracts; real Linux desktop portal, persistent grants, sync client, AT-SPI and printer need their environments. Original D01-D20/UI01-UI10 and differential validation require offline containment. Cloud APIs deferred."
         }
       ]
     }
@@ -1606,10 +1637,13 @@
     "criteria_status_or_weights_changed": false,
     "criterion_definitions_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_commit_push_confirmation",
+    "publication_state": "confirmed_at_recorded_commit",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": false
+    "independent_installed_audit_passed": true,
+    "confirmed_delivery_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+    "publication_confirmed_at_local": "2026-10-18T10:46:50-03:00",
+    "audit_review": "testes/resultados/0.1.11/audit/review.json"
   },
   "no_vm_execution_history": [
     {

@@ -71,3 +71,15 @@ inclui executável Tesseract e modelos por/eng com hashes e proveniência.
 Captura da janela OCR e captura principal examinadas; demais hashes de capturas
 conferidos pelo importador. Bundle: 44671928 bytes,
 SHA-256 `30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02`. Desenvolvimento devel, sem assinatura digital.
+
+## Publicação e auditoria independente — 2026-10-18T10:46:50-03:00
+
+Entrega `2664f4ae7db5be45aec461f8bba1a456138585b8` confirmada no remoto. [Auditoria](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39132852906)
+reinstalou o mesmo bundle, sem rebuild: 105 arquivos app,
+2849 de dependências, 224 ELF e 162 avisos de pacotes conferidos,
+incluindo modelos por/eng. Sete controles do auditor e cinco novos smoke checks
+passaram. As suítes completas 363/363 continuam evidência do builder anterior;
+não foram repetidas pela auditoria. [Relatórios](../testes/resultados/0.1.11/audit/review.json).
+Download público sem login conferido por tamanho e SHA-256:
+[recibo](../testes/resultados/0.1.11/download-integrity-2026-10-18.json).
+As limitações e os 20 critérios abertos continuam; não há observação Foxit.

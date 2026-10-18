@@ -63,11 +63,14 @@
   "original_executed": false,
   "foxit_parity_verified": false,
   "criteria_status_or_weights_changed": false,
-  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "publication_state": "confirmed_at_recorded_commit",
   "limitations": [
     "Rasterized copy: links, forms, outlines, layers, attachments, metadata and digital signatures are not preserved.",
     "OCR quality, reading order and handwriting are not universally verified; pages without detected text are explicitly reported.",
     "Encrypted PDFs, nonunit UserUnit, multipage image import, animations and full conversion family remain unsupported.",
     "Desktop portals, persistent grants, actual sync client, AT-SPI and physical printing remain unverified."
-  ]
+  ],
+  "confirmed_delivery_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+  "publication_confirmed_at_local": "2026-10-18T10:46:50-03:00",
+  "independent_audit_review": "testes/resultados/0.1.11/audit/review.json"
 }

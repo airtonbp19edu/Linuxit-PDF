@@ -142,3 +142,7 @@ checkbox/radio/listas, mover/excluir subárvores, destaque/retângulo/exclusão
 restrita e desfazer/refazer do rascunho. BMP/WebP/TIFF simples também aceitos.
 As cópias já salvas permanecem preservadas. No marco 0.1.10, OCR ainda estava
 pendente; foi acrescentado no subconjunto da 0.1.11. As famílias completas seguem abertas.
+
+[Auditoria independente da 0.1.11](testes/resultados/0.1.11/audit/review.json):
+mesmo bundle reinstalado, modelos/dependências/avisos conferidos, sete controles
+e cinco novos smoke checks aprovados; suítes363/363 não repetidas pela auditoria.
