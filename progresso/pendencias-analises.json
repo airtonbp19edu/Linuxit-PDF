@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T12:43:31-03:00",
+  "reviewed_at_local": "2026-10-18T13:35:28-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -343,9 +343,10 @@
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
         "testes/resultados/0.1.11/validation-review.json",
-        "testes/resultados/0.1.12/validation-review.json"
+        "testes/resultados/0.1.12/validation-review.json",
+        "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own TIFF multipage and previous OCR passed380/380 source/payload/sandbox. Continue remaining form/annotation/local contracts and static analysis; desktop/device work needs its environment, original comparison needs offline VM. Cloud APIs deferred.",
+      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -373,9 +374,10 @@
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
         "testes/resultados/0.1.11/validation-review.json",
-        "testes/resultados/0.1.12/validation-review.json"
+        "testes/resultados/0.1.12/validation-review.json",
+        "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own TIFF multipage and previous OCR passed380/380 source/payload/sandbox. Continue remaining form/annotation/local contracts and static analysis; desktop/device work needs its environment, original comparison needs offline VM. Cloud APIs deferred.",
+      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -404,9 +406,10 @@
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
         "testes/resultados/0.1.11/validation-review.json",
-        "testes/resultados/0.1.12/validation-review.json"
+        "testes/resultados/0.1.12/validation-review.json",
+        "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own TIFF multipage and previous OCR passed380/380 source/payload/sandbox. Continue remaining form/annotation/local contracts and static analysis; desktop/device work needs its environment, original comparison needs offline VM. Cloud APIs deferred.",
+      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -438,9 +441,10 @@
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
         "testes/resultados/0.1.11/validation-review.json",
-        "testes/resultados/0.1.12/validation-review.json"
+        "testes/resultados/0.1.12/validation-review.json",
+        "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own TIFF multipage and previous OCR passed380/380 source/payload/sandbox. Continue remaining form/annotation/local contracts and static analysis; desktop/device work needs its environment, original comparison needs offline VM. Cloud APIs deferred.",
+      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {

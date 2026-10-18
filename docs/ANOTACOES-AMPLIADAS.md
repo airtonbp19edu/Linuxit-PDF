@@ -1,8 +1,8 @@
 # Anotações adicionais e edição de comentários
 
-Fonte **0.1.13 em desenvolvimento**. O pacote publicado permanece 0.1.12 até
-a validação integral da nova entrega. Os testes portáveis são próprios; a
-execução GTK/Poppler e o novo Flatpak ainda aguardam CI.
+Fonte e Flatpak **0.1.13/devel**, validados com 400/400 testes próprios em
+fonte/payload/sandbox instalado, sem falhas/erros/skips. Novos: 14 portáveis e
+seis GTK/Poppler; todos os 380 IDs anteriores preservados. Publicação/auditoria nas notas.
 
 Em **Arquivo → Editar cópia com desfazer/refazer…**, há cinco operações novas:
 
@@ -71,10 +71,9 @@ streams de aparência diretos e avisos na clonagem. O adaptador passou a registr
 os streams como objetos indiretos antes da anotação; verificações posteriores
 exigem essa estrutura. Relatórios anteriores preservados.
 
-Seis métodos GTK estão preparados: diálogos reais dos cinco tipos, edição e
-limpeza de comentário/autor, erro/cancelamento, pixels Poppler dos cinco traços,
-CropBox deslocado/rotação e busca de comentário após reabrir a cópia. Não contar
-esses casos como aprovados antes da execução Linux.
+Seis métodos GTK passaram em cada ambiente: diálogos reais dos cinco tipos,
+edição e limpeza de comentário/autor, erro/cancelamento, pixels Poppler dos cinco
+traços, CropBox deslocado/rotação e busca de comentário após reabrir a cópia.
 
 Implementação própria em `app/pdf_annotations.py`, `app/pdf_changes.py`,
 `app/edit_dialogs.py` e `app/edit_window.py`. Referências públicas: tipos,
@@ -83,3 +82,13 @@ QuadPoints e precedência de AP na seção 12.5.6.10/tabela 179 do
 e [esclarecimentos de aparência da PDF Association](https://pdf-issues.pdfa.org/32000-2-2020/clause12.html).
 Nenhum código/recurso Foxit foi usado. Família completa ainda parcial,
 paridade 0/25 e roteiro 43,93% preservados; original não executado.
+
+## Entrega validada — 2026-10-18T13:35:28-03:00
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39144523775), fonte `b44476272e4e9011c5b4825ab00c8d78830354f1`:400/400 em cada ambiente.
+[Revisão](../testes/resultados/0.1.13/validation-review.json), [manifesto](../releases/manifest-0.1.13.json).
+Capturas do editor, comentário, página com cinco traços e janela principal examinadas.
+Demais hashes conferidos. 106 arquivos app iguais entre fonte/payload; runtime
+2849 arquivos, 224 ELF e 162 avisos de pacotes.
+Sem nova dependência. Bundle 44662456 bytes,
+SHA256 `0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024`. Desenvolvimento devel, sem assinatura digital.

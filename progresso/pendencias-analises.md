@@ -1,7 +1,7 @@
 # Pendências de análise e pontos de retomada
 
-Estado atualizado em **18/10/2026** após a entrega 0.1.12; os critérios da etapa 13
-e os pesos foram preservados. A suíte própria atual passou 380/380 em fonte,
+Estado atualizado em **18/10/2026** após a entrega 0.1.13; os critérios da etapa 13
+e os pesos foram preservados. A suíte própria atual passou 400/400 em fonte,
 payload e sandbox. As análises estáticas anteriores não foram reiniciadas.
 A [fonte estruturada](pendencias-analises.json) registra **todos os 20 critérios
 não concluídos em 13 etapas**, cruzados com [progresso.json](progresso.json).
@@ -26,11 +26,11 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
 |11|25%|CFindToolDlgAdv e tabela7911/7913 ligados; handler comum e DDX distintos mantêm ambiguidade. UI01–UI10 exigem original.|
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
-|15|33,3%|0.1.12: TIFF multipágina em blocos e OCR anterior; 380/380 por ambiente. Famílias completas, operações restantes e duas propostas abertas.|
-|16|33,3%|Dois métodos GTK novos de TIFF na 0.1.12 e anteriores preservados. Desktop/portais/AT-SPI/impressora abertos.|
+|15|33,3%|0.1.13: cinco tipos de anotação e comentário/autor ampliados, com TIFF/OCR anteriores;400/400 por ambiente. Famílias completas, operações restantes e duas propostas abertas.|
+|16|33,3%|Seis métodos GTK novos de anotações na0.1.13 e anteriores preservados. Desktop/portais/AT-SPI/impressora abertos.|
 |18|10%|Corpus preservado17/17 repetido na0.1.7; zero comparações originais.|
 |19|14,3%|Regressões próprias aprovadas; divergências Foxit ainda dependem de observação offline.|
-|21|50%|Entrega 0.1.12 validada; publicação/auditoria nas notas. 20 critérios amplos ainda abertos.|
+|21|50%|Entrega 0.1.13 validada; publicação/auditoria nas notas. 20 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

@@ -1,5 +1,10 @@
 # Edição de cópia com histórico
 
+Atualização **0.1.13/devel**: [anotações adicionais e comentários](ANOTACOES-AMPLIADAS.md)
+acrescentam cinco tipos e edição de comentário/autor, com histórico preservado.
+400/400 testes próprios por ambiente. Os marcos0.1.10 abaixo são históricos.
+
+
 Fonte e Flatpak de desenvolvimento **0.1.10/devel**, validados com333/333
 testes próprios em fonte, payload e sandbox instalado. Evidências vinculadas
 abaixo; publicação e auditoria nas notas mais recentes.

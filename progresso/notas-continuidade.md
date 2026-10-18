@@ -2112,3 +2112,37 @@ Fonte0.1.13, pacote publicado0.1.12 preservado. Arquitetura44 módulos/58interfa
 proteções alteradas. Nuvem adiada/IA excluída, causa de tokens não confirmada.
 Contrato/limites em docs/ANOTACOES-AMPLIADAS.md. Fonte ainda requer commit/push e
 confirmação; histórico, pacotes e relatórios anteriores preservados.
+
+
+## 2026/10/18 às 13:35 (America/Sao_Paulo, UTC-03:00) — anotações0.1.13 validadas nos três ambientes
+
+CI39144523775, fonte `b44476272e4e9011c5b4825ab00c8d78830354f1`:400/400 em fonte/payload/sandbox instalado,
+sem falhas/erros/skips.20 métodos adicionais:14 portáveis e seis GTK/Poppler.
+Todos os380 IDs anteriores preservados, sem renomeação/remoção. Aparências/AP
+indiretas, geometria, limites, bloqueios/vínculos, comentários, exclusão e
+histórico exercitados. Pixels de cinco tipos, CropBox deslocado/rotação e busca
+de comentário após reabrir passaram. Capturas editor/comentário/página/principal
+examinadas; demais hashes conferidos. Ferramentas Git/API/Python/pypdf e execução
+Linux Debian13/Xvfb/GTK/Poppler/Flatpak; sem nova dependência ou nova REA.
+
+Bundle LinuxitPDF-0.1.13-x86_64.flatpak, 44662456 bytes, SHA256
+0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024. Artefato12143356416, ZIP SHA256 67c6d0e2fa8279f21a7a483b9040f60f888847097c53a7ca4c014b8fa90c4e9b, igual ao
+digest GitHub.106 arquivos app/11 relatórios selados; runtime
+2849 arquivos/224ELF/162avisos conferidos.
+Smoke5/5, launcher3/3, controles fora HOME negado/concedido passaram.
+Evidências em testes/resultados/0.1.13/, raw analysis-local/no-vm-release-artifact-12143356416/.
+Relatórios copiados byte a byte. Arquitetura44/58, catálogo323,23subconjuntos/
+duas propostas,43,93%/38done/20abertos/paridade0/25 preservados. Critérios/pesos
+intactos;50 planos completos de aceitação ainda not_run. Original/VM não executados,
+nuvem adiada/IA excluída. Família de anotações continua parcial; demais formulários,
+operações, desktop/portal/cliente/AT-SPI/impressão e comparação original abertos.
+Sem evidência de esgotamento de tokens. Próximo:publicar e auditar mesmo bundle;
+continuar operações/contratos locais e alvos estáticos preservando os lotes.
+O download inicial do artefato por blocos maiores terminou por timeout de rede.
+A retomada em 44 blocos de até 1 MiB passou, com SHA-256 integral igual ao digest GitHub;
+cache e helper em analysis-local/annotation-download-12143356416-parts/ e
+analysis-local/download_annotation_artifact.py. Isso não foi falha do CI nem
+evidência de esgotamento de tokens.
+Próxima operação própria concreta: combos AcroForm editáveis, preservando Opt,
+com texto livre/aparência e testes de flags/ReadOnly/limites/histórico; ainda não
+implementados. Entrega preparada ainda requer commit/push e confirmação da publicação.

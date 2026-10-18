@@ -1,46 +1,38 @@
 # Tarefas atuais e ponto de retomada
 
-Fonte **0.1.13 em desenvolvimento**: [anotações adicionais](../docs/ANOTACOES-AMPLIADAS.md),
-com14 testes portáveis aprovados e seis GTK/Poppler preparados. Arquitetura da
-nova fonte44 módulos/58 interfaces. Validação Linux e novo pacote aguardam CI.
-O resumo abaixo descreve a entrega publicada0.1.12, preservada.
+Fonte e Flatpak **0.1.13/devel**, com [anotações adicionais](../docs/ANOTACOES-AMPLIADAS.md):
+sublinhado, tachado e ondulado por área, elipse e linha em qualquer direção.
+Aparência vetorial própria vermelha. Edição de comentário/autor e exclusão
+restritas a oito tipos simples desbloqueados, sem vínculos ou dependentes.
+Rascunho com desfazer/refazer; original e cópias salvas preservados.
 
+**400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
+sem falhas/erros/skips. Novos: 14 portáveis e seis GTK/Poppler; todos os 380 IDs
+anteriores preservados. 106 arquivos app e 11 relatórios CI conferidos;
+smoke 5/5 e launcher 3/3. Publicação e auditoria desta entrega nas notas mais recentes.
+Os testes próprios não são paridade Foxit; pacotes/relatórios anteriores preservados.
 
-Fonte e Flatpak **0.1.12/devel**, com [TIFF multipágina](../docs/TIFF-MULTIPAGINA.md):
-ordem por blocos de arquivo e páginas internas, orientação por página, RGB8 e
-até 100 páginas totais. Encadeamento IFD limitado; sem SubIFDs recursivos ou
-seleção individual de páginas TIFF. [OCR local](../docs/OCR-LOCAL.md) anterior
-preservado, com limite próprio de 20 páginas, português/inglês e cópia rasterizada.
+[TIFF multipágina](../docs/TIFF-MULTIPAGINA.md), até 100 páginas na criação, e
+[OCR local](../docs/OCR-LOCAL.md), até 20 páginas, preservados. Demais anotações,
+formulários e famílias completas permanecem abertos. Pastas sincronizadas:
+controles fora HOME negado/concedido passaram novamente; cliente real,
+portal/concessão persistente, AT-SPI e impressão física ainda pendentes, sem VM Foxit.
 
-**380/380 testes próprios por ambiente**: fonte, payload e sandbox instalado,
-sem falhas/erros/skips. Novos: 14 portáveis, dois GTK e uma integração Linux
-TIFF→PDF→OCR. Um teste de recusa de TIFF foi adaptado/renomeado à nova regra;
-362 IDs anteriores preservados e 18 novos IDs incluem essa substituição.
-105 arquivos app e 11 relatórios CI conferidos; smoke 5/5 e launcher 3/3.
-Publicação confirmada; auditoria independente do mesmo bundle aprovada com
-sete controles e cinco novos smoke checks, sem rebuild. Testes próprios
-não são paridade Foxit; relatórios e pacotes anteriores preservados.
-
-Pastas sincronizadas: controles fora HOME negado/concedido passaram novamente.
-Cliente real, portal/concessão persistente, AT-SPI e impressão física pendentes,
-sem depender da VM Foxit. Demais formulários/anotações e famílias completas
-continuam abertos. Editor de cópia/histórico e formatos anteriores preservados.
-
-Arquitetura: 43 módulos/57 interfaces; catálogo: 323 (152 REA + 171 diretas), 23
-subconjuntos/duas propostas em 25 famílias. Roteiro **43,93%**, 38 done/20 abertos;
+Arquitetura: 44 módulos/58 interfaces; catálogo: 323 (152 REA + 171 diretas),
+23 subconjuntos/duas propostas em 25 famílias. Roteiro **43,93%**, 38 done/20 abertos;
 paridade **0/25**, cobertura global desconhecida. Original não executado.
-APIs de nuvem adiadas/IA excluída; não reiniciar análises preservadas.
+APIs de nuvem adiadas/IA excluída. Não reiniciar análises preservadas.
 
 VM: último diagnóstico histórico com NEM/Snail, Integridade da Memória ativa e
 NAT então ativo; offline não validado. Usuário pediu continuar sem VM. Nenhuma
 VM, rede ou proteção Windows alterada nesta rodada. Validar isolamento antes
-de executar original; detalhes nas notas datadas anteriores.
+de executar original; detalhes nas notas anteriores.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Entrega 0.1.12|Publicação e auditoria independente confirmadas; preservar evidências|Concluída neste marco, sem VM Foxit|
+|Entrega 0.1.13|Fonte/payload/sandbox aprovados; confirmar publicação/auditoria|Sem VM Foxit|
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
-|Operações locais|Demais formulários/anotações, OCR ampliado e plataforma|Implementação própria sem VM|
+|Operações locais|Priorizar combos AcroForm editáveis (texto livre/aparência); demais formulários/anotações, OCR e plataforma|Implementação própria sem VM|
 |Estática|Tamanhos/alocação e chamadores dos arrays; provedor ativo/offsets restantes da busca; contexto0x138 e serviços de imagem; comportamento7911/7913|REA/Ghidra sem executar original|
 |10 e parte dinâmica da 11|Resolver lentidão da VM existente e validar contenção antes de D01–D20/UI01–UI10|VirtualBox Windows 10 criado; NEM/Integridade da Memória detectados; offline pendente|
 |18/19|Comparar referência e validar divergências com original|VM offline para a referência; correções próprias podem avançar sem VM|

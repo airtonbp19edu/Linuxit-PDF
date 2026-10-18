@@ -1579,9 +1579,9 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Source0.1.13 adds area Underline/StrikeOut/Squiggly, Circle, Line and comment/author edits; published package0.1.12. See docs/ANOTACOES-AMPLIADAS.md; full family incomplete.",
+      "matrix_implementation": "Source/package0.1.13 adds Underline/StrikeOut/Squiggly area marks, Circle, Line and comment/author edits with draft history. See docs/ANOTACOES-AMPLIADAS.md; full family incomplete.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.14 testes portáveis novos passaram; seis GTK/Poppler e pacote aguardam CI. Sem redação, popup/respostas, desenho livre ou edição universal.",
+      "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -1590,8 +1590,8 @@
       ],
       "outputs": [
         "Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.",
-        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux exercitado;333/333 por ambiente fonte/payload/sandbox, sem observação original.",
-        "Novas anotações com Form XObject de aparência indireto; update-annotation preserva aparência/geometria e altera apenas Contents/T. GTK/Linux da nova fonte ainda não validado."
+        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux exercitado na0.1.13;400/400 por ambiente fonte/payload/sandbox, sem observação original.",
+        "Novas anotações com Form XObject de aparência indireto; update-annotation preserva aparência/geometria e altera apenas Contents/T. GTK/Linux da nova fonte validado;400/400 por ambiente, sem paridade original."
       ],
       "errors": [
         {
@@ -1641,7 +1641,8 @@
         "testes/resultados/0.1.10/validation-review.json",
         "app/pdf_annotations.py",
         "docs/ANOTACOES-AMPLIADAS.md",
-        "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json"
+        "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json",
+        "testes/resultados/0.1.13/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3629,5 +3630,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T13:18:37-03:00"
+  "updated_at_local": "2026-10-18T13:35:28-03:00"
 }

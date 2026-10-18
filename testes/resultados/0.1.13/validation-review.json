@@ -1,0 +1,73 @@
+{
+  "schema": "linuxit-annotation-delivery-review-v1",
+  "date_local": "2026-10-18T13:35:28-03:00",
+  "version": "0.1.13",
+  "source_commit": "b44476272e4e9011c5b4825ab00c8d78830354f1",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39144523775",
+  "artifact_id": 12143356416,
+  "archive_sha256": "67c6d0e2fa8279f21a7a483b9040f60f888847097c53a7ca4c014b8fa90c4e9b",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 400,
+  "validation": {
+    "source": {
+      "run": 400,
+      "passed": 400,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 400,
+      "passed": 400,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 400,
+      "passed": 400,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "new_own_methods": 20,
+  "new_portable_methods": 14,
+  "new_gtk_methods": 6,
+  "prior_test_ids_preserved": 380,
+  "prior_tests_removed_or_renamed": 0,
+  "source_payload_files": 106,
+  "runtime_files": 2849,
+  "elf_files": 224,
+  "debian_package_notices": 162,
+  "sealed_reports_verified": 11,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.13-x86_64.flatpak",
+    "bytes": 44662456,
+    "sha256": "0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024",
+    "digitally_signed": false
+  },
+  "examined_screenshots": [
+    "search-ui/annotation-extensions.png",
+    "search-ui/annotation-comment.png",
+    "search-ui/annotation-render.png",
+    "linuxit-flatpak-0.1.13.png"
+  ],
+  "screenshot_hashes": {
+    "search-ui/annotation-extensions.png": "df5cd960e837de90eb855b32e8c8bdb1d15eb0c5498ed635905cefd59f054b58",
+    "search-ui/annotation-comment.png": "98da738b22761c16c45b8ea6cc90f84182177588e64eba2a35587b542ab1db40",
+    "search-ui/annotation-render.png": "0c9f8e8453c5644a5e30e9192a73d9e141c0cc973a700858851bdfa1724657dc",
+    "linuxit-flatpak-0.1.13.png": "1d9dff131084b1428f9fe8a905efac6fc6db987b1da49ff1d876e3b0cd664117"
+  },
+  "remaining_capture_hashes_verified": true,
+  "original_executed": false,
+  "foxit_parity_verified": false,
+  "criteria_status_or_weights_changed": false,
+  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "limitations": [
+    "Manual horizontal area marks, ellipse and line only; no automatic word selection/freehand/arrows/style editor.",
+    "Comment/author editing and logical deletion limited to eight unlocked types without relationships/dependants.",
+    "Other annotation/form operations and real desktop/device integrations remain incomplete.",
+    "No original Foxit observation or differential comparison."
+  ]
+}

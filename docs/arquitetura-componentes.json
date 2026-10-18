@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-18T13:18:37-03:00",
+  "reviewed_at_local": "2026-10-18T13:35:28-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.13",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -874,7 +874,8 @@
     }
   ],
   "runtime_limitations": [
-    "Source0.1.13 annotation extension:14 portable methods passed;6 GTK/Poppler prepared but unexecuted here. Published0.1.12 evidence does not approve this changed source.",
+    "Current0.1.13:400/400 source/payload/installed sandbox passed, including14 portable and6 GTK annotation methods; all380 prior IDs retained. Full families, real desktop/device and original remain unverified.",
+    "Historical pre-CI0.1.13 checkpoint:14 portable methods passed and6 GTK/Poppler pending then; superseded by the400/400 source/payload/sandbox CI recorded above.",
     "Current0.1.12:380/380 source/payload/installed sandbox passed.17 additional methods,1 intentional TIFF contract-test replacement. Desktop/device/original and full families remain unverified.",
     "Current0.1.11:363/363 passed in source/payload/installed sandbox, including20 OCR orchestration,5 real Linux and5 GTK methods. Rasterization/recognition contract remains bounded; desktop/device/original comparisons still pending.",
     "Current0.1.10:333/333 passed in source/payload/installed sandbox;34 new portable and9 GTK methods. Real desktop/portal/client/accessibility/physical printing remain unverified.",
@@ -891,5 +892,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": true
+  "source_changes_unreleased": false
 }

@@ -1,40 +1,32 @@
 # Retomada do Linuxit PDF
 
-Fonte **0.1.13 em desenvolvimento**: [anotações adicionais](ANOTACOES-AMPLIADAS.md),
-com14 testes portáveis aprovados e seis GTK/Poppler preparados. Arquitetura da
-nova fonte44 módulos/58 interfaces. Validação Linux e novo pacote aguardam CI.
-O resumo abaixo descreve a entrega publicada0.1.12, preservada.
+Fonte e Flatpak **0.1.13/devel**, com [anotações adicionais](ANOTACOES-AMPLIADAS.md):
+sublinhado, tachado e ondulado por área, elipse e linha em qualquer direção.
+Aparência vetorial própria vermelha. Edição de comentário/autor e exclusão
+restritas a oito tipos simples desbloqueados, sem vínculos ou dependentes.
+Rascunho com desfazer/refazer; original e cópias salvas preservados.
 
+**400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
+sem falhas/erros/skips. Novos: 14 portáveis e seis GTK/Poppler; todos os 380 IDs
+anteriores preservados. 106 arquivos app e 11 relatórios CI conferidos;
+smoke 5/5 e launcher 3/3. Publicação e auditoria desta entrega nas notas mais recentes.
+Os testes próprios não são paridade Foxit; pacotes/relatórios anteriores preservados.
 
-Fonte e Flatpak **0.1.12/devel**, com [TIFF multipágina](TIFF-MULTIPAGINA.md):
-ordem por blocos de arquivo e páginas internas, orientação por página, RGB8 e
-até 100 páginas totais. Encadeamento IFD limitado; sem SubIFDs recursivos ou
-seleção individual de páginas TIFF. [OCR local](OCR-LOCAL.md) anterior
-preservado, com limite próprio de 20 páginas, português/inglês e cópia rasterizada.
+[TIFF multipágina](TIFF-MULTIPAGINA.md), até 100 páginas na criação, e
+[OCR local](OCR-LOCAL.md), até 20 páginas, preservados. Demais anotações,
+formulários e famílias completas permanecem abertos. Pastas sincronizadas:
+controles fora HOME negado/concedido passaram novamente; cliente real,
+portal/concessão persistente, AT-SPI e impressão física ainda pendentes, sem VM Foxit.
 
-**380/380 testes próprios por ambiente**: fonte, payload e sandbox instalado,
-sem falhas/erros/skips. Novos: 14 portáveis, dois GTK e uma integração Linux
-TIFF→PDF→OCR. Um teste de recusa de TIFF foi adaptado/renomeado à nova regra;
-362 IDs anteriores preservados e 18 novos IDs incluem essa substituição.
-105 arquivos app e 11 relatórios CI conferidos; smoke 5/5 e launcher 3/3.
-Publicação confirmada; auditoria independente do mesmo bundle aprovada com
-sete controles e cinco novos smoke checks, sem rebuild. Testes próprios
-não são paridade Foxit; relatórios e pacotes anteriores preservados.
-
-Pastas sincronizadas: controles fora HOME negado/concedido passaram novamente.
-Cliente real, portal/concessão persistente, AT-SPI e impressão física pendentes,
-sem depender da VM Foxit. Demais formulários/anotações e famílias completas
-continuam abertos. Editor de cópia/histórico e formatos anteriores preservados.
-
-Arquitetura: 43 módulos/57 interfaces; catálogo: 323 (152 REA + 171 diretas), 23
-subconjuntos/duas propostas em 25 famílias. Roteiro **43,93%**, 38 done/20 abertos;
+Arquitetura: 44 módulos/58 interfaces; catálogo: 323 (152 REA + 171 diretas),
+23 subconjuntos/duas propostas em 25 famílias. Roteiro **43,93%**, 38 done/20 abertos;
 paridade **0/25**, cobertura global desconhecida. Original não executado.
-APIs de nuvem adiadas/IA excluída; não reiniciar análises preservadas.
+APIs de nuvem adiadas/IA excluída. Não reiniciar análises preservadas.
 
 VM: último diagnóstico histórico com NEM/Snail, Integridade da Memória ativa e
 NAT então ativo; offline não validado. Usuário pediu continuar sem VM. Nenhuma
 VM, rede ou proteção Windows alterada nesta rodada. Validar isolamento antes
-de executar original; detalhes nas notas datadas anteriores.
+de executar original; detalhes nas notas anteriores.
 
 Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
 e as notas mais recentes definem o estado atual.
@@ -52,13 +44,17 @@ e as notas mais recentes definem o estado atual.
 
 ## Próximas frentes
 
+- Próxima operação própria sem VM: combos AcroForm editáveis, com texto livre,
+  preservação de `/Opt` e geração de aparência. Definir e testar flags/ReadOnly,
+  limites, valores fora da lista e histórico antes de integrar. Ainda não implementado.
+
 - Estática 03/05/07/08/09/11: alocação/tamanhos e chamadores dos arrays;
   15cd6e0/15cc9b0; atribuição do provedor ativo em dialog+1e48 e campos restantes
   de SearchOption; contexto0x138, serviços de imagem e ownership. As48 entradas
   desta continuação não devem ser repetidas. Tipos viewer/página/diálogo e
   stemming efetivo foram ligados; IDs7911/7913 ainda têm ambiguidade de comportamento.
 - Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
-  23 subconjuntos parciais e 43 módulos/57 interfaces documentados.
+  23 subconjuntos parciais e 44 módulos/58 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/
@@ -108,7 +104,7 @@ Não lançar Foxit no host normal; [preparação da contenção](COMO-CONTINUAR.
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-testes-novos.json
 ```
 
-O último comando exige dependências Linux e tela para completar 290 testes sem
+O último comando exige dependências Linux e tela para completar 400 testes sem
 skips. Fluxos manuais de CI: `no-vm-validation.yml` (fonte/corpus),
 `linux-flatpak.yml` (fonte/payload/sandbox) e `delivery-audit.yml` (bundle
 publicado reinstalado sem rebuild). Fontes/licenças, builder pareado e
