@@ -1656,3 +1656,19 @@ auditoria do repositório aprovada, dez bundles e11 relatórios CI históricos
 conferidos por hash. Não é nova instalação nem nova execução das suítes.
 Metadados públicos normalizados em LF antes de fixar seus hashes, preservando
 os resultados raw e manifestos anteriores. Conferir hashes staged antes do commit.
+
+
+## 2026/10/18 às 00:47 (America/Sao_Paulo, UTC-03:00) — publicação estática confirmada
+
+Marco `45417b3a546be1d51a0809ad170d420806b0a098` publicado no GitHub. Recibo externo confirmou HEAD local=remoto
+e árvore limpa. São16 novas entradas examinadas, catálogo275 (152REA+123diretas),
+823 instruções/2.831 bytes selecionados conferidos. Hashes staged das evidências
+coincidiram antes do commit; originais/raw/projetos permaneceram fora do Git.
+
+Relatório docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md, revisão e três lotes
+publicados; fonte/Flatpak0.1.9 preservados, sem repetir testes de runtime.
+Critérios/pesos/paridade intactos; 21 critérios em14 etapas ainda abertos.
+Próximos alvos estáticos e limites de tipos constam no relatório e no registro
+estruturado de pendências. A VM segue necessária para a referência dinâmica.
+Esta confirmação recebe commit posterior e recibo externo final, evitando
+autorreferência. Não reiniciar os16 alvos já examinados.

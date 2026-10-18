@@ -1492,9 +1492,11 @@
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "prepared_static_checkpoint_for_publication",
+    "publication_state": "confirmed_at_recorded_static_commit",
     "direct_cloud_api_deferred": true,
-    "local_synchronized_folder_workflow": true
+    "local_synchronized_folder_workflow": true,
+    "confirmed_static_commit": "45417b3a546be1d51a0809ad170d420806b0a098",
+    "publication_confirmed_at_local": "2026-10-18T00:47:25-03:00"
   },
   "no_vm_execution_history": [
     {
@@ -1629,7 +1631,10 @@
     ],
     "original_executed": false,
     "mcp_evidence_created": false,
-    "entry_counts_are_global_coverage": false
+    "entry_counts_are_global_coverage": false,
+    "publication_state": "confirmed_at_recorded_commit",
+    "confirmed_commit": "45417b3a546be1d51a0809ad170d420806b0a098",
+    "publication_confirmed_at_local": "2026-10-18T00:47:25-03:00"
   },
   "resume_history": [
     {
