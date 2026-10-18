@@ -1,0 +1,73 @@
+{
+  "schema": "linuxit-ocr-delivery-review-v1",
+  "date_local": "2026-10-18T10:42:03-03:00",
+  "version": "0.1.11",
+  "source_commit": "4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39131964575",
+  "artifact_id": 12137769078,
+  "archive_sha256": "717acab4a1237f4ebf139e711ec99920468602f6561f35af237886d5b0bbf865",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 363,
+  "validation": {
+    "source": {
+      "run": 363,
+      "passed": 363,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 363,
+      "passed": 363,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 363,
+      "passed": 363,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "new_own_methods": 30,
+  "new_portable_orchestration_methods": 20,
+  "new_real_linux_ocr_methods": 5,
+  "new_gtk_methods": 5,
+  "prior333_ids_preserved": true,
+  "source_payload_files": 105,
+  "runtime_files": 2849,
+  "elf_files": 224,
+  "debian_package_notices": 162,
+  "sealed_reports_verified": 11,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.11-x86_64.flatpak",
+    "bytes": 44671928,
+    "sha256": "30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02",
+    "digitally_signed": false
+  },
+  "examined_screenshots": [
+    "search-ui/ocr-copy.png",
+    "linuxit-flatpak-0.1.11.png"
+  ],
+  "screenshot_hashes": {
+    "search-ui/ocr-copy.png": "878d5e24507ad30985cbaf36e634453c5b52529c99672e0b69b6ef517ff79a53",
+    "linuxit-flatpak-0.1.11.png": "1d9dff131084b1428f9fe8a905efac6fc6db987b1da49ff1d876e3b0cd664117"
+  },
+  "models_bundled": [
+    "eng",
+    "por"
+  ],
+  "model_files_and_notices_in_runtime_inventory": true,
+  "original_executed": false,
+  "foxit_parity_verified": false,
+  "criteria_status_or_weights_changed": false,
+  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "limitations": [
+    "Rasterized copy: links, forms, outlines, layers, attachments, metadata and digital signatures are not preserved.",
+    "OCR quality, reading order and handwriting are not universally verified; pages without detected text are explicitly reported.",
+    "Encrypted PDFs, nonunit UserUnit, multipage image import, animations and full conversion family remain unsupported.",
+    "Desktop portals, persistent grants, actual sync client, AT-SPI and physical printing remain unverified."
+  ]
+}

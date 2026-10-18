@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T02:08:36-03:00",
+  "reviewed_at_local": "2026-10-18T10:42:03-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -341,9 +341,10 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "testes/resultados/0.1.11/validation-review.json"
       ],
-      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
+      "next_action": "Own OCR rasterized-copy subset passed363/363 in source/payload/sandbox. Continue multipage image import and remaining form/annotation/platform contracts; real desktop/device tests need their environments, original reference requires offline VM; cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -369,9 +370,10 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "testes/resultados/0.1.11/validation-review.json"
       ],
-      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
+      "next_action": "Own OCR rasterized-copy subset passed363/363 in source/payload/sandbox. Continue multipage image import and remaining form/annotation/platform contracts; real desktop/device tests need their environments, original reference requires offline VM; cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -398,9 +400,10 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "testes/resultados/0.1.11/validation-review.json"
       ],
-      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
+      "next_action": "Own OCR rasterized-copy subset passed363/363 in source/payload/sandbox. Continue multipage image import and remaining form/annotation/platform contracts; real desktop/device tests need their environments, original reference requires offline VM; cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -430,9 +433,10 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "testes/resultados/0.1.11/validation-review.json"
       ],
-      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
+      "next_action": "Own OCR rasterized-copy subset passed363/363 in source/payload/sandbox. Continue multipage image import and remaining form/annotation/platform contracts; real desktop/device tests need their environments, original reference requires offline VM; cloud APIs deferred.",
       "token_exhaustion_confirmed": null
     },
     {

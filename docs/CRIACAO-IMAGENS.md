@@ -1,5 +1,10 @@
 # Criação de PDF a partir de imagens
 
+Na 0.1.11, o [OCR local](OCR-LOCAL.md) é uma operação separada: crie o PDF de
+imagens, abra-o e use **Arquivo → Criar cópia pesquisável com OCR…**. A criação
+de imagens descrita abaixo continua sem reconhecimento de texto. Os registros
+0.1.7/0.1.10 preservam os limites de cada marco.
+
 Atualização **0.1.10/devel**: aceita **BMP, WebP e TIFF de um
 quadro**, além de PNG/JPEG, reconhecidos pelo conteúdo. Limites, RGB/EXIF,
 transparência sobre branco, ordem e publicação exclusiva permanecem. WebP animado,

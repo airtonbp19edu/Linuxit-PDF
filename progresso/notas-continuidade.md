@@ -1934,3 +1934,32 @@ não aprovado em analysis-local/no-vm-release-artifact-12137114910/. ZIP SHA256
 igual ao digest GitHub. Próximo:publicar correção e repetir suíte integral nos
 três ambientes antes de importar pacote. Roteiro43,93%,38done/20abertos,
 paridade0/25 e entrega0.1.10 preservados. Nenhuma VM/original executados.
+
+
+## 2026/10/18 às 10:42 (America/Sao_Paulo, UTC-03:00) — OCR0.1.11 validado em fonte/payload/sandbox
+
+CI39131964575, fonte `4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3`:363/363 em cada ambiente, sem falhas,
+erros ou skips. Os333 IDs anteriores preservados. Novos20 controles portáveis,
+cinco Linux com Tesseract/Poppler reais e cinco GTK. Português, inglês e ambos,
+150/300DPI, texto pesquisável, página vazia, CropBox/rotação/aparência e cancelamento
+de descendente Tesseract exercitados. Capturas OCR/principal examinadas. Nenhuma
+equivalência Foxit; nenhum original executado. Fonte desenvolvida sem VM.
+
+Bundle LinuxitPDF-0.1.11-x86_64.flatpak, 44671928 bytes,
+SHA256 30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02. Artefato 12137769078, ZIP SHA256 717acab4a1237f4ebf139e711ec99920468602f6561f35af237886d5b0bbf865,
+igual ao digest GitHub. Onze relatórios selados,105 arquivos app e runtime
+2849 arquivos/224ELF/162 avisos de pacotes conferidos.
+Modelos por/eng e executável Tesseract com proveniência Debian e licenças incluídos.
+Smoke5/5 e launcher3/3; controles fora HOME negado/concedido passaram novamente.
+Evidências testes/resultados/0.1.11/, raw analysis-local/no-vm-release-artifact-12137769078/.
+Ferramentas: Git/API GitHub, Python próprio, Debian13/Xvfb/Flatpak no CI. Relatórios
+CI copiados byte a byte; versões anteriores e análise estática preservadas.
+
+Arquitetura43/57, catálogo323,23subconjuntos/duas propostas. Roteiro43,93%,38done/
+20abertos e paridade0/25 intactos. Sem novos critérios fechados ou pesos alterados.
+Rasterização remove estrutura interativa/assinaturas e OCR pode errar; contrato
+em docs/OCR-LOCAL.md. Próximo:commit/push deste pacote e auditoria independente
+do mesmo bundle instalado, depois TIFF multipágina e demais contratos locais.
+Desktop/portal/cliente/AT-SPI/impressora e original em VM offline seguem pendentes.
+APIs de nuvem adiadas/IA excluída; sem evidência de esgotamento de tokens.
+Publicação deste pacote ainda requer confirmação após o commit preparado.

@@ -1,9 +1,10 @@
 # OCR local para uma cópia pesquisável
 
-Fonte **0.1.11 em desenvolvimento**. O pacote publicado continua 0.1.10 até
-a geração e validação de uma nova entrega. Nesta preparação, 20 testes dos
-controles próprios passaram; reconhecimento real, GTK/Linux e novo Flatpak
-ainda precisam da execução do CI. Nenhum resultado é comparação com o Foxit.
+Fonte e Flatpak **0.1.11/devel** validados em Linux: 363/363 testes próprios
+por ambiente fonte/payload/sandbox instalado, sem falhas/erros/skips. Vinte
+controles de orquestração, cinco testes Linux de OCR real e cinco GTK novos.
+Publicação e auditoria independente estão nas notas mais recentes. Nenhum
+resultado é comparação com o Foxit.
 
 Em **Arquivo → Criar cópia pesquisável com OCR…**, escolha português, inglês
 ou ambos, resolução de 150 ou 300 DPI e um nome `.pdf` novo. Todas as páginas
@@ -55,7 +56,18 @@ contrato de orquestração; não medem acurácia de OCR. Cinco testes Linux usam
 imagens próprias com letras renderizadas, Tesseract/Poppler reais, idiomas,
 extração de texto, página vazia, geometria e cancelamento de subprocessos.
 Cinco testes GTK exercitam criação, abertura/renderização, conflitos, mudanças
-externas, cancelamento e fechamento do documento. A evidência atual e eventuais
-falhas corrigidas serão acrescentadas após execução; não contar planos como testes.
+externas, cancelamento e fechamento do documento. Os 30 métodos passaram nos três ambientes. As 50 aceitações de família
+continuam planos completos sem execução diferencial; não equivalem a esses testes.
 
 Pesos e critérios do roteiro preservados: 43,93%, 38 done/20 abertos, paridade 0/25.
+
+## Entrega validada — 2026-10-18T10:42:03-03:00
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39131964575), fonte `4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3`: 363/363 em cada ambiente.
+Os 333 IDs anteriores preservados; 105 arquivos app iguais entre fonte/payload.
+Runtime: 2849 arquivos, 224 ELF e 162 avisos de pacotes;
+inclui executável Tesseract e modelos por/eng com hashes e proveniência.
+[Revisão](../testes/resultados/0.1.11/validation-review.json), [manifesto](../releases/manifest-0.1.11.json).
+Captura da janela OCR e captura principal examinadas; demais hashes de capturas
+conferidos pelo importador. Bundle: 44671928 bytes,
+SHA-256 `30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02`. Desenvolvimento devel, sem assinatura digital.

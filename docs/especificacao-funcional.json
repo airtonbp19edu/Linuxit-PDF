@@ -3214,9 +3214,9 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Source0.1.11 rasterized searchable PDF OCR subset; current published package0.1.10; full family incomplete; see docs/OCR-LOCAL.md",
+      "matrix_implementation": "Source/package0.1.11 own rasterized searchable PDF OCR subset; see docs/OCR-LOCAL.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.11: conversão de imagens anterior e OCR local por Tesseract/Poppler para nova cópia rasterizada pesquisável em português/inglês. Todas as páginas, até20, 150/300DPI, sem criptografia, limites e perdas estruturais explícitos. Reconhecimento Linux/GTK e novo pacote aguardam CI. TIFF multipágina/animações e família completa permanecem pendentes.",
+      "scope": "Fonte0.1.11: conversão de imagens anterior e OCR local por Tesseract/Poppler para nova cópia rasterizada pesquisável em português/inglês. Todas as páginas, até20, 150/300DPI, sem criptografia, limites e perdas estruturais explícitos. Fonte, payload e sandbox363/363 aprovados, incluindo reconhecimento real/GTK e geometria/cancelamento próprios; sem paridade Foxit. TIFF multipágina/animações e família completa permanecem pendentes.",
       "inputs": [
         "Lista explícita ordenada de1–100 PNG/JPEG/BMP/WebP/TIFF de um quadro; DPI inteiro72–600; caminho.pdf novo.",
         "OCR: PDF local não criptografado de1–20 páginas, SHA256 da fonte, idioma por/eng/por+eng,150/300DPI e destino.pdf novo."
@@ -3266,7 +3266,8 @@
         "app/pdf_ocr.py",
         "app/ocr_window.py",
         "docs/OCR-LOCAL.md",
-        "testes/resultados/ocr-portable-2026-10-18-round1.json"
+        "testes/resultados/ocr-portable-2026-10-18-round1.json",
+        "testes/resultados/0.1.11/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3509,5 +3510,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T10:18:57-03:00"
+  "updated_at_local": "2026-10-18T10:42:03-03:00"
 }

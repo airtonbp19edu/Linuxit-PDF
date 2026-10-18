@@ -430,7 +430,7 @@
             "testes/resultados/revisao-etapas-2026-10-17/review.json",
             "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Own0.1.10 draft history/forms/bookmarks/annotations and image formats validated333/333 in source/payload/installed sandbox. Full families/reference remain partial; status/weights unchanged."
+          "note": "Own0.1.11 OCR rasterized-copy subset validated363/363 source/payload/installed sandbox; full local families/reference and desktop obligations remain partial. Status/weights unchanged."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
@@ -441,7 +441,7 @@
             "docs/especificacao-funcional.json",
             "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Own0.1.10 draft history/forms/bookmarks/annotations and image formats validated333/333 in source/payload/installed sandbox. Full families/reference remain partial; status/weights unchanged."
+          "note": "Own0.1.11 OCR rasterized-copy subset validated363/363 source/payload/installed sandbox; full local families/reference and desktop obligations remain partial. Status/weights unchanged."
         }
       ],
       "verified_fraction": 0.125,
@@ -580,7 +580,7 @@
             "testes/resultados/0.1.4/validation-review.json",
             "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Own0.1.10 draft history/forms/bookmarks/annotations and image formats validated333/333 in source/payload/installed sandbox. Full families/reference remain partial; status/weights unchanged."
+          "note": "Own0.1.11 OCR rasterized-copy subset validated363/363 source/payload/installed sandbox; full local families/reference and desktop obligations remain partial. Status/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -650,7 +650,7 @@
             "testes/resultados/0.1.4/validation-review.json",
             "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Own0.1.10 draft history/forms/bookmarks/annotations and image formats validated333/333 in source/payload/installed sandbox. Full families/reference remain partial; status/weights unchanged."
+          "note": "Own0.1.11 OCR rasterized-copy subset validated363/363 source/payload/installed sandbox; full local families/reference and desktop obligations remain partial. Status/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -747,14 +747,14 @@
       "verified_fraction": 1.0,
       "earned_percent": 2.0,
       "current_source_revalidation": {
-        "version": "0.1.10",
-        "date_local": "2026-10-18T02:08:36-03:00",
+        "version": "0.1.11",
+        "date_local": "2026-10-18T10:42:03-03:00",
         "status": "linux_source_full_suite_passed",
-        "source_commit": "df8cc464fdcff693f1b65881c4929bea2478c2a0",
+        "source_commit": "4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3",
         "evidence": [
-          "testes/resultados/0.1.10/source-intermediate.json"
+          "testes/resultados/0.1.11/source-intermediate.json"
         ],
-        "full_tests_passed": 333,
+        "full_tests_passed": 363,
         "gtk_smoke_checks_passed": 5,
         "original_executed": false
       },
@@ -875,6 +875,18 @@
           "next_action": "Published 0.1.9 installed audit passed (7 auditor controls and 5 fresh smoke checks). Next: real desktop portal, persistent folder access and actual external sync client; no Foxit VM needed for these tests.",
           "source_commit_tested": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
           "full_source_tests_passed": 290
+        },
+        {
+          "version": "0.1.10",
+          "date_local": "2026-10-18T02:08:36-03:00",
+          "status": "linux_source_full_suite_passed",
+          "source_commit": "df8cc464fdcff693f1b65881c4929bea2478c2a0",
+          "evidence": [
+            "testes/resultados/0.1.10/source-intermediate.json"
+          ],
+          "full_tests_passed": 333,
+          "gtk_smoke_checks_passed": 5,
+          "original_executed": false
         }
       ]
     },
@@ -1056,7 +1068,9 @@
             "testes/resultados/0.1.4/sandbox-tests.json",
             "testes/resultados/0.1.4/validation-review.json",
             "releases/manifest-0.1.10.json",
-            "testes/resultados/0.1.10/validation-review.json"
+            "testes/resultados/0.1.10/validation-review.json",
+            "releases/manifest-0.1.11.json",
+            "testes/resultados/0.1.11/validation-review.json"
           ]
         },
         {
@@ -1077,7 +1091,9 @@
             "testes/resultados/0.1.4/sandbox-tests.json",
             "testes/resultados/0.1.4/validation-review.json",
             "releases/manifest-0.1.10.json",
-            "testes/resultados/0.1.10/validation-review.json"
+            "testes/resultados/0.1.10/validation-review.json",
+            "releases/manifest-0.1.11.json",
+            "testes/resultados/0.1.11/validation-review.json"
           ]
         },
         {
@@ -1099,28 +1115,27 @@
             "testes/resultados/0.1.4/sandbox-tests.json",
             "testes/resultados/0.1.4/validation-review.json",
             "releases/manifest-0.1.10.json",
-            "testes/resultados/0.1.10/validation-review.json"
+            "testes/resultados/0.1.10/validation-review.json",
+            "releases/manifest-0.1.11.json",
+            "testes/resultados/0.1.11/validation-review.json"
           ]
         }
       ],
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.10",
-        "date_local": "2026-10-18T02:08:36-03:00",
-        "status": "published_confirmed_at_recorded_commit",
-        "source_commit": "df8cc464fdcff693f1b65881c4929bea2478c2a0",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098896161",
-        "source_payload_sandbox_tests_passed_each": 333,
-        "artifact_sha256": "a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56",
+        "version": "0.1.11",
+        "date_local": "2026-10-18T10:42:03-03:00",
+        "status": "validated_prepared_for_publication",
+        "source_commit": "4c5fc65cfafea876c9e7559fe4c6cff169fe3ca3",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39131964575",
+        "source_payload_sandbox_tests_passed_each": 363,
+        "artifact_sha256": "30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02",
         "evidence": [
-          "docs/EDICAO-COM-HISTORICO.md",
-          "releases/manifest-0.1.10.json",
-          "testes/resultados/0.1.10/validation-review.json"
-        ],
-        "confirmed_delivery_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
-        "publication_confirmed_at_local": "2026-10-18T02:15:50-03:00",
-        "stable_release": false
+          "docs/OCR-LOCAL.md",
+          "releases/manifest-0.1.11.json",
+          "testes/resultados/0.1.11/validation-review.json"
+        ]
       },
       "delivery_history": [
         {
@@ -1232,6 +1247,23 @@
           "original_observations": 0,
           "confirmed_delivery_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
           "publication_confirmed_at_local": "2026-10-17T21:12:00-03:00"
+        },
+        {
+          "version": "0.1.10",
+          "date_local": "2026-10-18T02:08:36-03:00",
+          "status": "published_confirmed_at_recorded_commit",
+          "source_commit": "df8cc464fdcff693f1b65881c4929bea2478c2a0",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098896161",
+          "source_payload_sandbox_tests_passed_each": 333,
+          "artifact_sha256": "a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56",
+          "evidence": [
+            "docs/EDICAO-COM-HISTORICO.md",
+            "releases/manifest-0.1.10.json",
+            "testes/resultados/0.1.10/validation-review.json"
+          ],
+          "confirmed_delivery_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+          "publication_confirmed_at_local": "2026-10-18T02:15:50-03:00",
+          "stable_release": false
         }
       ]
     },
@@ -1557,22 +1589,24 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-18T10:18:57-03:00",
+    "date_local": "2026-10-18T10:42:03-03:00",
     "report": "docs/OCR-LOCAL.md",
+    "source_and_package_version": "0.1.11",
     "source_version": "0.1.11",
-    "published_package_version": "0.1.10",
+    "published_package_version": "0.1.11",
     "new_static_entries_examined": 0,
     "catalog_entries": 323,
+    "complete_tests_per_environment": 363,
+    "full_test_suite_rerun": true,
     "new_portable_methods": 20,
     "new_linux_ocr_methods": 5,
     "new_gtk_methods": 5,
-    "full_test_suite_rerun": false,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "criterion_definitions_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "source_prepared_for_commit; Linux validation pending",
+    "publication_state": "validated_prepared_for_commit_push_confirmation",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
     "independent_installed_audit_passed": false
@@ -1768,6 +1802,27 @@
       "confirmed_delivery_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
       "publication_confirmed_at_local": "2026-10-18T02:15:50-03:00",
       "audit_review": "testes/resultados/0.1.10/audit/review.json"
+    },
+    {
+      "date_local": "2026-10-18T10:18:57-03:00",
+      "report": "docs/OCR-LOCAL.md",
+      "source_version": "0.1.11",
+      "published_package_version": "0.1.10",
+      "new_static_entries_examined": 0,
+      "catalog_entries": 323,
+      "new_portable_methods": 20,
+      "new_linux_ocr_methods": 5,
+      "new_gtk_methods": 5,
+      "full_test_suite_rerun": false,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "criterion_definitions_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "source_prepared_for_commit; Linux validation pending",
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "independent_installed_audit_passed": false
     }
   ],
   "latest_resume": {
