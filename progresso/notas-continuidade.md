@@ -2391,3 +2391,18 @@ D11 exato; tornar cancelamento observável; investigar D20; medir imposição no
 parâmetros exatos; converter a divergência de autor em contrato/regressão e
 corrigir/testar a busca própria em marco posterior. Desktop Linux/portais,
 AT-SPI, cliente de sincronização e impressão física seguem pendentes separados.
+
+
+## 2026/10/18 às 18:47 (America/Sao_Paulo, UTC-03:00) — publicação da campanha da VM confirmada
+
+Commit d80aafcb4c4eb2f08def8890639ec03aee997963 publicado em main no GitHub.
+scripts/verify_git_sync.py conferiu o HEAD por ls-remote:local/remoto iguais,
+árvore limpa e sincronização confirmada. Recibo LinuxitPDF-vm-campaign-*.json
+salvo no TEMP, fora da árvore, evitando autorreferência. Este registro atualiza
+current_dynamic_execution para confirmed_at_recorded_commit; o commit de
+confirmação será conferido novamente com recibo final externo.
+
+Marcos/evidências, fonte0.1.13, métricas, paridade0/25 e pendências preservados.
+VM segue offline, coletor encerrado, processo residual D20 documentado.
+Próximo passo: D07/D10/D11 exatos, cancelamento ativo, saída de imposição e
+investigação D20; divergência de autor já medida aguarda correção própria.

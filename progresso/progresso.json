@@ -2266,6 +2266,8 @@
     "different_metrics": 1,
     "full_acceptance_cases_completed": 0,
     "whole_family_equivalence_verified": false,
-    "publication_state": "pending"
+    "publication_state": "confirmed_at_recorded_commit",
+    "confirmed_commit": "d80aafcb4c4eb2f08def8890639ec03aee997963",
+    "publication_confirmed_at_local": "2026-10-18T18:47:19-03:00"
   }
 }
