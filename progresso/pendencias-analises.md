@@ -19,11 +19,11 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
 |03|50%|RTTI de CPDF_BackgroundDrawer e ligações de busca/reflow refinadas; contexto0x138 e fronteiras restantes abertas.|
 |05|42,9%|Limpeza separa chamadas virtuais, recursos condicionais e contadores com/sem LOCK; ownership e contextos completos abertos.|
-|07|33,3%|275 entradas (152 REA+123 diretas); 16 novas em três lotes. Inventário global e tipos completos desconhecidos.|
-|08|13,0%|Busca+0x14 ligada a enum de textos do provedor; offsets3/5/6/7/0xc/0x10 ainda abertos. Geometria/tipos/algoritmos completos pendentes.|
+|07|33,3%|323 entradas (152 REA+171 diretas); 48 novas em oito lotes. Inventário global e tipos completos desconhecidos.|
+|08|13,0%|Busca+0x14 ligada a enum e+5 a stemming efetivo; offsets3/6/7/0xc/0x10 ainda parciais. Geometria/tipos/algoritmos completos pendentes.|
 |09|9,1%|Novo fluxo rastreável de texto/enum/argumento de busca e contratos geométricos; algoritmos e ownership universais pendentes.|
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
-|11|25%|CReflowViewerEx esclarece fábricaUI; IDs7911/7913 e demais contextos não resolvidos. UI01–UI10 exigem original.|
+|11|25%|CFindToolDlgAdv e tabela7911/7913 ligados; handler comum e DDX distintos mantêm ambiguidade. UI01–UI10 exigem original.|
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
 |15|33,3%|Segurança/texto acessível/CMS/edição em cópia na0.1.8,267/267 por ambiente; demais operações e duas propostas abertas.|
 |16|33,3%|16 novos métodos GTK passaram; texto ATK/foco/cancelamento e UI de segurança/CMS/cópia. Desktop/portais/AT-SPI/impressora abertos.|
@@ -102,3 +102,13 @@ Próximos alvos: helpers 15cb590/15cb720/15cbb70/15cb8a0/15cb130, métricas
 this+98/slot+20, pré-condições e escritores de arrays; provedor de busca+58,
 seis offsets e contexto IDs7911/7913; contexto0x138, 1b57340/1b5a420 e
 consumidores BackgroundDrawer. Original, desktop e impressão não executados.
+
+
+## Continuação da fila estática — 18/10/2026
+
+[Relatório](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md):48 novas entradas em oito lotes;6.830 instruções/25.919 bytes selecionados conferidos.
+Catálogo323=152REA+171diretas. Tipos viewer/página/diálogo, stemming efetivo,
+interface de índice, escritores de estado/arrays e ciclo de vida refinados.
+Algoritmos grandes, limites/ownership e comportamento original permanecem parciais.
+A fila da nota anterior foi examinada; os novos recortes estão no relatório.
+Roteiro43,33%,21 critérios em14 etapas e paridade0/25 preservados.

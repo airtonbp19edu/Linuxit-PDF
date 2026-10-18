@@ -1,0 +1,110 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x15cb130.json",
+      "result_sha256": "586399a4d6a27a834159ff54e827773fab10768aa31a04473b16e45ced3ba03e",
+      "entry_va": "0x15cb130",
+      "analyst_name": "analyst_entry_15cb130",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 76,
+      "body_ranges": "[[015cb130, 015cb17b]]",
+      "pseudocode_sha256": "d8f1de5847c96944bdd817493a581a7254fc28152bff95988c5dfe1154b89365",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x15cb590.json",
+      "result_sha256": "0e793f6ff7999edfcfe6fbc52f30c17426424880162aacf948a088a181168061",
+      "entry_va": "0x15cb590",
+      "analyst_name": "analyst_entry_15cb590",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 31,
+      "body_ranges": "[[015cb590, 015cb5ae]]",
+      "pseudocode_sha256": "b15ae8f84c6ae61fbed40d4c01acbddf70d39398640603e18574e128e9f9c8a9",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x15cb720.json",
+      "result_sha256": "6cd8712c7fc51ec774969eaff0225c1581c5839d9c686686d7656ac7ae7dc0e0",
+      "entry_va": "0x15cb720",
+      "analyst_name": "analyst_entry_15cb720",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 128,
+      "body_ranges": "[[015cb720, 015cb79f]]",
+      "pseudocode_sha256": "7c2625097eb5d1c4722b9f76121453fffb3ba3fb41a6ab72658aade19b8a5ee0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x15cb8a0.json",
+      "result_sha256": "f29c9a947f8aede39e7c02357b51e77f62623f5929ba1937189e5387ff39f134",
+      "entry_va": "0x15cb8a0",
+      "analyst_name": "analyst_entry_15cb8a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 26,
+      "body_ranges": "[[015cb8a0, 015cb8b9]]",
+      "pseudocode_sha256": "ff849cb4eee7397b9774005c5ac994094e48b615b49f4bf9518fed4aa28fd6c0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x15cbb70.json",
+      "result_sha256": "9614536de86d9cbf1e0f5309702e3f77301e5b4ed797031044a55a2fc018bfd6",
+      "entry_va": "0x15cbb70",
+      "analyst_name": "analyst_entry_15cbb70",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 18,
+      "body_ranges": "[[015cbb70, 015cbb81]]",
+      "pseudocode_sha256": "2f83104ad6c7ae79b05c9c11e221cce9d9113ee90015780ee8bf7072fa01606b",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x1b57340.json",
+      "result_sha256": "d006efeb9cc1c30c0260fde698b972d12ef75abc7c05ca1ab7fa8ff28646ac67",
+      "entry_va": "0x1b57340",
+      "analyst_name": "analyst_entry_1b57340",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 78,
+      "body_ranges": "[[01b57340, 01b5738d]]",
+      "pseudocode_sha256": "ec2e9ba0f82455166633ab0ad238399606ea22f721a322821963ecf4eeeab722",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x1b5a420.json",
+      "result_sha256": "72c0b0aa886bf6a9a9aa03edf3fc76a0e6cc8d0c89cc4a813cbd28cfc722e7cc",
+      "entry_va": "0x1b5a420",
+      "analyst_name": "analyst_entry_1b5a420",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 4,
+      "body_ranges": "[[01b5a420, 01b5a423]]",
+      "pseudocode_sha256": "9cf2ab48e0e1d3eab40a2c2ed06b8bc5bfe00cd297a3a01d84b20f08760fecf4",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-remaining-core-2026-10-18/functions/0x1b88520.json",
+      "result_sha256": "532f0ea7ecce57d845de1c586bf78e17b4a68ae4cef78844df2f36883c17cd34",
+      "entry_va": "0x1b88520",
+      "analyst_name": "analyst_entry_1b88520",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 99,
+      "body_ranges": "[[01b88520, 01b88582]]",
+      "pseudocode_sha256": "cf56ea7ee5938e2664a7689cd7c37128364f4ef56c2dd0716f3808d1de628f12",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 8,
+  "distinct_entries": 8,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

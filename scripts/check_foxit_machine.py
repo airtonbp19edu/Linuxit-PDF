@@ -14,10 +14,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
+    subjects = json.loads((ROOT / 'docs/windows-evidence/foxit-rea/analysis-manifest.json').read_text(encoding='utf-8'))['targets']
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('target', type=Path)
     parser.add_argument('round', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--subject-sha256', choices=sorted(subjects), default=SOURCE)
     args = parser.parse_args()
     if args.output.exists():
         parser.error('Use a new output path to preserve evidence')
@@ -26,12 +28,14 @@ def main():
         parser.error('Raw rounds must remain inside ignored analysis-local/')
     with args.target.open('rb') as stream:
         identity = hashlib.file_digest(stream, 'sha256').hexdigest()
-    if identity != SOURCE:
+    if identity != args.subject_sha256:
         parser.error('Original differs from the pinned reference')
     metadata = json.loads((folder / 'source.json').read_text(encoding='utf-8'))
-    if metadata['source_sha256'] != SOURCE:
+    if metadata['source_sha256'] != args.subject_sha256:
         parser.error('Round source identity differs')
     pe = pefile.PE(str(args.target), fast_load=True)
+    if pe.FILE_HEADER.Machine != 0x14c:
+        parser.error('This checker requires a pinned x86 PE subject')
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     entries = []
     for path in sorted((folder / 'functions').glob('0x*.json')):
@@ -59,6 +63,7 @@ def main():
     if not entries:
         raise ValueError('No completed entries to examine')
     report = {'schema': 'linuxit-machine-cross-check-v1', 'target_sha256': identity,
+              'subject_name': subjects[identity]['name'],
               'capstone_version': capstone.__version__, 'pefile_version': pefile.__version__,
               'round': folder.relative_to(ROOT).as_posix(), 'entries': entries,
               'original_executed': False, 'semantic_equivalence_proved': False,

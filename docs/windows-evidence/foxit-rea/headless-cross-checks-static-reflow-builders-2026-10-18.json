@@ -1,0 +1,50 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/static-reflow-builders-2026-10-18/functions/0x15ca680.json",
+      "result_sha256": "a1436fe5197964f89a455f825be0c1989b7b9c64e7e148f5acd7189a22c2e764",
+      "entry_va": "0x15ca680",
+      "analyst_name": "analyst_entry_15ca680",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 241,
+      "body_ranges": "[[015ca680, 015ca770]]",
+      "pseudocode_sha256": "f869498b0e640c59de512bccd8d6de2c98bdba6db297ea8b69509e74370508e2",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-builders-2026-10-18/functions/0x15ca780.json",
+      "result_sha256": "23adf67fe53c357b4363a808ac706ae98ae51188311163df69390c86ac872470",
+      "entry_va": "0x15ca780",
+      "analyst_name": "analyst_entry_15ca780",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 2469,
+      "body_ranges": "[[015ca780, 015cb124]]",
+      "pseudocode_sha256": "5d2e474503d31f78be3cfe46b4422df09b669939c2b65817825d90ef15369fb0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-builders-2026-10-18/functions/0x15cbbc0.json",
+      "result_sha256": "74c2cca7e7c30ba375cb72800e4bf5446aab111515a2f1d3ca6b2894cc25d58b",
+      "entry_va": "0x15cbbc0",
+      "analyst_name": "analyst_entry_15cbbc0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 68,
+      "body_ranges": "[[015cbbc0, 015cbc03]]",
+      "pseudocode_sha256": "e86b7698d4fde9b5b74393f9eb1f324f27cb9ba4cc3ab04fa96c39b31f876754",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

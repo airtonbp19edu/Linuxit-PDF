@@ -1,0 +1,233 @@
+{
+  "schema": "linuxit-static-analysis-review-v1",
+  "reviewed_at_local": "2026-10-18T01:11:07-03:00",
+  "timezone": "America/Sao_Paulo",
+  "baseline_local_remote_head_confirmed": "1ccd574e85b1fd9919b23a203f126a9980670723",
+  "profile": "Direct Ghidra -noanalysis, REA seed script; not REA MCP Evidence",
+  "tools": {
+    "ghidra": "12.1.4",
+    "jdk": "Temurin21.0.12.1",
+    "rea_package": "6.5.0",
+    "rea_seed_script_executed": true,
+    "rea_mcp_tool_available": false,
+    "capstone": "5.0.6",
+    "pefile": "2024.8.26",
+    "python": "3.13.15"
+  },
+  "rounds": [
+    {
+      "round": "static-remaining-core-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "bacc82edd0e80ac8142bd116c055a296463d3b3a15a7a3722dafc3a0dbdc984f",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 8,
+      "instructions": 140,
+      "selected_body_bytes": 460,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-remaining-context-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "cc8ec5286b9c5ba800e6153fcc91b7685198f9d9070863135151398ced1db7a1",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 11,
+      "instructions": 1697,
+      "selected_body_bytes": 5243,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-index-options-2026-10-18",
+      "subject": "fxLuceneLib.dll",
+      "source_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+      "original_seed_file_sha256": "7ec602d48bcdb94a10aadf65d844b2922f3733d798a450bf7a6e10ce01fac36f",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 5,
+      "instructions": 2454,
+      "selected_body_bytes": 9355,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-reflow-preconditions-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "31563e0e87caae749f62df4dfe759e47b01b1314c1599ea8c44237a356d14b86",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 9,
+      "instructions": 392,
+      "selected_body_bytes": 1417,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-ui-contexts-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "1d55ec0471092a702f3fa70dbab6c383088a84948406b34927f5fa9185592ccd",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 5,
+      "instructions": 1289,
+      "selected_body_bytes": 6052,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-reflow-writers-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "32fe62ceda31d8c6e47de668f0cf067901828c533167a14cc47acb31ad1a85bb",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 5,
+      "instructions": 179,
+      "selected_body_bytes": 585,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-reflow-builders-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "32c309dcf8007e22f75f968253407e349eb1c1c5a750d85e243edae973ee127d",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 3,
+      "instructions": 669,
+      "selected_body_bytes": 2778,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-dispatch-links-2026-10-18",
+      "subject": "FoxitPDFReader.exe",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "original_seed_file_sha256": "ee353a8418917d25ef11aad6044e9c04abe3869ae896a143c36086d08dac77e8",
+      "published_seed_newlines": "LF; addresses/kinds/names preserved",
+      "examined_entries": 2,
+      "instructions": 10,
+      "selected_body_bytes": 29,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    }
+  ],
+  "new_distinct_entries_examined": 48,
+  "selected_instructions": 6830,
+  "selected_body_bytes": 25919,
+  "previous_catalog_entries": 275,
+  "current_catalog_entries": 323,
+  "catalog_breakdown_recomputed": {
+    "rea": 152,
+    "exclusive_direct": 171,
+    "union": 323
+  },
+  "previous275_catalog_rows_unchanged": true,
+  "new_mcp_observations": 0,
+  "all_new_results_examined_in_bounded_scope": true,
+  "semantic_review_partial_entries": [
+    "0x1758c70",
+    "0x1003f6b0",
+    "0x15ca780"
+  ],
+  "boundary_caveat": {
+    "entry": "0x15ca460",
+    "selected_body_bytes": 37,
+    "supplemental_range": [
+      "0x15ca460",
+      "0x15ca4e1"
+    ],
+    "supplemental_bytes": 130,
+    "added_to_totals": false,
+    "full_function_boundary_repaired": false
+  },
+  "checkpoints_per_lot_saved": true,
+  "original_executed": false,
+  "original_hashes_unchanged": true,
+  "application_source_changed": false,
+  "analysis_tools_changed": true,
+  "bundle_rebuilt": false,
+  "bundle_preserved_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "full_test_suite_rerun": false,
+  "historical_complete_tests_per_environment": 290,
+  "tool_controls_passed": 11,
+  "roadmap_percent": 43.33,
+  "verified_parity": 0,
+  "criteria_or_weights_changed": false,
+  "confirmed_token_exhaustion": null,
+  "failures": [
+    {
+      "operation": "Local note helper timestamp",
+      "error": "ZoneInfoNotFoundError: no tzdata",
+      "resolution": "Explicit UTC-03 timezone; no installation"
+    },
+    {
+      "operation": "One-off Python -c helper import",
+      "error": "ModuleNotFoundError: inspect_remaining_joins",
+      "resolution": "Run helper file from analysis-local; no dependency changed"
+    },
+    {
+      "operation": "Checkpoint aggregation of earlier machine reports",
+      "error": "KeyError: optional subject_name absent in first two reports",
+      "resolution": "Resolve name from pinned inventory hash, preserving earlier reports unchanged."
+    }
+  ],
+  "limits": [
+    "Complete types, array sizes/all callers, algorithms, ownership and concurrency remain partial.",
+    "Active dialog provider assignment and five SearchOption fields remain incomplete.",
+    "Class/table of IDs7911/7913 resolved; shared-handler/DDX behavior remains ambiguous without runtime.",
+    "Context0x138 class/contract remains open.",
+    "No original runtime, differential comparison, desktop portal, AT-SPI or physical printer exercised."
+  ],
+  "evidence_files": {
+    "testes/resultados/static-remaining-core-2026-10-18/machine-checks.json": "284889249066f678dfee717e0846f13de9ba3d3cb1992aa18524139356ad8739",
+    "docs/windows-evidence/foxit-rea/static-remaining-core-2026-10-18-seeds.tsv": "bacc82edd0e80ac8142bd116c055a296463d3b3a15a7a3722dafc3a0dbdc984f",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-remaining-core-2026-10-18.json": "a90370f476171fa39399b4b155b66a5d72f9040ce21c63f69e4883fb74ae1666",
+    "testes/resultados/static-remaining-context-2026-10-18/machine-checks.json": "5fbbe235af52eb0ef9c0a86886626392f1d98c4e673f7c3e6290408a06a1a415",
+    "docs/windows-evidence/foxit-rea/static-remaining-context-2026-10-18-seeds.tsv": "cc8ec5286b9c5ba800e6153fcc91b7685198f9d9070863135151398ced1db7a1",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-remaining-context-2026-10-18.json": "36331783d86558e954b4472ae2982341603b0b2e8d012aab5209ea35205b6cf3",
+    "testes/resultados/static-index-options-2026-10-18/machine-checks.json": "351e29bd9a7fd8118fe8ff5751e366557687c7218cc85808b32d8b94ae907605",
+    "docs/windows-evidence/foxit-rea/static-index-options-2026-10-18-seeds.tsv": "7ec602d48bcdb94a10aadf65d844b2922f3733d798a450bf7a6e10ce01fac36f",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-index-options-2026-10-18.json": "eef79c900b3480f74246d6f98f582a11f799cb93d236a8aa6e0d8a804267b8df",
+    "testes/resultados/static-reflow-preconditions-2026-10-18/machine-checks.json": "6a020b83671fb445b42439f0bebf529bb8f5f51ffc9919beb24d344aa47f7c3d",
+    "docs/windows-evidence/foxit-rea/static-reflow-preconditions-2026-10-18-seeds.tsv": "31563e0e87caae749f62df4dfe759e47b01b1314c1599ea8c44237a356d14b86",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-preconditions-2026-10-18.json": "4b9202918f9803db1e2a09f0da81260863cb3f63d57990f123f673461cf75a8f",
+    "testes/resultados/static-ui-contexts-2026-10-18/machine-checks.json": "f0c89c6a46ca112dc6943bbcc2c96f6b2f8b289975e0f1968e675269d82fe3bf",
+    "docs/windows-evidence/foxit-rea/static-ui-contexts-2026-10-18-seeds.tsv": "1d55ec0471092a702f3fa70dbab6c383088a84948406b34927f5fa9185592ccd",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-ui-contexts-2026-10-18.json": "21bf9f7dce471aa4b2473fc145fbca1074a5830b240f4b7c9b0cd74438092db0",
+    "testes/resultados/static-reflow-writers-2026-10-18/machine-checks.json": "eaa617c91c9042baa2315a410a5b4ce202cb18f12419e4458de785a57c3d9016",
+    "docs/windows-evidence/foxit-rea/static-reflow-writers-2026-10-18-seeds.tsv": "32fe62ceda31d8c6e47de668f0cf067901828c533167a14cc47acb31ad1a85bb",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-writers-2026-10-18.json": "276d38d15623207567d8c23be994e46617ff96ff8e8059585517e68dd911396e",
+    "testes/resultados/static-reflow-builders-2026-10-18/machine-checks.json": "364fe6657c99135dbbca1e2d3ac40eac305c640cea991d64c2fc46dd315462a5",
+    "docs/windows-evidence/foxit-rea/static-reflow-builders-2026-10-18-seeds.tsv": "32c309dcf8007e22f75f968253407e349eb1c1c5a750d85e243edae973ee127d",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-builders-2026-10-18.json": "68916571fe460584f839f15ad1b3b63b37174f22d2628a3d14d2aee8693ff9a8",
+    "testes/resultados/static-dispatch-links-2026-10-18/machine-checks.json": "5cf690ac84c32ded96b19615592934b5f9da3de22d6dd52971bd5a801bf590af",
+    "docs/windows-evidence/foxit-rea/static-dispatch-links-2026-10-18-seeds.tsv": "ee353a8418917d25ef11aad6044e9c04abe3869ae896a143c36086d08dac77e8",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-dispatch-links-2026-10-18.json": "a64437142348e6ecd123c8ac4e76634ecccc0a69b93af46eedfcf6d32c2d2b4a",
+    "testes/resultados/static-remaining-2026-10-18/structural-joins.json": "0ddd701ab9195fb923115b45763ab1dc876ad0663c02e4c342e1bcc7a479390f",
+    "testes/resultados/static-remaining-2026-10-18/tool-controls.json": "20ca7a3e55233656e7c1e54cc16f68f1d09ded69c0c074b8d6e49f04aa54394e",
+    "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md": "441b8e9f07397fb9830fb5f002af162a291014eace7e853b4a05b4eeb8898a6d",
+    "scripts/analyze_foxit_headless.py": "7ccfed8dfa651004be85b8c6512ab41d1286bbc4511724a66abe3246439d31ad",
+    "scripts/catalog_foxit_functions.py": "a47c0a300baae45af14aa6796a5892e70520397ea85d9bf45dff71bfc358d83e",
+    "scripts/catalog_foxit_headless.py": "61194da2430326a3bfad0bd41808429d3672fed2b13c4beec462db6ff3fe3679",
+    "scripts/check_foxit_machine.py": "d7574ddee9f5efa6a0c5671f7dd7d58457763e29a5fe4ff82ea7e6ff0f06eb4a",
+    "testes/resultados/static-remaining-2026-10-18/architecture.json": "f6e7f8e289ec3b4c94d608473a5e6e7bb68c3056ce65ca0120b436f7b2db7692",
+    "testes/resultados/static-remaining-2026-10-18/delivery-audit.json": "a99662435ba351113c8ca9f5e7a790bad1233c8f09f111b432956585d23440b7"
+  },
+  "structural_validation": {
+    "architecture_modules": 37,
+    "interfaces": 49,
+    "families": 25,
+    "unfinished_criteria": 21,
+    "unfinished_stages": 14,
+    "implemented_subsets": 23,
+    "proposals": 2,
+    "acceptance_cases_not_run": 50,
+    "functional_reference_spec_complete": false,
+    "criteria_statuses_and_weights_equal_baseline": true,
+    "source_test_references_checked": 113,
+    "code_tests_reexecuted": false,
+    "repository_delivery_audit_passed": true,
+    "new_installed_audit_executed": false
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "schema": "linuxit-static-joins-v1",
+  "original_executed": false,
+  "subjects": {
+    "FoxitPDFReader.exe": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "fxLuceneLib.dll": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1"
+  },
+  "rtti": {
+    "0x53d3310": {
+      "vtable": "0x53d3310",
+      "locator": "0x6597cc0",
+      "type_descriptor": "0x6cc0308",
+      "decorated_name": ".?AVCReflowViewerPageEx@@",
+      "col_offset": 0
+    },
+    "0x53d2c50": {
+      "vtable": "0x53d2c50",
+      "locator": "0x6597a60",
+      "type_descriptor": "0x6cac210",
+      "decorated_name": ".?AVIPDFViewerPage@@",
+      "col_offset": 0
+    },
+    "0x53e0ae4": {
+      "vtable": "0x53e0ae4",
+      "locator": "0x659b03c",
+      "type_descriptor": "0x6cc2420",
+      "decorated_name": ".?AVCFindToolDlgAdv@@",
+      "col_offset": 0
+    },
+    "0x53e0c74": {
+      "vtable": "0x53e0c74",
+      "locator": "0x659b0a0",
+      "type_descriptor": "0x6cc2420",
+      "decorated_name": ".?AVCFindToolDlgAdv@@",
+      "col_offset": 168
+    },
+    "0x5415154": {
+      "vtable": "0x5415154",
+      "locator": "0x65ab288",
+      "type_descriptor": "0x6c9c91c",
+      "decorated_name": ".?AVIPDF_BackgroundDrawer@@",
+      "col_offset": 0
+    },
+    "0x53d31f8": {
+      "vtable": "0x53d31f8",
+      "locator": "0x6597d10",
+      "type_descriptor": "0x6cc032c",
+      "decorated_name": ".?AVCReflowViewerEx@@",
+      "col_offset": 0
+    }
+  },
+  "dll_rtti": {
+    "vtable": "0x100d841c",
+    "locator": "0x100e4da0",
+    "type_descriptor": "0x100ffa78",
+    "decorated_name": ".?AVfxLuncenLib@fxindex@@",
+    "col_offset": 0
+  },
+  "half_constant": {
+    "va": "0x65735e0",
+    "double": 0.5
+  },
+  "reflow_switch": {
+    "entry": "0x15ca460",
+    "selected_ghidra_body_bytes": 37,
+    "supplemental_instruction_range": [
+      "0x15ca460",
+      "0x15ca4e1"
+    ],
+    "jump_table": "0x15ca4e4",
+    "jump_table_targets": [
+      "0x15ca479",
+      "0x15ca4cd",
+      "0x15ca48e",
+      "0x15ca4b3"
+    ],
+    "decoded_instructions": 55,
+    "decoded_bytes": 130
+  },
+  "viewer_slots": {
+    "0x1c": "0x15c6fc0",
+    "0x20": "0x15c6e30"
+  },
+  "provider_slots": {
+    "0x0": "0x100389f0",
+    "0x4": "0x100397d0",
+    "0x8": "0x10042990",
+    "0xc": "0x10038a20",
+    "0x10": "0x10039a60",
+    "0x14": "0x10041880",
+    "0x18": "0x10042530",
+    "0x1c": "0x1003b750",
+    "0x20": "0x10039690",
+    "0x24": "0x10039940",
+    "0x28": "0x10039730",
+    "0x2c": "0x1003ed50",
+    "0x30": "0x1003db40",
+    "0x34": "0x1003e3d0",
+    "0x38": "0x1003a460",
+    "0x3c": "0x1003b980",
+    "0x40": "0x100414a0",
+    "0x44": "0x1003a9e0",
+    "0x48": "0x1003b900",
+    "0x4c": "0x10041670",
+    "0x50": "0x1003b150",
+    "0x54": "0x10039c90",
+    "0x58": "0x1003af20",
+    "0x5c": "0x1003b100",
+    "0x60": "0x10039660",
+    "0x64": "0x1003b720",
+    "0x68": "0x1003b700",
+    "0x6c": "0x10039d30"
+  },
+  "ui_known_record_va": "0x53e1118",
+  "ui_nearby_records": [
+    {
+      "va": "0x53e10b8",
+      "words": [
+        "0x2",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x13",
+        "0x1789110"
+      ]
+    },
+    {
+      "va": "0x53e10d0",
+      "words": [
+        "0x201",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x36",
+        "0x178c3a0"
+      ]
+    },
+    {
+      "va": "0x53e10e8",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1ee5",
+        "0x1ee5",
+        "0x3a",
+        "0x1788e80"
+      ]
+    },
+    {
+      "va": "0x53e1100",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1ee6",
+        "0x1ee6",
+        "0x3a",
+        "0x1788c30"
+      ]
+    },
+    {
+      "va": "0x53e1118",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1ee7",
+        "0x1ee7",
+        "0x3a",
+        "0x1788db0"
+      ]
+    },
+    {
+      "va": "0x53e1130",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1ee9",
+        "0x1ee9",
+        "0x3a",
+        "0x1788db0"
+      ]
+    },
+    {
+      "va": "0x53e1148",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1eb2",
+        "0x1eb2",
+        "0x3a",
+        "0x1788dd0"
+      ]
+    },
+    {
+      "va": "0x53e1160",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1eb3",
+        "0x1eb3",
+        "0x3a",
+        "0x1788d90"
+      ]
+    },
+    {
+      "va": "0x53e1178",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1ef1",
+        "0x1ef1",
+        "0x3a",
+        "0x1788d70"
+      ]
+    },
+    {
+      "va": "0x53e1190",
+      "words": [
+        "0x111",
+        "0x0",
+        "0x1f64",
+        "0x1f64",
+        "0x3a",
+        "0x1788e10"
+      ]
+    }
+  ],
+  "search_dialog_message_map": {
+    "vtable": "0x53e0ae4",
+    "accessor": "0x1779780",
+    "map": "0x53e1550",
+    "base_accessor": "0xdd9ae0",
+    "entries": "0x53e0e78",
+    "accessor_refs": [],
+    "id_records": {
+      "7911": "0x53e1118",
+      "7913": "0x53e1130"
+    },
+    "shared_handler": "0x1788db0",
+    "remaining_ambiguity": "Class/table resolved statically; both7911/7913 route to1788db0 which updates1d58, while DDX7913 binds1d60. Runtime remains unobserved.",
+    "vtable_slot": "0x28",
+    "thunk_entry": "0x1777de0",
+    "class_binding_proved_for_inspected_vtable": true
+  },
+  "reflow_array_initialization": {
+    "loop": "0x15cbbc0",
+    "count_field": "0x78",
+    "arrays": [
+      "0x48",
+      "0x4c"
+    ],
+    "guard": "positive count and nonnull viewer+20 result for each index",
+    "writer": "0x15cb7b0",
+    "writes": "array48[index]=index; array4c[index]=0",
+    "allocation_size_and_all_callers_proven": false
+  },
+  "reflow_construction_joins": {
+    "viewer_constructor": "0x15c5010",
+    "push_viewer_this": "0x15c53c9",
+    "call_layout_constructor": "0x15c53d8",
+    "layout_constructor": "0x15c9c90",
+    "layout_viewer_field": "0x98",
+    "page_factory": "0x15c5500",
+    "page_type": "CReflowViewerPageEx",
+    "metric_fields": [
+      "0x10",
+      "0x14"
+    ]
+  },
+  "search_settings": {
+    "adapter": "0x17cb490",
+    "distinct_from_search_option": true,
+    "settings_byte6": "stemming input",
+    "derived_dialog1d74": "dialog1d6c && !whole_word && !match_case",
+    "search_option_byte5": "effective stemming; confirmed by producer1783ac0 and setters1794f80/17885a0",
+    "settings_to_dialog": {
+      "0xc": "0x20ec",
+      "0x10": "0x20e8"
+    },
+    "integer_clamp": [
+      1,
+      10000
+    ],
+    "constructor_defaults": {
+      "0x20e0": 1,
+      "0x20e4": 0,
+      "0x20e8": 500,
+      "0x20ec": 900
+    },
+    "unresolved_meanings": [
+      "SearchOption+3/+6/+7/+0xc/+0x10",
+      "exact meaning of settings numeric limits and dialog20e0/20e4 flags"
+    ]
+  },
+  "index_helper": {
+    "entry": "0x1003f6b0",
+    "semantic_review": "bounded; algorithm not fully reconstructed",
+    "option_copy_sites": [
+      "0x1003f6e5",
+      "0x1003f6ec",
+      "0x1003f6fd",
+      "0x1003f707"
+    ],
+    "effective_stemming_test": "0x1003f711",
+    "clear_whole_word_and_case": "0x1003f723",
+    "clear_proximity_byte4": "0x1003f72f",
+    "version_enum_test": "0x1003f760",
+    "sentinel_read": "0x1003fc92",
+    "provider_slot58": "0x1003af20",
+    "version_property_helper": "0x1003ac90",
+    "version_property_literals": [
+      "version",
+      "*"
+    ],
+    "factory": "0x10037e40",
+    "install_derived_vtable_site": "0x10037e79",
+    "active_dialog_provider_identity_proven": false
+  },
+  "limits": [
+    "RTTI and dispatch joins establish types of these objects in inspected construction paths; they do not prove all runtime instances.",
+    "Function boundaries remain provisional; supplemental switch range checked separately from37 selected-body bytes.",
+    "Constructor1758c70 and helper1003f6b0 have bounded semantic review; complete algorithms and all fields remain open.",
+    "No original code or assets copied to implementation."
+  ]
+}

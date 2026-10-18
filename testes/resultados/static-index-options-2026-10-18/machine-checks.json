@@ -1,0 +1,56 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "subject_name": "fxLuceneLib.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-index-options-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x1000c990",
+      "instructions": 3,
+      "body_bytes": 9,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "8bab12bac0db3b9e908ed1a57cb73a1e6d4dd9e96e2c1b4af1d6eed01bc4b2c0",
+      "pseudocode_sha256": "5ea727d5476cbf6eb8438c756776d99c1babf8706059a6011e6302b671cca919"
+    },
+    {
+      "entry": "0x100385f0",
+      "instructions": 50,
+      "body_bytes": 132,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e45167ab06c4a64b2aa48175dd0d9bd729608a81c974c81f862e0efb25fcbddf",
+      "pseudocode_sha256": "d6211f749b6ffbf7d9bf8d3cb154278e895330918531a90d3a843882df43c214"
+    },
+    {
+      "entry": "0x1003a5e0",
+      "instructions": 270,
+      "body_bytes": 962,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "36fdd72705b52e6fb20b23e1234efc592e56aca6d8d6fdcfe9756d35a8bd627d",
+      "pseudocode_sha256": "3439618ae53ae22e9f590cc55291c595acda066ca32071f51e46e4a441377634"
+    },
+    {
+      "entry": "0x1003ac90",
+      "instructions": 177,
+      "body_bytes": 597,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "f89f6eb1d255d15d1470cfabb940fb4e942724d5527d2b56dc03e431c397da1d",
+      "pseudocode_sha256": "f71f9da08781b9c404ecf7648327e27c65d3afa9378e7014f2bd5b599476c1d0"
+    },
+    {
+      "entry": "0x1003f6b0",
+      "instructions": 1954,
+      "body_bytes": 7655,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ab6392ca5df07424b64d9a00e6e6fa12b35624648864cb67aac7acc61f6919ee",
+      "pseudocode_sha256": "e35c1ac75eae6d9a3483a8511bbb91c0d49773e649256d3a96ec22ffdd6ccaf9"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

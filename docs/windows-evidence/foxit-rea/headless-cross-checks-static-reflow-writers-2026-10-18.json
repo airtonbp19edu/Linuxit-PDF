@@ -1,0 +1,74 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/static-reflow-writers-2026-10-18/functions/0x15c9e30.json",
+      "result_sha256": "dc10cf0812f967912e678013535262ad35aa857f32d026ea500acc42731fe004",
+      "entry_va": "0x15c9e30",
+      "analyst_name": "analyst_entry_15c9e30",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 185,
+      "body_ranges": "[[015c9e30, 015c9ee8]]",
+      "pseudocode_sha256": "46f48fbc529dfdf36c9ec8f0e45cc5eb33eefd250ebaed8bb67e67dc0477ff45",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-writers-2026-10-18/functions/0x15cc6b0.json",
+      "result_sha256": "a29b11d0748771d5ffb6d519d1266ca62d987f37fe23f00c9f1137f8734dfb12",
+      "entry_va": "0x15cc6b0",
+      "analyst_name": "analyst_entry_15cc6b0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 129,
+      "body_ranges": "[[015cc6b0, 015cc730]]",
+      "pseudocode_sha256": "fc463c5ef9a37c3e8cfb26a901813f3488f0306b9f2d57b19c3bb0c17019cd0b",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-writers-2026-10-18/functions/0x15cd5e0.json",
+      "result_sha256": "fd0f0d92e78d2222dc75f293f2f4685de5b84c25338cd4339e28db46455b9c45",
+      "entry_va": "0x15cd5e0",
+      "analyst_name": "analyst_entry_15cd5e0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 86,
+      "body_ranges": "[[015cd5e0, 015cd635]]",
+      "pseudocode_sha256": "ee908e2c5e43dee8dcb5fd685d1af6dd50a728bc998099cd0baff54ff64048b0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-writers-2026-10-18/functions/0x15cd640.json",
+      "result_sha256": "c9b6a106ec604a5dca05ef9cb9db73c272d3487b6afd7867421a0e1da6a636d4",
+      "entry_va": "0x15cd640",
+      "analyst_name": "analyst_entry_15cd640",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 87,
+      "body_ranges": "[[015cd640, 015cd696]]",
+      "pseudocode_sha256": "94801fda2e2924dfc190240db70f6db7b35e58561daa8d10f451f9104f80e16f",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-writers-2026-10-18/functions/0x15cda10.json",
+      "result_sha256": "12fedb87a30bc59d8f5539b097a5069919e3199ffb2d481f357baa4c1837165e",
+      "entry_va": "0x15cda10",
+      "analyst_name": "analyst_entry_15cda10",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 98,
+      "body_ranges": "[[015cda10, 015cda71]]",
+      "pseudocode_sha256": "e17c6c2c54356992c02e177df17078105d221d3a88e808b4f6b91aef703249f6",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 5,
+  "distinct_entries": 5,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

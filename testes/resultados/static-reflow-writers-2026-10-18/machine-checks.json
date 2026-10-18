@@ -1,0 +1,56 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-reflow-writers-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x15c9e30",
+      "instructions": 61,
+      "body_bytes": 185,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "dc10cf0812f967912e678013535262ad35aa857f32d026ea500acc42731fe004",
+      "pseudocode_sha256": "46f48fbc529dfdf36c9ec8f0e45cc5eb33eefd250ebaed8bb67e67dc0477ff45"
+    },
+    {
+      "entry": "0x15cc6b0",
+      "instructions": 41,
+      "body_bytes": 129,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "a29b11d0748771d5ffb6d519d1266ca62d987f37fe23f00c9f1137f8734dfb12",
+      "pseudocode_sha256": "fc463c5ef9a37c3e8cfb26a901813f3488f0306b9f2d57b19c3bb0c17019cd0b"
+    },
+    {
+      "entry": "0x15cd5e0",
+      "instructions": 23,
+      "body_bytes": 86,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "fd0f0d92e78d2222dc75f293f2f4685de5b84c25338cd4339e28db46455b9c45",
+      "pseudocode_sha256": "ee908e2c5e43dee8dcb5fd685d1af6dd50a728bc998099cd0baff54ff64048b0"
+    },
+    {
+      "entry": "0x15cd640",
+      "instructions": 25,
+      "body_bytes": 87,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "c9b6a106ec604a5dca05ef9cb9db73c272d3487b6afd7867421a0e1da6a636d4",
+      "pseudocode_sha256": "94801fda2e2924dfc190240db70f6db7b35e58561daa8d10f451f9104f80e16f"
+    },
+    {
+      "entry": "0x15cda10",
+      "instructions": 29,
+      "body_bytes": 98,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "12fedb87a30bc59d8f5539b097a5069919e3199ffb2d481f357baa4c1837165e",
+      "pseudocode_sha256": "e17c6c2c54356992c02e177df17078105d221d3a88e808b4f6b91aef703249f6"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

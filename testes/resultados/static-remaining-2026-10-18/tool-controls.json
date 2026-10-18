@@ -1,0 +1,73 @@
+{
+  "schema": "linuxit-static-tool-controls-v1",
+  "date_local": "2026-10-18T01:07:40-03:00",
+  "controls": [
+    {
+      "control": "analyzer DLL requires explicit pinned subject",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "Target differs",
+      "no_output_created": true
+    },
+    {
+      "control": "analyzer rejects unpinned hash",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "invalid choice",
+      "no_output_created": true
+    },
+    {
+      "control": "analyzer rejects EXE snapshot for DLL",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "matching preserved target identity",
+      "no_output_created": true
+    },
+    {
+      "control": "machine checker rejects cross-subject round",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "Round source identity differs",
+      "no_output_created": true
+    },
+    {
+      "control": "metadata rejects cross-subject round",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "Round source identity differs",
+      "no_output_created": true
+    },
+    {
+      "control": "metadata rejects unpinned subject",
+      "passed": true,
+      "exit_code": 2,
+      "diagnostic": "Subject is not in",
+      "no_output_created": true
+    },
+    {
+      "control": "mixed evidence root filters exe by round hash",
+      "passed": true,
+      "observations": 127
+    },
+    {
+      "control": "mixed evidence root filters dll by round hash",
+      "passed": true,
+      "observations": 5
+    },
+    {
+      "control": "metadata overwrite refused; prior bytes preserved",
+      "passed": true
+    },
+    {
+      "control": "all275 previous catalog rows unchanged;48 new rows correctly attributed",
+      "passed": true
+    },
+    {
+      "control": "four modified tool scripts parse",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "original_executed": false,
+  "application_tests_rerun": false
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-remaining-context-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x15c6e30",
+      "instructions": 134,
+      "body_bytes": 373,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4f6cf6958dd0b5389f206640827955a001ba47fa1926dc8471ede8232c68c3d9",
+      "pseudocode_sha256": "527286d2650a06ed7a9486461bb3e3405e14bd6cabebc78a1ce3b094b0c1759f"
+    },
+    {
+      "entry": "0x15c6fc0",
+      "instructions": 2,
+      "body_bytes": 4,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e5f98c8daa6091d0b4b4ee063a77aa9e3ca917dc859290baaf124cee534f09d9",
+      "pseudocode_sha256": "e72297867e047dce35b77326b16475673cba51cf2226cfe2a4117068459ee327"
+    },
+    {
+      "entry": "0x15ca460",
+      "instructions": 16,
+      "body_bytes": 37,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4d761d71f7f052f78a213c85409ccdfc436f79580f5f551281e3723818669451",
+      "pseudocode_sha256": "de1e45ee0518902aeb55448971a76eec9e340aed8b6a7f9b27f43786bd21de6f"
+    },
+    {
+      "entry": "0x174b670",
+      "instructions": 107,
+      "body_bytes": 309,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "05175b5e9a4bfb4541c25990d1acf72b5acb25a152c4d843aa746a552ef6b886",
+      "pseudocode_sha256": "a3dfdbc09a57e04354c6a5057b76401637e2542348af0ee0eae8a3d43379c72d"
+    },
+    {
+      "entry": "0x1788cb0",
+      "instructions": 71,
+      "body_bytes": 179,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "0ec9dcf8e6a575617b2276803b52ca6060e2be51a02dac1e80de1d41250e7d88",
+      "pseudocode_sha256": "b428947520c3c1981c294c217b4399185d9ccc757ecd5579fcbcd29b1455a450"
+    },
+    {
+      "entry": "0x1794f80",
+      "instructions": 46,
+      "body_bytes": 143,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "9f800421cab3624278ce71834367f0d1d99612a502695ce0a3256c84cd1a8c0c",
+      "pseudocode_sha256": "679950a9ccebfa925de2cf87f16a36590568502099aaa7855b8a4e2ad095cb24"
+    },
+    {
+      "entry": "0x17cb490",
+      "instructions": 240,
+      "body_bytes": 851,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4c9ef9c320f493e959f5fc1e2273db20d01e57f9ddeb063c151087352e632962",
+      "pseudocode_sha256": "fc18d0b711cea77ca60ed5b8dc0689041493946bebb6734f474a958ac97dad49"
+    },
+    {
+      "entry": "0x17eef40",
+      "instructions": 321,
+      "body_bytes": 880,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "3cb62dc22600bbae8a9740ac2b3227cde479a1ce25bba29d1e6ec83e6f127bb4",
+      "pseudocode_sha256": "2185e98394cff42fc45593ebc6c3d7df15c5942d53f973173bfb9b3cc7f0de56"
+    },
+    {
+      "entry": "0x1b88ea0",
+      "instructions": 60,
+      "body_bytes": 149,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e6e203092d0fe923d44e81960978a377cd7ea281ea33c040af09af89415a338c",
+      "pseudocode_sha256": "2e093d48ff005d4a5f73e423e07b42a9483bbb592faf5b8e320c388a38d8ff83"
+    },
+    {
+      "entry": "0x1b8cf60",
+      "instructions": 410,
+      "body_bytes": 1398,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "8fe8e6dba88b5bfddae43305ca925470dc5343b76b5bf578e561acf958037454",
+      "pseudocode_sha256": "ce18f8a9d6b0b3225271af67c2c289c5b805ea7cc0baf0c93cd85fefe7a60a58"
+    },
+    {
+      "entry": "0x1b8e560",
+      "instructions": 290,
+      "body_bytes": 920,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "c771f21168d9cf5bed2d9b81a9893bdf4ce610095435d091d6be4c7ae22b005b",
+      "pseudocode_sha256": "870ec2c1a04f6ab57e6ad4ae6faced940e8e01871e66d30bcd8ebf1b905c9853"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

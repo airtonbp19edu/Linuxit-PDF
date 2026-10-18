@@ -9,12 +9,18 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--evidence-root', type=Path, required=True)
 parser.add_argument('--output', type=Path, help='Separate metadata file for a new analysis round')
 parser.add_argument('--round', type=Path, help='One subdirectory under evidence-root/headless; requires matching source.json')
+parser.add_argument('--subject-sha256', help='Pinned subject from the preserved analysis inventory')
 args = parser.parse_args()
 root = args.evidence_root.resolve()
 repo = Path(__file__).resolve().parents[1]
 destination = args.output or repo / 'docs/windows-evidence/foxit-rea/headless-cross-checks.json'
-manifest = json.loads(destination.with_name('analysis-manifest.json').read_text(encoding='utf-8'))
+if args.output and destination.exists():
+    parser.error('Use a new output path to preserve previous metadata')
+manifest = json.loads((repo / 'docs/windows-evidence/foxit-rea/analysis-manifest.json').read_text(encoding='utf-8'))
 source = '90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6'
+source = args.subject_sha256 or source
+if source not in manifest['targets']:
+    parser.error('Subject is not in the pinned analysis inventory')
 scan = (root / 'headless').resolve()
 if args.round:
     scan = (scan / args.round).resolve()
@@ -23,10 +29,16 @@ if args.round:
     identity = json.loads((scan / 'source.json').read_text(encoding='utf-8'))
     if identity.get('source_sha256') != source:
         parser.error('Round source identity differs from the preserved Foxit reference')
+    rounds = [scan]
+else:
+    # A mixed evidence root can contain both the executable and pinned DLLs.
+    # Select by each round's identity before collecting any function metadata.
+    rounds = [path.parent for path in sorted(scan.rglob('source.json'))
+              if json.loads(path.read_text(encoding='utf-8')).get('source_sha256') == source]
 rea_entries = {entry['entry_va'].lower() for entry in manifest['function_dossiers']
                if entry['subject_sha256'] == source}
 entries = []
-for path in sorted(scan.rglob('0x*.json')):
+for path in sorted(path for folder in rounds for path in (folder / 'functions').glob('0x*.json')):
     raw = path.read_bytes()
     data = json.loads(raw)
     if not isinstance(data, dict) or 'entry_va' not in data or 'assembly' not in data:
@@ -45,6 +57,7 @@ for path in sorted(scan.rglob('0x*.json')):
     })
 result = {
     'source_sha256': source,
+    'source_module': manifest['targets'][source]['name'],
     'origin': 'Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.',
     'entries': entries,
     'observation_count': len(entries),
@@ -55,5 +68,5 @@ result = {
         'Pseudocode and assembly remain outside the repository.',
     ],
 }
-destination.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+destination.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
 print(json.dumps({key: result[key] for key in ('observation_count', 'distinct_entries')}))

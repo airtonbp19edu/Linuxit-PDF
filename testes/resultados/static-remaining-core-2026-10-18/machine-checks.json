@@ -1,0 +1,79 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-remaining-core-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x15cb130",
+      "instructions": 24,
+      "body_bytes": 76,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "586399a4d6a27a834159ff54e827773fab10768aa31a04473b16e45ced3ba03e",
+      "pseudocode_sha256": "d8f1de5847c96944bdd817493a581a7254fc28152bff95988c5dfe1154b89365"
+    },
+    {
+      "entry": "0x15cb590",
+      "instructions": 9,
+      "body_bytes": 31,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "0e793f6ff7999edfcfe6fbc52f30c17426424880162aacf948a088a181168061",
+      "pseudocode_sha256": "b15ae8f84c6ae61fbed40d4c01acbddf70d39398640603e18574e128e9f9c8a9"
+    },
+    {
+      "entry": "0x15cb720",
+      "instructions": 38,
+      "body_bytes": 128,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6cd8712c7fc51ec774969eaff0225c1581c5839d9c686686d7656ac7ae7dc0e0",
+      "pseudocode_sha256": "7c2625097eb5d1c4722b9f76121453fffb3ba3fb41a6ab72658aade19b8a5ee0"
+    },
+    {
+      "entry": "0x15cb8a0",
+      "instructions": 12,
+      "body_bytes": 26,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "f29c9a947f8aede39e7c02357b51e77f62623f5929ba1937189e5387ff39f134",
+      "pseudocode_sha256": "ff849cb4eee7397b9774005c5ac994094e48b615b49f4bf9518fed4aa28fd6c0"
+    },
+    {
+      "entry": "0x15cbb70",
+      "instructions": 8,
+      "body_bytes": 18,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "9614536de86d9cbf1e0f5309702e3f77301e5b4ed797031044a55a2fc018bfd6",
+      "pseudocode_sha256": "2f83104ad6c7ae79b05c9c11e221cce9d9113ee90015780ee8bf7072fa01606b"
+    },
+    {
+      "entry": "0x1b57340",
+      "instructions": 31,
+      "body_bytes": 78,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "d006efeb9cc1c30c0260fde698b972d12ef75abc7c05ca1ab7fa8ff28646ac67",
+      "pseudocode_sha256": "ec2e9ba0f82455166633ab0ad238399606ea22f721a322821963ecf4eeeab722"
+    },
+    {
+      "entry": "0x1b5a420",
+      "instructions": 2,
+      "body_bytes": 4,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "72c0b0aa886bf6a9a9aa03edf3fc76a0e6cc8d0c89cc4a813cbd28cfc722e7cc",
+      "pseudocode_sha256": "9cf2ab48e0e1d3eab40a2c2ed06b8bc5bfe00cd297a3a01d84b20f08760fecf4"
+    },
+    {
+      "entry": "0x1b88520",
+      "instructions": 16,
+      "body_bytes": 99,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "532f0ea7ecce57d845de1c586bf78e17b4a68ae4cef78844df2f36883c17cd34",
+      "pseudocode_sha256": "cf56ea7ee5938e2664a7689cd7c37128364f4ef56c2dd0716f3808d1de628f12"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

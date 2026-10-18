@@ -9,11 +9,11 @@ Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
 com concessão específica. Cliente real, portal e persistência da concessão em
 um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 
-[Continuação estática de 18/10/2026](REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md): 16 entradas novas,
-823 instruções/2.831 bytes conferidos; enum de busca, RTTI e geometria refinados.
+[Continuação estática de 18/10/2026](REA-ESTATICA-CONTINUACAO-2026-10-18.md): 48 entradas novas,
+6.830 instruções/25.919 bytes conferidos em oito lotes; tipos, estados, stemming e arrays refinados.
 Fonte/pacote preservados; as suítes completas não foram repetidas nesta rodada.
 
-Arquitetura: 37 módulos/49 interfaces. Catálogo: 275 entradas (152 REA + 123 diretas).
+Arquitetura: 37 módulos/49 interfaces. Catálogo: 323 entradas (152 REA + 171 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
 APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
@@ -36,11 +36,11 @@ e as notas mais recentes definem o estado atual.
 
 ## Próximas frentes
 
-- Estática 03/05/07/08/09/11: helpers 15cb590/15cb720/15cbb70/15cb8a0/15cb130,
-  tipo do receptor this+98 e slot+20, escritores/pré-condições dos arrays.
-  Busca: provedor+58 e offsets 3/5/6/7/0xc/0x10; offset+14 tem enum parcial
-  reconhecido. Impressão: contexto0x138, 1b57340/1b5a420 e BackgroundDrawer.
-  Contextos dos IDs7911/7913 seguem abertos. Não repetir os três lotes de18/10.
+- Estática 03/05/07/08/09/11: alocação/tamanhos e chamadores dos arrays;
+  15cd6e0/15cc9b0; atribuição do provedor ativo em dialog+1e48 e campos restantes
+  de SearchOption; contexto0x138, serviços de imagem e ownership. As48 entradas
+  desta continuação não devem ser repetidas. Tipos viewer/página/diálogo e
+  stemming efetivo foram ligados; IDs7911/7913 ainda têm ambiguidade de comportamento.
 - Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
   23 subconjuntos parciais e 37 módulos/49 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
@@ -71,7 +71,8 @@ observação MCP**. Caminhos: `A:\Programas\ghidra_12.1.4_PUBLIC`,
 Hash de referência em `progresso/projeto.json`.
 
 `scripts/analyze_foxit_headless.py --project-snapshot <projeto concluído>` copia
-um projeto preservado para nova rodada; nunca modifica a origem. Manifestos
+um projeto preservado para nova rodada; nunca modifica a origem. Selecionar
+`--subject-sha256` para a DLL pinada; projetos e metadados exigem hash compatível. Manifestos
 anteriores devem ser preservados. Originais/decompilações não entram no Git.
 Não lançar Foxit no host normal; [preparação da contenção](COMO-CONTINUAR.md).
 

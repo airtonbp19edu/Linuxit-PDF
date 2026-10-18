@@ -1,0 +1,144 @@
+{
+  "schema": "linuxit-delivery-audit-v1",
+  "date_local": "2026-10-18T01:11:16.312565-03:00",
+  "timezone": "America/Sao_Paulo",
+  "passed": true,
+  "errors": [],
+  "version": "0.1.9",
+  "bundle_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "tested_source_commit": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
+  "bundle_checksums_verified": 10,
+  "sealed_ci_reports_verified": 11,
+  "application_source_files_verified": 99,
+  "historical_complete_tests_per_environment": {
+    "source": 290,
+    "payload": 290,
+    "sandbox": 290
+  },
+  "new_full_regression_suite_executed": false,
+  "runtime_manifest_files": 2804,
+  "runtime_manifest_packages": 150,
+  "done_criteria_evidence_links_checked": 37,
+  "historical_done_criteria_reexecuted": false,
+  "unfinished_criteria": [
+    {
+      "stage": 1,
+      "criterion": "Regras remotas de proteção consultáveis pela API",
+      "status": "unknown"
+    },
+    {
+      "stage": 3,
+      "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
+      "status": "pending"
+    },
+    {
+      "stage": 5,
+      "criterion": "Ciclo de vida de todos os componentes reconstruído",
+      "status": "pending"
+    },
+    {
+      "stage": 7,
+      "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
+      "status": "pending"
+    },
+    {
+      "stage": 8,
+      "criterion": "Fluxo completo de impressão reconstruído",
+      "status": "partial"
+    },
+    {
+      "stage": 8,
+      "criterion": "Fluxo completo de busca reconstruído",
+      "status": "partial"
+    },
+    {
+      "stage": 8,
+      "criterion": "Demais famílias funcionais investigadas profundamente",
+      "status": "pending"
+    },
+    {
+      "stage": 9,
+      "criterion": "Diagramas e estados rastreáveis por subsistema",
+      "status": "partial"
+    },
+    {
+      "stage": 9,
+      "criterion": "Algoritmos completos de todas as famílias especificados",
+      "status": "pending"
+    },
+    {
+      "stage": 10,
+      "criterion": "Ambiente isolado e original executável validados",
+      "status": "blocked"
+    },
+    {
+      "stage": 10,
+      "criterion": "Cenários locais observados e registrados",
+      "status": "pending"
+    },
+    {
+      "stage": 10,
+      "criterion": "Integrações autorizadas e casos excepcionais observados",
+      "status": "pending"
+    },
+    {
+      "stage": 11,
+      "criterion": "Disponibilidade e comportamento de todas as interações observados",
+      "status": "pending"
+    },
+    {
+      "stage": 12,
+      "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
+      "status": "partial"
+    },
+    {
+      "stage": 12,
+      "criterion": "Fase A consolidada sem lacunas não declaradas",
+      "status": "pending"
+    },
+    {
+      "stage": 15,
+      "criterion": "Todas as demais famílias implementadas e testadas",
+      "status": "partial"
+    },
+    {
+      "stage": 16,
+      "criterion": "Demais interações e integrações funcionais",
+      "status": "partial"
+    },
+    {
+      "stage": 18,
+      "criterion": "Cenários diferenciais executados no original e na reconstrução",
+      "status": "pending"
+    },
+    {
+      "stage": 18,
+      "criterion": "Resultados e divergências por família disponíveis",
+      "status": "pending"
+    },
+    {
+      "stage": 19,
+      "criterion": "Divergências originais medidas e corrigidas",
+      "status": "pending"
+    },
+    {
+      "stage": 21,
+      "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
+      "status": "pending"
+    }
+  ],
+  "general_progress_percent": 43.33,
+  "verified_parity": 0,
+  "identified_families": 25,
+  "complete_acceptance_cases_not_run": 50,
+  "project_complete": false,
+  "original_executed": false,
+  "physical_printing_verified": false,
+  "installed_payload_verified": false,
+  "limitations": [
+    "Checks own delivery and recorded evidence, not original Foxit behavior.",
+    "Existing done criteria get structural link checks, not a rerun of all reverse-engineering work.",
+    "GTK layout, desktop integrations, accessibility and physical printing remain open."
+  ],
+  "audit_code_commit": "1ccd574e85b1fd9919b23a203f126a9980670723"
+}

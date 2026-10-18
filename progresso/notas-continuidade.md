@@ -1672,3 +1672,53 @@ Próximos alvos estáticos e limites de tipos constam no relatório e no registr
 estruturado de pendências. A VM segue necessária para a referência dinâmica.
 Esta confirmação recebe commit posterior e recibo externo final, evitando
 autorreferência. Não reiniciar os16 alvos já examinados.
+
+
+## 2026/10/18 às 01:11 (America/Sao_Paulo, UTC-03:00) — restante da fila estática
+
+Pedido: continuar os alvos de busca, impressão, geometria/reflow, tipos e estados
+sem VM. Git local/remoto iguais em1ccd574e85b1fd9919b23a203f126a9980670723 ao iniciar;
+nenhuma alteração alheia encontrada. Oito lotes Ghidra12.1.4 direto -noanalysis,
+Temurin21.0.12.1 e sementes REA6.5.0; MCP REA não exposto, nenhuma nova evidência MCP.
+Executável e DLL pinados por hashes do inventário; originais não executados.
+
+48 entradas novas,6.830 instruções/25.919 bytes selecionados conferidos com
+Capstone5.0.6/pefile2024.8.26. Catálogo323=152REA+171diretas;275 linhas anteriores
+idênticas, sem contar28slots já conhecidos ou auxiliares compartilhados como novas entradas.
+Tipos CReflowViewerEx/CReflowViewerPageEx/CFindToolDlgAdv, classefxLuncenLib,
+stemming efetivo SearchOption+5, escritores de estado/arrays e limpeza de impressão refinados.
+Mapa7911/7913 ligado à classe; mesmo handler e DDX distintos continuam ambíguos.
+Construtor1758c70 e helpers1003f6b0/15ca780 têm semântica apenas parcial. Corpo
+Ghidra15ca460 de37bytes exige ressalva:130bytes suplementares conferidos à parte,
+sem somar bytes sobrepostos e sem declarar fronteira completa corrigida.
+
+Quatro ferramentas próprias agora distinguem sujeitos pinados por hash;11controles
+passaram, inclusive rejeição de sujeito/projeto incompatível, sobrescrita e mistura
+de módulos. Falhas de helper:tzdata ausente e import avulso fora do diretório;
+resolvidos com offsetUTC-03 explícito e execução pelo arquivo, sem instalar.
+Oito rodadas concluídas; sem timeout ou causa de tokens confirmada.
+
+Relatório:docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md. Revisão:testes/resultados/static-remaining-2026-10-18/review.json; hashes públicos, máquina e joins vinculados.
+Projetos/resultados completos e checkpoints por lote emanalysis-local/, ignorados.
+Fonte/builder/Flatpak0.1.9 preservados;290/290 por ambiente é histórico, sem
+repetição de runtime nesta rodada. Nenhum código/asset Foxit incorporado.
+Critérios/pesos preservados:43,33%,37done/21abertos em14etapas,paridade0/25.
+
+Próximos recortes:alocação/tamanhos/chamadores dos arrays,15cd6e0/15cc9b0,
+atribuição ativa de dialog+1e48, cinco campos SearchOption e algoritmo Lucene,
+contexto0x138/serviços de imagem/concorrência. VM offline para10/dinâmica11/18/19;
+desktop real para portal/AT-SPI/cliente/impressora. Nuvem remota adiada,IA excluída.
+Próximo imediato:validar contratos/arquitetura/progresso/auditoria do repositório,
+revisar diff e hashes staged,commit/push e confirmar remoto. Ainda não publicado
+neste checkpoint; registrar confirmação posterior sem autorreferência.
+
+Verificação final 2026/10/18 às 01:12 (America/Sao_Paulo, UTC-03:00):
+contratos25/50planos/23subconjuntos/duas propostas e arquitetura37módulos/49interfaces
+conferidos. Auditoria do repositório aprovada; pacote e relatórios históricos
+conferidos, sem reinstalação ou nova suíte290. Critérios/status/pesos iguais ao
+baseline. Hashes dos48resultados raw e pseudocódigos, sementes/endereço/máquina,
+metadados públicos e bundle preservado conferidos. Um agregador esperou o campo
+opcional subject_name, ausente em dois relatórios anteriores; nome resolvido pelo
+hash do inventário, preservando esses relatórios. Checkpoints por lote salvos;
+normalização públicaLF registrada separada do hash original das sementes.
+Publicação pendente do commit/push e recibo externo a seguir.

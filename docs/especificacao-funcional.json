@@ -63,7 +63,8 @@
         "source_refs": [
           "docs/ETAPA-11.md",
           "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -178,7 +179,8 @@
           "docs/ETAPA-11.md",
           "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
           "docs/windows-evidence/foxit-rea/zoom-presets.json",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -381,7 +383,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
-          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -481,7 +484,8 @@
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
-          "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json"
+          "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -572,7 +576,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
-          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -664,7 +669,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
-          "docs/windows-evidence/foxit-rea/search-print-contracts.json"
+          "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -781,7 +787,8 @@
         "source_refs": [
           "docs/windows-evidence/foxit-rea/index-interface.json",
           "docs/FOXIT-REA.md",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -901,7 +908,8 @@
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
           "docs/ETAPA-11.md",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1104,7 +1112,8 @@
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
           "docs/AVANCO-SEM-VM.md",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1199,7 +1208,8 @@
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
           "docs/AVANCO-SEM-VM.md",
-          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [

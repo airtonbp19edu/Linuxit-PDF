@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T00:43:37-03:00",
+  "reviewed_at_local": "2026-10-18T01:11:07-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -79,9 +79,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -101,9 +102,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Identify0x138 context type, field owners and release preconditions; trace0x1b57340/0x1b5a420 and BackgroundDrawer consumers.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -125,9 +127,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -148,9 +151,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -171,9 +175,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace provider vtable+0x58 and SearchOption offsets3/5/6/7/0xc/0x10. +0x14 now has a bounded version-text enum join, without full public semantics.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -194,9 +199,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -217,9 +223,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -240,9 +247,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Trace0x15cb590/0x15cb720/0x15cbb70/0x15cb8a0/0x15cb130, this+0x98 virtual+0x20 and array writers/preconditions; complete provider/context ownership and unknown search fields.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -322,9 +330,10 @@
         "docs/REA-REFLOW-SINCRONIZACAO.md",
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
       ],
-      "next_action": "Catalog275=152REA+123exclusive direct;16 new entries examined. Do not repeat the three2026-10-18 lots. Resolve concrete UI contexts and shared IDs7911/7913; original interactions still require offline VM.",
+      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
       "token_exhaustion_confirmed": null
     },
     {
