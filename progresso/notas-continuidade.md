@@ -1576,3 +1576,27 @@ binário flatpak\0 esperado. Não foi necessário reconstruir ou substituir o
 pacote. Orientar download no navegador habitual caso o navegador interno
 não entregue o arquivo. Próximo: instalar/testar no desktop Linux; demais
 pendências e indicadores preservados.
+
+
+## 2026/10/18 às 00:29 (America/Sao_Paulo, UTC-03:00) — investigação do aviso no Linux
+
+O usuário relatou erro “corrompido ou faltando permissões”, sem fornecer ainda
+a distribuição, o programa que exibiu o aviso ou a saída de flatpak install.
+A rodada anterior foi interrompida antes do download completo; nesta rodada
+foi feito novo GET anônimo completo do arquivo público via urllib. Resultado:
+HTTP 200, 35.983.584 bytes, cabeçalho flatpak e SHA-256 igual ao manifesto e ao
+arquivo local: ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede.
+Evidência pública: testes/resultados/0.1.9/download-integrity-2026-10-18.json.
+Cópia e relatório completos em analysis-local/public-flatpak-integrity-20261018-002839/.
+
+Isso verifica o arquivo servido pelo GitHub; não verifica a cópia baixada no
+Linux do usuário nem confirma a causa do erro. Não foi feita nova instalação
+ou repetida a suíte: a instalação/auditoria CI anterior continua evidência
+histórica separada. Nenhum pacote ou fonte foi alterado; pesos/paridade intactos.
+A documentação oficial Flatpak confirma instalação de bundle por flatpak install.
+Guia atualizado com SHA-256 e diagnóstico pelo terminal, sem atribuir causa ou
+solicitar alteração genérica de permissões. Foi solicitado ao usuário executar
+flatpak --version, sha256sum e flatpak install --user na pasta do arquivo,
+enviar a saída completa e informar a distribuição. Próximo passo depende
+desses dados para corrigir o problema específico. Publicar guia/evidência/nota
+e confirmar o remoto; preservar versões e relatórios anteriores.

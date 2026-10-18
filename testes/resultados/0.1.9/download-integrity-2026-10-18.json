@@ -1,0 +1,19 @@
+{
+  "schema": "linuxit-public-bundle-download-v1",
+  "checked_at_local": "2026-10-18T00:28:39.635757-03:00",
+  "url": "https://raw.githubusercontent.com/airtonbp19edu/Linuxit-PDF/main/releases/LinuxitPDF-0.1.9-x86_64.flatpak",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "http_content_length": 35983584,
+  "downloaded_bytes": 35983584,
+  "downloaded_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "expected_bytes": 35983584,
+  "expected_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "local_bytes": 35983584,
+  "local_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "flatpak_header_verified": true,
+  "new_installation_executed": false,
+  "user_linux_environment_verified": false,
+  "user_error_root_cause_confirmed": false,
+  "passed": true
+}

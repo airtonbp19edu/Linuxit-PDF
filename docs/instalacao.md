@@ -33,6 +33,43 @@ acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
 
+## Se aparecer “corrompido ou faltando permissões”
+
+Essa mensagem genérica não confirma corrupção nem identifica uma permissão
+específica. Primeiro confira a cópia baixada e obtenha a mensagem do instalador.
+Abra o terminal na pasta do arquivo e execute:
+
+```bash
+flatpak --version
+sha256sum LinuxitPDF-0.1.9-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.9-x86_64.flatpak
+```
+
+O SHA-256 esperado para a 0.1.9 é:
+
+```text
+ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede
+```
+
+- Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;
+  baixe outra cópia pelo link do projeto e confira novamente.
+- Se o hash coincidir e a instalação falhar, envie a saída completa do terminal,
+  a distribuição Linux e a arquitetura (`uname -m`). Isso permite investigar
+  o instalador, o runtime ou uma permissão específica sem presumir a causa.
+- Se `flatpak` não for encontrado, instale o suporte Flatpak conforme as
+  instruções da sua distribuição antes de instalar o aplicativo.
+
+O `.flatpak` é um pacote de instalação; não precisa de permissão de execução.
+O comando `--user` seleciona a instalação para seu usuário.
+O procedimento de instalar um arquivo `.flatpak` está na
+[documentação oficial](https://docs.flatpak.org/en/latest/single-file-bundles.html).
+
+Em 18/10/2026, um novo download HTTP público completo teve os mesmos
+35.983.584 bytes e SHA-256 do pacote local/publicado. A
+[conferência de integridade](../testes/resultados/0.1.9/download-integrity-2026-10-18.json)
+não verifica a cópia do usuário nem diagnostica seu ambiente Linux. A instalação
+e os testes do CI são evidência anterior; não foram repetidos nesta conferência.
+
 ## Marco 0.1.9: pastas sincronizadas locais
 
 [Uso e limites](PASTAS-SINCRONIZADAS.md). Configure o cliente externo, selecione
