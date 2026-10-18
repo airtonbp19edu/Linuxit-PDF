@@ -63,11 +63,14 @@
   "original_executed": false,
   "foxit_parity_verified": false,
   "criteria_status_or_weights_changed": false,
-  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "publication_state": "confirmed_at_recorded_commit",
   "limitations": [
     "Manual horizontal area marks, ellipse and line only; no automatic word selection/freehand/arrows/style editor.",
     "Comment/author editing and logical deletion limited to eight unlocked types without relationships/dependants.",
     "Other annotation/form operations and real desktop/device integrations remain incomplete.",
     "No original Foxit observation or differential comparison."
-  ]
+  ],
+  "confirmed_delivery_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
+  "publication_confirmed_at_local": "2026-10-18T13:41:41-03:00",
+  "independent_audit_review": "testes/resultados/0.1.13/audit/review.json"
 }

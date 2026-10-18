@@ -9,7 +9,8 @@ Rascunho com desfazer/refazer; original e cópias salvas preservados.
 **400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips. Novos: 14 portáveis e seis GTK/Poppler; todos os 380 IDs
 anteriores preservados. 106 arquivos app e 11 relatórios CI conferidos;
-smoke 5/5 e launcher 3/3. Publicação e auditoria desta entrega nas notas mais recentes.
+smoke 5/5 e launcher 3/3. Publicação confirmada; auditoria independente do mesmo bundle aprovada com
+sete controles e cinco novos smoke checks, sem rebuild.
 Os testes próprios não são paridade Foxit; pacotes/relatórios anteriores preservados.
 
 [TIFF multipágina](../docs/TIFF-MULTIPAGINA.md), até 100 páginas na criação, e
@@ -30,7 +31,7 @@ de executar original; detalhes nas notas anteriores.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Entrega 0.1.13|Fonte/payload/sandbox aprovados; confirmar publicação/auditoria|Sem VM Foxit|
+|Entrega 0.1.13|Publicação e auditoria independente confirmadas; preservar evidências|Concluída neste marco, sem VM Foxit|
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
 |Operações locais|Priorizar combos AcroForm editáveis (texto livre/aparência); demais formulários/anotações, OCR e plataforma|Implementação própria sem VM|
 |Estática|Tamanhos/alocação e chamadores dos arrays; provedor ativo/offsets restantes da busca; contexto0x138 e serviços de imagem; comportamento7911/7913|REA/Ghidra sem executar original|

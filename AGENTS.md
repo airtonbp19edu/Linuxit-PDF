@@ -9,7 +9,8 @@ Rascunho com desfazer/refazer; original e cópias salvas preservados.
 **400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips. Novos: 14 portáveis e seis GTK/Poppler; todos os 380 IDs
 anteriores preservados. 106 arquivos app e 11 relatórios CI conferidos;
-smoke 5/5 e launcher 3/3. Publicação e auditoria desta entrega nas notas mais recentes.
+smoke 5/5 e launcher 3/3. Publicação confirmada; auditoria independente do mesmo bundle aprovada com
+sete controles e cinco novos smoke checks, sem rebuild.
 Os testes próprios não são paridade Foxit; pacotes/relatórios anteriores preservados.
 
 [TIFF multipágina](docs/TIFF-MULTIPAGINA.md), até 100 páginas na criação, e

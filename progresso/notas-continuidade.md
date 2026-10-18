@@ -2146,3 +2146,28 @@ evidência de esgotamento de tokens.
 Próxima operação própria concreta: combos AcroForm editáveis, preservando Opt,
 com texto livre/aparência e testes de flags/ReadOnly/limites/histórico; ainda não
 implementados. Entrega preparada ainda requer commit/push e confirmação da publicação.
+
+
+## 2026/10/18 às 13:41 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria anotações0.1.13 confirmadas
+
+Entrega técnica `93a38c318bf9a8859c21c91e9b4eb3f43d49785a` confirmada no GitHub com árvore limpa por recibo
+externo. Download público sem login retornou HTTP200, 44662456 bytes,
+SHA256 0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024, idêntico ao bundle testado.
+Auditoria https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39145924664 reinstalou mesmo bundle sem rebuild:
+106app/2849runtime/224ELF/162avisos conferidos, incluindo modelos
+Tesseract por/eng. Sete controles e cinco novos smoke checks passaram. Suítes
+400/400 em cada ambiente são do builder; não repetidas nesta auditoria.
+Artefato 12143676411, ZIP SHA256 fcdb80a143cdd1387fa6a9b7fb27b838b89ef478c48be7ebc6b2afc5e8af4422, igual ao digest GitHub.
+Quatro relatórios copiados byte a byte, revisão em testes/resultados/0.1.13/audit/;
+raw em analysis-local/no-vm-audit-artifact-12143676411/. Ferramentas Git/API/Python
+e CI Debian13/Xvfb/Flatpak. Roteiro43,93%,38done/20abertos/13etapas, paridade0/25,
+catálogo323 e arquitetura44/58 preservados. Nenhum critério/peso alterado.
+Sem VM nem original; não houve nova REA ou modificação de rede/proteções Windows.
+Novas anotações têm aparência própria, coordenadas antes da rotação e comentário/autor editáveis. Demais operações/famílias permanecem parciais. Nuvem adiada/IA excluída.
+Próximo concreto sem VM: combos AcroForm editáveis com texto livre/aparência e
+preservação de Opt, testando flags/ReadOnly/limites/histórico; ainda não implementados.
+Demais formulários/anotações/contratos próprios continuam; desktop/portal/concessão
+persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos próprios.
+Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
+Este registro recebe commit/push e comprovante final externo separados, evitando
+autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.

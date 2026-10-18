@@ -1162,7 +1162,7 @@
       "current_delivery": {
         "version": "0.1.13",
         "date_local": "2026-10-18T13:35:28-03:00",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "source_commit": "b44476272e4e9011c5b4825ab00c8d78830354f1",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39144523775",
         "source_payload_sandbox_tests_passed_each": 400,
@@ -1171,7 +1171,10 @@
           "docs/ANOTACOES-AMPLIADAS.md",
           "releases/manifest-0.1.13.json",
           "testes/resultados/0.1.13/validation-review.json"
-        ]
+        ],
+        "confirmed_delivery_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
+        "publication_confirmed_at_local": "2026-10-18T13:41:41-03:00",
+        "stable_release": false
       },
       "delivery_history": [
         {
@@ -1377,9 +1380,11 @@
             "testes/resultados/0.1.11/audit/review.json",
             "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.12/audit/review.json",
-            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.13/audit/review.json",
+            "testes/resultados/0.1.13/audit/installed-delivery-audit.json"
           ],
-          "note": "Published0.1.12 reinstalled without rebuild, application/runtime/model files and notices verified. Seven auditor controls and five fresh smoke checks passed. Full380-case suites remain build-time evidence, not rerun by this audit."
+          "note": "Published0.1.13 reinstalled without rebuild, application/runtime/model files and notices verified. Seven auditor controls and five fresh smoke checks passed. Full400-case suites remain build-time evidence, not rerun by this audit."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1405,7 +1410,9 @@
             "testes/resultados/0.1.11/audit/review.json",
             "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.12/audit/review.json",
-            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.13/audit/review.json",
+            "testes/resultados/0.1.13/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 20 open criteria across 13 stages, including own implementation/static/desktop work and original VM/differential dependencies. Delivery audit does not close these obligations."
         },
@@ -1433,21 +1440,23 @@
             "testes/resultados/0.1.11/audit/review.json",
             "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.12/audit/review.json",
-            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.13/audit/review.json",
+            "testes/resultados/0.1.13/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.12",
-        "reviewed_at_local": "2026-10-18T12:48:12-03:00",
+        "version": "0.1.13",
+        "reviewed_at_local": "2026-10-18T13:41:41-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141995602",
-        "audit_code_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39145924664",
+        "audit_code_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
-        "installed_application_files_verified": 105,
+        "installed_application_files_verified": 106,
         "installed_runtime_files_verified": 2849,
         "installed_elf_files_verified": 224,
         "copyright_notices_present_and_hashed": 162,
@@ -1456,10 +1465,10 @@
         "full_regression_suite_rerun": false,
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
         "evidence": [
-          "docs/TIFF-MULTIPAGINA.md",
-          "testes/resultados/0.1.12/audit/review.json"
+          "docs/ANOTACOES-AMPLIADAS.md",
+          "testes/resultados/0.1.13/audit/review.json"
         ],
-        "next_action": "Continue remaining forms/annotations/local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
+        "next_action": "Continue remaining forms/annotation operations/local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
       },
       "delivery_audit_history": [
         {
@@ -1689,6 +1698,28 @@
             "testes/resultados/0.1.11/audit/review.json"
           ],
           "next_action": "Continue TIFF multipage/remaining local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
+        },
+        {
+          "version": "0.1.12",
+          "reviewed_at_local": "2026-10-18T12:48:12-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141995602",
+          "audit_code_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 105,
+          "installed_runtime_files_verified": 2849,
+          "installed_elf_files_verified": 224,
+          "copyright_notices_present_and_hashed": 162,
+          "unfinished_criteria_count": 20,
+          "stage21_complete": false,
+          "full_regression_suite_rerun": false,
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
+          "evidence": [
+            "docs/TIFF-MULTIPAGINA.md",
+            "testes/resultados/0.1.12/audit/review.json"
+          ],
+          "next_action": "Continue remaining forms/annotations/local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
         }
       ]
     }
@@ -1728,13 +1759,16 @@
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_commit_push_confirmation",
+    "publication_state": "confirmed_at_recorded_commit",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": false,
+    "independent_installed_audit_passed": true,
     "prior_tests_removed_or_renamed": 0,
     "source_and_package_version": "0.1.13",
-    "complete_tests_per_environment": 400
+    "complete_tests_per_environment": 400,
+    "confirmed_delivery_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
+    "publication_confirmed_at_local": "2026-10-18T13:41:41-03:00",
+    "audit_review": "testes/resultados/0.1.13/audit/review.json"
   },
   "no_vm_execution_history": [
     {

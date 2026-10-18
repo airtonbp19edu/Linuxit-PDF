@@ -92,3 +92,15 @@ Demais hashes conferidos. 106 arquivos app iguais entre fonte/payload; runtime
 2849 arquivos, 224 ELF e 162 avisos de pacotes.
 Sem nova dependência. Bundle 44662456 bytes,
 SHA256 `0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024`. Desenvolvimento devel, sem assinatura digital.
+
+## Publicação e auditoria independente — 2026-10-18T13:41:41-03:00
+
+Entrega `93a38c318bf9a8859c21c91e9b4eb3f43d49785a` confirmada no remoto. [Auditoria](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39145924664)
+reinstalou o mesmo bundle, sem rebuild: 106 arquivos app,
+2849 de dependências, 224 ELF e 162 avisos de pacotes conferidos,
+incluindo modelos por/eng. Sete controles do auditor e cinco novos smoke checks
+passaram. As suítes completas 400/400 continuam evidência do builder anterior;
+não foram repetidas pela auditoria. [Relatórios](../testes/resultados/0.1.13/audit/review.json).
+Download público sem login conferido por tamanho e SHA-256:
+[recibo](../testes/resultados/0.1.13/download-integrity-2026-10-18.json).
+As limitações e os 20 critérios abertos continuam; não há observação Foxit.

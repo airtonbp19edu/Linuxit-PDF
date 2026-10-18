@@ -157,3 +157,7 @@ e cinco novos smoke checks aprovados; suítes363/363 não repetidas pela auditor
 [Auditoria independente da 0.1.12](testes/resultados/0.1.12/audit/review.json):
 mesmo bundle reinstalado, modelos/dependências/avisos conferidos, sete controles
 e cinco novos smoke checks aprovados; suítes380/380 não repetidas pela auditoria.
+
+[Auditoria independente da 0.1.13](testes/resultados/0.1.13/audit/review.json):
+mesmo bundle reinstalado, modelos/dependências/avisos conferidos, sete controles
+e cinco novos smoke checks aprovados; suítes400/400 não repetidas pela auditoria.
