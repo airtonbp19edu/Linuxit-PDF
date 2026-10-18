@@ -1,0 +1,32 @@
+{
+  "date_local": "2026-10-18T10:31:07-03:00",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39131157732",
+  "source_commit": "2483b17fa3477dc3463b4ec93217092062b731f6",
+  "artifact_id": 12137114910,
+  "archive_sha256": "8e0d7136fe59b4f7a028eb86e4f85b64d902324e0f2da3d78736fd414b801bbf",
+  "github_digest_matches": true,
+  "source": {
+    "run": 363,
+    "passed": 363,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "payload": {
+    "run": 363,
+    "passed": 362,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sandbox_suite_executed": false,
+  "bundle_published": false,
+  "failed_case": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+  "examined_cause": "Test fixture depended on PATH-injected fake tesseract; payload launcher prepends bundled tools, preventing its PID synchronization. Recognition tests passed. Replaced fixture with /proc observation of actual ELF Tesseract descendant before cancellation.",
+  "correction_is_product_ocr_change": false,
+  "evidence_hashes": {
+    "source-intermediate.json": "2125feaf62959c216456d7b8db70004fd89b01cb38dcabe0f8534ddc84b96659",
+    "payload-tests.json": "225d63bcb46710169f9844a701a5c48f3c5ac3271cb531d5dde64f70dc649d87"
+  },
+  "project_or_parity_complete": false
+}

@@ -1914,3 +1914,23 @@ Próximo: publicar fonte, executar CI Linux completo antes de gerar/importar nov
 pacote, conferir relatórios/capturas, publicar e auditar o mesmo bundle.
 Pacote vigente0.1.10 e seus hashes permanecem intactos. Não declarar OCR real
 ou GTK aprovados com base nos controles simulados. Sem causa de tokens confirmada.
+
+
+## 2026/10/18 às 10:31 (America/Sao_Paulo, UTC-03:00) — diagnóstico da primeira validação OCR
+
+Run39131157732/fonte2483b17:363/363 passaram na fonte Linux,362/363 no payload,
+com uma falha no teste de cancelamento. A suíte sandbox não foi executada.
+O teste injetava tesseract simulado via PATH; o launcher do payload prioriza
+binários empacotados, logo o marcador PID do dublê não aparecia. Reconhecimento
+real e demais testes passaram; não publicar esse bundle parcial. Corrigido o
+oráculo para observar o processo ELF Tesseract real por /proc, iniciar OCR em
+três páginas a300DPI e cancelar seu grupo; continua exigindo que o descendente
+termine. Código OCR do produto não alterado por essa correção. Receita histórica
+sidebar-layout também passa a instalar dependências OCR para evitar ausência.
+
+Evidências em testes/resultados/ocr-2026-10-18-attempt1/; raw/ZIP e candidato
+não aprovado em analysis-local/no-vm-release-artifact-12137114910/. ZIP SHA256
+8e0d7136fe59b4f7a028eb86e4f85b64d902324e0f2da3d78736fd414b801bbf,
+igual ao digest GitHub. Próximo:publicar correção e repetir suíte integral nos
+três ambientes antes de importar pacote. Roteiro43,93%,38done/20abertos,
+paridade0/25 e entrega0.1.10 preservados. Nenhuma VM/original executados.
