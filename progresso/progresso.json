@@ -712,20 +712,22 @@
       "earned_percent": 2.0,
       "current_source_revalidation": {
         "version": "0.1.9",
-        "date_local": "2026-10-17T20:51:10-03:00",
-        "status": "portable_subsets_passed; linux_pending",
-        "new_flatpak": "not_built",
-        "source_changed_since_candidate": true,
-        "source_changes_since_candidate": [
-          "synchronized local folder workflow",
-          "complete exclusive new-file publication",
-          "copy source-change guard"
-        ],
+        "date_local": "2026-10-17T21:07:39-03:00",
+        "status": "source_payload_and_installed_sandbox_passed",
+        "new_flatpak": "built_and_installed_full_suite_passed",
+        "source_changed_since_candidate": false,
+        "source_changes_since_candidate": [],
         "evidence": [
           "docs/PASTAS-SINCRONIZADAS.md",
-          "testes/resultados/0.1.9-portable/sync-portable-attempt1.json"
+          "testes/resultados/0.1.9-portable/sync-portable-attempt1.json",
+          "testes/resultados/0.1.9/source-intermediate.json",
+          "testes/resultados/0.1.9/payload-tests.json",
+          "testes/resultados/0.1.9/sandbox-tests.json",
+          "testes/resultados/0.1.9/validation-review.json"
         ],
-        "next_action": "Run complete290 Linux/GTK cases; build/test Flatpak and two narrow external-directory grant controls. Publish and audit same bundle."
+        "next_action": "Publish same0.1.9 bundle and independently audit installed bytes; real desktop/portal/sync-client validation remains separate.",
+        "source_commit_tested": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
+        "full_source_tests_passed": 290
       },
       "source_revalidation_history": [
         {
@@ -1050,18 +1052,16 @@
       "verified_fraction": 1.0,
       "earned_percent": 3.0,
       "current_delivery": {
-        "version": "0.1.8",
-        "status": "published_confirmed_at_recorded_commit",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078",
+        "version": "0.1.9",
+        "status": "validated_prepared_for_publication",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39080923058",
         "evidence": [
-          "docs/SEGURANCA-ACESSIBILIDADE.md",
-          "releases/manifest-0.1.8.json",
-          "testes/resultados/0.1.8/validation-review.json"
+          "docs/PASTAS-SINCRONIZADAS.md",
+          "releases/manifest-0.1.9.json",
+          "testes/resultados/0.1.9/validation-review.json"
         ],
         "stable_release": false,
-        "original_observations": 0,
-        "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
-        "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00"
+        "original_observations": 0
       },
       "delivery_history": [
         {
@@ -1145,6 +1145,20 @@
           "original_observations": 0,
           "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
           "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00"
+        },
+        {
+          "version": "0.1.8",
+          "status": "published_confirmed_at_recorded_commit",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39074818078",
+          "evidence": [
+            "docs/SEGURANCA-ACESSIBILIDADE.md",
+            "releases/manifest-0.1.8.json",
+            "testes/resultados/0.1.8/validation-review.json"
+          ],
+          "stable_release": false,
+          "original_observations": 0,
+          "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+          "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00"
         }
       ]
     },
@@ -1414,22 +1428,20 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-17T20:16:26-03:00",
-    "report": "docs/SEGURANCA-ACESSIBILIDADE.md",
-    "source_and_package_version": "0.1.8",
-    "new_static_entries_examined": 9,
+    "date_local": "2026-10-17T21:07:39-03:00",
+    "report": "docs/PASTAS-SINCRONIZADAS.md",
+    "source_and_package_version": "0.1.9",
+    "new_static_entries_examined": 0,
     "catalog_entries": 259,
-    "complete_tests_per_environment": 267,
+    "complete_tests_per_environment": 290,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
-    "independent_installed_audit_passed": true,
-    "cloud_deferred_by_user": true,
-    "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
-    "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00",
-    "unreleased_source_version": "0.1.9"
+    "publication_state": "validated_prepared_for_publication",
+    "independent_installed_audit_passed": false,
+    "direct_cloud_api_deferred": true,
+    "local_synchronized_folder_workflow": true
   },
   "no_vm_execution_history": [
     {
@@ -1501,6 +1513,24 @@
       "confirmed_delivery_commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
       "publication_confirmed_at_local": "2026-10-17T18:44:53-03:00",
       "unreleased_source_version": "0.1.8"
+    },
+    {
+      "date_local": "2026-10-17T20:16:26-03:00",
+      "report": "docs/SEGURANCA-ACESSIBILIDADE.md",
+      "source_and_package_version": "0.1.8",
+      "new_static_entries_examined": 9,
+      "catalog_entries": 259,
+      "complete_tests_per_environment": 267,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "independent_installed_audit_passed": true,
+      "cloud_deferred_by_user": true,
+      "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+      "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00",
+      "unreleased_source_version": "0.1.9"
     }
   ],
   "latest_resume": {

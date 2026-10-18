@@ -2,7 +2,7 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.8 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.9 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
@@ -11,7 +11,7 @@ registra sua integridade e a origem do código.
 Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.8-x86_64.flatpak
+flatpak install --user LinuxitPDF-0.1.9-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -19,6 +19,16 @@ A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
 Abertura por portal, gravação em todos os ambientes e impressão física ainda
 precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+
+## Marco 0.1.9: pastas sincronizadas locais
+
+[Uso e limites](PASTAS-SINCRONIZADAS.md). Configure o cliente externo, selecione
+a pasta local em Arquivo → Escolher pasta sincronizada e salve com nome novo.
+O Linuxit confirma gravação local; upload e conflitos são do sincronizador.
+290/290 por ambiente e dois controles de pasta fora HOME passaram no CI.
+Uma pasta fora HOME pode exigir concessão pelo desktop ou permissão explícita
+para aquela pasta; nenhuma permissão global extra foi incluída no pacote.
+Portal real/persistência e cliente real ainda não testados em desktop.
 
 ## Marco 0.1.8: segurança, acessibilidade e operações locais
 

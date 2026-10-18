@@ -1475,3 +1475,33 @@ corretamente ausência de gi no Windows. Aplicação não mudou por esses reparo
 Relatório raw/revisão em testes/resultados/0.1.9-attempt1/,ZIP/digest preservados.
 Não contar tentativa como suíte aprovada/pacote entregue. Próximo: novo commit,
 reexecutar fonte/Flatpak completos e examinar os controles de concessão de pasta.
+
+
+## 2026/10/17 às 21:07 (America/Sao_Paulo, UTC-03:00) — Flatpak 0.1.9 validado
+
+Builder https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39080923058,
+fonte `6aabe4c7a205744db60f32737a883b61ba5fc80f`: 290/290 em fonte,
+payload e sandbox, sem falhas, erros ou skips. São 15 métodos portáveis e oito
+GTK novos. Controles de pasta fora de HOME passaram: negação sem concessão e
+leitura/cópia/reabertura/recusa de sobrescrita com concessão específica.
+99 arquivos app, 2.804 de dependências, 215 ELF, 150 avisos de pacotes;
+smoke 5/5 e launcher 3/3. Bundle: 35.983.584 bytes,
+SHA-256 `ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede`.
+Artefato 12119245506; ZIP `7e3f36437d07f2bc88709b0071f37503e8658b17544b849f4fb6881f1914360b`
+igual ao digest GitHub. Onze relatórios selados copiados byte a byte e oito
+capturas/hashes examinados em testes/resultados/0.1.9/.
+O ensaio independente de fonte também passou 290/290 e 17/17 subconjuntos em
+run 39080923451; evidências em testes/resultados/0.1.9-source/.
+O primeiro ensaio independente foi preservado em 0.1.9-attempt1: 286/290,
+quatro erros do double antigo; o builder anterior teve ainda uma falha de
+cancelamento. A causa concorrente desse cancelamento é uma inferência;
+a restrição do interceptador ao comando index-search passou nas duas reexecuções.
+
+Não foi usado cliente de sincronização real nem interação com portal real;
+a resposta nativa foi simulada nos testes GTK. O guia separa essas dependências
+de desktop das etapas 10, parte dinâmica da 11 e comparações 18/19, que exigem
+VM offline para o original. 37 módulos/49 interfaces, 23 subconjuntos/duas
+propostas, catálogo 259, roteiro 43,33% e paridade 0/25 preservados.
+APIs de nuvem adiadas; fluxo local autorizado. Original não executado.
+Próximo: publicar o mesmo bundle, confirmar remoto e auditar a instalação sem
+rebuild. Nove bundles anteriores preservados.

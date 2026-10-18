@@ -12,5 +12,15 @@
   "app_change_required": false,
   "correction": "Attachment dialog doubles implement newly-used folder methods. Collection cancellation interceptor now targets index-search only, avoiding unrelated background rendering processes. Native-folder GTK tests skip cleanly without gi.",
   "original_executed": false,
-  "package_published": false
+  "package_published": false,
+  "independent_source_run": 39080653768,
+  "independent_source_result": {
+    "run": 290,
+    "passed": 286,
+    "failures": 0,
+    "errors": 4,
+    "skipped": 0
+  },
+  "independent_zip_sha256": "7ed68b546d195e53865a0024f3fd2efdfb39c3f974c6c8c70f8561fb5f1ef610",
+  "cancellation_failure_cause": "Broad interceptor could capture concurrent rendering; this is an inferred race, not an observed Foxit behavior. Independent initial source run passed that cancellation case."
 }

@@ -51,11 +51,13 @@
   "local_folder_workflow": {
     "recorded_at_local": "2026-10-17T20:51:10-03:00",
     "authority": "User explicitly selected synchronized folders and asked to apply this approach.",
-    "status": "implemented_in_source; linux_validation_pending",
+    "status": "source_and_flatpak_own_controls_passed",
     "direct_provider_api_integration": false,
     "external_client_responsible_for_sync": true,
     "document": "docs/PASTAS-SINCRONIZADAS.md",
     "supersedes_cloud_deferral": false,
-    "criteria_or_weights_changed": false
+    "criteria_or_weights_changed": false,
+    "real_sync_client_tested": false,
+    "desktop_portal_interaction_tested": false
   }
 }

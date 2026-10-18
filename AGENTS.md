@@ -1,26 +1,22 @@
 # Linuxit PDF — continuidade do projeto
 
-Fonte **0.1.9 em desenvolvimento**, após pacote0.1.8: [pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md).
-15 controles portáveis novos e53 regressões passaram;8 GTK novos ainda sem execução.
-37 módulos/49 interfaces. Próximo: suíte completa290 no Linux e Flatpak, incluindo
-concessão específica fora de HOME. Portais reais/cliente de sincronização: desktop,
-sem VM Foxit. APIs remotas de nuvem continuam adiadas. Registros abaixo históricos.
+Fonte e Flatpak **0.1.9/devel**, com [pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md).
+Pasta preferida, últimas pastas, atalhos para abrir/salvar e cópias novas completas,
+sem sobrescrita. Alterações externas exigem reabrir; o envio cabe ao cliente externo.
+**290/290 testes próprios** por ambiente: fonte, payload e sandbox instalado,
+sem falhas, erros ou skips; 15 métodos portáveis e oito GTK novos.
+Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
+com concessão específica. Cliente real, portal e persistência da concessão em
+um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 
+Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
+São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
+37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
+APIs remotas de nuvem continuam adiadas. Confirmações de publicação e auditoria
+ficam nas notas datadas; o restante do projeto continua parcial.
 
-Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
-[Segurança, acessibilidade e edição local](docs/SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
-cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
-**267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
-39 métodos portáveis e16 GTK novos. Publicação confirmada; auditoria independente do mesmo bundle aprovada (7+5 controles).
-**Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
-
-35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **259** (152 REA + 107 diretas). Após quatro acessores,
-três métodos de limites/predicado foram examinados:1.348 bytes/412 instruções. [Evidência estática](docs/REA-REFLOW-GEOMETRIA.md).
-Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
-Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
-
-Os registros abaixo são históricos; os marcos publicados permanecem preservados.
+Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
+e as notas mais recentes definem o estado atual.
 
 Ponto de retomada e estado do ambiente local: `docs/RETOMADA.md`.
 Desenvolva e teste pelo código-fonte no Linux; gere Flatpak nos marcos de
@@ -56,7 +52,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.8 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.9 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

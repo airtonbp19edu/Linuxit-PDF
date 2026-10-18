@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-17T20:51:10-03:00",
+  "reviewed_at_local": "2026-10-17T21:07:39-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -341,7 +341,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
+      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -367,7 +367,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
+      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -394,7 +394,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
+      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -424,7 +424,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
+      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -524,7 +524,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Validate/publish0.1.9 synchronized LOCAL folder workflow, complete290 Linux/GTK cases and Flatpak narrow external-folder grant controls. Direct cloud API/login/upload deferred. Real sync client/desktop portal tests do not require original VM; original observations and differential closure still do.",
+      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
       "token_exhaustion_confirmed": null
     }
   ],

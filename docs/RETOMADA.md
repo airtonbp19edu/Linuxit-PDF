@@ -1,26 +1,22 @@
 # Retomada do Linuxit PDF
 
-Fonte **0.1.9 em desenvolvimento**, após pacote0.1.8: [pastas sincronizadas locais](PASTAS-SINCRONIZADAS.md).
-15 controles portáveis novos e53 regressões passaram;8 GTK novos ainda sem execução.
-37 módulos/49 interfaces. Próximo: suíte completa290 no Linux e Flatpak, incluindo
-concessão específica fora de HOME. Portais reais/cliente de sincronização: desktop,
-sem VM Foxit. APIs remotas de nuvem continuam adiadas. Registros abaixo históricos.
+Fonte e Flatpak **0.1.9/devel**, com [pastas sincronizadas locais](PASTAS-SINCRONIZADAS.md).
+Pasta preferida, últimas pastas, atalhos para abrir/salvar e cópias novas completas,
+sem sobrescrita. Alterações externas exigem reabrir; o envio cabe ao cliente externo.
+**290/290 testes próprios** por ambiente: fonte, payload e sandbox instalado,
+sem falhas, erros ou skips; 15 métodos portáveis e oito GTK novos.
+Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
+com concessão específica. Cliente real, portal e persistência da concessão em
+um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 
+Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
+São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
+37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
+APIs remotas de nuvem continuam adiadas. Confirmações de publicação e auditoria
+ficam nas notas datadas; o restante do projeto continua parcial.
 
-Fonte/Flatpak **0.1.8/devel**, marco de desenvolvimento validado.
-[Segurança, acessibilidade e edição local](SEGURANCA-ACESSIBILIDADE.md): senhas/permissões,
-cópias AES-256 e owner autenticado, texto ATK/F6, CMS offline e edição de cópias.
-**267/267** em cada suíte fonte/payload/sandbox, sem falhas/erros/skips;
-39 métodos portáveis e16 GTK novos. Publicação confirmada; auditoria independente do mesmo bundle aprovada (7+5 controles).
-**Nuvem adiada pelo usuário**, sem remover a família nem alterar pesos.
-
-35 módulos/40 interfaces; 23 subconjuntos e duas propostas em 25 famílias.
-Catálogo **259** (152 REA + 107 diretas). Após quatro acessores,
-três métodos de limites/predicado foram examinados:1.348 bytes/412 instruções. [Evidência estática](REA-REFLOW-GEOMETRIA.md).
-Roteiro **43,33%**, 37 critérios done/21 abertos, paridade **0/25**.
-Há trabalho sem VM; desktop/equipamentos são dependências distintas da VM Foxit.
-
-Os registros abaixo são históricos; os marcos publicados permanecem preservados.
+Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
+e as notas mais recentes definem o estado atual.
 
 ## Primeiro ao retomar
 
@@ -38,7 +34,7 @@ Os registros abaixo são históricos; os marcos publicados permanecem preservado
 - Estática03/05/07/08/09/11:Helpers de posição/predicado/conversor e métricas this+98; não repetir os sete métodos de layout já examinados;
   tipos/ownership, campos desconhecidos da busca e contexto dos IDs7911/7913.
 - Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
-  23 subconjuntos parciais e35 módulos/40 interfaces documentados.
+  23 subconjuntos parciais e 37 módulos/49 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/

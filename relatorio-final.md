@@ -1,22 +1,24 @@
-# Relatório de desenvolvimento — Linuxit PDF 0.1.8
+# Relatório de desenvolvimento — Linuxit PDF 0.1.9
 
-Segurança por senha conhecida/AES-256/cópia owner, texto ATK/F6, integridade CMS
-offline e edição ampliada em cópias. [Contrato](docs/SEGURANCA-ACESSIBILIDADE.md).
-Fonte/payload/sandbox267/267 cada, zero falhas/erros/skips,97 arquivos app;
-runtime2.804 arquivos/215ELF/150 avisos de pacotes. Smoke5/5, launcher3/3.
-[Revisão](testes/resultados/0.1.8/validation-review.json). Publicação e auditoria
-independente são confirmadas nas [notas datadas](progresso/notas-continuidade.md).
+[Pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md): seleção explícita,
+preferência/últimas pastas e cópias completas sem sobrescrita. Cliente externo
+gerencia envio/conflitos; APIs remotas continuam adiadas. PDF alterado externamente
+exige reabrir antes de copiar/editar. 37 módulos/49 interfaces,23 subconjuntos/2 propostas.
 
-Catálogo259 entradas(152REA+107diretas),35 módulos/40 interfaces,
-23 subconjuntos parciais/duas propostas em25 famílias. Nuvem adiada pelo usuário.
-Após quatro acessores, três métodos de limites/predicado foram examinados:
-1.348bytes/412instruções, [evidência](docs/REA-REFLOW-GEOMETRIA.md). Original não executado.
+Fonte/payload/sandbox 290/290 cada, zero falhas/erros/skips; 15 portáveis e oito GTK novos.
+Pasta fora HOME inacessível sem concessão e utilizável com concessão específica.
+99 arquivos da aplicação, 2.804 de dependências, 215 ELF e 150 avisos;
+smoke 5/5, launcher 3/3. Dez bundles ao todo,
+incluindo nove anteriores preservados. Publicação/auditoria nas notas datadas.
+[Revisão](testes/resultados/0.1.9/validation-review.json).
 
-Roteiro43,33%,37 critérios done/21 abertos; paridade0/25. Ainda há trabalho sem
-VM (contratos locais/estática), ambientes externos (desktop/AT-SPI/impressora)
-e comparações originais dependentes de contenção offline. Não é conclusão global.
+Sem teste de cliente real ou interação de portal real; esses testes dependem de
+desktop Linux, não da VM Foxit. A VM offline é necessária para referência
+da etapa 10, UI original da 11 e comparações das etapas 18/19. Guia contém a tabela completa.
+Catálogo 259, roteiro 43,33%, paridade 0/25; original não executado nesta rodada.
+Ainda há operações locais/estática e validação externa a concluir.
 
-[Retomada](docs/RETOMADA.md). Registros anteriores preservados abaixo.
+[Retomada](docs/RETOMADA.md) e [notas](progresso/notas-continuidade.md).
 
 ## Relatório histórico preservado — marco0.1.1
 

@@ -1,0 +1,28 @@
+{
+  "schema": "linuxit-source-ci-review-v1",
+  "date_local": "2026-10-17T20:59:36-03:00",
+  "source_commit": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
+  "ci_run": 39080923451,
+  "artifact_id": 12119010972,
+  "zip_sha256": "4576f6476f695e989713edd818905501211dd4a2857963008d3ef40541750502",
+  "github_digest_matches": true,
+  "full_suite_passed": 290,
+  "preserved_own_cases_passed": 17,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "screenshot_hashes": {
+    "accessible-page-text.png": "3abf9b8c15559b5b5e09c38a803c7fecea9cc9bb275b612ccaf602a57a3f49c0",
+    "attachment-search.png": "3bca0d678c1a28a3f98c1eb991be80cf2adcdb71d5063da32f31362601d57c06",
+    "collection-search.png": "649571544dec5340d39eeb8ea2cf38aa7696fc48780549056cd82eb967d5bdd6",
+    "image-creation.png": "74d27522f5b4b40113d97feafe919b50e95ae9979564189a0f96f12825dad597",
+    "pdf-security.png": "f8332429e0a4e720b6211ff6a7e51d89ddffd9944705dbe83280b03c166e5a15",
+    "proximity-search.png": "f79df8dc1b0c71d50843dbda5cbea1509de38ee32af3bb6f30171802fee2d60f",
+    "signature-integrity.png": "44c60c23af6af07f2aee06b691f89461533b8aae657ae17020b6dc6ddeae977a",
+    "synced-local-folder.png": "7f2de18ff8f93c95382f655ae9c4844f6559268dc2f5f517a8a7db6a2a984d31"
+  },
+  "new_foxit_observations": 0,
+  "real_portal_interaction_tested": false,
+  "real_sync_client_tested": false,
+  "flatpak_validated_by_this_run": false
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "linuxit-sync-local-folder-delivery-v1",
+  "date_local": "2026-10-17T21:07:39-03:00",
+  "version": "0.1.9",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39080923058",
+  "source_commit": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
+  "artifact_id": 12119245506,
+  "archive_sha256": "7e3f36437d07f2bc88709b0071f37503e8658b17544b849f4fb6881f1914360b",
+  "github_digest_matches": true,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.9-x86_64.flatpak",
+    "bytes": 35983584,
+    "sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+    "digitally_signed": false
+  },
+  "complete_tests_per_environment": 290,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "new_portable_methods": 15,
+  "new_gtk_methods": 8,
+  "source_payload_files": 99,
+  "runtime_files": 2804,
+  "elf_files": 215,
+  "debian_package_notices": 150,
+  "sealed_ci_reports_verified": 11,
+  "screenshots_examined": true,
+  "screenshot_hashes": {
+    "accessible-page-text.png": "ce92d1af578c33ac29ba053db7d263d0a9be4ccb61dd8078aefa8b14f9d1e55a",
+    "attachment-search.png": "e3e403e062d2ea205ef9eb6598ff0478d47704cd93042b0f2a8836dc35b209db",
+    "collection-search.png": "42c7ff53367c9bf989f6aad961988448d2158c685bff018171e13e72e944426e",
+    "image-creation.png": "a92f63cd11abb541af0b4924815302965948738184a661ff51611c78cedf18d1",
+    "pdf-security.png": "8af03f8393744a0b702873af12c1e16176ecfa15e7c31dd91f888de227f32fc3",
+    "proximity-search.png": "48ad030c46097fec51b01ade262a73cd8cce7dd5b85ff68a6f0c09378e21317c",
+    "signature-integrity.png": "c39cf959058d9973dc9633af483322e3071034e57e1d19d85fa621b4ef174602",
+    "synced-local-folder.png": "de5f560ce1743ec4f136693d3c83cfa6711c81835b0854856aa4dab361f6af5d"
+  },
+  "outside_home_denial_and_narrow_grant_tested": true,
+  "real_sync_client_used": false,
+  "real_portal_interaction_tested": false,
+  "original_executed": false,
+  "project_complete": false,
+  "criteria_or_weights_changed": false,
+  "limitations": [
+    "Local file workflow only; provider login/upload/conflict management remain external and remote API integration deferred.",
+    "Native folder chooser response is simulated in GTK tests; real desktop portal and grant persistence still pending.",
+    "Outside-HOME access uses a narrow explicit Flatpak grant in CI; no broad package filesystem permission added.",
+    "Final copy name appears complete; .linuxit-* staging may be seen by synchronizer and remain after forced kill.",
+    "Actual sync-client uploads/network loss/conflicts and desktop/AT-SPI/physical printing require their environments, not the original VM.",
+    "Original dynamic reference/UI and differential validation still require offline VM."
+  ]
+}

@@ -44,7 +44,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 
 ## Abrir PDF e renderizar páginas
 
-Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -86,7 +86,7 @@ Relacionados aos planos dinâmicos/UI: D01, D02, D13, D14, D15, D19, D20.
 
 ## Navegação/rotação/zoom
 
-Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -537,7 +537,7 @@ Relacionados aos planos dinâmicos/UI: D18.
 
 ## Criar/mover/gravar marcadores
 
-Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -581,7 +581,7 @@ Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
 ## Anotações/undo/gravação
 
-Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -625,7 +625,7 @@ Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
 ## AcroForm/XFA/eventos
 
-Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -754,7 +754,7 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_real_detach
 
 ## Senhas/permissões/RMS
 
-Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -903,7 +903,7 @@ Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [docs/FOXIT-REA.md](../docs/F
 
 ## Preferências/tema/persistência
 
-Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 
@@ -976,7 +976,7 @@ Fontes: [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/F
 
 ## Criação/conversão
 
-Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.
+Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
 
 **Entradas**
 

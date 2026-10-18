@@ -58,8 +58,8 @@ pode exigir concessão pelo desktop ou permissão explícita para aquela pasta.
 alterado, publicação completa/exclusiva, falhas e worker real. Oito métodos GTK
 preparam seletores reais, abrem/renderizam e salvam uma cópia com worker; a
 resposta nativa de seleção/cancelamento é simulada no limite do desktop.
-Regressões portáveis:20 segurança,17 criação e16 edição passaram nesta rodada.
-Relatórios completos Linux/Flatpak serão ligados após execução e exame.
+Regressões portáveis: 20 de segurança, 17 de criação e 16 de edição passaram nesta rodada.
+Relatórios completos Linux/Flatpak examinados em testes/resultados/0.1.9/.
 
 O builder possui dois controles adicionais com pasta sintética fora de HOME:
 sem concessão, deve ser inacessível; com concessão específica, ler/copiar/reabrir
@@ -73,13 +73,24 @@ que um diálogo de portal foi testado. Nenhum original Foxit é executado.
 |Pastas sincronizadas no Linuxit|Não|Testar um cliente real e desktop Linux, envio/conflitos externos e portais reais.|
 |Código próprio, testes Linux e Flatpak|Não|Ampliar contratos/funcionalidades e validar em seus ambientes.|
 |Análise estática REA/Ghidra|Não|Rastrear tipos, chamadas e estados; evidência estática não observa UI.|
-|Etapa10: referência dinâmica|Sim|Executar o original em contenção offline e observar D01–D20.|
-|Etapa11: interações do original|Sim, para a parte dinâmica|Observar UI01–UI10 e resolver disponibilidade/estados reais.|
-|Etapa18: comparação diferencial|Sim|Capturar resultados do original no corpus/protocolo preservados e comparar.|
-|Etapa19: divergências com o original|Sim, para fechar equivalência|Reproduzir diferenças e validar correções; bugs próprios podem ser corrigidos sem VM.|
+|Etapa 10: referência dinâmica|Sim|Executar o original em contenção offline e observar D01–D20.|
+|Etapa 11: interações do original|Sim, para a parte dinâmica|Observar UI01–UI10 e resolver disponibilidade/estados reais.|
+|Etapa 18: comparação diferencial|Sim|Capturar resultados do original no corpus/protocolo preservados e comparar.|
+|Etapa 19: divergências com o original|Sim, para fechar equivalência|Reproduzir diferenças e validar correções; bugs próprios podem ser corrigidos sem VM.|
 |Desktop/AT-SPI/portais/impressora física|Não é a VM do Foxit|Desktop, tecnologia assistiva e equipamento reais.|
 |Serviços remotos reais do Foxit|VM offline sozinha não basta|Autorização e ambiente de rede/contas específicos; não conectar a VM offline por esta tarefa.|
 
 Os 20 cenários dinâmicos, dez de UI e 50 planos completos continuam sem
-observação/execução integral. Roteiro43,33%,paridade0/25 e pesos preservados.
-Pacote publicado anterior:0.1.8; fonte0.1.9 em desenvolvimento nesta preparação.
+observação/execução integral. Roteiro 43,33%, paridade 0/25 e pesos preservados.
+Fonte e pacote 0.1.9 validados. Confirmações de publicação/auditoria nas notas atuais.
+
+## Marco Linux/Flatpak examinado — 2026-10-17T21:07:39-03:00
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39080923058): 290/290 por ambiente fonte/payload/sandbox, zero falhas/erros/skips.
+99 arquivos da aplicação, 2.804 de dependências, 215 ELF e 150 avisos de pacotes;
+smoke 5/5 e launcher 3/3. Dois controles reais Flatpak de pasta fora HOME passaram:
+inacessível sem permissão, cópia completa/reabertura/recusa de sobrescrita com
+concessão específica. Nenhuma permissão global de filesystem foi adicionada.
+Oito capturas/hash examinados. [Revisão](../testes/resultados/0.1.9/validation-review.json).
+Nove bundles anteriores preservados. Sem cliente real ou interação de portal real;
+essas lacunas são de desktop, distintas da VM offline necessária ao original.

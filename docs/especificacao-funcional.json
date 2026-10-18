@@ -23,9 +23,9 @@
     {
       "id": "open-render",
       "name": "Abrir PDF e renderizar páginas",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "Caminho de PDF local legível; página interna baseada em zero.",
         "Viewport, tamanho solicitado e identidade do documento para cache."
@@ -132,9 +132,9 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "Documento carregado e índice solicitado; indicação UI usa página baseada em um.",
         "Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro."
@@ -1268,9 +1268,9 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
@@ -1402,9 +1402,9 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete",
+      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
@@ -1536,9 +1536,9 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md",
+      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
@@ -1963,9 +1963,9 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
+      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
         "Fonte SHA-256, seis permissões declaradas e destino novo."
@@ -2550,9 +2550,9 @@
     {
       "id": "preferences",
       "name": "Preferências/tema/persistência",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "Modo system, light ou dark e arquivo de configuração em perfil sintético.",
         "JSON existente com chaves conhecidas e de versões futuras."
@@ -2715,9 +2715,9 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "source/package 0.1.7 implemented subset: ordered PNG/JPEG to new RGB PDF; Linux source/payload/installed sandbox212/212 each; see docs/CRIACAO-IMAGENS.md",
+      "matrix_implementation": "source/package 0.1.7 implemented subset: ordered PNG/JPEG to new RGB PDF; Linux source/payload/installed sandbox212/212 each; see docs/CRIACAO-IMAGENS.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; validação Linux desta fonte ainda pendente.",
+      "scope": "Subconjunto próprio: criar PDF RGB de PNG/JPEG explicitamente selecionados, uma imagem por página em ordem ajustável. Demais formatos, OCR e exportação editável não implementados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
         "Lista explícita ordenada de 1–100 PNG/JPEG distintos; DPI inteiro 72–600; caminho .pdf novo."
       ],
@@ -2954,5 +2954,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T20:51:10-03:00"
+  "updated_at_local": "2026-10-17T21:07:39-03:00"
 }

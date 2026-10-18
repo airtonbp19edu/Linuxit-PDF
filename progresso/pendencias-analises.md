@@ -80,3 +80,13 @@ permanecem preservados nesta revisão.
 Retomada 2026-10-17T20:17:24-03:00: conferir publicação/auditoria nas notas.
 [Quatro acessores de reflow](../docs/REA-REFLOW-LAYOUT.md) examinados; não
 repetir estes nem os helpers de sincronização. Nuvem adiada explicitamente.
+
+
+## Marco0.1.9: pastas sincronizadas
+
+Fluxo local autorizado e implementado; APIs de provedores continuam adiadas.
+Fonte/payload/sandbox290/290 aprovados, dois controles de concessão fora HOME.
+Portal real e sincronizador real exigem desktop/cliente, sem VM Foxit.
+A referência10/dinâmica11/comparações18/19 exige original em contenção offline.
+[Tabela de dependências](../docs/PASTAS-SINCRONIZADAS.md). Publicação/auditoria
+nas notas;23subconjuntos/2propostas e pesos preservados.
