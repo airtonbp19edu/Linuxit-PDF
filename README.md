@@ -47,7 +47,7 @@ A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 
-- [Baixar Flatpak 0.1.9](releases/LinuxitPDF-0.1.9-x86_64.flatpak) e [instalação](docs/instalacao.md)
+- [Baixar Flatpak 0.1.9 — requer login no GitHub](releases/LinuxitPDF-0.1.9-x86_64.flatpak) e [instalação](docs/instalacao.md)
 - [Execução das frentes sem VM e entrega 0.1.5](docs/AVANCO-SEM-VM.md)
 - [Pastas sincronizadas: uso, limites e dependências de VM](docs/PASTAS-SINCRONIZADAS.md)
 - [Hashes e manifesto](releases/manifest.json)

@@ -8,10 +8,21 @@ parciais; não é uma publicação no Flathub nem uma declaração de equivalên
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
-Em um desktop Linux com Flatpak e Flathub configurados, após baixar o artefato:
+O repositório é privado. Para baixar, abra a
+[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.9-x86_64.flatpak)
+em um navegador conectado a uma conta com acesso ao projeto e clique em
+**Download raw** (ícone de download). O link raw sem autenticação retorna 404;
+uma página em branco no navegador interno não indica que o pacote esteja vazio.
+Se necessário, abra essa página no navegador habitual e faça login.
+
+O arquivo 0.1.9 tem **35.983.584 bytes** (aproximadamente 34,3 MiB).
+É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
+
+Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
+pasta em que o arquivo foi baixado e execute:
 
 ```bash
-flatpak install --user LinuxitPDF-0.1.9-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.9-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 

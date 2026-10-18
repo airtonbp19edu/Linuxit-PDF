@@ -1534,3 +1534,24 @@ protocolo e hashes preservados; não reiniciar alvos estáticos examinados.
 Outras operações locais e análises estáticas continuam abertas sem VM.
 Esta nota e os relatórios recebem o próximo commit; a confirmação final deve
 usar recibo externo para evitar registrar o hash do próprio commit.
+
+## 2026/10/17 às 21:20 (America/Sao_Paulo, UTC-03:00) — acesso ao download privado corrigido
+
+O usuário informou página em branco ao abrir o link raw no navegador interno;
+não informou arquivo baixado com zero bytes. HTTP público dos dois links raw
+e da API retornou 404. A API autenticada confirmou repositório privado e o
+arquivo 0.1.9 com 35.983.584 bytes. Git blob remoto
+`a96ff93c9bc9a4dbf4c2af48d0d9d1dfcd45a330` coincide com `git hash-object` local;
+SHA-256 local continua `ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede`.
+Nenhum pacote foi reconstruído ou substituído; testes não foram repetidos.
+
+README e instalação agora orientam abrir a página do arquivo em navegador
+autenticado e usar Download raw, com tamanho esperado e comandos de instalação.
+Visibilidade do repositório preservada. Diagnóstico sanitizado em
+`analysis-local/download-access-check-019.json`, fora do Git; sem publicar
+credenciais ou links temporários. A resposta específica do navegador interno
+não foi instrumentada: o acesso anônimo negado é confirmado, o diagnóstico
+da tela em branco usa também o relato do usuário.
+Próximo: o usuário baixar autenticado e testar no desktop Linux. Dependências
+de portal/cliente real e VM offline das etapas 10/11/18/19 permanecem intactas.
+Publicar esta correção documental e confirmar o remoto por recibo externo.
