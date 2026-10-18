@@ -425,9 +425,10 @@
             "docs/contratos-funcionais.md",
             "testes/resultados/etapa-12-especificacao-2026-10-17.json",
             "docs/REVISAO-ETAPAS.md",
-            "testes/resultados/revisao-etapas-2026-10-17/review.json"
+            "testes/resultados/revisao-etapas-2026-10-17/review.json",
+            "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Current specification: 25 families, 50 full acceptance plans not_run, 23 implemented subsets and 2 proposals (cloud deferred by user). Missing full original behavior and unsupported subfeatures preserve partial status. Criteria/weights unchanged."
+          "note": "Own0.1.10 copy editor extends forms/bookmarks/annotations and draft undo/redo; portable21+8 passed. GTK/source/Flatpak validation pending. Broad criterion/parity/weights unchanged."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
@@ -435,9 +436,10 @@
           "status": "pending",
           "evidence": [
             "docs/ETAPA-12.md",
-            "docs/especificacao-funcional.json"
+            "docs/especificacao-funcional.json",
+            "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Gaps are explicit, but the original inventory, subsystem contracts and dynamic observations remain incomplete. Phase A is not consolidated."
+          "note": "Own0.1.10 copy editor extends forms/bookmarks/annotations and draft undo/redo; portable21+8 passed. GTK/source/Flatpak validation pending. Broad criterion/parity/weights unchanged."
         }
       ],
       "verified_fraction": 0.125,
@@ -573,9 +575,10 @@
             "testes/resultados/0.1.4/source-intermediate.json",
             "testes/resultados/0.1.4/payload-tests.json",
             "testes/resultados/0.1.4/sandbox-tests.json",
-            "testes/resultados/0.1.4/validation-review.json"
+            "testes/resultados/0.1.4/validation-review.json",
+            "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Own0.1.4 attachment catalog trees and page annotation files verified:7 new backend methods,14 backend/14 controller regressions and6 GTK panel methods in source/payload/installed sandbox127/127 suites. Portfolios, non-empty passwords and remaining families still partial; no Foxit observation."
+          "note": "Own0.1.10 copy editor extends forms/bookmarks/annotations and draft undo/redo; portable21+8 passed. GTK/source/Flatpak validation pending. Broad criterion/parity/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -642,9 +645,10 @@
             "testes/resultados/0.1.4/source-intermediate.json",
             "testes/resultados/0.1.4/payload-tests.json",
             "testes/resultados/0.1.4/sandbox-tests.json",
-            "testes/resultados/0.1.4/validation-review.json"
+            "testes/resultados/0.1.4/validation-review.json",
+            "docs/EDICAO-COM-HISTORICO.md"
           ],
-          "note": "Sidebar clipping reproduced: minimum221, pane158, x=-63. shrink=False fixed visible allocation; ten geometry scenarios and three new GTK methods passed. Complete Linux/source/payload/sandbox suites passed for0.1.3. Remaining integrations/desktop/accessibility/physical printing and families remain partial; status/weights unchanged."
+          "note": "Own0.1.10 copy editor extends forms/bookmarks/annotations and draft undo/redo; portable21+8 passed. GTK/source/Flatpak validation pending. Broad criterion/parity/weights unchanged."
         }
       ],
       "verified_fraction": 0.333333,
@@ -1488,24 +1492,23 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-18T01:11:07-03:00",
-    "report": "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-    "source_and_package_version": "0.1.9",
-    "new_static_entries_examined": 48,
+    "date_local": "2026-10-18T01:51:24-03:00",
+    "report": "docs/EDICAO-COM-HISTORICO.md",
+    "source_version": "0.1.10",
+    "published_package_version": "0.1.9",
+    "new_static_entries_examined": 0,
     "catalog_entries": 323,
-    "complete_tests_per_environment": 290,
+    "portable_methods_passed": 29,
+    "new_gtk_methods": 8,
     "full_test_suite_rerun": false,
-    "complete_test_counts_are_historical": true,
-    "previous_package_audit_ref": "testes/resultados/0.1.9/audit/review.json",
+    "historical_complete_tests_per_environment": 290,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_static_commit",
+    "publication_state": "source_checkpoint_prepared",
     "direct_cloud_api_deferred": true,
-    "local_synchronized_folder_workflow": true,
-    "confirmed_static_commit": "2e2da8da8c80728bcbf6ab5f0e2929c447839665",
-    "publication_confirmed_at_local": "2026-10-18T01:14:25-03:00"
+    "local_synchronized_folder_workflow": true
   },
   "no_vm_execution_history": [
     {
@@ -1633,19 +1636,35 @@
       "local_synchronized_folder_workflow": true,
       "confirmed_static_commit": "45417b3a546be1d51a0809ad170d420806b0a098",
       "publication_confirmed_at_local": "2026-10-18T00:47:25-03:00"
+    },
+    {
+      "date_local": "2026-10-18T01:11:07-03:00",
+      "report": "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+      "source_and_package_version": "0.1.9",
+      "new_static_entries_examined": 48,
+      "catalog_entries": 323,
+      "complete_tests_per_environment": 290,
+      "full_test_suite_rerun": false,
+      "complete_test_counts_are_historical": true,
+      "previous_package_audit_ref": "testes/resultados/0.1.9/audit/review.json",
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_static_commit",
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "confirmed_static_commit": "2e2da8da8c80728bcbf6ab5f0e2929c447839665",
+      "publication_confirmed_at_local": "2026-10-18T01:14:25-03:00"
     }
   ],
   "latest_resume": {
-    "date_local": "2026-10-18T01:11:07-03:00",
-    "local_and_remote_checked_equal_at_start": "1ccd574e85b1fd9919b23a203f126a9980670723",
-    "work_scope": "User requested remainder of static search/printing/reflow/types/state queue; bounded48-entry follow-up.",
-    "other_collaborator_changes_found": false,
-    "report": "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-    "new_static_entries_examined": 48,
+    "date_local": "2026-10-18T01:51:24-03:00",
+    "local_and_remote_checked_equal_at_start": "91c405dc6593eb503a14f939f2bfcabb21f98540",
+    "work_scope": "User requested remaining own work while configuring VM; forms/bookmarks/annotations/draft history implementation.",
+    "application_modified": true,
+    "report": "docs/EDICAO-COM-HISTORICO.md",
     "original_executed": false,
-    "application_modified": false,
-    "analysis_tools_modified": true,
-    "full_test_suite_reexecuted": false,
     "cloud_deferred_by_user": true
   },
   "current_static_analysis": {
@@ -1698,6 +1717,19 @@
       "new_static_entries_examined": 16,
       "original_executed": false,
       "application_modified": false,
+      "full_test_suite_reexecuted": false,
+      "cloud_deferred_by_user": true
+    },
+    {
+      "date_local": "2026-10-18T01:11:07-03:00",
+      "local_and_remote_checked_equal_at_start": "1ccd574e85b1fd9919b23a203f126a9980670723",
+      "work_scope": "User requested remainder of static search/printing/reflow/types/state queue; bounded48-entry follow-up.",
+      "other_collaborator_changes_found": false,
+      "report": "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+      "new_static_entries_examined": 48,
+      "original_executed": false,
+      "application_modified": false,
+      "analysis_tools_modified": true,
       "full_test_suite_reexecuted": false,
       "cloud_deferred_by_user": true
     }

@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-17T21:07:39-03:00",
+  "reviewed_at_local": "2026-10-18T01:51:24-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.9",
+  "application_version": "0.1.10",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -227,6 +227,30 @@
       "path": "app/folder_dialogs.py",
       "boundary": "GTK adapter",
       "responsibility": "Preferred folder shortcuts and explicit native directory selection."
+    },
+    {
+      "id": "pdf_form_controls",
+      "path": "app/pdf_form_controls.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Inspeção/preenchimento restrito de caixas, radio e listas AcroForm."
+    },
+    {
+      "id": "edit_history",
+      "path": "app/edit_history.py",
+      "boundary": "process_and_platform",
+      "responsibility": "Histórico transacional por cópias temporárias validadas e identidade da origem."
+    },
+    {
+      "id": "edit_dialogs",
+      "path": "app/edit_dialogs.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Diálogos de controles, árvore de marcadores e anotações de área."
+    },
+    {
+      "id": "edit_window",
+      "path": "app/edit_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Rascunho de edição em cópia com desfazer/refazer e gravação nova."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -446,6 +470,26 @@
     {
       "path": "app/folder_dialogs.py",
       "symbol": "choose_sync_folder"
+    },
+    {
+      "path": "app/pdf_form_controls.py",
+      "symbol": "inspect_controls"
+    },
+    {
+      "path": "app/pdf_form_controls.py",
+      "symbol": "fill_controls"
+    },
+    {
+      "path": "app/edit_history.py",
+      "symbol": "EditSession"
+    },
+    {
+      "path": "app/edit_dialogs.py",
+      "symbol": "advanced_operation_dialog"
+    },
+    {
+      "path": "app/edit_window.py",
+      "symbol": "EditWindow"
     }
   ],
   "family_assignments": [
@@ -604,7 +648,11 @@
         "app/worker_cli.py",
         "app/main.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py"
       ],
       "future_boundary": "Modelo de edição e gravação em cópia, além do painel atual.",
       "future_boundary_implemented": false
@@ -620,7 +668,11 @@
         "app/worker_cli.py",
         "app/main.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
@@ -634,7 +686,11 @@
         "app/worker_cli.py",
         "app/main.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py"
       ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false
@@ -779,6 +835,7 @@
     }
   ],
   "runtime_limitations": [
+    "Source0.1.10:21 advanced portable and8 history methods passed. New GTK editor/source suites and next Flatpak unverified at this checkpoint; prior0.1.9 bundle remains preserved.",
     "Current0.1.9 source/payload/installed Flatpak290/290 passed in Debian13/X11 CI; two outside-HOME denied/granted controls passed. Real desktop portal/backend/grant persistence/sync-client remain unverified.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
@@ -792,5 +849,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

@@ -1,0 +1,110 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_advanced_edits.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 18,
+  "passed": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 1.414694499999996,
+  "cases": [
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_sets_and_clears_value_and_visible_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.08559850000006008
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_choice_selection_can_be_cleared",
+      "status": "passed",
+      "elapsed_sec": 0.08048840000003565
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_delete_bookmark_removes_subtree_and_last_root",
+      "status": "passed",
+      "elapsed_sec": 0.04828809999992245
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_delete_supported_annotation_preserves_widgets_and_other_pages",
+      "status": "passed",
+      "elapsed_sec": 0.05532759999994141
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_editable_combo_and_duplicate_exports_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.05989790000000994
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text",
+      "status": "passed",
+      "elapsed_sec": 0.05548250000003918
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_info_distinguishes_checkbox_radio_choice_combo_and_multiselect",
+      "status": "passed",
+      "elapsed_sec": 0.03544649999992089
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_invalid_annotation_geometry_and_extra_parameters_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.06955510000000231
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_invalid_values_do_not_publish_partial_batch",
+      "status": "passed",
+      "elapsed_sec": 0.10819179999998596
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_locked_notes_widgets_and_replies_are_not_deleted",
+      "status": "passed",
+      "elapsed_sec": 0.12497399999995196
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_child_to_root_and_reorder_same_parent",
+      "status": "passed",
+      "elapsed_sec": 0.05625740000004953
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_into_descendant_invalid_positions_and_boolean_paths_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.07767859999989923
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_preserves_subtree_destinations_and_sibling_links",
+      "status": "passed",
+      "elapsed_sec": 0.07180840000000899
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_multiselect_uses_export_values_and_canonical_indices",
+      "status": "passed",
+      "elapsed_sec": 0.08545349999997143
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_radio_activates_only_the_selected_widget_and_can_clear",
+      "status": "passed",
+      "elapsed_sec": 0.1314038000000437
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_radio_no_toggle_off_is_enforced",
+      "status": "passed",
+      "elapsed_sec": 0.06702640000003157
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_read_only_and_unsupported_button_appearance_are_explicit",
+      "status": "passed",
+      "elapsed_sec": 0.10478569999997944
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_single_and_combo_values_indices_and_generated_appearances_roundtrip",
+      "status": "passed",
+      "elapsed_sec": 0.09431789999996454
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

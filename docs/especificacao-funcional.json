@@ -1284,16 +1284,17 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "source0.1.10 draft copy editor; see docs/EDICAO-COM-HISTORICO.md; Linux validation pending; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Fonte0.1.10 em validação: criar/renomear, mover subárvore por pai/posição e excluir subárvore em cópia; ligações, destinos e contagens preservados no subconjunto. Histórico de rascunho permite desfazer/refazer antes de salvar; cópias já salvas preservadas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
-        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
+        "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
       "outputs": [
-        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
-        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
+        "Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.",
+        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada."
       ],
       "errors": [
         {
@@ -1310,13 +1311,19 @@
           "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
           "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
           "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada",
+          "response": "Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
         "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
         "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
         "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
-        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.",
+        "Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino."
       ],
       "source_refs": [
         "app/pdf_panels.py",
@@ -1327,7 +1334,12 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
       "foxit": {
         "evidence_state": "static_code_partial",
@@ -1418,16 +1430,17 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "source0.1.10 draft copy editor; see docs/EDICAO-COM-HISTORICO.md; Linux validation pending; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Fonte0.1.10 em validação: criar/editar Text, acrescentar Highlight de área e Square, excluir esses três tipos desbloqueados sem dependentes. Histórico de rascunho com desfazer/refazer; sem redação, apagamento seguro, popup/respostas ou edição universal.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
-        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
+        "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
       "outputs": [
-        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
-        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
+        "Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.",
+        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada."
       ],
       "errors": [
         {
@@ -1444,13 +1457,19 @@
           "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
           "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
           "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada",
+          "response": "Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
         "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
         "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
         "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
-        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.",
+        "Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino."
       ],
       "source_refs": [
         "app/pdf_panels.py",
@@ -1462,7 +1481,12 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -1552,16 +1576,17 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "source0.1.5 implemented subset: fill writable AcroForm Tx field respecting inherited ReadOnly/MaxLen; save new copy only; Linux source/payload/installed sandbox verified152/152 each; see docs/COPIA-EDITADA.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "source0.1.10 draft copy editor; see docs/EDICAO-COM-HISTORICO.md; Linux validation pending; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Fonte0.1.10 em validação: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
-        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente."
+        "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
+        "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
       "outputs": [
-        "Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.",
-        "UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada."
+        "Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.",
+        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada."
       ],
       "errors": [
         {
@@ -1578,13 +1603,19 @@
           "trigger": "Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido",
           "response": "Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.",
           "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada",
+          "response": "Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
         "Fonte clonada em memória; gravação temporária privada, reabertura e rechecagem de identidade antes da criação exclusiva do destino.",
         "Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.",
         "Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.",
-        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga."
+        "Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.",
+        "Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino."
       ],
       "source_refs": [
         "app/pdf_changes.py",
@@ -1593,7 +1624,12 @@
         "app/main.py",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",

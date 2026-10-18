@@ -3,11 +3,12 @@ import json
 from pathlib import Path
 import subprocess
 import re
+from concurrent.futures import CancelledError
 
 from platform_runtime import worker_python, subprocess_options
 
 
-def invoke_edit_worker(command, path, destination=None, request=None):
+def invoke_edit_worker(command, path, destination=None, request=None, *, cancel=None):
     if command not in {'edit-info', 'copy-edit'}:
         raise ValueError('Comando de alteração inválido.')
     if command == 'copy-edit' and (destination is None or not isinstance(request, dict)):
@@ -15,6 +16,11 @@ def invoke_edit_worker(command, path, destination=None, request=None):
     argv = [worker_python(), '-X', 'utf8', str(Path(__file__).with_name('worker_cli.py')), command, str(path)]
     if command == 'copy-edit':
         argv.append(str(destination))
+    if cancel is not None:
+        from search_tasks import run_search_worker
+        data = run_search_worker(command, path, request or {}, cancel=cancel, timeout=600, destination=destination)
+        if data is None:raise CancelledError()
+        return _validated_reply(command, destination, request, data)
     try:
         result = subprocess.run(argv, input=json.dumps(request, ensure_ascii=True) if request is not None else None,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
@@ -29,8 +35,13 @@ def invoke_edit_worker(command, path, destination=None, request=None):
         elif kind not in {'ValueError', 'NotImplementedError'} or not message:
             message = 'Não foi possível preparar ou salvar a cópia deste PDF.'
         raise RuntimeError(message)
+    try:data = json.loads(result.stdout)
+    except ValueError as exc:raise RuntimeError('O worker não retornou uma confirmação de alteração válida.') from exc
+    return _validated_reply(command, destination, request, data)
+
+
+def _validated_reply(command, destination, request, data):
     try:
-        data = json.loads(result.stdout)
         expected = 'linuxit-copy-edit-info-v1' if command == 'edit-info' else 'linuxit-copy-edit-result-v1'
         if data['schema'] != expected:
             raise ValueError('Unexpected edit protocol')

@@ -1,0 +1,24 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_edit_history.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 1,
+  "passed": 0,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "elapsed_sec": 0.007133800000019619,
+  "cases": [
+    {
+      "id": "unittest.loader._FailedTest.test_edit_history",
+      "status": "error"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

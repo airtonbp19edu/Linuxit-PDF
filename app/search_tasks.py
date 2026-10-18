@@ -12,16 +12,19 @@ from platform_runtime import worker_python, subprocess_options
 MAX_REPLY = 16 * 1024 * 1024
 
 
-def run_search_worker(command, path, request, cancel=None, timeout=120):
-    if command not in {'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file'}:
+def run_search_worker(command, path, request, cancel=None, timeout=120, destination=None):
+    if command not in {'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file', 'edit-info', 'copy-edit'}:
         raise ValueError('Comando de pesquisa inválido.')
+    if (command == 'copy-edit') != (destination is not None):
+        raise ValueError('Destino inválido para este comando.')
     if cancel is not None and cancel.is_set():
         return None
     payload = json.dumps(request, ensure_ascii=True).encode('utf-8')
-    limit = 16384 if command in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy'} else 65536 if command == 'search-attachments' else 256 * 1024
+    limit = 1024 * 1024 if command == 'copy-edit' else 16384 if command in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy'} else 65536 if command == 'search-attachments' else 256 * 1024
     if len(payload) > limit:
         raise ValueError('O pedido excede o limite permitido para esta operação.')
     argv = [worker_python(), '-X', 'utf8', str(Path(__file__).with_name('worker_cli.py')), command, str(path)]
+    if destination is not None:argv.append(str(destination))
     with tempfile.TemporaryDirectory(prefix='linuxit-worker-', ignore_cleanup_errors=True) as work, tempfile.TemporaryFile() as output, tempfile.TemporaryFile() as error:
         options = subprocess_options()
         if os.name != 'nt':options['start_new_session'] = True

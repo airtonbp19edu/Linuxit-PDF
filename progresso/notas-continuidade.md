@@ -1773,3 +1773,28 @@ Próximo: escolher entre diagnosticar/ajustar VirtualBox ou testar VMware;
 conferir RAM livre, disco local e Guest Additions. Implementação própria e
 análise estática podem continuar independentemente dessa VM.
 Nota preparada para publicação; confirmar push por recibo externo.
+
+
+## 2026/10/18 às 01:51 (America/Sao_Paulo, UTC-03:00) — editor próprio de cópia em validação
+
+Pedido: avançar trabalhos sem VM enquanto o usuário a configura. Git local/remoto
+91c405dc6593eb503a14f939f2bfcabb21f98540 iguais ao iniciar, árvore limpa. Implementados
+controles AcroForm checkbox/radio/choice, mover/excluir subárvore de marcadores,
+Highlight/Square/exclusão restrita e histórico de rascunho com desfazer/refazer.
+Quatro módulos novos; fonte0.1.10, arquitetura41 módulos/54 interfaces. Nenhum
+código Foxit incorporado, original não executado e catálogo323 preservado.
+
+21 testes novos portáveis e oito do histórico passaram. Regressão de edição47
+casos:42 passaram/cinco GTK omitidos no Windows; não é validação Linux. Primeiro
+lote detectou três falhas de AP de choice /Opt em pares, corrigidas por adaptador
+próprio sem alterar pypdf. Primeiro teste de histórico falhou por import antes
+de configurar caminho; relatório de falha preservado e rodada corrigida passou.
+Oito métodos GTK novos preparados, ainda sem execução. Sem timeout/tokens confirmado.
+
+Contrato:docs/EDICAO-COM-HISTORICO.md. Relatórios portáveis emtestes/resultados/
+advanced-edits-portable-2026-10-18-round2.json eedit-history-portable-2026-10-18-round2.json.
+Raw e temporários emanalysis-local/. Último Flatpak0.1.9 e suas290execuções por
+ambiente preservados. Critérios/pesos/43,33%/21abertos/paridade0/25 intactos.
+Próximo:validar contratos/arquitetura,commit/push eCI fonte Linux, corrigir UI
+se necessário; só depois gerar novo Flatpak e auditar. Nuvem remota adiada/IA excluída.
+Ainda não publicado neste checkpoint; registrar confirmação remota depois.

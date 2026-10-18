@@ -1,6 +1,11 @@
 # Retomada do Linuxit PDF
 
-Fonte e Flatpak **0.1.9/devel**, com [pastas sincronizadas locais](PASTAS-SINCRONIZADAS.md).
+
+Editor de cópia com formulários, marcadores, anotações e histórico em validação.
+21 testes portáveis + oito de histórico passaram; GTK/Linux e pacote novo pendentes.
+Ver docs/EDICAO-COM-HISTORICO.md e as notas mais recentes.
+
+Fonte **0.1.10 em validação**; último Flatpak publicado **0.1.9/devel**, com [pastas sincronizadas locais](PASTAS-SINCRONIZADAS.md).
 Pasta preferida, últimas pastas, atalhos para abrir/salvar e cópias novas completas,
 sem sobrescrita. Alterações externas exigem reabrir; o envio cabe ao cliente externo.
 **290/290 testes próprios** por ambiente: fonte, payload e sandbox instalado,
@@ -13,7 +18,7 @@ um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 6.830 instruções/25.919 bytes conferidos em oito lotes; tipos, estados, stemming e arrays refinados.
 Fonte/pacote preservados; as suítes completas não foram repetidas nesta rodada.
 
-Arquitetura: 37 módulos/49 interfaces. Catálogo: 323 entradas (152 REA + 171 diretas).
+Arquitetura: 41 módulos/54 interfaces. Catálogo: 323 entradas (152 REA + 171 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
 APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;

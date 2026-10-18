@@ -262,6 +262,7 @@ class PDFWindow(Gtk.Window):
                     ('Senhas e permissões…', self._show_security),
                     ('Verificar assinaturas…', self._show_signatures),
                     ('Texto da página… (Ctrl+Shift+T)', self._show_accessible_text),
+                    ('Editar cópia com desfazer/refazer…', self._show_edit_draft),
                     ('Novo marcador na página atual…', lambda: self._begin_copy_edit('add-bookmark')),
                     ('Renomear marcador em cópia…', lambda: self._begin_copy_edit('rename-bookmark')),
                     ('Adicionar nota na página atual…', lambda: self._begin_copy_edit('add-note')),
@@ -815,6 +816,8 @@ class PDFWindow(Gtk.Window):
 
     def _clear_document_state(self):
         self._document_stamp = None
+        edit_window = getattr(self, 'edit_window', None)
+        if edit_window is not None and not edit_window.closed:edit_window.destroy()
         self.runner.invalidate('local-copy')
         text_window = getattr(self, 'accessible_text_window', None)
         if text_window is not None and not text_window.closed:text_window.destroy()
@@ -1730,6 +1733,14 @@ class PDFWindow(Gtk.Window):
             window.show_all()
         window.present()
 
+    def _show_edit_draft(self, *_):
+        if not self.filepath or not self._source_unchanged():return
+        from edit_window import EditWindow
+        window = getattr(self, 'edit_window', None)
+        if window is None or window.closed:
+            window = EditWindow(self,self.filepath,self.page);self.edit_window = window;window.show_all()
+        window.present()
+
     def _begin_copy_edit(self, kind):
         if not self.filepath or self.page_count < 1 or getattr(self, '_copy_edit_busy', False):
             return
@@ -1781,6 +1792,8 @@ class PDFWindow(Gtk.Window):
             dialog.destroy()
 
     def _copy_edit_operation_dialog(self, kind, info, page):
+        from edit_dialogs import ADVANCED_KINDS, advanced_operation_dialog
+        if kind in ADVANCED_KINDS:return advanced_operation_dialog(self,kind,info,page)
         if kind in {'rotate-page', 'rename-bookmark', 'update-note'}:
             return self._extended_edit_dialog(kind, info, page)
         titles = {'add-bookmark': 'Novo marcador', 'add-note': 'Adicionar nota',

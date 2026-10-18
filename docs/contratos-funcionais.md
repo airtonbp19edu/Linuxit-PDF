@@ -537,23 +537,25 @@ Relacionados aos planos dinâmicos/UI: D18.
 
 ## Criar/mover/gravar marcadores
 
-Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar cópia nova. Renomear/mover/excluir/undo ainda pendentes. Leitura anterior preservada. Fonte 0.1.8: Criar marcador de topo e renomear marcador por caminho hierárquico, preservando destinos; mover/excluir e edição completa pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Fonte0.1.10 em validação: criar/renomear, mover subárvore por pai/posição e excluir subárvore em cópia; ligações, destinos e contagens preservados no subconjunto. Histórico de rascunho permite desfazer/refazer antes de salvar; cópias já salvas preservadas.
 
 **Entradas**
 
 - PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
 - Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
+- Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos.
 
 **Saídas**
 
-- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
-- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
+- Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.
+- UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada.
 
 **Erros e casos excepcionais**
 
 - Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
 - PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
 - Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
+- Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada: Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.
 
 **Estado e efeitos**
 
@@ -561,6 +563,7 @@ Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar c
 - Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
 - Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
 - Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
+- Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino.
 
 **Critérios planejados**
 
@@ -571,7 +574,7 @@ Fonte0.1.5: acrescentar marcador de nível principal na página atual e salvar c
 
 - Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/pdf_form_controls.py](../app/pdf_form_controls.py), [app/edit_history.py](../app/edit_history.py), [app/edit_dialogs.py](../app/edit_dialogs.py), [app/edit_window.py](../app/edit_window.py), [docs/EDICAO-COM-HISTORICO.md](../docs/EDICAO-COM-HISTORICO.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 
@@ -581,23 +584,25 @@ Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
 ## Anotações/undo/gravação
 
-Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de leitura anterior preservado; demais anotações/undo/exclusão ainda pendentes. Fonte 0.1.8: Criar nota Text e atualizar conteúdo/autoria de nota Text desbloqueada por página/índice, preservando retângulo; demais anotações/undo/exclusão pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Fonte0.1.10 em validação: criar/editar Text, acrescentar Highlight de área e Square, excluir esses três tipos desbloqueados sem dependentes. Histórico de rascunho com desfazer/refazer; sem redação, apagamento seguro, popup/respostas ou edição universal.
 
 **Entradas**
 
 - PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
 - Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
+- Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos.
 
 **Saídas**
 
-- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
-- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
+- Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.
+- UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada.
 
 **Erros e casos excepcionais**
 
 - Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
 - PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
 - Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
+- Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada: Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.
 
 **Estado e efeitos**
 
@@ -605,6 +610,7 @@ Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de lei
 - Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
 - Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
 - Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
+- Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino.
 
 **Critérios planejados**
 
@@ -615,7 +621,7 @@ Fonte0.1.5: criar nota Text na página atual e salvar cópia nova. Painel de lei
 
 - Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/search_engine.py](../app/search_engine.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/pdf_form_controls.py](../app/pdf_form_controls.py), [app/edit_history.py](../app/edit_history.py), [app/edit_dialogs.py](../app/edit_dialogs.py), [app/edit_window.py](../app/edit_window.py), [docs/EDICAO-COM-HISTORICO.md](../docs/EDICAO-COM-HISTORICO.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_and_contents_are_searchable_without_author](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 
@@ -625,23 +631,25 @@ Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
 ## AcroForm/XFA/eventos
 
-Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLen herdados, em cópia nova. Checkbox/escolha/XFA/eventos ainda não suportados. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Fonte0.1.10 em validação: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.
 
 **Entradas**
 
 - PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.
 - Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.
+- Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos.
 
 **Saídas**
 
-- Novo PDF reaberto com páginas preservadas, hash da saída e número de operações; original permanece inalterado.
-- UI salva uma alteração por cópia; sem sobrescrita. Protótipo GTK ainda sem execução nesta rodada.
+- Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.
+- UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux em validação nesta rodada.
 
 **Erros e casos excepcionais**
 
 - Fonte mudou ou destino já existe, inclusive o próprio original: Recusar a gravação; não sobrescrever arquivos.
 - PDF criptografado, assinatura/campo Sig, Perms, XFA ou Collection: Recurso não suportado para gravação; não remover proteção ou invalidar assinatura.
 - Operação/índice/texto/retângulo inválido; campo ausente, não Tx, ReadOnly ou MaxLen excedido: Falha antes de publicar destino; lote não é aplicado parcialmente à fonte.
+- Controle/aparência/opção/árvore/anotação fora do subconjunto ou origem alterada: Recusar a alteração sem avançar o histórico ou publicar uma cópia parcial em falha tratada.
 
 **Estado e efeitos**
 
@@ -649,6 +657,7 @@ Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLe
 - Falhas tratadas removem arquivo novo criado; término forçado/timeout pode deixar temporário ou saída parcial e exige conferir destino.
 - Não executar ações ou scripts PDF. Sem persistência em cima do original e sem garantia de preservação de assinatura; documentos com assinatura são recusados.
 - Confirmação capturada por documento/geração; reabrir o mesmo caminho durante diálogo invalida a operação antiga.
+- Reconstituir cópia temporária e inspecionar antes de avançar histórico; falha mantém cursor/refazer e original; fechar cancela worker. Gravação interrompida exige conferir destino.
 
 **Critérios planejados**
 
@@ -659,7 +668,7 @@ Fonte0.1.5: preencher campos Tx AcroForm terminais, respeitando ReadOnly e MaxLe
 
 - Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários.
 
-Fontes: [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+Fontes: [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/pdf_form_controls.py](../app/pdf_form_controls.py), [app/edit_history.py](../app/edit_history.py), [app/edit_dialogs.py](../app/edit_dialogs.py), [app/edit_window.py](../app/edit_window.py), [docs/EDICAO-COM-HISTORICO.md](../docs/EDICAO-COM-HISTORICO.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_nested_field_inherits_read_only_and_max_length](../tests/test_pdf_changes.py); [test_form_max_length_and_value_types_are_enforced](../tests/test_pdf_changes.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 

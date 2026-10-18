@@ -11,8 +11,9 @@ import tempfile
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader, PdfWriter
-from pypdf.annotations import Text
-from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject, TextStringObject
+from pypdf.annotations import Text, Rectangle, Highlight
+from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject, TextStringObject, FloatObject
+from pdf_form_controls import inspect_controls, fill_controls
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -131,11 +132,109 @@ def _note_records(reader):
     return rows, truncated
 
 
+def _annotation_rect(page, rect):
+    left, bottom, right, top = map(float, page.cropbox)
+    _require(isinstance(rect, list) and len(rect) == 4 and all(type(v) in (int, float) and math.isfinite(v) for v in rect),
+             'Retângulo de anotação inválido.')
+    _require(all(math.isfinite(v) for v in (left, bottom, right, top))
+             and left <= rect[0] < rect[2] <= right and bottom <= rect[1] < rect[3] <= top,
+             'A anotação deve ficar dentro do CropBox, em coordenadas PDF.')
+    return rect
+
+
+def _removable_annotation(note):
+    return (isinstance(note, DictionaryObject) and note.get('/Subtype') in ('/Text', '/Square', '/Highlight')
+            and not int(note.get('/F', 0)) & (64 | 128 | 512) and '/IRT' not in note and '/Popup' not in note)
+
+
+def _annotation_has_dependants(reader, note):
+    for page in reader.pages:
+        annots = page.get('/Annots')
+        if annots is None or not isinstance(annots.get_object(), ArrayObject):continue
+        for ref in annots.get_object():
+            other = ref.get_object()
+            if not isinstance(other, DictionaryObject):continue
+            for key in ('/IRT', '/Parent'):
+                related = other.get(key)
+                if related is not None and related.get_object() is note:return True
+    return False
+
+
+def _annotation_records(reader):
+    rows, size, truncated = [], 0, False
+    for page_index, page in enumerate(reader.pages):
+        annots = page.get('/Annots')
+        if annots is None or not isinstance(annots.get_object(), ArrayObject):continue
+        for index, ref in enumerate(annots.get_object()):
+            note = ref.get_object()
+            if not _removable_annotation(note):continue
+            text = note.get('/Contents', '')
+            if not isinstance(text, str) or len(text.encode('utf-8')) > MAX_TEXT_BYTES:continue
+            if len(rows) >= 2000 or size + len(text.encode('utf-8')) > 1024**2:truncated = True;continue
+            size += len(text.encode('utf-8'))
+            rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text})
+    return rows, truncated
+
+
+def _bookmark_path(value, allow_root=False):
+    _require(isinstance(value, list) and (0 if allow_root else 1) <= len(value) <= 32
+             and all(type(i) is int and 0 <= i < 2048 for i in value), 'Caminho de marcador inválido.')
+    return tuple(value)
+
+
+def _change_outline(writer, operation):
+    moving = operation['kind'] == 'move-bookmark'
+    _require(set(operation) == ({'kind','path','parent','position'} if moving else {'kind','path'}),
+             'Opções de marcador inválidas.')
+    source = _bookmark_path(operation['path'])
+    rows = _outline_nodes(writer)
+    objects, children = {tuple(p):n for p,n in rows}, {():[]}
+    for path, node in rows:
+        key = tuple(path);children[key] = []
+        children[key[:-1]].append(node)
+    _require(source in objects, 'Marcador não encontrado no documento atual.')
+    if moving:
+        target = _bookmark_path(operation['parent'], allow_root=True)
+        _require(not target or target in objects, 'Pasta de marcadores não encontrada.')
+        _require(target[:len(source)] != source, 'Não é possível mover um marcador para sua própria subárvore.')
+        position = operation['position']
+        target_size = len(children[target]) - int(target == source[:-1])
+        _require(type(position) is int and 0 <= position <= target_size,
+                 'Posição inválida; ela é medida depois de retirar o marcador da origem.')
+    children[source[:-1]].pop(source[-1])
+    if moving:children[target].insert(position, objects[source])
+    by_node = {id(objects[key]):value for key,value in children.items() if key}
+    root = writer.root_object['/Outlines']
+    if getattr(root, 'indirect_reference', None) is None:
+        writer.root_object[NameObject('/Outlines')] = writer._add_object(root)
+    def link(parent, siblings):
+        if not siblings:
+            for key in ('/First','/Last','/Count'):parent.pop(key, None)
+            return 0
+        refs = [n.indirect_reference if getattr(n, 'indirect_reference', None) is not None else writer._add_object(n) for n in siblings]
+        parent[NameObject('/First')], parent[NameObject('/Last')] = refs[0], refs[-1]
+        visible = 0
+        for index, node in enumerate(siblings):
+            opened = int(node.get('/Count', 0)) >= 0
+            for key, value in (('/Parent',parent.indirect_reference),('/Prev',refs[index-1] if index else None),
+                               ('/Next',refs[index+1] if index+1 < len(refs) else None)):
+                if value is None:node.pop(key, None)
+                else:node[NameObject(key)] = value
+            descendants = link(node, by_node[id(node)])
+            if descendants:node[NameObject('/Count')] = NumberObject(descendants if opened else -descendants)
+            visible += 1 + (descendants if opened else 0)
+        return visible
+    visible = link(root, children[()])
+    root[NameObject('/Count')] = NumberObject(visible)
+    _outline_nodes(writer)  # Enforce depth/shape limits after a move as well.
+
+
 def inspect_editable_document(path):
     """Describe the bounded edit contract without decoding embedded payloads."""
     with _editable(path) as (reader, fields, identity):
         result = {'schema': 'linuxit-copy-edit-info-v1', 'source_sha256': identity,
-                  'pages': len(reader.pages), 'text_fields': []}
+                  'pages': len(reader.pages), 'text_fields': [],
+                  'page_boxes':[list(map(float, page.cropbox)) for page in reader.pages]}
         for name, field in fields.items():
             if _inherited(field, '/FT') == '/Tx' and _terminal(field):
                 value = _inherited(field, '/V', '')
@@ -146,6 +245,8 @@ def inspect_editable_document(path):
                                              'read_only': bool(int(_inherited(field, '/Ff', 0)) & 1)})
         result['bookmarks'] = [{'path':p, 'title':n.get('/Title', '')} for p, n in _outline_nodes(reader)]
         result['notes'], result['notes_truncated'] = _note_records(reader)
+        result['form_controls'], result['unsupported_controls'] = inspect_controls(reader, fields)
+        result['annotations'], result['annotations_truncated'] = _annotation_records(reader)
     _require(_sha(path) == identity, 'O PDF foi alterado durante a leitura.')
     return result
 
@@ -158,7 +259,34 @@ def _page(writer, index):
 def _apply(writer, operation):
     _require(isinstance(operation, dict), 'Cada alteração deve ser um objeto JSON.')
     kind = operation.get('kind')
-    if kind == 'rotate-page':
+    if kind in ('move-bookmark', 'delete-bookmark'):
+        _change_outline(writer, operation)
+    elif kind == 'fill-form-controls':
+        _require(set(operation) == {'kind', 'values'}, 'Opções de formulário inválidas.')
+        fill_controls(writer, operation['values'])
+    elif kind == 'delete-annotation':
+        _require(set(operation) == {'kind', 'page', 'index'}, 'Opções de anotação inválidas.')
+        page = _page(writer, operation['page']);annots = page.get('/Annots')
+        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
+        annots = annots.get_object();index = operation['index']
+        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
+        annotation = annots[index].get_object()
+        _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
+                 'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
+        del annots[index]
+    elif kind in ('add-highlight', 'add-rectangle'):
+        _require(set(operation) == {'kind', 'page', 'rect', 'text'}, 'Opções de anotação inválidas.')
+        page = _page(writer, operation['page']);rect = _annotation_rect(page, operation['rect'])
+        text = operation['text']
+        _require(isinstance(text, str) and len(text.encode('utf-8')) <= MAX_TEXT_BYTES, 'Texto da anotação inválido.')
+        if kind == 'add-highlight':
+            x0, y0, x1, y1 = rect
+            note = Highlight(rect=tuple(rect), highlight_color='ffff00', quad_points=ArrayObject(FloatObject(v) for v in (x0,y1,x1,y1,x0,y0,x1,y0)))
+        else:note = Rectangle(rect=tuple(rect))
+        note[NameObject('/Contents')] = TextStringObject(text)
+        note[NameObject('/F')] = NumberObject(4)
+        writer.add_annotation(operation['page'], note)
+    elif kind == 'rotate-page':
         _require(set(operation) == {'kind','page','angle'} and type(operation['angle']) is int
                  and operation['angle'] in (-270,-180,-90,90,180,270), 'Rotação inválida; use múltiplos de 90 graus até 270.')
         _page(writer, operation['page']).rotate(operation['angle'])

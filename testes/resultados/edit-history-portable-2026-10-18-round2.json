@@ -1,0 +1,60 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_edit_history.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 8,
+  "passed": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 45.62088700000004,
+  "cases": [
+    {
+      "id": "test_edit_history.EditHistoryTests.test_changed_original_blocks_add_undo_redo_and_save",
+      "status": "passed",
+      "elapsed_sec": 8.436944900000071
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_closed_session_refuses_work_and_removes_private_previews",
+      "status": "passed",
+      "elapsed_sec": 3.073693800000001
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_existing_destination_is_not_overwritten_and_draft_survives",
+      "status": "passed",
+      "elapsed_sec": 3.9704272000000174
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_new_branch_discards_redo_but_invalid_branch_preserves_it",
+      "status": "passed",
+      "elapsed_sec": 10.02615220000007
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_operation_values_are_defensively_copied",
+      "status": "passed",
+      "elapsed_sec": 3.0042847000000847
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_pre_cancelled_session_does_not_start_worker",
+      "status": "passed",
+      "elapsed_sec": 0.9406646999999566
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_undo_all_restores_base_and_disables_save_until_redone",
+      "status": "passed",
+      "elapsed_sec": 6.461574499999983
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_undo_redo_rebuild_actual_pdfs_and_save_current_cursor_only",
+      "status": "passed",
+      "elapsed_sec": 9.703687500000001
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

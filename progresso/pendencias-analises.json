@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T01:11:07-03:00",
+  "reviewed_at_local": "2026-10-18T01:51:24-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -357,9 +357,10 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
-      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
+      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -383,9 +384,10 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
-      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
+      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -410,9 +412,10 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
-      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
+      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -440,9 +443,10 @@
         "docs/CRIACAO-IMAGENS.md",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "docs/EDICAO-COM-HISTORICO.md"
       ],
-      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
+      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
       "token_exhaustion_confirmed": null
     },
     {

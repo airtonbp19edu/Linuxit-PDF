@@ -1,0 +1,125 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_advanced_edits.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 21,
+  "passed": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 2.1520344000000478,
+  "cases": [
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_sets_and_clears_value_and_visible_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.13426050000009582
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_widget_absent_from_pages_is_unsupported",
+      "status": "passed",
+      "elapsed_sec": 0.0981626000000233
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_choice_selection_can_be_cleared",
+      "status": "passed",
+      "elapsed_sec": 0.08255149999990863
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_closed_outline_counts_remain_closed_after_move",
+      "status": "passed",
+      "elapsed_sec": 0.17045550000000276
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_delete_bookmark_removes_subtree_and_last_root",
+      "status": "passed",
+      "elapsed_sec": 0.07397649999995792
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_delete_supported_annotation_preserves_widgets_and_other_pages",
+      "status": "passed",
+      "elapsed_sec": 0.06843459999993229
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_editable_combo_and_duplicate_exports_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.09243119999996452
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text",
+      "status": "passed",
+      "elapsed_sec": 0.075726799999984
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_info_distinguishes_checkbox_radio_choice_combo_and_multiselect",
+      "status": "passed",
+      "elapsed_sec": 0.05191520000005312
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_inherited_checkbox_flags_and_type_are_respected",
+      "status": "passed",
+      "elapsed_sec": 0.13325489999999718
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_invalid_annotation_geometry_and_extra_parameters_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.11150050000003375
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_invalid_values_do_not_publish_partial_batch",
+      "status": "passed",
+      "elapsed_sec": 0.14007260000005317
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_locked_notes_widgets_and_replies_are_not_deleted",
+      "status": "passed",
+      "elapsed_sec": 0.12899800000002415
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_child_to_root_and_reorder_same_parent",
+      "status": "passed",
+      "elapsed_sec": 0.07541599999990467
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_into_descendant_invalid_positions_and_boolean_paths_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.09708690000002207
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_preserves_subtree_destinations_and_sibling_links",
+      "status": "passed",
+      "elapsed_sec": 0.09459129999993365
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_multiselect_uses_export_values_and_canonical_indices",
+      "status": "passed",
+      "elapsed_sec": 0.08719910000002074
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_radio_activates_only_the_selected_widget_and_can_clear",
+      "status": "passed",
+      "elapsed_sec": 0.14410789999999452
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_radio_no_toggle_off_is_enforced",
+      "status": "passed",
+      "elapsed_sec": 0.0701689999999644
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_read_only_and_unsupported_button_appearance_are_explicit",
+      "status": "passed",
+      "elapsed_sec": 0.13077750000002197
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_single_and_combo_values_indices_and_generated_appearances_roundtrip",
+      "status": "passed",
+      "elapsed_sec": 0.0874884000000975
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}
