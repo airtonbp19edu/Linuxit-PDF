@@ -2013,3 +2013,23 @@ executados; nuvem adiada e IA fora do escopo. Sem evidência de tokens. Próximo
 publicar checkpoint, rodar suíte Linux completa nos três ambientes, importar
 somente pacote aprovado, conferir capturas/hashes e publicar/auditar mesmo bundle.
 Pacote0.1.11 e relatórios anteriores preservados até concluir nova entrega.
+
+
+## 2026/10/18 às 12:33 (America/Sao_Paulo, UTC-03:00) — correção de fixtures TIFF entre versões Pillow
+
+CI39140432410/fonte2b3491a:380 testes,379 passaram,1 erro no gerador BigTIFF do
+Pillow11.1 (Invalid TIFF file header), antes de chamar o importador. Orientação
+passou mas o gerador AppendingTiffWriter ainda emitiu erro de fechamento no Linux.
+Sem payload/sandbox/pacote nesta execução. Fixtures substituídas por dois arquivos
+sintéticos próprios, gerados à parte com Pillow12.3 e fixados por hash/manifesto.
+Tests agora só leem BigTIFF/orientações e conferem pixels; nenhum código do produto
+alterado. Gerador scripts/generate_tiff_fixtures.py preserva proveniência e exige
+pasta nova.14 métodos portáveis passaram na rodada3, sem erro de fechamento.
+
+Relatórios em testes/resultados/tiff-linux-2026-10-18-attempt1/ e
+ tiff-multipage-portable-2026-10-18-round3.json; raw em
+analysis-local/no-vm-release-artifact-12141228395/. ZIP SHA256
+954cfbe715e8068b77f59c0a0a1ab7388295c26fe105ec5169c36e3cca88e973, igual ao digest
+GitHub. Próximo:publicar correção e repetir validação completa nos três ambientes.
+Pacote0.1.11 preservado,43,93%/38done/20abertos/paridade0/25 intactos. Sem VM,
+original ou nova análise REA; sem evidência de esgotamento de tokens.

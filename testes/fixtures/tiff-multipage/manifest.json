@@ -1,0 +1,63 @@
+{
+  "schema": "linuxit-own-tiff-fixtures-v1",
+  "provenance": "Own solid colors/corner patterns, no external documents or Foxit assets.",
+  "generator": "scripts/generate_tiff_fixtures.py",
+  "pillow_version": "12.3.0",
+  "reason": "Pin inputs independently of Pillow11.1 multipage BigTIFF writer failure; tests only read fixtures.",
+  "files": [
+    {
+      "file": "bigtiff.tiff",
+      "pages": 2,
+      "pixels": [
+        [
+          4,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "colors": [
+        [
+          255,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          255
+        ]
+      ],
+      "bytes": 528,
+      "sha256": "7545c78ab7ea79f60088305d632d9130aa50ee82d8eff15b1a487cf95f7de9a0"
+    },
+    {
+      "file": "orientations.tiff",
+      "pages": 2,
+      "orientation_tags": [
+        6,
+        3
+      ],
+      "expected_pages": [
+        {
+          "pixels": [
+            3,
+            2
+          ],
+          "rgb_hex": "ffffffffffffff00000000ffffffffffffff"
+        },
+        {
+          "pixels": [
+            4,
+            5
+          ],
+          "rgb_hex": "0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000"
+        }
+      ],
+      "bytes": 464,
+      "sha256": "0efd06ad574438d00a25d36866b9aa9069e073893fc131ef42686604309f97b6"
+    }
+  ]
+}

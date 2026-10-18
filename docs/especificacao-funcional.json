@@ -3271,7 +3271,8 @@
         "testes/resultados/0.1.11/validation-review.json",
         "docs/TIFF-MULTIPAGINA.md",
         "testes/resultados/tiff-multipage-portable-2026-10-18-round2.json",
-        "testes/resultados/tiff-creation-existing-2026-10-18-round2.json"
+        "testes/resultados/tiff-creation-existing-2026-10-18-round2.json",
+        "testes/resultados/tiff-multipage-portable-2026-10-18-round3.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3397,6 +3398,10 @@
       "fixture_refs": [
         {
           "path": "testes/fixtures/criacao-imagens/manifest.json",
+          "status": "existing"
+        },
+        {
+          "path": "testes/fixtures/tiff-multipage/manifest.json",
           "status": "existing"
         }
       ],

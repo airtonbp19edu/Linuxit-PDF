@@ -63,8 +63,13 @@ da última página, fonte alterada, destino concorrente e protocolo do worker.
 Um teste anterior que exigia recusar TIFF multipágina foi adaptado e renomeado
 para exigir sua importação e continuar recusando WebP animado. O resultado
 histórico anterior à atualização do teste foi preservado; não era uma regressão
-da nova regra de importação. Um erro de fechamento no gerador da fixture de
-orientação também foi corrigido antes do CI, sem alteração do produto.
+da nova regra de importação. A primeira execução Linux teve 379/380 com erro
+no gerador BigTIFF do Pillow 11.1, antes de chamar o produto; também expôs um
+fechamento duplicado no gerador de orientação. As duas entradas agora são
+fixtures próprias fixadas por hash em `testes/fixtures/tiff-multipage/`, geradas
+separadamente com Pillow 12.3. Os testes só leem os arquivos e verificam pixels,
+sem exigir que diferentes versões da biblioteca gerem BigTIFF. Nenhuma alteração
+no importador do produto foi necessária para essa correção dos testes.
 
 Dois métodos GTK e uma integração Linux TIFF → PDF → OCR estão preparados.
 Evidências novas serão vinculadas após execução. Os 50 planos completos de

@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_tiff_multipage.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 14,
+  "passed": 14,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 2.6261547000012797,
+  "cases": [
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_aggregate_page_limit_rejects_before_decoding_tiff_pixels",
+      "status": "passed",
+      "elapsed_sec": 0.14035499999954482
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_bigtiff_and_big_endian_sequences_are_accepted_by_content",
+      "status": "passed",
+      "elapsed_sec": 0.19204239999999118
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_changed_tiff_and_concurrent_destination_are_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.09263149999969755
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_cyclic_out_of_range_and_truncated_ifd_chains_are_not_silently_shortened",
+      "status": "passed",
+      "elapsed_sec": 0.30367590000059863
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_each_frame_orientation_is_applied_once_without_leaking_tags",
+      "status": "passed",
+      "elapsed_sec": 0.07280370000080438
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance",
+      "status": "passed",
+      "elapsed_sec": 0.09257009999964794
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_invalid_bigtiff_header_and_huge_directory_counts_are_bounded",
+      "status": "passed",
+      "elapsed_sec": 0.010716700000557466
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_later_frame_pixel_budget_and_total_budget_leave_no_output",
+      "status": "passed",
+      "elapsed_sec": 0.07692859999951907
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_lzw_and_group4_pages_decode_in_their_original_order",
+      "status": "passed",
+      "elapsed_sec": 0.13792850000027101
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_mixed_grayscale_rgba_and_palette_frames_become_rgb_on_white",
+      "status": "passed",
+      "elapsed_sec": 0.0786035000000993
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_real_worker_reports_input_count_frame_mapping_and_page_count",
+      "status": "passed",
+      "elapsed_sec": 1.2501909000002343
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_source_bytes_and_hash_work_are_counted_per_file_not_per_page",
+      "status": "passed",
+      "elapsed_sec": 0.05073080000147456
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_truncated_last_frame_aborts_entire_batch",
+      "status": "passed",
+      "elapsed_sec": 0.05933729999924253
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_worker_replies_with_missing_reordered_or_forged_frames_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.06501449999996112
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

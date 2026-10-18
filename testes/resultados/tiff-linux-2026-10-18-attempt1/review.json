@@ -1,0 +1,23 @@
+{
+  "date_local": "2026-10-18T12:33:01-03:00",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39140432410",
+  "source_commit": "2b3491a10ab2e4bcb7f9e4f3fe7223b13b837291",
+  "artifact_id": 12141228395,
+  "zip_sha256": "954cfbe715e8068b77f59c0a0a1ab7388295c26fe105ec5169c36e3cca88e973",
+  "github_digest_matches": true,
+  "source_suite": {
+    "run": 380,
+    "passed": 379,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  "payload_or_sandbox_suites_executed": false,
+  "bundle_published": false,
+  "failed_case": "test_tiff_multipage.MultipageTIFFTests.test_bigtiff_and_big_endian_sequences_are_accepted_by_content",
+  "examined_cause": "Pillow11.1 multi-page BigTIFF fixture generation raises Invalid TIFF file header before import. Orientation generator also emitted an unraisable double-close error. Both fixtures replaced with independently generated own pinned files; product unchanged.",
+  "evidence_hashes": {
+    "source-intermediate.json": "695f35d7f0802f756cb870d78289d0b5c74685f7ce8512051c7f201507702043"
+  },
+  "original_executed": false
+}

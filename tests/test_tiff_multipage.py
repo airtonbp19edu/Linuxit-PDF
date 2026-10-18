@@ -1,7 +1,7 @@
 """Actual TIFF pages: order, orientation, modes, bounds and worker provenance."""
 from copy import deepcopy
 import hashlib
-from io import BytesIO
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -34,6 +34,15 @@ class MultipageTIFFTests(unittest.TestCase):
         self.assertEqual(list(self.root.glob('.linuxit-images-*')),[])
         self.assertEqual(list(self.root.glob('.linuxit-publish-*')),[])
 
+    def fixture(self,name):
+        folder=Path(__file__).resolve().parents[1]/'testes/fixtures/tiff-multipage'
+        manifest=json.loads((folder/'manifest.json').read_text(encoding='utf-8'))
+        record=next(item for item in manifest['files'] if item['file']==name)
+        data=(folder/name).read_bytes()
+        self.assertEqual((len(data),hashlib.sha256(data).hexdigest()),(record['bytes'],record['sha256']))
+        self.source.write_bytes(data)
+        return record
+
     def test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance(self):
         original=self.source.read_bytes()
         result=self.create([self.png,self.source],144)
@@ -48,22 +57,11 @@ class MultipageTIFFTests(unittest.TestCase):
         self.assertEqual(self.source.read_bytes(),original)
 
     def test_each_frame_orientation_is_applied_once_without_leaking_tags(self):
-        expected=[]
-        buffer=BytesIO()
-        with TiffImagePlugin.AppendingTiffWriter(buffer) as writer:
-            for orientation,size,transpose in [(6,(2,3),Image.Transpose.ROTATE_270),(3,(4,5),Image.Transpose.ROTATE_180)]:
-                with Image.new('RGB',size,'white') as image:
-                    image.putpixel((0,0),(255,0,0));image.putpixel((size[0]-1,size[1]-1),(0,0,255))
-                    with image.transpose(transpose) as oriented:expected.append((oriented.size,oriented.tobytes()))
-                    image.save(writer,format='TIFF',tiffinfo={274:orientation,270:'PRIVATE SCANNER TAG'})
-                writer.newFrame()
-        self.source.write_bytes(buffer.getvalue())
-        del writer
-        buffer.close()
+        fixture=self.fixture('orientations.tiff')
         self.create()
-        for page,(size,pixels) in zip(PdfReader(self.output).pages,expected):
-            self.assertEqual((float(page.mediabox.width),float(page.mediabox.height)),size)
-            self.assertEqual(page['/Resources']['/XObject']['/Im1'].get_data(),pixels)
+        for page,expected in zip(PdfReader(self.output).pages,fixture['expected_pages']):
+            self.assertEqual([float(page.mediabox.width),float(page.mediabox.height)],expected['pixels'])
+            self.assertEqual(page['/Resources']['/XObject']['/Im1'].get_data(),bytes.fromhex(expected['rgb_hex']))
         self.assertNotIn(b'PRIVATE SCANNER TAG',self.output.read_bytes())
 
     def test_mixed_grayscale_rgba_and_palette_frames_become_rgb_on_white(self):
@@ -89,14 +87,20 @@ class MultipageTIFFTests(unittest.TestCase):
     def test_bigtiff_and_big_endian_sequences_are_accepted_by_content(self):
         for big,mode in [(True,'RGB'),(False,'I;16B')]:
             with self.subTest(big=big):
-                with Image.new(mode,(4,3),1) as first,Image.new(mode,(2,4),2) as second:
-                    save_tiff(self.source,[first,second],big_tiff=big)
+                if big:
+                    fixture=self.fixture('bigtiff.tiff')
+                else:
+                    with Image.new(mode,(4,3),1) as first,Image.new(mode,(2,4),2) as second:
+                        save_tiff(self.source,[first,second])
                 data=self.source.read_bytes()
                 self.assertEqual(data[:4],b'II+\x00' if big else b'MM\x00*')
                 renamed=self.root/'renamed.jpg';renamed.write_bytes(data)
                 result=self.create([renamed])
                 self.assertEqual(result['pages'],2)
                 self.assertTrue(all(s['format']=='TIFF' for s in result['sources']))
+                if big:
+                    for page,size,color in zip(PdfReader(self.output).pages,fixture['pixels'],fixture['colors']):
+                        self.assertEqual(page['/Resources']['/XObject']['/Im1'].get_data(),bytes(color)*(size[0]*size[1]))
                 self.output.unlink()
 
     def test_aggregate_page_limit_rejects_before_decoding_tiff_pixels(self):
