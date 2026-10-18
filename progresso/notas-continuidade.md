@@ -1742,3 +1742,34 @@ recortes no relatório e no registro de pendências; não reiniciar os 48 alvos.
 
 Esta nota e os indicadores de sincronização recebem commit posterior; confirmar
 também seu HEAD por recibo externo final, evitando autorreferência.
+
+## 2026/10/18 às 01:21 (America/Sao_Paulo, UTC-03:00) — diagnóstico da VM existente
+
+O usuário confirmou Oracle VirtualBox, 20 GB de RAM no computador, 8 GB para
+a VM e dois processadores virtuais. Leitura da configuração e do log existente,
+sem iniciar VM/Foxit ou alterar Windows: Windows 10 x64, RAMSize 8000 MB,
+duas vCPUs, VBoxSVGA/128 MB e limite de CPU 100%. VirtualBox 7.2.20 r175154.
+Oito processadores lógicos não devem ser confundidos com oito núcleos físicos.
+
+O log aberto em 2026-10-18T03:47:44Z registra Integridade da Memória ENABLED,
+VT-x indisponível para acesso direto, hipervisor Microsoft presente e
+NEMR3Init: Snail execution mode is active. É um indício de contribuição do
+backend NEM/WHP à lentidão, não um benchmark ou prova de causa única.
+Naquela inicialização o host registrava cerca de 10 GB de RAM disponível;
+também falta medir pressão de memória, armazenamento e drivers convidados.
+Instalação de Guest Additions não foi confirmada por esta leitura.
+
+Oracle documenta perda de desempenho na combinação VirtualBox/Hyper-V e que
+Integridade da Memória pode manter o hipervisor ativo:
+https://docs.oracle.com/en/virtualization/virtualbox/7.2/user/Troubleshooting.html
+Não foi desativada proteção, alterado boot ou modificado o hipervisor.
+VMware Workstation é alternativa a avaliar, sem desempenho comparativo medido.
+
+A VM agora existe, mas a contenção offline ainda não está validada: a
+configuração lida tem adaptador NAT ativo. Preparar isolamento, snapshot e
+fixtures antes de executar o original. Zero novas observações Foxit, sem
+mudança de critérios/pesos, roteiro 43,33%, paridade 0/25 e pacote 0.1.9.
+Próximo: escolher entre diagnosticar/ajustar VirtualBox ou testar VMware;
+conferir RAM livre, disco local e Guest Additions. Implementação própria e
+análise estática podem continuar independentemente dessa VM.
+Nota preparada para publicação; confirmar push por recibo externo.

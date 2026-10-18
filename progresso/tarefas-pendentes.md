@@ -26,7 +26,7 @@ Evidências nas notas datadas; o restante do projeto continua parcial.
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
 |Operações locais|Demais formulários/undo/anotações/formatos/OCR/plataforma|Implementação própria sem VM|
 |Estática|Tamanhos/alocação e chamadores dos arrays; provedor ativo/offsets restantes da busca; contexto0x138 e serviços de imagem; comportamento7911/7913|REA/Ghidra sem executar original|
-|10 e parte dinâmica da 11|Observar D01–D20/UI01–UI10 no original|VM offline|
+|10 e parte dinâmica da 11|Resolver lentidão da VM existente e validar contenção antes de D01–D20/UI01–UI10|VirtualBox Windows 10 criado; NEM/Integridade da Memória detectados; offline pendente|
 |18/19|Comparar referência e validar divergências com original|VM offline para a referência; correções próprias podem avançar sem VM|
 |Desktop/AT-SPI/impressão|Portais, leitor de tela, impressora e Windows posterior|Ambientes/equipamentos próprios|
 |Nuvem direta|APIs/login/upload/colaboração remota adiados|Nova priorização do usuário|

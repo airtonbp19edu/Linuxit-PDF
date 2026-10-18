@@ -58,6 +58,13 @@ GTK/Poppler/pacote não descrevem a entrega atual.
 
 ## Ferramentas e ambiente
 
+Atualização em 18/10/2026 às 01:21: VM Windows 10 x64 no VirtualBox 7.2.20
+existe, com 8000 MB/duas vCPUs; o usuário relata lentidão. O log registra
+Integridade da Memória ativa e backend NEM com mensagem Snail execution mode.
+Não houve alteração de proteções nem execução do original por esta rodada.
+NAT está ativo na configuração: contenção offline ainda precisa ser preparada
+e validada. Diagnóstico e próximos passos nas notas de continuidade.
+
 Windows local com Python3.13.15; último diagnóstico sem WSL/GTK/Flatpak.
 Linux foi exercitado no CI Debian13 com GTK/Cairo/Poppler/CUPS e X11 virtual,
 pelo código primeiro e Flatpak depois. Usar `/usr/bin/python3` para as extensões

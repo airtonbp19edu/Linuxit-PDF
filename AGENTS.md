@@ -20,6 +20,12 @@ APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
 auditoria independente do mesmo pacote aprovada (sete controles + cinco smoke).
 Evidências nas notas datadas; o restante do projeto continua parcial.
 
+VM em 18/10/2026: Windows 10 x64/VirtualBox 7.2.20 existe, com lentidão
+relatada. Log confirma NEM/Snail execution mode e Integridade da Memória ativa.
+Contenção offline ainda não validada; NAT está ativo na configuração lida.
+Não executar original antes de preparar o isolamento. Diagnóstico nas notas;
+proteções/hipervisor não foram alterados e não há nova observação Foxit.
+
 Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
 e as notas mais recentes definem o estado atual.
 
