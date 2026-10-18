@@ -21,18 +21,20 @@ portal/concessão persistente, AT-SPI e impressão física ainda pendentes, sem 
 
 Arquitetura: 44 módulos/58 interfaces; catálogo: 323 (152 REA + 171 diretas),
 23 subconjuntos/duas propostas em 25 famílias. Índice histórico do checklist:
-**43,93%**, 38 done/20 abertos. Conclusão global da recodificação indeterminada;
-paridade **0/25**, cobertura global desconhecida. Original não executado.
+**45,13%**, 39 done/19 abertos. Conclusão global da recodificação indeterminada;
+paridade **0/25**, cobertura global desconhecida. Original observado parcialmente na VM offline.
 APIs de nuvem adiadas/IA excluída. Não reiniciar análises preservadas.
 
-[Medição revisada](MEDICAO-PROGRESSO.md): o índice de 43,93% ignora avanços dentro
+[Medição revisada](MEDICAO-PROGRESSO.md): o índice do checklist ignora avanços dentro
 de critérios parciais. Não o usar como porcentagem do código reconstruído.
 Relatar entregas concretas, validação própria e operações restantes separadamente.
 
-VM: último diagnóstico histórico com NEM/Snail, Integridade da Memória ativa e
-NAT então ativo; offline não validado. Usuário pediu continuar sem VM. Nenhuma
-VM, rede ou proteção Windows alterada nesta rodada. Validar isolamento antes
-de executar original; detalhes nas notas anteriores.
+VM: [primeira campanha offline de 18/10](VM-FOXIT-2026-10-18.md) observou o original com
+perfil limitado, RX exercitado e hashes preservados. Dos17 recortes C18:
+11 comparados,10 iguais/1 divergente (autor);5 inconclusivos/1pendente.
+D01–D20:14 observados no recorte,5 parciais,1 inconclusivo; cancelamento, destinos
+dos hits e saída de imposição abertos. D20 deixou processo sem janela; manter
+rede desligada e investigar. Nenhuma proteção do host foi alterada.
 
 Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
 e as notas mais recentes definem o estado atual.

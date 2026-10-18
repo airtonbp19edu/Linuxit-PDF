@@ -1,12 +1,12 @@
 # Pendências de análise e pontos de retomada
 
-Estado atualizado em **18/10/2026** após a entrega 0.1.13; os critérios da etapa 13
+Estado atualizado em **18/10/2026** após a campanha inicial na VM offline; os critérios da etapa 13
 e os pesos foram preservados. A suíte própria atual passou 400/400 em fonte,
 payload e sandbox. As análises estáticas anteriores não foram reiniciadas.
 [A revisão da medição](../docs/MEDICAO-PROGRESSO.md) separa o índice histórico
-43,93% da conclusão global da recodificação, cujo percentual é indeterminado.
+45,13% da conclusão global da recodificação, cujo percentual é indeterminado.
 O índice não atribui pontos aos avanços dentro de critérios ainda parciais.
-A [fonte estruturada](pendencias-analises.json) registra **todos os 20 critérios
+A [fonte estruturada](pendencias-analises.json) registra **todos os 19 critérios
 não concluídos em 13 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
 `blocked` e `unknown` continuam distintos e não ganham peso por terem uma nota.
@@ -26,14 +26,14 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |07|33,3%|323 entradas (152 REA+171 diretas); 48 novas em oito lotes. Inventário global e tipos completos desconhecidos.|
 |08|13,0%|Busca+0x14 ligada a enum e+5 a stemming efetivo; offsets3/6/7/0xc/0x10 ainda parciais. Geometria/tipos/algoritmos completos pendentes.|
 |09|9,1%|Novo fluxo rastreável de texto/enum/argumento de busca e contratos geométricos; algoritmos e ownership universais pendentes.|
-|10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
+|10|20%|Ambiente offline/original executável validados. Campanha14observados/5parciais/1inconclusivo; variantes restantes abertas.|
 |11|25%|CFindToolDlgAdv e tabela7911/7913 ligados; handler comum e DDX distintos mantêm ambiguidade. UI01–UI10 exigem original.|
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
 |15|33,3%|0.1.13: cinco tipos de anotação e comentário/autor ampliados, com TIFF/OCR anteriores;400/400 por ambiente. Famílias completas, operações restantes e duas propostas abertas.|
 |16|33,3%|Seis métodos GTK novos de anotações na0.1.13 e anteriores preservados. Desktop/portais/AT-SPI/impressora abertos.|
-|18|10%|Corpus preservado17/17 repetido na0.1.7; zero comparações originais.|
-|19|14,3%|Regressões próprias aprovadas; divergências Foxit ainda dependem de observação offline.|
-|21|50%|Entrega 0.1.13 validada; publicação/auditoria nas notas. 20 critérios amplos ainda abertos.|
+|18|10%|Corpus17/17 novamente no CI;11 recortes comparados ao original:10 iguais/1 divergente. Famílias completas abertas.|
+|19|14,3%|Busca por autor diverge:Foxit1/Linuxit0. Correção/validação diferencial ainda pendentes.|
+|21|50%|Entrega 0.1.13 validada; publicação/auditoria nas notas. 19 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.

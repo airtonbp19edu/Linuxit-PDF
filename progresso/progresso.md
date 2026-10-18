@@ -2,7 +2,7 @@
 
 **Conclusão total da recodificação: percentual indeterminado.** O inventário completo de operações e sua complexidade ainda não estão fechados. Não há base para publicar uma porcentagem global de implementação.
 
-**Índice histórico do checklist do roteiro: 43.93%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
+**Índice histórico do checklist do roteiro: 45.13%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
 
 **Pacote registrado:** 0.1.13 de desenvolvimento. [Manifesto](../releases/manifest-0.1.13.json).
 
@@ -25,7 +25,7 @@ A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro ori
 | 07 — Catalogação das funções | 5% | 33.3% | 1.67% |
 | 08 — Descompilação profunda | 10% | 13.0% | 1.30% |
 | 09 — Reconstrução dos fluxos internos | 7% | 9.1% | 0.64% |
-| 10 — Análise dinâmica | 6% | 0.0% | 0.00% |
+| 10 — Análise dinâmica | 6% | 20.0% | 1.20% |
 | 11 — Engenharia reversa da interface | 4% | 25.0% | 1.00% |
 | 12 — Especificação funcional | 4% | 12.5% | 0.50% |
 | 13 — Projeto de arquitetura | 4% | 100.0% | 4.00% |

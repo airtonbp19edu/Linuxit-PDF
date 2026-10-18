@@ -1,0 +1,463 @@
+{
+  "schema": "linuxit-vm-dynamic-observations-v1",
+  "run_id": "vm-20261018-1710",
+  "recorded_at": "2026-10-18T18:43:04-03:00",
+  "scope": "bounded original observations; observed does not mean equivalent or complete family",
+  "cases": [
+    {
+      "id": "D01",
+      "family": "startup",
+      "fixture": null,
+      "status": "partial",
+      "observed_result": "Usable UI/version confirmed; initial default-viewer prompt declined. Startup timing null.",
+      "local_evidence": [
+        {
+          "file": "d01-default-prompt.png",
+          "sha256": "ed38715cae59bf7ab8878322d53144fa77c6f94f3f9bc3586a141b6185c93bfd"
+        },
+        {
+          "file": "d01-ready.png",
+          "sha256": "8ee15a107506d090ab73c0bc88869c7baa9d9fdf64872407834f3700bdfc4e8e"
+        },
+        {
+          "file": "d01-version.png",
+          "sha256": "f086ebd7e0a6457786808aafcc4255c83ef64c344edc79738974f4e40b3d7627"
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "family": "open-render",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "Two pages opened and rendered with expected synthetic text.",
+      "local_evidence": [
+        {
+          "file": "d02-page1.png",
+          "sha256": "73d56187c127a6fc39a7a2532f234d09fbbe2667b39b8ecb6c5617969f79f9fd"
+        },
+        {
+          "file": "d02-page2.png",
+          "sha256": "c32c3d9ff8ff636252c39914b7df779c3498f0de4bf88850a9cd86eae13ecd51"
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "family": "navigation",
+      "fixture": "geometria.pdf",
+      "status": "observed",
+      "observed_result": "Pages1/8/3, zoom100%, Fit Page43.67%, Rotate Left; page9 rejected with: The page number '9' you input cannot be found in this document. Page3 retained.",
+      "local_evidence": [
+        {
+          "file": "d03-fitpage.png",
+          "sha256": "c827b07871255127a26d85094564817c18add0c4b772ea393627a97147a08920"
+        },
+        {
+          "file": "d03-page1.png",
+          "sha256": "441eba26a4b95c3d951bc2cd550f0222f92eb03b6c5d479fe03b968288e976f1"
+        },
+        {
+          "file": "d03-page3.png",
+          "sha256": "d3cbb03dc54d63bb662197fcf74ea28776b35d77e62aaac95dadce8018318abf"
+        },
+        {
+          "file": "d03-page8.png",
+          "sha256": "4d4cac5b993b4fa791e5485fb586ad339858529469071f7647f9b13215c0437a"
+        },
+        {
+          "file": "d03-page9-error.png",
+          "sha256": "1579c834114c61c5b9ab26970baf5545cf51ee06671855815b12c56a59547550"
+        },
+        {
+          "file": "d03-page9-input.png",
+          "sha256": "bcf4578646278238047f8d8cc78cead0c4677e0b8d9d859e94639ba597a26ccb"
+        },
+        {
+          "file": "d03-rotate-left.png",
+          "sha256": "bfe6940e90a999131bd10beaf600b7e3e3ca99e233b604cfe28a40c7c52c93e9"
+        },
+        {
+          "file": "d03-zoom100.png",
+          "sha256": "ce198bb26e7136d77a77d801600141dbf361859a18b4bab48406d5706d8ee3a2"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "family": "search-text",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "alvo/page text only/whole=false/case=false/stemming=false:3 hits, page1.",
+      "local_evidence": [
+        {
+          "file": "d04-options.png",
+          "sha256": "d9310468c278e5b42c390efd5ff33774c93ccc32f4fecb2bb5fad6883360e1ba"
+        },
+        {
+          "file": "d04-result1.png",
+          "sha256": "9b1652d2149bef5ef248fa82a81a7000b92d6b6482dcddc6d78a51e457242f07"
+        },
+        {
+          "file": "d04-result2.png",
+          "sha256": "8968f61742741604d0ffa64fdeb00e6903f135fcc185b1bc17e0f1fcfa37d05c"
+        },
+        {
+          "file": "d04-result3.png",
+          "sha256": "87c9821b8da376d08768322dc5416e7b69951f0b4b82b3193dd1b1cdebeab566"
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "family": "search-text",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "alvo/page text only/whole=true/case=false:2 hits, page1; alvoextra excluded.",
+      "local_evidence": [
+        {
+          "file": "d05-options.png",
+          "sha256": "7d16a12b66ce8dc1b74814360672d8880e9f19ee449c79fd951491252572c3a2"
+        },
+        {
+          "file": "d05-results.png",
+          "sha256": "2c11209e96de956aa79ded75b07e7c7bd11e4622ff146ec1aa502bcf4afde49a"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "family": "search-text",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "ALVO/page text only/whole=false/case=true:1 hit, page1.",
+      "local_evidence": [
+        {
+          "file": "d06-options.png",
+          "sha256": "f70b24c544922ff69c2943050bd221adbb6dfd72cd1f836cc2029c6d4469c117"
+        },
+        {
+          "file": "d06-results.png",
+          "sha256": "af9e0a9dfb2b6312c09c84165f89d09f0f29224cf3ae8041f17f3332cfbfd252"
+        }
+      ]
+    },
+    {
+      "id": "D07",
+      "family": "search-bookmarks",
+      "fixture": "busca-escopos.pdf",
+      "status": "partial",
+      "observed_result": "2 bookmark hits. Bookmark pane local item goes to page2; missing destination leaves page unchanged. Search-hit destinations require separate repeat.",
+      "local_evidence": [
+        {
+          "file": "d07-local-destination.png",
+          "sha256": "80c00fd64304706bfc8d00d513430cb6521c4a4e0c42d9a0fc2a4e16fcde9ef5"
+        },
+        {
+          "file": "d07-no-destination.png",
+          "sha256": "43f472938e3c3fde4df2e3bb8f44dd21ebe10b868dc0570d1bd5ccf2dfd93c78"
+        },
+        {
+          "file": "d07-options.png",
+          "sha256": "05333722e5ade9be066a0bf8ce1f7e831257f10a6276a5fee586115312f50099"
+        },
+        {
+          "file": "d07-result1.png",
+          "sha256": "0772f01402715cdda02599445e9d7de5d1bb5441065437726bc3b89cbd416096"
+        },
+        {
+          "file": "d07-result2.png",
+          "sha256": "cacfe1e3071207183037fdbcf6d48e76a5ee7400d43a97cb1cb0ccd16c0b62a3"
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "family": "search-comments",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "alvo/comments only:1 hit page1; final result from clean rerun after reverting incidental draft style change.",
+      "local_evidence": [
+        {
+          "file": "d08-destination-clean.png",
+          "sha256": "62500f2724937e9be00bb47dc7c44a6d88837b77a0e8e46b55ef157c6cf0dd26"
+        },
+        {
+          "file": "d08-incidental-style-undone.png",
+          "sha256": "f8b187224c6aa645a5f54146af34b5e879bfc8738bbaa224fbe53a929014faac"
+        },
+        {
+          "file": "d08-options.png",
+          "sha256": "6f1cb1ed7380bf84829a61b70c4cf186374918c9123718939e2ee204bc356844"
+        },
+        {
+          "file": "d08-results-clean.png",
+          "sha256": "909ec21f388a1899ac67b2eff21d3bf912ce2e4131706c3f2d49b3ec2203f452"
+        }
+      ]
+    },
+    {
+      "id": "D09",
+      "family": "search-comments",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "Comments only, case=false:assunto=1(page1);Autor=1(page1). Author differs from own expected0.",
+      "local_evidence": [
+        {
+          "file": "d09-author-options.png",
+          "sha256": "4c52e03125b7bc53f0fe804c73cd00c7affbfcac00a5828f1f9b56191205d986"
+        },
+        {
+          "file": "d09-author-results.png",
+          "sha256": "d7e658c36753fc44e552416b5462e096ff69ff3271de0a2b06d43cf8f07215b4"
+        },
+        {
+          "file": "d09-subject-options.png",
+          "sha256": "3fc6a48933c737f17d2b5f8820e3d30bd18a547ef6d33294e9dcc58a4bea5a98"
+        },
+        {
+          "file": "d09-subject-results.png",
+          "sha256": "ba49c6cc67c68da0ac396b9d6b8c2dc142d099b0a8293e42f81c97d1992414a1"
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "family": "search-scopes",
+      "fixture": "busca-escopos.pdf",
+      "status": "partial",
+      "observed_result": "alvo/all3sources=6. Relevance Ranking display order:bookmark2/page_text3/comment1. HighlightAll on exposes3 text marks on page1, count6 unchanged. Complete hit navigation not established.",
+      "local_evidence": [
+        {
+          "file": "d10-options.png",
+          "sha256": "c7b23638fcf62443a56fae46c3f6af90623b74e9e2049aa3e702e90cfcd7f0c0"
+        },
+        {
+          "file": "d10-results.png",
+          "sha256": "8d4ef0587a998c004d052eec177af19951d8a73b8e898dfffac6b970448dbc9d"
+        }
+      ]
+    },
+    {
+      "id": "D11",
+      "family": "search-errors",
+      "fixture": "busca-escopos.pdf",
+      "status": "partial",
+      "observed_result": "Empty disables Search; no sources/alvo can be submitted and gives0; z/all3sources gives0. Exact C18 missing-term query/source combination not run.",
+      "local_evidence": [
+        {
+          "file": "d11-empty-disabled.png",
+          "sha256": "e9bad03ebf274ded8a8a3f43bf50328cd6aa39f5cdb2167dc0da307f8f90a715"
+        },
+        {
+          "file": "d11-no-sources-options.png",
+          "sha256": "71139f73647a8a42e06d9938486e92c4b23b4030d7f70427b5753990617dc5c3"
+        },
+        {
+          "file": "d11-no-sources-results.png",
+          "sha256": "a43e5fe885dcec9cb5a7e9d72d3921a95390f90c5738a9fa3b1ec31747835f3d"
+        },
+        {
+          "file": "d11-z-options.png",
+          "sha256": "79b7a8f59b1ef51b2f385d8c44f37ec36a0355aa76b5c875235d678fccf9e862"
+        },
+        {
+          "file": "d11-z-results.png",
+          "sha256": "00a457c152142816f887b9550730d7744dc27226e8d62f06b79c8f99df45a4ed"
+        }
+      ]
+    },
+    {
+      "id": "D12",
+      "family": "search-cancel",
+      "fixture": "busca-longa.pdf",
+      "status": "inconclusive",
+      "observed_result": "250-page search/alvo completed with250 hits before cancellation could be observed; active-work cancel/switch/close remain inconclusive.",
+      "local_evidence": [
+        {
+          "file": "d12-completed-before-cancel.png",
+          "sha256": "3ae88a2a86091800f2fa585175fd01afb705f8384f2ef3683bfb3833f9557e7d"
+        },
+        {
+          "file": "d12-options.png",
+          "sha256": "643e47fc8ea30413cf1ed10efcc4d0656cf227e92bc11ba482b9f9f87e919346"
+        }
+      ]
+    },
+    {
+      "id": "D13",
+      "family": "invalid-pdf",
+      "fixture": "invalido.pdf",
+      "status": "observed",
+      "observed_result": "Rejected:Format error: Not a PDF or corrupted. Previous document retained.",
+      "local_evidence": [
+        {
+          "file": "d13-invalid-error.png",
+          "sha256": "0b88c96afe1c99d503ee2912752a5d41d6d37b3276ef9599d18cea7adf462bcd"
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "family": "empty-pdf",
+      "fixture": "vazio.pdf",
+      "status": "observed",
+      "observed_result": "Rejected:Format error: Not a PDF or corrupted. UI responsive.",
+      "local_evidence": [
+        {
+          "file": "d14-empty-error.png",
+          "sha256": "6ddc57c6995615ca42fbc013fe690c2af6a4e0953bc959c078041048e8da9329"
+        }
+      ]
+    },
+    {
+      "id": "D15",
+      "family": "password",
+      "fixture": "com-senha.pdf",
+      "status": "partial",
+      "observed_result": "Cancel retained previous document. x rejected:Invalid password. Enter password again. Known synthetic password then opened8 pages in repeated prompt, without independent third open.",
+      "local_evidence": [
+        {
+          "file": "d15-cancelled.png",
+          "sha256": "7bb070a51b230ef62105377d943d6ba830ae0f8261534fc97bb43764e7ea07af"
+        },
+        {
+          "file": "d15-correct-password.png",
+          "sha256": "73c4c6f4032dfc0a5ebd9deb92c7f9e7982ef2ef9b091d2b47e14180eaf0da65"
+        },
+        {
+          "file": "d15-password-prompt.png",
+          "sha256": "402c56c6b884cfcfea42ca3ad622949127a2a08fa479e47cd3552c1a82b9bf65"
+        },
+        {
+          "file": "d15-wrong-password.png",
+          "sha256": "22e50c1fc9e3f6db49df01309f66dfca1704dc5fa61f166a1311b56a3ecb21d7"
+        }
+      ]
+    },
+    {
+      "id": "D16",
+      "family": "attachments",
+      "fixture": "com-anexo.pdf",
+      "status": "observed",
+      "observed_result": "nota-sintetica.txt saved locally,22bytes/hash verified. Panel size unknown; attachment never executed.",
+      "local_evidence": [
+        {
+          "file": "d16-panel.png",
+          "sha256": "d75f787b2c0aa1ea9ba0a60090c51301220774f5e86f4f19ac7fb32dccbc7c4f"
+        },
+        {
+          "file": "d16-save-destination.png",
+          "sha256": "95be7fe9d7f56355ce7f2e2453b400867ec1aad8429dd4fbaa481366955dad9b"
+        }
+      ]
+    },
+    {
+      "id": "D17",
+      "family": "print-preview",
+      "fixture": "geometria.pdf",
+      "status": "observed",
+      "observed_result": "Microsoft Print to PDF local preview:A4/all pages/fit to printer margins/auto-center/automatic orientation. Cancelled without Print submission.",
+      "local_evidence": [
+        {
+          "file": "d17-default-preview.png",
+          "sha256": "6887d80895a0ac535bc2d300f50b016d49e30ee851ffea34d805d0364c3e8f9c"
+        }
+      ]
+    },
+    {
+      "id": "D18",
+      "family": "print-imposition",
+      "fixture": "geometria.pdf",
+      "status": "observed",
+      "observed_result": "Visual preview only:left/both booklet8-1,2-7,6-3,4-5;horizontal2x2 nup1-2/3-4,5-6/7-8;0.200inch margin. No output stream/geometry parity.",
+      "local_evidence": [
+        {
+          "file": "d18-booklet1.png",
+          "sha256": "f5f3da918223a18c071979a633ec07331a133c5b2ad04bf129a8199c2d2e8343"
+        },
+        {
+          "file": "d18-booklet2.png",
+          "sha256": "db8746a3459a7899df9eb7b7e718946e154e935779db928c6be21713705ba51f"
+        },
+        {
+          "file": "d18-booklet3.png",
+          "sha256": "34554945f5e343c36e562772105dc9eb83fd4997576e1737d123ffcdf7d820ad"
+        },
+        {
+          "file": "d18-booklet4.png",
+          "sha256": "923e6d1376da090bc331548c3519b8d6374ff5a3f9b2059e9a66e21176137f79"
+        },
+        {
+          "file": "d18-nup1.png",
+          "sha256": "e633013401394a46ef1573f21b206e97b35fdb5b4c849c1975a4e57bf02022bd"
+        },
+        {
+          "file": "d18-nup2.png",
+          "sha256": "e63fde9357cb0c12f740afcbee9157301df6592dda63e35c8b8509dc7e930944"
+        }
+      ]
+    },
+    {
+      "id": "D19",
+      "family": "save-copy",
+      "fixture": "busca-escopos.pdf",
+      "status": "observed",
+      "observed_result": "Saved Results/busca-escopos.pdf9100bytes/hash;closed/reopened;2pages/2bookmarks/comment and author visible. Input unchanged; no full metadata equality claim.",
+      "local_evidence": [
+        {
+          "file": "d19-comment.png",
+          "sha256": "88ba17f344866a34282c6612124842e39ec3be763d724d8efaac4057ce228b68"
+        },
+        {
+          "file": "d19-reopen-path.png",
+          "sha256": "a3a68b95676bd9876e2909f345aa6352eb0b59f76ae736591a8e99cc5af4bdf8"
+        },
+        {
+          "file": "d19-reopened1.png",
+          "sha256": "c03b3b71cdef68fa0303488f18453b2616482b741fc0d6a7dd8df226eacb0259"
+        },
+        {
+          "file": "d19-reopened2.png",
+          "sha256": "7340d43bfd3ee54f5654f59f0f6344e14c4f7984d75c120f1a2235fd45026a9d"
+        },
+        {
+          "file": "d19-save-destination.png",
+          "sha256": "3f4ca0e68d8b2dc6d6e92824ba2a7bf742f3d6a9fef1aa8eb9be03582db25bc2"
+        }
+      ]
+    },
+    {
+      "id": "D20",
+      "family": "lifecycle",
+      "fixture": "geometria.pdf",
+      "status": "observed",
+      "observed_result": "Closed window and reopened a new process with no restored tabs/default prompt repeated/recent history retained. Old process stayed without window title; cause/full shutdown unresolved.",
+      "local_evidence": [
+        {
+          "file": "d20-before-exit.png",
+          "sha256": "3272734e8a9704497252a52971b16befa13d97e128a5ea95ed93e7bddae9ae8f"
+        },
+        {
+          "file": "d20-close-prompt.png",
+          "sha256": "f75e66e4442a941b16e0de422801f7a0463b01fa0a479a0f19d78bf82143e621"
+        },
+        {
+          "file": "d20-recent-history.png",
+          "sha256": "33114c90333b211163eb2b90efb4050c028dbea108d9fde261586f1a9dd58f85"
+        },
+        {
+          "file": "d20-reopen-default-prompt.png",
+          "sha256": "91deea7f79ed7940e776ea249e6c64b01da63692a1680d00436181ae09988f8c"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "inconclusive": 1,
+    "observed": 14,
+    "partial": 5
+  },
+  "full_acceptance_cases_completed": 0,
+  "whole_family_parity_verified": false
+}

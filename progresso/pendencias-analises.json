@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T13:35:28-03:00",
+  "reviewed_at_local": "2026-10-18T18:37:33-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -238,69 +238,53 @@
     {
       "stage_id": 10,
       "stage_title": "Análise dinâmica",
-      "criterion": "Ambiente isolado e original executável validados",
-      "criterion_status": "blocked",
-      "blocker_categories": [
-        "offline_vm",
-        "original_observation"
-      ],
-      "evidence_refs": [
-        "docs/ETAPA-10.md",
-        "testes/cenarios-dinamicos.json",
-        "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
-      ],
-      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
-      "token_exhaustion_confirmed": null
-    },
-    {
-      "stage_id": 10,
-      "stage_title": "Análise dinâmica",
       "criterion": "Cenários locais observados e registrados",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "offline_vm",
-        "original_observation"
+        "original_observation",
+        "differential_validation"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
         "testes/cenarios-dinamicos.json",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
       "stage_id": 10,
       "stage_title": "Análise dinâmica",
       "criterion": "Integrações autorizadas e casos excepcionais observados",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "offline_vm",
-        "original_observation"
+        "original_observation",
+        "differential_validation"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
         "testes/cenarios-dinamicos.json",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
       "stage_id": 11,
       "stage_title": "Engenharia reversa da interface",
       "criterion": "Disponibilidade e comportamento de todas as interações observados",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "static_analysis",
-        "offline_vm",
-        "original_observation"
+        "original_observation",
+        "differential_validation"
       ],
       "evidence_refs": [
         "docs/ETAPA-11.md",
@@ -313,9 +297,11 @@
         "docs/REA-REFLOW-LAYOUT.md",
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Catalog323=152REA+171exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,15cd6e0/15cc9b0; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -451,13 +437,10 @@
       "stage_id": 18,
       "stage_title": "Testes comparativos",
       "criterion": "Cenários diferenciais executados no original e na reconstrução",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "offline_vm",
         "original_observation",
-        "differential_test",
-        "fixture_and_acceptance",
-        "linux_runtime"
+        "differential_validation"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
@@ -467,22 +450,21 @@
         "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "17/17 own checks repeated on preserved corpus/protocols for0.1.6; no original observations imported. Full acceptance plans and original differential work still require separate execution/containment.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
       "stage_id": 18,
       "stage_title": "Testes comparativos",
       "criterion": "Resultados e divergências por família disponíveis",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "offline_vm",
         "original_observation",
-        "differential_test",
-        "fixture_and_acceptance",
-        "linux_runtime"
+        "differential_validation"
       ],
       "evidence_refs": [
         "docs/ETAPA-10.md",
@@ -492,19 +474,21 @@
         "testes/resultados/etapa-18-comparacao-sem-original-2026-10-17.json",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "17/17 own checks repeated on preserved corpus/protocols for0.1.6; no original observations imported. Full acceptance plans and original differential work still require separate execution/containment.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
       "stage_id": 19,
       "stage_title": "Correção de incompatibilidades",
       "criterion": "Divergências originais medidas e corrigidas",
-      "criterion_status": "pending",
+      "criterion_status": "partial",
       "blocker_categories": [
-        "differential_test",
-        "offline_vm"
+        "original_observation",
+        "differential_validation"
       ],
       "evidence_refs": [
         "progresso/matriz-paridade.csv",
@@ -515,9 +499,11 @@
         "docs/REVISAO-ETAPAS.md",
         "docs/AVANCO-SEM-VM.md",
         "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
+        "docs/BUSCA-COLECOES.md",
+        "docs/VM-FOXIT-2026-10-18.md",
+        "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Own CropBox/memory/GTK/sidebar corrections and new copy-edit regressions passed0.1.5; original divergences remain unmeasured pending offline guest.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -548,7 +534,7 @@
       "token_exhaustion_confirmed": null
     }
   ],
-  "general_progress_percent": 43.93,
+  "general_progress_percent": 45.13,
   "criteria_revision": 1,
   "stage_13_is_partial_due_to_vm": false,
   "scope_exclusions_ref": "progresso/projeto.json",
@@ -577,6 +563,29 @@
         "token_exhaustion_confirmed": null
       },
       "resolution_evidence": "docs/REGRAS-REMOTAS-2026-10-18.md"
+    },
+    {
+      "date_local": "2026-10-18T18:37:33-03:00",
+      "previous_record": {
+        "stage_id": 10,
+        "stage_title": "Análise dinâmica",
+        "criterion": "Ambiente isolado e original executável validados",
+        "criterion_status": "blocked",
+        "blocker_categories": [
+          "offline_vm",
+          "original_observation"
+        ],
+        "evidence_refs": [
+          "docs/ETAPA-10.md",
+          "testes/cenarios-dinamicos.json",
+          "docs/AVANCO-SEM-VM.md",
+          "docs/COPIA-EDITADA.md",
+          "docs/BUSCA-COLECOES.md"
+        ],
+        "next_action": "Validar o guest offline e observar D01–D20; kit/cenários continuam not_run até execução real.",
+        "token_exhaustion_confirmed": null
+      },
+      "resolution_evidence": "docs/VM-FOXIT-2026-10-18.md"
     }
   ]
 }

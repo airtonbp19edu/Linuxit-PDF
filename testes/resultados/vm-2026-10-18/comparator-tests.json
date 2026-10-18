@@ -1,0 +1,100 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_comparison_campaign.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 16,
+  "passed": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 3.261060600001656,
+  "cases": [
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_blocked_linuxit_cannot_match_even_with_an_original_record",
+      "status": "passed",
+      "elapsed_sec": 0.07108470000093803
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_changed_campaign_options_fixture_or_integrity_flags_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.02813560000140569
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_comparison_uses_measured_metrics_not_the_own_expected_contract",
+      "status": "passed",
+      "elapsed_sec": 0.05547170000136248
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_different_destination_and_hit_order_are_reported",
+      "status": "passed",
+      "elapsed_sec": 0.06537949999983539
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_duplicate_unknown_or_falsely_populated_not_run_records_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.032163399999262765
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_evidence_cannot_escape_the_supplied_directory",
+      "status": "passed",
+      "elapsed_sec": 0.03259450000041397
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_existing_result_is_preserved_and_real_probe_reads_pdf_bytes",
+      "status": "passed",
+      "elapsed_sec": 2.5276440999987244
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_matching_synthetic_records_require_review_and_never_approve_family",
+      "status": "passed",
+      "elapsed_sec": 0.03653850000046077
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_missing_or_changed_evidence_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0887232999994012
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_original_identity_offline_control_and_timestamp_are_required",
+      "status": "passed",
+      "elapsed_sec": 0.0432461999989755
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_plan_reuses_known_cases_fixtures_and_families_without_ai",
+      "status": "passed",
+      "elapsed_sec": 0.025490500000159955
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_runtime_errors_and_unavailable_are_inconclusive_not_feature_failures",
+      "status": "passed",
+      "elapsed_sec": 0.08118259999901056
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_template_keeps_original_unknown_instead_of_copying_own_expectations",
+      "status": "passed",
+      "elapsed_sec": 0.023361200001090765
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_typed_unknown_is_distinct_from_zero_and_order_is_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.02550359999804641
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_unknown_metrics_zero_based_pages_and_inconsistent_counts_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.05254570000033709
+    },
+    {
+      "id": "test_comparison_campaign.ComparisonControls.test_wrong_fixture_or_protocol_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.061487700000725454
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

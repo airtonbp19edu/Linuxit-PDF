@@ -52,10 +52,12 @@ com os mesmos arquivos/protocolos da etapa18; quatro bloqueios Poppler resolvido
 O catálogo tem **323 entradas examinadas** (152 REA + 171 diretas exclusivas).
 A [continuação estática de 18/10/2026](docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md)
 examinou mais 48 entradas de busca, impressão e reflow, com tipos e estados
-refinados; cobertura global desconhecida e original não executado.
-O kit privado preservado deve ser usado na VM offline para observar o Foxit.
+refinados; essa rodada estática não executou o original.
+A [primeira campanha na VM offline](docs/VM-FOXIT-2026-10-18.md) executou o Foxit:
+11 recortes C18 comparados,10 com métricas iguais e1 divergência em busca por autor.
+Há5 recortes inconclusivos e1 ainda sem observação no protocolo exato.
 **Conclusão total da recodificação: percentual indeterminado.** O índice histórico
-do checklist é **43,93%**, mas não registra avanços dentro dos critérios parciais
+do checklist é **45,13%**, mas não registra avanços dentro dos critérios parciais
 e não mede quanto do código está reconstruído. [Medição e evolução das entregas](docs/MEDICAO-PROGRESSO.md).
 Paridade integral comprovada permanece **0/25** famílias identificadas.
 
@@ -64,7 +66,7 @@ A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 Sete controles do auditor e um novo smoke 5/5 passaram. Os relatórios das
 suítes completas 114/114 do 0.1.3 foram conferidos, sem repetir essas suítes
 nesta revisão. Os 21 critérios então abertos foram preservados nessa revisão; o registro atual
-tem 20 após a consulta da API de regras remotas em 18/10.
+tem 19 após a consulta da API e a validação do ambiente offline do original em 18/10.
 A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.

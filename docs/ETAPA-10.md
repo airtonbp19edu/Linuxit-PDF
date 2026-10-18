@@ -1,5 +1,13 @@
 # Etapa 10 — campanha de observação dinâmica
 
+**Atualização de 18/10/2026:** [campanha na VM offline](VM-FOXIT-2026-10-18.md)
+executou o original;11 recortes C18 comparados (10 iguais/1 divergente em autor).
+Ambiente da etapa10 validado; demais critérios dinâmicos/diferenciais parciais.
+Cancelamento, destinos dos hits, imposição com parâmetros correspondentes e
+processos residuais continuam abertos. Pesos preservados; paridade integral0/25.
+
+O texto abaixo registra o marco histórico anterior e seus limites naquela data.
+
 Estado em 16/10/2026: **preparação verificada; execução bloqueada**. O original
 não foi iniciado nesta rodada. O Windows local é 11 Home Single Language,
 build 26200, sem executável Windows Sandbox. O usuário confirmou não ter VM.

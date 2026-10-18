@@ -1,0 +1,401 @@
+{
+  "schema": "linuxit-offline-observations-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "session": {
+    "target_sha256_before": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "target_sha256_after": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "offline": true,
+    "synthetic_profile": true,
+    "runtime_control_verified": true,
+    "observed_at": "2026-10-18T18:31:47.707031-03:00",
+    "environment": "Windows 10 Pro 19045.3803 / VirtualBox 7.2.20 / Foxit 2025.2.0.33046 x86; local limited session; offline, no shares/USB/clipboard; host timestamps because guest clock lags. Default result sort: Relevance Ranking. D08 rerun on clean reverted draft after incidental note-style change; input never saved."
+  },
+  "cases": [
+    {
+      "id": "C18-D02-info",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "da0ef9f27b872579f647d2842ccca1dda459bf46f90866dc370244c24f5a570a",
+      "status": "observed",
+      "metrics": {
+        "pages": 2
+      },
+      "evidence": [
+        {
+          "file": "d02-page1.png",
+          "sha256": "73d56187c127a6fc39a7a2532f234d09fbbe2667b39b8ecb6c5617969f79f9fd"
+        },
+        {
+          "file": "d02-page2.png",
+          "sha256": "c32c3d9ff8ff636252c39914b7df779c3498f0de4bf88850a9cd86eae13ecd51"
+        }
+      ]
+    },
+    {
+      "id": "C18-D04-literal",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "5ea8217b564e00c05a7db7e56639e2daa8f4f423df72623bd0c65c5ab6d23f69",
+      "status": "observed",
+      "metrics": {
+        "count": 3,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d04-options.png",
+          "sha256": "d9310468c278e5b42c390efd5ff33774c93ccc32f4fecb2bb5fad6883360e1ba"
+        },
+        {
+          "file": "d04-result1.png",
+          "sha256": "9b1652d2149bef5ef248fa82a81a7000b92d6b6482dcddc6d78a51e457242f07"
+        },
+        {
+          "file": "d04-result2.png",
+          "sha256": "8968f61742741604d0ffa64fdeb00e6903f135fcc185b1bc17e0f1fcfa37d05c"
+        },
+        {
+          "file": "d04-result3.png",
+          "sha256": "87c9821b8da376d08768322dc5416e7b69951f0b4b82b3193dd1b1cdebeab566"
+        }
+      ]
+    },
+    {
+      "id": "C18-D05-whole",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "ad660e79fc1e302e42583e9ede4977e688fa1d71f7a33ab12cfe57f2610a7001",
+      "status": "observed",
+      "metrics": {
+        "count": 2,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d05-options.png",
+          "sha256": "7d16a12b66ce8dc1b74814360672d8880e9f19ee449c79fd951491252572c3a2"
+        },
+        {
+          "file": "d05-results.png",
+          "sha256": "2c11209e96de956aa79ded75b07e7c7bd11e4622ff146ec1aa502bcf4afde49a"
+        }
+      ]
+    },
+    {
+      "id": "C18-D06-case",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "0caa555bde3b727dafaf03969cab290220b567865fc76b0722c071f70b1f055e",
+      "status": "observed",
+      "metrics": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "page_text",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d06-options.png",
+          "sha256": "f70b24c544922ff69c2943050bd221adbb6dfd72cd1f836cc2029c6d4469c117"
+        },
+        {
+          "file": "d06-results.png",
+          "sha256": "af9e0a9dfb2b6312c09c84165f89d09f0f29224cf3ae8041f17f3332cfbfd252"
+        }
+      ]
+    },
+    {
+      "id": "C18-D07-bookmarks",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "744cfef2697c7297c8972de2f75061957c8f04e6db718ab1eec01d085ff89d6e",
+      "status": "inconclusive",
+      "metrics": null,
+      "evidence": [
+        {
+          "file": "d07-options.png",
+          "sha256": "05333722e5ade9be066a0bf8ce1f7e831257f10a6276a5fee586115312f50099"
+        },
+        {
+          "file": "d07-result1.png",
+          "sha256": "0772f01402715cdda02599445e9d7de5d1bb5441065437726bc3b89cbd416096"
+        },
+        {
+          "file": "d07-result2.png",
+          "sha256": "cacfe1e3071207183037fdbcf6d48e76a5ee7400d43a97cb1cb0ccd16c0b62a3"
+        },
+        {
+          "file": "d07-local-destination.png",
+          "sha256": "80c00fd64304706bfc8d00d513430cb6521c4a4e0c42d9a0fc2a4e16fcde9ef5"
+        },
+        {
+          "file": "d07-no-destination.png",
+          "sha256": "43f472938e3c3fde4df2e3bb8f44dd21ebe10b868dc0570d1bd5ccf2dfd93c78"
+        }
+      ],
+      "note": "Count=2. Local bookmark pane navigates to page2; search-hit navigation itself needs repeat. Structural destination is not a runtime search-hit page."
+    },
+    {
+      "id": "C18-D08-comments",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "eed0c51766883c939b35ce805864b3c3868c8ff7c50f7849b4bc101f1f70b176",
+      "status": "observed",
+      "metrics": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d08-options.png",
+          "sha256": "6f1cb1ed7380bf84829a61b70c4cf186374918c9123718939e2ee204bc356844"
+        },
+        {
+          "file": "d08-results-clean.png",
+          "sha256": "909ec21f388a1899ac67b2eff21d3bf912ce2e4131706c3f2d49b3ec2203f452"
+        },
+        {
+          "file": "d08-destination-clean.png",
+          "sha256": "62500f2724937e9be00bb47dc7c44a6d88837b77a0e8e46b55ef157c6cf0dd26"
+        }
+      ]
+    },
+    {
+      "id": "C18-D09-subject",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "5cbcb77d9d9d978861428d3c2839e00427785315fa750d427253eef4ff8223bd",
+      "status": "observed",
+      "metrics": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d09-subject-options.png",
+          "sha256": "3fc6a48933c737f17d2b5f8820e3d30bd18a547ef6d33294e9dcc58a4bea5a98"
+        },
+        {
+          "file": "d09-subject-results.png",
+          "sha256": "ba49c6cc67c68da0ac396b9d6b8c2dc142d099b0a8293e42f81c97d1992414a1"
+        }
+      ]
+    },
+    {
+      "id": "C18-D09-author",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "41b7ef62e79a53145efd8b9e5cc9596eba13d026ff57c491ceba3a163dfd109b",
+      "status": "observed",
+      "metrics": {
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d09-author-options.png",
+          "sha256": "4c52e03125b7bc53f0fe804c73cd00c7affbfcac00a5828f1f9b56191205d986"
+        },
+        {
+          "file": "d09-author-results.png",
+          "sha256": "d7e658c36753fc44e552416b5462e096ff69ff3271de0a2b06d43cf8f07215b4"
+        }
+      ]
+    },
+    {
+      "id": "C18-D10-scopes",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "82a4284ff2c8764b961829fd6d70313a1a9c2dae2962d32bae39d6363773e188",
+      "status": "inconclusive",
+      "metrics": null,
+      "evidence": [
+        {
+          "file": "d10-options.png",
+          "sha256": "c7b23638fcf62443a56fae46c3f6af90623b74e9e2049aa3e702e90cfcd7f0c0"
+        },
+        {
+          "file": "d10-results.png",
+          "sha256": "8d4ef0587a998c004d052eec177af19951d8a73b8e898dfffac6b970448dbc9d"
+        }
+      ],
+      "note": "Count=6; displayed order bookmark2/page_text3/comment1 with Relevance Ranking. Search-hit pages not all verified; no complete ordered-hit metric imported."
+    },
+    {
+      "id": "C18-D11-empty",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "e6d8d9c71c70122bac5b43a094819ee3ff76345a703aae36bcd2517ce4766a7f",
+      "status": "inconclusive",
+      "metrics": null,
+      "evidence": [
+        {
+          "file": "d11-empty-disabled.png",
+          "sha256": "e9bad03ebf274ded8a8a3f43bf50328cd6aa39f5cdb2167dc0da307f8f90a715"
+        }
+      ],
+      "note": "Search disabled for empty query; source options were not the exact C18 protocol. No submitted zero-count search inferred."
+    },
+    {
+      "id": "C18-D11-missing",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "9995b59886953ea6a7f646f1c72c2b2d0ff07311b6ea36d6d20e222fbae394cb",
+      "status": "not_run",
+      "metrics": null,
+      "evidence": []
+    },
+    {
+      "id": "C18-D11-no-sources",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "4b63c397f11ebf9507c93f762da7a6bd3be90f2bf3889f49986da5a80f65beec",
+      "status": "observed",
+      "metrics": {
+        "count": 0,
+        "hits": []
+      },
+      "evidence": [
+        {
+          "file": "d11-no-sources-options.png",
+          "sha256": "71139f73647a8a42e06d9938486e92c4b23b4030d7f70427b5753990617dc5c3"
+        },
+        {
+          "file": "d11-no-sources-results.png",
+          "sha256": "a43e5fe885dcec9cb5a7e9d72d3921a95390f90c5738a9fa3b1ec31747835f3d"
+        }
+      ]
+    },
+    {
+      "id": "C18-D13-rejected",
+      "fixture_sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e",
+      "protocol_sha256": "e68bbe28b4c5711ff842a8f15961fe25141866445db045ba1ed06ac38ff06c7d",
+      "status": "observed",
+      "metrics": {
+        "accepted": false
+      },
+      "evidence": [
+        {
+          "file": "d13-invalid-error.png",
+          "sha256": "0b88c96afe1c99d503ee2912752a5d41d6d37b3276ef9599d18cea7adf462bcd"
+        }
+      ]
+    },
+    {
+      "id": "C18-D14-rejected",
+      "fixture_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "protocol_sha256": "c0b9548968bbe513a5d30ea9fea4f92975bfa8228b129649bca0e916ca9a2a8b",
+      "status": "observed",
+      "metrics": {
+        "accepted": false
+      },
+      "evidence": [
+        {
+          "file": "d14-empty-error.png",
+          "sha256": "6ddc57c6995615ca42fbc013fe690c2af6a4e0953bc959c078041048e8da9329"
+        }
+      ]
+    },
+    {
+      "id": "C18-D16-attachment",
+      "fixture_sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74",
+      "protocol_sha256": "ca05b77bc8f4198be2dee56ff430be9d07e00fc9661767ec1976bc09f89ba433",
+      "status": "observed",
+      "metrics": {
+        "entries": [
+          {
+            "name": "nota-sintetica.txt",
+            "size": 22,
+            "sha256": "4f6ef251b0d92548051e3239c050a6c0735554e79c03c3668166b30a05d9d5fb"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "d16-panel.png",
+          "sha256": "d75f787b2c0aa1ea9ba0a60090c51301220774f5e86f4f19ac7fb32dccbc7c4f"
+        },
+        {
+          "file": "d16-save-destination.png",
+          "sha256": "95be7fe9d7f56355ce7f2e2453b400867ec1aad8429dd4fbaa481366955dad9b"
+        },
+        {
+          "file": "after-attachment-guest.json",
+          "sha256": "a21ffa6c50416df41a9b0c607d13d61524505ceaf506f00c798a18d577a10e2d"
+        }
+      ]
+    },
+    {
+      "id": "C18-D18-booklet",
+      "fixture_sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "protocol_sha256": "2ae32f361cc1a6b9a443226d4590dba98fd0ae814c05946fccf759a192abdf02",
+      "status": "inconclusive",
+      "metrics": null,
+      "evidence": [
+        {
+          "file": "d18-booklet1.png",
+          "sha256": "f5f3da918223a18c071979a633ec07331a133c5b2ad04bf129a8199c2d2e8343"
+        },
+        {
+          "file": "d18-booklet2.png",
+          "sha256": "db8746a3459a7899df9eb7b7e718946e154e935779db928c6be21713705ba51f"
+        },
+        {
+          "file": "d18-booklet3.png",
+          "sha256": "34554945f5e343c36e562772105dc9eb83fd4997576e1737d123ffcdf7d820ad"
+        },
+        {
+          "file": "d18-booklet4.png",
+          "sha256": "923e6d1376da090bc331548c3519b8d6374ff5a3f9b2059e9a66e21176137f79"
+        }
+      ],
+      "note": "Visual preview faces 8-1/2-7/6-3/4-5; margin0.200inch. Does not establish PDF content-stream label order or the exact C18 5mm safety/3mm gutter settings."
+    },
+    {
+      "id": "C18-D18-nup",
+      "fixture_sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "protocol_sha256": "1457b89112a1e360b996a2924b5c67c005cc4335f45131ac4f32a4d827c20459",
+      "status": "inconclusive",
+      "metrics": null,
+      "evidence": [
+        {
+          "file": "d18-nup1.png",
+          "sha256": "e633013401394a46ef1573f21b206e97b35fdb5b4c849c1975a4e57bf02022bd"
+        },
+        {
+          "file": "d18-nup2.png",
+          "sha256": "e63fde9357cb0c12f740afcbee9157301df6592dda63e35c8b8509dc7e930944"
+        }
+      ],
+      "note": "Visual preview horizontal2x2:1-2/3-4 and5-6/7-8; margin0.200inch. No PDF output/content-stream order; C18 asks4mm margin."
+    }
+  ]
+}

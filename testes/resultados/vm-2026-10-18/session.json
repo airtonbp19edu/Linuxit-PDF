@@ -1,0 +1,222 @@
+{
+  "schema": "linuxit-vm-campaign-session-v1",
+  "run_id": "vm-20261018-1710",
+  "reviewed_at_local": "2026-10-18T18:43:04-03:00",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "target_version": "2025.2.0.33046 x86",
+  "guest": "Windows10 Pro19045.3803",
+  "virtualbox": "7.2.20",
+  "probe_sources": {
+    "guest_executed_sha256": "8a8b4ae003c1ff6c8cbaa6fc7139e7497e6dd14ec1fe18e69f86a849fa053e13",
+    "guest_published_lf_sha256": "8a8b4ae003c1ff6c8cbaa6fc7139e7497e6dd14ec1fe18e69f86a849fa053e13",
+    "host_published_lf_sha256": "bdb9d51261baa2ade82f74dc2226790eac32147f67978ab30722ebcb4f37db97",
+    "only_line_endings_normalized": true
+  },
+  "limited_interactive_session": true,
+  "elevated": false,
+  "memory_mb": 10000,
+  "cpus": 4,
+  "host_containment_before": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261018-1710",
+    "created_at": "2026-10-18T17:13:56.3049491-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "host_containment_after": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261018-1710",
+    "created_at": "2026-10-18T18:41:06.9742762-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "final_collect": {
+    "file": "final-guest.json",
+    "sha256": "a0d1a3c906feda63a557ed6cc83a80c929d07890fa3d16036613633457c40e53",
+    "processes": [
+      {
+        "Id": 5464,
+        "ProcessName": "FoxitPDFReader",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": ""
+      },
+      {
+        "Id": 1056,
+        "ProcessName": "notepad",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "controle.txt - Bloco de Notas"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "C:\\Linuxit\\Results\\busca-escopos.pdf",
+        "sha256": "fc76f6e140a72327f775027adc2d597364633b5577b6204655cf538a06b1003f",
+        "bytes": 9100
+      },
+      {
+        "path": "C:\\Linuxit\\Results\\nota-sintetica.txt",
+        "sha256": "4f6ef251b0d92548051e3239c050a6c0735554e79c03c3668166b30a05d9d5fb",
+        "bytes": 22
+      },
+      {
+        "path": "C:\\Linuxit\\Results\\Infrastructure\\linuxit-control-20261018-1658\\offline-control.json",
+        "sha256": "b596fcb2db0c1ac9eb1b24e647042d3482e634ca60af05f08068d28ed6764586",
+        "bytes": 640
+      }
+    ]
+  },
+  "probe_stop": {
+    "file": "probe-stop-guest.json",
+    "sha256": "1705cfd0ea79bd82e299e0f73b782869e3f1a3e6745bf726219243acf0990f4c",
+    "status": "completed"
+  },
+  "guest_adapters_after": [
+    {
+      "Name": "Ethernet",
+      "Status": "Disconnected"
+    }
+  ],
+  "write_denied_before": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "write_denied_after": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "inputs_unchanged": true,
+  "inputs": [
+    {
+      "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "name": "busca-escopos.pdf",
+      "bytes": 7904
+    },
+    {
+      "sha256": "3dfce9fc83a6da03bfb47f52b824c62297f7a6c7eb758fc33e0dd22186a1ac2c",
+      "name": "busca-longa.pdf",
+      "bytes": 82663
+    },
+    {
+      "sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74",
+      "name": "com-anexo.pdf",
+      "bytes": 3377
+    },
+    {
+      "sha256": "1922651f70d7af3934bac3715ede6cf933fe70022fe2ab9b0f5055b28b9f685e",
+      "name": "com-senha.pdf",
+      "bytes": 3390
+    },
+    {
+      "sha256": "b4e81b193a7596beeaf4dd389a71245a6689c1221f66f3f5029ec261962e42d2",
+      "name": "controle.txt",
+      "bytes": 67
+    },
+    {
+      "sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "name": "geometria.pdf",
+      "bytes": 2980
+    },
+    {
+      "sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e",
+      "name": "invalido.pdf",
+      "bytes": 39
+    },
+    {
+      "sha256": "1cb6771f51b79ab5acc0308eeed4784576d0786acc9b3bf4823b53ebdacb2540",
+      "name": "observacoes-comparativas-template.json",
+      "bytes": 5626
+    },
+    {
+      "sha256": "3fd1de80f87518be125da7fcb98e5061802c104ecbc78f2807638581555cdc96",
+      "name": "plano-comparativo.json",
+      "bytes": 17893
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "vazio.pdf",
+      "bytes": 0
+    }
+  ],
+  "visual_control_verified_before_original": true,
+  "visual_control_evidence": {
+    "file": "control-response.png",
+    "sha256": "635e97d9415cdd4bfe3ad7788821aabd1b906ef58479b74b95bb40f76f8b965d"
+  },
+  "startup_elapsed_sec": null,
+  "performance_timing_valid": false,
+  "whole_family_parity_verified": false,
+  "imported_subsets": 11,
+  "matched_subsets": 10,
+  "different_subsets": 1,
+  "inconclusive_c18_subsets": 5,
+  "awaiting_c18_subsets": 1,
+  "linux_ci": {
+    "run_id": 39163934943,
+    "artifact_id": 12149742247,
+    "source_commit": "955f6c2df17c1d27c0fd0ea87be51414ad751446",
+    "artifact_sha256": "a4f21ff8723c86afd6d9375e280f6b2b9d3cbbfbeea7a1b3f44c5ffa7185731d",
+    "tests_run": 400,
+    "passed": 400,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "own_backend_subsets_passed": 17,
+    "flatpak_rebuilt": false
+  },
+  "copied_reports": [
+    {
+      "file": "linux-source-intermediate.json",
+      "bytes": 105002,
+      "sha256": "9097456c8b6cb96d79bcf27a5cf1d474c4d807d4d7ae0faa5fec3b8a24080e7b"
+    },
+    {
+      "file": "linux-preserved-campaign.json",
+      "bytes": 49894,
+      "sha256": "fa2bd41355a768d193d6c030b84c173502b10622d88a064ce96fb2de2909b8c7"
+    },
+    {
+      "file": "foxit-observations.json",
+      "bytes": 13861,
+      "sha256": "f1ad943f090b1fd1ec63cf728a68ebc7f3051b1fe1aad2e0c83f7fa700391bcd"
+    },
+    {
+      "file": "comparison.json",
+      "bytes": 3630,
+      "sha256": "90cdbbcfd541d74e3c5ca77ee60762d64ead4f534e8ed0dbc7b891f79593f7f7"
+    },
+    {
+      "file": "architecture-final.json",
+      "bytes": 15074,
+      "sha256": "d0a95de78f29038bdd10eda7a4985c5442eb20e7b7bb1796297c1477df50aa89"
+    },
+    {
+      "file": "comparator-tests.json",
+      "bytes": 3836,
+      "sha256": "e5d2625b2734cda2da4379e430f88b8c70e72d62cb2eac0f49bc412fca728abf"
+    }
+  ],
+  "limitations": [
+    "Original screenshot/log payloads remain private. Manual review required.",
+    "Guest clock lag invalidates performance timing.",
+    "Final collect and probe-stop acknowledged. D20 old PID5464 remains without window; new PID6964 absent from final process list. Notepad control PID1056 remains. Network remains off; residual cause unresolved.",
+    "Final-inputs preflight is the post-original hash/permission evidence; its new Notepad launch is not a second acknowledged visual control."
+  ]
+}

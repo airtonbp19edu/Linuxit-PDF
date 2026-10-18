@@ -1,5 +1,13 @@
 # Etapa 19 — correções próprias de impressão
 
+**Atualização de 18/10/2026:** [campanha na VM offline](VM-FOXIT-2026-10-18.md)
+executou o original;11 recortes C18 comparados (10 iguais/1 divergente em autor).
+Ambiente da etapa10 validado; demais critérios dinâmicos/diferenciais parciais.
+Cancelamento, destinos dos hits, imposição com parâmetros correspondentes e
+processos residuais continuam abertos. Pesos preservados; paridade integral0/25.
+
+O texto abaixo registra o marco histórico anterior e seus limites naquela data.
+
 Atualização posterior deste checkpoint: a [etapa 20](ETAPA-20.md) validou
 fonte e Flatpak 0.1.2 em Linux, com 104/104 testes em cada ambiente
 fonte/payload/sandbox e cinco casos GTK do painel. O relato abaixo

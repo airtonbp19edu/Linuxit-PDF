@@ -37,7 +37,7 @@ Na história examinada, houve somente duas pontuações:
 |Primeiro registro, `0f08daa`|43,33%|37 critérios inteiramente concluídos.|
 |A partir de `c403fa7`|43,93%|A consulta às regras remotas do GitHub passou de unknown a done; acréscimo de 0,60 ponto percentual.|
 
-O total atual exato é `777937/17710 = 43,926425748…`, arredondado para 43,93%.
+O total exato na revisão era `777937/17710 = 43,926425748…`, arredondado para 43,93%.
 O aumento de 0,60 ponto não quantifica as funcionalidades implementadas nesse
 intervalo. Pesos, definições e estados dos critérios foram preservados nesta revisão.
 
@@ -71,7 +71,7 @@ do original permanece aberto. Nenhuma família teve paridade integral comprovada
   `implementation_completion_percent: null`.
 - **Entregas próprias:** recursos concretos de cada versão, limites, evidências
   de implementação e validação e operações ainda pendentes.
-- **Checklist original:** manter o índice histórico 43,93%, com esse rótulo,
+- **Checklist original:** manter o índice histórico calculado, com esse rótulo,
   para preservar a série e os critérios. Não usá-lo como porcentagem do código.
 - **Comparação com Foxit:** manter separada; depende da referência isolada e
   de comparações por operação. 0/25 famílias integralmente comprovadas não
@@ -83,3 +83,12 @@ da medição. Dividir critérios amplos pode melhorar a sensibilidade, mas é um
 nova revisão de método: deve preservar o histórico e declarar o denominador.
 Não há justificativa para substituir o indicador atual por um número estimado
 apenas para fazê-lo subir.
+
+## Avanço posterior da campanha na VM
+
+A [campanha offline de18/10](VM-FOXIT-2026-10-18.md) verificou integralmente
+o critério de ambiente isolado/original executável da etapa10. Com pesos
+inalterados, isso acrescenta `6 × 2/10 = 1,20` ponto: índice **45,13%**,
+39 critérios done/19 abertos. Esse aumento corresponde à validação do ambiente;
+não mede a quantidade de código reconstruído. Os11 recortes diferenciais e a
+divergência de autoria são evidências separadas, sem encerrar famílias.

@@ -2207,3 +2207,187 @@ preservação de Opt e testes de flags/ReadOnly/limites/histórico. Uma futura
 porcentagem operacional exige catálogo delimitado e pesos/aceitação explícitos,
 com revisão de método registrada. Alterações de relatório preparadas para
 commit/push; confirmação remota e recibo final externo após publicação.
+
+## 2026/10/18 às 16:27 (America/Sao_Paulo, UTC-03:00) — preparação parcial da VM para Linuxit-PDF
+
+Usuário escolheu Linuxit-PDF como primeiro projeto na preparação do laboratório
+Windows 10/VirtualBox. Fonte Linux/Flatpak continua sendo a entrega própria;
+a VM Windows será usada para observar Foxit e produzir a referência offline.
+Nenhum original, cenário D01-D20, GUI do Linuxit ou comparação diferencial foi
+executado nesta rodada. Paridade, critérios, pesos e versão não alterados.
+
+Ferramentas: PowerShell do hospedeiro, VBoxManage/API COM oficial, Python 3.13,
+SHA-256 e Git somente leitura. VM Windows 10 com Guest Additions 7.2.20,
+10.000 MB/4 vCPUs. Backup completo externo à pasta da VM, 9 arquivos/21,42 GiB,
+conferido por hash; boot dessa cópia não testado. Snapshot ao vivo inicial não
+avançou; cancelamento normal mais pausa expôs inconsistência entre estado
+externo Running e interno Suspended. Segundo snapshot concluiu preservando
+memória; a instância foi encerrada, o snapshot restaurado e reaberto. Log
+confirmou RESUMING -> RUNNING e tela manteve a sessão aberta. Recuperação deste
+snapshot exercitada; não confundir com teste de restauração do backup completo.
+
+Evidência privada: scripts/guia/lab-host-state.json no workspace irmão
+Testes de IA; backup em B:\Backups\VirtualBox\Windows10-2026-10-18_160415;
+snapshot 00-recuperar-sessao-20261018, UUID639a6bc1-bc44-4718-9e7a-b9e924619712.
+Kit fora de Git/OneDrive em A:\Airtonbp19\LabKits\Linuxit-PDF-20261018-1630:
+3292 arquivos/499259372 bytes copiados e verificados antes/depois; identidade
+Foxit conferida contra projeto.json; oito fixtures da campanha final da etapa18
+preservadas byte a byte, plano/modelo intactos, 17 casos ainda not_run.
+Não regenerar corpus nem promover esses preparativos a observação funcional.
+
+NAT ainda conectado para preparação. Acesso SSH encaminhado apenas em
+127.0.0.1:2222 do hospedeiro; LabSetup/LinuxitKit temporários e somente leitura.
+Bootstrap administrativo no convidado ainda depende de execução pelo usuário;
+sem acesso autenticado confirmado, sem provisionamento de ferramentas ou
+isolamento offline validado. Chave privada exclusiva fora do OneDrive; nenhuma
+senha solicitada. Proteções do Windows do hospedeiro não desativadas.
+
+Git local/remoto main coincidiram em 955f6c2df17c1d27c0fd0ea87be51414ad751446
+antes desta nota; checkout estava limpo. Esta nota é o único arquivo alterado
+neste repositório pela rodada. Sem commit/push deste preparo parcial.
+Próximo passo: usuário executa Preparar-Acesso.ps1 como administrador dentro da
+VM; conferir SSH/Windows/perfil local, copiar/verificar kit em C:\Linuxit e
+remover compartilhamentos/clipboard/rede antes de qualquer execução Foxit,
+seguindo ETAPA-10/18. Validar controle responsivo e registrar contenção real.
+## 2026/10/18 às 17:03 (America/Sao_Paulo, UTC-03:00) — VM configurada; testes somente no chat do Linuxit-PDF
+
+Usuário executou bootstrap e, nesta rodada, determinou explicitamente que os
+testes de aplicativo devem ser feitos apenas no chat apropriado do projeto.
+Este chat ficou restrito à infraestrutura. Nenhum Foxit, cenário funcional,
+comparação, GUI do Linuxit ou suíte própria foi executado. Critérios, pesos,
+paridade e versão preservados. Não iniciar testes neste chat de laboratório.
+
+Acesso SSH por chave confirmado na conta local IA Machine. Windows 10 Pro
+19045.3803, Guest Additions7.2.20, Brave155.1.97.59 e WinGet1.29.380 conferidos;
+10.000MB/4vCPUs, aproximadamente56GiB livres antes do kit. Suspensão, hibernação
+automática e apagamento de tela em AC configurados em zero só no convidado.
+Defender/tempo real permaneceram ativos; nenhuma proteção do host foi alterada.
+Não houve inscrição ESU, atualização do SO ou instalação da pilha geral REA
+na VM; análise pode continuar no ambiente já existente do projeto.
+
+Kit privado copiado para C:\Linuxit:3292 arquivos/499259372bytes conferidos
+contra manifesto por SHA-256; referência mantém o hash90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6.
+Oito fixtures da campanha final da etapa18 e protocolos/modelos preservados;
+17 observações continuam not_run. Correção de herança da DACL seguida de nova
+conferência completa aprovada. Reference/Input/Protocol têm RX para usuários
+sem elevação; Results permite gravação à conta local. A negação de escrita
+pelo token limitado ainda precisa de validação runtime no chat do projeto.
+
+Uma tarefa auxiliar de controle interativo não chegou a abrir o Notepad:
+falhou ao localizar VBoxControl no caminho inicialmente presumido. Caminho
+corrigido para System32; não foi reexecutada após a orientação do usuário.
+Tarefa removida e ausência de seus processos/Foxit confirmada. A infraestrutura
+não ganhou aprovação de GUI por existir processo ou script. Controle do
+marcador LINUXIT_RUNTIME_PROBE e contenção dentro do guest continuam pendentes.
+
+Isolamento configurado e conferido no hospedeiro: nenhum adaptador com cabo
+conectado, nenhuma pasta compartilhada, clipboard/drag-drop/áudio desligados,
+zero dispositivos USB capturados e VRDE off. xHCI virtual permanece disponível,
+sem passthrough do host. SSH deixa de funcionar nesse modo. Não religar NAT ou
+clipboard com a referência aberta. Kit está local; não precisa de pasta pessoal.
+
+Novo snapshot01-linuxit-configurado-offline-20261018-1701,
+UUID0ba95c19-5b6d-4c6b-a6ed-0cb3e59734d6:VM pausada antes da captura,100%
+concluída e retomada RUNNING confirmada, rede/clipboard ainda off. Restauração
+deste novo snapshot não testada. Snapshot de recuperação anterior e backup
+completo em B:\Backups\VirtualBox\Windows10-2026-10-18_160415 preservados;
+inicialização a partir da cópia completa continua não testada.
+
+Relatórios privados no workspace irmão Testes de IA:lab-host-state.json,
+evidence/guest-preparation-20261018.json e
+evidence/prep-linuxit-20261018-1700-host-containment.json. No convidado,
+C:\Lab\Reports contém bootstrap,inventário,ajustes,stage e adiamento de testes.
+Guia LEIA-ME-LABORATORIO.md atualizado. Estes registros não substituem evidência
+funcional nem aprovam critérios dinâmicos da etapa10.
+
+Próximo passo exclusivamente no chat Linuxit-PDF: consultar esta nota e os
+relatórios, confirmar perfil sintético/contenção no convidado e controle de
+interface antes de abrir referência; então seguir ETAPA-10/18 com os mesmos PDFs.
+Código/pacote não alterados. Esta rodada acrescenta apenas esta nota ao arquivo
+de continuidade; sem commit/push da configuração local da VM.
+
+## 2026/10/18 às 18:45 (America/Sao_Paulo, UTC-03:00) — primeira campanha real do Foxit na VM offline
+
+Pedido: continuar os testes na VM e preservar a continuidade local/remota.
+As notas de infraestrutura das16:27/17:03, trazidas pelo outro chat, foram
+preservadas. Main local/remoto conferidos em955f6c2df17c1d27c0fd0ea87be51414ad751446
+antes desta publicação; nenhum reset, force push ou restauração do snapshot.
+
+A revisão automática inicialmente bloqueou a manutenção com rede. O usuário
+respondeu expressamente “Autorizar manutenção breve com Foxit fechado”. SSH
+usado somente nesse preparo; cabo desconectado antes do controle/original.
+Host/guest conferidos durante e ao fim:zero cabos conectados/shares/USB capturado,
+Ethernet Disconnected, sem SMB, clipboard/drag-drop/VRDE/áudio off. Perfil
+sintético local, sessão interativa limitada não elevada. RX exercitado e
+repetido em Reference/Input/Protocol. Nenhuma proteção do host foi alterada.
+
+Ferramentas: VBoxManage/API COM/Guest Additions7.2.20, PowerShell, SHA-256,
+Computer Use por @oai/sky e teclado virtual nativo do VirtualBox; Python3.13,
+comparador próprio e Git. Scripts próprios scripts/foxit_vm_probe.ps1 e
+scripts/guest_foxit_probe.ps1 usam comandos fixos e propriedades fragmentadas;
+sem transporte de código arbitrário, rede ou clipboard. Notepad com marcador
+LINUXIT_RUNTIME_PROBE respondeu visualmente antes da abertura do original.
+Fonte publicada com LF; hash do coletor efetivamente executado e hash publicado
+separados em session.json. Não houve nova rodada REA/Ghidra nem esgotamento de
+tokens confirmado. Atrasos e relógio do guest impedem conclusões de desempenho.
+
+Foxit2025.2.0.33046x86 executado, interface/versão examinadas; SHA-256
+90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6
+antes/depois igual. Dez arquivos Input, incluindo oito fixtures preservados
+da etapa18, mantiveram hashes. Results recebe somente saídas sintéticas.
+Campanha D01–D20:14 observados em recortes delimitados,5 parciais,1 inconclusivo;
+esses estados não significam aprovação integral dos cenários/famílias.
+Abertura/navegação/zoom/rotação de visualização, busca por escopos/opções,
+inválido/vazio/senha sintética, anexo, prévias, cópia/reabertura e fechamento
+foram observados. Incidente de mudança de estilo no rascunho D08 revertido;
+D08 repetido limpo e Input nunca gravado. IA/nuvem/contas não exercitados.
+
+Importador aceitou11 recortes no protocolo exato:10 métricas iguais e1
+divergência, Foxit encontra1 ocorrência em autor de comentários onde Linuxit
+retorna0. Outros5 inconclusivos e1 sem a consulta/fontes exatas. D07/D10
+precisam navegação pelos hits; contagens/ordem visual e clique no painel de
+marcadores não foram promovidos a destinos de busca. D12 concluiu250 hits
+antes do cancelamento. Vazio desabilita Search; não inferir busca submetida.
+Prévia D18 não corresponde às margens/ordem de streams pedidas no comparador.
+D15 senha correta foi inserida após rejeição, sem terceira abertura independente.
+Nenhuma impressão foi enviada. Cópia9.100bytes e anexo22bytes tiveram hashes
+conferidos; cópia reaberta com2páginas/2marcadores/comentário/autor visíveis.
+
+D20: janela encerrada e reaberta, sem abas restauradas, histórico local retido;
+aviso de visualizador padrão reaparece. PID antigo5464 permanece RespondingTrue
+sem título; PID novo6964 ausente do relatório final. Causa/saída completa
+pendentes. Notepad controle1056 permanece. Relatório final e probe-stop
+recebidos/examinados; stop encerra o coletor, sem terminar o Foxit. VM mantida
+offline; investigar processo residual antes de qualquer nova manutenção com rede.
+
+CI Linux desta rodada39163934943, fonte955f6c2, artefato12149742247:
+400/400 testes próprios sem falhas/erros/skips, smoke GTK5/5 e17/17 recortes
+próprios no corpus preservado. ZIP442043bytes/SHA-256
+a4f21ff8723c86afd6d9375e280f6b2b9d3cbbfbeea7a1b3f44c5ffa7185731d
+conferidos, relatórios copiados byte a byte. 16/16 controles do importador
+reexecutados no Windows; especificação25famílias/50planos e arquitetura
+44módulos/58interfaces/19critérios abertos conferidas; dois scripts PowerShell
+sem erros de parser. Revisão de124 arquivos privados por hash, seis selos de
+relatórios e106 arquivos app iguais ao CI aprovada. Fontes app/pacote0.1.13/devel
+intactas; nenhum Flatpak novo. A normalização LF de JSON próprios ganhou selos
+atualizados; rascunhos anteriores preservados localmente, sem nova medição.
+
+Publicável: docs/VM-FOXIT-2026-10-18.md e testes/resultados/vm-2026-10-18/
+(session, casos, observações, comparação, CI, controles, arquitetura, índice
+privado e review). Telas/cópias/logs completos e auxiliares em
+analysis-local/vm-20261018-1710/ e no artefatoCI local ignorado pelo Git.
+Não foram incorporados código/DLLs/recursos proprietários à implementação.
+
+Apenas o critério ambiente isolado/original executável passou a done mediante
+prova examinada. Pesos/definições preservados:checklist43,93→45,13%,39done/19abertos;
+estados dinâmicos/diferenciais amplos passam a partial, sem pontuar. Percentual
+global de recodificação continua null/indeterminado; nenhuma família encerrada
+(0/25),50 casos completos de aceitação continuam sem execução integral.
+
+Git neste checkpoint: alterações preparadas para commit/push; publicação ainda
+não declarada nesta nota. Confirmação remota será acrescentada após sucesso,
+com recibo final fora da árvore. Próximo passo concreto: completar D07/D10 e
+D11 exato; tornar cancelamento observável; investigar D20; medir imposição nos
+parâmetros exatos; converter a divergência de autor em contrato/regressão e
+corrigir/testar a busca própria em marco posterior. Desktop Linux/portais,
+AT-SPI, cliente de sincronização e impressão física seguem pendentes separados.

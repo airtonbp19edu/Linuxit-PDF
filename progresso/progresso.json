@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-progress-v1",
-  "date_utc": "2026-10-17",
+  "date_utc": "2026-10-18",
   "phase": "A; incremental B only for sufficiently specified contracts",
   "criteria_revision": 1,
   "unfinished_criteria_register": "progresso/pendencias-analises.json",
@@ -332,38 +332,44 @@
         {
           "criterion": "Ambiente isolado e original executável validados",
           "weight": 2,
-          "status": "blocked",
+          "status": "done",
           "evidence": [
             "docs/relatorio-dinamico.md",
             "docs/windows-evidence/foxit-rea/dynamic-followup.json",
             "docs/ETAPA-10.md",
-            "docs/windows-evidence/foxit-rea/dynamic-readiness-windows.json"
+            "docs/windows-evidence/foxit-rea/dynamic-readiness-windows.json",
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
           ],
-          "note": "Historical Wine/i386 control passed under QEMU, but original exited before usable UI. Current Windows 11 Home has no Sandbox executable; WSL is not installed and user has no VM. Stage-10 corpus and configuration prepared, not executed. No done check or weight change."
+          "note": "Real limited interactive offline Windows10 VM/control/usable Foxit2025.2.0.33046 verified; executable and10Input hashes unchanged; write denial repeated. Environment criterion earned; no weights changed."
         },
         {
           "criterion": "Cenários locais observados e registrados",
           "weight": 4,
-          "status": "pending",
+          "status": "partial",
           "evidence": [
             "testes/cenarios-dinamicos.json",
-            "docs/ETAPA-10.md"
+            "docs/ETAPA-10.md",
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
           ],
-          "note": "Twenty prepared cases remain not_run; expected own contracts are not Foxit observations."
+          "note": "Initial D01-D20 campaign has14 observed bounded cases,5 partial,1 inconclusive; not full25families/50acceptance cases. Eleven C18 subsets imported:10 matches/1 author-search difference,5inconclusive/1awaiting."
         },
         {
           "criterion": "Integrações autorizadas e casos excepcionais observados",
           "weight": 4,
-          "status": "pending",
+          "status": "partial",
           "evidence": [
             "testes/cenarios-dinamicos.json",
-            "docs/ETAPA-10.md"
+            "docs/ETAPA-10.md",
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
           ],
-          "note": "Synthetic error and local integration cases prepared, not observed; remote accounts and physical printing outside this campaign."
+          "note": "Synthetic invalid/empty/password and local attachment/save-copy/print-preview exercised. No accounts, remote services or physical printing. Full integrations/exceptions remain open."
         }
       ],
-      "verified_fraction": 0.0,
-      "earned_percent": 0.0
+      "verified_fraction": 0.2,
+      "earned_percent": 1.2
     },
     {
       "id": 11,
@@ -390,15 +396,17 @@
         {
           "criterion": "Disponibilidade e comportamento de todas as interações observados",
           "weight": 6,
-          "status": "pending",
+          "status": "partial",
           "evidence": [
             "docs/ETAPA-11.md",
             "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
             "testes/cenarios-interface.json",
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
         }
       ],
       "verified_fraction": 0.25,
@@ -936,14 +944,22 @@
         {
           "criterion": "Cenários diferenciais executados no original e na reconstrução",
           "weight": 5,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
+          ],
+          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
         },
         {
           "criterion": "Resultados e divergências por família disponíveis",
           "weight": 4,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
+          ],
+          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
         }
       ],
       "verified_fraction": 0.1,
@@ -1022,8 +1038,12 @@
         {
           "criterion": "Divergências originais medidas e corrigidas",
           "weight": 6,
-          "status": "pending",
-          "evidence": []
+          "status": "partial",
+          "evidence": [
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/session.json"
+          ],
+          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
         }
       ],
       "verified_fraction": 0.142857,
@@ -1724,7 +1744,7 @@
       ]
     }
   ],
-  "general_progress_percent": 43.93,
+  "general_progress_percent": 45.13,
   "verified_functional_parity": {
     "percent": 0.0,
     "verified": 0,
@@ -2092,12 +2112,12 @@
     }
   ],
   "latest_resume": {
-    "date_local": "2026-10-18T01:51:24-03:00",
-    "local_and_remote_checked_equal_at_start": "91c405dc6593eb503a14f939f2bfcabb21f98540",
-    "work_scope": "User requested remaining own work while configuring VM; forms/bookmarks/annotations/draft history implementation.",
-    "application_modified": true,
-    "report": "docs/EDICAO-COM-HISTORICO.md",
-    "original_executed": false,
+    "date_local": "2026-10-18T18:37:33-03:00",
+    "local_and_remote_checked_equal_at_start": "955f6c2df17c1d27c0fd0ea87be51414ad751446",
+    "work_scope": "User requested continuation of offline VM tests and progressive publication.",
+    "application_modified": false,
+    "report": "docs/VM-FOXIT-2026-10-18.md",
+    "original_executed": true,
     "cloud_deferred_by_user": true
   },
   "current_static_analysis": {
@@ -2165,6 +2185,15 @@
       "analysis_tools_modified": true,
       "full_test_suite_reexecuted": false,
       "cloud_deferred_by_user": true
+    },
+    {
+      "date_local": "2026-10-18T01:51:24-03:00",
+      "local_and_remote_checked_equal_at_start": "91c405dc6593eb503a14f939f2bfcabb21f98540",
+      "work_scope": "User requested remaining own work while configuring VM; forms/bookmarks/annotations/draft history implementation.",
+      "application_modified": true,
+      "report": "docs/EDICAO-COM-HISTORICO.md",
+      "original_executed": false,
+      "cloud_deferred_by_user": true
     }
   ],
   "static_analysis_history": [
@@ -2197,6 +2226,16 @@
       "evidence": "testes/resultados/revisao-etapas-2026-10-18/remote-rules.json",
       "weights_or_criterion_definitions_changed": false,
       "reason": "Repository public after prior user decision; API now consultable."
+    },
+    {
+      "date_local": "2026-10-18T18:37:33-03:00",
+      "stage": 10,
+      "criterion": "Ambiente isolado e original executável validados",
+      "previous_status": "blocked",
+      "status": "done",
+      "evidence": "testes/resultados/vm-2026-10-18/session.json",
+      "weights_or_criteria_changed": false,
+      "earned_checklist_delta_percent": 1.2
     }
   ],
   "implementation_completion_percent": null,
@@ -2209,5 +2248,24 @@
     "global_operation_denominator_complete": false,
     "review_ref": "docs/MEDICAO-PROGRESSO.md",
     "policy": "Report delivered features and recorded validation separately. Do not turn test, module or partial-family counts into a total completion percentage."
+  },
+  "current_dynamic_execution": {
+    "date_local": "2026-10-18T18:37:33-03:00",
+    "run_id": "vm-20261018-1710",
+    "report": "docs/VM-FOXIT-2026-10-18.md",
+    "session": "testes/resultados/vm-2026-10-18/session.json",
+    "original_executed": true,
+    "source_version": "0.1.13",
+    "dynamic_case_status_counts": {
+      "observed": 14,
+      "partial": 5,
+      "inconclusive": 1
+    },
+    "exact_protocol_subsets": 11,
+    "matched_metrics": 10,
+    "different_metrics": 1,
+    "full_acceptance_cases_completed": 0,
+    "whole_family_equivalence_verified": false,
+    "publication_state": "pending"
   }
 }
