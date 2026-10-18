@@ -1,0 +1,15 @@
+{
+  "schema": "linuxit-progress-reporting-change-check-v1",
+  "date_local": "2026-10-18T13:52:41-03:00",
+  "passed": true,
+  "existing_progress_fields_unchanged": true,
+  "criteria_definitions_weights_statuses_and_evidence_unchanged": true,
+  "legacy_percent_preserved": 43.93,
+  "implementation_completion_percent": null,
+  "rendered_report_separates_metrics": true,
+  "published_app_files_unchanged": 106,
+  "published_bundle_unchanged": true,
+  "bundle_sha256": "0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024",
+  "new_application_test_runs": 0,
+  "renderer_sha256": "c5ff19982fe8ef291e5d7c10c8ca37697155545a863ca21cbc5c7c3156a6862b"
+}

@@ -2198,5 +2198,16 @@
       "weights_or_criterion_definitions_changed": false,
       "reason": "Repository public after prior user decision; API now consultable."
     }
-  ]
+  ],
+  "implementation_completion_percent": null,
+  "progress_interpretation": {
+    "reporting_revision": 2,
+    "legacy_field": "general_progress_percent",
+    "legacy_metric": "Weighted binary closure of original roadmap criteria; historical checklist index only.",
+    "is_total_recoding_completion": false,
+    "partial_criteria_contribution": 0,
+    "global_operation_denominator_complete": false,
+    "review_ref": "docs/MEDICAO-PROGRESSO.md",
+    "policy": "Report delivered features and recorded validation separately. Do not turn test, module or partial-family counts into a total completion percentage."
+  }
 }

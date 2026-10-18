@@ -3,6 +3,9 @@
 Estado atualizado em **18/10/2026** após a entrega 0.1.13; os critérios da etapa 13
 e os pesos foram preservados. A suíte própria atual passou 400/400 em fonte,
 payload e sandbox. As análises estáticas anteriores não foram reiniciadas.
+[A revisão da medição](../docs/MEDICAO-PROGRESSO.md) separa o índice histórico
+43,93% da conclusão global da recodificação, cujo percentual é indeterminado.
+O índice não atribui pontos aos avanços dentro de critérios ainda parciais.
 A [fonte estruturada](pendencias-analises.json) registra **todos os 20 critérios
 não concluídos em 13 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
@@ -75,8 +78,8 @@ retomar no primeiro alvo pendente e preservar os anteriores. Uma nova IA não
 precisa refazer a análise inicial nem supor resultados ausentes.
 
 Conferir coerência do registro com `python scripts/check_architecture.py`.
-Progresso geral **43,33%**, paridade **0/25**, catálogo **248** e pesos/revisão
-permanecem preservados nesta revisão.
+Registro histórico do checkpoint inicial: índice **43,33%**, paridade **0/25**,
+catálogo **248** e pesos/revisão então preservados. Não descreve os totais atuais.
 
 
 Retomada 2026-10-17T20:17:24-03:00: conferir publicação/auditoria nas notas.

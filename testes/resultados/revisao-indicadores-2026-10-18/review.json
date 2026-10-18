@@ -1,0 +1,560 @@
+{
+  "schema": "linuxit-progress-measurement-review-v1",
+  "date_local": "2026-10-18T13:49:41-03:00",
+  "reviewed_git_head": "bc75bc4dd5b0d17c0626384a4e72e075158263bb",
+  "arithmetic_correct": true,
+  "historical_roadmap_percent": 43.93,
+  "implementation_completion_percent": null,
+  "suitable_as_global_recoding_percentage": false,
+  "definitions_and_weights_unchanged": true,
+  "history_snapshots_examined": 55,
+  "history": [
+    {
+      "commit": "0f08daa66d4bd5576f7c1386de1a8674e974bfba",
+      "progress_json_sha256": "abb3607ef5c1d2d62b1c28daca7e29b602d2817aa3a9e5ae79b90461390e78c2",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "1d478a48d6bd9507d7c2244702e2cdddf31c2cef",
+      "progress_json_sha256": "3e1efd731502c93be0fcb6beeb7f2fd05e697d487f32a9a017a9de3e3246ec8c",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "c696ca939ec1d523786d570a74acd21ae20e11a7",
+      "progress_json_sha256": "74fcf6e8e8656db7cc912550b68ad35147a3624bd4b7c392fcbb149fbc9ba35f",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "62f9925d2f8c7ec722371671b27b527aea2e888e",
+      "progress_json_sha256": "414a8a8db539281854cdb527795f3baa5e73b82bdf6c6d5a86d87877c58d96cc",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "76893ea50b3465c426413d4229b981c46bf06550",
+      "progress_json_sha256": "ab54a5deb73211c0fc60375449b0358cdfe8272bc5c41c292798c117f6ba8d82",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "6cb0820be25b8a1e56f4106642b3fce528af1182",
+      "progress_json_sha256": "6923d1e836a3266df44fbec4230fd139be911e3d895e14b1200f7f22686033fb",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "39e176cc3665abcc48f73f0e52f55492032f1871",
+      "progress_json_sha256": "2078b89e5b7dc8cc72a09e1cf9bdf80c129f3f7ee0edaf28aee9051c7590659c",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "8dc53c2aa96ada4dc5e8fa12963841f94188115d",
+      "progress_json_sha256": "d5c740e0073c473f530c409c4e1e188f9162f8cd68184d8e896a403eea329912",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "73f7786883c183ea948bf45dcdc427f308c2894d",
+      "progress_json_sha256": "b94edc6bac946d1b1a4d908427dc922a6598d15d7647438d1a1f07a78dc7a789",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "6ab035f0f598542ab11b81de838bcfd4d5381991",
+      "progress_json_sha256": "6172b2ea06e5f8076044536a2dff101f5bb47abc9c833607b4753db05b3b0b3a",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "65d9c685084018e336644f4f8bebf1928bc71cfa",
+      "progress_json_sha256": "e8dc05606d211b3d0066b5454e1a3983e1904ba2aef6b896feb05c59f129eda1",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "6e1220da352e35607910a4eb5a7ebf16389042ea",
+      "progress_json_sha256": "5965b27106b00a6ffca523efbe39eaa9aa94360ebe673c6d06e8cb8255f194f2",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "c1205f64717bb8c1d556965a54079166025c5196",
+      "progress_json_sha256": "b320e69c061aaa8643c7070d98fecf257ab4f915babd1d95d9ebf8d3394dee8f",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "4ea78dd6f322f8f21cc67b5ca958e79bad1543df",
+      "progress_json_sha256": "864213cf0aaf02920708696f4bdc5acb0e7f1b13f0f1ecb3c5432cbe97eede97",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "ba1f5e1494759edad9cb9002d3a8802ae6d66b3e",
+      "progress_json_sha256": "82e3ffa68127077fbc0696c68d04a23a63ab27cbdbb128bf6ed488e34e0c7999",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "ee7881cf29446d1b116760f436d6a8be7e20e356",
+      "progress_json_sha256": "af8e4cb04fcc36dd23bdc5b3d13ad33f79ccced51d93111ddb5478faaf8993f5",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "e0306110ba0cd5f364e400aead2212343b80e263",
+      "progress_json_sha256": "fb909d3e53e18c27a58d28f6d7dd63149499e13a014a7c91f1e521998bb3c5b4",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "8cb933d0c1a230eef9d71f793a082832fd2b8164",
+      "progress_json_sha256": "b00337668902af12266001603a2015de28872974966101262beabb710fe3a05e",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "496c8a6a9db59206dff5d3f092a092556031af06",
+      "progress_json_sha256": "f3150c81c6f558b645fdbe472f211ba08d462498c241050ad4b3667bd26cd736",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "9e6adc8ef877fd83b3919bf2b212a600d0afaf2b",
+      "progress_json_sha256": "b13b0b35e30f9e45a6e1898397b4d83740e5f370cc840b79cfc70256887caf41",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "07a52ad381df68b621b88efcac842b38a25a412a",
+      "progress_json_sha256": "503dda8c0912fab03f934d682423263c0b7e6ba9be1114621f87f1600312d178",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "1ed350f8765904c74fb1cf8e794dcc978f7b3b03",
+      "progress_json_sha256": "34a159a710be56af9f3c929629a4021aebecb9d770d4282480158d939060f83d",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "a81d60e157ab7766ad7addbf0517a197b9be86f9",
+      "progress_json_sha256": "a8823244fd5eaa0c1ab678933568391f88d29bd52f372244c59ccaed3c51f248",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "e82566374a95917190f724f2a6145e14a048bc99",
+      "progress_json_sha256": "21b457f838269993c6aa1b18e028146a8891c061bdc4208178e45f82c7899638",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "979a288d3c6407162dbbbe2b7df24991f58984f8",
+      "progress_json_sha256": "00512ae022cae35fa51855f6b6005e5f49c572eb51cf7f3c71082afd3db23132",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "539bccb46fb3d5fddca4b70bef5a0c70aadce9a5",
+      "progress_json_sha256": "81b02dcd1ed45d46c17e19a7799156ada15f33683127d1b05538dda735e966c5",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "0d13f18f4fc56c90fbcff7d67dc91b685d8459e8",
+      "progress_json_sha256": "b240e16b0a8c964322876d1343c3242dc5b4aeecb3e31c5a6007ce2f52165aac",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "cb3c514d006b6f87725fdc824caa5b861f99da79",
+      "progress_json_sha256": "d0554c2e689418c5ea1b10b5df90ea6ed7304642dc7f832ac03aee7ade9637ec",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "e66c2d0d97d15d9f51171b2140c0ec49a00b20a8",
+      "progress_json_sha256": "fe60378c4dd7ee77bfc56b0a992915d15a6cbf476aa89f2e41126c25bf4d9642",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "098612fdd50efa945d00517100581786a0256920",
+      "progress_json_sha256": "25846a6c058b5ca3b2b77244fd828456f9f0d912a8dd134f6c8720d3daccce2a",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "5a6028791a3aa4306c014970a2934c39bb649943",
+      "progress_json_sha256": "15c320d7355ac0ebcc9e7ad898f11889ae09521a51dfd3ab37ad79d235cb3e64",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "d8dd8e363c21fd7cf21fc245e1d61a0612ee15aa",
+      "progress_json_sha256": "3e3e1f05d0a0851d8096b69f763fac71678c5190e3bde300b1157b4832b13672",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "0a2038762f914aa4c6f4ed029a5e2a4347c42987",
+      "progress_json_sha256": "465ee781b120137d338e840b32b8d073f5c13e4bfc4d212e3f9ee2db909e39d0",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+      "progress_json_sha256": "c5ad28d40a311c7e35cee7d0ce967e20821bd04306efea9728fa420575e02dbe",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+      "progress_json_sha256": "1312c9b92848c39900d5e6d60be9207e5c5432ebadc574b768306c98d7f656e6",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "1c6694811bed206bb3788f3a041adaf98ed925ec",
+      "progress_json_sha256": "1e63add93acb6b9208c96c5ca41eae0ac03c5f173b7c370a3d382477ac81cb27",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "239fa4a4c01f1fbdfb052c454e7c88e9ffd617c9",
+      "progress_json_sha256": "43391ab1e40ee243b4343904f31cf2a318908798a80010350c0950baa2045764",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
+      "progress_json_sha256": "9773de505107d5b096bf007e2c6e8ec5ff4d864e036f5793f74180e9482bd218",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "1b2e04ae6119b305018e9e4ec48517b3e9594f9c",
+      "progress_json_sha256": "d50ba298d815c9ba242aebc72afe748f4e54741b34c1381f474483523892b2b9",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "45417b3a546be1d51a0809ad170d420806b0a098",
+      "progress_json_sha256": "11c8cacf05b91447f503e5634f5663880bb43419e18a25922699fd1acf25c896",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "1ccd574e85b1fd9919b23a203f126a9980670723",
+      "progress_json_sha256": "a3c8d3f9d009a3e2668c3ea395f0cc99048828e67f47fdf776c44325c2895005",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "2e2da8da8c80728bcbf6ab5f0e2929c447839665",
+      "progress_json_sha256": "88f39cf5766a238b91b26e2d05cc4b26ce0f130bd9928ef971c9fb8bd5675ceb",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "ee29280fc457a21c9d22c21af591204dc7450ef6",
+      "progress_json_sha256": "376163613bbe35a09972f884647a3f26722949d1e439fe4239cf45eb3fced5c5",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "7b0b1572626cc603221a0e70a5006fb1b6eff6f7",
+      "progress_json_sha256": "36f1488c8066dd03413c43919199c847d7baddf91c60bf8dac8b8855b41a16b0",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37
+    },
+    {
+      "commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+      "progress_json_sha256": "5f7f904b480e19a2d18db07eec373662fbb8ad001486f4f22ed4cae77a6d419e",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "de449459ce261b50d2fd9abe7b317eaad67bbd49",
+      "progress_json_sha256": "6d4923d321c6c93d85c78797cc1efd7da2904d5eb459f26747316531e0e3fe02",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "2483b17fa3477dc3463b4ec93217092062b731f6",
+      "progress_json_sha256": "c291d0bf7519ae043965c5c0aeb4200e2c7e4f8a6f672777a6ae2250aa809a7b",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+      "progress_json_sha256": "d431b160f7f2ec61cd0f512d824b3c3e8575ff2adbfd48ebe01f7fb6697330c4",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "557eb792d72a0b982df7ca7e7b1de4849e7e4197",
+      "progress_json_sha256": "3b22d3989b32224fc8e644f8cf6b3de651f46f7dd8331a54ac05ad4c0b66a7b1",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "2b3491a10ab2e4bcb7f9e4f3fe7223b13b837291",
+      "progress_json_sha256": "6af9f4ce7e2751113bdb5b85ad0c478e6d40258d8d918c297bd53bfc26dbacfc",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+      "progress_json_sha256": "6a870186db6307144a7b0d589f949af6c459e6a9e9372baaebb73ca5f21ab367",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "c3d56624f72fddcde8e5974672dca0d598a77bcf",
+      "progress_json_sha256": "0a10edf8294ab9acc9cf32e63633f8bd0f71f6a399b135eeaf89f950aa19c8cb",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "b44476272e4e9011c5b4825ab00c8d78830354f1",
+      "progress_json_sha256": "88088569c0f41a0f3c37b5c64ef27644e3010d4f782b4f32ed7977efa2c81158",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
+      "progress_json_sha256": "a8108c0837af07edccb952c37c9ea4f20cc2801db096d956c974c9bd6abb3dff",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    },
+    {
+      "commit": "bc75bc4dd5b0d17c0626384a4e72e075158263bb",
+      "progress_json_sha256": "59fd137700ad693b51717988fd5540bf0d0f63cf801515451baa246deae258a7",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38
+    }
+  ],
+  "score_transitions": [
+    {
+      "commit": "0f08daa66d4bd5576f7c1386de1a8674e974bfba",
+      "progress_json_sha256": "abb3607ef5c1d2d62b1c28daca7e29b602d2817aa3a9e5ae79b90461390e78c2",
+      "exact_fraction": "767311/17710",
+      "rounded_roadmap_percent": 43.33,
+      "done_criteria": 37,
+      "done_status_changes": []
+    },
+    {
+      "commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+      "progress_json_sha256": "5f7f904b480e19a2d18db07eec373662fbb8ad001486f4f22ed4cae77a6d419e",
+      "exact_fraction": "777937/17710",
+      "rounded_roadmap_percent": 43.93,
+      "done_criteria": 38,
+      "done_status_changes": [
+        {
+          "stage": 1,
+          "criterion": "Regras remotas de proteção consultáveis pela API",
+          "previous": "unknown",
+          "current": "done"
+        }
+      ]
+    }
+  ],
+  "score_increase_reason": "Only stage1 remote-rules consultation changed to done; +0.6 percentage point. No score increase represents the later feature deliveries.",
+  "coarse_partial_criteria": [
+    {
+      "stage": 15,
+      "criterion": "Todas as demais famílias implementadas e testadas",
+      "status": "partial",
+      "weight_in_stage": 12,
+      "stage_check_total_weight": 18,
+      "current_contribution_from_partial_criterion": 0,
+      "full_criterion_weight_in_percentage_points": 6.0
+    },
+    {
+      "stage": 16,
+      "criterion": "Demais interações e integrações funcionais",
+      "status": "partial",
+      "weight_in_stage": 10,
+      "stage_check_total_weight": 15,
+      "current_contribution_from_partial_criterion": 0,
+      "full_criterion_weight_in_percentage_points": 4.666666666666667
+    }
+  ],
+  "recorded_deliveries": [
+    {
+      "version": "0.1.0",
+      "manifest": "releases/manifest-0.1.0.json",
+      "manifest_sha256": "3d0a816c365ae98cee5b5c460089befd6beaf292aa23b346b63c57670cf1a627",
+      "recorded_source_tests_passed": 34,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.1",
+      "manifest": "releases/manifest-0.1.1.json",
+      "manifest_sha256": "b1937346539c85face8a664dfe2ffd43f4ad23b509957f90db929d8f54683967",
+      "recorded_source_tests_passed": 37,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.2",
+      "manifest": "releases/manifest-0.1.2.json",
+      "manifest_sha256": "6f114447f6310e83481761b5a260a8051a41efbe4e4d3651a9675bc94cfea99a",
+      "recorded_source_tests_passed": 104,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.3",
+      "manifest": "releases/manifest-0.1.3.json",
+      "manifest_sha256": "1f7affd5b1577b4cfa20c86cae6ac1ae7e94f07cd1180dde12fd6666d9b0a414",
+      "recorded_source_tests_passed": 114,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.4",
+      "manifest": "releases/manifest-0.1.4.json",
+      "manifest_sha256": "d2eb5daeda7c33fe07c9ac1cd58eb7c87022092f53a7cded8b4dbf9569a0c882",
+      "recorded_source_tests_passed": 127,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.5",
+      "manifest": "releases/manifest-0.1.5.json",
+      "manifest_sha256": "281cf51de14124cff77ac0bafa2427f2ed2b5205473225be084cb3369c0efe3f",
+      "recorded_source_tests_passed": 152,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.6",
+      "manifest": "releases/manifest-0.1.6.json",
+      "manifest_sha256": "4a38296920405d525064804827f99e831da9daf92df1fdc063a9470fd3d9881a",
+      "recorded_source_tests_passed": 190,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.7",
+      "manifest": "releases/manifest-0.1.7.json",
+      "manifest_sha256": "c5386dcd0ca579abc580fc6999fe1e78238c69646c1fe8bf76ff7e5292d1938b",
+      "recorded_source_tests_passed": 212,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.8",
+      "manifest": "releases/manifest-0.1.8.json",
+      "manifest_sha256": "f8d83411f44d566337ce2ecd1794c05ea50d21899f606963af961f82bd84ccee",
+      "recorded_source_tests_passed": 267,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.9",
+      "manifest": "releases/manifest-0.1.9.json",
+      "manifest_sha256": "a519b175739a568f93119e985531708e1eed4fe0882be695906c5cea7ed522c6",
+      "recorded_source_tests_passed": 290,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.10",
+      "manifest": "releases/manifest-0.1.10.json",
+      "manifest_sha256": "89f38f6bfaa43e8197ea2981eae409f9a4a6b2bf50002a332378f0f9b437157a",
+      "recorded_source_tests_passed": 333,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.11",
+      "manifest": "releases/manifest-0.1.11.json",
+      "manifest_sha256": "21f6dd9199780245842a3d15079ba320f8d742142a2fbe0dcbe1c25765235849",
+      "recorded_source_tests_passed": 363,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.12",
+      "manifest": "releases/manifest-0.1.12.json",
+      "manifest_sha256": "bca45a18923a0485de57d270a9ca78715488dff25c1321c2ff34793aebbdd925",
+      "recorded_source_tests_passed": 380,
+      "test_count_is_completion_percentage": false
+    },
+    {
+      "version": "0.1.13",
+      "manifest": "releases/manifest-0.1.13.json",
+      "manifest_sha256": "9c76dccd53ee17895f5a90245eac5ad3a09f3f2043686d1e602bc52fee032dee",
+      "recorded_source_tests_passed": 400,
+      "test_count_is_completion_percentage": false
+    }
+  ],
+  "latest_package": "0.1.13",
+  "latest_tests_per_environment": {
+    "source": 400,
+    "payload": 400,
+    "sandbox": 400
+  },
+  "latest_sealed_reports_hashed": 11,
+  "families_with_implemented_subset": 23,
+  "identified_families": 25,
+  "new_application_test_runs": 0,
+  "new_foxit_observations": 0,
+  "limitations": [
+    "History, mathematical model and recorded delivery evidence reviewed; not a rerun of application or REA work.",
+    "Test counts and partial-family counts do not estimate total code/feature completion.",
+    "Full operation denominator and relative complexity remain open; no replacement percentage is justified."
+  ]
+}

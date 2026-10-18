@@ -54,7 +54,10 @@ A [continuação estática de 18/10/2026](docs/REA-ESTATICA-CONTINUACAO-2026-10-
 examinou mais 48 entradas de busca, impressão e reflow, com tipos e estados
 refinados; cobertura global desconhecida e original não executado.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
-Paridade comprovada permanece **0/25**, e o roteiro está em **43,93%** (consulta das regras remotas verificada).
+**Conclusão total da recodificação: percentual indeterminado.** O índice histórico
+do checklist é **43,93%**, mas não registra avanços dentro dos critérios parciais
+e não mede quanto do código está reconstruído. [Medição e evolução das entregas](docs/MEDICAO-PROGRESSO.md).
+Paridade integral comprovada permanece **0/25** famílias identificadas.
 
 A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 2.803 arquivos de dependências, 214 ELF e 149 arquivos de licença e créditos conferidos.

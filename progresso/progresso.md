@@ -1,12 +1,20 @@
-# Progresso verificável
+# Progresso e entregas verificáveis
 
-Progresso geral do roteiro: **43.93%**. Cada etapa usa o peso do pedido; dentro dela, atividades têm pesos estimados, registrados no JSON. Somente atividades com estado `done` e evidência existente contam. Isso mede entregas do roteiro, não equivalência do aplicativo.
+**Conclusão total da recodificação: percentual indeterminado.** O inventário completo de operações e sua complexidade ainda não estão fechados. Não há base para publicar uma porcentagem global de implementação.
 
-Paridade Foxit verificada: **0/25 obrigações identificadas (0.00%)**. O inventário funcional permanece aberto. Testes próprios não contam como testes diferenciais.
+**Índice histórico do checklist do roteiro: 43.93%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
 
-Cobertura global de engenharia reversa: **não calculável** enquanto o universo de funções e seus pesos não estiver fechado. Medida parcial: quatro módulos com decompilação dirigida entre 141 PE inventariados (2,84%, peso unitário por módulo); 323 entradas distintas examinadas. 9.973 slots não constituem um denominador de funções únicas.
+**Pacote registrado:** 0.1.13 de desenvolvimento. [Manifesto](../releases/manifest-0.1.13.json).
 
-| Etapa | Peso | Fração verificada | Contribuição |
+**Validação própria registrada nesse pacote:** fonte 400/400; payload 400/400; sandbox instalado 400/400. São evidências da entrega; este gerador não executa a suíte novamente e a quantidade de testes não mede conclusão funcional.
+
+**Paridade Foxit comprovada:** 0/25 famílias identificadas por inteiro. O inventário funcional permanece aberto; esse contador não descreve quanto de cada família foi implementado. Testes próprios não contam como testes diferenciais.
+
+**Cobertura global de engenharia reversa:** não calculável. Há 323 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
+
+A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro original. Fração de critérios verificados não é fração de funcionalidades pronta.
+
+| Etapa | Peso | Fração de critérios verificados | Contribuição ao índice |
 |---|---:|---:|---:|
 | 01 — Diagnóstico e preparação | 3% | 100.0% | 3.00% |
 | 02 — Identificação dos arquivos | 3% | 100.0% | 3.00% |

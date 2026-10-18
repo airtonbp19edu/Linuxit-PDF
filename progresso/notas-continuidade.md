@@ -2171,3 +2171,39 @@ persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos pró
 Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
 Este registro recebe commit/push e comprovante final externo separados, evitando
 autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.
+
+
+## 2026/10/18 às 13:53 (America/Sao_Paulo, UTC-03:00) — revisão do indicador de progresso a pedido do usuário
+
+Usuário questionou a repetição de43% desde o início. Revisão matemática e do Git:
+55 snapshots de progresso/progresso.json até bc75bc4dd5b0d17c0626384a4e72e075158263bb,
+com definições/pesos idênticos. Score inicial43,33%; atual43,93%. A única mudança
+de pontuação foi no commit c403fa773d9c5e43374625e37ab88dee590c4711: consulta de
+regras remotas da etapa1 passou unknown→done (+0,60 ponto). OCR, TIFF, anotações
+e outras entregas não somaram pontos: os grandes critérios de15/16 permanecem
+partial e o modelo binário lhes atribui zero. Aritmética correta, indicador
+inadequado para quantificar conclusão global da recodificação. Apresentação
+anterior enfatizava excessivamente esse número ao responder sobre o projeto.
+
+scripts/update_progress.py e seus relatórios agora separam conclusão global
+indeterminada (implementation_completion_percent:null), índice histórico do
+checklist e entregas/validação próprias registradas. Campo legado
+general_progress_percent preservado para os consumidores existentes. Nenhum
+critério, peso, status ou evidência anterior foi alterado; nenhum percentual
+substituto foi estimado. Documentação em docs/MEDICAO-PROGRESSO.md; orientações
+atuais AGENTS/RETOMADA/tarefas/README ajustadas para não repetir a confusão.
+
+Git/Python/Fraction usados. Evidências em
+testes/resultados/revisao-indicadores-2026-10-18/: review.json com os55 snapshots,
+14 manifestos e transições; reporting-check.json prova campos anteriores iguais,
+106 arquivos app e bundle0.1.13 sem alteração; architecture-review.json confere
+44módulos/58interfaces/20critérios abertos; delivery-record-review.json confere
+evidências registradas. Relatórios selados atuais reconferidos por hash.
+Não houve nova execução da suíte400/400, nova REA/Ghidra, original ou VM. Pacote,
+licenças, nuvem adiada/IA excluída e paridade0/25 preservados.
+
+Próximo trabalho funcional: combos AcroForm editáveis, com texto livre/aparência,
+preservação de Opt e testes de flags/ReadOnly/limites/histórico. Uma futura
+porcentagem operacional exige catálogo delimitado e pesos/aceitação explícitos,
+com revisão de método registrada. Alterações de relatório preparadas para
+commit/push; confirmação remota e recibo final externo após publicação.

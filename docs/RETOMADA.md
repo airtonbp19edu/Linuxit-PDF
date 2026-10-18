@@ -20,9 +20,14 @@ controles fora HOME negado/concedido passaram novamente; cliente real,
 portal/concessão persistente, AT-SPI e impressão física ainda pendentes, sem VM Foxit.
 
 Arquitetura: 44 módulos/58 interfaces; catálogo: 323 (152 REA + 171 diretas),
-23 subconjuntos/duas propostas em 25 famílias. Roteiro **43,93%**, 38 done/20 abertos;
+23 subconjuntos/duas propostas em 25 famílias. Índice histórico do checklist:
+**43,93%**, 38 done/20 abertos. Conclusão global da recodificação indeterminada;
 paridade **0/25**, cobertura global desconhecida. Original não executado.
 APIs de nuvem adiadas/IA excluída. Não reiniciar análises preservadas.
+
+[Medição revisada](MEDICAO-PROGRESSO.md): o índice de 43,93% ignora avanços dentro
+de critérios parciais. Não o usar como porcentagem do código reconstruído.
+Relatar entregas concretas, validação própria e operações restantes separadamente.
 
 VM: último diagnóstico histórico com NEM/Snail, Integridade da Memória ativa e
 NAT então ativo; offline não validado. Usuário pediu continuar sem VM. Nenhuma
