@@ -1,0 +1,578 @@
+{
+  "schema": "linuxit-stage13-architecture-validation-v1",
+  "verified_at_local": "2026-10-18T13:18:47-03:00",
+  "timezone": "America/Sao_Paulo",
+  "application_version": "0.1.13",
+  "application_modules": 44,
+  "module_snapshots": [
+    {
+      "path": "app/main.py",
+      "sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/presentation.py",
+      "sha256": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/print_window.py",
+      "sha256": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/appearance.py",
+      "sha256": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/themes.py",
+      "sha256": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/async_core.py",
+      "sha256": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+      "boundary": "glib_scheduler"
+    },
+    {
+      "path": "app/search_engine.py",
+      "sha256": "4e075e08ed5e868e2c75e46c8114f189602b233640f87cb54ccd4e5c394ed171",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/pdf_panels.py",
+      "sha256": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/imposition.py",
+      "sha256": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/rendering.py",
+      "sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/worker_cli.py",
+      "sha256": "dcf5b516694db5f26c64601b2ca86219e94caf388ddefb64f4679bfc85132be4",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/platform_runtime.py",
+      "sha256": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/cups_backend.py",
+      "sha256": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_print.py",
+      "sha256": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/windows_bootstrap.py",
+      "sha256": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/page_cache.py",
+      "sha256": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/cancel_state.py",
+      "sha256": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/pdf_dependency.py",
+      "sha256": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/version.py",
+      "sha256": "51eddb4df9ddec845759919541d2e6eb9549b5b461741d04e79667f31af1421c",
+      "boundary": "shared_support"
+    },
+    {
+      "path": "app/pdf_attachments.py",
+      "sha256": "c347ff91587f5d778515126796b4818cd56c2ef8453943be910920ba0dec269f",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/attachment_tasks.py",
+      "sha256": "bdcb24ffbd1dd0b1108a69af9b4e3b0e8a64c5174f0938b647fcbafbc3c314ea",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/pdf_changes.py",
+      "sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/edit_tasks.py",
+      "sha256": "4e1be7e4f3966846e2ea055df0bbb0119c3dd1f8231fbeded47ba71e9923e1be",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/search_matching.py",
+      "sha256": "714efb2fd0970f45a238126bd7260a883a3f6ddb67b360a3499c0f72939d1ddd",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/attachment_search.py",
+      "sha256": "57c88501ca87033c5db5bea9b2f8bf774bb8eec7ec007ef6a6f50efda4d2d1c7",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/search_tasks.py",
+      "sha256": "aae91f0aedc3ba703b40abc8f4d3e95c0d7f2383b1aba21f57e681bb9d04dfac",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/collection_index.py",
+      "sha256": "766b7a02f38a1e99c98b8ee5c863b39e3169ab763add37f1552df9f0aceba1fe",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/collection_window.py",
+      "sha256": "eaa085603b1b041ba8b2d449903554e323fab37493fec6fc8f94e0f6d368b223",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_creation.py",
+      "sha256": "8e0508948553f105423912ea68fb1ae1cdf8008cc2bdfbf1a5ad0ed5914fadf6",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/creation_window.py",
+      "sha256": "50a232ba90387632e4b2dc15a06df0ea253061ba4a38487ee72593edfdaef719",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_security.py",
+      "sha256": "1affcad5f55d5556024a49783ab4f9d378d4423089b1a905b247146edc810449",
+      "boundary": "portable worker backend"
+    },
+    {
+      "path": "app/pdf_signatures.py",
+      "sha256": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441",
+      "boundary": "portable worker backend"
+    },
+    {
+      "path": "app/security_window.py",
+      "sha256": "6db12e27c8240a31a993689c4661298eaf31cfa420138d0f56ca840cb6c9bbcc",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/signature_window.py",
+      "sha256": "b260e51a589191b660ea0279578985cf1e23174f4998574a22175d4f0a687344",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/accessible_reader.py",
+      "sha256": "258aef743f7de190c148bcc97f3477923ba6dcec4fab8c59bdfabc871afd6b07",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/local_files.py",
+      "sha256": "94bfb4d55fa59232253a667ce4cf869ea0b447d8e771ca041cfbab9e2e6b663b",
+      "boundary": "portable local filesystem"
+    },
+    {
+      "path": "app/folder_dialogs.py",
+      "sha256": "5b088042c67f36ede62ce36ecd7223d3dbe06f3dcd9e5728fdd1cf00b7dc5c38",
+      "boundary": "GTK adapter"
+    },
+    {
+      "path": "app/pdf_form_controls.py",
+      "sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/edit_history.py",
+      "sha256": "3de88becb307024cd4a6733a3014575628f968433dbff103d42374cf1f1755a5",
+      "boundary": "process_and_platform"
+    },
+    {
+      "path": "app/edit_dialogs.py",
+      "sha256": "ed39745b869af91c2f26db1163a1c996baa7a0818e416fb0e3bedcba1f647fd6",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/edit_window.py",
+      "sha256": "d357f36f1b7b3e526eac640b066ef8a620cbb7281c5732e728819137de771c54",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_ocr.py",
+      "sha256": "21c0ea7b16f8e7c4d500ef8974ba27fb3b11150766830140c425afbc2b0393fc",
+      "boundary": "portable_pdf_services"
+    },
+    {
+      "path": "app/ocr_window.py",
+      "sha256": "08d7d09e295566966a2cdc48fdea510f8de4f3c26f28915071d9b2419dd1e2f3",
+      "boundary": "gtk_ui"
+    },
+    {
+      "path": "app/pdf_annotations.py",
+      "sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+      "boundary": "portable_pdf_services"
+    }
+  ],
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "documented_interfaces": 58,
+  "family_assignments": 25,
+  "no_gtk_or_cairo_import_closures": {
+    "cancel_state": [
+      "cancel_state"
+    ],
+    "page_cache": [
+      "page_cache"
+    ],
+    "pdf_dependency": [
+      "pdf_dependency"
+    ],
+    "pdf_panels": [
+      "pdf_panels"
+    ],
+    "platform_runtime": [
+      "platform_runtime"
+    ],
+    "rendering": [
+      "attachment_search",
+      "cancel_state",
+      "pdf_attachments",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_engine": [
+      "attachment_search",
+      "cancel_state",
+      "pdf_attachments",
+      "pdf_dependency",
+      "pdf_panels",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_attachments": [
+      "pdf_attachments",
+      "pdf_dependency"
+    ],
+    "attachment_tasks": [
+      "attachment_tasks",
+      "platform_runtime"
+    ],
+    "pdf_changes": [
+      "local_files",
+      "pdf_annotations",
+      "pdf_changes",
+      "pdf_dependency",
+      "pdf_form_controls"
+    ],
+    "edit_tasks": [
+      "edit_tasks",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "search_matching": [
+      "search_matching"
+    ],
+    "attachment_search": [
+      "attachment_search",
+      "pdf_attachments",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_tasks": [
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "collection_index": [
+      "collection_index",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_creation": [
+      "local_files",
+      "pdf_creation",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "pdf_security": [
+      "attachment_search",
+      "cancel_state",
+      "local_files",
+      "pdf_annotations",
+      "pdf_attachments",
+      "pdf_changes",
+      "pdf_dependency",
+      "pdf_form_controls",
+      "pdf_panels",
+      "pdf_security",
+      "platform_runtime",
+      "rendering",
+      "search_engine",
+      "search_matching",
+      "search_tasks"
+    ],
+    "pdf_signatures": [
+      "local_files",
+      "pdf_annotations",
+      "pdf_changes",
+      "pdf_dependency",
+      "pdf_form_controls",
+      "pdf_signatures",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "local_files": [
+      "local_files"
+    ],
+    "pdf_ocr": [
+      "local_files",
+      "pdf_dependency",
+      "pdf_ocr",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "pdf_annotations": [
+      "pdf_annotations",
+      "pdf_dependency"
+    ]
+  },
+  "internal_import_edges": {
+    "main": [
+      "accessible_reader",
+      "async_core",
+      "attachment_tasks",
+      "cancel_state",
+      "collection_window",
+      "creation_window",
+      "cups_backend",
+      "edit_dialogs",
+      "edit_tasks",
+      "edit_window",
+      "folder_dialogs",
+      "local_files",
+      "ocr_window",
+      "page_cache",
+      "pdf_panels",
+      "platform_runtime",
+      "presentation",
+      "print_window",
+      "rendering",
+      "search_engine",
+      "search_tasks",
+      "security_window",
+      "signature_window",
+      "themes",
+      "windows_print"
+    ],
+    "presentation": [
+      "async_core",
+      "page_cache",
+      "rendering"
+    ],
+    "print_window": [
+      "cups_backend",
+      "imposition",
+      "rendering",
+      "windows_print"
+    ],
+    "appearance": [],
+    "themes": [
+      "appearance"
+    ],
+    "async_core": [
+      "cancel_state"
+    ],
+    "search_engine": [
+      "attachment_search",
+      "pdf_panels",
+      "rendering",
+      "search_matching"
+    ],
+    "pdf_panels": [],
+    "imposition": [
+      "pdf_dependency"
+    ],
+    "rendering": [
+      "cancel_state",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_engine"
+    ],
+    "worker_cli": [
+      "attachment_search",
+      "collection_index",
+      "imposition",
+      "local_files",
+      "pdf_attachments",
+      "pdf_changes",
+      "pdf_creation",
+      "pdf_ocr",
+      "pdf_panels",
+      "pdf_security",
+      "pdf_signatures",
+      "rendering"
+    ],
+    "platform_runtime": [],
+    "cups_backend": [
+      "windows_print"
+    ],
+    "windows_print": [
+      "rendering"
+    ],
+    "windows_bootstrap": [
+      "main"
+    ],
+    "page_cache": [],
+    "cancel_state": [],
+    "pdf_dependency": [],
+    "version": [],
+    "pdf_attachments": [
+      "pdf_dependency"
+    ],
+    "attachment_tasks": [
+      "platform_runtime"
+    ],
+    "pdf_changes": [
+      "local_files",
+      "pdf_annotations",
+      "pdf_dependency",
+      "pdf_form_controls"
+    ],
+    "edit_tasks": [
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "search_matching": [],
+    "attachment_search": [
+      "pdf_attachments",
+      "search_matching",
+      "search_tasks"
+    ],
+    "search_tasks": [
+      "platform_runtime"
+    ],
+    "collection_index": [
+      "pdf_dependency",
+      "search_matching",
+      "search_tasks"
+    ],
+    "collection_window": [
+      "async_core",
+      "attachment_tasks",
+      "collection_index"
+    ],
+    "pdf_creation": [
+      "local_files",
+      "pdf_dependency",
+      "search_tasks"
+    ],
+    "creation_window": [
+      "async_core",
+      "attachment_tasks",
+      "folder_dialogs",
+      "pdf_creation"
+    ],
+    "pdf_security": [
+      "local_files",
+      "pdf_changes",
+      "pdf_dependency",
+      "rendering",
+      "search_tasks"
+    ],
+    "pdf_signatures": [
+      "pdf_changes",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "security_window": [
+      "async_core",
+      "folder_dialogs",
+      "pdf_security"
+    ],
+    "signature_window": [
+      "async_core",
+      "attachment_tasks",
+      "pdf_signatures"
+    ],
+    "accessible_reader": [
+      "async_core",
+      "cancel_state",
+      "pdf_security"
+    ],
+    "local_files": [],
+    "folder_dialogs": [
+      "local_files"
+    ],
+    "pdf_form_controls": [
+      "pdf_dependency"
+    ],
+    "edit_history": [
+      "edit_tasks"
+    ],
+    "edit_dialogs": [
+      "attachment_tasks"
+    ],
+    "edit_window": [
+      "async_core",
+      "edit_history",
+      "folder_dialogs"
+    ],
+    "pdf_ocr": [
+      "local_files",
+      "pdf_dependency",
+      "platform_runtime",
+      "search_tasks"
+    ],
+    "ocr_window": [
+      "async_core",
+      "attachment_tasks",
+      "folder_dialogs",
+      "local_files",
+      "pdf_ocr"
+    ],
+    "pdf_annotations": [
+      "pdf_dependency"
+    ]
+  },
+  "import_check_scope": "AST includes conditional/deferred imports; no dynamic import or runtime proof.",
+  "unfinished_criteria_registered": 20,
+  "unfinished_stages_registered": 13,
+  "blocker_evidence_files_checked": 52,
+  "confirmed_token_exhaustion_events": 0,
+  "recorded_execution_timeouts": 2,
+  "stage_13_design_verified_fraction": 1.0,
+  "general_progress_percent": 43.93,
+  "full_application_implemented": false,
+  "application_behavior_tested_by_this_check": false,
+  "original_executed": false,
+  "new_rea_ghidra_observations": 0,
+  "gtk_suite_rerun": false,
+  "new_flatpak_built": false
+}

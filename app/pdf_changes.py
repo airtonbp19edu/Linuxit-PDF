@@ -14,6 +14,7 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Text, Rectangle, Highlight
 from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject, TextStringObject, FloatObject
 from pdf_form_controls import inspect_controls, fill_controls
+from pdf_annotations import ANNOTATION_KINDS, create_annotation
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -143,8 +144,10 @@ def _annotation_rect(page, rect):
 
 
 def _removable_annotation(note):
-    return (isinstance(note, DictionaryObject) and note.get('/Subtype') in ('/Text', '/Square', '/Highlight')
-            and not int(note.get('/F', 0)) & (64 | 128 | 512) and '/IRT' not in note and '/Popup' not in note)
+    return (isinstance(note, DictionaryObject) and note.get('/Subtype') in
+            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line')
+            and not int(note.get('/F', 0)) & (64 | 128 | 512)
+            and not any(key in note for key in ('/IRT', '/Popup', '/Parent')))
 
 
 def _annotation_has_dependants(reader, note):
@@ -168,11 +171,13 @@ def _annotation_records(reader):
         for index, ref in enumerate(annots.get_object()):
             note = ref.get_object()
             if not _removable_annotation(note):continue
-            text = note.get('/Contents', '')
-            if not isinstance(text, str) or len(text.encode('utf-8')) > MAX_TEXT_BYTES:continue
-            if len(rows) >= 2000 or size + len(text.encode('utf-8')) > 1024**2:truncated = True;continue
-            size += len(text.encode('utf-8'))
-            rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text})
+            text, author = note.get('/Contents', ''), note.get('/T', '')
+            if (not isinstance(text, str) or not isinstance(author, str)
+                    or len(text.encode('utf-8')) > MAX_TEXT_BYTES or len(author.encode('utf-8')) > 4096):continue
+            cost = len(text.encode('utf-8')) + len(author.encode('utf-8'))
+            if len(rows) >= 2000 or size + cost > 1024**2:truncated = True;continue
+            size += cost
+            rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text, 'author':author})
     return rows, truncated
 
 
@@ -259,13 +264,15 @@ def _page(writer, index):
 def _apply(writer, operation):
     _require(isinstance(operation, dict), 'Cada alteração deve ser um objeto JSON.')
     kind = operation.get('kind')
+    _require(isinstance(kind, str), 'Tipo de alteração inválido.')
     if kind in ('move-bookmark', 'delete-bookmark'):
         _change_outline(writer, operation)
     elif kind == 'fill-form-controls':
         _require(set(operation) == {'kind', 'values'}, 'Opções de formulário inválidas.')
         fill_controls(writer, operation['values'])
-    elif kind == 'delete-annotation':
-        _require(set(operation) == {'kind', 'page', 'index'}, 'Opções de anotação inválidas.')
+    elif kind in ('delete-annotation', 'update-annotation'):
+        _require(set(operation) == ({'kind', 'page', 'index'} if kind == 'delete-annotation'
+                                    else {'kind', 'page', 'index', 'text', 'author'}), 'Opções de anotação inválidas.')
         page = _page(writer, operation['page']);annots = page.get('/Annots')
         _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
         annots = annots.get_object();index = operation['index']
@@ -273,7 +280,23 @@ def _apply(writer, operation):
         annotation = annots[index].get_object()
         _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
                  'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
-        del annots[index]
+        if kind == 'delete-annotation':
+            del annots[index]
+        else:
+            text, author = operation['text'], operation['author']
+            _require(isinstance(text, str) and len(text.encode('utf-8')) <= MAX_TEXT_BYTES,
+                     'Comentário inválido ou acima do limite de 64 KiB.')
+            _require(isinstance(author, str) and len(author.encode('utf-8')) <= 4096, 'Autor inválido.')
+            annotation[NameObject('/Contents')] = TextStringObject(text)
+            if author:annotation[NameObject('/T')] = TextStringObject(author)
+            else:annotation.pop('/T', None)
+    elif kind in ANNOTATION_KINDS:
+        geometry_key = 'points' if kind == 'add-line' else 'rect'
+        _require(set(operation) == {'kind', 'page', geometry_key, 'text'}, 'Opções de anotação inválidas.')
+        page = _page(writer, operation['page'])
+        note = create_annotation(kind, list(map(float, page.cropbox)), operation[geometry_key], operation['text'])
+        note['/AP'][NameObject('/N')] = writer._add_object(note['/AP']['/N'])
+        writer.add_annotation(operation['page'], note)
     elif kind in ('add-highlight', 'add-rectangle'):
         _require(set(operation) == {'kind', 'page', 'rect', 'text'}, 'Opções de anotação inválidas.')
         page = _page(writer, operation['page']);rect = _annotation_rect(page, operation['rect'])

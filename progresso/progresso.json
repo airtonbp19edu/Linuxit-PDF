@@ -1683,35 +1683,24 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-18T12:43:31-03:00",
-    "report": "docs/TIFF-MULTIPAGINA.md",
-    "source_version": "0.1.12",
+    "date_local": "2026-10-18T13:18:37-03:00",
+    "report": "docs/ANOTACOES-AMPLIADAS.md",
+    "source_version": "0.1.13",
     "published_package_version": "0.1.12",
     "new_static_entries_examined": 0,
     "catalog_entries": 323,
     "new_portable_methods": 14,
-    "new_gtk_methods": 2,
-    "new_linux_ocr_methods": 1,
-    "full_test_suite_rerun": true,
+    "new_gtk_methods": 6,
+    "full_test_suite_rerun": false,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
-    "criterion_definitions_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
+    "publication_state": "source_checkpoint_prepared_for_commit_push",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": true,
-    "test_contract_migration": {
-      "previous_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_and_animated_webp_are_refused_without_output",
-      "new_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
-      "reason": "TIFF multipage now imports; animated WebP still refused. One intentional test replacement, not a newly added method."
-    },
-    "source_and_package_version": "0.1.12",
-    "complete_tests_per_environment": 380,
-    "confirmed_delivery_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
-    "publication_confirmed_at_local": "2026-10-18T12:48:12-03:00",
-    "audit_review": "testes/resultados/0.1.12/audit/review.json"
+    "independent_installed_audit_passed": false,
+    "prior_tests_removed_or_renamed": 0
   },
   "no_vm_execution_history": [
     {
@@ -1979,6 +1968,37 @@
       },
       "source_and_package_version": "0.1.12",
       "complete_tests_per_environment": 380
+    },
+    {
+      "date_local": "2026-10-18T12:43:31-03:00",
+      "report": "docs/TIFF-MULTIPAGINA.md",
+      "source_version": "0.1.12",
+      "published_package_version": "0.1.12",
+      "new_static_entries_examined": 0,
+      "catalog_entries": 323,
+      "new_portable_methods": 14,
+      "new_gtk_methods": 2,
+      "new_linux_ocr_methods": 1,
+      "full_test_suite_rerun": true,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "criterion_definitions_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "independent_installed_audit_passed": true,
+      "test_contract_migration": {
+        "previous_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_and_animated_webp_are_refused_without_output",
+        "new_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
+        "reason": "TIFF multipage now imports; animated WebP still refused. One intentional test replacement, not a newly added method."
+      },
+      "source_and_package_version": "0.1.12",
+      "complete_tests_per_environment": 380,
+      "confirmed_delivery_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+      "publication_confirmed_at_local": "2026-10-18T12:48:12-03:00",
+      "audit_review": "testes/resultados/0.1.12/audit/review.json"
     }
   ],
   "latest_resume": {

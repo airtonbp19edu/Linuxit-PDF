@@ -5,10 +5,13 @@ from gi.repository import Gtk
 from attachment_tasks import display_attachment_name
 
 ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls',
-                  'delete-annotation', 'add-highlight', 'add-rectangle'}
+                  'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
+                  'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line'}
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
           'fill-form-controls':'Preencher caixas e listas', 'delete-annotation':'Excluir anotação',
-          'add-highlight':'Destacar área', 'add-rectangle':'Adicionar retângulo'}
+          'add-highlight':'Destacar área', 'add-rectangle':'Adicionar retângulo',
+          'add-underline':'Sublinhar área', 'add-strikeout':'Tachar área', 'add-squiggly':'Sublinhar área com ondulado',
+          'add-ellipse':'Adicionar elipse', 'add-line':'Adicionar linha', 'update-annotation':'Editar comentário da anotação'}
 
 
 def advanced_operation_dialog(parent, kind, info, page):
@@ -100,29 +103,57 @@ def advanced_operation_dialog(parent, kind, info, page):
             elif record['multiple']:value = [o['value'] for o,c in zip(record['options'], current['checks']) if c.get_active()]
             else:value = [] if widget.get_active() == 0 else [record['options'][widget.get_active()-1]['value']]
             return {'kind':kind, 'values':{record['name']:value}}
-    elif kind == 'delete-annotation':
+    elif kind in ('delete-annotation','update-annotation'):
         records = [r for r in info.get('annotations', []) if r['page'] == page]
-        names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque'}
+        names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',
+                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha'}
         for record in records:combo.append_text(f"{names[record['subtype']]} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        if kind == 'update-annotation':
+            box.add(Gtk.Label(label='Comentário (pode ficar vazio)', xalign=0))
+            comment = Gtk.TextView();comment.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+            comment.get_accessible().set_name('Comentário da anotação')
+            scroll = Gtk.ScrolledWindow();scroll.set_min_content_height(100);scroll.add(comment);box.add(scroll)
+            author = Gtk.Entry();author.get_accessible().set_name('Autor da anotação');author.set_placeholder_text('Autor opcional');box.add(author)
+            def selected_annotation(*_):
+                if combo.get_active() < 0:return
+                record = records[combo.get_active()]
+                comment.get_buffer().set_text(record['text']);author.set_text(record.get('author', ''))
+            combo.connect('changed', selected_annotation)
+            hint.set_text('Edite comentário e autor. A posição e a aparência da anotação serão preservadas. Anotações com bloqueios, respostas ou popup são recusadas.')
         def operation():
             if combo.get_active() < 0:raise ValueError('Não há anotações editáveis suportadas nesta página.')
-            return {'kind':kind, 'page':page, 'index':records[combo.get_active()]['index']}
+            result = {'kind':kind, 'page':page, 'index':records[combo.get_active()]['index']}
+            if kind == 'update-annotation':
+                buffer = comment.get_buffer()
+                result.update(text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True),author=author.get_text())
+            return result
     else:
         combo.set_no_show_all(True);combo.hide()
         left, bottom, right, top = info['page_boxes'][page]
         hint.set_text('Informe os limites em pontos PDF, antes da rotação da página. A área deve ficar dentro da página.')
         grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid);spins = []
         width, height = right-left, top-bottom
-        for row,(name,low,high,value) in enumerate((('Esquerda',left,right,left+width*.1),('Inferior',bottom,top,bottom+height*.1),
-                                                  ('Direita',left,right,right-width*.1),('Superior',bottom,top,bottom+height*.2))):
+        line = kind == 'add-line'
+        if line:hint.set_text('Informe início e fim em pontos PDF, antes da rotação. A linha pode ser horizontal, vertical ou diagonal; deve ficar dentro da página. Sem pontas de seta.')
+        elif kind not in ('add-highlight','add-rectangle'):
+            hint.set_text(hint.get_text()+' Traço vermelho. A área é manual; não seleciona palavras automaticamente.')
+        bounds = ((('X inicial' if line else 'Esquerda'),left,right,left+width*.1),
+                  (('Y inicial' if line else 'Inferior'),bottom,top,bottom+height*.1),
+                  (('X final' if line else 'Direita'),left,right,right-width*.1),
+                  (('Y final' if line else 'Superior'),bottom,top,bottom+height*.2))
+        for row,(name,low,high,value) in enumerate(bounds):
             spin = Gtk.SpinButton.new_with_range(low,high,.5);spin.set_digits(1);spin.set_value(value)
             spin.get_accessible().set_name(name);spins.append(spin)
             grid.attach(Gtk.Label(label=name,xalign=0),0,row,1,1);grid.attach(spin,1,row,1,1)
         text = Gtk.Entry();text.get_accessible().set_name('Comentário da anotação');text.set_placeholder_text('Comentário opcional');box.add(text)
         def operation():
             rect = [s.get_value() for s in spins]
-            if not rect[0] < rect[2] or not rect[1] < rect[3]:raise ValueError('Os limites precisam formar uma área com largura e altura positivas.')
-            return {'kind':kind,'page':page,'rect':rect,'text':text.get_text()}
+            if line:
+                if ((rect[2]-rect[0])**2+(rect[3]-rect[1])**2)**.5 < .25:raise ValueError('A linha deve medir ao menos 0,25 ponto.')
+            elif not rect[0] < rect[2] or not rect[1] < rect[3]:raise ValueError('Os limites precisam formar uma área com largura e altura positivas.')
+            elif kind not in ('add-highlight','add-rectangle') and (rect[2]-rect[0] < .25 or rect[3]-rect[1] < .25):
+                raise ValueError('A área deve ter largura e altura de ao menos 0,25 ponto.')
+            return {'kind':kind,'page':page,('points' if line else 'rect'):rect,'text':text.get_text()}
     box.add(error);combo.set_active(0);dialog.show_all()
     try:
         while dialog.run() == Gtk.ResponseType.OK:

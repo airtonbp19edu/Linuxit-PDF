@@ -1,5 +1,11 @@
 # Tarefas atuais e ponto de retomada
 
+Fonte **0.1.13 em desenvolvimento**: [anotações adicionais](../docs/ANOTACOES-AMPLIADAS.md),
+com14 testes portáveis aprovados e seis GTK/Poppler preparados. Arquitetura da
+nova fonte44 módulos/58 interfaces. Validação Linux e novo pacote aguardam CI.
+O resumo abaixo descreve a entrega publicada0.1.12, preservada.
+
+
 Fonte e Flatpak **0.1.12/devel**, com [TIFF multipágina](../docs/TIFF-MULTIPAGINA.md):
 ordem por blocos de arquivo e páginas internas, orientação por página, RGB8 e
 até 100 páginas totais. Encadeamento IFD limitado; sem SubIFDs recursivos ou

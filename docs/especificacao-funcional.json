@@ -1579,17 +1579,19 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "source/package0.1.10 own subset; see docs/EDICAO-COM-HISTORICO.md; full family incomplete",
+      "matrix_implementation": "Source0.1.13 adds area Underline/StrikeOut/Squiggly, Circle, Line and comment/author edits; published package0.1.12. See docs/ANOTACOES-AMPLIADAS.md; full family incomplete.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.10: criar/editar Text, acrescentar Highlight de área e Square, excluir esses três tipos desbloqueados sem dependentes. Histórico de rascunho com desfazer/refazer; sem redação, apagamento seguro, popup/respostas ou edição universal.",
+      "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.14 testes portáveis novos passaram; seis GTK/Poppler e pacote aguardam CI. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
-        "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
+        "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos.",
+        "Anotações adicionais: geometria antes da rotação dentro do CropBox, área/linha mínima0,25 ponto; comentário até64KiB e autor até4KiB. Contrato em docs/ANOTACOES-AMPLIADAS.md."
       ],
       "outputs": [
         "Cópia PDF nova e exclusiva, fonte identificada por hash e preservada; rascunho validado após cada operação.",
-        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux exercitado;333/333 por ambiente fonte/payload/sandbox, sem observação original."
+        "UI de histórico com desfazer/refazer no rascunho; cópias já salvas preservadas. GTK/Linux exercitado;333/333 por ambiente fonte/payload/sandbox, sem observação original.",
+        "Novas anotações com Form XObject de aparência indireto; update-annotation preserva aparência/geometria e altera apenas Contents/T. GTK/Linux da nova fonte ainda não validado."
       ],
       "errors": [
         {
@@ -1636,7 +1638,10 @@
         "app/edit_dialogs.py",
         "app/edit_window.py",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "app/pdf_annotations.py",
+        "docs/ANOTACOES-AMPLIADAS.md",
+        "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -1832,6 +1837,86 @@
         {
           "path": "tests/test_edit_draft_gtk.py",
           "test": "test_saved_form_and_highlight_render_with_poppler"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_all_five_types_roundtrip_with_printable_embedded_appearance"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_text_markup_quad_order_and_line_and_ellipse_metadata_are_distinct"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_offsets_and_page_rotations_do_not_double_transform_geometry"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_horizontal_vertical_and_reversed_lines_keep_endpoint_direction"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_boundary_strokes_have_positive_clipped_boxes_and_small_areas_renderable_numbers"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_squiggly_geometry_has_bounded_commands_even_on_extreme_page"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_invalid_area_and_crop_coordinates_refuse_the_entire_batch"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_invalid_line_points_page_and_extra_fields_are_rejected"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_utf8_comment_and_author_limits_and_nonstring_values_are_enforced"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_edit_and_clear_comment_author_preserve_geometry_appearance_and_other_content"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_locked_related_and_unsupported_annotations_cannot_be_changed_or_deleted"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_deleting_new_types_uses_current_indices_and_preserves_forms_notes_and_other_page"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_real_worker_protocol_lists_new_types_and_author_and_refuses_source_and_destination_changes"
+        },
+        {
+          "path": "tests/test_annotation_extensions.py",
+          "test": "test_history_undo_redo_comment_delete_and_failed_branch_preserve_saved_copy"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_real_dialogs_create_all_five_types_and_history_recreates_deleted_shape"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_comment_dialog_prefills_selected_annotation_accepts_multiline_and_can_clear"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_invalid_line_is_explained_in_dialog_and_cancel_does_not_change_draft"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_saved_five_appearances_have_expected_poppler_pixels_and_unfilled_interiors"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_offset_cropbox_and_rotation_render_line_at_transformed_location"
+        },
+        {
+          "path": "tests/test_annotation_extensions_gtk.py",
+          "test": "test_edited_nontext_annotation_comment_is_searchable_after_reopening_saved_copy"
         }
       ],
       "dynamic_case_refs": [
@@ -3544,5 +3629,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T12:43:31-03:00"
+  "updated_at_local": "2026-10-18T13:18:37-03:00"
 }

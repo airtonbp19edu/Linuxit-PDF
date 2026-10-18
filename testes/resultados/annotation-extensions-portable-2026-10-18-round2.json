@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.13.15",
+  "test_pattern": "test_annotation_extensions.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 14,
+  "passed": 14,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 46.53964270000142,
+  "cases": [
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_all_five_types_roundtrip_with_printable_embedded_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.2144284999994852
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_boundary_strokes_have_positive_clipped_boxes_and_small_areas_renderable_numbers",
+      "status": "passed",
+      "elapsed_sec": 0.28226490000088234
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_deleting_new_types_uses_current_indices_and_preserves_forms_notes_and_other_page",
+      "status": "passed",
+      "elapsed_sec": 0.16505169999982172
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_edit_and_clear_comment_author_preserve_geometry_appearance_and_other_content",
+      "status": "passed",
+      "elapsed_sec": 0.4461243999994622
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_history_undo_redo_comment_delete_and_failed_branch_preserve_saved_copy",
+      "status": "passed",
+      "elapsed_sec": 34.690468700000565
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_horizontal_vertical_and_reversed_lines_keep_endpoint_direction",
+      "status": "passed",
+      "elapsed_sec": 0.38907749999998487
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_invalid_area_and_crop_coordinates_refuse_the_entire_batch",
+      "status": "passed",
+      "elapsed_sec": 0.1971998999997595
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_invalid_line_points_page_and_extra_fields_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.15726350000113598
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_locked_related_and_unsupported_annotations_cannot_be_changed_or_deleted",
+      "status": "passed",
+      "elapsed_sec": 0.5157823000008648
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_offsets_and_page_rotations_do_not_double_transform_geometry",
+      "status": "passed",
+      "elapsed_sec": 0.7097702999999456
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_real_worker_protocol_lists_new_types_and_author_and_refuses_source_and_destination_changes",
+      "status": "passed",
+      "elapsed_sec": 8.048098400000526
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_squiggly_geometry_has_bounded_commands_even_on_extreme_page",
+      "status": "passed",
+      "elapsed_sec": 0.06553870000061579
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_text_markup_quad_order_and_line_and_ellipse_metadata_are_distinct",
+      "status": "passed",
+      "elapsed_sec": 0.19657180000103835
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_utf8_comment_and_author_limits_and_nonstring_values_are_enforced",
+      "status": "passed",
+      "elapsed_sec": 0.45812320000004547
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

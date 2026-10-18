@@ -11,7 +11,10 @@ from folder_dialogs import prepare_chooser, remember_selection
 ACTIONS = [('add-bookmark','Adicionar marcador'),('rename-bookmark','Renomear marcador'),
            ('move-bookmark','Mover marcador'),('delete-bookmark','Excluir marcador e descendentes'),
            ('add-note','Adicionar nota'),('update-note','Editar nota'),('add-highlight','Destacar área'),
-           ('add-rectangle','Adicionar retângulo'),('delete-annotation','Excluir anotação'),
+           ('add-rectangle','Adicionar retângulo'),('add-underline','Sublinhar área'),
+           ('add-strikeout','Tachar área'),('add-squiggly','Sublinhar área com ondulado'),
+           ('add-ellipse','Adicionar elipse'),('add-line','Adicionar linha'),
+           ('update-annotation','Editar comentário da anotação'),('delete-annotation','Excluir anotação'),
            ('fill-text-fields','Preencher campo de texto'),('fill-form-controls','Preencher caixas e listas'),
            ('rotate-page','Girar página')]
 NAMES = dict(ACTIONS)

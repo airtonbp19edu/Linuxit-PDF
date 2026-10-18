@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-18T12:43:31-03:00",
+  "reviewed_at_local": "2026-10-18T13:18:37-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.12",
+  "application_version": "0.1.13",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -263,6 +263,12 @@
       "path": "app/ocr_window.py",
       "boundary": "gtk_ui",
       "responsibility": "Idioma/DPI, cópia OCR, avisos, cancelamento e abertura conferida pelo hash."
+    },
+    {
+      "id": "pdf_annotations",
+      "path": "app/pdf_annotations.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Geometria limitada e aparência vetorial própria para sublinhado, tachado, ondulado, elipse e linha, sem GTK/fontes externas."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -285,7 +291,8 @@
     "pdf_security",
     "pdf_signatures",
     "local_files",
-    "pdf_ocr"
+    "pdf_ocr",
+    "pdf_annotations"
   ],
   "interface_refs": [
     {
@@ -515,6 +522,10 @@
     {
       "path": "app/ocr_window.py",
       "symbol": "OCRWindow"
+    },
+    {
+      "path": "app/pdf_annotations.py",
+      "symbol": "create_annotation"
     }
   ],
   "family_assignments": [
@@ -697,7 +708,8 @@
         "app/pdf_form_controls.py",
         "app/edit_history.py",
         "app/edit_dialogs.py",
-        "app/edit_window.py"
+        "app/edit_window.py",
+        "app/pdf_annotations.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
@@ -862,6 +874,7 @@
     }
   ],
   "runtime_limitations": [
+    "Source0.1.13 annotation extension:14 portable methods passed;6 GTK/Poppler prepared but unexecuted here. Published0.1.12 evidence does not approve this changed source.",
     "Current0.1.12:380/380 source/payload/installed sandbox passed.17 additional methods,1 intentional TIFF contract-test replacement. Desktop/device/original and full families remain unverified.",
     "Current0.1.11:363/363 passed in source/payload/installed sandbox, including20 OCR orchestration,5 real Linux and5 GTK methods. Rasterization/recognition contract remains bounded; desktop/device/original comparisons still pending.",
     "Current0.1.10:333/333 passed in source/payload/installed sandbox;34 new portable and9 GTK methods. Real desktop/portal/client/accessibility/physical printing remain unverified.",
@@ -878,5 +891,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

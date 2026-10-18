@@ -2084,3 +2084,31 @@ persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos pró
 Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
 Este registro recebe commit/push e comprovante final externo separados, evitando
 autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.
+
+
+## 2026/10/18 às 13:18 (America/Sao_Paulo, UTC-03:00) — anotações0.1.13 preparadas sem VM
+
+Partida: local/remoto c3d56624f72fddcde8e5974672dca0d598a77bcf, árvore limpa.
+Implementação própria de Underline/StrikeOut/Squiggly de área, elipse Circle e
+Line em qualquer direção. Form XObjects de aparência sem fontes externas,
+traço vermelho. update-annotation altera comentário/autor e preserva geometria/AP.
+Exclusão ampliada aos mesmos oito tipos simples, com bloqueios/vínculos e
+dependentes recusados. UI integrada ao rascunho/histórico; original/cópias salvas
+preservados. Referências Adobe/PDF Association, código pypdf local, Git/Python.
+
+14 métodos portáveis passaram em três rodadas. A primeira passou mas gerou
+avisos de clonagem por streams diretos; AP passou a ser registrado como objeto
+indireto antes da anotação, com asserção de regressão. Rodadas2/3 sem esses avisos.
+Resultados preservados em testes/resultados/annotation-extensions-portable-2026-10-18-round*.json.
+Regressões prévias de edição em relatórios annotation-advanced/copy-regression.
+Seis métodos GTK/Poppler novos preparados: criação/diálogos, comentário/limpeza,
+erro/cancelamento, pixels de cinco tipos, CropBox/rotação e busca após reabrir.
+Ainda não executados localmente: Windows sem GTK/tela. CI integral é o próximo
+passo, incluindo fonte/payload/sandbox e capturas antes da publicação do pacote.
+
+Fonte0.1.13, pacote publicado0.1.12 preservado. Arquitetura44 módulos/58interfaces,
+323 entradas estáticas preservadas,23 subconjuntos/duas propostas; roteiro43,93%,
+38done/20abertos e paridade0/25 intactos. Sem nova REA/original/VM, rede ou
+proteções alteradas. Nuvem adiada/IA excluída, causa de tokens não confirmada.
+Contrato/limites em docs/ANOTACOES-AMPLIADAS.md. Fonte ainda requer commit/push e
+confirmação; histórico, pacotes e relatórios anteriores preservados.
