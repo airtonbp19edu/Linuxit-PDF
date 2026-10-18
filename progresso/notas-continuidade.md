@@ -1565,3 +1565,14 @@ ainda retornou 404. As instruções agora cobrem ambas as visibilidades, para
 não exigir login depois de o proprietário liberar o acesso público. Pacote,
 código, testes e indicadores preservados. Próximo: confirmar o acesso público
 e baixar pelo navegador habitual, usando Download raw na página do arquivo.
+
+
+## 2026/10/17 às 21:23 (America/Sao_Paulo, UTC-03:00) — download público confirmado
+
+Após a alteração feita pelo usuário, GET anônimo sem cache da API retornou
+200, private=false e visibility=public. GET anônimo do arquivo no host
+raw.githubusercontent.com retornou 200, Content-Length=35983584 e cabeçalho
+binário flatpak\0 esperado. Não foi necessário reconstruir ou substituir o
+pacote. Orientar download no navegador habitual caso o navegador interno
+não entregue o arquivo. Próximo: instalar/testar no desktop Linux; demais
+pendências e indicadores preservados.
