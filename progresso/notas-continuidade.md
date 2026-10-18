@@ -2464,3 +2464,58 @@ em analysis-local/resume-20261018-1918. Nenhuma proteção alterada nem novo cen
 Foxit declarado aprovado. Pesos,19critérios abertos,paridade0/25 preservados.
 Este commit permite validar a fonte no CI autorizado; registrar resultados
 examinados e publicação final após a execução, antes de considerar a correção fechada.
+
+
+## 2026/10/18 às 19:31 (America/Sao_Paulo, UTC-03:00) — busca por autor validada no Linux e cadeia de espera D20
+
+Fonte corrigida168381b15a501a5a53c933e8b8f3f479559630cb publicada no GitHub.
+CI39172130287 concluiu success; artefato12152449979 com443026bytes e SHA-256
+0f83658a30a646da916ef516c33fe7a67509cf5eba7e4412ccdc658bc84c43d3
+conferido contra GitHub e baixado em pasta nova analysis-local/no-vm-release-artifact-12152449979.
+Relatórios realmente examinados:403/403 testes próprios na fonte Linux,
+zero falhas/erros/skips,smoke GTK5/5,17/17 contratos de backend,sem bloqueios/erros.
+106arquivos app correspondem ao CI; único alterado desde a campanha anterior:
+search_engine.py. Dos400IDs anteriores,399preservados,um renomeado para incluir
+autor,3métodos portáveis novos. O caso GTK ampliado de escopo/autor passou.
+
+Comparação reexecutada com os mesmos17 hashes de fixture/protocolo e o registro
+original preservado:testes/resultados/vm-2026-10-18/foxit-observations.json.
+Onze recortes com métricas comparáveis agora coincidem (11/11),zero divergência
+nessas medidas;cinco inconclusivos/um pendente preservados. Busca autor agora
+Foxit1/Linuxit1,na página1. Não houve nova busca no original; essa campanha
+reutiliza observações já examinadas e verifica seus hashes. Expectativa própria
+atualizada com histórico,sem mudar o protocolo nem apagar o resultado antigo.
+Não são onze famílias encerradas. Famílias completas0/25,50planos completos
+not_run,19critérios abertos,pesos/índice45,13% preservados;recodificação globalnull.
+
+D20 investigado via Computer Use/sky e Gerenciador de Tarefas do guest:
+Foxit5464 permanece Em execução em segundo plano,sem janela. Cadeia de espera
+examinada mostra threads6804e2508;2508 aguarda splwow64.exe/PID3880. Mensagem
+Windows menciona E/S de rede,mas isso não prova tráfego externo nem causa raiz.
+Host reconferido às19:25:running,zero cabos/shares/USB capturado,clipboard/
+drag-drop/VRDE/áudio off. Nenhum processo foi terminado,original relançado,
+coletor reiniciado ou proteção alterada. Janelas de diagnóstico fechadas após
+captura; Explorer do guest restaurado. D20/encerramento completo continua aberto.
+
+Provas publicáveis: docs/BUSCA-AUTOR-COMENTARIOS.md e
+testes/resultados/busca-autor-2026-10-18/:review,relatóriosCI,comparação após,
+três regressões antes/depois,16controles,arquitetura e d20-followup sanitizado.
+Telas originais/diagnósticos completos somente em
+analysis-local/resume-20261018-1918/ e campanha original ignoradas pelo Git.
+Captura d20-wait-chain.png examinada por imagem e hash. Contratos/especificação,
+matriz,pontos de retomada e registro de critérios atualizados sem encerrar
+etapas amplas. Não houve nova REA/Ghidra. IA excluída,nuvem direta adiada.
+
+Pacote0.1.13/devel não foi reconstruído:os400/400 de fonte/payload/sandbox
+pertencem ao marco anterior.403/403 desta rodada valem apenas para a fonte nova.
+Próximo passo de implementação: preparar marco de pacote após outras mudanças
+úteis;não afirmar que o Flatpak antigo contém a correção. Próximo lote da VM:
+D07/D10 destinos/Sort By,D11 exato,D12 cancelamento ativo,D15 abertura com senha
+independente,D18 saída com margens correspondentes,UI01–UI10 e causa de D20.
+Demais AcroForm/anotações/conversões,estática dirigida e desktop Linux seguem
+listados em RETOMADA/tarefas-pendentes;não reiniciar análises preservadas.
+
+Git:fonte168381b publicada e testada;este checkpoint acrescenta os resultados e
+a continuidade,sem nova alteração app/testes desde o CI. Commit/push autorizado
+e conferência final por verify_git_sync.py com recibo externo são o fechamento
+desta rodada. Preservar evidências e alterações de outros colaboradores.

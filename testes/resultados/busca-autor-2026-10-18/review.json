@@ -1,0 +1,104 @@
+{
+  "schema": "linuxit-comment-author-followup-review-v1",
+  "reviewed_at_local": "2026-10-18T19:31:01-03:00",
+  "source_commit": "168381b15a501a5a53c933e8b8f3f479559630cb",
+  "application_version": "0.1.13",
+  "source_is_after_published_package": true,
+  "flatpak_rebuilt": false,
+  "linux_ci": {
+    "run_id": 39172130287,
+    "artifact_id": 12152449979,
+    "archive_bytes": 443026,
+    "archive_sha256": "0f83658a30a646da916ef516c33fe7a67509cf5eba7e4412ccdc658bc84c43d3"
+  },
+  "passed": true,
+  "source_tests": {
+    "run": 403,
+    "passed": 403,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "prior_test_ids_preserved": 399,
+  "renamed_test_ids": {
+    "removed": [
+      "test_search_scopes.SearchScopeTests.test_comment_subject_and_contents_are_searchable_without_author"
+    ],
+    "added": [
+      "test_search_comment_author.CommentAuthorTests.test_author_matching_respects_case_whole_words_and_accents",
+      "test_search_comment_author.CommentAuthorTests.test_comment_without_author_still_searches_subject_and_body",
+      "test_search_comment_author.CommentAuthorTests.test_preserved_author_only_term_matches_the_recorded_page",
+      "test_search_scopes.SearchScopeTests.test_comment_subject_contents_and_author_are_searchable"
+    ]
+  },
+  "new_portable_test_methods": 3,
+  "existing_gtk_case_extended_and_passed": true,
+  "app_files_match_ci": 106,
+  "app_files_changed_since_baseline": [
+    "search_engine.py"
+  ],
+  "own_backend_subsets_passed": 17,
+  "exact_original_protocols_unchanged": true,
+  "comparison": {
+    "compared_subsets": 11,
+    "matched_metrics": 11,
+    "different_metrics": 0,
+    "inconclusive": 5,
+    "awaiting": 1
+  },
+  "original_observation_source": "testes/resultados/vm-2026-10-18/foxit-observations.json",
+  "original_observation_sha256": "f1ad943f090b1fd1ec63cf728a68ebc7f3051b1fe1aad2e0c83f7fa700391bcd",
+  "new_original_search_cases_executed": 0,
+  "d20_wait_chain_examined": true,
+  "d20_root_cause_confirmed": false,
+  "complete_family_parity_verified": false,
+  "full_acceptance_cases_executed": 0,
+  "source_and_package_tests_are_distinct": true,
+  "sealed_reports": [
+    {
+      "file": "after-author-tests.json",
+      "bytes": 1196,
+      "sha256": "f338fe941e683cbecc633d98275d3503f49e128247d022679f1e396d8aa89e7c"
+    },
+    {
+      "file": "architecture-final.json",
+      "bytes": 15074,
+      "sha256": "7f68c03360b4fb5477d7ff62979c145801daf6f86caae1359d0e6474b0be40a3"
+    },
+    {
+      "file": "architecture.json",
+      "bytes": 15074,
+      "sha256": "30b6caa84517e15a3efd4c1a7564f6f75b4ee57da6015376d7e9007b01081a88"
+    },
+    {
+      "file": "before-author-tests.json",
+      "bytes": 1112,
+      "sha256": "e9955024af5704717f8936c1c6114f7c128a6e0c55fec25b9f18ecb980eb4e3c"
+    },
+    {
+      "file": "comparator-controls.json",
+      "bytes": 3840,
+      "sha256": "66e5d9fb76a76177c02b540e178b050324fa65a1222022454ceb56ee691e10ed"
+    },
+    {
+      "file": "comparison-after.json",
+      "bytes": 3307,
+      "sha256": "719b20459089cfa2f60d2ae49a535635b79cafef19f13bb04a6d23dacd28c16a"
+    },
+    {
+      "file": "d20-followup.json",
+      "bytes": 1673,
+      "sha256": "8778848e394a60f7a007ad673852ffc3007e03f041c43f81740d717441b57388"
+    },
+    {
+      "file": "linux-preserved-campaign.json",
+      "bytes": 50547,
+      "sha256": "cf52b7b99695b53fb3e62edc54104e0ccdd963c96ced38b259e1b581a91357e1"
+    },
+    {
+      "file": "linux-source-intermediate.json",
+      "bytes": 105608,
+      "sha256": "03ccefb39697ff95088fd118d61a5c2c404c9d4b4ff1657d7a9d0bbd1e18c428"
+    }
+  ]
+}

@@ -31,8 +31,8 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
 |15|33,3%|0.1.13: cinco tipos de anotação e comentário/autor ampliados, com TIFF/OCR anteriores;400/400 por ambiente. Famílias completas, operações restantes e duas propostas abertas.|
 |16|33,3%|Seis métodos GTK novos de anotações na0.1.13 e anteriores preservados. Desktop/portais/AT-SPI/impressora abertos.|
-|18|10%|Corpus17/17 novamente no CI;11 recortes comparados ao original:10 iguais/1 divergente. Famílias completas abertas.|
-|19|14,3%|Busca por autor diverge:Foxit1/Linuxit0. Correção/validação diferencial ainda pendentes.|
+|18|10%|Fonte corrigida:17/17 próprios e11/11 medidas comparadas iguais;5 inconclusivos/1pendente. Famílias completas abertas.|
+|19|14,3%|Autor corrigido na fonte:Foxit1/Linuxit1;403/403 testes Linux. Outros protocolos/operações e famílias abertas; pacote0.1.13 anterior.|
 |21|50%|Entrega 0.1.13 validada; publicação/auditoria nas notas. 19 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é

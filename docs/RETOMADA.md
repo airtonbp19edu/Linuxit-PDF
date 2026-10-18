@@ -1,12 +1,18 @@
 # Retomada do Linuxit PDF
 
+Atualização posterior ao pacote: [busca por autor corrigida](BUSCA-AUTOR-COMENTARIOS.md) na fonte,
+**403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
+Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua
+anterior à correção, com 400/400 por ambiente no marco de entrega. Nenhum novo
+pacote nesta rodada. D20: espera observada em splwow64.exe; causa aberta.
+
 Fonte e Flatpak **0.1.13/devel**, com [anotações adicionais](ANOTACOES-AMPLIADAS.md):
 sublinhado, tachado e ondulado por área, elipse e linha em qualquer direção.
 Aparência vetorial própria vermelha. Edição de comentário/autor e exclusão
 restritas a oito tipos simples desbloqueados, sem vínculos ou dependentes.
 Rascunho com desfazer/refazer; original e cópias salvas preservados.
 
-**400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
+**Na entrega 0.1.13, 400/400 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips. Novos: 14 portáveis e seis GTK/Poppler; todos os 380 IDs
 anteriores preservados. 106 arquivos app e 11 relatórios CI conferidos;
 smoke 5/5 e launcher 3/3. Publicação confirmada; auditoria independente do mesmo bundle aprovada com
@@ -31,7 +37,8 @@ Relatar entregas concretas, validação própria e operações restantes separad
 
 VM: [primeira campanha offline de 18/10](VM-FOXIT-2026-10-18.md) observou o original com
 perfil limitado, RX exercitado e hashes preservados. Dos17 recortes C18:
-11 comparados,10 iguais/1 divergente (autor);5 inconclusivos/1pendente.
+Na campanha inicial:11 comparados,10 iguais/1 divergente (autor). Na fonte
+corrigida:11/11 métricas iguais;5 inconclusivos/1pendente preservados.
 D01–D20:14 observados no recorte,5 parciais,1 inconclusivo; cancelamento, destinos
 dos hits e saída de imposição abertos. D20 deixou processo sem janela; manter
 rede desligada e investigar. Nenhuma proteção do host foi alterada.
@@ -65,8 +72,9 @@ somente documentação; conferir o novo HEAD remoto ao retomar.
 Último trabalho técnico: campanha real do Foxit na VM offline, documentada em
 [VM-FOXIT-2026-10-18.md](VM-FOXIT-2026-10-18.md). D01–D20 têm 14 recortes observados,
 cinco parciais e um inconclusivo. Dos 17 recortes C18: 11 importados, 10 métricas
-iguais e uma divergente; cinco inconclusivos e um pendente. O Linuxit não encontra
-o autor sintético de comentário que o Foxit encontra. A correção ainda não foi feita.
+iguais e uma divergente; cinco inconclusivos e um pendente. A divergência de autor foi medida nessa campanha; a correção posterior na fonte
+está em [BUSCA-AUTOR-COMENTARIOS.md](BUSCA-AUTOR-COMENTARIOS.md), com validação
+específica registrada nesse relatório. O pacote0.1.13 publicado é anterior à correção.
 
 O CI [39163934943](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39163934943)
 validou novamente 400/400 testes próprios na fonte Linux e 17/17 recortes de
@@ -100,15 +108,16 @@ para iniciar outro lote. Nenhum original deve ser executado no host comum.
 
 ### Ordem recomendada do trabalho restante
 
-1. Investigar D20: processo sem janela após fechar. Preservar logs e distinguir
-   permanência em segundo plano, falha de saída e nova instância; causa ainda desconhecida.
+1. Investigar D20: processo sem janela após fechar. A continuação por Computer Use
+   confirmou PID5464 e espera da thread2508 em splwow64.exe/PID3880. Preservar
+   evidências; essa cadeia pontual ainda não determina causa nem saída completa.
 2. Completar os protocolos exatos: D07/D10 (cada resultado de busca e seu destino,
    alternativas de ordenação), D11 (termo/fontes preservados), D12 (cancelamento,
    troca e fechamento durante busca ativa), D15 (senha correta em abertura
    independente), D18 (margens correspondentes e ordem/medidas da saída PDF).
    Completar UI01–UI10, inclusive comportamento dos IDs 7911/7913.
-3. Transformar a divergência de busca por autor em contrato e teste de regressão;
-   corrigir a implementação própria e validar no Linux. A ordem mista observada
+3. Preservar a correção de busca por autor e seus contratos/regressões; ampliar
+   casos por tipo de comentário e campo antes de encerrar a família. A ordem mista observada
    com Relevance Ranking ainda exige mais observação antes de mudar o Linuxit.
 4. Continuar operações locais e contratos incompletos: combos AcroForm editáveis
    com texto livre/aparência, demais formulários/anotações e limites de conversão/OCR.

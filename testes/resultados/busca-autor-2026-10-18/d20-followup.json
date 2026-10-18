@@ -1,0 +1,58 @@
+{
+  "schema": "linuxit-vm-d20-followup-v1",
+  "recorded_at_local": "2026-10-18T19:26:33-03:00",
+  "vm_name": "Windows 10",
+  "tools": [
+    "VirtualBox7.2.20",
+    "Windows Task Manager",
+    "Computer Use sky"
+  ],
+  "process_name": "FoxitPDFReader.exe",
+  "pid": 5464,
+  "status_observed": "Em execução",
+  "interactive_user_is_synthetic": true,
+  "app_window_visible": false,
+  "wait_chain": [
+    {
+      "pid": 5464,
+      "thread_id": 6804
+    },
+    {
+      "pid": 5464,
+      "thread_id": 2508,
+      "waits_on": {
+        "process_name": "splwow64.exe",
+        "pid": 3880,
+        "thread_id": null
+      }
+    }
+  ],
+  "windows_message": "Uma ou mais threads de FoxitPDFReader.exe estão aguardando para concluir a E/S de rede.",
+  "network_activity_inferred_from_message": false,
+  "host_containment": {
+    "recorded_at_local": "2026-10-18T19:25:33.6707345-03:00",
+    "vm_state": "running",
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "evidence": [
+    {
+      "file": "d20-wait-chain.png",
+      "sha256": "50bc9a30767bfce283bc139218867712ca0bacda62312a7a82cbb2ae1881f7a6",
+      "public_payload": false
+    }
+  ],
+  "manual_image_reviewed": true,
+  "processes_terminated": false,
+  "original_relaunched": false,
+  "guest_probe_restarted": false,
+  "root_cause_confirmed": false,
+  "d20_full_shutdown_verified": false,
+  "note": "Wait chain is a point-in-time observation, not a root-cause proof or evidence of external network traffic. No clipboard/shares/network were enabled."
+}

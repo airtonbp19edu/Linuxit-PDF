@@ -31,8 +31,26 @@ Com a correção, as três passaram. Cobrem o fixture preservado, isolamento de
 escopo, destino, ausência de geometria, identidade do arquivo, caixa/palavra
 inteira/acentos e comentário sem autor. O teste de escopo existente foi renomeado
 para refletir o contrato e o caso GTK foi ampliado para buscar/navegar por autor.
-Os 16 controles do comparador passaram. A validação completa no Linux e a nova
-comparação com a observação preservada ainda aguardam o CI neste checkpoint.
+Os 16 controles do comparador passaram. O CI
+[39172130287](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39172130287),
+fonte `168381b15a501a5a53c933e8b8f3f479559630cb`, passou **403/403 testes** sem
+falhas/erros/skips, incluindo o caso GTK ampliado, e smoke GTK 5/5. Dos 400 IDs
+anteriores, 399 foram preservados e um renomeado; há três métodos novos.
+Os 106 arquivos app correspondem à fonte do CI; somente `search_engine.py`
+mudou desde a validação anterior.
+
+A campanha no mesmo corpus passou 17/17 contratos próprios. Reimportando as
+observações originais preservadas com os mesmos hashes de fixture e protocolo,
+os **11 recortes comparados coincidem**, com zero divergências nessas medidas.
+Permanecem cinco inconclusivos e um aguardando observação exata. Não houve nova
+execução das buscas do original nesta rodada. A diferença inicial continua
+preservada no relatório da campanha anterior.
+
+Artefato 12152449979, 443.026 bytes, SHA-256
+`0f83658a30a646da916ef516c33fe7a67509cf5eba7e4412ccdc658bc84c43d3`, conferido
+contra o digest do GitHub. Resultados e selos na
+[revisão publicável](../testes/resultados/busca-autor-2026-10-18/review.json).
+Estes 403 testes validam a fonte; não são nova aprovação de payload/sandbox.
 
 ## Limites e continuidade
 
@@ -41,3 +59,19 @@ continua não verificada. A correção deste recorte não encerra busca/comentá
 nem as etapas amplas 10/11/12/15/16/18/19/21. Pesos e índice do checklist preservados.
 Próximos alvos da VM são destinos dos hits, protocolo D11, cancelamento ativo,
 abertura independente com senha e imposição com parâmetros equivalentes.
+
+## Continuação do diagnóstico D20
+
+O Gerenciador de Tarefas do guest confirmou que `FoxitPDFReader.exe`, PID 5464,
+permanece em segundo plano, sem janela do aplicativo. A análise de cadeia de
+espera mostrou threads 6804 e 2508; a segunda tem como dependência
+`splwow64.exe`, PID 3880. A captura foi examinada e seu hash registrado em
+`testes/resultados/busca-autor-2026-10-18/d20-followup.json`. A imagem proprietária
+permanece em `analysis-local/resume-20261018-1918/`.
+
+A mensagem genérica do Windows menciona E/S de rede. Isso não comprova tráfego
+externo: a configuração foi conferida novamente com zero cabos conectados,
+shares e USB capturado, clipboard/drag-and-drop/VRDE/áudio desligados. Não se
+atribuiu uma causa definitiva à espera. Nenhum processo foi encerrado, o Foxit
+não foi relançado e o coletor anterior não foi reiniciado. D20 continua parcial
+quanto à causa e ao encerramento integral; não foi marcado como sucesso.

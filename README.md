@@ -6,6 +6,11 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
+A fonte posterior ao pacote0.1.13 [corrige a busca pelo autor de comentários](docs/BUSCA-AUTOR-COMENTARIOS.md):
+**403/403 testes Linux**,17/17 contratos próprios e11/11 recortes comparados
+com métricas iguais. Cinco recortes inconclusivos e um pendente permanecem.
+O Flatpak publicado continua0.1.13, anterior à correção; nenhum pacote novo.
+
 A 0.1.13 acrescenta [sublinhado, tachado, ondulado, elipse e linha](docs/ANOTACOES-AMPLIADAS.md),
 com aparência própria e edição de comentário/autor no histórico de cópia.
 
@@ -38,7 +43,7 @@ calculado pelo GTK: títulos e ícones ficam visíveis, inclusive ao redimension
 ocultar/restaurar o painel e alternar o modo de leitura. Dez cenários de
 geometria passaram, comparados com dez falhas na fonte anterior.
 
-**400 testes próprios passaram em cada ambiente**: fonte Linux, payload e
+**Na entrega0.1.13,400 testes próprios passaram em cada ambiente**: fonte Linux, payload e
 Flatpak instalado, sem falhas/erros/skips. Foram conferidos 106 arquivos da
 aplicação e 11 relatórios selados; smoke GTK 5/5 e launcher 3/3 passaram.
 Teste em Debian 13/tela X11 virtual; desktop real, acessibilidade, portais,

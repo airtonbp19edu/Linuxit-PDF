@@ -406,7 +406,7 @@
             "docs/VM-FOXIT-2026-10-18.md",
             "testes/resultados/vm-2026-10-18/session.json"
           ],
-          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
+          "note": "Initial offline observations remain partial; author-search follow-up corrected and validated403/403 own source Linux tests with11/11 imported metrics matching. Full UI interactions/UI01-UI10,cancel and print-output parity remain open; source correction documented in docs/BUSCA-AUTOR-COMENTARIOS.md."
         }
       ],
       "verified_fraction": 0.25,
@@ -947,9 +947,11 @@
           "status": "partial",
           "evidence": [
             "docs/VM-FOXIT-2026-10-18.md",
-            "testes/resultados/vm-2026-10-18/session.json"
+            "testes/resultados/vm-2026-10-18/session.json",
+            "docs/BUSCA-AUTOR-COMENTARIOS.md",
+            "testes/resultados/busca-autor-2026-10-18/review.json"
           ],
-          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
+          "note": "Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
         },
         {
           "criterion": "Resultados e divergências por família disponíveis",
@@ -957,9 +959,11 @@
           "status": "partial",
           "evidence": [
             "docs/VM-FOXIT-2026-10-18.md",
-            "testes/resultados/vm-2026-10-18/session.json"
+            "testes/resultados/vm-2026-10-18/session.json",
+            "docs/BUSCA-AUTOR-COMENTARIOS.md",
+            "testes/resultados/busca-autor-2026-10-18/review.json"
           ],
-          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
+          "note": "Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
         }
       ],
       "verified_fraction": 0.1,
@@ -1041,9 +1045,11 @@
           "status": "partial",
           "evidence": [
             "docs/VM-FOXIT-2026-10-18.md",
-            "testes/resultados/vm-2026-10-18/session.json"
+            "testes/resultados/vm-2026-10-18/session.json",
+            "docs/BUSCA-AUTOR-COMENTARIOS.md",
+            "testes/resultados/busca-autor-2026-10-18/review.json"
           ],
-          "note": "Initial offline observations and11 exact-protocol backend comparisons reviewed; author-search differs and remains uncorrected. Complete interactions/families, cancel and print-output parity still open."
+          "note": "Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
         }
       ],
       "verified_fraction": 0.142857,
@@ -2112,12 +2118,13 @@
     }
   ],
   "latest_resume": {
-    "date_local": "2026-10-18T18:37:33-03:00",
-    "local_and_remote_checked_equal_at_start": "955f6c2df17c1d27c0fd0ea87be51414ad751446",
-    "work_scope": "User requested continuation of offline VM tests and progressive publication.",
-    "application_modified": false,
-    "report": "docs/VM-FOXIT-2026-10-18.md",
-    "original_executed": true,
+    "date_local": "2026-10-18T19:30:28-03:00",
+    "local_and_remote_checked_equal_at_start": "4063ca7346db4c837d4850ac07b8c5394fc36181",
+    "work_scope": "Continue pending work: author-search regression/fix and D20 offline wait-chain inspection.",
+    "application_modified": true,
+    "report": "docs/BUSCA-AUTOR-COMENTARIOS.md",
+    "original_relaunched": false,
+    "original_process_inspected": true,
     "cloud_deferred_by_user": true
   },
   "current_static_analysis": {
@@ -2194,6 +2201,15 @@
       "report": "docs/EDICAO-COM-HISTORICO.md",
       "original_executed": false,
       "cloud_deferred_by_user": true
+    },
+    {
+      "date_local": "2026-10-18T18:37:33-03:00",
+      "local_and_remote_checked_equal_at_start": "955f6c2df17c1d27c0fd0ea87be51414ad751446",
+      "work_scope": "User requested continuation of offline VM tests and progressive publication.",
+      "application_modified": false,
+      "report": "docs/VM-FOXIT-2026-10-18.md",
+      "original_executed": true,
+      "cloud_deferred_by_user": true
     }
   ],
   "static_analysis_history": [
@@ -2269,5 +2285,25 @@
     "publication_state": "confirmed_at_recorded_commit",
     "confirmed_commit": "d80aafcb4c4eb2f08def8890639ec03aee997963",
     "publication_confirmed_at_local": "2026-10-18T18:47:19-03:00"
+  },
+  "current_source_followup": {
+    "date_local": "2026-10-18T19:30:28-03:00",
+    "implementation_commit": "168381b15a501a5a53c933e8b8f3f479559630cb",
+    "implementation_commit_published": true,
+    "report": "docs/BUSCA-AUTOR-COMENTARIOS.md",
+    "review": "testes/resultados/busca-autor-2026-10-18/review.json",
+    "source_after_published_flatpak": true,
+    "linux_source_tests_passed": 403,
+    "payload_and_flatpak_tests_rerun": false,
+    "flatpak_rebuilt": false,
+    "exact_protocol_subsets_compared": 11,
+    "matched_metrics": 11,
+    "different_metrics": 0,
+    "inconclusive_subsets": 5,
+    "awaiting_original_subsets": 1,
+    "original_observations_reused": "testes/resultados/vm-2026-10-18/foxit-observations.json",
+    "d20_wait_chain_observed": true,
+    "d20_root_cause_confirmed": false,
+    "whole_family_parity_verified": false
   }
 }

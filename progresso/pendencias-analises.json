@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T18:37:33-03:00",
+  "reviewed_at_local": "2026-10-18T19:30:28-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -253,7 +253,7 @@
         "docs/VM-FOXIT-2026-10-18.md",
         "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Author-search is corrected and source-validated; preserve follow-up evidence and expand remaining contracts. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -274,7 +274,7 @@
         "docs/VM-FOXIT-2026-10-18.md",
         "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Author-search is corrected and source-validated; preserve follow-up evidence and expand remaining contracts. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -301,7 +301,7 @@
         "docs/VM-FOXIT-2026-10-18.md",
         "testes/resultados/vm-2026-10-18/session.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Author-search is corrected and source-validated; preserve follow-up evidence and expand remaining contracts. Do not replay verified baseline as new coverage.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -452,9 +452,11 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/VM-FOXIT-2026-10-18.md",
-        "testes/resultados/vm-2026-10-18/session.json"
+        "testes/resultados/vm-2026-10-18/session.json",
+        "docs/BUSCA-AUTOR-COMENTARIOS.md",
+        "testes/resultados/busca-autor-2026-10-18/review.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Author-search corrected and validated403/403 source Linux;11/11 recorded metrics match. Complete D07/D10 destinations,D11 exact query,D12 active cancellation,D15 independent password open,D18 output with exact margins and UI01-UI10; investigate D20 wait chain before reconnecting network. Whole families remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -476,9 +478,11 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/VM-FOXIT-2026-10-18.md",
-        "testes/resultados/vm-2026-10-18/session.json"
+        "testes/resultados/vm-2026-10-18/session.json",
+        "docs/BUSCA-AUTOR-COMENTARIOS.md",
+        "testes/resultados/busca-autor-2026-10-18/review.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Author-search corrected and validated403/403 source Linux;11/11 recorded metrics match. Complete D07/D10 destinations,D11 exact query,D12 active cancellation,D15 independent password open,D18 output with exact margins and UI01-UI10; investigate D20 wait chain before reconnecting network. Whole families remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -501,9 +505,11 @@
         "docs/COPIA-EDITADA.md",
         "docs/BUSCA-COLECOES.md",
         "docs/VM-FOXIT-2026-10-18.md",
-        "testes/resultados/vm-2026-10-18/session.json"
+        "testes/resultados/vm-2026-10-18/session.json",
+        "docs/BUSCA-AUTOR-COMENTARIOS.md",
+        "testes/resultados/busca-autor-2026-10-18/review.json"
       ],
-      "next_action": "Environment operational and first campaign preserved. Repeat exact D07/D10 hit destinations and D11 options/query; measure print outputs with matching parameters; make cancel observable; investigate D20 residual process. Correct author search after a scoped contract. Do not replay verified baseline as new coverage.",
+      "next_action": "Author-search corrected and validated403/403 source Linux;11/11 recorded metrics match. Complete D07/D10 destinations,D11 exact query,D12 active cancellation,D15 independent password open,D18 output with exact margins and UI01-UI10; investigate D20 wait chain before reconnecting network. Whole families remain open.",
       "token_exhaustion_confirmed": null
     },
     {
