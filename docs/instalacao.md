@@ -8,12 +8,14 @@ parciais; não é uma publicação no Flathub nem uma declaração de equivalên
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
-O repositório é privado. Para baixar, abra a
+Para baixar, abra a
 [página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.9-x86_64.flatpak)
-em um navegador conectado a uma conta com acesso ao projeto e clique em
-**Download raw** (ícone de download). O link raw sem autenticação retorna 404;
-uma página em branco no navegador interno não indica que o pacote esteja vazio.
-Se necessário, abra essa página no navegador habitual e faça login.
+e clique em **Download raw** (ícone de download). Se o repositório estiver
+privado, use um navegador conectado a uma conta com acesso ao projeto;
+o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
+o download não exige login. A visibilidade é administrada pelo proprietário.
+Uma página em branco no navegador interno não indica que o pacote esteja vazio.
+Se necessário, abra essa página no navegador habitual.
 
 O arquivo 0.1.9 tem **35.983.584 bytes** (aproximadamente 34,3 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.

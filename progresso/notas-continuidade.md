@@ -1555,3 +1555,13 @@ da tela em branco usa também o relato do usuário.
 Próximo: o usuário baixar autenticado e testar no desktop Linux. Dependências
 de portal/cliente real e VM offline das etapas 10/11/18/19 permanecem intactas.
 Publicar esta correção documental e confirmar o remoto por recibo externo.
+
+
+## 2026/10/17 às 21:22 (America/Sao_Paulo, UTC-03:00) — orientação para mudança de visibilidade
+
+O usuário informou que tornará o repositório público temporariamente. A alteração
+de visibilidade não foi feita pelo agente. A última conferência HTTP pública
+ainda retornou 404. As instruções agora cobrem ambas as visibilidades, para
+não exigir login depois de o proprietário liberar o acesso público. Pacote,
+código, testes e indicadores preservados. Próximo: confirmar o acesso público
+e baixar pelo navegador habitual, usando Download raw na página do arquivo.
