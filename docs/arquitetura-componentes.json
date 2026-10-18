@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-18T02:08:36-03:00",
+  "reviewed_at_local": "2026-10-18T10:18:57-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.10",
+  "application_version": "0.1.11",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -251,6 +251,18 @@
       "path": "app/edit_window.py",
       "boundary": "gtk_ui",
       "responsibility": "Rascunho de edição em cópia com desfazer/refazer e gravação nova."
+    },
+    {
+      "id": "pdf_ocr",
+      "path": "app/pdf_ocr.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Orquestra OCR local limitado com cópia rasterizada, identidade e publicação exclusiva."
+    },
+    {
+      "id": "ocr_window",
+      "path": "app/ocr_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Idioma/DPI, cópia OCR, avisos, cancelamento e abertura conferida pelo hash."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -272,7 +284,8 @@
     "pdf_creation",
     "pdf_security",
     "pdf_signatures",
-    "local_files"
+    "local_files",
+    "pdf_ocr"
   ],
   "interface_refs": [
     {
@@ -490,6 +503,18 @@
     {
       "path": "app/edit_window.py",
       "symbol": "EditWindow"
+    },
+    {
+      "path": "app/pdf_ocr.py",
+      "symbol": "create_searchable_copy"
+    },
+    {
+      "path": "app/pdf_ocr.py",
+      "symbol": "invoke_ocr"
+    },
+    {
+      "path": "app/ocr_window.py",
+      "symbol": "OCRWindow"
     }
   ],
   "family_assignments": [
@@ -794,7 +819,9 @@
         "app/worker_cli.py",
         "app/main.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/pdf_ocr.py",
+        "app/ocr_window.py"
       ],
       "future_boundary": "Importação/exportação por formato e disponibilidade Reader/Editor.",
       "future_boundary_implemented": false
@@ -835,6 +862,7 @@
     }
   ],
   "runtime_limitations": [
+    "Source0.1.11 OCR:20 orchestration controls passed locally. Real Linux OCR/GTK and new Flatpak pending. Prior0.1.10 evidence unchanged.",
     "Current0.1.10:333/333 passed in source/payload/installed sandbox;34 new portable and9 GTK methods. Real desktop/portal/client/accessibility/physical printing remain unverified.",
     "Current0.1.9 source/payload/installed Flatpak290/290 passed in Debian13/X11 CI; two outside-HOME denied/granted controls passed. Real desktop portal/backend/grant persistence/sync-client remain unverified.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
@@ -849,5 +877,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

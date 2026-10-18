@@ -259,6 +259,7 @@ class PDFWindow(Gtk.Window):
                     ('Esquecer pasta sincronizada', self._forget_sync_folder),
                     ('Pesquisar em coleção…', self._show_collection),
                     ('Criar PDF de imagens…', self._show_creation),
+                    ('Criar cópia pesquisável com OCR…', self._show_ocr),
                     ('Senhas e permissões…', self._show_security),
                     ('Verificar assinaturas…', self._show_signatures),
                     ('Texto da página… (Ctrl+Shift+T)', self._show_accessible_text),
@@ -818,6 +819,8 @@ class PDFWindow(Gtk.Window):
         self._document_stamp = None
         edit_window = getattr(self, 'edit_window', None)
         if edit_window is not None and not edit_window.closed:edit_window.destroy()
+        ocr_window = getattr(self, 'ocr_window', None)
+        if ocr_window is not None and not ocr_window.closed:ocr_window.destroy()
         self.runner.invalidate('local-copy')
         text_window = getattr(self, 'accessible_text_window', None)
         if text_window is not None and not text_window.closed:text_window.destroy()
@@ -1722,6 +1725,15 @@ class PDFWindow(Gtk.Window):
         if window is None or window.closed:
             window = CreationWindow(self, self.open_document)
             self.creation_window = window
+        window.show_all();window.present()
+
+    def _show_ocr(self, *_args):
+        if not self.filepath or not self._source_unchanged():return
+        from ocr_window import OCRWindow
+        window = getattr(self, 'ocr_window', None)
+        if window is None or window.closed:
+            window = OCRWindow(self, self.filepath, self.open_document)
+            self.ocr_window = window
         window.show_all();window.present()
 
     def _show_collection(self, *_args):

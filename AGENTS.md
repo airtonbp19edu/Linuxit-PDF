@@ -1,5 +1,9 @@
 # Linuxit PDF — continuidade do projeto
 
+Fonte **0.1.11 em desenvolvimento**: [OCR local](docs/OCR-LOCAL.md), com20 controles
+portáveis aprovados. Reconhecimento real, GTK/Linux e novo Flatpak aguardam CI.
+O resumo abaixo descreve a entrega publicada0.1.10; preservar suas evidências.
+
 Fonte e Flatpak **0.1.10/devel**, com [editor de cópia e histórico](docs/EDICAO-COM-HISTORICO.md):
 checkbox/radio/listas, mover/excluir marcadores, destaque/retângulo e exclusão
 restrita de anotações. Desfazer/refazer atua no rascunho; cópias já salvas e

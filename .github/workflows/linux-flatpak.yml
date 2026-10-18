@@ -30,7 +30,8 @@ jobs:
             python3-pil python3-cryptography python3-cffi python3-pycparser \
             gir1.2-gtk-3.0 poppler-utils cups-client flatpak bubblewrap \
             dbus dbus-x11 xvfb xauth x11-utils openbox fonts-dejavu-core \
-            adwaita-icon-theme librsvg2-common shared-mime-info libglib2.0-bin openssl appstream
+            adwaita-icon-theme librsvg2-common shared-mime-info libglib2.0-bin openssl appstream \
+            tesseract-ocr tesseract-ocr-por tesseract-ocr-eng
       - name: Check out requested revision
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

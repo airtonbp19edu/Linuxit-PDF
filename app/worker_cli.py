@@ -79,6 +79,15 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'ocr-copy':
+        if len(argv) != 4:
+            raise SystemExit(2)
+        from pdf_ocr import create_searchable_copy
+        raw = sys.stdin.buffer.read(16385)
+        if len(raw) > 16384:
+            raise ValueError('Pedido de OCR acima do limite.')
+        print(json.dumps(create_searchable_copy(argv[2], argv[3], json.loads(raw)), ensure_ascii=True))
+        return
     if cmd == 'copy-file':
         from local_files import copy_local_document
         raw = sys.stdin.buffer.read(16385)

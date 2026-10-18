@@ -1893,3 +1893,24 @@ precisam do respectivo desktop/equipamento, sem depender da VM Foxit. D01–D20,
 UI01–UI10 e comparações do original exigem validar contenção offline primeiro.
 Este registro de confirmação será publicado com recibo final externo separado,
 evitando autorreferência. Preservar lotes estáticos e versões anteriores.
+
+
+## 2026/10/18 às 10:18 (America/Sao_Paulo, UTC-03:00) — OCR local preparado sem VM
+
+Usuário confirmou continuar sem VM. Git inicial de449459ce261b50d2fd9abe7b317eaad67bbd49
+limpo e igual ao remoto main. Fonte0.1.11: pdf_ocr.py, ocr_window.py, menu e worker
+ocr-copy; Tesseract local com português/inglês e Poppler. Gera cópia rasterizada
+pesquisável, até20 páginas/128MiB/150ou300DPI, sem substituir fontes ou destino
+existente. Perdas estruturais e páginas sem texto explícitas. Dados/modelos/
+dependências serão incluídos com proveniência Debian no novo bundle.
+
+20 controles portáveis passaram, sem falhas/erros/skips; ferramentas simuladas,
+não reconhecimento. Cinco testes Linux e cinco GTK preparados, ainda não rodados.
+Relatório testes/resultados/ocr-portable-2026-10-18-round1.json. Ferramentas:
+Python3.13, pypdf/Pillow, Git e consulta à documentação oficial Tesseract.
+Arquitetura43 módulos/57 interfaces. Roteiro43,93%,38done/20abertos, paridade0/25
+preservados. Original/VM não executados nem modificados; nuvem adiada/IA excluída.
+Próximo: publicar fonte, executar CI Linux completo antes de gerar/importar novo
+pacote, conferir relatórios/capturas, publicar e auditar o mesmo bundle.
+Pacote vigente0.1.10 e seus hashes permanecem intactos. Não declarar OCR real
+ou GTK aprovados com base nos controles simulados. Sem causa de tokens confirmada.

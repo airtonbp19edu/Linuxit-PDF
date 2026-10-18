@@ -3214,15 +3214,17 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "source/package0.1.10 own subset; see docs/CRIACAO-IMAGENS.md; full family incomplete",
+      "matrix_implementation": "Source0.1.11 rasterized searchable PDF OCR subset; current published package0.1.10; full family incomplete; see docs/OCR-LOCAL.md",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.10: PDF RGB de PNG/JPEG/BMP/WebP/TIFF de um quadro, selecionados explicitamente e em ordem ajustável. Transparência branca/orientação EXIF e limites preservados. OCR, TIFF multipágina, animações e exportação editável continuam pendentes. Formatos extras com22 testes portáveis; GTK/pacote atual.",
+      "scope": "Fonte0.1.11: conversão de imagens anterior e OCR local por Tesseract/Poppler para nova cópia rasterizada pesquisável em português/inglês. Todas as páginas, até20, 150/300DPI, sem criptografia, limites e perdas estruturais explícitos. Reconhecimento Linux/GTK e novo pacote aguardam CI. TIFF multipágina/animações e família completa permanecem pendentes.",
       "inputs": [
-        "Lista explícita ordenada de1–100 PNG/JPEG/BMP/WebP/TIFF de um quadro; DPI inteiro72–600; caminho.pdf novo."
+        "Lista explícita ordenada de1–100 PNG/JPEG/BMP/WebP/TIFF de um quadro; DPI inteiro72–600; caminho.pdf novo.",
+        "OCR: PDF local não criptografado de1–20 páginas, SHA256 da fonte, idioma por/eng/por+eng,150/300DPI e destino.pdf novo."
       ],
       "outputs": [
         "PDF reaberto com páginas e dimensões verificadas, orientação EXIF aplicada e transparência sobre branco.",
-        "Confirmação com hashes de fontes/resultado, tamanhos de página e DPI. RGB Flate sem nova perda JPEG; sem gestão ICC."
+        "Confirmação com hashes de fontes/resultado, tamanhos de página e DPI. RGB Flate sem nova perda JPEG; sem gestão ICC.",
+        "OCR: cópia rasterizada com camada de texto, hashes, dimensões e aviso das páginas sem texto detectado; sem preservação de links/formulários/assinaturas/metadados."
       ],
       "errors": [
         {
@@ -3238,6 +3240,11 @@
         {
           "trigger": "Cancelamento/fechamento da janela",
           "response": "Encerrar worker e descartar callbacks antigos; avisar para conferir destino, pois pode haver temporário/saída parcial ou já concluída.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "OCR indisponível, idioma ausente, PDF criptografado, geometria/limite/tempo inválidos ou renderização incompleta",
+          "response": "Recusar sem publicar cópia concluída; original preservado.",
           "basis": "current_linuxit_source"
         }
       ],
@@ -3255,7 +3262,11 @@
         "app/local_files.py",
         "app/folder_dialogs.py",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "app/pdf_ocr.py",
+        "app/ocr_window.py",
+        "docs/OCR-LOCAL.md",
+        "testes/resultados/ocr-portable-2026-10-18-round1.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3331,6 +3342,26 @@
         {
           "path": "tests/test_creation_gtk.py",
           "test": "test_bmp_webp_tiff_selection_worker_and_opening"
+        },
+        {
+          "path": "tests/test_pdf_ocr.py",
+          "test": "test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original"
+        },
+        {
+          "path": "tests/test_pdf_ocr.py",
+          "test": "test_encrypted_input_is_rejected_without_attempting_empty_password"
+        },
+        {
+          "path": "tests/test_ocr_linux.py",
+          "test": "test_real_english_worker_adds_searchable_text_and_keeps_scan"
+        },
+        {
+          "path": "tests/test_ocr_linux.py",
+          "test": "test_cancel_stops_worker_and_its_actual_tesseract_child"
+        },
+        {
+          "path": "tests/test_ocr_gtk.py",
+          "test": "test_menu_workflow_recognizes_opens_and_renders_actual_copy"
         }
       ],
       "dynamic_case_refs": [],
@@ -3478,5 +3509,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T00:43:37-03:00"
+  "updated_at_local": "2026-10-18T10:18:57-03:00"
 }

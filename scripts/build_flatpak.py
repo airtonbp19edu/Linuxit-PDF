@@ -52,7 +52,7 @@ def build(flatpak, stage, repo, extra):
     if not list((site / 'gi').glob('_gi_cairo*.so')):
         raise RuntimeError('python3-gi-cairo is required in the runtime overlay.')
     binaries = {'python3': Path('/usr/bin/python3.13')}
-    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions', 'openssl'):
+    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions', 'openssl', 'tesseract'):
         origin = str(Path('/usr/bin') / name) if (Path('/usr/bin') / name).exists() else str(extra / 'usr/bin' / name)
         if not Path(origin).exists():
             raise RuntimeError('Required executable missing: ' + name)
@@ -69,6 +69,11 @@ def build(flatpak, stage, repo, extra):
     cache.write_text(cache.read_text().replace('/usr/lib/x86_64-linux-gnu/', '/app/lib/'))
     runtime_tree('/usr/share/glib-2.0/schemas', files / 'share/glib-2.0/schemas')
     runtime_tree('/usr/share/fonts/truetype/dejavu', files / 'share/fonts/truetype/dejavu')
+    tessdata = [p for p in Path('/usr/share/tesseract-ocr').glob('*/tessdata')
+                if all((p / (language + '.traineddata')).is_file() for language in ('por', 'eng'))]
+    if len(tessdata) != 1:
+        raise RuntimeError('One Tesseract data directory with Portuguese and English models is required.')
+    runtime_tree(tessdata[0], files / 'share/tessdata')
     runtime_tree('/usr/share/icons/Adwaita', files / 'share/icons/Adwaita')
     runtime_tree('/usr/share/mime', files / 'share/mime')
     shutil.copytree(ROOT / 'assets/icons', files / 'share/icons/hicolor', dirs_exist_ok=True)
@@ -102,7 +107,7 @@ def build(flatpak, stage, repo, extra):
         wrapper = files / 'bin' / name
         wrapper.write_text('''#!/bin/sh
 base="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
-exec "$base/runtime-lib/ld-linux-x86-64.so.2" --library-path "$base/runtime-lib" "$base/libexec/''' + name + '''" "$@"
+''' + ('export TESSDATA_PREFIX="$base/share/tessdata"\n' if name == 'tesseract' else '') + '''exec "$base/runtime-lib/ld-linux-x86-64.so.2" --library-path "$base/runtime-lib" "$base/libexec/''' + name + '''" "$@"
 ''')
         wrapper.chmod(0o755)
     python = files / 'bin/linuxit-python'
