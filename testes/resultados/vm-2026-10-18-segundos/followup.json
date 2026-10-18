@@ -1,0 +1,253 @@
+{
+  "schema": "linuxit-vm-clock-followup-v1",
+  "reviewed_at_local": "2026-10-18T20:09:20-03:00",
+  "run_id": "vm-20261018-1940",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "limited_session": true,
+  "host_containment_after": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261018-1940",
+    "created_at": "2026-10-18T20:07:13.1416237-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "guest_containment_after": {
+    "adapters": [
+      {
+        "Name": "Ethernet",
+        "Status": "Disconnected"
+      }
+    ],
+    "smb_mapping_count": 0
+  },
+  "inputs_unchanged": true,
+  "input_count": 10,
+  "write_denied_after": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "control_before_launch": {
+    "pid": 2300,
+    "visual_response_verified": true,
+    "evidence": {
+      "file": "control-response.png",
+      "sha256": "5c6a5ae8fea3ee2400f982426a32cb00e6deb4df1ded00f0a914111f127f7097",
+      "public_payload": false
+    }
+  },
+  "control_reopened_by_final_preflight": {
+    "pid": 9584,
+    "visual_response_verified": false,
+    "note": "Starting a process is not proof of a second visual response."
+  },
+  "ui01": {
+    "status": "partial",
+    "without_document": "Open dialog reached Input directory with no PDF open.",
+    "cancel_without_document": "Cancel returned to empty document area.",
+    "with_document_variant": "not_run",
+    "dynamic_resource_id_verified": false,
+    "evidence": [
+      {
+        "file": "ui01-open-no-document.png",
+        "sha256": "af379dd2a2bcd31df5cf8d66aa3bdc7cbe3437018b3150d510c37766501b5e6d",
+        "public_payload": false
+      },
+      {
+        "file": "ui01-cancel-empty.png",
+        "sha256": "7c3577714f2016a4bb2cd243682d129b94221f4a392547bec4396bb237a78271",
+        "public_payload": false
+      }
+    ]
+  },
+  "d07": {
+    "status": "partial",
+    "comparison_case_status": "inconclusive",
+    "fixture": "busca-escopos.pdf",
+    "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+    "options": {
+      "query": "alvo",
+      "match_mode": "Match exact word or phrase",
+      "whole_words": false,
+      "match_case": false,
+      "page_text": false,
+      "bookmarks": true,
+      "comments": false,
+      "attachments": false,
+      "stemming": false,
+      "highlight_all": false
+    },
+    "result_count": 2,
+    "result_labels_in_order": [
+      "ALVO marcador",
+      "alvo externo"
+    ],
+    "sort": "Relevance Ranking",
+    "destinations": null,
+    "limitation": "Selection/click attempts were affected by intermittent guest UI and diagnostic response. No navigation success/failure or page-null destination inferred.",
+    "evidence": [
+      {
+        "file": "d07-options.png",
+        "sha256": "888cc32491c3eb14a53534c28c84e082458120a83b37b48ea3e4395b6cc62c80",
+        "public_payload": false
+      },
+      {
+        "file": "d07-results-before-control.png",
+        "sha256": "28c78e746c922ad34c9d254fb0e4491f083712a3b9860c4bdab18207068adfd6",
+        "public_payload": false
+      }
+    ],
+    "comparison_case_id": "C18-D07-bookmarks",
+    "protocol_sha256": "744cfef2697c7297c8972de2f75061957c8f04e6db718ab1eec01d085ff89d6e"
+  },
+  "environment": {
+    "intermittent_visual_and_probe_response": true,
+    "clock_seen_unchanged": "19:59:21",
+    "clock_later_advanced": true,
+    "diagnostic_pause_resume_cycles": 2,
+    "vm_rebooted_or_snapshot_restored": false,
+    "host_security_changed": false,
+    "root_cause": null,
+    "foxit_failure_inferred": false,
+    "performance_benchmark_valid": false,
+    "note": "Host reported VM running. VBox log contains guest-heartbeat and timer catch-up warnings. Two brief pause/resume cycles preserved RAM and offline settings; response later returned. Association does not establish a fix or root cause.",
+    "evidence": [
+      {
+        "file": "stalled-clock-195921.png",
+        "sha256": "99ee6c530bfd76dfe8e6a02d0b3c490681250cc214948fecd281c9ad352f8b66",
+        "public_payload": false
+      },
+      {
+        "file": "pause-resume-diagnostic.txt",
+        "sha256": "d59ef21bfbd2af27afc8392c190c8b05fb2ed1a84649fa19284cd087683a4f4c",
+        "public_payload": false
+      },
+      {
+        "file": "VBox-final.log",
+        "sha256": "693ecb7844637950b4fee60a03e49d1454565427add366c78a32af799e0edc5d",
+        "public_payload": false
+      },
+      {
+        "file": "checkpoint-last-screen.png",
+        "sha256": "2ee08a02c3a996852c246c0a13c5c9c4275689d0cbc0531b6d638f23a77e3bf3",
+        "public_payload": false
+      }
+    ]
+  },
+  "runtime_collect": {
+    "created_at": "2026-10-18T20:02:03.4728080-03:00",
+    "finished_at": "2026-10-18T20:02:16.4911726-03:00",
+    "processes": [
+      {
+        "Id": 5280,
+        "ProcessName": "FoxitPDFReader",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "busca-escopos.pdf - Foxit PDF Reader"
+      },
+      {
+        "Id": 2300,
+        "ProcessName": "notepad",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "controle.txt - Bloco de Notas"
+      }
+    ],
+    "evidence": {
+      "file": "search-progress-guest.json",
+      "sha256": "ba7d1a539194120b73fd7ed9a320b4b54ea1f144e220cbac28bfd6b573e5ad3c",
+      "public_payload": false
+    }
+  },
+  "later_collect": {
+    "status": "completed",
+    "created_at": "2026-10-18T20:05:36.4810105-03:00",
+    "finished_at": "2026-10-18T20:05:38.4676350-03:00",
+    "evidence": {
+      "file": "checkpoint-final-guest.json",
+      "sha256": "80d9eaf3e05d4962eb30112caa7545d640cd0f9a0dee4e5bdf5bdd2467e3bafb",
+      "public_payload": false
+    },
+    "processes": [
+      {
+        "Id": 5280,
+        "ProcessName": "FoxitPDFReader",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "busca-escopos.pdf - Foxit PDF Reader"
+      },
+      {
+        "Id": 2300,
+        "ProcessName": "notepad",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "controle.txt - Bloco de Notas"
+      },
+      {
+        "Id": 9584,
+        "ProcessName": "notepad",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "controle.txt - Bloco de Notas"
+      }
+    ]
+  },
+  "probe_stop": {
+    "status": "completed",
+    "created_at": "2026-10-18T20:05:49.6129004-03:00",
+    "finished_at": "2026-10-18T20:05:52.2223484-03:00",
+    "evidence": {
+      "file": "probe-stop-guest.json",
+      "sha256": "723719f866a14f1917bbf21dc3ebec3d490a90466cf4bd37534d047072010376",
+      "public_payload": false
+    }
+  },
+  "remaining": [
+    "D07 destinations",
+    "D10 destinations/sort alternatives",
+    "D11 exact missing query",
+    "D12 active cancellation",
+    "D15 independent correct-password opening",
+    "D18 exact output parameters and PDF measurement",
+    "UI01 remaining variant and UI02-UI10",
+    "D20 normal shutdown and residual-process root cause"
+  ],
+  "broad_criteria_closed": 0,
+  "full_family_parity": "0/25",
+  "checklist_percent": 45.13,
+  "open_criteria": 19,
+  "app_or_tests_changed": false,
+  "flatpak_rebuilt": false,
+  "new_full_source_suite_run": false,
+  "note": "Previous source 403/403 and package 400/400 validations preserved; not rerun by this documentation checkpoint.",
+  "evidence": [
+    {
+      "file": "startup-guest.json",
+      "sha256": "02cd6067395fed42edac0693d0e791fc781ec98897a2056d3cae47a8a6d5f575",
+      "public_payload": false
+    },
+    {
+      "file": "preflight-guest.json",
+      "sha256": "4d8929bc96353caa2ad482e07be2070304d62ab428e1fcd9c7b567c3ca7570f3",
+      "public_payload": false
+    },
+    {
+      "file": "launch-guest.json",
+      "sha256": "f35a6fe7996ac2f23208e46b4e63d205fb32b476b1a4b2581f145808e55b61f0",
+      "public_payload": false
+    },
+    {
+      "file": "final-inputs-guest.json",
+      "sha256": "e07265876b9f793e41a97eed847616c546166fc0ca0d6f97bb17202bed5e1c90",
+      "public_payload": false
+    }
+  ],
+  "probe_confirmed_stopped": true
+}

@@ -1,5 +1,12 @@
 # Retomada do Linuxit PDF
 
+VM, rodada posterior: [segundos habilitados e continuação offline](VM-RELOGIO-SEGUNDOS.md).
+UI01 sem documento/cancelar e D07 com dois resultados observados; destinos ainda
+inconclusivos devido à resposta intermitente do ambiente. RunId `vm-20261018-1940`;
+`probe-stop:stop` confirmado completed em `followup.json`; coletor encerrado,
+não enviar novos comandos a ele. Última coleta: Foxit PID5280 com janela; manter offline.
+Dez Inputs e identidade conferidos novamente; nenhum critério amplo encerrado.
+
 Atualização posterior ao pacote: [busca por autor corrigida](BUSCA-AUTOR-COMENTARIOS.md) na fonte,
 **403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
 Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua

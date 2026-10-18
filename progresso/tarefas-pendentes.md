@@ -1,5 +1,11 @@
 # Tarefas atuais e ponto de retomada
 
+VM: [segundos habilitados e rodada posterior](../docs/VM-RELOGIO-SEGUNDOS.md).
+UI01 sem documento/cancelar e D07 com dois marcadores observados; destinos
+inconclusivos por resposta intermitente. `probe-stop:stop` da rodada vm-20261018-1940
+confirmado completed em `followup.json`; coletor encerrado. Última coleta tinha
+Foxit5280 com janela; manter offline e revalidar resposta visual antes de retomar.
+
 Atualização posterior ao pacote: [busca por autor corrigida](../docs/BUSCA-AUTOR-COMENTARIOS.md) na fonte,
 **403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
 Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua

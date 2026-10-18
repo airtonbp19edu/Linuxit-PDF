@@ -1,5 +1,11 @@
 # Linuxit PDF — continuidade do projeto
 
+Rodada posterior da VM: [relógio com segundos e diagnóstico](docs/VM-RELOGIO-SEGUNDOS.md).
+RunId vm-20261018-1940: UI01/D07 parciais, resposta intermitente; não inferir falha
+Foxit ou destino nulo. Dez Inputs/identidade preservados. `probe-stop:stop`
+confirmado completed; coletor encerrado, ver followup.json. Última coleta tinha
+Foxit5280 com janela; manter offline. Nenhum critério amplo encerrado.
+
 Atualização posterior ao pacote: [busca por autor corrigida](docs/BUSCA-AUTOR-COMENTARIOS.md) na fonte,
 **403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
 Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua

@@ -2554,3 +2554,57 @@ Git inicial main/local/remoto a2496dd3a257fa7153aeb84d6f6ff43a886e498e.
 App/testes/pacote permanecem intactos;403/403 é validação anterior,não repetida.
 Pesos/19critériosabertos/paridade0/25preservados. Este checkpoint do relógio
 será publicado enquanto os testes da nova rodada continuam.
+
+## 2026/10/18 às 20:09 (America/Sao_Paulo, UTC-03:00) — continuação após relógio com segundos: UI01/D07 parciais
+
+Continuação do pedido de habilitar segundos e seguir os testes. O ajuste já
+publicado em5c6277c foi preservado. Computer Use/sky, teclado nativo VirtualBox,
+VBoxManage e coletor próprio limitado por GuestProperties, sem rede, shares,
+clipboard ou proteções alteradas. Não houve nova REA/Ghidra nesta rodada.
+
+UI01: Abrir sem documento alcançou Input; Cancelar voltou à área vazia.
+Capturas realmente examinadas. Falta variante com PDF aberto e correlação
+dinâmica do ID; UI01 não foi encerrado. D07 repetido com alvo, literal, apenas
+marcadores, case/whole/stemming/attachments/highlight-all desligados: duas
+instâncias, ALVO marcador e alvo externo, nessa ordem, Relevance Ranking.
+Cliques/duplo clique tentados, mas destinos continuam inconclusivos devido à
+resposta intermitente do ambiente. Não inferir sucesso/falha de navegação nem
+destino nulo; não aprovar C18-D07 ou família por essas telas.
+
+Relógio ficou visualmente em19:59:21 em observações sucessivas e depois avançou.
+Coletor também demorou a responder. Host declarou running; VBox.log preservado
+contém avisos de heartbeat/recuperação do temporizador. Dois ciclos breves de
+pause/resume, sem reboot/snapshot/restauração/alteração de RAM ou CPUs. Resposta
+retornou depois; causa raiz e correção permanecem não demonstradas. Tempos do
+guest atrasados e pausas invalidam benchmark. Não atribuir isso ao Foxit nem
+a esgotamento de tokens. Aplicativo de controle relançado pelo preflight final
+não recebeu um segundo controle visual aprovado; PID não basta.
+
+Preflight final-inputs:completed, sessão1 não elevada; identidade original e
+dez hashes Input iguais ao início; escrita negada Reference/Input/Protocol,
+Ethernet desconectada, zero SMB/share/USB capturado, clipboard/drag-drop/VRDE/
+áudio off. Coleta checkpoint-final recuperada completed; Foxit5280 com janela,
+Responding=true, Notepad2300/9584. probe-stop:stop recuperado completed; coletor
+vm-20261018-1940 encerrado. Não enviar novos comandos esperando resposta dele.
+VM permanece offline; não religar rede com original ativo. D20 não aprovado.
+
+Publicável: testes/resultados/vm-2026-10-18-segundos/followup.json e
+docs/VM-RELOGIO-SEGUNDOS.md; RETOMADA, AGENTS e tarefas-pendentes atualizados.
+Privado: analysis-local/vm-20261018-1940/ com telas, relatórios originais,
+VBox-final.log e horários host de pause/resume. Nenhum payload Foxit publicado.
+Verificação ad hoc confere identidade/contenção e os dez Inputs, além dos hashes
+das evidências referenciadas. Não houve alteração de app/testes nem nova suíte
+Linux:403/403 da fonte corrigida é validação anterior; Flatpak0.1.13 permanece
+anterior à correção e não foi reconstruído. Pesos/19abertos/45,13% do checklist,
+paridade0/25 e recodificação globalnull preservados.
+
+Próximo passo: verificar estabilidade/resposta visual do controle e preparar
+novo coletor antes de continuar D07/D10 destinos/ordenação, D11 consulta exata,
+D12 cancelamento ativo, D15 senha correta independente, D18 saída com parâmetros
+correspondentes e UI01–UI10; investigar causa D20. As operações locais, estática
+dirigida e desktop Linux seguem no ponto de retomada, sem reiniciar análises.
+
+Git inicial main/local/remoto5c6277cb2231a846e768fb5a212b9ae2fdc63a7e.
+Fechamento autorizado: publicar somente documentação/metadados deste checkpoint
+e conferir remoto por verify_git_sync.py, com recibo fora da árvore para evitar
+autorreferência. Nenhum reset/force push ou alteração alheia substituída.
