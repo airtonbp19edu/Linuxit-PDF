@@ -11,7 +11,8 @@ sem falhas/erros/skips. Novos: 14 portáveis, dois GTK e uma integração Linux
 TIFF→PDF→OCR. Um teste de recusa de TIFF foi adaptado/renomeado à nova regra;
 362 IDs anteriores preservados e 18 novos IDs incluem essa substituição.
 105 arquivos app e 11 relatórios CI conferidos; smoke 5/5 e launcher 3/3.
-Publicação e auditoria desta entrega nas notas mais recentes. Testes próprios
+Publicação confirmada; auditoria independente do mesmo bundle aprovada com
+sete controles e cinco novos smoke checks, sem rebuild. Testes próprios
 não são paridade Foxit; relatórios e pacotes anteriores preservados.
 
 Pastas sincronizadas: controles fora HOME negado/concedido passaram novamente.
@@ -51,7 +52,7 @@ e as notas mais recentes definem o estado atual.
   desta continuação não devem ser repetidas. Tipos viewer/página/diálogo e
   stemming efetivo foram ligados; IDs7911/7913 ainda têm ambiguidade de comportamento.
 - Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
-  23 subconjuntos parciais e 37 módulos/49 interfaces documentados.
+  23 subconjuntos parciais e 43 módulos/57 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
   precisam de seus ambientes/equipamentos/contas. Isso é distinto da VM Foxit.
 - VM10/11/18/19: observar original offline, D01–D20 eUI01–UI10, importar hashes/

@@ -2061,3 +2061,26 @@ e auditar mesmo pacote, continuar demais formulários/anotações/contratos/est�
 Desktop/portal/cliente/AT-SPI/impressora e comparação Foxit em VM offline abertos.
 Sem evidência de esgotamento de tokens. Publicação ainda requer confirmação após
 commit/push desta entrega preparada; versões anteriores preservadas.
+
+
+## 2026/10/18 às 12:48 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria TIFF0.1.12 confirmadas
+
+Entrega técnica `d70773a67d471569631e0517a7990e21c2c0d21b` confirmada no GitHub com árvore limpa por recibo
+externo. Download público sem login retornou HTTP200, 44661792 bytes,
+SHA256 77cbff20cdb351272de9292ce334fb97c327fdfbef7fb3321d408fe6e5144701, idêntico ao bundle testado.
+Auditoria https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141995602 reinstalou mesmo bundle sem rebuild:
+105app/2849runtime/224ELF/162avisos conferidos, incluindo modelos
+Tesseract por/eng. Sete controles e cinco novos smoke checks passaram. Suítes
+380/380 em cada ambiente são do builder; não repetidas nesta auditoria.
+Artefato 12142116724, ZIP SHA256 83246ddce1165de031a0037e5821a1d5c6447871319d63104b2e49a9489bb623, igual ao digest GitHub.
+Quatro relatórios copiados byte a byte, revisão em testes/resultados/0.1.12/audit/;
+raw em analysis-local/no-vm-audit-artifact-12142116724/. Ferramentas Git/API/Python
+e CI Debian13/Xvfb/Flatpak. Roteiro43,93%,38done/20abertos/13etapas, paridade0/25,
+catálogo323 e arquitetura43/57 preservados. Nenhum critério/peso alterado.
+Sem VM nem original; não houve nova REA ou modificação de rede/proteções Windows.
+TIFF usa RGB8, ordem por blocos e IFD principal; OCR separado continua limitado a20 páginas. Nuvem adiada/IA excluída.
+Próximo: demais formulários/anotações/contratos próprios; desktop/portal/concessão
+persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos próprios.
+Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
+Este registro recebe commit/push e comprovante final externo separados, evitando
+autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.

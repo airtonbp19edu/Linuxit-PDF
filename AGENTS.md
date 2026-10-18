@@ -11,7 +11,8 @@ sem falhas/erros/skips. Novos: 14 portáveis, dois GTK e uma integração Linux
 TIFF→PDF→OCR. Um teste de recusa de TIFF foi adaptado/renomeado à nova regra;
 362 IDs anteriores preservados e 18 novos IDs incluem essa substituição.
 105 arquivos app e 11 relatórios CI conferidos; smoke 5/5 e launcher 3/3.
-Publicação e auditoria desta entrega nas notas mais recentes. Testes próprios
+Publicação confirmada; auditoria independente do mesmo bundle aprovada com
+sete controles e cinco novos smoke checks, sem rebuild. Testes próprios
 não são paridade Foxit; relatórios e pacotes anteriores preservados.
 
 Pastas sincronizadas: controles fora HOME negado/concedido passaram novamente.

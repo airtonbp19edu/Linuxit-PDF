@@ -69,12 +69,15 @@
   "original_executed": false,
   "foxit_parity_verified": false,
   "criteria_status_or_weights_changed": false,
-  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "publication_state": "confirmed_at_recorded_commit",
   "limitations": [
     "Main IFD chain only; no recursive SubIFDs or semantic thumbnail filtering.",
     "RGB8 output does not retain high-bit-depth precision, ICC or scanner metadata.",
     "Block order only, not per-frame selection/reordering; animated non-TIFF formats unsupported.",
     "Creation100-page limit does not extend OCR20-page limit.",
     "Desktop/client/portal/AT-SPI/physical printing and original comparison remain open."
-  ]
+  ],
+  "confirmed_delivery_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+  "publication_confirmed_at_local": "2026-10-18T12:48:12-03:00",
+  "independent_audit_review": "testes/resultados/0.1.12/audit/review.json"
 }

@@ -88,7 +88,7 @@ sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 - [Etapa 20: Flatpak 0.1.2, testes Linux e limites](docs/ETAPA-20.md)
 - [Etapa 21: auditoria do pacote publicado e obrigações abertas](docs/ETAPA-21.md)
 - [Pendências por etapa: VM, análises e pontos de retomada](progresso/pendencias-analises.md)
-- [Captura do Flatpak em execução](testes/resultados/0.1.9/linuxit-flatpak-0.1.9.png)
+- [Captura do Flatpak em execução](testes/resultados/0.1.12/linuxit-flatpak-0.1.12.png)
 - [Arquitetura](docs/arquitetura.md) e [contratos implementados](docs/especificacao.md)
 - [Resultados dos testes](testes/resultados/) e [PDF de referência próprio](testes/fixtures/)
 
@@ -150,3 +150,7 @@ pendente; foi acrescentado no subconjunto da 0.1.11. As famílias completas segu
 [Auditoria independente da 0.1.11](testes/resultados/0.1.11/audit/review.json):
 mesmo bundle reinstalado, modelos/dependências/avisos conferidos, sete controles
 e cinco novos smoke checks aprovados; suítes363/363 não repetidas pela auditoria.
+
+[Auditoria independente da 0.1.12](testes/resultados/0.1.12/audit/review.json):
+mesmo bundle reinstalado, modelos/dependências/avisos conferidos, sete controles
+e cinco novos smoke checks aprovados; suítes380/380 não repetidas pela auditoria.

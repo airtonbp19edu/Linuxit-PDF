@@ -1144,7 +1144,7 @@
       "current_delivery": {
         "version": "0.1.12",
         "date_local": "2026-10-18T12:43:31-03:00",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "source_commit": "b2ee3e324f0cb2bb23032ce82239ea56c84302d1",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141058408",
         "source_payload_sandbox_tests_passed_each": 380,
@@ -1153,7 +1153,10 @@
           "docs/TIFF-MULTIPAGINA.md",
           "releases/manifest-0.1.12.json",
           "testes/resultados/0.1.12/validation-review.json"
-        ]
+        ],
+        "confirmed_delivery_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+        "publication_confirmed_at_local": "2026-10-18T12:48:12-03:00",
+        "stable_release": false
       },
       "delivery_history": [
         {
@@ -1340,9 +1343,11 @@
             "testes/resultados/0.1.10/audit/review.json",
             "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.11/audit/review.json",
-            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.12/audit/review.json",
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
           ],
-          "note": "Published0.1.11 reinstalled without rebuild, application/runtime/model files and notices verified. Seven auditor controls and five fresh smoke checks passed. Full363-case suites remain build-time evidence, not rerun by this audit."
+          "note": "Published0.1.12 reinstalled without rebuild, application/runtime/model files and notices verified. Seven auditor controls and five fresh smoke checks passed. Full380-case suites remain build-time evidence, not rerun by this audit."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1366,7 +1371,9 @@
             "testes/resultados/0.1.10/audit/review.json",
             "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.11/audit/review.json",
-            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.12/audit/review.json",
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 20 open criteria across 13 stages, including own implementation/static/desktop work and original VM/differential dependencies. Delivery audit does not close these obligations."
         },
@@ -1392,18 +1399,20 @@
             "testes/resultados/0.1.10/audit/review.json",
             "testes/resultados/0.1.10/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.11/audit/review.json",
-            "testes/resultados/0.1.11/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.11/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.12/audit/review.json",
+            "testes/resultados/0.1.12/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.11",
-        "reviewed_at_local": "2026-10-18T10:46:50-03:00",
+        "version": "0.1.12",
+        "reviewed_at_local": "2026-10-18T12:48:12-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39132852906",
-        "audit_code_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141995602",
+        "audit_code_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
         "installed_application_files_verified": 105,
@@ -1415,10 +1424,10 @@
         "full_regression_suite_rerun": false,
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
         "evidence": [
-          "docs/OCR-LOCAL.md",
-          "testes/resultados/0.1.11/audit/review.json"
+          "docs/TIFF-MULTIPAGINA.md",
+          "testes/resultados/0.1.12/audit/review.json"
         ],
-        "next_action": "Continue TIFF multipage/remaining local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
+        "next_action": "Continue remaining forms/annotations/local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
       },
       "delivery_audit_history": [
         {
@@ -1626,6 +1635,28 @@
             "testes/resultados/0.1.10/audit/review.json"
           ],
           "next_action": "Continue OCR and remaining own local contracts; real Linux desktop portal, persistent grants, sync client, AT-SPI and printer need their environments. Original D01-D20/UI01-UI10 and differential validation require offline containment. Cloud APIs deferred."
+        },
+        {
+          "version": "0.1.11",
+          "reviewed_at_local": "2026-10-18T10:46:50-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39132852906",
+          "audit_code_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 105,
+          "installed_runtime_files_verified": 2849,
+          "installed_elf_files_verified": 224,
+          "copyright_notices_present_and_hashed": 162,
+          "unfinished_criteria_count": 20,
+          "stage21_complete": false,
+          "full_regression_suite_rerun": false,
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
+          "evidence": [
+            "docs/OCR-LOCAL.md",
+            "testes/resultados/0.1.11/audit/review.json"
+          ],
+          "next_action": "Continue TIFF multipage/remaining local contracts and real desktop/device validation. Original observations and differential comparisons require offline VM. Direct cloud APIs deferred."
         }
       ]
     }
@@ -1667,17 +1698,20 @@
     "criteria_status_or_weights_changed": false,
     "criterion_definitions_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_commit_push_confirmation",
+    "publication_state": "confirmed_at_recorded_commit",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": false,
+    "independent_installed_audit_passed": true,
     "test_contract_migration": {
       "previous_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_and_animated_webp_are_refused_without_output",
       "new_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
       "reason": "TIFF multipage now imports; animated WebP still refused. One intentional test replacement, not a newly added method."
     },
     "source_and_package_version": "0.1.12",
-    "complete_tests_per_environment": 380
+    "complete_tests_per_environment": 380,
+    "confirmed_delivery_commit": "d70773a67d471569631e0517a7990e21c2c0d21b",
+    "publication_confirmed_at_local": "2026-10-18T12:48:12-03:00",
+    "audit_review": "testes/resultados/0.1.12/audit/review.json"
   },
   "no_vm_execution_history": [
     {
