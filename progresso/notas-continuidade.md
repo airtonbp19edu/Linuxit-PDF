@@ -2406,3 +2406,38 @@ Marcos/evidências, fonte0.1.13, métricas, paridade0/25 e pendências preservad
 VM segue offline, coletor encerrado, processo residual D20 documentado.
 Próximo passo: D07/D10/D11 exatos, cancelamento ativo, saída de imposição e
 investigação D20; divergência de autor já medida aguarda correção própria.
+
+
+## 2026/10/18 às 19:13 (America/Sao_Paulo, UTC-03:00) — checkpoint solicitado para continuar em outra IA
+
+Usuário pediu salvar o progresso, informar pendências e o arquivo de retomada.
+Arquivo principal: docs/RETOMADA.md, seção “Passagem para outra IA”. Inclui estado
+consolidado, ordem de leitura, caminhos locais/publicáveis/privados, próximo
+lote concreto e limites das evidências. Histórico permanece neste arquivo.
+
+Git local/remoto conferidos em d7bf1fb5d3b626394e58dba24642f4a77500295a,
+árvore limpa antes da edição. Corrigidos dois trechos antigos de RETOMADA que
+ainda diziam zero observações originais e NAT ativo sem distinguir o diagnóstico
+histórico; fonte factual são a campanha e os relatórios já publicados. Nenhuma
+VM foi operada nem teste repetido neste checkpoint; o estado de processos/rede
+é o último examinado e deve ser reconferido pela próxima IA.
+
+Pendências priorizadas: D20/processo residual; D07/D10/destinos e ordenação;
+D11/protocolo exato; D12/cancelamento ativo; D15/abertura independente com senha;
+D18/saída PDF e margens exatas; UI01–UI10/IDs7911/7913. Criar regressão e corrigir
+busca por autor, Foxit1/Linuxit0; completar operações AcroForm/anotações/contratos,
+análise estática dirigida e testes de desktop Linux/portal/AT-SPI/sincronização/
+impressão física. Cinquenta planos completos ainda sem execução integral,
+19 critérios abertos e paridade integral0/25. Índice45,13% é somente checklist;
+conclusão global do código continua indeterminada. IA excluída/nuvem direta adiada.
+
+Coletor vm-20261018-1710 já encerrado; não reutilizar RunId para novos comandos.
+Última coleta tinha Foxit5464 sem janela e Notepad1056; não conectar rede com
+referência ativa. Para novo lote, manter corpus/saídas anteriores e revalidar
+contenção, token limitado e controle visual. Evidências privadas continuam em
+analysis-local e VM local; clone Git não as inclui.
+
+Apenas docs/RETOMADA.md e esta nota mudaram; aplicativo, pacote0.1.13/devel,
+progresso estruturado e relatórios selados preservados. Checkpoint preparado
+para commit/push autorizado; confirmação final será por ls-remote e recibo
+externo, sem depender deste chat.
