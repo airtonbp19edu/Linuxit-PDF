@@ -12,8 +12,9 @@ um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
-APIs remotas de nuvem continuam adiadas. Confirmações de publicação e auditoria
-ficam nas notas datadas; o restante do projeto continua parcial.
+APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
+auditoria independente do mesmo pacote aprovada (sete controles + cinco smoke).
+Evidências nas notas datadas; o restante do projeto continua parcial.
 
 Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
 e as notas mais recentes definem o estado atual.

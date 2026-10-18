@@ -725,7 +725,7 @@
           "testes/resultados/0.1.9/sandbox-tests.json",
           "testes/resultados/0.1.9/validation-review.json"
         ],
-        "next_action": "Publish same0.1.9 bundle and independently audit installed bytes; real desktop/portal/sync-client validation remains separate.",
+        "next_action": "Published 0.1.9 installed audit passed (7 auditor controls and 5 fresh smoke checks). Next: real desktop portal, persistent folder access and actual external sync client; no Foxit VM needed for these tests.",
         "source_commit_tested": "6aabe4c7a205744db60f32737a883b61ba5fc80f",
         "full_source_tests_passed": 290
       },
@@ -1053,7 +1053,7 @@
       "earned_percent": 3.0,
       "current_delivery": {
         "version": "0.1.9",
-        "status": "validated_prepared_for_publication",
+        "status": "published_confirmed_at_recorded_commit",
         "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39080923058",
         "evidence": [
           "docs/PASTAS-SINCRONIZADAS.md",
@@ -1061,7 +1061,9 @@
           "testes/resultados/0.1.9/validation-review.json"
         ],
         "stable_release": false,
-        "original_observations": 0
+        "original_observations": 0,
+        "confirmed_delivery_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
+        "publication_confirmed_at_local": "2026-10-17T21:12:00-03:00"
       },
       "delivery_history": [
         {
@@ -1194,9 +1196,11 @@
             "testes/resultados/0.1.7/audit/review.json",
             "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.8/audit/review.json",
-            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.9/audit/review.json",
+            "testes/resultados/0.1.9/audit/installed-delivery-audit.json"
           ],
-          "note": "Published0.1.8 reinstalled without rebuild:97 app/2804 dependency/215ELF/150package notices verified. Seven auditor controls and five fresh smoke checks passed. Full267-case suites are prior build-time evidence, not rerun by this audit. Status/weight preserved."
+          "note": "Published0.1.9 reinstalled without rebuild:99 app/2804 dependency/215ELF/150package notices verified. Seven auditor controls and five fresh smoke checks passed. Full290-case suites are prior build-time evidence, not rerun by this audit. Status/weight preserved."
         },
         {
           "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
@@ -1214,7 +1218,9 @@
             "testes/resultados/0.1.7/audit/review.json",
             "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.8/audit/review.json",
-            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.9/audit/review.json",
+            "testes/resultados/0.1.9/audit/installed-delivery-audit.json"
           ],
           "note": "Remains pending: 21 open criteria across 14 stages, including actionable UI/implementation/static work and original VM/differential dependencies. Passing a delivery audit does not close these obligations."
         },
@@ -1234,21 +1240,23 @@
             "testes/resultados/0.1.7/audit/review.json",
             "testes/resultados/0.1.7/audit/installed-delivery-audit.json",
             "testes/resultados/0.1.8/audit/review.json",
-            "testes/resultados/0.1.8/audit/installed-delivery-audit.json"
+            "testes/resultados/0.1.8/audit/installed-delivery-audit.json",
+            "testes/resultados/0.1.9/audit/review.json",
+            "testes/resultados/0.1.9/audit/installed-delivery-audit.json"
           ]
         }
       ],
       "verified_fraction": 0.5,
       "earned_percent": 0.5,
       "current_delivery_audit": {
-        "version": "0.1.8",
-        "reviewed_at_local": "2026-10-17T20:21:46-03:00",
+        "version": "0.1.9",
+        "reviewed_at_local": "2026-10-17T21:12:00-03:00",
         "status": "incremental_delivery_audit_passed; project_incomplete",
-        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39078571081",
-        "audit_code_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+        "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39081734820",
+        "audit_code_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
         "new_auditor_controls_passed": 7,
         "new_installed_smoke_checks_passed": 5,
-        "installed_application_files_verified": 97,
+        "installed_application_files_verified": 99,
         "installed_runtime_files_verified": 2804,
         "installed_elf_files_verified": 215,
         "copyright_notices_present_and_hashed": 150,
@@ -1257,10 +1265,10 @@
         "full_regression_suite_rerun": false,
         "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
         "evidence": [
-          "docs/SEGURANCA-ACESSIBILIDADE.md",
-          "testes/resultados/0.1.8/audit/review.json"
+          "docs/PASTAS-SINCRONIZADAS.md",
+          "testes/resultados/0.1.9/audit/review.json"
         ],
-        "next_action": "Continue remaining local forms/undo/formats/platform contracts; static15cc510/15cc520/15ccd20/15cbc10/15c9c60 and this+98 metrics, field writers/preconditions; consult catalog before new seeds. Cloud deferred. Desktop/devices/original VM remain pending."
+        "next_action": "Test real desktop portal/grant persistence and actual synchronization client without Foxit VM; original D01-D20/UI01-UI10 and differential closure require offline VM. Direct cloud APIs remain deferred."
       },
       "delivery_audit_history": [
         {
@@ -1402,6 +1410,28 @@
           ],
           "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
           "next_action": "Follow exact reflow helpers1f21a80/1f21ac0, remaining static fields and own security/signature/accessibility/cloud/platform contracts. Original observations require offline VM."
+        },
+        {
+          "version": "0.1.8",
+          "reviewed_at_local": "2026-10-17T20:21:46-03:00",
+          "status": "incremental_delivery_audit_passed; project_incomplete",
+          "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39078571081",
+          "audit_code_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
+          "new_auditor_controls_passed": 7,
+          "new_installed_smoke_checks_passed": 5,
+          "installed_application_files_verified": 97,
+          "installed_runtime_files_verified": 2804,
+          "installed_elf_files_verified": 215,
+          "copyright_notices_present_and_hashed": 150,
+          "unfinished_criteria_count": 21,
+          "stage21_complete": false,
+          "full_regression_suite_rerun": false,
+          "publication_state": "confirmed_delivery; audit_evidence_prepared_for_next_commit",
+          "evidence": [
+            "docs/SEGURANCA-ACESSIBILIDADE.md",
+            "testes/resultados/0.1.8/audit/review.json"
+          ],
+          "next_action": "Continue remaining local forms/undo/formats/platform contracts; static15cc510/15cc520/15ccd20/15cbc10/15c9c60 and this+98 metrics, field writers/preconditions; consult catalog before new seeds. Cloud deferred. Desktop/devices/original VM remain pending."
         }
       ]
     }
@@ -1438,10 +1468,12 @@
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "validated_prepared_for_publication",
-    "independent_installed_audit_passed": false,
+    "publication_state": "confirmed_at_recorded_commit",
+    "independent_installed_audit_passed": true,
     "direct_cloud_api_deferred": true,
-    "local_synchronized_folder_workflow": true
+    "local_synchronized_folder_workflow": true,
+    "confirmed_delivery_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
+    "publication_confirmed_at_local": "2026-10-17T21:12:00-03:00"
   },
   "no_vm_execution_history": [
     {

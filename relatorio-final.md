@@ -9,7 +9,9 @@ Fonte/payload/sandbox 290/290 cada, zero falhas/erros/skips; 15 portáveis e oit
 Pasta fora HOME inacessível sem concessão e utilizável com concessão específica.
 99 arquivos da aplicação, 2.804 de dependências, 215 ELF e 150 avisos;
 smoke 5/5, launcher 3/3. Dez bundles ao todo,
-incluindo nove anteriores preservados. Publicação/auditoria nas notas datadas.
+incluindo nove anteriores preservados. Publicação confirmada; auditoria independente
+do mesmo bundle aprovada: sete controles e cinco novas verificações funcionais.
+Suítes completas não foram repetidas pela auditoria. Evidências nas notas datadas.
 [Revisão](testes/resultados/0.1.9/validation-review.json).
 
 Sem teste de cliente real ou interação de portal real; esses testes dependem de

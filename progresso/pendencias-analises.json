@@ -341,7 +341,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
+      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -367,7 +367,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
+      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -394,7 +394,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
+      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -424,7 +424,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
+      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -524,7 +524,7 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package0.1.9 local synchronized folder workflow verified290/290 each, outside-HOME access denied without grant/works with narrow grant. Publish/audit same bundle. Actual portal backend/persistent grant and real sync client require desktop/client, not Foxit VM. Direct cloud APIs deferred; original dynamic/differential validation needs offline VM.",
+      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
       "token_exhaustion_confirmed": null
     }
   ],

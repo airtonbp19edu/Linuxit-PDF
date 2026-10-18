@@ -94,3 +94,14 @@ concessão específica. Nenhuma permissão global de filesystem foi adicionada.
 Oito capturas/hash examinados. [Revisão](../testes/resultados/0.1.9/validation-review.json).
 Nove bundles anteriores preservados. Sem cliente real ou interação de portal real;
 essas lacunas são de desktop, distintas da VM offline necessária ao original.
+
+## Publicação e auditoria independente — 2026-10-17T21:12:00-03:00
+
+Entrega `e6bd69adcd41a0c51c0ed03b05b784d36750f026` confirmada no remoto.
+A [auditoria independente](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39081734820)
+reinstalou o mesmo bundle publicado, sem rebuild: 99 arquivos da aplicação,
+2.804 de dependências, 215 ELF e 150 avisos de pacotes conferidos.
+Sete controles do auditor e cinco novas verificações funcionais passaram.
+As suítes completas 290/290 são evidência do builder e não foram repetidas
+pela auditoria. [Relatórios e revisão](../testes/resultados/0.1.9/audit/review.json).
+Projeto ainda incompleto; pesos, paridade e adiamento das APIs de nuvem preservados.

@@ -12,12 +12,13 @@ um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
-APIs remotas de nuvem continuam adiadas. Confirmações de publicação e auditoria
-ficam nas notas datadas; o restante do projeto continua parcial.
+APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
+auditoria independente do mesmo pacote aprovada (sete controles + cinco smoke).
+Evidências nas notas datadas; o restante do projeto continua parcial.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Entrega 0.1.9|Publicar/auditar mesmo bundle; confirmação nas notas|CI autorizado, sem VM Foxit|
+|Entrega 0.1.9|Publicada e auditada; conferir evidências antes de uma nova alteração|Concluída neste marco; sem VM Foxit|
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
 |Operações locais|Demais formulários/undo/anotações/formatos/OCR/plataforma|Implementação própria sem VM|
 |Estática|Posições/predicado/conversor/métricas reflow, ownership/busca/IDs7911/7913|REA/Ghidra sem executar original|

@@ -120,3 +120,7 @@ e edição ampliada em cópias](docs/SEGURANCA-ACESSIBILIDADE.md).
 A 0.1.9 acrescenta [pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md):
 pasta preferida, últimas pastas e cópias novas publicadas completas. Envio é do
 cliente externo; APIs remotas continuam adiadas. Guia separa VM e desktop.
+
+A [auditoria independente da 0.1.9](testes/resultados/0.1.9/audit/review.json)
+reinstalou o mesmo bundle publicado: arquivos conferidos, sete controles e
+cinco novas verificações funcionais aprovados. Não repetiu as suítes completas.

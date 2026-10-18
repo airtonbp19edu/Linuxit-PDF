@@ -1505,3 +1505,32 @@ propostas, catálogo 259, roteiro 43,33% e paridade 0/25 preservados.
 APIs de nuvem adiadas; fluxo local autorizado. Original não executado.
 Próximo: publicar o mesmo bundle, confirmar remoto e auditar a instalação sem
 rebuild. Nove bundles anteriores preservados.
+
+
+## 2026/10/17 às 21:12 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria 0.1.9 confirmadas
+
+Entrega técnica `e6bd69adcd41a0c51c0ed03b05b784d36750f026` confirmada no GitHub,
+com árvore limpa por recibo externo. A auditoria independente
+https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39081734820
+reinstalou o mesmo bundle, sem rebuild: 99 arquivos app, 2.804 de dependências,
+215 ELF e 150 avisos de pacotes conferidos. Sete controles do auditor e cinco
+novas verificações funcionais passaram. As suítes 290/290 por ambiente são
+evidência anterior do builder; não foram repetidas nesta auditoria.
+Artefato 12118649715, ZIP `c7c3b6fc4af8ebc6909f229a057341e6f434e2c707ac8aeb3c70dea9815eaa97`
+igual ao digest GitHub. Quatro relatórios raw copiados byte a byte e revisão em
+`testes/resultados/0.1.9/audit/`. Dez bundles preservados, de 0.1.0 até 0.1.9.
+Catálogo 259, 23 subconjuntos/duas propostas, 37 módulos/49 interfaces,
+roteiro 43,33% e paridade 0/25 mantidos. Original não executado.
+
+Fluxo de pasta local autorizado e entregue; APIs de nuvem continuam adiadas.
+Próximo passo concreto sem VM: testar seleção de pasta em portal real,
+persistência de acesso após reiniciar e cliente externo em desktop Linux,
+com arquivos de teste; conferir envio, mudanças externas, conflitos e perda de rede.
+Os testes CI usam concessão específica, sem cliente real nem interação de portal.
+AT-SPI e impressão física também exigem seus ambientes/equipamentos.
+Para o original: VM offline é necessária na etapa 10 (D01–D20), parte dinâmica
+da 11 (UI01–UI10) e referência diferencial das etapas 18/19. Reutilizar corpus,
+protocolo e hashes preservados; não reiniciar alvos estáticos examinados.
+Outras operações locais e análises estáticas continuam abertas sem VM.
+Esta nota e os relatórios recebem o próximo commit; a confirmação final deve
+usar recibo externo para evitar registrar o hash do próprio commit.
