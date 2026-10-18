@@ -45,11 +45,13 @@ class SearchScopeTests(unittest.TestCase):
         self.assertEqual([x['source'] for x in all_hits],['page_text','page_text','bookmark','comment'])
         self.assertTrue(all(x['rects'] for x in all_hits[:2]))
 
-    def test_comment_subject_and_contents_are_searchable_without_author(self):
+    def test_comment_subject_contents_and_author_are_searchable(self):
         opts={'include_page_text':False,'include_comments':True}
         self.assertEqual(len(self.index.search('assunto',**opts)),1)
         self.assertEqual(len(self.index.search('comentário',**opts)),1)
-        self.assertEqual(self.index.search('Autor',**opts),[])
+        author=self.index.search('Autor',**opts)
+        self.assertEqual([(hit['source'],hit['page'],hit['rects']) for hit in author],
+                         [('comment',0,[])])
         self.assertEqual(self.index.search('Alvo',match_case=True,**opts),[])
 
     def test_global_limit_progress_and_cancel_cover_metadata(self):
@@ -106,4 +108,10 @@ class SearchScopeGUITests(unittest.TestCase):
                 wait_for(lambda:len(w.search_hits)==1 and not w.search_running)
                 self.assertEqual(w.search_hits[0]['source'],'comment')
                 wait_for(lambda:w.displayed_page==0)
+                w.find_entry.set_text('Autor')
+                wait_for(lambda:len(w.search_hits)==1 and not w.search_running
+                         and 'Autor' in w.search_hits[0]['snippet'])
+                self.assertEqual(w.search_hits[0]['source'],'comment')
+                self.assertEqual(w.search_hits[0]['page'],0)
+                self.assertEqual(w.search_hits[0]['rects'],[])
             finally:w.destroy()

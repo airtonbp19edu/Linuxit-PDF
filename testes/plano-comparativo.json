@@ -269,10 +269,26 @@
       "measurement": "Resultados em ordem: origem page_text/bookmark/comment e página base 1; null significa destino local ausente, não página 0. Não mede destaque, retângulos nem interação GUI.",
       "scope": "backend_observable_subset; not the full dynamic/GUI case",
       "expected_linuxit": {
-        "count": 0,
-        "hits": []
+        "count": 1,
+        "hits": [
+          {
+            "source": "comment",
+            "page": 1
+          }
+        ]
       },
-      "expected_basis": "own_contract_only"
+      "expected_basis": "own_contract_only",
+      "expectation_history": [
+        {
+          "recorded_at_local": "2026-10-18T19:22:28-03:00",
+          "previous_expected_linuxit": {
+            "count": 0,
+            "hits": []
+          },
+          "reason": "Offline original C18-D09-author observed1 comment/page1; own contract corrected after the measured difference. Protocol/fixture unchanged.",
+          "evidence_ref": "testes/resultados/vm-2026-10-18/foxit-observations.json"
+        }
+      ]
     },
     {
       "id": "C18-D10-scopes",

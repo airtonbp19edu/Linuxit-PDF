@@ -129,7 +129,8 @@ class TextSearchIndex:
                 if cancel is not None and cancel.is_set():
                     return
                 text = item['title'] if source == 'bookmark' else ' '.join(
-                    value for value in (item.get('subject', ''), item.get('contents', '')) if value)
+                    value for value in (item.get('subject', ''), item.get('contents', ''),
+                                        item.get('author', '')) if value)
                 haystack = ' '.join(normalized(text, options.match_case, options.ignore_accents).split())
                 page = item.get('page')
                 if not isinstance(page, int) or not 0 <= page < self.page_count:

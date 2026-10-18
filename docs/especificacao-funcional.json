@@ -544,14 +544,14 @@
       "name": "Busca em comentários",
       "matrix_implementation": "implemented subset; see docs/especificacao.md",
       "contract_kind": "implemented_subset",
-      "scope": "Busca em assunto/conteúdo de comentários, sem pesquisar autor no contrato atual.",
+      "scope": "Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentários; correção motivada pelo recorte C18-D09-author observado offline.",
       "inputs": [
         "Consulta, flags e include_comments=True; comentários com página associada.",
         "As demais fontes podem ficar desativadas."
       ],
       "outputs": [
         "Hits source=comment, página conhecida e rects=[].",
-        "Assunto e conteúdo são pesquisáveis; autor é apenas metadado de painel."
+        "Assunto, conteúdo e autor são pesquisáveis pelas mesmas opções de consulta; resultados de metadados não recebem retângulos inventados."
       ],
       "errors": [
         {
@@ -577,17 +577,40 @@
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "testes/resultados/vm-2026-10-18/foxit-observations.json"
         ],
         "runtime_observed": false,
         "unresolved": [
-          "Campos e tipos pesquisados no Foxit; política de autor, assunto, replies e ordem."
-        ]
+          "Demais tipos e campos pesquisados, respostas, duplicação entre campos, ordenação e destinos da busca mista. A observação inicial cobre somente a nota sintética preservada."
+        ],
+        "bounded_runtime_observation": {
+          "report": "docs/VM-FOXIT-2026-10-18.md",
+          "cases": [
+            "C18-D08-comments",
+            "C18-D09-subject",
+            "C18-D09-author"
+          ],
+          "whole_family_runtime_observed": false
+        }
       },
       "existing_test_refs": [
         {
           "path": "tests/test_search_scopes.py",
-          "test": "test_comment_subject_and_contents_are_searchable_without_author"
+          "test": "test_comment_subject_contents_and_author_are_searchable"
+        },
+        {
+          "path": "tests/test_search_comment_author.py",
+          "test": "test_preserved_author_only_term_matches_the_recorded_page"
+        },
+        {
+          "path": "tests/test_search_comment_author.py",
+          "test": "test_author_matching_respects_case_whole_words_and_accents"
+        },
+        {
+          "path": "tests/test_search_comment_author.py",
+          "test": "test_comment_without_author_still_searches_subject_and_body"
         }
       ],
       "dynamic_case_refs": [
@@ -616,8 +639,8 @@
           "id": "S12-06-2",
           "kind": "exception",
           "given": "Só comentários, consulta Autor.",
-          "when": "Pesquisar com o contrato atual.",
-          "expected_linuxit": "Zero hits pelo autor, mesmo que o painel o exponha.",
+          "when": "Pesquisar o campo de autor com o contrato corrigido na fonte posterior ao pacote0.1.13.",
+          "expected_linuxit": "Uma ocorrência source=comment na página1 do fixture preservado; autoria é pesquisável junto de assunto/conteúdo.",
           "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
@@ -1657,7 +1680,7 @@
       "existing_test_refs": [
         {
           "path": "tests/test_search_scopes.py",
-          "test": "test_comment_subject_and_contents_are_searchable_without_author"
+          "test": "test_comment_subject_contents_and_author_are_searchable"
         },
         {
           "path": "tests/test_pdf_changes.py",

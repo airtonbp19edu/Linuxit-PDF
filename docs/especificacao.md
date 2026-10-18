@@ -28,8 +28,11 @@ normalização NFC e casefold opcional; palavra inteira considera letras,
 números, marcas Unicode e sublinhado. Ignorar acentos e unir hifenização são
 extensões herdadas da base própria, sem alegação de igualdade ao Foxit.
 
-As fontes são independentes: texto das páginas, títulos de marcadores, conteúdo
-e assunto de comentários. Autor do comentário não entra na busca nesta versão.
+As fontes são independentes: texto das páginas, títulos de marcadores, conteúdo,
+assunto e autor de comentários. A fonte posterior ao pacote 0.1.13 inclui autor
+após a [divergência medida na VM offline](VM-FOXIT-2026-10-18.md); o pacote
+0.1.13 publicado ainda mantém o comportamento anterior. A busca por autor usa
+as mesmas opções de caixa, palavra inteira e acentos, sem geometria inventada.
 A seleção inicial pesquisa apenas páginas. Com nenhuma fonte selecionada, a UI
 pede uma fonte e não inicia trabalho. A ordem é texto por página, marcadores e
 comentários; o limite global padrão é 5.000 ocorrências. Resultados das páginas
@@ -51,7 +54,7 @@ cancela tarefas e timers; navegação agendada não acessa widgets destruídos.
 
 **Testes próprios:** `tests/test_search_highlights.py` verifica pixels e ciclo
 de vida com GTK/Cairo, além de `tests/test_search_scopes.py`, testes anteriores de busca,
-GUI e regressão, com PDFs gerados pelo projeto. Verificam escopos, assunto,
+GUI e regressão, com PDFs gerados pelo projeto. Verificam escopos, assunto, autor,
 maiúsculas, limite, cancelamento, alteração de arquivo, destino ausente,
 Unicode e navegação da interface. São testes de implementação.
 

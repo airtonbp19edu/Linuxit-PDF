@@ -2441,3 +2441,26 @@ Apenas docs/RETOMADA.md e esta nota mudaram; aplicativo, pacote0.1.13/devel,
 progresso estruturado e relatórios selados preservados. Checkpoint preparado
 para commit/push autorizado; confirmação final será por ls-remote e recibo
 externo, sem depender deste chat.
+
+
+## 2026/10/18 às 19:24 (America/Sao_Paulo, UTC-03:00) — retomada e correção de autor; CI pendente
+
+Retomada no main4063ca7346db4c837d4850ac07b8c5394fc36181, local/remoto iguais,
+árvore inicialmente limpa. Pedido do usuário: dar continuidade às pendências.
+Fonte app/search_engine.py inclui autor de comentário na busca após a
+observação offline preservada C18-D09-author. Fixture/hash/protocolo mantidos;
+expectativa própria0→1 com histórico explícito, sem alterar relatórios selados.
+Três regressões novas:contra a fonte anterior,duas falhas esperadas/uma passou;
+contra a corrigida,3/3passaram,zero erros/skips.16controles do comparador passaram.
+Caso de escopo foi renomeado para o novo contrato; caso GTK ampliado para autor.
+Contrato estruturado/renderização e arquitetura conferidos. Relatório
+em docs/BUSCA-AUTOR-COMENTARIOS.md. Fonte posterior ao pacote0.1.13,sem pacote novo;
+CI Linux completo e nova comparação ainda pendentes neste checkpoint.
+
+Computer Use/sky examinou Gerenciador de Tarefas do guest offline:Foxit5464
+continua em segundo plano,usuário IA Machine,status Em execução. Não encerrado
+nem rede religada. Diagnóstico de causa ainda em andamento; capturas privadas
+em analysis-local/resume-20261018-1918. Nenhuma proteção alterada nem novo cenário
+Foxit declarado aprovado. Pesos,19critérios abertos,paridade0/25 preservados.
+Este commit permite validar a fonte no CI autorizado; registrar resultados
+examinados e publicação final após a execução, antes de considerar a correção fechada.
