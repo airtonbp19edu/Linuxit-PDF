@@ -1,11 +1,11 @@
 # Criação de PDF a partir de imagens
 
-Atualização da fonte **0.1.10**, em validação: aceita **BMP, WebP e TIFF de um
+Atualização **0.1.10/devel**: aceita **BMP, WebP e TIFF de um
 quadro**, além de PNG/JPEG, reconhecidos pelo conteúdo. Limites, RGB/EXIF,
 transparência sobre branco, ordem e publicação exclusiva permanecem. WebP animado,
 TIFF multipágina e demais animações são recusados. OCR permanece pendente.
-22 métodos portáveis passaram; um método GTK novo e a fonte/pacote atual ainda
-precisam de execução Linux. Os registros abaixo descrevem o marco anterior0.1.7.
+22 métodos portáveis e seis de criação GTK passaram no conjunto333/333 por
+ambiente fonte/payload/sandbox. Os registros abaixo descrevem o marco anterior0.1.7.
 
 
 Fonte/pacote 0.1.7 validado após o marco 0.1.6. Contrato próprio, sem
@@ -82,3 +82,10 @@ A construção Flatpak foi validada, com confirmação de publicação/auditoria
 mesmo bundle reinstalado sem rebuild, 92 arquivos app/2803 runtime/214 ELF/149
 avisos de licenças conferidos; sete controles novos e smoke 5/5. As três suítes
 de 212 permanecem evidência do builder, sem nova execução nesta auditoria.
+
+## Entrega0.1.10
+
+BMP/WebP/TIFF de um quadro exercitados em backend, worker, GTK e Poppler no
+pacote:333/333 em cada ambiente fonte/payload/sandbox, incluindo cinco métodos
+portáveis e um GTK novos de formatos. [Revisão](../testes/resultados/0.1.10/validation-review.json).
+Sem OCR, TIFF multipágina ou animações; limites e ordem anteriores preservados.

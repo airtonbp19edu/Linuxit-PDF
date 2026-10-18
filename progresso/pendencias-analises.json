@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-18T01:51:24-03:00",
+  "reviewed_at_local": "2026-10-18T02:08:36-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -44,24 +44,6 @@
     "policy": "Save a checkpoint after each bounded target batch and before switching stages. On context/token interruption keep unfinished work pending/partial and resume from last examined result; do not count saved-but-unexamined output."
   },
   "unfinished_criteria": [
-    {
-      "stage_id": 1,
-      "stage_title": "Diagnóstico e preparação",
-      "criterion": "Regras remotas de proteção consultáveis pela API",
-      "criterion_status": "unknown",
-      "blocker_categories": [
-        "remote_api_access"
-      ],
-      "evidence_refs": [
-        "progresso/progresso.json",
-        "docs/REVISAO-ETAPAS.md",
-        "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md"
-      ],
-      "next_action": "Detailed protection/rules/ruleset API endpoints returned 403 (plan limitation); branch metadata says protected=false. Recheck detailed read access if availability changes, without changing settings or billing.",
-      "token_exhaustion_confirmed": null
-    },
     {
       "stage_id": 3,
       "stage_title": "Identificação tecnológica",
@@ -358,9 +340,10 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "docs/EDICAO-COM-HISTORICO.md"
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
       ],
-      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
+      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -385,9 +368,10 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "docs/EDICAO-COM-HISTORICO.md"
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
       ],
-      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
+      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -413,9 +397,10 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "docs/EDICAO-COM-HISTORICO.md"
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
       ],
-      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
+      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -444,9 +429,10 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "docs/EDICAO-COM-HISTORICO.md"
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
       ],
-      "next_action": "Validate own0.1.10 draft editor on Linux/GTK, then source/payload/installed sandbox and independent delivery audit. Remaining annotations/forms/formats/OCR and full original behavior still open; cloud deferred.",
+      "next_action": "Own0.1.10 source/payload/installed sandbox333/333 passed. Continue OCR, multipage images, remaining form/annotation features and own interfaces; original reference/differential closure needs offline VM; direct cloud remains deferred.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -550,11 +536,35 @@
       "token_exhaustion_confirmed": null
     }
   ],
-  "general_progress_percent": 43.33,
+  "general_progress_percent": 43.93,
   "criteria_revision": 1,
   "stage_13_is_partial_due_to_vm": false,
   "scope_exclusions_ref": "progresso/projeto.json",
   "excluded_feature_ids": [
     "foxit-ai"
+  ],
+  "resolved_criteria_history": [
+    {
+      "date_local": "2026-10-18T02:03:20-03:00",
+      "previous_record": {
+        "stage_id": 1,
+        "stage_title": "Diagnóstico e preparação",
+        "criterion": "Regras remotas de proteção consultáveis pela API",
+        "criterion_status": "unknown",
+        "blocker_categories": [
+          "remote_api_access"
+        ],
+        "evidence_refs": [
+          "progresso/progresso.json",
+          "docs/REVISAO-ETAPAS.md",
+          "docs/AVANCO-SEM-VM.md",
+          "docs/COPIA-EDITADA.md",
+          "docs/BUSCA-COLECOES.md"
+        ],
+        "next_action": "Detailed protection/rules/ruleset API endpoints returned 403 (plan limitation); branch metadata says protected=false. Recheck detailed read access if availability changes, without changing settings or billing.",
+        "token_exhaustion_confirmed": null
+      },
+      "resolution_evidence": "docs/REGRAS-REMOTAS-2026-10-18.md"
+    }
   ]
 }

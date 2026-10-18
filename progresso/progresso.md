@@ -1,6 +1,6 @@
 # Progresso verificável
 
-Progresso geral do roteiro: **43.33%**. Cada etapa usa o peso do pedido; dentro dela, atividades têm pesos estimados, registrados no JSON. Somente atividades com estado `done` e evidência existente contam. Isso mede entregas do roteiro, não equivalência do aplicativo.
+Progresso geral do roteiro: **43.93%**. Cada etapa usa o peso do pedido; dentro dela, atividades têm pesos estimados, registrados no JSON. Somente atividades com estado `done` e evidência existente contam. Isso mede entregas do roteiro, não equivalência do aplicativo.
 
 Paridade Foxit verificada: **0/25 obrigações identificadas (0.00%)**. O inventário funcional permanece aberto. Testes próprios não contam como testes diferenciais.
 
@@ -8,7 +8,7 @@ Cobertura global de engenharia reversa: **não calculável** enquanto o universo
 
 | Etapa | Peso | Fração verificada | Contribuição |
 |---|---:|---:|---:|
-| 01 — Diagnóstico e preparação | 3% | 80.0% | 2.40% |
+| 01 — Diagnóstico e preparação | 3% | 100.0% | 3.00% |
 | 02 — Identificação dos arquivos | 3% | 100.0% | 3.00% |
 | 03 — Identificação tecnológica | 4% | 50.0% | 2.00% |
 | 04 — Extração e desempacotamento | 5% | 100.0% | 5.00% |

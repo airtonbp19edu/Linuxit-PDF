@@ -2,14 +2,14 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.9 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.10 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
 Para baixar, abra a
-[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.9-x86_64.flatpak)
+[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.10-x86_64.flatpak)
 e clique em **Download raw** (ícone de download). Se o repositório estiver
 privado, use um navegador conectado a uma conta com acesso ao projeto;
 o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
@@ -17,14 +17,14 @@ o download não exige login. A visibilidade é administrada pelo proprietário.
 Uma página em branco no navegador interno não indica que o pacote esteja vazio.
 Se necessário, abra essa página no navegador habitual.
 
-O arquivo 0.1.9 tem **35.983.584 bytes** (aproximadamente 34,3 MiB).
+O arquivo 0.1.10 tem **35.997.664 bytes** (aproximadamente 34,3 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 
 ```bash
-flatpak install --user ./LinuxitPDF-0.1.9-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.10-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -41,14 +41,14 @@ Abra o terminal na pasta do arquivo e execute:
 
 ```bash
 flatpak --version
-sha256sum LinuxitPDF-0.1.9-x86_64.flatpak
-flatpak install --user ./LinuxitPDF-0.1.9-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.10-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.10-x86_64.flatpak
 ```
 
-O SHA-256 esperado para a 0.1.9 é:
+O SHA-256 esperado para a 0.1.10 é:
 
 ```text
-ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede
+a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56
 ```
 
 - Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;
@@ -64,11 +64,13 @@ O comando `--user` seleciona a instalação para seu usuário.
 O procedimento de instalar um arquivo `.flatpak` está na
 [documentação oficial](https://docs.flatpak.org/en/latest/single-file-bundles.html).
 
-Em 18/10/2026, um novo download HTTP público completo teve os mesmos
+
+Histórico da versão0.1.9: Em 18/10/2026, um novo download HTTP público completo teve os mesmos
 35.983.584 bytes e SHA-256 do pacote local/publicado. A
 [conferência de integridade](../testes/resultados/0.1.9/download-integrity-2026-10-18.json)
 não verifica a cópia do usuário nem diagnostica seu ambiente Linux. A instalação
 e os testes do CI são evidência anterior; não foram repetidos nesta conferência.
+
 
 ## Marco 0.1.9: pastas sincronizadas locais
 

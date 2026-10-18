@@ -1,9 +1,10 @@
 # Pendências de análise e pontos de retomada
 
-Revisão estática em **18/10/2026**; os critérios da etapa 13 e os pesos foram preservados.
-Os marcos de runtime citados abaixo são históricos; não foram reexecutados nesta rodada.
-A [fonte estruturada](pendencias-analises.json) registra **todos os 21 critérios
-não concluídos em 14 etapas**, cruzados com [progresso.json](progresso.json).
+Estado atualizado em **18/10/2026** após a entrega 0.1.10; os critérios da etapa 13
+e os pesos foram preservados. A suíte própria atual passou 333/333 em fonte,
+payload e sandbox. As análises estáticas anteriores não foram reiniciadas.
+A [fonte estruturada](pendencias-analises.json) registra **todos os 20 critérios
+não concluídos em 13 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
 `blocked` e `unknown` continuam distintos e não ganham peso por terem uma nota.
 
@@ -16,7 +17,7 @@ por essa exclusão; pendências e pesos permanecem preservados.
 
 | Etapa | Fração verificada | Estado e próximo passo |
 |---|---:|---|
-|01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
+|01|100%|API agora consultável: regras/rulesets200 vazios e main sem proteção; configurações preservadas.|
 |03|50%|RTTI de CPDF_BackgroundDrawer e ligações de busca/reflow refinadas; contexto0x138 e fronteiras restantes abertas.|
 |05|42,9%|Limpeza separa chamadas virtuais, recursos condicionais e contadores com/sem LOCK; ownership e contextos completos abertos.|
 |07|33,3%|323 entradas (152 REA+171 diretas); 48 novas em oito lotes. Inventário global e tipos completos desconhecidos.|
@@ -25,11 +26,11 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
 |11|25%|CFindToolDlgAdv e tabela7911/7913 ligados; handler comum e DDX distintos mantêm ambiguidade. UI01–UI10 exigem original.|
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
-|15|33,3%|Segurança/texto acessível/CMS/edição em cópia na0.1.8,267/267 por ambiente; demais operações e duas propostas abertas.|
-|16|33,3%|16 novos métodos GTK passaram; texto ATK/foco/cancelamento e UI de segurança/CMS/cópia. Desktop/portais/AT-SPI/impressora abertos.|
+|15|33,3%|0.1.10: controles AcroForm, marcadores, anotações e histórico em cópia; BMP/WebP/TIFF simples. 333/333 por ambiente. OCR, famílias completas e duas propostas abertas.|
+|16|33,3%|Nove métodos GTK novos na 0.1.10, incluindo histórico, diálogos, formatos e renderização. Desktop/portais/AT-SPI/impressora abertos.|
 |18|10%|Corpus preservado17/17 repetido na0.1.7; zero comparações originais.|
 |19|14,3%|Regressões próprias aprovadas; divergências Foxit ainda dependem de observação offline.|
-|21|50%|Entrega 0.1.8 validada; publicação/auditoria nas notas.21 critérios amplos ainda abertos.|
+|21|50%|Entrega 0.1.10 validada; publicação/auditoria nas notas. 20 critérios amplos ainda abertos.|
 
 A etapa **13 tem seus dois critérios de projeto verificados (100%)** e não é
 parcial por falta de VM. Isso não fecha a fase A, a implementação nem a paridade.
@@ -112,3 +113,11 @@ interface de índice, escritores de estado/arrays e ciclo de vida refinados.
 Algoritmos grandes, limites/ownership e comportamento original permanecem parciais.
 A fila da nota anterior foi examinada; os novos recortes estão no relatório.
 Roteiro43,33%,21 critérios em14 etapas e paridade0/25 preservados.
+
+
+## Leitura remota resolvida em18/10/2026
+
+Critério de consulta da etapa1 verificado após repositório público:HTTP200
+para regras/rulesets, ambos vazios; mainprotected=false. Nenhuma configuração
+alterada. [Evidência](../docs/REGRAS-REMOTAS-2026-10-18.md). Roteiro43,93%,
+38done/20abertos em13etapas; paridade0/25. Pesos e definições intactos.

@@ -1,7 +1,8 @@
 # Edição de cópia com histórico
 
-Fonte de desenvolvimento **0.1.10**, em validação. O Flatpak publicado anterior
-é 0.1.9; este documento não declara novo pacote aprovado antes das evidências.
+Fonte e Flatpak de desenvolvimento **0.1.10/devel**, validados com333/333
+testes próprios em fonte, payload e sandbox instalado. Evidências vinculadas
+abaixo; publicação e auditoria nas notas mais recentes.
 Contrato próprio MIT, sem transportar código ou recursos Foxit.
 
 Em **Arquivo → Editar cópia com desfazer/refazer…**, escolha a operação e a
@@ -61,7 +62,7 @@ Exclusão de anotações/marcadores é lógica: não é redação nem apagamento
 de bytes órfãos do arquivo PDF. Notas antigas com respostas/popup são recusadas
 para exclusão; não se remove uma cadeia por inferência.
 
-## Verificações desta rodada
+## Verificações no checkpoint inicial
 
 21 testes portáveis de novos controles/árvores/anotações e oito de histórico
 passaram em PDFs sintéticos reais. A primeira tentativa encontrou três falhas
@@ -94,3 +95,18 @@ GTK novos passaram, smoke5/5 e corpus próprio17/17. Captura do editor examinada
 [Revisão](../testes/resultados/0.1.10-source/review.json). Este resultado pertence
 ao commit do editor; as adições posteriores de formatos e a conferência de
 pixel amarelo exigem a próxima validação integral da fonte/payload/sandbox.
+
+## Entrega0.1.10 validada
+
+Fonte atual df8cc464fdcff693f1b65881c4929bea2478c2a0, incluindo formatos
+adicionais e pixel do destaque: **333/333 em fonte, payload e sandbox instalado**,
+zero falhas/erros/skips; 34 métodos portáveis e nove GTK novos, smoke5/5 e
+launcher3/3. [CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098896161),
+[revisão](../testes/resultados/0.1.10/validation-review.json),
+[manifesto](../releases/manifest-0.1.10.json). A captura do editor foi examinada
+e os relatórios CI conferidos por hash. As pendências e contagens de checkpoints
+anteriores acima são históricas. Publicação/auditoria nas notas mais recentes.
+
+A consulta remota da etapa1 foi verificada separadamente após repositório público:
+[regras remotas](REGRAS-REMOTAS-2026-10-18.md). Roteiro43,93%,38done/20abertos
+em13etapas; pesos e definições preservados, paridade0/25.

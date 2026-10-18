@@ -6,7 +6,7 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
-A versão **0.1.9 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.10 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,
@@ -21,8 +21,8 @@ calculado pelo GTK: títulos e ícones ficam visíveis, inclusive ao redimension
 ocultar/restaurar o painel e alternar o modo de leitura. Dez cenários de
 geometria passaram, comparados com dez falhas na fonte anterior.
 
-**290 testes próprios passaram em cada ambiente**: fonte Linux, payload e
-Flatpak instalado, sem falhas/erros/skips. Foram conferidos 99 arquivos da
+**333 testes próprios passaram em cada ambiente**: fonte Linux, payload e
+Flatpak instalado, sem falhas/erros/skips. Foram conferidos 103 arquivos da
 aplicação e 11 relatórios selados; smoke GTK 5/5 e launcher 3/3 passaram.
 Teste em Debian 13/tela X11 virtual; desktop real, acessibilidade, portais,
 impressão física e comparação Foxit continuam pendentes. A janela solicitada
@@ -37,7 +37,7 @@ A [continuação estática de 18/10/2026](docs/REA-ESTATICA-CONTINUACAO-2026-10-
 examinou mais 48 entradas de busca, impressão e reflow, com tipos e estados
 refinados; cobertura global desconhecida e original não executado.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
-Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
+Paridade comprovada permanece **0/25**, e o roteiro está em **43,93%** (consulta das regras remotas verificada).
 
 A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 2.803 arquivos de dependências, 214 ELF e 149 arquivos de licença e créditos conferidos.
@@ -48,7 +48,7 @@ A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 
-- [Baixar Flatpak 0.1.9](releases/LinuxitPDF-0.1.9-x86_64.flatpak) e [instalação e acesso ao download](docs/instalacao.md)
+- [Baixar Flatpak0.1.10](releases/LinuxitPDF-0.1.10-x86_64.flatpak) e [instalação e acesso ao download](docs/instalacao.md)
 - [Execução das frentes sem VM e entrega 0.1.5](docs/AVANCO-SEM-VM.md)
 - [Pastas sincronizadas: uso, limites e dependências de VM](docs/PASTAS-SINCRONIZADAS.md)
 - [Hashes e manifesto](releases/manifest.json)
@@ -125,3 +125,8 @@ cliente externo; APIs remotas continuam adiadas. Guia separa VM e desktop.
 A [auditoria independente da 0.1.9](testes/resultados/0.1.9/audit/review.json)
 reinstalou o mesmo bundle publicado: arquivos conferidos, sete controles e
 cinco novas verificações funcionais aprovados. Não repetiu as suítes completas.
+
+A0.1.10 acrescenta [edição de cópia com histórico](docs/EDICAO-COM-HISTORICO.md):
+checkbox/radio/listas, mover/excluir subárvores, destaque/retângulo/exclusão
+restrita e desfazer/refazer do rascunho. BMP/WebP/TIFF simples também aceitos.
+As cópias já salvas permanecem preservadas; OCR e famílias completas pendentes.

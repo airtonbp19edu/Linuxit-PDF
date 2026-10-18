@@ -1821,3 +1821,42 @@ Próximo:commit/push da fonte posterior e buildCI com suíte atual completa333
 em fonte/payload/sandbox; só importar pacote após conferir hashes, populações
 e resultados. Roteiro43,33%,21 critérios abertos/paridade0/25 preservados.
 IA excluída/nuvem remota adiada/original não executado.
+
+
+## 2026/10/18 às 02:03 (America/Sao_Paulo, UTC-03:00) — consulta remota agora verificável
+
+Revisão somente leitura da pendência API01 após o usuário tornar repositório
+público. Regras aplicáveis a main e rulesets responderamHTTP200 comlistasvazias;
+metadados mainprotected=false/protectionenabled=false; endpoint deproteção404.
+Não houve alteração de proteção, visibilidade, faturamento ou configurações.
+Evidência:docs/REGRAS-REMOTAS-2026-10-18.md e
+testes/resultados/revisao-etapas-2026-10-18/remote-rules.json, sem credenciais.
+
+Único critério da etapa1 que estava unknown agora done; definição/pesos e revisão
+intactos. Roteiro43,33→43,93% (+0,60pp),38done/20abertos em13etapas; paridade0/25
+preservada. Registro anterior403 arquivado no histórico de resolução. Esta
+verificação não altera código do aplicativo nem valida original. Build0.1.10
+segue emCI; registrar publicação deste marco junto da entrega após evidências.
+
+
+## 2026/10/18 às 02:08 (America/Sao_Paulo, UTC-03:00) — entrega0.1.10 validada
+
+CI39098896161, fontedf8cc464fdcff693f1b65881c4929bea2478c2a0:333/333 em cada ambiente
+fonte/payload/sandbox instalado, sem falhas/erros/skips.34 portáveis e9 GTK novos.
+Os290 IDs anteriores preservados. Editor de cópia, controles AcroForm, mover/
+excluir marcadores, anotações de área/exclusão e BMP/WebP/TIFF simples validados.
+Desfazer/refazer atua no rascunho; cópias anteriores preservadas. OCR permanece
+pendente. Capturas examinadas;11 relatórios CI selados e103 arquivos app conferidos.
+Runtime:2804 arquivos/215 ELF/150 avisos de pacotes, smoke5/5/launcher3/3.
+
+BundleLinuxitPDF-0.1.10-x86_64.flatpak, 35997664 bytes,
+SHA256a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56. Manifestos, licenças e versões anteriores
+preservados; JSON/PNGs copiados byte a byte. Manifesto de entrega atualizado
+somente após validação integral. Relatórios emtestes/resultados/0.1.10/, raw
+emanalysis-local/no-vm-release-artifact-12126216018/; arquivoZIP comSHA256
+9476ba27ea16bfb08ecb9fe6fe32f2b66401ad10bc85a441639d0a6d59543d9d
+igual ao digest GitHub; artefato12126216018.
+Arquitetura41/54, catálogo323,23subconjuntos/duas propostas,43,93%/20abertos e
+paridade0/25 intactos. Original não executado; nuvem remota adiada/IA excluída.
+Próximo:auditar repositório,commit/push do pacote e auditoria independente do
+mesmo bundle instalado. Publicação ainda não confirmada neste checkpoint.

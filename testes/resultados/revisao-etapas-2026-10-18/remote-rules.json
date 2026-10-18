@@ -1,0 +1,43 @@
+{
+  "date_local": "2026-10-18T02:02:08-03:00",
+  "repository": "airtonbp19edu/Linuxit-PDF",
+  "settings_modified": false,
+  "endpoints": {
+    "/": {
+      "status": 200,
+      "data": {
+        "full_name": "airtonbp19edu/Linuxit-PDF",
+        "private": false,
+        "visibility": "public",
+        "default_branch": "main"
+      }
+    },
+    "/branches/main": {
+      "status": 200,
+      "data": {
+        "name": "main",
+        "protected": false,
+        "protection": {
+          "enabled": false,
+          "required_status_checks": {
+            "enforcement_level": "off",
+            "contexts": [],
+            "checks": []
+          }
+        }
+      }
+    },
+    "/branches/main/protection": {
+      "status": 404,
+      "data": null
+    },
+    "/rules/branches/main": {
+      "status": 200,
+      "data": []
+    },
+    "/rulesets": {
+      "status": 200,
+      "data": []
+    }
+  }
+}

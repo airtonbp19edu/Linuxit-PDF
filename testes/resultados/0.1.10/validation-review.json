@@ -1,0 +1,79 @@
+{
+  "schema": "linuxit-copy-editor-delivery-v1",
+  "date_local": "2026-10-18T02:08:36-03:00",
+  "version": "0.1.10",
+  "source_commit": "df8cc464fdcff693f1b65881c4929bea2478c2a0",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39098896161",
+  "complete_tests_per_environment": 333,
+  "validation": {
+    "source": {
+      "run": 333,
+      "passed": 333,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 333,
+      "passed": 333,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 333,
+      "passed": 333,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "new_own_methods": 43,
+  "new_portable_methods": 34,
+  "new_gtk_methods": 9,
+  "prior290_test_ids_preserved": true,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.10-x86_64.flatpak",
+    "bytes": 35997664,
+    "sha256": "a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56",
+    "digitally_signed": false
+  },
+  "source_payload_files": 103,
+  "runtime_files": 2804,
+  "elf_files": 215,
+  "debian_package_notices": 150,
+  "sealed_ci_reports_verified": 11,
+  "screenshots_examined": true,
+  "screenshot_hashes": {
+    "accessible-page-text.png": "ce92d1af578c33ac29ba053db7d263d0a9be4ccb61dd8078aefa8b14f9d1e55a",
+    "attachment-search.png": "e3e403e062d2ea205ef9eb6598ff0478d47704cd93042b0f2a8836dc35b209db",
+    "collection-search.png": "52323dee6e93bf2c74cb156597b3d791113646fce8103e6ce038bbf116a7a72d",
+    "edit-draft.png": "0a76489b6f370ccc84752991b154c256aeee953bd4ffb5bbfab654c632d6a27d",
+    "image-creation.png": "bf6b5bafc41de9fa8ff56502779320658e621c60e1453cb6fc8f3339929cf0e8",
+    "pdf-security.png": "1fa548f421da2a692c253f26a5978202db813705f44b78632b4cb37a5ba12a04",
+    "proximity-search.png": "64bcb4b73941c3646fb290dd751ec57daa44bf44c4306379c84d3df6d378b920",
+    "signature-integrity.png": "f8e1c7c5e1e551f7c5643c7f74db338574f5e5c60a9987a0a9ab553c3408fee3",
+    "synced-local-folder.png": "de5f560ce1743ec4f136693d3c83cfa6711c81835b0854856aa4dab361f6af5d"
+  },
+  "source_editor_previous_validation": "testes/resultados/0.1.10-source/review.json",
+  "original_executed": false,
+  "foxit_parity_verified": false,
+  "criteria_or_weights_changed": false,
+  "separately_verified_api_criterion": "docs/REGRAS-REMOTAS-2026-10-18.md",
+  "limitations": [
+    "Own scoped contracts; original unobserved.",
+    "Draft undo/redo does not modify prior saved copies; logical deletion is not redaction.",
+    "OCR, multipage/animated images and full form/annotation families remain pending.",
+    "Real desktop portal, sync client, AT-SPI and physical printing remain unverified."
+  ],
+  "publication_state": "artifact_validated_prepared_for_commit_push_confirmation",
+  "artifact_id": 12126216018,
+  "archive_sha256": "9476ba27ea16bfb08ecb9fe6fe32f2b66401ad10bc85a441639d0a6d59543d9d",
+  "github_digest_matches": true,
+  "examined_screenshots": [
+    "search-ui/edit-draft.png",
+    "search-ui/image-creation.png",
+    "linuxit-flatpak-0.1.10.png"
+  ],
+  "other_screenshot_hashes_verified": true
+}

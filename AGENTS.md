@@ -1,35 +1,31 @@
 # Linuxit PDF — continuidade do projeto
 
+Fonte e Flatpak **0.1.10/devel**, com [editor de cópia e histórico](docs/EDICAO-COM-HISTORICO.md):
+checkbox/radio/listas, mover/excluir marcadores, destaque/retângulo e exclusão
+restrita de anotações. Desfazer/refazer atua no rascunho; cópias já salvas e
+original preservados. Criação de PDF aceita PNG/JPEG/BMP/WebP/TIFF de um quadro.
+OCR, multipágina/animações e famílias completas permanecem pendentes.
 
-Editor de cópia com formulários, marcadores, anotações e histórico em validação.
-21 testes portáveis + oito de histórico passaram; GTK/Linux e pacote novo pendentes.
-Ver docs/EDICAO-COM-HISTORICO.md e as notas mais recentes.
+**333/333 testes próprios por ambiente**: fonte, payload e sandbox instalado,
+sem falhas/erros/skips; 34 métodos portáveis e nove GTK novos. Integridade de
+103 arquivos app e 11 relatórios CI conferida; smoke5/5 e launcher3/3.
+Auditoria independente deste pacote ainda pendente neste checkpoint; publicação
+é confirmada nas notas posteriores. Os testes não são paridade Foxit.
 
-Fonte **0.1.10 em validação**; último Flatpak publicado **0.1.9/devel**, com [pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md).
-Pasta preferida, últimas pastas, atalhos para abrir/salvar e cópias novas completas,
-sem sobrescrita. Alterações externas exigem reabrir; o envio cabe ao cliente externo.
-**290/290 testes próprios** por ambiente: fonte, payload e sandbox instalado,
-sem falhas, erros ou skips; 15 métodos portáveis e oito GTK novos.
-Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
-com concessão específica. Cliente real, portal e persistência da concessão em
-um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
+[Pastas sincronizadas locais](docs/PASTAS-SINCRONIZADAS.md) preservadas; dois
+controles fora HOME passaram novamente. Cliente real, portal/concessão persistente,
+AT-SPI e impressão física continuam pendentes, sem depender da VM Foxit.
 
-[Continuação estática de 18/10/2026](docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md): 48 entradas novas,
-6.830 instruções/25.919 bytes conferidos em oito lotes; tipos, estados, stemming e arrays refinados.
-Fonte/pacote preservados; as suítes completas não foram repetidas nesta rodada.
+Arquitetura: 41 módulos/54 interfaces. Catálogo: 323 entradas (152 REA+171 diretas).
+23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,93%**, 38 critérios
+done/20 abertos; paridade: **0/25**. Original não executado. IA excluída e APIs
+remotas de nuvem adiadas. Relatórios anteriores preservados.
 
-Arquitetura: 41 módulos/54 interfaces. Catálogo: 323 entradas (152 REA + 171 diretas).
-São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
-37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
-APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
-auditoria independente do mesmo pacote aprovada (sete controles + cinco smoke).
-Evidências nas notas datadas; o restante do projeto continua parcial.
-
-VM em 18/10/2026: Windows 10 x64/VirtualBox 7.2.20 existe, com lentidão
-relatada. Log confirma NEM/Snail execution mode e Integridade da Memória ativa.
-Contenção offline ainda não validada; NAT está ativo na configuração lida.
-Não executar original antes de preparar o isolamento. Diagnóstico nas notas;
-proteções/hipervisor não foram alterados e não há nova observação Foxit.
+Último log da VM examinado em 18/10: VirtualBox Windows 10 existe, com NEM/Snail
+e Integridade da Memória ativa naquele registro; usuário está configurando.
+Contenção offline ainda não validada; NAT ativo na configuração então lida.
+Não executar original antes de preparar isolamento. Nenhuma proteção foi alterada
+por esta rodada. Diagnóstico e limites nas notas datadas.
 
 Instruções permanentes e registros de marcos anteriores abaixo; a síntese acima
 e as notas mais recentes definem o estado atual.
@@ -68,7 +64,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.9 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.10 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

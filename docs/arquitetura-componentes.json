@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-18T01:51:24-03:00",
+  "reviewed_at_local": "2026-10-18T02:08:36-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.10",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -835,7 +835,7 @@
     }
   ],
   "runtime_limitations": [
-    "Source0.1.10:21 advanced portable and8 history methods passed. New GTK editor/source suites and next Flatpak unverified at this checkpoint; prior0.1.9 bundle remains preserved.",
+    "Current0.1.10:333/333 passed in source/payload/installed sandbox;34 new portable and9 GTK methods. Real desktop/portal/client/accessibility/physical printing remain unverified.",
     "Current0.1.9 source/payload/installed Flatpak290/290 passed in Debian13/X11 CI; two outside-HOME denied/granted controls passed. Real desktop portal/backend/grant persistence/sync-client remain unverified.",
     "A background thread/worker is not an offline VM and does not authorize running Foxit.",
     "pypdf calls and subprocess.run jobs are not uniformly interruptible by BackgroundRunner cancellation.",
@@ -849,5 +849,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": true
+  "source_changes_unreleased": false
 }
