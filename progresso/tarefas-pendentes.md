@@ -9,8 +9,9 @@ OCR, multipágina/animações e famílias completas permanecem pendentes.
 **333/333 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips; 34 métodos portáveis e nove GTK novos. Integridade de
 103 arquivos app e 11 relatórios CI conferida; smoke5/5 e launcher3/3.
-Auditoria independente deste pacote ainda pendente neste checkpoint; publicação
-é confirmada nas notas posteriores. Os testes não são paridade Foxit.
+Publicação confirmada no GitHub. Auditoria independente do mesmo bundle
+aprovada: sete controles e cinco novos smoke checks, sem rebuild. Os testes
+não são paridade Foxit; evidências e identidade nas notas mais recentes.
 
 [Pastas sincronizadas locais](../docs/PASTAS-SINCRONIZADAS.md) preservadas; dois
 controles fora HOME passaram novamente. Cliente real, portal/concessão persistente,
@@ -29,7 +30,7 @@ por esta rodada. Diagnóstico e limites nas notas datadas.
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
-|Entrega0.1.10|Fonte/payload/sandbox aprovados; confirmar publicação e auditoria independente|Sem VM Foxit|
+|Entrega 0.1.10|Publicação e auditoria independente confirmadas; preservar bundle e relatórios|Concluída neste marco, sem VM Foxit|
 |Pastas sincronizadas|Portal real/concessão persistente e cliente externo, envio/conflitos/rede|Desktop Linux/cliente, sem VM Foxit|
 |Operações locais|OCR/multipágina, demais formulários/anotações e plataforma|Implementação própria sem VM|
 |Estática|Tamanhos/alocação e chamadores dos arrays; provedor ativo/offsets restantes da busca; contexto0x138 e serviços de imagem; comportamento7911/7913|REA/Ghidra sem executar original|

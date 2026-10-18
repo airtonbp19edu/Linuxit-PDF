@@ -66,7 +66,7 @@
     "OCR, multipage/animated images and full form/annotation families remain pending.",
     "Real desktop portal, sync client, AT-SPI and physical printing remain unverified."
   ],
-  "publication_state": "artifact_validated_prepared_for_commit_push_confirmation",
+  "publication_state": "confirmed_at_recorded_commit",
   "artifact_id": 12126216018,
   "archive_sha256": "9476ba27ea16bfb08ecb9fe6fe32f2b66401ad10bc85a441639d0a6d59543d9d",
   "github_digest_matches": true,
@@ -75,5 +75,8 @@
     "search-ui/image-creation.png",
     "linuxit-flatpak-0.1.10.png"
   ],
-  "other_screenshot_hashes_verified": true
+  "other_screenshot_hashes_verified": true,
+  "confirmed_delivery_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+  "publication_confirmed_at_local": "2026-10-18T02:15:50-03:00",
+  "independent_audit_review": "testes/resultados/0.1.10/audit/review.json"
 }

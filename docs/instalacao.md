@@ -20,6 +20,11 @@ Se necessário, abra essa página no navegador habitual.
 O arquivo 0.1.10 tem **35.997.664 bytes** (aproximadamente 34,3 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
+O [download público da 0.1.10](../testes/resultados/0.1.10/download-integrity-2026-10-18.json)
+foi conferido sem autenticação: HTTP 200, tamanho completo e SHA-256 esperado.
+A [auditoria independente](../testes/resultados/0.1.10/audit/review.json) também
+instalou esse mesmo bundle e aprovou cinco novos smoke checks.
+
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 

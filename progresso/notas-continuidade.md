@@ -1860,3 +1860,36 @@ Arquitetura41/54, catálogo323,23subconjuntos/duas propostas,43,93%/20abertos e
 paridade0/25 intactos. Original não executado; nuvem remota adiada/IA excluída.
 Próximo:auditar repositório,commit/push do pacote e auditoria independente do
 mesmo bundle instalado. Publicação ainda não confirmada neste checkpoint.
+
+
+## 2026/10/18 às 02:15 (America/Sao_Paulo, UTC-03:00) — publicação e auditoria 0.1.10 confirmadas
+
+Entrega técnica `c403fa773d9c5e43374625e37ab88dee590c4711` publicada no GitHub; ls-remote igual ao HEAD local
+limpo, com recibo externo fora da árvore. Fonte do aplicativo testada:
+df8cc464fdcff693f1b65881c4929bea2478c2a0. Bundle 35.997.664 bytes, SHA-256
+a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56. Download público sem login retornou HTTP 200 e os
+mesmos bytes/hash. Um auxiliar local falhou ao formatar o fuso por falta de tzdata
+no Python Windows; ajustado para UTC-03:00 desta data e recibo obtido. Nenhuma
+dependência do aplicativo foi alterada para isso.
+
+Auditoria https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39099821029 no mesmo bundle, sem rebuild: 103 arquivos app,
+2.804 de dependências, 215 ELF e 150 avisos de pacotes conferidos. Sete controles
+do auditor e cinco novos smoke checks passaram. As suítes 333/333 de fonte,
+payload e sandbox são do builder anterior; não foram repetidas pela auditoria.
+Artefato 12126102507; ZIP SHA-256 15a77f55d4f107b6c77f9aa8e98d639cb1a48e299cd3cdcc2f2be8762754cc02, igual ao digest GitHub.
+Quatro relatórios copiados byte a byte e revisão em testes/resultados/0.1.10/audit/;
+raw em analysis-local/no-vm-audit-artifact-12126102507/. Ferramentas: Git/API
+GitHub e auditor Python próprio; execução Linux em Debian 13/Xvfb/Flatpak no CI.
+
+Arquitetura 41 módulos/54 interfaces; catálogo 323 entradas; 23 subconjuntos e
+duas propostas em 25 famílias. Roteiro 43,93%, 38 done/20 abertos em 13 etapas.
+O único critério fechado nesta rodada foi a consulta de regras remotas; pesos e
+definições preservados. Paridade 0/25, cobertura global desconhecida. Não houve
+nova REA nem execução do Foxit; VM, rede e proteções Windows não foram alteradas.
+Sem evidência de esgotamento de tokens nesta rodada. APIs de nuvem adiadas, IA
+fora do escopo. Próximo trabalho próprio: OCR e demais contratos locais. Portal
+real, concessão persistente, cliente de sincronização, AT-SPI e impressão física
+precisam do respectivo desktop/equipamento, sem depender da VM Foxit. D01–D20,
+UI01–UI10 e comparações do original exigem validar contenção offline primeiro.
+Este registro de confirmação será publicado com recibo final externo separado,
+evitando autorreferência. Preservar lotes estáticos e versões anteriores.

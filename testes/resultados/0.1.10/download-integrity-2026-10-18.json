@@ -1,0 +1,17 @@
+{
+  "schema": "linuxit-public-download-integrity-v1",
+  "date_local": "2026-10-18T02:14:10-03:00",
+  "timezone": "America/Sao_Paulo",
+  "url": "https://raw.githubusercontent.com/airtonbp19edu/Linuxit-PDF/c403fa773d9c5e43374625e37ab88dee590c4711/releases/LinuxitPDF-0.1.10-x86_64.flatpak",
+  "public_unauthenticated_request": true,
+  "source_commit": "c403fa773d9c5e43374625e37ab88dee590c4711",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "content_length_header": "35997664",
+  "downloaded_bytes": 35997664,
+  "downloaded_sha256": "a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56",
+  "expected_bytes": 35997664,
+  "expected_sha256": "a70ea619975e61b45ffb55f84690652c5c86d8a75a33fba36257446bc3cdeb56",
+  "passed": true,
+  "linux_installation_performed_by_this_check": false
+}

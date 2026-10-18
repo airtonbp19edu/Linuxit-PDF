@@ -110,3 +110,16 @@ anteriores acima são históricas. Publicação/auditoria nas notas mais recente
 A consulta remota da etapa1 foi verificada separadamente após repositório público:
 [regras remotas](REGRAS-REMOTAS-2026-10-18.md). Roteiro43,93%,38done/20abertos
 em13etapas; pesos e definições preservados, paridade0/25.
+
+## Publicação e auditoria independente — 2026-10-18T02:15:50-03:00
+
+Entrega `c403fa773d9c5e43374625e37ab88dee590c4711` confirmada no GitHub e árvore limpa pelo recibo externo.
+A [auditoria](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39099821029) reinstalou o mesmo bundle publicado,
+sem rebuild: 103 arquivos app, 2.804 de dependências, 215 ELF e 150 avisos de
+pacotes conferidos. Sete controles e cinco novos smoke checks passaram.
+As suítes completas 333/333 por ambiente são evidência anterior do builder;
+a auditoria não as repetiu. [Relatórios](../testes/resultados/0.1.10/audit/review.json).
+Download público sem login conferido: HTTP 200, 35.997.664 bytes e SHA-256
+idêntico ao bundle testado. [Recibo](../testes/resultados/0.1.10/download-integrity-2026-10-18.json).
+OCR, multipágina/animações, demais contratos e validações de desktop permanecem
+abertos. Observação e comparação com o original exigem contenção offline.

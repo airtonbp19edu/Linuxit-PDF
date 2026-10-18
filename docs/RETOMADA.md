@@ -9,8 +9,9 @@ OCR, multipágina/animações e famílias completas permanecem pendentes.
 **333/333 testes próprios por ambiente**: fonte, payload e sandbox instalado,
 sem falhas/erros/skips; 34 métodos portáveis e nove GTK novos. Integridade de
 103 arquivos app e 11 relatórios CI conferida; smoke5/5 e launcher3/3.
-Auditoria independente deste pacote ainda pendente neste checkpoint; publicação
-é confirmada nas notas posteriores. Os testes não são paridade Foxit.
+Publicação confirmada no GitHub. Auditoria independente do mesmo bundle
+aprovada: sete controles e cinco novos smoke checks, sem rebuild. Os testes
+não são paridade Foxit; evidências e identidade nas notas mais recentes.
 
 [Pastas sincronizadas locais](PASTAS-SINCRONIZADAS.md) preservadas; dois
 controles fora HOME passaram novamente. Cliente real, portal/concessão persistente,

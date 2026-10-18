@@ -16,6 +16,12 @@ sobrescrever a origem ou arquivos existentes.
 A 0.1.6 acrescenta [busca em anexos, coringas/proximidade e coleção persistente](docs/BUSCA-COLECOES.md), com omissões e fontes desatualizadas explícitas.
 A base e as adaptações têm [proveniência registrada](docs/proveniencia-base.json).
 
+A 0.1.10 acrescenta [editor de cópia com desfazer/refazer](docs/EDICAO-COM-HISTORICO.md),
+checkbox/radio/listas, mover/excluir marcadores, destaque/retângulo e exclusão
+restrita de anotações. Criação de PDF aceita também BMP, WebP e TIFF de um quadro.
+OCR permanece pendente. O [mesmo Flatpak publicado foi auditado](testes/resultados/0.1.10/audit/review.json),
+com sete controles e cinco novos smoke checks aprovados.
+
 A [correção do painel lateral](docs/ETAPA-16-LAYOUT.md) preserva o mínimo
 calculado pelo GTK: títulos e ícones ficam visíveis, inclusive ao redimensionar,
 ocultar/restaurar o painel e alternar o modo de leitura. Dez cenários de
@@ -43,7 +49,8 @@ A [revisão das 21 etapas](docs/REVISAO-ETAPAS.md) auditou a instalação 0.1.3:
 2.803 arquivos de dependências, 214 ELF e 149 arquivos de licença e créditos conferidos.
 Sete controles do auditor e um novo smoke 5/5 passaram. Os relatórios das
 suítes completas 114/114 do 0.1.3 foram conferidos, sem repetir essas suítes
-nesta revisão. Os 21 critérios abertos permanecem registrados.
+nesta revisão. Os 21 critérios então abertos foram preservados nessa revisão; o registro atual
+tem 20 após a consulta da API de regras remotas em 18/10.
 A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
