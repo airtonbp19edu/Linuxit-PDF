@@ -3214,9 +3214,9 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Source0.1.12 TIFF multipage subset; published package0.1.11; see docs/TIFF-MULTIPAGINA.md; full family incomplete",
+      "matrix_implementation": "Source/package0.1.12 TIFF multipage and prior local OCR subset; see docs/TIFF-MULTIPAGINA.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. 14 novos controles portáveis passaram; Linux/GTK e novo pacote aguardam CI. Família completa e referência Foxit permanecem parciais.",
+      "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. Fonte/payload/sandbox380/380 passaram, incluindo14 novos portáveis,2 GTK e1 integração real TIFF→PDF→OCR; uma expectativa histórica de recusa TIFF foi adaptada. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
         "Lista explícita de1–100 arquivos PNG/JPEG/BMP/WebP simples ou TIFF multipágina; até100 páginas somadas, DPI72–600 e destino.pdf novo.",
         "OCR: PDF local não criptografado de1–20 páginas, SHA256 da fonte, idioma por/eng/por+eng,150/300DPI e destino.pdf novo."
@@ -3272,7 +3272,8 @@
         "docs/TIFF-MULTIPAGINA.md",
         "testes/resultados/tiff-multipage-portable-2026-10-18-round2.json",
         "testes/resultados/tiff-creation-existing-2026-10-18-round2.json",
-        "testes/resultados/tiff-multipage-portable-2026-10-18-round3.json"
+        "testes/resultados/tiff-multipage-portable-2026-10-18-round3.json",
+        "testes/resultados/0.1.12/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3543,5 +3544,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T12:24:07-03:00"
+  "updated_at_local": "2026-10-18T12:43:31-03:00"
 }

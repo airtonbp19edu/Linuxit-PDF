@@ -6,11 +6,15 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
+A 0.1.12 acrescenta [TIFF multipágina](docs/TIFF-MULTIPAGINA.md), com todas as
+páginas em blocos, orientação por página e limite de 100 páginas na criação.
+O OCR continua limitado a 20 páginas.
+
 A 0.1.11 acrescenta [OCR local em português e inglês](docs/OCR-LOCAL.md) para uma
 cópia rasterizada pesquisável. Preserva o original, informa páginas sem texto
 detectado e explicita as perdas de links/formulários/assinaturas na nova cópia.
 
-A versão **0.1.11 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.12 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,
@@ -31,7 +35,7 @@ calculado pelo GTK: títulos e ícones ficam visíveis, inclusive ao redimension
 ocultar/restaurar o painel e alternar o modo de leitura. Dez cenários de
 geometria passaram, comparados com dez falhas na fonte anterior.
 
-**363 testes próprios passaram em cada ambiente**: fonte Linux, payload e
+**380 testes próprios passaram em cada ambiente**: fonte Linux, payload e
 Flatpak instalado, sem falhas/erros/skips. Foram conferidos 105 arquivos da
 aplicação e 11 relatórios selados; smoke GTK 5/5 e launcher 3/3 passaram.
 Teste em Debian 13/tela X11 virtual; desktop real, acessibilidade, portais,
@@ -59,7 +63,7 @@ A [auditoria da entrega0.1.5](testes/resultados/0.1.5/audit/review.json) também
 passou: mesmo bundle reinstalado,85 arquivos app e dependências verificados,
 sete controles e novo smoke 5/5. Esta auditoria não repete as suítes152/152.
 
-- [Baixar Flatpak 0.1.11](releases/LinuxitPDF-0.1.11-x86_64.flatpak) e [instalação e acesso ao download](docs/instalacao.md)
+- [Baixar Flatpak 0.1.12](releases/LinuxitPDF-0.1.12-x86_64.flatpak) e [instalação e acesso ao download](docs/instalacao.md)
 - [Execução das frentes sem VM e entrega 0.1.5](docs/AVANCO-SEM-VM.md)
 - [Pastas sincronizadas: uso, limites e dependências de VM](docs/PASTAS-SINCRONIZADAS.md)
 - [Hashes e manifesto](releases/manifest.json)

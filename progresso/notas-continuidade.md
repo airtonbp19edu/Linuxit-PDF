@@ -2033,3 +2033,31 @@ analysis-local/no-vm-release-artifact-12141228395/. ZIP SHA256
 GitHub. Próximo:publicar correção e repetir validação completa nos três ambientes.
 Pacote0.1.11 preservado,43,93%/38done/20abertos/paridade0/25 intactos. Sem VM,
 original ou nova análise REA; sem evidência de esgotamento de tokens.
+
+
+## 2026/10/18 às 12:43 (America/Sao_Paulo, UTC-03:00) — TIFF0.1.12 validado nos três ambientes
+
+CI39141058408, fonte `b2ee3e324f0cb2bb23032ce82239ea56c84302d1`:380/380 por ambiente fonte/payload/sandbox,
+sem falhas/erros/skips.14 novos portáveis,2 GTK e1 integração Linux TIFF→PDF→OCR.
+Um teste anterior que recusava TIFF foi adaptado/renomeado:362 IDs anteriores
+preservados,18 IDs novos incluem a substituição,17 métodos adicionais líquidos.
+Ordem de blocos/páginas, orientação por página, modos/alpha, LZW/Group4, BigTIFF/
+endianness, limites, corrupção e protocolo exercitados; pixels Poppler e OCR real.
+Capturas TIFF/criação/principal examinadas; demais hashes conferidos.
+
+Bundle LinuxitPDF-0.1.12-x86_64.flatpak, 44661792 bytes, SHA256
+77cbff20cdb351272de9292ce334fb97c327fdfbef7fb3321d408fe6e5144701. Artefato12142105864, ZIP SHA256 758cb5163c572a52e777f9aa4a421b6b318ee26caef72c2dc1ff4d5847de940e, igual ao digest
+GitHub.105 arquivos app/11 relatórios selados; runtime 2849arquivos/
+224ELF/162avisos conferidos. Sem nova dependência. Smoke5/5,launcher3/3,
+controles fora HOME negado/concedido passaram. Evidências testes/resultados/0.1.12/,
+raw analysis-local/no-vm-release-artifact-12142105864/. Git/API/Python/Pillow/pypdf;
+execução Debian13/Xvfb/Flatpak no CI. Relatórios copiados byte a byte.
+
+Arquitetura43/57,catálogo323,23subconjuntos/duas propostas,43,93%/38done/20abertos,
+paridade0/25 preservados. Critérios/pesos e universo global desconhecido intactos.
+Original/VM não executados, nuvem adiada/IA excluída. Criação100 páginas não amplia
+OCR20; RGB8 sem ICC/precisão alta, SubIFDs ou seleção individual. Próximo:publicar
+e auditar mesmo pacote, continuar demais formulários/anotações/contratos/estática.
+Desktop/portal/cliente/AT-SPI/impressora e comparação Foxit em VM offline abertos.
+Sem evidência de esgotamento de tokens. Publicação ainda requer confirmação após
+commit/push desta entrega preparada; versões anteriores preservadas.

@@ -1,5 +1,11 @@
 # Criação de PDF a partir de imagens
 
+Atualização **0.1.12/devel**: [TIFF multipágina](TIFF-MULTIPAGINA.md) aceito em
+blocos, todas as páginas na ordem interna, até 100 páginas somadas. RGB8,
+orientação por página, limites e publicação exclusiva conferidos. 380/380 por
+ambiente; OCR separado mantém limite de 20 páginas. Os textos abaixo são históricos
+dos marcos 0.1.7/0.1.10/0.1.11 e não redefinem o contrato atual.
+
 Na 0.1.11, o [OCR local](OCR-LOCAL.md) é uma operação separada: crie o PDF de
 imagens, abra-o e use **Arquivo → Criar cópia pesquisável com OCR…**. A criação
 de imagens descrita abaixo continua sem reconhecimento de texto. Os registros

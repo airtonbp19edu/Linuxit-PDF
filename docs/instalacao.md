@@ -2,14 +2,14 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.11 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.12 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
 Para baixar, abra a
-[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.11-x86_64.flatpak)
+[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.12-x86_64.flatpak)
 e clique em **Download raw** (ícone de download). Se o repositório estiver
 privado, use um navegador conectado a uma conta com acesso ao projeto;
 o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
@@ -17,19 +17,14 @@ o download não exige login. A visibilidade é administrada pelo proprietário.
 Uma página em branco no navegador interno não indica que o pacote esteja vazio.
 Se necessário, abra essa página no navegador habitual.
 
-O arquivo 0.1.11 tem **44.671.928 bytes** (aproximadamente 42,6 MiB).
+O arquivo 0.1.12 tem **44.661.792 bytes** (aproximadamente 42,6 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
-
-O [download público da 0.1.11](../testes/resultados/0.1.11/download-integrity-2026-10-18.json)
-foi conferido sem login: HTTP200, tamanho e SHA-256 completos.
-A [auditoria independente](../testes/resultados/0.1.11/audit/review.json) reinstalou
-o mesmo bundle e aprovou cinco novos smoke checks.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 
 ```bash
-flatpak install --user ./LinuxitPDF-0.1.11-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.12-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -46,14 +41,14 @@ Abra o terminal na pasta do arquivo e execute:
 
 ```bash
 flatpak --version
-sha256sum LinuxitPDF-0.1.11-x86_64.flatpak
-flatpak install --user ./LinuxitPDF-0.1.11-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.12-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.12-x86_64.flatpak
 ```
 
-O SHA-256 esperado para a 0.1.11 é:
+O SHA-256 esperado para a 0.1.12 é:
 
 ```text
-30a1e9ab078194df85c0bdf841316958450b916b1f87f3312eaccd491c240c02
+77cbff20cdb351272de9292ce334fb97c327fdfbef7fb3321d408fe6e5144701
 ```
 
 - Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;
@@ -82,6 +77,13 @@ Histórico da 0.1.10: O [download público da 0.1.10](../testes/resultados/0.1.1
 foi conferido sem autenticação: HTTP 200, tamanho completo e SHA-256 esperado.
 A [auditoria independente](../testes/resultados/0.1.10/audit/review.json) também
 instalou esse mesmo bundle e aprovou cinco novos smoke checks.
+
+
+
+Histórico da0.1.11: O [download público da 0.1.11](../testes/resultados/0.1.11/download-integrity-2026-10-18.json)
+foi conferido sem login: HTTP200, tamanho e SHA-256 completos.
+A [auditoria independente](../testes/resultados/0.1.11/audit/review.json) reinstalou
+o mesmo bundle e aprovou cinco novos smoke checks.
 
 
 ## Marco 0.1.9: pastas sincronizadas locais

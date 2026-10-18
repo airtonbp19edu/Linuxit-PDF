@@ -1,0 +1,80 @@
+{
+  "schema": "linuxit-tiff-delivery-review-v1",
+  "date_local": "2026-10-18T12:43:31-03:00",
+  "version": "0.1.12",
+  "source_commit": "b2ee3e324f0cb2bb23032ce82239ea56c84302d1",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141058408",
+  "artifact_id": 12142105864,
+  "archive_sha256": "758cb5163c572a52e777f9aa4a421b6b318ee26caef72c2dc1ff4d5847de940e",
+  "github_digest_matches": true,
+  "complete_tests_per_environment": 380,
+  "validation": {
+    "source": {
+      "run": 380,
+      "passed": 380,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 380,
+      "passed": 380,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 380,
+      "passed": 380,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "new_own_methods": 17,
+  "new_portable_methods": 14,
+  "new_gtk_methods": 2,
+  "new_linux_ocr_integration_methods": 1,
+  "prior_unchanged_test_ids_preserved": 362,
+  "intentional_test_replacements": [
+    {
+      "previous_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_and_animated_webp_are_refused_without_output",
+      "new_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
+      "reason": "TIFF multipage now accepted; animated WebP still refused."
+    }
+  ],
+  "test_ids_added_including_replacement": 18,
+  "source_payload_files": 105,
+  "runtime_files": 2849,
+  "elf_files": 224,
+  "debian_package_notices": 162,
+  "sealed_reports_verified": 11,
+  "bundle": {
+    "file": "LinuxitPDF-0.1.12-x86_64.flatpak",
+    "bytes": 44661792,
+    "sha256": "77cbff20cdb351272de9292ce334fb97c327fdfbef7fb3321d408fe6e5144701",
+    "digitally_signed": false
+  },
+  "examined_screenshots": [
+    "search-ui/tiff-creation.png",
+    "search-ui/image-creation.png",
+    "linuxit-flatpak-0.1.12.png"
+  ],
+  "screenshot_hashes": {
+    "search-ui/tiff-creation.png": "c4fb6959aa72115dab260f2be3aaeaf1caadc0a0e42e67c062eef5d4ba4d76e2",
+    "search-ui/image-creation.png": "27b3a593353207504fd02361ec32cfaca7f5357c58316393d41803b9222319f1",
+    "linuxit-flatpak-0.1.12.png": "1d9dff131084b1428f9fe8a905efac6fc6db987b1da49ff1d876e3b0cd664117"
+  },
+  "remaining_capture_hashes_verified": true,
+  "original_executed": false,
+  "foxit_parity_verified": false,
+  "criteria_status_or_weights_changed": false,
+  "publication_state": "validated_prepared_for_commit_push_confirmation",
+  "limitations": [
+    "Main IFD chain only; no recursive SubIFDs or semantic thumbnail filtering.",
+    "RGB8 output does not retain high-bit-depth precision, ICC or scanner metadata.",
+    "Block order only, not per-frame selection/reordering; animated non-TIFF formats unsupported.",
+    "Creation100-page limit does not extend OCR20-page limit.",
+    "Desktop/client/portal/AT-SPI/physical printing and original comparison remain open."
+  ]
+}

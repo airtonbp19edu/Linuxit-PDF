@@ -1,0 +1,802 @@
+{
+  "schema": "linuxit-sidebar-layout-v1",
+  "date_local": "2026-10-18T12:34:50.120598-03:00",
+  "app_main_sha256": "3ed205b7ebfcea7713c41f9774edfee8bd7625b2b1d2f29b52be4aa863f148bb",
+  "observation_only": true,
+  "scenarios": [
+    {
+      "panel": "Páginas",
+      "window_size": [
+        1180,
+        780
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        636
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        636
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        59,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 1180
+    },
+    {
+      "panel": "Marcadores",
+      "window_size": [
+        1180,
+        780
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        636
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        636
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        89,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 1180
+    },
+    {
+      "panel": "Comentários",
+      "window_size": [
+        1180,
+        780
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        636
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        636
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        95,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 1180
+    },
+    {
+      "panel": "Camadas",
+      "window_size": [
+        1180,
+        780
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        636
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        636
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        69,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 1180
+    },
+    {
+      "panel": "Anexos",
+      "window_size": [
+        1180,
+        780
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        636
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        636
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        54,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 1180
+    },
+    {
+      "panel": "Páginas",
+      "window_size": [
+        924,
+        500
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        356
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        356
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        59,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 760
+    },
+    {
+      "panel": "Marcadores",
+      "window_size": [
+        924,
+        500
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        356
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        356
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        89,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 760
+    },
+    {
+      "panel": "Comentários",
+      "window_size": [
+        924,
+        500
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        356
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        356
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        95,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 760
+    },
+    {
+      "panel": "Camadas",
+      "window_size": [
+        924,
+        500
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        356
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        356
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        69,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 760
+    },
+    {
+      "panel": "Anexos",
+      "window_size": [
+        924,
+        500
+      ],
+      "sidebar": [
+        -63,
+        103,
+        221,
+        356
+      ],
+      "notebook": [
+        -25,
+        103,
+        182,
+        356
+      ],
+      "title": [
+        -18,
+        110,
+        134,
+        26
+      ],
+      "title_pixels": [
+        54,
+        17
+      ],
+      "rail_buttons": [
+        [
+          -63,
+          105,
+          37,
+          34
+        ],
+        [
+          -63,
+          140,
+          37,
+          34
+        ],
+        [
+          -63,
+          175,
+          37,
+          34
+        ],
+        [
+          -63,
+          210,
+          37,
+          34
+        ],
+        [
+          -63,
+          245,
+          37,
+          34
+        ]
+      ],
+      "sidebar_minimum": 221,
+      "paned_position": 158,
+      "checks": {
+        "sidebar_meets_minimum_width": true,
+        "pane_respects_sidebar_minimum": false,
+        "sidebar_inside_body": false,
+        "rail_buttons_visible": true,
+        "rail_buttons_inside_body": false,
+        "title_visible_in_sidebar": true,
+        "title_visible_in_notebook": true,
+        "title_inside_body": false,
+        "title_text_fits": true,
+        "close_button_visible": true,
+        "viewer_has_space": true
+      },
+      "passed": false,
+      "requested_window_width": 760
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "sidebar-0.png",
+      "sha256": "90d62eea79885060728b8fbd0624e24e5e258f7b827b464ae621581587bb3d18"
+    },
+    {
+      "file": "sidebar-4.png",
+      "sha256": "0ff8d7617b053f5de9cfd3e0bfac93fe0aff95fa2fe4148d10b2de11557ec6a0"
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "original_executed": false,
+  "foxit_differential_test": false
+}

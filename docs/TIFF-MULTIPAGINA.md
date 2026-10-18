@@ -1,8 +1,9 @@
 # Importação de TIFF multipágina
 
-Fonte **0.1.12 em desenvolvimento**; o pacote publicado continua 0.1.11 até a
-validação integral da nova entrega. Passaram 14 testes portáveis novos e os 22
-testes atualizados da criação de imagens. GTK/Linux e pacote ainda aguardam CI.
+Fonte e Flatpak **0.1.12/devel**, validados com 380/380 testes próprios em
+fonte/payload/sandbox instalado, sem falhas/erros/skips. Novos: 14 portáveis,
+dois GTK e uma integração TIFF→PDF→OCR. Um teste histórico foi adaptado à
+aceitação de TIFF; 362 IDs anteriores preservados. Publicação/auditoria nas notas.
 
 Em **Arquivo → Criar PDF de imagens…**, selecione TIFFs e/ou PNG/JPEG/BMP/WebP.
 Cada TIFF insere todas as páginas do encadeamento principal, na ordem do arquivo.
@@ -71,7 +72,17 @@ separadamente com Pillow 12.3. Os testes só leem os arquivos e verificam pixels
 sem exigir que diferentes versões da biblioteca gerem BigTIFF. Nenhuma alteração
 no importador do produto foi necessária para essa correção dos testes.
 
-Dois métodos GTK e uma integração Linux TIFF → PDF → OCR estão preparados.
-Evidências novas serão vinculadas após execução. Os 50 planos completos de
+Dois métodos GTK e uma integração Linux TIFF → PDF → OCR passaram nos três
+ambientes, com abertura, pixels Poppler, limite agregado e OCR real conferidos. Os 50 planos completos de
 aceitação continuam sem execução diferencial. Roteiro 43,93%, 38 done/20 abertos
 e paridade Foxit 0/25 preservados; a família de conversão continua parcial.
+
+## Entrega validada — 2026-10-18T12:43:31-03:00
+
+[CI](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39141058408), fonte `b2ee3e324f0cb2bb23032ce82239ea56c84302d1`:380/380 por ambiente.
+[Revisão](../testes/resultados/0.1.12/validation-review.json), [manifesto](../releases/manifest-0.1.12.json).
+Capturas TIFF/criação/principal examinadas; demais hashes conferidos.105 arquivos
+app iguais entre fonte/payload; runtime 2849 arquivos,
+224 ELF e 162 avisos de pacotes. Nenhuma nova dependência adicionada.
+Bundle 44661792 bytes, SHA256 `77cbff20cdb351272de9292ce334fb97c327fdfbef7fb3321d408fe6e5144701`.
+Desenvolvimento devel, sem assinatura digital. Original não executado.
