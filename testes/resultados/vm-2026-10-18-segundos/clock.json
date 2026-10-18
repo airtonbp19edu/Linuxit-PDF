@@ -1,0 +1,94 @@
+{
+  "schema": "linuxit-vm-clock-seconds-v1",
+  "reviewed_at_local": "2026-10-18T19:48:43-03:00",
+  "vm": "Windows 10",
+  "guest_build": "19045.3803",
+  "registry_path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+  "value_name": "ShowSecondsInSystemClock",
+  "value_type": "DWORD",
+  "previous_value": null,
+  "current_value": 1,
+  "host_clock_modified": false,
+  "explorer_restarted_in_guest": true,
+  "visual_clock_samples": [
+    "19:46:26",
+    "19:46:42"
+  ],
+  "clock_updates_visually_verified": true,
+  "app_responsiveness_inferred_from_clock": false,
+  "original_residual_process_forcibly_closed_before_maintenance": true,
+  "normal_original_shutdown_approved": false,
+  "maintenance_network_disconnected": true,
+  "offline_preflight": {
+    "host": {
+      "schema": "linuxit-host-containment-v1",
+      "run_id": "vm-20261018-1940",
+      "created_at": "2026-10-18T19:45:52.6651430-03:00",
+      "verified_offline": true,
+      "connected_adapters": 0,
+      "shared_folders": 0,
+      "captured_usb_devices": 0,
+      "clipboard": "disabled",
+      "draganddrop": "disabled",
+      "vrde": "off",
+      "audio_in": "off",
+      "audio_out": "off"
+    },
+    "smb_mappings": [],
+    "adapters": [
+      {
+        "Name": "Ethernet",
+        "Status": "Disconnected"
+      }
+    ]
+  },
+  "inputs_unchanged_from_previous_campaign": true,
+  "input_count": 10,
+  "write_denial": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "new_probe_run": "vm-20261018-1940",
+  "limited_interactive_session": true,
+  "evidence": [
+    {
+      "file": "clock-seconds-01.png",
+      "sha256": "17de4ba1a6cb05c6d2bbf1560f729f9ae72cc9b1530afa487488e6e24077884d",
+      "public_payload": false
+    },
+    {
+      "file": "clock-seconds-02.png",
+      "sha256": "5ff09de2862fe0797e71520d7ca925be913ab5122c8c6f5de698c07923ff364d",
+      "public_payload": false
+    },
+    {
+      "file": "control-response.png",
+      "sha256": "5c6a5ae8fea3ee2400f982426a32cb00e6deb4df1ded00f0a914111f127f7097",
+      "public_payload": false
+    },
+    {
+      "file": "preflight-guest.json",
+      "sha256": "4d8929bc96353caa2ad482e07be2070304d62ab428e1fcd9c7b567c3ca7570f3",
+      "public_payload": false
+    },
+    {
+      "file": "clock-maintenance-guest.json",
+      "sha256": "eb951c551c8893c1b58d8c3e94694daecc8759ee2c2153c81d5b767afca68562",
+      "public_payload": false
+    },
+    {
+      "file": "probe-task-guest.json",
+      "sha256": "a794afa9149eab5186276b15def3b80f0d026028bc043cbca4e4732db54d6c8e",
+      "public_payload": false
+    }
+  ],
+  "limitations": [
+    "Clock progression is a VM shell heartbeat, not proof that Foxit is responsive.",
+    "Guest clock lag still prevents startup/search performance conclusions.",
+    "Screenshots and full guest logs remain private locally."
+  ],
+  "application_code_modified": false,
+  "new_flatpak_built": false
+}

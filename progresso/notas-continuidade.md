@@ -2519,3 +2519,38 @@ Git:fonte168381b publicada e testada;este checkpoint acrescenta os resultados e
 a continuidade,sem nova alteração app/testes desde o CI. Commit/push autorizado
 e conferência final por verify_git_sync.py com recibo externo são o fechamento
 desta rodada. Preservar evidências e alterações de outros colaboradores.
+
+
+## 2026/10/18 às 19:49 (America/Sao_Paulo, UTC-03:00) — segundos na barra da VM e novo lote offline
+
+Pedido do usuário:habilitar segundos no relógio do Windows10 da VM antes de
+continuar os procedimentos restantes. HKCU Explorer\Advanced,
+ShowSecondsInSystemClock DWORD1,anterior ausente;somente perfil sintético do
+guest alterado,host intacto. Explorer reiniciado via Computer Use/Gerenciador
+de Tarefas. Capturas examinadas19:46:26e19:46:42 confirmam relógio na barra
+atualizando com data abaixo. Isso não comprova resposta do Foxit nem elimina
+atraso do relógio para benchmarks. Comprovante/docs:docs/VM-RELOGIO-SEGUNDOS.md e
+testes/resultados/vm-2026-10-18-segundos/clock.json. Capturas/logs privados em
+analysis-local/vm-20261018-1940/.
+
+Foxit residual5464 encerrado à força pela UI antes de manutenção;ausência
+conferida visualmente e por Get-Process no guest. D20 continua sem encerramento
+normal/correção da causa. Manutenção SSH breve previamente autorizada com
+referência fechada. Primeira tentativa ultrapassou limite da linha de comando;
+finally desligou cabo. Segunda dividiu os comandos,aplicou chave e preparou
+nova tarefa/coletor limitado LinuxitProbe-vm-20261018-1940;rede desligada antes
+de preflight/controle/original. Nenhuma proteção alterada ou software instalado.
+
+Novo preflight realmente examinado:hash original90208c9e...6b3a6 preservado,
+10Inputs idênticos,escrita negadaReference/Input/Protocol,EthernetDisconnected,
+zero NICcabo/share/USB capturado/SMB,clipboard/drag-drop/VRDE/áudio off,
+sessão1nãoelevada. ControleNotepad2300 abriu e SelectAll respondeu visualmente;
+ack registrado antes de lançar original5280 offline. Coletor novo em andamento,
+2horas após19:45;não confundir com coletor1710 encerrado. Guias/hash anteriores
+preservados. Próximo lote:D07/D10destinos,D11exato,D12cancelamento,D15senha
+independente,D18saída/UI01–UI10. Nenhum novo cenário aprovado neste checkpoint.
+
+Git inicial main/local/remoto a2496dd3a257fa7153aeb84d6f6ff43a886e498e.
+App/testes/pacote permanecem intactos;403/403 é validação anterior,não repetida.
+Pesos/19critériosabertos/paridade0/25preservados. Este checkpoint do relógio
+será publicado enquanto os testes da nova rodada continuam.
