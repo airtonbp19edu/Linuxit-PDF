@@ -1722,3 +1722,23 @@ opcional subject_name, ausente em dois relatórios anteriores; nome resolvido pe
 hash do inventário, preservando esses relatórios. Checkpoints por lote salvos;
 normalização públicaLF registrada separada do hash original das sementes.
 Publicação pendente do commit/push e recibo externo a seguir.
+
+
+## 2026/10/18 às 01:14 (America/Sao_Paulo, UTC-03:00) — continuação publicada
+
+Marco `2e2da8da8c80728bcbf6ab5f0e2929c447839665` publicado no GitHub. O recibo externo confirmou
+HEAD local igual ao remoto e árvore limpa. São 48 entradas adicionais em oito
+lotes; catálogo 323 (152 REA + 171 diretas), 6.830 instruções e 25.919 bytes
+selecionados conferidos. Os 33 hashes das evidências coincidiram com os blobs
+staged antes do commit; nenhum original, resultado completo ou projeto entrou
+no Git. Os 11 controles das ferramentas e os verificadores estruturais passaram.
+
+Relatório: docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md. Limites de semântica,
+fronteira 15ca460, provedor ativo, cinco campos de busca e contexto 0x138
+continuam explícitos; IDs 7911/7913 têm classe/mapa identificados e ambiguidade
+de comportamento preservada. Fonte/pacote 0.1.9 intactos, sem repetir runtime.
+Pesos, 43,33%, 21 critérios abertos e paridade 0/25 preservados. Próximos
+recortes no relatório e no registro de pendências; não reiniciar os 48 alvos.
+
+Esta nota e os indicadores de sincronização recebem commit posterior; confirmar
+também seu HEAD por recibo externo final, evitando autorreferência.
