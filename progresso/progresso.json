@@ -1620,30 +1620,30 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-18T10:42:03-03:00",
-    "report": "docs/OCR-LOCAL.md",
-    "source_and_package_version": "0.1.11",
-    "source_version": "0.1.11",
+    "date_local": "2026-10-18T12:24:07-03:00",
+    "report": "docs/TIFF-MULTIPAGINA.md",
+    "source_version": "0.1.12",
     "published_package_version": "0.1.11",
     "new_static_entries_examined": 0,
     "catalog_entries": 323,
-    "complete_tests_per_environment": 363,
-    "full_test_suite_rerun": true,
-    "new_portable_methods": 20,
-    "new_linux_ocr_methods": 5,
-    "new_gtk_methods": 5,
+    "new_portable_methods": 14,
+    "new_gtk_methods": 2,
+    "new_linux_ocr_methods": 1,
+    "full_test_suite_rerun": false,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "criterion_definitions_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
+    "publication_state": "source_prepared_for_commit; Linux validation pending",
     "direct_cloud_api_deferred": true,
     "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": true,
-    "confirmed_delivery_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
-    "publication_confirmed_at_local": "2026-10-18T10:46:50-03:00",
-    "audit_review": "testes/resultados/0.1.11/audit/review.json"
+    "independent_installed_audit_passed": false,
+    "test_contract_migration": {
+      "previous_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_and_animated_webp_are_refused_without_output",
+      "new_id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
+      "reason": "TIFF multipage now imports; animated WebP still refused. One intentional test replacement, not a newly added method."
+    }
   },
   "no_vm_execution_history": [
     {
@@ -1857,6 +1857,32 @@
       "direct_cloud_api_deferred": true,
       "local_synchronized_folder_workflow": true,
       "independent_installed_audit_passed": false
+    },
+    {
+      "date_local": "2026-10-18T10:42:03-03:00",
+      "report": "docs/OCR-LOCAL.md",
+      "source_and_package_version": "0.1.11",
+      "source_version": "0.1.11",
+      "published_package_version": "0.1.11",
+      "new_static_entries_examined": 0,
+      "catalog_entries": 323,
+      "complete_tests_per_environment": 363,
+      "full_test_suite_rerun": true,
+      "new_portable_methods": 20,
+      "new_linux_ocr_methods": 5,
+      "new_gtk_methods": 5,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "criterion_definitions_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "independent_installed_audit_passed": true,
+      "confirmed_delivery_commit": "2664f4ae7db5be45aec461f8bba1a456138585b8",
+      "publication_confirmed_at_local": "2026-10-18T10:46:50-03:00",
+      "audit_review": "testes/resultados/0.1.11/audit/review.json"
     }
   ],
   "latest_resume": {

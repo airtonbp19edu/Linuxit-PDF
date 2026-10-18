@@ -1,5 +1,9 @@
 # Tarefas atuais e ponto de retomada
 
+Fonte **0.1.12 em desenvolvimento**: [TIFF multipágina](../docs/TIFF-MULTIPAGINA.md), com14 métodos
+portáveis novos e22 de criação atualizados aprovados localmente. Linux/GTK e
+novo Flatpak aguardam CI. O resumo abaixo descreve o pacote publicado0.1.11.
+
 Fonte e Flatpak **0.1.11/devel**, com [OCR local](../docs/OCR-LOCAL.md) em português,
 inglês ou ambos. Gera cópia rasterizada pesquisável, até 20 páginas, 150/300 DPI,
 sem criptografia. Original e cópias anteriores preservados. Perdas estruturais,

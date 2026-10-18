@@ -3214,17 +3214,18 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Source/package0.1.11 own rasterized searchable PDF OCR subset; see docs/OCR-LOCAL.md; full family incomplete",
+      "matrix_implementation": "Source0.1.12 TIFF multipage subset; published package0.1.11; see docs/TIFF-MULTIPAGINA.md; full family incomplete",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.11: conversão de imagens anterior e OCR local por Tesseract/Poppler para nova cópia rasterizada pesquisável em português/inglês. Todas as páginas, até20, 150/300DPI, sem criptografia, limites e perdas estruturais explícitos. Fonte, payload e sandbox363/363 aprovados, incluindo reconhecimento real/GTK e geometria/cancelamento próprios; sem paridade Foxit. TIFF multipágina/animações e família completa permanecem pendentes.",
+      "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. 14 novos controles portáveis passaram; Linux/GTK e novo pacote aguardam CI. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
-        "Lista explícita ordenada de1–100 PNG/JPEG/BMP/WebP/TIFF de um quadro; DPI inteiro72–600; caminho.pdf novo.",
+        "Lista explícita de1–100 arquivos PNG/JPEG/BMP/WebP simples ou TIFF multipágina; até100 páginas somadas, DPI72–600 e destino.pdf novo.",
         "OCR: PDF local não criptografado de1–20 páginas, SHA256 da fonte, idioma por/eng/por+eng,150/300DPI e destino.pdf novo."
       ],
       "outputs": [
         "PDF reaberto com páginas e dimensões verificadas, orientação EXIF aplicada e transparência sobre branco.",
         "Confirmação com hashes de fontes/resultado, tamanhos de página e DPI. RGB Flate sem nova perda JPEG; sem gestão ICC.",
-        "OCR: cópia rasterizada com camada de texto, hashes, dimensões e aviso das páginas sem texto detectado; sem preservação de links/formulários/assinaturas/metadados."
+        "OCR: cópia rasterizada com camada de texto, hashes, dimensões e aviso das páginas sem texto detectado; sem preservação de links/formulários/assinaturas/metadados.",
+        "TIFF: páginas por arquivo em ordem interna, proveniência por página com input/frame/frame_count e input_count; RGB8 sem ICC/precisão16bit/metadados. Uma falha recusa o lote completo."
       ],
       "errors": [
         {
@@ -3267,7 +3268,10 @@
         "app/ocr_window.py",
         "docs/OCR-LOCAL.md",
         "testes/resultados/ocr-portable-2026-10-18-round1.json",
-        "testes/resultados/0.1.11/validation-review.json"
+        "testes/resultados/0.1.11/validation-review.json",
+        "docs/TIFF-MULTIPAGINA.md",
+        "testes/resultados/tiff-multipage-portable-2026-10-18-round2.json",
+        "testes/resultados/tiff-creation-existing-2026-10-18-round2.json"
       ],
       "foxit": {
         "evidence_state": "resource_or_module_inventory_only",
@@ -3330,7 +3334,7 @@
         },
         {
           "path": "tests/test_pdf_creation.py",
-          "test": "test_multiframe_tiff_and_animated_webp_are_refused_without_output"
+          "test": "test_multiframe_tiff_is_imported_and_animated_webp_is_refused"
         },
         {
           "path": "tests/test_pdf_creation.py",
@@ -3363,6 +3367,30 @@
         {
           "path": "tests/test_ocr_gtk.py",
           "test": "test_menu_workflow_recognizes_opens_and_renders_actual_copy"
+        },
+        {
+          "path": "tests/test_tiff_multipage.py",
+          "test": "test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance"
+        },
+        {
+          "path": "tests/test_tiff_multipage.py",
+          "test": "test_each_frame_orientation_is_applied_once_without_leaking_tags"
+        },
+        {
+          "path": "tests/test_tiff_multipage.py",
+          "test": "test_cyclic_out_of_range_and_truncated_ifd_chains_are_not_silently_shortened"
+        },
+        {
+          "path": "tests/test_tiff_multipage.py",
+          "test": "test_real_worker_reports_input_count_frame_mapping_and_page_count"
+        },
+        {
+          "path": "tests/test_creation_gtk.py",
+          "test": "test_tiff_block_order_expands_pages_and_poppler_renders_each_color"
+        },
+        {
+          "path": "tests/test_ocr_linux.py",
+          "test": "test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page"
         }
       ],
       "dynamic_case_refs": [],
@@ -3510,5 +3538,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T10:42:03-03:00"
+  "updated_at_local": "2026-10-18T12:24:07-03:00"
 }

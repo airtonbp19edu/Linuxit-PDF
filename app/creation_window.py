@@ -26,7 +26,8 @@ class CreationWindow(Gtk.Window):
         self.open_result = open_result
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         box.set_border_width(14);self.add(box)
-        hint = Gtk.Label(label='PNG/JPEG/BMP/WebP/TIFF simples · uma imagem por página · transparência branca · sem OCR', xalign=0)
+        hint = Gtk.Label(label='PNG/JPEG/BMP/WebP e TIFF multipágina · até 100 páginas · transparência branca\n'
+                        'Cada TIFF inclui todas as páginas na ordem do arquivo. OCR é uma operação separada.', xalign=0)
         hint.set_line_wrap(True);box.pack_start(hint, False, False, 0)
         bar = Gtk.Box(spacing=6);box.pack_start(bar, False, False, 0)
         self.controls = []
@@ -63,7 +64,7 @@ class CreationWindow(Gtk.Window):
             dialog.set_current_name('imagens.pdf')
         else:
             dialog.set_select_multiple(True)
-            filter_ = Gtk.FileFilter();filter_.set_name('Imagens PNG/JPEG/BMP/WebP/TIFF simples')
+            filter_ = Gtk.FileFilter();filter_.set_name('PNG/JPEG/BMP/WebP e TIFF multipágina')
             for mime in ('image/png', 'image/jpeg', 'image/bmp', 'image/x-ms-bmp', 'image/webp', 'image/tiff'):filter_.add_mime_type(mime)
             dialog.add_filter(filter_)
         prepare_chooser(dialog,'save' if save else 'open')
@@ -83,7 +84,7 @@ class CreationWindow(Gtk.Window):
             label.set_tooltip_text(display_attachment_name(path));row.add(label);self.images.add(row)
         self.images.show_all()
         if selected is not None:self.images.select_row(self.images.get_row_at_index(selected))
-        self.status.set_text(f'{len(self.paths)} imagem(ns). A lista define a ordem das páginas.')
+        self.status.set_text(f'{len(self.paths)} arquivo(s). A lista organiza os arquivos; cada TIFF inclui todas as suas páginas.')
 
     def _add(self, *_):
         if self.busy or self.closed:return
@@ -115,7 +116,7 @@ class CreationWindow(Gtk.Window):
     def _create(self, *_):
         if self.busy or self.closed:return
         if not self.paths:
-            self.status.set_text('Adicione pelo menos uma imagem PNG/JPEG.');return
+            self.status.set_text('Adicione pelo menos um arquivo PNG/JPEG/BMP/WebP/TIFF.');return
         destination = self._choose(save=True)
         if not destination or self.closed:return
         self.result = None;self.open_button.set_sensitive(False)

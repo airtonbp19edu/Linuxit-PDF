@@ -1986,3 +1986,30 @@ persistente/cliente/AT-SPI/impressão física exigem ambientes/equipamentos pró
 Comparação Foxit exige validar VM offline. Sem evidência de esgotamento de tokens.
 Este registro recebe commit/push e comprovante final externo separados, evitando
 autorreferência. Preservar lotes estáticos e pacotes/relatórios anteriores.
+
+
+## 2026/10/18 às 12:24 (America/Sao_Paulo, UTC-03:00) — TIFF multipágina preparado sem VM
+
+Retomada em557eb792d72a0b982df7ca7e7b1de4849e7e4197, main local limpo igual ao
+remoto. Fonte0.1.12: TIFF clássico/BigTIFF com todas as páginas do IFD principal,
+ordem em blocos de arquivo, limite100 páginas totais, RGB8, orientação por página,
+limites/hashes/pub exclusiva preservados. Validação prévia bounded de tabelas,
+offsets e ciclos; Pillow continua decodificando pixels. UI explica blocos e OCR
+separado com limite20 páginas. Nenhuma nova dependência, original ou ativo Foxit.
+
+14 métodos portáveis novos passaram e22 de criação atualizados passaram. A
+execução anterior de criação teve21/22 com a antiga expectativa de recusar TIFF;
+teste renomeado/adaptado à nova regra, WebP animado permanece recusado. Não contar
+essa substituição como método adicional. Fixture de orientação ajustada para
+evitar fechamento duplicado do AppendingTiffWriter; rodada2 sem esse erro.
+Relatórios tiff-multipage-portable-2026-10-18-round1/round2 e
+tiff-creation-existing-2026-10-18-attempt1/round2 em testes/resultados/.
+Dois GTK e uma integração Linux TIFF→PDF→OCR preparados, ainda não executados.
+
+Ferramentas Python3.13/Pillow12.3/pypdf e Git; documentação oficial Pillow e
+LibTIFF consultada. Arquitetura43/57, catálogo323,23subconjuntos/duas propostas,
+roteiro43,93%,38done/20abertos e paridade0/25 preservados. Original/VM não
+executados; nuvem adiada e IA fora do escopo. Sem evidência de tokens. Próximo:
+publicar checkpoint, rodar suíte Linux completa nos três ambientes, importar
+somente pacote aprovado, conferir capturas/hashes e publicar/auditar mesmo bundle.
+Pacote0.1.11 e relatórios anteriores preservados até concluir nova entrega.

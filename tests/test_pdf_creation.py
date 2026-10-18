@@ -47,13 +47,17 @@ class PDFCreationTests(unittest.TestCase):
         self.create([source]);pixels = PdfReader(self.output).pages[0]['/Resources']['/XObject']['/Im1'].get_data()
         self.assertEqual(pixels,bytes((255,127,127)))
 
-    def test_multiframe_tiff_and_animated_webp_are_refused_without_output(self):
+    def test_multiframe_tiff_is_imported_and_animated_webp_is_refused(self):
         for suffix,options in (('tiff',{}),('webp',{'lossless':True,'duration':100})):
             source = self.root/('multi.'+suffix)
             with Image.new('RGB',(4,4),'red') as first,Image.new('RGB',(4,4),'blue') as second:
                 first.save(source,save_all=True,append_images=[second],**options)
-            with self.assertRaisesRegex(ValueError,'quadros'):self.create([source])
-            self.assertFalse(self.output.exists())
+            if suffix == 'tiff':
+                result = self.create([source]);self.assertEqual(result['pages'],2)
+                self.output.unlink()
+            else:
+                with self.assertRaisesRegex(ValueError,'quadros'):self.create([source])
+                self.assertFalse(self.output.exists())
 
     def test_bmp_renamed_as_jpeg_is_identified_by_content(self):
         source = self.image('source.bmp',(4,3),'red');renamed = self.root/'source.jpg';source.rename(renamed)

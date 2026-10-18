@@ -68,6 +68,37 @@ class CreationGTKTests(unittest.TestCase):
         pixel=self.parent.current_pixbuf.get_pixels()[:3]
         self.assertLess(pixel[0],20);self.assertGreater(pixel[1],100);self.assertLess(pixel[2],20)
 
+    def test_tiff_block_order_expands_pages_and_poppler_renders_each_color(self):
+        source=self.root/'multipage.tiff'
+        with Image.new('RGB',(30,20),'red') as first,Image.new('RGB',(20,40),'blue') as second:
+            first.save(source,save_all=True,append_images=[second],compression='tiff_lzw')
+        with patch.object(self.window,'_choose',return_value=[str(self.first),str(source)]):self.window._add()
+        w=self.window;w.images.select_row(w.images.get_row_at_index(1));w._move(-1)
+        self.assertIn('2 arquivo(s)',w.status.get_text())
+        w.dpi.set_value(72);self.create()
+        wait_for(lambda:not w.busy and w.result is not None)
+        self.assertEqual((w.result['input_count'],w.result['pages']),(2,3))
+        self.assertEqual([s['frame'] for s in w.result['sources']],[1,2,1])
+        capture(w,'tiff-creation')
+        w._open();wait_for(lambda:self.parent.page_count==3 and self.parent.current_pixbuf is not None)
+        for index,color in enumerate(((255,0,0),(0,0,255),(255,0,0))):
+            self.parent.goto_page(index,force=True)
+            wait_for(lambda:self.parent.displayed_page==index and self.parent.current_pixbuf is not None)
+            pixel=self.parent.current_pixbuf.get_pixels()[:3]
+            for actual,expected in zip(pixel,color):self.assertLess(abs(actual-expected),20)
+
+    def test_total_tiff_page_limit_is_visible_and_no_partial_copy_is_opened(self):
+        source=self.root/'hundred.tiff'
+        with Image.new('RGB',(2,2),'blue') as first:
+            first.save(source,save_all=True,append_images=[Image.new('RGB',(2,2),'red') for _ in range(99)])
+        original=source.read_bytes()
+        with patch.object(self.window,'_choose',return_value=[str(self.first),str(source)]):self.window._add()
+        self.create();wait_for(lambda:not self.window.busy and '100 páginas' in self.window.status.get_text())
+        self.assertIsNone(self.window.result)
+        self.assertFalse(self.window.open_button.get_sensitive())
+        self.assertTrue(self.window.create.get_sensitive())
+        self.assertFalse(self.output.exists());self.assertEqual(source.read_bytes(),original)
+
     def test_dialog_cancellation_and_existing_destination_preserve_files(self):
         w = self.window;self.choose_images()
         with patch.object(w, '_choose', return_value=None):w._create()
