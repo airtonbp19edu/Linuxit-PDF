@@ -1600,3 +1600,59 @@ flatpak --version, sha256sum e flatpak install --user na pasta do arquivo,
 enviar a saída completa e informar a distribuição. Próximo passo depende
 desses dados para corrigir o problema específico. Publicar guia/evidência/nota
 e confirmar o remoto; preservar versões e relatórios anteriores.
+
+
+## 2026/10/18 às 00:44 (America/Sao_Paulo, UTC-03:00) — busca/impressão/reflow, três lotes estáticos examinados
+
+Pedido: continuar análise estática; investigação do instalador deixada de lado
+a pedido do usuário. Git local e remoto conferidos em 7f7eb394aa028d514f1d273065e482940bde163e,
+sem alterações alheias. Ghidra 12.1.4/Temurin 21.0.12.1, script de sementes do
+pacote REA 6.5.0, perfil direto -noanalysis. Nenhuma ferramenta MCP REA exposta
+nesta sessão; saúde do provedor MCP não foi reavaliada. Não são novas observações MCP.
+Original fixado por SHA-256 90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6,
+conferido antes/depois; Foxit não executado. Projetos anteriores foram copiados.
+
+Lote static-geometry-state-2026-10-18: 7 entradas examinadas; checkpoint real
+2026-10-18T00:36:37.474607-03:00. Projeto/raw em analysis-local/headless/static-geometry-state-2026-10-18/.
+
+Lote static-search-print-state-2026-10-18: 5 entradas examinadas; checkpoint real
+2026-10-18T00:37:39.842519-03:00. Projeto/raw em analysis-local/headless/static-search-print-state-2026-10-18/.
+
+Lote static-search-print-types-2026-10-18: 4 entradas examinadas; checkpoint real
+2026-10-18T00:40:56.985751-03:00. Projeto/raw em analysis-local/headless/static-search-print-types-2026-10-18/.
+
+Capstone 5.0.6/pefile 2024.8.26 conferiram 823 instruções/2.831 bytes selecionados.
+Primeira tentativa de conferência falhou por ModuleNotFoundError: capstone;
+resolvido usando PYTHONPATH=analysis-local/python-deps já existente, sem instalar.
+Três rodadas Ghidra concluídas; sem timeout ou esgotamento de tokens comprovado.
+
+Resultados: sete helpers de reflow (limite INT32_MAX, máscara double de sinal,
+passagem intermediária por float32, métricas ainda sem tipo); quatro helpers
+de busca/formatação (parser exato de textos 1.0.0..1.3.0, enum ligado ao offset+14,
+retorno 0/9 oculto pela assinatura void); cinco de impressão/ciclo de vida
+(RTTI CPDF_BackgroundDrawer, contexto 0x138 ainda sem classe, receptores distintos
+para campos +74 e caminhos de liberação com/sem LOCK). Auxiliares compartilhados
+por salto e chamadores já catalogados não contados como novas entradas.
+
+Metadados e seeds em docs/windows-evidence/foxit-rea/headless-cross-checks-static-*.json
+nas três rodadas de 18/10, verificações em testes/resultados/static-*-2026-10-18/.
+Revisão agregada: testes/resultados/static-analysis-2026-10-18/review.json.
+Relatório: docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md. Catálogo 275 = 152 REA +
+123 diretas exclusivas. Fonte, builder, versão e Flatpak 0.1.9 preservados; as suítes históricas
+de 290 casos não foram repetidas. Testes próprios não provam paridade.
+Roteiro 43,33%, 37 done/21 abertos em 14 etapas, paridade 0/25 e pesos preservados.
+
+Próximo estático: 15cb590/15cb720/15cbb70/15cb8a0/15cb130, this+98/slot+20,
+escritores/pré-condições de arrays; provedor+58 e offsets 3/5/6/7/0xc/0x10,
+IDs 7911/7913; contexto 0x138, 1b57340/1b5a420 e consumidores BackgroundDrawer.
+Não repetir os 16 alvos examinados. A VM segue necessária para observar o
+original nas etapas 10/dinâmica da 11/18/19. IA fora do escopo; APIs de nuvem adiadas.
+Próximo: verificadores estruturais, catálogo/progresso, commit/push e confirmação
+remota; este checkpoint ainda não declara publicação. Usar recibo externo final.
+
+Verificações finais locais: contratos25 famílias/50 planos/23 subconjuntos/duas
+propostas; arquitetura37 módulos/49 interfaces/21 critérios em14 etapas;
+auditoria do repositório aprovada, dez bundles e11 relatórios CI históricos
+conferidos por hash. Não é nova instalação nem nova execução das suítes.
+Metadados públicos normalizados em LF antes de fixar seus hashes, preservando
+os resultados raw e manifestos anteriores. Conferir hashes staged antes do commit.

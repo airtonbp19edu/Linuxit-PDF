@@ -146,3 +146,27 @@ A continuação0.1.6 confirmou por RTTI **CPDF_ImageRenderer** em1c68ca0 e
 agora tem contexto de reflow identificado.0x20a6f70 pode retornar1 para clip
 vazio; não tratar esse retorno como sucesso de impressão. Assinaturas/stack
 permanecem provisórias. [Evidências](BUSCA-COLECOES.md).
+
+
+## Texto do provedor e enum de busca — 18/10/2026
+
+O [relatório estático](REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md) vincula
+os pontos abaixo por assembly e dados PE. Não representa uma execução da UI.
+
+```mermaid
+flowchart TD
+  Provider[Provedor: slot virtual +0x58] --> Gate{Retorno zero?}
+  Gate -- sim --> Text[Texto em dialog+0x1e50; saída +0x1e54 zerada]
+  Text --> Parse[0x17323e0: comparação a quatro textos exatos]
+  Parse --> Match{Texto reconhecido?}
+  Match -- sim --> Enum[Gravar enum 0/1/2/3; helper retorna 0]
+  Match -- não --> Code9[Helper retorna 9]
+  Gate -- não --> Code9
+  Enum --> Copy[0x1783ac0 copia enum para SearchOption+0x14]
+  Code9 --> Stop[Chamador abandona este caminho; efeito visual não observado]
+```
+
+Os textos são `1.0.0`, `1.1.0`, `1.2.0`, `1.3.0`. Não foram identificados como
+versão do formato PDF ou do produto. O tipo concreto do provedor e os demais
+campos da estrutura continuam parciais. Os fluxos completos do original não
+foram fechados por este refinamento.

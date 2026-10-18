@@ -1,0 +1,84 @@
+{
+  "schema": "linuxit-static-search-type-joins-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "round": "static-search-print-types-2026-10-18",
+  "version_text_to_enum": [
+    {
+      "address": "0x53df8e8",
+      "text": "1.0.0",
+      "enum": 0
+    },
+    {
+      "address": "0x53df8f4",
+      "text": "1.1.0",
+      "enum": 1
+    },
+    {
+      "address": "0x53df900",
+      "text": "1.2.0",
+      "enum": 2
+    },
+    {
+      "address": "0x53df90c",
+      "text": "1.3.0",
+      "enum": 3
+    }
+  ],
+  "parser_entry": "0x17323e0",
+  "parser_contract": "Exact UTF-16 string equality to four constants; accepted strings write enum0..3 and return1, unrecognized string returns0 without writing output. Not a generic semantic-version parser. Input wrapper reference count is released.",
+  "provider_helper": "0x177fc50",
+  "helper_return_refinement": "Normal return register EAX0 on recognized version-text enum;9 otherwise. Decompiled void signature is incomplete. Provider method vtable+0x58 must return0 to enter text-to-enum path.",
+  "search_option_join": {
+    "preserved_caller": "0x1783ac0",
+    "call_site": "0x1783cee",
+    "return_test": "0x1783cf3",
+    "nonzero_branch": "0x1783cf5",
+    "enum_load_site": "0x1783d05",
+    "argument_write_site": "0x1783d10",
+    "structure_stack_origin": "EBP-0x7c",
+    "written_stack_slot": "EBP-0x68",
+    "structure_offset": "0x14",
+    "dialog_source_field": "0x1e54",
+    "support_manifest": "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+    "meaning_limit": "Encoding of recognized provider version text; not proven to be PDF format version, installed product version, public ABI or a field used identically in every search path.",
+    "new_entry_count_for_existing_caller": 0
+  },
+  "rtti_classes": [
+    {
+      "constructor": "0x1b88120",
+      "constructor_store_site": "0x1b8812a",
+      "vtable": "0x54151a0",
+      "locator": "0x65ab368",
+      "type_descriptor": "0x6c9c940",
+      "decorated_type_name": ".?AVCPDF_BackgroundDrawer@@",
+      "factory": "0x1b8a760",
+      "allocated_bytes": 184,
+      "scope": "Exact static RTTI identity; no UI/Reader availability or renderer pipeline completeness claim."
+    }
+  ],
+  "other_observations": [
+    {
+      "entry": "0x1775c70",
+      "contract": "Uses FormatMessageW with flags0x500 and LocalFree; saves and restores GetLastError on normal path and writes formatted text through a refcounted string object. Not normalization/stemming/search algorithm."
+    },
+    {
+      "entry": "0x1b88590",
+      "contract": "Initializes0x138-sized context used by preserved caller: sentinel -1 at+0x110, byte1 at+0x114, zero16 at+0x11c and null pointers including+0x120/+0x124; embedded resource at+0x40 initialized through helper. No direct vtable installation in selected body; class identity not recovered."
+    }
+  ],
+  "original_executed": false,
+  "full_runtime_equivalence_proved": false,
+  "unknown_search_option_offsets": [
+    "0x3",
+    "0x5",
+    "0x6",
+    "0x7",
+    "0xc",
+    "0x10"
+  ],
+  "remaining_limitations": [
+    "Provider concrete class and semantics of return code9 require more static work.",
+    "Do not identify two unrelated receiver fields solely by equal offsets.",
+    "Complete object lifetimes, index preconditions and original dynamic UI remain open."
+  ]
+}

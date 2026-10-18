@@ -1,0 +1,114 @@
+{
+  "schema": "linuxit-static-analysis-review-v1",
+  "reviewed_at_local": "2026-10-18T00:43:37-03:00",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "baseline_local_remote_head_confirmed": "7f7eb394aa028d514f1d273065e482940bde163e",
+  "profile": "Direct Ghidra headless -noanalysis, REA seed script; not REA MCP Evidence",
+  "tools": {
+    "ghidra": "12.1.4",
+    "jdk": "Temurin21.0.12.1",
+    "rea_package_version_read": "6.5.0",
+    "rea_seed_script_executed": true,
+    "rea_mcp_tool_available": false,
+    "rea_provider_health_retested": false,
+    "capstone": "5.0.6",
+    "pefile": "2024.8.26",
+    "python": "3.13.15"
+  },
+  "rounds": [
+    {
+      "round": "static-geometry-state-2026-10-18",
+      "examined_entries": 7,
+      "instructions": 148,
+      "selected_body_bytes": 393,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-search-print-state-2026-10-18",
+      "examined_entries": 5,
+      "instructions": 255,
+      "selected_body_bytes": 731,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    },
+    {
+      "round": "static-search-print-types-2026-10-18",
+      "examined_entries": 4,
+      "instructions": 420,
+      "selected_body_bytes": 1707,
+      "ghidra_completed": true,
+      "capstone_all_instruction_addresses_matched": true
+    }
+  ],
+  "new_distinct_entries_examined": 16,
+  "selected_instructions": 823,
+  "selected_body_bytes": 2831,
+  "previous_catalog_entries": 259,
+  "current_catalog_entries": 275,
+  "historical_mcp_distinct_entries": 152,
+  "exclusive_direct_entries": 123,
+  "new_mcp_observations": 0,
+  "source_and_original_hash_checks_passed": true,
+  "all_new_results_examined": true,
+  "checkpoints_saved_after_each_lot": true,
+  "original_executed": false,
+  "application_source_changed": false,
+  "bundle_rebuilt": false,
+  "bundle_preserved_sha256": "ef9fc7c41e91a51c3ecd38c15a8c3b84d40dc350f7a3bb603876da4d40d3aede",
+  "full_test_suite_rerun": false,
+  "historical_complete_tests_per_environment": 290,
+  "roadmap_percent": 43.33,
+  "verified_parity": 0,
+  "criteria_or_weights_changed": false,
+  "confirmed_token_exhaustion": null,
+  "failures": [
+    {
+      "operation": "First machine cross-check using default Python path",
+      "error": "ModuleNotFoundError: capstone",
+      "resolution": "Used existing analysis-local/python-deps in PYTHONPATH; subsequent three independent checks passed. No dependency installed."
+    }
+  ],
+  "limits": [
+    "Selected bodies may include shared tail helpers; these are not additional unique entries.",
+    "Decoding agreement does not establish all types, preconditions, function boundaries or runtime behavior.",
+    "Six SearchOption offsets, provider concrete class, context type and IDs7911/7913 remain open.",
+    "Original dynamic baseline, differential equivalence, real desktop and physical printing were not executed."
+  ],
+  "evidence_files": {
+    "testes/resultados/static-geometry-state-2026-10-18/machine-checks.json": "e625be245a1a7a6769adddd39754a124f96ee292712e18a75f6f400c8659b063",
+    "testes/resultados/static-geometry-state-2026-10-18/observations.json": "7117abe99d836be052903dd318a403adfff6dce0f997c397842e1f03f421fefa",
+    "docs/windows-evidence/foxit-rea/static-geometry-state-2026-10-18-seeds.tsv": "453f15201135eaa2028f5fe6b763166b2d754236b26f781bb156d9b6005b4060",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-geometry-state-2026-10-18.json": "20d22221e41620b52dfb73c8360526717de698668db4be7507d294a4b2c81dfe",
+    "testes/resultados/static-search-print-state-2026-10-18/machine-checks.json": "e2a5574ae9b9cd9bf561b0a60bec543c48706d2a29c1b16baa0f9d9ddf9e0640",
+    "testes/resultados/static-search-print-state-2026-10-18/observations.json": "4b49b2a3174eda93827114c4e91ded56d2cc8d52a60a39fabf33c86e76a6c3de",
+    "docs/windows-evidence/foxit-rea/static-search-print-state-2026-10-18-seeds.tsv": "87c1aaf42bf588e68f3998540178e03c77a300911c9aad7371fada8f4df47a17",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-print-state-2026-10-18.json": "fbbde88682debea17c43a1491bfc308980bf874c450488b288f70cddc0556455",
+    "testes/resultados/static-search-print-types-2026-10-18/machine-checks.json": "98814070c989406d381d7addfc772548f2027cabcef89766efd5b0fe008f46f2",
+    "testes/resultados/static-search-print-types-2026-10-18/structural-joins.json": "a4709ef621963c8cc2c2f726911ebbadecb742e4df8f8b2d06aa65905dd22d01",
+    "docs/windows-evidence/foxit-rea/static-search-print-types-2026-10-18-seeds.tsv": "fd190c925ae2927fa0de88c30bbf68d5c5319ae7b92344e43098b99f47453af9",
+    "docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-print-types-2026-10-18.json": "c189475a02d53dec43973e835cdbbd2f9deebaa200c8077e15565fa62c061a1f"
+  },
+  "catalog_breakdown_recomputed_from_all_manifests": {
+    "rea": 152,
+    "direct_exclusive": 123,
+    "union": 275
+  },
+  "structural_validation": {
+    "architecture_modules": 37,
+    "interfaces": 49,
+    "families": 25,
+    "unfinished_criteria": 21,
+    "unfinished_stages": 14,
+    "implemented_subsets": 23,
+    "proposals": 2,
+    "acceptance_cases_not_run": 50,
+    "functional_reference_spec_complete": false,
+    "source_test_references_checked": 113,
+    "code_tests_reexecuted": false,
+    "repository_delivery_audit_passed": true,
+    "historical_bundles_checksums_verified": 10,
+    "historical_sealed_ci_reports_hashes_verified": 11,
+    "new_installed_audit_executed": false
+  }
+}

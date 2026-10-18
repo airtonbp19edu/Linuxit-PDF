@@ -9,7 +9,11 @@ Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
 com concessão específica. Cliente real, portal e persistência da concessão em
 um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 
-Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
+[Continuação estática de 18/10/2026](REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md): 16 entradas novas,
+823 instruções/2.831 bytes conferidos; enum de busca, RTTI e geometria refinados.
+Fonte/pacote preservados; as suítes completas não foram repetidas nesta rodada.
+
+Arquitetura: 37 módulos/49 interfaces. Catálogo: 275 entradas (152 REA + 123 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
 APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;
@@ -32,8 +36,11 @@ e as notas mais recentes definem o estado atual.
 
 ## Próximas frentes
 
-- Estática03/05/07/08/09/11:Helpers de posição/predicado/conversor e métricas this+98; não repetir os sete métodos de layout já examinados;
-  tipos/ownership, campos desconhecidos da busca e contexto dos IDs7911/7913.
+- Estática 03/05/07/08/09/11: helpers 15cb590/15cb720/15cbb70/15cb8a0/15cb130,
+  tipo do receptor this+98 e slot+20, escritores/pré-condições dos arrays.
+  Busca: provedor+58 e offsets 3/5/6/7/0xc/0x10; offset+14 tem enum parcial
+  reconhecido. Impressão: contexto0x138, 1b57340/1b5a420 e BackgroundDrawer.
+  Contextos dos IDs7911/7913 seguem abertos. Não repetir os três lotes de18/10.
 - Contratos12/lógica15/UI16: ampliar operações e duas propostas, com nuvem adiada pelo usuário;
   23 subconjuntos parciais e 37 módulos/49 interfaces documentados.
 - Runtime: desktop real, portais, AT-SPI, impressora física e serviços externos
@@ -76,7 +83,7 @@ Não lançar Foxit no host normal; [preparação da contenção](COMO-CONTINUAR.
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-testes-novos.json
 ```
 
-O último comando exige dependências Linux e tela para completar212 testes sem
+O último comando exige dependências Linux e tela para completar 290 testes sem
 skips. Fluxos manuais de CI: `no-vm-validation.yml` (fonte/corpus),
 `linux-flatpak.yml` (fonte/payload/sandbox) e `delivery-audit.yml` (bundle
 publicado reinstalado sem rebuild). Fontes/licenças, builder pareado e

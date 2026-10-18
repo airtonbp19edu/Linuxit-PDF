@@ -1,6 +1,7 @@
 # Pendências de análise e pontos de retomada
 
-Revisão em **17/10/2026**, atualizada durante a continuação sem VM; os critérios da etapa13 foram preservados.
+Revisão estática em **18/10/2026**; os critérios da etapa 13 e os pesos foram preservados.
+Os marcos de runtime citados abaixo são históricos; não foram reexecutados nesta rodada.
 A [fonte estruturada](pendencias-analises.json) registra **todos os 21 critérios
 não concluídos em 14 etapas**, cruzados com [progresso.json](progresso.json).
 As frações abaixo medem somente critérios `done`; estados `partial`, `pending`,
@@ -16,11 +17,11 @@ por essa exclusão; pendências e pesos permanecem preservados.
 | Etapa | Fração verificada | Estado e próximo passo |
 |---|---:|---|
 |01|80%|Detalhes de regras/proteção recusados por API403 do plano; sem mudar segurança/faturamento.|
-|03|50%|RTTI confirmou renderers/reflow e demais classes; fronteiras restantes ainda abertas.|
-|05|42,9%|ImageRenderer eReflowViewer identificados; seguir recursos/slots e demais ciclos de vida.|
-|07|33,3%|259 entradas(152REA+107diretas),sete métodos de layout novos na retomada; inventário global/tipos incompletos.|
-|08|13,0%|Completar fluxo/algoritmos restantes e campos3/5/6/7/12/16/20 da busca; não repetir dez alvos desta continuação.|
-|09|9,1%|Arestas de renderer/clip/reflow refinadas; algoritmos/tipos/ownership universais pendentes.|
+|03|50%|RTTI de CPDF_BackgroundDrawer e ligações de busca/reflow refinadas; contexto0x138 e fronteiras restantes abertas.|
+|05|42,9%|Limpeza separa chamadas virtuais, recursos condicionais e contadores com/sem LOCK; ownership e contextos completos abertos.|
+|07|33,3%|275 entradas (152 REA+123 diretas); 16 novas em três lotes. Inventário global e tipos completos desconhecidos.|
+|08|13,0%|Busca+0x14 ligada a enum de textos do provedor; offsets3/5/6/7/0xc/0x10 ainda abertos. Geometria/tipos/algoritmos completos pendentes.|
+|09|9,1%|Novo fluxo rastreável de texto/enum/argumento de busca e contratos geométricos; algoritmos e ownership universais pendentes.|
 |10|0%|VM/contenção offline e observaçãoD01–D20 ainda pendentes.|
 |11|25%|CReflowViewerEx esclarece fábricaUI; IDs7911/7913 e demais contextos não resolvidos. UI01–UI10 exigem original.|
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
@@ -90,3 +91,14 @@ Portal real e sincronizador real exigem desktop/cliente, sem VM Foxit.
 A referência10/dinâmica11/comparações18/19 exige original em contenção offline.
 [Tabela de dependências](../docs/PASTAS-SINCRONIZADAS.md). Publicação/auditoria
 nas notas;23subconjuntos/2propostas e pesos preservados.
+
+
+## Continuação estática de 18/10/2026
+
+[Relatório](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md): 16 novas entradas examinadas em três lotes,
+823 instruções/2.831 bytes conferidos; checkpoints privados preservados.
+Catálogo 275, sem mudar pesos, estados dos critérios ou paridade.
+Próximos alvos: helpers 15cb590/15cb720/15cbb70/15cb8a0/15cb130, métricas
+this+98/slot+20, pré-condições e escritores de arrays; provedor de busca+58,
+seis offsets e contexto IDs7911/7913; contexto0x138, 1b57340/1b5a420 e
+consumidores BackgroundDrawer. Original, desktop e impressão não executados.

@@ -62,7 +62,8 @@
         "evidence_state": "static_ui_update_only",
         "source_refs": [
           "docs/ETAPA-11.md",
-          "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json"
+          "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -176,7 +177,8 @@
         "source_refs": [
           "docs/ETAPA-11.md",
           "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
-          "docs/windows-evidence/foxit-rea/zoom-presets.json"
+          "docs/windows-evidence/foxit-rea/zoom-presets.json",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -778,7 +780,8 @@
         "evidence_state": "static_code_partial",
         "source_refs": [
           "docs/windows-evidence/foxit-rea/index-interface.json",
-          "docs/FOXIT-REA.md"
+          "docs/FOXIT-REA.md",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -897,7 +900,8 @@
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
-          "docs/ETAPA-11.md"
+          "docs/ETAPA-11.md",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1099,7 +1103,8 @@
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
-          "docs/AVANCO-SEM-VM.md"
+          "docs/AVANCO-SEM-VM.md",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -1193,7 +1198,8 @@
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
-          "docs/AVANCO-SEM-VM.md"
+          "docs/AVANCO-SEM-VM.md",
+          "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
         ],
         "runtime_observed": false,
         "unresolved": [
@@ -2954,5 +2960,5 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-17T21:07:39-03:00"
+  "updated_at_local": "2026-10-18T00:43:37-03:00"
 }

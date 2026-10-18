@@ -1,0 +1,55 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-search-print-state-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x1775e30",
+      "instructions": 19,
+      "body_bytes": 45,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "91582286efcab756f18c5dfb3fbef5883bdbeead3f7441a48b4c35773f1aa6db",
+      "pseudocode_sha256": "af4b2ec27de38a7ccb6f0635397e31fd18b87601ed2d6fc43327e974636d41f1"
+    },
+    {
+      "entry": "0x177fc50",
+      "instructions": 97,
+      "body_bytes": 292,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b6ba31826545b46047f7084aeb383dddd5639f1052a4a1c10fc44bf1db21e9e7",
+      "pseudocode_sha256": "83fded55b6487a6faf9328c89ae8802cf0ba76dcbf8428062cbfa0aad3f1ea77"
+    },
+    {
+      "entry": "0x1b5bbb0",
+      "instructions": 3,
+      "body_bytes": 8,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "2b2c0154fd29d58f4cb628c79fdfb156b757de96720ce78941093cc08f879bde",
+      "pseudocode_sha256": "7a86c4901f99392a9277c350fd9561e8db2402b00dedfb068e4ef314094a8d86"
+    },
+    {
+      "entry": "0x1b88c60",
+      "instructions": 114,
+      "body_bytes": 329,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6dbba160a930a5b491c885e43b8a2ce98dff0c82349cc354f6be7affadab5379",
+      "pseudocode_sha256": "e52588b7a5505752fe4cb357d05cf00d05fd6a5c8b1f4ede1e39f5aec5a65d84"
+    },
+    {
+      "entry": "0x1b8a760",
+      "instructions": 22,
+      "body_bytes": 57,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "39b680581fcae107f0642bc1805c3cf3887536fb3a59e7c4e279b1c76df6b668",
+      "pseudocode_sha256": "73e12b05a9e13d71587acba143ea0e2b1214d9b58fe28fabc14627218006aba8"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

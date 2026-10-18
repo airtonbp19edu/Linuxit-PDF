@@ -32,9 +32,10 @@ O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
 A [campanha sem VM](docs/AVANCO-SEM-VM.md) aprovou os 17 subconjuntos próprios
 com os mesmos arquivos/protocolos da etapa18; quatro bloqueios Poppler resolvidos.
-O catálogo tem259 entradas examinadas (152REA+107diretas), incluindo
-[três métodos de geometria de reflow](docs/REA-REFLOW-GEOMETRIA.md) na retomada;
-cobertura global desconhecida.
+O catálogo tem **275 entradas examinadas** (152 REA + 123 diretas exclusivas).
+A [continuação estática de 18/10/2026](docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md)
+examinou mais 16 entradas de busca, impressão e reflow, com tipos e estados
+refinados; cobertura global desconhecida e original não executado.
 O kit privado preservado deve ser usado na VM offline para observar o Foxit.
 Paridade comprovada permanece **0/25**, e o roteiro permanece **43,33%**.
 
@@ -95,7 +96,7 @@ PYTHONPATH=/workspace/.print-view-runtime/gi-cairo/usr/lib/python3/dist-packages
 /usr/bin/python3 scripts/run_tests.py --output /tmp/linuxit-tests-novo.json
 ```
 
-A análise local identificou 3.276 arquivos, 141 módulos PE, 259 entradas de
+A análise local identificou 3.276 arquivos, 141 módulos PE, 275 entradas de
 funções examinadas e 9.973 registros internos de chamadas. O universo completo
 de funções/funcionalidades ainda não está fechado; registros não são funções
 únicas nem paridade verificada. Binários Foxit, templates completos, bancos

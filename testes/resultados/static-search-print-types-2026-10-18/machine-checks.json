@@ -1,0 +1,47 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-search-print-types-2026-10-18",
+  "entries": [
+    {
+      "entry": "0x17323e0",
+      "instructions": 131,
+      "body_bytes": 375,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "1925382a6d91410c42b36422d6e4bf833b0f59499a0df949cae29afeb0d1e4a4",
+      "pseudocode_sha256": "48a4466505bf2318b54ad9aa0fbbab03efb959b92f592636ab146f57aa48a1b2"
+    },
+    {
+      "entry": "0x1775c70",
+      "instructions": 148,
+      "body_bytes": 433,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "16fb72ffb8d71f2b583f7c5db4bdf6375a0567f68c6674890e0797cfd1cedfe5",
+      "pseudocode_sha256": "9b795bf057c2ab067141763d5a44e0027dacd3ad84d6f41a0f88793c366b111f"
+    },
+    {
+      "entry": "0x1b88120",
+      "instructions": 46,
+      "body_bytes": 300,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "a05b0224886c1ed42b1da1b8973d9bc551c161b38613fafc4a50b13695b3c06a",
+      "pseudocode_sha256": "da779b389f0649b7cb5deeb0e494a15f0c888f66b953c1388e8695ac88e4e2be"
+    },
+    {
+      "entry": "0x1b88590",
+      "instructions": 95,
+      "body_bytes": 599,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "bcc65406eae57d956abf6b015c6d36156e08d6912c7db7ea0f269b4c72b7766a",
+      "pseudocode_sha256": "a639c86cdf491baa9e8073fd009be94b9f7bdb8fbe616db0b8295b76bdbda5c1"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15c7010.json",
+      "result_sha256": "3b412d0a8cc7e71c66b4de7360c08a81a7151957d9a827fdabd3d427b45a3fc7",
+      "entry_va": "0x15c7010",
+      "analyst_name": "analyst_entry_15c7010",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 28,
+      "body_ranges": "[[015c7010, 015c702b]]",
+      "pseudocode_sha256": "874277c77a45d75b3a28d0c84cc0a93302de84a125a0fc412106ba6df61cca58",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15c7100.json",
+      "result_sha256": "69754e97139cb84340c4746ec355d2878dcc2c2a7ab046d6fa69b20710d791ed",
+      "entry_va": "0x15c7100",
+      "analyst_name": "analyst_entry_15c7100",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 28,
+      "body_ranges": "[[015c7100, 015c711b]]",
+      "pseudocode_sha256": "87a9f4f95debb1bcbc6d4bc5297098403ddbb5d0f3d6c9f92a3b811dd3668104",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15c9c60.json",
+      "result_sha256": "93cdff5ce2297b703f20534f618c7abcee24e82194930bb4833832c6c59b910b",
+      "entry_va": "0x15c9c60",
+      "analyst_name": "analyst_entry_15c9c60",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 34,
+      "body_ranges": "[[015c9c60, 015c9c81]]",
+      "pseudocode_sha256": "3959a01d11e731532122366f477ddadcc8f3c5c7522afdedf6e2c718b1d04389",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15cbc10.json",
+      "result_sha256": "c924b096b5ff3aba0c8be36e135ef14541a9108815d3fb374586a3faed195bee",
+      "entry_va": "0x15cbc10",
+      "analyst_name": "analyst_entry_15cbc10",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 23,
+      "body_ranges": "[[015cbc10, 015cbc26]]",
+      "pseudocode_sha256": "b07481d817a0ca6490752050a032024bd59fa31d161059b026461b269137d6ba",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15cc510.json",
+      "result_sha256": "f26925ed9598292c0eb77c491757444ea110be3a161f9ce417fb28df5a3f8f84",
+      "entry_va": "0x15cc510",
+      "analyst_name": "analyst_entry_15cc510",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 5,
+      "body_ranges": "[[015cc510, 015cc514]]",
+      "pseudocode_sha256": "b2e7e63ae925843dfdf17cc00852b943cad466f4d7a98cc23d74f180f35c8a40",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15cc520.json",
+      "result_sha256": "a57b5b75dc121392dbdbfc10ec5c6f0338e303c6828e88c81c9807b84793754e",
+      "entry_va": "0x15cc520",
+      "analyst_name": "analyst_entry_15cc520",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 209,
+      "body_ranges": "[[015cc520, 015cc5f0]]",
+      "pseudocode_sha256": "74711bf72e72d35af5a10a207c5ffa1807d6acebcc43d642926f99db1428c22d",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-geometry-state-2026-10-18/functions/0x15ccd20.json",
+      "result_sha256": "2f9b1e64b83ddd301593101788c5087d9bb5a3e2b7d204e47e14389fad788b1d",
+      "entry_va": "0x15ccd20",
+      "analyst_name": "analyst_entry_15ccd20",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 66,
+      "body_ranges": "[[015ccd20, 015ccd61]]",
+      "pseudocode_sha256": "c75ecf5474597e9150ca06786f5abc2604153790724fee5c135e013bdd6b3385",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 7,
+  "distinct_entries": 7,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

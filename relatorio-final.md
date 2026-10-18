@@ -17,7 +17,10 @@ Suítes completas não foram repetidas pela auditoria. Evidências nas notas dat
 Sem teste de cliente real ou interação de portal real; esses testes dependem de
 desktop Linux, não da VM Foxit. A VM offline é necessária para referência
 da etapa 10, UI original da 11 e comparações das etapas 18/19. Guia contém a tabela completa.
-Catálogo 259, roteiro 43,33%, paridade 0/25; original não executado nesta rodada.
+Catálogo 275, roteiro 43,33%, paridade 0/25; original não executado nesta rodada.
+[Continuação estática de 18/10/2026](docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md): 16 entradas novas,
+823 instruções/2.831 bytes conferidos; fonte e pacote preservados, sem repetir
+as suítes GTK/Flatpak.
 Ainda há operações locais/estática e validação externa a concluir.
 
 [Retomada](docs/RETOMADA.md) e [notas](progresso/notas-continuidade.md).

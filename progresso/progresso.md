@@ -4,7 +4,7 @@ Progresso geral do roteiro: **43.33%**. Cada etapa usa o peso do pedido; dentro 
 
 Paridade Foxit verificada: **0/25 obrigações identificadas (0.00%)**. O inventário funcional permanece aberto. Testes próprios não contam como testes diferenciais.
 
-Cobertura global de engenharia reversa: **não calculável** enquanto o universo de funções e seus pesos não estiver fechado. Medida parcial: quatro módulos com decompilação dirigida entre 141 PE inventariados (2,84%, peso unitário por módulo); 259 entradas distintas examinadas. 9.973 slots não constituem um denominador de funções únicas.
+Cobertura global de engenharia reversa: **não calculável** enquanto o universo de funções e seus pesos não estiver fechado. Medida parcial: quatro módulos com decompilação dirigida entre 141 PE inventariados (2,84%, peso unitário por módulo); 275 entradas distintas examinadas. 9.973 slots não constituem um denominador de funções únicas.
 
 | Etapa | Peso | Fração verificada | Contribuição |
 |---|---:|---:|---:|

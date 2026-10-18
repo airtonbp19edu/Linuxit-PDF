@@ -9,7 +9,11 @@ Dois controles fora de HOME passaram: acesso negado sem concessão e permitido
 com concessão específica. Cliente real, portal e persistência da concessão em
 um desktop permanecem pendentes; esses testes não precisam da VM Foxit.
 
-Arquitetura: 37 módulos/49 interfaces. Catálogo: 259 entradas (152 REA + 107 diretas).
+[Continuação estática de 18/10/2026](docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md): 16 entradas novas,
+823 instruções/2.831 bytes conferidos; enum de busca, RTTI e geometria refinados.
+Fonte/pacote preservados; as suítes completas não foram repetidas nesta rodada.
+
+Arquitetura: 37 módulos/49 interfaces. Catálogo: 275 entradas (152 REA + 123 diretas).
 São 23 subconjuntos e duas propostas em 25 famílias. Roteiro: **43,33%**,
 37 critérios `done` e 21 abertos; paridade: **0/25**. Original não executado.
 APIs remotas de nuvem continuam adiadas. Publicação confirmada no GitHub;

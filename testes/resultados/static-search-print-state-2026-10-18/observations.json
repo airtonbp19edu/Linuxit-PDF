@@ -1,0 +1,71 @@
+{
+  "schema": "linuxit-static-state-lifetime-observations-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "round": "static-search-print-state-2026-10-18",
+  "observations": [
+    {
+      "entry": "0x177fc50",
+      "support_sites": [
+        "0x177fcb0",
+        "0x177fcb4",
+        "0x177fce8",
+        "0x177fd1d",
+        "0x177fd25",
+        "0x177fd29",
+        "0x177fd2d",
+        "0x177fd54"
+      ],
+      "contract": "Calls provider vtable+0x58 with UTF-16 output buffer. When virtual return is zero, stores text at dialog+0x1e50, clears+0x1e54 and calls0x17323e0 with enum output. Produces EAX0 for accepted enum and9 otherwise; Ghidra void return is incomplete. Message/UI label of9 and provider class not identified."
+    },
+    {
+      "entry": "0x1775e30",
+      "support_sites": [
+        "0x1775e34",
+        "0x1775e49",
+        "0x1775e52",
+        "0x1775e5c"
+      ],
+      "contract": "Rejects null formatting input through helper with0x80070057 followed by INT3 in selected body; otherwise prepares variadic arguments for0x1775c70. It is a formatting adapter, not itself a worker state transition."
+    },
+    {
+      "entry": "0x1b5bbb0",
+      "support_sites": [
+        "0x1b5bbb0",
+        "0x1b89594",
+        "0x1b89599",
+        "0x1b895a7",
+        "0x1b895ae",
+        "0x1b899e5",
+        "0x1b899e7"
+      ],
+      "contract": "Tests a32-bit field at its ECX receiver+0x74 equal to2. Preserved caller passes an element of a collection, not necessarily the0x138 object constructed at0x1b88590. Do not merge receivers by offset or call this physical printing completion."
+    },
+    {
+      "entry": "0x1b8a760",
+      "support_sites": [
+        "0x1b8a766",
+        "0x1b8a77c",
+        "0x1b89772",
+        "0x1b8977d",
+        "0x1b8977f"
+      ],
+      "contract": "Allocates0xb8 bytes then calls0x1b88120; writes constructed pointer or null through output wrapper. Preserved caller transfers wrapper pointer into another object. Constructor RTTI is examined in types round."
+    },
+    {
+      "entry": "0x1b88c60",
+      "support_sites": [
+        "0x1b88c74",
+        "0x1b88c85",
+        "0x1b88c89",
+        "0x1b88cea",
+        "0x1b88d24",
+        "0x1b88d31",
+        "0x1b88d46"
+      ],
+      "contract": "Cleanup with distinct release paths: virtual slot0 calls with argument1; byte+0x11d controls cleanup/free of pointer+0x120; pointer+0xbc has a non-locked counter at pointee+0x14; pointer+0x6c uses locked counters at control block+4/+8. Tail jump to0x1f0fae0 is included in selected body and not counted as another new function. Full owner types/threading preconditions remain open."
+    }
+  ],
+  "original_executed": false,
+  "runtime_observed": false,
+  "types_complete": false
+}

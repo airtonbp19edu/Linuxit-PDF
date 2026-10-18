@@ -90,7 +90,10 @@
           "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
           "weight": 3,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         }
       ],
       "verified_fraction": 0.5,
@@ -148,7 +151,10 @@
           "criterion": "Ciclo de vida de todos os componentes reconstruído",
           "weight": 4,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         }
       ],
       "verified_fraction": 0.428571,
@@ -205,7 +211,10 @@
           "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
           "weight": 6,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         }
       ],
       "verified_fraction": 0.333333,
@@ -240,9 +249,10 @@
             "docs/REA-BUSCA-IMPRESSAO.md",
             "docs/windows-evidence/foxit-rea/search-print-contracts.json",
             "docs/REA-IMPRESSAO-CONSUMIDORES.md",
-            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json"
+            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
           ],
-          "note": "Six additional consumers/geometry routines examined; concrete types and complete printing behavior remain partial. No status or weight change."
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         },
         {
           "criterion": "Fluxo completo de busca reconstruído",
@@ -250,14 +260,19 @@
           "status": "partial",
           "evidence": [
             "docs/REA-BUSCA-IMPRESSAO.md",
-            "docs/windows-evidence/foxit-rea/search-print-contracts.json"
-          ]
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up examined four search parser/formatting helpers; SearchOption+0x14 linked to enum of four recognized provider texts. Provider class and six option offsets remain incomplete; runtime not observed; status/weights preserved."
         },
         {
           "criterion": "Demais famílias funcionais investigadas profundamente",
           "weight": 12,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         }
       ],
       "verified_fraction": 0.130435,
@@ -281,14 +296,19 @@
           "weight": 2,
           "status": "partial",
           "evidence": [
-            "docs/fluxos.md"
-          ]
+            "docs/fluxos.md",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         },
         {
           "criterion": "Algoritmos completos de todas as famílias especificados",
           "weight": 8,
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
+          ],
+          "note": "Static follow-up16 additional entries examined (823 instructions/2831 selected-body bytes), including reflow arithmetic, provider enum and CPDF_BackgroundDrawer RTTI/lifetime paths. Full subsystem types/algorithms/runtime incomplete; status/weights preserved."
         }
       ],
       "verified_fraction": 0.090909,
@@ -364,9 +384,10 @@
           "evidence": [
             "docs/ETAPA-11.md",
             "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
-            "testes/cenarios-interface.json"
+            "testes/cenarios-interface.json",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md"
           ],
-          "note": "Nine UI routines and ten contextual table entries examined statically. No runtime interactions observed; class ownership and shared IDs 7911/7913 remain unresolved. Criterion stays pending; weights unchanged."
+          "note": "Static follow-up16 entries examined; types and state refinements do not resolve all UI contexts or observe original interactions. IDs7911/7913 and UI01-UI10 still pending; status/weights preserved."
         }
       ],
       "verified_fraction": 0.25,
@@ -1458,22 +1479,22 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-17T21:07:39-03:00",
-    "report": "docs/PASTAS-SINCRONIZADAS.md",
+    "date_local": "2026-10-18T00:43:37-03:00",
+    "report": "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
     "source_and_package_version": "0.1.9",
-    "new_static_entries_examined": 0,
-    "catalog_entries": 259,
+    "new_static_entries_examined": 16,
+    "catalog_entries": 275,
     "complete_tests_per_environment": 290,
+    "full_test_suite_rerun": false,
+    "complete_test_counts_are_historical": true,
+    "previous_package_audit_ref": "testes/resultados/0.1.9/audit/review.json",
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
-    "independent_installed_audit_passed": true,
+    "publication_state": "prepared_static_checkpoint_for_publication",
     "direct_cloud_api_deferred": true,
-    "local_synchronized_folder_workflow": true,
-    "confirmed_delivery_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
-    "publication_confirmed_at_local": "2026-10-17T21:12:00-03:00"
+    "local_synchronized_folder_workflow": true
   },
   "no_vm_execution_history": [
     {
@@ -1563,18 +1584,65 @@
       "confirmed_delivery_commit": "c6b273fdf44f2e260f0ddae092397158cf65237c",
       "publication_confirmed_at_local": "2026-10-17T20:21:46-03:00",
       "unreleased_source_version": "0.1.9"
+    },
+    {
+      "date_local": "2026-10-17T21:07:39-03:00",
+      "report": "docs/PASTAS-SINCRONIZADAS.md",
+      "source_and_package_version": "0.1.9",
+      "new_static_entries_examined": 0,
+      "catalog_entries": 259,
+      "complete_tests_per_environment": 290,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "independent_installed_audit_passed": true,
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "confirmed_delivery_commit": "e6bd69adcd41a0c51c0ed03b05b784d36750f026",
+      "publication_confirmed_at_local": "2026-10-17T21:12:00-03:00"
     }
   ],
   "latest_resume": {
-    "date_local": "2026-10-17T20:17:24-03:00",
-    "local_and_remote_checked_equal_at_source_commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+    "date_local": "2026-10-18T00:44:50-03:00",
+    "local_and_remote_checked_equal_at_start": "7f7eb394aa028d514f1d273065e482940bde163e",
+    "work_scope": "User requested static REA/Ghidra continuation; Linux installer investigation left aside at user request.",
     "other_collaborator_changes_found": false,
-    "previous_unpublished_source_reports_preserved": true,
-    "builder_completed_during_interruption": true,
-    "builder_run": 39074818078,
-    "builder_result": "success",
-    "source_payload_sandbox_cases_passed_each": 267,
+    "report": "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+    "new_static_entries_examined": 16,
     "original_executed": false,
+    "application_modified": false,
+    "full_test_suite_reexecuted": false,
     "cloud_deferred_by_user": true
-  }
+  },
+  "current_static_analysis": {
+    "date_local": "2026-10-18T00:43:37-03:00",
+    "report": "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+    "review": "testes/resultados/static-analysis-2026-10-18/review.json",
+    "new_entries_examined": 16,
+    "catalog_entries": 275,
+    "rounds": [
+      "static-geometry-state-2026-10-18",
+      "static-search-print-state-2026-10-18",
+      "static-search-print-types-2026-10-18"
+    ],
+    "original_executed": false,
+    "mcp_evidence_created": false,
+    "entry_counts_are_global_coverage": false
+  },
+  "resume_history": [
+    {
+      "date_local": "2026-10-17T20:17:24-03:00",
+      "local_and_remote_checked_equal_at_source_commit": "da13d8600326213d26dbc662f02f4f06ef40d320",
+      "other_collaborator_changes_found": false,
+      "previous_unpublished_source_reports_preserved": true,
+      "builder_completed_during_interruption": true,
+      "builder_run": 39074818078,
+      "builder_result": "success",
+      "source_payload_sandbox_cases_passed_each": 267,
+      "original_executed": false,
+      "cloud_deferred_by_user": true
+    }
+  ]
 }

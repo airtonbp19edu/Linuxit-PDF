@@ -1,0 +1,89 @@
+{
+  "schema": "linuxit-static-geometry-observations-v1",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "round": "static-geometry-state-2026-10-18",
+  "profile": "Direct Ghidra 12.1.4 -noanalysis; REA 6.5.0 seed script; Temurin 21.0.12.1",
+  "python_executable": "C:\\Users\\Airtonbp19\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "input_hashes": {
+    "FoxitPDFReader.exe": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "ReaGhidraApplySeeds.java": "27892a70bf0fbc72d1edc9bf070ddb21268f8d0e4edea074164488e68f45d51a",
+    "FoxitSelectedFunctions.java": "ac48510972ec7d8d426155d4f8f335ee8dceda576a632358697ad6e45e7b4f4d",
+    "static-geometry-state-2026-10-18-seeds.tsv": "453f15201135eaa2028f5fe6b763166b2d754236b26f781bb156d9b6005b4060"
+  },
+  "constants": [
+    {
+      "va": "0x531f9c0",
+      "bytes_hex": "0000c0ffffffdf41",
+      "type": "binary64",
+      "value": 2147483647.0
+    },
+    {
+      "va": "0x6573ed0",
+      "bytes_hex": "ffffffffffffff7fffffffffffffff7f",
+      "u64_hex": [
+        "0x7fffffffffffffff",
+        "0x7fffffffffffffff"
+      ],
+      "effect": "AND clears each binary64 sign bit; not a numerical NaN constant used by arithmetic."
+    }
+  ],
+  "observations": [
+    {
+      "entry": "0x15cc510",
+      "contract": "Returns zero without reading receiver; not evidence of a variable coordinate."
+    },
+    {
+      "entry": "0x15cc520",
+      "support_sites": [
+        "0x15cc52d",
+        "0x15cc53f",
+        "0x15cc575",
+        "0x15cc578",
+        "0x15cc591",
+        "0x15cc594",
+        "0x15cc5b9",
+        "0x15cc5d0"
+      ],
+      "contract": "Negative index returns zero. Nonnegative index reads this+0x48 array before any local upper-bound check. Context modes0/2 use integer path; other modes combine two i32-to-f32-to-f64 conversions, f64 scale at context+0x30, two i32-to-f64 additions, upper threshold INT32_MAX and CVTTSD2SI. Missing domain/units and lower-bound preconditions."
+    },
+    {
+      "entry": "0x15ccd20",
+      "support_sites": [
+        "0x15ccd30",
+        "0x15ccd40",
+        "0x15ccd4b",
+        "0x15ccd51",
+        "0x15ccd55"
+      ],
+      "contract": "For finite operands under normal comparisons, four upper-bound tests against INT32_MAX; no lower-bound or rectangle validity check. COMISD/JA/SETBE behavior for unordered operands is not captured by a generic high-level <= transcription; floating exception configuration/domain unobserved."
+    },
+    {
+      "entry": "0x15c9c60",
+      "support_sites": [
+        "0x15c9c66",
+        "0x15c9c6b",
+        "0x15c9c6f",
+        "0x15c9c7b"
+      ],
+      "contract": "Converts signed i32 to binary64, clears sign bit and returns through x87; supports absolute-magnitude conversion, without public units or class typing."
+    },
+    {
+      "entry": "0x15cbc10",
+      "contract": "Copies four raw32 fields from referenced object this+0x98 at offsets0x28/0x2c/0x30/0x34 to output; no null guard in selected body, public structure type unproven."
+    },
+    {
+      "entry": "0x15c7010",
+      "contract": "Calls receiver vtable+0x20 with argument, returns raw32 at result+0x10 or zero for null result."
+    },
+    {
+      "entry": "0x15c7100",
+      "contract": "Calls receiver vtable+0x20 with argument, returns raw32 at result+0x14 or zero for null result."
+    }
+  ],
+  "original_executed": false,
+  "types_complete": false,
+  "semantic_equivalence_proved": false,
+  "first_machine_check_failure": "ModuleNotFoundError: capstone with default Python path; resolved by existing analysis-local/python-deps via PYTHONPATH, no installation."
+}
