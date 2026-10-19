@@ -16,6 +16,8 @@ from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject,
 from pdf_form_controls import inspect_controls, fill_controls
 from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
+from pdf_form_events import inspect_form_events, calculate_form_values
+from annotation_geometry import EXTRA_KINDS, create_extra_annotation, move_annotation, conversation_members
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -146,7 +148,7 @@ def _annotation_rect(page, rect):
 
 def _removable_annotation(note):
     return (isinstance(note, DictionaryObject) and note.get('/Subtype') in
-            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink')
+            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink', '/Polygon', '/PolyLine', '/Caret', '/FreeText', '/Stamp')
             and not int(note.get('/F', 0)) & (64 | 128 | 512)
             and not any(key in note for key in ('/IRT', '/Popup', '/Parent')))
 
@@ -252,8 +254,10 @@ def inspect_editable_document(path):
         result['bookmarks'] = [{'path':p, 'title':n.get('/Title', '')} for p, n in _outline_nodes(reader)]
         result['notes'], result['notes_truncated'] = _note_records(reader)
         result['form_controls'], result['unsupported_controls'] = inspect_controls(reader, fields)
+        result['form_events'] = inspect_form_events(reader)
         result['annotations'], result['annotations_truncated'] = _annotation_records(reader)
         result['reply_targets'] = []
+        result['conversation_comments']=[];result['conversation_comments_truncated']=False;comment_bytes=0
         for page_index,page in enumerate(reader.pages):
             annots=page.get('/Annots');annots=annots.get_object() if annots is not None else []
             for index,ref in enumerate(annots):
@@ -262,6 +266,13 @@ def inspect_editable_document(path):
                         and note.get('/Subtype') in COMMENT_TYPES and not int(note.get('/F',0)) & (64|128|512)):
                     result['reply_targets'].append(dict(page=page_index,index=index,
                         text=str(note.get('/Contents',''))[:180],subtype=str(note['/Subtype'])))
+                    text=note.get('/Contents','');author=note.get('/T','')
+                    if isinstance(text,str) and isinstance(author,str):
+                        size=len(text.encode('utf-8'))+len(author.encode('utf-8'))
+                        if len(text.encode('utf-8'))<=MAX_TEXT_BYTES and len(author.encode('utf-8'))<=4096 and comment_bytes+size<=1024**2:
+                            result['conversation_comments'].append(dict(page=page_index,index=index,text=text,author=author,subtype=str(note['/Subtype'])))
+                            comment_bytes+=size
+                        else:result['conversation_comments_truncated']=True
     _require(_sha(path) == identity, 'O PDF foi alterado durante a leitura.')
     return result
 
@@ -277,9 +288,65 @@ def _apply(writer, operation):
     _require(isinstance(kind, str), 'Tipo de alteração inválido.')
     if kind in ('move-bookmark', 'delete-bookmark'):
         _change_outline(writer, operation)
+    elif kind == 'fill-form-events':
+        _require(set(operation)=={'kind','values'},'Opções de formulário inválidas.')
+        values=calculate_form_values(writer,operation['values'])
+        fields=writer.get_fields() or {};flags={}
+        try:
+            for name in values:
+                raw=fields[name].indirect_reference.get_object()
+                flags[name]=raw.get('/Ff')
+                raw[NameObject('/Ff')]=NumberObject(int(_inherited(fields[name],'/Ff',0)) & ~1)
+            _apply(writer,dict(kind='fill-text-fields',values=values))
+        finally:
+            for name,value in flags.items():
+                raw=fields[name].indirect_reference.get_object()
+                if value is None:raw.pop('/Ff',None)
+                else:raw[NameObject('/Ff')]=value
     elif kind == 'fill-form-controls':
         _require(set(operation) == {'kind', 'values'}, 'Opções de formulário inválidas.')
         fill_controls(writer, operation['values'])
+    elif kind in EXTRA_KINDS:
+        geometry='points' if kind in ('add-polygon','add-polyline') else 'rect'
+        _require(set(operation)=={'kind','page',geometry,'text'},'Opções de anotação inválidas.')
+        page=_page(writer,operation['page'])
+        writer.add_annotation(operation['page'],create_extra_annotation(writer,list(map(float,page.cropbox)),operation))
+    elif kind in ('move-annotation','update-comment','delete-conversation','set-popup'):
+        expected={'kind','page','index'}|({'dx','dy'} if kind=='move-annotation' else {'text','author'} if kind=='update-comment' else {'rect','open'} if kind=='set-popup' else set())
+        _require(set(operation)==expected,'Opções de comentário inválidas.')
+        page=_page(writer,operation['page']);annots=page.get('/Annots',[]);index=operation['index']
+        _require(type(index) is int and 0<=index<len(annots),'Comentário não encontrado.')
+        note=annots[index].get_object()
+        _require(isinstance(note,DictionaryObject) and note.get('/Subtype') in COMMENT_TYPES and not int(note.get('/F',0))&(64|128|512),'Comentário bloqueado ou não suportado.')
+        if kind=='move-annotation':
+            _require(_removable_annotation(note) and not _annotation_has_dependants(writer,note),'Movimentação exige anotação simples sem vínculos.')
+            move_annotation(page,note,operation['dx'],operation['dy'])
+        elif kind=='delete-conversation':
+            members=conversation_members(writer,page,index)
+            page[NameObject('/Annots')]=ArrayObject(ref for ref in annots if id(ref.get_object()) not in members)
+        elif kind=='set-popup':
+            from pypdf.generic import BooleanObject
+            _require(type(operation['open']) is bool,'Estado de popup inválido.')
+            rect=_annotation_rect(page,operation['rect']);existing=note.get('/Popup')
+            if existing is None:
+                target=annots[index]
+                if not hasattr(target,'idnum'):target=writer._add_object(note);annots[index]=target
+                popup=DictionaryObject({NameObject('/Type'):NameObject('/Annot'),NameObject('/Subtype'):NameObject('/Popup'),NameObject('/Parent'):target})
+                popupref=writer._add_object(popup);annots.append(popupref);note[NameObject('/Popup')]=popupref
+            else:
+                popup=existing.get_object()
+                _require(isinstance(popup,DictionaryObject) and popup.get('/Subtype')=='/Popup' and popup.get('/Parent') is not None and popup['/Parent'] is note and not int(popup.get('/F',0))&(64|128|512),'Popup bloqueado ou incompatível.')
+            popup[NameObject('/Rect')]=ArrayObject(FloatObject(v) for v in rect);popup[NameObject('/Open')]=BooleanObject(operation['open'])
+            if note.get('/Subtype')=='/Text':note[NameObject('/Open')]=BooleanObject(operation['open'])
+        else:
+            text=operation['text'];author=operation['author']
+            _require(isinstance(text,str) and len(text.encode('utf-8'))<=MAX_TEXT_BYTES and isinstance(author,str) and len(author.encode('utf-8'))<=4096,'Comentário ou autor inválido.')
+            if note.get('/Subtype') in ('/FreeText','/Stamp'):
+                replacement=create_extra_annotation(writer,list(map(float,page.cropbox)),dict(kind='add-freetext' if note['/Subtype']=='/FreeText' else 'add-stamp',rect=list(map(float,note['/Rect'])),text=text))
+                note[NameObject('/AP')]=replacement['/AP']
+            note[NameObject('/Contents')]=TextStringObject(text)
+            if author:note[NameObject('/T')]=TextStringObject(author)
+            else:note.pop('/T',None)
     elif kind == 'add-ink':
         _require(set(operation)=={'kind','page','paths','text'},'Opções de desenho inválidas.')
         page=_page(writer,operation['page'])
@@ -321,6 +388,9 @@ def _apply(writer, operation):
             del annots[index]
         else:
             text, author = operation['text'], operation['author']
+            if annotation.get('/Subtype') in ('/FreeText','/Stamp'):
+                _apply(writer,dict(kind='update-comment',page=operation['page'],index=index,text=text,author=author))
+                return
             _require(isinstance(text, str) and len(text.encode('utf-8')) <= MAX_TEXT_BYTES,
                      'Comentário inválido ou acima do limite de 64 KiB.')
             _require(isinstance(author, str) and len(author.encode('utf-8')) <= 4096, 'Autor inválido.')

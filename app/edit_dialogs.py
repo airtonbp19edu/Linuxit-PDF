@@ -67,15 +67,21 @@ def ink_operation_dialog(parent, info, page):
         return None
     finally:dialog.destroy()
 
-ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls',
+ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
                   'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
+ADVANCED_KINDS.update({'add-polygon','add-polyline','add-caret','add-freetext','add-stamp',
+                       'move-annotation','update-comment','set-popup','delete-conversation'})
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
           'fill-form-controls':'Preencher caixas e listas', 'delete-annotation':'Excluir anotação',
           'add-highlight':'Destacar área', 'add-rectangle':'Adicionar retângulo',
           'add-underline':'Sublinhar área', 'add-strikeout':'Tachar área', 'add-squiggly':'Sublinhar área com ondulado',
           'add-ellipse':'Adicionar elipse', 'add-line':'Adicionar linha', 'update-annotation':'Editar comentário da anotação'}
 TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder comentário'})
+TITLES['fill-form-events']='Preencher com cálculos e validação'
+TITLES.update({'add-polygon':'Adicionar polígono','add-polyline':'Adicionar polilinha','add-caret':'Marcar inserção',
+    'add-freetext':'Adicionar texto livre','add-stamp':'Adicionar carimbo textual','move-annotation':'Mover anotação',
+    'update-comment':'Editar comentário ou resposta','set-popup':'Configurar popup','delete-conversation':'Excluir conversa e popups'})
 
 
 def advanced_operation_dialog(parent, kind, info, page):
@@ -122,6 +128,69 @@ def advanced_operation_dialog(parent, kind, info, page):
             result = {'kind':kind,'path':records[combo.get_active()]['path']}
             if kind == 'move-bookmark':result.update(parent=choices[parents.get_active()],position=position.get_value_as_int()-1)
             return result
+    elif kind in ('add-polygon','add-polyline'):
+        combo.set_no_show_all(True);combo.hide()
+        hint.set_text('Informe um vértice por linha como X,Y em pontos PDF antes da rotação. Máximo 512; polígono exige ao menos 3 sem cruzamento.')
+        vertices=Gtk.TextView();vertices.set_wrap_mode(Gtk.WrapMode.NONE);vertices.get_accessible().set_name('Vértices X,Y')
+        left,bottom,right,top=info['page_boxes'][page];w,h=right-left,top-bottom
+        vertices.get_buffer().set_text(f'{left+w*.1},{bottom+h*.1}\n{left+w*.5},{bottom+h*.7}\n{left+w*.8},{bottom+h*.1}')
+        scroll=Gtk.ScrolledWindow();scroll.set_min_content_height(140);scroll.add(vertices);box.add(scroll)
+        comment=Gtk.Entry();comment.set_placeholder_text('Comentário opcional');box.add(comment)
+        def operation():
+            buffer=vertices.get_buffer();raw=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True)
+            try:coords=[[float(v.strip()) for v in line.split(',')] for line in raw.splitlines() if line.strip()]
+            except ValueError as exc:raise ValueError('Use X,Y numéricos por linha.') from exc
+            return dict(kind=kind,page=page,points=coords,text=comment.get_text())
+    elif kind in ('move-annotation','update-comment','delete-conversation','set-popup'):
+        records=[r for r in info.get('annotations' if kind=='move-annotation' else 'conversation_comments',[]) if r['page']==page]
+        for record in records:combo.append_text(f"{record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        if kind=='move-annotation':
+            hint.set_text('Move uma anotação simples sem respostas/popup. Deslocamentos em pontos PDF; a forma inteira deve ficar na página.')
+            width=info['page_boxes'][page][2]-info['page_boxes'][page][0];height=info['page_boxes'][page][3]-info['page_boxes'][page][1]
+            dx=Gtk.SpinButton.new_with_range(-width,width,.5);dy=Gtk.SpinButton.new_with_range(-height,height,.5)
+            box.add(Gtk.Label(label='Deslocamento horizontal'));box.add(dx);box.add(Gtk.Label(label='Deslocamento vertical'));box.add(dy)
+        elif kind=='update-comment':
+            comment=Gtk.TextView();comment.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+            scroll=Gtk.ScrolledWindow();scroll.set_min_content_height(120);scroll.add(comment);box.add(scroll)
+            author=Gtk.Entry();author.set_placeholder_text('Autor opcional');box.add(author)
+            def selected(*_):
+                if combo.get_active()>=0:
+                    record=records[combo.get_active()];comment.get_buffer().set_text(record['text']);author.set_text(record.get('author',''))
+            combo.connect('changed',selected)
+            hint.set_text('Edita o comentário ou resposta, conservando vínculos. Texto livre/carimbo recebem aparência atualizada na cópia.')
+        elif kind=='set-popup':
+            left,bottom,right,top=info['page_boxes'][page];w,h=right-left,top-bottom
+            spins=[]
+            for label,low,high,value in [('Esquerda',left,right,left+w*.5),('Inferior',bottom,top,bottom+h*.5),('Direita',left,right,right-w*.05),('Superior',bottom,top,top-h*.05)]:
+                spin=Gtk.SpinButton.new_with_range(low,high,.5);spin.set_value(value);box.add(Gtk.Label(label=label));box.add(spin);spins.append(spin)
+            opened=Gtk.CheckButton(label='Abrir popup ao visualizar');opened.set_active(True);box.add(opened)
+        else:hint.set_text('Exclui este comentário, suas respostas e popups da cópia. Objetos bloqueados e vínculos entre páginas impedem a operação.')
+        def operation():
+            if combo.get_active()<0:raise ValueError('Nenhum comentário compatível nesta página.')
+            result=dict(kind=kind,page=page,index=records[combo.get_active()]['index'])
+            if kind=='move-annotation':result.update(dx=dx.get_value(),dy=dy.get_value())
+            elif kind=='update-comment':
+                buffer=comment.get_buffer();result.update(text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True),author=author.get_text())
+            elif kind=='set-popup':result.update(rect=[s.get_value() for s in spins],open=opened.get_active())
+            return result
+    elif kind == 'fill-form-events':
+        configuration=info.get('form_events',{})
+        calculated={r['field'] for r in configuration.get('rules',[]) if r['event']=='/C'}
+        if configuration.get('unsupported'):
+            dialog.destroy();raise ValueError('Este formulário contém eventos fora do subconjunto suportado. Nenhum script foi executado.')
+        records=[r for r in info['text_fields'] if not r['read_only'] and r['name'] not in calculated]
+        if not records:
+            dialog.destroy();raise ValueError('Nenhum campo de entrada editável disponível.')
+        hint.set_text('Preencha entradas. Cálculos simples e limites numéricos reconhecidos serão aplicados à cópia; scripts gerais não são executados.')
+        fields=[];grid=Gtk.Grid(column_spacing=8,row_spacing=6)
+        for row,record in enumerate(records[:256]):
+            entry=Gtk.Entry();entry.set_text(record['value']);entry.get_accessible().set_name(record['name'])
+            label=Gtk.Label(label=record['name'],xalign=0);grid.attach(label,0,row,1,1);grid.attach(entry,1,row,1,1)
+            fields.append((record,entry))
+        scroll=Gtk.ScrolledWindow();scroll.set_min_content_height(180);scroll.set_max_content_height(400)
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC,Gtk.PolicyType.AUTOMATIC);scroll.add(grid);box.pack_start(scroll,True,True,0)
+        def operation():
+            return dict(kind=kind,values={r['name']:entry.get_text() for r,entry in fields})
     elif kind == 'fill-form-controls':
         records = [r for r in info.get('form_controls', []) if not r['read_only']]
         for record in records:combo.append_text(display_attachment_name(record['name']))
@@ -196,7 +265,7 @@ def advanced_operation_dialog(parent, kind, info, page):
         records = [r for r in info.get('annotations', []) if r['page'] == page]
         names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',
                  '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho'}
-        for record in records:combo.append_text(f"{names[record['subtype']]} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
         if kind == 'update-annotation':
             box.add(Gtk.Label(label='Comentário (pode ficar vazio)', xalign=0))
             comment = Gtk.TextView();comment.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
@@ -224,6 +293,8 @@ def advanced_operation_dialog(parent, kind, info, page):
         width, height = right-left, top-bottom
         line = kind == 'add-line'
         if line:hint.set_text('Informe início e fim em pontos PDF, antes da rotação. A linha pode ser horizontal, vertical ou diagonal; deve ficar dentro da página. Sem pontas de seta.')
+        elif kind in ('add-freetext','add-stamp'):
+            hint.set_text('Texto Unicode com fontes incorporadas na aparência. A área limita o texto visível; aumente-a para acomodar todo o conteúdo.')
         elif kind not in ('add-highlight','add-rectangle'):
             hint.set_text(hint.get_text()+' Traço vermelho. A área é manual; não seleciona palavras automaticamente.')
         bounds = ((('X inicial' if line else 'Esquerda'),left,right,left+width*.1),
@@ -234,7 +305,11 @@ def advanced_operation_dialog(parent, kind, info, page):
             spin = Gtk.SpinButton.new_with_range(low,high,.5);spin.set_digits(1);spin.set_value(value)
             spin.get_accessible().set_name(name);spins.append(spin)
             grid.attach(Gtk.Label(label=name,xalign=0),0,row,1,1);grid.attach(spin,1,row,1,1)
-        text = Gtk.Entry();text.get_accessible().set_name('Comentário da anotação');text.set_placeholder_text('Comentário opcional');box.add(text)
+        if kind in ('add-freetext','add-stamp'):
+            text=Gtk.TextView();text.set_wrap_mode(Gtk.WrapMode.WORD_CHAR);text.get_accessible().set_name('Texto da anotação')
+            scroll=Gtk.ScrolledWindow();scroll.set_min_content_height(100);scroll.add(text);box.add(scroll)
+        else:
+            text = Gtk.Entry();text.get_accessible().set_name('Comentário da anotação');text.set_placeholder_text('Comentário opcional');box.add(text)
         def operation():
             rect = [s.get_value() for s in spins]
             if line:
@@ -242,7 +317,10 @@ def advanced_operation_dialog(parent, kind, info, page):
             elif not rect[0] < rect[2] or not rect[1] < rect[3]:raise ValueError('Os limites precisam formar uma área com largura e altura positivas.')
             elif kind not in ('add-highlight','add-rectangle') and (rect[2]-rect[0] < .25 or rect[3]-rect[1] < .25):
                 raise ValueError('A área deve ter largura e altura de ao menos 0,25 ponto.')
-            return {'kind':kind,'page':page,('points' if line else 'rect'):rect,'text':text.get_text()}
+            if isinstance(text,Gtk.TextView):
+                buffer=text.get_buffer();contents=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True)
+            else:contents=text.get_text()
+            return {'kind':kind,'page':page,('points' if line else 'rect'):rect,'text':contents}
     box.add(error);combo.set_active(0);dialog.show_all()
     try:
         while dialog.run() == Gtk.ResponseType.OK:

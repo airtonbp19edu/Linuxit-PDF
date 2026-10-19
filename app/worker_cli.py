@@ -79,6 +79,11 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'annotation-appearance':
+        from text_appearance import build_text_appearance
+        raw=sys.stdin.buffer.read(65537)
+        if len(raw)>65536:raise ValueError('Texto de aparência acima do limite.')
+        print(json.dumps(build_text_appearance(json.loads(raw)),ensure_ascii=True));return
     if cmd == 'page-characters':
         from character_extraction import extract_characters
         raw=sys.stdin.buffer.read(4097)

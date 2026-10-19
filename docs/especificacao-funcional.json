@@ -1851,7 +1851,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Fonte0.1.15: Ink vetorial até32 traços/4096 pontos e respostas encadeadas em cópia, com rascunho/desfazer/refazer.7 novos portáveis passaram; GTK/Linux próprios aprovados; família integral pendente. Família ampla aberta.",
+      "matrix_implementation": "Fonte0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Pango/Cairo com fontes incorporadas, mover, editar respostas, popup e exclusão de conversa com guardas. Sete portáveis passaram; renderização/GTK aguardam Linux; família ampla aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -1914,7 +1914,9 @@
         "app/pdf_annotations.py",
         "docs/ANOTACOES-AMPLIADAS.md",
         "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json",
-        "testes/resultados/0.1.13/validation-review.json"
+        "testes/resultados/0.1.13/validation-review.json",
+        "app/annotation_geometry.py",
+        "app/text_appearance.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2235,7 +2237,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "Fonte0.1.15: checkbox/radio/listas e combo editável com texto livre/índices/AP;7 novos portáveis+21 regressões avançadas passaram. JavaScript/XFA e família completa abertos.",
+      "matrix_implementation": "Fonte0.1.16: preenchimento com AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate reconhecidos, ordem de dependências/validação antes de gravar; scripts gerais não executados. Sete novos portáveis passaram; GTK/Linux em validação. XFA/JavaScript geral abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
@@ -2289,7 +2291,8 @@
         "app/edit_dialogs.py",
         "app/edit_window.py",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "app/pdf_form_events.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",

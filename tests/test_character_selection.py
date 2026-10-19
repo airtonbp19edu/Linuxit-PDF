@@ -1,7 +1,7 @@
 import math,os,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'app'),str(ROOT/'tests')]
+ROOT=Path(__file__).resolve().parents[1];APP=Path(os.environ.get('PRINT_VIEW_TEST_APP',ROOT/'app'));sys.path[:0]=[str(APP),str(ROOT/'tests')]
 from character_selection import boundaries,nearest_caret,select_range,move_caret,validate_layout,carets
 
 
@@ -51,6 +51,10 @@ class CharacterSelectionTests(unittest.TestCase):
 
 @unittest.skipUnless(os.environ.get('DISPLAY'),'Requires Poppler/GTK and X display')
 class CharacterSelectionLinuxTests(unittest.TestCase):
+    def test_native_pango_graphemes_cover_hangul_combining_emoji_and_regional_pairs(self):
+        from character_extraction import unicode_cursor_stops
+        for text in ('e\u0301','👩\u200d💻','👍🏽','🇧🇷','각'):
+            self.assertEqual(unicode_cursor_stops(text),[0,len(text)])
     def test_poppler_worker_returns_real_character_positions_and_rotated_crop_size(self):
         from test_regressions import make_pdf
         from character_extraction import page_characters

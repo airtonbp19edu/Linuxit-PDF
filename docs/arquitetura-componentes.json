@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T14:55:04.776105-03:00",
+  "reviewed_at_local": "2026-10-19T15:08:30.357616-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -365,6 +365,24 @@
       "path": "app/character_extraction.py",
       "boundary": "worker_service",
       "responsibility": "Extrai offsets/caixas PopplerGLib dentro do worker limitado."
+    },
+    {
+      "id": "pdf_form_events",
+      "path": "app/pdf_form_events.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Reconhece regras declarativas de cálculo/intervalo sem executar JavaScript."
+    },
+    {
+      "id": "annotation_geometry",
+      "path": "app/annotation_geometry.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Cria polígonos/textos e edita geometrias/conversas de anotações em cópias."
+    },
+    {
+      "id": "text_appearance",
+      "path": "app/text_appearance.py",
+      "boundary": "worker_service",
+      "responsibility": "Gera aparência textual Unicode PDF com Pango/Cairo e fontes incorporadas."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -831,7 +849,9 @@
         "app/edit_history.py",
         "app/edit_dialogs.py",
         "app/edit_window.py",
-        "app/pdf_annotations.py"
+        "app/pdf_annotations.py",
+        "app/annotation_geometry.py",
+        "app/text_appearance.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
@@ -849,7 +869,8 @@
         "app/pdf_form_controls.py",
         "app/edit_history.py",
         "app/edit_dialogs.py",
-        "app/edit_window.py"
+        "app/edit_window.py",
+        "app/pdf_form_events.py"
       ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false

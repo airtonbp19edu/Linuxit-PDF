@@ -14,22 +14,30 @@
     {
       "id": "S01",
       "title": "Seleção por caracteres, cursor e texto bidirecional",
-      "status": "in_progress",
-      "evidence_refs": [],
-      "limitations": []
+      "status": "source_extended_linux_validation_pending",
+      "evidence_refs": [
+        "testes/resultados/sem-vm-2026-10-19/s01/review.json"
+      ],
+      "limitations": [
+        "Initial geometry/caret revision498/498 Linux passed; native Pango grapheme extension awaits new run."
+      ]
     },
     {
       "id": "S02",
       "title": "Eventos e cálculos de formulário com contrato explícito",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "source_implemented_portable_passed_linux_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
       "id": "S03",
       "title": "Ampliar anotações, aparências e edição de conversas",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "source_implemented_portable_passed_linux_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
@@ -100,5 +108,6 @@
     "original_comparison": "VMoffline suspensa; não executar original.",
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
-  }
+  },
+  "updated_at_local": "2026-10-19T15:08:29.631658-03:00"
 }

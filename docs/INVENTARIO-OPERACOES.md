@@ -1,12 +1,10 @@
 # Inventário operacional provisório — P01
 
-Revisão 14, conferida em 2026-10-19T14:36:34.919108-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 15, conferida em 2026-10-19T15:08:30.357616-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
 **Não é percentual de reconstrução.** Código delimitado, testes próprios, observações parciais do original e aceitação integral são estados distintos. Nenhuma família integral foi aprovada; todos os 50 planos completos S12 permanecem abertos.
-
-Evidência própria atual: **490 testes Linux aprovados**, [casos e hashes](../testes/resultados/lotes-2026-10-19/release-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
 ## Estado por família
 
@@ -23,12 +21,12 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Busca em anexos|3|3|0|0|
 |Índice persistente/pesquisa de coleção|3|3|0|0|
 |Stemming/proximidade/coringas|3|3|0|0|
-|Seleção/cópia/snapshot|3|2|1|0|
+|Seleção/cópia/snapshot|3|3|0|0|
 |Prévia/plano de impressão|4|2|2|0|
 |Livreto/N-up/mosaico|3|3|0|0|
 |Criar/mover/gravar marcadores|4|4|0|0|
 |Anotações/undo/gravação|13|13|0|0|
-|AcroForm/XFA/eventos|9|7|2|0|
+|AcroForm/XFA/eventos|9|8|1|0|
 |Anexos/portfólios|4|4|0|0|
 |Assinaturas/certificados|5|3|2|0|
 |Senhas/permissões/RMS|5|4|1|0|
@@ -39,7 +37,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|111|93|15|3|
+|Total|111|95|13|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -51,7 +49,7 @@ Abertura/erros/cópia em recortes; senha correta em abertura independenteD15 abr
 |---|---|---|
 |`open-render/inspect` — Inspecionar páginas, caixas e metadados|Código em subconjunto ([fonte](../app/rendering.py#L67))|PDF local legível => páginas/tamanhos/metadados; erro de parser não produz documento válido fictício.|
 |`open-render/render` — Renderizar página e reutilizar cache|Código em subconjunto ([fonte](../app/rendering.py#L126))|PDF, página e largura => imagem válida associada à identidade do documento; cache não mistura documentos.|
-|`open-render/obsolete` — Descartar renderização obsoleta|Código em subconjunto ([fonte](../app/main.py#L1064))|Troca/fechamento durante render => callback antigo não substitui documento atual.|
+|`open-render/obsolete` — Descartar renderização obsoleta|Código em subconjunto ([fonte](../app/main.py#L1068))|Troca/fechamento durante render => callback antigo não substitui documento atual.|
 |`open-render/copy` — Salvar cópia local completa e exclusiva|Código em subconjunto ([fonte](../app/local_files.py#L106))|Origem identificada e destino novo => cópia completa sem sobrescrita; não afirmar sincronização remota.|
 |`open-render/password-open` — Abrir PDF cifrado integrado ao leitor|Código em subconjunto ([fonte](../app/document_session.py#L35))|Credential via stdin, private reading representation and first-render commit; reject/cancel preserves prior document. Original unchanged; printing the representation remains refused.|
 |`open-render/recovery` — Recuperar documentos danificados|Código em subconjunto ([fonte](../app/document_session.py#L35))|Explicit consent permits pypdf best-effort recovery; broken xref fixture opens, irrecoverable input fails without replacing prior document. No universal repair guarantee.|
@@ -64,10 +62,10 @@ UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`navigation/goto` — Ir para página válida|Código em subconjunto ([fonte](../app/main.py#L1194))|Documento e índice => página correta; limites/sem documento não acessam índice inválido.|
-|`navigation/zoom` — Aplicar zoom e ajuste|Código em subconjunto ([fonte](../app/main.py#L1246))|Zoom/ajuste e viewport => página posicionada no recorte próprio; limites Foxit ainda requerem UI04.|
-|`navigation/view-rotation` — Rotacionar visualização|Código em subconjunto ([fonte](../app/main.py#L1254))|Rotação visual => tela e coordenadas coerentes sem alterar arquivo fonte.|
-|`navigation/saved-rotation` — Persistir rotação em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Página e ângulo aceito => /Rotate persistido na cópia, fonte preservada.|
+|`navigation/goto` — Ir para página válida|Código em subconjunto ([fonte](../app/main.py#L1198))|Documento e índice => página correta; limites/sem documento não acessam índice inválido.|
+|`navigation/zoom` — Aplicar zoom e ajuste|Código em subconjunto ([fonte](../app/main.py#L1250))|Zoom/ajuste e viewport => página posicionada no recorte próprio; limites Foxit ainda requerem UI04.|
+|`navigation/view-rotation` — Rotacionar visualização|Código em subconjunto ([fonte](../app/main.py#L1258))|Rotação visual => tela e coordenadas coerentes sem alterar arquivo fonte.|
+|`navigation/saved-rotation` — Persistir rotação em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Página e ângulo aceito => /Rotate persistido na cópia, fonte preservada.|
 
 ## Apresentação ajustar/preencher
 
@@ -93,8 +91,8 @@ D12 no corpus5000: Stop ativo encerra e preserva232 resultados; troca para geome
 |`search-text/whole` — Aplicar palavra inteira|Código em subconjunto ([fonte](../app/search_matching.py#L59))|Consulta e texto => respeitar fronteiras de palavra do contrato próprio.|
 |`search-text/case` — Distinguir maiúsculas/minúsculas|Código em subconjunto ([fonte](../app/search_matching.py#L5))|Consulta e opção de caixa => resultados conforme configuração, inclusive expansão casefold.|
 |`search-text/normalization` — Normalizar acentos e hifenização|Código em subconjunto ([fonte](../app/search_engine.py#L32))|Texto/colunas => normalização própria sem unir colunas indevidamente; algoritmo Foxit completo aberto.|
-|`search-text/highlight` — Destacar e navegar por ocorrências|Código em subconjunto ([fonte](../app/main.py#L1833))|Resultado e destaque global => pixels/navegação atualizados sem nova busca indevida.|
-|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1891))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
+|`search-text/highlight` — Destacar e navegar por ocorrências|Código em subconjunto ([fonte](../app/main.py#L1891))|Resultado e destaque global => pixels/navegação atualizados sem nova busca indevida.|
+|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1949))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
 
 ## Busca em marcadores
 
@@ -105,7 +103,7 @@ D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro na
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`search-bookmarks/titles` — Pesquisar títulos de marcadores|Código em subconjunto ([fonte](../app/search_engine.py#L127))|Consulta só marcadores => resultados independentes com destino local quando conhecido.|
-|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1833))|Hit com página ou sem destino => navegar apenas quando conhecido; não inventar página0. Ativação Foxit ainda inconclusiva.|
+|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1891))|Hit com página ou sem destino => navegar apenas quando conhecido; não inventar página0. Ativação Foxit ainda inconclusiva.|
 
 ## Busca em comentários
 
@@ -163,9 +161,9 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`selection/text` — Selecionar e copiar palavras por área|Código em subconjunto ([fonte](../app/main.py#L1745))|Região da visualização => palavras/cópia com transformação coerente no recorte próprio.|
-|`selection/snapshot` — Copiar snapshot de região|Código em subconjunto ([fonte](../app/main.py#L1704))|Região da página => imagem do recorte, sem declarar ordem semântica de texto; teste dedicado não mapeado nesta revisão.|
-|`selection/bidi` — Garantir ordem lógica e texto bidirecional|Pendente/caracterizar|PDF com colunas/texto bidirecional => ordenação, snapping e permissões ainda por especificar/comparar.|
+|`selection/text` — Selecionar e copiar palavras por área|Código em subconjunto ([fonte](../app/main.py#L1761))|Região da visualização => palavras/cópia com transformação coerente no recorte próprio.|
+|`selection/snapshot` — Copiar snapshot de região|Código em subconjunto ([fonte](../app/main.py#L1720))|Região da página => imagem do recorte, sem declarar ordem semântica de texto; teste dedicado não mapeado nesta revisão.|
+|`selection/bidi` — Garantir ordem lógica e texto bidirecional|Código em subconjunto ([fonte](../app/character_selection.py#L85))|Character/caret subset uses actual Poppler offsets and Unicode text; native Pango boundaries added after initial498/498 Linux run. No universal recovery of malformed PDF reading order or full original parity.|
 
 ## Prévia/plano de impressão
 
@@ -200,10 +198,10 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`bookmarks-edit/create` — Criar marcador em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Título/página => novo marcador na cópia, arquivo original preservado.|
-|`bookmarks-edit/rename` — Renomear marcador|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Caminho/título => renomear o nó escolhido preservando destinos e estrutura.|
-|`bookmarks-edit/move` — Mover subárvore de marcadores|Código em subconjunto ([fonte](../app/pdf_changes.py#L191))|Caminho, pai e posição => mover sem ciclos, preservando filhos/destinos/contagens.|
-|`bookmarks-edit/delete` — Excluir subárvore em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L191))|Caminho => excluir subárvore e manter árvore restante consistente.|
+|`bookmarks-edit/create` — Criar marcador em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Título/página => novo marcador na cópia, arquivo original preservado.|
+|`bookmarks-edit/rename` — Renomear marcador|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Caminho/título => renomear o nó escolhido preservando destinos e estrutura.|
+|`bookmarks-edit/move` — Mover subárvore de marcadores|Código em subconjunto ([fonte](../app/pdf_changes.py#L193))|Caminho, pai e posição => mover sem ciclos, preservando filhos/destinos/contagens.|
+|`bookmarks-edit/delete` — Excluir subárvore em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L193))|Caminho => excluir subárvore e manter árvore restante consistente.|
 
 ## Anotações/undo/gravação
 
@@ -213,18 +211,18 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`annotations/note` — Criar nota Text|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Página, texto e retângulo => nota Text imprimível dentro do CropBox, em cópia.|
-|`annotations/highlight` — Criar destaque de área|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Página e retângulo => Highlight com QuadPoints e texto no recorte suportado.|
-|`annotations/rectangle` — Criar retângulo|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Retângulo dentro da página => Square imprimível com geometria persistida.|
+|`annotations/note` — Criar nota Text|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Página, texto e retângulo => nota Text imprimível dentro do CropBox, em cópia.|
+|`annotations/highlight` — Criar destaque de área|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Página e retângulo => Highlight com QuadPoints e texto no recorte suportado.|
+|`annotations/rectangle` — Criar retângulo|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Retângulo dentro da página => Square imprimível com geometria persistida.|
 |`annotations/underline` — Criar sublinhado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => sublinhado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/strikeout` — Criar tachado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => tachado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/squiggly` — Criar ondulado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => ondulado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/ellipse` — Criar elipse|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => elipse com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/line` — Criar linha|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => linha com aparência vetorial própria embutida; fonte preservada.|
-|`annotations/comment-author` — Editar comentário e autor|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Anotação simples desbloqueada e texto/autor => alterar/limpar metadados sem mudar geometria/aparência.|
-|`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
+|`annotations/comment-author` — Editar comentário e autor|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Anotação simples desbloqueada e texto/autor => alterar/limpar metadados sem mudar geometria/aparência.|
+|`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
 |`annotations/history` — Desfazer/refazer rascunho|Código em subconjunto ([fonte](../app/edit_history.py#L71))|Histórico do rascunho => reconstruir cursor correto sem alterar fonte/cópias já salvas.|
-|`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|
+|`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|
 |`annotations/freehand` — Desenho livre e demais tipos|Código em subconjunto ([fonte](../app/pdf_annotations.py#L110))|Geometria de desenho/tipo ainda ausente => especificar, implementar e comparar antes de declarar suporte.|
 
 ## AcroForm/XFA/eventos
@@ -235,14 +233,14 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`forms/text` — Preencher campo Tx|Código em subconjunto ([fonte](../app/pdf_changes.py#L274))|Campo terminal e texto => respeitar ReadOnly/MaxLen herdados e persistir valor/aparência em cópia.|
+|`forms/text` — Preencher campo Tx|Código em subconjunto ([fonte](../app/pdf_changes.py#L285))|Campo terminal e texto => respeitar ReadOnly/MaxLen herdados e persistir valor/aparência em cópia.|
 |`forms/checkbox` — Marcar/desmarcar checkbox|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Checkbox com aparências existentes e booleano => /V e /AS coerentes; ReadOnly recusado.|
 |`forms/radio` — Selecionar radio simples|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Grupo e estado válido => ativar somente widget selecionado; respeitar NoToggleToOff.|
 |`forms/combo-fixed` — Selecionar combo sem texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Opção existente => valor/índice/aparência coerentes; export/label preservados no subconjunto.|
 |`forms/list-single` — Selecionar lista simples|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Lista simples e opção ou vazio => seleção única ou limpeza consistente.|
 |`forms/list-multiple` — Selecionar lista múltipla|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Conjunto de exports => valores e índices canônicos persistidos sem duplicação.|
 |`forms/combo-editable` — Preencher combo com texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Texto fora de Opt em combo editável => gerar valor/aparência, preservar opções e ReadOnly; ainda recusado atualmente.|
-|`forms/events` — Calcular e validar eventos de formulário|Pendente/caracterizar|Campo com cálculo/validação/evento => delimitar motor, regras e efeitos antes de implementação.|
+|`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L82))|Recognized AFSimple_Calculate and AFRange_Validate helpers are interpreted declaratively with bounded dependency order, range checks and atomic copy publication. General JavaScript/XFA remains unsupported; seven new portable cases passed, Linux pending.|
 |`forms/xfa` — Processar XFA|Pendente/caracterizar|Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.|
 
 ## Anexos/portfólios
@@ -295,7 +293,7 @@ No dynamic observation of this family found in the examined preserved reports.
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`accessibility/text` — Expor texto da página por ATK.Text|Código em subconjunto ([fonte](../app/accessible_reader.py#L12))|Página suportada => texto Poppler em Gtk.TextView/ATK.Text com limites; não é garantia de ordem semântica.|
-|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2369))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
+|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2427))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
 |`accessibility/screen-reader` — Validar leitor de tela e ordem real|Pendente/caracterizar|Desktop AT-SPI e leitor de tela real => foco, ordem e feedback conferidos; CI sem barramento não aprova.|
 |`accessibility/voice` — Ler em voz alta|Código em subconjunto ([fonte](../app/speech.py#L9))|Texto e controles de voz => disponibilidade Reader, síntese e interrupção ainda a delimitar; OCR não implementa voz.|
 
@@ -307,7 +305,7 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`measurement/distance` — Medir distância entre pontos|Código em subconjunto ([fonte](../app/main.py#L1764))|Dois pontos da visualização => distância convertida a centímetros no contrato atual; teste dedicado não mapeado.|
+|`measurement/distance` — Medir distância entre pontos|Código em subconjunto ([fonte](../app/main.py#L1822))|Dois pontos da visualização => distância convertida a centímetros no contrato atual; teste dedicado não mapeado.|
 |`measurement/calibrate` — Calibrar escala e unidades|Código em subconjunto ([fonte](../app/measurement.py#L21))|Distância conhecida/unidade => calibração e snapping/precisão persistidos conforme contrato futuro.|
 |`measurement/area` — Medir área|Código em subconjunto ([fonte](../app/measurement.py#L37))|Polígono/região => área em unidade calibrada; operação ainda pendente.|
 |`measurement/perimeter` — Medir perímetro|Código em subconjunto ([fonte](../app/measurement.py#L37))|Traçado/polígono => perímetro em unidade calibrada; operação ainda pendente.|

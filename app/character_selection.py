@@ -38,12 +38,17 @@ def validate_layout(data):
                all(type(v) in (int, float) and math.isfinite(v) for v in box)
                and box[2] >= box[0] and box[3] >= box[1] for box in boxes):
         raise ValueError('Coordenadas de caracteres inválidas.')
+    stops=data.get('cursor_stops')
+    if stops is not None and (not isinstance(stops,list) or not stops or stops[0]!=0 or stops[-1]!=len(text)
+                              or any(type(v) is not int or not 0<=v<=len(text) for v in stops)
+                              or any(a>=b for a,b in zip(stops,stops[1:]))):
+        raise ValueError('Limites Unicode do cursor inválidos.')
     return text, boxes
 
 
 def carets(data):
     text, boxes = validate_layout(data)
-    stops = boundaries(text)
+    stops = data.get('cursor_stops') or boundaries(text)
     result = [];last_strong = False
     for start, end in zip(stops, stops[1:]):
         rtl=last_strong
@@ -81,7 +86,7 @@ def select_range(data, anchor, focus):
     text, boxes = validate_layout(data)
     if any(type(v) is not int or not 0 <= v <= len(text) for v in (anchor, focus)):
         raise ValueError('Cursor fora do texto da página.')
-    stops = boundaries(text)
+    stops = data.get('cursor_stops') or boundaries(text)
     low, high = sorted((anchor, focus))
     start = stops[max(0, bisect.bisect_right(stops, low)-1)]
     end = stops[min(len(stops)-1, bisect.bisect_left(stops, high))]
@@ -105,7 +110,7 @@ def move_caret(data, offset, key, control=False):
         return 0 if key == 'Home' else len(text)
     current = next((p for p in points if p[0] == offset), None)
     if current is None:
-        stops = boundaries(text);index = bisect.bisect_left(stops, offset)
+        stops = data.get('cursor_stops') or boundaries(text);index = bisect.bisect_left(stops, offset)
         return stops[min(len(stops)-1, max(0,index+(1 if key in ('Right','Down','End') else -1)))]
     _, x, top, bottom = current
     middle = (top+bottom)/2
@@ -117,7 +122,7 @@ def move_caret(data, offset, key, control=False):
         candidates = [p for p in line if (p[1]-x)*direction > 1e-5]
         if candidates:
             return min(candidates,key=lambda p:abs(p[1]-x))[0]
-        stops = boundaries(text);index = bisect.bisect_left(stops,offset)
+        stops = data.get('cursor_stops') or boundaries(text);index = bisect.bisect_left(stops,offset)
         return stops[min(len(stops)-1,max(0,index+direction))]
     candidates = [p for p in points if (p[2] > bottom if key == 'Down' else p[3] < top)]
     return min(candidates,key=lambda p:abs((p[2]+p[3])/2-middle)*4+abs(p[1]-x))[0] if candidates else offset

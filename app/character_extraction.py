@@ -2,6 +2,23 @@
 from pathlib import Path
 
 
+def unicode_cursor_stops(text):
+    """PangoLogAttr.is_cursor_position implements native UAX29 boundaries."""
+    import ctypes,ctypes.util
+    from character_selection import MAX_CHARACTERS
+    if not isinstance(text,str) or len(text)>MAX_CHARACTERS:raise ValueError('Texto de cursor acima do limite.')
+    library=ctypes.CDLL(ctypes.util.find_library('pango-1.0') or 'libpango-1.0.so.0')
+    function=library.pango_get_log_attrs
+    function.argtypes=[ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_void_p,ctypes.POINTER(ctypes.c_uint),ctypes.c_int]
+    function.restype=None
+    raw=text.encode('utf-8');attributes=(ctypes.c_uint*(len(text)+1))()
+    function(raw,len(raw),-1,None,attributes,len(attributes))
+    # Public PangoLogAttr guint bitfields: is_cursor_position is the fifth bit.
+    stops=[i for i,value in enumerate(attributes) if value & (1<<4)]
+    if not stops or stops[0]!=0 or stops[-1]!=len(text):raise ValueError('Pango retornou limites de cursor inválidos.')
+    return stops
+
+
 def extract_characters(path, page_index):
     import gi
     gi.require_version('Poppler', '0.18')
@@ -19,7 +36,8 @@ def extract_characters(path, page_index):
         layout = []
     width, height = page.get_size()
     data = dict(schema='linuxit-character-layout-v1',width=width,height=height,text=text,
-                boxes=[[r.x1,r.y1,r.x2,r.y2] for r in layout],logical_order='poppler-extracted')
+                boxes=[[r.x1,r.y1,r.x2,r.y2] for r in layout],logical_order='poppler-extracted',
+                cursor_stops=unicode_cursor_stops(text))
     validate_layout(data)
     return data
 

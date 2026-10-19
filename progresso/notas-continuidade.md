@@ -3038,3 +3038,8 @@ Publicação técnica d0d9bec confirmada; download público sem loginHTTP200/580
 ## 2026/10/19 às 14:50 (America/Sao_Paulo, UTC-03:00) — execução abrangente sem VM iniciada
 
 Pedido explícito de completar todo trabalho independente de VM. Plano e dependências emprogresso/execucao-sem-vm.json; baseline0.1.15/d0a6213/490 testes preservado. Fonte0.1.16 em desenvolvimento; evidência atual antiga movida a histórica antes de alterar código. VM suspensa e nuvem direta23 adiada permanecem intactas. Próximo: seleção por caractere/cursor e textos bidirecionais, depois eventos de formulário/anotações e demais pacotes. Nenhuma conclusão nova nesta preparação.
+
+
+## 2026/10/19 às 15:08 (America/Sao_Paulo, UTC-03:00) — S01 Linux e S02/S03 preparados
+
+S01 inicialf3212ef/CI39298287332:498/498 Linux sem falhas/erros/skips, oito novos/490 preservados; raw e ZIP12208122994 examinados/hash conferido após timeout de rede e retry streaming. Evidência pública emtestes/resultados/sem-vm-2026-10-19/s01; não aprova a extensãoPango posterior. S02 cálculos/intervalos e S03 anotações/conversas implementados;7+7 portáveis e16+21 regressões passaram;3 novosGTK e extensão nativa aguardamCI. Falhas iniciais de FloatObject/BooleanObject corrigidas e registradas. Catálogo provisório111 agora95 com código/13pendentes/3adiados, não operações completas aprovadas. Fonte0.1.16 em desenvolvimento, último pacote0.1.15 preservado; pesos/critérios/paridade/VM/nuvem intactos. Próximo: CI consolidadoS01–S03 e S04 autenticação/edição/impressão.

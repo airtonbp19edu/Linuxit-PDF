@@ -1,0 +1,15 @@
+{
+  "schema": "linuxit-native-portal-v1",
+  "passed": true,
+  "native_chooser_used": true,
+  "portal_open_file_observed": true,
+  "portal_response_observed": true,
+  "selected_expected_synthetic_pdf": true,
+  "window_seen": true,
+  "client_returncode": 0,
+  "foxit_executed": false,
+  "flatpak_test": false,
+  "limitations": [
+    "Ephemeral X11 desktop portal; no physical desktop/persistent Flatpak permission acceptance."
+  ]
+}

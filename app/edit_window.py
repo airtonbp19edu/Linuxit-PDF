@@ -15,8 +15,13 @@ ACTIONS = [('add-bookmark','Adicionar marcador'),('rename-bookmark','Renomear ma
            ('add-strikeout','Tachar área'),('add-squiggly','Sublinhar área com ondulado'),
            ('add-ellipse','Adicionar elipse'),('add-line','Adicionar linha'),
            ('add-ink','Desenhar à mão livre'),('add-reply','Responder comentário'),
+           ('add-polygon','Adicionar polígono'),('add-polyline','Adicionar polilinha'),
+           ('add-caret','Marcar inserção'),('add-freetext','Adicionar texto livre'),('add-stamp','Adicionar carimbo textual'),
+           ('move-annotation','Mover anotação'),('update-comment','Editar comentário ou resposta'),
+           ('set-popup','Configurar popup'),('delete-conversation','Excluir conversa e popups'),
            ('update-annotation','Editar comentário da anotação'),('delete-annotation','Excluir anotação'),
            ('fill-text-fields','Preencher campo de texto'),('fill-form-controls','Preencher caixas e listas'),
+           ('fill-form-events','Preencher com cálculos e validação'),
            ('rotate-page','Girar página')]
 NAMES = dict(ACTIONS)
 
