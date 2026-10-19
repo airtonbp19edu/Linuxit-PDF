@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T14:16:33-03:00",
+  "reviewed_at_local": "2026-10-19T14:19:57-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -347,6 +347,12 @@
       "path": "app/reading_preferences.py",
       "boundary": "portable_logic",
       "responsibility": "Persistência atômica validada de padrões de zoom, painel lateral e destaques, sem caminhos/segredos."
+    },
+    {
+      "id": "installation_info",
+      "path": "app/installation_info.py",
+      "boundary": "portable_logic",
+      "responsibility": "Diagnóstico de instalação e comando fixo do gerenciador de pacotes; não executa atualização nem recebe comandos de metadados."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -940,7 +946,9 @@
       "contract_kind": "proposed_only",
       "current_source_refs": [
         "app/platform_runtime.py",
-        "app/cups_backend.py"
+        "app/cups_backend.py",
+        "app/installation_info.py",
+        "app/folder_dialogs.py"
       ],
       "future_boundary": "Portais, associações e atualização com testes próprios por plataforma.",
       "future_boundary_implemented": false

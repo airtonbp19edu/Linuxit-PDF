@@ -21,7 +21,8 @@ jobs:
             python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
             dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme openssl \
             tesseract-ocr tesseract-ocr-por tesseract-ocr-eng espeak-ng \
-            at-spi2-core libatk-adaptor gir1.2-atspi-2.0
+            at-spi2-core libatk-adaptor gir1.2-atspi-2.0 \
+            xdg-desktop-portal xdg-desktop-portal-gtk xdotool
       - name: Check out source and synthetic corpus
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -84,6 +85,15 @@ jobs:
             chmod 700 "$XDG_RUNTIME_DIR"
             exec dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/check_atspi_text.py \
               --output dist/no-vm-results/atspi-text.json
+          '
+      - name: Check actual native file portal
+        run: |
+          runuser -u linuxit-test -- bash -c '
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-portal-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            export XDG_CURRENT_DESKTOP=GNOME
+            exec xvfb-run -a dbus-run-session -- bash -c "openbox --sm-disable >/tmp/linuxit-portal-openbox.log 2>&1 & exec /usr/bin/python3 scripts/check_native_portal.py --output dist/no-vm-results/native-portal.json"
           '
       - name: Preserve own test evidence
         if: always()

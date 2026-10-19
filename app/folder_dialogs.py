@@ -36,3 +36,21 @@ def choose_sync_folder(parent):
         remember_folder('sync_folder',path)
         return path
     finally:dialog.destroy()
+
+
+def choose_pdf_native(parent):
+    """GTK selects the portal/native backend available in the current desktop."""
+    dialog=Gtk.FileChooserNative.new('Abrir PDF pelo seletor do sistema',parent,
+                                    Gtk.FileChooserAction.OPEN,'Abrir','Cancelar')
+    dialog.set_modal(True);dialog.set_local_only(True)
+    filter_=Gtk.FileFilter();filter_.set_name('Documentos PDF')
+    filter_.add_mime_type('application/pdf');filter_.add_pattern('*.pdf');dialog.add_filter(filter_)
+    folder=preferred_folder()
+    if folder:dialog.set_current_folder(folder)
+    try:
+        if dialog.run()!=Gtk.ResponseType.ACCEPT:return None
+        path=dialog.get_filename()
+        if not path:raise ValueError('O seletor não forneceu um arquivo local disponível.')
+        remember_selection(path)
+        return path
+    finally:dialog.destroy()

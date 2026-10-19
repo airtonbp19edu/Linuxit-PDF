@@ -15,7 +15,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |16–18|Anexos; assinaturas; segurança|Fonte0.1.15: membros de portfólio/sessão por senha, assinatura local PEM e permissões;7 novos+28 regressões passaram. UI/Linux e confiança/LTV/RMS abertos.|
 |19–21|Acessibilidade; medidas; camadas/mídia|Fonte0.1.15: voz WAV, medidas calibradas e toggle de camadas;6 portáveis+14 regressões passaram. Linux/probe/voz/pixels e mídia/3D abertos.|
 |22–24|Preferências; nuvem; conversão|Preferências/quadros estáticos implementados;5 portáveis+22 regressões passaram. **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário.|
-|25|Plataforma|Portais, associação/atualização e Windows; validar o que estiver disponível no Linux do CI.|
+|25|Plataforma|Seletor nativo e informações de instalação implementados; probe portal preparado. Persistência/associação/update real/Windows abertos.|
 
 ## Contrato próprio do lote4–6
 
@@ -228,3 +228,26 @@ Pastas sincronizadas continuam disponíveis sem provar sincronização remota.
 O marco825f1e4 dos lotes4–15 passou465/465 no Linux39282125477 sem skips;
 relatório bruto/hash conferidos. Isso é evidência histórica, não aprovação da
 fonte atual19–24. CI39292345681 cobre19–21 e está em andamento.
+
+
+## Item25 e consolidação
+
+O menu Abrir pelo seletor do sistema usa Gtk.FileChooserNative e o backend
+portal/nativo que o desktop oferecer. Só arquivo local, filtro PDF e cancelamento
+conserva o documento atual; abertura usa o fluxo transacional já existente.
+O novo probe de CI observa tráfego real FileChooser.OpenFile/Request.Response
+do cliente e confirma o caminho sintético escolhido no desktop efêmero. É um
+teste X11 de portal, não prova concessão persistente no sandbox ou desktop físico.
+
+Instalação e atualização identifica o app Flatpak esperado e apresenta o comando
+fixo do gerenciador ou orienta instalar o bundle novo se não houver remote.
+Não consulta rede nem executa atualização. Não há atualizador próprio nem prova
+de update/rollback/associação persistente; Windows nativo segue posterior.
+2 portáveis passaram e1 GTK preparado; probe/suíte consolidada pendentes.
+
+Todos os25 itens foram percorridos nesta sequência de implementação por lotes.
+Isso não encerra25 famílias: item23 segue adiado; entre lacunas conhecidas estão
+bidi/caret completo, impressão física/encerramento original, eventos/XFA,
+confiança/TSA/LTV/RMS, leitor de tela físico, mídia/3D, concessões persistentes,
+associação/update e Windows nativo, além de toda comparação integral Foxit.
+Não converter a contagem de recortes em percentual da reconstrução.

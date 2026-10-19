@@ -1103,6 +1103,6 @@ Requisito futuro: contratos separados para portais Linux/Flatpak, associação d
 
 - Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows.
 
-Fontes: [docs/instalacao.md](../docs/instalacao.md), [app/platform_runtime.py](../app/platform_runtime.py), [app/cups_backend.py](../app/cups_backend.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [docs/instalacao.md](../docs/instalacao.md), [app/platform_runtime.py](../app/platform_runtime.py), [app/cups_backend.py](../app/cups_backend.py), [app/installation_info.py](../app/installation_info.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 A especificação de referência e a consolidação da fase A continuam parciais. Não promover propostas, presença de recursos ou testes próprios a funcionalidade Foxit recuperada.

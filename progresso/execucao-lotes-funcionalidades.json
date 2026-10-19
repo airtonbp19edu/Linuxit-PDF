@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-functional-batches-v1",
-  "updated_at_local": "2026-10-19T14:16:33-03:00",
+  "updated_at_local": "2026-10-19T14:19:57-03:00",
   "timezone": "America/Sao_Paulo",
   "request": "Continuar de3em3 as25famílias; nuvem direta23 permanece adiada por confirmação explícita do usuário.",
   "cloud_direct_deferred": true,
@@ -206,10 +206,13 @@
         {
           "number": 25,
           "id": "platform",
-          "status": "queued",
+          "status": "bounded_handoff_source_ready_validation_pending",
           "whole_family_complete": false
         }
-      ]
+      ],
+      "status": "bounded_handoff_source_ready_validation_pending"
     }
-  ]
+  ],
+  "implementation_pass_reviewed_all_25": true,
+  "all_25_complete": false
 }

@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+Atualização 2026-10-19T14:19:59-03:00: [sequência dos25 itens em lotes](docs/LOTES-FUNCIONALIDADES.md) percorrida com implementações próprias4–25, nuvem direta23 adiada. Fonte0.1.15 em validação consolidada; último pacote0.1.14 preservado. Lote13–15 passou465/465 Linux e19–21 teve CI aprovado (relatório a consolidar). Não é conclusão das famílias; VM suspensa, critérios/pesos/paridade intactos. Próximo: resultados/probes e entrega consolidada.
+
 Atualização 2026-10-19T12:39:30-03:00: sequência dos25 itens em lotes de3 em [LOTES-FUNCIONALIDADES.md](docs/LOTES-FUNCIONALIDADES.md). Lote4–6 implementado na fonte0.1.15,7 testes portáveis passaram/2 GTK pendentes; Linux ainda não validado. Nuvem direta23 permanece adiada por confirmação do usuário. Último pacote0.1.14 preservado; VM suspensa e critérios/paridade intactos.
 
 Entrega0.1.14 confirmada em2026-10-19T12:20:01-03:00: [relatório](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md),432/432 próprios por ambiente; auditoria instalada7controles/5smoke/3GTK passou sem rebuild e download público HTTP200/hash/tamanho confere. Commit de publicação38cb933; evidências emtestes/resultados/0.1.14/. Dois monitores virtuais/layout/hotplug aprovados na fonte; físico/Wayland/original e famílias completas pendentes. VM0930 permanece suspensa; nenhuma entrada nesta rodada. Próximo sem VM: P06/B01, comboAcroForm editável, conforme contratos. Histórico abaixo.

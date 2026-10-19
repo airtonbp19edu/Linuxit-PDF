@@ -28,7 +28,7 @@ from themes import load_theme, read_theme, save_theme
 from platform_runtime import worker_python, subprocess_options
 from attachment_tasks import AttachmentPanelController, display_attachment_name
 from local_files import read_folders, remember_folder, file_stamp
-from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder
+from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder, choose_pdf_native
 from text_selection import select_words, selection_text
 from print_tasks import prepare_print, publish_print_copy
 from search_tasks import run_search_worker
@@ -267,6 +267,8 @@ class PDFWindow(Gtk.Window):
                 menu = Gtk.Menu()
                 for text, callback in (
                     ('Abrir PDF…', self._choose_open), ('Salvar cópia…', self._save_copy),
+                    ('Abrir pelo seletor do sistema…', self._choose_open_native),
+                    ('Instalação e atualização…', self._installation_details),
                     ('Escolher pasta sincronizada…', self._choose_sync_folder),
                     ('Abrir PDF da pasta sincronizada…', self._open_sync_folder),
                     ('Esquecer pasta sincronizada', self._forget_sync_folder),
@@ -791,6 +793,29 @@ class PDFWindow(Gtk.Window):
             if path:self.status_file.set_text('Pasta local preferida: '+path+'. O sincronizador gerencia o envio.')
             return path
         except (OSError,ValueError) as exc:self._error(str(exc))
+
+    def _choose_open_native(self,*_):
+        try:
+            path=choose_pdf_native(self)
+            if path:self.open_document(path)
+        except (OSError,ValueError) as exc:self._error(str(exc))
+
+    def _installation_details(self,*_):
+        from installation_info import installation_info
+        info=installation_info()
+        text=f"Linuxit PDF {info['version']} · {info['system']} {info['architecture']}\n"
+        if info['installation']=='flatpak':
+            text+='Instalado como Flatpak. Use o gerenciador de aplicativos do Linux para atualizações.\n'
+            text+='No terminal do sistema: '+info['update_command']+'\n'
+            text+='Se foi instalado somente por um bundle sem repositório de atualização, instale o novo bundle publicado.'
+        else:
+            text+='Execução pelo código-fonte ou pacote do sistema. Atualize pela origem usada na instalação.'
+        text+='\nNenhuma consulta remota ou atualização foi executada por esta janela.'
+        dialog=Gtk.MessageDialog(transient_for=self,modal=True,message_type=Gtk.MessageType.INFO,
+                                 buttons=Gtk.ButtonsType.CLOSE,text='Instalação e atualização')
+        dialog.format_secondary_text(text)
+        try:dialog.run()
+        finally:dialog.destroy()
 
     def _open_sync_folder(self, *_args):
         folder = read_folders().get('sync_folder')

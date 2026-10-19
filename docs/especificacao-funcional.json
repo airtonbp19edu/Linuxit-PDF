@@ -3870,7 +3870,7 @@
     {
       "id": "platform",
       "name": "Integrações de sistema/atualização",
-      "matrix_implementation": "Complete integration contract remains proposed; existing worker/launcher/runtime controls are bounded delivered components. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: seletor nativo de PDF e informações de instalação/handoff de atualização do Flatpak; probe portal real preparado. Associação/sandbox/atualização real e Windows nativo ainda pendentes.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
       "inputs": [
@@ -3899,7 +3899,9 @@
       "source_refs": [
         "docs/instalacao.md",
         "app/platform_runtime.py",
-        "app/cups_backend.py"
+        "app/cups_backend.py",
+        "app/installation_info.py",
+        "app/folder_dialogs.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3950,7 +3952,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T14:16:33-03:00",
+  "updated_at_local": "2026-10-19T14:19:57-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }
