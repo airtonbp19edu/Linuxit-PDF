@@ -19,7 +19,7 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
             python3-cryptography gir1.2-gtk-3.0 poppler-utils dbus dbus-x11 \
-            xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme
+            xvfb xauth xserver-xephyr x11-utils openbox fonts-dejavu-core adwaita-icon-theme
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -28,7 +28,7 @@ jobs:
         run: |
           useradd --create-home --uid 1001 linuxit-monitors
           chown -R linuxit-monitors:linuxit-monitors "$GITHUB_WORKSPACE"
-      - name: Exercise two actual GDK monitors on Xvfb
+      - name: Exercise two actual GDK monitors on nested Xephyr
         run: |
           runuser -u linuxit-monitors -- bash -c '
             set -euo pipefail
@@ -37,16 +37,16 @@ jobs:
             chmod 700 "$XDG_RUNTIME_DIR"
             export PYTHONUTF8=1
             dbus-run-session -- xvfb-run -a \
-              -s "-screen 0 1280x800x24 -screen 1 1024x768x24 +xinerama -extension RANDR -nolisten tcp" \
-              bash -c '\''openbox --sm-disable >/tmp/linuxit-monitor-openbox.log 2>&1 &
-                wm=$!; trap "kill $wm 2>/dev/null || true" EXIT
-                /usr/bin/python3 scripts/check_presentation_monitors.py dist/presentation-monitors'\''
+              -s "-screen 0 2400x900x24 -nolisten tcp" \
+              bash scripts/ci_presentation_monitors.sh
           '
       - name: Preserve virtual monitor observations
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: linuxit-virtual-monitors-${{ github.sha }}
-          path: dist/presentation-monitors/
+          path: |
+            dist/presentation-monitors/
+            dist/presentation-monitor-diagnostics/
           if-no-files-found: warn
           retention-days: 14

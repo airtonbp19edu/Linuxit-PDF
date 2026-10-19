@@ -2922,3 +2922,8 @@ Viewport evita reconfigurar ajustes idênticos; leitura recuperada fica identifi
 CI39267334037/156be32 executou432 testes:430 passaram,duas falhas,zero erros/skips; build/payload/sandbox não executados. Artefato12193383323/hashb29ea6e3c31284f76edd7c3b19fe7735f7ca04c2ba71d5d49bf889852346cfb4 preservado e examinado emanalysis-local/no-vm-release-artifact-12193383323. Falhas nos testes de anexos e reabertura de pasta sincronizada aceitavam a imagem/lista da sessão anterior, conservada pela abertura transacional. Esperas corrigidas para caminho confirmado e ausência de candidato pendente; verificações funcionais preservadas.
 
 Novo scripts/check_presentation_monitors.py e workflow presentation-monitors.yml exigem dois monitores GDK reais sobre Xvfb/Xinerama e conferem fullscreen/tamanho em0→1→0. Ainda não executados neste checkpoint; não contam como teste físico. Fonte app permanece idêntica à156be32. Próximo: publicar mudanças, repetir suíte/pacote e executar controle virtual; VM0930 continua suspensa/intocada e critérios/paridade intactos.
+
+
+## 2026/10/19 às 11:33 (America/Sao_Paulo, UTC-03:00) — ajuste do laboratório virtual de apresentação
+
+CI39269569101 não aprovou monitores: Xvfb/Xinerama expôs somente um monitor GDK; nenhum teste de seleção foi executado. Artefato12195615434/hash8b272b7835dca0507d2295ea2b0db5335b0e72978877ebe3ce480668980fb995 conferido e preservado emanalysis-local/virtual-monitors-artifact-12195615434. Corrigido apenas laboratórioCI para Xephyr com duas cabeças em origens distintas, sobreXvfb; logs de servidor serão preservados. Não altera app nem aprova hardware físico. Build/suíte39269568732 continua na fonte9848f2b, app ainda idêntico. VM0930 intocada.
