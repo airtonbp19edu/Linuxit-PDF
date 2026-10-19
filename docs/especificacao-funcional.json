@@ -406,7 +406,8 @@
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
           "docs/VM-BUSCA-2026-10-18-2020.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -415,10 +416,11 @@
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
           "docs/VM-BUSCA-2026-10-18-2020.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "D10 misto: seis hits; texto navega2→1 e destaca três ocorrências. D12 terminou250 resultados antes de Stop observável; cancelamento ativo continua inconclusivo. Recortes anteriores preservados."
+        "recorded_runtime_scope": "D12 no corpus5000: Stop ativo encerra e preserva232 resultados; troca para geometria mantém busca em12.pdf; fechar12.pdf durante busca encerra em1738 e conserva lista parcial. Contagens não determinísticas/latência não medida; contrato próprio não substituído. D10 misto anterior preservado."
       },
       "existing_test_refs": [
         {
@@ -1198,7 +1200,8 @@
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -1206,10 +1209,11 @@
         ],
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "UI05 no par planejado confirma lote/No; UI02 Print desabilitado sem documento. Duas saídas virtuais geradas; fechamento normal sem Foxit/splwow64 nesta rodada. Causa histórica e impressão física abertas."
+        "recorded_runtime_scope": "Duas novas saídas virtuais13.pdf/14.pdf; fechamento normal e consulta posterior sem Foxit/atualizador/splwow64, fila vazia. Espera histórica não reproduzida nem explicada; impressão física e fluxo completo abertos."
       },
       "existing_test_refs": [
         {
@@ -1302,7 +1306,8 @@
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -1310,10 +1315,11 @@
         ],
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "N-up2 e livreto4 páginas gerados/reabertos/renderizados; sequência do stream registrada com margem5.08mm. Parâmetros C18 correspondentes, medidas e mosaico continuam abertos."
+        "recorded_runtime_scope": "N-up A4 retrato2x2/horizontal/margem4mm gerou2 páginas, sequência1-4/5-8 igual em C18-D18-nup. Mosaico200%/sobreposição5mm sem marcas/legendas gerou48 páginas, todas renderizadas. Livreto5mm/medianiz3mm, geometria e combinações completas ainda abertos."
       },
       "existing_test_refs": [
         {
@@ -3776,7 +3782,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T00:36:40-03:00",
+  "updated_at_local": "2026-10-19T09:26:14-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

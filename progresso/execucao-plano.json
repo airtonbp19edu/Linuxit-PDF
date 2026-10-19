@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-continuation-execution-v1",
-  "updated_at_local": "2026-10-19T01:08:44-03:00",
+  "updated_at_local": "2026-10-19T09:26:14-03:00",
   "request": "P01-P03",
   "steps": [
     {
@@ -30,24 +30,25 @@
     },
     {
       "id": "P03",
-      "status": "partial_blocked_vm_clock",
-      "new_original_executions": 2,
+      "status": "partial_ready_for_next_batch",
+      "new_original_executions": 3,
       "evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
         "testes/resultados/vm-retomada-2026-10-18-2336.json",
         "testes/resultados/p02-2026-10-18-2355.json",
         "testes/resultados/p03-2026-10-19-2359.json",
-        "testes/resultados/p03-2026-10-19-0048.json"
+        "testes/resultados/p03-2026-10-19-0048.json",
+        "testes/resultados/p03-2026-10-19-0113/review.json"
       ],
-      "next": "Aguardar resposta da VM; revisar Stop sem reinício automático; depois D12/D18/UI conforme checkpoint.",
-      "latest_attempt_at_local": "2026-10-19T01:08:44-03:00",
-      "latest_observed_guest_clock": "01:02:45"
+      "next": "Novo observador/preflight antes de nova abertura; livreto com parâmetros correspondentes, D07/D10, UI e demais operações de P03.",
+      "latest_attempt_at_local": "2026-10-19T09:26:14-03:00",
+      "latest_observed_guest_clock": "09:19:38"
     }
   ],
   "legacy_criteria_changed": false,
   "new_recoding_percentage": null,
   "latest_resume_request": "termine a 3 logo",
   "latest_readonly_vm_gate_ref": "testes/resultados/p02-2026-10-18-2355.json",
-  "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json",
-  "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-0048.json"
+  "latest_original_environment_review_ref": "testes/resultados/p03-2026-10-19-0113/review.json",
+  "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-0113/review.json"
 }

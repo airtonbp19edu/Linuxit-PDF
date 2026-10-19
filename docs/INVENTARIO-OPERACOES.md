@@ -1,5 +1,7 @@
 # Inventário operacional provisório — P01
 
+Revisão4 em2026-10-19: [D12 ativo, N-up4mm comparado e mosaico48p](P03-CANCELAMENTO-MOSAICO-2026-10-19.md).13 métricas iguais/quatro inconclusivas;111 recortes/25 famílias e estados de implementação preservados. As revisões anteriores abaixo são históricas.
+
 Revisão3 em 2026-10-19T01:08:44-03:00: [D12 ativo observado, efeito de Stop inconclusivo pela parada da VM](P03-PARADA-2026-10-19-0105.md). Catálogo111/25 e implementação intactos.
 
 Revisão2 de evidência em 2026-10-19T00:36:40-03:00: [P03 parcial](P03-BUSCA-IMPRESSAO-2026-10-19.md); 111 recortes/25 famílias e estados de implementação preservados. Resumos de busca/impressão atualizados no JSON, sem aceitação integral. A revisão1 abaixo é histórica.

@@ -1,0 +1,57 @@
+{
+  "schema": "linuxit-offline-observations-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "session": {
+    "target_sha256_before": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "target_sha256_after": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "offline": true,
+    "synthetic_profile": true,
+    "runtime_control_verified": true,
+    "observed_at": "2026-10-19T01:33:18.0646796-03:00",
+    "environment": "Windows10 Pro19045 / VirtualBox7.2.20 / Foxit2025.2.0.33046 x86; Interactive Limited session1; preflight RX and ten Inputs verified; Notepad marker/Edit response before launch; cableoff and no shares/USB/clipboard; recovered PDF hash and all pages rendered/examined. Source106 files match prior Linux campaign; no Linux test rerun.",
+    "run_id": "vm-20261019-0113"
+  },
+  "cases": [
+    {
+      "id": "C18-D18-nup",
+      "fixture_sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "protocol_sha256": "1457b89112a1e360b996a2924b5c67c005cc4335f45131ac4f32a4d827c20459",
+      "status": "observed",
+      "metrics": {
+        "pages": 2,
+        "content_labels": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ]
+        ]
+      },
+      "evidence": [
+        {
+          "file": "analysis-local/vm-20261019-0113/nup4.png",
+          "sha256": "dee157d1f6c02d8929d8dcacad4546f5ecc4ede447e5ac3166397402df5c5a5d"
+        },
+        {
+          "file": "analysis-local/vm-20261019-0113/nup-parameters.json",
+          "sha256": "148530fee0364553887bd8349eda8ba3711d2ae11151c362dc5aa68c64efa078"
+        },
+        {
+          "file": "analysis-local/vm-20261019-0912/13.pdf",
+          "sha256": "55717fe2d1e450c70718fb0bb388c354a3fc218909dd4a8555aa53560feba813"
+        },
+        {
+          "file": "analysis-local/vm-20261019-0912/postflight-maintenance-guest.json",
+          "sha256": "3b88ca1d873c71b2cb45871284f47324d41f8a9285a22f668cc3bbbfc9836667"
+        }
+      ]
+    }
+  ]
+}

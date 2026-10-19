@@ -1,0 +1,25 @@
+{
+  "diff_whitespace_check_passed": true,
+  "new_app_tests_run": 0,
+  "verified_at_local": "2026-10-19T09:28:59.8309264-03:00",
+  "schema": "linuxit-p03-checkpoint-validation-v1",
+  "legacy_stages_and_index_unchanged": true,
+  "catalog": {
+    "passed": true,
+    "source_symbols_checked": 49,
+    "families": 25,
+    "operations": 111,
+    "recorded_related_tests_checked": 60
+  },
+  "spec": {
+    "passed": true,
+    "render_matches": true,
+    "plans": 50,
+    "families": 25,
+    "test_references": 190,
+    "source_references": 76
+  },
+  "current_app_files_match_preserved_linux_ci": 106,
+  "private_evidence_files_hashed": 102,
+  "new_full_acceptance_executions": 0
+}
