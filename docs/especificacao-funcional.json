@@ -860,7 +860,7 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "Extratores UTF8/PDF e contratos próprios da 0.1.6; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: texto/PDF e extração passiva HTML/corpo DOCX/ODT com omissões explícitas; Linux em validação. Família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
@@ -894,7 +894,8 @@
         "app/pdf_attachments.py",
         "app/search_engine.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/attachment_formats.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -980,7 +981,7 @@
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "Snapshot JSON local de PDFs selecionados; não equivale ao índice completo do Foxit. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: índice local próprio, revisão/exclusão/atualização da lista, trava de escritor e publicação atômica; Linux em validação. Índice Foxit/família completa abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
@@ -1103,7 +1104,7 @@
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "Coringas/proximidade próprios em subconjunto; stemming ainda pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Linux em validação; algoritmo/idiomas originais não comprovados.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
@@ -1137,7 +1138,8 @@
         "app/attachment_search.py",
         "app/collection_index.py",
         "app/main.py",
-        "app/collection_window.py"
+        "app/collection_window.py",
+        "docs/proveniencia-snowball.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3940,7 +3942,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T12:39:30-03:00",
+  "updated_at_local": "2026-10-19T12:46:27-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

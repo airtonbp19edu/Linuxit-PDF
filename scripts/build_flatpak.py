@@ -151,9 +151,10 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
     shutil.copy2(ROOT / 'packaging' / (APP_ID + '.metainfo.xml'), metadata)
     docs = files / 'share/doc/linuxit-pdf'
     docs.mkdir(parents=True)
-    for notice in ('cups-client-copyright.txt', 'pypdf-artifact.json', 'pypdf-LICENSE.txt'):
+    for notice in ('cups-client-copyright.txt', 'pypdf-artifact.json', 'pypdf-LICENSE.txt', 'proveniencia-snowball.json'):
         shutil.copy2(ROOT / 'docs' / notice, docs / notice)
     shutil.copy2(ROOT / 'LICENSE', docs)
+    shutil.copy2(ROOT / 'app/vendor/snowballstemmer/COPYING', docs / 'snowballstemmer-COPYING.txt')
     # Preserve installed Debian copyright notices for every bundled ELF package.
     notices = docs / 'runtime-copyright'
     notices.mkdir()

@@ -1,5 +1,6 @@
 """Versioned local text snapshots of explicitly selected PDFs; no directory scan."""
 from datetime import datetime, timezone
+from contextlib import contextmanager
 import hashlib
 import json
 import os
@@ -70,18 +71,50 @@ def verify_document(path, expected):
     except (OSError, ValueError):return False
 
 
+@contextmanager
+def index_writer_lock(destination):
+    """Cooperating writers serialize; abandoned locks require explicit review."""
+    lock = destination.with_name(destination.name + '.lock')
+    try:
+        descriptor = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, 'O_NOFOLLOW', 0), 0o600)
+    except FileExistsError as exc:
+        raise ValueError('Índice em atualização ou trava abandonada. Confira o outro processo antes de remover o arquivo .lock.') from exc
+    try:
+        with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
+            json.dump({'pid': os.getpid(), 'created_at_utc': datetime.now(timezone.utc).isoformat()}, stream)
+        yield
+    finally:
+        lock.unlink(missing_ok=True)
+
+
 def build_index(path, request):
-    _require(isinstance(request, dict) and set(request) == {'paths'} and isinstance(request['paths'], list)
+    _require(isinstance(request, dict) and {'paths'} <= set(request) <= {'paths', 'expected_index_sha256'} and isinstance(request['paths'], list)
              and 1 <= len(request['paths']) <= MAX_DOCUMENTS and all(isinstance(p, str) for p in request['paths']),
              'Escolha de 1 a 100 PDFs explicitamente.')
     destination = Path(path).absolute()
     _require(destination.name.lower().endswith('.linuxit-index.json') and destination.parent.is_dir()
              and not destination.is_symlink(), 'Use um arquivo .linuxit-index.json em pasta existente, sem link simbólico.')
+    with index_writer_lock(destination):
+        return _build_index_locked(destination, request)
+
+
+def _publish_new_index(temporary, destination):
+    if os.name == 'nt':
+        # Windows rename is atomic and fails if the target already exists.
+        os.rename(temporary, destination)
+    else:
+        os.link(temporary, destination)
+
+
+def _build_index_locked(destination, request):
     paths = [Path(p).resolve(strict=True) for p in request['paths']]
     _require(len(set(paths)) == len(paths) and destination.resolve() not in paths, 'Fontes repetidas ou destino sobre um PDF.')
     old_hash = None
     if destination.exists():
         _, old_hash = load_index(destination)
+    if 'expected_index_sha256' in request:
+        _require(request['expected_index_sha256'] == old_hash and old_hash is not None,
+                 'O índice mudou desde a seleção da lista; abra a versão atual antes de repetir.')
     documents, page_count, source_bytes, text_bytes = [], 0, 0, 0
     for source in paths:
         identity = _sha(source)
@@ -104,25 +137,20 @@ def build_index(path, request):
     serialized = (json.dumps(body, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
     _require(len(serialized) <= MAX_INDEX_BYTES, 'Índice gerado acima de 64 MiB.')
     temporary = None
-    created = False
     try:
         with tempfile.NamedTemporaryFile(dir=destination.parent, prefix='.linuxit-index-', suffix='.json', delete=False) as output:
             temporary = Path(output.name);output.write(serialized)
         load_index(temporary)
         _require(all(verify_document(doc['path'], doc['sha256']) for doc in documents), 'Uma fonte mudou antes de salvar o índice.')
         if old_hash is None:
-            # Exclusive creation protects a file created concurrently by another process.
-            with destination.open('xb') as output:
-                created = True
-                output.write(serialized)
+            # Same-directory hard link publishes the complete file exclusively.
+            # Unsupported filesystems fail safely; no partially written index.
+            _publish_new_index(temporary, destination)
         else:
             _require(_sha(destination, MAX_INDEX_BYTES) == old_hash and not destination.is_symlink(),
                      'O índice mudou durante a atualização; abra a versão atual antes de repetir.')
             os.replace(temporary, destination)
             temporary = None
-    except BaseException:
-        if created:destination.unlink(missing_ok=True)
-        raise
     finally:
         if temporary is not None:temporary.unlink(missing_ok=True)
     return {'schema': 'linuxit-index-built-v1', 'path': str(destination), 'documents': len(documents),

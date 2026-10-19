@@ -8,7 +8,7 @@ from gi.repository import Gtk, Pango
 
 from async_core import BackgroundRunner
 from attachment_tasks import display_attachment_name
-from collection_index import invoke_collection, verify_document
+from collection_index import invoke_collection, verify_document, load_index
 
 
 class CollectionWindow(Gtk.Window):
@@ -33,6 +33,8 @@ class CollectionWindow(Gtk.Window):
         row.pack_start(browse, False, False, 0)
         build = Gtk.Button(label='Criar/atualizar…');build.connect('clicked', self._build)
         row.pack_start(build, False, False, 0);box.pack_start(row, False, False, 0)
+        maintain = Gtk.Button(label='Revisar PDFs do índice…');maintain.connect('clicked', self._maintain)
+        box.pack_start(maintain, False, False, 0)
         row = Gtk.Box(spacing=6)
         self.query = Gtk.Entry();self.query.set_placeholder_text('Consulta')
         self.query.get_accessible().set_name('Consulta da coleção')
@@ -44,7 +46,8 @@ class CollectionWindow(Gtk.Window):
         row.pack_start(stop, False, False, 0);box.pack_start(row, False, False, 0)
         row = Gtk.Box(spacing=6)
         self.mode = Gtk.ComboBoxText()
-        for key, name in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'), ('proximity', 'Proximidade ordenada')]:
+        for key, name in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'), ('proximity', 'Proximidade ordenada'),
+                          ('stem-pt', 'Radicais: português'), ('stem-en', 'Radicais: inglês')]:
             self.mode.append(key, name)
         self.mode.set_active_id('literal');row.pack_start(self.mode, False, False, 0)
         row.pack_start(Gtk.Label(label='Distância:'), False, False, 0)
@@ -54,6 +57,9 @@ class CollectionWindow(Gtk.Window):
         def mode_changed(*_):
             self.distance.set_sensitive(self.mode.get_active_id() == 'proximity')
             self.flags['whole_words'].set_sensitive(self.mode.get_active_id() == 'literal')
+            stemming = self.mode.get_active_id().startswith('stem-')
+            if stemming:self.flags['match_case'].set_active(False)
+            self.flags['match_case'].set_sensitive(not stemming)
         self.mode.connect('changed', mode_changed)
         row.pack_start(self.distance, False, False, 0)
         self.flags = {}
@@ -65,7 +71,7 @@ class CollectionWindow(Gtk.Window):
         self.results = Gtk.ListBox();self.results.connect('row-activated', self._activate)
         scroll = Gtk.ScrolledWindow();scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.results);box.pack_start(scroll, True, True, 0)
-        self.controls = [self.index_entry, browse, build, self.query, find, self.mode, *self.flags.values()]
+        self.controls = [self.index_entry, browse, build, maintain, self.query, find, self.mode, *self.flags.values()]
         self.connect('destroy', self._destroy)
 
     def _choose(self, title, action, multiple=False, default=None):
@@ -97,6 +103,37 @@ class CollectionWindow(Gtk.Window):
     def _clear_hits(self):
         self.hits = []
         for row in self.results.get_children():self.results.remove(row)
+
+    def _maintain(self, *_):
+        if self.busy or self.closed:return
+        path = self.index_entry.get_text().strip()
+        if not path:
+            self.status.set_text('Escolha um índice existente.');return
+        def loaded(result):
+            body, identity = result
+            dialog = Gtk.Dialog(title='Atualizar fontes e excluir PDFs', transient_for=self, modal=True)
+            dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Atualizar selecionados', Gtk.ResponseType.OK)
+            dialog.set_default_size(650, 400)
+            scroll = Gtk.ScrolledWindow();scroll.set_min_content_height(240)
+            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4, margin=8)
+            checks = []
+            for doc in body['documents']:
+                check = Gtk.CheckButton(label=display_attachment_name(doc['path']))
+                check.set_active(True);box.pack_start(check, False, False, 0)
+                checks.append((check, doc['path']))
+            scroll.add(box);dialog.get_content_area().pack_start(scroll, True, True, 0)
+            dialog.show_all()
+            try:
+                if dialog.run() != Gtk.ResponseType.OK:return
+                paths = [name for check, name in checks if check.get_active()]
+            finally:dialog.destroy()
+            if not paths:
+                self.status.set_text('Mantenha ao menos um PDF; o índice anterior foi preservado.');return
+            self._clear_hits()
+            self._submit(lambda cancel: invoke_collection('index-build', path,
+                         {'paths': paths, 'expected_index_sha256': identity}, cancel),
+                         lambda report: self.status.set_text(f"Índice atualizado: {report['documents']} PDFs, {report['pages']} páginas."))
+        self._submit(lambda _cancel: load_index(path), loaded)
 
     def _search(self, *_):
         if self.busy or self.closed:return
@@ -135,6 +172,7 @@ class CollectionWindow(Gtk.Window):
             for widget in self.controls:widget.set_sensitive(True)
             self.distance.set_sensitive(self.mode.get_active_id() == 'proximity')
             self.flags['whole_words'].set_sensitive(self.mode.get_active_id() == 'literal')
+            self.flags['match_case'].set_sensitive(not self.mode.get_active_id().startswith('stem-'))
         def done(result):
             if self.closed or cancel.is_set():return
             finish()
@@ -157,6 +195,7 @@ class CollectionWindow(Gtk.Window):
         for widget in self.controls:widget.set_sensitive(True)
         self.distance.set_sensitive(self.mode.get_active_id() == 'proximity')
         self.flags['whole_words'].set_sensitive(self.mode.get_active_id() == 'literal')
+        self.flags['match_case'].set_sensitive(not self.mode.get_active_id().startswith('stem-'))
         self.status.set_text('Cancelado. Confira o índice antes de repetir uma gravação.')
 
     def _destroy(self, *_):

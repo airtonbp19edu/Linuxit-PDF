@@ -35,7 +35,7 @@ def validate_query(query, mode='literal', proximity_distance=0, *, normalized_in
     maximum = 768 if normalized_input else 256
     if not isinstance(query, str) or len(query) > maximum:
         raise ValueError('A pesquisa deve ter no máximo 256 caracteres.')
-    if not isinstance(mode, str) or mode not in {'literal', 'wildcard', 'proximity'}:
+    if not isinstance(mode, str) or mode not in {'literal', 'wildcard', 'proximity', 'stem-pt', 'stem-en'}:
         raise ValueError('Modo de pesquisa não suportado.')
     if type(proximity_distance) is not int or not 0 <= proximity_distance <= 50:
         raise ValueError('A distância deve ser um inteiro de 0 a 50 palavras.')
@@ -50,6 +50,10 @@ def validate_query(query, mode='literal', proximity_distance=0, *, normalized_in
         words = list(tokens(query))
         if not 2 <= len(words) <= 8 or any(not is_word(c) and not c.isspace() for c in query):
             raise ValueError('Proximidade: informe de duas a oito palavras, na ordem desejada, separadas por espaços.')
+    elif mode.startswith('stem-'):
+        words = list(tokens(query))
+        if not 1 <= len(words) <= 8 or any(not is_word(c) and not c.isspace() for c in query):
+            raise ValueError('Radicais: informe de uma a oito palavras separadas por espaços.')
 
 
 def literal_spans(text, needle, whole_words=False):
@@ -101,6 +105,26 @@ def query_spans(text, needle, whole_words=False, mode='literal', proximity_dista
         for start, end, word in words:
             if _glob(word, needle):
                 yield start, end
+        return
+    if mode.startswith('stem-'):
+        # Select the pinned pure-Python classes, never an optional native backend.
+        from pathlib import Path
+        import sys
+        vendor = str(Path(__file__).resolve().parent / 'vendor')
+        if vendor not in sys.path: sys.path.insert(0, vendor)
+        if mode == 'stem-pt':
+            from snowballstemmer.portuguese_stemmer import PortugueseStemmer
+            stemmer = PortugueseStemmer()
+        else:
+            from snowballstemmer.english_stemmer import EnglishStemmer
+            stemmer = EnglishStemmer()
+        terms = [stemmer.stemWord(word.casefold()) for _, _, word in tokens(needle)]
+        stems = [stemmer.stemWord(word.casefold()) for _, _, word in words]
+        skip_before = 0
+        for first in range(len(words) - len(terms) + 1):
+            if first >= skip_before and stems[first:first+len(terms)] == terms:
+                yield words[first][0], words[first+len(terms)-1][1]
+                skip_before = first + len(terms)
         return
     terms = [word for _, _, word in tokens(needle)]
     skip_before = 0

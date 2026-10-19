@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T12:39:30-03:00",
+  "reviewed_at_local": "2026-10-19T12:46:27-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -293,6 +293,12 @@
       "path": "app/pdf_comments.py",
       "boundary": "portable_logic",
       "responsibility": "Inspeção limitada de comentários e vínculos de respostas, sem executar ações ou scripts."
+    },
+    {
+      "id": "attachment_formats",
+      "path": "app/attachment_formats.py",
+      "boundary": "portable_logic",
+      "responsibility": "Extrai texto passivo de HTML e corpos DOCX/ODT com limites de expansão e omissões explícitas."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -643,7 +649,8 @@
         "app/pdf_attachments.py",
         "app/search_engine.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/attachment_formats.py"
       ],
       "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false

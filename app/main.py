@@ -504,7 +504,7 @@ class PDFWindow(Gtk.Window):
         for key, label, active in [('include_page_text', 'Texto das páginas', True),
                                    ('include_bookmarks', 'Marcadores', False),
                                    ('include_comments', 'Comentários', False),
-                                   ('include_attachments', 'Anexos (texto/PDF)', False)]:
+                                   ('include_attachments', 'Anexos', False)]:
             button = Gtk.CheckButton(label=label)
             button.set_active(active)
             button.connect('toggled', self._find_changed)
@@ -515,7 +515,8 @@ class PDFWindow(Gtk.Window):
         modes.pack_start(Gtk.Label(label='Modo:'), False, False, 0)
         self.find_mode = Gtk.ComboBoxText()
         for value, label in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'),
-                             ('proximity', 'Proximidade ordenada')]:
+                             ('proximity', 'Proximidade ordenada'),
+                             ('stem-pt', 'Radicais: português'), ('stem-en', 'Radicais: inglês')]:
             self.find_mode.append(value, label)
         self.find_mode.set_active_id('literal')
         self.find_mode.get_accessible().set_name('Modo de pesquisa')
@@ -526,6 +527,9 @@ class PDFWindow(Gtk.Window):
         def mode_changed(*_):
             self.find_distance.set_sensitive(self.find_mode.get_active_id() == 'proximity')
             self.find_options['whole_words'].set_sensitive(self.find_mode.get_active_id() == 'literal')
+            stemming = self.find_mode.get_active_id().startswith('stem-')
+            if stemming:self.find_options['match_case'].set_active(False)
+            self.find_options['match_case'].set_sensitive(not stemming)
             self._find_changed()
         self.find_mode.connect('changed', mode_changed)
         self.find_distance.connect('value-changed', self._find_changed)

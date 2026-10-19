@@ -9,7 +9,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |---|---|---|
 |1–3|Abertura; navegação; apresentação|Entregues recortes0.1.14,432/432 próprios por ambiente. Físico/Wayland/original e famílias amplas abertos.|
 |4–6|Busca em texto; marcadores; comentários|Fonte0.1.15 preparada;7 portáveis passaram,2 GTK aguardam Linux.|
-|7–9|Busca em anexos; índice; linguagem|Próximo lote: formatos, manutenção/exclusões e stemming com contrato próprio explícito.|
+|7–9|Busca em anexos; índice; linguagem|Fonte0.1.15 implementada:8 novos portáveis e24 regressões passaram; Linux/GTK pendentes.|
 |10–12|Seleção; impressão; imposição|Revisar lacunas de leitura/ordem, cancelamento e geometria; impressão física depende de impressora.|
 |13–15|Marcadores; anotações; formulários|Respostas/desenho e combo editável; JavaScript/XFA dependem de contratos e motores ainda não implementados.|
 |16–18|Anexos; assinaturas; segurança|Portfólios/criptografia, assinatura local e permissões; confiança/LTV/RMS exigem contratos e serviços.|
@@ -57,3 +57,37 @@ corrigido usando fixtures pypdf independentes. Relatórios brutos preservados em
 As50 aceitações amplas continuam abertas, paridade0/25 e percentual global
 indeterminado. VM0930 continua suspensa no checkpoint anterior; não acessada
 nesta sequência. Critérios e pesos do checklist preservados.
+
+
+## Contrato próprio do lote7–9
+
+Anexos HTML UTF-8 são lidos como texto, ignorando scripts/estilos, sem buscar
+URLs. DOCX/ODT usam apenas XML textual do corpo; sempre sinalizam que desenhos,
+cabeçalhos, equações e objetos foram omitidos. Não exportam ZIP, executam macros
+ou leem relações externas. Até2000 entradas/2MiB expandidos e128 níveis XML;
+DTD/entidades são recusados. UTF-8 inválido e formatos restantes ficam explícitos.
+
+Revisar PDFs do índice permite excluir entradas desmarcadas e reextrair todas as
+fontes selecionadas. A confirmação carrega o hash do índice visto, para recusar
+versão alterada durante o diálogo. O índice anterior fica preservado em falhas.
+Escritores cooperantes usam .lock exclusivo; uma trava abandonada por encerramento
+forçado exige conferência e remoção explícita pelo usuário. Não remover
+automaticamente uma trava cuja propriedade não esteja confirmada. Arquivo novo
+é publicado inteiro e sem sobrescrita (rename no Windows; hardlink no Linux),
+falhando de forma segura em filesystem sem essa operação. Atualização usa replace
+após conferir identidade; programas externos que ignoram a trava não participam
+da coordenação. Não é um índice compatível com o Foxit.
+
+Radicais usam as classes Python fixadas do [Snowball3.1.1](https://pypi.org/project/snowballstemmer/3.1.1/),
+BSD-3-Clause, sem alterar o pacote. Proveniência/hash/licença em
+[proveniencia-snowball.json](proveniencia-snowball.json), licença também copiada
+para o pacote. Modos português/inglês casam1–8 tokens consecutivos por radical,
+independente de caixa; não são lematização, sinônimos ou IA. O algoritmo PT está
+[documentado pelo projeto](https://snowballstem.org/algorithms/portuguese/stemmer.html).
+Opção de caixa desabilitada nesses modos; acentos são removidos antes do radical
+somente quando o usuário pede isso. Demais idiomas e algoritmo original abertos.
+
+Testes novos em tests/test_search_batch_extensions.py:8 portáveis passaram e1 GTK
+aguarda Linux. Regressões test_collection_index.py12/12 e
+test_attachment_search.py12/12 passaram no host Windows. CI4–6 ainda em fila;
+não extrapolar esses resultados para GTK/Linux ou novo Flatpak.

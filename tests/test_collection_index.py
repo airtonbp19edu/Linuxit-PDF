@@ -53,17 +53,13 @@ class CollectionIndexTests(unittest.TestCase):
         self.assertFalse(list(self.root.glob('.linuxit-index-*')))
 
     def test_partial_creation_failure_removes_the_new_destination(self):
-        original = Path.open
-        class FailingOutput:
-            def __enter__(inner):
-                inner.stream = original(self.output, 'xb');return inner
-            def write(inner, content):
-                inner.stream.write(content[:7]);raise OSError('disk full')
-            def __exit__(inner, *args):inner.stream.close()
-        def open_path(path, mode='r', *args, **kwargs):
-            if path == self.output and mode == 'xb':return FailingOutput()
-            return original(path, mode, *args, **kwargs)
-        with patch.object(Path, 'open', open_path), self.assertRaises(OSError):self.build()
+        def publication_failed(temporary, destination):
+            # Staged content must already be complete before exclusive publication.
+            body, identity = index.load_index(temporary)
+            self.assertEqual(len(body['documents']), 2)
+            self.assertFalse(destination.exists())
+            raise OSError('disk full')
+        with patch.object(index, '_publish_new_index', side_effect=publication_failed), self.assertRaises(OSError):self.build()
         self.assertFalse(self.output.exists());self.assertFalse(list(self.root.glob('.linuxit-index-*')))
 
     def test_concurrent_change_to_existing_index_is_preserved(self):

@@ -9,6 +9,7 @@ import subprocess
 from pdf_attachments import _document, _entries, _name, _declared_size
 from search_tasks import run_search_worker
 from search_matching import normalized, query_spans, validate_query
+from attachment_formats import OFFICE_SUFFIXES, HTML_SUFFIXES, extract_passive_text
 from pypdf import PdfReader
 from pypdf.errors import PyPdfError
 
@@ -42,7 +43,7 @@ def search_attachment_text(path, request):
                     omissions.append({'index': None, 'name': 'Anexos restantes', 'reason': 'Limite de 100 entradas por busca.'})
                     break
                 suffix = Path(name).suffix.lower()
-                if suffix not in TEXT_SUFFIXES | {'.pdf'}:
+                if suffix not in TEXT_SUFFIXES | OFFICE_SUFFIXES | HTML_SUFFIXES | {'.pdf'}:
                     omissions.append({'index': index, 'name': name, 'reason': 'Formato não suportado pela busca textual.'})
                     continue
                 try:
@@ -65,6 +66,11 @@ def search_attachment_text(path, request):
                         # Stage the entire attachment before exposing its results: failed page
                         # extraction must not silently present only earlier pages as complete.
                         texts = [(page_no, page.extract_text() or '') for page_no, page in enumerate(embedded.pages)]
+                    elif suffix in OFFICE_SUFFIXES | HTML_SUFFIXES:
+                        text, partial = extract_passive_text(payload, suffix)
+                        texts = [(None, text)]
+                        if partial:
+                            omissions.append({'index': index, 'name': name, 'reason': partial})
                     else:
                         text = payload.decode('utf-8-sig', errors='strict')
                         if '\0' in text:
