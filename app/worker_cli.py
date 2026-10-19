@@ -79,6 +79,20 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'document-open':
+        from document_session import prepare_document, DocumentError
+        try:
+            raw = sys.stdin.buffer.read(16385)
+            if len(raw) > 16384:raise DocumentError('Pedido de abertura acima do limite.')
+            result = prepare_document(argv[2], json.loads(raw))
+        except DocumentError as exc:
+            print('ValueError: ' + str(exc), file=sys.stderr)
+            raise SystemExit(1) from None
+        except Exception:
+            print('ValueError: Não foi possível abrir o documento.', file=sys.stderr)
+            raise SystemExit(1) from None
+        print(json.dumps(result, ensure_ascii=True))
+        return
     if cmd == 'ocr-copy':
         if len(argv) != 4:
             raise SystemExit(2)

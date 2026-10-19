@@ -30,6 +30,10 @@ from attachment_tasks import AttachmentPanelController, display_attachment_name
 from local_files import read_folders, remember_folder, file_stamp
 from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder
 from search_tasks import run_search_worker
+from document_session import DocumentSession
+from cancel_state import get_event
+from navigation import page_index, zoom_value, page_width, MIN_ZOOM, MAX_ZOOM
+from page_surface import PageSurface, PageViewport
 
 APP_DIR = Path(__file__).resolve().parent
 WORKER = APP_DIR / 'worker_cli.py'
@@ -74,6 +78,9 @@ class PDFWindow(Gtk.Window):
         _cleanup_stale_render_caches()
         self.cache_dir = tempfile.mkdtemp(prefix='linuxit-pdf-cache-')
         self.filepath = None
+        self.document_session = None
+        self._pending_document = None
+        self._open_generation = 0
         self._document_stamp = None
         self.page_count = 0
         self.page_sizes = []
@@ -89,6 +96,8 @@ class PDFWindow(Gtk.Window):
         self.resize_timer = None
         self.zoom_slider_timer = None
         self._zoom_scale_sync = False
+        self._ribbon_navigation = []
+        self._ribbon_zoom = []
         self.sidebar_visible = True
         self.sidebar_panel_visible = True
         self.ribbon_collapsed = True
@@ -306,8 +315,9 @@ class PDFWindow(Gtk.Window):
 
         # HOME — compact one-row navigation/zoom groups to preserve document space.
         nav_col = Gtk.Box(spacing=2)
-        nav_col.pack_start(self._command_button('go-first-symbolic','Primeira',lambda *_: self.goto_page(0), compact=True), False, False, 0)
-        nav_col.pack_start(self._command_button('go-previous-symbolic','Anterior',lambda *_: self.goto_page(self.page-1), compact=True), False, False, 0)
+        for icon, label, action in [('go-first-symbolic','Primeira',lambda *_:self.goto_page(0)), ('go-previous-symbolic','Anterior',lambda *_:self.goto_page(self.page-1))]:
+            button = self._command_button(icon, label, action, compact=True)
+            self._ribbon_navigation.append((button, -1)); nav_col.pack_start(button, False, False, 0)
         self.page_entry = Gtk.Entry(); self.page_entry.set_width_chars(4); self.page_entry.set_text('0')
         self.page_entry.get_accessible().set_name('Página para navegar')
         self.page_entry.connect('activate', self._page_entry_activate)
@@ -316,14 +326,17 @@ class PDFWindow(Gtk.Window):
         nav_col.pack_start(Gtk.Label(label='/'), False, False, 0)
         self.page_total_top = Gtk.Label(label='0')
         nav_col.pack_start(self.page_total_top, False, False, 0)
-        nav_col.pack_start(self._command_button('go-next-symbolic','Próxima',lambda *_: self.goto_page(self.page+1), compact=True), False, False, 0)
-        nav_col.pack_start(self._command_button('go-last-symbolic','Última',lambda *_: self.goto_page(self.page_count-1), compact=True), False, False, 0)
+        for icon, label, action in [('go-next-symbolic','Próxima',lambda *_:self.goto_page(self.page+1)), ('go-last-symbolic','Última',lambda *_:self.goto_page(self.page_count-1))]:
+            button = self._command_button(icon, label, action, compact=True)
+            self._ribbon_navigation.append((button, 1)); nav_col.pack_start(button, False, False, 0)
 
         zoom_col = Gtk.Box(spacing=2)
-        zoom_col.pack_start(self._command_button('zoom-out-symbolic','−',lambda *_: self._zoom_delta(-25), compact=True), False, False, 0)
+        zoom_out = self._command_button('zoom-out-symbolic','−',lambda *_:self._zoom_delta(-25), compact=True)
+        self._ribbon_zoom.append((zoom_out, -1)); zoom_col.pack_start(zoom_out, False, False, 0)
         self.zoom_label_top = Gtk.Label(label='100%'); self.zoom_label_top.set_width_chars(7)
         zoom_col.pack_start(self.zoom_label_top, False, False, 0)
-        zoom_col.pack_start(self._command_button('zoom-in-symbolic','+',lambda *_: self._zoom_delta(25), compact=True), False, False, 0)
+        zoom_in = self._command_button('zoom-in-symbolic','+',lambda *_:self._zoom_delta(25), compact=True)
+        self._ribbon_zoom.append((zoom_in, 1)); zoom_col.pack_start(zoom_in, False, False, 0)
         zoom_col.pack_start(self._command_button('zoom-fit-best-symbolic','Página',self._fit_page, compact=True), False, False, 0)
         zoom_col.pack_start(self._command_button('zoom-fit-width-symbolic','Largura',self._fit_width, compact=True), False, False, 0)
 
@@ -676,19 +689,18 @@ class PDFWindow(Gtk.Window):
         self.viewer_scroll.add_events(Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK)
         self.viewer_scroll.connect('scroll-event', self._viewer_scroll_event)
         self.viewer_scroll.get_style_context().add_class('viewer-scroll')
-        self.viewer_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, halign=Gtk.Align.CENTER, valign=Gtk.Align.START, margin=24)
-        self.page_frame = Gtk.Frame(); self.page_frame.get_style_context().add_class('page-frame')
-        self.page_overlay = Gtk.Overlay(); self.page_image = Gtk.Image(); self.page_overlay.add(self.page_image)
+        self.page_overlay = PageViewport()
+        self.viewer_box = self.page_frame = self.page_overlay
+        self.page_image = PageSurface(self.page_overlay); self.page_overlay.add(self.page_image)
         self.interaction_layer = Gtk.DrawingArea(); self.interaction_layer.set_app_paintable(True); self.interaction_layer.set_can_focus(True)
         self.interaction_layer.get_accessible().set_name('Página do documento PDF')
         self.interaction_layer.get_accessible().set_description('Use F6 para mudar de região e Ctrl+Shift+T para acessar o texto da página.')
         self.interaction_layer.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK | Gdk.EventMask.LEAVE_NOTIFY_MASK)
-        self.interaction_layer.connect('draw', self._interaction_draw); self.interaction_layer.connect('button-press-event', self._interaction_press)
+        self.interaction_layer.connect('draw', self._interaction_viewport_draw); self.interaction_layer.connect('button-press-event', self._interaction_press)
         self.interaction_layer.connect('button-release-event', self._interaction_release); self.interaction_layer.connect('motion-notify-event', self._interaction_motion)
         self.interaction_layer.connect('leave-notify-event', self._interaction_leave); self.interaction_layer.connect('realize', lambda *_: self._update_tool_cursor())
         self.interaction_layer.get_style_context().add_class('interaction-layer'); self.page_overlay.add_overlay(self.interaction_layer)
-        self.page_frame.add(self.page_overlay); self.viewer_box.pack_start(self.page_frame, False, False, 0)
-        self.viewer_scroll.add_with_viewport(self.viewer_box); self.body_paned.pack2(self.viewer_scroll, resize=True, shrink=True)
+        self.viewer_scroll.add(self.page_overlay); self.body_paned.pack2(self.viewer_scroll, resize=True, shrink=True)
         self.sidebar_last_position = 158
         self.body_paned.set_position(self.sidebar_last_position)
         self.sidebar_notebook.set_current_page(0)
@@ -701,6 +713,10 @@ class PDFWindow(Gtk.Window):
         self.status_file = Gtk.Label(label='Nenhum PDF aberto', xalign=0)
         self.status_file.set_ellipsize(Pango.EllipsizeMode.END)
         bar.pack_start(self.status_file, True, True, 0)
+        self.cancel_open_button = Gtk.Button(label='Cancelar abertura')
+        self.cancel_open_button.set_no_show_all(True)
+        self.cancel_open_button.connect('clicked', self._cancel_open_requested)
+        bar.pack_start(self.cancel_open_button, False, False, 0)
 
         nav = Gtk.Box(spacing=3)
         pprev = Gtk.Button.new_from_icon_name('go-previous-symbolic', Gtk.IconSize.MENU); pprev.set_relief(Gtk.ReliefStyle.NONE); pprev.connect('clicked', lambda *_: self.goto_page(self.page-1))
@@ -713,15 +729,19 @@ class PDFWindow(Gtk.Window):
         bar.pack_start(nav, False, False, 10)
 
         zminus = Gtk.Button.new_from_icon_name('zoom-out-symbolic', Gtk.IconSize.MENU); zminus.set_relief(Gtk.ReliefStyle.NONE); zminus.connect('clicked', lambda *_: self._zoom_delta(-10)); bar.pack_start(zminus, False, False, 0)
-        self.zoom_scale = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, 25, 400, 5); self.zoom_scale.set_draw_value(False); self.zoom_scale.set_size_request(135, -1); self.zoom_scale.set_value(100); self.zoom_scale.connect('value-changed', self._status_zoom_changed); bar.pack_start(self.zoom_scale, False, False, 0)
+        self.zoom_scale = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, MIN_ZOOM, MAX_ZOOM, 1); self.zoom_scale.set_draw_value(False); self.zoom_scale.set_size_request(100, -1); self.zoom_scale.set_value(100); self.zoom_scale.connect('value-changed', self._status_zoom_changed); bar.pack_start(self.zoom_scale, False, False, 0)
         zplus = Gtk.Button.new_from_icon_name('zoom-in-symbolic', Gtk.IconSize.MENU); zplus.set_relief(Gtk.ReliefStyle.NONE); zplus.connect('clicked', lambda *_: self._zoom_delta(10)); bar.pack_start(zplus, False, False, 0)
         self.status_zoom = Gtk.Label(label='100%'); self.status_zoom.set_width_chars(14); bar.pack_start(self.status_zoom, False, False, 0)
+        self.zoom_entry = Gtk.Entry(); self.zoom_entry.set_width_chars(7); self.zoom_entry.set_max_length(24)
+        self.zoom_entry.set_text('100%'); self.zoom_entry.get_accessible().set_name('Percentual de zoom')
+        self.zoom_entry.connect('activate', self._zoom_entry_activate); bar.pack_start(self.zoom_entry, False, False, 0)
+        self._status_navigation = (pprev, pnxt, zminus, zplus)
         self.status = bar
         return bar
 
     def _status_page_activate(self, entry):
         try:
-            self.goto_page(int(entry.get_text()) - 1)
+            self.goto_page(page_index(entry.get_text(), self.page_count, one_based=True))
         except Exception:
             entry.set_text(str(self.page + 1 if self.page_count else 0))
 
@@ -777,26 +797,63 @@ class PDFWindow(Gtk.Window):
         self._error('O PDF foi alterado externamente ou está indisponível. Reabra o documento antes de salvar a cópia.')
         return False
 
-    def open_document(self, path, initial_page=0):
+    def _cancel_document_open(self):
+        self._open_generation += 1
+        self.runner.invalidate('document-open')
+        if self._pending_document is not None:
+            self._pending_document.close()
+            self._pending_document = None
+        self.cancel_open_button.hide()
+
+    def _cancel_open_requested(self, *_args):
+        self._cancel_document_open()
+        self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+
+    def open_document(self, path, initial_page=0, password='', recover=False):
+        self._cancel_document_open()
         path = os.path.abspath(path)
         if not os.path.isfile(path):
             self._error('Arquivo não encontrado.')
             return
-        self._clear_document_state()
-        self.filepath = path
-        try:self._document_stamp = file_stamp(path)
-        except OSError as exc:self._error(str(exc));return
+        candidate = DocumentSession(path)
+        self._pending_document = candidate
+        generation = self._open_generation
         self.status_file.set_text(f'Abrindo {Path(path).name}…')
-        self._set_actions_enabled(False)
+        self.cancel_open_button.show()
 
         def task():
-            proc = subprocess.run([worker_python(), str(WORKER), 'info', path], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=180, **subprocess_options())
-            if proc.returncode != 0:
-                raise RuntimeError(proc.stderr.strip() or 'Falha ao ler o PDF.')
-            return json.loads(proc.stdout)
+            event = get_event()
+            try:
+                result = candidate.prepare(password, recover, event)
+                if result and result['status'] == 'ready':
+                    first = max(0, min(int(initial_page), result['pages'] - 1))
+                    candidate.call(render_page, first, 800, self.cache_dir, 'open-check', image_format='jpeg')
+                return result
+            finally:
+                if event is not None and event.is_set():candidate.close()
 
         def ok(info):
-            if self.filepath != path: return
+            if generation != self._open_generation or self._pending_document is not candidate:
+                candidate.close(); return
+            if not info:
+                candidate.close(); self._pending_document = None; self.cancel_open_button.hide(); return
+            if info['status'] != 'ready':
+                candidate.close(); self._pending_document = None
+                self.cancel_open_button.hide()
+                self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+                if info['status'] in ('password_required', 'password_invalid'):
+                    value = self._ask_document_password(path, info['status'] == 'password_invalid')
+                    if value is not None and generation == self._open_generation:
+                        self.open_document(path, initial_page, value, recover)
+                elif info['status'] == 'recovery_required':
+                    if self._ask_document_recovery() and generation == self._open_generation:
+                        self.open_document(path, initial_page, password, True)
+                return
+            self._pending_document = None
+            self._clear_document_state()
+            self.document_session = candidate
+            self.filepath = path
+            self._document_stamp = info['source_stamp']
             self.page_count = int(info['pages']); self.page_sizes = [tuple(x) for x in info['sizes']]; self.metadata = info.get('metadata', {})
             self.page = 0; self.rotation = 0; self.zoom_mode = 'fit-width'; self.zoom_percent = 100
             self.status_file.set_text(Path(path).name)
@@ -809,13 +866,48 @@ class PDFWindow(Gtk.Window):
             self._start_thumb_build()
             self._load_side_panels()
             self.goto_page(min(max(0, initial_page), self.page_count - 1), force=True)
-        self.runner.submit('document-info', task, ok, lambda e: self._load_failed(path, e))
+            if info['recovered']:
+                self.status_file.set_text(Path(path).name + ' — leitura recuperada; original preservado')
+        def failed(exc):
+            candidate.close()
+            if generation == self._open_generation:
+                self._pending_document = None
+                self.cancel_open_button.hide()
+                self._load_failed(path, exc)
+        self.runner.submit('document-open', task, ok, failed)
+
+    def _ask_document_password(self, path, incorrect=False):
+        dialog = Gtk.Dialog(title='Abrir PDF protegido', transient_for=self, modal=True)
+        dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Abrir', Gtk.ResponseType.OK)
+        box = dialog.get_content_area(); box.set_spacing(10); box.set_border_width(12)
+        box.add(Gtk.Label(label=('Senha incorreta. Tente novamente.\n' if incorrect else '') + Path(path).name))
+        entry = Gtk.Entry(); entry.set_visibility(False); entry.set_max_length(127)
+        entry.set_input_purpose(Gtk.InputPurpose.PASSWORD); entry.set_activates_default(True)
+        entry.get_accessible().set_name('Senha de abertura do PDF')
+        box.add(entry); dialog.set_default_response(Gtk.ResponseType.OK)
+        dialog.show_all(); entry.grab_focus()
+        try:
+            return entry.get_text() if dialog.run() == Gtk.ResponseType.OK else None
+        finally:
+            entry.set_text(''); dialog.destroy()
+
+    def _ask_document_recovery(self):
+        dialog = Gtk.MessageDialog(transient_for=self, modal=True,
+            message_type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.NONE,
+            text='Tentar recuperar a leitura deste PDF?')
+        dialog.format_secondary_text('O arquivo possui uma estrutura irregular. A tentativa usa uma representação temporária; o original será preservado. Nem todo arquivo danificado pode ser recuperado.')
+        dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Tentar recuperar', Gtk.ResponseType.OK)
+        try:return dialog.run() == Gtk.ResponseType.OK
+        finally:dialog.destroy()
 
     def _load_failed(self, path, exc):
-        if self.filepath == path:
-            self._clear_document_state(); self._error(str(exc))
+        self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+        self._error(str(exc))
 
     def _clear_document_state(self):
+        self._cancel_document_open()
+        presentation = getattr(self, 'presentation_window', None)
+        if presentation is not None:presentation.destroy()
         self._document_stamp = None
         edit_window = getattr(self, 'edit_window', None)
         if edit_window is not None and not edit_window.closed:edit_window.destroy()
@@ -848,12 +940,15 @@ class PDFWindow(Gtk.Window):
         self.selected_words = []; self.selection_data = None; self.selection_rect = None
         self.displayed_page = None; self.displayed_rotation = None
         self.find_status.set_text('')
-        self.page_image.clear(); self.current_pixbuf = None; self.rendered_pixbuf = None; self.text_word_cache.clear(); self._clear_thumbnails(); self._clear_side_panels()
+        self.page_image.clear(); self.page_overlay.set_page_size(1, 1)
+        self.current_pixbuf = None; self.rendered_pixbuf = None; self.text_word_cache.clear(); self._clear_thumbnails(); self._clear_side_panels()
         self.status_page.set_text('de 0'); self.status_file.set_text('Nenhum PDF aberto')
         if hasattr(self, 'status_page_entry'): self.status_page_entry.set_text('0')
         if hasattr(self, 'page_total_top'): self.page_total_top.set_text('0')
         if hasattr(self, 'document_tabbar'): self.document_tabbar.hide()
         self.set_title('Linuxit PDF')
+        session, self.document_session = self.document_session, None
+        if session is not None:session.close()
 
     def _close_document(self, *_args):
         self._clear_document_state(); self._set_actions_enabled(False)
@@ -869,6 +964,22 @@ class PDFWindow(Gtk.Window):
             widget.set_sensitive(True if label == 'Abrir' else enabled)
         if hasattr(self, 'page_entry'): self.page_entry.set_sensitive(enabled)
         if hasattr(self, 'status_page_entry'): self.status_page_entry.set_sensitive(enabled)
+        if hasattr(self, 'zoom_entry'):self.zoom_entry.set_sensitive(enabled)
+        if hasattr(self, 'zoom_scale'):self.zoom_scale.set_sensitive(enabled)
+        self._sync_navigation_controls()
+
+    def _sync_navigation_controls(self):
+        if not hasattr(self, '_status_navigation'):return
+        previous, following, minus, plus = self._status_navigation
+        active = bool(self.filepath and self.page_count)
+        previous.set_sensitive(active and self.page > 0)
+        following.set_sensitive(active and self.page < self.page_count - 1)
+        minus.set_sensitive(active and (self.zoom_mode != 'percent' or self.zoom_percent > MIN_ZOOM))
+        plus.set_sensitive(active and (self.zoom_mode != 'percent' or self.zoom_percent < MAX_ZOOM))
+        for button, direction in self._ribbon_navigation:
+            button.set_sensitive(previous.get_sensitive() if direction < 0 else following.get_sensitive())
+        for button, direction in self._ribbon_zoom:
+            button.set_sensitive(minus.get_sensitive() if direction < 0 else plus.get_sensitive())
 
     # ---------- rendering ----------
     def _page_dimensions_rotated(self):
@@ -877,23 +988,20 @@ class PDFWindow(Gtk.Window):
         return (h, w) if self.rotation % 180 else (w, h)
 
     def _target_final_width(self):
-        w, h = self._page_dimensions_rotated()
         alloc = self.viewer_scroll.get_allocation()
         vw, vh = max(300, alloc.width - 60), max(260, alloc.height - 60)
-        if self.zoom_mode == 'fit-width':
-            return max(120, int(vw * 0.92))
-        if self.zoom_mode == 'fit-page':
-            return max(120, min(vw, int(vh * w / h)))
-        return max(120, int((w / 72.0) * 96.0 * self.zoom_percent / 100.0))
+        return page_width(self.page_sizes[self.page], self.rotation, self.zoom_mode,
+                          self.zoom_percent, (vw, vh)) if self.page_sizes else 1
 
     def _render_width_for_poppler(self, final_width):
         if self.rotation % 180 == 0 or not self.page_sizes:
             return final_width
         ow, oh = self.page_sizes[self.page]
-        return max(120, int(final_width * ow / oh))
+        return max(1, int(final_width * ow / oh))
 
     def request_render(self):
         if not self.filepath or not self.page_sizes: return
+        session = self.document_session
         page = self.page; rotation = self.rotation; target_final = self._target_final_width(); target = self._render_width_for_poppler(target_final)
         path = self.filepath
         cache_dir = self.cache_dir
@@ -919,7 +1027,7 @@ class PDFWindow(Gtk.Window):
             return
         self.status_file.set_text(f'Carregando página {page + 1}…')
         def task():
-            return self._reader_pixbuf(path, page, rotation, target, cache_dir)
+            return session.call(self._reader_pixbuf, page, rotation, target, cache_dir)
         def ok(pb):
             if page != self.page or rotation != self.rotation or path != self.filepath: return
             try:
@@ -942,6 +1050,7 @@ class PDFWindow(Gtk.Window):
 
     def _prefetch_reader_pages(self):
         path, rotation, cache_dir = self.filepath, self.rotation, self.cache_dir
+        session = self.document_session
         wanted = set()
         for page in (self.page + 1, self.page - 1):
             if not 0 <= page < self.page_count: continue
@@ -949,10 +1058,8 @@ class PDFWindow(Gtk.Window):
             w, h = (ph, pw) if rotation % 180 else (pw, ph)
             alloc = self.viewer_scroll.get_allocation()
             vw, vh = max(300, alloc.width - 60), max(260, alloc.height - 60)
-            if self.zoom_mode == 'fit-width': final = max(120, int(vw * .92))
-            elif self.zoom_mode == 'fit-page': final = max(120, min(vw, int(vh * w / h)))
-            else: final = max(120, int(w / 72 * 96 * self.zoom_percent / 100))
-            target = final if not rotation % 180 else max(120, int(final * pw / ph))
+            final = page_width((pw, ph), rotation, self.zoom_mode, self.zoom_percent, (vw, vh))
+            target = final if not rotation % 180 else max(1, int(final * pw / ph))
             key = (path, page, rotation, target); wanted.add(key)
             future = self.prefetch_tasks.get(key)
             if self.page_cache.get(key) is not None or (future is not None and not future.done()): continue
@@ -960,7 +1067,7 @@ class PDFWindow(Gtk.Window):
                 if key[0] == self.filepath: self.page_cache.put(key, pb)
                 self.prefetch_tasks.pop(key, None)
             future = self.prefetch_runner.submit(str(key),
-                lambda p=page, t=target: self._reader_pixbuf(path, p, rotation, t, cache_dir), ok)
+                lambda p=page, t=target: session.call(self._reader_pixbuf, p, rotation, t, cache_dir), ok)
             self.prefetch_tasks[key] = future
         for key in list(self.prefetch_tasks):
             if key not in wanted:
@@ -981,14 +1088,11 @@ class PDFWindow(Gtk.Window):
         if pb is None:
             return
         self.current_pixbuf = pb
-        self.page_image.set_from_pixbuf(pb)
-        w, h = pb.get_width(), pb.get_height()
-        try:
-            self.page_overlay.set_size_request(w, h)
-            self.interaction_layer.set_size_request(w, h)
-            self.page_frame.set_size_request(w, h)
-        except Exception:
-            pass
+        w = self._target_final_width()
+        pw, ph = self._page_dimensions_rotated()
+        h = max(1, round(w * ph / pw))
+        self.page_image.set_from_pixbuf(pb, (w, h))
+        self.page_overlay.set_page_size(w, h)
         if hasattr(self, 'interaction_layer'):
             self.interaction_layer.queue_draw()
         self.viewer_box.queue_resize()
@@ -1001,14 +1105,7 @@ class PDFWindow(Gtk.Window):
         if pb is None or not self.filepath:
             return
         try:
-            target_w = max(120, int(self._target_final_width()))
-            if abs(pb.get_width() - target_w) <= 2:
-                self._display_pixbuf(pb)
-                return
-            target_h = max(1, int(round(pb.get_height() * target_w / float(pb.get_width()))))
-            scaled = pb.scale_simple(target_w, target_h, GdkPixbuf.InterpType.BILINEAR)
-            if scaled is not None:
-                self._display_pixbuf(scaled)
+            self._display_pixbuf(pb)
         except Exception:
             pass
 
@@ -1034,8 +1131,10 @@ class PDFWindow(Gtk.Window):
 
     def goto_page(self, page, force=False):
         if not self.filepath or self.page_count <= 0: return
-        page = max(0, min(int(page), self.page_count - 1))
-        if page == self.page and not force: return
+        page = page_index(page, self.page_count)
+        if page == self.page and not force:
+            self.page_entry.set_text(str(page + 1)); self.status_page_entry.set_text(str(page + 1))
+            self._sync_navigation_controls(); return
         self.page = page
         self.selected_words = []; self.selection_data = None; self.selection_rect = None
         self.runner.invalidate('selection-words')
@@ -1043,10 +1142,11 @@ class PDFWindow(Gtk.Window):
         if hasattr(self, 'page_total_top'): self.page_total_top.set_text(str(self.page_count))
         if hasattr(self, 'status_page_entry'): self.status_page_entry.set_text(str(page + 1))
         self.status_page.set_text(f'de {self.page_count}')
+        self._sync_navigation_controls()
         self.request_render(); self._select_thumb_row(page)
 
     def _page_entry_activate(self, entry):
-        try: self.goto_page(int(entry.get_text()) - 1)
+        try: self.goto_page(page_index(entry.get_text(), self.page_count, one_based=True))
         except Exception: entry.set_text(str(self.page + 1 if self.page_count else 0))
 
     def _zoom_delta(self, delta):
@@ -1057,13 +1157,13 @@ class PDFWindow(Gtk.Window):
             # of jumping blindly from an internal 100% state.
             try:
                 pw, _ph = self._page_dimensions_rotated()
-                current_w = self.current_pixbuf.get_width() if self.current_pixbuf else self._target_final_width()
+                current_w = self.page_image.display_size[0] if self.current_pixbuf else self._target_final_width()
                 natural_w = max(1.0, (pw / 72.0) * 96.0)
                 self.zoom_percent = int(round(current_w / natural_w * 100.0))
             except Exception:
                 self.zoom_percent = 100
         self.zoom_mode = 'percent'
-        self.zoom_percent = max(25, min(400, int(self.zoom_percent + delta)))
+        self.zoom_percent = zoom_value(self.zoom_percent + delta)
         self._update_zoom_labels()
         self._apply_zoom_preview()
         self.request_render()
@@ -1071,6 +1171,14 @@ class PDFWindow(Gtk.Window):
     def _zoom_100(self, *_args):
         if not self.filepath: return
         self.zoom_mode = 'percent'; self.zoom_percent = 100
+        self._update_zoom_labels(); self._apply_zoom_preview(); self.request_render()
+
+    def _zoom_entry_activate(self, entry):
+        if not self.filepath:return
+        try:value = zoom_value(entry.get_text())
+        except ValueError as exc:
+            self._update_zoom_labels(); self.status_file.set_text(str(exc)); return
+        self.zoom_mode = 'percent'; self.zoom_percent = value
         self._update_zoom_labels(); self._apply_zoom_preview(); self.request_render()
 
     def _fit_page(self, *_args):
@@ -1083,13 +1191,20 @@ class PDFWindow(Gtk.Window):
 
     def _rotate(self, delta):
         if not self.filepath: return
-        self.rotation = (self.rotation + delta) % 360; self.request_render()
+        self.rotation = (self.rotation + delta) % 360
+        self.selected_words = []; self.selection_data = None; self.selection_rect = None
+        self.runner.invalidate('selection-words'); self.request_render()
 
     def _update_zoom_labels(self):
         if self.zoom_mode == 'fit-page': text = 'Ajustar página'
         elif self.zoom_mode == 'fit-width': text = 'Ajustar largura'
-        else: text = f'{self.zoom_percent}%'
+        else: text = f'{self.zoom_percent:g}%'
         self.status_zoom.set_text(text); self.zoom_label_top.set_text(text)
+        if hasattr(self, 'zoom_entry'):
+            pw, _ = self._page_dimensions_rotated()
+            effective = self._target_final_width() / (pw / 72 * 96) * 100 if self.page_sizes else 100
+            self.zoom_entry.set_text(f'{self.zoom_percent if self.zoom_mode == "percent" else effective:.2f}%')
+        self._sync_navigation_controls()
         if hasattr(self, 'zoom_scale') and self.zoom_mode == 'percent':
             self._zoom_scale_sync = True
             try: self.zoom_scale.set_value(self.zoom_percent)
@@ -1133,6 +1248,7 @@ class PDFWindow(Gtk.Window):
 
     def _request_nearby_thumbnails(self):
         if not self.filepath: return
+        session = self.document_session
         for idx in range(max(0, self.page - 3), min(self.page_count, self.page + 4)):
             row = self.thumb_rows.get(idx)
             if row is None or idx in self.thumb_requested: continue
@@ -1142,7 +1258,7 @@ class PDFWindow(Gtk.Window):
                 if not row2 or path != self.filepath: return
                 try: row2.thumb_image.set_from_file(png)
                 except Exception: pass
-            self.runner.submit(f'thumb-{idx}', lambda i=idx: render_page(path, i, 82, self.cache_dir, 'thumb'), ok, lambda _e: None)
+            self.runner.submit(f'thumb-{idx}', lambda i=idx, s=session: s.call(render_page, i, 82, self.cache_dir, 'thumb'), ok, lambda _e: None)
 
     def _thumb_selected(self, _list, row):
         if row is not None and hasattr(row, 'page_index') and row.page_index != self.page: self.goto_page(row.page_index)
@@ -1185,6 +1301,7 @@ class PDFWindow(Gtk.Window):
         if not self.filepath:
             return
         path = self.filepath
+        session = self.document_session
         self.attachment_controller.set_document(path)
         if self.sidebar_visible and self.sidebar_notebook.get_current_page() == 4:
             self.attachment_controller.ensure_loaded()
@@ -1197,7 +1314,7 @@ class PDFWindow(Gtk.Window):
         def ok(data):
             if path == self.filepath:
                 self._populate_side_panels(data)
-        self.runner.submit('panels', lambda: inspect_document_panels(path), ok, lambda _e: self._populate_side_panels({}))
+        self.runner.submit('panels', lambda: session.call(inspect_document_panels), ok, lambda _e: self._populate_side_panels({}))
 
     def _populate_side_panels(self, data):
         self._clear_side_panels()
@@ -1365,6 +1482,7 @@ class PDFWindow(Gtk.Window):
         return min(x0,x1),min(y0,y1),max(x0,x1),max(y0,y1)
 
     def _interaction_press(self, _w, event):
+        event = self.page_overlay.page_event(event)
         if not self.filepath or event.button != 1: return False
         if self.displayed_page != self.page or self.displayed_rotation != self.rotation: return False
         self.interaction_layer.grab_focus()
@@ -1383,6 +1501,7 @@ class PDFWindow(Gtk.Window):
         return False
 
     def _interaction_motion(self, _w, event):
+        event = self.page_overlay.page_event(event)
         if self.active_tool == 'hand' and self.hand_origin:
             sx,sy,hv,vv=self.hand_origin; ha,va=self.viewer_scroll.get_hadjustment(),self.viewer_scroll.get_vadjustment()
             nx=hv-(event.x_root-sx); ny=vv-(event.y_root-sy)
@@ -1396,6 +1515,7 @@ class PDFWindow(Gtk.Window):
         return False
 
     def _interaction_release(self, _w, event):
+        event = self.page_overlay.page_event(event)
         if event.button != 1: return False
         if self.active_tool == 'hand' and self.hand_origin:
             self.hand_origin=None; self._update_tool_cursor(); return True
@@ -1412,6 +1532,11 @@ class PDFWindow(Gtk.Window):
     def _interaction_leave(self, *_args):
         if self.active_tool == 'loupe': self.loupe_pos=None; self.interaction_layer.queue_draw()
         return False
+
+    def _interaction_viewport_draw(self, widget, cr):
+        cr.save(); cr.translate(*self.page_overlay.offset())
+        try:return self._interaction_draw(widget, cr)
+        finally:cr.restore()
 
     def _interaction_draw(self, widget, cr):
         if not self.current_pixbuf: return False
@@ -1452,7 +1577,10 @@ class PDFWindow(Gtk.Window):
 
     def _finish_snapshot(self, rect):
         if not self.current_pixbuf: return
-        x0,y0,x1,y1=[int(round(v)) for v in rect]; W,H=self.current_pixbuf.get_width(),self.current_pixbuf.get_height()
+        if not self._reading_permission('copy'):return
+        W,H=self.current_pixbuf.get_width(),self.current_pixbuf.get_height()
+        dw,dh=self.page_image.display_size
+        x0,y0,x1,y1=[int(round(v * (W/dw if i%2 == 0 else H/dh))) for i,v in enumerate(rect)]
         x0=max(0,min(W-1,x0)); y0=max(0,min(H-1,y0)); x1=max(x0+1,min(W,x1)); y1=max(y0+1,min(H,y1))
         try:
             crop=self.current_pixbuf.new_subpixbuf(x0,y0,x1-x0,y1-y0).copy(); Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).set_image(crop); self.status_file.set_text(f'Snapshot copiado ({x1-x0} × {y1-y0} px).')
@@ -1461,7 +1589,7 @@ class PDFWindow(Gtk.Window):
 
     def _display_rect_to_pdf(self, rect, data):
         if not self.current_pixbuf: return rect
-        W,H=self.current_pixbuf.get_width(),self.current_pixbuf.get_height(); ow,oh=float(data.get('width') or 0),float(data.get('height') or 0)
+        W,H=self.page_image.display_size; ow,oh=float(data.get('width') or 0),float(data.get('height') or 0)
         if not ow or not oh: ow,oh=self.page_sizes[self.page]
         disp_w,disp_h=(oh,ow) if self.rotation % 180 else (ow,oh)
         def pt(x,y):
@@ -1474,7 +1602,7 @@ class PDFWindow(Gtk.Window):
         return min(xs),min(ys),max(xs),max(ys)
 
     def _pdf_rect_to_display(self, rect, data):
-        W, H = self.current_pixbuf.get_width(), self.current_pixbuf.get_height()
+        W, H = self.page_image.display_size
         ow, oh = float(data['width']), float(data['height'])
         r = self.rotation % 360
         dw, dh = (oh, ow) if r % 180 else (ow, oh)
@@ -1491,6 +1619,8 @@ class PDFWindow(Gtk.Window):
     def _finish_text_selection(self, rect):
         page=self.page; path=self.filepath
         if not path: return
+        if not self._reading_permission('copy'):return
+        session=self.document_session
         def use(data):
             if path != self.filepath or page != self.page: return
             self.text_word_cache[page]=data; x0,y0,x1,y1=self._display_rect_to_pdf(rect,data); chosen=[]
@@ -1510,11 +1640,11 @@ class PDFWindow(Gtk.Window):
             if text: Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).set_text(text,-1); self.status_file.set_text(f'Texto selecionado copiado ({len(text)} caracteres).')
         cached=self.text_word_cache.get(page)
         if cached is not None: use(cached)
-        else: self.status_file.set_text('Lendo mapa de texto da página…'); self.runner.submit('selection-words',lambda:extract_page_words(path,page),use,lambda e:self.status_file.set_text(f'Falha ao selecionar texto: {e}'))
+        else: self.status_file.set_text('Lendo mapa de texto da página…'); self.runner.submit('selection-words',lambda:session.call(extract_page_words,page),use,lambda e:self.status_file.set_text(f'Falha ao selecionar texto: {e}'))
 
     def _finish_measure(self, rect):
         if not self.current_pixbuf or not self.page_sizes: return
-        x0,y0,x1,y1=rect; pw,ph=self._page_dimensions_rotated(); W=self.current_pixbuf.get_width(); H=self.current_pixbuf.get_height(); sx=pw/max(1,W); sy=ph/max(1,H)
+        x0,y0,x1,y1=rect; pw,ph=self._page_dimensions_rotated(); W,H=self.page_image.display_size; sx=pw/max(1,W); sy=ph/max(1,H)
         points=math.hypot((x1-x0)*sx,(y1-y0)*sy); self.measure_result=f'{points/72.0*2.54:.2f} cm'; self.status_file.set_text(f'Distância medida: {self.measure_result}')
 
     def _find_result_activated(self, _list, row):
@@ -1594,9 +1724,9 @@ class PDFWindow(Gtk.Window):
         if hit['page'] != self.page or not hit['rects']:
             return False
         coords = self._pdf_rect_to_display(hit['rects'][0], hit)
-        alloc = self.page_frame.get_allocation()
-        for adjustment, point in ((self.viewer_scroll.get_hadjustment(), alloc.x + (coords[0] + coords[2]) / 2),
-                                  (self.viewer_scroll.get_vadjustment(), alloc.y + (coords[1] + coords[3]) / 2)):
+        origin_x, origin_y = self.page_overlay.page_origin()
+        for adjustment, point in ((self.viewer_scroll.get_hadjustment(), origin_x + (coords[0] + coords[2]) / 2),
+                                  (self.viewer_scroll.get_vadjustment(), origin_y + (coords[1] + coords[3]) / 2)):
             target = point - adjustment.get_page_size() / 2
             adjustment.set_value(max(adjustment.get_lower(), min(target, adjustment.get_upper() - adjustment.get_page_size())))
         self._search_scroll_pending = False
@@ -1638,8 +1768,9 @@ class PDFWindow(Gtk.Window):
         options.update(mode=self.find_mode.get_active_id(), proximity_distance=self.find_distance.get_value_as_int())
         notices = []
         self.search_notices = []
+        session = self.document_session
         if self.search_index is None:
-            self.search_index = TextSearchIndex(path, self.page_count, page_sizes=self.page_sizes)
+            self.search_index = TextSearchIndex(session.read_path, self.page_count, page_sizes=self.page_sizes)
         index = self.search_index
         self.search_scanned = 0; self.search_running = True
         def progress(scanned, batch):
@@ -1666,8 +1797,8 @@ class PDFWindow(Gtk.Window):
             if not cancel.is_set():
                 self.search_running = False
                 self.find_status.set_text(f'Erro: {exc}')
-        self.runner.submit('search', lambda: index.search(query, cancel=cancel, on_page=progress,
-                                                        on_notice=notices.append, **options), ok, error)
+        self.runner.submit('search', lambda: session.call(lambda _path: index.search(query, cancel=cancel, on_page=progress,
+                                                        on_notice=notices.append, **options)), ok, error)
         return False
 
     def _update_find_status(self):
@@ -1932,19 +2063,30 @@ class PDFWindow(Gtk.Window):
 
     def _copy_page_text(self, *_args):
         if not self.filepath: return
+        if not self._reading_permission('copy'):return
+        session = self.document_session
         path, page = self.filepath, self.page; self.status_file.set_text('Extraindo texto da página…')
         def ok(text):
             if path != self.filepath: return
             Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).set_text(text, -1); self.status_file.set_text('Texto da página copiado para a área de transferência.')
-        self.runner.submit('copy-text', lambda: extract_page_text(path, page), ok, lambda e: self._error(str(e)))
+        self.runner.submit('copy-text', lambda: session.call(extract_page_text, page), ok, lambda e: self._error(str(e)))
 
     def _export_png(self, *_args):
         if not self.filepath: return
+        if not self._reading_permission('copy'):return
+        session = self.document_session
         dlg = Gtk.FileChooserDialog(title='Exportar página como PNG', parent=self, action=Gtk.FileChooserAction.SAVE)
         dlg.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Salvar', Gtk.ResponseType.OK); dlg.set_do_overwrite_confirmation(True); dlg.set_current_name(f'{Path(self.filepath).stem}-pagina-{self.page+1}.png')
         if dlg.run() != Gtk.ResponseType.OK: dlg.destroy(); return
         dest = dlg.get_filename(); dlg.destroy(); path, page = self.filepath, self.page; self.status_file.set_text('Exportando PNG…')
-        self.runner.submit('export-png', lambda: render_page_to_png(path, page, dest), lambda _p: self.status_file.set_text(f'PNG salvo: {Path(dest).name}'), lambda e: self._error(str(e)))
+        self.runner.submit('export-png', lambda: session.call(render_page_to_png, page, dest), lambda _p: self.status_file.set_text(f'PNG salvo: {Path(dest).name}'), lambda e: self._error(str(e)))
+
+    def _reading_permission(self, permission):
+        session = self.document_session
+        if session is not None and not session.info['permissions'].get(permission, False):
+            self._error('As permissões deste PDF não autorizam esta operação.')
+            return False
+        return True
 
     def _properties(self, *_args):
         if not self.filepath: return
@@ -1959,7 +2101,12 @@ class PDFWindow(Gtk.Window):
     # ---------- presentation / modes ----------
     def _present(self, *_args):
         if not self.filepath: return
-        win = PresentationWindow(self, self.runner, self.filepath, self.page_sizes, self.page, self.cache_dir, self.laser_color)
+        previous = getattr(self, 'presentation_window', None)
+        if previous is not None:previous.destroy()
+        win = PresentationWindow(self, self.runner, self.filepath, self.page_sizes, self.page, self.cache_dir, self.laser_color,
+                                 session=self.document_session, rotation=self.rotation)
+        self.presentation_window = win
+        win.connect('destroy', lambda widget: setattr(self, 'presentation_window', None) if self.presentation_window is widget else None)
         win.show_all()
 
     def _fullscreen_toggle(self, *_args):
@@ -1982,6 +2129,9 @@ class PDFWindow(Gtk.Window):
     # ---------- printing ----------
     def _print(self, *_args):
         if not self.filepath: return
+        if self.document_session and (self.document_session.info['encrypted'] or self.document_session.info['recovered']):
+            self._error('A impressão integrada de PDFs protegidos ou recuperados ainda requer um fluxo próprio. O original está preservado.')
+            return
         win = PrintWindow(self, self.runner, self.filepath, self.page_count, self.page_sizes, self.page, self.cache_dir, self._submit_print_job)
         win.show_all()
 
@@ -2066,6 +2216,8 @@ class PDFWindow(Gtk.Window):
         dlg.format_secondary_text(str(text)); dlg.run(); dlg.destroy()
 
     def _on_destroy(self, *_args):
+        self._cancel_document_open()
+        if self.document_session is not None:self.document_session.close()
         if hasattr(self, 'attachment_controller'):
             self.attachment_controller.close()
         self.search_cancel.set()

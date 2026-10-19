@@ -2445,5 +2445,19 @@
       "whole_family_parity_verified": false,
       "criteria_or_weights_changed": false
     }
-  ]
+  ],
+  "reading_workflow_followup": {
+    "updated_at_local": "2026-10-19T10:53:45-03:00",
+    "report": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md",
+    "scope": "User list items1–3; not execution packages P01–P03",
+    "source_version": "0.1.14",
+    "status": "implementation_under_linux_validation",
+    "portable_tests_passed": 14,
+    "linux_gtk_validated": false,
+    "flatpak_rebuilt": false,
+    "physical_multi_monitor_validated": false,
+    "user_has_two_monitor_linux_environment": false,
+    "original_vm_resumed": false,
+    "whole_family_parity_verified": false
+  }
 }

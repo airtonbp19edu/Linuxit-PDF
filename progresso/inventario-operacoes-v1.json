@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 5,
-  "reviewed_at_local": "2026-10-19T09:58:26-03:00",
+  "reviewed_at_local": "2026-10-19T10:53:45-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -655,10 +655,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.request_render",
-          "line": 895,
-          "end_line": 932,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "54d609fb3fdc48b85b39dbf3a018fe352f6e433f65f8e67eafce5b9dd9286790"
+          "line": 1002,
+          "end_line": 1040,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "e4203ef45f8d7dc0d4bed6728114d4900549a539b189b143da65c84f1e1f8d23"
         }
       ],
       "recorded_related_tests": [
@@ -827,10 +827,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.goto_page",
-          "line": 1035,
-          "end_line": 1046,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "5c64b63a82488fbdb13f09c85d8680ff70a0d8dd0930e9ea0d8ea7aab2f77ac0"
+          "line": 1132,
+          "end_line": 1146,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "1eb90bb3c3e2e3e591c39150b549c6a60a18cabdd3c2f6fe050a69f95862927a"
         }
       ],
       "recorded_related_tests": [
@@ -882,9 +882,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._fit_page",
-          "line": 1076,
-          "end_line": 1078,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
+          "line": 1184,
+          "end_line": 1186,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
           "excerpt_sha256": "b7295c96009956c6e5790da30968d303af7503d64555d82b4efdbe28ce61bf38"
         }
       ],
@@ -937,10 +937,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._rotate",
-          "line": 1084,
-          "end_line": 1086,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "7155e4bd6f75eb0d5b2c28aa745ddc871784877ca61a326910b898b1eddfd572"
+          "line": 1192,
+          "end_line": 1196,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "19c108be5fbaecc96d972a65b97a04aac217440ac10ea85d8d1e66d516c6861e"
         }
       ],
       "recorded_related_tests": [
@@ -1043,9 +1043,9 @@
         {
           "path": "app/presentation.py",
           "symbol": "PresentationWindow._target_width_for",
-          "line": 238,
-          "end_line": 239,
-          "file_sha256": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+          "line": 313,
+          "end_line": 314,
+          "file_sha256": "b20ababcd72b8ed845d23b8d09cc4c57e4ce93949d2d90de2453ec866d516f41",
           "excerpt_sha256": "5a6683ab55a37a0efd5ae352d977421886f474cb9ce7bcaa456b5d49e35e066f"
         }
       ],
@@ -1093,9 +1093,9 @@
         {
           "path": "app/presentation.py",
           "symbol": "PresentationWindow._pan_bounds",
-          "line": 339,
-          "end_line": 350,
-          "file_sha256": "00501e634b6abad11fd50745b4e84eed520b956074610cd0c47119444b467c93",
+          "line": 420,
+          "end_line": 431,
+          "file_sha256": "b20ababcd72b8ed845d23b8d09cc4c57e4ce93949d2d90de2453ec866d516f41",
           "excerpt_sha256": "5b3d4c60d46dae9d26b7be76d38ed220fb70f3756128337b7550b325a3339679"
         }
       ],
@@ -1407,9 +1407,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1570,
-          "end_line": 1587,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
+          "line": 1700,
+          "end_line": 1717,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
           "excerpt_sha256": "f93cdd4c07dbb96860ad69e228ed49b2402b01cb6e2f17387fbe96fcab69c351"
         }
       ],
@@ -1466,10 +1466,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._start_search",
-          "line": 1625,
-          "end_line": 1671,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "f3b0193fb016190e87b3527ec6f653a5f82115de8415be83d5db481c68ac7fb2"
+          "line": 1755,
+          "end_line": 1802,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "7666e175d79a0d6c80c7983b742662c476b64b3f50e668c5a5d413fcf1ebec55"
         }
       ],
       "recorded_related_tests": [
@@ -1578,9 +1578,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1570,
-          "end_line": 1587,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
+          "line": 1700,
+          "end_line": 1717,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
           "excerpt_sha256": "f93cdd4c07dbb96860ad69e228ed49b2402b01cb6e2f17387fbe96fcab69c351"
         }
       ],
@@ -2164,10 +2164,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_text_selection",
-          "line": 1491,
-          "end_line": 1513,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "20792a6fa219266e45d37e008433fa69ce2a99d62c1e470098fe689826d79294"
+          "line": 1619,
+          "end_line": 1643,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "cb05078b8c9ed8227ab3e9ffc129eef318e4a4ed8e8be158461eb5f3a356b8e1"
         }
       ],
       "recorded_related_tests": [
@@ -2214,10 +2214,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_snapshot",
-          "line": 1453,
-          "end_line": 1460,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "2f02e45fd5d49dfd4f4c524250d64ede10aa54e00b3c8d7e77c95ba73b517fb8"
+          "line": 1578,
+          "end_line": 1588,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "7f2068aff3666b7c267c5233d78d805eecc858a92e6730003c0e751db2b9a754"
         }
       ],
       "recorded_related_tests": [],
@@ -4744,9 +4744,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._focus_region",
-          "line": 2016,
-          "end_line": 2030,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
+          "line": 2166,
+          "end_line": 2180,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
           "excerpt_sha256": "e431ab8d213fbbc3c0be18393be50ed80d2ee50e2261b67d626a5a17747eacb1"
         }
       ],
@@ -4846,10 +4846,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_measure",
-          "line": 1515,
-          "end_line": 1518,
-          "file_sha256": "43a4f7942845adbc0f6753980820e769cf7d9e808c84db3c255fddfd9e08d32b",
-          "excerpt_sha256": "81d292bc87fb232860ddde5af5ff646bc2cc866e9c322227fedaef15117e2b45"
+          "line": 1645,
+          "end_line": 1648,
+          "file_sha256": "83d479764dc668f5e8560ce3ea7b01f3ba0a73244ed9ac4e04e4910d793161fb",
+          "excerpt_sha256": "858696789d42691f0a9e2328892c250f799408a3d0218e8d2e7c93ccbda25e00"
         }
       ],
       "recorded_related_tests": [],
@@ -5734,5 +5734,6 @@
     "new_original_executions": 0,
     "complete_family_parity": 0
   },
-  "recorded_related_test_evidence_ref": "testes/resultados/p01-2026-10-18/recorded-linux-cases.json"
+  "recorded_related_test_evidence_ref": "testes/resultados/p01-2026-10-18/recorded-linux-cases.json",
+  "current_source_validation_pending_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
 }

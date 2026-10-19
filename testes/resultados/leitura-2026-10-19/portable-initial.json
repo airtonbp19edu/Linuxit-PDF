@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_document_session.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 14,
+  "passed": 14,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 25.234999999999673,
+  "cases": [
+    {
+      "id": "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+      "status": "passed",
+      "elapsed_sec": 4.125
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+      "status": "passed",
+      "elapsed_sec": 0.09400000000005093
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+      "status": "passed",
+      "elapsed_sec": 2.0469999999995707
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.03099999999994907
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+      "status": "passed",
+      "elapsed_sec": 3.29700000000048
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+      "status": "passed",
+      "elapsed_sec": 1.7349999999996726
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+      "status": "passed",
+      "elapsed_sec": 1.7650000000003274
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+      "status": "passed",
+      "elapsed_sec": 6.484999999999673
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+      "status": "passed",
+      "elapsed_sec": 1.7179999999998472
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+      "status": "passed",
+      "elapsed_sec": 1.985000000000582
+    },
+    {
+      "id": "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+      "status": "passed",
+      "elapsed_sec": 1.9369999999998981
+    },
+    {
+      "id": "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+      "status": "passed",
+      "elapsed_sec": 0.01599999999962165
+    },
+    {
+      "id": "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

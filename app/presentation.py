@@ -10,6 +10,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
 from rendering import render_page
 from async_core import BackgroundRunner
 from page_cache import PageCache
+from navigation import rotated_size
 
 LASER_COLORS = {
     'Vermelho': (1.0, 0.08, 0.06),
@@ -36,12 +37,23 @@ class PresentationWindow(Gtk.Window):
     ANIM_MS = 16
     ANIM_EASE = 0.28
 
-    def __init__(self, parent, runner, filepath, page_sizes, start_page, cache_dir, laser_color='Vermelho'):
+    def __init__(self, parent, runner, filepath, page_sizes, start_page, cache_dir, laser_color='Vermelho', session=None, rotation=0, monitor_index=None):
         super().__init__(title='Apresentação — Linuxit PDF')
         self.set_transient_for(parent)
         self.set_destroy_with_parent(True)
         self.set_icon_name('linuxit-pdf')
         self.set_role('linuxit-pdf-presentation')
+        if not page_sizes:raise ValueError('Abra um documento antes de iniciar a apresentação.')
+        self.parent = parent
+        self._return_focus = parent.get_focus()
+        self.session = session
+        self.rotation = rotation % 360
+        self._display = Gdk.Display.get_default()
+        self._monitor = None
+        self._monitor_sync = False
+        self.fullscreen_requested = False
+        self.fullscreen_active = False
+        self._display_handlers = []
         display = Gdk.Display.get_default()
         monitor = display.get_monitor_at_window(parent.get_window()) if parent.get_window() else display.get_primary_monitor()
         if monitor is not None:
@@ -112,7 +124,11 @@ class PresentationWindow(Gtk.Window):
 
         self.connect('key-press-event', self._key)
         self.connect('destroy', self._destroyed)
-        self.fullscreen()
+        self._refresh_monitors(preferred=monitor_index)
+        for signal in ('monitor-added', 'monitor-removed'):
+            self._display_handlers.append(self._display.connect(signal, self._monitors_changed))
+        self.connect('window-state-event', self._window_state_changed)
+        self._fullscreen_on_selected_monitor()
         self.show_all()
         self.canvas.grab_focus()
         # Rendering starts from the first size-allocate: asking now would see a
@@ -133,13 +149,64 @@ class PresentationWindow(Gtk.Window):
             except Exception:
                 pass
             self._anim_source = None
+        for handler in self._display_handlers:self._display.disconnect(handler)
+        self._display_handlers.clear()
+        if self.parent.get_visible():
+            self.parent.present()
+            if self._return_focus is not None and self._return_focus.get_mapped():self._return_focus.grab_focus()
+
+    def _refresh_monitors(self, preferred=None):
+        monitors = [self._display.get_monitor(i) for i in range(self._display.get_n_monitors())]
+        monitors = [m for m in monitors if m is not None]
+        if not monitors:return
+        if preferred is not None and 0 <= preferred < len(monitors):chosen = preferred
+        elif self._monitor in monitors:chosen = monitors.index(self._monitor)
+        else:
+            current = self._display.get_monitor_at_window(self.parent.get_window()) if self.parent.get_window() else None
+            primary = self._display.get_primary_monitor()
+            chosen = monitors.index(current) if current in monitors else monitors.index(primary) if primary in monitors else 0
+        self._monitor_sync = True
+        try:
+            self.monitor_combo.remove_all()
+            for i, monitor in enumerate(monitors):
+                geometry = monitor.get_geometry()
+                self.monitor_combo.append(str(i), f'Tela {i + 1} — {geometry.width}×{geometry.height}')
+            self._monitor = monitors[chosen]
+            self.monitor_combo.set_active_id(str(chosen))
+            self.monitor_combo.set_no_show_all(len(monitors) < 2)
+            self.monitor_combo.set_visible(len(monitors) > 1)
+        finally:self._monitor_sync = False
+
+    def _fullscreen_on_selected_monitor(self):
+        index = self.monitor_combo.get_active_id()
+        if index is None:return
+        self.fullscreen_requested = True
+        self.fullscreen_on_monitor(self.get_screen(), int(index))
+
+    def _monitor_changed(self, combo):
+        if self._monitor_sync or combo.get_active_id() is None:return
+        self._monitor = self._display.get_monitor(int(combo.get_active_id()))
+        self.unfullscreen()
+        self._fullscreen_on_selected_monitor()
+        self.canvas.grab_focus()
+
+    def _monitors_changed(self, *_args):
+        if self._closed:return
+        self._refresh_monitors()
+        self._fullscreen_on_selected_monitor()
+
+    def _window_state_changed(self, _widget, event):
+        self.fullscreen_active = bool(event.new_window_state & Gdk.WindowState.FULLSCREEN)
+        return False
 
     def _toolbar(self):
         bar = Gtk.Box(spacing=6, margin=8)
         bar.get_style_context().add_class('presentation-toolbar')
-        prev = Gtk.Button(label='‹'); prev.connect('clicked', lambda *_: self._goto(self.page - 1)); bar.pack_start(prev, False, False, 0)
+        self.previous_button = prev = Gtk.Button(label='‹'); prev.connect('clicked', lambda *_: self._goto(self.page - 1)); bar.pack_start(prev, False, False, 0)
+        prev.get_accessible().set_name('Página anterior da apresentação')
         self.page_label = Gtk.Label(); bar.pack_start(self.page_label, False, False, 0)
-        nxt = Gtk.Button(label='›'); nxt.connect('clicked', lambda *_: self._goto(self.page + 1)); bar.pack_start(nxt, False, False, 0)
+        self.next_button = nxt = Gtk.Button(label='›'); nxt.connect('clicked', lambda *_: self._goto(self.page + 1)); bar.pack_start(nxt, False, False, 0)
+        nxt.get_accessible().set_name('Próxima página da apresentação')
         bar.pack_start(Gtk.Separator(orientation=Gtk.Orientation.VERTICAL), False, False, 4)
         minus = Gtk.Button(label='−'); minus.connect('clicked', lambda *_: self._set_zoom(self.zoom - 25)); bar.pack_start(minus, False, False, 0)
         self.zoom_label = Gtk.Label(); bar.pack_start(self.zoom_label, False, False, 0)
@@ -167,6 +234,11 @@ class PresentationWindow(Gtk.Window):
         for name in LASER_COLORS: self.color_combo.append_text(name)
         names = list(LASER_COLORS); self.color_combo.set_active(names.index(self.laser_color_name))
         self.color_combo.connect('changed', self._color_changed); bar.pack_start(self.color_combo, False, False, 0)
+        self.monitor_combo = Gtk.ComboBoxText()
+        self.monitor_combo.get_accessible().set_name('Tela da apresentação')
+        self.monitor_combo.set_tooltip_text('Escolha o monitor. F6 alterna entre a página e os controles; H mostra ou oculta os controles.')
+        self.monitor_combo.connect('changed', self._monitor_changed)
+        bar.pack_start(self.monitor_combo, False, False, 0)
         exit_btn = Gtk.Button(label='Sair'); exit_btn.connect('clicked', lambda *_: self.destroy()); bar.pack_end(exit_btn, False, False, 0)
         self._update_labels()
         return bar
@@ -176,6 +248,9 @@ class PresentationWindow(Gtk.Window):
             self.page_label.set_text(f'Página {self.page + 1} / {self.page_count}')
         if hasattr(self, 'zoom_label'):
             self.zoom_label.set_text(f'{self.zoom}%')
+        if hasattr(self, 'previous_button'):
+            self.previous_button.set_sensitive(self.page > 0)
+            self.next_button.set_sensitive(self.page < self.page_count - 1)
 
     def _goto(self, page):
         page = max(0, min(page, self.page_count - 1))
@@ -217,7 +292,7 @@ class PresentationWindow(Gtk.Window):
         """Use the available viewport above the controls, preserving aspect ratio."""
         W, H = self._canvas_size()
         W, H = max(300, W), max(250, H)
-        pw, ph = self.page_sizes[page]
+        pw, ph = rotated_size(self.page_sizes[page], self.rotation)
         H = max(100, H - self._controls_height())
         if self.fit_mode == 'reading':
             return min(W - 24, (H * .80) * pw / ph)
@@ -260,8 +335,14 @@ class PresentationWindow(Gtk.Window):
         self.canvas.queue_draw()
 
     def _load_page_pixbuf(self, page, target):
-        path = render_page(self.filepath, page, target, self.cache_dir, 'present', image_format='jpeg')
-        return GdkPixbuf.Pixbuf.new_from_file(path)
+        def load(path):
+            pw, ph = self.page_sizes[page]
+            native = max(1, int(target * pw / ph)) if self.rotation % 180 else target
+            rendered = render_page(path, page, native, self.cache_dir, f'present-r{self.rotation}', image_format='jpeg')
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(rendered)
+            rotations = {90:GdkPixbuf.PixbufRotation.CLOCKWISE, 180:GdkPixbuf.PixbufRotation.UPSIDEDOWN, 270:GdkPixbuf.PixbufRotation.COUNTERCLOCKWISE}
+            return pixbuf.rotate_simple(rotations[self.rotation]) if self.rotation in rotations else pixbuf
+        return self.session.call(load) if self.session is not None else load(self.filepath)
 
     def _request_render(self):
         if self._closed or not self._alloc_size:
@@ -514,12 +595,23 @@ class PresentationWindow(Gtk.Window):
     def _key(self, _w, event):
         key = Gdk.keyval_name(event.keyval) or ''
         ctrl = bool(event.state & Gdk.ModifierType.CONTROL_MASK)
+        if key == 'Escape':self.destroy(); return True
+        if key == 'F6':
+            self.controls_visible = True; self.revealer.set_reveal_child(True)
+            if self.get_focus() is self.canvas:
+                (self.previous_button if self.previous_button.get_sensitive() else self.next_button).grab_focus()
+            else:self.canvas.grab_focus()
+            return True
+        if key == 'Tab':
+            self.controls_visible = True; self.revealer.set_reveal_child(True)
+            return False
         if ctrl and key in ('plus', 'equal', 'KP_Add'):
             self._set_zoom(self.zoom + 25); return True
         if ctrl and key in ('minus', 'KP_Subtract'):
             self._set_zoom(self.zoom - 25); return True
         if ctrl and key in ('0', 'KP_0'):
             self._set_zoom(100); return True
+        if self.get_focus() is not self.canvas:return False
 
         # Requested navigation: horizontal arrows change the whole page;
         # vertical arrows move within the current page.
@@ -543,9 +635,7 @@ class PresentationWindow(Gtk.Window):
         if key == 'End':
             minx, maxx, miny, maxy = self._pan_bounds()
             self._set_pan_target(y=miny); return True
-        if key == 'Escape':
-            self.destroy(); return True
-        if key == 'Tab':
+        if key.lower() == 'h':
             self.controls_visible = not self.controls_visible
             self.revealer.set_reveal_child(self.controls_visible)
             GLib.timeout_add(250, lambda: (self._request_render(), False)[1] if not self._closed else False)

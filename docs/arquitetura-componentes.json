@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-18T13:35:28-03:00",
+  "reviewed_at_local": "2026-10-19T10:53:45-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.13",
+  "application_version": "0.1.14",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -269,6 +269,24 @@
       "path": "app/pdf_annotations.py",
       "boundary": "portable_pdf_services",
       "responsibility": "Geometria limitada e aparência vetorial própria para sublinhado, tachado, ondulado, elipse e linha, sem GTK/fontes externas."
+    },
+    {
+      "id": "document_session",
+      "path": "app/document_session.py",
+      "boundary": "portable_backend",
+      "responsibility": "Abertura transacional, autenticação por stdin, recuperação consentida e duração da representação privada."
+    },
+    {
+      "id": "navigation",
+      "path": "app/navigation.py",
+      "boundary": "portable_backend",
+      "responsibility": "Domínios finitos de página/zoom e geometria após rotação."
+    },
+    {
+      "id": "page_surface",
+      "path": "app/page_surface.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Viewport virtual e desenho com raster limitado em coordenadas lógicas."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -874,6 +892,7 @@
     }
   ],
   "runtime_limitations": [
+    "Fonte0.1.14 em validação: leitura/senha/recuperação, zoom1–6400 e seleção de monitor;14 testes portáveis passaram. GTK/Linux/pacote e dois monitores físicos ainda não aprovados neste checkpoint.",
     "Current0.1.13:400/400 source/payload/installed sandbox passed, including14 portable and6 GTK annotation methods; all380 prior IDs retained. Full families, real desktop/device and original remain unverified.",
     "Historical pre-CI0.1.13 checkpoint:14 portable methods passed and6 GTK/Poppler pending then; superseded by the400/400 source/payload/sandbox CI recorded above.",
     "Current0.1.12:380/380 source/payload/installed sandbox passed.17 additional methods,1 intentional TIFF contract-test replacement. Desktop/device/original and full families remain unverified.",
@@ -892,5 +911,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }
