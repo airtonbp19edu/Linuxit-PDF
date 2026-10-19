@@ -6,11 +6,11 @@ mkdir -p "$results"
 export PYTHONUTF8=1
 /usr/bin/python3 scripts/run_tests.py --pattern test_delivery_audit.py \
   --output "$results/auditor-controls.json" >"$results/auditor-controls.log" 2>&1
+bundle="$(/usr/bin/python3 scripts/fetch_delivery_bundle.py --all)"
 /usr/bin/python3 scripts/audit_delivery.py --output "$results/repository-audit.json"
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install --user --noninteractive -y --no-related flathub org.freedesktop.Platform//25.08 \
   >"$results/runtime-install.log" 2>&1
-bundle="$(/usr/bin/python3 -c 'import json; print("releases/" + json.load(open("releases/manifest.json"))["artifact"]["file"])')"
 flatpak install --user --noninteractive -y --no-related "$bundle" >"$results/app-install.log" 2>&1
 app=io.github.airtonbp19edu.LinuxitPDF//devel
 deployment="$(flatpak info --user --show-location "$app")"

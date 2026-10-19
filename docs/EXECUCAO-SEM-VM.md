@@ -221,3 +221,30 @@ S11:duas transições de reflow novas examinadas com Ghidra/Capstone,85instruç�
 REA-TRANSICOES-REFLOW-2026-10-19.md. Tipos/propriedade/arrays e algoritmo de busca
 amplos permanecem abertos; não declarar fim da análise estática.50planos S12 ainda
 não são aceitação integral do original; subconjuntos próprios têm outras evidências.
+
+## S10/S12 — primeira execução examinada
+
+Windows nativo CI/Server2022:5/5controles,PDF real exibido e cópia editada reaberta;
+captura examinada. Não é instalador Windows nem impressão física. Desktop0.1.15:
+atualização/rollback e preferências passaram. Portal retornou arquivo que o teste
+procurava no caminho host /tmp em vez do runtime canônico do Flatpak; associação
+não era encontrada sem o diretório exportado no XDG_DATA_DIRS. Probe corrigido,
+ainda sem aprovação de concessão persistente/associação até a próxima execução.
+
+Primeiro candidato0.1.16:560/560 fonte e payload;559/560sandbox,1erro na criação
+sintética de TSA por falta de configuração OpenSSL no sandbox. O código upstream
+apps/ts.c confirma carregamento incondicional de configuração inclusive verify.
+Implementação e fixture agora fornecem configuração própria. Primeiro bundle
+118383696bytes foi preservado como candidato reprovado,sem publicação. Novo build
+necessário;não promover os resultados anteriores a esse código corrigido.
+
+Como o bundle com codecs supera100MiB,a entrega nova usará asset de GitHub Release
+no mesmo repositório,prerelease. Manifesto/checksums continuam no Git. Download/cache
+somente da URL exata do próprio repositório,com tamanho e SHA256 exigidos antes
+inclusão na auditoria offline;11controles do auditor/transporte passaram no host.
+Nenhuma alegação de assinatura digital foi acrescentada.
+
+S11 acrescentou mais2entradas inéditas de alocação:total4novas/262instruções/793bytes,
+catálogo327=152REA+175diretas. O construtor anterior foi relido,sem nova contagem.
+Alocações N/A/B e somas prefixadas delimitadas; todos os chamadores/índices seguem
+abertos. Relatório REA-ARRAYS-REFLOW-2026-10-19.md.

@@ -102,6 +102,7 @@ def verify_runtime_files(payload, audit):
 
 
 def audit(installed_root=None):
+    from delivery_bundle import resolve_bundle,manifest_for_file
     manifest = read(ROOT / 'releases/manifest.json')
     version = manifest['version']
     require(re.fullmatch(r'\d+\.\d+\.\d+', version), 'Invalid delivery version')
@@ -111,12 +112,14 @@ def audit(installed_root=None):
     candidate = read(reports / 'candidate.json')
     require(all(manifest.get(k) == v for k, v in candidate.items()), 'Manifest differs from CI candidate')
     artifact = manifest['artifact']
-    bundle = local(ROOT / 'releases', artifact['file'])
+    bundle = resolve_bundle(ROOT,manifest)
     require(bundle.stat().st_size == artifact['bytes'] and sha(bundle) == artifact['sha256'], 'Bundle identity mismatch')
     checksum_count = 0
     for line in (ROOT / 'releases/SHA256SUMS').read_text().splitlines():
         digest, name = line.split()
-        require(sha(local(ROOT / 'releases', name)) == digest, 'Checksum mismatch: ' + name)
+        existing=ROOT/'releases'/name
+        path=local(ROOT/'releases',name) if existing.exists() else resolve_bundle(ROOT,manifest_for_file(ROOT,name))
+        require(sha(path) == digest, 'Checksum mismatch: ' + name)
         checksum_count += 1
     require(artifact['sha256'] + '  ' + artifact['file'] in (ROOT / 'releases/SHA256SUMS').read_text(), 'Delivery missing from checksums')
     required_reports = {'source-payload-integrity.json', 'source-intermediate.json', 'payload-tests.json',

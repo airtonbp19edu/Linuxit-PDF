@@ -86,6 +86,9 @@ def verify_trust(cms,content,policy):
         signature=folder/'cms.der';signature.write_bytes(cms);data=folder/'data.bin';data.write_bytes(content)
         chain=folder/'included.pem';chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs))
         empty_store=folder/'empty-ca-store';empty_store.mkdir()
+        # The ts command always loads a config, including for verification.
+        # Use an own empty policy file rather than assuming /etc/ssl is mounted.
+        configuration=folder/'openssl.cnf';configuration.write_text('[default]\n')
         options=['-CAfile',str(ca),'-no-CApath','-no-CAstore','-attime',str(int(policy['moment'].timestamp()))]
         base=[executable,'cms','-verify','-binary','-inform','DER','-in',str(signature),'-content',str(data),'-purpose','any',*options,'-out',os.devnull]
         result['chain_verified']=usage_ok and _run(base)
@@ -101,7 +104,7 @@ def verify_trust(cms,content,policy):
                     # ts lacks cms' -no-CApath/-no-CAstore switches. Explicit
                     # empty stores suppress platform anchors without those flags.
                     ts_options=['-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(empty_store),'-attime',str(int(policy['moment'].timestamp()))]
-                    args=[executable,'ts','-verify','-token_in','-in',str(token_path),'-data',str(value_path),*ts_options]
+                    args=[executable,'ts','-config',str(configuration),'-verify','-token_in','-in',str(token_path),'-data',str(value_path),*ts_options]
                     if certs:args+=['-untrusted',str(chain)]
                     if policy['require_revocation']:args+=['-crl_check_all']
                     verified=_run(args)

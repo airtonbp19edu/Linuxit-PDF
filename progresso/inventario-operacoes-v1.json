@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 16,
-  "reviewed_at_local": "2026-10-19T16:09:09.840526-03:00",
+  "reviewed_at_local": "2026-10-19T20:04:10.689481-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5139,9 +5139,9 @@
           "path": "app/signature_trust.py",
           "symbol": "verify_trust",
           "line": 37,
-          "end_line": 111,
-          "file_sha256": "31675cea0209e285cbd2b43a3142f95f312a88d1951b9fef0e1c085f3daf824c",
-          "excerpt_sha256": "a8a4c4ae0779950c56685a1e0f46cc4f216d853606202f62c93d20c5e8271117"
+          "end_line": 114,
+          "file_sha256": "ad454c996b1746e44b6300d2b230a35c300a693508ad37db1cabb92401cdd37b",
+          "excerpt_sha256": "2ab490399d6854147d1f919a93cfee0ab0bbe61d97b1ef551b4e2d794fdaf58a"
         }
       ],
       "recorded_related_tests": [],

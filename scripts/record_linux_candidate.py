@@ -88,7 +88,7 @@ def main():
             'runtime': 'org.freedesktop.Platform/x86_64/25.08',
             'runtime_commit_tested': output('flatpak', 'info', '--user', '--show-commit', 'org.freedesktop.Platform//25.08'),
             'app_ostree_commit': output('flatpak', 'info', '--user', '--show-commit', 'io.github.airtonbp19edu.LinuxitPDF//devel'),
-            'source_commit': output('git', 'rev-parse', 'HEAD'), 'builder_sha256': sha(ROOT / 'scripts/build_flatpak.py'),
+            'source_commit': source['git_head_before_check'], 'validation_commit':output('git','rev-parse','HEAD'), 'builder_sha256': sha(ROOT / 'scripts/build_flatpak.py'),
             'artifact': {'file': args.artifact.name, 'bytes': args.artifact.stat().st_size,
                          'sha256': sha(args.artifact), 'digitally_signed': False},
             'validation': {name: {key: suite[key] for key in ('run', 'passed', 'failures', 'errors', 'skipped')}

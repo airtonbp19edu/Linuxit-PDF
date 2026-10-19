@@ -6,10 +6,13 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from io import BytesIO
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from audit_delivery import indexed, local, verify_runtime_files, verify_suite
+from delivery_bundle import resolve_bundle
 
 
 class DeliveryAuditControls(unittest.TestCase):
@@ -77,6 +80,39 @@ class DeliveryAuditControls(unittest.TestCase):
                 invalid['cases'][1]['id'] = invalid['cases'][0]['id']
             with self.subTest(change=change), self.assertRaisesRegex(ValueError, 'Failed/skipped/duplicate'):
                 verify_suite(invalid)
+
+
+class ReleaseBundleControls(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name)
+        self.raw=b'Own synthetic bundle bytes';self.name='LinuxitPDF-0.1.16-x86_64.flatpak'
+        self.manifest=dict(version='0.1.16',artifact=dict(file=self.name,bytes=len(self.raw),sha256=hashlib.sha256(self.raw).hexdigest()),
+            distribution=dict(storage='github_release_asset',tag='v0.1.16-devel',download_url='https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.16-devel/'+self.name))
+
+    def test_published_asset_is_cached_only_after_size_and_hash_match(self):
+        with patch('delivery_bundle.urllib.request.urlopen',return_value=BytesIO(self.raw)) as opened:
+            target=resolve_bundle(self.root,self.manifest,download=True)
+        self.assertEqual(target.read_bytes(),self.raw);self.assertEqual(resolve_bundle(self.root,self.manifest),target);opened.assert_called_once()
+
+    def test_wrong_hash_and_oversized_download_never_publish_partial_cache(self):
+        for raw in (self.raw.replace(b'Own',b'Bad'),self.raw+b'oversized'):
+            with self.subTest(raw=raw),patch('delivery_bundle.urllib.request.urlopen',return_value=BytesIO(raw)),self.assertRaises(ValueError):
+                resolve_bundle(self.root,self.manifest,download=True)
+        self.assertFalse(list(self.root.rglob('*.flatpak')));self.assertFalse(list(self.root.rglob('.download-*')))
+
+    def test_unrelated_origin_and_path_traversal_never_trigger_download(self):
+        for kind in ('url','name'):
+            manifest=copy.deepcopy(self.manifest)
+            if kind=='url':manifest['distribution']['download_url']='https://example.invalid/unrelated.flatpak'
+            else:manifest['artifact']['file']='../'+self.name
+            with patch('delivery_bundle.urllib.request.urlopen') as opened,self.assertRaises(ValueError):resolve_bundle(self.root,manifest,download=True)
+            opened.assert_not_called()
+
+    def test_local_previous_bundle_is_verified_without_network(self):
+        release=self.root/'releases';release.mkdir();target=release/self.name;target.write_bytes(self.raw)
+        with patch('delivery_bundle.urllib.request.urlopen') as opened:self.assertEqual(resolve_bundle(self.root,self.manifest),target)
+        opened.assert_not_called();target.write_bytes(b'changed')
+        with self.assertRaises(ValueError):resolve_bundle(self.root,self.manifest)
 
 
 if __name__ == '__main__':

@@ -103,27 +103,29 @@
     {
       "id": "S10",
       "title": "Portal persistente, associação, atualização/rollback e adaptador Windows",
-      "status": "ephemeral_native_and_desktop_probes_prepared_pending_execution",
+      "status": "native_windows_subset_and_upgrade_rollback_validated_portal_association_fix_pending",
       "evidence_refs": [
-        "scripts/check_desktop_integrations.py",
-        "scripts/check_windows_native.py"
+        "testes/resultados/sem-vm-2026-10-19/s10-first/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S11",
       "title": "Contratos/casos executáveis e análise estática pendente",
-      "status": "static_two_new_entries_reviewed_broad_semantics_and_acceptance_still_open",
+      "status": "four_new_static_entries_examined_array_allocations_bounded_own_acceptance_open",
       "evidence_refs": [
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md"
       ],
       "limitations": []
     },
     {
       "id": "S12",
       "title": "Validação Linux, entrega Flatpak, auditoria e continuidade",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "first_candidate_source_payload_560_passed_sandbox_config_fix_rebuild_required",
+      "evidence_refs": [
+        "testes/resultados/sem-vm-2026-10-19/s12-first/review.json"
+      ],
       "limitations": []
     }
   ],
@@ -132,5 +134,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T16:09:09.521221-03:00"
+  "updated_at_local": "2026-10-19T20:04:09.916238-03:00"
 }

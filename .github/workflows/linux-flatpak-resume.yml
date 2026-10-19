@@ -7,6 +7,10 @@ on:
         description: Full commit already tested in the source and payload
         required: true
         default: a4e017ae65784256583292ddbe502e182bb25a66
+      test_revision:
+        description: Optional corrected test revision; application bytes must still match the preserved payload
+        required: false
+        default: ''
       artifact_run_id:
         description: Original candidate workflow run
         required: true
@@ -39,6 +43,7 @@ jobs:
       EXPECTED_BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
       ORIGINAL_RUN_ID: ${{ inputs.artifact_run_id }}
       ORIGINAL_ARTIFACT_ID: ${{ inputs.artifact_id }}
+      TEST_REVISION: ${{ inputs.test_revision || inputs.source_revision }}
     steps:
       - name: Install virtual desktop and runtime prerequisites
         run: |
@@ -53,7 +58,7 @@ jobs:
       - name: Check out the exact already-tested source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.source_revision }}
+          ref: ${{ inputs.test_revision || inputs.source_revision }}
           persist-credentials: false
           fetch-depth: 0
       - name: Download the preserved candidate without rebuilding
@@ -87,11 +92,17 @@ jobs:
           assert app_snapshot(Path('app'))=={p['file']:p['sha256'] for p in integrity['files']}
           bundle,=Path('dist').glob('*.flatpak')
           assert hashlib.sha256(bundle.read_bytes()).hexdigest()==os.environ['EXPECTED_BUNDLE_SHA256']
-          assert not (r/'sandbox-tests.json').exists() and not (r/'candidate.json').exists()
+          assert not (r/'candidate.json').exists()
+          if (r/'sandbox-tests.json').exists():
+              failed=json.loads((r/'sandbox-tests.json').read_text())
+              assert failed['failures'] or failed['errors'] or failed['skipped']
+              (r/'sandbox-tests.json').rename(r/'sandbox-tests-first-failure.json')
+              if (r/'sandbox-tests.log').exists():(r/'sandbox-tests.log').rename(r/'sandbox-tests-first-failure.log')
           (r/'resumed-validation.json').write_text(json.dumps({'original_run_id':os.environ['ORIGINAL_RUN_ID'],
               'original_artifact_id':os.environ['ORIGINAL_ARTIFACT_ID'],'source_revision':os.environ['SOURCE_REVISION'],
+              'test_revision':os.environ['TEST_REVISION'],
               'bundle_sha256':os.environ['EXPECTED_BUNDLE_SHA256'],'rebuilt':False,
-              'source_and_payload_full_suites_reused':True,'reason':'Flathub connection failed before installed validation'},indent=2)+'\n')
+              'source_and_payload_full_suites_reused':True,'reason':'Complete installed validation of immutable candidate with corrected test harness; prior failure preserved'},indent=2)+'\n')
           PY
           useradd --create-home --uid 1001 linuxit-ci
           chown -R linuxit-ci:linuxit-ci "$GITHUB_WORKSPACE"

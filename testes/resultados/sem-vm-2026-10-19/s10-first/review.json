@@ -1,0 +1,11 @@
+{
+  "source_commit": "fda6183e561f93d39ba6a3ad9889506a223a258b",
+  "windows_five_checks_passed": true,
+  "windows_capture_examined": true,
+  "windows_artifact_sha256": "5a514fd60f6530ab25e07bfe70ec5b3008831b62b9af4adf4d0b942a75420f32",
+  "desktop_artifact_sha256": "7335727d4d1f3f6dbe3afbce7edd47cf33b013998fbb05c87194242decb6ac2f",
+  "desktop_upgrade_rollback_passed": true,
+  "portal_and_association_pending": true,
+  "reviewed_at_local": "2026-10-19T20:04:09.916238-03:00",
+  "original_executed": false
+}

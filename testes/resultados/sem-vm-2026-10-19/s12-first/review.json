@@ -1,0 +1,12 @@
+{
+  "source_commit": "fda6183e561f93d39ba6a3ad9889506a223a258b",
+  "source_and_payload_passed_each": 560,
+  "sandbox_passed": 559,
+  "sandbox_errors": 1,
+  "published": false,
+  "artifact_sha256": "c9513c01c8bb360b16420ecfb19f6b31fcb61e75c9bf9d0dce03521f23f1cee7",
+  "bundle_sha256": "407a1fc244751ea2b31f5cd81dedd83ae8b37d97cf9905ef4e1422eb0c797613",
+  "bundle_bytes": 118383696,
+  "failure": "OpenSSL ts loads config for query and verification; own explicit config added to test and implementation, new candidate required",
+  "reviewed_at_local": "2026-10-19T20:04:09.916238-03:00"
+}

@@ -3088,3 +3088,14 @@ entradas totais,sem código original incorporado. Primeiro checker falhou por
 PYTHONPATH ausente;reexecutado comdeps locais preservadas e aprovado.
 VM intocada,nuvem adiada,critérios/paridade intactos. Próximo:executar S10,
 novos2GTK,S11aceitação eS12pacote/auditoria. Publicação será confirmada por Git.
+
+### 2026/10/19 às 20:04 (America/Sao_Paulo, UTC-03:00) — Windows,alocações e candidato reprovado
+
+WindowsCI5/5 e captura examinados;desktopupdate/rollback passaram,portal/associação
+precisam repetir o probe corrigido. Flatpakprimeiro:f/p560/560,sandbox559/560;
+falha de configTSA corrigida no código/fixture,novo build necessário. Candidato
+reprovado preservado privadamente,0.1.15continua última entrega. Distribuição
+nova viaReleaseasset>100MiB preparada com SHA/tamanho e11controles aprovados.
+Estática4entradas novas total327,Capstone262instruções/793bytes. VM intocada,
+critérios/paridade intactos. Próximo:publicar código/repetir build+desktop;
+concluir auditoria/download e registrar limites restantes.

@@ -16,7 +16,8 @@ def inside(path):
 
 
 def install(manifest):
-    artifact=manifest['artifact'];bundle=ROOT/'releases'/artifact['file']
+    from delivery_bundle import resolve_bundle
+    artifact=manifest['artifact'];bundle=resolve_bundle(ROOT,manifest,download=True)
     if bundle.stat().st_size!=artifact['bytes'] or hashlib.sha256(bundle.read_bytes()).hexdigest()!=artifact['sha256']:
         raise ValueError('Published bundle identity does not match examined metadata')
     run(['flatpak','install','--user','--noninteractive','--reinstall','-y','--no-related',str(bundle)],timeout=120)
@@ -35,6 +36,7 @@ def main():
     sys.path.insert(0,str(ROOT/'app'))
     from pdf_dependency import configure_pdf_library
     configure_pdf_library();from pypdf import PdfWriter
+    os.environ['XDG_DATA_DIRS']=str(Path.home()/'.local/share/flatpak/exports/share')+':/var/lib/flatpak/exports/share:'+os.environ.get('XDG_DATA_DIRS','/usr/local/share:/usr/share')
     from gi.repository import Gio,GLib
     connection=Gio.bus_get_sync(Gio.BusType.SESSION,None)
     BUS='org.freedesktop.portal.Documents';OBJECT='/org/freedesktop/portal/documents'
@@ -76,11 +78,15 @@ def main():
                 doc_ids,extra=result.unpack();doc_id=doc_ids[0]
             finally:os.close(descriptor)
             mount=bytes(call('GetMountPoint')[0]).rstrip(b'\0').decode()
-            portal_path=Path(mount)/doc_id/source.name
+            # Flatpak maps the host's document mount into its canonical runtime
+            # directory even when the ephemeral host XDG_RUNTIME_DIR is in /tmp.
+            portal_path=Path('/run/user')/str(os.getuid())/'doc'/doc_id/source.name
             check=inside(portal_path);report['checks']['granted_document_reads_expected_bytes']=check.returncode==0 and check.stdout.strip()==digest
+            report['grant_probe']=dict(host_mount=mount,app_path=str(portal_path),returncode=check.returncode,stderr=check.stderr[-1500:])
             server.terminate();server.wait(timeout=10);server=None;time.sleep(.2)
             server=start_portal()
             check=inside(portal_path);report['checks']['persistent_grant_survives_portal_restart']=check.returncode==0 and check.stdout.strip()==digest
+            report['restart_probe']=dict(returncode=check.returncode,stderr=check.stderr[-1500:])
             call('RevokePermissions',GLib.Variant('(ssas)',(doc_id,APP,['read'])))
             report['checks']['revoked_grant_denies_new_app_process']=inside(portal_path).returncode!=0
             report['checks']['portal_never_changes_source']=hashlib.sha256(source.read_bytes()).hexdigest()==digest
@@ -89,7 +95,14 @@ def main():
         if application is None:raise RuntimeError('Installed desktop entry missing')
         old_default=Gio.AppInfo.get_default_for_type('application/pdf',False)
         application.set_as_default_for_type('application/pdf')
-        report['checks']['pdf_association_points_to_installed_app']=Gio.AppInfo.get_default_for_type('application/pdf',False).get_id()==application.get_id()
+        selected=None;deadline=time.monotonic()+5
+        while time.monotonic()<deadline:
+            while GLib.MainContext.default().pending():GLib.MainContext.default().iteration(False)
+            selected=Gio.AppInfo.get_default_for_type('application/pdf',False)
+            if selected:break
+            time.sleep(.1)
+        report['checks']['pdf_association_points_to_installed_app']=selected is not None and selected.get_id()==application.get_id()
+        if selected is None:raise RuntimeError('Installed PDF association is not discoverable through the desktop data directories')
         with tempfile.TemporaryDirectory(prefix='linuxit-association-',dir=Path.home()) as directory:
             source=Path(directory)/'association-fixture.pdf';writer=PdfWriter();writer.add_blank_page(100,100);writer.write(source)
             before=instances();Gio.AppInfo.launch_default_for_uri(source.as_uri(),None)

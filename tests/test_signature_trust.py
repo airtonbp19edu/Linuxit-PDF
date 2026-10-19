@@ -90,7 +90,7 @@ tsa_name = yes
 ess_cert_id_chain = no
 ''')
         request=self.root/'request.tsq';token=self.root/'token.der'
-        subprocess.run(['openssl','ts','-query','-data',str(data),'-sha256','-cert','-out',str(request)],check=True,capture_output=True)
+        subprocess.run(['openssl','ts','-query','-config',str(config),'-data',str(data),'-sha256','-cert','-out',str(request)],check=True,capture_output=True)
         subprocess.run(['openssl','ts','-reply','-queryfile',str(request),'-config',str(config),'-section','tsa_config1','-token_out','-out',str(token)],check=True,capture_output=True)
         signer['unsigned_attrs']=cms.CMSAttributes([cms.CMSAttribute({'type':'signature_time_stamp_token','values':[cms.ContentInfo.load(token.read_bytes())]})])
         result=verify_trust(structure.dump(),self.content,self.policy)
