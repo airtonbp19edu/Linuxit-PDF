@@ -20,7 +20,7 @@ Se necessário, abra essa página no navegador habitual.
 O arquivo 0.1.14 tem **44.665.656 bytes** (aproximadamente 42,6 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
-O pacote foi instalado e testado no sandbox do CI. A conferência do download público e a auditoria independente deste mesmo bundle serão registradas após a publicação.
+O [download público sem login](../testes/resultados/0.1.14/download-integrity-2026-10-19.json) passou com HTTP200, tamanho e SHA-256 completos. A [auditoria independente](../testes/resultados/0.1.14/audit/review.json) reinstalou o mesmo bundle sem recompilar: sete controles, cinco novos smoke checks e três testesGTK de painel passaram.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:

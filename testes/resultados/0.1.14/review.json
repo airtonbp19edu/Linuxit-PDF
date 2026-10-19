@@ -24,6 +24,8 @@
   "foxit_executed": false,
   "full_family_parity_verified": false,
   "legacy_stages_unchanged": true,
-  "independent_audit_pending": true,
-  "bundle_sha256": "795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f"
+  "independent_audit_pending": false,
+  "bundle_sha256": "795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f",
+  "independent_audit_ref": "testes/resultados/0.1.14/audit/review.json",
+  "public_download_integrity_ref": "testes/resultados/0.1.14/download-integrity-2026-10-19.json"
 }

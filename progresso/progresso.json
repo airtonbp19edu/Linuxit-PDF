@@ -2481,6 +2481,10 @@
     "whole_family_parity_verified": false,
     "includes_comment_author_fix": true,
     "original_vm_resumed": false,
-    "independent_installed_audit": "pending_after_publication"
+    "independent_installed_audit": "passed",
+    "installed_audit_review": "testes/resultados/0.1.14/audit/review.json",
+    "public_download_integrity": "testes/resultados/0.1.14/download-integrity-2026-10-19.json",
+    "publication_commit": "38cb933a3347999554719c6d6cb4ee14398dbd66",
+    "publication_confirmed_at_local": "2026-10-19T12:20:01.304442-03:00"
   }
 }
