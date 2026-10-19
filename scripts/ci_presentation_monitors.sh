@@ -20,4 +20,5 @@ xrandr --output DUMMY0 --mode 1280x800 --pos 0x0 --primary \
 xrandr --listmonitors >dist/presentation-monitor-diagnostics/randr-after.txt
 openbox --sm-disable >dist/presentation-monitor-diagnostics/openbox.log 2>&1 &
 wm=$!
+export LINUXIT_CI_DUMMY_HOTPLUG=1
 /usr/bin/python3 scripts/check_presentation_monitors.py dist/presentation-monitors

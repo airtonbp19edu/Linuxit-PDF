@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
 import time
 from unittest.mock import patch
@@ -31,7 +32,7 @@ output = Path(sys.argv[1])
 output.mkdir(parents=True, exist_ok=False)
 report = {'schema':'linuxit-native-virtual-monitors-v1', 'virtual_desktop':True,
           'physical_monitor_validation':False, 'foxit_executed':False,
-          'passed':False, 'monitors':[], 'transitions':[], 'errors':[]}
+          'passed':False, 'monitors':[], 'transitions':[], 'hotplug':[], 'errors':[]}
 parent = presentation = None
 try:
     display = Gdk.Display.get_default()
@@ -54,15 +55,33 @@ try:
             presentation.monitor_combo.set_active_id(str(index))
             expected = report['monitors'][index]
             wait(lambda: not presentation._loading and presentation.fullscreen_active
-                 and presentation.get_size() == (expected['width'], expected['height']))
+                 and presentation.get_size() == (expected['width'], expected['height'])
+                 and presentation.get_position() == (expected['x'], expected['y']))
             report['transitions'].append({'selected':index, 'fullscreen_active':presentation.fullscreen_active,
-                'window_size':list(presentation.get_size()), 'page':presentation.page + 1})
+                'window_size':list(presentation.get_size()), 'position':list(presentation.get_position()),
+                'page':presentation.page + 1})
             # Capture this visible window, never the occluded parent.
             presentation.canvas.queue_draw()
             settled=[]; GLib.timeout_add(180, lambda:(settled.append(True),False)[1]); wait(lambda:bool(settled))
             allocation = presentation.get_allocation()
             pixels = Gdk.pixbuf_get_from_window(presentation.get_window(),0,0,allocation.width,allocation.height)
             path = output / ('monitor-' + str(index) + '.png'); pixels.savev(str(path),'png',[],[])
+        # CI-only explicit flag: never change an arbitrary user's desktop topology.
+        if os.environ.get('LINUXIT_CI_DUMMY_HOTPLUG') == '1':
+            presentation.monitor_combo.set_active_id('1')
+            wait(lambda:presentation.get_position() == (1280,0))
+            subprocess.run(['xrandr','--output','DUMMY1','--off'],check=True,timeout=10)
+            first=report['monitors'][0]
+            wait(lambda:display.get_n_monitors()==1 and not presentation.monitor_combo.get_visible()
+                 and presentation.fullscreen_active and not presentation._loading
+                 and presentation.get_position()==(first['x'],first['y'])
+                 and presentation.get_size()==(first['width'],first['height']))
+            report['hotplug'].append({'action':'remove-active-DUMMY1','remaining':1,
+                                      'position':list(presentation.get_position()),'fullscreen':True})
+            subprocess.run(['xrandr','--output','DUMMY1','--mode','1024x768','--pos','1280x0'],check=True,timeout=10)
+            wait(lambda:display.get_n_monitors()==2 and presentation.monitor_combo.get_visible())
+            report['hotplug'].append({'action':'restore-DUMMY1','available':2})
+        report['screenshot_hashes']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in output.glob('*.png')}
         report['passed'] = not report['errors'] and len(report['transitions']) == 3
 except Exception as exc:
     report['errors'].append(str(exc))
