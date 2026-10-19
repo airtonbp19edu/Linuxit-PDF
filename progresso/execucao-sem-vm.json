@@ -103,26 +103,30 @@
     {
       "id": "S10",
       "title": "Portal persistente, associação, atualização/rollback e adaptador Windows",
-      "status": "native_windows_subset_and_upgrade_rollback_validated_portal_association_fix_pending",
+      "status": "native_windows_five_checks_and_published_0_1_15_desktop_nine_checks_passed",
       "evidence_refs": [
-        "testes/resultados/sem-vm-2026-10-19/s10-first/review.json"
+        "testes/resultados/sem-vm-2026-10-19/s10-first/review.json",
+        "testes/resultados/sem-vm-2026-10-19/s10-third/review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "Desktop test used the published0.1.15 bundle; retest0.1.16 after publication. Native Windows CI is not a complete Windows installer or physical printing test."
+      ]
     },
     {
       "id": "S11",
       "title": "Contratos/casos executáveis e análise estática pendente",
-      "status": "four_new_static_entries_examined_array_allocations_bounded_own_acceptance_open",
+      "status": "six_new_static_entries_examined_266_instructions_803_bytes_full_acceptance_open",
       "evidence_refs": [
         "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
-        "docs/REA-ARRAYS-REFLOW-2026-10-19.md"
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
       "limitations": []
     },
     {
       "id": "S12",
       "title": "Validação Linux, entrega Flatpak, auditoria e continuidade",
-      "status": "first_candidate_source_payload_560_passed_sandbox_config_fix_rebuild_required",
+      "status": "corrected_candidate_ci_39339330479_running_not_published",
       "evidence_refs": [
         "testes/resultados/sem-vm-2026-10-19/s12-first/review.json"
       ],
@@ -134,5 +138,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T20:04:09.916238-03:00"
+  "updated_at_local": "2026-10-19T20:18:59.629581-03:00"
 }

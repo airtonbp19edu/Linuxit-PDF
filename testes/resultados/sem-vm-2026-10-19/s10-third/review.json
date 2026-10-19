@@ -1,0 +1,29 @@
+{
+  "schema": "linuxit-own-desktop-review-v1",
+  "date_local": "2026-10-19T20:16:28.926887-03:00",
+  "run_id": 39339986089,
+  "source_commit": "e61d174dc81979e78f3b245029b35802adaf52e8",
+  "artifact_id": 12228337593,
+  "archive_sha256": "f155522e25fd152b8badb25cfe5bc1cba18af7e254b39da13fa0130663e07e9f",
+  "checks_passed": 9,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.15",
+    "0.1.14",
+    "0.1.15"
+  ],
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.15-x86_64.flatpak",
+    "bytes": 58072096,
+    "sha256": "f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9",
+    "digitally_signed": false
+  },
+  "physical_desktop_verified": false,
+  "original_executed": false,
+  "observations": [
+    "Wait until the owned portal process owns its D-Bus name, then until the exported FUSE file exists.",
+    "Fresh Flatpak process reads granted bytes after portal restart and is denied after revocation.",
+    "Association launches the expected installed reader document.",
+    "This run tested the published0.1.15 bundle;0.1.16 must be retested after publication."
+  ]
+}

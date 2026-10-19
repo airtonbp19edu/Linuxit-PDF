@@ -3108,3 +3108,8 @@ acrescentadas,teste ainda pendente. S11duas contagens novas conferidas,agora329
 entradas e266instruções/803bytes novos no dia. Original nunca executado/VMintocada.
 CI do novo pacote segueexecutando. Próximo:repetir somente desktop afetado e
 consolidar/auditar candidato aprovado. Critérios/paridade/nuvem intactos.
+
+
+## 2026/10/19 às 20:18 (America/Sao_Paulo, UTC-03:00) — aviso Actions corrigido e integração9/9
+
+Usuário mostrou e-mail Run failed do workflow de desktop na revisãoa5ebda9. Era falha do teste, não do push. Corrigida em e61d174 a prontidão do portal: dono D-Bus precisa ser o PID próprio e exportação FUSE deve existir antes da leitura. CI39339986089 aprovou9/9 controles reais no Flatpak0.1.15: atualização/retorno, preferências, negar/conceder, persistência após reinício do próprio portal, revogar e associação/abertura. ZIP12228337593/f155522e25fd152b8badb25cfe5bc1cba18af7e254b39da13fa0130663e07e9f conferido; relatório emtestes/resultados/sem-vm-2026-10-19/s10-third/. As duas falhas anteriores preservadas, notificações da conta não alteradas. Documentação emdocs/CI-FALHAS-E-CORRECOES.md. Windows próprio5/5 já aprovado; seis novas entradas estáticas/266instruções803bytes catalogadas329=152REA+177diretas, sem original executado. Novo candidato0.1.16 CI39339330479 ainda em execução; último pacote publicado permanece0.1.15. VM intocada, nuvem direta adiada, pesos/paridade/critérios intactos. Próximo: examinar fonte/payload/sandbox, publicar somente se aprovado e auditar o mesmo arquivo.
