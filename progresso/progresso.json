@@ -2471,20 +2471,18 @@
     "flatpak_version": "0.1.14"
   },
   "latest_own_delivery": {
-    "version": "0.1.14",
-    "date_local": "2026-10-19T12:12:33.570392-03:00",
-    "manifest": "releases/manifest-0.1.14.json",
-    "source_commit": "a4e017ae65784256583292ddbe502e182bb25a66",
-    "ci_run_id": 39274463095,
-    "source_payload_ci_run_id": 39272792405,
-    "per_environment_tests_passed": 432,
+    "version": "0.1.15",
+    "date_local": "2026-10-19T14:36:34.919108-03:00",
+    "manifest": "releases/manifest-0.1.15.json",
+    "source_commit": "257425a84f638f872386be7c499fe56030f1a968",
+    "ci_run_id": 39293507397,
+    "per_environment_tests_passed": 490,
+    "previous_case_ids_preserved": 432,
+    "new_own_cases": 58,
     "whole_family_parity_verified": false,
-    "includes_comment_author_fix": true,
     "original_vm_resumed": false,
-    "independent_installed_audit": "passed",
-    "installed_audit_review": "testes/resultados/0.1.14/audit/review.json",
-    "public_download_integrity": "testes/resultados/0.1.14/download-integrity-2026-10-19.json",
-    "publication_commit": "38cb933a3347999554719c6d6cb4ee14398dbd66",
-    "publication_confirmed_at_local": "2026-10-19T12:20:01.304442-03:00"
+    "independent_installed_audit": "pending_after_publication",
+    "public_download_integrity": "pending_after_publication",
+    "functional_batch_report": "docs/LOTES-FUNCIONALIDADES.md"
   }
 }

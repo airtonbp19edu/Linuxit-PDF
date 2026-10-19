@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T14:19:57-03:00",
+  "reviewed_at_local": "2026-10-19T14:36:34.919108-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -979,6 +979,7 @@
     }
   ],
   "runtime_limitations": [
+    "0.1.15:490/490 próprios fonte/payload/sandbox,58 novos casos e432 anteriores preservados. AT-SPI/portal X11 sintéticos e camadas por pixels aprovados. Famílias amplas, original, hardware/desktop físico, Windows e nuvem direta continuam pendentes/adiados; histórico abaixo.",
     "0.1.14:432/432 próprios por ambiente fonte/payload/sandbox,14 portáveis e15 GTK novos; leitura transacional/senha/recuperação/zoom/monitor. Original e hardware físico permanecem pendentes; histórico abaixo.",
     "Histórico do checkpoint10:53, fonte0.1.14 em validação: leitura/senha/recuperação, zoom1–6400 e seleção de monitor;14 testes portáveis passaram. GTK/Linux/pacote e dois monitores físicos ainda não aprovados neste checkpoint.",
     "Historical0.1.13:400/400 source/payload/installed sandbox passed, including14 portable and6 GTK annotation methods; all380 prior IDs retained. Full families, real desktop/device and original remain unverified.",
@@ -999,5 +1000,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": true
+  "source_changes_unreleased": false
 }

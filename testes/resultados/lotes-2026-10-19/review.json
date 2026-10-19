@@ -1,0 +1,82 @@
+{
+  "schema": "linuxit-functional-batches-review-v1",
+  "reviewed_at_local": "2026-10-19T14:32:18.617550-03:00",
+  "source_ci_run_id": 39293331527,
+  "source_ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39293331527",
+  "source_commit": "2c218bbd1e2776cee9a4849e9ce62bbb857b3562",
+  "source_tests_passed": 490,
+  "previous_case_ids_preserved": 432,
+  "new_case_ids": 58,
+  "source_archive_sha256": "6b1ccc1476e35356e15ff399feeeac707db5f6e45cb56569c79e8959dfed3d84",
+  "visual_ci_run_id": 39293837922,
+  "visual_archive_sha256": "90d7b424dd3df98116bb8a4341c3ef50580ea73df0c0d283fd1914413ec4c314",
+  "visual_review": [
+    {
+      "file": "ui/reader-comment-destination.png",
+      "sha256": "f624c2777451f8540a98baa43dd809ad52b37a4ca5884b17b3c14538f2845040",
+      "examined": true,
+      "observation": "Search controls and single comment hit visible. This image retains the Pages panel; actual selected comment ID is established by the passing GTK destination test, not this screenshot."
+    },
+    {
+      "file": "ui/ink-pad.png",
+      "sha256": "caa883c9d7d5132f1ef8e9e886be022920dd7bb5141bd7a90b223c9f0947c540",
+      "examined": true,
+      "observation": "Page-proportional blank drawing pad, clear action, comment entry and prepare/cancel controls visible; no PDF background is claimed."
+    },
+    {
+      "file": "ui/reply-dialog.png",
+      "sha256": "1027de50091c769a39d99f717bc687d5f0ce20d8dce63be478a423cc319e9f12",
+      "examined": true,
+      "observation": "Parent-comment selector, body, author and prepare/cancel controls visible."
+    },
+    {
+      "file": "ui/form-controls.png",
+      "sha256": "5ba66f2b92d8b28ac742e26d65af50928a5174d6f817337f3da4b3b61e66d336",
+      "examined": true,
+      "observation": "Checkbox variant of the form control editor visible. Editable combo behavior is covered by own tests, not this checkbox screenshot."
+    },
+    {
+      "file": "ui/reading-preferences.png",
+      "sha256": "55c55af1ea50fb65465967d8027155ef23815a8f63abe7e3aecde9840e59770d",
+      "examined": true,
+      "observation": "Initial zoom mode/value, sidebar/highlight toggles and save/cancel fit the dialog."
+    },
+    {
+      "file": "ui/calibrated-measurements.png",
+      "sha256": "fed160e1a4311d44820b3035fe92c5e78c307093ac64f46d6c07804ea14dbefa",
+      "examined": true,
+      "observation": "Area mode, units, polygon, known-length calibration and numeric result visible."
+    },
+    {
+      "file": "ui/local-signature-entry.png",
+      "sha256": "68b513914d292555efeca91c867740c314281bb3ebeb599668e912c618041c66",
+      "examined": true,
+      "observation": "Local PEM signing entry and offline integrity/trust limitations visible; no certificate chooser end-to-end visual claim."
+    },
+    {
+      "file": "ui/accessible-voice-entry.png",
+      "sha256": "05fb97a46d5a24d9e55b367afed659fed05e52e0dd41b650962500934c355eee",
+      "examined": true,
+      "observation": "Accessible synthetic text, language and WAV export controls visible; physical audio/screen reader acceptance absent."
+    },
+    {
+      "file": "ui/reader-layer-hidden.png",
+      "sha256": "a9a75550948c664f4c0a4d51e259a93a8ac7c3d61f578b87320e95f165c53995",
+      "examined": true,
+      "observation": "Red layer unchecked and blue checked; visible blue pixels preserved. Independent Poppler pixel assertions passed in the suite."
+    }
+  ],
+  "native_portal_passed": true,
+  "cross_process_atspi_passed": true,
+  "flatpak_delivery_pending": false,
+  "whole_family_acceptance": false,
+  "foxit_executed": false,
+  "cloud_direct_deferred": true,
+  "vm_resumed": false,
+  "physical_desktop_verified": false,
+  "delivery_manifest": "releases/manifest-0.1.15.json",
+  "delivery_ci_run_id": 39293507397,
+  "delivery_tests_passed_each": 490,
+  "publication_pending": true,
+  "installed_audit_pending": true
+}

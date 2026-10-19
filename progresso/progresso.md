@@ -4,9 +4,9 @@
 
 **Índice histórico do checklist do roteiro: 45.13%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
 
-**Pacote registrado:** 0.1.13 de desenvolvimento. [Manifesto](../releases/manifest-0.1.13.json).
+**Pacote registrado:** 0.1.15 de desenvolvimento. [Manifesto](../releases/manifest-0.1.15.json).
 
-**Validação própria registrada nesse pacote:** fonte 400/400; payload 400/400; sandbox instalado 400/400. São evidências da entrega; este gerador não executa a suíte novamente e a quantidade de testes não mede conclusão funcional.
+**Validação própria registrada nesse pacote:** fonte 490/490; payload 490/490; sandbox instalado 490/490. São evidências da entrega; este gerador não executa a suíte novamente e a quantidade de testes não mede conclusão funcional.
 
 **Paridade Foxit comprovada:** 0/25 famílias identificadas por inteiro. O inventário funcional permanece aberto; esse contador não descreve quanto de cada família foi implementado. Testes próprios não contam como testes diferenciais.
 

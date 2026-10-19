@@ -6,6 +6,8 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
+A **0.1.15 de desenvolvimento** acrescenta [busca/conversas, radicais PT/EN, Ink/respostas, combo editável, assinatura local PEM, medidas, camadas, voz WAV e preferências](docs/LOTES-FUNCIONALIDADES.md). Inclui importação de quadros estáticos e seletor nativo de arquivos. **490/490 testes próprios por ambiente** fonte Linux,payload e Flatpak, sem falhas/erros/skips. Nuvem direta permanece adiada; famílias completas e validações físicas/original continuam abertas. [Instalação e SHA-256](docs/instalacao.md).
+
 A **0.1.14 de desenvolvimento** acrescenta [abertura transacional com senha e recuperação consentida, zoom1–6400% e apresentação com seleção de monitor](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md). Inclui também a [correção da busca pelo autor de comentários](docs/BUSCA-AUTOR-COMENTARIOS.md). **432/432 testes próprios passaram em cada ambiente** fonte Linux,payload e Flatpak instalado, sem falhas/erros/skips. Os limites de formatos, recuperação e validação física estão no relatório. [Instalação e SHA-256](docs/instalacao.md).
 
 A 0.1.13 acrescenta [sublinhado, tachado, ondulado, elipse e linha](docs/ANOTACOES-AMPLIADAS.md),
@@ -19,7 +21,7 @@ A 0.1.11 acrescenta [OCR local em português e inglês](docs/OCR-LOCAL.md) para 
 cópia rasterizada pesquisável. Preserva o original, informa páginas sem texto
 detectado e explicita as perdas de links/formulários/assinaturas na nova cópia.
 
-A versão **0.1.14 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.15 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,
@@ -46,7 +48,7 @@ aplicação e 11 relatórios selados; smoke GTK 5/5 e launcher 3/3 passaram.
 Teste em Debian 13/tela X11 virtual; desktop real, acessibilidade, portais,
 impressão física e comparação Foxit continuam pendentes. A janela solicitada
 com 760 px ficou 924 px por outros controles; não se afirma suporte real a 760 px.
-Portfólios, senha não vazia de anexos e demais famílias continuam pendentes.
+Esse parágrafo descreve a entrega histórica0.1.13; os recortes atuais de portfólio/sessão por senha estão no relatório0.1.15. Demais famílias continuam abertas.
 O pacote é `devel`, sem assinatura digital e sem declaração de estabilidade.
 
 A [campanha sem VM](docs/AVANCO-SEM-VM.md) aprovou os 17 subconjuntos próprios

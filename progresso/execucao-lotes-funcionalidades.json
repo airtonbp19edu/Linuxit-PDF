@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-functional-batches-v1",
-  "updated_at_local": "2026-10-19T14:19:57-03:00",
+  "updated_at_local": "2026-10-19T14:36:34.919108-03:00",
   "timezone": "America/Sao_Paulo",
   "request": "Continuar de3em3 as25famílias; nuvem direta23 permanece adiada por confirmação explícita do usuário.",
   "cloud_direct_deferred": true,
@@ -15,22 +15,23 @@
         {
           "number": 1,
           "id": "open-render",
-          "status": "own_bounded_delivery_0.1.14",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 2,
           "id": "navigation",
-          "status": "own_bounded_delivery_0.1.14",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 3,
           "id": "presentation",
-          "status": "own_bounded_delivery_0.1.14",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
-      ]
+      ],
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "04-06",
@@ -38,23 +39,23 @@
         {
           "number": 4,
           "id": "search-text",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 5,
           "id": "search-bookmarks",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 6,
           "id": "search-comments",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "07-09",
@@ -62,23 +63,23 @@
         {
           "number": 7,
           "id": "search-attachments",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 8,
           "id": "search-index",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 9,
           "id": "search-language",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "10-12",
@@ -86,23 +87,23 @@
         {
           "number": 10,
           "id": "selection",
-          "status": "bounded_improvements_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 11,
           "id": "printing",
-          "status": "bounded_improvements_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 12,
           "id": "imposition",
-          "status": "bounded_improvements_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "bounded_improvements_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "13-15",
@@ -110,23 +111,23 @@
         {
           "number": 13,
           "id": "bookmarks-edit",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 14,
           "id": "annotations",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 15,
           "id": "forms",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "16-18",
@@ -134,23 +135,23 @@
         {
           "number": 16,
           "id": "attachments",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 17,
           "id": "signatures",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 18,
           "id": "security",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "19-21",
@@ -158,23 +159,23 @@
         {
           "number": 19,
           "id": "accessibility",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 20,
           "id": "measurement",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
           "number": 21,
           "id": "layers-media",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     },
     {
       "id": "22-24",
@@ -182,7 +183,7 @@
         {
           "number": 22,
           "id": "preferences",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         },
         {
@@ -194,11 +195,11 @@
         {
           "number": 24,
           "id": "conversion",
-          "status": "source_implemented_linux_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "source_implemented_linux_validation_pending"
+      "status": "own_bounded_delivery_0.1.15_with_cloud_deferred"
     },
     {
       "id": "25-25",
@@ -206,13 +207,19 @@
         {
           "number": 25,
           "id": "platform",
-          "status": "bounded_handoff_source_ready_validation_pending",
+          "status": "own_bounded_delivery_0.1.15",
           "whole_family_complete": false
         }
       ],
-      "status": "bounded_handoff_source_ready_validation_pending"
+      "status": "own_bounded_delivery_0.1.15"
     }
   ],
   "implementation_pass_reviewed_all_25": true,
-  "all_25_complete": false
+  "all_25_complete": false,
+  "source_validation_ref": "testes/resultados/lotes-2026-10-19/review.json",
+  "delivery_manifest": "releases/manifest-0.1.15.json",
+  "delivery_tests_passed_each": 490,
+  "delivery_version": "0.1.15",
+  "publication_pending": true,
+  "independent_installed_audit_pending": true
 }

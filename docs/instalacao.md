@@ -2,14 +2,14 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.14 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.15 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
 Para baixar, abra a
-[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.14-x86_64.flatpak)
+[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.15-x86_64.flatpak)
 e clique em **Download raw** (ícone de download). Se o repositório estiver
 privado, use um navegador conectado a uma conta com acesso ao projeto;
 o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
@@ -17,23 +17,23 @@ o download não exige login. A visibilidade é administrada pelo proprietário.
 Uma página em branco no navegador interno não indica que o pacote esteja vazio.
 Se necessário, abra essa página no navegador habitual.
 
-O arquivo 0.1.14 tem **44.665.656 bytes** (aproximadamente 42,6 MiB).
+O arquivo 0.1.15 tem **58.072.096 bytes** (aproximadamente 55,4 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
-O [download público sem login](../testes/resultados/0.1.14/download-integrity-2026-10-19.json) passou com HTTP200, tamanho e SHA-256 completos. A [auditoria independente](../testes/resultados/0.1.14/audit/review.json) reinstalou o mesmo bundle sem recompilar: sete controles, cinco novos smoke checks e três testesGTK de painel passaram.
+O candidato0.1.15 passou490/490 testes próprios em fonte,payload e sandbox instalado. A verificação do download público e auditoria independente serão registradas após a publicação deste mesmo arquivo.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 
 ```bash
-flatpak install --user ./LinuxitPDF-0.1.14-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.15-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
 A instalação pode baixar o runtime e componentes relacionados. A versão usa
 acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
-Abertura por portal, gravação em todos os ambientes e impressão física ainda
-precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+O seletor por portal passou no desktop X11 efêmero; concessão persistente no
+sandbox, gravação em todos os ambientes e impressão física precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
 
 ## Se aparecer “corrompido ou faltando permissões”
 
@@ -43,14 +43,14 @@ Abra o terminal na pasta do arquivo e execute:
 
 ```bash
 flatpak --version
-sha256sum LinuxitPDF-0.1.14-x86_64.flatpak
-flatpak install --user ./LinuxitPDF-0.1.14-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.15-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.15-x86_64.flatpak
 ```
 
-O SHA-256 esperado para a 0.1.14 é:
+O SHA-256 esperado para a 0.1.15 é:
 
 ```text
-795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f
+f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9
 ```
 
 - Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;
@@ -281,3 +281,6 @@ foi aprovada; veja as notas para a confirmação remota e os próximos trabalhos
 
 A versão0.1.8 acrescenta [segurança/acessibilidade/CMS](SEGURANCA-ACESSIBILIDADE.md),
 com validação de integridade separada da confiança e sem serviço de nuvem.
+
+
+A0.1.15 inclui fontes/licenças de dependências identificadas por versão em[runtime-source-access-0.1.15.json](../releases/runtime-source-access-0.1.15.json); veja[acesso às fontes do runtime](RUNTIME-SOURCE-ACCESS.md). Atualização de bundle avulso usa a instalação da nova versão; o aplicativo informa o gerenciador/comando, sem executar atualizador próprio.

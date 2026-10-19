@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+Atualização 2026-10-19T14:36:34-03:00: [lotes4–25 e entrega própria0.1.15](docs/LOTES-FUNCIONALIDADES.md). **490/490 testes próprios por ambiente** fonte Linux/payload/Flatpak,0falhas/erros/skips;432 IDs preservados e58 novos. AT-SPI entre processos, portal real X11, voz WAV e camadas por pixels aprovados nos recortes sintéticos; nove telas examinadas. Pacote preparado, publicação/auditoria independente a confirmar. Item23/nuvem direta permanece adiado; VM0930 suspensa no relógio09:54:23 e intocada. Famílias completas/paridade0/25,50 aceitaçõesS12 e19 critérios amplos continuam abertos. Histórico abaixo.
+
 Atualização 2026-10-19T14:19:59-03:00: [sequência dos25 itens em lotes](docs/LOTES-FUNCIONALIDADES.md) percorrida com implementações próprias4–25, nuvem direta23 adiada. Fonte0.1.15 em validação consolidada; último pacote0.1.14 preservado. Lote13–15 passou465/465 Linux e19–21 teve CI aprovado (relatório a consolidar). Não é conclusão das famílias; VM suspensa, critérios/pesos/paridade intactos. Próximo: resultados/probes e entrega consolidada.
 
 Atualização 2026-10-19T12:39:30-03:00: sequência dos25 itens em lotes de3 em [LOTES-FUNCIONALIDADES.md](docs/LOTES-FUNCIONALIDADES.md). Lote4–6 implementado na fonte0.1.15,7 testes portáveis passaram/2 GTK pendentes; Linux ainda não validado. Nuvem direta23 permanece adiada por confirmação do usuário. Último pacote0.1.14 preservado; VM suspensa e critérios/paridade intactos.
@@ -150,7 +152,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.14 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote registrado é 0.1.15 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

@@ -65,5 +65,15 @@
     "report": "docs/VM-FOXIT-2026-10-18.md",
     "session": "testes/resultados/vm-2026-10-18/session.json",
     "full_family_parity_verified": false
+  },
+  "functional_batch_followup": {
+    "report": "docs/LOTES-FUNCIONALIDADES.md",
+    "state": "progresso/execucao-lotes-funcionalidades.json",
+    "updated_at_local": "2026-10-19T14:36:34.919108-03:00",
+    "cloud_direct_deferred_reconfirmed": true,
+    "native_pdf_portal_probe": "testes/resultados/lotes-2026-10-19/native-portal.json",
+    "native_pdf_portal_probe_is_persistent_flatpak_folder_access": false,
+    "atspi_probe": "testes/resultados/lotes-2026-10-19/atspi-text.json",
+    "physical_screen_reader_test": false
   }
 }

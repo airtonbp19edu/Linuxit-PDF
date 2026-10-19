@@ -1,0 +1,19 @@
+{
+  "schema": "linuxit-batch-ui-captures-v1",
+  "passed": true,
+  "captures": [
+    "reader-comment-destination",
+    "ink-pad",
+    "reply-dialog",
+    "form-controls",
+    "reading-preferences",
+    "calibrated-measurements",
+    "local-signature-entry",
+    "accessible-voice-entry",
+    "reader-layer-hidden"
+  ],
+  "callback_errors": [],
+  "foxit_executed": false,
+  "full_suite_rerun": false,
+  "physical_desktop_verified": false
+}

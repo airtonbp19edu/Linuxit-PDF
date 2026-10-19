@@ -1,0 +1,1269 @@
+[
+  {
+    "binary_package": "adwaita-icon-theme",
+    "binary_version": "48.1-1",
+    "source_package": "adwaita-icon-theme",
+    "source_version": "48.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/adwaita-icon-theme/48.1-1/"
+  },
+  {
+    "binary_package": "cups-client",
+    "binary_version": "2.4.10-3+deb13u2",
+    "source_package": "cups",
+    "source_version": "2.4.10-3+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/cups/2.4.10-3%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "espeak-ng",
+    "binary_version": "1.52.0+dfsg-5",
+    "source_package": "espeak-ng",
+    "source_version": "1.52.0+dfsg-5",
+    "corresponding_source_url": "https://sources.debian.org/src/espeak-ng/1.52.0%2Bdfsg-5/"
+  },
+  {
+    "binary_package": "espeak-ng-data:amd64",
+    "binary_version": "1.52.0+dfsg-5",
+    "source_package": "espeak-ng",
+    "source_version": "1.52.0+dfsg-5",
+    "corresponding_source_url": "https://sources.debian.org/src/espeak-ng/1.52.0%2Bdfsg-5/"
+  },
+  {
+    "binary_package": "fonts-dejavu-core",
+    "binary_version": "2.37-8",
+    "source_package": "fonts-dejavu",
+    "source_version": "2.37-8",
+    "corresponding_source_url": "https://sources.debian.org/src/fonts-dejavu/2.37-8/"
+  },
+  {
+    "binary_package": "fonts-dejavu-mono",
+    "binary_version": "2.37-8",
+    "source_package": "fonts-dejavu",
+    "source_version": "2.37-8",
+    "corresponding_source_url": "https://sources.debian.org/src/fonts-dejavu/2.37-8/"
+  },
+  {
+    "binary_package": "gir1.2-atk-1.0:amd64",
+    "binary_version": "2.56.2-1+deb13u2",
+    "source_package": "at-spi2-core",
+    "source_version": "2.56.2-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/at-spi2-core/2.56.2-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "gir1.2-atspi-2.0:amd64",
+    "binary_version": "2.56.2-1+deb13u2",
+    "source_package": "at-spi2-core",
+    "source_version": "2.56.2-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/at-spi2-core/2.56.2-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "gir1.2-freedesktop:amd64",
+    "binary_version": "1.84.0-1",
+    "source_package": "gobject-introspection",
+    "source_version": "1.84.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/gobject-introspection/1.84.0-1/"
+  },
+  {
+    "binary_package": "gir1.2-gdkpixbuf-2.0:amd64",
+    "binary_version": "2.42.12+dfsg-4+deb13u1",
+    "source_package": "gdk-pixbuf",
+    "source_version": "2.42.12+dfsg-4+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/gdk-pixbuf/2.42.12%2Bdfsg-4%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "gir1.2-girepository-2.0:amd64",
+    "binary_version": "1.84.0-1",
+    "source_package": "gobject-introspection",
+    "source_version": "1.84.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/gobject-introspection/1.84.0-1/"
+  },
+  {
+    "binary_package": "gir1.2-glib-2.0:amd64",
+    "binary_version": "2.84.4-3~deb13u5",
+    "source_package": "glib2.0",
+    "source_version": "2.84.4-3~deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/glib2.0/2.84.4-3~deb13u5/"
+  },
+  {
+    "binary_package": "gir1.2-gtk-3.0:amd64",
+    "binary_version": "3.24.49-3",
+    "source_package": "gtk+3.0",
+    "source_version": "3.24.49-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gtk%2B3.0/3.24.49-3/"
+  },
+  {
+    "binary_package": "gir1.2-harfbuzz-0.0:amd64",
+    "binary_version": "10.2.0-1+deb13u1",
+    "source_package": "harfbuzz",
+    "source_version": "10.2.0-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/harfbuzz/10.2.0-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "gir1.2-pango-1.0:amd64",
+    "binary_version": "1.56.3-1",
+    "source_package": "pango1.0",
+    "source_version": "1.56.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/pango1.0/1.56.3-1/"
+  },
+  {
+    "binary_package": "gsettings-desktop-schemas",
+    "binary_version": "48.0-1",
+    "source_package": "gsettings-desktop-schemas",
+    "source_version": "48.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/gsettings-desktop-schemas/48.0-1/"
+  },
+  {
+    "binary_package": "libacl1:amd64",
+    "binary_version": "2.3.2-2+b1",
+    "source_package": "acl",
+    "source_version": "2.3.2-2",
+    "corresponding_source_url": "https://sources.debian.org/src/acl/2.3.2-2/"
+  },
+  {
+    "binary_package": "libarchive13t64:amd64",
+    "binary_version": "3.7.4-4+deb13u1",
+    "source_package": "libarchive",
+    "source_version": "3.7.4-4+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/libarchive/3.7.4-4%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libasound2t64:amd64",
+    "binary_version": "1.2.14-1+deb13u1",
+    "source_package": "alsa-lib",
+    "source_version": "1.2.14-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/alsa-lib/1.2.14-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libassuan9:amd64",
+    "binary_version": "3.0.2-2",
+    "source_package": "libassuan",
+    "source_version": "3.0.2-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libassuan/3.0.2-2/"
+  },
+  {
+    "binary_package": "libasyncns0:amd64",
+    "binary_version": "0.8-6+b5",
+    "source_package": "libasyncns",
+    "source_version": "0.8-6",
+    "corresponding_source_url": "https://sources.debian.org/src/libasyncns/0.8-6/"
+  },
+  {
+    "binary_package": "libatk-bridge2.0-0t64:amd64",
+    "binary_version": "2.56.2-1+deb13u2",
+    "source_package": "at-spi2-core",
+    "source_version": "2.56.2-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/at-spi2-core/2.56.2-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libatk1.0-0t64:amd64",
+    "binary_version": "2.56.2-1+deb13u2",
+    "source_package": "at-spi2-core",
+    "source_version": "2.56.2-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/at-spi2-core/2.56.2-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libatomic1:amd64",
+    "binary_version": "14.2.0-19",
+    "source_package": "gcc-14",
+    "source_version": "14.2.0-19",
+    "corresponding_source_url": "https://sources.debian.org/src/gcc-14/14.2.0-19/"
+  },
+  {
+    "binary_package": "libatspi2.0-0t64:amd64",
+    "binary_version": "2.56.2-1+deb13u2",
+    "source_package": "at-spi2-core",
+    "source_version": "2.56.2-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/at-spi2-core/2.56.2-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libavahi-client3:amd64",
+    "binary_version": "0.8-16",
+    "source_package": "avahi",
+    "source_version": "0.8-16",
+    "corresponding_source_url": "https://sources.debian.org/src/avahi/0.8-16/"
+  },
+  {
+    "binary_package": "libavahi-common3:amd64",
+    "binary_version": "0.8-16",
+    "source_package": "avahi",
+    "source_version": "0.8-16",
+    "corresponding_source_url": "https://sources.debian.org/src/avahi/0.8-16/"
+  },
+  {
+    "binary_package": "libblkid1:amd64",
+    "binary_version": "2.41.5-0+deb13u1",
+    "source_package": "util-linux",
+    "source_version": "2.41.5-0+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/util-linux/2.41.5-0%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libbrotli1:amd64",
+    "binary_version": "1.1.0-2+b7",
+    "source_package": "brotli",
+    "source_version": "1.1.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/brotli/1.1.0-2/"
+  },
+  {
+    "binary_package": "libbz2-1.0:amd64",
+    "binary_version": "1.0.8-6",
+    "source_package": "bzip2",
+    "source_version": "1.0.8-6",
+    "corresponding_source_url": "https://sources.debian.org/src/bzip2/1.0.8-6/"
+  },
+  {
+    "binary_package": "libc6:amd64",
+    "binary_version": "2.41-12+deb13u4",
+    "source_package": "glibc",
+    "source_version": "2.41-12+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/glibc/2.41-12%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "libcairo-gobject2:amd64",
+    "binary_version": "1.18.4-1+b1",
+    "source_package": "cairo",
+    "source_version": "1.18.4-1",
+    "corresponding_source_url": "https://sources.debian.org/src/cairo/1.18.4-1/"
+  },
+  {
+    "binary_package": "libcairo2:amd64",
+    "binary_version": "1.18.4-1+b1",
+    "source_package": "cairo",
+    "source_version": "1.18.4-1",
+    "corresponding_source_url": "https://sources.debian.org/src/cairo/1.18.4-1/"
+  },
+  {
+    "binary_package": "libcap2:amd64",
+    "binary_version": "1:2.75-10+deb13u1+b3",
+    "source_package": "libcap2",
+    "source_version": "1:2.75-10+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/libcap2/1%3A2.75-10%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libcloudproviders0:amd64",
+    "binary_version": "0.3.6-2",
+    "source_package": "libcloudproviders",
+    "source_version": "0.3.6-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libcloudproviders/0.3.6-2/"
+  },
+  {
+    "binary_package": "libcom-err2:amd64",
+    "binary_version": "1.47.2-3+b12",
+    "source_package": "e2fsprogs",
+    "source_version": "1.47.2-3",
+    "corresponding_source_url": "https://sources.debian.org/src/e2fsprogs/1.47.2-3/"
+  },
+  {
+    "binary_package": "libcups2t64:amd64",
+    "binary_version": "2.4.10-3+deb13u2",
+    "source_package": "cups",
+    "source_version": "2.4.10-3+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/cups/2.4.10-3%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libcurl3t64-gnutls:amd64",
+    "binary_version": "8.14.1-2+deb13u7",
+    "source_package": "curl",
+    "source_version": "8.14.1-2+deb13u7",
+    "corresponding_source_url": "https://sources.debian.org/src/curl/8.14.1-2%2Bdeb13u7/"
+  },
+  {
+    "binary_package": "libcurl4t64:amd64",
+    "binary_version": "8.14.1-2+deb13u7",
+    "source_package": "curl",
+    "source_version": "8.14.1-2+deb13u7",
+    "corresponding_source_url": "https://sources.debian.org/src/curl/8.14.1-2%2Bdeb13u7/"
+  },
+  {
+    "binary_package": "libdatrie1:amd64",
+    "binary_version": "0.2.13-3+b1",
+    "source_package": "libdatrie",
+    "source_version": "0.2.13-3",
+    "corresponding_source_url": "https://sources.debian.org/src/libdatrie/0.2.13-3/"
+  },
+  {
+    "binary_package": "libdav1d7:amd64",
+    "binary_version": "1.5.1-1",
+    "source_package": "dav1d",
+    "source_version": "1.5.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/dav1d/1.5.1-1/"
+  },
+  {
+    "binary_package": "libdb5.3t64:amd64",
+    "binary_version": "5.3.28+dfsg2-9",
+    "source_package": "db5.3",
+    "source_version": "5.3.28+dfsg2-9",
+    "corresponding_source_url": "https://sources.debian.org/src/db5.3/5.3.28%2Bdfsg2-9/"
+  },
+  {
+    "binary_package": "libdbus-1-3:amd64",
+    "binary_version": "1.16.2-2",
+    "source_package": "dbus",
+    "source_version": "1.16.2-2",
+    "corresponding_source_url": "https://sources.debian.org/src/dbus/1.16.2-2/"
+  },
+  {
+    "binary_package": "libdeflate0:amd64",
+    "binary_version": "1.23-2",
+    "source_package": "libdeflate",
+    "source_version": "1.23-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libdeflate/1.23-2/"
+  },
+  {
+    "binary_package": "libepoxy0:amd64",
+    "binary_version": "1.5.10-2",
+    "source_package": "libepoxy",
+    "source_version": "1.5.10-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libepoxy/1.5.10-2/"
+  },
+  {
+    "binary_package": "libespeak-ng1:amd64",
+    "binary_version": "1.52.0+dfsg-5",
+    "source_package": "espeak-ng",
+    "source_version": "1.52.0+dfsg-5",
+    "corresponding_source_url": "https://sources.debian.org/src/espeak-ng/1.52.0%2Bdfsg-5/"
+  },
+  {
+    "binary_package": "libexpat1:amd64",
+    "binary_version": "2.9.0-1~deb13u1",
+    "source_package": "expat",
+    "source_version": "2.9.0-1~deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/expat/2.9.0-1~deb13u1/"
+  },
+  {
+    "binary_package": "libffi8:amd64",
+    "binary_version": "3.4.8-2",
+    "source_package": "libffi",
+    "source_version": "3.4.8-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libffi/3.4.8-2/"
+  },
+  {
+    "binary_package": "libflac14:amd64",
+    "binary_version": "1.5.0+ds-2",
+    "source_package": "flac",
+    "source_version": "1.5.0+ds-2",
+    "corresponding_source_url": "https://sources.debian.org/src/flac/1.5.0%2Bds-2/"
+  },
+  {
+    "binary_package": "libfontconfig1:amd64",
+    "binary_version": "2.15.0-2.3",
+    "source_package": "fontconfig",
+    "source_version": "2.15.0-2.3",
+    "corresponding_source_url": "https://sources.debian.org/src/fontconfig/2.15.0-2.3/"
+  },
+  {
+    "binary_package": "libfreetype6:amd64",
+    "binary_version": "2.13.3+dfsg-1+deb13u1",
+    "source_package": "freetype",
+    "source_version": "2.13.3+dfsg-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/freetype/2.13.3%2Bdfsg-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libfribidi0:amd64",
+    "binary_version": "1.0.16-1",
+    "source_package": "fribidi",
+    "source_version": "1.0.16-1",
+    "corresponding_source_url": "https://sources.debian.org/src/fribidi/1.0.16-1/"
+  },
+  {
+    "binary_package": "libgcc-s1:amd64",
+    "binary_version": "14.2.0-19",
+    "source_package": "gcc-14",
+    "source_version": "14.2.0-19",
+    "corresponding_source_url": "https://sources.debian.org/src/gcc-14/14.2.0-19/"
+  },
+  {
+    "binary_package": "libgdk-pixbuf-2.0-0:amd64",
+    "binary_version": "2.42.12+dfsg-4+deb13u1",
+    "source_package": "gdk-pixbuf",
+    "source_version": "2.42.12+dfsg-4+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/gdk-pixbuf/2.42.12%2Bdfsg-4%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libgif7:amd64",
+    "binary_version": "5.2.2-1+deb13u1",
+    "source_package": "giflib",
+    "source_version": "5.2.2-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/giflib/5.2.2-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libgirepository-1.0-1:amd64",
+    "binary_version": "1.84.0-1",
+    "source_package": "gobject-introspection",
+    "source_version": "1.84.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/gobject-introspection/1.84.0-1/"
+  },
+  {
+    "binary_package": "libglib2.0-0t64:amd64",
+    "binary_version": "2.84.4-3~deb13u5",
+    "source_package": "glib2.0",
+    "source_version": "2.84.4-3~deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/glib2.0/2.84.4-3~deb13u5/"
+  },
+  {
+    "binary_package": "libglib2.0-bin",
+    "binary_version": "2.84.4-3~deb13u5",
+    "source_package": "glib2.0",
+    "source_version": "2.84.4-3~deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/glib2.0/2.84.4-3~deb13u5/"
+  },
+  {
+    "binary_package": "libgmp10:amd64",
+    "binary_version": "2:6.3.0+dfsg-3",
+    "source_package": "gmp",
+    "source_version": "2:6.3.0+dfsg-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gmp/2%3A6.3.0%2Bdfsg-3/"
+  },
+  {
+    "binary_package": "libgnutls30t64:amd64",
+    "binary_version": "3.8.9-3+deb13u4",
+    "source_package": "gnutls28",
+    "source_version": "3.8.9-3+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/gnutls28/3.8.9-3%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "libgomp1:amd64",
+    "binary_version": "14.2.0-19",
+    "source_package": "gcc-14",
+    "source_version": "14.2.0-19",
+    "corresponding_source_url": "https://sources.debian.org/src/gcc-14/14.2.0-19/"
+  },
+  {
+    "binary_package": "libgpg-error0:amd64",
+    "binary_version": "1.51-4",
+    "source_package": "libgpg-error",
+    "source_version": "1.51-4",
+    "corresponding_source_url": "https://sources.debian.org/src/libgpg-error/1.51-4/"
+  },
+  {
+    "binary_package": "libgpgme11t64:amd64",
+    "binary_version": "1.24.2-3",
+    "source_package": "gpgme1.0",
+    "source_version": "1.24.2-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gpgme1.0/1.24.2-3/"
+  },
+  {
+    "binary_package": "libgpgmepp6t64:amd64",
+    "binary_version": "1.24.2-3",
+    "source_package": "gpgme1.0",
+    "source_version": "1.24.2-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gpgme1.0/1.24.2-3/"
+  },
+  {
+    "binary_package": "libgraphite2-3:amd64",
+    "binary_version": "1.3.14-2+deb13u1",
+    "source_package": "graphite2",
+    "source_version": "1.3.14-2+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/graphite2/1.3.14-2%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libgssapi-krb5-2:amd64",
+    "binary_version": "1.21.3-5+deb13u1",
+    "source_package": "krb5",
+    "source_version": "1.21.3-5+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/krb5/1.21.3-5%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libgtk-3-0t64:amd64",
+    "binary_version": "3.24.49-3",
+    "source_package": "gtk+3.0",
+    "source_version": "3.24.49-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gtk%2B3.0/3.24.49-3/"
+  },
+  {
+    "binary_package": "libgtk-3-common",
+    "binary_version": "3.24.49-3",
+    "source_package": "gtk+3.0",
+    "source_version": "3.24.49-3",
+    "corresponding_source_url": "https://sources.debian.org/src/gtk%2B3.0/3.24.49-3/"
+  },
+  {
+    "binary_package": "libharfbuzz0b:amd64",
+    "binary_version": "10.2.0-1+deb13u1",
+    "source_package": "harfbuzz",
+    "source_version": "10.2.0-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/harfbuzz/10.2.0-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libhogweed6t64:amd64",
+    "binary_version": "3.10.1-1",
+    "source_package": "nettle",
+    "source_version": "3.10.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/nettle/3.10.1-1/"
+  },
+  {
+    "binary_package": "libidn2-0:amd64",
+    "binary_version": "2.3.8-2",
+    "source_package": "libidn2",
+    "source_version": "2.3.8-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libidn2/2.3.8-2/"
+  },
+  {
+    "binary_package": "libimagequant0:amd64",
+    "binary_version": "2.18.0-1+b2",
+    "source_package": "libimagequant",
+    "source_version": "2.18.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libimagequant/2.18.0-1/"
+  },
+  {
+    "binary_package": "libjbig0:amd64",
+    "binary_version": "2.1-6.1+b2",
+    "source_package": "jbigkit",
+    "source_version": "2.1-6.1",
+    "corresponding_source_url": "https://sources.debian.org/src/jbigkit/2.1-6.1/"
+  },
+  {
+    "binary_package": "libjpeg62-turbo:amd64",
+    "binary_version": "1:2.1.5-4",
+    "source_package": "libjpeg-turbo",
+    "source_version": "1:2.1.5-4",
+    "corresponding_source_url": "https://sources.debian.org/src/libjpeg-turbo/1%3A2.1.5-4/"
+  },
+  {
+    "binary_package": "libk5crypto3:amd64",
+    "binary_version": "1.21.3-5+deb13u1",
+    "source_package": "krb5",
+    "source_version": "1.21.3-5+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/krb5/1.21.3-5%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libkeyutils1:amd64",
+    "binary_version": "1.6.3-6",
+    "source_package": "keyutils",
+    "source_version": "1.6.3-6",
+    "corresponding_source_url": "https://sources.debian.org/src/keyutils/1.6.3-6/"
+  },
+  {
+    "binary_package": "libkrb5-3:amd64",
+    "binary_version": "1.21.3-5+deb13u1",
+    "source_package": "krb5",
+    "source_version": "1.21.3-5+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/krb5/1.21.3-5%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libkrb5support0:amd64",
+    "binary_version": "1.21.3-5+deb13u1",
+    "source_package": "krb5",
+    "source_version": "1.21.3-5+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/krb5/1.21.3-5%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "liblcms2-2:amd64",
+    "binary_version": "2.16-2+deb13u2",
+    "source_package": "lcms2",
+    "source_version": "2.16-2+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/lcms2/2.16-2%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libldap2:amd64",
+    "binary_version": "2.6.10+dfsg-1",
+    "source_package": "openldap",
+    "source_version": "2.6.10+dfsg-1",
+    "corresponding_source_url": "https://sources.debian.org/src/openldap/2.6.10%2Bdfsg-1/"
+  },
+  {
+    "binary_package": "libleptonica6:amd64",
+    "binary_version": "1.84.1-4",
+    "source_package": "leptonlib",
+    "source_version": "1.84.1-4",
+    "corresponding_source_url": "https://sources.debian.org/src/leptonlib/1.84.1-4/"
+  },
+  {
+    "binary_package": "liblerc4:amd64",
+    "binary_version": "4.0.0+ds-5",
+    "source_package": "lerc",
+    "source_version": "4.0.0+ds-5",
+    "corresponding_source_url": "https://sources.debian.org/src/lerc/4.0.0%2Bds-5/"
+  },
+  {
+    "binary_package": "liblz4-1:amd64",
+    "binary_version": "1.10.0-4",
+    "source_package": "lz4",
+    "source_version": "1.10.0-4",
+    "corresponding_source_url": "https://sources.debian.org/src/lz4/1.10.0-4/"
+  },
+  {
+    "binary_package": "liblzma5:amd64",
+    "binary_version": "5.8.1-1+deb13u1",
+    "source_package": "xz-utils",
+    "source_version": "5.8.1-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/xz-utils/5.8.1-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libmount1:amd64",
+    "binary_version": "2.41.5-0+deb13u1",
+    "source_package": "util-linux",
+    "source_version": "2.41.5-0+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/util-linux/2.41.5-0%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libmp3lame0:amd64",
+    "binary_version": "3.100-6+b3",
+    "source_package": "lame",
+    "source_version": "3.100-6",
+    "corresponding_source_url": "https://sources.debian.org/src/lame/3.100-6/"
+  },
+  {
+    "binary_package": "libmpg123-0t64:amd64",
+    "binary_version": "1.32.10-1+deb13u1",
+    "source_package": "mpg123",
+    "source_version": "1.32.10-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/mpg123/1.32.10-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libncursesw6:amd64",
+    "binary_version": "6.5+20250216-2",
+    "source_package": "ncurses",
+    "source_version": "6.5+20250216-2",
+    "corresponding_source_url": "https://sources.debian.org/src/ncurses/6.5%2B20250216-2/"
+  },
+  {
+    "binary_package": "libnettle8t64:amd64",
+    "binary_version": "3.10.1-1",
+    "source_package": "nettle",
+    "source_version": "3.10.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/nettle/3.10.1-1/"
+  },
+  {
+    "binary_package": "libnghttp2-14:amd64",
+    "binary_version": "1.64.0-1.1+deb13u1",
+    "source_package": "nghttp2",
+    "source_version": "1.64.0-1.1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/nghttp2/1.64.0-1.1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libnghttp3-9:amd64",
+    "binary_version": "1.8.0-1",
+    "source_package": "nghttp3",
+    "source_version": "1.8.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/nghttp3/1.8.0-1/"
+  },
+  {
+    "binary_package": "libngtcp2-16:amd64",
+    "binary_version": "1.11.0-1+deb13u1",
+    "source_package": "ngtcp2",
+    "source_version": "1.11.0-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/ngtcp2/1.11.0-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libngtcp2-crypto-gnutls8:amd64",
+    "binary_version": "1.11.0-1+deb13u1",
+    "source_package": "ngtcp2",
+    "source_version": "1.11.0-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/ngtcp2/1.11.0-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libnspr4:amd64",
+    "binary_version": "2:4.36-1",
+    "source_package": "nspr",
+    "source_version": "2:4.36-1",
+    "corresponding_source_url": "https://sources.debian.org/src/nspr/2%3A4.36-1/"
+  },
+  {
+    "binary_package": "libnss3:amd64",
+    "binary_version": "2:3.110-1+deb13u4",
+    "source_package": "nss",
+    "source_version": "2:3.110-1+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/nss/2%3A3.110-1%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "libogg0:amd64",
+    "binary_version": "1.3.5-3+b2",
+    "source_package": "libogg",
+    "source_version": "1.3.5-3",
+    "corresponding_source_url": "https://sources.debian.org/src/libogg/1.3.5-3/"
+  },
+  {
+    "binary_package": "libopenjp2-7:amd64",
+    "binary_version": "2.5.3-2.1~deb13u2",
+    "source_package": "openjpeg2",
+    "source_version": "2.5.3-2.1~deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/openjpeg2/2.5.3-2.1~deb13u2/"
+  },
+  {
+    "binary_package": "libopus0:amd64",
+    "binary_version": "1.5.2-2",
+    "source_package": "opus",
+    "source_version": "1.5.2-2",
+    "corresponding_source_url": "https://sources.debian.org/src/opus/1.5.2-2/"
+  },
+  {
+    "binary_package": "libp11-kit0:amd64",
+    "binary_version": "0.25.5-3",
+    "source_package": "p11-kit",
+    "source_version": "0.25.5-3",
+    "corresponding_source_url": "https://sources.debian.org/src/p11-kit/0.25.5-3/"
+  },
+  {
+    "binary_package": "libpango-1.0-0:amd64",
+    "binary_version": "1.56.3-1",
+    "source_package": "pango1.0",
+    "source_version": "1.56.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/pango1.0/1.56.3-1/"
+  },
+  {
+    "binary_package": "libpangocairo-1.0-0:amd64",
+    "binary_version": "1.56.3-1",
+    "source_package": "pango1.0",
+    "source_version": "1.56.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/pango1.0/1.56.3-1/"
+  },
+  {
+    "binary_package": "libpangoft2-1.0-0:amd64",
+    "binary_version": "1.56.3-1",
+    "source_package": "pango1.0",
+    "source_version": "1.56.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/pango1.0/1.56.3-1/"
+  },
+  {
+    "binary_package": "libpcaudio0:amd64",
+    "binary_version": "1.3-1",
+    "source_package": "pcaudiolib",
+    "source_version": "1.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/pcaudiolib/1.3-1/"
+  },
+  {
+    "binary_package": "libpcre2-8-0:amd64",
+    "binary_version": "10.46-1~deb13u3",
+    "source_package": "pcre2",
+    "source_version": "10.46-1~deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/pcre2/10.46-1~deb13u3/"
+  },
+  {
+    "binary_package": "libpixman-1-0:amd64",
+    "binary_version": "0.44.0-3",
+    "source_package": "pixman",
+    "source_version": "0.44.0-3",
+    "corresponding_source_url": "https://sources.debian.org/src/pixman/0.44.0-3/"
+  },
+  {
+    "binary_package": "libpng16-16t64:amd64",
+    "binary_version": "1.6.48-1+deb13u6",
+    "source_package": "libpng1.6",
+    "source_version": "1.6.48-1+deb13u6",
+    "corresponding_source_url": "https://sources.debian.org/src/libpng1.6/1.6.48-1%2Bdeb13u6/"
+  },
+  {
+    "binary_package": "libpoppler147:amd64",
+    "binary_version": "25.03.0-5+deb13u4",
+    "source_package": "poppler",
+    "source_version": "25.03.0-5+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/poppler/25.03.0-5%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "libpsl5t64:amd64",
+    "binary_version": "0.21.2-1.1+b1",
+    "source_package": "libpsl",
+    "source_version": "0.21.2-1.1",
+    "corresponding_source_url": "https://sources.debian.org/src/libpsl/0.21.2-1.1/"
+  },
+  {
+    "binary_package": "libpulse0:amd64",
+    "binary_version": "17.0+dfsg1-2+b1",
+    "source_package": "pulseaudio",
+    "source_version": "17.0+dfsg1-2",
+    "corresponding_source_url": "https://sources.debian.org/src/pulseaudio/17.0%2Bdfsg1-2/"
+  },
+  {
+    "binary_package": "libpython3.13-minimal:amd64",
+    "binary_version": "3.13.5-2+deb13u5",
+    "source_package": "python3.13",
+    "source_version": "3.13.5-2+deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/python3.13/3.13.5-2%2Bdeb13u5/"
+  },
+  {
+    "binary_package": "libpython3.13-stdlib:amd64",
+    "binary_version": "3.13.5-2+deb13u5",
+    "source_package": "python3.13",
+    "source_version": "3.13.5-2+deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/python3.13/3.13.5-2%2Bdeb13u5/"
+  },
+  {
+    "binary_package": "libraqm0:amd64",
+    "binary_version": "0.10.2-1",
+    "source_package": "raqm",
+    "source_version": "0.10.2-1",
+    "corresponding_source_url": "https://sources.debian.org/src/raqm/0.10.2-1/"
+  },
+  {
+    "binary_package": "libreadline8t64:amd64",
+    "binary_version": "8.2-6",
+    "source_package": "readline",
+    "source_version": "8.2-6",
+    "corresponding_source_url": "https://sources.debian.org/src/readline/8.2-6/"
+  },
+  {
+    "binary_package": "librsvg2-2:amd64",
+    "binary_version": "2.60.0+dfsg-1+deb13u1",
+    "source_package": "librsvg",
+    "source_version": "2.60.0+dfsg-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/librsvg/2.60.0%2Bdfsg-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "librsvg2-common:amd64",
+    "binary_version": "2.60.0+dfsg-1+deb13u1",
+    "source_package": "librsvg",
+    "source_version": "2.60.0+dfsg-1+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/librsvg/2.60.0%2Bdfsg-1%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "librtmp1:amd64",
+    "binary_version": "2.4+20151223.gitfa8646d.1-2+b5",
+    "source_package": "rtmpdump",
+    "source_version": "2.4+20151223.gitfa8646d.1-2",
+    "corresponding_source_url": "https://sources.debian.org/src/rtmpdump/2.4%2B20151223.gitfa8646d.1-2/"
+  },
+  {
+    "binary_package": "libsasl2-2:amd64",
+    "binary_version": "2.1.28+dfsg1-9",
+    "source_package": "cyrus-sasl2",
+    "source_version": "2.1.28+dfsg1-9",
+    "corresponding_source_url": "https://sources.debian.org/src/cyrus-sasl2/2.1.28%2Bdfsg1-9/"
+  },
+  {
+    "binary_package": "libselinux1:amd64",
+    "binary_version": "3.8.1-1",
+    "source_package": "libselinux",
+    "source_version": "3.8.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libselinux/3.8.1-1/"
+  },
+  {
+    "binary_package": "libsharpyuv0:amd64",
+    "binary_version": "1.5.0-0.1",
+    "source_package": "libwebp",
+    "source_version": "1.5.0-0.1",
+    "corresponding_source_url": "https://sources.debian.org/src/libwebp/1.5.0-0.1/"
+  },
+  {
+    "binary_package": "libsmartcols1:amd64",
+    "binary_version": "2.41.5-0+deb13u1",
+    "source_package": "util-linux",
+    "source_version": "2.41.5-0+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/util-linux/2.41.5-0%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libsndfile1:amd64",
+    "binary_version": "1.2.2-2+deb13u1",
+    "source_package": "libsndfile",
+    "source_version": "1.2.2-2+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/libsndfile/1.2.2-2%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libsonic0:amd64",
+    "binary_version": "0.2.0-13+b1",
+    "source_package": "sonic",
+    "source_version": "0.2.0-13",
+    "corresponding_source_url": "https://sources.debian.org/src/sonic/0.2.0-13/"
+  },
+  {
+    "binary_package": "libsqlite3-0:amd64",
+    "binary_version": "3.46.1-7+deb13u2",
+    "source_package": "sqlite3",
+    "source_version": "3.46.1-7+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/sqlite3/3.46.1-7%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libssh2-1t64:amd64",
+    "binary_version": "1.11.1-1+deb13u2",
+    "source_package": "libssh2",
+    "source_version": "1.11.1-1+deb13u2",
+    "corresponding_source_url": "https://sources.debian.org/src/libssh2/1.11.1-1%2Bdeb13u2/"
+  },
+  {
+    "binary_package": "libssl3t64:amd64",
+    "binary_version": "3.5.7-1~deb13u3",
+    "source_package": "openssl",
+    "source_version": "3.5.7-1~deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/openssl/3.5.7-1~deb13u3/"
+  },
+  {
+    "binary_package": "libstdc++6:amd64",
+    "binary_version": "14.2.0-19",
+    "source_package": "gcc-14",
+    "source_version": "14.2.0-19",
+    "corresponding_source_url": "https://sources.debian.org/src/gcc-14/14.2.0-19/"
+  },
+  {
+    "binary_package": "libsystemd0:amd64",
+    "binary_version": "257.13-1~deb13u1",
+    "source_package": "systemd",
+    "source_version": "257.13-1~deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/systemd/257.13-1~deb13u1/"
+  },
+  {
+    "binary_package": "libtasn1-6:amd64",
+    "binary_version": "4.20.0-2+deb13u1",
+    "source_package": "libtasn1-6",
+    "source_version": "4.20.0-2+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/libtasn1-6/4.20.0-2%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libtesseract5:amd64",
+    "binary_version": "5.5.0-1+b1",
+    "source_package": "tesseract",
+    "source_version": "5.5.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/tesseract/5.5.0-1/"
+  },
+  {
+    "binary_package": "libthai0:amd64",
+    "binary_version": "0.1.29-2+b1",
+    "source_package": "libthai",
+    "source_version": "0.1.29-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libthai/0.1.29-2/"
+  },
+  {
+    "binary_package": "libtiff6:amd64",
+    "binary_version": "4.7.0-3+deb13u3",
+    "source_package": "tiff",
+    "source_version": "4.7.0-3+deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/tiff/4.7.0-3%2Bdeb13u3/"
+  },
+  {
+    "binary_package": "libtinfo6:amd64",
+    "binary_version": "6.5+20250216-2",
+    "source_package": "ncurses",
+    "source_version": "6.5+20250216-2",
+    "corresponding_source_url": "https://sources.debian.org/src/ncurses/6.5%2B20250216-2/"
+  },
+  {
+    "binary_package": "libunistring5:amd64",
+    "binary_version": "1.3-2",
+    "source_package": "libunistring",
+    "source_version": "1.3-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libunistring/1.3-2/"
+  },
+  {
+    "binary_package": "libuuid1:amd64",
+    "binary_version": "2.41.5-0+deb13u1",
+    "source_package": "util-linux",
+    "source_version": "2.41.5-0+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/util-linux/2.41.5-0%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "libvorbis0a:amd64",
+    "binary_version": "1.3.7-3",
+    "source_package": "libvorbis",
+    "source_version": "1.3.7-3",
+    "corresponding_source_url": "https://sources.debian.org/src/libvorbis/1.3.7-3/"
+  },
+  {
+    "binary_package": "libvorbisenc2:amd64",
+    "binary_version": "1.3.7-3",
+    "source_package": "libvorbis",
+    "source_version": "1.3.7-3",
+    "corresponding_source_url": "https://sources.debian.org/src/libvorbis/1.3.7-3/"
+  },
+  {
+    "binary_package": "libwayland-client0:amd64",
+    "binary_version": "1.23.1-3",
+    "source_package": "wayland",
+    "source_version": "1.23.1-3",
+    "corresponding_source_url": "https://sources.debian.org/src/wayland/1.23.1-3/"
+  },
+  {
+    "binary_package": "libwayland-cursor0:amd64",
+    "binary_version": "1.23.1-3",
+    "source_package": "wayland",
+    "source_version": "1.23.1-3",
+    "corresponding_source_url": "https://sources.debian.org/src/wayland/1.23.1-3/"
+  },
+  {
+    "binary_package": "libwayland-egl1:amd64",
+    "binary_version": "1.23.1-3",
+    "source_package": "wayland",
+    "source_version": "1.23.1-3",
+    "corresponding_source_url": "https://sources.debian.org/src/wayland/1.23.1-3/"
+  },
+  {
+    "binary_package": "libwebp7:amd64",
+    "binary_version": "1.5.0-0.1",
+    "source_package": "libwebp",
+    "source_version": "1.5.0-0.1",
+    "corresponding_source_url": "https://sources.debian.org/src/libwebp/1.5.0-0.1/"
+  },
+  {
+    "binary_package": "libwebpdemux2:amd64",
+    "binary_version": "1.5.0-0.1",
+    "source_package": "libwebp",
+    "source_version": "1.5.0-0.1",
+    "corresponding_source_url": "https://sources.debian.org/src/libwebp/1.5.0-0.1/"
+  },
+  {
+    "binary_package": "libwebpmux3:amd64",
+    "binary_version": "1.5.0-0.1",
+    "source_package": "libwebp",
+    "source_version": "1.5.0-0.1",
+    "corresponding_source_url": "https://sources.debian.org/src/libwebp/1.5.0-0.1/"
+  },
+  {
+    "binary_package": "libx11-6:amd64",
+    "binary_version": "2:1.8.12-1",
+    "source_package": "libx11",
+    "source_version": "2:1.8.12-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libx11/2%3A1.8.12-1/"
+  },
+  {
+    "binary_package": "libx11-xcb1:amd64",
+    "binary_version": "2:1.8.12-1",
+    "source_package": "libx11",
+    "source_version": "2:1.8.12-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libx11/2%3A1.8.12-1/"
+  },
+  {
+    "binary_package": "libxau6:amd64",
+    "binary_version": "1:1.0.11-1",
+    "source_package": "libxau",
+    "source_version": "1:1.0.11-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxau/1%3A1.0.11-1/"
+  },
+  {
+    "binary_package": "libxcb-render0:amd64",
+    "binary_version": "1.17.0-2+b1",
+    "source_package": "libxcb",
+    "source_version": "1.17.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libxcb/1.17.0-2/"
+  },
+  {
+    "binary_package": "libxcb-shm0:amd64",
+    "binary_version": "1.17.0-2+b1",
+    "source_package": "libxcb",
+    "source_version": "1.17.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libxcb/1.17.0-2/"
+  },
+  {
+    "binary_package": "libxcb1:amd64",
+    "binary_version": "1.17.0-2+b1",
+    "source_package": "libxcb",
+    "source_version": "1.17.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libxcb/1.17.0-2/"
+  },
+  {
+    "binary_package": "libxcomposite1:amd64",
+    "binary_version": "1:0.4.6-1",
+    "source_package": "libxcomposite",
+    "source_version": "1:0.4.6-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxcomposite/1%3A0.4.6-1/"
+  },
+  {
+    "binary_package": "libxcursor1:amd64",
+    "binary_version": "1:1.2.3-1",
+    "source_package": "libxcursor",
+    "source_version": "1:1.2.3-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxcursor/1%3A1.2.3-1/"
+  },
+  {
+    "binary_package": "libxdamage1:amd64",
+    "binary_version": "1:1.1.6-1+b2",
+    "source_package": "libxdamage",
+    "source_version": "1:1.1.6-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxdamage/1%3A1.1.6-1/"
+  },
+  {
+    "binary_package": "libxdmcp6:amd64",
+    "binary_version": "1:1.1.5-1",
+    "source_package": "libxdmcp",
+    "source_version": "1:1.1.5-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxdmcp/1%3A1.1.5-1/"
+  },
+  {
+    "binary_package": "libxext6:amd64",
+    "binary_version": "2:1.3.4-1+b3",
+    "source_package": "libxext",
+    "source_version": "2:1.3.4-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxext/2%3A1.3.4-1/"
+  },
+  {
+    "binary_package": "libxfixes3:amd64",
+    "binary_version": "1:6.0.0-2+b4",
+    "source_package": "libxfixes",
+    "source_version": "1:6.0.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libxfixes/1%3A6.0.0-2/"
+  },
+  {
+    "binary_package": "libxi6:amd64",
+    "binary_version": "2:1.8.2-1",
+    "source_package": "libxi",
+    "source_version": "2:1.8.2-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxi/2%3A1.8.2-1/"
+  },
+  {
+    "binary_package": "libxinerama1:amd64",
+    "binary_version": "2:1.1.4-3+b4",
+    "source_package": "libxinerama",
+    "source_version": "2:1.1.4-3",
+    "corresponding_source_url": "https://sources.debian.org/src/libxinerama/2%3A1.1.4-3/"
+  },
+  {
+    "binary_package": "libxkbcommon0:amd64",
+    "binary_version": "1.7.0-2",
+    "source_package": "libxkbcommon",
+    "source_version": "1.7.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/libxkbcommon/1.7.0-2/"
+  },
+  {
+    "binary_package": "libxml2:amd64",
+    "binary_version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3",
+    "source_package": "libxml2",
+    "source_version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/libxml2/2.12.7%2Bdfsg%2Breally2.9.14-2.1%2Bdeb13u3/"
+  },
+  {
+    "binary_package": "libxrandr2:amd64",
+    "binary_version": "2:1.5.4-1+b3",
+    "source_package": "libxrandr",
+    "source_version": "2:1.5.4-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxrandr/2%3A1.5.4-1/"
+  },
+  {
+    "binary_package": "libxrender1:amd64",
+    "binary_version": "1:0.9.12-1",
+    "source_package": "libxrender",
+    "source_version": "1:0.9.12-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libxrender/1%3A0.9.12-1/"
+  },
+  {
+    "binary_package": "libxxhash0:amd64",
+    "binary_version": "0.8.3-2",
+    "source_package": "xxhash",
+    "source_version": "0.8.3-2",
+    "corresponding_source_url": "https://sources.debian.org/src/xxhash/0.8.3-2/"
+  },
+  {
+    "binary_package": "libzstd1:amd64",
+    "binary_version": "1.5.7+dfsg-1",
+    "source_package": "libzstd",
+    "source_version": "1.5.7+dfsg-1",
+    "corresponding_source_url": "https://sources.debian.org/src/libzstd/1.5.7%2Bdfsg-1/"
+  },
+  {
+    "binary_package": "openssl",
+    "binary_version": "3.5.7-1~deb13u3",
+    "source_package": "openssl",
+    "source_version": "3.5.7-1~deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/openssl/3.5.7-1~deb13u3/"
+  },
+  {
+    "binary_package": "openssl-provider-legacy",
+    "binary_version": "3.5.7-1~deb13u3",
+    "source_package": "openssl",
+    "source_version": "3.5.7-1~deb13u3",
+    "corresponding_source_url": "https://sources.debian.org/src/openssl/3.5.7-1~deb13u3/"
+  },
+  {
+    "binary_package": "poppler-utils",
+    "binary_version": "25.03.0-5+deb13u4",
+    "source_package": "poppler",
+    "source_version": "25.03.0-5+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/poppler/25.03.0-5%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "python3-cairo",
+    "binary_version": "1.27.0-2",
+    "source_package": "pycairo",
+    "source_version": "1.27.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/pycairo/1.27.0-2/"
+  },
+  {
+    "binary_package": "python3-cffi",
+    "binary_version": "1.17.1-3",
+    "source_package": "python-cffi",
+    "source_version": "1.17.1-3",
+    "corresponding_source_url": "https://sources.debian.org/src/python-cffi/1.17.1-3/"
+  },
+  {
+    "binary_package": "python3-cffi-backend:amd64",
+    "binary_version": "1.17.1-3",
+    "source_package": "python-cffi",
+    "source_version": "1.17.1-3",
+    "corresponding_source_url": "https://sources.debian.org/src/python-cffi/1.17.1-3/"
+  },
+  {
+    "binary_package": "python3-cryptography",
+    "binary_version": "43.0.0-3+deb13u1",
+    "source_package": "python-cryptography",
+    "source_version": "43.0.0-3+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/python-cryptography/43.0.0-3%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "python3-gi",
+    "binary_version": "3.50.0-4+b1",
+    "source_package": "pygobject",
+    "source_version": "3.50.0-4",
+    "corresponding_source_url": "https://sources.debian.org/src/pygobject/3.50.0-4/"
+  },
+  {
+    "binary_package": "python3-gi-cairo",
+    "binary_version": "3.50.0-4+b1",
+    "source_package": "pygobject",
+    "source_version": "3.50.0-4",
+    "corresponding_source_url": "https://sources.debian.org/src/pygobject/3.50.0-4/"
+  },
+  {
+    "binary_package": "python3-pil:amd64",
+    "binary_version": "11.1.0-5+deb13u4",
+    "source_package": "pillow",
+    "source_version": "11.1.0-5+deb13u4",
+    "corresponding_source_url": "https://sources.debian.org/src/pillow/11.1.0-5%2Bdeb13u4/"
+  },
+  {
+    "binary_package": "python3-pycparser",
+    "binary_version": "2.22-2",
+    "source_package": "pycparser",
+    "source_version": "2.22-2",
+    "corresponding_source_url": "https://sources.debian.org/src/pycparser/2.22-2/"
+  },
+  {
+    "binary_package": "python3.13-minimal",
+    "binary_version": "3.13.5-2+deb13u5",
+    "source_package": "python3.13",
+    "source_version": "3.13.5-2+deb13u5",
+    "corresponding_source_url": "https://sources.debian.org/src/python3.13/3.13.5-2%2Bdeb13u5/"
+  },
+  {
+    "binary_package": "shared-mime-info",
+    "binary_version": "2.4-5+b2",
+    "source_package": "shared-mime-info",
+    "source_version": "2.4-5",
+    "corresponding_source_url": "https://sources.debian.org/src/shared-mime-info/2.4-5/"
+  },
+  {
+    "binary_package": "tesseract-ocr",
+    "binary_version": "5.5.0-1+b1",
+    "source_package": "tesseract",
+    "source_version": "5.5.0-1",
+    "corresponding_source_url": "https://sources.debian.org/src/tesseract/5.5.0-1/"
+  },
+  {
+    "binary_package": "tesseract-ocr-eng",
+    "binary_version": "1:4.1.0-2",
+    "source_package": "tesseract-lang",
+    "source_version": "1:4.1.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/tesseract-lang/1%3A4.1.0-2/"
+  },
+  {
+    "binary_package": "tesseract-ocr-osd",
+    "binary_version": "1:4.1.0-2",
+    "source_package": "tesseract-lang",
+    "source_version": "1:4.1.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/tesseract-lang/1%3A4.1.0-2/"
+  },
+  {
+    "binary_package": "tesseract-ocr-por",
+    "binary_version": "1:4.1.0-2",
+    "source_package": "tesseract-lang",
+    "source_version": "1:4.1.0-2",
+    "corresponding_source_url": "https://sources.debian.org/src/tesseract-lang/1%3A4.1.0-2/"
+  },
+  {
+    "binary_package": "util-linux",
+    "binary_version": "2.41.5-0+deb13u1",
+    "source_package": "util-linux",
+    "source_version": "2.41.5-0+deb13u1",
+    "corresponding_source_url": "https://sources.debian.org/src/util-linux/2.41.5-0%2Bdeb13u1/"
+  },
+  {
+    "binary_package": "zlib1g:amd64",
+    "binary_version": "1:1.3.dfsg+really1.3.1-1+b1",
+    "source_package": "zlib",
+    "source_version": "1:1.3.dfsg+really1.3.1-1",
+    "corresponding_source_url": "https://sources.debian.org/src/zlib/1%3A1.3.dfsg%2Breally1.3.1-1/"
+  }
+]

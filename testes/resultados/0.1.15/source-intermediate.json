@@ -1,0 +1,3309 @@
+{
+  "schema": "linuxit-intermediate-check-v1",
+  "profile": "linux",
+  "date": "2026-10-19T14:23:08.592198-03:00",
+  "platform": "linux",
+  "python": "3.13.5",
+  "git_head_before_check": "257425a84f638f872386be7c499fe56030f1a968",
+  "candidate_directory": "/__w/Linuxit-PDF/Linuxit-PDF/analysis-local/ci-source/candidate",
+  "checks": [
+    {
+      "id": "candidate_matches_source",
+      "passed": true
+    },
+    {
+      "id": "candidate_python_compiles",
+      "passed": true,
+      "files": 156,
+      "scope": "CPython syntax/bytecode only; no native or GTK execution"
+    },
+    {
+      "id": "linux_prerequisites",
+      "passed": true,
+      "linux_host": true,
+      "x11_display": true,
+      "commands": {
+        "pdftocairo": "/usr/bin/pdftocairo",
+        "pdftotext": "/usr/bin/pdftotext",
+        "pdfinfo": "/usr/bin/pdfinfo",
+        "pdfunite": "/usr/bin/pdfunite",
+        "lp": "/usr/bin/lp",
+        "lpstat": "/usr/bin/lpstat",
+        "lpoptions": "/usr/bin/lpoptions"
+      }
+    },
+    {
+      "id": "tests_test*.py",
+      "passed": true,
+      "return_code": 0
+    },
+    {
+      "id": "gtk_smoke",
+      "passed": true,
+      "return_code": 0
+    },
+    {
+      "id": "candidate_unchanged_after_tests",
+      "passed": true
+    },
+    {
+      "id": "source_unchanged_after_tests",
+      "passed": true
+    }
+  ],
+  "test_runs": [
+    {
+      "schema": "linuxit-test-run-v1",
+      "tested_app": "/__w/Linuxit-PDF/Linuxit-PDF/analysis-local/ci-source/candidate/app",
+      "python": "3.13.5",
+      "test_pattern": "test*.py",
+      "full_suite_requested": true,
+      "display_present": true,
+      "run": 490,
+      "passed": 490,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_sec": 99.330886495,
+      "cases": [
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_sets_and_clears_value_and_visible_appearance",
+          "status": "passed",
+          "elapsed_sec": 0.02226986899999872
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_widget_absent_from_pages_is_unsupported",
+          "status": "passed",
+          "elapsed_sec": 0.004951508000004878
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_choice_selection_can_be_cleared",
+          "status": "passed",
+          "elapsed_sec": 0.01868491800000527
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_closed_outline_counts_remain_closed_after_move",
+          "status": "passed",
+          "elapsed_sec": 0.006431465999995112
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_delete_bookmark_removes_subtree_and_last_root",
+          "status": "passed",
+          "elapsed_sec": 0.0053328430000050275
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_delete_supported_annotation_preserves_widgets_and_other_pages",
+          "status": "passed",
+          "elapsed_sec": 0.005823763999998732
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_editable_combo_and_duplicate_exports_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.008693356999998514
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text",
+          "status": "passed",
+          "elapsed_sec": 0.005844984999995972
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_info_distinguishes_checkbox_radio_choice_combo_and_multiselect",
+          "status": "passed",
+          "elapsed_sec": 0.0029508610000021918
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_inherited_checkbox_flags_and_type_are_respected",
+          "status": "passed",
+          "elapsed_sec": 0.005836905999998976
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_invalid_annotation_geometry_and_extra_parameters_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0099849799999987
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_invalid_values_do_not_publish_partial_batch",
+          "status": "passed",
+          "elapsed_sec": 0.014106841000000259
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_locked_notes_widgets_and_replies_are_not_deleted",
+          "status": "passed",
+          "elapsed_sec": 0.0111272299999996
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_move_child_to_root_and_reorder_same_parent",
+          "status": "passed",
+          "elapsed_sec": 0.005601447000003645
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_move_into_descendant_invalid_positions_and_boolean_paths_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.008698790000011059
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_move_preserves_subtree_destinations_and_sibling_links",
+          "status": "passed",
+          "elapsed_sec": 0.007299310999997033
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_multiselect_uses_export_values_and_canonical_indices",
+          "status": "passed",
+          "elapsed_sec": 0.021409337999998
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_radio_activates_only_the_selected_widget_and_can_clear",
+          "status": "passed",
+          "elapsed_sec": 0.014724814000004471
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_radio_no_toggle_off_is_enforced",
+          "status": "passed",
+          "elapsed_sec": 0.0043538740000030884
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_read_only_and_unsupported_button_appearance_are_explicit",
+          "status": "passed",
+          "elapsed_sec": 0.00881056800000124
+        },
+        {
+          "id": "test_advanced_edits.AdvancedEditTests.test_single_and_combo_values_indices_and_generated_appearances_roundtrip",
+          "status": "passed",
+          "elapsed_sec": 0.006462099000003718
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_all_five_types_roundtrip_with_printable_embedded_appearance",
+          "status": "passed",
+          "elapsed_sec": 0.009461187999988852
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_boundary_strokes_have_positive_clipped_boxes_and_small_areas_renderable_numbers",
+          "status": "passed",
+          "elapsed_sec": 0.013826136000005818
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_deleting_new_types_uses_current_indices_and_preserves_forms_notes_and_other_page",
+          "status": "passed",
+          "elapsed_sec": 0.006632976000005897
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_edit_and_clear_comment_author_preserve_geometry_appearance_and_other_content",
+          "status": "passed",
+          "elapsed_sec": 0.018292079999994826
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_history_undo_redo_comment_delete_and_failed_branch_preserve_saved_copy",
+          "status": "passed",
+          "elapsed_sec": 1.9251973300000031
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_horizontal_vertical_and_reversed_lines_keep_endpoint_direction",
+          "status": "passed",
+          "elapsed_sec": 0.46242858799999453
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_invalid_area_and_crop_coordinates_refuse_the_entire_batch",
+          "status": "passed",
+          "elapsed_sec": 0.020923093000007498
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_invalid_line_points_page_and_extra_fields_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.023056702999994627
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_locked_related_and_unsupported_annotations_cannot_be_changed_or_deleted",
+          "status": "passed",
+          "elapsed_sec": 0.790868391999993
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_offsets_and_page_rotations_do_not_double_transform_geometry",
+          "status": "passed",
+          "elapsed_sec": 0.9547791529999898
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_real_worker_protocol_lists_new_types_and_author_and_refuses_source_and_destination_changes",
+          "status": "passed",
+          "elapsed_sec": 0.5896257179999935
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_squiggly_geometry_has_bounded_commands_even_on_extreme_page",
+          "status": "passed",
+          "elapsed_sec": 0.0024414789999980258
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_text_markup_quad_order_and_line_and_ellipse_metadata_are_distinct",
+          "status": "passed",
+          "elapsed_sec": 0.008010106000000405
+        },
+        {
+          "id": "test_annotation_extensions.AnnotationExtensionTests.test_utf8_comment_and_author_limits_and_nonstring_values_are_enforced",
+          "status": "passed",
+          "elapsed_sec": 0.05197328799999923
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_comment_dialog_prefills_selected_annotation_accepts_multiline_and_can_clear",
+          "status": "passed",
+          "elapsed_sec": 1.7864209570000043
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_edited_nontext_annotation_comment_is_searchable_after_reopening_saved_copy",
+          "status": "passed",
+          "elapsed_sec": 1.5461807090000121
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_invalid_line_is_explained_in_dialog_and_cancel_does_not_change_draft",
+          "status": "passed",
+          "elapsed_sec": 0.44190301400000465
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_offset_cropbox_and_rotation_render_line_at_transformed_location",
+          "status": "passed",
+          "elapsed_sec": 0.4362644499999959
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_real_dialogs_create_all_five_types_and_history_recreates_deleted_shape",
+          "status": "passed",
+          "elapsed_sec": 2.7600613919999972
+        },
+        {
+          "id": "test_annotation_extensions_gtk.AnnotationExtensionGTKTests.test_saved_five_appearances_have_expected_poppler_pixels_and_unfilled_interiors",
+          "status": "passed",
+          "elapsed_sec": 1.6293720120000046
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_cancelled_folder_dialog_writes_nothing",
+          "status": "passed",
+          "elapsed_sec": 0.35196845499999085
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_document_change_during_folder_dialog_invalidates_selection",
+          "status": "passed",
+          "elapsed_sec": 0.48579292799999507
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_nested_catalog_and_annotation_attachment_save_through_real_worker",
+          "status": "passed",
+          "elapsed_sec": 0.7453672880000113
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_panel_saves_selected_file_and_shows_conflict_without_overwrite",
+          "status": "passed",
+          "elapsed_sec": 0.5641912550000114
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks",
+          "status": "passed",
+          "elapsed_sec": 0.35055810000000065
+        },
+        {
+          "id": "test_attachment_panel_gtk.AttachmentGTKTests.test_unsafe_selected_row_disables_saving",
+          "status": "passed",
+          "elapsed_sec": 0.34951236999999935
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_advanced_modes_use_same_rules_in_attachment_worker",
+          "status": "passed",
+          "elapsed_sec": 0.0030241300000000138
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_cancellation_after_a_hit_stops_model_emission",
+          "status": "passed",
+          "elapsed_sec": 0.10151752799998803
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_cancellation_terminates_the_actual_child_and_does_not_create_files",
+          "status": "passed",
+          "elapsed_sec": 0.15212527599999248
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_changed_source_during_decode_is_not_a_successful_report",
+          "status": "passed",
+          "elapsed_sec": 0.0013940880000120615
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope",
+          "status": "passed",
+          "elapsed_sec": 0.20353786699999432
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_entry_page_and_hit_limits_are_explicit",
+          "status": "passed",
+          "elapsed_sec": 0.006760459000005881
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_invalid_request_fails_before_opening_source",
+          "status": "passed",
+          "elapsed_sec": 0.00015531400001123075
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_size_budget_declared_and_decoded_limits_do_not_hide_partial_state",
+          "status": "passed",
+          "elapsed_sec": 0.0026374290000035217
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_timeout_terminates_the_actual_child_and_reports_failure",
+          "status": "passed",
+          "elapsed_sec": 0.1016380330000004
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_tree_and_annotation_references_keep_separate_indices",
+          "status": "passed",
+          "elapsed_sec": 0.0023087290000063376
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_unsupported_invalid_utf8_malformed_and_encrypted_pdf_report_omissions",
+          "status": "passed",
+          "elapsed_sec": 0.004889865999999188
+        },
+        {
+          "id": "test_attachment_search.AttachmentSearchTests.test_utf8_bom_case_accents_and_whole_words_preserve_source",
+          "status": "passed",
+          "elapsed_sec": 0.0016920700000042643
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_cancelled_selection_starts_no_extraction",
+          "status": "passed",
+          "elapsed_sec": 0.10563305299999115
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_close_prevents_queued_extraction_and_late_widget_notifications",
+          "status": "passed",
+          "elapsed_sec": 0.10288234099999727
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_conflict_is_readable_and_does_not_replace_existing_content",
+          "status": "passed",
+          "elapsed_sec": 0.20697541500000227
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_display_names_remove_controls_without_interpreting_markup",
+          "status": "passed",
+          "elapsed_sec": 0.0007491710000095964
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_invalid_extraction_confirmation_does_not_claim_success",
+          "status": "passed",
+          "elapsed_sec": 0.10120460399998876
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_no_document_and_lazy_loading_do_not_start_workers",
+          "status": "passed",
+          "elapsed_sec": 0.0006536699999912798
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_real_listing_populates_selection_and_repeated_show_is_cached",
+          "status": "passed",
+          "elapsed_sec": 0.10179783699999234
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_real_worker_extracts_selected_attachment_and_restores_buttons",
+          "status": "passed",
+          "elapsed_sec": 0.20346158300000639
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_refresh_invalidates_the_selection_captured_before_a_dialog",
+          "status": "passed",
+          "elapsed_sec": 0.18665119799999275
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_stale_listing_callback_cannot_replace_a_new_document",
+          "status": "passed",
+          "elapsed_sec": 0.18134818000000053
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_switching_document_keeps_authorized_job_but_not_its_old_status",
+          "status": "passed",
+          "elapsed_sec": 0.27594045399999345
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_unsafe_name_cannot_be_extracted_even_if_selected",
+          "status": "passed",
+          "elapsed_sec": 0.09071897400001205
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_unsupported_pdf_is_an_error_not_an_empty_success",
+          "status": "passed",
+          "elapsed_sec": 0.09290020699999957
+        },
+        {
+          "id": "test_attachment_tasks.AttachmentWorkflowTests.test_worker_timeout_and_invalid_protocol_are_reported_without_tracebacks",
+          "status": "passed",
+          "elapsed_sec": 0.0012812909999979638
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_annotation_only_files_are_listed_and_extracted_in_page_order",
+          "status": "passed",
+          "elapsed_sec": 0.002536978999998496
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_annotation_without_file_spec_is_an_error",
+          "status": "passed",
+          "elapsed_sec": 0.0006128929999960064
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_cycles_and_repeated_nodes_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0016788669999954209
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_listing_nested_tree_never_decodes_payload",
+          "status": "passed",
+          "elapsed_sec": 0.0009462360000043191
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_malformed_tree_nodes_fail_instead_of_silent_truncation",
+          "status": "passed",
+          "elapsed_sec": 0.0035710679999994
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_nested_tree_preserves_duplicate_name_indices_and_bytes",
+          "status": "passed",
+          "elapsed_sec": 0.0017181690000001026
+        },
+        {
+          "id": "test_attachment_trees.AttachmentTreeTests.test_tree_depth_and_node_limits_fail_explicitly",
+          "status": "passed",
+          "elapsed_sec": 0.0012616390000061983
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_all_query_modes_limit_and_stale_after_matching",
+          "status": "passed",
+          "elapsed_sec": 0.004589007999996397
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_build_reopen_worker_and_query_preserve_sources_and_real_pages",
+          "status": "passed",
+          "elapsed_sec": 0.20270778700000847
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_changed_missing_sources_are_excluded_until_explicit_rebuild",
+          "status": "passed",
+          "elapsed_sec": 0.006635013999996886
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_concurrent_change_to_existing_index_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.0052759269999995695
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_encrypted_and_invalid_pdf_do_not_replace_valid_index",
+          "status": "passed",
+          "elapsed_sec": 0.007182339000010529
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_index_changed_during_query_is_not_a_successful_report",
+          "status": "passed",
+          "elapsed_sec": 0.0024546229999913294
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_invalid_schema_even_with_matching_hash_is_not_loaded",
+          "status": "passed",
+          "elapsed_sec": 0.004989166000001433
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_limits_and_duplicate_paths_are_rejected_without_index_replacement",
+          "status": "passed",
+          "elapsed_sec": 0.0029677899999995816
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_partial_creation_failure_removes_the_new_destination",
+          "status": "passed",
+          "elapsed_sec": 0.002595912000003864
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_sources_changed_after_extraction_abort_before_publication",
+          "status": "passed",
+          "elapsed_sec": 0.005267803999998932
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_unknown_destination_tampering_and_source_destination_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0031078279999974256
+        },
+        {
+          "id": "test_collection_index.CollectionIndexTests.test_update_failure_preserves_old_index_and_removes_temporary",
+          "status": "passed",
+          "elapsed_sec": 0.004241816999993375
+        },
+        {
+          "id": "test_comment_threads.CommentSearchGUITests.test_reply_and_bookmark_hits_select_the_actual_panel_row",
+          "status": "passed",
+          "elapsed_sec": 0.9574046369999962
+        },
+        {
+          "id": "test_comment_threads.CommentSearchGUITests.test_stop_retains_delivered_hits_and_late_results_cannot_repopulate",
+          "status": "passed",
+          "elapsed_sec": 1.0162028139999961
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_cancel_during_page_extraction_keeps_previous_batch_and_limit_bounds_geometry",
+          "status": "passed",
+          "elapsed_sec": 0.0015740939999915327
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_cycle_and_cross_page_parent_are_reported_without_guessed_destination",
+          "status": "passed",
+          "elapsed_sec": 0.00513798900000495
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_inspection_limit_and_cancel_are_explicit_and_partial_cache_is_not_retained",
+          "status": "passed",
+          "elapsed_sec": 0.0020017260000031456
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_parent_not_in_annots_is_included_once_and_marked",
+          "status": "passed",
+          "elapsed_sec": 0.0010132679999941274
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_replies_keep_distinct_objects_and_alias_is_not_a_second_occurrence",
+          "status": "passed",
+          "elapsed_sec": 0.0023867980000034095
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_rich_text_fallback_is_plain_text_and_group_is_not_a_reply",
+          "status": "passed",
+          "elapsed_sec": 0.002486693999998124
+        },
+        {
+          "id": "test_comment_threads.CommentThreadTests.test_subject_and_contents_do_not_create_a_cross_field_phrase",
+          "status": "passed",
+          "elapsed_sec": 0.0014340349999883983
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_blocked_linuxit_cannot_match_even_with_an_original_record",
+          "status": "passed",
+          "elapsed_sec": 0.0023249430000049642
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_changed_campaign_options_fixture_or_integrity_flags_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.001385557000006088
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_comparison_uses_measured_metrics_not_the_own_expected_contract",
+          "status": "passed",
+          "elapsed_sec": 0.0013389709999955812
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_different_destination_and_hit_order_are_reported",
+          "status": "passed",
+          "elapsed_sec": 0.0012892660000005662
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_duplicate_unknown_or_falsely_populated_not_run_records_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0012449260000124696
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_evidence_cannot_escape_the_supplied_directory",
+          "status": "passed",
+          "elapsed_sec": 0.0013144320000009202
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_existing_result_is_preserved_and_real_probe_reads_pdf_bytes",
+          "status": "passed",
+          "elapsed_sec": 0.0020918879999953788
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_matching_synthetic_records_require_review_and_never_approve_family",
+          "status": "passed",
+          "elapsed_sec": 0.0013007339999973055
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_missing_or_changed_evidence_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0017193320000075119
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_original_identity_offline_control_and_timestamp_are_required",
+          "status": "passed",
+          "elapsed_sec": 0.0013564729999870906
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_plan_reuses_known_cases_fixtures_and_families_without_ai",
+          "status": "passed",
+          "elapsed_sec": 0.0011198480000018662
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_runtime_errors_and_unavailable_are_inconclusive_not_feature_failures",
+          "status": "passed",
+          "elapsed_sec": 0.0014037450000046192
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_template_keeps_original_unknown_instead_of_copying_own_expectations",
+          "status": "passed",
+          "elapsed_sec": 0.0011126140000072837
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_typed_unknown_is_distinct_from_zero_and_order_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.001103358000008825
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_unknown_metrics_zero_based_pages_and_inconsistent_counts_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0013387740000041504
+        },
+        {
+          "id": "test_comparison_campaign.ComparisonControls.test_wrong_fixture_or_protocol_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0011566659999999729
+        },
+        {
+          "id": "test_consolidation.ConsolidationTests.test_active_process_cancellation",
+          "status": "passed",
+          "elapsed_sec": 0.30204707699999744
+        },
+        {
+          "id": "test_consolidation.ConsolidationTests.test_fresh_system_theme_initializes_and_migrates_legacy",
+          "status": "passed",
+          "elapsed_sec": 0.22902060399999868
+        },
+        {
+          "id": "test_copy_edit_gtk.CopyEditGTKTests.test_canceling_either_dialog_creates_nothing",
+          "status": "passed",
+          "elapsed_sec": 0.4532633630000049
+        },
+        {
+          "id": "test_copy_edit_gtk.CopyEditGTKTests.test_existing_destination_is_preserved_and_busy_state_is_released",
+          "status": "passed",
+          "elapsed_sec": 0.45811970500000143
+        },
+        {
+          "id": "test_copy_edit_gtk.CopyEditGTKTests.test_real_dialogs_and_worker_create_bookmark_note_and_form_copies",
+          "status": "passed",
+          "elapsed_sec": 0.9307634250000092
+        },
+        {
+          "id": "test_copy_edit_gtk.CopyEditGTKTests.test_reopening_same_document_during_dialog_blocks_stale_save",
+          "status": "passed",
+          "elapsed_sec": 0.3520239750000087
+        },
+        {
+          "id": "test_copy_edit_gtk.CopyEditGTKTests.test_repeated_clicks_do_not_queue_multiple_writes",
+          "status": "passed",
+          "elapsed_sec": 0.4574279149999967
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_bmp_webp_tiff_selection_worker_and_opening",
+          "status": "passed",
+          "elapsed_sec": 0.508036446999995
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_cancel_and_destroy_kill_real_worker_without_stale_callbacks",
+          "status": "passed",
+          "elapsed_sec": 0.07383904399999608
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_changed_created_pdf_is_not_opened_as_verified_result",
+          "status": "passed",
+          "elapsed_sec": 0.20711286099999882
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_dialog_cancellation_and_existing_destination_preserve_files",
+          "status": "passed",
+          "elapsed_sec": 0.16304791299999977
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_ordered_creation_opens_actual_pdf_and_poppler_renders_pixels",
+          "status": "passed",
+          "elapsed_sec": 0.6409023809999894
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_selection_remove_duplicates_order_and_empty_request",
+          "status": "passed",
+          "elapsed_sec": 0.0483423089999917
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_tiff_block_order_expands_pages_and_poppler_renders_each_color",
+          "status": "passed",
+          "elapsed_sec": 0.9622717489999957
+        },
+        {
+          "id": "test_creation_gtk.CreationGTKTests.test_total_tiff_page_limit_is_visible_and_no_partial_copy_is_opened",
+          "status": "passed",
+          "elapsed_sec": 0.229955511
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_changed_runtime_bytes_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.10886122199998738
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_complete_synthetic_payload_includes_hashed_notice",
+          "status": "passed",
+          "elapsed_sec": 0.0011409340000057
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_duplicate_inventory_and_escaping_paths_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0005465010000023085
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_missing_notice_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.000755819000005431
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_skips_and_duplicate_test_ids_cannot_approve_evidence",
+          "status": "passed",
+          "elapsed_sec": 0.001067108999990296
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_unattributed_file_and_unknown_derivation_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.000706654999987677
+        },
+        {
+          "id": "test_delivery_audit.DeliveryAuditControls.test_uncatalogued_native_file_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0007312400000074604
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+          "status": "passed",
+          "elapsed_sec": 0.25392877199999475
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+          "status": "passed",
+          "elapsed_sec": 0.005824743000005128
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+          "status": "passed",
+          "elapsed_sec": 0.10711864300000684
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0007232590000114669
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+          "status": "passed",
+          "elapsed_sec": 0.3087727949999959
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+          "status": "passed",
+          "elapsed_sec": 0.1066521909999949
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+          "status": "passed",
+          "elapsed_sec": 0.10698850800000059
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+          "status": "passed",
+          "elapsed_sec": 0.36260233999999514
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+          "status": "passed",
+          "elapsed_sec": 0.15188498500000946
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+          "status": "passed",
+          "elapsed_sec": 0.15758178700001224
+        },
+        {
+          "id": "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+          "status": "passed",
+          "elapsed_sec": 0.15799634100000048
+        },
+        {
+          "id": "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+          "status": "passed",
+          "elapsed_sec": 8.414599999184702e-05
+        },
+        {
+          "id": "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+          "status": "passed",
+          "elapsed_sec": 4.2319999991491386e-05
+        },
+        {
+          "id": "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+          "status": "passed",
+          "elapsed_sec": 4.171400000529957e-05
+        },
+        {
+          "id": "test_dynamic_campaign.DynamicCampaignTests.test_corpus_has_real_geometry_password_attachment_and_negative_inputs",
+          "status": "passed",
+          "elapsed_sec": 0.046483929999993734
+        },
+        {
+          "id": "test_dynamic_campaign.DynamicCampaignTests.test_existing_search_fixture_and_own_metadata_contract_are_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.025913672000001498
+        },
+        {
+          "id": "test_dynamic_campaign.DynamicCampaignTests.test_preparation_never_turns_expected_counts_into_observations_or_overwrites",
+          "status": "passed",
+          "elapsed_sec": 0.028998960999999213
+        },
+        {
+          "id": "test_dynamic_campaign.DynamicCampaignTests.test_sandbox_disables_sharing_and_maps_only_three_dedicated_folders",
+          "status": "passed",
+          "elapsed_sec": 0.0007413750000040409
+        },
+        {
+          "id": "test_dynamic_campaign.DynamicCampaignTests.test_wrong_identity_and_overlapping_paths_fail_before_creating_output",
+          "status": "passed",
+          "elapsed_sec": 0.0009930370000006405
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_buttons_undo_redo_save_selected_history_and_preserve_prior_copy",
+          "status": "passed",
+          "elapsed_sec": 1.5600940390000062
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_cancel_dialog_and_reopen_parent_close_draft_without_publishing",
+          "status": "passed",
+          "elapsed_sec": 0.8036074070000012
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_cancelling_save_and_repeated_clicks_do_not_duplicate_writes",
+          "status": "passed",
+          "elapsed_sec": 0.723974093999999
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_failed_operation_and_existing_destination_keep_history_usable",
+          "status": "passed",
+          "elapsed_sec": 1.0657973550000008
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_real_area_annotation_dialog_and_delete_keep_other_annotations",
+          "status": "passed",
+          "elapsed_sec": 1.0207583680000027
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_real_form_dialog_checkbox_radio_list_and_multiselect",
+          "status": "passed",
+          "elapsed_sec": 1.5955320599999965
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_real_move_and_delete_bookmark_dialogs_use_updated_paths",
+          "status": "passed",
+          "elapsed_sec": 0.980431627999991
+        },
+        {
+          "id": "test_edit_draft_gtk.EditDraftGTKTests.test_saved_form_and_highlight_render_with_poppler",
+          "status": "passed",
+          "elapsed_sec": 1.1009448380000038
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_changed_original_blocks_add_undo_redo_and_save",
+          "status": "passed",
+          "elapsed_sec": 0.6084835349999906
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_closed_session_refuses_work_and_removes_private_previews",
+          "status": "passed",
+          "elapsed_sec": 0.35857618
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_existing_destination_is_not_overwritten_and_draft_survives",
+          "status": "passed",
+          "elapsed_sec": 0.45651578199999676
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_new_branch_discards_redo_but_invalid_branch_preserves_it",
+          "status": "passed",
+          "elapsed_sec": 1.1175771700000041
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_operation_values_are_defensively_copied",
+          "status": "passed",
+          "elapsed_sec": 0.30521807399999545
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_pre_cancelled_session_does_not_start_worker",
+          "status": "passed",
+          "elapsed_sec": 0.10311977900001068
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_undo_all_restores_base_and_disables_save_until_redone",
+          "status": "passed",
+          "elapsed_sec": 0.6595635520000087
+        },
+        {
+          "id": "test_edit_history.EditHistoryTests.test_undo_redo_rebuild_actual_pdfs_and_save_current_cursor_only",
+          "status": "passed",
+          "elapsed_sec": 1.215821058000003
+        },
+        {
+          "id": "test_edit_tasks.EditWorkerTests.test_invalid_command_and_missing_destination_are_rejected_before_subprocess",
+          "status": "passed",
+          "elapsed_sec": 0.00034638299999301125
+        },
+        {
+          "id": "test_edit_tasks.EditWorkerTests.test_real_worker_roundtrip_and_existing_destination_message",
+          "status": "passed",
+          "elapsed_sec": 0.27843097499999203
+        },
+        {
+          "id": "test_edit_tasks.EditWorkerTests.test_timeout_requires_destination_check_and_does_not_claim_success",
+          "status": "passed",
+          "elapsed_sec": 0.0004568480000131103
+        },
+        {
+          "id": "test_edit_tasks.EditWorkerTests.test_wrong_protocol_is_not_success",
+          "status": "passed",
+          "elapsed_sec": 0.000488380999996707
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_all_supported_rotations_persist",
+          "status": "passed",
+          "elapsed_sec": 0.017151212000001692
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_combined_edits_preserve_tree_destinations_geometry_and_source",
+          "status": "passed",
+          "elapsed_sec": 0.004526763999990635
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_info_exposes_nested_paths_and_annotation_indices",
+          "status": "passed",
+          "elapsed_sec": 0.001167304999995622
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_invalid_paths_angles_and_note_indices_leave_no_output",
+          "status": "passed",
+          "elapsed_sec": 0.005270166999991943
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_late_failure_does_not_publish_earlier_valid_change",
+          "status": "passed",
+          "elapsed_sec": 0.0014591130000098929
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_locked_text_notes_cannot_be_edited",
+          "status": "passed",
+          "elapsed_sec": 0.006439197999995372
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_note_inspection_total_budget_is_reported_as_truncated",
+          "status": "passed",
+          "elapsed_sec": 0.7910138559999922
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_outline_cycles_and_depth_are_bounded",
+          "status": "passed",
+          "elapsed_sec": 0.001003916999991361
+        },
+        {
+          "id": "test_extended_edits.ExtendedEditTests.test_real_edit_worker_exposes_and_applies_new_operations",
+          "status": "passed",
+          "elapsed_sec": 0.19169098599999757
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_editable_combo_accepts_free_text_removes_stale_indices_and_embeds_appearance",
+          "status": "passed",
+          "elapsed_sec": 0.009239644000004432
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_editable_combo_preserves_export_label_schema_for_predefined_selection",
+          "status": "passed",
+          "elapsed_sec": 0.0079273049999955
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_editable_combo_refuses_control_characters_and_retains_source",
+          "status": "passed",
+          "elapsed_sec": 0.0049344060000038326
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_ink_limits_reject_unusable_paths_and_out_of_page_points",
+          "status": "passed",
+          "elapsed_sec": 0.0014550349999922219
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_ink_roundtrips_absolute_pdf_coordinates_and_vector_appearance",
+          "status": "passed",
+          "elapsed_sec": 0.007906268999988697
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_reply_chain_is_same_page_searchable_and_original_parent_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.0070247350000016695
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkRepliesTests.test_undo_redo_ink_and_reply_are_real_worker_draft_operations",
+          "status": "passed",
+          "elapsed_sec": 1.0164085249999886
+        },
+        {
+          "id": "test_forms_ink_replies.FormsInkReplyGUITests.test_drawing_pad_captures_drag_and_returns_pdf_stroke",
+          "status": "passed",
+          "elapsed_sec": 0.153880970000003
+        },
+        {
+          "id": "test_gui.GUIRegressionTests.test_booklet_preview_sides_binding_and_submit",
+          "status": "passed",
+          "elapsed_sec": 0.3040806270000047
+        },
+        {
+          "id": "test_gui.GUIRegressionTests.test_search_navigation_selection_and_rotation",
+          "status": "passed",
+          "elapsed_sec": 0.7284350620000026
+        },
+        {
+          "id": "test_gui.GUIRegressionTests.test_search_results_arrive_before_end_and_options_cancel_old_query",
+          "status": "passed",
+          "elapsed_sec": 1.4756427810000048
+        },
+        {
+          "id": "test_gui.GUIRegressionTests.test_search_sidebar_scroll_and_all_booklet_faces",
+          "status": "passed",
+          "elapsed_sec": 0.8342916740000135
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_actual_size_centers_the_visible_crop_not_the_media_origin",
+          "status": "passed",
+          "elapsed_sec": 0.0037893859999940105
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_booklet_bindings_and_sides_keep_crop_placement",
+          "status": "passed",
+          "elapsed_sec": 0.04005842299997653
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_fit_handles_negative_crop_origin",
+          "status": "passed",
+          "elapsed_sec": 0.003066275000009
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_inputs_and_in_memory_page_geometry_are_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.0011059330000193768
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_intrinsic_rotation_keeps_shifted_crop_aligned",
+          "status": "passed",
+          "elapsed_sec": 0.013287447999999813
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_nup_orders_place_shifted_pages_in_same_cells",
+          "status": "passed",
+          "elapsed_sec": 0.030739604000018517
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_poster_single_sheet_and_tiles_keep_crop_placement_without_marks",
+          "status": "passed",
+          "elapsed_sec": 0.01543620800001122
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_real_worker_prepares_shifted_crop_in_each_mode",
+          "status": "passed",
+          "elapsed_sec": 0.5534601239999972
+        },
+        {
+          "id": "test_imposition_cropbox.CropBoxImpositionTests.test_zero_origin_keeps_known_actual_size_position",
+          "status": "passed",
+          "elapsed_sec": 0.004019925000022795
+        },
+        {
+          "id": "test_installation_native.InstallationInfoTests.test_known_flatpak_identity_has_explicit_system_update_handoff",
+          "status": "passed",
+          "elapsed_sec": 0.0005347679999943011
+        },
+        {
+          "id": "test_installation_native.InstallationInfoTests.test_unrelated_or_malformed_metadata_cannot_change_update_command",
+          "status": "passed",
+          "elapsed_sec": 0.001291000000009035
+        },
+        {
+          "id": "test_installation_native.NativeChooserGUITests.test_native_chooser_accept_opens_transactionally_and_cancel_keeps_document",
+          "status": "passed",
+          "elapsed_sec": 0.3392706779999912
+        },
+        {
+          "id": "test_intermediate_check.IntermediateApprovalTests.test_complete_matching_run_is_accepted_but_wrong_app_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.00018903699998418233
+        },
+        {
+          "id": "test_intermediate_check.IntermediateApprovalTests.test_skipped_failed_empty_and_inconsistent_results_cannot_approve",
+          "status": "passed",
+          "elapsed_sec": 0.00030734700001744386
+        },
+        {
+          "id": "test_intermediate_check.IntermediateApprovalTests.test_snapshot_detects_changed_added_and_removed_source_but_ignores_bytecode",
+          "status": "passed",
+          "elapsed_sec": 0.001432655999991539
+        },
+        {
+          "id": "test_intermediate_check.IntermediateApprovalTests.test_subset_cannot_claim_full_linux_suite",
+          "status": "passed",
+          "elapsed_sec": 0.00013073600001689556
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_crossing_degenerate_nonfinite_and_excessive_measurements_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.00019048999999426997
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_distance_perimeter_area_units_and_calibration_have_known_geometric_results",
+          "status": "passed",
+          "elapsed_sec": 0.00013627999999243912
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_layer_view_changes_only_private_copy_configuration",
+          "status": "passed",
+          "elapsed_sec": 0.001676132999989477
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_locked_layer_and_existing_destination_are_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.0006660120000105962
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_reading_path_replacement_keeps_active_lease_and_never_deletes_original",
+          "status": "passed",
+          "elapsed_sec": 0.1014765190000162
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_voice_budget_and_missing_backend_are_explicit_without_creating_destination",
+          "status": "passed",
+          "elapsed_sec": 0.00038263700000129575
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_measurement_window_and_reader_layer_checkbox_use_implemented_backends",
+          "status": "passed",
+          "elapsed_sec": 0.3902898879999839
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_poppler_pixels_actually_hide_selected_layer",
+          "status": "passed",
+          "elapsed_sec": 0.048856671999999435
+        },
+        {
+          "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_real_offline_voice_wav_export_in_both_languages",
+          "status": "passed",
+          "elapsed_sec": 0.3038437730000112
+        },
+        {
+          "id": "test_ocr_gtk.OCRGTKTests.test_blank_page_has_explicit_no_text_notice",
+          "status": "passed",
+          "elapsed_sec": 0.8218237369999883
+        },
+        {
+          "id": "test_ocr_gtk.OCRGTKTests.test_cancel_and_document_close_stop_real_worker_and_ignore_stale_callbacks",
+          "status": "passed",
+          "elapsed_sec": 0.2952695820000031
+        },
+        {
+          "id": "test_ocr_gtk.OCRGTKTests.test_cancelled_dialog_and_existing_destination_keep_files",
+          "status": "passed",
+          "elapsed_sec": 0.3645019280000099
+        },
+        {
+          "id": "test_ocr_gtk.OCRGTKTests.test_changed_source_and_changed_result_are_not_silently_opened",
+          "status": "passed",
+          "elapsed_sec": 0.6609930959999986
+        },
+        {
+          "id": "test_ocr_gtk.OCRGTKTests.test_menu_workflow_recognizes_opens_and_renders_actual_copy",
+          "status": "passed",
+          "elapsed_sec": 1.1267206709999869
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_actual_portuguese_combined_models_and_300_dpi",
+          "status": "passed",
+          "elapsed_sec": 1.2101209580000045
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_blank_page_notice_and_page_order_are_real",
+          "status": "passed",
+          "elapsed_sec": 0.819134895000019
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+          "status": "passed",
+          "elapsed_sec": 0.24667758799998296
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_crop_and_rotation_preserve_display_size_and_raster_appearance",
+          "status": "passed",
+          "elapsed_sec": 0.5287430580000034
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+          "status": "passed",
+          "elapsed_sec": 0.90194255199998
+        },
+        {
+          "id": "test_ocr_linux.OCRLinuxTests.test_real_english_worker_adds_searchable_text_and_keeps_scan",
+          "status": "passed",
+          "elapsed_sec": 0.4210184179999885
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_attachment_count_limit_is_not_silent_truncation",
+          "status": "passed",
+          "elapsed_sec": 0.001155060000002095
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_declared_and_actual_size_limits_are_checked",
+          "status": "passed",
+          "elapsed_sec": 0.0025247430000092663
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_duplicate_names_are_selected_by_index_and_never_overwrite",
+          "status": "passed",
+          "elapsed_sec": 0.0018633640000018659
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_empty_catalog_returns_an_empty_list",
+          "status": "passed",
+          "elapsed_sec": 0.0005620560000068053
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_existing_destination_is_not_replaced",
+          "status": "passed",
+          "elapsed_sec": 0.0010508719999791083
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_extract_preserves_binary_content_hash_and_original",
+          "status": "passed",
+          "elapsed_sec": 0.001136826000021074
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_invalid_index_hash_and_destination_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.003122277999977996
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_invalid_pdf_is_not_reported_as_an_empty_inventory",
+          "status": "passed",
+          "elapsed_sec": 0.00024794799998062445
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_listing_keeps_duplicate_entries_and_does_not_decode_payloads",
+          "status": "passed",
+          "elapsed_sec": 0.0009592000000111511
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_password_and_portfolio_are_explicitly_unsupported",
+          "status": "passed",
+          "elapsed_sec": 0.005053805999978067
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_source_changed_during_decode_leaves_no_output",
+          "status": "passed",
+          "elapsed_sec": 0.0010709379999980229
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_source_hash_prevents_extracting_from_a_changed_pdf",
+          "status": "passed",
+          "elapsed_sec": 0.0023608060000128717
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_unsafe_pdf_names_are_reported_and_refused_without_writes",
+          "status": "passed",
+          "elapsed_sec": 0.027367975999993632
+        },
+        {
+          "id": "test_pdf_attachments.AttachmentTests.test_worker_protocol_lists_extracts_and_reports_conflict",
+          "status": "passed",
+          "elapsed_sec": 0.26727588100001753
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_changed_source_during_serialization_is_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0027433039999777975
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_combined_copy_preserves_source_metadata_attachment_and_previous_objects",
+          "status": "passed",
+          "elapsed_sec": 0.00788561599998161
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_default_note_rectangle_stays_inside_offset_rotated_cropbox",
+          "status": "passed",
+          "elapsed_sec": 0.005799697000014703
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_empty_and_oversized_batches_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0011966009999753169
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported",
+          "status": "passed",
+          "elapsed_sec": 0.009804169000005913
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_existing_destination_and_original_are_never_overwritten",
+          "status": "passed",
+          "elapsed_sec": 0.0008228240000107689
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_form_max_length_and_value_types_are_enforced",
+          "status": "passed",
+          "elapsed_sec": 0.0031244249999815565
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_info_reports_identity_pages_and_text_fields_without_writes",
+          "status": "passed",
+          "elapsed_sec": 0.0012673720000009325
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_invalid_page_title_and_operation_shapes_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.004095771000010018
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_invalid_second_operation_discards_entire_batch",
+          "status": "passed",
+          "elapsed_sec": 0.0018323380000140332
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_nested_field_inherits_read_only_and_max_length",
+          "status": "passed",
+          "elapsed_sec": 0.009077989000019215
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_note_coordinates_are_finite_ordered_and_inside_cropbox",
+          "status": "passed",
+          "elapsed_sec": 0.004645709000016041
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_read_only_form_field_and_unknown_field_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.00368381799998474
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_worker_inspects_and_saves_a_copy_from_json_without_modifying_source",
+          "status": "passed",
+          "elapsed_sec": 0.18991038199999366
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_writer_failure_removes_private_temporary_and_creates_no_destination",
+          "status": "passed",
+          "elapsed_sec": 0.0022491299999956027
+        },
+        {
+          "id": "test_pdf_changes.PDFChangeTests.test_wrong_identity_refuses_before_creating_output",
+          "status": "passed",
+          "elapsed_sec": 0.0008689469999865196
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_alpha_and_palette_transparency_are_composited_on_white",
+          "status": "passed",
+          "elapsed_sec": 0.0035071869999967475
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_bmp_renamed_as_jpeg_is_identified_by_content",
+          "status": "passed",
+          "elapsed_sec": 0.0023922400000060406
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_bmp_webp_and_single_tiff_preserve_pixels_dimensions_and_order",
+          "status": "passed",
+          "elapsed_sec": 0.0043739099999982045
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_byte_and_output_budgets_leave_no_partial_file",
+          "status": "passed",
+          "elapsed_sec": 0.0025427050000246254
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_cancelled_request_and_excessive_json_never_start_worker",
+          "status": "passed",
+          "elapsed_sec": 0.0009959550000075978
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_changed_or_missing_source_refuses_publication",
+          "status": "passed",
+          "elapsed_sec": 0.0021374910000133696
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_corrupt_unsupported_animated_and_truncated_inputs_leave_no_output",
+          "status": "passed",
+          "elapsed_sec": 0.0017930150000040612
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_destination_appearing_during_conversion_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.002509991000010814
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_exif_orientation_applied_and_private_metadata_not_copied",
+          "status": "passed",
+          "elapsed_sec": 0.002794414000021561
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_existing_destination_and_source_never_overwritten",
+          "status": "passed",
+          "elapsed_sec": 0.0005672389999915595
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_grayscale_and_cmyk_inputs_become_rgb",
+          "status": "passed",
+          "elapsed_sec": 0.0029115610000189918
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_invalid_request_duplicates_paths_dpi_and_destination",
+          "status": "passed",
+          "elapsed_sec": 0.0007527379999885397
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_invalid_worker_protocol_not_presented_as_saved",
+          "status": "passed",
+          "elapsed_sec": 0.0006839440000021568
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_multiframe_tiff_is_imported_and_animated_webp_is_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0038631459999862727
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_order_dimensions_lossless_rgb_and_source_identity",
+          "status": "passed",
+          "elapsed_sec": 0.0034397710000177995
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_partial_final_write_removed_on_handled_failure",
+          "status": "passed",
+          "elapsed_sec": 0.0017860160000111591
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_pinned_fixture_manifest_matches_sources_and_oriented_dimensions",
+          "status": "passed",
+          "elapsed_sec": 0.003007295000003296
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_pixel_and_image_count_budgets_checked_before_page_creation",
+          "status": "passed",
+          "elapsed_sec": 0.0012271190000205934
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_real_worker_roundtrip_and_existing_destination_error",
+          "status": "passed",
+          "elapsed_sec": 0.20269530699999905
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_real_worker_supports_compressed_tiff_without_external_conversion",
+          "status": "passed",
+          "elapsed_sec": 0.15255175000001486
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_webp_alpha_is_composited_over_white",
+          "status": "passed",
+          "elapsed_sec": 0.0036632320000080654
+        },
+        {
+          "id": "test_pdf_creation.PDFCreationTests.test_writer_failure_removes_staging",
+          "status": "passed",
+          "elapsed_sec": 0.0014283950000049117
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_blank_text_is_reported_without_claiming_recognition",
+          "status": "passed",
+          "elapsed_sec": 0.011095557000004419
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_cancelled_request_never_starts_child_and_command_requires_destination",
+          "status": "passed",
+          "elapsed_sec": 0.0008940779999875303
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_changed_source_is_not_published",
+          "status": "passed",
+          "elapsed_sec": 0.009676192999990008
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_cropbox_rotation_userunit_and_nonfinite_geometry_guarded",
+          "status": "passed",
+          "elapsed_sec": 0.0012275169999895752
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_destination_appearing_at_publication_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.008946667000003572
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_encrypted_input_is_rejected_without_attempting_empty_password",
+          "status": "passed",
+          "elapsed_sec": 0.0023478560000000925
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_existing_destination_original_and_dangling_link_not_overwritten",
+          "status": "passed",
+          "elapsed_sec": 0.0007025179999970987
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_external_missing_failure_and_timeout_use_bounded_local_errors",
+          "status": "passed",
+          "elapsed_sec": 0.0010043999999993503
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_invalid_request_types_values_and_extra_keys_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0007109409999941363
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_missing_language_stops_before_rendering",
+          "status": "passed",
+          "elapsed_sec": 0.0011421970000071724
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_missing_wrong_geometry_and_multiple_ocr_pages_refused",
+          "status": "passed",
+          "elapsed_sec": 0.011180885999976908
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_output_budget_failure_leaves_no_destination",
+          "status": "passed",
+          "elapsed_sec": 0.0034679360000211545
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_page_source_pixel_and_total_budgets_precede_external_tools",
+          "status": "passed",
+          "elapsed_sec": 0.0019722830000148406
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_publication_copy_failure_cleans_staging",
+          "status": "passed",
+          "elapsed_sec": 0.007937897000005023
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original",
+          "status": "passed",
+          "elapsed_sec": 0.01042829300001813
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_renderer_missing_or_wrong_size_is_not_accepted",
+          "status": "passed",
+          "elapsed_sec": 0.0064692429999979595
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_source_identity_mismatch_prevents_external_tools",
+          "status": "passed",
+          "elapsed_sec": 0.0007615370000166877
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_tool_arguments_do_not_use_shell_and_thread_count_is_bounded",
+          "status": "passed",
+          "elapsed_sec": 0.0006659249999927397
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_worker_reply_cannot_claim_a_different_destination_or_missing_page",
+          "status": "passed",
+          "elapsed_sec": 0.009493127000013146
+        },
+        {
+          "id": "test_pdf_ocr.OCRControlsTests.test_wrong_extension_and_missing_parent_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0006107570000040141
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel",
+          "status": "passed",
+          "elapsed_sec": 0.0012572530000056759
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_accessible_text_refuses_encrypted_pdf_even_with_empty_password",
+          "status": "passed",
+          "elapsed_sec": 0.0031740689999821825
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_accessible_text_validation_limit_and_source_change",
+          "status": "passed",
+          "elapsed_sec": 0.0028246779999960836
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_aes256_roundtrip_roles_permissions_metadata_and_attachments",
+          "status": "passed",
+          "elapsed_sec": 0.028357386000010365
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_cancellation_and_invalid_confirmation_never_report_success",
+          "status": "passed",
+          "elapsed_sec": 0.001395095999981777
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_concurrent_destination_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.01578558599999269
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_each_permission_flag_and_accessibility_bit_are_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.13756712299999663
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_encrypted_inspection_correct_wrong_and_missing_credentials",
+          "status": "passed",
+          "elapsed_sec": 0.03414885099999765
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_encrypted_source_not_unprotected_or_rewritten",
+          "status": "passed",
+          "elapsed_sec": 0.018256449000006114
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_existing_destination_and_source_never_overwritten",
+          "status": "passed",
+          "elapsed_sec": 0.0013354270000149882
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_handled_partial_write_removed_and_error_sanitized",
+          "status": "passed",
+          "elapsed_sec": 0.017707784000009497
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_invalid_protocol_and_permission_types_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.001281223999995973
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_new_password_limits_and_distinct_roles",
+          "status": "passed",
+          "elapsed_sec": 0.001250403000000233
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_only_owner_authentication_can_create_unprotected_copy",
+          "status": "passed",
+          "elapsed_sec": 0.17844058599999357
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_owner_copy_refuses_special_restrictions_and_signature_fields",
+          "status": "passed",
+          "elapsed_sec": 0.03774291700000276
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_owner_copy_stale_destination_and_partial_failure_are_safe",
+          "status": "passed",
+          "elapsed_sec": 0.023794355000006817
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_real_worker_secret_transport_and_error_channel",
+          "status": "passed",
+          "elapsed_sec": 0.3982409500000017
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_signed_xfa_portfolio_and_permissions_sources_refused",
+          "status": "passed",
+          "elapsed_sec": 0.004987091000003829
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_stale_source_and_source_size_page_output_limits",
+          "status": "passed",
+          "elapsed_sec": 0.007461813000020356
+        },
+        {
+          "id": "test_pdf_security.PDFSecurityTests.test_unencrypted_inspection_identity_pages_and_permissions",
+          "status": "passed",
+          "elapsed_sec": 0.0014941940000028353
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_appended_bytes_report_only_signed_revision_coverage",
+          "status": "passed",
+          "elapsed_sec": 0.015514730999996118
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_der_bounds_and_padding_are_checked",
+          "status": "passed",
+          "elapsed_sec": 0.0008629559999917547
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_encrypted_pdf_input_size_and_invalid_request_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.0027045420000035847
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_invalid_worker_confirmation_is_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0009780039999895962
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_missing_verifier_and_source_changes_do_not_approve_integrity",
+          "status": "passed",
+          "elapsed_sec": 0.02000357000000008
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_modified_signed_bytes_fail_cryptographic_verification",
+          "status": "passed",
+          "elapsed_sec": 0.01424089799999706
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_real_detached_cms_integrity_is_separate_from_certificate_trust",
+          "status": "passed",
+          "elapsed_sec": 0.013506279000012
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_real_worker_roundtrip_and_cancelled_request",
+          "status": "passed",
+          "elapsed_sec": 0.1516777960000013
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_unsigned_fields_and_count_limit_are_explicit",
+          "status": "passed",
+          "elapsed_sec": 0.002777688000008993
+        },
+        {
+          "id": "test_pdf_signatures.PDFSignatureTests.test_unsupported_filter_or_invalid_byte_range_never_report_verified",
+          "status": "passed",
+          "elapsed_sec": 0.01252046400000495
+        },
+        {
+          "id": "test_preferences_animation.PreferencesAnimationTests.test_failed_preference_write_preserves_old_values_and_cleans_staging",
+          "status": "passed",
+          "elapsed_sec": 0.00326213600001779
+        },
+        {
+          "id": "test_preferences_animation.PreferencesAnimationTests.test_frame_limit_refuses_whole_import_without_partial_pdf",
+          "status": "passed",
+          "elapsed_sec": 0.0014429130000053192
+        },
+        {
+          "id": "test_preferences_animation.PreferencesAnimationTests.test_gif_apng_webp_frames_expand_only_when_explicitly_requested",
+          "status": "passed",
+          "elapsed_sec": 0.4604884409999954
+        },
+        {
+          "id": "test_preferences_animation.PreferencesAnimationTests.test_portable_pixmap_and_icon_are_decoded_as_static_images",
+          "status": "passed",
+          "elapsed_sec": 0.0056245880000176385
+        },
+        {
+          "id": "test_preferences_animation.PreferencesAnimationTests.test_preferences_roundtrip_and_invalid_or_truncated_file_falls_back",
+          "status": "passed",
+          "elapsed_sec": 0.0032234579999794732
+        },
+        {
+          "id": "test_preferences_animation.ReadingPreferencesGUITests.test_saved_preferences_are_applied_when_opening_next_pdf",
+          "status": "passed",
+          "elapsed_sec": 0.23842712999999094
+        },
+        {
+          "id": "test_preserved_corpus.PreservedCorpusTests.test_changed_bytes_rejected_before_destination_creation",
+          "status": "passed",
+          "elapsed_sec": 0.0021120640000162894
+        },
+        {
+          "id": "test_preserved_corpus.PreservedCorpusTests.test_exact_eight_inputs_reused_without_templates_or_protocol_changes",
+          "status": "passed",
+          "elapsed_sec": 0.0015736420000109774
+        },
+        {
+          "id": "test_preserved_corpus.PreservedCorpusTests.test_manifest_cannot_add_traversal_or_duplicate_entries",
+          "status": "passed",
+          "elapsed_sec": 0.0015316200000086155
+        },
+        {
+          "id": "test_preserved_corpus.PreservedCorpusTests.test_manifest_cannot_replace_baseline_hash",
+          "status": "passed",
+          "elapsed_sec": 0.001103949999986753
+        },
+        {
+          "id": "test_preserved_corpus.PreservedCorpusTests.test_missing_fixture_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.001087278999989394
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+          "status": "passed",
+          "elapsed_sec": 1.5386777440000117
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+          "status": "passed",
+          "elapsed_sec": 0.46449570400000084
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+          "status": "passed",
+          "elapsed_sec": 0.37371507399998904
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+          "status": "passed",
+          "elapsed_sec": 0.23700989699997876
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+          "status": "passed",
+          "elapsed_sec": 0.3943137489999913
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+          "status": "passed",
+          "elapsed_sec": 0.3551660610000056
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+          "status": "passed",
+          "elapsed_sec": 0.2858423979999998
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+          "status": "passed",
+          "elapsed_sec": 0.29705078500001036
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+          "status": "passed",
+          "elapsed_sec": 0.28344433099999833
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+          "status": "passed",
+          "elapsed_sec": 0.3532423119999919
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+          "status": "passed",
+          "elapsed_sec": 0.2566798169999913
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+          "status": "passed",
+          "elapsed_sec": 0.6465053759999932
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+          "status": "passed",
+          "elapsed_sec": 0.6585104549999983
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session",
+          "status": "passed",
+          "elapsed_sec": 0.3586636510000005
+        },
+        {
+          "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input",
+          "status": "passed",
+          "elapsed_sec": 1.1796066309999844
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_booklet_generated_sides_and_binding",
+          "status": "passed",
+          "elapsed_sec": 0.022257193000001507
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_cache_distinguishes_documents",
+          "status": "passed",
+          "elapsed_sec": 0.0647105310000029
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_intrinsic_rotation_and_cropbox_match_text_geometry",
+          "status": "passed",
+          "elapsed_sec": 0.03923515399998223
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_manual_booklet_sides_are_not_duplex",
+          "status": "passed",
+          "elapsed_sec": 0.0010596350000184884
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_nup_worker_rejects_fractional_count",
+          "status": "passed",
+          "elapsed_sec": 0.0006916410000030737
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_search_has_individual_occurrence_coordinates",
+          "status": "passed",
+          "elapsed_sec": 0.01991260599999123
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_search_phrases_and_casefold_expansion",
+          "status": "passed",
+          "elapsed_sec": 0.032421557000020584
+        },
+        {
+          "id": "test_regressions.CoreRegressionTests.test_worker_prepares_nup_and_poster",
+          "status": "passed",
+          "elapsed_sec": 0.19176685299999008
+        },
+        {
+          "id": "test_search.SearchTests.test_cache_eviction_and_changed_file",
+          "status": "passed",
+          "elapsed_sec": 0.08157175299999153
+        },
+        {
+          "id": "test_search.SearchTests.test_cache_reuse_and_cancellation_progress",
+          "status": "passed",
+          "elapsed_sec": 0.07818542900000125
+        },
+        {
+          "id": "test_search.SearchTests.test_hyphenation_does_not_join_columns",
+          "status": "passed",
+          "elapsed_sec": 0.0007276039999908335
+        },
+        {
+          "id": "test_search.SearchTests.test_options_and_real_pdf",
+          "status": "passed",
+          "elapsed_sec": 0.011783833000009736
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_bad_zip_entities_expansion_and_unsupported_encoding_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.010880939000003309
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_competing_writer_is_refused_and_does_not_remove_someone_elses_lock",
+          "status": "passed",
+          "elapsed_sec": 0.0010834880000061275
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_docx_odt_and_html_search_without_extracting_or_executing_anything",
+          "status": "passed",
+          "elapsed_sec": 0.0015757489999828067
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_index_review_removes_unselected_source_and_refreshes_changed_text",
+          "status": "passed",
+          "elapsed_sec": 0.004754153000021688
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_portuguese_and_english_stemming_match_words_and_preserve_actual_spans",
+          "status": "passed",
+          "elapsed_sec": 0.08661890999999855
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_rich_runs_remain_adjacent_and_paragraphs_are_separated",
+          "status": "passed",
+          "elapsed_sec": 0.0002842830000133745
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_stemming_is_available_in_attachment_worker_and_saved_index",
+          "status": "passed",
+          "elapsed_sec": 0.3039629669999897
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchExtensionTests.test_vendored_snowball_files_match_the_pinned_distribution_and_include_license",
+          "status": "passed",
+          "elapsed_sec": 0.0012611569999876338
+        },
+        {
+          "id": "test_search_batch_extensions.SearchBatchGUITests.test_stemming_modes_are_exposed_in_reader_and_collection",
+          "status": "passed",
+          "elapsed_sec": 0.6344538669999906
+        },
+        {
+          "id": "test_search_comment_author.CommentAuthorTests.test_author_matching_respects_case_whole_words_and_accents",
+          "status": "passed",
+          "elapsed_sec": 0.0011461590000010347
+        },
+        {
+          "id": "test_search_comment_author.CommentAuthorTests.test_comment_without_author_still_searches_subject_and_body",
+          "status": "passed",
+          "elapsed_sec": 0.0007492670000033286
+        },
+        {
+          "id": "test_search_comment_author.CommentAuthorTests.test_preserved_author_only_term_matches_the_recorded_page",
+          "status": "passed",
+          "elapsed_sec": 0.0006360890000109976
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_attachment_scope_displays_partial_coverage_and_distinct_identity",
+          "status": "passed",
+          "elapsed_sec": 0.8951406369999972
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_closing_collection_terminates_pending_worker_without_callbacks",
+          "status": "passed",
+          "elapsed_sec": 0.2736666750000154
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_collection_build_query_and_open_result_on_its_actual_page",
+          "status": "passed",
+          "elapsed_sec": 0.8921626890000027
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_collection_changed_result_is_refused_before_opening",
+          "status": "passed",
+          "elapsed_sec": 0.43954837699999416
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_mode_controls_geometry_distance_and_bad_syntax",
+          "status": "passed",
+          "elapsed_sec": 1.892222552000021
+        },
+        {
+          "id": "test_search_extensions_gtk.SearchExtensionGTKTests.test_old_attachment_results_do_not_repopulate_another_document",
+          "status": "passed",
+          "elapsed_sec": 0.8357289040000069
+        },
+        {
+          "id": "test_search_highlights.SearchHighlightGUITests.test_closing_window_removes_pending_search",
+          "status": "passed",
+          "elapsed_sec": 0.23672833300000207
+        },
+        {
+          "id": "test_search_highlights.SearchHighlightGUITests.test_highlight_preference_and_navigation_change_pixels_without_new_search",
+          "status": "passed",
+          "elapsed_sec": 0.6181814229999816
+        },
+        {
+          "id": "test_search_highlights.SearchHighlightGUITests.test_queued_navigation_does_not_touch_destroyed_widgets",
+          "status": "passed",
+          "elapsed_sec": 0.6168331279999961
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_advanced_token_length_guard_does_not_change_literal_contract",
+          "status": "passed",
+          "elapsed_sec": 0.001390122999993082
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_invalid_syntax_distance_and_expansion_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.0001283999999941443
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_literal_preserves_punctuation_unicode_and_whole_words",
+          "status": "passed",
+          "elapsed_sec": 4.9598999993349935e-05
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_metadata_uses_same_modes_and_invalid_query_does_not_parse",
+          "status": "passed",
+          "elapsed_sec": 0.0005630269999983284
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_page_geometry_keeps_owner_rectangles_for_both_modes",
+          "status": "passed",
+          "elapsed_sec": 8.249399999726847e-05
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_proximity_uses_total_intervening_words_and_query_order",
+          "status": "passed",
+          "elapsed_sec": 5.7655999995631646e-05
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_repeated_terms_and_nonoverlapping_occurrences",
+          "status": "passed",
+          "elapsed_sec": 3.310999997552244e-05
+        },
+        {
+          "id": "test_search_modes.SearchModeTests.test_wildcards_match_complete_unicode_words_without_regex",
+          "status": "passed",
+          "elapsed_sec": 4.4524999992745506e-05
+        },
+        {
+          "id": "test_search_scopes.SearchScopeGUITests.test_ui_toggles_scopes_and_navigates_bookmark_result",
+          "status": "passed",
+          "elapsed_sec": 1.6957155679999971
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_bookmark_without_local_page_is_not_given_a_fake_destination",
+          "status": "passed",
+          "elapsed_sec": 0.007642223999994258
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_cached_metadata_rejects_changed_document",
+          "status": "passed",
+          "elapsed_sec": 0.003999558999993269
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_comment_subject_contents_and_author_are_searchable",
+          "status": "passed",
+          "elapsed_sec": 0.003450587999992649
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_global_limit_progress_and_cancel_cover_metadata",
+          "status": "passed",
+          "elapsed_sec": 0.026569152000007534
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_real_document_scopes_are_independent_and_keep_destination",
+          "status": "passed",
+          "elapsed_sec": 0.02122074999999768
+        },
+        {
+          "id": "test_search_scopes.SearchScopeTests.test_unicode_combining_marks_are_word_characters",
+          "status": "passed",
+          "elapsed_sec": 0.0027785529999846403
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+          "status": "passed",
+          "elapsed_sec": 0.29599595100000897
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_f6_focus_regions_names_and_list_arrow_delegation",
+          "status": "passed",
+          "elapsed_sec": 0.24611603200000332
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_no_text_and_encrypted_pages_have_explicit_limits",
+          "status": "passed",
+          "elapsed_sec": 0.5679487889999848
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_obsolete_page_text_does_not_replace_newer_page",
+          "status": "passed",
+          "elapsed_sec": 0.259204426999986
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_real_poppler_text_is_exposed_through_atk_text_interface",
+          "status": "passed",
+          "elapsed_sec": 0.6209986970000045
+        },
+        {
+          "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_text_limit_and_document_close_clear_the_accessible_window",
+          "status": "passed",
+          "elapsed_sec": 0.5016569899999865
+        },
+        {
+          "id": "test_security_accessibility_gtk.ExtendedEditGTKTests.test_real_dialogs_rename_note_and_rotation_save_new_copies",
+          "status": "passed",
+          "elapsed_sec": 0.9330824600000085
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_cancel_and_destroy_stop_actual_security_process",
+          "status": "passed",
+          "elapsed_sec": 0.3386122900000146
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_document_change_during_destination_dialog_discards_request",
+          "status": "passed",
+          "elapsed_sec": 0.41565171899998177
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_encrypted_inspection_wrong_and_owner_credentials",
+          "status": "passed",
+          "elapsed_sec": 0.5960978089999855
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_inspect_protect_and_secrets_cleared_without_source_change",
+          "status": "passed",
+          "elapsed_sec": 0.7162288610000189
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_owner_copy_is_readable_by_main_reader_and_original_is_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.7969037839999942
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_owner_copy_rejects_opening_password_and_clears_it",
+          "status": "passed",
+          "elapsed_sec": 0.5487298420000002
+        },
+        {
+          "id": "test_security_accessibility_gtk.SecurityGTKTests.test_password_mismatch_and_cancelled_destination_create_nothing",
+          "status": "passed",
+          "elapsed_sec": 0.41375118000001976
+        },
+        {
+          "id": "test_selection_print_batch.PrintPreparationGUITests.test_cancelling_preparation_never_calls_printer_submission",
+          "status": "passed",
+          "elapsed_sec": 0.24425633699999594
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_cancel_terminates_real_preparation_child_and_removes_partial_output",
+          "status": "passed",
+          "elapsed_sec": 0.2520887549999884
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_new_json_print_worker_produces_valid_output_without_changing_source",
+          "status": "passed",
+          "elapsed_sec": 0.10233752199999913
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_print_output_cannot_overwrite_original_and_nonfinite_parameters_fail_early",
+          "status": "passed",
+          "elapsed_sec": 0.0007498370000007526
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_save_print_copy_is_atomic_on_failure_and_refuses_original",
+          "status": "passed",
+          "elapsed_sec": 0.0032576190000099814
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_selection_retains_unicode_order_and_separates_columns",
+          "status": "passed",
+          "elapsed_sec": 0.00035700699999097196
+        },
+        {
+          "id": "test_selection_print_batch.SelectionPrintBatchTests.test_touching_edge_is_not_a_selection_and_reversed_drag_is_equivalent",
+          "status": "passed",
+          "elapsed_sec": 0.0003086609999911616
+        },
+        {
+          "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_divider_hide_show_and_reading_restore_keep_controls_visible",
+          "status": "passed",
+          "elapsed_sec": 1.0196662580000009
+        },
+        {
+          "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_five_panel_headers_fit_default_and_small_window",
+          "status": "passed",
+          "elapsed_sec": 2.19470350200001
+        },
+        {
+          "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_long_attachment_name_keeps_header_and_save_button_inside_panel",
+          "status": "passed",
+          "elapsed_sec": 0.9119620870000062
+        },
+        {
+          "id": "test_signature_gtk.SignatureGTKTests.test_integrity_ui_reports_verification_without_certificate_trust",
+          "status": "passed",
+          "elapsed_sec": 0.6354368780000073
+        },
+        {
+          "id": "test_signature_gtk.SignatureGTKTests.test_unsigned_and_encrypted_inputs_have_distinct_results",
+          "status": "passed",
+          "elapsed_sec": 0.6316683050000051
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_changed_source_and_existing_signature_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.1622955819999845
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_direct_encrypted_extract_search_and_print_refuse_permission_denial",
+          "status": "passed",
+          "elapsed_sec": 0.03213780900000529
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_password_session_can_read_portfolio_members_and_retains_permission_policy",
+          "status": "passed",
+          "elapsed_sec": 0.15898824200002082
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_portfolio_members_are_listed_and_extracted_without_running_layout",
+          "status": "passed",
+          "elapsed_sec": 0.002519621999994115
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_signed_copy_verifies_covers_file_and_does_not_change_original_or_identity",
+          "status": "passed",
+          "elapsed_sec": 0.10322211799999081
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_worker_uses_selected_identity_and_tampered_signed_bytes_fail",
+          "status": "passed",
+          "elapsed_sec": 0.28617593900000315
+        },
+        {
+          "id": "test_signing_attachments_permissions.SigningAttachmentsPermissionTests.test_wrong_key_password_and_existing_destination_never_publish_or_expose_secret",
+          "status": "passed",
+          "elapsed_sec": 0.002902867999978298
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_cancelled_worker_does_not_begin_copy",
+          "status": "passed",
+          "elapsed_sec": 0.000925467000001845
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_existing_file_and_destination_race_are_never_overwritten",
+          "status": "passed",
+          "elapsed_sec": 0.0034680169999887767
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_final_name_is_absent_while_real_copy_is_in_progress",
+          "status": "passed",
+          "elapsed_sec": 0.004704060999983994
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_hard_link_fallback_is_exclusive_and_publishes_complete_inode",
+          "status": "passed",
+          "elapsed_sec": 0.0011440799999888895
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_invalid_requests_remote_paths_and_same_source_destination_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.001457055000003038
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_source_changed_before_or_during_copy_refuses_publication",
+          "status": "passed",
+          "elapsed_sec": 0.0028412940000066556
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_unsupported_atomic_filesystem_is_refused_without_unsafe_fallback",
+          "status": "passed",
+          "elapsed_sec": 0.0012672340000108306
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_worker_roundtrip_preserves_source_and_never_claims_remote_sync",
+          "status": "passed",
+          "elapsed_sec": 0.1562489469999946
+        },
+        {
+          "id": "test_sync_folders.AtomicLocalCopyTests.test_write_flush_and_publication_failures_leave_no_final_or_staging_file",
+          "status": "passed",
+          "elapsed_sec": 0.00666257700001438
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_corrupt_oversized_and_malicious_settings_fall_back_without_network",
+          "status": "passed",
+          "elapsed_sec": 0.0023996220000128687
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_failed_preference_replacement_preserves_previous_bytes",
+          "status": "passed",
+          "elapsed_sec": 0.002873440999991317
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_forget_preserves_files_and_other_folder_preferences",
+          "status": "passed",
+          "elapsed_sec": 0.0034372320000102263
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_invalid_relative_missing_and_unknown_settings_are_refused",
+          "status": "passed",
+          "elapsed_sec": 0.00043750000000386535
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_last_open_save_and_source_are_fallbacks_for_unavailable_preference",
+          "status": "passed",
+          "elapsed_sec": 0.0037122509999960585
+        },
+        {
+          "id": "test_sync_folders.FolderPreferencesTests.test_sync_folder_roundtrip_is_separate_from_theme_and_contains_no_account",
+          "status": "passed",
+          "elapsed_sec": 0.0015904079999984333
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_document_change_during_destination_choice_does_not_start_stale_copy",
+          "status": "passed",
+          "elapsed_sec": 0.29862292499998944
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_existing_destination_is_preserved_and_failure_is_shown",
+          "status": "passed",
+          "elapsed_sec": 0.3594957349999959
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_external_replacement_blocks_save_and_edit_until_reopen",
+          "status": "passed",
+          "elapsed_sec": 0.42589724399999795
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_forget_removes_preference_without_changing_files_or_other_preferences",
+          "status": "passed",
+          "elapsed_sec": 0.24408713599999032
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_native_folder_response_and_cancel_preserve_explicit_choice",
+          "status": "passed",
+          "elapsed_sec": 0.24817739499999902
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_open_pdf_from_preferred_folder_really_renders",
+          "status": "passed",
+          "elapsed_sec": 0.5087854100000015
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_real_file_chooser_uses_preferred_folder_and_shortcut",
+          "status": "passed",
+          "elapsed_sec": 0.26510449099998823
+        },
+        {
+          "id": "test_sync_folders_gtk.SyncFolderGTKTests.test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save",
+          "status": "passed",
+          "elapsed_sec": 0.839631025999978
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_aggregate_page_limit_rejects_before_decoding_tiff_pixels",
+          "status": "passed",
+          "elapsed_sec": 0.002195750999987922
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_bigtiff_and_big_endian_sequences_are_accepted_by_content",
+          "status": "passed",
+          "elapsed_sec": 0.007837682000001678
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_changed_tiff_and_concurrent_destination_are_preserved",
+          "status": "passed",
+          "elapsed_sec": 0.0038690069999915977
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_cyclic_out_of_range_and_truncated_ifd_chains_are_not_silently_shortened",
+          "status": "passed",
+          "elapsed_sec": 0.003422379999989289
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_each_frame_orientation_is_applied_once_without_leaking_tags",
+          "status": "passed",
+          "elapsed_sec": 0.05264175000002069
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance",
+          "status": "passed",
+          "elapsed_sec": 0.0043241440000088005
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_invalid_bigtiff_header_and_huge_directory_counts_are_bounded",
+          "status": "passed",
+          "elapsed_sec": 0.0005763819999913267
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_later_frame_pixel_budget_and_total_budget_leave_no_output",
+          "status": "passed",
+          "elapsed_sec": 0.002697835000020632
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_lzw_and_group4_pages_decode_in_their_original_order",
+          "status": "passed",
+          "elapsed_sec": 0.009041577999994388
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_mixed_grayscale_rgba_and_palette_frames_become_rgb_on_white",
+          "status": "passed",
+          "elapsed_sec": 0.005223729999983107
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_real_worker_reports_input_count_frame_mapping_and_page_count",
+          "status": "passed",
+          "elapsed_sec": 0.15297872799999368
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_source_bytes_and_hash_work_are_counted_per_file_not_per_page",
+          "status": "passed",
+          "elapsed_sec": 0.004171406000011757
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_truncated_last_frame_aborts_entire_batch",
+          "status": "passed",
+          "elapsed_sec": 0.0021039649999750054
+        },
+        {
+          "id": "test_tiff_multipage.MultipageTIFFTests.test_worker_replies_with_missing_reordered_or_forged_frames_are_rejected",
+          "status": "passed",
+          "elapsed_sec": 0.00520982899999467
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_cached_presentation_page_invalidates_old_render",
+          "status": "passed",
+          "elapsed_sec": 0.5948606319999783
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent",
+          "status": "passed",
+          "elapsed_sec": 0.41760573600001294
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_latest_renderer_skips_obsolete_queue_entries",
+          "status": "passed",
+          "elapsed_sec": 0.24022703800000045
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_prefetched_reader_page_is_immediate",
+          "status": "passed",
+          "elapsed_sec": 0.27728372599997897
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_presentation_fit_fill_center_and_error",
+          "status": "passed",
+          "elapsed_sec": 0.3844088590000183
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_presentation_handles_portrait_and_landscape",
+          "status": "passed",
+          "elapsed_sec": 0.3298628699999995
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_render_is_not_blocked_by_auxiliary_workers",
+          "status": "passed",
+          "elapsed_sec": 0.2999979719999999
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_repeated_requests_do_not_cancel_same_running_render",
+          "status": "passed",
+          "elapsed_sec": 0.30718817100000706
+        },
+        {
+          "id": "test_viewer.ViewerTests.test_theme_persistence_and_contrast",
+          "status": "passed",
+          "elapsed_sec": 0.28716332499999453
+        }
+      ],
+      "foxit_differential_test": false,
+      "limitations": [
+        "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "linux_source_runtime_passed": true,
+  "flatpak_built": false,
+  "foxit_executed": false,
+  "foxit_differential_test": false,
+  "limitations": [
+    "Portable bytecode and worker tests do not validate GTK or the Linux runtime.",
+    "This check never builds or installs a Flatpak and never launches the original.",
+    "Stage-17 historical evidence for 0.1.1 is separate from this current-source candidate."
+  ],
+  "app_files": [
+    {
+      "file": "accessible_reader.py",
+      "sha256": "385fe5c260c8f7027c80c20cf1c9a533183c0b1011732e68648caea8c6fbff79"
+    },
+    {
+      "file": "appearance.py",
+      "sha256": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221"
+    },
+    {
+      "file": "async_core.py",
+      "sha256": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f"
+    },
+    {
+      "file": "attachment_formats.py",
+      "sha256": "9629b10c702b9ba38769dfac110d9c5e62b860fabe742e7e0f3fe41b871d8b56"
+    },
+    {
+      "file": "attachment_search.py",
+      "sha256": "33298a6a4606e22681876c6b87a34a18c264dc23c15d8725345c207e64acbe2d"
+    },
+    {
+      "file": "attachment_tasks.py",
+      "sha256": "344048f123e103e6c4b1660934eb51cd27d32db9379585e058344dccf4852de8"
+    },
+    {
+      "file": "cancel_state.py",
+      "sha256": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820"
+    },
+    {
+      "file": "collection_index.py",
+      "sha256": "1b1cd08ec83dbaeb997d459ad9076b5ba5edc8f22a69eb99b4b016ff79aa107a"
+    },
+    {
+      "file": "collection_window.py",
+      "sha256": "672b7f8c79856910a9a3dc1274f8ab17b0c31f4b353bdcc840823b25ff1a02b9"
+    },
+    {
+      "file": "creation_window.py",
+      "sha256": "42ba1c8667efba4c93a9f7952f39208139e352c1d3867b78242ecc0ed49c32df"
+    },
+    {
+      "file": "cups_backend.py",
+      "sha256": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282"
+    },
+    {
+      "file": "document_session.py",
+      "sha256": "b4c104216a5fb440c864f7bc348e9eb4460c0dca50f573d08f6c793c08112076"
+    },
+    {
+      "file": "edit_dialogs.py",
+      "sha256": "1ecc27b953ae976b74a141fd6a60778bdca2dbc2e040d1975c61a4fec23f8daf"
+    },
+    {
+      "file": "edit_history.py",
+      "sha256": "3de88becb307024cd4a6733a3014575628f968433dbff103d42374cf1f1755a5"
+    },
+    {
+      "file": "edit_tasks.py",
+      "sha256": "4e1be7e4f3966846e2ea055df0bbb0119c3dd1f8231fbeded47ba71e9923e1be"
+    },
+    {
+      "file": "edit_window.py",
+      "sha256": "23b4ff44faf54e89dabca9f1c681a3f87a1f00bea5ad532fb496c38a5239f0ef"
+    },
+    {
+      "file": "folder_dialogs.py",
+      "sha256": "4615035182cf7428281040e094076f56947d1965f7a1a64fe5c6eea01abf8824"
+    },
+    {
+      "file": "imposition.py",
+      "sha256": "0d5ad9cc82648512473caf6ca5247e0f72a3ae77cc6779103967e2d30b47bf5d"
+    },
+    {
+      "file": "installation_info.py",
+      "sha256": "51ab935063d8efdc03d85ed618a75181ba99b7bc6ce8ce850c7a820d84cd3677"
+    },
+    {
+      "file": "local_files.py",
+      "sha256": "94bfb4d55fa59232253a667ce4cf869ea0b447d8e771ca041cfbab9e2e6b663b"
+    },
+    {
+      "file": "main.py",
+      "sha256": "209a0e8252683e0cd0d47255b16e55effba137f0e5d4dfc23c2f7354dc0d1431"
+    },
+    {
+      "file": "measurement.py",
+      "sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d"
+    },
+    {
+      "file": "measurement_window.py",
+      "sha256": "92bd6c81d27b5bb0b105fb9ab3d01a52ea9426d6cad03bd27e1096127569d152"
+    },
+    {
+      "file": "navigation.py",
+      "sha256": "645932295f8d5190f88aa86698bdb32027bb40e697ca6b10b735cac8fc387988"
+    },
+    {
+      "file": "ocr_window.py",
+      "sha256": "08d7d09e295566966a2cdc48fdea510f8de4f3c26f28915071d9b2419dd1e2f3"
+    },
+    {
+      "file": "page_cache.py",
+      "sha256": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856"
+    },
+    {
+      "file": "page_surface.py",
+      "sha256": "bd1256c0488be3449b721233d9c7263f99c7f6d45413c9779b6dceddbcf54956"
+    },
+    {
+      "file": "pdf_annotations.py",
+      "sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac"
+    },
+    {
+      "file": "pdf_attachments.py",
+      "sha256": "b891be766347ea11cda1bec708f6b499bb16cc8b6f529251793085bb4776e3dd"
+    },
+    {
+      "file": "pdf_changes.py",
+      "sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a"
+    },
+    {
+      "file": "pdf_comments.py",
+      "sha256": "12aab9e4588e6e54cfe5612e1c6a958e9b499acb19a42cc7b9180b11592ba23a"
+    },
+    {
+      "file": "pdf_creation.py",
+      "sha256": "c4fbb23a69cd21ad8f75728d78e9ee0214882ada5e9398959b484b0a7393de66"
+    },
+    {
+      "file": "pdf_dependency.py",
+      "sha256": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5"
+    },
+    {
+      "file": "pdf_form_controls.py",
+      "sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7"
+    },
+    {
+      "file": "pdf_layers.py",
+      "sha256": "8eee7a822b445a67d2bb2805506741019158af3ce9b56c7eea037038d9ba912d"
+    },
+    {
+      "file": "pdf_ocr.py",
+      "sha256": "21c0ea7b16f8e7c4d500ef8974ba27fb3b11150766830140c425afbc2b0393fc"
+    },
+    {
+      "file": "pdf_panels.py",
+      "sha256": "11d44d3c9ac19a892485538ed447324e815e916a2d09712d18fb87bcd7e14038"
+    },
+    {
+      "file": "pdf_security.py",
+      "sha256": "1affcad5f55d5556024a49783ab4f9d378d4423089b1a905b247146edc810449"
+    },
+    {
+      "file": "pdf_signatures.py",
+      "sha256": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441"
+    },
+    {
+      "file": "pdf_signing.py",
+      "sha256": "9247a83f0ca30bc387079ec3b3e83d5a5a45bd31ba389e76c60c19417fc29095"
+    },
+    {
+      "file": "platform_runtime.py",
+      "sha256": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74"
+    },
+    {
+      "file": "presentation.py",
+      "sha256": "323211b98e8665a360a72a9714b0342af21ac8c08c0369e832b8e4d54af5d4c1"
+    },
+    {
+      "file": "print_tasks.py",
+      "sha256": "b34961ed4e5162fe6505ce6f8d99da7990920c9de5cfd8e1f400403b144ad600"
+    },
+    {
+      "file": "print_window.py",
+      "sha256": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39"
+    },
+    {
+      "file": "reading_preferences.py",
+      "sha256": "59a2af8b93ba8916839bee7a144603422d5e7c34b485c2f8ffa22486b820fdc0"
+    },
+    {
+      "file": "rendering.py",
+      "sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4"
+    },
+    {
+      "file": "search_engine.py",
+      "sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf"
+    },
+    {
+      "file": "search_matching.py",
+      "sha256": "098078c35973f85619671438783b0bfc7fea18415cf5a296d57966cc8a3bc497"
+    },
+    {
+      "file": "search_tasks.py",
+      "sha256": "a30c56f8152a65a7947c93460130cbf8337e9028083c7332686525943bb7be0d"
+    },
+    {
+      "file": "security_window.py",
+      "sha256": "6db12e27c8240a31a993689c4661298eaf31cfa420138d0f56ca840cb6c9bbcc"
+    },
+    {
+      "file": "signature_window.py",
+      "sha256": "0ba74bf0e404ebdc0b4ff8c6e917d04aa8dc6762ad91cda4c5ef919f45e92143"
+    },
+    {
+      "file": "speech.py",
+      "sha256": "40a3f4d6b60f4f7145509ddb3c7f27b101e761b3c86ba5ce9c9f62a43063b214"
+    },
+    {
+      "file": "style-dark.css",
+      "sha256": "953be596e18feb2adb245b981770489f3a08852285b93df59aeb686a461c50fe"
+    },
+    {
+      "file": "style.css",
+      "sha256": "6b8c2e35197b3228e6129352798a6933fbf07e4bb5ea527bcd929251c380829b"
+    },
+    {
+      "file": "text_selection.py",
+      "sha256": "2f9b88e4b53f2d5fd5ab473b8a36fbbfada8318383f5123c73f0736576dc1915"
+    },
+    {
+      "file": "themes.py",
+      "sha256": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9"
+    },
+    {
+      "file": "vendor/pypdf/__init__.py",
+      "sha256": "d7786f1b3cb2e52e28b1085f0ea150fa7f029baad252b29af7415c790871f7df"
+    },
+    {
+      "file": "vendor/pypdf/_cmap.py",
+      "sha256": "d298554fd352442d4384e13395f1f5e768a5f3916baa1deaa599eb017fe1cc60"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/__init__.py",
+      "sha256": "bd56ce01215af54c771e42b4228dd415aba640fe0970d2f1f63341353351d980"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/_codecs.py",
+      "sha256": "f377c8779e1713e6916f798d8bfa75a2526d67375487df07b3159708e193b512"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/adobe_glyphs.py",
+      "sha256": "69ac4e46ea50409ee46cb0c76e35a280b67aa60f06f7fe5ea832a2349c72923e"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/core_font_metrics.py",
+      "sha256": "dbb26cac9a39511246215ed90ce09427259f066e8b0567aaeefdce5b3a05f21f"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/pdfdoc.py",
+      "sha256": "c5f4af30562cbf1b9a490d14bbdbd90ca681d16bbce61d6e0a20758bdac07145"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/std.py",
+      "sha256": "0f240cb84a40184a52f6ecb58d67f87278fe92a4a13ce0228f9b08ed0d580fc1"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/symbol.py",
+      "sha256": "08fe958d172c72b9bcca6007f74c6977155a7a5c22e8c49bd536f5c0d0e1d359"
+    },
+    {
+      "file": "vendor/pypdf/_codecs/zapfding.py",
+      "sha256": "e39a9c635d716c1c2da21ebfb7467fef33631bbfaa238d752d14155d828faf65"
+    },
+    {
+      "file": "vendor/pypdf/_configuration.py",
+      "sha256": "dd2b41d34cedc9113c33be3555c662b6692f038d0d8ae29a2ea0ad9fb49823a9"
+    },
+    {
+      "file": "vendor/pypdf/_crypt_providers/__init__.py",
+      "sha256": "c5441b160310bca31a38e4f7454756ddb4bc7d94a147c3c13b3eab7ac7f05855"
+    },
+    {
+      "file": "vendor/pypdf/_crypt_providers/_base.py",
+      "sha256": "34505711d85bae0f64d353d57cd37f93b94401897606481720e8b9a1f53ff91f"
+    },
+    {
+      "file": "vendor/pypdf/_crypt_providers/_cryptography.py",
+      "sha256": "33183bb4201aa15e950085a97ee874e2af254be0aaeb9ab0de643d7e93100526"
+    },
+    {
+      "file": "vendor/pypdf/_crypt_providers/_fallback.py",
+      "sha256": "81772ba3f2bbab82180cbe57195471a059978d75cc6ba4e57830f0c56c828f81"
+    },
+    {
+      "file": "vendor/pypdf/_crypt_providers/_pycryptodome.py",
+      "sha256": "bd9102129a13f4ebe9a46ebb74aec456de51e5aa491bd5fce588a3479ed2a6f6"
+    },
+    {
+      "file": "vendor/pypdf/_doc_common.py",
+      "sha256": "ec79163bf5cc977b2a723feba53473e6ebe5896bd97ce428012d3b0651026103"
+    },
+    {
+      "file": "vendor/pypdf/_encryption.py",
+      "sha256": "44f9db6e619c04fd81d37c1c8dc2a65ed0a87e4fd014f9940e03c236cf0c6231"
+    },
+    {
+      "file": "vendor/pypdf/_page.py",
+      "sha256": "a431cf8af6baed1a7f7e0dd19fb4ffe6f6fdc6417932305f8400517d30afd96e"
+    },
+    {
+      "file": "vendor/pypdf/_page_labels.py",
+      "sha256": "55ae47e2e1fcec75ea33d3f97478c1fae1684883414cd8ee04a0a066dec40e06"
+    },
+    {
+      "file": "vendor/pypdf/_protocols.py",
+      "sha256": "4e4ea32b83d1f71cc4ec44e7a9a7f6ef5494299913b3a2254672d118f9588ff7"
+    },
+    {
+      "file": "vendor/pypdf/_reader.py",
+      "sha256": "dedbfa826d5e1660e6d5718d3b10c52de975ad5eefd9a3bb8518487ec8ad4390"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/__init__.py",
+      "sha256": "08ee4beeccbae52c021c87c61eed6f9bbfeaef5a9ea1f994170921a2de15e4fb"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/_layout_mode/__init__.py",
+      "sha256": "56adb80f37575f9af91995d319579011c9212ed332099acdf207db4a506efecc"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/_layout_mode/_fixed_width_page.py",
+      "sha256": "6200c194cdf49dde9b70900a1600e314e040b885875ee519de3815f6b22ee8b6"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/_layout_mode/_text_state_manager.py",
+      "sha256": "b1600d432c5add07cb442b02a0b6daf228b737457c0ea92184f35274c02d68f4"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/_layout_mode/_text_state_params.py",
+      "sha256": "a0c4b8cb2f4763835c4ebded2f1272235182e1c759e46cc3ad43f425ac5f5261"
+    },
+    {
+      "file": "vendor/pypdf/_text_extraction/_text_extractor.py",
+      "sha256": "376ae42d43e318bda3603734a3493cb2ae8084d0bdad9a8f4a92c76c3021eede"
+    },
+    {
+      "file": "vendor/pypdf/_utils.py",
+      "sha256": "1f1e47f3b8ee728f3a05143eef5e370684cd54ddf751fe631ccf1d3eabc14309"
+    },
+    {
+      "file": "vendor/pypdf/_version.py",
+      "sha256": "3d176cbc1f25f912bda4dac8a2424cffb162e969c4bf94a837d8289bdb54e0f9"
+    },
+    {
+      "file": "vendor/pypdf/_writer.py",
+      "sha256": "598baaa8215415d1d12fbc732eb79b07767101550a86d6e945fffa9bcf1210f4"
+    },
+    {
+      "file": "vendor/pypdf/actions/__init__.py",
+      "sha256": "d8bdd81ef60846bab097640490991e4b63bd6b521eb0356ed696e24854299518"
+    },
+    {
+      "file": "vendor/pypdf/actions/_actions.py",
+      "sha256": "9ad300bde70c006ba9484e0d78296103c0dcdafa75038248f3bde6a988cd6c4b"
+    },
+    {
+      "file": "vendor/pypdf/annotations/__init__.py",
+      "sha256": "7f693ffa3027dfd082076ecac50fdef771a29e7ce40076d49e749e1899758f21"
+    },
+    {
+      "file": "vendor/pypdf/annotations/_base.py",
+      "sha256": "608453cd3764aa3f035164939b2d1fae47d3af88e87b91d41b344e5287f8a08a"
+    },
+    {
+      "file": "vendor/pypdf/annotations/_markup_annotations.py",
+      "sha256": "c210635217f7c5195cae67829cd82a1679ad2767fb07c2289f82b8e88f74a079"
+    },
+    {
+      "file": "vendor/pypdf/annotations/_non_markup_annotations.py",
+      "sha256": "fd2cd3ce864ce01dff1bf57a33ff266c9e7b630d2d024f601db347ea5211ab70"
+    },
+    {
+      "file": "vendor/pypdf/constants.py",
+      "sha256": "579bd3b09defab4b63ac63f7effb4713ade10722c8c7799b8566aa80917c3624"
+    },
+    {
+      "file": "vendor/pypdf/errors.py",
+      "sha256": "070d56f61c4eb03830ab053a628436974f89894c93aba979423542afe5b81850"
+    },
+    {
+      "file": "vendor/pypdf/filters.py",
+      "sha256": "7567a0838190cd5e03508d9e945ab11bf4fe1822a80834b5bf958c58efa76aa9"
+    },
+    {
+      "file": "vendor/pypdf/generic/__init__.py",
+      "sha256": "56ba9d61fb5010278f0d4dab5d532012a45a60547ccce57f7ef260a35f71feec"
+    },
+    {
+      "file": "vendor/pypdf/generic/_appearance_stream.py",
+      "sha256": "4f572ec49a2c290b0389ed7b30758ac21855f1c3b8efc71eeb013e29ebfe22b4"
+    },
+    {
+      "file": "vendor/pypdf/generic/_base.py",
+      "sha256": "90c50d931fdc97db44bf57894fa2fe6239ece307e1b831896e54e5c2de6698b7"
+    },
+    {
+      "file": "vendor/pypdf/generic/_color.py",
+      "sha256": "2b10852d96453098d4b9b2f437ad85042a552b37038403c1f6719ba29e3c795c"
+    },
+    {
+      "file": "vendor/pypdf/generic/_data_structures.py",
+      "sha256": "a29bb9c51e8a87872c3196fe74ac9a191cc0361556615d6513928f0f5ab134f2"
+    },
+    {
+      "file": "vendor/pypdf/generic/_files.py",
+      "sha256": "d28b3ece6aa1cec4ed623e83ab52e2cd70fd592118e5855508415352223d9ebd"
+    },
+    {
+      "file": "vendor/pypdf/generic/_fit.py",
+      "sha256": "607a2571a31e1c67d84fdb0d1a3dbfd04b52a09619d9a261b4aa9525c03887f9"
+    },
+    {
+      "file": "vendor/pypdf/generic/_font.py",
+      "sha256": "ce07922ffa1f27b84fb25c41f2612aa409ba8319fae4c38e0248da8b60c79ef3"
+    },
+    {
+      "file": "vendor/pypdf/generic/_image_inline.py",
+      "sha256": "a708cc06e98c88b0972a6367e6513282b0fd35599c8429c26ff0573a0058f7cc"
+    },
+    {
+      "file": "vendor/pypdf/generic/_image_xobject.py",
+      "sha256": "5c4d6498633962f41592771f24993dfd9742b30d73f783a60c2a0c72ed2f05cd"
+    },
+    {
+      "file": "vendor/pypdf/generic/_link.py",
+      "sha256": "90835ae593a2a461f163f616fdf231178cf44d134a970c388d161a1822d34116"
+    },
+    {
+      "file": "vendor/pypdf/generic/_outline.py",
+      "sha256": "3c4b924f86fe2a6010203009d05872c4dec036626376c59a4ddc4aa3b862ab78"
+    },
+    {
+      "file": "vendor/pypdf/generic/_rectangle.py",
+      "sha256": "ec7ac97ce31ab906ad0368245a17074a4cc1ec5e245a671afba90d03a1d5a3a3"
+    },
+    {
+      "file": "vendor/pypdf/generic/_utils.py",
+      "sha256": "0dcef7c1b7cfeb17d2f962d63fa77b98d116c9b0cee7779de94dbb243f5f1df9"
+    },
+    {
+      "file": "vendor/pypdf/generic/_viewerpref.py",
+      "sha256": "20912ec8cd304ebd6a36004e0bede202e3c1e4f9630ee771f7de14a2c3eb05dc"
+    },
+    {
+      "file": "vendor/pypdf/pagerange.py",
+      "sha256": "0209c3144e2959cf34d1800cfec3dc1afcb6f747f70f93588abaf6e478753b46"
+    },
+    {
+      "file": "vendor/pypdf/papersizes.py",
+      "sha256": "e93cf9b1f34dff724e51aa58f3753e95a928867a57600d2148440d98e54b14bf"
+    },
+    {
+      "file": "vendor/pypdf/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "vendor/pypdf/types.py",
+      "sha256": "b09ef01f393b111fc227b90ffacf2ef5ac459e40979c5a6bf27cdc8f50314dab"
+    },
+    {
+      "file": "vendor/pypdf/xmp.py",
+      "sha256": "0853e82701b820b96d14ecfdd9f49cf04f1a734ce2314ff0e9b16976e753d494"
+    },
+    {
+      "file": "vendor/snowballstemmer/COPYING",
+      "sha256": "880802872ce34f313df826e96131b1b147dcfa09c76fc82129f25503a922a678"
+    },
+    {
+      "file": "vendor/snowballstemmer/__init__.py",
+      "sha256": "b7deb373e5cfeb67267dde276350bebfc4b35221949145806090706cec3f681a"
+    },
+    {
+      "file": "vendor/snowballstemmer/among.py",
+      "sha256": "4b8b17bf3f97d46a1a536c288defe193147b15bd8edb01bbd3f64c57b8b5e2af"
+    },
+    {
+      "file": "vendor/snowballstemmer/arabic_stemmer.py",
+      "sha256": "c818ef417c954a0885ed2fef0c7a2d25925ad89847ddd67eb3e0587df90df59d"
+    },
+    {
+      "file": "vendor/snowballstemmer/armenian_stemmer.py",
+      "sha256": "36cd1e1d7228703eecd053c22c2ddee4872be06c91a99b77dc5aa33dbf99d9e6"
+    },
+    {
+      "file": "vendor/snowballstemmer/basestemmer.py",
+      "sha256": "e60fd08f93826b9c428f038ace77500a68ba594d504cd64b1501a6fab2becbc1"
+    },
+    {
+      "file": "vendor/snowballstemmer/basque_stemmer.py",
+      "sha256": "37ebc30e041a9ac3c5f724c2b4ab6fbca3762994fb37677c80285852f4a2e0d8"
+    },
+    {
+      "file": "vendor/snowballstemmer/catalan_stemmer.py",
+      "sha256": "f579a75c10a38560074b9362ef3859dda3edd17e0689406aaa51859007903581"
+    },
+    {
+      "file": "vendor/snowballstemmer/czech_stemmer.py",
+      "sha256": "86f21cd6174875068f48eb7920e75173ba4a5645406899c396f0d5e5644d6739"
+    },
+    {
+      "file": "vendor/snowballstemmer/danish_stemmer.py",
+      "sha256": "03100fecc5e24ca2ab756e2470c0c6ffb25e1cbbacff01e04ca1c91c3882306d"
+    },
+    {
+      "file": "vendor/snowballstemmer/dutch_porter_stemmer.py",
+      "sha256": "4907e89a0578b44d2c0147772ea1774e6aa8ecd0a218ee7cba8fb6dc0fb67a06"
+    },
+    {
+      "file": "vendor/snowballstemmer/dutch_stemmer.py",
+      "sha256": "349e3db58f84283eec6f87071b46d433eeae04ceca8918259cdc2c44f62e6c35"
+    },
+    {
+      "file": "vendor/snowballstemmer/english_stemmer.py",
+      "sha256": "350d71588d33ce8e2dd5084efa48c50cbaec90bec9ac3f7e97623fd640856dea"
+    },
+    {
+      "file": "vendor/snowballstemmer/esperanto_stemmer.py",
+      "sha256": "ab99603f1e55d9eecd265204c86aef296e6de8bb387cafde74aa2ba336bcd7b4"
+    },
+    {
+      "file": "vendor/snowballstemmer/estonian_stemmer.py",
+      "sha256": "f885ce9633f7e823a4d6e4351be21c2a4a1257b41f8c3d9ff1863d61f4036f00"
+    },
+    {
+      "file": "vendor/snowballstemmer/finnish_stemmer.py",
+      "sha256": "229e2632d754cd39f8d20715e38b683a840a9f0fce48c93063d79556f9ef68fb"
+    },
+    {
+      "file": "vendor/snowballstemmer/french_stemmer.py",
+      "sha256": "9ccd70188e427475cfe4adcdd407bc4c03f3627b4542dfb9d4839831122d5214"
+    },
+    {
+      "file": "vendor/snowballstemmer/german_stemmer.py",
+      "sha256": "c0b65d824d9ff6277a23e6e80605e96caced9f725d73678fe24061237f376fee"
+    },
+    {
+      "file": "vendor/snowballstemmer/greek_stemmer.py",
+      "sha256": "c0a3bee5d15cef7b10a042cb7a217f7ca53bec3a89fab39d86a4fc9c52ec2020"
+    },
+    {
+      "file": "vendor/snowballstemmer/hindi_stemmer.py",
+      "sha256": "3484dcbdd74c8253be1b53e263dad3de6858ab07e4315d0d35a1b79b4894f2b5"
+    },
+    {
+      "file": "vendor/snowballstemmer/hungarian_stemmer.py",
+      "sha256": "601d83718b0e4d48cb0b1fd7ba89128c844a9853349773bec0d0be7d0c0cc581"
+    },
+    {
+      "file": "vendor/snowballstemmer/indonesian_stemmer.py",
+      "sha256": "2d4771b8dff5265ebc49ca48d4b43d2c186b5fb59cde6f98b72325c11deaa738"
+    },
+    {
+      "file": "vendor/snowballstemmer/irish_stemmer.py",
+      "sha256": "bf8d482787fa72874859f1d3f7ded0b39eb1a56752e870fc876c199ecd248cb3"
+    },
+    {
+      "file": "vendor/snowballstemmer/italian_stemmer.py",
+      "sha256": "a8fcea14594afdb5d2c97c942a117e896e9f753767faeb80769fb0a828a8c838"
+    },
+    {
+      "file": "vendor/snowballstemmer/lithuanian_stemmer.py",
+      "sha256": "ee1bf0a18b74dbffc941eee1772729cfbe3d60b1451f80c05faa8ccb54da967d"
+    },
+    {
+      "file": "vendor/snowballstemmer/nepali_stemmer.py",
+      "sha256": "0e0b12b9e783596f43a87f81eb639d410efb419efd04426a6c25b23466c2fa80"
+    },
+    {
+      "file": "vendor/snowballstemmer/norwegian_stemmer.py",
+      "sha256": "b87a7d8400b09dcf2b81d4dc64cf035897be074e8f6178a0d47a43938e82cacd"
+    },
+    {
+      "file": "vendor/snowballstemmer/persian_stemmer.py",
+      "sha256": "6abde5e8042414cad8b60af020b806c679986b0bff28936ab4c43ecdf3f66586"
+    },
+    {
+      "file": "vendor/snowballstemmer/polish_stemmer.py",
+      "sha256": "2fdc4f94e3c8018d1617861519d6774280f537f21f158540a4c68c0b7cd9a09f"
+    },
+    {
+      "file": "vendor/snowballstemmer/porter_stemmer.py",
+      "sha256": "b7e27d0486805a9ce69be3362dc3f995b988c4d607de438df189c21e4482b8b0"
+    },
+    {
+      "file": "vendor/snowballstemmer/portuguese_stemmer.py",
+      "sha256": "a643258d3c4e3347e35a8bdb7d2864a5c9194a8e6d815fce77c3c8201245ca04"
+    },
+    {
+      "file": "vendor/snowballstemmer/romanian_stemmer.py",
+      "sha256": "d2e92930f4c6aa344e568e1827f5ffeaed71f44b761163ceb79a01e039be74d8"
+    },
+    {
+      "file": "vendor/snowballstemmer/russian_stemmer.py",
+      "sha256": "502e03c7941acfe4d28bea3c7d1e356ba8d19ee728561cd0142315648779b6cd"
+    },
+    {
+      "file": "vendor/snowballstemmer/serbian_stemmer.py",
+      "sha256": "5e7b7db45543bcaf011fa4fdad5a32a7d08e3ddfb9af38525d9d9efda7373031"
+    },
+    {
+      "file": "vendor/snowballstemmer/sesotho_stemmer.py",
+      "sha256": "2f920803df570c347e3f121aaec63a5bec66f531487c17a19ec566d6c1e9a539"
+    },
+    {
+      "file": "vendor/snowballstemmer/spanish_stemmer.py",
+      "sha256": "d6ff9ce6ef516103c1cb1f1996aa038bc865316159e76f21a9b82c90d621aba3"
+    },
+    {
+      "file": "vendor/snowballstemmer/swedish_stemmer.py",
+      "sha256": "b1d9c429e6e7e9ca82a2ed230a4771ff5a6f35084817fc862b5af090166beb5b"
+    },
+    {
+      "file": "vendor/snowballstemmer/tamil_stemmer.py",
+      "sha256": "08fb989839946518bba347b88dea433117d1ebdca7b35f02a6ef4c34dc92f5ab"
+    },
+    {
+      "file": "vendor/snowballstemmer/turkish_stemmer.py",
+      "sha256": "567caf1a76293fda9708373325ca7c7bf872797a75c89b33e0ef604ad0fac965"
+    },
+    {
+      "file": "vendor/snowballstemmer/yiddish_stemmer.py",
+      "sha256": "cf0884891894faf4d47867946c9e88def419bd29b81a08a7ef3d77dfa0f7db81"
+    },
+    {
+      "file": "version.py",
+      "sha256": "efe93b7e62b13b653a97168d2649ed6958ac42720be39225971ad391fe431a07"
+    },
+    {
+      "file": "windows_bootstrap.py",
+      "sha256": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8"
+    },
+    {
+      "file": "windows_print.py",
+      "sha256": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3"
+    },
+    {
+      "file": "worker_cli.py",
+      "sha256": "c1491c451ffe52ec03d9ac233e1456888d0047de6e1fdd5c942f2b87c4d3e556"
+    }
+  ],
+  "notices": {
+    "LICENSE": "5a273be8649105d5642b5f964d920e27310c540002019f3db45fa7cab8e462f4",
+    "docs/pypdf-LICENSE.txt": "a97ac230e5f33ef10a5367a850eb01f91f1a0b064e34742c7794d2294557f524",
+    "docs/pypdf-artifact.json": "9ed155279e7f7c98dacd841b4f36036ada016d4dc6e17c75f4f5a262df6b6b73",
+    "docs/proveniencia-base.json": "474564ae832b219a70084981c79bc21bbdda03aa27ab66d1a7913f959d9e19ad"
+  },
+  "published_0_1_1_delta": {
+    "reference": "testes/resultados/0.1.1/payload-source-integrity.json",
+    "added": [
+      "accessible_reader.py",
+      "attachment_formats.py",
+      "attachment_search.py",
+      "attachment_tasks.py",
+      "collection_index.py",
+      "collection_window.py",
+      "creation_window.py",
+      "document_session.py",
+      "edit_dialogs.py",
+      "edit_history.py",
+      "edit_tasks.py",
+      "edit_window.py",
+      "folder_dialogs.py",
+      "installation_info.py",
+      "local_files.py",
+      "measurement.py",
+      "measurement_window.py",
+      "navigation.py",
+      "ocr_window.py",
+      "page_surface.py",
+      "pdf_annotations.py",
+      "pdf_attachments.py",
+      "pdf_changes.py",
+      "pdf_comments.py",
+      "pdf_creation.py",
+      "pdf_form_controls.py",
+      "pdf_layers.py",
+      "pdf_ocr.py",
+      "pdf_security.py",
+      "pdf_signatures.py",
+      "pdf_signing.py",
+      "print_tasks.py",
+      "reading_preferences.py",
+      "search_matching.py",
+      "search_tasks.py",
+      "security_window.py",
+      "signature_window.py",
+      "speech.py",
+      "text_selection.py",
+      "vendor/snowballstemmer/COPYING",
+      "vendor/snowballstemmer/__init__.py",
+      "vendor/snowballstemmer/among.py",
+      "vendor/snowballstemmer/arabic_stemmer.py",
+      "vendor/snowballstemmer/armenian_stemmer.py",
+      "vendor/snowballstemmer/basestemmer.py",
+      "vendor/snowballstemmer/basque_stemmer.py",
+      "vendor/snowballstemmer/catalan_stemmer.py",
+      "vendor/snowballstemmer/czech_stemmer.py",
+      "vendor/snowballstemmer/danish_stemmer.py",
+      "vendor/snowballstemmer/dutch_porter_stemmer.py",
+      "vendor/snowballstemmer/dutch_stemmer.py",
+      "vendor/snowballstemmer/english_stemmer.py",
+      "vendor/snowballstemmer/esperanto_stemmer.py",
+      "vendor/snowballstemmer/estonian_stemmer.py",
+      "vendor/snowballstemmer/finnish_stemmer.py",
+      "vendor/snowballstemmer/french_stemmer.py",
+      "vendor/snowballstemmer/german_stemmer.py",
+      "vendor/snowballstemmer/greek_stemmer.py",
+      "vendor/snowballstemmer/hindi_stemmer.py",
+      "vendor/snowballstemmer/hungarian_stemmer.py",
+      "vendor/snowballstemmer/indonesian_stemmer.py",
+      "vendor/snowballstemmer/irish_stemmer.py",
+      "vendor/snowballstemmer/italian_stemmer.py",
+      "vendor/snowballstemmer/lithuanian_stemmer.py",
+      "vendor/snowballstemmer/nepali_stemmer.py",
+      "vendor/snowballstemmer/norwegian_stemmer.py",
+      "vendor/snowballstemmer/persian_stemmer.py",
+      "vendor/snowballstemmer/polish_stemmer.py",
+      "vendor/snowballstemmer/porter_stemmer.py",
+      "vendor/snowballstemmer/portuguese_stemmer.py",
+      "vendor/snowballstemmer/romanian_stemmer.py",
+      "vendor/snowballstemmer/russian_stemmer.py",
+      "vendor/snowballstemmer/serbian_stemmer.py",
+      "vendor/snowballstemmer/sesotho_stemmer.py",
+      "vendor/snowballstemmer/spanish_stemmer.py",
+      "vendor/snowballstemmer/swedish_stemmer.py",
+      "vendor/snowballstemmer/tamil_stemmer.py",
+      "vendor/snowballstemmer/turkish_stemmer.py",
+      "vendor/snowballstemmer/yiddish_stemmer.py"
+    ],
+    "removed": [],
+    "changed": [
+      "imposition.py",
+      "main.py",
+      "pdf_panels.py",
+      "presentation.py",
+      "search_engine.py",
+      "version.py",
+      "worker_cli.py"
+    ],
+    "unchanged": 74,
+    "method": "Compare current source hashes with preserved 0.1.1 payload source hashes; not a new bundle extraction."
+  },
+  "linux_prerequisites": {
+    "linux_host": true,
+    "x11_display": true,
+    "commands": {
+      "pdftocairo": "/usr/bin/pdftocairo",
+      "pdftotext": "/usr/bin/pdftotext",
+      "pdfinfo": "/usr/bin/pdfinfo",
+      "pdfunite": "/usr/bin/pdfunite",
+      "lp": "/usr/bin/lp",
+      "lpstat": "/usr/bin/lpstat",
+      "lpoptions": "/usr/bin/lpoptions"
+    }
+  },
+  "gtk_smoke": {
+    "passed": true,
+    "checks": {
+      "opened_and_rendered": true,
+      "search_highlight_preference": true,
+      "bookmark_scope_navigation": true,
+      "comment_subject_navigation": true,
+      "booklet_pdf_written": true
+    },
+    "errors": [],
+    "elapsed_sec": 1.375986771000015,
+    "inside_flatpak": false,
+    "foxit_differential_test": false,
+    "physical_printing_verified": false
+  }
+}

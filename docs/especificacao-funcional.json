@@ -23,7 +23,7 @@
     {
       "id": "open-render",
       "name": "Abrir PDF e renderizar páginas",
-      "matrix_implementation": "Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta.",
+      "matrix_implementation": "Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta. Preservado na regressão própria0.1.15.",
       "contract_kind": "implemented_subset",
       "scope": "Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.",
       "inputs": [
@@ -246,7 +246,7 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "Página/zoom digitáveis, zoom1–6400%, viewport virtual, geometria/rotação e foco. Subconjunto0.1.14; família integral aberta.",
+      "matrix_implementation": "Página/zoom digitáveis, zoom1–6400%, viewport virtual, geometria/rotação e foco. Subconjunto0.1.14; família integral aberta. Preservado na regressão própria0.1.15.",
       "contract_kind": "implemented_subset",
       "scope": "Navegação por página e teclado com limites, zoom digitável1–6400% e ajustar página/largura, rotação/CropBox e viewport virtual. Raster tem limite de resolução; não promete nitidez ilimitada ou geometria integral Foxit.",
       "inputs": [
@@ -409,7 +409,7 @@
     {
       "id": "presentation",
       "name": "Apresentação ajustar/preencher",
-      "matrix_implementation": "Apresentação com sessão autenticada, rotação, foco/atalhos e seleção de monitor/fallback. Subconjunto0.1.14; desktop físico e original pendentes.",
+      "matrix_implementation": "Apresentação com sessão autenticada, rotação, foco/atalhos e seleção de monitor/fallback. Subconjunto0.1.14; desktop físico e original pendentes. Preservado na regressão própria0.1.15.",
       "contract_kind": "implemented_subset",
       "scope": "Apresentação GTK ajustar/preencher, pan/zoom/ponteiro, sessão/rotação herdadas, foco/F6/Tab/Escape e seleção de monitor/fallback. Fullscreen depende do compositor; validação virtual não aprova hardware físico.",
       "inputs": [
@@ -517,7 +517,7 @@
     {
       "id": "search-text",
       "name": "Busca literal/palavra inteira/maiúsculas",
-      "matrix_implementation": "Fonte0.1.15 em desenvolvimento: Parar preserva hits entregues, descarta callbacks antigos e limita a construção de geometria. Validação Linux pendente; original/família completa abertos.",
+      "matrix_implementation": "Recorte próprio0.1.15: Parar preserva hits entregues, descarta callbacks antigos e limita a construção de geometria. Recorte próprio validado no Linux e Flatpak0.1.15; original/família completa abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Busca literal em texto de páginas, com caixa/palavra inteira e extensões próprias de acentos/hifenização.",
       "inputs": [
@@ -636,7 +636,7 @@
     {
       "id": "search-bookmarks",
       "name": "Busca em marcadores",
-      "matrix_implementation": "Fonte0.1.15 em desenvolvimento: identificador estável e seleção da linha de destino; destino externo/ausente não recebe página inventada. Validação Linux pendente; família completa aberta.",
+      "matrix_implementation": "Recorte próprio0.1.15: identificador estável e seleção da linha de destino; destino externo/ausente não recebe página inventada. Recorte próprio validado no Linux e Flatpak0.1.15; família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Pesquisa em títulos de marcadores; leitura e navegação não equivalem a edição/persistência.",
       "inputs": [
@@ -739,7 +739,7 @@
     {
       "id": "search-comments",
       "name": "Busca em comentários",
-      "matrix_implementation": "Autor incluído no Flatpak0.1.14 validado432/432. Fonte0.1.15 acrescenta respostas /IRT, deduplicação por objeto, campos separados e destinos; validação Linux pendente. Família completa aberta.",
+      "matrix_implementation": "Autor incluído no Flatpak0.1.14 validado432/432. Fonte0.1.15 acrescenta respostas /IRT, deduplicação por objeto, campos separados e destinos; recorte próprio validado no Linux e Flatpak0.1.15. Família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Subconjunto próprio: assunto, conteúdo e autor pesquisados separadamente; respostas /IRT na mesma página, IDs de objetos, rich text textual e avisos de vínculos inválidos. Não modifica anotações.",
       "inputs": [
@@ -860,7 +860,7 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "Fonte0.1.15: texto/PDF e extração passiva HTML/corpo DOCX/ODT com omissões explícitas; Linux em validação. Família completa aberta.",
+      "matrix_implementation": "Fonte0.1.15: texto/PDF e extração passiva HTML/corpo DOCX/ODT com omissões explícitas; Recorte próprio validado no Linux e Flatpak0.1.15. Família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
@@ -981,7 +981,7 @@
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "Fonte0.1.15: índice local próprio, revisão/exclusão/atualização da lista, trava de escritor e publicação atômica; Linux em validação. Índice Foxit/família completa abertos.",
+      "matrix_implementation": "Fonte0.1.15: índice local próprio, revisão/exclusão/atualização da lista, trava de escritor e publicação atômica; Recorte próprio validado no Linux e Flatpak0.1.15. Índice Foxit/família completa abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
@@ -1104,7 +1104,7 @@
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Linux em validação; algoritmo/idiomas originais não comprovados.",
+      "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Recorte próprio validado no Linux e Flatpak0.1.15; algoritmo/idiomas originais não comprovados.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
@@ -1314,7 +1314,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Fonte0.1.15: preparação em worker cancelável, retenção do original e cópia atômica; submissão só depois da preparação confirmada. Linux/físico e ciclo original abertos.",
+      "matrix_implementation": "Fonte0.1.15: preparação em worker cancelável, retenção do original e cópia atômica; submissão só depois da preparação confirmada. Impressão física e ciclo original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1551,7 +1551,7 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "Marcadores próprios: operações e hierarquia revalidadas em21 testes avançados no host; Linux0.1.15 pendente. Família/original completos abertos.",
+      "matrix_implementation": "Marcadores próprios: operações e hierarquia revalidadas em21 testes avançados no host; recorte próprio validado no Linux e Flatpak0.1.15. Família/original completos abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: criar/renomear, mover subárvore por pai/posição e excluir subárvore em cópia; ligações, destinos e contagens preservados no subconjunto. Histórico de rascunho permite desfazer/refazer antes de salvar; cópias já salvas preservadas.",
       "inputs": [
@@ -1849,7 +1849,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Fonte0.1.15: Ink vetorial até32 traços/4096 pontos e respostas encadeadas em cópia, com rascunho/desfazer/refazer.7 novos portáveis passaram; GTK/Linux pendentes. Família ampla aberta.",
+      "matrix_implementation": "Fonte0.1.15: Ink vetorial até32 traços/4096 pontos e respostas encadeadas em cópia, com rascunho/desfazer/refazer.7 novos portáveis passaram; GTK/Linux próprios aprovados; família integral pendente. Família ampla aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -2679,7 +2679,7 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI e confiança/TSA/LTV abertos.",
+      "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
@@ -3068,7 +3068,7 @@
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos preparado. Linux/áudio/AT-SPI e leitor de tela físico ainda não validados.",
+      "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos aprovado. WAV/GTK/AT-SPI sintéticos aprovados; reprodução e leitor de tela físico abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
@@ -3282,7 +3282,7 @@
     {
       "id": "measurement",
       "name": "Medição/calibração",
-      "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK/original abertos.",
+      "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK próprio aprovado; original aberto.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
       "inputs": [
@@ -3363,7 +3363,7 @@
     {
       "id": "layers-media",
       "name": "Camadas/mídia/3D",
-      "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK aguardam Linux; mídia/3D não implementados.",
+      "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK próprios aprovados; mídia/3D não implementados.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
       "inputs": [
@@ -3614,7 +3614,7 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Fonte0.1.15: GIF/APNG/WebP com opção explícita de todos os quadros estáticos, PPM/PGM/PBM/ICO adicionais;5 novos portáveis+22 regressões passaram. GTK/Linux e demais formatos abertos.",
+      "matrix_implementation": "Fonte0.1.15: GIF/APNG/WebP com opção explícita de todos os quadros estáticos, PPM/PGM/PBM/ICO adicionais;5 novos portáveis+22 regressões passaram. GTK/Linux próprios aprovados; demais formatos abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. Fonte/payload/sandbox380/380 passaram, incluindo14 novos portáveis,2 GTK e1 integração real TIFF→PDF→OCR; uma expectativa histórica de recusa TIFF foi adaptada. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
@@ -3870,7 +3870,7 @@
     {
       "id": "platform",
       "name": "Integrações de sistema/atualização",
-      "matrix_implementation": "Fonte0.1.15: seletor nativo de PDF e informações de instalação/handoff de atualização do Flatpak; probe portal real preparado. Associação/sandbox/atualização real e Windows nativo ainda pendentes.",
+      "matrix_implementation": "Fonte0.1.15: seletor nativo de PDF e informações de instalação/handoff de atualização do Flatpak; probe portal real X11 sintético aprovado. Associação/sandbox/atualização real e Windows nativo ainda pendentes.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
       "inputs": [

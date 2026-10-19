@@ -9,6 +9,7 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -160,6 +161,16 @@ def audit(installed_root=None):
     require({p['binary_package'] for p in package_rows} == package_names
             and len(package_rows) == runtime['debian_packages'], 'Package inventory mismatch')
     require(all(p['version'] and p['source_package'] and p['source_version'] for p in package_rows), 'Package version/source missing')
+    source_access_path = None
+    if manifest.get('runtime_source_access'):
+        access = manifest['runtime_source_access']
+        source_access_path = local(ROOT, access['file'])
+        require(sha(source_access_path) == access['sha256'], 'Runtime source-access manifest changed')
+        expected_access = [dict(binary_package=p['binary_package'], binary_version=p['version'],
+            source_package=p['source_package'], source_version=p['source_version'],
+            corresponding_source_url='https://sources.debian.org/src/' + quote(p['source_package'], safe='')
+            + '/' + quote(p['source_version'], safe='') + '/') for p in package_rows]
+        require(read(source_access_path) == expected_access, 'Corresponding-source versions differ from packages')
     progress = read(ROOT / 'progresso/progresso.json')
     pending = read(ROOT / 'progresso/pendencias-analises.json')
     unfinished = [(s['id'], c['criterion'], c['status']) for s in progress['stages'] for c in s['checks'] if c['status'] != 'done']
@@ -191,6 +202,9 @@ def audit(installed_root=None):
               'limitations': ['Checks own delivery and recorded evidence, not original Foxit behavior.',
                               'Existing done criteria get structural link checks, not a rerun of all reverse-engineering work.',
                               'GTK layout, desktop integrations, accessibility and physical printing remain open.']}
+    if source_access_path:
+        result['corresponding_source_versions_verified'] = len(package_rows)
+        result['source_download_availability_live_checked'] = False
     if installed_root:
         payload = installed_root.resolve()
         app_ref = manifest['application_id'] + '//' + manifest['flatpak_branch']
@@ -208,6 +222,10 @@ def audit(installed_root=None):
             require(sha(local(payload, 'share/doc/linuxit-pdf/' + name)) == sha(reference), 'Installed provenance differs: ' + name)
         require(sha(local(payload, 'share/doc/linuxit-pdf/LICENSE')) == sha(ROOT / 'LICENSE'), 'Installed MIT license differs')
         require(sha(local(payload, 'share/doc/linuxit-pdf/pypdf-LICENSE.txt')) == sha(ROOT / 'docs/pypdf-LICENSE.txt'), 'Installed BSD license differs')
+        if source_access_path:
+            require(sha(local(payload, 'share/doc/linuxit-pdf/runtime-source-access.json')) == sha(source_access_path), 'Installed corresponding-source manifest differs')
+            require(sha(local(payload, 'share/doc/linuxit-pdf/RUNTIME-SOURCE-ACCESS.md')) == sha(ROOT / 'docs/RUNTIME-SOURCE-ACCESS.md'), 'Installed source-access instructions differ')
+            require(sha(local(payload, 'share/doc/linuxit-pdf/snowballstemmer-COPYING.txt')) == sha(ROOT / 'app/vendor/snowballstemmer/COPYING'), 'Installed Snowball BSD notice differs')
         result['installed_runtime'] = verify_runtime_files(payload, runtime)
         result['installed_payload_verified'] = True
     return result

@@ -5,17 +5,19 @@ especificação, distinta dos pacotesP01–P10 e das21 etapas ponderadas.
 O estado por item está em [execucao-lotes-funcionalidades.json](../progresso/execucao-lotes-funcionalidades.json).
 Implementar um recorte próprio não encerra uma família nem comprova paridade.
 
-| Lote | Itens | Estado / trabalho concreto |
+**Consolidação 2026-10-19T14:36:34-03:00: fonte/payload/Flatpak0.1.15 passaram490/490 por ambiente.** O quadro abaixo está atualizado; contagens e pendências de Linux nos relatos de cada lote são checkpoints históricos, superados pela consolidação final. Os limites funcionais continuam válidos.
+
+| Lote | Itens | Entrega própria0.1.15 / pendências amplas |
 |---|---|---|
-|1–3|Abertura; navegação; apresentação|Entregues recortes0.1.14,432/432 próprios por ambiente. Físico/Wayland/original e famílias amplas abertos.|
-|4–6|Busca em texto; marcadores; comentários|Fonte0.1.15 preparada;7 portáveis passaram,2 GTK aguardam Linux.|
-|7–9|Busca em anexos; índice; linguagem|Fonte0.1.15 implementada:8 novos portáveis e24 regressões passaram; Linux/GTK pendentes.|
-|10–12|Seleção; impressão; imposição|Fonte0.1.15: seleção por blocos, preparação cancelável, cópia atômica e geometria validada;6 portáveis+9 regressões passaram. Linux/físico/bidi completo pendentes.|
-|13–15|Marcadores; anotações; formulários|Fonte0.1.15: respostas/Ink/combo editável implementados;7 portáveis+21 regressões passaram. GTK/Linux e JavaScript/XFA abertos.|
-|16–18|Anexos; assinaturas; segurança|Fonte0.1.15: membros de portfólio/sessão por senha, assinatura local PEM e permissões;7 novos+28 regressões passaram. UI/Linux e confiança/LTV/RMS abertos.|
-|19–21|Acessibilidade; medidas; camadas/mídia|Fonte0.1.15: voz WAV, medidas calibradas e toggle de camadas;6 portáveis+14 regressões passaram. Linux/probe/voz/pixels e mídia/3D abertos.|
-|22–24|Preferências; nuvem; conversão|Preferências/quadros estáticos implementados;5 portáveis+22 regressões passaram. **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário.|
-|25|Plataforma|Seletor nativo e informações de instalação implementados; probe portal preparado. Persistência/associação/update real/Windows abertos.|
+|1–3|Abertura; navegação; apresentação|Recortes0.1.14 preservados na regressão490/490. Físico/Wayland/original e famílias amplas abertos.|
+|4–6|Busca em texto; marcadores; comentários|Parar, campos separados, conversas e destinos testados no Linux/Flatpak; comparação integral e casos restantes abertos.|
+|7–9|Busca em anexos; índice; linguagem|HTML/DOCX/ODT passivos, manutenção atômica do índice e radicais PT/EN testados. Demais formatos/idiomas e índice original abertos.|
+|10–12|Seleção; impressão; imposição|Blocos/colunas, preparação cancelável e cópia/geometria protegidas testadas; caret/bidi completo, impressão física e ciclo original abertos.|
+|13–15|Marcadores; anotações; formulários|Hierarquia de marcadores, respostas, Ink e combo editável testados; demais anotações, eventos/JavaScript/XFA abertos.|
+|16–18|Anexos; assinaturas; segurança|Membros de portfólio/sessão por senha, assinatura local PEM e permissões testados; layout/campos, confiança/TSA/LTV/RMS abertos.|
+|19–21|Acessibilidade; medidas; camadas/mídia|AT-SPI sintético entre processos, WAV real, medidas e pixels de camadas testados; leitor físico, reprodução, mídia/3D e configurações alternativas abertos.|
+|22–24|Preferências; nuvem; conversão|Preferências e quadros estáticos testados. **23/nuvem direta adiado**; sincronização real, formatos restantes e família ampla abertos.|
+|25|Plataforma|Seletor nativo/portal X11 e informações de instalação testados; concessão persistente no Flatpak, associação, atualização/rollback real e Windows abertos.|
 
 ## Contrato próprio do lote4–6
 
@@ -251,3 +253,16 @@ bidi/caret completo, impressão física/encerramento original, eventos/XFA,
 confiança/TSA/LTV/RMS, leitor de tela físico, mídia/3D, concessões persistentes,
 associação/update e Windows nativo, além de toda comparação integral Foxit.
 Não converter a contagem de recortes em percentual da reconstrução.
+
+
+## Consolidação Linux e Flatpak0.1.15 — 2026-10-19T14:36:34-03:00
+
+[CI39293507397](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39293507397), fonte`257425a84f638f872386be7c499fe56030f1a968`: **490/490 por ambiente** fonte,payload,sandbox instalado, zero falhas/erros/skips. Os432 IDs da0.1.14 foram preservados;58 métodos novos em oito módulos de teste. Casos antigos que recusavam funcionalidades agora suportadas foram atualizados explicitamente nos lotes, mantendo seus IDs; preservar IDs não significa que suas asserções ficaram idênticas. Testes próprios não equivalem aos50 planosS12 de aceitação integral.
+
+Conferidos160 arquivos app,11 relatórios selados, smoke5/5 e launcher3/3. Runtime:3414 arquivos/242 ELF/181 pacotes Debian atribuídos. SnowballBSD e avisos/fontes de versões exatas do runtime acompanham a entrega; ver[RUNTIME-SOURCE-ACCESS.md](RUNTIME-SOURCE-ACCESS.md). Bundle de58072096bytes, SHA256`f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9`. [Manifesto](../releases/manifest-0.1.15.json), [relatórios](../testes/resultados/0.1.15/) e [evidências por lote](../testes/resultados/lotes-2026-10-19/review.json).
+
+Fonte consolidada também aprovada noCI39293331527. Probe de portal confirmou chamadaFileChooser.OpenFile, resposta e caminho do PDF sintético. AT-SPI leu o texto sintético do widget por outro processo. Nove telas doCI39293837922 examinadas sem corte dos novos controles; a captura do leitor com hit mantém o painelPáginas e não comprova visualmente o destino do comentário, que é coberto pelo testeGTK de identificação da linha. Combo editável e assinaturaCMS têm testes próprios; as respectivas capturas mostram apenas checkbox e entrada de assinatura, sem alegar um fluxo visual completo de certificado.
+
+**Estado restante:** inventário provisório111recortes,93 com código delimitado/15 pendentes ou por caracterizar/3 adiados. Esses números não são percentual de conclusão. Portal fica pendente no contrato amplo por faltar concessão persistente/sandbox/desktop físico, apesar do probe real X11. Paridade integral0/25, inventário global aberto, índice antigo45,13% e39done/19abertos preservados. VM0930 não recebeu entradas; parada09:54:23 permanece.
+
+Próximos trabalhos sem VM: seleção por caractere/bidi e corpus multilíngue; eventos de formulário delimitados e demais tipos de anotação; verificação de confiança/timestamp com política definida; cenários executáveis restantesS12 e validação de portal/associação/update em desktop Linux disponível. Testes de impressão física, leitor de tela e monitores físicos precisam desses recursos. Original/P03 só retoma após resolução explícita da parada e novo observador/preflight offline. Não simular aprovação desses ambientes.
