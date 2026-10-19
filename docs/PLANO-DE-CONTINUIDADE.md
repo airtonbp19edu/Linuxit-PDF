@@ -6,7 +6,11 @@ Este plano organiza **todos os 19 critérios ainda abertos e as 25 famílias ide
 
 [Fonte estruturada](../progresso/plano-continuidade.json) · [retomada do ambiente](RETOMADA.md) · [última parada da VM](VM-SENHA-E-PARADA-2026-10-18.md).
 
-[Conferência do plano](../testes/resultados/plano-continuidade-2026-10-18.json): cobertura dos 19 critérios, 25 famílias e 50 planos, referências e dependências verificadas. Isso valida a organização; nenhuma etapa técnica foi concluída por criar este documento.
+[Conferência da criação do plano em 0d0de4c](../testes/resultados/plano-continuidade-2026-10-18.json): cobertura dos 19 critérios, 25 famílias e 50 planos, referências e dependências verificadas. Esse relatório histórico corresponde à criação em 0d0de4c; hashes referem-se àquela versão, não às atualizações de execução.
+
+## Execução atual de P01–P03
+
+P01 concluída para o catálogo provisório v1 de 111 recortes/25 famílias; inventário global aberto. P02 bloqueada pelo relógio em 21:49:22 sem avanço e P03 não iniciada. [Relatório da execução](EXECUCAO-P01-P03-2026-10-18.md) e [estado estruturado](../progresso/execucao-plano.json). A situação inicial abaixo permanece histórica.
 
 ## Estado de partida
 

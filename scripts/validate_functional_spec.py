@@ -44,13 +44,31 @@ def validate(spec):
     for name in ('testes/cenarios-dinamicos.json', 'testes/cenarios-interface.json'):
         scenario_ids.update(c['id'] for c in json.loads(local_file(name).read_text(encoding='utf-8'))['cases'])
     case_ids, tests, references = set(), set(), set()
-    proposed = 0
+    proposed, recorded_runtime_families = 0, 0
     for family, row in zip(spec['families'], rows):
         prefix = family['id'] + ': '
         require(family['name'] == row['functionality'], prefix + 'Name differs from matrix')
         require(family['matrix_implementation'] == row['implementation'], prefix + 'Implementation drift from matrix')
         require(family['contract_kind'] in {'implemented_subset', 'proposed_only'}, prefix + 'Invalid contract kind')
-        require(family['parity'] == 'not_verified' and not family['foxit']['runtime_observed'], prefix + 'Unproven runtime/parity claim')
+        require(family['parity'] == 'not_verified', prefix + 'Whole-family parity is not verified')
+        observed = family['foxit']['runtime_observed']
+        require(type(observed) is bool, prefix + 'Runtime state must be a boolean')
+        runtime_refs = family['foxit'].get('runtime_observation_refs', [])
+        require(isinstance(runtime_refs, list), prefix + 'Runtime evidence must be a list')
+        require(family['foxit'].get('full_family_runtime_verified', False) is False,
+                prefix + 'Whole-family runtime is not verified')
+        if observed:
+            require(family['foxit'].get('evidence_state') == 'runtime_observed_subset' and
+                    family['foxit'].get('full_family_runtime_verified') is False,
+                    prefix + 'Partial observations cannot approve a whole family')
+            require(runtime_refs and family['foxit'].get('recorded_runtime_scope', '').strip(),
+                    prefix + 'Observed runtime needs evidence and bounded scope')
+            recorded_runtime_families += 1
+        else:
+            require(not runtime_refs, prefix + 'Runtime references contradict unobserved state')
+        for name in runtime_refs:
+            require(isinstance(name, str) and name.strip(), prefix + 'Invalid runtime evidence path')
+            local_file(name); references.add(name)
         require(bool(family['scope'].strip()) and bool(family['foxit']['unresolved']), prefix + 'Scope/gaps required')
         for field in ('inputs', 'outputs', 'state_and_side_effects'):
             require(bool(family[field]) and all(isinstance(x, str) and x.strip() for x in family[field]), prefix + 'Empty ' + field)
@@ -91,6 +109,8 @@ def validate(spec):
             'implemented_subsets': len(rows) - proposed, 'proposed_only': proposed,
             'unique_test_references_checked': len(tests), 'unique_source_references_checked': len(references),
             'new_acceptance_executions': 0, 'foxit_observations': 0,
+            'foxit_observations_scope': 'New observations by this validator only; preserved subsets are separate.',
+            'families_with_recorded_original_subsets': recorded_runtime_families,
             'reference_specification_complete': False}
 
 
@@ -100,7 +120,8 @@ def render(spec, summary):
              f"Escopo: **{summary['families']} famílias identificadas**, **{summary['acceptance_cases']} cenários planejados**; "
              f"{summary['implemented_subsets']} subconjuntos implementados e {summary['proposed_only']} propostas futuras. O inventário global permanece aberto.", '',
              'O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. '
-             'Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente '
+             'Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. '
+             'Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente '
              'nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.', '',
              'Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem outros documentos '
              'continuam dependendo da criação/especialização do corpus descrito em sua condição inicial.', '',
@@ -123,6 +144,10 @@ def render(spec, summary):
             lines += [f"- **{case['id']}** ({case['kind']}, {basis}, `not_run`): dado {case['given']} "
                       f"Ação: {case['when']} Esperado: {case['expected_linuxit']}"]
         lines += ['', '**Lacunas da referência Foxit**', '', *['- ' + x for x in family['foxit']['unresolved']], '']
+        runtime_refs = family['foxit'].get('runtime_observation_refs', [])
+        if family['foxit']['runtime_observed']:
+            lines += ['**Observação parcial preservada do original:** ' + family['foxit']['recorded_runtime_scope'], '',
+                      'Evidências: ' + ', '.join(f'[{name}](../{name})' for name in runtime_refs) + '.', '']
         refs = family['source_refs'] + family['foxit']['source_refs']
         lines.append('Fontes: ' + ', '.join(f'[{name}](../{name})' for name in dict.fromkeys(refs)) + '.')
         if family['existing_test_refs']:
@@ -147,7 +172,7 @@ def main():
     if args.check_render:
         require(args.check_render.read_text(encoding='utf-8') == document, 'Rendered register is stale')
     if args.render:
-        args.render.write_text(document, encoding='utf-8')
+        args.render.write_text(document, encoding='utf-8', newline='\n')
     print(json.dumps(result))
 
 

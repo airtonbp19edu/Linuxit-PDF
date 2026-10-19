@@ -1,5 +1,12 @@
 # Linuxit PDF — continuidade do projeto
 
+Execução P01–P03: docs/EXECUCAO-P01-P03-2026-10-18.md. P01 concluída no
+catálogo provisório111 recortes/25 famílias; global aberto. P02 bloqueada no
+controle atual do relógio21:49:22 após10 segundos externos; P03 não iniciada.
+Nenhuma entrada/deploy/rede/reboot emitidos. Scripts/check_operation_catalog.py
+e validate_functional_spec.py validam inventário/observação parcial separada.
+Estado atual: progresso/execucao-plano.json; critérios antigos intactos.
+
 Plano de execução: [P01–P10](docs/PLANO-DE-CONTINUIDADE.md), com inventário por família,
 dependências e critérios de conclusão. São pacotes de continuidade; não substituem
 as 21 etapas ponderadas. Começar por P01; sem VM, P06/B01 e P04 podem avançar

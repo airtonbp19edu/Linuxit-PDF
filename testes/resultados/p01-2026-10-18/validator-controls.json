@@ -1,0 +1,57 @@
+{
+  "schema": "linuxit-p01-validator-controls-v1",
+  "controls": [
+    {
+      "control": "valid_reconciled_spec_and_catalog_accepted",
+      "passed": true
+    },
+    {
+      "control": "runtime_true_without_evidence_rejected",
+      "passed": true
+    },
+    {
+      "control": "whole_runtime_family_claim_rejected",
+      "passed": true
+    },
+    {
+      "control": "whole_parity_claim_rejected",
+      "passed": true
+    },
+    {
+      "control": "nonboolean_runtime_rejected",
+      "passed": true
+    },
+    {
+      "control": "unexecuted_S12_cannot_be_passed",
+      "passed": true
+    },
+    {
+      "control": "global_percentage_without_denominator_rejected",
+      "passed": true
+    },
+    {
+      "control": "implemented_without_code_rejected",
+      "passed": true
+    },
+    {
+      "control": "changed_code_hash_rejected",
+      "passed": true
+    },
+    {
+      "control": "related_test_cannot_approve_whole_operation",
+      "passed": true
+    },
+    {
+      "control": "unrecorded_passing_test_rejected",
+      "passed": true
+    },
+    {
+      "control": "cloud_deferral_cannot_be_counted_as_pending_implementation",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "new_application_tests": false,
+  "new_original_execution": false
+}

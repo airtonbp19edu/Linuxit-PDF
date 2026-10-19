@@ -2766,3 +2766,44 @@ verify_git_sync.py com recibo externo. Não declarar sincronização por commit 
 Próximo passo: executar P01 em lote de reconciliação, depois operar os recursos
 sem VM; P02 só quando houver resposta e controles offline novos, respeitando a
 regra de parar/salvar/avisar. Nenhuma estimativa de prazo foi inventada.
+
+## 2026/10/18 às 22:23 (America/Sao_Paulo, UTC-03:00) — P01 executada; P02/P03 interrompidas na entrada
+
+Pedido: fazer P01–P03. P01 produziu inventário provisório111 recortes em25
+famílias: 71 com código delimitado, 37 pendentes/caracterização,3cloud adiados.
+49símbolos próprios localizados com linhas/hash;60métodos relacionados conferidos
+na evidência403/403 do CI39172130287.106arquivos app atuais iguais ao manifesto.
+Sem nova execução da suíte do app, novo original, REA ou build; contagens não
+medem porcentagem global ou operações integralmente aceitas.
+
+Matriz25linhas e especificação reconciliadas; valores anteriores preservados em
+testes/resultados/p01-2026-10-18/reconciliation.json. Nove famílias agora registram
+observação original parcial com evidências; D11/D15 não voltam como não observados.
+Autor corrigido somente na fonte, pacote 0.1.13 preservado; 12métricas iguais/cinco
+inconclusivas. Validador antes exigia runtime_observedfalse em todas as famílias;
+agora aceita somente recorte com referências/escopo e rejeita paridade/aceitação
+integral inventadas. Criado checker operacional; contratos humanos regenerados.
+Todos50planos S12not_run,23subconjuntos/2propostas,19critérios/pesos45,13%,paridade 0/25
+e porcentagem globalnull preservados. P01done é pacote provisório, não etapa7done.
+
+P02: leitura hostVBoxrunning/cableoff e CUA/sky, sem entradas. Relógio21:49:22
+igual antes/depois de dez segundos externos explícitos. Duas capturas VBox iguais,
+hashba27a793...3761fc e intervalo externo maior que10s. Usuário avisado; nenhuma
+entrada, manutenção de rede, deploy, nova tarefa, original, pause/resume/reboot.
+P02blocked_vm_not_responsive; P03not_started_blocked_by_P02. Relógio avançou em
+algum momento desde21:24:14, mas falhou agora; sem causa raiz atribuída. Não afirmar
+novo inventário de processos/isolamento completo: não houve coletor novo.
+
+Publicáveis: docs/INVENTARIO-OPERACOES.md, docs/EXECUCAO-P01-P03-2026-10-18.md,
+progresso/inventario-operacoes-v1.json, execucao-plano.json e resultados/p01-2026-10-18/.
+Privados: analysis-local/vm-20261018-2207/, p01_rows.py, execute_p01.py, p01_controls.py,
+finish_p01_p03.py e excertos próprios p01-source-excerpts.txt. Validadores e controles
+negativos conferidos:12 controles passaram, inventário111/25, contratos25/50 e nove
+famílias com recortes observados; arquitetura44/58 e19 critérios abertos. Revisão
+final/hashes em review.json. Guias/estados atualizados sem sobrescrever relatórios históricos.
+
+Base Git0d0de4cc315f01b4e84087ea1ecd177f2fb5dc9a local/remoto confirmada. Fechar com
+commit/push autorizado e recibo externo confirmando remoto. Próximo passo: após
+resposta do guest, completar P02 com hash novo/RunId novo, perfil limitado,
+contenção/offline e pf/col/end; só então P03. Não superar parada automaticamente.
+Sem VM, outros pacotes próprios requerem continuidade de escopo pelo usuário.

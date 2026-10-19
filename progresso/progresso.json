@@ -2337,10 +2337,25 @@
     "execution_packages": 10,
     "identified_families_mapped": 25,
     "open_criteria_mapped": 19,
-    "planning_only": true,
+    "planning_only": false,
     "legacy_criteria_or_weights_changed": false,
-    "first_package": "P01",
+    "first_package": "P02",
     "first_own_implementation_candidate": "P06/B01",
-    "original_execution_requires": "P02"
+    "original_execution_requires": "P02",
+    "execution_state_ref": "progresso/execucao-plano.json",
+    "first_package_blocker_ref": "testes/resultados/p01-2026-10-18/vm-gate.json"
+  },
+  "current_plan_execution": {
+    "report": "docs/EXECUCAO-P01-P03-2026-10-18.md",
+    "inventory": "progresso/inventario-operacoes-v1.json",
+    "execution": "progresso/execucao-plano.json",
+    "p01": "completed_provisional_v1",
+    "p02": "blocked_vm_not_responsive",
+    "p03": "not_started_blocked_by_P02",
+    "operations_catalogued": 111,
+    "new_application_tests": 0,
+    "new_original_executions": 0,
+    "criteria_or_weights_changed": false,
+    "implementation_completion_percent": null
   }
 }

@@ -1,0 +1,892 @@
+{
+  "schema": "linuxit-p01-reconciliation-v1",
+  "reviewed_at_local": "2026-10-18T22:17:54-03:00",
+  "families": [
+    {
+      "family_id": "open-render",
+      "before": {
+        "matrix": {
+          "id": "open-render",
+          "functionality": "Abrir PDF e renderizar páginas",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+          "validation": "VM2026-10-18: C18-D02/D13/D14 match recorded metrics; bounded opening/rendering/errors observed; full family not verified. Historical own validation: Current 0.1.9: 290/290 own Linux source/payload/installed sandbox tests; real sync client and desktop portal pending; no original differential verification. Earlier evidence: own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_ui_update_only",
+          "source_refs": [
+            "docs/ETAPA-11.md",
+            "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Comportamento Foxit para senha, corrupção, recuperação e todos os estados de abertura.",
+            "O leitor atual não possui um fluxo completo de entrada de senha."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Abertura/erros/cópia em recortes; senha correta em abertura independenteD15 abriu8 páginas. Não é contrato completo de recuperação/renderização. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "navigation",
+      "before": {
+        "matrix": {
+          "id": "navigation",
+          "functionality": "Navegação/rotação/zoom",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+          "validation": "VM2026-10-18: bounded page navigation/zoom/view rotation/page-out-of-range observed; no whole-family differential validation. Historical own validation: Current 0.1.9: 290/290 own Linux source/payload/installed sandbox tests; real sync client and desktop portal pending; no original differential verification. Earlier evidence: 267/267 own tests per Linux source/payload/installed sandbox, including39 new portable and16 GTK methods; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/ETAPA-11.md",
+            "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
+            "docs/windows-evidence/foxit-rea/zoom-presets.json",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Limites e modos efetivos Foxit dependem da classe/estado ativo.",
+            "Updaters de zoom só enviam desabilitação nos limites; política completa não foi reconstruída."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Página/zoom/rotaçãoD03 em recorte e sequência1→8→1 no PDF cifradoD15; extremos/modos completos ainda abertos. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "presentation",
+      "before": {
+        "matrix": {
+          "id": "presentation",
+          "functionality": "Apresentação ajustar/preencher",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Ajuste/preenchimento, atalhos e múltiplos monitores do original não foram observados."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Apresentação GTK própria; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-text",
+      "before": {
+        "matrix": {
+          "id": "search-text",
+          "functionality": "Busca literal/palavra inteira/maiúsculas",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "VM2026-10-18: literal/whole-word/case/no-sources metrics match; mixed hit destinations and empty query inconclusive; exact missing-term protocol pending. Historical own validation: own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Normalização e algoritmos completos do Foxit; ordem/limites/destaques precisam de comparação."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Literal/palavra inteira/caixa próprios e recortes comparados; D11-missing exato observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Literal/palavra/caixa/no-sources e missing-term exato em recortes. Consulta vazia sem resposta de backend continua inconclusiva. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-bookmarks",
+      "before": {
+        "matrix": {
+          "id": "search-bookmarks",
+          "functionality": "Busca em marcadores",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "VM2026-10-18: two results observed; bookmark-pane navigation observed separately; search-hit destinations inconclusive; C18-D07/D10 not imported as matched. Historical own validation: own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Classe dos IDs 7911/7913 e comportamento de busca/navegação Foxit.",
+            "A junção estrutural de ID 7913 ao handler de +0x1d58 continua ambígua."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Dois hits observados; destinos inconclusivos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Dois resultados e seleção observados; ativação/destinos permanecem inconclusivos. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-comments",
+      "before": {
+        "matrix": {
+          "id": "search-comments",
+          "functionality": "Busca em comentários",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "VM2026-10-18: comment-body/subject metrics match; author Foxit1/Linuxit0 differs; mixed-source hit destinations inconclusive; full family open. Historical own validation: own regression tests; no original differential verification Source follow-up168381b: author corrected,403/403 own Linux source tests,17/17 own contracts,11/11 total imported metrics match;5inconclusive/1awaiting remain. Published Flatpak0.1.13 unchanged; see docs/BUSCA-AUTOR-COMENTARIOS.md.",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/VM-FOXIT-2026-10-18.md",
+            "testes/resultados/vm-2026-10-18/foxit-observations.json"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Demais tipos e campos pesquisados, respostas, duplicação entre campos, ordenação e destinos da busca mista. A observação inicial cobre somente a nota sintética preservada."
+          ],
+          "bounded_runtime_observation": {
+            "report": "docs/VM-FOXIT-2026-10-18.md",
+            "cases": [
+              "C18-D08-comments",
+              "C18-D09-subject",
+              "C18-D09-author"
+            ],
+            "whole_family_runtime_observed": false
+          }
+        }
+      },
+      "after": {
+        "implementation": "Autor corrigido na fonte 168381b,403/403 Linux registrados; Flatpak0.1.13 anterior à correção. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Corpo/assunto/autor da nota sintética observados. Autor corrigido na fonte; demais tipos e busca mista abertos. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/BUSCA-AUTOR-COMENTARIOS.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-attachments",
+      "before": {
+        "matrix": {
+          "id": "search-attachments",
+          "functionality": "Busca em anexos",
+          "evidence_state": "Partial static follow-up48 entries2026-10-18; see docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md; original runtime unobserved",
+          "implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+          "validation": "8 query mode,12 attachment,12 collection and6 GTK methods passed in each190-case suite; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Travessia completa, extratores, formatos, limites, ordenação e associação de resultados no original."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Extratores UTF8/PDF e contratos próprios da 0.1.6; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-index",
+      "before": {
+        "matrix": {
+          "id": "search-index",
+          "functionality": "Índice persistente/pesquisa de coleção",
+          "evidence_state": "Partial static follow-up48 entries2026-10-18; see docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md; original runtime unobserved",
+          "implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+          "validation": "8 query mode,12 attachment,12 collection and6 GTK methods passed in each190-case suite; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/windows-evidence/foxit-rea/index-interface.json",
+            "docs/FOXIT-REA.md",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Formato e manutenção do índice completo, exclusões, locking, recuperação e disponibilidade Reader."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Snapshot JSON local de PDFs selecionados; não equivale ao índice completo do Foxit. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "search-language",
+      "before": {
+        "matrix": {
+          "id": "search-language",
+          "functionality": "Stemming/proximidade/coringas",
+          "evidence_state": "Partial static follow-up48 entries2026-10-18; see docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md; original runtime unobserved",
+          "implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+          "validation": "8 query mode,12 attachment,12 collection and6 GTK methods passed in each190-case suite; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-BUSCA-IMPRESSAO.md",
+            "docs/windows-evidence/foxit-rea/search-print-contracts.json",
+            "docs/ETAPA-11.md",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Stemming por idioma, distância/proximidade, escaping, expansão e combinações com índice."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Coringas/proximidade próprios em subconjunto; stemming ainda pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "selection",
+      "before": {
+        "matrix": {
+          "id": "selection",
+          "functionality": "Seleção/cópia/snapshot",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Ordem lógica, texto bidirecional, permissões de cópia, snapping e coordenadas de todos os modos do original."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Seleção retangular/cópia/snapshot próprios em subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "printing",
+      "before": {
+        "matrix": {
+          "id": "printing",
+          "functionality": "Prévia/plano de impressão",
+          "evidence_state": "Partial static follow-up48 entries2026-10-18; see docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md; original runtime unobserved",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
+            "docs/AVANCO-SEM-VM.md",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Predefinições, margens, fontes, flags, spooler físico e estados completos do original."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Prévia/plano próprios e observação original D17 limitados; sem impressão física aprovada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Prévia/cancelarD17; UI05extra com confirmação de lote/No. Não houve impressão física nem prova de saída completa. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "imposition",
+      "before": {
+        "matrix": {
+          "id": "imposition",
+          "functionality": "Livreto/N-up/mosaico",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "VM2026-10-18: local print preview and visual booklet/nup order observed; exact margin/output-stream protocols inconclusive; no physical print. Historical own validation: own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/REA-IMPRESSAO-CONSUMIDORES.md",
+            "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
+            "docs/AVANCO-SEM-VM.md",
+            "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Livreto/N-up/mosaico próprios; prévia original observada, saída correspondente inconclusiva. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Prévia de ordem em livreto/N-up observada; saída e parâmetros correspondentes ainda inconclusivos. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "bookmarks-edit",
+      "before": {
+        "matrix": {
+          "id": "bookmarks-edit",
+          "functionality": "Criar/mover/gravar marcadores",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "source/package0.1.10 own subset; see docs/EDICAO-COM-HISTORICO.md; full family incomplete",
+          "validation": "Current0.1.10:333/333 own source/payload/installed sandbox;34 new portable/9 GTK; no original differential comparison; full family incomplete",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "static_code_partial",
+          "source_refs": [
+            "docs/FOXIT-REA.md",
+            "docs/ETAPA-11.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Criar/renomear/mover/excluir subárvore em cópia e histórico de rascunho na 0.1.10. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "annotations",
+      "before": {
+        "matrix": {
+          "id": "annotations",
+          "functionality": "Anotações/undo/gravação",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "Source/package0.1.13 adds Underline/StrikeOut/Squiggly area marks, Circle, Line and comment/author edits with draft history. See docs/ANOTACOES-AMPLIADAS.md; full family incomplete.",
+          "validation": "Current0.1.13:400/400 own source/payload/installed sandbox;20 added methods (14 portable/6 GTK), all380 previous IDs preserved. No original comparison; full family incomplete.",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Oito tipos simples delimitados, cinco marcas adicionais e edição comentário/autor na 0.1.13. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "forms",
+      "before": {
+        "matrix": {
+          "id": "forms",
+          "functionality": "AcroForm/XFA/eventos",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "source/package0.1.10 own subset; see docs/EDICAO-COM-HISTORICO.md; full family incomplete",
+          "validation": "Current0.1.10:333/333 own source/payload/installed sandbox;34 new portable/9 GTK; no original differential comparison; full family incomplete",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md",
+            "docs/AVANCO-SEM-VM.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Tx/checkbox/radio/combos sem texto livre/listas em cópia; histórico e ReadOnly no subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "attachments",
+      "before": {
+        "matrix": {
+          "id": "attachments",
+          "functionality": "Anexos/portfólios",
+          "evidence_state": "Partial original offline campaign2026-10-18; see docs/VM-FOXIT-2026-10-18.md; static evidence preserved",
+          "implementation": "implemented subset: catalog trees and page annotation attachments verified in Linux/Flatpak0.1.4; portfolios/password pending; see docs/AVANCO-SEM-VM.md",
+          "validation": "VM2026-10-18: saved synthetic attachment22bytes/hash matches C18-D16; full family not verified. Historical own validation: 7 new tree methods,14 backend/14 controller regressions and6 GTK panel methods passed in complete0.1.4 source/payload/sandbox suites127/127; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
+            "Portfólios completos e senha não vazia continuam pendentes; extensão própria de árvores/anotações não prova comportamento Foxit. Desktop e acessibilidade pendentes."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Catálogo/árvores/anotação próprios; anexo original 22 bytes/hash comparado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Anexo sintético listado/extraído,22bytes/hash iguais; políticas/portfólios completos abertos. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "signatures",
+      "before": {
+        "matrix": {
+          "id": "signatures",
+          "functionality": "Assinaturas/certificados",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
+          "validation": "267/267 own tests per Linux source/payload/installed sandbox, including39 new portable and16 GTK methods; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Fluxos Reader, assinatura versus validação, cadeias, políticas e comportamento offline; plugins não provam suporte completo."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Inspeção/integridade CMS offline separada de confiança. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "security",
+      "before": {
+        "matrix": {
+          "id": "security",
+          "functionality": "Senhas/permissões/RMS",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+          "validation": "Current 0.1.9: 290/290 own Linux source/payload/installed sandbox tests; real sync client and desktop portal pending; no original differential verification. Earlier evidence: 267/267 own tests per Linux source/payload/installed sandbox, including39 new portable and16 GTK methods; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md",
+            "docs/AVANCO-SEM-VM.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Senha conhecida/permissões/cópias AES-256 e remoção com senha de proprietário em subconjunto; D15 original observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "Cancelar/senha errada anteriores e correta na abertura independenteD15. Permissões/RMS/fluxo universal não observados. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": true
+      },
+      "basis_refs": [
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "accessibility",
+      "before": {
+        "matrix": {
+          "id": "accessibility",
+          "functionality": "Acessibilidade/voz",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
+          "validation": "267/267 own tests per Linux source/payload/installed sandbox, including39 new portable and16 GTK methods; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "TextView/ATK.Text, nomes e atalhos próprios; validação AT-SPI real pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "measurement",
+      "before": {
+        "matrix": {
+          "id": "measurement",
+          "functionality": "Medição/calibração",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "implemented subset; see docs/especificacao.md",
+          "validation": "own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Unidades, calibração, snapping, precisão, áreas e perímetros do original."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Distância em centímetros entre pontos; sem calibração personalizada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "layers-media",
+      "before": {
+        "matrix": {
+          "id": "layers-media",
+          "functionality": "Camadas/mídia/3D",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "read-only panels only; editing/full behavior pending",
+          "validation": "not run in Linuxit",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Listagem de nomes OCG; alternância/mídia/3D não implementadas integralmente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "preferences",
+      "before": {
+        "matrix": {
+          "id": "preferences",
+          "functionality": "Preferências/tema/persistência",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+          "validation": "Current 0.1.9: 290/290 own Linux source/payload/installed sandbox tests; real sync client and desktop portal pending; no original differential verification. Earlier evidence: own regression tests; no original differential verification",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Source/payload regression suite plus pending original behavior comparison"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Defaults, esquemas de persistência e dependências de todas as preferências do original."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Tema system/light/dark e pastas locais persistidos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "cloud",
+      "before": {
+        "matrix": {
+          "id": "cloud",
+          "functionality": "Nuvem/colaboração",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "pending adoption and verification",
+          "validation": "not run in Linuxit",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Contratos por provedor, serviços disponíveis, autorização, colaboração e conflitos; presença de plugins não valida APIs."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Integração direta adiada; fluxo de pasta local não a implementa. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "conversion",
+      "before": {
+        "matrix": {
+          "id": "conversion",
+          "functionality": "Criação/conversão",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "Source/package0.1.12 TIFF multipage and prior local OCR subset; see docs/TIFF-MULTIPAGINA.md; full family incomplete",
+          "validation": "Current0.1.12:380/380 own source/payload/installed sandbox;17 added methods and1 intentional TIFF refusal-test replacement; no original comparison, full family incomplete.",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Inventário real Reader/Editor, fidelidade, formatos, OCR e serviços; não implementado como família completa."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "PNG/JPEG/BMP/WebP simples, TIFF até 100 páginas e OCR local até 20, com limites registrados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    },
+    {
+      "family_id": "platform",
+      "before": {
+        "matrix": {
+          "id": "platform",
+          "functionality": "Integrações de sistema/atualização",
+          "evidence_state": "Partial; see docs/FOXIT-REA.md",
+          "implementation": "pending adoption and verification",
+          "validation": "not run in Linuxit",
+          "equivalent_to_foxit": "not verified",
+          "criteria": "Behavior specification, deterministic fixture, original observation and differential result required"
+        },
+        "foxit": {
+          "evidence_state": "resource_or_module_inventory_only",
+          "source_refs": [
+            "docs/FOXIT-REA.md"
+          ],
+          "runtime_observed": false,
+          "unresolved": [
+            "Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows."
+          ]
+        }
+      },
+      "after": {
+        "implementation": "Complete integration contract remains proposed; existing worker/launcher/runtime controls are bounded delivered components. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+        "validation": "No original runtime subset of this family recorded in examined reports. Related own tests are recorded per operation; source403/package400 are historical run counts, not whole-family coverage. See progresso/inventario-operacoes-v1.json.",
+        "runtime_observed": false
+      },
+      "basis_refs": [
+        "progresso/inventario-operacoes-v1.json"
+      ]
+    }
+  ],
+  "source_app_files_match_recorded_ci": 106,
+  "recorded_source_ci": {
+    "run_id": 39172130287,
+    "report_sha256": "03ccefb39697ff95088fd118d61a5c2c404c9d4b4ff1657d7a9d0bbd1e18c428",
+    "passed": 403,
+    "rerun": false
+  },
+  "original_partial_families": [
+    "open-render",
+    "navigation",
+    "search-text",
+    "search-bookmarks",
+    "search-comments",
+    "printing",
+    "imposition",
+    "attachments",
+    "security"
+  ],
+  "new_original_executions": 0,
+  "new_app_tests": 0,
+  "criteria_or_weights_changed": false,
+  "family_parity_changed": false
+}

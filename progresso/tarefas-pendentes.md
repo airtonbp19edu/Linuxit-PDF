@@ -1,5 +1,11 @@
 # Tarefas atuais e ponto de retomada
 
+Estado de execução: [P01–P03](../docs/EXECUCAO-P01-P03-2026-10-18.md),
+[catálogo111](inventario-operacoes-v1.json) e [estado por etapa](execucao-plano.json).
+P01 concluída para inventário provisório; P02 bloqueada pelo relógio21:49:22,
+P03 não iniciada. Restaurar resposta antes de deploy do coletor; manter regra
+de não reiniciar/pausar automaticamente. Os19 critérios amplos continuam abertos.
+
 Fila organizada: [plano P01–P10](../docs/PLANO-DE-CONTINUIDADE.md) e
 [fonte estruturada](plano-continuidade.json). Toda pendência conhecida das 25
 famílias e dos 19 critérios tem etapa, dependência, entrega e condição de conclusão.

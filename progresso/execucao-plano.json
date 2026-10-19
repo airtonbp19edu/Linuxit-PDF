@@ -1,0 +1,39 @@
+{
+  "schema": "linuxit-continuation-execution-v1",
+  "updated_at_local": "2026-10-18T22:23:05-03:00",
+  "request": "P01-P03",
+  "steps": [
+    {
+      "id": "P01",
+      "status": "completed_provisional_v1",
+      "scope": "Known operation inventory and current evidence reconciliation; global inventory remains open.",
+      "operations": 111,
+      "families": 25,
+      "evidence_refs": [
+        "progresso/inventario-operacoes-v1.json",
+        "docs/INVENTARIO-OPERACOES.md",
+        "testes/resultados/p01-2026-10-18/reconciliation.json"
+      ]
+    },
+    {
+      "id": "P02",
+      "status": "blocked_vm_not_responsive",
+      "attempted": "Read-only clock/host entry gate, failed before any guest action.",
+      "evidence_refs": [
+        "testes/resultados/p01-2026-10-18/vm-gate.json"
+      ],
+      "next": "Restore guest responsiveness, then fresh limited offline controls and deploy/integrate corrected collector."
+    },
+    {
+      "id": "P03",
+      "status": "not_started_blocked_by_P02",
+      "new_original_executions": 0,
+      "evidence_refs": [
+        "testes/resultados/p01-2026-10-18/vm-gate.json"
+      ],
+      "next": "P02 must pass before original observations."
+    }
+  ],
+  "legacy_criteria_changed": false,
+  "new_recoding_percentage": null
+}

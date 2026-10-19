@@ -4,7 +4,7 @@ Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.p
 
 Escopo: **25 famílias identificadas**, **50 cenários planejados**; 23 subconjuntos implementados e 2 propostas futuras. O inventário global permanece aberto.
 
-O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit permanecem `null`. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
+O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
 Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem outros documentos continuam dependendo da criação/especialização do corpus descrito em sua condição inicial.
 
@@ -73,10 +73,14 @@ Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar c�
 
 **Lacunas da referência Foxit**
 
-- Comportamento Foxit para senha, corrupção, recuperação e todos os estados de abertura.
-- O leitor atual não possui um fluxo completo de entrada de senha.
+- D15 independent correct password and bounded opening/error/copy variants are observed; remaining recovery/rendering states remain open.
+- The own security backend authenticates known passwords, but opening/rendering in the main viewer does not have the complete password flow.
 
-Fontes: [app/rendering.py](../app/rendering.py), [app/main.py](../app/main.py), [app/async_core.py](../app/async_core.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Abertura/erros/cópia em recortes; senha correta em abertura independenteD15 abriu8 páginas. Não é contrato completo de recuperação/renderização.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+
+Fontes: [app/rendering.py](../app/rendering.py), [app/main.py](../app/main.py), [app/async_core.py](../app/async_core.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_cache_distinguishes_documents](../tests/test_regressions.py); [test_latest_renderer_skips_obsolete_queue_entries](../tests/test_viewer.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 
@@ -118,7 +122,11 @@ Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem grav
 - Limites e modos efetivos Foxit dependem da classe/estado ativo.
 - Updaters de zoom só enviam desabilitação nos limites; política completa não foi reconstruída.
 
-Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Página/zoom/rotaçãoD03 em recorte e sequência1→8→1 no PDF cifradoD15; extremos/modos completos ainda abertos.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+
+Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py); [test_five_panel_headers_fit_default_and_small_window](../tests/test_sidebar_layout_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 
@@ -200,7 +208,11 @@ Busca literal em texto de páginas, com caixa/palavra inteira e extensões próp
 
 - Normalização e algoritmos completos do Foxit; ordem/limites/destaques precisam de comparação.
 
-Fontes: [app/search_engine.py](../app/search_engine.py), [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Literal/palavra/caixa/no-sources e missing-term exato em recortes. Consulta vazia sem resposta de backend continua inconclusiva.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-BUSCA-2026-10-18-2020.md](../docs/VM-BUSCA-2026-10-18-2020.md).
+
+Fontes: [app/search_engine.py](../app/search_engine.py), [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-BUSCA-2026-10-18-2020.md](../docs/VM-BUSCA-2026-10-18-2020.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_options_and_real_pdf](../tests/test_search.py); [test_global_limit_progress_and_cancel_cover_metadata](../tests/test_search_scopes.py); [test_highlight_preference_and_navigation_change_pixels_without_new_search](../tests/test_search_highlights.py).
 
@@ -241,7 +253,11 @@ Pesquisa em títulos de marcadores; leitura e navegação não equivalem a ediç
 - Classe dos IDs 7911/7913 e comportamento de busca/navegação Foxit.
 - A junção estrutural de ID 7913 ao handler de +0x1d58 continua ambígua.
 
-Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/windows-evidence/foxit-rea/search-checkbox-bindings.json](../docs/windows-evidence/foxit-rea/search-checkbox-bindings.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Dois resultados e seleção observados; ativação/destinos permanecem inconclusivos.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-BUSCA-2026-10-18-2020.md](../docs/VM-BUSCA-2026-10-18-2020.md).
+
+Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/windows-evidence/foxit-rea/search-checkbox-bindings.json](../docs/windows-evidence/foxit-rea/search-checkbox-bindings.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-BUSCA-2026-10-18-2020.md](../docs/VM-BUSCA-2026-10-18-2020.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_ui_toggles_scopes_and_navigates_bookmark_result](../tests/test_search_scopes.py).
 
@@ -281,7 +297,11 @@ Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentá
 
 - Demais tipos e campos pesquisados, respostas, duplicação entre campos, ordenação e destinos da busca mista. A observação inicial cobre somente a nota sintética preservada.
 
-Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [testes/resultados/vm-2026-10-18/foxit-observations.json](../testes/resultados/vm-2026-10-18/foxit-observations.json).
+**Observação parcial preservada do original:** Corpo/assunto/autor da nota sintética observados. Autor corrigido na fonte; demais tipos e busca mista abertos.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/BUSCA-AUTOR-COMENTARIOS.md](../docs/BUSCA-AUTOR-COMENTARIOS.md).
+
+Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [testes/resultados/vm-2026-10-18/foxit-observations.json](../testes/resultados/vm-2026-10-18/foxit-observations.json), [docs/BUSCA-AUTOR-COMENTARIOS.md](../docs/BUSCA-AUTOR-COMENTARIOS.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_contents_and_author_are_searchable](../tests/test_search_scopes.py); [test_preserved_author_only_term_matches_the_recorded_page](../tests/test_search_comment_author.py); [test_author_matching_respects_case_whole_words_and_accents](../tests/test_search_comment_author.py); [test_comment_without_author_still_searches_subject_and_body](../tests/test_search_comment_author.py).
 
@@ -485,7 +505,11 @@ Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio nã
 
 - Predefinições, margens, fontes, flags, spooler físico e estados completos do original.
 
-Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Prévia/cancelarD17; UI05extra com confirmação de lote/No. Não houve impressão física nem prova de saída completa.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
+
+Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_preview_sides_binding_and_submit](../tests/test_gui.py); [test_manual_booklet_sides_are_not_duplex](../tests/test_regressions.py).
 
@@ -527,7 +551,11 @@ Composição independente em livreto, N-up e mosaico, herdada da base MIT e adap
 
 - Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit.
 
-Fontes: [app/imposition.py](../app/imposition.py), [app/worker_cli.py](../app/worker_cli.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
+**Observação parcial preservada do original:** Prévia de ordem em livreto/N-up observada; saída e parâmetros correspondentes ainda inconclusivos.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
+
+Fontes: [app/imposition.py](../app/imposition.py), [app/worker_cli.py](../app/worker_cli.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_generated_sides_and_binding](../tests/test_regressions.py); [test_nup_worker_rejects_fractional_count](../tests/test_regressions.py); [test_worker_prepares_nup_and_poster](../tests/test_regressions.py); [test_actual_size_centers_the_visible_crop_not_the_media_origin](../tests/test_imposition_cropbox.py); [test_intrinsic_rotation_keeps_shifted_crop_aligned](../tests/test_imposition_cropbox.py); [test_inputs_and_in_memory_page_geometry_are_preserved](../tests/test_imposition_cropbox.py); [test_poster_single_sheet_and_tiles_keep_crop_placement_without_marks](../tests/test_imposition_cropbox.py).
 
@@ -716,10 +744,14 @@ Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; back
 
 **Lacunas da referência Foxit**
 
-- Política e comportamento Foxit ainda não observados; backend atual é contrato independente.
-- Portfólios completos e senha não vazia continuam pendentes; extensão própria de árvores/anotações não prova comportamento Foxit. Desktop e acessibilidade pendentes.
+- D16 synthetic listing/extraction22bytes/hash observed; full policies and availability remain open.
+- Portfolios and nonempty-password attachment workflow remain unsupported; desktop/accessibility pending.
 
-Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [app/attachment_tasks.py](../app/attachment_tasks.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+**Observação parcial preservada do original:** Anexo sintético listado/extraído,22bytes/hash iguais; políticas/portfólios completos abertos.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
+
+Fontes: [app/pdf_attachments.py](../app/pdf_attachments.py), [app/worker_cli.py](../app/worker_cli.py), [app/attachment_tasks.py](../app/attachment_tasks.py), [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_listing_keeps_duplicate_entries_and_does_not_decode_payloads](../tests/test_pdf_attachments.py); [test_extract_preserves_binary_content_hash_and_original](../tests/test_pdf_attachments.py); [test_unsafe_pdf_names_are_reported_and_refused_without_writes](../tests/test_pdf_attachments.py); [test_worker_protocol_lists_extracts_and_reports_conflict](../tests/test_pdf_attachments.py); [test_stale_listing_callback_cannot_replace_a_new_document](../tests/test_attachment_tasks.py); [test_real_worker_extracts_selected_attachment_and_restores_buttons](../tests/test_attachment_tasks.py); [test_refresh_invalidates_the_selection_captured_before_a_dialog](../tests/test_attachment_tasks.py); [test_panel_saves_selected_file_and_shows_conflict_without_overwrite](../tests/test_attachment_panel_gtk.py); [test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks](../tests/test_attachment_panel_gtk.py); [test_long_attachment_name_keeps_header_and_save_button_inside_panel](../tests/test_sidebar_layout_gtk.py); [test_nested_tree_preserves_duplicate_name_indices_and_bytes](../tests/test_attachment_trees.py).
 
@@ -794,7 +826,11 @@ Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou có
 
 - Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado.
 
-Fontes: [app/pdf_security.py](../app/pdf_security.py), [app/security_window.py](../app/security_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
+**Observação parcial preservada do original:** Cancelar/senha errada anteriores e correta na abertura independenteD15. Permissões/RMS/fluxo universal não observados.
+
+Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+
+Fontes: [app/pdf_security.py](../app/pdf_security.py), [app/security_window.py](../app/security_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted_inspection_identity_pages_and_permissions](../tests/test_pdf_security.py); [test_aes256_roundtrip_roles_permissions_metadata_and_attachments](../tests/test_pdf_security.py); [test_each_permission_flag_and_accessibility_bit_are_preserved](../tests/test_pdf_security.py); [test_encrypted_inspection_correct_wrong_and_missing_credentials](../tests/test_pdf_security.py); [test_new_password_limits_and_distinct_roles](../tests/test_pdf_security.py); [test_invalid_protocol_and_permission_types_rejected](../tests/test_pdf_security.py); [test_encrypted_source_not_unprotected_or_rewritten](../tests/test_pdf_security.py); [test_signed_xfa_portfolio_and_permissions_sources_refused](../tests/test_pdf_security.py); [test_stale_source_and_source_size_page_output_limits](../tests/test_pdf_security.py); [test_existing_destination_and_source_never_overwritten](../tests/test_pdf_security.py); [test_handled_partial_write_removed_and_error_sanitized](../tests/test_pdf_security.py); [test_concurrent_destination_preserved](../tests/test_pdf_security.py); [test_real_worker_secret_transport_and_error_channel](../tests/test_pdf_security.py); [test_cancellation_and_invalid_confirmation_never_report_success](../tests/test_pdf_security.py); [test_accessible_text_validation_limit_and_source_change](../tests/test_pdf_security.py); [test_accessible_text_refuses_encrypted_pdf_even_with_empty_password](../tests/test_pdf_security.py); [test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel](../tests/test_pdf_security.py); [test_only_owner_authentication_can_create_unprotected_copy](../tests/test_pdf_security.py); [test_owner_copy_stale_destination_and_partial_failure_are_safe](../tests/test_pdf_security.py); [test_owner_copy_refuses_special_restrictions_and_signature_fields](../tests/test_pdf_security.py); [test_inspect_protect_and_secrets_cleared_without_source_change](../tests/test_security_accessibility_gtk.py); [test_encrypted_inspection_wrong_and_owner_credentials](../tests/test_security_accessibility_gtk.py); [test_password_mismatch_and_cancelled_destination_create_nothing](../tests/test_security_accessibility_gtk.py); [test_document_change_during_destination_dialog_discards_request](../tests/test_security_accessibility_gtk.py); [test_cancel_and_destroy_stop_actual_security_process](../tests/test_security_accessibility_gtk.py); [test_owner_copy_is_readable_by_main_reader_and_original_is_preserved](../tests/test_security_accessibility_gtk.py); [test_owner_copy_rejects_opening_password_and_clears_it](../tests/test_security_accessibility_gtk.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 

@@ -1,5 +1,12 @@
 # Retomada do Linuxit PDF
 
+Pedido P01–P03 executado até o limite do ambiente: [P01 concluída para catálogo
+provisório; P02/P03 bloqueadas](EXECUCAO-P01-P03-2026-10-18.md). Inventário111
+recortes/25 famílias em INVENTARIO-OPERACOES.md; matriz/contratos reconciliados.
+Nova conferência do relógio:21:49:22 sem avanço, duas capturas idênticas após
+espera externa. Sem entrada/deploy/rede/reboot; não esperar respostas de2020.
+Quando o guest responder, validar P02 antes de original/P03. Histórico abaixo.
+
 Sequência para prosseguir: [plano P01–P10](PLANO-DE-CONTINUIDADE.md),
 com os 19 critérios abertos e as 25 famílias mapeados. Primeiro P01: inventário
 operacional/reconciliação; primeira entrega própria candidata P06/B01: combo

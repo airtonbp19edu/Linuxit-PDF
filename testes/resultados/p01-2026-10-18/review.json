@@ -1,0 +1,125 @@
+{
+  "schema": "linuxit-p01-p03-execution-review-v1",
+  "reviewed_at_local": "2026-10-18T22:27:12-03:00",
+  "base_commit": "0d0de4cc315f01b4e84087ea1ecd177f2fb5dc9a",
+  "p01_status": "completed_provisional_v1",
+  "p02_status": "blocked_vm_not_responsive",
+  "p03_status": "not_started_blocked_by_P02",
+  "catalog_validation": {
+    "families": 25,
+    "operations": 111,
+    "implementation_states": {
+      "bounded_source_present": 71,
+      "pending_or_target_characterization": 37,
+      "deferred_by_user": 3
+    },
+    "source_symbols_checked": 49,
+    "recorded_related_tests_checked": 60,
+    "new_app_test_executions": 0,
+    "new_original_executions": 0,
+    "inventory_complete": false,
+    "implementation_completion_percent": null
+  },
+  "functional_validation": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 23,
+    "proposed_only": 2,
+    "unique_test_references_checked": 190,
+    "unique_source_references_checked": 74,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "foxit_observations_scope": "New observations by this validator only; preserved subsets are separate.",
+    "families_with_recorded_original_subsets": 9,
+    "reference_specification_complete": false
+  },
+  "validator_controls_passed": 12,
+  "validator_controls_failed": 0,
+  "app_source_files_match_recorded_ci": 106,
+  "vm_gate_ref": "testes/resultados/p01-2026-10-18/vm-gate.json",
+  "current_guest_clock": "21:49:22",
+  "legacy_criteria_and_weights_unchanged": true,
+  "open_legacy_criteria": 19,
+  "legacy_checklist_percent": 45.13,
+  "whole_family_parity": 0,
+  "implementation_completion_percent": null,
+  "new_app_test_executions": 0,
+  "new_original_executions": 0,
+  "flatpak_rebuilt": false,
+  "old_evidence_unchanged": true,
+  "utf8_lf_artifacts": true,
+  "sealed_artifacts": [
+    {
+      "file": "docs/INVENTARIO-OPERACOES.md",
+      "sha256": "75a9441842bbfc6573f8c87f28a7e5e21194045fcb47aa2472d7a5083a00ec6b"
+    },
+    {
+      "file": "docs/EXECUCAO-P01-P03-2026-10-18.md",
+      "sha256": "aeb5fc00457b55d7336fd2decc96f02b286c1f4b730a3fab8322e3d7bea194c5"
+    },
+    {
+      "file": "docs/especificacao-funcional.json",
+      "sha256": "39c55614d4f730b32de5e22a94921ec768b784aa001742b595283012651b741b"
+    },
+    {
+      "file": "docs/contratos-funcionais.md",
+      "sha256": "16e1310e6f1be98eab01cb08d8a5f8f856a5b64447966c9992673bdd7ed16ad4"
+    },
+    {
+      "file": "docs/PLANO-DE-CONTINUIDADE.md",
+      "sha256": "8a7cd5d46128e6149d7120e2b08f80636f29bf9dc8c9385b482d1528b5b724ab"
+    },
+    {
+      "file": "progresso/inventario-operacoes-v1.json",
+      "sha256": "bb404a753e399e28e3662290945b94c801613b58467cf905776d3b0dde584e03"
+    },
+    {
+      "file": "progresso/execucao-plano.json",
+      "sha256": "e991a7e9c51aab315e1a5307e054dff1d5b841ed3c7a485135bdfeca3327d2c3"
+    },
+    {
+      "file": "progresso/plano-continuidade.json",
+      "sha256": "eb902c01f38cdef151dea65102789e8ab534a8597be5f027f1989ecabc5a2d08"
+    },
+    {
+      "file": "progresso/matriz-paridade.csv",
+      "sha256": "478c0c92d377a04f703d6420e2a39c7de86ee8b791ca6d458835d74dd34038e7"
+    },
+    {
+      "file": "scripts/check_operation_catalog.py",
+      "sha256": "38c434e64f12f7390f107d6575a1c22c9efd11dbddcf0831a01bbbc00041155d"
+    },
+    {
+      "file": "scripts/validate_functional_spec.py",
+      "sha256": "304c9976b89e57f8fabe40ef4c4a6fd79c8a38f7b93eeac39e4650a06c071644"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/architecture-summary.json",
+      "sha256": "25a1f03afbec5883017e9d32643d6d5ee12e5cb1224a5040e1304b3d04f80a43"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/catalog-validation.json",
+      "sha256": "ca28e2ee6b1c9ce22d675ca70724d71c7b1b180849f52001431cbf28ef0c9dac"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/functional-validation.json",
+      "sha256": "befd9e7ae730be2040894f1cdfe9827c01367fe9755c7b9fb663766385b78059"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/reconciliation.json",
+      "sha256": "013316e2cbc37a6872c17621f83af2dab931c3e3c4c2c561f4f902e62f9bad77"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/recorded-linux-cases.json",
+      "sha256": "65c3321a24bd3aed418b087f14877d454aae62047141edeb479bde4bf61daf66"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/validator-controls.json",
+      "sha256": "25eb5b39768266a33fa8bf14682166ab4e28ed914cf202f8dd3601945bc7294f"
+    },
+    {
+      "file": "testes/resultados/p01-2026-10-18/vm-gate.json",
+      "sha256": "1b7791ecfae6d3d3a966f6e9d90c7582720f08d1edcbf20acd644953871fe2ca"
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # Pendências de análise e pontos de retomada
 
+P01 do plano executada no recorte provisório de111 operações/25 famílias,
+com matriz/contratos reconciliados. [Execução P01–P03](../docs/EXECUCAO-P01-P03-2026-10-18.md):
+controle do relógio21:49:22 falhou após10 segundos externos; P02 bloqueada e
+P03 não iniciada. Nenhum status/peso de critério antigo alterado.
+
 Execução organizada no [plano P01–P10](../docs/PLANO-DE-CONTINUIDADE.md).
 [Mapeamento estruturado](plano-continuidade.json) cobre exatamente os 19 critérios
 abaixo e as 25 famílias. Nenhum status/peso foi alterado pelo planejamento.

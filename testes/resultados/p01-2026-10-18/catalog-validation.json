@@ -1,0 +1,15 @@
+{
+  "families": 25,
+  "operations": 111,
+  "implementation_states": {
+    "bounded_source_present": 71,
+    "pending_or_target_characterization": 37,
+    "deferred_by_user": 3
+  },
+  "source_symbols_checked": 49,
+  "recorded_related_tests_checked": 60,
+  "new_app_test_executions": 0,
+  "new_original_executions": 0,
+  "inventory_complete": false,
+  "implementation_completion_percent": null
+}

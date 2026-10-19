@@ -23,7 +23,7 @@
     {
       "id": "open-render",
       "name": "Abrir PDF e renderizar páginas",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -59,18 +59,26 @@
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
       "foxit": {
-        "evidence_state": "static_ui_update_only",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/ETAPA-11.md",
           "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
-          "Comportamento Foxit para senha, corrupção, recuperação e todos os estados de abertura.",
-          "O leitor atual não possui um fluxo completo de entrada de senha."
-        ]
+          "D15 independent correct password and bounded opening/error/copy variants are observed; remaining recovery/rendering states remain open.",
+          "The own security backend authenticates known passwords, but opening/rendering in the main viewer does not have the complete password flow."
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Abertura/erros/cópia em recortes; senha correta em abertura independenteD15 abriu8 páginas. Não é contrato completo de recuperação/renderização."
       },
       "existing_test_refs": [
         {
@@ -134,7 +142,7 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "source/package 0.1.8 extended copy-edit subset; see docs/SEGURANCA-ACESSIBILIDADE.md; full family incomplete; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -174,19 +182,27 @@
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/ETAPA-11.md",
           "docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json",
           "docs/windows-evidence/foxit-rea/zoom-presets.json",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Limites e modos efetivos Foxit dependem da classe/estado ativo.",
           "Updaters de zoom só enviam desabilitação nos limites; política completa não foi reconstruída."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Página/zoom/rotaçãoD03 em recorte e sequência1→8→1 no PDF cifradoD15; extremos/modos completos ainda abertos."
       },
       "existing_test_refs": [
         {
@@ -254,7 +270,7 @@
     {
       "id": "presentation",
       "name": "Apresentação ajustar/preencher",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Apresentação GTK própria; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Apresentação GTK com ajustar/preencher, pan, zoom e ponteiro; não implica suporte a mídia embutida.",
       "inputs": [
@@ -285,14 +301,17 @@
         "app/page_cache.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Ajuste/preenchimento, atalhos e múltiplos monitores do original não foram observados."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -342,7 +361,7 @@
     {
       "id": "search-text",
       "name": "Busca literal/palavra inteira/maiúsculas",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Literal/palavra inteira/caixa próprios e recortes comparados; D11-missing exato observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Busca literal em texto de páginas, com caixa/palavra inteira e extensões próprias de acentos/hifenização.",
       "inputs": [
@@ -380,16 +399,24 @@
         "app/rendering.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-BUSCA-2026-10-18-2020.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Normalização e algoritmos completos do Foxit; ordem/limites/destaques precisam de comparação."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-BUSCA-2026-10-18-2020.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Literal/palavra/caixa/no-sources e missing-term exato em recortes. Consulta vazia sem resposta de backend continua inconclusiva."
       },
       "existing_test_refs": [
         {
@@ -449,7 +476,7 @@
     {
       "id": "search-bookmarks",
       "name": "Busca em marcadores",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Dois hits observados; destinos inconclusivos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Pesquisa em títulos de marcadores; leitura e navegação não equivalem a edição/persistência.",
       "inputs": [
@@ -480,18 +507,26 @@
         "app/pdf_panels.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
           "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-BUSCA-2026-10-18-2020.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Classe dos IDs 7911/7913 e comportamento de busca/navegação Foxit.",
           "A junção estrutural de ID 7913 ao handler de +0x1d58 continua ambígua."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-BUSCA-2026-10-18-2020.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Dois resultados e seleção observados; ativação/destinos permanecem inconclusivos."
       },
       "existing_test_refs": [
         {
@@ -542,7 +577,7 @@
     {
       "id": "search-comments",
       "name": "Busca em comentários",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Autor corrigido na fonte 168381b,403/403 Linux registrados; Flatpak0.1.13 anterior à correção. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentários; correção motivada pelo recorte C18-D09-author observado offline.",
       "inputs": [
@@ -573,15 +608,16 @@
         "app/pdf_panels.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "testes/resultados/vm-2026-10-18/foxit-observations.json"
+          "testes/resultados/vm-2026-10-18/foxit-observations.json",
+          "docs/BUSCA-AUTOR-COMENTARIOS.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Demais tipos e campos pesquisados, respostas, duplicação entre campos, ordenação e destinos da busca mista. A observação inicial cobre somente a nota sintética preservada."
         ],
@@ -593,7 +629,13 @@
             "C18-D09-author"
           ],
           "whole_family_runtime_observed": false
-        }
+        },
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/BUSCA-AUTOR-COMENTARIOS.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Corpo/assunto/autor da nota sintética observados. Autor corrigido na fonte; demais tipos e busca mista abertos."
       },
       "existing_test_refs": [
         {
@@ -652,7 +694,7 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "Extratores UTF8/PDF e contratos próprios da 0.1.6; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
@@ -689,7 +731,7 @@
         "app/main.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
@@ -698,7 +740,10 @@
         "runtime_observed": false,
         "unresolved": [
           "Travessia completa, extratores, formatos, limites, ordenação e associação de resultados no original."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -769,7 +814,7 @@
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "Snapshot JSON local de PDFs selecionados; não equivale ao índice completo do Foxit. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
@@ -806,7 +851,7 @@
         "app/main.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/windows-evidence/foxit-rea/index-interface.json",
           "docs/FOXIT-REA.md",
@@ -816,7 +861,10 @@
         "runtime_observed": false,
         "unresolved": [
           "Formato e manutenção do índice completo, exclusões, locking, recuperação e disponibilidade Reader."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -889,7 +937,7 @@
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "source/package0.1.6 implemented subset; Linux source/payload/installed sandbox verified190/190 each; see docs/BUSCA-COLECOES.md",
+      "matrix_implementation": "Coringas/proximidade próprios em subconjunto; stemming ainda pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
@@ -926,7 +974,7 @@
         "app/collection_window.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/REA-BUSCA-IMPRESSAO.md",
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
@@ -937,7 +985,10 @@
         "runtime_observed": false,
         "unresolved": [
           "Stemming por idioma, distância/proximidade, escaping, expansão e combinações com índice."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -1004,7 +1055,7 @@
     {
       "id": "selection",
       "name": "Seleção/cópia/snapshot",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Seleção retangular/cópia/snapshot próprios em subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
       "inputs": [
@@ -1036,14 +1087,17 @@
         "app/rendering.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Ordem lógica, texto bidirecional, permissões de cópia, snapping e coordenadas de todos os modos do original."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -1091,7 +1145,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Prévia/plano próprios e observação original D17 limitados; sem impressão física aprovada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1130,18 +1184,24 @@
         "app/windows_print.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
           "docs/AVANCO-SEM-VM.md",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Predefinições, margens, fontes, flags, spooler físico e estados completos do original."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Prévia/cancelarD17; UI05extra com confirmação de lote/No. Não houve impressão física nem prova de saída completa."
       },
       "existing_test_refs": [
         {
@@ -1193,7 +1253,7 @@
     {
       "id": "imposition",
       "name": "Livreto/N-up/mosaico",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Livreto/N-up/mosaico próprios; prévia original observada, saída correspondente inconclusiva. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Composição independente em livreto, N-up e mosaico, herdada da base MIT e adaptada.",
       "inputs": [
@@ -1226,18 +1286,24 @@
         "app/worker_cli.py"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/REA-IMPRESSAO-CONSUMIDORES.md",
           "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
           "docs/AVANCO-SEM-VM.md",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+          "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+          "docs/VM-FOXIT-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Prévia de ordem em livreto/N-up observada; saída e parâmetros correspondentes ainda inconclusivos."
       },
       "existing_test_refs": [
         {
@@ -1307,7 +1373,7 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "source/package0.1.10 own subset; see docs/EDICAO-COM-HISTORICO.md; full family incomplete",
+      "matrix_implementation": "Criar/renomear/mover/excluir subárvore em cópia e histórico de rascunho na 0.1.10. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: criar/renomear, mover subárvore por pai/posição e excluir subárvore em cópia; ligações, destinos e contagens preservados no subconjunto. Histórico de rascunho permite desfazer/refazer antes de salvar; cópias já salvas preservadas.",
       "inputs": [
@@ -1366,7 +1432,7 @@
         "testes/resultados/0.1.10/validation-review.json"
       ],
       "foxit": {
-        "evidence_state": "static_code_partial",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md",
           "docs/ETAPA-11.md"
@@ -1374,7 +1440,10 @@
         "runtime_observed": false,
         "unresolved": [
           "Disponibilidade Reader dos diálogos, movimento hierárquico, undo/redo e persistência."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -1602,7 +1671,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Source/package0.1.13 adds Underline/StrikeOut/Squiggly area marks, Circle, Line and comment/author edits with draft history. See docs/ANOTACOES-AMPLIADAS.md; full family incomplete.",
+      "matrix_implementation": "Oito tipos simples delimitados, cinco marcas adicionais e edição comentário/autor na 0.1.13. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -1668,14 +1737,17 @@
         "testes/resultados/0.1.13/validation-review.json"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Replies, aparências, edição, autoria, undo/redo, salvamento e disponibilidade Reader."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -1983,7 +2055,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "source/package0.1.10 own subset; see docs/EDICAO-COM-HISTORICO.md; full family incomplete",
+      "matrix_implementation": "Tx/checkbox/radio/combos sem texto livre/listas em cópia; histórico e ReadOnly no subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
@@ -2040,7 +2112,7 @@
         "testes/resultados/0.1.10/validation-review.json"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md",
           "docs/AVANCO-SEM-VM.md"
@@ -2048,7 +2120,10 @@
         "runtime_observed": false,
         "unresolved": [
           "Motor de formulários, eventos, XFA, cálculo/validação e gravação; FRMSPlgV2 é RMS, não prova de formulários."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -2267,7 +2342,7 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "implemented subset: catalog trees and page annotation attachments verified in Linux/Flatpak0.1.4; portfolios/password pending; see docs/AVANCO-SEM-VM.md",
+      "matrix_implementation": "Catálogo/árvores/anotação próprios; anexo original 22 bytes/hash comparado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; backend, controlador e seis métodos GTK testados em fonte/payload/Flatpak127/127. Portfólios e senha não vazia pendentes.",
       "inputs": [
@@ -2326,15 +2401,21 @@
         "app/main.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
-          "docs/FOXIT-REA.md"
+          "docs/FOXIT-REA.md",
+          "docs/VM-FOXIT-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
-          "Política e comportamento Foxit ainda não observados; backend atual é contrato independente.",
-          "Portfólios completos e senha não vazia continuam pendentes; extensão própria de árvores/anotações não prova comportamento Foxit. Desktop e acessibilidade pendentes."
-        ]
+          "D16 synthetic listing/extraction22bytes/hash observed; full policies and availability remain open.",
+          "Portfolios and nonempty-password attachment workflow remain unsupported; desktop/accessibility pending."
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Anexo sintético listado/extraído,22bytes/hash iguais; políticas/portfólios completos abertos."
       },
       "existing_test_refs": [
         {
@@ -2420,7 +2501,7 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
+      "matrix_implementation": "Inspeção/integridade CMS offline separada de confiança. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
@@ -2449,14 +2530,17 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Fluxos Reader, assinatura versus validação, cadeias, políticas e comportamento offline; plugins não provam suporte completo."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -2571,7 +2655,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "Senha conhecida/permissões/cópias AES-256 e remoção com senha de proprietário em subconjunto; D15 original observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -2604,15 +2688,23 @@
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "runtime_observed_subset",
         "source_refs": [
           "docs/FOXIT-REA.md",
-          "docs/AVANCO-SEM-VM.md"
+          "docs/AVANCO-SEM-VM.md",
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
         ],
-        "runtime_observed": false,
+        "runtime_observed": true,
         "unresolved": [
           "Entrada de senha, enforcement de permissões, RMS e mensagens do original; o fluxo completo não está implementado."
-        ]
+        ],
+        "runtime_observation_refs": [
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+        ],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "Cancelar/senha errada anteriores e correta na abertura independenteD15. Permissões/RMS/fluxo universal não observados."
       },
       "existing_test_refs": [
         {
@@ -2797,7 +2889,7 @@
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "source/package 0.1.8 implemented subset; see docs/SEGURANCA-ACESSIBILIDADE.md; Linux source/payload/installed sandbox267/267 each",
+      "matrix_implementation": "TextView/ATK.Text, nomes e atalhos próprios; validação AT-SPI real pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
@@ -2827,14 +2919,17 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -3007,7 +3102,7 @@
     {
       "id": "measurement",
       "name": "Medição/calibração",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md",
+      "matrix_implementation": "Distância em centímetros entre pontos; sem calibração personalizada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
       "inputs": [
@@ -3037,14 +3132,17 @@
         "app/main.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Unidades, calibração, snapping, precisão, áreas e perímetros do original."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [],
       "dynamic_case_refs": [],
@@ -3083,7 +3181,7 @@
     {
       "id": "layers-media",
       "name": "Camadas/mídia/3D",
-      "matrix_implementation": "read-only panels only; editing/full behavior pending",
+      "matrix_implementation": "Listagem de nomes OCG; alternância/mídia/3D não implementadas integralmente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
       "inputs": [
@@ -3112,14 +3210,17 @@
         "app/pdf_panels.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [],
       "dynamic_case_refs": [],
@@ -3158,7 +3259,7 @@
     {
       "id": "preferences",
       "name": "Preferências/tema/persistência",
-      "matrix_implementation": "implemented subset; see docs/especificacao.md; 0.1.9 adds local folder shortcuts and complete exclusive new copies; see docs/PASTAS-SINCRONIZADAS.md; full family incomplete",
+      "matrix_implementation": "Tema system/light/dark e pastas locais persistidos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -3191,14 +3292,17 @@
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Defaults, esquemas de persistência e dependências de todas as preferências do original."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -3249,7 +3353,7 @@
     {
       "id": "cloud",
       "name": "Nuvem/colaboração",
-      "matrix_implementation": "pending adoption and verification",
+      "matrix_implementation": "Integração direta adiada; fluxo de pasta local não a implementa. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados. Adiado por decisão explícita do usuário: Deixar nuvem para depois. Família preservada, sem alteração de pesos. Autorizado apenas um fluxo auxiliar de arquivos locais em pasta sincronizada por outro programa; isso não implementa a integração remota desta família.",
       "inputs": [
@@ -3278,14 +3382,17 @@
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Contratos por provedor, serviços disponíveis, autorização, colaboração e conflitos; presença de plugins não valida APIs."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [],
       "dynamic_case_refs": [],
@@ -3323,7 +3430,7 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Source/package0.1.12 TIFF multipage and prior local OCR subset; see docs/TIFF-MULTIPAGINA.md; full family incomplete",
+      "matrix_implementation": "PNG/JPEG/BMP/WebP simples, TIFF até 100 páginas e OCR local até 20, com limites registrados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. Fonte/payload/sandbox380/380 passaram, incluindo14 novos portáveis,2 GTK e1 integração real TIFF→PDF→OCR; uma expectativa histórica de recusa TIFF foi adaptada. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
@@ -3385,14 +3492,17 @@
         "testes/resultados/0.1.12/validation-review.json"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Inventário real Reader/Editor, fidelidade, formatos, OCR e serviços; não implementado como família completa."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [
         {
@@ -3576,7 +3686,7 @@
     {
       "id": "platform",
       "name": "Integrações de sistema/atualização",
-      "matrix_implementation": "pending adoption and verification",
+      "matrix_implementation": "Complete integration contract remains proposed; existing worker/launcher/runtime controls are bounded delivered components. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
       "inputs": [
@@ -3608,14 +3718,17 @@
         "app/cups_backend.py"
       ],
       "foxit": {
-        "evidence_state": "resource_or_module_inventory_only",
+        "evidence_state": "partial_static_only",
         "source_refs": [
           "docs/FOXIT-REA.md"
         ],
         "runtime_observed": false,
         "unresolved": [
           "Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows."
-        ]
+        ],
+        "runtime_observation_refs": [],
+        "full_family_runtime_verified": false,
+        "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
       "existing_test_refs": [],
       "dynamic_case_refs": [],
@@ -3653,5 +3766,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T13:35:28-03:00"
+  "updated_at_local": "2026-10-18T22:17:54-03:00",
+  "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
+  "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

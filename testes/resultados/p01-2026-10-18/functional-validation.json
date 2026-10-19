@@ -1,0 +1,13 @@
+{
+  "families": 25,
+  "acceptance_cases": 50,
+  "implemented_subsets": 23,
+  "proposed_only": 2,
+  "unique_test_references_checked": 190,
+  "unique_source_references_checked": 74,
+  "new_acceptance_executions": 0,
+  "foxit_observations": 0,
+  "foxit_observations_scope": "New observations by this validator only; preserved subsets are separate.",
+  "families_with_recorded_original_subsets": 9,
+  "reference_specification_complete": false
+}

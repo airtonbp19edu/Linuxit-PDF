@@ -1,0 +1,9 @@
+{
+  "application_modules": 44,
+  "documented_interfaces": 58,
+  "family_assignments": 25,
+  "unfinished_criteria_registered": 19,
+  "unfinished_stages_registered": 13,
+  "confirmed_token_exhaustion_events": 0,
+  "recorded_execution_timeouts": 2
+}

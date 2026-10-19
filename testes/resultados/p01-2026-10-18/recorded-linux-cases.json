@@ -1,0 +1,249 @@
+{
+  "schema": "linuxit-recorded-linux-subset-evidence-v1",
+  "recorded_ci_run_id": 39172130287,
+  "new_execution": false,
+  "provenance_ref": "testes/resultados/busca-autor-2026-10-18/review.json",
+  "recorded_full_suite_passed": 403,
+  "cases": [
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_checkbox_sets_and_clears_value_and_visible_appearance",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_choice_selection_can_be_cleared",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_delete_bookmark_removes_subtree_and_last_root",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_editable_combo_and_duplicate_exports_are_rejected",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_move_preserves_subtree_destinations_and_sibling_links",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_multiselect_uses_export_values_and_canonical_indices",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_radio_activates_only_the_selected_widget_and_can_clear",
+      "status": "passed"
+    },
+    {
+      "id": "test_advanced_edits.AdvancedEditTests.test_single_and_combo_values_indices_and_generated_appearances_roundtrip",
+      "status": "passed"
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_all_five_types_roundtrip_with_printable_embedded_appearance",
+      "status": "passed"
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_edit_and_clear_comment_author_preserve_geometry_appearance_and_other_content",
+      "status": "passed"
+    },
+    {
+      "id": "test_annotation_extensions.AnnotationExtensionTests.test_locked_related_and_unsupported_annotations_cannot_be_changed_or_deleted",
+      "status": "passed"
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope",
+      "status": "passed"
+    },
+    {
+      "id": "test_attachment_search.AttachmentSearchTests.test_utf8_bom_case_accents_and_whole_words_preserve_source",
+      "status": "passed"
+    },
+    {
+      "id": "test_attachment_trees.AttachmentTreeTests.test_nested_tree_preserves_duplicate_name_indices_and_bytes",
+      "status": "passed"
+    },
+    {
+      "id": "test_collection_index.CollectionIndexTests.test_build_reopen_worker_and_query_preserve_sources_and_real_pages",
+      "status": "passed"
+    },
+    {
+      "id": "test_collection_index.CollectionIndexTests.test_changed_missing_sources_are_excluded_until_explicit_rebuild",
+      "status": "passed"
+    },
+    {
+      "id": "test_copy_edit_gtk.CopyEditGTKTests.test_real_dialogs_and_worker_create_bookmark_note_and_form_copies",
+      "status": "passed"
+    },
+    {
+      "id": "test_edit_history.EditHistoryTests.test_undo_redo_rebuild_actual_pdfs_and_save_current_cursor_only",
+      "status": "passed"
+    },
+    {
+      "id": "test_extended_edits.ExtendedEditTests.test_all_supported_rotations_persist",
+      "status": "passed"
+    },
+    {
+      "id": "test_extended_edits.ExtendedEditTests.test_combined_edits_preserve_tree_destinations_geometry_and_source",
+      "status": "passed"
+    },
+    {
+      "id": "test_gui.GUIRegressionTests.test_booklet_preview_sides_binding_and_submit",
+      "status": "passed"
+    },
+    {
+      "id": "test_gui.GUIRegressionTests.test_search_navigation_selection_and_rotation",
+      "status": "passed"
+    },
+    {
+      "id": "test_gui.GUIRegressionTests.test_search_results_arrive_before_end_and_options_cancel_old_query",
+      "status": "passed"
+    },
+    {
+      "id": "test_imposition_cropbox.CropBoxImpositionTests.test_nup_orders_place_shifted_pages_in_same_cells",
+      "status": "passed"
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_actual_portuguese_combined_models_and_300_dpi",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_attachments.AttachmentTests.test_worker_protocol_lists_extracts_and_reports_conflict",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_changes.PDFChangeTests.test_nested_field_inherits_read_only_and_max_length",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_changes.PDFChangeTests.test_note_coordinates_are_finite_ordered_and_inside_cropbox",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_order_dimensions_lossless_rgb_and_source_identity",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_creation.PDFCreationTests.test_real_worker_roundtrip_and_existing_destination_error",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_security.PDFSecurityTests.test_aes256_roundtrip_roles_permissions_metadata_and_attachments",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_security.PDFSecurityTests.test_encrypted_inspection_correct_wrong_and_missing_credentials",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_security.PDFSecurityTests.test_only_owner_authentication_can_create_unprotected_copy",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_signatures.PDFSignatureTests.test_appended_bytes_report_only_signed_revision_coverage",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_signatures.PDFSignatureTests.test_real_detached_cms_integrity_is_separate_from_certificate_trust",
+      "status": "passed"
+    },
+    {
+      "id": "test_regressions.CoreRegressionTests.test_booklet_generated_sides_and_binding",
+      "status": "passed"
+    },
+    {
+      "id": "test_regressions.CoreRegressionTests.test_cache_distinguishes_documents",
+      "status": "passed"
+    },
+    {
+      "id": "test_regressions.CoreRegressionTests.test_search_phrases_and_casefold_expansion",
+      "status": "passed"
+    },
+    {
+      "id": "test_regressions.CoreRegressionTests.test_worker_prepares_nup_and_poster",
+      "status": "passed"
+    },
+    {
+      "id": "test_search.SearchTests.test_hyphenation_does_not_join_columns",
+      "status": "passed"
+    },
+    {
+      "id": "test_search.SearchTests.test_options_and_real_pdf",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_comment_author.CommentAuthorTests.test_preserved_author_only_term_matches_the_recorded_page",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_highlights.SearchHighlightGUITests.test_highlight_preference_and_navigation_change_pixels_without_new_search",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_modes.SearchModeTests.test_literal_preserves_punctuation_unicode_and_whole_words",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_modes.SearchModeTests.test_proximity_uses_total_intervening_words_and_query_order",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_modes.SearchModeTests.test_wildcards_match_complete_unicode_words_without_regex",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_scopes.SearchScopeTests.test_bookmark_without_local_page_is_not_given_a_fake_destination",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_scopes.SearchScopeTests.test_comment_subject_contents_and_author_are_searchable",
+      "status": "passed"
+    },
+    {
+      "id": "test_search_scopes.SearchScopeTests.test_real_document_scopes_are_independent_and_keep_destination",
+      "status": "passed"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_f6_focus_regions_names_and_list_arrow_delegation",
+      "status": "passed"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_real_poppler_text_is_exposed_through_atk_text_interface",
+      "status": "passed"
+    },
+    {
+      "id": "test_sync_folders.AtomicLocalCopyTests.test_worker_roundtrip_preserves_source_and_never_claims_remote_sync",
+      "status": "passed"
+    },
+    {
+      "id": "test_sync_folders.FolderPreferencesTests.test_sync_folder_roundtrip_is_separate_from_theme_and_contains_no_account",
+      "status": "passed"
+    },
+    {
+      "id": "test_tiff_multipage.MultipageTIFFTests.test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance",
+      "status": "passed"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent",
+      "status": "passed"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_latest_renderer_skips_obsolete_queue_entries",
+      "status": "passed"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_fit_fill_center_and_error",
+      "status": "passed"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_handles_portrait_and_landscape",
+      "status": "passed"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_theme_persistence_and_contrast",
+      "status": "passed"
+    }
+  ]
+}

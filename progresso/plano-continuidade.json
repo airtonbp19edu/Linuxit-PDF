@@ -3,7 +3,7 @@
   "created_at_local": "2026-10-18T21:54:16-03:00",
   "timezone": "America/Sao_Paulo",
   "base_commit": "c62ae3c4aece24f902c26f66aeeb81a4995f9b3c",
-  "status": "organized_for_execution",
+  "status": "executing_with_vm_blocker",
   "scope": "All currently recorded unfinished criteria and25 identified families. Operational inventory remains open; this plan is not proof of implementation or parity.",
   "authoritative_refs": [
     "AGENTS.md",
@@ -60,7 +60,7 @@
     {
       "id": "P01",
       "title": "Inventário de operações e medição",
-      "status": "ready",
+      "status": "completed_provisional_v1",
       "environment": "Sem VM; código e evidências preservadas",
       "start_after": [],
       "completion_inputs": [],
@@ -75,12 +75,17 @@
         "Inventário operacional versionado, por família, com fonte e evidência por operação.",
         "Especificação/matriz reconciliadas e lista explícita de operações ainda desconhecidas."
       ],
-      "completion_gate": "25 famílias examinadas no nível de operações; toda afirmação de implementação/validação tem referência. Catálogo declarado provisório se restarem funções por descobrir. Não aprova paridade."
+      "completion_gate": "25 famílias examinadas no nível de operações; toda afirmação de implementação/validação tem referência. Catálogo declarado provisório se restarem funções por descobrir. Não aprova paridade.",
+      "execution_evidence_refs": [
+        "progresso/inventario-operacoes-v1.json",
+        "docs/INVENTARIO-OPERACOES.md",
+        "testes/resultados/p01-2026-10-18/reconciliation.json"
+      ]
     },
     {
       "id": "P02",
       "title": "Validar o coletor e o ambiente do original",
-      "status": "awaiting_vm_responsiveness",
+      "status": "blocked_vm_not_responsive",
       "environment": "VM Windows offline, após voltar a responder",
       "start_after": [],
       "completion_inputs": [],
@@ -94,12 +99,15 @@
       "deliverables": [
         "Manifesto do novo observador, hash/perfil, contenção e recibos preflight/coleta/stop examinados."
       ],
-      "completion_gate": "Coletor corrigido realmente instalado e validado ponta a ponta, com recibos completos e token limitado. Controles do host já passados não substituem esta integração."
+      "completion_gate": "Coletor corrigido realmente instalado e validado ponta a ponta, com recibos completos e token limitado. Controles do host já passados não substituem esta integração.",
+      "execution_evidence_refs": [
+        "testes/resultados/p01-2026-10-18/vm-gate.json"
+      ]
     },
     {
       "id": "P03",
       "title": "Completar as observações do Foxit",
-      "status": "planned",
+      "status": "not_started_blocked_by_P02",
       "environment": "VM offline aprovada em P02",
       "start_after": [
         "P02"
@@ -120,7 +128,10 @@
         "Observações por variante com corpus/opções/identidades, evidência privada e metadados publicáveis.",
         "Fila de observações insuficientes ou indisponíveis no contexto, com causa explícita."
       ],
-      "completion_gate": "Protocolos selecionados reproduzíveis e observáveis; cada lacuna aprovada para comparação ou declarada inconclusiva. Fechamento amplo exige também as operações descobertas em P01/P04."
+      "completion_gate": "Protocolos selecionados reproduzíveis e observáveis; cada lacuna aprovada para comparação ou declarada inconclusiva. Fechamento amplo exige também as operações descobertas em P01/P04.",
+      "execution_evidence_refs": [
+        "testes/resultados/p01-2026-10-18/vm-gate.json"
+      ]
     },
     {
       "id": "P04",
@@ -1193,5 +1204,7 @@
     "Exact effort/duration per remaining operation",
     "Root cause of stopped guest clock",
     "Unexamined original capabilities and external service dependencies"
-  ]
+  ],
+  "updated_at_local": "2026-10-18T22:23:05-03:00",
+  "execution_state_ref": "progresso/execucao-plano.json"
 }
