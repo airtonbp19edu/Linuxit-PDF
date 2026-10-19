@@ -1,5 +1,13 @@
 # Tarefas atuais e ponto de retomada
 
+Último checkpoint: [senha e parada da VM](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+Relógio21:24:14 não avançou na confirmação após10 segundos; testes suspensos,
+Foxit fechado/cabooff, sem reboot automático. Primeiro restaurar resposta e
+validar coletor corrigido em RunId novo, com recibos curtos e contenção limitada.
+D15 senha correta em abertura nova observado; não repetir como pendência.
+UI05 duas abas com PDF protegido é variante extra; par planejado ainda aberto.
+D20 fechou normalmente neste contexto, sem resolver a espera anterior de impressão.
+
 Nova rodada offline2020: consulta exata D11 retornou zero e passou na comparação.
 Consolidado12/12 medições iguais, cinco inconclusivas; onze preservadas/uma nova.
 UI01 com documento/cancelar observado; destinos D07 ainda abertos. Ver

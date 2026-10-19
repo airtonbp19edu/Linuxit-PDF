@@ -1,5 +1,14 @@
 # Linuxit PDF — continuidade do projeto
 
+Checkpoint mais recente: [senha e parada da VM](docs/VM-SENHA-E-PARADA-2026-10-18.md).
+D15 correto em abertura independente abriu8 páginas; UI05 extra/recusa e D20
+fechamento normal sem processo residual observados neste contexto. Relógio parou
+em21:24:14, confirmado após10 segundos externos; entradas suspensas, usuário
+avisado, sem pause/reboot. Foxit já fechado/cabooff. Coletor2020 Ready/result1;
+não esperar respostas dele. Guardas do transporte corrigidas/testadas no host,
+mas novo script não instalado no guest; tarefa2130 não criada. Retomar pela
+validação do coletor com IDs curtos quando a VM responder. Não encerrar famílias.
+
 Nova rodada offline2020: consulta exata D11 retornou zero e passou na comparação.
 Consolidado12/12 medições iguais, cinco inconclusivas; onze preservadas/uma nova.
 UI01 com documento/cancelar observado; destinos D07 ainda abertos. Ver

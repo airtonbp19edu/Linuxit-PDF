@@ -1,5 +1,13 @@
 # Pendências de análise e pontos de retomada
 
+Continuação mais recente: [senha e parada](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+Relógio21:24:14 sem avanço após dez segundos externos: testes suspensos, Foxit
+já fechado/cabooff. Primeiro restabelecer resposta e integrar coletor corrigido
+em RunId novo/IDs curtos. D15 correto em abertura nova observado; UI05 extra
+parcial e D20 sem residual neste contexto não encerram os contratos amplos.
+Consolidado C18 atual12 iguais/cinco inconclusivos, com11 medições preservadas
+euma nova D11. Os19 critérios e pesos abaixo continuam iguais.
+
 Estado atualizado em **18/10/2026** após a campanha inicial na VM offline; os critérios da etapa 13
 e os pesos foram preservados. A suíte própria atual passou 400/400 em fonte,
 payload e sandbox. As análises estáticas anteriores não foram reiniciadas.
@@ -31,7 +39,7 @@ por essa exclusão; pendências e pesos permanecem preservados.
 |12|12,5%|25 famílias,23 subconjuntos/duas propostas (nuvem adiada),50 planos completos not_run; referência original parcial.|
 |15|33,3%|0.1.13: cinco tipos de anotação e comentário/autor ampliados, com TIFF/OCR anteriores;400/400 por ambiente. Famílias completas, operações restantes e duas propostas abertas.|
 |16|33,3%|Seis métodos GTK novos de anotações na0.1.13 e anteriores preservados. Desktop/portais/AT-SPI/impressora abertos.|
-|18|10%|Fonte corrigida:17/17 próprios e11/11 medidas comparadas iguais;5 inconclusivos/1pendente. Famílias completas abertas.|
+|18|10%|17/17 próprios preservados; consolidado12 medições iguais (11 preservadas/uma nova D11),5 inconclusivas. Famílias completas abertas.|
 |19|14,3%|Autor corrigido na fonte:Foxit1/Linuxit1;403/403 testes Linux. Outros protocolos/operações e famílias abertas; pacote0.1.13 anterior.|
 |21|50%|Entrega 0.1.13 validada; publicação/auditoria nas notas. 19 critérios amplos ainda abertos.|
 

@@ -2320,6 +2320,15 @@
     "awaiting_original_metric_cases": 0,
     "whole_family_parity_verified": false,
     "criteria_or_weights_changed": false,
-    "app_or_flatpak_changed": false
+    "app_or_flatpak_changed": false,
+    "additional_report": "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+    "additional_observations": "testes/resultados/vm-2026-10-18-2020/password-followup.json",
+    "d15_fresh_correct_first_attempt_observed": true,
+    "ui05_extra_two_tab_cancel_observed": true,
+    "normal_close_this_context_without_residual_observed": true,
+    "previous_print_wait_chain_resolved": false,
+    "vm_tests_suspended_on_clock": "21:24:14",
+    "stop_confirmed_at_utc": "2026-10-19T00:27:45Z",
+    "corrected_guest_probe_deployed_or_integrated": false
   }
 }

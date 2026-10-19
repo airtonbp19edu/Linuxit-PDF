@@ -19,12 +19,15 @@ function Publish([string]$Id,$Value){
     [IO.File]::WriteAllText((Join-Path $root ($Id+'.json')),$json,[Text.UTF8Encoding]::new($false))
     $encoded=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($json))
     $parts=[int][Math]::Ceiling($encoded.Length/800.0)
+    if([Text.Encoding]::UTF8.GetByteCount($prefix+'/Result/'+$Id+'/Count') -ge 64){throw 'Diagnostic receipt property exceeds 63 bytes'}
+    if($parts+1 -gt 64){throw 'Diagnostic response exceeds the reserved 64 property slots; full report preserved on disk'}
     for($i=0;$i -lt $parts;$i++){
         $chunk=$encoded.Substring($i*800,[Math]::Min(800,$encoded.Length-$i*800))
         & $vbox guestproperty set ($prefix+'/Result/'+$Id+'/'+$i) $chunk | Out-Null
         if($LASTEXITCODE -ne 0){throw 'Diagnostic property transport failed'}
     }
     & $vbox guestproperty set ($prefix+'/Result/'+$Id+'/Count') ([string]$parts) | Out-Null
+    if($LASTEXITCODE -ne 0){throw 'Diagnostic receipt transport failed; full report preserved on disk'}
 }
 function Check-Offline {
     $hostValue=Read-Property ($prefix+'/Host')
@@ -54,6 +57,7 @@ while([DateTime]::UtcNow -lt $deadline){
             $seen[$id]=$true
             $report=[ordered]@{schema='linuxit-guest-probe-v1';run_id=$RunId;id=$id;action=$action;created_at=(Get-Date).ToString('o');status='running';elevated=$elevated;session=$session}
             try {
+                if([Text.Encoding]::UTF8.GetByteCount($prefix+'/Result/'+$id+'/Count') -ge 64){throw 'Diagnostic receipt property exceeds 63 bytes; guest action refused'}
                 $report.containment=Check-Offline
                 $hash=(Get-FileHash 'C:\Linuxit\Reference\FoxitPDFReader.exe' -Algorithm SHA256).Hash.ToLowerInvariant()
                 $report.reference_sha256=$hash

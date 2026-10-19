@@ -2657,3 +2657,63 @@ Próximo passo concreto: D15 senha correta em abertura independente enquanto
 clock/controle responderem; D07/D10destinos,D12cancelamento,D18saída e UI restantes
 preservados. D11vazio continua inconclusivo: botão Search desabilitado não é
 zero de backend. Se relógio/ambiente parar, interromper entradas, salvar e avisar.
+
+## 2026/10/18 às 21:32 (America/Sao_Paulo, UTC-03:00) — D15 observado e interrupção pelo relógio
+
+Pedido: continuar e, se parar, salvar e avisar. Prossegui na rodada
+vm-20261018-2020, mantendo contenção e original já identificado. CUA/sky e teclado
+nativo VirtualBox usados; nenhuma nova REA/Ghidra, análise estática reiniciada,
+alteração de proteção, pause/resume/reboot ou restauração.
+
+D15: solicitação nova/campo vazio, senha sintética correta na primeira tentativa,
+sem senha errada nessa abertura; com-senha.pdf SECURED abriu8 páginas. Navegação
+1→8→1 conferida. Cancelar/rejeitar continuam evidências anteriores. Variante
+independente observada, sem aprovar família completa de criptografia.
+UI05 adicional: busca-escopos.pdf+com-senha.pdf, Print All Tabs habilitado,
+confirmação Batch Printing, Don't ask again desmarcado; No retornou à página1/8.
+Não foi enviada ação de impressão. Par previsto com geometria.pdf e demais
+contextos continuam pendentes; IDs não correlacionados dinamicamente.
+D20: X do título fechou o Foxit normalmente, sem força. Ausência examinada em
+Task Manager e confirmada0processos pela manutenção breve já autorizada. Isso
+não resolve a espera anterior em splwow64 nem o contrato amplo após imprimir.
+
+Postflight limitado completo recuperado do disco por SSH somente com Foxit
+ausente: hashfec70445...75bce1, identidade e dez Inputs iguais, escrita negada,
+offline host/guest. Cabo desligado em finally; não iniciado original. Tarefa2020
+Ready/LastTaskResult1, não stopcompleted. Complemento after-search-collect foi
+recuperado por17 partes/duas leituras idênticas, hash0f8c6bcc...ba0d59.
+
+Dois problemas do observador identificados: nomes Count64/65/66bytes excediam
+63úteis e havia256 propriedades. Fonte oficial VirtualBox consultada; controles
+no instalado7.2.20 aceitaram63 e rejeitaram64. Arquivadas/removidas somente151
+propriedades Result antigas de coletores encerrados (55da1940+96da1710), sem
+apagar arquivos do guest ou evidências locais. Host agora rejeita recibo longo
+antes de agir e exige reserva64+2; guest confere nome/tamanho/saída do Count.
+Ambos scripts passaram no parser; ID longo e falta de capacidade foram rejeitados,
+Command inalterado. Integração/deploy do guest corrigido NÃO realizados.
+Validador estrutural conferiu44 módulos,58 interfaces,25 famílias e os19
+critérios abertos; isso não executa comportamento do aplicativo.
+Hashlocalnovo guestb20ad4dc...7cac1 e hostf16db312...7c756c; guest conserva8a8b4ae...3e13.
+Preparador privado prepare_probe_2130.ps1 escrito, não executado; tarefa2130 não criada.
+
+Relógio apareceu21:24:14 em observações sucessivas; após dez segundos externos
+sem entrada continuou igual. Confirmação00:27:45UTC/21:27:45SãoPaulo. Testes e
+entradas interrompidos; usuário avisado. Captura VBox privada também mostra
+21:24:14. VBoxrunning não aprova resposta. Foxit já fechado e redeoff; causa
+desconhecida, sem atribuir a Foxit, tokens ou à falha de transporte.
+
+Publicáveis: docs/VM-SENHA-E-PARADA-2026-10-18.md e
+testes/resultados/vm-2026-10-18-2020/password-followup.json,24 hashes de evidência.
+Privados: analysis-local/vm-20261018-2020/, recover_probe_2020_postflight.ps1,
+finalize_password_followup.py, record_password_progress.py e preparador2130.
+App/Flatpak preservados, sem suíte403/403 repetida ou pacote novo; apenas scripts
+de observação/documentação/metadados alterados. Consolidado12igual/cincoinconclusivo
+mantido, sem nova métrica C18. Critérios/pesos45,13%/19abertos/paridade0/25 intactos.
+
+Git base552ee5e058fded4141d21f4eff43bc45cc6f28ed local/remoto confirmado no marco
+anterior. Publicar este checkpoint autorizado e confirmar HEAD remoto/árvore limpa
+com verify_git_sync.py e recibo fora da árvore; não declarar push só por commit.
+Próximo passo: quando a VM responder, revisão visual recente/ausência do original,
+novo RunId, instalar coletor corrigido, cabooff, validar pf/col/end com token
+limitado e recibos completos antes do original. Depois D07/D10destinos,D12ativo,
+D18saída e UI restantes. Não enviar comandos esperando resposta do coletor2020.

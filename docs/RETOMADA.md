@@ -1,5 +1,15 @@
 # Retomada do Linuxit PDF
 
+**Testes suspensos pela regra do usuário:** relógio permaneceu em21:24:14 após
+dez segundos externos. Foxit já fechado normalmente, zero processos confirmado
+na manutenção; rede desligada. Não reiniciar/pausar automaticamente. Último lote:
+D15 senha correta em abertura independente,8 páginas e navegação1→8→1;
+UI05 extra com duas abas/No observado. Ver [checkpoint e próximo passo](VM-SENHA-E-PARADA-2026-10-18.md).
+Coletor2020 terminou com erro1; guardas de nomes/capacidade corrigidas no código,
+com controles no host, ainda sem instalação/integração no guest. Tarefa2130 não
+criada. Após restaurar resposta, validar coletor novo/IDs curtos/offline/limitado
+antes de executar o original. Pendências amplas e pacote preservados.
+
 Nova rodada offline2020: consulta exata D11 retornou zero e passou na comparação.
 Consolidado12/12 medições iguais, cinco inconclusivas; onze preservadas/uma nova.
 UI01 com documento/cancelar observado; destinos D07 ainda abertos. Ver

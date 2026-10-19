@@ -9,9 +9,16 @@ param(
     [string]$OutputRoot=(Join-Path $PSScriptRoot '..\analysis-local')
 )
 $ErrorActionPreference='Stop'
+$prefix='/Linuxit/Probe/'+$RunId
+# VirtualBox includes the terminating NUL in its 64-byte property-name limit.
+# Check the receipt too: a short numeric chunk can fit while /Count cannot.
+$receiptName=$prefix+'/Result/'+$Id+'/Count'
+if($Action -notin @('capture','ack-control') -and [Text.Encoding]::UTF8.GetByteCount($receiptName) -ge 64){
+    throw 'Diagnostic receipt property exceeds 63 bytes; use a shorter RunId/Id. No guest action issued.'
+}
+if([Text.Encoding]::UTF8.GetByteCount($prefix+'/VisualControl') -ge 64){throw 'Diagnostic RunId is too long'}
 $folder=Join-Path $OutputRoot $RunId
 New-Item -ItemType Directory -Path $folder -Force | Out-Null
-$prefix='/Linuxit/Probe/'+$RunId
 function Invoke-VBox([string[]]$Arguments){
     $result=@(& $VBox @Arguments 2>&1 | ForEach-Object {$_.ToString()})
     if($LASTEXITCODE -ne 0){throw ($result -join "`n")}
@@ -23,6 +30,7 @@ function Read-Property([string]$Name){
     return $null
 }
 function Check-Host {
+    param([switch]$ReserveDiagnosticSlots)
     $raw=@(Invoke-VBox -Arguments @('showvminfo',$VMName,'--machinereadable'))
     $raw | Set-Content -LiteralPath (Join-Path $folder ($Id+'-host.txt')) -Encoding UTF8
     $values=@{}
@@ -39,6 +47,15 @@ function Check-Host {
     $json=$record | ConvertTo-Json
     $json | Set-Content -LiteralPath (Join-Path $folder ($Id+'-host.json')) -Encoding UTF8
     if(-not $verified){throw 'Host containment failed; no guest action issued'}
+    if($ReserveDiagnosticSlots){
+        $properties=@(Invoke-VBox -Arguments @('guestproperty','enumerate',$VMName))
+        $propertyCount=@($properties | Where-Object {$_ -match '^/[^=]+\s+='}).Count
+        if($propertyCount -lt 1){throw 'Cannot verify diagnostic property capacity; no guest action issued'}
+        # 64 slots for one bounded response, plus Host and Command if new.
+        $capacity=[ordered]@{created_at=(Get-Date).ToString('o');property_count=$propertyCount;maximum_properties=256;response_slots_reserved=64;host_command_slots_reserved=2}
+        $capacity | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $folder ($Id+'-transport.json')) -Encoding UTF8
+        if($propertyCount+66 -gt 256){throw 'Insufficient diagnostic property capacity; archive verified results of stopped collectors before retrying. No guest action issued.'}
+    }
     $encoded=[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($json))
     Invoke-VBox -Arguments @('guestproperty','set',$VMName,($prefix+'/Host'),$encoded,'--flags','RDONLYGUEST') | Out-Null
 }
@@ -58,7 +75,7 @@ if($Action -eq 'read'){
     Check-Host
     Invoke-VBox -Arguments @('guestproperty','set',$VMName,($prefix+'/VisualControl'),'observed','--flags','RDONLYGUEST') | Out-Null
 } else {
-    Check-Host
+    Check-Host -ReserveDiagnosticSlots
     Invoke-VBox -Arguments @('guestproperty','set',$VMName,($prefix+'/Command'),($Id+':'+$Action),'--flags','RDONLYGUEST') | Out-Null
     Write-Output ('Issued '+$Id+':'+$Action+'; read separately after completion.')
 }
