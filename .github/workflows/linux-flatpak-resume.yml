@@ -1,0 +1,152 @@
+name: Resume installed validation of an existing Flatpak candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_revision:
+        description: Full commit already tested in the source and payload
+        required: true
+        default: a4e017ae65784256583292ddbe502e182bb25a66
+      artifact_run_id:
+        description: Original candidate workflow run
+        required: true
+        default: '39272792405'
+      artifact_id:
+        description: Preserved candidate artifact ID
+        required: true
+        default: '12195849163'
+      bundle_sha256:
+        description: Expected existing bundle SHA-256
+        required: true
+        default: 795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  resume-installed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    container:
+      image: debian:13
+      options: --privileged
+    defaults:
+      run:
+        shell: bash
+    env:
+      SOURCE_REVISION: ${{ inputs.source_revision }}
+      EXPECTED_BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+      ORIGINAL_RUN_ID: ${{ inputs.artifact_run_id }}
+      ORIGINAL_ARTIFACT_ID: ${{ inputs.artifact_id }}
+    steps:
+      - name: Install virtual desktop and runtime prerequisites
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
+            flatpak bubblewrap dbus dbus-x11 xvfb xauth x11-utils openbox \
+            fonts-dejavu-core adwaita-icon-theme librsvg2-common shared-mime-info \
+            libglib2.0-bin openssl tesseract-ocr tesseract-ocr-por tesseract-ocr-eng
+          python3 -c 'import os,re; assert re.fullmatch("[0-9a-f]{40}",os.environ["SOURCE_REVISION"]); assert re.fullmatch("[0-9a-f]{64}",os.environ["EXPECTED_BUNDLE_SHA256"])'
+      - name: Check out the exact already-tested source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.source_revision }}
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Download the preserved candidate without rebuilding
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ inputs.artifact_id }}
+          run-id: ${{ inputs.artifact_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: analysis-local/resumed-input
+          merge-multiple: true
+      - name: Restore only examined reports and bundle
+        run: |
+          test ! -e dist/ci-results
+          mkdir -p dist
+          cp -R analysis-local/resumed-input/dist/ci-results dist/ci-results
+          cp analysis-local/resumed-input/dist/LinuxitPDF-*.flatpak dist/
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from sys import path
+          path.insert(0,'scripts')
+          from check_intermediate import app_snapshot
+          r=Path('dist/ci-results')
+          source=json.loads((r/'source-intermediate.json').read_text())
+          payload=json.loads((r/'payload-tests.json').read_text())
+          assert source['git_head_before_check']==os.environ['SOURCE_REVISION'] and source['passed']
+          for suite in (source['test_runs'][0],payload):
+              assert suite['run']==suite['passed']==len(suite['cases']) and all(c['status']=='passed' for c in suite['cases'])
+              assert all(suite[k]==0 for k in ('failures','errors','skipped')) and suite['full_suite_requested']
+          integrity=json.loads((r/'source-payload-integrity.json').read_text())
+          assert app_snapshot(Path('app'))=={p['file']:p['sha256'] for p in integrity['files']}
+          bundle,=Path('dist').glob('*.flatpak')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()==os.environ['EXPECTED_BUNDLE_SHA256']
+          assert not (r/'sandbox-tests.json').exists() and not (r/'candidate.json').exists()
+          (r/'resumed-validation.json').write_text(json.dumps({'original_run_id':os.environ['ORIGINAL_RUN_ID'],
+              'original_artifact_id':os.environ['ORIGINAL_ARTIFACT_ID'],'source_revision':os.environ['SOURCE_REVISION'],
+              'bundle_sha256':os.environ['EXPECTED_BUNDLE_SHA256'],'rebuilt':False,
+              'source_and_payload_full_suites_reused':True,'reason':'Flathub connection failed before installed validation'},indent=2)+'\n')
+          PY
+          useradd --create-home --uid 1001 linuxit-ci
+          chown -R linuxit-ci:linuxit-ci "$GITHUB_WORKSPACE"
+          mkdir -p /run/dbus
+          dbus-uuidgen --ensure
+          dbus-daemon --system --fork --nopidfile
+      - name: Complete sandbox suite and finalize the same candidate
+        run: |
+          cat >/tmp/linuxit-resume.sh <<'SH'
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          export PYTHONUTF8=1
+          results="$PWD/dist/ci-results"
+          export LINUXIT_SEARCH_CAPTURE_DIR="$results/search-ui"
+          export XDG_CONFIG_HOME="$PWD/analysis-local/ci-config"
+          export XDG_CACHE_HOME="$PWD/analysis-local/ci-cache"
+          openbox --sm-disable >"$results/resume-openbox.log" 2>&1 &
+          wm=$!; trap 'kill "$wm" 2>/dev/null || true' EXIT
+          retry_network() {
+            for attempt in 1 2 3 4; do
+              if "$@"; then return 0; fi
+              if [[ "$attempt" == 4 ]]; then return 1; fi
+              sleep "$((attempt * 3))"
+            done
+          }
+          retry_network flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          retry_network flatpak install --user --noninteractive -y --no-related flathub org.freedesktop.Platform//25.08 >"$results/runtime-install.log" 2>&1
+          bundle="$(find "$PWD/dist" -maxdepth 1 -name '*.flatpak' -type f)"
+          flatpak install --user --noninteractive -y --no-related "$bundle" >"$results/app-install.log" 2>&1
+          app=io.github.airtonbp19edu.LinuxitPDF//devel
+          deployment="$(flatpak info --user --show-location "$app")"
+          mkdir -p analysis-local/ci-flatpak-stage
+          ln -s "$deployment/files" analysis-local/ci-flatpak-stage/files
+          sync_fixture="$(mktemp -d /var/tmp/linuxit-sync-folder-XXXXXX)"
+          /usr/bin/python3 -c 'import sys; sys.path.insert(0,"app"); from pdf_dependency import configure_pdf_library; configure_pdf_library(); from pypdf import PdfWriter; w=PdfWriter(); w.add_blank_page(100,100); w.write(sys.argv[1])' "$sync_fixture/source.pdf"
+          flatpak run --user --nofilesystem=home --filesystem="$PWD/scripts:ro" --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" "$PWD/scripts/check_synced_folder_access.py" --folder "$sync_fixture" --expect-denied >"$results/sync-folder-denied.json"
+          flatpak run --user --nofilesystem=home --filesystem="$PWD/scripts:ro" --filesystem="$sync_fixture:rw" --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" "$PWD/scripts/check_synced_folder_access.py" --folder "$sync_fixture" >"$results/sync-folder-granted.json"
+          flatpak run --user --filesystem="$PWD:ro" --filesystem="$results:rw" --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" "$PWD/scripts/run_tests.py" --app /app/share/linuxit-pdf --output "$results/sandbox-tests.json" >"$results/sandbox-tests.log" 2>&1
+          flatpak run --user --filesystem="$PWD:ro" --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" "$PWD/scripts/smoke_linuxit.py" >"$results/sandbox-smoke.json" 2>"$results/sandbox-smoke.log"
+          LINUXIT_LAUNCH_RESULTS="$results" /usr/bin/python3 scripts/check_flatpak_launch.py >"$results/launcher-check.log" 2>&1
+          /usr/bin/python3 scripts/record_linux_candidate.py finalize --reports "$results" --stage "$PWD/analysis-local/ci-flatpak-stage" --artifact "$bundle" --output "$results/candidate.json"
+          SH
+          chmod 755 /tmp/linuxit-resume.sh
+          runuser -u linuxit-ci -- bash -c '
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-resume-runtime-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            exec dbus-run-session -- xvfb-run -a bash /tmp/linuxit-resume.sh
+          '
+      - name: Preserve completed candidate and reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linuxit-resumed-${{ github.run_id }}
+          path: |
+            dist/ci-results/
+            dist/LinuxitPDF-*.flatpak
+          if-no-files-found: warn
+          retention-days: 14

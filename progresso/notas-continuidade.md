@@ -2954,3 +2954,10 @@ Build anterior39269568732/9848f2b:432/432 fonte e payload; sandbox431/432, uma f
 ## 2026/10/19 às 11:52 (America/Sao_Paulo, UTC-03:00) — fonte/payload432 confirmados, sandbox em revalidação
 
 CI39271277016/1675c2c:432/432 fonte e payload; sandbox431/432, mesma falha do teste antigo de espera de anexo longo. Artefato12195458890/hash5e22c7c2985c787dbc9ec6b1c895a93855601ab0ab9994dd20f0fc89198e0928 conferido. Relatórios próprios fonte/payload e resumo da falha emtestes/resultados/leitura-2026-10-19/. Nenhum candidato0.1.14 aprovado/publicado. Reexecução no commit a4e017a já solicitada, incluindo o teste corrigido; app idêntico à1675c2c que passou em duas telas virtuais/hotplug/layout. Próximo: exigir432/432 nos três ambientes, depois pacote/auditoria/download; VM0930 suspensa e métricas antigas intactas.
+
+
+## 2026/10/19 às 12:02 (America/Sao_Paulo, UTC-03:00) — retomada do candidato sem reconstrução após falha de rede
+
+CI39272792405/a4e017a passou432/432 fonte e payload, inclusive teste de anexo corrigido; falhou no remote-add doFlathub com erro7/Could not connect to server, antes do sandbox. Não é nova falha de teste ouFoxit. Artefato12195849163/hashZIPe765074e1265384f92b292783e521a4fb12e93c4ef7035f5176d3b5e23f4afff conferido; bundle44665656bytes/SHA795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f preservado.
+
+Workflow linux-flatpak-resume.yml restaura fonte exata/artefato e exige mesmo hash, fonte/payload completos sem skips e integridade app; executará somente controles restantes/suíte sandbox/smoke/launcher, com retry limitado da rede. Finalização reaproveita payload instalado com hashes conferidos e não recompila. Ainda não executado/aprovado neste checkpoint. Ação oficialdownload-artifactv8.0.2 fixada noSHA9000827ccba6bdab643e8b6fd33ac0654aef8333, consultada viaAPI oficial. VM0930 suspensa/intocada; próximo: concluir sandbox e auditar pacote se aprovado.
