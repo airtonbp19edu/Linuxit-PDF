@@ -105,7 +105,14 @@ def main(argv=None):
     env['XDG_CACHE_HOME'] = str(work / 'cache')
 
     def run(label, command, timeout):
-        proc = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, timeout=timeout)
+        try:
+            proc = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, timeout=timeout)
+        except subprocess.TimeoutExpired as exc:
+            # Keep the last completed test/traceback when a modal or native
+            # dependency stalls; a timeout must not erase its own evidence.
+            (work / (label + '.stdout')).write_bytes(exc.stdout or b'')
+            (work / (label + '.stderr')).write_bytes(exc.stderr or b'')
+            raise
         (work / (label + '.stdout')).write_bytes(proc.stdout)
         (work / (label + '.stderr')).write_bytes(proc.stderr)
         return proc

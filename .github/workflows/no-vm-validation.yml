@@ -40,6 +40,11 @@ jobs:
             export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-source-XXXXXX)"
             chmod 700 "$XDG_RUNTIME_DIR"
             mkdir -p dist/no-vm-results
+            timeout 120 dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/run_tests.py \
+              --pattern test_reading_workflows_gtk.py --traceback-after 45 \
+              --temp-dir analysis-local/reading-focused-temp \
+              --output dist/no-vm-results/reading-focused.json \
+              >dist/no-vm-results/reading-focused.stdout 2>dist/no-vm-results/reading-focused.stderr
             /usr/bin/python3 scripts/run_comparison_campaign.py run \
               --corpus-manifest testes/fixtures/campaign18/manifest.json \
               --work-dir analysis-local/linux-preserved-campaign \

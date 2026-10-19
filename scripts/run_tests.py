@@ -7,7 +7,11 @@ parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--app',type=Path,help='Test an extracted runtime payload instead of source app/')
 parser.add_argument('--pattern',default='test*.py',help='unittest filename pattern; a subset is not the full suite')
 parser.add_argument('--temp-dir',type=Path,help='Writable parent for isolated temporary test directories')
+parser.add_argument('--traceback-after',type=int,default=0,help='Optional diagnostic stack dump interval in seconds')
 args=parser.parse_args();root=Path(__file__).resolve().parents[1]
+if args.traceback_after:
+    import faulthandler
+    faulthandler.dump_traceback_later(max(1,args.traceback_after),repeat=True)
 if args.output.exists():parser.error('Use a new result path to preserve previous evidence')
 if args.app:os.environ['PRINT_VIEW_TEST_APP']=str(args.app.resolve())
 if args.temp_dir:
@@ -24,6 +28,7 @@ class RecordedResult(unittest.TextTestResult):
     def __init__(self,*args,**kwargs):super().__init__(*args,**kwargs);self.records=[]
 suite=unittest.defaultTestLoader.discover(str(root/'tests'),pattern=args.pattern);started=time.monotonic()
 result=unittest.TextTestRunner(verbosity=2,resultclass=RecordedResult).run(suite)
+if args.traceback_after:faulthandler.cancel_dump_traceback_later()
 report={'schema':'linuxit-test-run-v1','tested_app':str((args.app or root/'app').resolve()),'python':sys.version.split()[0],
         'test_pattern':args.pattern,'full_suite_requested':args.pattern=='test*.py',
         'display_present':bool(os.environ.get('DISPLAY')),'run':result.testsRun,'passed':sum(x['status']=='passed' for x in result.records),
