@@ -14,38 +14,46 @@
     {
       "id": "S01",
       "title": "Seleção por caracteres, cursor e texto bidirecional",
-      "status": "source_extended_linux_validation_pending",
+      "status": "own_linux_validated_in_revision_5a4729e",
       "evidence_refs": [
-        "testes/resultados/sem-vm-2026-10-19/s01/review.json"
+        "testes/resultados/sem-vm-2026-10-19/s01-s03/review.json"
       ],
       "limitations": [
-        "Initial geometry/caret revision498/498 Linux passed; native Pango grapheme extension awaits new run."
+        "Full original/physical acceptance remains separate; source extended later in S04."
       ]
     },
     {
       "id": "S02",
       "title": "Eventos e cálculos de formulário com contrato explícito",
-      "status": "source_implemented_portable_passed_linux_pending",
+      "status": "own_linux_validated_in_revision_5a4729e",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s01-s03/review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "Full original/physical acceptance remains separate; source extended later in S04."
+      ]
     },
     {
       "id": "S03",
       "title": "Ampliar anotações, aparências e edição de conversas",
-      "status": "source_implemented_portable_passed_linux_pending",
+      "status": "own_linux_validated_in_revision_5a4729e",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s01-s03/review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "Full original/physical acceptance remains separate; source extended later in S04."
+      ]
     },
     {
       "id": "S04",
       "title": "Fluxos autenticados de edição/impressão com permissões",
-      "status": "pending",
-      "evidence_refs": [],
-      "limitations": []
+      "status": "source_implemented_portable_passed_linux_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
+      "limitations": [
+        "Physical printer and original lifecycle not exercised."
+      ]
     },
     {
       "id": "S05",
@@ -109,5 +117,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T15:08:29.631658-03:00"
+  "updated_at_local": "2026-10-19T15:26:50.730630-03:00"
 }

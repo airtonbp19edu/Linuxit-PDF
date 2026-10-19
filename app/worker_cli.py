@@ -193,7 +193,13 @@ def main(argv):
         return
     if cmd == 'edit-info':
         from pdf_changes import inspect_editable_document
-        print(json.dumps(inspect_editable_document(argv[2]), ensure_ascii=True))
+        request={}
+        if len(argv)==4 and argv[3]=='--request':
+            raw=sys.stdin.buffer.read(16385)
+            if len(raw)>16384:raise ValueError('Pedido de edição acima do limite.')
+            request=json.loads(raw)
+            if not isinstance(request,dict) or set(request)!={'auth'}:raise ValueError('Pedido de edição inválido.')
+        print(json.dumps(inspect_editable_document(argv[2],**request), ensure_ascii=True))
         return
     if cmd == 'copy-edit':
         if len(argv) != 4:
@@ -203,7 +209,7 @@ def main(argv):
         if len(raw) > 1024 * 1024:
             raise ValueError('O pedido de alterações excede 1 MiB.')
         request = json.loads(raw.decode('utf-8'))
-        if not isinstance(request, dict) or set(request) != {'source_sha256', 'operations'}:
+        if not isinstance(request, dict) or set(request) not in ({'source_sha256','operations'},{'source_sha256','operations','auth'}):
             raise ValueError('Pedido de alterações inválido.')
         print(json.dumps(save_edited_copy(argv[2], argv[3], **request), ensure_ascii=True))
         return

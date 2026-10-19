@@ -11,10 +11,17 @@ from edit_tasks import invoke_edit_worker
 class EditSession:
     MAX_STEPS = 100
 
-    def __init__(self, path, *, cancel=None, invoke=invoke_edit_worker):
+    def __init__(self, path, *, cancel=None, invoke=invoke_edit_worker, auth=None):
         self.path = str(path)
         self.cancel = cancel if cancel is not None else threading.Event()
-        self._invoke = invoke
+        self._auth=deepcopy(auth)
+        def transport(command,path,destination=None,request=None,**kwargs):
+            if self._auth is None:
+                if destination is None and request is None:return invoke(command,path,**kwargs)
+                return invoke(command,path,destination,request,**kwargs)
+            payload={**(request or {}),'auth':self._auth}
+            return invoke(command,path,destination,payload,**kwargs)
+        self._invoke = transport
         self._temp = tempfile.TemporaryDirectory(prefix='linuxit-edit-draft-')
         self._timeline, self.cursor, self._serial = [], 0, 0
         self._working = False
@@ -91,4 +98,5 @@ class EditSession:
 
     def close(self):
         self.cancel.set()
+        self._auth=None
         if not self._working:self._temp.cleanup()

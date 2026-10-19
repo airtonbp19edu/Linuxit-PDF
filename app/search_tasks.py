@@ -25,6 +25,7 @@ def run_search_worker(command, path, request, cancel=None, timeout=120, destinat
         raise ValueError('O pedido excede o limite permitido para esta operação.')
     argv = [worker_python(), '-X', 'utf8', str(Path(__file__).with_name('worker_cli.py')), command, str(path)]
     if destination is not None:argv.append(str(destination))
+    elif command=='edit-info' and isinstance(request,dict) and 'auth' in request:argv.append('--request')
     with tempfile.TemporaryDirectory(prefix='linuxit-worker-', ignore_cleanup_errors=True) as work, tempfile.TemporaryFile() as output, tempfile.TemporaryFile() as error:
         options = subprocess_options()
         if os.name != 'nt':options['start_new_session'] = True

@@ -18,6 +18,7 @@ from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
 from pdf_form_events import inspect_form_events, calculate_form_values
 from annotation_geometry import EXTRA_KINDS, create_extra_annotation, move_annotation, conversation_members
+from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -71,7 +72,7 @@ def _terminal(field):
 
 
 @contextmanager
-def _editable(path, expected=None):
+def _editable(path, expected=None, password=None, recover=False):
     path = Path(path)
     identity = _sha(path)
     if expected is not None:
@@ -79,9 +80,13 @@ def _editable(path, expected=None):
                  'Informe o SHA-256 atual do PDF.')
         _require(identity == expected, 'O PDF mudou. Leia o documento novamente.')
     with path.open('rb') as stream:
-        reader = PdfReader(stream, strict=True)
+        reader = PdfReader(stream, strict=not recover)
         if reader.is_encrypted:
-            raise NotImplementedError('Gravação de cópias de PDFs criptografados ainda não é suportada.')
+            if password is None:raise NotImplementedError('Gravação de cópias de PDFs criptografados exige uma sessão autenticada.')
+            try:role=int(reader.decrypt(password))
+            except Exception:raise ValueError('Não foi possível autenticar a edição do PDF.') from None
+            if not role:raise ValueError('Credencial de edição inválida.')
+            reader._linuxit_owner=role==2
         fields = reader.get_fields() or {}
         if '/Perms' in reader.root_object or any(_inherited(f, '/FT') == '/Sig' for f in fields.values()):
             raise NotImplementedError('Gravação de documentos com assinatura ou campos de assinatura ainda não é suportada.')
@@ -237,11 +242,12 @@ def _change_outline(writer, operation):
     _outline_nodes(writer)  # Enforce depth/shape limits after a move as well.
 
 
-def inspect_editable_document(path):
+def inspect_editable_document(path, *, auth=None):
     """Describe the bounded edit contract without decoding embedded payloads."""
-    with _editable(path) as (reader, fields, identity):
+    password,recover=edit_auth(auth)
+    with _editable(path,password=password,recover=recover) as (reader, fields, identity):
         result = {'schema': 'linuxit-copy-edit-info-v1', 'source_sha256': identity,
-                  'pages': len(reader.pages), 'text_fields': [],
+                  'pages': len(reader.pages), 'text_fields': [], 'edit_permissions':edit_permissions(reader),
                   'page_boxes':[list(map(float, page.cropbox)) for page in reader.pages]}
         for name, field in fields.items():
             if _inherited(field, '/FT') == '/Tx' and _terminal(field):
@@ -498,7 +504,7 @@ def _apply(writer, operation):
         raise ValueError('Tipo de alteração não suportado.')
 
 
-def save_edited_copy(path, destination, *, source_sha256, operations):
+def save_edited_copy(path, destination, *, source_sha256, operations, auth=None):
     """Apply a bounded batch to a clone and create a new PDF exclusively."""
     _require(isinstance(operations, list) and 0 < len(operations) <= MAX_OPERATIONS,
              f'Informe de 1 a {MAX_OPERATIONS} alterações.')
@@ -508,16 +514,23 @@ def save_edited_copy(path, destination, *, source_sha256, operations):
         raise FileExistsError('Escolha um nome novo; nenhum arquivo existente será substituído.')
     temporary = None
     created = False
+    password,recover=edit_auth(auth)
     try:
-        with _editable(path, source_sha256) as (reader, fields, identity):
+        with _editable(path, source_sha256,password=password,recover=recover) as (reader, fields, identity):
+            authorize_operations(reader,operations)
             writer = PdfWriter(clone_from=reader)
             for operation in operations:
                 _apply(writer, operation)
+            preserve_encryption(writer,reader)
             with tempfile.NamedTemporaryFile(dir=destination.parent, prefix='.linuxit-copy-', suffix='.pdf', delete=False) as stream:
                 temporary = Path(stream.name)
                 writer.write(stream)
             with temporary.open('rb') as stream:
-                _require(len(PdfReader(stream, strict=True).pages) == len(reader.pages), 'A cópia gerada não preservou as páginas.')
+                check=PdfReader(stream,strict=True)
+                if reader.is_encrypted:
+                    _require(check.is_encrypted and check.decrypt(password),'A cópia gerada não preservou a autenticação.')
+                    _require(check.trailer['/Encrypt']['/P']==reader.trailer['/Encrypt']['/P'],'A cópia alterou as permissões originais.')
+                _require(len(check.pages) == len(reader.pages), 'A cópia gerada não preservou as páginas.')
         _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')
         def unchanged():
             _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')

@@ -3043,3 +3043,13 @@ Pedido explícito de completar todo trabalho independente de VM. Plano e depend�
 ## 2026/10/19 às 15:08 (America/Sao_Paulo, UTC-03:00) — S01 Linux e S02/S03 preparados
 
 S01 inicialf3212ef/CI39298287332:498/498 Linux sem falhas/erros/skips, oito novos/490 preservados; raw e ZIP12208122994 examinados/hash conferido após timeout de rede e retry streaming. Evidência pública emtestes/resultados/sem-vm-2026-10-19/s01; não aprova a extensãoPango posterior. S02 cálculos/intervalos e S03 anotações/conversas implementados;7+7 portáveis e16+21 regressões passaram;3 novosGTK e extensão nativa aguardamCI. Falhas iniciais de FloatObject/BooleanObject corrigidas e registradas. Catálogo provisório111 agora95 com código/13pendentes/3adiados, não operações completas aprovadas. Fonte0.1.16 em desenvolvimento, último pacote0.1.15 preservado; pesos/critérios/paridade/VM/nuvem intactos. Próximo: CI consolidadoS01–S03 e S04 autenticação/edição/impressão.
+
+
+## 2026/10/19 às 15:26 (America/Sao_Paulo, UTC-03:00) — S01–S03 validados e S04 preparado
+
+CI39300179043/5a4729e:516/516 Linux sem falhas/erros/skips; fonte, Pango/GTK/Poppler, aparências Unicode/fontes/pixels e eventos/conversas examinados. Artefato12211916533/ZIP08117925d8e00647fac2c72ac06ebf00116e6a78b597071159f47f97c593f3db conferido e relatórios públicos emtestes/resultados/sem-vm-2026-10-19/s01-s03/. S04 edição mantém criptografia/credenciais/permissões, transporte stdin; impressão de sessão/camadas com leases,150DPI conforme permissão e cancelamentoCUPS por recibo implementados.10 novos portáveis passaram; regressãoDocumentSession14 passou, histórico em verificação;2GTK e fila virtual própria aguardamCI. Receitas incluem cancel doCUPS e novo jobloopback; nenhum comando à VM/hostprinting. Fonte0.1.16, último pacote0.1.15 preservado, nuvem23 adiada, critérios/paridade intactos. Próximo: validar S04 e ampliar anexos/índice/idiomas S05.
+
+
+## 2026/10/19 às 15:28 (America/Sao_Paulo, UTC-03:00) — checkpoint S04 antes do CI
+
+Regressões próprias de sessão14/14 e histórico8/8 passaram;10/10 portáveis novos passaram,2GTK pendentes. ParserAST, catálogo95/13/3 e arquitetura65módulos/60interfaces conferidos. Separado jobCUPS virtual do jobGUI para preservar diagnósticos independentes; ambos exigem sucesso. Documentos de retomada apontam a fonte0.1.16 em desenvolvimento e Flatpak0.1.15 anterior, sem promover516/516 da revisãoS01–S03 à fonteS04. Próximo comando: publicar este checkpoint e executar no-vm-validation.yml; seguir S05. VM não acessada.

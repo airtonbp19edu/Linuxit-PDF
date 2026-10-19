@@ -16,6 +16,7 @@ def invoke_edit_worker(command, path, destination=None, request=None, *, cancel=
     argv = [worker_python(), '-X', 'utf8', str(Path(__file__).with_name('worker_cli.py')), command, str(path)]
     if command == 'copy-edit':
         argv.append(str(destination))
+    elif request and 'auth' in request:argv.append('--request')
     if cancel is not None:
         from search_tasks import run_search_worker
         data = run_search_worker(command, path, request or {}, cancel=cancel, timeout=600, destination=destination)

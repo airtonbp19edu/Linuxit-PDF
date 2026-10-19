@@ -75,3 +75,45 @@ S02/S03 e extensão posteriorPango de grafemas exigem nova execução. A extens�
 usa is_cursor_position de PangoLogAttr para limites Unicode completos do engine
 instalado; fallback portátil cobre somente os grupos explicitados nos testes.
 [PangoLogAttr](https://docs.gtk.org/Pango/struct.LogAttr.html).
+
+
+## S04 — edição/impressão autenticada e filaCUPS
+
+A credencial da sessão é mantida apenas em memória privada e transportada por
+stdin para o worker; nunca integra argv, info, índice ou relatórios. Não há
+promessa de apagamento seguro de strings Python. Close retira a referência.
+Edição de cifrado valida tipo de operação: anotar/preencher/alterar/montar
+conforme flags e credencial usuário/proprietário. Assinaturas/XFA/portfólios
+continuam protegidos pelos guardas do editor. A cópia mantém criptografia,
+identidades de senha e permissões originais; não vira PDF aberto. Adaptador
+específico do pypdf6.20.1 usa seu objetoEncryption/entradaDictionary eID original;
+roundtrip RC4-128/AES-128/AES-256-R5/AES-256 conferido com ambas as credenciais.
+A primeira prova usou referência indireta como _encrypt_entry, incompatível com
+o writer; corrigido para DictionaryObject antes da implementação/validação.
+
+Editor com histórico e ações rápidas recebem a autorização capturada; senha
+inválida/permite-não/alteração externa impedem publicação. Impressão usa a
+representação atual de leitura, inclusive camadas, com leases que mantêm os
+bytes até terminar a preparação. O diálogo mantém sua origem ao trocar de
+documento. A saída de impressão é derivada e não preserva assinatura/proteção;
+salvar saídaPDF exige permissão de cópia. Restrição de baixa qualidade impõe
+raster150DPI no backend, independentemente da escolha visual.
+
+Trabalhos CUPS capturados pelo recibo desta execução podem ser consultados e
+cancelados no menuArquivo. IDs são validados e passam como argumentos semshell.
+Ausência na fila ativa não é registrada como impressão concluída. A confirmação
+de cancelamento pertence ao CUPS e não recolhe páginas já impressas. Probe CI
+usa scheduler próprio somente127.0.0.1, fila sintética com trabalho retido e
+cancelamento real; não usa impressora física, VM ou fila de outro usuário.
+10 novos portáveis passaram;2GTK e probe real pendentes na nova fonte.
+Referências: [CUPS cancel](https://www.cups.org/doc/man-cancel.html) e
+[CUPS opções](https://www.cups.org/doc/options.html).
+
+## Validação consolidada S01–S03
+
+CI39300179043/fonte5a4729e:516/516 Linux sem falhas/erros/skips. Inclui
+grafemas nativosPango, edição de formulário via diálogo, renderização Unicode
+FreeText/Stamp com fontes incorporadas/pixels, geometrias/conversas e490 IDs
+anteriores preservados. Artefato12211916533/ZIP08117925d8e00647fac2c72ac06ebf00116e6a78b597071159f47f97c593f3db
+conferido. Relatórios emtestes/resultados/sem-vm-2026-10-19/s01-s03/. Não aprova
+a fonteS04 posterior nem significa paridade integral comFoxit.

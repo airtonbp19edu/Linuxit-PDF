@@ -58,6 +58,7 @@ jobs:
             dist/no-vm-results/reading-ui/
           if-no-files-found: warn
           retention-days: 14
+
       - name: Run complete source suite and preserved corpus
         run: |
           runuser -u linuxit-test -- bash -c '
@@ -104,5 +105,31 @@ jobs:
             dist/no-vm-results/
             analysis-local/linux-source-validation/*.stderr
             analysis-local/linux-source-validation/*.stdout
+          if-no-files-found: warn
+          retention-days: 14
+
+  cups-queue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    container:
+      image: debian:13
+    steps:
+      - name: Install isolated queue probe dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git ca-certificates python3 cups-daemon cups-client
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Submit held synthetic job and cancel it on private loopback scheduler
+        run: /usr/bin/python3 scripts/check_cups_queue.py --output dist/cups-queue-results/cups-queue.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: linuxit-cups-queue-${{ github.sha }}
+          path: |
+            dist/cups-queue-results/
+            analysis-local/cups-queue-*/cupsd.log
+            analysis-local/cups-queue-*/logs/error_log
           if-no-files-found: warn
           retention-days: 14

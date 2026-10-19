@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T15:08:30.357616-03:00",
+  "reviewed_at_local": "2026-10-19T15:26:51.337238-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -383,6 +383,18 @@
       "path": "app/text_appearance.py",
       "boundary": "worker_service",
       "responsibility": "Gera aparência textual Unicode PDF com Pango/Cairo e fontes incorporadas."
+    },
+    {
+      "id": "pdf_edit_security",
+      "path": "app/pdf_edit_security.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Autoriza operações conforme a credencial e preserva criptografia/identidades originais."
+    },
+    {
+      "id": "print_queue",
+      "path": "app/print_queue.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Consulta e cancela apenas trabalhos com recibo de envio capturado nesta execução."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -799,7 +811,8 @@
         "app/worker_cli.py",
         "app/cups_backend.py",
         "app/windows_print.py",
-        "app/print_tasks.py"
+        "app/print_tasks.py",
+        "app/print_queue.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -851,7 +864,8 @@
         "app/edit_window.py",
         "app/pdf_annotations.py",
         "app/annotation_geometry.py",
-        "app/text_appearance.py"
+        "app/text_appearance.py",
+        "app/pdf_edit_security.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false
@@ -870,7 +884,8 @@
         "app/edit_history.py",
         "app/edit_dialogs.py",
         "app/edit_window.py",
-        "app/pdf_form_events.py"
+        "app/pdf_form_events.py",
+        "app/pdf_edit_security.py"
       ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false
@@ -911,7 +926,8 @@
         "app/worker_cli.py",
         "app/main.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/pdf_edit_security.py"
       ],
       "future_boundary": "Entrada de senha e permissões locais; RMS tratado como integração distinta.",
       "future_boundary_implemented": false

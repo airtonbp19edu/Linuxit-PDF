@@ -1,0 +1,11 @@
+{
+  "reviewed_at_local": "2026-10-19T15:26:50.730630-03:00",
+  "ci_run_id": 39300179043,
+  "source_commit": "5a4729e141865dc5c69f644949ac308684abd72e",
+  "source_cases_passed": 516,
+  "archive_sha256": "08117925d8e00647fac2c72ac06ebf00116e6a78b597071159f47f97c593f3db",
+  "includes_actual_unicode_appearance_pixels_and_native_pango": true,
+  "is_latest_source_validation": false,
+  "s04_after_this_run": true,
+  "foxit_executed": false
+}

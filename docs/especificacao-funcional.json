@@ -1316,7 +1316,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Fonte0.1.15: preparação em worker cancelável, retenção do original e cópia atômica; submissão só depois da preparação confirmada. Impressão física e ciclo original abertos.",
+      "matrix_implementation": "Fonte0.1.16: impressão da representação autenticada/recuperada e camadas com leases e captura da origem;150DPI imposto para permissão de baixa qualidade, PDF salvo exige cópia permitida. Controle de recibos/cancelamento CUPS implementado; fila virtual/GTK em validação, impressora física/original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1353,7 +1353,8 @@
         "app/worker_cli.py",
         "app/cups_backend.py",
         "app/windows_print.py",
-        "app/print_tasks.py"
+        "app/print_tasks.py",
+        "app/print_queue.py"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -1916,7 +1917,8 @@
         "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json",
         "testes/resultados/0.1.13/validation-review.json",
         "app/annotation_geometry.py",
-        "app/text_appearance.py"
+        "app/text_appearance.py",
+        "app/pdf_edit_security.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2292,7 +2294,8 @@
         "app/edit_window.py",
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
-        "app/pdf_form_events.py"
+        "app/pdf_form_events.py",
+        "app/pdf_edit_security.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2839,7 +2842,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "Fonte0.1.15: permissões de cópia/impressão aplicadas também a anexos, busca em anexos e imposição de cifrado com senha vazia; política da sessão autenticada preservada. RMS/família ampla abertos.",
+      "matrix_implementation": "Fonte0.1.16: edição autenticada autoriza cada tipo de operação e mantém criptografia, senhas usuário/proprietário e permissões na cópia.10 novos portáveis passaram com quatro algoritmos; GTK/Linux pendentes. RMS e demais perfis continuam abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -2869,7 +2872,8 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_edit_security.py"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",

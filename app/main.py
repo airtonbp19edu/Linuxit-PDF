@@ -289,7 +289,7 @@ class PDFWindow(Gtk.Window):
                     ('Editar nota da página em cópia…', lambda: self._begin_copy_edit('update-note')),
                     ('Girar página em cópia…', lambda: self._begin_copy_edit('rotate-page')),
                     ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
-                    ('Imprimir…', self._print), ('Propriedades do documento', self._properties),
+                    ('Imprimir…', self._print), ('Trabalhos de impressão…',self._show_print_jobs), ('Propriedades do documento', self._properties),
                     ('Fechar PDF', self._close_document)):
                     item = Gtk.MenuItem(label=text)
                     # Defer so the popup menu releases its grab before any modal
@@ -2094,7 +2094,8 @@ class PDFWindow(Gtk.Window):
         from edit_window import EditWindow
         window = getattr(self, 'edit_window', None)
         if window is None or window.closed:
-            window = EditWindow(self,self.filepath,self.page);self.edit_window = window;window.show_all()
+            auth=self.document_session.edit_authorization() if self.document_session else None
+            window = EditWindow(self,self.filepath,self.page,auth=auth);self.edit_window = window;window.show_all()
         window.present()
 
     def _begin_copy_edit(self, kind):
@@ -2103,6 +2104,7 @@ class PDFWindow(Gtk.Window):
         if not self._source_unchanged():return
         from edit_tasks import invoke_edit_worker
         path, page = self.filepath, self.page
+        auth=self.document_session.edit_authorization() if self.document_session else None
         generation = getattr(self, '_edit_generation', 0)
         self._copy_edit_busy = True
         def current():
@@ -2119,6 +2121,7 @@ class PDFWindow(Gtk.Window):
                 if current(): self._copy_edit_busy = False
                 return
             request = {'source_sha256': info['source_sha256'], 'operations': [operation]}
+            if auth is not None:request['auth']=auth
             self.status_file.set_text('Preparando cópia com alterações…')
             def saved(result):
                 if current():
@@ -2130,7 +2133,7 @@ class PDFWindow(Gtk.Window):
             if current():
                 self._copy_edit_busy = False
                 self._error(str(error))
-        self.runner.submit('copy-edit-info', lambda: invoke_edit_worker('edit-info', path), prepared,
+        self.runner.submit('copy-edit-info', lambda: invoke_edit_worker('edit-info', path,request={'auth':auth} if auth is not None else None), prepared,
                            failed)
 
     def _copy_edit_destination_dialog(self, path):
@@ -2367,18 +2370,38 @@ class PDFWindow(Gtk.Window):
     def _print(self, *_args):
         if not self.filepath: return
         if not self._reading_permission('print'):return
-        if self.document_session and self.document_session.info.get('layer_override'):
-            self._error('A impressão da visibilidade temporária de camadas ainda não foi integrada.');return
-        if self.document_session and (self.document_session.info['encrypted'] or self.document_session.info['recovered']):
-            self._error('A impressão integrada de PDFs protegidos ou recuperados ainda requer um fluxo próprio. O original está preservado.')
-            return
-        win = PrintWindow(self, self.runner, self.filepath, self.page_count, self.page_sizes, self.page, self.cache_dir, self._submit_print_job)
+        session=self.document_session;source=self.filepath
+        pin=session.lease() if session else None
+        path=pin.__enter__() if pin else source
+        try:
+            win = PrintWindow(self, self.runner, path, self.page_count, self.page_sizes, self.page, self.cache_dir,
+                lambda job:self._submit_print_job(job,source_session=session,read_path=path,original_path=source))
+        except BaseException:
+            if pin:pin.__exit__(None,None,None)
+            raise
+        if pin:win.connect('destroy',lambda *_:pin.__exit__(None,None,None))
+        win.set_title('Imprimir — '+Path(source).name)
+        permissions=session.info['permissions'] if session else {}
+        if permissions and not permissions.get('print_high_quality',True):
+            win.print_as_image.set_active(True);win.print_as_image.set_sensitive(False)
+            win.image_dpi.append('150','150 DPI — permissão do PDF');win.image_dpi.set_active_id('150');win.image_dpi.set_sensitive(False)
+        if session and (session.info['encrypted'] or session.info['recovered'] or session.info.get('layer_override')):
+            note=Gtk.Label(label='A impressão usa a representação atual de leitura. O PDF gerado é uma nova saída de impressão, sem preservar assinatura ou proteção da origem.',xalign=0)
+            note.set_line_wrap(True);container=win.get_child()
+            if isinstance(container,Gtk.Box):container.pack_start(note,False,False,4);container.reorder_child(note,0)
         win.show_all()
 
-    def _submit_print_job(self, job):
-        path = self.filepath
+    def _submit_print_job(self, job,source_session=None,read_path=None,original_path=None):
+        session=source_session or self.document_session
+        path = original_path or self.filepath
         if not path: return
-        if not self._reading_permission('print'):return
+        permissions=session.info['permissions'] if session else dict(print=True,copy=True,print_high_quality=True)
+        if not permissions.get('print'):
+            self._error('O PDF não permite impressão nesta sessão.');return
+        if job.get('destination')=='save-pdf' and not permissions.get('copy'):
+            self._error('A permissão do PDF não autoriza salvar uma saída de impressão em PDF.');return
+        job=dict(job)
+        if not permissions.get('print_high_quality',True):job.update(print_as_image=True,image_dpi=150)
         if getattr(self, 'print_cancel', None) is not None:
             self._error('Aguarde ou cancele a preparação atual.');return
         out = os.path.join(self.cache_dir, f'print-prepared-{GLib.get_monotonic_time()}.pdf')
@@ -2414,14 +2437,35 @@ class PDFWindow(Gtk.Window):
                 except Exception as exc:
                     self._error(str(exc))
             else:
-                self.status_file.set_text(result)
+                identifier=cups.submitted_job_id(result,job.get('printer')) if isinstance(result,str) else None
+                if identifier:
+                    if not hasattr(self,'print_jobs'):self.print_jobs=[]
+                    self.print_jobs.append(dict(id=identifier,document=Path(path).name,printer=job.get('printer'),status='Enviado'))
+                if session is self.document_session:self.status_file.set_text(result)
         def prepared(result):
             finish()
             if result is not None and not cancel.is_set():
                 self.status_file.set_text('Enviando trabalho preparado…')
                 self.runner.submit('print-dispatch', dispatch, done, lambda e:self._error(str(e)))
         def failed(exc):finish();self._error(str(exc))
-        self.runner.submit('print-job', lambda:prepare_print(path, out, job, cancel), prepared, failed)
+        pin=session.lease(read_path) if session else None
+        try:input_path=pin.__enter__() if pin else path
+        except Exception as error:finish();self._error(str(error));return
+        def prepare():
+            if session:session.assert_source_unchanged()
+            return prepare_print(input_path,out,job,cancel)
+        future=self.runner.submit('print-job',prepare,prepared,failed)
+        if pin:
+            if future is not None:future.add_done_callback(lambda *_:pin.__exit__(None,None,None))
+            else:pin.__exit__(None,None,None);finish()
+
+    def _show_print_jobs(self,*_):
+        from print_queue import PrintQueueWindow
+        window=getattr(self,'print_queue_window',None)
+        if window is None or window.closed:
+            if not hasattr(self,'print_jobs'):self.print_jobs=[]
+            window=PrintQueueWindow(self,self.print_jobs);self.print_queue_window=window
+        window.show_all();window.present()
 
     # ---------- keyboard ----------
     def _focus_region(self, reverse=False):

@@ -84,7 +84,11 @@ def prepare_document(path, request):
             flags = Permissions(int(reader.trailer['/Encrypt'].get('/P', 0))).to_dict() if encrypted else {}
             allowed = lambda bit: not encrypted or role == 2 or bool(flags.get(bit))
             permissions = {'copy': allowed('extract'), 'print': allowed('print'),
-                           'accessibility': allowed('extract_text_and_graphics')}
+                           'accessibility': allowed('extract_text_and_graphics'),
+                           'print_high_quality':allowed('print_to_representation'),
+                           'modify':allowed('modify'),'annotate':allowed('add_or_modify'),
+                           'fill_forms':allowed('fill_form_fields') or allowed('add_or_modify'),
+                           'assemble':allowed('assemble_doc') or allowed('modify')}
             view = source
             if encrypted or recovered:
                 # This is a disposable reading representation. Signature checks,
@@ -126,6 +130,7 @@ class DocumentSession:
         self.source = str(Path(path).resolve())
         self.root = Path(tempfile.mkdtemp(prefix='linuxit-document-'))
         self.info = None
+        self._password = ''
         self._lock = threading.RLock()
         self._users = 0
         self._path_users = {}
@@ -137,11 +142,14 @@ class DocumentSession:
         return self.info['read_path'] if self.info else self.source
 
     @contextmanager
-    def lease(self):
+    def lease(self,path=None):
         with self._lock:
             if self.closed:raise DocumentError('A sessão do documento foi encerrada.')
             self._users += 1
-            path=self.read_path
+            path=str(Path(path).resolve()) if path is not None else self.read_path
+            if path!=self.source and (not Path(path).is_relative_to(self.root.resolve()) or not Path(path).is_file()):
+                self._users-=1
+                raise DocumentError('Representação de leitura indisponível.')
             self._path_users[path]=self._path_users.get(path,0)+1
         try:
             yield path
@@ -180,11 +188,23 @@ class DocumentSession:
                 if Path(result.get('read_path', '')).resolve() not in allowed:
                     raise DocumentError('O worker retornou uma sessão inválida.')
                 self.info = result
+                self._password=password
             return result
 
     def call(self, function, *args, **kwargs):
         with self.lease() as path:
             return function(path, *args, **kwargs)
+
+    def edit_authorization(self):
+        with self._lock:
+            if self.closed or not self.info:raise DocumentError('Sessão de edição indisponível.')
+            if not self.info['encrypted'] and not self.info['recovered']:return None
+            return dict(password=self._password if self.info['encrypted'] else None,recover=self.info['recovered'])
+
+    def assert_source_unchanged(self):
+        if (not self.info or file_stamp(self.source)!=self.info['source_stamp']
+                or _sha(self.source)!=self.info['source_sha256']):
+            raise DocumentError('O PDF original mudou. Reabra o documento antes de continuar.')
 
     def _cleanup(self):
         shutil.rmtree(self.root, ignore_errors=True)
@@ -192,4 +212,5 @@ class DocumentSession:
     def close(self):
         with self._lock:
             self.closed = True
+            self._password=''
             if not self._users:self._cleanup()

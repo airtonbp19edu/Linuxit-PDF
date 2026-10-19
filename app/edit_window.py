@@ -27,7 +27,7 @@ NAMES = dict(ACTIONS)
 
 
 class EditWindow(Gtk.Window):
-    def __init__(self, parent, path, page=0):
+    def __init__(self, parent, path, page=0, auth=None):
         super().__init__(title='Editar cópia — '+Path(path).name, transient_for=parent)
         self.set_destroy_with_parent(True);self.set_default_size(680, 480)
         self.parent_view, self.path = parent, str(path)
@@ -57,7 +57,7 @@ class EditWindow(Gtk.Window):
         self.connect('destroy',self._destroy);self.connect('key-press-event',self._key)
         self._refresh()
         def load():
-            session = EditSession(self.path,cancel=self.cancel)
+            session = EditSession(self.path,cancel=self.cancel,auth=auth)
             self.session = session
             if self.cancel.is_set():session.close()
             return session

@@ -448,3 +448,29 @@ def print_file(printer_name, filepath, job):
     if proc.returncode != 0:
         raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or 'Falha ao enviar o trabalho ao CUPS.')
     return proc.stdout.strip() or 'Trabalho enviado para a impressora.'
+
+
+def valid_job_id(value):
+    return (isinstance(value,str) and len(value)<=512 and not value.startswith('-')
+            and re.fullmatch(r'[^\x00-\x20\x7f/#]+-[1-9][0-9]*',value) is not None)
+
+
+def submitted_job_id(receipt,printer=None):
+    if not isinstance(receipt,str):return None
+    match=re.search(r'\brequest id is (\S+)',receipt)
+    identifier=match[1] if match else None
+    return identifier if valid_job_id(identifier) and (printer is None or identifier.startswith(printer+'-')) else None
+
+
+def cancel_job(identifier):
+    if not valid_job_id(identifier):raise ValueError('Identificador de trabalho CUPS inválido.')
+    if not shutil.which('cancel'):raise RuntimeError('O comando cancel não está instalado.')
+    result=_run(['cancel',identifier],timeout=30,check=False)
+    if result.returncode:raise RuntimeError(result.stderr.strip() or 'O CUPS não confirmou o cancelamento. Confira o estado da fila.')
+    return 'Cancelamento aceito pelo CUPS.'
+
+
+def pending_jobs():
+    result=_run(['lpstat','-W','not-completed','-o'],timeout=15,check=False)
+    if result.returncode:raise RuntimeError(result.stderr.strip() or 'Não foi possível consultar a fila CUPS.')
+    return {parts[0] for line in result.stdout.splitlines() if (parts:=line.split()) and valid_job_id(parts[0])}
