@@ -13,9 +13,9 @@ MAX_REPLY = 16 * 1024 * 1024
 
 
 def run_search_worker(command, path, request, cancel=None, timeout=120, destination=None):
-    if command not in {'document-open', 'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file', 'edit-info', 'copy-edit', 'ocr-copy'}:
+    if command not in {'document-open', 'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file', 'edit-info', 'copy-edit', 'ocr-copy', 'prepare-print'}:
         raise ValueError('Comando de pesquisa inválido.')
-    if (command in {'copy-edit', 'ocr-copy'}) != (destination is not None):
+    if (command in {'copy-edit', 'ocr-copy', 'prepare-print'}) != (destination is not None):
         raise ValueError('Destino inválido para este comando.')
     if cancel is not None and cancel.is_set():
         return None

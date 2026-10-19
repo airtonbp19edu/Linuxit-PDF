@@ -472,7 +472,7 @@ Seleção retangular de palavras e cópia; snapshot de região; sem garantir ord
 
 - Ordem lógica, texto bidirecional, permissões de cópia, snapping e coordenadas de todos os modos do original.
 
-Fontes: [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [app/text_selection.py](../app/text_selection.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py).
 
@@ -516,7 +516,7 @@ Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio nã
 
 Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md), [docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md](../docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md).
 
-Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md), [docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md](../docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md).
+Fontes: [app/print_window.py](../app/print_window.py), [app/worker_cli.py](../app/worker_cli.py), [app/cups_backend.py](../app/cups_backend.py), [app/windows_print.py](../app/windows_print.py), [app/print_tasks.py](../app/print_tasks.py), [docs/REA-IMPRESSAO-CONSUMIDORES.md](../docs/REA-IMPRESSAO-CONSUMIDORES.md), [docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json](../docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md), [docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md](../docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_preview_sides_binding_and_submit](../tests/test_gui.py); [test_manual_booklet_sides_are_not_duplex](../tests/test_regressions.py).
 

@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T12:46:27-03:00",
+  "reviewed_at_local": "2026-10-19T12:51:56-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -299,6 +299,18 @@
       "path": "app/attachment_formats.py",
       "boundary": "portable_logic",
       "responsibility": "Extrai texto passivo de HTML e corpos DOCX/ODT com limites de expansão e omissões explícitas."
+    },
+    {
+      "id": "text_selection",
+      "path": "app/text_selection.py",
+      "boundary": "portable_logic",
+      "responsibility": "Seleção por interseção de área e composição Unicode por linha/bloco sem inversão RTL."
+    },
+    {
+      "id": "print_tasks",
+      "path": "app/print_tasks.py",
+      "boundary": "portable_logic",
+      "responsibility": "Prepara PDF em worker cancelável e publica cópia de impressão de forma atômica."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -688,7 +700,8 @@
       "contract_kind": "implemented_subset",
       "current_source_refs": [
         "app/main.py",
-        "app/rendering.py"
+        "app/rendering.py",
+        "app/text_selection.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -700,7 +713,8 @@
         "app/print_window.py",
         "app/worker_cli.py",
         "app/cups_backend.py",
-        "app/windows_print.py"
+        "app/windows_print.py",
+        "app/print_tasks.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null

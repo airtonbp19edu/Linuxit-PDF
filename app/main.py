@@ -29,6 +29,8 @@ from platform_runtime import worker_python, subprocess_options
 from attachment_tasks import AttachmentPanelController, display_attachment_name
 from local_files import read_folders, remember_folder, file_stamp
 from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder
+from text_selection import select_words, selection_text
+from print_tasks import prepare_print, publish_print_copy
 from search_tasks import run_search_worker
 from document_session import DocumentSession
 from cancel_state import get_event
@@ -1670,20 +1672,13 @@ class PDFWindow(Gtk.Window):
         session=self.document_session
         def use(data):
             if path != self.filepath or page != self.page: return
-            self.text_word_cache[page]=data; x0,y0,x1,y1=self._display_rect_to_pdf(rect,data); chosen=[]
-            for w in data.get('words',[]):
-                if w['x1']>=x0 and w['x0']<=x1 and w['y1']>=y0 and w['y0']<=y1: chosen.append(w)
+            self.text_word_cache[page]=data
+            chosen=select_words(data,self._display_rect_to_pdf(rect,data))
             self.selection_rect = None
             self.selected_words = chosen; self.selection_data = data
             self.interaction_layer.queue_draw()
             if not chosen: self.status_file.set_text('Nenhum texto detectado na seleção.'); return
-            lines=[]; current=[]; last_line=None
-            for w in chosen:
-                line=(w['block'], w['line'])
-                if last_line is not None and line != last_line and current: lines.append(' '.join(current)); current=[]
-                current.append(w['text']); last_line=line
-            if current: lines.append(' '.join(current))
-            text='\n'.join(lines).strip()
+            text=selection_text(chosen)
             if text: Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).set_text(text,-1); self.status_file.set_text(f'Texto selecionado copiado ({len(text)} caracteres).')
         cached=self.text_word_cache.get(page)
         if cached is not None: use(cached)
@@ -2211,16 +2206,30 @@ class PDFWindow(Gtk.Window):
     def _submit_print_job(self, job):
         path = self.filepath
         if not path: return
+        if getattr(self, 'print_cancel', None) is not None:
+            self._error('Aguarde ou cancele a preparação atual.');return
         out = os.path.join(self.cache_dir, f'print-prepared-{GLib.get_monotonic_time()}.pdf')
         self.status_file.set_text('Preparando impressão em segundo plano…')
-        job_json = json.dumps(job, ensure_ascii=False)
-        def task():
-            proc = subprocess.run([worker_python(), str(WORKER), 'prepare', path, out],
-                                  input=job_json, stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE, text=True, timeout=600, **subprocess_options())
-            if proc.returncode != 0: raise RuntimeError(proc.stderr.strip() or 'Falha ao preparar o PDF para impressão.')
+        cancel = threading.Event();self.print_cancel = cancel
+        dialog = Gtk.MessageDialog(transient_for=self, modal=True, message_type=Gtk.MessageType.INFO,
+                                   buttons=Gtk.ButtonsType.NONE, text='Preparando impressão…')
+        dialog.format_secondary_text('Você pode cancelar antes do envio à impressora ou da gravação da cópia.')
+        dialog.add_button('Cancelar preparação', Gtk.ResponseType.CANCEL)
+        def finish():
+            if getattr(self, 'print_cancel', None) is cancel:self.print_cancel = None
+            dialog.destroy()
+        def stop(*_):
+            cancel.set();self.runner.invalidate('print-job');finish()
+            self.status_file.set_text('Preparação cancelada; nenhum trabalho enviado por esta preparação.')
+        dialog.connect('response', stop);dialog.show_all()
+        def dispatch():
+            try:
+                return submit_prepared()
+            finally:
+                if os.name != 'nt':Path(out).unlink(missing_ok=True)
+        def submit_prepared():
             if job.get('destination') == 'save-pdf':
-                shutil.copy2(out, job['save_path']); return f'PDF salvo em {job["save_path"]}'
+                return publish_print_copy(out, job['save_path'], path)
             if os.name == 'nt':
                 return (out, job)
             return cups.print_file(job.get('printer'), out, job)
@@ -2233,7 +2242,13 @@ class PDFWindow(Gtk.Window):
                     self._error(str(exc))
             else:
                 self.status_file.set_text(result)
-        self.runner.submit('print-job', task, done, lambda e: self._error(str(e)))
+        def prepared(result):
+            finish()
+            if result is not None and not cancel.is_set():
+                self.status_file.set_text('Enviando trabalho preparado…')
+                self.runner.submit('print-dispatch', dispatch, done, lambda e:self._error(str(e)))
+        def failed(exc):finish();self._error(str(exc))
+        self.runner.submit('print-job', lambda:prepare_print(path, out, job, cancel), prepared, failed)
 
     # ---------- keyboard ----------
     def _focus_region(self, reverse=False):
@@ -2289,6 +2304,7 @@ class PDFWindow(Gtk.Window):
         dlg.format_secondary_text(str(text)); dlg.run(); dlg.destroy()
 
     def _on_destroy(self, *_args):
+        if getattr(self, 'print_cancel', None) is not None:self.print_cancel.set()
         self._cancel_document_open()
         if self.document_session is not None:self.document_session.close()
         if hasattr(self, 'attachment_controller'):

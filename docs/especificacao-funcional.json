@@ -1223,7 +1223,7 @@
     {
       "id": "selection",
       "name": "Seleção/cópia/snapshot",
-      "matrix_implementation": "Seleção retangular/cópia/snapshot próprios em subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: seleção retangular com separação de blocos/colunas e ordem Unicode do extrator preservada; sem reversão RTL heurística. Bidi/caret completos e original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
       "inputs": [
@@ -1252,7 +1252,8 @@
       ],
       "source_refs": [
         "app/main.py",
-        "app/rendering.py"
+        "app/rendering.py",
+        "app/text_selection.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1313,7 +1314,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Prévia/plano próprios; UI02/UI05 e saídas virtuais originais observados em recortes. Sem impressão física aprovada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: preparação em worker cancelável, retenção do original e cópia atômica; submissão só depois da preparação confirmada. Linux/físico e ciclo original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1349,7 +1350,8 @@
         "app/print_window.py",
         "app/worker_cli.py",
         "app/cups_backend.py",
-        "app/windows_print.py"
+        "app/windows_print.py",
+        "app/print_tasks.py"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -1425,7 +1427,7 @@
     {
       "id": "imposition",
       "name": "Livreto/N-up/mosaico",
-      "matrix_implementation": "Livreto/N-up/mosaico próprios; saídas originais N-up/livreto medidas com parâmetros distintos de C18. Comparação equivalente ainda aberta. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: geometria finita limitada, modo explícito e original protegido,9 regressões CropBox passaram no host. Comparação integral/original aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Composição independente em livreto, N-up e mosaico, herdada da base MIT e adaptada.",
       "inputs": [
@@ -3942,7 +3944,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T12:46:27-03:00",
+  "updated_at_local": "2026-10-19T12:51:56-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

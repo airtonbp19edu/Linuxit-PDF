@@ -129,6 +129,11 @@ def _reader(path):
 
 
 def _normalized_page(page):
+    bounds = tuple(float(v) for v in page.cropbox)
+    if (not all(math.isfinite(v) and abs(v) <= 2000000 for v in bounds)
+            or not 0 < bounds[2]-bounds[0] <= 200000
+            or not 0 < bounds[3]-bounds[1] <= 200000):
+        raise ValueError('CropBox inválido ou acima do limite de geometria.')
     p = copy.copy(page)
     # A shallow copy retains the reader's page reference. Detach it so pypdf's
     # replace_contents() cannot replace the original reader's content stream.
@@ -584,7 +589,19 @@ def create_poster(input_path, output_path, page_range=None, page_set='all', reve
     return _write(writer, output_path)
 
 def prepare_output(input_path, output_path, job):
+    if not isinstance(job, dict):raise ValueError('Opções de impressão inválidas.')
+    source, target = Path(input_path).resolve(), Path(output_path).resolve()
+    if source == target or (target.exists() and os.path.samefile(source, target)):
+        raise ValueError('O destino de impressão não pode substituir o PDF original.')
+    for name, low, high in [('poster_scale',1,10000),('poster_overlap_mm',0,1000),
+                            ('nup_margin_mm',0,1000),('booklet_safety_mm',0,1000),
+                            ('booklet_gutter_mm',0,1000),('scale_percent',1,10000)]:
+        if name in job and (type(job[name]) not in (int,float) or not math.isfinite(job[name])
+                            or not low <= job[name] <= high):
+            raise ValueError('Parâmetro de impressão inválido: ' + name)
     mode = job.get('print_mode', 'size')
+    if mode not in {'size','multiple','booklet','poster'}:
+        raise ValueError('Modo de impressão inválido.')
     common = dict(
         page_range=job.get('page_range'),
         page_set=job.get('page_set', 'all'),

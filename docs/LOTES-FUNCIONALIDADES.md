@@ -10,7 +10,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |1–3|Abertura; navegação; apresentação|Entregues recortes0.1.14,432/432 próprios por ambiente. Físico/Wayland/original e famílias amplas abertos.|
 |4–6|Busca em texto; marcadores; comentários|Fonte0.1.15 preparada;7 portáveis passaram,2 GTK aguardam Linux.|
 |7–9|Busca em anexos; índice; linguagem|Fonte0.1.15 implementada:8 novos portáveis e24 regressões passaram; Linux/GTK pendentes.|
-|10–12|Seleção; impressão; imposição|Revisar lacunas de leitura/ordem, cancelamento e geometria; impressão física depende de impressora.|
+|10–12|Seleção; impressão; imposição|Fonte0.1.15: seleção por blocos, preparação cancelável, cópia atômica e geometria validada;6 portáveis+9 regressões passaram. Linux/físico/bidi completo pendentes.|
 |13–15|Marcadores; anotações; formulários|Respostas/desenho e combo editável; JavaScript/XFA dependem de contratos e motores ainda não implementados.|
 |16–18|Anexos; assinaturas; segurança|Portfólios/criptografia, assinatura local e permissões; confiança/LTV/RMS exigem contratos e serviços.|
 |19–21|Acessibilidade; medidas; camadas/mídia|AT-SPI/voz, área/perímetro/calibração e visibilidade; mídia/3D exigem motores próprios.|
@@ -91,3 +91,27 @@ Testes novos em tests/test_search_batch_extensions.py:8 portáveis passaram e1 G
 aguarda Linux. Regressões test_collection_index.py12/12 e
 test_attachment_search.py12/12 passaram no host Windows. CI4–6 ainda em fila;
 não extrapolar esses resultados para GTK/Linux ou novo Flatpak.
+
+
+## Lote10–12: recortes implementados, obrigações restantes abertas
+
+Seleção retangular exige interseção com área positiva, mantém a ordem Unicode
+emitida pelo extrator e separa colunas/blocos por linha vazia. Não reverte strings
+RTL por aparência visual. Seleção por caractere, ordem lógica de todo PDF bidi
+ou mal estruturado e corpus multilíngue completo continuam pendentes.
+
+Preparação de impressão roda pelo transporte JSON cancelável, separado da
+submissão. Cancelar antes da conclusão não envia o trabalho; callbacks tardios
+são invalidados. No Linux o grupo do worker e seus filhos é encerrado. A janela
+de preparação encerra antes da submissão CUPS; depois disso não oferece um
+cancelamento de fila que ainda não foi implementado. Não é prova de impressora
+real, spooler, encerramento do Foxit ou Windows com subprocessos netos.
+Salvar PDF usa arquivo temporário no mesmo diretório/replace e recusa substituir
+o original, inclusive por hardlink; erro preserva destino anterior. PDFs abertos
+por senha/recuperação ainda não estão integrados na impressão.
+
+Imposição recusa destino igual ao original, modo desconhecido, parâmetros não
+finitos/fora de faixa e CropBox não positivo ou acima dos limites. CropBox com
+origem negativa válida continua aceito.6 novos portáveis e9 regressões existentes
+passaram;1 GTK aguarda CI. Nenhuma operação física/bidi ampla foi promovida a
+concluída no inventário. Preservar todos os relatórios anteriores.

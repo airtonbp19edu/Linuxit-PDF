@@ -192,18 +192,22 @@ def main(argv):
                                     source_sha256=request.get('source_sha256'))
         print(json.dumps(result, ensure_ascii=True))
         return
-    if cmd == 'prepare':
+    if cmd in {'prepare', 'prepare-print'}:
         if len(argv) < 4:
             raise SystemExit(2)
         input_path, output_path = argv[2], argv[3]
         try:
-            job = json.load(sys.stdin)
+            raw = sys.stdin.buffer.read(256 * 1024 + 1)
+            if len(raw) > 256 * 1024:raise ValueError('Pedido de impressão acima de256KiB.')
+            job = json.loads(raw)
         except (json.JSONDecodeError, UnicodeDecodeError) as exc:
             raise RuntimeError('Opções de impressão inválidas.') from exc
         prepare_output(input_path, output_path, job)
         if job.get('print_as_image'):
             _rasterize_pdf_in_place(output_path, job.get('image_dpi', 300))
-        print(output_path)
+        if cmd == 'prepare-print':
+            print(json.dumps({'schema':'linuxit-print-prepared-v1', 'path':output_path}))
+        else:print(output_path)
         return
     raise SystemExit(2)
 
