@@ -2481,8 +2481,11 @@
     "new_own_cases": 58,
     "whole_family_parity_verified": false,
     "original_vm_resumed": false,
-    "independent_installed_audit": "pending_after_publication",
-    "public_download_integrity": "pending_after_publication",
-    "functional_batch_report": "docs/LOTES-FUNCIONALIDADES.md"
+    "independent_installed_audit": "passed",
+    "public_download_integrity": "testes/resultados/0.1.15/download-integrity-2026-10-19.json",
+    "functional_batch_report": "docs/LOTES-FUNCIONALIDADES.md",
+    "installed_audit_review": "testes/resultados/0.1.15/audit/review.json",
+    "publication_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+    "publication_confirmed_at_local": "2026-10-19T14:43:28.143775-03:00"
   }
 }

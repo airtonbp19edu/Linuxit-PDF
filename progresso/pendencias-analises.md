@@ -1,5 +1,7 @@
 # Pendências de análise e pontos de retomada
 
+Atualização 2026-10-19T14:43:28-03:00: [entrega própria0.1.15/lotes](../docs/LOTES-FUNCIONALIDADES.md),490/490 por ambiente e auditoria instalada aprovada. Os19 critérios amplos permanecem abertos, sem mudança de pesos. VM suspensa no checkpoint09:54:23; nenhuma inspeção/entrada nova. Os estados anteriores abaixo são históricos.
+
 Atualização 2026-10-18T23:56:42-03:00: [P02 validada offline](../docs/P02-COLETOR-VALIDADO-2026-10-18.md).
 Coletor corrigido instalado com token interativo limitado; startup/pf/col/end
 completos, dez Inputs/RX/isolamento conferidos e parada normal sem Foxit.

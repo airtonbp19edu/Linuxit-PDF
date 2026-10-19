@@ -77,6 +77,9 @@
   "delivery_manifest": "releases/manifest-0.1.15.json",
   "delivery_ci_run_id": 39293507397,
   "delivery_tests_passed_each": 490,
-  "publication_pending": true,
-  "installed_audit_pending": true
+  "publication_pending": false,
+  "installed_audit_pending": false,
+  "publication_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+  "installed_audit_review": "testes/resultados/0.1.15/audit/review.json",
+  "public_download_integrity": "testes/resultados/0.1.15/download-integrity-2026-10-19.json"
 }

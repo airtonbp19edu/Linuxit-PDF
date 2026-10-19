@@ -1,0 +1,29 @@
+{
+  "schema": "linuxit-delivery-visual-review-v1",
+  "reviewed_at_local": "2026-10-19T14:43:28.143775-03:00",
+  "examined": [
+    {
+      "file": "linuxit-flatpak-0.1.15.png",
+      "sha256": "57cd47dc5a44eef6ee2ddc81235c35811f20110ace3043c7c76fd1a461a1caa7",
+      "examined": true
+    },
+    {
+      "file": "sidebar-after/sidebar-0.png",
+      "sha256": "69c30a2bc4b39dcdee850b976470c4200da1566efcaf4da672689be74e7a8c7a",
+      "examined": true
+    },
+    {
+      "file": "search-ui/reading-authenticated.png",
+      "sha256": "21885262301617c42097113e86d2433c7255671eaa1001945ebc0503fa1ab721",
+      "examined": true
+    }
+  ],
+  "observations": [
+    "Normal installed launcher rendered the synthetic PDF with the page/sidebar controls visible.",
+    "Current Pages sidebar title and rail fit at the actual captured width; no claim of a 760px physical window.",
+    "Authenticated reading shows page2 and search highlight while retaining the private reading policy."
+  ],
+  "additional_nine_new_workflow_captures": "testes/resultados/lotes-2026-10-19/review.json",
+  "physical_desktop_verified": false,
+  "foxit_executed": false
+}

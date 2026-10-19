@@ -20,7 +20,7 @@ Se necessário, abra essa página no navegador habitual.
 O arquivo 0.1.15 tem **58.072.096 bytes** (aproximadamente 55,4 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
-O candidato0.1.15 passou490/490 testes próprios em fonte,payload e sandbox instalado. A verificação do download público e auditoria independente serão registradas após a publicação deste mesmo arquivo.
+O [download público sem login](../testes/resultados/0.1.15/download-integrity-2026-10-19.json) passou com HTTP200,58072096bytes e SHA-256 completo. A [auditoria independente](../testes/resultados/0.1.15/audit/review.json) instalou o mesmo bundle sem recompilar:7controles,5 novos smoke checks e3 testesGTK passaram. A entrega passou490/490 testes próprios em fonte,payload e sandbox instalado.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:

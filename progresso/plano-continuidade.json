@@ -1229,5 +1229,14 @@
     "Unexamined original capabilities and external service dependencies"
   ],
   "updated_at_local": "2026-10-19T12:12:33.570392-03:00",
-  "execution_state_ref": "progresso/execucao-plano.json"
+  "execution_state_ref": "progresso/execucao-plano.json",
+  "latest_functional_batch_followup": {
+    "date_local": "2026-10-19T14:44:10-03:00",
+    "version": "0.1.15",
+    "report": "docs/LOTES-FUNCIONALIDADES.md",
+    "batch_state": "progresso/execucao-lotes-funcionalidades.json",
+    "own_editable_combo_delivered": true,
+    "packages_p01_p10_automatically_closed": false,
+    "original_vm_resumed": false
+  }
 }

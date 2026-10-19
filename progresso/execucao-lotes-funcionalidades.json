@@ -220,6 +220,10 @@
   "delivery_manifest": "releases/manifest-0.1.15.json",
   "delivery_tests_passed_each": 490,
   "delivery_version": "0.1.15",
-  "publication_pending": true,
-  "independent_installed_audit_pending": true
+  "publication_pending": false,
+  "independent_installed_audit_pending": false,
+  "installed_audit_pending": false,
+  "publication_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+  "installed_audit_review": "testes/resultados/0.1.15/audit/review.json",
+  "public_download_integrity": "testes/resultados/0.1.15/download-integrity-2026-10-19.json"
 }
