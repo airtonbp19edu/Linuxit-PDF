@@ -200,3 +200,24 @@ CA/CRL também passaram. A falha era uso no subcomando ts de opções exclusivas
 foram substituídas por repositórios vazios explícitos para impedir raízes implícitas.
 Resultado corrigido ainda pendente;não declarar549/549. Evidência da falha preservada
 em testes/resultados/sem-vm-2026-10-19/s06-first/.
+
+## S10/S11 — integrações e nova estática
+
+S06–S09 no commit586c7f8:558/558 Linux,sem falhas/erros/skips, incluindo CA/CRL,
+TSA RFC3161 real,PCM/mídia/camadas e OCR selecionado. CUPS continuou aprovado.
+O carimbo corrigido passa e a alteração dos bytes assinados invalida seu vínculo.
+Novas duas verificações GTK de salvamento/mídia ainda aguardam integração.
+
+S10:workflows independentes verificam o aplicativo próprio com MSYS2/GTK/Poppler
+no Windows nativo do CI e,em desktop Linux efêmero, atualização0.1.14→entrega atual,
+retorno0.1.14→atual,preferências preservadas,concessão somente leitura Documents
+persistente após reinício do próprio portal,revogação e associação/abertura real.
+As rotinas recusam execução fora do perfil efêmero indicado. Nenhuma VM do usuário,
+configuração de segurança do host ou execução do Foxit é usada. Resultados ainda
+pendentes; o primeiro desktop testa o pacote publicado0.1.15,antes do0.1.16.
+
+S11:duas transições de reflow novas examinadas com Ghidra/Capstone,85instruções,
+268bytes;catálogo325(152REA+173diretas). Relatório e limitações em
+REA-TRANSICOES-REFLOW-2026-10-19.md. Tipos/propriedade/arrays e algoritmo de busca
+amplos permanecem abertos; não declarar fim da análise estática.50planos S12 ainda
+não são aceitação integral do original; subconjuntos próprios têm outras evidências.

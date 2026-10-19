@@ -1,0 +1,41 @@
+name: Own application Windows native validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  own-windows:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-python-gobject
+            mingw-w64-ucrt-x86_64-python-cairo
+            mingw-w64-ucrt-x86_64-python-pillow
+            mingw-w64-ucrt-x86_64-python-cryptography
+            mingw-w64-ucrt-x86_64-gtk3
+            mingw-w64-ucrt-x86_64-poppler
+            mingw-w64-ucrt-x86_64-gst-plugins-base
+            mingw-w64-ucrt-x86_64-gst-plugins-good
+      - name: Run own native GTK and PDF operations
+        shell: msys2 {0}
+        run: |
+          export PYTHONUTF8=1
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-test-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-test-cache"
+          /ucrt64/bin/python scripts/check_windows_native.py --output dist/windows-native/report.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: linuxit-own-windows-${{ github.sha }}
+          path: dist/windows-native/
+          if-no-files-found: warn
+          retention-days: 14

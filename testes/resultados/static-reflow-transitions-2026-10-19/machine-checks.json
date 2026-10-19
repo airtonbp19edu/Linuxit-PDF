@@ -1,0 +1,32 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-reflow-transitions-2026-10-19",
+  "entries": [
+    {
+      "entry": "0x15cc9b0",
+      "instructions": 78,
+      "body_bytes": 248,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b53e85a4f52c7334811db03867aa248f29b8d00fa2343e69d71954c0dc83fa40",
+      "pseudocode_sha256": "8f0cbac4ca07f065b26ada031effeed1db96c5223c3e5e97aa7aa017d2cffc7e"
+    },
+    {
+      "entry": "0x15cd6e0",
+      "instructions": 7,
+      "body_bytes": 20,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "7702bc51a9c08526aef40d045db547d40c0d5782362d1a7264aaac345637db5c",
+      "pseudocode_sha256": "8d129d64c7d86d346c8ee66a84d600b765436fc2be9680021eebef91e6a8370d"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

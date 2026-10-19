@@ -7,7 +7,8 @@ def unicode_cursor_stops(text):
     import ctypes,ctypes.util
     from character_selection import MAX_CHARACTERS
     if not isinstance(text,str) or len(text)>MAX_CHARACTERS:raise ValueError('Texto de cursor acima do limite.')
-    library=ctypes.CDLL(ctypes.util.find_library('pango-1.0') or 'libpango-1.0.so.0')
+    import os
+    library=ctypes.CDLL(ctypes.util.find_library('pango-1.0') or ('libpango-1.0-0.dll' if os.name=='nt' else 'libpango-1.0.so.0'))
     function=library.pango_get_log_attrs
     function.argtypes=[ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_void_p,ctypes.POINTER(ctypes.c_uint),ctypes.c_int]
     function.restype=None

@@ -67,51 +67,56 @@
     {
       "id": "S06",
       "title": "Confiança de certificados e carimbos de tempo offline",
-      "status": "native_chain_crl_passed_timestamp_fix_pending",
+      "status": "own_linux_validated_in_revision_586c7f8",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s06-s09/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S07",
       "title": "Reprodução de voz e precisão/encaixe de medidas",
-      "status": "own_native_playback_tests_passed_in_aeafdea_source_extended_later",
+      "status": "own_linux_validated_in_revision_586c7f8",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s06-s09/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S08",
       "title": "Persistência de camadas e suporte a mídia/conteúdo3D",
-      "status": "bounded_source_and_portable_tests_passed_native_pending",
+      "status": "own_linux_validated_in_revision_586c7f8",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s06-s09/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S09",
       "title": "Preferências e criação/conversão/OCR",
-      "status": "bounded_source_and_portable_tests_passed_native_pending",
+      "status": "own_linux_validated_in_revision_586c7f8",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s06-s09/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S10",
       "title": "Portal persistente, associação, atualização/rollback e adaptador Windows",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "ephemeral_native_and_desktop_probes_prepared_pending_execution",
+      "evidence_refs": [
+        "scripts/check_desktop_integrations.py",
+        "scripts/check_windows_native.py"
+      ],
       "limitations": []
     },
     {
       "id": "S11",
       "title": "Contratos/casos executáveis e análise estática pendente",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "static_two_new_entries_reviewed_broad_semantics_and_acceptance_still_open",
+      "evidence_refs": [
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+      ],
       "limitations": []
     },
     {
@@ -127,5 +132,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T16:00:23.494511-03:00"
+  "updated_at_local": "2026-10-19T16:09:09.521221-03:00"
 }

@@ -3078,3 +3078,13 @@ eOCR seletivo acrescentados;5+3portáveis aprovados,2integrações nativas pende
 Estática S11 iniciada:Ghidra-noanalysis,2sementes inéditas de transição reflow,
 resultado ainda em importação,não contado. VM intocada; nuvem adiada;0.1.15mantido.
 Próximo:CI corrigido,S10integrações,S11exame,S12Flatpak/auditoria.
+
+### 2026/10/19 às 16:09 (America/Sao_Paulo, UTC-03:00) —558Linux e S10/S11
+
+558/558 do586c7f8 examinados e SHA confirmado;TSA corrigido passou. Preparados
+S10Windows nativo/desktop com portal persistente/associação/update/rollback.
+Estática Ghidra2novas entradas,85instruções/268bytes conferidos comCapstone;325
+entradas totais,sem código original incorporado. Primeiro checker falhou por
+PYTHONPATH ausente;reexecutado comdeps locais preservadas e aprovado.
+VM intocada,nuvem adiada,critérios/paridade intactos. Próximo:executar S10,
+novos2GTK,S11aceitação eS12pacote/auditoria. Publicação será confirmada por Git.

@@ -1,0 +1,48 @@
+name: Own installed desktop integrations
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  own-desktop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: debian:13
+      options: --privileged
+    steps:
+      - name: Install ephemeral desktop dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git ca-certificates python3 python3-gi gir1.2-glib-2.0 flatpak bubblewrap dbus dbus-x11 xvfb xauth openbox xdotool xdg-desktop-portal xdg-desktop-portal-gtk fuse3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Prepare isolated user and system bus
+        run: |
+          useradd --create-home --uid 1001 linuxit-desktop
+          chown -R linuxit-desktop:linuxit-desktop "$GITHUB_WORKSPACE"
+          mkdir -p /run/dbus
+          dbus-uuidgen --ensure
+          dbus-daemon --system --fork --nopidfile
+      - name: Check actual installed update, rollback, portal persistence and association
+        run: |
+          runuser -u linuxit-desktop -- bash -c '
+            set -e
+            cd "$GITHUB_WORKSPACE"
+            mkdir -p dist/desktop-results analysis-local
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-desktop-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            export LINUXIT_EPHEMERAL_DESKTOP=1
+            export XDG_CURRENT_DESKTOP=GNOME
+            flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            flatpak install --user --noninteractive -y --no-related flathub org.freedesktop.Platform//25.08 >dist/desktop-results/runtime-install.log 2>&1
+            exec xvfb-run -a dbus-run-session -- bash -c "openbox --sm-disable >dist/desktop-results/openbox.log 2>&1 & exec /usr/bin/python3 scripts/check_desktop_integrations.py --output dist/desktop-results/integrations.json"
+          '
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: linuxit-own-desktop-${{ github.sha }}
+          path: dist/desktop-results/
+          if-no-files-found: warn
+          retention-days: 14

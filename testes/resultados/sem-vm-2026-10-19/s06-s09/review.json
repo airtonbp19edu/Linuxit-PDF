@@ -1,0 +1,9 @@
+{
+  "source_commit": "586c7f81ade18f02ead8c27a1f90ecf2b00872dd",
+  "source_tests_passed": 558,
+  "passed": true,
+  "artifact_sha256": "2b5bee3ea104f07060c5269d2abce751b63bc05c70abb3ee089532efae161e6d",
+  "timestamp_and_crl_cases_passed": true,
+  "reviewed_at_local": "2026-10-19T16:09:09.521221-03:00",
+  "original_executed": false
+}
