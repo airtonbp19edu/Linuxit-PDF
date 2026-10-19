@@ -38,7 +38,7 @@ real de PDF e atualização/retorno de versão com preferências preservadas.
   configuração OpenSSL ausente no sandbox. Fonte e payload passaram; o teste
   instalado identificou o problema. O candidato foi rejeitado. A revisão
   `a5ebda9` fornece configuração mínima explícita para a consulta e a verificação;
-  o novo pacote precisa passar novamente antes da publicação.
+  a [execução corrigida39339330479](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39339330479) aprovou564/564 testes em cada ambiente fonte/payload/sandbox, sem falhas/erros/skips. Somente esse novo candidato foi publicado como0.1.16 de desenvolvimento.
 
 Os testes que detectaram as falhas foram mantidos. Notificações da conta não
 foram desativadas; apagar o aviso ou aceitar uma falha como sucesso ocultaria

@@ -68,7 +68,8 @@
         "app/document_session.py",
         "app/navigation.py",
         "app/page_surface.py",
-        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -288,7 +289,8 @@
         "app/document_session.py",
         "app/navigation.py",
         "app/page_surface.py",
-        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -442,7 +444,8 @@
         "app/document_session.py",
         "app/navigation.py",
         "app/page_surface.py",
-        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -552,7 +555,8 @@
       "source_refs": [
         "app/search_engine.py",
         "app/main.py",
-        "app/rendering.py"
+        "app/rendering.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -664,7 +668,8 @@
       ],
       "source_refs": [
         "app/search_engine.py",
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -769,7 +774,8 @@
       "source_refs": [
         "app/search_engine.py",
         "app/pdf_panels.py",
-        "app/pdf_comments.py"
+        "app/pdf_comments.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -860,7 +866,7 @@
     {
       "id": "search-attachments",
       "name": "Busca em anexos",
-      "matrix_implementation": "Fonte0.1.15: texto/PDF e extração passiva HTML/corpo DOCX/ODT com omissões explícitas; Recorte próprio validado no Linux e Flatpak0.1.15. Família completa aberta.",
+      "matrix_implementation": "Fonte0.1.15: texto/PDF e extração passiva HTML/corpo DOCX/ODT com omissões explícitas; Recorte próprio validado no Linux e Flatpak0.1.15. Família completa aberta. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotações, com omissões explícitas e sem execução/recursão.",
       "inputs": [
@@ -897,7 +903,8 @@
         "app/main.py",
         "app/attachment_formats.py",
         "app/attachment_rtf.py",
-        "app/attachment_images.py"
+        "app/attachment_images.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -983,7 +990,7 @@
     {
       "id": "search-index",
       "name": "Índice persistente/pesquisa de coleção",
-      "matrix_implementation": "Fonte0.1.15: índice local próprio, revisão/exclusão/atualização da lista, trava de escritor e publicação atômica; Recorte próprio validado no Linux e Flatpak0.1.15. Índice Foxit/família completa abertos.",
+      "matrix_implementation": "Fonte0.1.15: índice local próprio, revisão/exclusão/atualização da lista, trava de escritor e publicação atômica; Recorte próprio validado no Linux e Flatpak0.1.15. Índice Foxit/família completa abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escolhidos, com consulta e exclusão de fontes desatualizadas.",
       "inputs": [
@@ -1018,7 +1025,8 @@
         "app/search_matching.py",
         "app/worker_cli.py",
         "app/main.py",
-        "app/collection_recovery.py"
+        "app/collection_recovery.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1107,7 +1115,7 @@
     {
       "id": "search-language",
       "name": "Stemming/proximidade/coringas",
-      "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Recorte próprio validado no Linux e Flatpak0.1.15; algoritmo/idiomas originais não comprovados.",
+      "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Recorte próprio validado no Linux e Flatpak0.1.15; algoritmo/idiomas originais não comprovados. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
       "inputs": [
@@ -1143,7 +1151,8 @@
         "app/main.py",
         "app/collection_window.py",
         "docs/proveniencia-snowball.json",
-        "app/search_languages.py"
+        "app/search_languages.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1227,7 +1236,7 @@
     {
       "id": "selection",
       "name": "Seleção/cópia/snapshot",
-      "matrix_implementation": "Fonte0.1.16 acrescenta seleÃ§Ã£o por caractere/cursor com geometria PopplerGLib, grupos Unicode e movimento visual; validaÃ§Ã£o Linux em andamento. SeleÃ§Ã£o retangular0.1.15 preservada. ComparaÃ§Ã£o completa e documentos sem ordem lÃ³gica confiÃ¡vel abertos.",
+      "matrix_implementation": "0.1.16: seleção por caractere/cursor com caixas PopplerGLib, limites nativos Pango e movimento visual; seleção retangular preservada. Suíte própria564/564 por ambiente. Ordem lógica universal de PDF e paridade completa abertas.",
       "contract_kind": "implemented_subset",
       "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
       "inputs": [
@@ -1259,7 +1268,8 @@
         "app/rendering.py",
         "app/text_selection.py",
         "app/character_selection.py",
-        "app/character_extraction.py"
+        "app/character_extraction.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1320,7 +1330,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Fonte0.1.16: impressÃ£o da representaÃ§Ã£o autenticada/recuperada e camadas com leases e captura da origem;150DPI imposto para permissÃ£o de baixa qualidade, PDF salvo exige cÃ³pia permitida. Controle de recibos/cancelamento CUPS implementado; fila virtual/GTK em validaÃ§Ã£o, impressora fÃ­sica/original abertos.",
+      "matrix_implementation": "0.1.16: impressão da sessão autenticada, recuperação/camadas, leases e captura da origem;150DPI quando a permissão exige baixa qualidade e cópia autorizada para salvar PDF. Cancelamento CUPS próprio validado em fila IPP retida. Suíte564/564 por ambiente; impressão física e ciclo original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1358,7 +1368,8 @@
         "app/cups_backend.py",
         "app/windows_print.py",
         "app/print_tasks.py",
-        "app/print_queue.py"
+        "app/print_queue.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -1464,7 +1475,8 @@
       ],
       "source_refs": [
         "app/imposition.py",
-        "app/worker_cli.py"
+        "app/worker_cli.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -1614,7 +1626,8 @@
         "app/edit_dialogs.py",
         "app/edit_window.py",
         "docs/EDICAO-COM-HISTORICO.md",
-        "testes/resultados/0.1.10/validation-review.json"
+        "testes/resultados/0.1.10/validation-review.json",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1856,7 +1869,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Fonte0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparÃªncia Pango/Cairo com fontes incorporadas, mover, editar respostas, popup e exclusÃ£o de conversa com guardas. Sete portÃ¡veis passaram; renderizaÃ§Ã£o/GTK aguardam Linux; famÃ­lia ampla aberta.",
+      "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -1922,7 +1935,8 @@
         "testes/resultados/0.1.13/validation-review.json",
         "app/annotation_geometry.py",
         "app/text_appearance.py",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2243,7 +2257,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "Fonte0.1.16: preenchimento com AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate reconhecidos, ordem de dependÃªncias/validaÃ§Ã£o antes de gravar; scripts gerais nÃ£o executados. Sete novos portÃ¡veis passaram; GTK/Linux em validaÃ§Ã£o. XFA/JavaScript geral abertos.",
+      "matrix_implementation": "0.1.16: AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate com gramática limitada, dependências e validação antes da cópia. Suíte própria564/564 por ambiente. XFA e JavaScript geral ainda abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
@@ -2299,7 +2313,8 @@
         "docs/EDICAO-COM-HISTORICO.md",
         "testes/resultados/0.1.10/validation-review.json",
         "app/pdf_form_events.py",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2588,7 +2603,8 @@
         "app/pdf_attachments.py",
         "app/worker_cli.py",
         "app/attachment_tasks.py",
-        "app/main.py"
+        "app/main.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -2691,7 +2707,7 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos.",
+      "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
@@ -2719,7 +2735,8 @@
         "app/main.py",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/pdf_signing.py",
-        "app/signature_trust.py"
+        "app/signature_trust.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2847,7 +2864,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "Fonte0.1.16: ediÃ§Ã£o autenticada autoriza cada tipo de operaÃ§Ã£o e mantÃ©m criptografia, senhas usuÃ¡rio/proprietÃ¡rio e permissÃµes na cÃ³pia.10 novos portÃ¡veis passaram com quatro algoritmos; GTK/Linux pendentes. RMS e demais perfis continuam abertos.",
+      "matrix_implementation": "0.1.16: edição autenticada autoriza a operação e mantém criptografia, senhas usuário/proprietário e permissões na cópia. Quatro perfis de cifra/GTK próprios aprovados; suíte564/564 por ambiente. RMS e outros perfis abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -2878,7 +2895,8 @@
         "app/local_files.py",
         "app/folder_dialogs.py",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -3082,7 +3100,7 @@
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos aprovado. WAV/GTK/AT-SPI sintéticos aprovados; reprodução e leitor de tela físico abertos.",
+      "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos aprovado. WAV/GTK/AT-SPI sintéticos aprovados; reprodução e leitor de tela físico abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
@@ -3112,7 +3130,8 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/speech.py",
         "app/local_playback.py",
-        "app/media_window.py"
+        "app/media_window.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3298,7 +3317,7 @@
     {
       "id": "measurement",
       "name": "Medição/calibração",
-      "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK próprio aprovado; original aberto.",
+      "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK próprio aprovado; original aberto. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
       "inputs": [
@@ -3327,7 +3346,8 @@
       "source_refs": [
         "app/main.py",
         "app/measurement.py",
-        "app/measurement_window.py"
+        "app/measurement_window.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3379,7 +3399,7 @@
     {
       "id": "layers-media",
       "name": "Camadas/mídia/3D",
-      "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK próprios aprovados; mídia/3D não implementados.",
+      "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK próprios aprovados; mídia/3D não implementados. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
       "inputs": [
@@ -3410,7 +3430,8 @@
         "app/local_playback.py",
         "app/media_window.py",
         "app/pdf_media.py",
-        "app/media_assets_window.py"
+        "app/media_assets_window.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3462,7 +3483,7 @@
     {
       "id": "preferences",
       "name": "Preferências/tema/persistência",
-      "matrix_implementation": "Fonte0.1.15: padrões persistentes de zoom/painel/destaques, gravação atômica, sem caminhos ou segredos. Tema/pastas preservados; demais preferências/original abertos.",
+      "matrix_implementation": "Fonte0.1.15: padrões persistentes de zoom/painel/destaques, gravação atômica, sem caminhos ou segredos. Tema/pastas preservados; demais preferências/original abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -3494,7 +3515,8 @@
         "app/folder_dialogs.py",
         "docs/PASTAS-SINCRONIZADAS.md",
         "app/reading_preferences.py",
-        "app/tool_preferences.py"
+        "app/tool_preferences.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3584,7 +3606,8 @@
         "Proposta: operações remotas somente em tarefa especificamente autorizada; não implementar transmissão nesta etapa."
       ],
       "source_refs": [
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3635,7 +3658,7 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "Fonte0.1.15: GIF/APNG/WebP com opção explícita de todos os quadros estáticos, PPM/PGM/PBM/ICO adicionais;5 novos portáveis+22 regressões passaram. GTK/Linux próprios aprovados; demais formatos abertos.",
+      "matrix_implementation": "Fonte0.1.15: GIF/APNG/WebP com opção explícita de todos os quadros estáticos, PPM/PGM/PBM/ICO adicionais;5 novos portáveis+22 regressões passaram. GTK/Linux próprios aprovados; demais formatos abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. Fonte/payload/sandbox380/380 passaram, incluindo14 novos portáveis,2 GTK e1 integração real TIFF→PDF→OCR; uma expectativa histórica de recusa TIFF foi adaptada. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
@@ -3694,7 +3717,8 @@
         "testes/resultados/tiff-multipage-portable-2026-10-18-round2.json",
         "testes/resultados/tiff-creation-existing-2026-10-18-round2.json",
         "testes/resultados/tiff-multipage-portable-2026-10-18-round3.json",
-        "testes/resultados/0.1.12/validation-review.json"
+        "testes/resultados/0.1.12/validation-review.json",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3891,7 +3915,7 @@
     {
       "id": "platform",
       "name": "Integrações de sistema/atualização",
-      "matrix_implementation": "Fonte0.1.15: seletor nativo de PDF e informações de instalação/handoff de atualização do Flatpak; probe portal real X11 sintético aprovado. Associação/sandbox/atualização real e Windows nativo ainda pendentes.",
+      "matrix_implementation": "0.1.16: pacote próprio564/564 por ambiente. Probes separados: Windows nativo5/5; desktop X11/Flatpak0.1.15 portal persistente/revogação/associação/atualização9/9. Repetição no0.1.16 e validação física/Windows completo permanecem separadas.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
       "inputs": [
@@ -3922,7 +3946,8 @@
         "app/platform_runtime.py",
         "app/cups_backend.py",
         "app/installation_info.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "testes/resultados/0.1.16/validation-review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3973,7 +3998,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T14:19:57-03:00",
+  "updated_at_local": "2026-10-19T20:24:29.015608-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

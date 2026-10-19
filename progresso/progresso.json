@@ -1772,29 +1772,22 @@
     "publication_confirmed_at_local": "2026-10-17T15:05:29-03:00"
   },
   "current_no_vm_execution": {
-    "date_local": "2026-10-18T13:35:28-03:00",
-    "report": "docs/ANOTACOES-AMPLIADAS.md",
-    "source_version": "0.1.13",
-    "published_package_version": "0.1.13",
-    "new_static_entries_examined": 0,
-    "catalog_entries": 323,
-    "new_portable_methods": 14,
-    "new_gtk_methods": 6,
+    "date_local": "2026-10-19T20:24:29.015608-03:00",
+    "report": "docs/EXECUCAO-SEM-VM.md",
+    "source_and_package_version": "0.1.16",
+    "source_version": "0.1.16",
+    "published_package_version": "0.1.16",
+    "new_static_entries_examined": 6,
+    "catalog_entries": 329,
+    "complete_tests_per_environment": 564,
     "full_test_suite_rerun": true,
     "all_remaining_stages_complete": false,
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "confirmed_at_recorded_commit",
+    "publication_state": "prerelease_asset_confirmed_metadata_pending_push",
     "direct_cloud_api_deferred": true,
-    "local_synchronized_folder_workflow": true,
-    "independent_installed_audit_passed": true,
-    "prior_tests_removed_or_renamed": 0,
-    "source_and_package_version": "0.1.13",
-    "complete_tests_per_environment": 400,
-    "confirmed_delivery_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
-    "publication_confirmed_at_local": "2026-10-18T13:41:41-03:00",
-    "audit_review": "testes/resultados/0.1.13/audit/review.json"
+    "independent_installed_audit_passed": false
   },
   "no_vm_execution_history": [
     {
@@ -2115,6 +2108,31 @@
       "prior_tests_removed_or_renamed": 0,
       "source_and_package_version": "0.1.13",
       "complete_tests_per_environment": 400
+    },
+    {
+      "date_local": "2026-10-18T13:35:28-03:00",
+      "report": "docs/ANOTACOES-AMPLIADAS.md",
+      "source_version": "0.1.13",
+      "published_package_version": "0.1.13",
+      "new_static_entries_examined": 0,
+      "catalog_entries": 323,
+      "new_portable_methods": 14,
+      "new_gtk_methods": 6,
+      "full_test_suite_rerun": true,
+      "all_remaining_stages_complete": false,
+      "non_vm_work_remaining": true,
+      "criteria_status_or_weights_changed": false,
+      "original_observations": 0,
+      "publication_state": "confirmed_at_recorded_commit",
+      "direct_cloud_api_deferred": true,
+      "local_synchronized_folder_workflow": true,
+      "independent_installed_audit_passed": true,
+      "prior_tests_removed_or_renamed": 0,
+      "source_and_package_version": "0.1.13",
+      "complete_tests_per_environment": 400,
+      "confirmed_delivery_commit": "93a38c318bf9a8859c21c91e9b4eb3f43d49785a",
+      "publication_confirmed_at_local": "2026-10-18T13:41:41-03:00",
+      "audit_review": "testes/resultados/0.1.13/audit/review.json"
     }
   ],
   "latest_resume": {
@@ -2471,21 +2489,39 @@
     "flatpak_version": "0.1.14"
   },
   "latest_own_delivery": {
-    "version": "0.1.15",
-    "date_local": "2026-10-19T14:36:34.919108-03:00",
-    "manifest": "releases/manifest-0.1.15.json",
-    "source_commit": "257425a84f638f872386be7c499fe56030f1a968",
-    "ci_run_id": 39293507397,
-    "per_environment_tests_passed": 490,
-    "previous_case_ids_preserved": 432,
-    "new_own_cases": 58,
+    "version": "0.1.16",
+    "date_local": "2026-10-19T20:24:29.015608-03:00",
+    "manifest": "releases/manifest-0.1.16.json",
+    "source_commit": "a5ebda9dc358c59db24fe940e473ad4f1c90857c",
+    "ci_run_id": 39339330479,
+    "per_environment_tests_passed": 564,
+    "previous_case_ids_preserved": 490,
+    "new_own_cases": 74,
     "whole_family_parity_verified": false,
     "original_vm_resumed": false,
-    "independent_installed_audit": "passed",
-    "public_download_integrity": "testes/resultados/0.1.15/download-integrity-2026-10-19.json",
-    "functional_batch_report": "docs/LOTES-FUNCIONALIDADES.md",
-    "installed_audit_review": "testes/resultados/0.1.15/audit/review.json",
-    "publication_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
-    "publication_confirmed_at_local": "2026-10-19T14:43:28.143775-03:00"
-  }
+    "independent_installed_audit": "pending_after_publication",
+    "public_download_integrity": "pending_after_publication",
+    "functional_batch_report": "docs/EXECUCAO-SEM-VM.md",
+    "publication_receipt": "testes/resultados/0.1.16/release-publication.json"
+  },
+  "own_delivery_history": [
+    {
+      "version": "0.1.15",
+      "date_local": "2026-10-19T14:36:34.919108-03:00",
+      "manifest": "releases/manifest-0.1.15.json",
+      "source_commit": "257425a84f638f872386be7c499fe56030f1a968",
+      "ci_run_id": 39293507397,
+      "per_environment_tests_passed": 490,
+      "previous_case_ids_preserved": 432,
+      "new_own_cases": 58,
+      "whole_family_parity_verified": false,
+      "original_vm_resumed": false,
+      "independent_installed_audit": "passed",
+      "public_download_integrity": "testes/resultados/0.1.15/download-integrity-2026-10-19.json",
+      "functional_batch_report": "docs/LOTES-FUNCIONALIDADES.md",
+      "installed_audit_review": "testes/resultados/0.1.15/audit/review.json",
+      "publication_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+      "publication_confirmed_at_local": "2026-10-19T14:43:28.143775-03:00"
+    }
+  ]
 }

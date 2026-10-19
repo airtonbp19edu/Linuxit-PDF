@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-19T20:10:04.938405-03:00",
+  "reviewed_at_local": "2026-10-19T20:24:29.015608-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -658,9 +658,9 @@
   "latest_original_environment_review_ref": "docs/P03-INTERFACE-E-PARADA-2026-10-19.md",
   "original_environment_status": "Suspended by user after VM clock09:54:23 stopped; no new inspection/input/network/restart in the0.1.15 functional batches. P03 partial; fresh observer/preflight required only after authorized recovery.",
   "latest_own_delivery_followup": {
-    "version": "0.1.15",
-    "report": "docs/LOTES-FUNCIONALIDADES.md",
-    "own_tests_passed_each": 490,
+    "version": "0.1.16",
+    "report": "docs/EXECUCAO-SEM-VM.md",
+    "own_tests_passed_each": 564,
     "full_family_acceptance": false,
     "criteria_changed": false
   }

@@ -1,5 +1,31 @@
 # Execução abrangente sem VM — 19/10/2026
 
+Estado atual: **0.1.16/devel publicada** em GitHub Releases, CI39339330479,
+fonte `a5ebda9`. **564/564 próprios por ambiente** fonte Linux/payload/sandbox,
+sem falhas/erros/skips;490 IDs anteriores preservados e74 novos.177 arquivos app,
+11 relatórios selados; runtime3684 arquivos/483ELF/297avisos atribuídos. Smoke5/5,
+launcher3/3; três capturas examinadas. Auditoria independente/download completo
+estão em andamento e receberão seu comprovante. A execução anterior com erro
+OpenSSL foi rejeitada e preservada, sem publicação.
+
+Probes separados: Windows nativo5/5; desktop Flatpak0.1.15 portal persistente,
+revogação, associação e atualização/retorno9/9. Repetição no0.1.16 pendente.
+Seis entradas estáticas novas examinadas,266instruções/803bytes; catálogo329.
+[Manifesto](../releases/manifest-0.1.16.json),
+[revisão](../testes/resultados/0.1.16/validation-review.json),
+[correção dos avisos Actions](CI-FALHAS-E-CORRECOES.md).
+
+Ainda existe trabalho sem VM: especializar/executar os50planos completosS12
+(nuvem direta adiada), ampliar XFA/JavaScript com contrato seguro, assinatura
+incremental/PAdES-LTV e renderização3D, além de chamadores/tipos/ownership na
+estática. A extração3D e o token RFC3161 de assinatura são subconjuntos; não
+encerram os contratos amplos. Impressora, áudio/leitor de tela e monitores reais
+precisam desses ambientes; RMS precisa serviço/materiais autorizados. Não atribuir
+essas lacunas apenas à VM. Paridade0/25 e percentual global desconhecido.
+
+As seções seguintes preservam a evolução e as primeiras validações de cada
+recorte; seus estados pendentes antigos não substituem a síntese atual.
+
 Pedido: completar todo trabalho que não exige executar o Foxit na VM. O estado
 por pacote está em `progresso/execucao-sem-vm.json`. Nuvem direta23 permanece
 adiada e IA generativa excluída. Nenhum comando é enviado à VM suspensa.

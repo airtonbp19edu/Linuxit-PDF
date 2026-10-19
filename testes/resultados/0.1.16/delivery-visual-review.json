@@ -1,0 +1,28 @@
+{
+  "schema": "linuxit-delivery-visual-review-v1",
+  "reviewed_at_local": "2026-10-19T20:23:16.809435-03:00",
+  "examined": [
+    {
+      "file": "linuxit-flatpak-0.1.16.png",
+      "sha256": "57cd47dc5a44eef6ee2ddc81235c35811f20110ace3043c7c76fd1a461a1caa7",
+      "examined": true
+    },
+    {
+      "file": "search-ui/embedded-media-assets.png",
+      "sha256": "53d873c9a7292da38f56764f6f4511b6a769cc22bb29eedf6209205267beab3f",
+      "examined": true
+    },
+    {
+      "file": "search-ui/reading-authenticated.png",
+      "sha256": "21885262301617c42097113e86d2433c7255671eaa1001945ebc0503fa1ab721",
+      "examined": true
+    }
+  ],
+  "observations": [
+    "Normal installed launcher shows the two-page synthetic PDF with a visible Pages sidebar and navigation controls.",
+    "Embedded media window lists the selected synthetic Sound asset and confirms explicit WAV extraction;3D renderer remains unavailable as stated in the interface.",
+    "Authenticated synthetic document shows page2 and its search highlight with the source tab and sidebar retained."
+  ],
+  "physical_desktop_verified": false,
+  "foxit_executed": false
+}

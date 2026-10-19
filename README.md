@@ -6,6 +6,8 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
+A **0.1.16 de desenvolvimento** amplia seleção por caracteres, eventos declarativos de formulário, anotações/conversas, edição cifrada, impressão da sessão, anexos/idiomas/índice, CA/CRL/carimbo de tempo offline, reprodução local, camadas e OCR escolhido. **564/564 testes próprios por ambiente** fonte Linux, payload e Flatpak instalado, com490 IDs anteriores preservados e74 novos. [Contratos e limites](docs/EXECUCAO-SEM-VM.md). [Baixar Flatpak0.1.16](https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.16-devel/LinuxitPDF-0.1.16-x86_64.flatpak) · [Instalação e SHA-256](docs/instalacao.md). Famílias completas e aceitação física/original continuam abertas; nuvem direta adiada.
+
 A **0.1.15 de desenvolvimento** acrescenta [busca/conversas, radicais PT/EN, Ink/respostas, combo editável, assinatura local PEM, medidas, camadas, voz WAV e preferências](docs/LOTES-FUNCIONALIDADES.md). Inclui importação de quadros estáticos e seletor nativo de arquivos. **490/490 testes próprios por ambiente** fonte Linux,payload e Flatpak, sem falhas/erros/skips. Nuvem direta permanece adiada; famílias completas e validações físicas/original continuam abertas. [Instalação e SHA-256](docs/instalacao.md).
 
 A **0.1.14 de desenvolvimento** acrescenta [abertura transacional com senha e recuperação consentida, zoom1–6400% e apresentação com seleção de monitor](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md). Inclui também a [correção da busca pelo autor de comentários](docs/BUSCA-AUTOR-COMENTARIOS.md). **432/432 testes próprios passaram em cada ambiente** fonte Linux,payload e Flatpak instalado, sem falhas/erros/skips. Os limites de formatos, recuperação e validação física estão no relatório. [Instalação e SHA-256](docs/instalacao.md).
@@ -21,7 +23,7 @@ A 0.1.11 acrescenta [OCR local em português e inglês](docs/OCR-LOCAL.md) para 
 cópia rasterizada pesquisável. Preserva o original, informa páginas sem texto
 detectado e explicita as perdas de links/formulários/assinaturas na nova cópia.
 
-A versão **0.1.15 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.16 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,

@@ -1,0 +1,19 @@
+{
+  "schema": "linuxit-github-prerelease-publication-v1",
+  "date_utc": "2026-10-19T23:23:40.796644+00:00",
+  "release_id": 417849203,
+  "tag": "v0.1.16-devel",
+  "source_commit": "a5ebda9dc358c59db24fe940e473ad4f1c90857c",
+  "release_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/tag/v0.1.16-devel",
+  "prerelease": true,
+  "draft": false,
+  "asset": {
+    "id": 657710048,
+    "name": "LinuxitPDF-0.1.16-x86_64.flatpak",
+    "size": 118393760,
+    "digest": "sha256:ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816",
+    "browser_download_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.16-devel/LinuxitPDF-0.1.16-x86_64.flatpak"
+  },
+  "bundle_rebuilt": false,
+  "public_get_confirmed_at_utc": "2026-10-19T23:24:19.992880+00:00"
+}

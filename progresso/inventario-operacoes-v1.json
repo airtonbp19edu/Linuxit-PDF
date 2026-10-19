@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 16,
-  "reviewed_at_local": "2026-10-19T20:04:10.689481-03:00",
+  "reviewed_at_local": "2026-10-19T20:24:29.015608-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -9,7 +9,7 @@
   "implementation_completion_percent": null,
   "weighting_defined": false,
   "operation_count_is_recoding_percentage": false,
-  "source_evidence_interpretation": "Bounded source and related own cases; Linux0.1.15 source/payload/sandbox490/490. Historical own/original evidence remains separate; no full operation/family acceptance.",
+  "source_evidence_interpretation": "Bounded source with own Linux0.1.16 source/payload/installed sandbox564/564,490 prior IDs preserved and74 new. New own suite is not complete operation/family acceptance or original parity. Desktop and Windows probes have separate scopes.",
   "unknowns": [
     "Unexamined Reader capabilities versus Editor-only resources",
     "Operations absent from current inventory",
@@ -6566,5 +6566,5 @@
     "testes/resultados/leitura-2026-10-19/validated-cases.json",
     "testes/resultados/lotes-2026-10-19/release-validated-cases.json"
   ],
-  "current_source_validation_pending_ref": "progresso/execucao-sem-vm.json"
+  "current_own_test_evidence_ref": "testes/resultados/0.1.16/own-validated-cases.json"
 }

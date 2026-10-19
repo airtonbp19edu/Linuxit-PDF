@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+Marco 2026-10-19T20:25:14-03:00: fonte e Flatpak **0.1.16/devel** aprovados em564/564 testes próprios por ambiente (fonte Linux,payload,sandbox instalado),490 IDs anteriores preservados e74 novos. Pacote publicado como [prerelease](https://github.com/airtonbp19edu/Linuxit-PDF/releases/tag/v0.1.16-devel); download completo e auditoria independente ainda em andamento. Portal/associação/atualização9/9 no pacote0.1.15 e Windows próprio5/5 em probes separados. Catálogo estático329(152REA+177diretas), seis entradas novas examinadas. VM suspensa/intocada; nuvem direta adiada. S11, famílias integrais,50S12 e19 critérios amplos continuam abertos; isso não é porcentagem global da reconstrução. Histórico abaixo.
+
 Checkpoint 2026-10-19T20:18:59.629581-03:00: [execução sem VM](docs/EXECUCAO-SEM-VM.md). Portal persistente/revogação/associação/atualização passaram9/9 no pacote0.1.15 (CI39339986089/e61d174); Windows próprio5/5. Aviso de falhaa5ebda9 corrigido, histórico preservado. Novo Flatpak0.1.16 CI39339330479 em execução, ainda não publicado; último pacote0.1.15 preservado. Seis novas entradas estáticas, catálogo329(152REA+177diretas). VM suspensa/intocada; nuvem direta adiada; famílias completas,50S12 e19 critérios amplos permanecem abertos. Histórico abaixo.
 
 Atualização 2026-10-19T15:28:46-03:00: Fonte0.1.16 em execução abrangente sem VM: [estado/contratos](docs/EXECUCAO-SEM-VM.md), S01–S03 aprovados516/516 Linux na revisão5a4729e. S04 acrescenta edição cifrada preservando senhas/permissões, impressão da sessão/camadas e cancelamento CUPS;10 portáveis e regressões14+8 passaram, Linux/probe pendentes. Último Flatpak0.1.15 preservado. VM suspensa/intocada, nuvem direta adiada, famílias integrais e critérios intactos. Próximo S05 anexos/índice/idiomas enquanto CI S04 executa.
@@ -158,7 +160,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.15 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.16 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

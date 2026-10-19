@@ -1,63 +1,64 @@
 {
   "schema": "linuxit-linux-candidate-v1",
-  "date_utc": "2026-10-19T17:32:25.472845+00:00",
-  "version": "0.1.15",
+  "date_utc": "2026-10-19T23:20:53.238544+00:00",
+  "version": "0.1.16",
   "status": "development; full reconstruction incomplete",
   "application_id": "io.github.airtonbp19edu.LinuxitPDF",
   "flatpak_branch": "devel",
   "architecture": "x86_64",
   "runtime": "org.freedesktop.Platform/x86_64/25.08",
   "runtime_commit_tested": "b7aba340fd291e08bf26442d43a0e4adb6733da5a06d47ff4296a964af40cc8a",
-  "app_ostree_commit": "376b064414dff5332ec71012abad485a6df2fa88617b273206b1e8d019becff5",
-  "source_commit": "257425a84f638f872386be7c499fe56030f1a968",
-  "builder_sha256": "c27f2847802b9d52c06afed7695692926e9d79546e37435535037248bfe95f55",
+  "app_ostree_commit": "17c4539cfb80b75511aabd4629ece6283b574f8f67f124a5e8ac5744402136e4",
+  "source_commit": "a5ebda9dc358c59db24fe940e473ad4f1c90857c",
+  "validation_commit": "a5ebda9dc358c59db24fe940e473ad4f1c90857c",
+  "builder_sha256": "5ce2b323a1f3b2ef858bfa9a13c9f4d7711a27d5c8e58b9fbf59f0ec7839cb85",
   "artifact": {
-    "file": "LinuxitPDF-0.1.15-x86_64.flatpak",
-    "bytes": 58072096,
-    "sha256": "f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9",
+    "file": "LinuxitPDF-0.1.16-x86_64.flatpak",
+    "bytes": 118393760,
+    "sha256": "ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816",
     "digitally_signed": false
   },
   "validation": {
     "source": {
-      "run": 490,
-      "passed": 490,
+      "run": 564,
+      "passed": 564,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "payload": {
-      "run": 490,
-      "passed": 490,
+      "run": 564,
+      "passed": 564,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "sandbox": {
-      "run": 490,
-      "passed": 490,
+      "run": 564,
+      "passed": 564,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     }
   },
-  "source_payload_matched_files": 160,
-  "bundled_runtime_files_audited": 3414,
-  "bundled_elf_files_audited": 242,
-  "bundled_debian_packages": 181,
+  "source_payload_matched_files": 177,
+  "bundled_runtime_files_audited": 3684,
+  "bundled_elf_files_audited": 483,
+  "bundled_debian_packages": 297,
   "sandbox_smoke_checks_passed": 5,
   "normal_launcher_checks_passed": 3,
   "report_hashes": {
-    "sidebar-before.json": "e002837feecb445cc1366f3eb4bb14dca1c1f09a056e610262385cf2988acff6",
-    "source-payload-integrity.json": "6dfcffad23a29a1aff280ca383bb6080225333a8e7d028f16f7befb6c39bf496",
-    "sandbox-smoke.json": "b485d762d87c2ce2ac987e0a8778b76e0ffd7730862ccb1c591f76f717bb1169",
-    "source-intermediate.json": "e8ba18f5b42721dde9c3f5532e6c76917ef5f085de8a471e56ab3c5f430099fc",
-    "sidebar-after.json": "52c8c6a9e0d807cd9acad42655d8139dec262127df7f1b7a3c1e1b302992a2b1",
+    "payload-tests.json": "bb441079c332a99f835253bb989dbbc94add60f945a58ca40992542b5cd6c111",
+    "flatpak-normal-launch.json": "fecf4f510b38194cd9eb467c6af71fb8225e3fab5b6d0cc776856e691c9f8ee1",
     "sync-folder-denied.json": "3a2715caa4f16fc0e4db93926d42cb98e2dbfb564675a5223307495b4435cff8",
+    "sandbox-tests.json": "5fc2788bbfe09f44d1ce0d58c05e0dcef6115f38f94fb0c5144fbb9360e8b300",
+    "sidebar-before.json": "77d10ad22f4018d90d8c1462cbeff927db96867b5d2439658e32f786f1e6abd8",
+    "sidebar-after.json": "d13cf99db99eda0278bf7835a33664a655e671ef806034a850091d9ffc994f87",
     "sync-folder-granted.json": "370b488d36e1396963583e1b798cd6cbd16c5ce5e5d95980fd35b0166e7f3685",
-    "sandbox-tests.json": "970c34447ed8bb38e32a0917f69e714fbaae7e50638ff9615dc337169bdbb34d",
-    "payload-tests.json": "e49d1d38ffadfaa4558a6e0ebd7dd80609fe126b261ed109e7c5ffc69e0c9285",
-    "flatpak-normal-launch.json": "60fb26d2148d3c2a2e80a6d84d84638325774d0c193ef86278c5457756a2057e",
-    "runtime-origins.json": "688a0bb8e4909a859be1d43872c48626032937f5ae6cc7b4a3cc4b90d563a996"
+    "source-intermediate.json": "95e930fbfe5f72c7044c368f84ef0a37f452d582bf7a373db51a2637d71a71ea",
+    "runtime-origins.json": "35e0b1bc090fcd63bed435e54eab93ddcd5a405f4132d4060b0c52f1de08601c",
+    "source-payload-integrity.json": "d49f5900e572d90aee61503d9aa28d22cd0136f5ad27963e54010cd49f135740",
+    "sandbox-smoke.json": "e3f3c671a0f286244ee4bb900dcef793ba88625863bc6526443a898dd0a03563"
   },
   "foxit_differential_test": false,
   "physical_printing_verified": false,
@@ -65,12 +66,17 @@
     "Development build, not complete Foxit reconstruction.",
     "Only own application and licensed dependencies; no proprietary originals or reverse-engineering payloads."
   ],
-  "source_snapshot": "testes/resultados/0.1.15/source-payload-integrity.json",
-  "examined_reports_directory": "testes/resultados/0.1.15/",
-  "runtime_packages": "releases/runtime-packages-0.1.15.tsv",
-  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39293507397",
+  "source_snapshot": "testes/resultados/0.1.16/source-payload-integrity.json",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39339330479",
+  "examined_reports_directory": "testes/resultados/0.1.16/",
+  "runtime_packages": "releases/runtime-packages-0.1.16.tsv",
   "runtime_source_access": {
-    "file": "releases/runtime-source-access-0.1.15.json",
-    "sha256": "f602cb85d24436a18a4d3ee67be3ee4e3bd8bbf8bc87bcbf0750aa9f8854c619"
+    "file": "releases/runtime-source-access-0.1.16.json",
+    "sha256": "367fa9e909890496c52c553f20d7167c05e08dfe402973bbcbadef46ba9c8be5"
+  },
+  "distribution": {
+    "storage": "github_release_asset",
+    "tag": "v0.1.16-devel",
+    "download_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.16-devel/LinuxitPDF-0.1.16-x86_64.flatpak"
   }
 }

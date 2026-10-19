@@ -2,38 +2,40 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.15 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
-Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
-parciais; não é uma publicação no Flathub nem uma declaração de equivalência
-integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
-registra sua integridade e a origem do código.
+O bundle **0.1.16/devel** usa o ID `io.github.airtonbp19edu.LinuxitPDF` e
+Freedesktop Platform25.08. É desenvolvimento, sem assinatura digital; os
+[limites funcionais](EXECUCAO-SEM-VM.md) continuam explícitos.
 
-Para baixar, abra a
-[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.15-x86_64.flatpak)
-e clique em **Download raw** (ícone de download). Se o repositório estiver
-privado, use um navegador conectado a uma conta com acesso ao projeto;
-o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
-o download não exige login. A visibilidade é administrada pelo proprietário.
-Uma página em branco no navegador interno não indica que o pacote esteja vazio.
-Se necessário, abra essa página no navegador habitual.
+[Baixe o arquivo LinuxitPDF-0.1.16-x86_64.flatpak](https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.16-devel/LinuxitPDF-0.1.16-x86_64.flatpak).
+O download fica nos assets da versão de desenvolvimento no GitHub Releases,
+pois o pacote excede o limite de tamanho de um arquivo comum do Git. Os
+pacotes anteriores e seus relatórios foram preservados.
 
-O arquivo 0.1.15 tem **58.072.096 bytes** (aproximadamente 55,4 MiB).
-É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
+Tamanho: **118,393,760 bytes** (112.9MiB). SHA-256:
 
-O [download público sem login](../testes/resultados/0.1.15/download-integrity-2026-10-19.json) passou com HTTP200,58072096bytes e SHA-256 completo. A [auditoria independente](../testes/resultados/0.1.15/audit/review.json) instalou o mesmo bundle sem recompilar:7controles,5 novos smoke checks e3 testesGTK passaram. A entrega passou490/490 testes próprios em fonte,payload e sandbox instalado.
+```text
+ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816
+```
 
-Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
-pasta em que o arquivo foi baixado e execute:
+No terminal, na pasta do download:
 
 ```bash
-flatpak install --user ./LinuxitPDF-0.1.15-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.16-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.16-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
-A instalação pode baixar o runtime e componentes relacionados. A versão usa
-acesso à pasta pessoal, X11/Wayland, CUPS e rede para descoberta/impressão.
-O seletor por portal passou no desktop X11 efêmero; concessão persistente no
-sandbox, gravação em todos os ambientes e impressão física precisam de validação adicional. Testes com PDF sintético não cobrem todo PDF.
+Para substituir uma instalação do bundle, use
+`flatpak install --user --reinstall ./LinuxitPDF-0.1.16-x86_64.flatpak`.
+A instalação pode baixar o runtime pelo Flathub. O arquivo não precisa de
+permissão de execução. O pacote utiliza acesso à pasta pessoal, X11/Wayland,
+áudio e CUPS/rede para impressão. A concessão/revogação persistente via portal
+tem probe separado em desktop X11; impressora física e todos os ambientes
+desktop não estão aprovados por esse teste.
+
+Fonte, payload e sandbox instalado aprovaram **564/564 testes próprios** em
+cada ambiente, além de smoke5/5 e launcher3/3. O download público completo e
+a auditoria independente do mesmo bundle serão registrados após a publicação.
 
 ## Se aparecer “corrompido ou faltando permissões”
 
@@ -43,14 +45,14 @@ Abra o terminal na pasta do arquivo e execute:
 
 ```bash
 flatpak --version
-sha256sum LinuxitPDF-0.1.15-x86_64.flatpak
-flatpak install --user ./LinuxitPDF-0.1.15-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.16-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.16-x86_64.flatpak
 ```
 
-O SHA-256 esperado para a 0.1.15 é:
+O SHA-256 esperado para a 0.1.16 é:
 
 ```text
-f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9
+ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816
 ```
 
 - Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;
