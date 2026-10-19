@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T13:08:15-03:00",
+  "reviewed_at_local": "2026-10-19T13:22:01-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -317,6 +317,30 @@
       "path": "app/pdf_signing.py",
       "boundary": "portable_logic",
       "responsibility": "Primeira assinatura CMS/SHA256 local em cópia nova, com identidade PEM selecionada e verificação matemática independente antes da publicação."
+    },
+    {
+      "id": "measurement",
+      "path": "app/measurement.py",
+      "boundary": "portable_logic",
+      "responsibility": "Distâncias, calibração, perímetros e áreas simples com unidades e limites explícitos."
+    },
+    {
+      "id": "measurement_window",
+      "path": "app/measurement_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Janela GTK de marcação de vértices sobre o snapshot da página atual."
+    },
+    {
+      "id": "speech",
+      "path": "app/speech.py",
+      "boundary": "portable_logic",
+      "responsibility": "Exportação WAV offline usando eSpeak NG externo, com limites e publicação sem sobrescrita."
+    },
+    {
+      "id": "pdf_layers",
+      "path": "app/pdf_layers.py",
+      "boundary": "portable_logic",
+      "responsibility": "Inspeção da configuração OC default e representação privada de visibilidade de leitura."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -842,7 +866,8 @@
         "app/pdf_security.py",
         "app/search_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/speech.py"
       ],
       "future_boundary": "Estrutura acessível e adaptador de tecnologia assistiva.",
       "future_boundary_implemented": false
@@ -851,7 +876,9 @@
       "id": "measurement",
       "contract_kind": "implemented_subset",
       "current_source_refs": [
-        "app/main.py"
+        "app/main.py",
+        "app/measurement.py",
+        "app/measurement_window.py"
       ],
       "future_boundary": "Calibração e unidades além da distância simples atual.",
       "future_boundary_implemented": false
@@ -860,7 +887,8 @@
       "id": "layers-media",
       "contract_kind": "implemented_subset",
       "current_source_refs": [
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "app/pdf_layers.py"
       ],
       "future_boundary": "Visibilidade OCG, mídia e 3D como contratos distintos.",
       "future_boundary_implemented": false

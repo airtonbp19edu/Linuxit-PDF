@@ -12,6 +12,7 @@ if str(VENDOR) not in sys.path:
 
 from pypdf import PdfReader  # type: ignore  # noqa: E402
 from pdf_comments import inspect_comments
+from pdf_layers import inspect_layers
 
 
 def _obj(value):
@@ -66,15 +67,8 @@ def inspect_document_panels(path, cancel=None):
 
     layers = []
     try:
-        root = _obj(reader.trailer['/Root'])
-        ocprops = _obj(root.get('/OCProperties'))
-        if ocprops:
-            for ref in _obj(ocprops.get('/OCGs')) or []:
-                ocg = _obj(ref)
-                name = _text(ocg.get('/Name')).strip()
-                if name:
-                    layers.append({'name': name})
+        layers=inspect_layers(reader)
     except Exception:
-        pass
+        notices.append('Camadas inválidas ou acima do limite; painel parcial.')
 
     return {'bookmarks': bookmarks, 'comments': comments, 'layers': layers, 'notices': notices}

@@ -128,6 +128,8 @@ class DocumentSession:
         self.info = None
         self._lock = threading.RLock()
         self._users = 0
+        self._path_users = {}
+        self._retired_paths = set()
         self.closed = False
 
     @property
@@ -139,12 +141,33 @@ class DocumentSession:
         with self._lock:
             if self.closed:raise DocumentError('A sessão do documento foi encerrada.')
             self._users += 1
+            path=self.read_path
+            self._path_users[path]=self._path_users.get(path,0)+1
         try:
-            yield self.read_path
+            yield path
         finally:
             with self._lock:
                 self._users -= 1
+                self._path_users[path]-=1
+                if self._path_users[path]==0:
+                    self._path_users.pop(path)
+                    if path in self._retired_paths:
+                        try:Path(path).unlink(missing_ok=True);self._retired_paths.discard(path)
+                        except OSError:pass
                 if self.closed and not self._users:self._cleanup()
+
+    def replace_read_path(self,path):
+        candidate=Path(path).resolve()
+        with self._lock:
+            if self.closed or not self.info:raise DocumentError('Sessão de leitura indisponível.')
+            if not candidate.is_relative_to(self.root.resolve()) or not candidate.is_file():
+                raise DocumentError('Representação de leitura deve ficar na pasta privada da sessão.')
+            previous=self.read_path;self.info['read_path']=str(candidate)
+            if previous!=self.source and previous!=str(candidate):
+                if self._path_users.get(previous,0):self._retired_paths.add(previous)
+                else:
+                    try:Path(previous).unlink(missing_ok=True)
+                    except OSError:self._retired_paths.add(previous)
 
     def prepare(self, password='', recover=False, cancel=None):
         from search_tasks import run_search_worker

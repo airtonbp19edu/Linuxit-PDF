@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 11,
-  "reviewed_at_local": "2026-10-19T13:08:15-03:00",
+  "revision": 12,
+  "reviewed_at_local": "2026-10-19T13:22:01-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -715,9 +715,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.request_render",
-          "line": 1031,
-          "end_line": 1069,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1033,
+          "end_line": 1071,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "8cc1e23767f3df77e754c656eab1a46073f74cbdd2599925ccb2a6ca642651a2"
         }
       ],
@@ -883,15 +883,15 @@
           "symbol": "prepare_document",
           "line": 35,
           "end_line": 120,
-          "file_sha256": "33ac446a9a742e5b2d4f34afc87062abf59db6b261dd9e2f504c6ea61d5c9c70",
+          "file_sha256": "b4c104216a5fb440c864f7bc348e9eb4460c0dca50f573d08f6c793c08112076",
           "excerpt_sha256": "2f04595698544204362effca0a8dd071cbf0665f0ee5c902593b38cf95b45a32"
         },
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 829,
-          "end_line": 903,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 830,
+          "end_line": 904,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "b94b0bff68d5e3b79c79624a56343c2c138340faef656ce1ba3354b0b6e15044"
         }
       ],
@@ -963,15 +963,15 @@
           "symbol": "prepare_document",
           "line": 35,
           "end_line": 120,
-          "file_sha256": "33ac446a9a742e5b2d4f34afc87062abf59db6b261dd9e2f504c6ea61d5c9c70",
+          "file_sha256": "b4c104216a5fb440c864f7bc348e9eb4460c0dca50f573d08f6c793c08112076",
           "excerpt_sha256": "2f04595698544204362effca0a8dd071cbf0665f0ee5c902593b38cf95b45a32"
         },
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 829,
-          "end_line": 903,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 830,
+          "end_line": 904,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "b94b0bff68d5e3b79c79624a56343c2c138340faef656ce1ba3354b0b6e15044"
         }
       ],
@@ -1041,9 +1041,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.goto_page",
-          "line": 1161,
-          "end_line": 1175,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1163,
+          "end_line": 1177,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "1eb90bb3c3e2e3e591c39150b549c6a60a18cabdd3c2f6fe050a69f95862927a"
         }
       ],
@@ -1110,9 +1110,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._fit_page",
-          "line": 1213,
-          "end_line": 1215,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1215,
+          "end_line": 1217,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "b7295c96009956c6e5790da30968d303af7503d64555d82b4efdbe28ce61bf38"
         }
       ],
@@ -1179,9 +1179,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._rotate",
-          "line": 1221,
-          "end_line": 1225,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1223,
+          "end_line": 1227,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "19c108be5fbaecc96d972a65b97a04aac217440ac10ea85d8d1e66d516c6861e"
         }
       ],
@@ -1724,9 +1724,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1758,
-          "end_line": 1776,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1802,
+          "end_line": 1820,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
@@ -1783,9 +1783,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._start_search",
-          "line": 1816,
-          "end_line": 1869,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1860,
+          "end_line": 1913,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "bcd85060e829fb2402bd76dbda1b972c01ec9e4a10badcbd1d56a13da7eea13d"
         }
       ],
@@ -1895,9 +1895,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1758,
-          "end_line": 1776,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1802,
+          "end_line": 1820,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
@@ -2524,9 +2524,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_text_selection",
-          "line": 1670,
-          "end_line": 1687,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1714,
+          "end_line": 1731,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "8c62be73a4cbc67e777f66c1571ff478f41d29acff21501cc6bc3dcfafd73f63"
         }
       ],
@@ -2574,9 +2574,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_snapshot",
-          "line": 1629,
-          "end_line": 1639,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1673,
+          "end_line": 1683,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "7f2068aff3666b7c267c5233d78d805eecc858a92e6730003c0e751db2b9a754"
         }
       ],
@@ -4720,10 +4720,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._load_side_panels",
-          "line": 1329,
-          "end_line": 1347,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
-          "excerpt_sha256": "bee7c7b3f8980b3b6eee35fdc4fff66456ea1307c389bc66c0c3640094d4a1df"
+          "line": 1331,
+          "end_line": 1350,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
+          "excerpt_sha256": "ceb9acb80027515f128b888ac7dccb5be14f45458d45c341f3e6a43f50a48d91"
         }
       ],
       "recorded_related_tests": [],
@@ -5094,9 +5094,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._reading_permission",
-          "line": 2157,
-          "end_line": 2162,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 2208,
+          "end_line": 2213,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "58620b6daf9f29705392cc747851b881cc188bc5158d1fb66b3a04fb84451ee4"
         }
       ],
@@ -5161,10 +5161,10 @@
         {
           "path": "app/accessible_reader.py",
           "symbol": "AccessibleTextWindow",
-          "line": 11,
-          "end_line": 41,
-          "file_sha256": "258aef743f7de190c148bcc97f3477923ba6dcec4fab8c59bdfabc871afd6b07",
-          "excerpt_sha256": "6216e7efa9b861a7c954278bd0eaf358d9758d6dd22f62a04900ebd4bb9e5e17"
+          "line": 12,
+          "end_line": 67,
+          "file_sha256": "385fe5c260c8f7027c80c20cf1c9a533183c0b1011732e68648caea8c6fbff79",
+          "excerpt_sha256": "6e916fb41f1270279186745fd0a9858071dadd1052e0280238d9aa75e03f670c"
         }
       ],
       "recorded_related_tests": [
@@ -5207,9 +5207,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._focus_region",
-          "line": 2261,
-          "end_line": 2275,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 2314,
+          "end_line": 2328,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "e431ab8d213fbbc3c0be18393be50ed80d2ee50e2261b67d626a5a17747eacb1"
         }
       ],
@@ -5263,7 +5263,7 @@
       "id": "accessibility/voice",
       "family_id": "accessibility",
       "title": "Ler em voz alta",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
         "Foco e estado do documento/geração capturados antes da tarefa."
@@ -5275,7 +5275,16 @@
           "error_index": 0
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/speech.py",
+          "symbol": "export_speech",
+          "line": 9,
+          "end_line": 31,
+          "file_sha256": "40a3f4d6b60f4f7145509ddb3c7f27b101e761b3c86ba5ce9c9f62a43063b214",
+          "excerpt_sha256": "6c65a93413c24dda19a3e03aafbd17c0f49868938b3fe8689a5bfad0b5eb0520"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -5309,9 +5318,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_measure",
-          "line": 1689,
-          "end_line": 1692,
-          "file_sha256": "c681610e34a1fb7d6fde5554f5470ac57070d5c478b2f5bcdb7666dc9d6a6175",
+          "line": 1733,
+          "end_line": 1736,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
           "excerpt_sha256": "858696789d42691f0a9e2328892c250f799408a3d0218e8d2e7c93ccbda25e00"
         }
       ],
@@ -5328,7 +5337,7 @@
       "id": "measurement/calibrate",
       "family_id": "measurement",
       "title": "Calibrar escala e unidades",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
         "Página usa a escala base de 72 pontos por polegada."
@@ -5344,7 +5353,16 @@
           "error_index": 1
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/measurement.py",
+          "symbol": "calibrated_scale",
+          "line": 21,
+          "end_line": 27,
+          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "excerpt_sha256": "3fc902c385911376b2aed154ea3a0c793bd42e71441d697bb166cc839cc02c73"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -5358,7 +5376,7 @@
       "id": "measurement/area",
       "family_id": "measurement",
       "title": "Medir área",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
         "Página usa a escala base de 72 pontos por polegada."
@@ -5374,7 +5392,16 @@
           "error_index": 1
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/measurement.py",
+          "symbol": "measure",
+          "line": 37,
+          "end_line": 57,
+          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "excerpt_sha256": "665a6a9b4195b0ffd890b3cac03dd90d71ef0e85003cc1e0ed4220151b931901"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -5388,7 +5415,7 @@
       "id": "measurement/perimeter",
       "family_id": "measurement",
       "title": "Medir perímetro",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
         "Página usa a escala base de 72 pontos por polegada."
@@ -5404,7 +5431,16 @@
           "error_index": 1
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/measurement.py",
+          "symbol": "measure",
+          "line": 37,
+          "end_line": 57,
+          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "excerpt_sha256": "665a6a9b4195b0ffd890b3cac03dd90d71ef0e85003cc1e0ed4220151b931901"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -5438,10 +5474,10 @@
         {
           "path": "app/pdf_panels.py",
           "symbol": "inspect_document_panels",
-          "line": 33,
-          "end_line": 80,
-          "file_sha256": "19dca9a29a1da6c229fa9cf32ecbf3a49cfa721a073c609d0d19ceca487935a4",
-          "excerpt_sha256": "b9b6076a8acf8de7181e62c0e78611a26819aaa41040369fd25ab020d3295f8a"
+          "line": 34,
+          "end_line": 74,
+          "file_sha256": "11d44d3c9ac19a892485538ed447324e815e916a2d09712d18fb87bcd7e14038",
+          "excerpt_sha256": "ecf5929a24532a7ac577ac9a73c5e8ea756112d7a9338c372ed372f9c992d4a1"
         }
       ],
       "recorded_related_tests": [],
@@ -5457,7 +5493,7 @@
       "id": "layers-media/toggle",
       "family_id": "layers-media",
       "title": "Alternar e persistir visibilidade OCG",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF com /OCProperties e /OCGs; nomes de camadas.",
         "Mídia/3D exigirá identificar formato, ação e isolamento próprios."
@@ -5473,7 +5509,24 @@
           "error_index": 1
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_layers.py",
+          "symbol": "create_layer_view",
+          "line": 39,
+          "end_line": 68,
+          "file_sha256": "8eee7a822b445a67d2bb2805506741019158af3ce9b56c7eea037038d9ba912d",
+          "excerpt_sha256": "ce3fa0d308b2b80b31b5b31f37c14403c0b595964d5e0b5867ca2a337aeb4a68"
+        },
+        {
+          "path": "app/main.py",
+          "symbol": "PDFWindow._layer_toggled",
+          "line": 1400,
+          "end_line": 1436,
+          "file_sha256": "45f11678c0a6056bcaba1f3278b8596164af4a8ffb894afc0458b51a72c291c9",
+          "excerpt_sha256": "915aab4840e3ffcec1dccca8fb9f30df45b2c42c3f46d4254c52eee7edc902e3"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -6188,8 +6241,8 @@
     "families": 25,
     "operations": 111,
     "implementation_states": {
-      "bounded_source_present": 85,
-      "pending_or_target_characterization": 23,
+      "bounded_source_present": 90,
+      "pending_or_target_characterization": 18,
       "deferred_by_user": 3
     },
     "families_with_original_partial_observations": 9,

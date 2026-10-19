@@ -52,7 +52,7 @@ def build(flatpak, stage, repo, extra):
     if not list((site / 'gi').glob('_gi_cairo*.so')):
         raise RuntimeError('python3-gi-cairo is required in the runtime overlay.')
     binaries = {'python3': Path('/usr/bin/python3.13')}
-    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions', 'openssl', 'tesseract'):
+    for name in ('pdftocairo', 'pdftotext', 'pdfinfo', 'pdfunite', 'prlimit', 'lp', 'lpstat', 'lpoptions', 'openssl', 'tesseract', 'espeak-ng'):
         origin = str(Path('/usr/bin') / name) if (Path('/usr/bin') / name).exists() else str(extra / 'usr/bin' / name)
         if not Path(origin).exists():
             raise RuntimeError('Required executable missing: ' + name)
@@ -74,6 +74,9 @@ def build(flatpak, stage, repo, extra):
     if len(tessdata) != 1:
         raise RuntimeError('One Tesseract data directory with Portuguese and English models is required.')
     runtime_tree(tessdata[0], files / 'share/tessdata')
+    speech_data=Path('/usr/lib/x86_64-linux-gnu/espeak-ng-data')
+    if not speech_data.is_dir():raise RuntimeError('eSpeak NG data directory is required.')
+    runtime_tree(speech_data, files / 'share/espeak-ng-data')
     runtime_tree('/usr/share/icons/Adwaita', files / 'share/icons/Adwaita')
     runtime_tree('/usr/share/mime', files / 'share/mime')
     shutil.copytree(ROOT / 'assets/icons', files / 'share/icons/hicolor', dirs_exist_ok=True)
@@ -107,7 +110,8 @@ def build(flatpak, stage, repo, extra):
         wrapper = files / 'bin' / name
         wrapper.write_text('''#!/bin/sh
 base="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
-''' + ('export TESSDATA_PREFIX="$base/share/tessdata"\n' if name == 'tesseract' else '') + '''exec "$base/runtime-lib/ld-linux-x86-64.so.2" --library-path "$base/runtime-lib" "$base/libexec/''' + name + '''" "$@"
+''' + ('export TESSDATA_PREFIX="$base/share/tessdata"\n' if name == 'tesseract' else '') + '''exec "$base/runtime-lib/ld-linux-x86-64.so.2" --library-path "$base/runtime-lib" "$base/libexec/''' + name + ('" --path="$base/share" "$@"\n' if name == 'espeak-ng' else '''" "$@"
+''') + '''
 ''')
         wrapper.chmod(0o755)
     python = files / 'bin/linuxit-python'

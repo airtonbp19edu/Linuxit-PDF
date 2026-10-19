@@ -876,7 +876,7 @@ Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navega�
 
 - APIs, árvore acessível, ordem, voz, foco, atalhos e cobertura real do Reader.
 
-Fontes: [app/accessible_reader.py](../app/accessible_reader.py), [app/pdf_security.py](../app/pdf_security.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/accessible_reader.py](../app/accessible_reader.py), [app/pdf_security.py](../app/pdf_security.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/speech.py](../app/speech.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted_inspection_identity_pages_and_permissions](../tests/test_pdf_security.py); [test_aes256_roundtrip_roles_permissions_metadata_and_attachments](../tests/test_pdf_security.py); [test_each_permission_flag_and_accessibility_bit_are_preserved](../tests/test_pdf_security.py); [test_encrypted_inspection_correct_wrong_and_missing_credentials](../tests/test_pdf_security.py); [test_new_password_limits_and_distinct_roles](../tests/test_pdf_security.py); [test_invalid_protocol_and_permission_types_rejected](../tests/test_pdf_security.py); [test_encrypted_source_not_unprotected_or_rewritten](../tests/test_pdf_security.py); [test_signed_xfa_portfolio_and_permissions_sources_refused](../tests/test_pdf_security.py); [test_stale_source_and_source_size_page_output_limits](../tests/test_pdf_security.py); [test_existing_destination_and_source_never_overwritten](../tests/test_pdf_security.py); [test_handled_partial_write_removed_and_error_sanitized](../tests/test_pdf_security.py); [test_concurrent_destination_preserved](../tests/test_pdf_security.py); [test_real_worker_secret_transport_and_error_channel](../tests/test_pdf_security.py); [test_cancellation_and_invalid_confirmation_never_report_success](../tests/test_pdf_security.py); [test_accessible_text_validation_limit_and_source_change](../tests/test_pdf_security.py); [test_accessible_text_refuses_encrypted_pdf_even_with_empty_password](../tests/test_pdf_security.py); [test_accessible_text_adapter_rejects_invalid_reply_and_supports_cancel](../tests/test_pdf_security.py); [test_only_owner_authentication_can_create_unprotected_copy](../tests/test_pdf_security.py); [test_owner_copy_stale_destination_and_partial_failure_are_safe](../tests/test_pdf_security.py); [test_owner_copy_refuses_special_restrictions_and_signature_fields](../tests/test_pdf_security.py); [test_real_poppler_text_is_exposed_through_atk_text_interface](../tests/test_security_accessibility_gtk.py); [test_no_text_and_encrypted_pages_have_explicit_limits](../tests/test_security_accessibility_gtk.py); [test_obsolete_page_text_does_not_replace_newer_page](../tests/test_security_accessibility_gtk.py); [test_f6_focus_regions_names_and_list_arrow_delegation](../tests/test_security_accessibility_gtk.py); [test_text_limit_and_document_close_clear_the_accessible_window](../tests/test_security_accessibility_gtk.py); [test_closing_text_worker_terminates_its_real_descendant_on_linux](../tests/test_security_accessibility_gtk.py).
 
@@ -916,7 +916,7 @@ Atual: distância entre pontos na visualização, convertida de pontos PDF para 
 
 - Unidades, calibração, snapping, precisão, áreas e perímetros do original.
 
-Fontes: [app/main.py](../app/main.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/main.py](../app/main.py), [app/measurement.py](../app/measurement.py), [app/measurement_window.py](../app/measurement_window.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 <a id="layers-media"></a>
 
@@ -951,7 +951,7 @@ Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos f
 
 - Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_layers.py](../app/pdf_layers.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 <a id="preferences"></a>
 

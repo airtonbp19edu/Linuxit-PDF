@@ -3068,7 +3068,7 @@
     {
       "id": "accessibility",
       "name": "Acessibilidade/voz",
-      "matrix_implementation": "TextView/ATK.Text, nomes e atalhos próprios; validação AT-SPI real pendente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos preparado. Linux/áudio/AT-SPI e leitor de tela físico ainda não validados.",
       "contract_kind": "implemented_subset",
       "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
       "inputs": [
@@ -3095,7 +3095,8 @@
         "app/search_tasks.py",
         "app/worker_cli.py",
         "app/main.py",
-        "docs/SEGURANCA-ACESSIBILIDADE.md"
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/speech.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3281,7 +3282,7 @@
     {
       "id": "measurement",
       "name": "Medição/calibração",
-      "matrix_implementation": "Distância em centímetros entre pontos; sem calibração personalizada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK/original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
       "inputs": [
@@ -3308,7 +3309,9 @@
         "Somente status/overlay de leitura; não cria anotação de medida no PDF."
       ],
       "source_refs": [
-        "app/main.py"
+        "app/main.py",
+        "app/measurement.py",
+        "app/measurement_window.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3360,7 +3363,7 @@
     {
       "id": "layers-media",
       "name": "Camadas/mídia/3D",
-      "matrix_implementation": "Listagem de nomes OCG; alternância/mídia/3D não implementadas integralmente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK aguardam Linux; mídia/3D não implementados.",
       "contract_kind": "implemented_subset",
       "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
       "inputs": [
@@ -3386,7 +3389,8 @@
         "Leitura não muda visibilidade persistida nem executa conteúdo embutido."
       ],
       "source_refs": [
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "app/pdf_layers.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3945,7 +3949,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T13:08:15-03:00",
+  "updated_at_local": "2026-10-19T13:22:01-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

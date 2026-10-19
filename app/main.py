@@ -367,6 +367,7 @@ class PDFWindow(Gtk.Window):
             self._ribbon_group('Captura e revisão', [
                 self._command_toggle('camera-photo-symbolic','Snapshot','snapshot','Copiar uma área da página'),
                 self._command_toggle('accessories-calculator-symbolic','Medir','measure','Medir distância no PDF'),
+                self._command_button('accessories-calculator-symbolic','Área/perímetro',self._show_measurements),
                 self._command_button('edit-copy-symbolic','Copiar texto',self._copy_page_text),
             ]),
         ]), 'comment')
@@ -958,6 +959,7 @@ class PDFWindow(Gtk.Window):
         self.search_stopped = False; self.find_stop.set_sensitive(False)
         self.search_notices = []
         self.runner.invalidate('main-render'); self.runner.invalidate('search'); self.runner.invalidate('panels')
+        self.runner.invalidate('layer-view')
         self.runner.invalidate('selection-words')
         self.attachment_controller.set_document(None)
         self.filepath = None; self.page_count = 0; self.page_sizes = []; self.metadata = {}; self.page = 0
@@ -1331,6 +1333,7 @@ class PDFWindow(Gtk.Window):
             return
         path = self.filepath
         session = self.document_session
+        self._layer_busy=False
         self.attachment_controller.set_document(path, session=session,
                                                allow_extract=session.info['permissions']['copy'])
         if self.sidebar_visible and self.sidebar_notebook.get_current_page() == 4:
@@ -1378,18 +1381,59 @@ class PDFWindow(Gtk.Window):
                 sub = Gtk.Label(label=str(text)[:180], xalign=0); sub.set_line_wrap(True); sub.get_style_context().add_class('muted'); box.pack_start(sub, False, False, 0)
             row.add(box); self.comment_list.add(row)
         layers = data.get('layers') or []
+        self.layer_checks=[]
         if not layers:
             self.layer_list.add(self._info_row('Este PDF não possui camadas opcionais detectáveis.'))
         else:
-            self.layer_list.add(self._info_row('Camadas detectadas. A visibilidade continua definida pelo PDF nesta versão.'))
+            self.layer_list.add(self._info_row('Visibilidade temporária de leitura; o PDF original é preservado.'))
             for item in layers:
                 row = Gtk.ListBoxRow(); box = Gtk.Box(spacing=6, margin=6)
-                box.pack_start(Gtk.Image.new_from_icon_name('view-list-symbolic', Gtk.IconSize.MENU), False, False, 0)
-                box.pack_start(Gtk.Label(label=str(item.get('name') or 'Camada'), xalign=0), True, True, 0)
+                check=Gtk.CheckButton(label=display_attachment_name(item.get('name') or 'Camada'))
+                check.set_active(bool(item.get('visible',True)));check.set_sensitive(not item.get('locked',False))
+                self.layer_checks.append(check);box.pack_start(check,True,True,0)
+                check.connect('toggled',self._layer_toggled)
                 row.add(box); self.layer_list.add(row)
         for box in (self.bookmark_list, self.comment_list, self.layer_list):
             box.show_all()
         self._select_metadata_search_row()
+
+    def _layer_toggled(self,*_):
+        if not self.filepath or getattr(self,'_layer_busy',False):return
+        self._layer_busy=True;session=self.document_session
+        visible=[check.get_active() for check in self.layer_checks]
+        for check in self.layer_checks:check.set_sensitive(False)
+        target=session.root/f'layers-{GLib.get_monotonic_time()}.pdf'
+        self.status_file.set_text('Atualizando camadas de leitura…')
+        def task():
+            cancel=get_event()
+            try:
+                return session.call(lambda read_path:run_search_worker('layer-view',read_path,
+                    {'visible':visible},cancel,destination=target))
+            finally:
+                if cancel is not None and cancel.is_set():target.unlink(missing_ok=True)
+        def done(report):
+            if session is not self.document_session or session.closed:
+                target.unlink(missing_ok=True);return
+            if not report or report.get('schema')!='linuxit-layer-view-v1' or Path(report.get('path','')).resolve()!=target.resolve():
+                failed(RuntimeError('Visibilidade de leitura não confirmada.'));return
+            session.replace_read_path(target);session.info['layer_override']=True
+            self.search_cancel.set();self.search_index=None;self.runner.invalidate('search')
+            self.search_running=False;self.find_stop.set_sensitive(False)
+            self.search_hits=[];self.search_pos=-1;self._find_update_results()
+            self.search_stopped=False;self.search_notices=[];self._search_scroll_pending=False
+            self.find_status.set_text('')
+            self.selected_words=[];self.selection_data=None;self.text_word_cache.clear()
+            for key,future in self.prefetch_tasks.items():
+                future.cancel();self.prefetch_runner.invalidate(str(key))
+            self.prefetch_tasks.clear();self.page_cache.clear()
+            for index in self.thumb_requested:self.runner.invalidate(f'thumb-{index}')
+            self._render_pending=False;self._render_request_key=None
+            self._layer_busy=False;self._load_side_panels();self._start_thumb_build();self.request_render()
+            if self.find_entry.get_text().strip():self._find_changed()
+        def failed(exc):
+            if session is self.document_session:
+                self._layer_busy=False;self._load_side_panels();self._error(str(exc))
+        self.runner.submit('layer-view',task,done,failed)
 
     def _select_metadata_search_row(self):
         if not 0 <= self.search_pos < len(self.search_hits):
@@ -1921,7 +1965,14 @@ class PDFWindow(Gtk.Window):
         window = getattr(self, 'accessible_text_window', None)
         if window is None or window.closed:
             window = AccessibleTextWindow(self);self.accessible_text_window = window
-        window.show_all();window.present();window.load(self.filepath, self.page, self.page_count)
+        window.show_all();window.present();window.load(self.filepath, self.page, self.page_count,self.document_session)
+
+    def _show_measurements(self,*_):
+        if not self.current_pixbuf or self.displayed_page!=self.page or self.displayed_rotation!=self.rotation:return
+        from measurement_window import MeasurementWindow
+        window=MeasurementWindow(self,self.current_pixbuf,self._page_dimensions_rotated(),
+                                  f'{Path(self.filepath).name} • pág.{self.page+1}')
+        window.show_all()
 
     def _show_creation(self, *_args):
         from creation_window import CreationWindow
@@ -2203,6 +2254,8 @@ class PDFWindow(Gtk.Window):
     def _print(self, *_args):
         if not self.filepath: return
         if not self._reading_permission('print'):return
+        if self.document_session and self.document_session.info.get('layer_override'):
+            self._error('A impressão da visibilidade temporária de camadas ainda não foi integrada.');return
         if self.document_session and (self.document_session.info['encrypted'] or self.document_session.info['recovered']):
             self._error('A impressão integrada de PDFs protegidos ou recuperados ainda requer um fluxo próprio. O original está preservado.')
             return

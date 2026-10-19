@@ -20,7 +20,8 @@ jobs:
             git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
             python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
             dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme openssl \
-            tesseract-ocr tesseract-ocr-por tesseract-ocr-eng
+            tesseract-ocr tesseract-ocr-por tesseract-ocr-eng espeak-ng \
+            at-spi2-core libatk-adaptor gir1.2-atspi-2.0
       - name: Check out source and synthetic corpus
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -74,6 +75,15 @@ jobs:
             exec dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/check_intermediate.py \
               --profile linux --work-dir analysis-local/linux-source-validation \
               --output dist/no-vm-results/source-intermediate.json
+          '
+      - name: Probe cross-process accessibility bus
+        run: |
+          runuser -u linuxit-test -- bash -c '
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-atspi-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            exec dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/check_atspi_text.py \
+              --output dist/no-vm-results/atspi-text.json
           '
       - name: Preserve own test evidence
         if: always()

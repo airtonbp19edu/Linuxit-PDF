@@ -13,7 +13,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |10–12|Seleção; impressão; imposição|Fonte0.1.15: seleção por blocos, preparação cancelável, cópia atômica e geometria validada;6 portáveis+9 regressões passaram. Linux/físico/bidi completo pendentes.|
 |13–15|Marcadores; anotações; formulários|Fonte0.1.15: respostas/Ink/combo editável implementados;7 portáveis+21 regressões passaram. GTK/Linux e JavaScript/XFA abertos.|
 |16–18|Anexos; assinaturas; segurança|Fonte0.1.15: membros de portfólio/sessão por senha, assinatura local PEM e permissões;7 novos+28 regressões passaram. UI/Linux e confiança/LTV/RMS abertos.|
-|19–21|Acessibilidade; medidas; camadas/mídia|AT-SPI/voz, área/perímetro/calibração e visibilidade; mídia/3D exigem motores próprios.|
+|19–21|Acessibilidade; medidas; camadas/mídia|Fonte0.1.15: voz WAV, medidas calibradas e toggle de camadas;6 portáveis+14 regressões passaram. Linux/probe/voz/pixels e mídia/3D abertos.|
 |22–24|Preferências; nuvem; conversão|Preferências e formatos; **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário. Pastas sincronizadas preservadas.|
 |25|Plataforma|Portais, associação/atualização e Windows; validar o que estiver disponível no Linux do CI.|
 
@@ -171,3 +171,36 @@ Nenhum código proprietário, certificado/chave de usuário ou Foxit foi usado.
 7 novos testes portáveis passaram,14 regressões de anexos e14 de coordenação
 passaram. Interface de assinatura/painel cifrado e runtime Linux aguardam CI.
 Os3 cancelamentos de runs queued retornaram409: continuam sem conclusão confirmada.
+
+
+## Lote19–21
+
+Medidas sobre snapshot da página atual: até512 pontos e coordenadas finitas;
+distância entre2 pontos, perímetro fechado e área de polígono simples em
+mm/cm/m/in/ft. Calibração usa comprimento conhecido dos2 primeiros pontos,
+vale somente nessa janela e não altera o PDF. Área recusa interseções/degeneração;
+não é certificação CAD nem equivalência da ferramenta original.
+
+Camadas: até256 OCGs na configuração default, BaseState ON/OFF, locks e
+RBGroups respeitados. Alteração explicita ON/OFF de todos os grupos e remove AS
+automático desta representação de leitura. Alternativas de configuração,
+BaseState Unchanged, mídia/3D e comportamento completo do original abertos.
+O PDF fica em pasta privada, sem sobrescrever original. Leases mantêm arquivos
+antigos enquanto leitores trabalham; caches do leitor principal são renovados.
+Apresentação já aberta pode conservar seu snapshot; impressão do override está
+bloqueada até integração própria. Salvar cópia normal continua copiando original.
+
+Voz: exporta texto selecionado ou página acessível em WAV PCM mono com eSpeakNG,
+sem IA/nuvem, PT/EN, até20000 caracteres/128KiB e64MiB de áudio. Não oferece fala
+contínua do documento nem prova qualidade/pronúncia/dispositivo físico. eSpeakNG
+e dados entram como dependências Debian separadas com atribuição de runtime;
+receita alterada, pacote ainda não gerado. CLI e dados conferidos em
+[manual Debian](https://manpages.debian.org/trixie/espeak-ng/espeak-ng.1.en.html)
+e [lista do pacote](https://packages.debian.org/trixie/amd64/espeak-ng-data/filelist).
+
+Probe AT-SPI real entre processos usa o widget ATK.Text do aplicativo com texto
+sintético e cliente GI Atspi, conforme [interfaces GNOME](https://docs.gtk.org/atspi2/iface.Text.html).
+Preparado no CI após a suíte fonte; não executado no Windows, não é teste Orca.
+6 novos portáveis e14 regressões de sessão passaram;3 testes Linux (pixels,
+camadas/medidas GTK e voz real) e probe aguardam ambiente. Não declarar que o
+checkbox alterou os pixels antes de examinar o relatório e a renderização.

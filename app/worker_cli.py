@@ -79,6 +79,18 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'layer-view':
+        from pdf_layers import create_layer_view
+        raw=sys.stdin.buffer.read(65537)
+        if len(raw)>65536:raise ValueError('Pedido de camadas acima de64KiB.')
+        request=json.loads(raw)
+        if not isinstance(request,dict) or set(request)!={'visible'} or len(argv)!=4:raise ValueError('Pedido de camadas inválido.')
+        print(json.dumps(dict(schema='linuxit-layer-view-v1',path=create_layer_view(argv[2],argv[3],request['visible']))));return
+    if cmd == 'speech-export':
+        from speech import export_speech
+        raw=sys.stdin.buffer.read(256*1024+1)
+        if len(raw)>256*1024:raise ValueError('Pedido de voz acima de256KiB.')
+        print(json.dumps(export_speech(argv[2],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'sign-copy':
         from pdf_signing import sign_pdf_copy
         raw=sys.stdin.buffer.read(65537)
