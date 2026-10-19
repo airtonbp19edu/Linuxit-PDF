@@ -1223,7 +1223,7 @@
     {
       "id": "selection",
       "name": "Seleção/cópia/snapshot",
-      "matrix_implementation": "Fonte0.1.15: seleção retangular com separação de blocos/colunas e ordem Unicode do extrator preservada; sem reversão RTL heurística. Bidi/caret completos e original abertos.",
+      "matrix_implementation": "Fonte0.1.16 acrescenta seleção por caractere/cursor com geometria PopplerGLib, grupos Unicode e movimento visual; validação Linux em andamento. Seleção retangular0.1.15 preservada. Comparação completa e documentos sem ordem lógica confiável abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
       "inputs": [
@@ -1253,7 +1253,9 @@
       "source_refs": [
         "app/main.py",
         "app/rendering.py",
-        "app/text_selection.py"
+        "app/text_selection.py",
+        "app/character_selection.py",
+        "app/character_extraction.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",

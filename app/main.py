@@ -30,6 +30,8 @@ from attachment_tasks import AttachmentPanelController, display_attachment_name
 from local_files import read_folders, remember_folder, file_stamp
 from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder, choose_pdf_native
 from text_selection import select_words, selection_text
+from character_extraction import page_characters
+from character_selection import nearest_caret, select_range, move_caret, caret_rectangle
 from print_tasks import prepare_print, publish_print_copy
 from search_tasks import run_search_worker
 from document_session import DocumentSession
@@ -135,6 +137,7 @@ class PDFWindow(Gtk.Window):
         self.text_word_cache = {}
         self.selected_words = []
         self.selection_data = None
+        self.character_state = None
 
         self.root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.add(self.root)
@@ -369,6 +372,7 @@ class PDFWindow(Gtk.Window):
                 self._command_button('user-bookmarks-symbolic','Marcadores',lambda *_: self._show_side_panel(1)),
             ]),
             self._ribbon_group('Captura e revisão', [
+                self._command_toggle('insert-text-symbolic','Caracteres','caret','Selecione caracteres; use Shift e as setas para ampliar'),
                 self._command_toggle('camera-photo-symbolic','Snapshot','snapshot','Copiar uma área da página'),
                 self._command_toggle('accessories-calculator-symbolic','Medir','measure','Medir distância no PDF'),
                 self._command_button('accessories-calculator-symbolic','Área/perímetro',self._show_measurements),
@@ -1594,7 +1598,7 @@ class PDFWindow(Gtk.Window):
 
     def _update_tool_cursor(self):
         if not hasattr(self, 'interaction_layer') or not self.interaction_layer.get_window(): return
-        names = {'hand':'grab','select':'text','snapshot':'crosshair','loupe':'zoom-in','measure':'crosshair'}
+        names = {'hand':'grab','select':'text','caret':'text','snapshot':'crosshair','loupe':'zoom-in','measure':'crosshair'}
         try:
             self.interaction_layer.get_window().set_cursor(Gdk.Cursor.new_from_name(Gdk.Display.get_default(), names.get(self.active_tool, 'default')))
         except Exception: pass
@@ -1615,7 +1619,7 @@ class PDFWindow(Gtk.Window):
             try: self.interaction_layer.get_window().set_cursor(Gdk.Cursor.new_from_name(Gdk.Display.get_default(),'grabbing'))
             except Exception: pass
             return True
-        if self.active_tool in ('select','snapshot','measure'):
+        if self.active_tool in ('select','caret','snapshot','measure'):
             self.selected_words = []; self.selection_data = None
             self.runner.invalidate('selection-words')
             self.drag_start=(event.x,event.y); self.selection_rect=(event.x,event.y,event.x,event.y); self.measure_result=None; self.interaction_layer.queue_draw(); return True
@@ -1631,7 +1635,7 @@ class PDFWindow(Gtk.Window):
             ha.set_value(max(ha.get_lower(),min(nx,ha.get_upper()-ha.get_page_size())))
             va.set_value(max(va.get_lower(),min(ny,va.get_upper()-va.get_page_size())))
             return True
-        if self.active_tool in ('select','snapshot','measure') and self.drag_start:
+        if self.active_tool in ('select','caret','snapshot','measure') and self.drag_start:
             self.selection_rect=self._norm_rect(self.drag_start,(event.x,event.y)); self.interaction_layer.queue_draw(); return True
         if self.active_tool == 'loupe':
             self.loupe_pos=(event.x,event.y); self.interaction_layer.queue_draw(); return True
@@ -1642,7 +1646,10 @@ class PDFWindow(Gtk.Window):
         if event.button != 1: return False
         if self.active_tool == 'hand' and self.hand_origin:
             self.hand_origin=None; self._update_tool_cursor(); return True
-        if self.active_tool in ('select','snapshot','measure') and self.drag_start:
+        if self.active_tool in ('select','caret','snapshot','measure') and self.drag_start:
+            if self.active_tool == 'caret':
+                start=self.drag_start;self.drag_start=None;self.selection_rect=None
+                self._finish_character_selection(start,(event.x,event.y));return True
             rect=self._norm_rect(self.drag_start,(event.x,event.y)); self.drag_start=None; self.selection_rect=rect
             if rect[2]-rect[0] < 4 or rect[3]-rect[1] < 4:
                 self.selection_rect=None; self.interaction_layer.queue_draw(); return True
@@ -1679,6 +1686,15 @@ class PDFWindow(Gtk.Window):
                 x0, y0, x1, y1 = self._pdf_rect_to_display(
                     [word[k] for k in ('x0', 'y0', 'x1', 'y1')], self.selection_data)
                 cr.rectangle(x0, y0, x1 - x0, y1 - y0); cr.fill()
+        state=self.character_state
+        if (self.active_tool=='caret' and state and state['session'] is self.document_session
+                and state['page']==self.page and state['rotation']==self.rotation
+                and state['anchor']==state['focus']):
+            rect=caret_rectangle(state['data'],state['focus'])
+            if rect:
+                x0,y0,x1,y1=self._pdf_rect_to_display(rect,state['data'])
+                cr.set_source_rgba(.08,.2,.7,1);cr.set_line_width(1.5)
+                cr.move_to(x0,y0);cr.line_to(x1,y1);cr.stroke()
         if self.selection_rect:
             x0,y0,x1,y1=self.selection_rect
             if self.active_tool == 'measure' or self.measure_result:
@@ -1760,6 +1776,48 @@ class PDFWindow(Gtk.Window):
         cached=self.text_word_cache.get(page)
         if cached is not None: use(cached)
         else: self.status_file.set_text('Lendo mapa de texto da página…'); self.runner.submit('selection-words',lambda:session.call(extract_page_words,page),use,lambda e:self.status_file.set_text(f'Falha ao selecionar texto: {e}'))
+
+    def _finish_character_selection(self, start, end):
+        if not self.filepath or not self._reading_permission('copy'):return
+        session,page,rotation=self.document_session,self.page,self.rotation
+        def use(data):
+            if session is not self.document_session or page!=self.page or rotation!=self.rotation:return
+            self.text_word_cache[(page,'characters')]=data
+            def point(p):
+                rect=self._display_rect_to_pdf((p[0],p[1],p[0],p[1]),data)
+                return rect[:2]
+            self.character_state=dict(data=data,session=session,page=page,rotation=rotation,
+                anchor=nearest_caret(data,point(start)),focus=nearest_caret(data,point(end)))
+            self._apply_character_selection()
+        cached=self.text_word_cache.get((page,'characters'))
+        if cached is not None:use(cached)
+        else:
+            self.status_file.set_text('Lendo posições dos caracteres…')
+            self.runner.submit('selection-words',lambda:session.call(page_characters,page),use,
+                lambda error:self.status_file.set_text(f'Falha na seleção por caracteres: {error}'))
+
+    def _apply_character_selection(self):
+        state=self.character_state
+        result=select_range(state['data'],state['anchor'],state['focus'])
+        self.selection_data=state['data'];self.selection_rect=None
+        self.selected_words=[dict(zip(('x0','y0','x1','y1'),r)) for r in result['rects']]
+        if result['text']:Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD).set_text(result['text'],-1)
+        self.status_file.set_text(f"Seleção: {len(result['text'])} caracteres. Shift+setas amplia; Ctrl+C copia.")
+        self.interaction_layer.queue_draw()
+
+    def _character_key(self,key,control,shift):
+        state=self.character_state
+        if (not state or state['session'] is not self.document_session
+                or state['page']!=self.page or state['rotation']!=self.rotation):return False
+        if not self._reading_permission('copy'):return True
+        if control and key.lower()=='a':
+            state['anchor']=0;state['focus']=len(state['data']['text'])
+        elif control and key.lower()=='c':pass
+        elif key in ('Left','Right','Up','Down','Home','End'):
+            state['focus']=move_caret(state['data'],state['focus'],key,control)
+            if not shift:state['anchor']=state['focus']
+        else:return False
+        self._apply_character_selection();return True
 
     def _finish_measure(self, rect):
         if not self.current_pixbuf or not self.page_sizes: return
@@ -2400,6 +2458,8 @@ class PDFWindow(Gtk.Window):
         if key == 'F11': self._fullscreen_toggle(); return True
         if key == 'Escape' and self.find_revealer.get_reveal_child(): self._hide_find(); return True
         if isinstance(self.get_focus(), (Gtk.Entry, Gtk.SpinButton, Gtk.TextView)): return False
+        if (self.active_tool=='caret' and self.get_focus() is self.interaction_layer
+                and self._character_key(key,ctrl,shift)):return True
         focus = self.get_focus()
         while focus is not None:
             if isinstance(focus, (Gtk.ListBox, Gtk.TreeView, Gtk.FlowBox)) and key in (

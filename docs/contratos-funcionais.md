@@ -472,7 +472,7 @@ Seleção retangular de palavras e cópia; snapshot de região; sem garantir ord
 
 - Ordem lógica, texto bidirecional, permissões de cópia, snapping e coordenadas de todos os modos do original.
 
-Fontes: [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [app/text_selection.py](../app/text_selection.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [app/text_selection.py](../app/text_selection.py), [app/character_selection.py](../app/character_selection.py), [app/character_extraction.py](../app/character_extraction.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py).
 

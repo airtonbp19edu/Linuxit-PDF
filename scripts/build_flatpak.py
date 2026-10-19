@@ -95,7 +95,7 @@ def build(flatpak, stage, repo, extra):
     probes = list((files / 'libexec').iterdir()) + list(files.rglob('*.so'))
     dynamic_gui = [Path('/usr/lib/x86_64-linux-gnu') / name for name in
                    ('libgtk-3.so.0', 'libgdk-3.so.0', 'libatk-1.0.so.0',
-                    'libpangocairo-1.0.so.0', 'libgdk_pixbuf-2.0.so.0')]
+                    'libpangocairo-1.0.so.0', 'libgdk_pixbuf-2.0.so.0', 'libpoppler-glib.so.8')]
     probes.extend(dynamic_gui)
     libraries = set(dynamic_gui)
     for probe in probes:

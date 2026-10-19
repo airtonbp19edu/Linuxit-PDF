@@ -1,0 +1,104 @@
+{
+  "schema": "linuxit-no-vm-completion-v1",
+  "requested_at_local": "2026-10-19T14:50:28.689198-03:00",
+  "request": "De forma completa, fazer tudo que não envolva VM.",
+  "original_vm_access_authorized": false,
+  "cloud_direct_deferred": true,
+  "generative_ai_excluded": true,
+  "baseline_commit": "d0a62134bc608499805f5f5f15590fa2340ff2b9",
+  "baseline_version": "0.1.15",
+  "baseline_own_tests": 490,
+  "global_reconstruction_percent": null,
+  "whole_family_parity_verified": false,
+  "tasks": [
+    {
+      "id": "S01",
+      "title": "Seleção por caracteres, cursor e texto bidirecional",
+      "status": "in_progress",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S02",
+      "title": "Eventos e cálculos de formulário com contrato explícito",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S03",
+      "title": "Ampliar anotações, aparências e edição de conversas",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S04",
+      "title": "Fluxos autenticados de edição/impressão com permissões",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S05",
+      "title": "Formatos de anexos, manutenção/recuperação do índice e idiomas",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S06",
+      "title": "Confiança de certificados e carimbos de tempo offline",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S07",
+      "title": "Reprodução de voz e precisão/encaixe de medidas",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S08",
+      "title": "Persistência de camadas e suporte a mídia/conteúdo3D",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S09",
+      "title": "Preferências e criação/conversão/OCR",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S10",
+      "title": "Portal persistente, associação, atualização/rollback e adaptador Windows",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S11",
+      "title": "Contratos/casos executáveis e análise estática pendente",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    },
+    {
+      "id": "S12",
+      "title": "Validação Linux, entrega Flatpak, auditoria e continuidade",
+      "status": "pending",
+      "evidence_refs": [],
+      "limitations": []
+    }
+  ],
+  "environment_dependencies": {
+    "original_comparison": "VMoffline suspensa; não executar original.",
+    "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
+    "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
+  }
+}

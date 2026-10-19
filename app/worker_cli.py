@@ -79,6 +79,13 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'page-characters':
+        from character_extraction import extract_characters
+        raw=sys.stdin.buffer.read(4097)
+        if len(raw)>4096:raise ValueError('Pedido de caracteres acima do limite.')
+        request=json.loads(raw)
+        if not isinstance(request,dict) or set(request)!={'page'}:raise ValueError('Pedido de caracteres inválido.')
+        print(json.dumps(extract_characters(argv[2],request['page']),ensure_ascii=True));return
     if cmd == 'layer-view':
         from pdf_layers import create_layer_view
         raw=sys.stdin.buffer.read(65537)

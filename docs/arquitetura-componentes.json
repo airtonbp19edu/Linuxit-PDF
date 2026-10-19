@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T14:36:34.919108-03:00",
+  "reviewed_at_local": "2026-10-19T14:55:04.776105-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.15",
+  "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -353,6 +353,18 @@
       "path": "app/installation_info.py",
       "boundary": "portable_logic",
       "responsibility": "Diagnóstico de instalação e comando fixo do gerenciador de pacotes; não executa atualização nem recebe comandos de metadados."
+    },
+    {
+      "id": "character_selection",
+      "path": "app/character_selection.py",
+      "boundary": "portable_geometry",
+      "responsibility": "Mapeia cursores e intervalos Unicode às caixas reais do extrator."
+    },
+    {
+      "id": "character_extraction",
+      "path": "app/character_extraction.py",
+      "boundary": "worker_service",
+      "responsibility": "Extrai offsets/caixas PopplerGLib dentro do worker limitado."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -376,7 +388,8 @@
     "pdf_signatures",
     "local_files",
     "pdf_ocr",
-    "pdf_annotations"
+    "pdf_annotations",
+    "character_selection"
   ],
   "interface_refs": [
     {
@@ -610,6 +623,16 @@
     {
       "path": "app/pdf_annotations.py",
       "symbol": "create_annotation"
+    },
+    {
+      "path": "app/character_selection.py",
+      "symbol": "select_range",
+      "contract": "Bounded character offsets and real Poppler boxes; no original equivalence claim."
+    },
+    {
+      "path": "app/character_extraction.py",
+      "symbol": "page_characters",
+      "contract": "Bounded character offsets and real Poppler boxes; no original equivalence claim."
     }
   ],
   "family_assignments": [
@@ -743,7 +766,9 @@
       "current_source_refs": [
         "app/main.py",
         "app/rendering.py",
-        "app/text_selection.py"
+        "app/text_selection.py",
+        "app/character_selection.py",
+        "app/character_extraction.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -1000,5 +1025,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }
