@@ -39,6 +39,22 @@ def validate(catalog):
     require(evidence['new_execution'] is False and evidence['recorded_ci_run_id'] == 39172130287,
             'Recorded Linux tests are not a new execution')
     passed = {c['id'] for c in evidence['cases'] if c['status'] == 'passed'}
+    current_passed = set()
+    if catalog.get('current_own_test_evidence_ref'):
+        current = read(catalog['current_own_test_evidence_ref'])
+        require(current['new_own_execution'] is True and current['foxit_executed'] is False
+                and current['complete_family_acceptance'] is False, 'Own evidence is not parity')
+        suite = read(current['source_report_ref'])['test_runs'][0]
+        require(suite['run'] == suite['passed'] == len(suite['cases'])
+                and all(suite[k] == 0 for k in ('failures', 'errors', 'skipped')),
+                'Current own suite incomplete')
+        current_passed = {c['id'] for c in suite['cases'] if c['status'] == 'passed'}
+        for name, digest in current['test_file_hashes'].items():
+            require(hashlib.sha256(local_file(name).read_bytes()).hexdigest() == digest,
+                    'Current test source drift: ' + name)
+        for name, digest in current['app_file_hashes'].items():
+            require(hashlib.sha256(local_file(name).read_bytes()).hexdigest() == digest,
+                    'Current app source drift: ' + name)
     test_cache = {}
     def check_tests(tests):
         for test in tests:
@@ -81,6 +97,8 @@ def validate(catalog):
             symbols.add((source['path'],source['symbol']))
         check_tests(operation['recorded_related_tests'])
         check_tests(operation.get('current_refusal_evidence', []))
+        require(set(operation.get('validated_current_test_ids', [])) <= current_passed,
+                'Current related tests lack passing own evidence')
         for name in operation['original_observation_refs']:
             local_file(name)
         for error in operation['failure_contract_refs']:
@@ -97,6 +115,8 @@ def validate(catalog):
             catalog['summary']['implementation_states'] == counts, 'Summary drift')
     return {'families':len(ids), 'operations':len(operations), 'implementation_states':counts,
             'source_symbols_checked':len(symbols), 'recorded_related_tests_checked':len(passed),
+            'current_own_cases_referenced':len({test for op in operations
+                for test in op.get('validated_current_test_ids', [])}),
             'new_app_test_executions':0, 'new_original_executions':0,
             'inventory_complete':False, 'implementation_completion_percent':None}
 
