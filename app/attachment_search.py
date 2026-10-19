@@ -5,11 +5,13 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import time
 
 from pdf_attachments import _document, _entries, _name, _declared_size
 from search_tasks import run_search_worker
 from search_matching import normalized, query_spans, validate_query
-from attachment_formats import OFFICE_SUFFIXES, HTML_SUFFIXES, extract_passive_text
+from attachment_formats import OFFICE_SUFFIXES, HTML_SUFFIXES, OTHER_PASSIVE_SUFFIXES, extract_passive_text
+from attachment_images import IMAGE_SUFFIXES, image_text
 from pypdf import PdfReader
 from pypdf.errors import PyPdfError
 
@@ -23,7 +25,7 @@ TEXT_SUFFIXES = {'.txt', '.csv', '.md', '.log', '.json', '.xml'}
 
 def search_attachment_text(path, request):
     expected = {'query', 'match_case', 'ignore_accents', 'whole_words', 'mode', 'proximity_distance', 'max_hits'}
-    if not isinstance(request, dict) or set(request) != expected:
+    if not isinstance(request, dict) or set(request) not in (expected,expected|{'ocr_images'}):
         raise ValueError('Opções da busca em anexos inválidas.')
     query = request['query']
     validate_query(query, request['mode'], request['proximity_distance'])
@@ -35,6 +37,9 @@ def search_attachment_text(path, request):
     needle = ' '.join(normalized(query, request['match_case'], request['ignore_accents']).split())
     hits, omissions, total = [], [], 0
     limit_reached = False
+    ocr_images=request.get('ocr_images',False)
+    if type(ocr_images) is not bool:raise ValueError('Opção de OCR de imagens inválida.')
+    ocr_deadline=time.monotonic()+90;ocr_count=0
     with _document(path, enforce_copy=True) as (reader, identity):
         if needle:
             for index, (entry, origin, host_page) in _entries(reader):
@@ -43,7 +48,7 @@ def search_attachment_text(path, request):
                     omissions.append({'index': None, 'name': 'Anexos restantes', 'reason': 'Limite de 100 entradas por busca.'})
                     break
                 suffix = Path(name).suffix.lower()
-                if suffix not in TEXT_SUFFIXES | OFFICE_SUFFIXES | HTML_SUFFIXES | {'.pdf'}:
+                if suffix not in TEXT_SUFFIXES | OFFICE_SUFFIXES | HTML_SUFFIXES | OTHER_PASSIVE_SUFFIXES | {'.pdf'} | (IMAGE_SUFFIXES if ocr_images else set()):
                     omissions.append({'index': index, 'name': name, 'reason': 'Formato não suportado pela busca textual.'})
                     continue
                 try:
@@ -57,7 +62,11 @@ def search_attachment_text(path, request):
                     if len(payload) > MAX_FILE_BYTES or total > MAX_TOTAL_BYTES:
                         raise ValueError('Conteúdo decodificado excede 2 MiB por anexo ou 8 MiB no total.')
                     payload_hash = hashlib.sha256(payload).hexdigest()
-                    if suffix == '.pdf':
+                    if suffix in IMAGE_SUFFIXES and ocr_images:
+                        if ocr_count>=10:raise ValueError('Limite de 10 imagens com OCR por busca.')
+                        ocr_count+=1;text=image_text(payload,timeout=ocr_deadline-time.monotonic());texts=[(0,text)]
+                        omissions.append({'index':index,'name':name,'reason':'OCR local português/inglês; reconhecimento pode omitir ou interpretar caracteres incorretamente.'})
+                    elif suffix == '.pdf':
                         embedded = PdfReader(BytesIO(payload), strict=True)
                         if embedded.is_encrypted:
                             raise ValueError('PDF anexo criptografado não pesquisado.')
@@ -66,7 +75,7 @@ def search_attachment_text(path, request):
                         # Stage the entire attachment before exposing its results: failed page
                         # extraction must not silently present only earlier pages as complete.
                         texts = [(page_no, page.extract_text() or '') for page_no, page in enumerate(embedded.pages)]
-                    elif suffix in OFFICE_SUFFIXES | HTML_SUFFIXES:
+                    elif suffix in OFFICE_SUFFIXES | HTML_SUFFIXES | OTHER_PASSIVE_SUFFIXES:
                         text, partial = extract_passive_text(payload, suffix)
                         texts = [(None, text)]
                         if partial:
@@ -114,6 +123,7 @@ def invoke_attachment_search(path, query, options, max_hits, cancel=None, timeou
     request = {key: getattr(options, key) for key in
                ('match_case', 'ignore_accents', 'whole_words', 'mode', 'proximity_distance')}
     request.update(query=query, max_hits=max_hits)
+    if getattr(options,'ocr_images',False):request['ocr_images']=True
     report = run_search_worker('search-attachments', path, request, cancel, timeout)
     if report is None:
         return empty

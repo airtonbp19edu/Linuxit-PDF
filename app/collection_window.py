@@ -9,6 +9,9 @@ from gi.repository import Gtk, Pango
 from async_core import BackgroundRunner
 from attachment_tasks import display_attachment_name
 from collection_index import invoke_collection, verify_document, load_index
+from search_languages import LANGUAGE_MODES
+from collection_recovery import snapshot_index,restore_index,inspect_lock,remove_dead_lock
+from collection_index import _sha, MAX_INDEX_BYTES
 
 
 class CollectionWindow(Gtk.Window):
@@ -35,6 +38,11 @@ class CollectionWindow(Gtk.Window):
         row.pack_start(build, False, False, 0);box.pack_start(row, False, False, 0)
         maintain = Gtk.Button(label='Revisar PDFs do índice…');maintain.connect('clicked', self._maintain)
         box.pack_start(maintain, False, False, 0)
+        recovery=Gtk.Box(spacing=6)
+        recovery_buttons=[]
+        for title,callback in [('Salvar backup…',self._backup),('Recuperar backup…',self._restore),('Revisar trava…',self._review_lock)]:
+            button=Gtk.Button(label=title);button.connect('clicked',callback);recovery.pack_start(button,False,False,0);recovery_buttons.append(button)
+        box.pack_start(recovery,False,False,0)
         row = Gtk.Box(spacing=6)
         self.query = Gtk.Entry();self.query.set_placeholder_text('Consulta')
         self.query.get_accessible().set_name('Consulta da coleção')
@@ -46,8 +54,7 @@ class CollectionWindow(Gtk.Window):
         row.pack_start(stop, False, False, 0);box.pack_start(row, False, False, 0)
         row = Gtk.Box(spacing=6)
         self.mode = Gtk.ComboBoxText()
-        for key, name in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'), ('proximity', 'Proximidade ordenada'),
-                          ('stem-pt', 'Radicais: português'), ('stem-en', 'Radicais: inglês')]:
+        for key, name in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'), ('proximity', 'Proximidade ordenada')]+LANGUAGE_MODES:
             self.mode.append(key, name)
         self.mode.set_active_id('literal');row.pack_start(self.mode, False, False, 0)
         row.pack_start(Gtk.Label(label='Distância:'), False, False, 0)
@@ -71,7 +78,7 @@ class CollectionWindow(Gtk.Window):
         self.results = Gtk.ListBox();self.results.connect('row-activated', self._activate)
         scroll = Gtk.ScrolledWindow();scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.results);box.pack_start(scroll, True, True, 0)
-        self.controls = [self.index_entry, browse, build, maintain, self.query, find, self.mode, *self.flags.values()]
+        self.controls = [self.index_entry, browse, build, maintain, *recovery_buttons,self.query, find, self.mode, *self.flags.values()]
         self.connect('destroy', self._destroy)
 
     def _choose(self, title, action, multiple=False, default=None):
@@ -88,6 +95,43 @@ class CollectionWindow(Gtk.Window):
     def _browse(self, *_):
         path = self._choose('Abrir índice Linuxit', Gtk.FileChooserAction.OPEN)
         if path and not self.closed:self.index_entry.set_text(path)
+
+    def _backup(self,*_):
+        if self.busy or self.closed:return
+        path=self.index_entry.get_text().strip()
+        target=self._choose('Salvar backup em arquivo novo',Gtk.FileChooserAction.SAVE,default='backup.linuxit-index.json')
+        if target:self._submit(lambda cancel:snapshot_index(path,target),lambda report:self.status.set_text('Backup íntegro salvo: '+report['path']))
+
+    def _confirm(self,text):
+        dialog=Gtk.MessageDialog(transient_for=self,modal=True,message_type=Gtk.MessageType.QUESTION,buttons=Gtk.ButtonsType.OK_CANCEL,text=text)
+        try:return dialog.run()==Gtk.ResponseType.OK
+        finally:dialog.destroy()
+
+    def _restore(self,*_):
+        if self.busy or self.closed:return
+        backup=self._choose('Escolher backup de índice íntegro',Gtk.FileChooserAction.OPEN)
+        if not backup:return
+        target=self._choose('Destino da recuperação',Gtk.FileChooserAction.SAVE,default='recuperado.linuxit-index.json')
+        if not target:return
+        def reviewed(state):
+            identity=state['identity']
+            if not self._confirm('Recuperar este índice? Se o destino existir, uma cópia anterior será preservada. PDFs originais não serão alterados.'):return
+            def finished(report):
+                self.index_entry.set_text(report['path']);self._clear_hits()
+                self.status.set_text('Índice recuperado. Fontes alteradas continuam excluídas da busca.'+(' Anterior: '+report['preserved_previous'] if report['preserved_previous'] else ''))
+            self._submit(lambda cancel:restore_index(backup,target,identity),finished)
+        self._submit(lambda cancel:dict(identity=_sha(target,MAX_INDEX_BYTES) if Path(target).exists() else None),reviewed)
+
+    def _review_lock(self,*_):
+        if self.busy or self.closed:return
+        path=self.index_entry.get_text().strip()
+        if not path:self.status.set_text('Escolha o caminho do índice.');return
+        def reviewed(report):
+            if not report['removable']:
+                self.status.set_text('Estado da trava: '+report['state']+'. Travas ativas ou de origem desconhecida são preservadas.');return
+            if self._confirm('O processo local da trava já encerrou. Remover esta trava abandonada?'):
+                self._submit(lambda cancel:remove_dead_lock(path,report['sha256']),lambda result:self.status.set_text('Trava abandonada removida.'))
+        self._submit(lambda cancel:inspect_lock(path),reviewed)
 
     def _build(self, *_):
         if self.busy or self.closed:return

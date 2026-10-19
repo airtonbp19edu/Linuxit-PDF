@@ -1,0 +1,12 @@
+{
+  "schema": "linuxit-cups-queue-probe-v1",
+  "passed": false,
+  "checks": {},
+  "physical_printer": false,
+  "foxit_executed": false,
+  "server_loopback_only": true,
+  "errors": [
+    "CalledProcessError: Command '['lpadmin', '-p', 'LinuxitSynthetic', '-E', '-v', 'socket://127.0.0.1:9', '-m', 'raw']' returned non-zero exit status 1."
+  ],
+  "private_logs": "analysis-local/cups-queue-1792434591724009484"
+}

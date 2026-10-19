@@ -895,7 +895,9 @@
         "app/search_engine.py",
         "app/worker_cli.py",
         "app/main.py",
-        "app/attachment_formats.py"
+        "app/attachment_formats.py",
+        "app/attachment_rtf.py",
+        "app/attachment_images.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1015,7 +1017,8 @@
         "app/search_tasks.py",
         "app/search_matching.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/collection_recovery.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1139,7 +1142,8 @@
         "app/collection_index.py",
         "app/main.py",
         "app/collection_window.py",
-        "docs/proveniencia-snowball.json"
+        "docs/proveniencia-snowball.json",
+        "app/search_languages.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -1223,7 +1227,7 @@
     {
       "id": "selection",
       "name": "Seleção/cópia/snapshot",
-      "matrix_implementation": "Fonte0.1.16 acrescenta seleção por caractere/cursor com geometria PopplerGLib, grupos Unicode e movimento visual; validação Linux em andamento. Seleção retangular0.1.15 preservada. Comparação completa e documentos sem ordem lógica confiável abertos.",
+      "matrix_implementation": "Fonte0.1.16 acrescenta seleÃ§Ã£o por caractere/cursor com geometria PopplerGLib, grupos Unicode e movimento visual; validaÃ§Ã£o Linux em andamento. SeleÃ§Ã£o retangular0.1.15 preservada. ComparaÃ§Ã£o completa e documentos sem ordem lÃ³gica confiÃ¡vel abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Seleção retangular de palavras e cópia; snapshot de região; sem garantir ordem semântica ou permissões completas.",
       "inputs": [
@@ -1316,7 +1320,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Fonte0.1.16: impressão da representação autenticada/recuperada e camadas com leases e captura da origem;150DPI imposto para permissão de baixa qualidade, PDF salvo exige cópia permitida. Controle de recibos/cancelamento CUPS implementado; fila virtual/GTK em validação, impressora física/original abertos.",
+      "matrix_implementation": "Fonte0.1.16: impressÃ£o da representaÃ§Ã£o autenticada/recuperada e camadas com leases e captura da origem;150DPI imposto para permissÃ£o de baixa qualidade, PDF salvo exige cÃ³pia permitida. Controle de recibos/cancelamento CUPS implementado; fila virtual/GTK em validaÃ§Ã£o, impressora fÃ­sica/original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1852,7 +1856,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Fonte0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Pango/Cairo com fontes incorporadas, mover, editar respostas, popup e exclusão de conversa com guardas. Sete portáveis passaram; renderização/GTK aguardam Linux; família ampla aberta.",
+      "matrix_implementation": "Fonte0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparÃªncia Pango/Cairo com fontes incorporadas, mover, editar respostas, popup e exclusÃ£o de conversa com guardas. Sete portÃ¡veis passaram; renderizaÃ§Ã£o/GTK aguardam Linux; famÃ­lia ampla aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -2239,7 +2243,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "Fonte0.1.16: preenchimento com AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate reconhecidos, ordem de dependências/validação antes de gravar; scripts gerais não executados. Sete novos portáveis passaram; GTK/Linux em validação. XFA/JavaScript geral abertos.",
+      "matrix_implementation": "Fonte0.1.16: preenchimento com AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate reconhecidos, ordem de dependÃªncias/validaÃ§Ã£o antes de gravar; scripts gerais nÃ£o executados. Sete novos portÃ¡veis passaram; GTK/Linux em validaÃ§Ã£o. XFA/JavaScript geral abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
@@ -2842,7 +2846,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "Fonte0.1.16: edição autenticada autoriza cada tipo de operação e mantém criptografia, senhas usuário/proprietário e permissões na cópia.10 novos portáveis passaram com quatro algoritmos; GTK/Linux pendentes. RMS e demais perfis continuam abertos.",
+      "matrix_implementation": "Fonte0.1.16: ediÃ§Ã£o autenticada autoriza cada tipo de operaÃ§Ã£o e mantÃ©m criptografia, senhas usuÃ¡rio/proprietÃ¡rio e permissÃµes na cÃ³pia.10 novos portÃ¡veis passaram com quatro algoritmos; GTK/Linux pendentes. RMS e demais perfis continuam abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [

@@ -117,3 +117,26 @@ FreeText/Stamp com fontes incorporadas/pixels, geometrias/conversas e490 IDs
 anteriores preservados. Artefato12211916533/ZIP08117925d8e00647fac2c72ac06ebf00116e6a78b597071159f47f97c593f3db
 conferido. Relatórios emtestes/resultados/sem-vm-2026-10-19/s01-s03/. Não aprova
 a fonteS04 posterior nem significa paridade integral comFoxit.
+
+## S05 — anexos, idiomas e recuperação
+
+Fonte0.1.16: pesquisa passiva inclui cabeçalhos/rodapés/notas DOCX, estilos ODT,
+XLSX (texto compartilhado/inline e valores em cache, sem calcular fórmulas),
+PPTX (slides/notas, ordem das partes não promete ordem visual) e RTF Unicode.
+Objetos/macros/instruções não executados. Limites:2MiB expandidos/256partes,
+XML128níveis. Radicais:36 opções dos algoritmos Snowball3.1.1 já distribuídos,
+sem detecção automática de idioma.
+
+OCR de imagens anexas é opt-in, PT/EN local:uma imagem,2MiB/10MP, até10imagens
+e90s por busca,30s por imagem; resultados sempre sinalizam precisão desconhecida.
+GIF/TIFF multipágina recusados neste extrator. PDFs anexos preservam outro contrato.
+
+Índices:backup exclusivo; recuperação valida hash/esquema, guarda o destino
+anterior antes de substituí-lo e verifica concorrência. Fontes alteradas permanecem
+excluídas dos hits. Trava nova contém host/pid/token:remoção somente explícita,
+processo local comprovadamente encerrado e identidade ainda igual. Travas legadas,
+remotas ou ativas preservadas. Cleanup não remove trava substituída.
+11 testes portáveis passaram; OCR nativo aguarda Linux. A suíte anterior S04
+aprovou528/528 e portais/AT-SPI. Fila CUPS isolada teve falha de configuração
+(backend socket ausente); corrigida para backend IPP instalado, repetição pendente.
+Falha preservada em testes/resultados/sem-vm-2026-10-19/s04/.

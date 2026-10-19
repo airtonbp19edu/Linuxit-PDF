@@ -47,9 +47,9 @@
     {
       "id": "S04",
       "title": "Fluxos autenticados de edição/impressão com permissões",
-      "status": "source_implemented_portable_passed_linux_pending",
+      "status": "own_source_linux_validated_cups_probe_fix_pending",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s04/review.json"
       ],
       "limitations": [
         "Physical printer and original lifecycle not exercised."
@@ -58,8 +58,10 @@
     {
       "id": "S05",
       "title": "Formatos de anexos, manutenção/recuperação do índice e idiomas",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "source_implemented_11_portable_passed_native_ocr_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
@@ -117,5 +119,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T15:26:50.730630-03:00"
+  "updated_at_local": "2026-10-19T15:43:28.941756-03:00"
 }

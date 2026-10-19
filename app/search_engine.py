@@ -21,6 +21,7 @@ class SearchOptions:
     include_bookmarks: bool = False
     include_comments: bool = False
     include_attachments: bool = False
+    ocr_images: bool = False
     mode: str = "literal"
     proximity_distance: int = 0
 

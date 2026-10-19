@@ -1,0 +1,10 @@
+{
+  "source_commit": "cc72da5b4746a1792ea975254ec5905f71d8d52a",
+  "source_tests_passed": 528,
+  "source_tests_skipped": 0,
+  "cups_first_probe_passed": false,
+  "cups_failure": "socket backend absent in minimal cups-daemon container; changed dummy held queue to installed IPP backend, rerun pending",
+  "source_artifact_sha256": "1d66a04b533643502c4c88a31cdc9a5a30de622e3068405eb379e6e896bd0bd4",
+  "reviewed_at_local": "2026-10-19T15:43:28.941756-03:00",
+  "original_executed": false
+}

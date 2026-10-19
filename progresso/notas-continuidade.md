@@ -3053,3 +3053,12 @@ CI39300179043/5a4729e:516/516 Linux sem falhas/erros/skips; fonte, Pango/GTK/Pop
 ## 2026/10/19 às 15:28 (America/Sao_Paulo, UTC-03:00) — checkpoint S04 antes do CI
 
 Regressões próprias de sessão14/14 e histórico8/8 passaram;10/10 portáveis novos passaram,2GTK pendentes. ParserAST, catálogo95/13/3 e arquitetura65módulos/60interfaces conferidos. Separado jobCUPS virtual do jobGUI para preservar diagnósticos independentes; ambos exigem sucesso. Documentos de retomada apontam a fonte0.1.16 em desenvolvimento e Flatpak0.1.15 anterior, sem promover516/516 da revisãoS01–S03 à fonteS04. Próximo comando: publicar este checkpoint e executar no-vm-validation.yml; seguir S05. VM não acessada.
+
+### 2026/10/19 às 15:43 (America/Sao_Paulo, UTC-03:00) — S05 sem VM
+
+S04 Linux528/528 examinados (commitcc72da5); falha do primeiro CUPS preservada e
+correção de URI pendente de reexecução. S05 ampliou formatos, OCR opt-in,36idiomas,
+backup/recuperação/travas.11portáveis aprovados;1teste nativo não executável no host.
+Fonte0.1.16 sem pacote novo,0.1.15 preservado. VM intocada; nuvem direta adiada,
+paridade/critérios/pesos intactos. Próximo:S06 e CI Linux/CUPS deste checkpoint.
+Publicação:commit/push e confirmação feitos em seguida; não inferir pelo texto.

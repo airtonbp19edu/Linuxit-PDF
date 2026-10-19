@@ -23,6 +23,7 @@ from presentation import PresentationWindow, LASER_COLORS
 from rendering import render_page, render_page_to_png, extract_page_text, extract_page_words
 from pdf_panels import inspect_document_panels
 from search_engine import TextSearchIndex
+from search_languages import LANGUAGE_MODES
 from page_cache import PageCache
 from themes import load_theme, read_theme, save_theme
 from platform_runtime import worker_python, subprocess_options
@@ -515,7 +516,8 @@ class PDFWindow(Gtk.Window):
         for key, label, active in [('include_page_text', 'Texto das páginas', True),
                                    ('include_bookmarks', 'Marcadores', False),
                                    ('include_comments', 'Comentários', False),
-                                   ('include_attachments', 'Anexos', False)]:
+                                   ('include_attachments', 'Anexos', False),
+                                   ('ocr_images', 'OCR de imagens anexas (PT/EN)', False)]:
             button = Gtk.CheckButton(label=label)
             button.set_active(active)
             button.connect('toggled', self._find_changed)
@@ -526,8 +528,7 @@ class PDFWindow(Gtk.Window):
         modes.pack_start(Gtk.Label(label='Modo:'), False, False, 0)
         self.find_mode = Gtk.ComboBoxText()
         for value, label in [('literal', 'Literal'), ('wildcard', 'Coringas por palavra'),
-                             ('proximity', 'Proximidade ordenada'),
-                             ('stem-pt', 'Radicais: português'), ('stem-en', 'Radicais: inglês')]:
+                             ('proximity', 'Proximidade ordenada')]+LANGUAGE_MODES:
             self.find_mode.append(value, label)
         self.find_mode.set_active_id('literal')
         self.find_mode.get_accessible().set_name('Modo de pesquisa')

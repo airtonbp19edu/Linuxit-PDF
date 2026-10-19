@@ -7,6 +7,8 @@ import os
 from pathlib import Path
 import re
 import tempfile
+import socket
+import uuid
 
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
@@ -81,10 +83,14 @@ def index_writer_lock(destination):
         raise ValueError('Índice em atualização ou trava abandonada. Confira o outro processo antes de remover o arquivo .lock.') from exc
     try:
         with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
-            json.dump({'pid': os.getpid(), 'created_at_utc': datetime.now(timezone.utc).isoformat()}, stream)
+            json.dump({'pid': os.getpid(), 'host':socket.gethostname(), 'token':uuid.uuid4().hex,
+                       'created_at_utc': datetime.now(timezone.utc).isoformat()}, stream)
+        identity=_sha(lock,8192)
         yield
     finally:
-        lock.unlink(missing_ok=True)
+        # Never remove a replacement made by another process during our operation.
+        if 'identity' in locals() and not lock.is_symlink() and lock.exists() and _sha(lock,8192)==identity:
+            lock.unlink()
 
 
 def build_index(path, request):

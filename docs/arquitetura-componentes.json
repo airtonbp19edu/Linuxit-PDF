@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T15:26:51.337238-03:00",
+  "reviewed_at_local": "2026-10-19T15:43:24.926374-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -395,6 +395,30 @@
       "path": "app/print_queue.py",
       "boundary": "gtk_ui",
       "responsibility": "Consulta e cancela apenas trabalhos com recibo de envio capturado nesta execução."
+    },
+    {
+      "id": "search_languages",
+      "path": "app/search_languages.py",
+      "boundary": "portable_text",
+      "responsibility": "Idiomas Snowball explícitos."
+    },
+    {
+      "id": "attachment_rtf",
+      "path": "app/attachment_rtf.py",
+      "boundary": "portable_text",
+      "responsibility": "Extração RTF passiva limitada."
+    },
+    {
+      "id": "attachment_images",
+      "path": "app/attachment_images.py",
+      "boundary": "worker_service",
+      "responsibility": "OCR local opt-in de imagens anexas."
+    },
+    {
+      "id": "collection_recovery",
+      "path": "app/collection_recovery.py",
+      "boundary": "portable_index",
+      "responsibility": "Backup, restauração e revisão explícita de travas."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -757,7 +781,9 @@
         "app/search_engine.py",
         "app/worker_cli.py",
         "app/main.py",
-        "app/attachment_formats.py"
+        "app/attachment_formats.py",
+        "app/attachment_rtf.py",
+        "app/attachment_images.py"
       ],
       "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false
@@ -771,7 +797,8 @@
         "app/search_tasks.py",
         "app/search_matching.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/collection_recovery.py"
       ],
       "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false
@@ -785,7 +812,8 @@
         "app/attachment_search.py",
         "app/collection_index.py",
         "app/main.py",
-        "app/collection_window.py"
+        "app/collection_window.py",
+        "app/search_languages.py"
       ],
       "future_boundary": "Remaining formats/operations and full Foxit behavior are unresolved.",
       "future_boundary_implemented": false

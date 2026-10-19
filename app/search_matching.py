@@ -1,5 +1,6 @@
 """Bounded own Unicode query modes; no regular expression or original analyzer."""
 import unicodedata
+from search_languages import LANGUAGES, python_stemmer
 
 
 def normalized(text, match_case=False, ignore_accents=False):
@@ -35,7 +36,7 @@ def validate_query(query, mode='literal', proximity_distance=0, *, normalized_in
     maximum = 768 if normalized_input else 256
     if not isinstance(query, str) or len(query) > maximum:
         raise ValueError('A pesquisa deve ter no máximo 256 caracteres.')
-    if not isinstance(mode, str) or mode not in {'literal', 'wildcard', 'proximity', 'stem-pt', 'stem-en'}:
+    if not isinstance(mode, str) or mode not in {'literal','wildcard','proximity'} | {'stem-'+code for code in LANGUAGES}:
         raise ValueError('Modo de pesquisa não suportado.')
     if type(proximity_distance) is not int or not 0 <= proximity_distance <= 50:
         raise ValueError('A distância deve ser um inteiro de 0 a 50 palavras.')
@@ -107,17 +108,7 @@ def query_spans(text, needle, whole_words=False, mode='literal', proximity_dista
                 yield start, end
         return
     if mode.startswith('stem-'):
-        # Select the pinned pure-Python classes, never an optional native backend.
-        from pathlib import Path
-        import sys
-        vendor = str(Path(__file__).resolve().parent / 'vendor')
-        if vendor not in sys.path: sys.path.insert(0, vendor)
-        if mode == 'stem-pt':
-            from snowballstemmer.portuguese_stemmer import PortugueseStemmer
-            stemmer = PortugueseStemmer()
-        else:
-            from snowballstemmer.english_stemmer import EnglishStemmer
-            stemmer = EnglishStemmer()
+        stemmer=python_stemmer(mode)
         terms = [stemmer.stemWord(word.casefold()) for _, _, word in tokens(needle)]
         stems = [stemmer.stemWord(word.casefold()) for _, _, word in words]
         skip_before = 0

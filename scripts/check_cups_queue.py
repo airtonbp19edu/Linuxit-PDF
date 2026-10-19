@@ -59,7 +59,9 @@ PreserveJobFiles Yes
                 except OSError:time.sleep(.1)
             else:raise RuntimeError('Private CUPS scheduler did not listen in time')
             printer='LinuxitSynthetic'
-            subprocess.run(['lpadmin','-p',printer,'-E','-v','socket://127.0.0.1:9','-m','raw'],env=env,check=True,capture_output=True,timeout=20)
+            # cups-daemon provides IPP; socket is shipped by the larger cups package.
+            # The indefinite hold below prevents any connection to this dummy URI.
+            subprocess.run(['lpadmin','-p',printer,'-E','-v','ipp://127.0.0.1:9/printers/synthetic','-m','raw'],env=env,check=True,capture_output=True,timeout=20)
             fixture=work/'synthetic.pdf';writer=PdfWriter();writer.add_blank_page(100,100);writer.write(fixture)
             with patch.dict(os.environ,{'CUPS_SERVER':env['CUPS_SERVER']}):
                 receipt=cups.print_file(printer,str(fixture),dict(printer_options={'job-hold-until':'indefinite'}))
@@ -72,7 +74,9 @@ PreserveJobFiles Yes
                 report['checks']['no_physical_backend_used']=True
                 report['own_job_id']=identifier
             report['passed']=all(report['checks'].values()) and len(report['checks'])==4
-        except Exception as exc:report['errors'].append(type(exc).__name__+': '+str(exc))
+        except Exception as exc:
+            detail=(getattr(exc,'stderr',b'') or b'').decode('utf-8','replace')[:2000]
+            report['errors'].append(type(exc).__name__+': '+str(exc)+(' · '+detail if detail else ''))
         finally:
             process.terminate()
             try:process.wait(timeout=10)
