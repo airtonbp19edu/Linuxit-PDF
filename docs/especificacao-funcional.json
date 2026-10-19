@@ -190,7 +190,8 @@
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+          "docs/P03-INTERFACE-E-PARADA-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -199,10 +200,11 @@
         ],
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+          "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+          "docs/P03-INTERFACE-E-PARADA-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Página/zoom/rotaçãoD03 em recorte e sequência1→8→1 no PDF cifradoD15; extremos/modos completos ainda abertos."
+        "recorded_runtime_scope": "UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8/8 e Next mantém8/8. Menu1% e6400%; menos/mais nos extremos mantêm os valores. FitPage47.15%, PAGE0011/8. Recorte visual sem vínculo comprovado aos IDs estáticos; entradas arbitrárias e demais modos abertos."
       },
       "existing_test_refs": [
         {
@@ -3782,7 +3784,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T09:26:14-03:00",
+  "updated_at_local": "2026-10-19T09:58:26-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

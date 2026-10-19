@@ -2307,22 +2307,26 @@
     "whole_family_parity_verified": false
   },
   "current_vm_followup": {
-    "run_id": "vm-20261019-0113",
-    "report": "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md",
-    "review": "testes/resultados/p03-2026-10-19-0113/review.json",
+    "run_id": "vm-20261019-0930",
+    "report": "docs/P03-INTERFACE-E-PARADA-2026-10-19.md",
+    "review": "testes/resultados/p03-2026-10-19-0930/review.json",
     "new_original_executions": 1,
-    "guest_inputs_suspended": false,
-    "clock_stop_confirmed_this_batch": false,
+    "guest_inputs_suspended": true,
+    "clock_stop_confirmed_this_batch": true,
+    "last_observed_guest_clock": "09:54:23",
     "network_connected": false,
-    "foxit_closed": true,
-    "ten_inputs_equal_before_and_after": true,
-    "new_matching_metric_cases": 1,
+    "foxit_closed": false,
+    "ten_inputs_equal_before": true,
+    "ten_inputs_equal_before_and_after": null,
+    "collector_final_state": null,
+    "new_matching_metric_cases": 0,
     "total_distinct_matching_metric_cases": 13,
     "inconclusive_metric_cases": 4,
     "comparison_rollup_ref": "testes/resultados/p03-2026-10-19-0113/comparison-rollup.json",
     "app_or_flatpak_changed": false,
     "whole_family_parity_verified": false,
-    "criteria_or_weights_changed": false
+    "criteria_or_weights_changed": false,
+    "user_requested_end_for_now": true
   },
   "continuation_plan": {
     "document": "docs/PLANO-DE-CONTINUIDADE.md",
@@ -2336,7 +2340,7 @@
     "first_own_implementation_candidate": "P06/B01",
     "original_execution_requires": "P02",
     "execution_state_ref": "progresso/execucao-plano.json",
-    "first_package_blocker_ref": null,
+    "first_package_blocker_ref": "testes/resultados/p03-2026-10-19-0930/review.json",
     "original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json"
   },
   "current_plan_execution": {
@@ -2345,17 +2349,17 @@
     "execution": "progresso/execucao-plano.json",
     "p01": "completed_provisional_v1",
     "p02": "completed_validated_offline",
-    "p03": "partial_ready_for_next_batch",
+    "p03": "partial_blocked_vm_clock",
     "operations_catalogued": 111,
     "new_application_tests": 0,
-    "new_original_executions": 3,
+    "new_original_executions": 4,
     "criteria_or_weights_changed": false,
     "implementation_completion_percent": null,
-    "latest_resume_report": "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md",
+    "latest_resume_report": "docs/P03-INTERFACE-E-PARADA-2026-10-19.md",
     "latest_readonly_vm_gate_ref": "testes/resultados/p02-2026-10-18-2355.json",
-    "latest_observed_guest_clock": "09:19:38",
-    "latest_original_environment_review_ref": "testes/resultados/p03-2026-10-19-0113/review.json",
-    "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-0113/review.json"
+    "latest_observed_guest_clock": "09:54:23",
+    "latest_original_environment_review_ref": "testes/resultados/p03-2026-10-19-0930/review.json",
+    "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json"
   },
   "vm_followup_history": [
     {
@@ -2419,6 +2423,24 @@
       "new_matching_metric_cases": 0,
       "total_distinct_matching_metric_cases": 12,
       "inconclusive_metric_cases": 5,
+      "app_or_flatpak_changed": false,
+      "whole_family_parity_verified": false,
+      "criteria_or_weights_changed": false
+    },
+    {
+      "run_id": "vm-20261019-0113",
+      "report": "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md",
+      "review": "testes/resultados/p03-2026-10-19-0113/review.json",
+      "new_original_executions": 1,
+      "guest_inputs_suspended": false,
+      "clock_stop_confirmed_this_batch": false,
+      "network_connected": false,
+      "foxit_closed": true,
+      "ten_inputs_equal_before_and_after": true,
+      "new_matching_metric_cases": 1,
+      "total_distinct_matching_metric_cases": 13,
+      "inconclusive_metric_cases": 4,
+      "comparison_rollup_ref": "testes/resultados/p03-2026-10-19-0113/comparison-rollup.json",
       "app_or_flatpak_changed": false,
       "whole_family_parity_verified": false,
       "criteria_or_weights_changed": false

@@ -1,0 +1,39 @@
+{
+  "schema": "linuxit-checkpoint-validation-v1",
+  "validated_at_local": "2026-10-19T09:59:29-03:00",
+  "operation_catalog": {
+    "families": 25,
+    "operations": 111,
+    "implementation_states": {
+      "bounded_source_present": 71,
+      "pending_or_target_characterization": 37,
+      "deferred_by_user": 3
+    },
+    "source_symbols_checked": 49,
+    "recorded_related_tests_checked": 60,
+    "new_app_test_executions": 0,
+    "new_original_executions": 0,
+    "inventory_complete": false,
+    "implementation_completion_percent": null
+  },
+  "functional_specification": {
+    "families": 25,
+    "acceptance_cases": 50,
+    "implemented_subsets": 23,
+    "proposed_only": 2,
+    "unique_test_references_checked": 190,
+    "unique_source_references_checked": 77,
+    "new_acceptance_executions": 0,
+    "foxit_observations": 0,
+    "foxit_observations_scope": "New observations by this validator only; preserved subsets are separate.",
+    "families_with_recorded_original_subsets": 9,
+    "reference_specification_complete": false
+  },
+  "private_evidence_hashes_checked": 31,
+  "fixed_weighted_stages_unchanged": true,
+  "full_acceptance_plans_still_not_run": 50,
+  "app_package_paths_unchanged": true,
+  "git_diff_check_passed": true,
+  "new_app_tests": 0,
+  "full_family_parity_verified": false
+}

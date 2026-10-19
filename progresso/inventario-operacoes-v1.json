@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 4,
-  "reviewed_at_local": "2026-10-19T09:26:14-03:00",
+  "revision": 5,
+  "reviewed_at_local": "2026-10-19T09:58:26-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -26,7 +26,8 @@
     "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
     "docs/P03-PARADA-2026-10-19-0105.md",
     "docs/P03-CANCELAMENTO-MOSAICO-2026-10-19.md",
-    "testes/resultados/p03-2026-10-19-0113/comparison-rollup.json"
+    "testes/resultados/p03-2026-10-19-0113/comparison-rollup.json",
+    "docs/P03-INTERFACE-E-PARADA-2026-10-19.md"
   ],
   "families": [
     {
@@ -71,11 +72,12 @@
         "navigation/view-rotation",
         "navigation/saved-rotation"
       ],
-      "original_recorded_subset_summary": "Página/zoom/rotaçãoD03 em recorte e sequência1→8→1 no PDF cifradoD15; extremos/modos completos ainda abertos.",
-      "open_questions": "Limites/modos efetivos, estados primeira/intermediária/última/sem documento e interação com rotação/CropBox.",
+      "original_recorded_subset_summary": "UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8/8 e Next mantém8/8. Menu1% e6400%; menos/mais nos extremos mantêm os valores. FitPage47.15%, PAGE0011/8. Recorte visual sem vínculo comprovado aos IDs estáticos; entradas arbitrárias e demais modos abertos.",
+      "open_questions": "Entradas arbitrárias/fora do intervalo, demais modos, rotação/CropBox, atalhos/foco e vínculo com IDs estáticos; família integral aberta.",
       "related_c18_cases": [],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json"
     },
     {
       "id": "presentation",
@@ -847,12 +849,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+        "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+        "docs/P03-INTERFACE-E-PARADA-2026-10-19.md"
       ],
-      "original_scope": "Family references only; they do not prove all behaviors of this operation.",
+      "original_scope": "UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8/8 e Next mantém8/8. Menu1% e6400%; menos/mais nos extremos mantêm os valores. FitPage47.15%, PAGE0011/8. Recorte visual sem vínculo comprovado aos IDs estáticos; entradas arbitrárias e demais modos abertos.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json"
     },
     {
       "id": "navigation/zoom",
@@ -900,12 +904,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-SENHA-E-PARADA-2026-10-18.md"
+        "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+        "docs/P03-INTERFACE-E-PARADA-2026-10-19.md"
       ],
-      "original_scope": "Family references only; they do not prove all behaviors of this operation.",
+      "original_scope": "UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8/8 e Next mantém8/8. Menu1% e6400%; menos/mais nos extremos mantêm os valores. FitPage47.15%, PAGE0011/8. Recorte visual sem vínculo comprovado aos IDs estáticos; entradas arbitrárias e demais modos abertos.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json"
     },
     {
       "id": "navigation/view-rotation",
