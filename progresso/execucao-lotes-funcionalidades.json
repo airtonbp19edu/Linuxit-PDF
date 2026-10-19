@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-functional-batches-v1",
-  "updated_at_local": "2026-10-19T13:22:01-03:00",
+  "updated_at_local": "2026-10-19T14:16:33-03:00",
   "timezone": "America/Sao_Paulo",
   "request": "Continuar de3em3 as25famílias; nuvem direta23 permanece adiada por confirmação explícita do usuário.",
   "cloud_direct_deferred": true,
@@ -182,7 +182,7 @@
         {
           "number": 22,
           "id": "preferences",
-          "status": "queued",
+          "status": "source_implemented_linux_validation_pending",
           "whole_family_complete": false
         },
         {
@@ -194,10 +194,11 @@
         {
           "number": 24,
           "id": "conversion",
-          "status": "queued",
+          "status": "source_implemented_linux_validation_pending",
           "whole_family_complete": false
         }
-      ]
+      ],
+      "status": "source_implemented_linux_validation_pending"
     },
     {
       "id": "25-25",

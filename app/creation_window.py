@@ -26,8 +26,8 @@ class CreationWindow(Gtk.Window):
         self.open_result = open_result
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         box.set_border_width(14);self.add(box)
-        hint = Gtk.Label(label='PNG/JPEG/BMP/WebP e TIFF multipágina · até 100 páginas · transparência branca\n'
-                        'Cada TIFF inclui todas as páginas na ordem do arquivo. OCR é uma operação separada.', xalign=0)
+        hint = Gtk.Label(label='PNG/JPEG/BMP/WebP/TIFF, GIF, PPM/PGM/PBM e ICO · até100 páginas\n'
+                        'TIFF inclui todas as páginas. Demais animações exigem opção explícita; tempos de exibição são descartados.', xalign=0)
         hint.set_line_wrap(True);box.pack_start(hint, False, False, 0)
         bar = Gtk.Box(spacing=6);box.pack_start(bar, False, False, 0)
         self.controls = []
@@ -43,6 +43,8 @@ class CreationWindow(Gtk.Window):
         self.dpi = Gtk.SpinButton.new_with_range(72, 600, 1);self.dpi.set_value(300)
         self.dpi.set_tooltip_text('O tamanho da página é calculado a partir dos pixels e desta resolução.')
         actions.pack_start(self.dpi, False, False, 0);self.controls.append(self.dpi)
+        self.frames=Gtk.CheckButton(label='Todos os quadros como páginas estáticas')
+        box.pack_start(self.frames,False,False,0);self.controls.append(self.frames)
         self.create = Gtk.Button(label='Criar PDF…');self.create.connect('clicked', self._create)
         actions.pack_start(self.create, False, False, 0);self.controls.append(self.create)
         self.open_button = Gtk.Button(label='Abrir PDF');self.open_button.connect('clicked', self._open)
@@ -64,8 +66,9 @@ class CreationWindow(Gtk.Window):
             dialog.set_current_name('imagens.pdf')
         else:
             dialog.set_select_multiple(True)
-            filter_ = Gtk.FileFilter();filter_.set_name('PNG/JPEG/BMP/WebP e TIFF multipágina')
+            filter_ = Gtk.FileFilter();filter_.set_name('Imagens e animações suportadas')
             for mime in ('image/png', 'image/jpeg', 'image/bmp', 'image/x-ms-bmp', 'image/webp', 'image/tiff'):filter_.add_mime_type(mime)
+            for pattern in ('*.gif','*.GIF','*.ppm','*.pgm','*.pbm','*.ico'):filter_.add_pattern(pattern)
             dialog.add_filter(filter_)
         prepare_chooser(dialog,'save' if save else 'open')
         try:
@@ -121,6 +124,7 @@ class CreationWindow(Gtk.Window):
         if not destination or self.closed:return
         self.result = None;self.open_button.set_sensitive(False)
         request = {'paths': list(self.paths), 'dpi': self.dpi.get_value_as_int()}
+        if self.frames.get_active():request['frames']='all'
         def saved(result):
             self.result = result;self.open_button.set_sensitive(True)
             self.status.set_text(f"PDF criado: {result['pages']} página(s). Use Abrir PDF para conferir.")

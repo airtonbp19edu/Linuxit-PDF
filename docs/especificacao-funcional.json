@@ -3442,7 +3442,7 @@
     {
       "id": "preferences",
       "name": "Preferências/tema/persistência",
-      "matrix_implementation": "Tema system/light/dark e pastas locais persistidos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: padrões persistentes de zoom/painel/destaques, gravação atômica, sem caminhos ou segredos. Tema/pastas preservados; demais preferências/original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Preferência própria system/light/dark com migração legada e persistência; sem equivalência de todos os ajustes Foxit. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -3472,7 +3472,8 @@
         "app/appearance.py",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/reading_preferences.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3613,7 +3614,7 @@
     {
       "id": "conversion",
       "name": "Criação/conversão",
-      "matrix_implementation": "PNG/JPEG/BMP/WebP simples, TIFF até 100 páginas e OCR local até 20, com limites registrados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: GIF/APNG/WebP com opção explícita de todos os quadros estáticos, PPM/PGM/PBM/ICO adicionais;5 novos portáveis+22 regressões passaram. GTK/Linux e demais formatos abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, até100 páginas totais junto de PNG/JPEG/BMP/WebP simples. RGB8, orientação por página e limites agregados; animações e variantes não decodificáveis recusadas. OCR0.1.11 preservado com limite próprio20 páginas. Fonte/payload/sandbox380/380 passaram, incluindo14 novos portáveis,2 GTK e1 integração real TIFF→PDF→OCR; uma expectativa histórica de recusa TIFF foi adaptada. Família completa e referência Foxit permanecem parciais.",
       "inputs": [
@@ -3949,7 +3950,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T13:22:01-03:00",
+  "updated_at_local": "2026-10-19T14:16:33-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

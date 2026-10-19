@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T13:22:01-03:00",
+  "reviewed_at_local": "2026-10-19T14:16:33-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -341,6 +341,12 @@
       "path": "app/pdf_layers.py",
       "boundary": "portable_logic",
       "responsibility": "Inspeção da configuração OC default e representação privada de visibilidade de leitura."
+    },
+    {
+      "id": "reading_preferences",
+      "path": "app/reading_preferences.py",
+      "boundary": "portable_logic",
+      "responsibility": "Persistência atômica validada de padrões de zoom, painel lateral e destaques, sem caminhos/segredos."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -899,7 +905,8 @@
       "current_source_refs": [
         "app/appearance.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/reading_preferences.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null

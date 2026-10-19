@@ -34,6 +34,7 @@ from print_tasks import prepare_print, publish_print_copy
 from search_tasks import run_search_worker
 from document_session import DocumentSession
 from cancel_state import get_event
+from reading_preferences import read_preferences, save_preferences
 from navigation import page_index, zoom_value, page_width, MIN_ZOOM, MAX_ZOOM
 from page_surface import PageSurface, PageViewport
 
@@ -270,6 +271,7 @@ class PDFWindow(Gtk.Window):
                     ('Abrir PDF da pasta sincronizada…', self._open_sync_folder),
                     ('Esquecer pasta sincronizada', self._forget_sync_folder),
                     ('Pesquisar em coleção…', self._show_collection),
+                    ('Preferências de leitura…', self._reading_preferences),
                     ('Criar PDF de imagens…', self._show_creation),
                     ('Criar cópia pesquisável com OCR…', self._show_ocr),
                     ('Senhas e permissões…', self._show_security),
@@ -882,7 +884,11 @@ class PDFWindow(Gtk.Window):
             self.filepath = path
             self._document_stamp = info['source_stamp']
             self.page_count = int(info['pages']); self.page_sizes = [tuple(x) for x in info['sizes']]; self.metadata = info.get('metadata', {})
-            self.page = 0; self.rotation = 0; self.zoom_mode = 'fit-width'; self.zoom_percent = 100
+            preferences=read_preferences()
+            self.page = 0; self.rotation = 0
+            self.zoom_mode=preferences['zoom_mode'];self.zoom_percent=preferences['zoom_percent']
+            self.find_highlight_all.set_active(preferences['highlight_all'])
+            self._set_sidebar_visible(preferences['sidebar'])
             self.status_file.set_text(self._document_name())
             self.set_title(f'{self._document_name()} — Linuxit PDF')
             self.document_tab_label.set_text(self._document_name())
@@ -2221,6 +2227,30 @@ class PDFWindow(Gtk.Window):
             if self.metadata.get(key): lines.append(f'{label}: {self.metadata[key]}')
         dlg = Gtk.MessageDialog(transient_for=self, modal=True, message_type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.OK, text='Propriedades do PDF')
         dlg.format_secondary_text('\n'.join(lines)); dlg.run(); dlg.destroy()
+
+    def _reading_preferences(self,*_):
+        values=read_preferences()
+        dialog=Gtk.Dialog(title='Preferências de leitura',transient_for=self,modal=True)
+        dialog.set_destroy_with_parent(True)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Salvar padrões',Gtk.ResponseType.OK)
+        box=dialog.get_content_area();box.set_spacing(8);box.set_border_width(12)
+        hint=Gtk.Label(label='Aplicados ao próximo PDF aberto. Tema e pastas mantêm seus controles atuais.',xalign=0)
+        hint.set_line_wrap(True);box.add(hint)
+        mode=Gtk.ComboBoxText()
+        for key,label in [('fit-page','Ajustar página'),('fit-width','Ajustar largura'),('percent','Zoom definido')]:mode.append(key,label)
+        mode.set_active_id(values['zoom_mode']);box.add(mode)
+        zoom=Gtk.SpinButton.new_with_range(1,6400,1);zoom.set_value(values['zoom_percent'])
+        zoom.set_sensitive(values['zoom_mode']=='percent');box.add(zoom)
+        mode.connect('changed',lambda *_:zoom.set_sensitive(mode.get_active_id()=='percent'))
+        sidebar=Gtk.CheckButton(label='Exibir painel lateral');sidebar.set_active(values['sidebar']);box.add(sidebar)
+        highlights=Gtk.CheckButton(label='Destacar todas as ocorrências na busca');highlights.set_active(values['highlight_all']);box.add(highlights)
+        dialog.show_all()
+        try:
+            if dialog.run()==Gtk.ResponseType.OK:
+                try:save_preferences(dict(zoom_mode=mode.get_active_id(),zoom_percent=zoom.get_value_as_int(),
+                                          sidebar=sidebar.get_active(),highlight_all=highlights.get_active()))
+                except OSError as exc:self._error(f'Não foi possível salvar as preferências: {exc}')
+        finally:dialog.destroy()
 
     # ---------- presentation / modes ----------
     def _present(self, *_args):

@@ -14,7 +14,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |13–15|Marcadores; anotações; formulários|Fonte0.1.15: respostas/Ink/combo editável implementados;7 portáveis+21 regressões passaram. GTK/Linux e JavaScript/XFA abertos.|
 |16–18|Anexos; assinaturas; segurança|Fonte0.1.15: membros de portfólio/sessão por senha, assinatura local PEM e permissões;7 novos+28 regressões passaram. UI/Linux e confiança/LTV/RMS abertos.|
 |19–21|Acessibilidade; medidas; camadas/mídia|Fonte0.1.15: voz WAV, medidas calibradas e toggle de camadas;6 portáveis+14 regressões passaram. Linux/probe/voz/pixels e mídia/3D abertos.|
-|22–24|Preferências; nuvem; conversão|Preferências e formatos; **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário. Pastas sincronizadas preservadas.|
+|22–24|Preferências; nuvem; conversão|Preferências/quadros estáticos implementados;5 portáveis+22 regressões passaram. **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário.|
 |25|Plataforma|Portais, associação/atualização e Windows; validar o que estiver disponível no Linux do CI.|
 
 ## Contrato próprio do lote4–6
@@ -204,3 +204,27 @@ Preparado no CI após a suíte fonte; não executado no Windows, não é teste O
 6 novos portáveis e14 regressões de sessão passaram;3 testes Linux (pixels,
 camadas/medidas GTK e voz real) e probe aguardam ambiente. Não declarar que o
 checkbox alterou os pixels antes de examinar o relatório e a renderização.
+
+
+## Lote22–24
+
+Preferências próprias de leitura: zoom inicial fit-page/fit-width/percentual,
+1–6400%, painel lateral e destaques de busca. Aplicadas ao próximo documento;
+gravação atômica, arquivo inválido volta aos padrões. Não guardam documento,
+senha ou chave. Tema e pastas sincronizadas mantêm controles anteriores.
+Demais preferências e defaults do original não foram caracterizados integralmente.
+
+Conversão: GIF/APNG/WebP importam todos os quadros como páginas estáticas somente
+mediante opção explícita. TIFF conserva comportamento anterior. Limites de100
+páginas/45MP por quadro/150MP total/128MiB saída; iteração limitada de quadros.
+O compositor Pillow fornece pixels de cada quadro; durações, áudio e movimento
+não são incorporados ao PDF. APNG com imagem default separada é recusado.
+PPM/PGM/PBM e ICO estático adicionados; ICO usa a representação escolhida pelo
+decoder, sem inventar que tamanhos alternativos sejam páginas. Fontes preservadas.
+5 novos testes portáveis/22 regressões passaram;1 GTK aguarda validação.
+
+**23 permanece adiado:** integração direta/OAuth/colaboração remota não foi criada.
+Pastas sincronizadas continuam disponíveis sem provar sincronização remota.
+O marco825f1e4 dos lotes4–15 passou465/465 no Linux39282125477 sem skips;
+relatório bruto/hash conferidos. Isso é evidência histórica, não aprovação da
+fonte atual19–24. CI39292345681 cobre19–21 e está em andamento.

@@ -23,7 +23,7 @@ MAX_TOTAL_BYTES = 256 * 1024**2
 MAX_IMAGE_PIXELS = 45_000_000
 MAX_TOTAL_PIXELS = 150_000_000
 MAX_OUTPUT_BYTES = 128 * 1024**2
-SUPPORTED_FORMATS = frozenset({'PNG','JPEG','BMP','WEBP','TIFF'})
+SUPPORTED_FORMATS = frozenset({'PNG','JPEG','BMP','WEBP','TIFF','GIF','PPM','ICO'})
 
 
 def _require(value, message):
@@ -37,7 +37,8 @@ def _sha(path):
 
 
 def validate_request(request):
-    _require(isinstance(request, dict) and set(request) == {'paths', 'dpi'}, 'Pedido de criação inválido.')
+    _require(isinstance(request, dict) and {'paths','dpi'}<=set(request)<={'paths','dpi','frames'}, 'Pedido de criação inválido.')
+    _require(request.get('frames','still') in ('still','all'),'Política de quadros inválida.')
     paths, dpi = request['paths'], request['dpi']
     _require(type(dpi) is int and 72 <= dpi <= 600, 'A resolução deve ser um inteiro de 72 a 600 DPI.')
     _require(isinstance(paths, list) and 1 <= len(paths) <= MAX_IMAGES,
@@ -129,12 +130,20 @@ def create_pdf_from_images(destination, request):
                     warnings.simplefilter('error', Image.DecompressionBombWarning)
                     with Image.open(BytesIO(data)) as source:
                         format_ = source.format
-                        _require(format_ in SUPPORTED_FORMATS, 'Formato não suportado; use PNG, JPEG, BMP, WebP ou TIFF.')
+                        _require(format_ in SUPPORTED_FORMATS, 'Formato de imagem não suportado.')
+                        _require(format_!='GIF' or request.get('frames')=='all','GIF exige opção explícita de importar todos os quadros como páginas.')
                         if format_ == 'TIFF':
                             frames = _tiff_page_count(data, MAX_PAGES - len(sources))
                         else:
-                            frames = getattr(source, 'n_frames', 1)
-                            _require(frames == 1, 'Imagens animadas ou com múltiplos quadros não TIFF não são suportadas.')
+                            frames=1
+                            for frame in range(MAX_PAGES-len(sources)+1):
+                                try:source.seek(frame)
+                                except EOFError:break
+                                frames=frame+1
+                                if frame and request.get('frames','still')!='all':
+                                    raise ValueError('Múltiplos quadros exigem a opção explícita de importar todos como páginas.')
+                            if format_=='PNG' and getattr(source,'default_image',False):
+                                raise ValueError('APNG com imagem default separada ainda não é suportado.')
                         _require(len(sources) + frames <= MAX_PAGES, f'O PDF pode ter no máximo {MAX_PAGES} páginas, somando todos os arquivos.')
                         for frame in range(frames):
                             source.seek(frame)
@@ -200,7 +209,7 @@ def invoke_image_creation(destination, request, cancel=None, timeout=120):
             first = rows[cursor]
             count, format_, identity = first['frame_count'], first['format'], first['sha256']
             _require(type(count) is int and 1 <= count <= MAX_PAGES and cursor + count <= len(rows)
-                     and format_ in SUPPORTED_FORMATS and (count == 1 or format_ == 'TIFF')
+                     and format_ in SUPPORTED_FORMATS and (count == 1 or format_ == 'TIFF' or request.get('frames')=='all')
                      and re.fullmatch('[0-9a-f]{64}', identity), 'Invalid image frame inventory')
             for frame, row in enumerate(rows[cursor:cursor+count], 1):
                 _require(Path(row['path']).resolve() == path and row['sha256'] == identity
