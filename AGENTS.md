@@ -1,5 +1,11 @@
 # Linuxit PDF — continuidade do projeto
 
+Atualização 2026-10-18T23:56:42-03:00: [P02 validada offline](docs/P02-COLETOR-VALIDADO-2026-10-18.md).
+Coletor corrigido instalado com token interativo limitado; startup/pf/col/end
+completos, dez Inputs/RX/isolamento conferidos e parada normal sem Foxit.
+P03 pronta para novo observador e preflight/controle visual. Rede desligada.
+P01 provisória preservada; registros anteriores abaixo são históricos.
+
 Retomada mais recente: [controle de entrada da VM](docs/VM-RETOMADA-2026-10-18-2336.md), em 2026-10-18T23:39:28-03:00.
 Relógio23:36:09 sem avanço após10 segundos externos; duas capturas VBox idênticas.
 P02 permanece bloqueada e P03 não iniciada; nenhuma entrada/deploy/rede/reboot.

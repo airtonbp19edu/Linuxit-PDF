@@ -2835,3 +2835,28 @@ commit/push progressivo autorizado e recibo externo de sincronização; não
 declarar publicação sem confirmação. Próximo passo: VM responder; depois
 controle visual, ausência do original, coletor corrigido limitado/RunId novo,
 pf/col/end e contenção offline. Somente então P03. Sem reinício automático.
+
+## 2026/10/18 às 23:56 (America/Sao_Paulo, UTC-03:00) — P02 integrada e validada offline
+
+Retome: base local/remota `876f00dd99373b23a685983b957d31d443f83c87` limpa confirmada. A VM voltou a atualizar:
+relógio23:49:30→23:50:14, espera externa10s, capturas distintas; último23:54:56.
+Notepad abriu, Task Manager Details respondeu e não mostrou Foxit na faixa
+alfabética. Manutenção breve já autorizada confirmou zero processos e instalou
+script próprio `b20ad4dca54ff33e7524df9d08702190539e0172ce3174dfe30b9118a277cac1` em tarefa2355 Interactive/Limited;
+cabo desligado em finally antes dos testes. Sem proteções alteradas, reboot/pause.
+Startup ready, pf/col/end completed recuperados completos e examinados. Sessão1
+não elevada, dez Inputs iguais, identidade, RX e contenção host/guest passaram.
+Notepad com marcador e menu Editar observado, sem editar. Coleta sem Foxit;
+parada normal end confirmada. Primeiro read pf ainda não pronto; aguardado e
+recuperado sem repetir comando. Não iniciar original com observador encerrado.
+
+P02 completed_validated_offline, P03 ready_pending_fresh_preflight. Nenhum teste
+Foxit, nova paridade ou suíte app/Flatpak nesta rodada; app preservado. Critérios,
+pesos,45,13% checklist,0/25 eglobalnull intactos. Fonte403 e pacote400 históricos.
+Ferramentas: Computer Use @oai/sky, VBoxManage7.2.20, SSHmanutenção e scripts
+próprios. Evidências privadas analysis-local/vm-20261018-2355/ e vm-resume-20261018-2350/;
+publicáveis docs/P02-COLETOR-VALIDADO-2026-10-18.md e testes/resultados/p02-2026-10-18-2355.json. Retomada/plano/pendências atualizados.
+Validar JSON/recibos/hashes/referências e preservação dos critérios, publicar
+marco autorizado e confirmar remoto com recibo externo. Próximo: RunId novo,
+preflight/controle visual offline, depois destinos D07/D10, D12,D18 e UI.
+Regra de parar/avisar se relógio ou resposta falhar permanece; causas anterioresnull.

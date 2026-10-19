@@ -10,7 +10,7 @@ Este plano organiza **todos os 19 critérios ainda abertos e as 25 famílias ide
 
 ## Execução atual de P01–P03
 
-P01 concluída para o catálogo provisório v1 de 111 recortes/25 famílias; inventário global aberto. P02 bloqueada novamente: relógio em 23:36:09 sem avanço e P03 não iniciada. [Última conferência](VM-RETOMADA-2026-10-18-2336.md). [Relatório da execução](EXECUCAO-P01-P03-2026-10-18.md) e [estado estruturado](../progresso/execucao-plano.json). A situação inicial abaixo permanece histórica.
+P01 concluída para o catálogo provisório v1 de 111 recortes/25 famílias; inventário global aberto. P02 concluída no ambiente/observador offline; P03 pronta com novo observador e controle antes do original. [Validação P02](P02-COLETOR-VALIDADO-2026-10-18.md). [Relatório da execução](EXECUCAO-P01-P03-2026-10-18.md) e [estado estruturado](../progresso/execucao-plano.json). A situação inicial abaixo permanece histórica.
 
 ## Estado de partida
 

@@ -1,5 +1,11 @@
 # Pendências de análise e pontos de retomada
 
+Atualização 2026-10-18T23:56:42-03:00: [P02 validada offline](../docs/P02-COLETOR-VALIDADO-2026-10-18.md).
+Coletor corrigido instalado com token interativo limitado; startup/pf/col/end
+completos, dez Inputs/RX/isolamento conferidos e parada normal sem Foxit.
+P03 pronta para novo observador e preflight/controle visual. Rede desligada.
+P01 provisória preservada; registros anteriores abaixo são históricos.
+
 P01 do plano executada no recorte provisório de111 operações/25 famílias,
 com matriz/contratos reconciliados. [Execução P01–P03](../docs/EXECUCAO-P01-P03-2026-10-18.md):
 controle do relógio21:49:22 falhou após10 segundos externos; P02 bloqueada e

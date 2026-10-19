@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-continuation-execution-v1",
-  "updated_at_local": "2026-10-18T23:39:28-03:00",
+  "updated_at_local": "2026-10-18T23:56:42-03:00",
   "request": "P01-P03",
   "steps": [
     {
@@ -17,31 +17,34 @@
     },
     {
       "id": "P02",
-      "status": "blocked_vm_not_responsive",
-      "attempted": "Read-only clock/host entry gate, failed before any guest action.",
+      "status": "completed_validated_offline",
+      "attempted": "Corrected collector deployed and validated startup/pf/col/end offline with limited interactive token; normal stop completed without original execution.",
       "evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
-        "testes/resultados/vm-retomada-2026-10-18-2336.json"
+        "testes/resultados/vm-retomada-2026-10-18-2336.json",
+        "testes/resultados/p02-2026-10-18-2355.json"
       ],
-      "next": "Restore guest responsiveness, then fresh limited offline controls and deploy/integrate corrected collector.",
-      "latest_attempt_at_local": "2026-10-18T23:39:28-03:00",
-      "latest_observed_guest_clock": "23:36:09"
+      "next": "New running observer, fresh offline preflight/control before P03.",
+      "latest_attempt_at_local": "2026-10-18T23:56:42-03:00",
+      "latest_observed_guest_clock": "23:54:56"
     },
     {
       "id": "P03",
-      "status": "not_started_blocked_by_P02",
+      "status": "ready_pending_fresh_preflight",
       "new_original_executions": 0,
       "evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
-        "testes/resultados/vm-retomada-2026-10-18-2336.json"
+        "testes/resultados/vm-retomada-2026-10-18-2336.json",
+        "testes/resultados/p02-2026-10-18-2355.json"
       ],
-      "next": "P02 must pass before original observations.",
-      "latest_attempt_at_local": "2026-10-18T23:39:28-03:00",
-      "latest_observed_guest_clock": "23:36:09"
+      "next": "New running observer, fresh offline preflight/control before P03.",
+      "latest_attempt_at_local": "2026-10-18T23:56:42-03:00",
+      "latest_observed_guest_clock": "23:54:56"
     }
   ],
   "legacy_criteria_changed": false,
   "new_recoding_percentage": null,
   "latest_resume_request": "retome",
-  "latest_readonly_vm_gate_ref": "testes/resultados/vm-retomada-2026-10-18-2336.json"
+  "latest_readonly_vm_gate_ref": "testes/resultados/p02-2026-10-18-2355.json",
+  "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json"
 }

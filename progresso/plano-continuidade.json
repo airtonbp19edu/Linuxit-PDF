@@ -3,7 +3,7 @@
   "created_at_local": "2026-10-18T21:54:16-03:00",
   "timezone": "America/Sao_Paulo",
   "base_commit": "c62ae3c4aece24f902c26f66aeeb81a4995f9b3c",
-  "status": "executing_with_vm_blocker",
+  "status": "executing_original_environment_validated",
   "scope": "All currently recorded unfinished criteria and25 identified families. Operational inventory remains open; this plan is not proof of implementation or parity.",
   "authoritative_refs": [
     "AGENTS.md",
@@ -85,7 +85,7 @@
     {
       "id": "P02",
       "title": "Validar o coletor e o ambiente do original",
-      "status": "blocked_vm_not_responsive",
+      "status": "completed_validated_offline",
       "environment": "VM Windows offline, após voltar a responder",
       "start_after": [],
       "completion_inputs": [],
@@ -102,13 +102,14 @@
       "completion_gate": "Coletor corrigido realmente instalado e validado ponta a ponta, com recibos completos e token limitado. Controles do host já passados não substituem esta integração.",
       "execution_evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
-        "testes/resultados/vm-retomada-2026-10-18-2336.json"
+        "testes/resultados/vm-retomada-2026-10-18-2336.json",
+        "testes/resultados/p02-2026-10-18-2355.json"
       ]
     },
     {
       "id": "P03",
       "title": "Completar as observações do Foxit",
-      "status": "not_started_blocked_by_P02",
+      "status": "ready_pending_fresh_preflight",
       "environment": "VM offline aprovada em P02",
       "start_after": [
         "P02"
@@ -132,7 +133,8 @@
       "completion_gate": "Protocolos selecionados reproduzíveis e observáveis; cada lacuna aprovada para comparação ou declarada inconclusiva. Fechamento amplo exige também as operações descobertas em P01/P04.",
       "execution_evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
-        "testes/resultados/vm-retomada-2026-10-18-2336.json"
+        "testes/resultados/vm-retomada-2026-10-18-2336.json",
+        "testes/resultados/p02-2026-10-18-2355.json"
       ]
     },
     {
@@ -1207,6 +1209,6 @@
     "Root cause of stopped guest clock",
     "Unexamined original capabilities and external service dependencies"
   ],
-  "updated_at_local": "2026-10-18T23:39:28-03:00",
+  "updated_at_local": "2026-10-18T23:56:42-03:00",
   "execution_state_ref": "progresso/execucao-plano.json"
 }

@@ -630,5 +630,7 @@
       "resolution_evidence": "docs/VM-FOXIT-2026-10-18.md"
     }
   ],
-  "execution_plan_ref": "progresso/plano-continuidade.json"
+  "execution_plan_ref": "progresso/plano-continuidade.json",
+  "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json",
+  "original_environment_status": "P02 observer validated offline; original behavior still partial; fresh preflight required for every new run."
 }
