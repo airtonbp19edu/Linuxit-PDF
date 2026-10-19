@@ -229,9 +229,9 @@ Cada linha tem dois planos S12 iniciais ligados na fonte estruturada. Eles são 
 
 | Família | Base preservada | Falta |
 |---|---|---|
-|Abrir PDF e renderizar páginas (B03)|Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados.|Abertura cifrada integrada, recuperação e demais falhas/cancelamento/renderização; testar o ciclo completo de documento e tarefas.|
-|Navegação/rotação/zoom (B05)|Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1.|Limites/modos efetivos, estados primeira/intermediária/última/sem documento e interação com rotação/CropBox.|
-|Apresentação ajustar/preencher (B05)|Apresentação GTK própria; comparação integral ausente.|Ajustar/preencher, atalhos, foco e múltiplos monitores observados no alvo e validados no desktop.|
+|Abrir PDF e renderizar páginas (B03)|Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta.|Broad damaged/encrypted format corpus, permission/edit/print integration beyond this reading subset and full original lifecycle comparison remain open.|
+|Navegação/rotação/zoom (B05)|Página/zoom digitáveis, zoom1–6400%, viewport virtual, geometria/rotação e foco. Subconjunto0.1.14; família integral aberta.|Complete original modes/inputs/focus and static-ID correspondence remain open; own input/zoom/CropBox/rotation controls passed in0.1.14.|
+|Apresentação ajustar/preencher (B05)|Apresentação com sessão autenticada, rotação, foco/atalhos e seleção de monitor/fallback. Subconjunto0.1.14; desktop físico e original pendentes.|Real Linux desktop/compositor and physical dual-monitor/hotplug behavior; original presentation remains unobserved. Own GTK control tests and virtual desktop evidence are separate.|
 |Busca literal/palavra inteira/maiúsculas (B04)|Literal/palavra inteira/caixa próprios e recortes comparados; D11-missing exato observado.|Destinos e ordenação mista, destaques, normalização completa, limites/cancelamento e vazio sem presumir retorno de backend.|
 |Busca em marcadores (B04)|Dois hits observados; destinos inconclusivos.|Ativação/destinos dos dois resultados, ordenação e associação dinâmica 7911/7913.|
 |Busca em comentários (B04)|Autor corrigido na fonte 168381b,403/403 Linux registrados; Flatpak0.1.13 anterior à correção.|Demais tipos/campos/respostas, duplicação, destinos e ordenação; empacotar correção de autor já validada na fonte.|
@@ -305,3 +305,6 @@ Uma entrega Linux/Flatpak utilizável pode ocorrer em P09 com limitações expl�
 6. Se a VM parar: observar após dez segundos externos sem nova entrada, suspender testes, salvar e avisar. Não pausar/retomar/reiniciar automaticamente.
 
 **Próxima instrução sugerida:** “Leia AGENTS.md, docs/RETOMADA.md e docs/PLANO-DE-CONTINUIDADE.md. Execute P01, começando pela reconciliação das evidências recentes; se a VM continuar indisponível, avance em P06/B01 com testes Linux e preserve a fila P02/P03.”
+
+
+Atualização0.1.14: [itens1–3 próprios entregues](LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md),432/432 por ambiente e duas telas virtuais/RandR. B03/B05 continuam parciais pelos contratos amplos, ambiente físico e original; não encerram P03 ou os19 critérios.

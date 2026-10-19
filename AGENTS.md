@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+Atualização 2026-10-19T12:12:33-03:00: [leitura, navegação e apresentação0.1.14](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md). **432/432 testes próprios por ambiente** fonte Linux/payload/Flatpak, sem falhas/erros/skips;14 portáveis e15 GTK novos. Pacote0.1.14/devel contém abertura transacional com senha/recuperação, zoom1–6400/viewport virtual e apresentação com seleção de monitor. Monitores físicos e comparação integral Foxit pendentes; usuário sem desktop Linux com duas telas. VM0930 permanece suspensa no relógio09:54:23. Não encerra famílias nem P01–P03; critérios/paridade intactos. Histórico abaixo.
+
 Atualização 2026-10-19T10:53:45-03:00: [implementação dos itens1–3 da lista de funcionalidades](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md). Fonte0.1.14 em validação: abertura transacional com senha/recuperação, zoom digitável1–6400/viewport virtual e apresentação com seleção de monitor. 14 testes portáveis passaram; Linux/GTK e pacote ainda pendentes. Usuário não dispõe de Linux com dois monitores. Não é conclusão de famílias nem dos pacotesP01–P03; VM0930 continua suspensa no checkpoint anterior. Critérios e paridade intactos.
 
 Checkpoint 2026-10-19T09:58:26-03:00: [UI03/04 e nova parada da VM](docs/P03-INTERFACE-E-PARADA-2026-10-19.md). Navegação1→2→3→8 e limites de zoom1%/6400% observados; FitPage47.15%. Relógio09:54:23 sem avanço entre capturas separadas por35.6s externos. Usuário confirmou travamento e encerrou por hoje. Entradas suspensas; sem rede/reboot/pause/kill/stop após constatação. Hostrunning/cabooff, janela Foxit visível; estado final de processos/coletor0930 e integridade pós-parada não confirmados. P03 parcial/bloqueada; não superar a parada automaticamente.13 métricas iguais/quatro inconclusivas e app/Flatpak/critérios intactos. Registros anteriores abaixo são históricos.
@@ -142,7 +144,7 @@ PDF e colaboração sem IA no escopo. Pesos e critérios não foram alterados.
   Uma atividade `done` exige evidência técnica examinada, além de arquivo existente.
 - Publique cada marco autorizado e confirme o remoto. O comprovante final pode
   ser gerado por `scripts/verify_git_sync.py` fora da árvore, evitando autorreferência.
-- O último pacote publicado é 0.1.13 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
+- O último pacote publicado é 0.1.14 de desenvolvimento, branch Flatpak `devel`. Não declare versão estável,
   projeto completo ou 100% sem critérios verificados.
 - A criação de worktrees não é necessária neste ambiente isolado.
 

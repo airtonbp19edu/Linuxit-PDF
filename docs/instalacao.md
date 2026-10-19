@@ -2,14 +2,14 @@
 
 ## Flatpak para Linux x86_64
 
-O bundle 0.1.13 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
+O bundle 0.1.14 usa o ID `io.github.airtonbp19edu.LinuxitPDF`, branch `devel` e
 Freedesktop Platform 25.08. É um marco de desenvolvimento com funcionalidades
 parciais; não é uma publicação no Flathub nem uma declaração de equivalência
 integral ao Foxit. O bundle local não recebe assinatura digital; o manifesto
 registra sua integridade e a origem do código.
 
 Para baixar, abra a
-[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.13-x86_64.flatpak)
+[página do Flatpak no GitHub](https://github.com/airtonbp19edu/Linuxit-PDF/blob/main/releases/LinuxitPDF-0.1.14-x86_64.flatpak)
 e clique em **Download raw** (ícone de download). Se o repositório estiver
 privado, use um navegador conectado a uma conta com acesso ao projeto;
 o link raw sem autenticação retorna 404 nesse caso. Com o repositório público,
@@ -17,19 +17,16 @@ o download não exige login. A visibilidade é administrada pelo proprietário.
 Uma página em branco no navegador interno não indica que o pacote esteja vazio.
 Se necessário, abra essa página no navegador habitual.
 
-O arquivo 0.1.13 tem **44.662.456 bytes** (aproximadamente 42,6 MiB).
+O arquivo 0.1.14 tem **44.665.656 bytes** (aproximadamente 42,6 MiB).
 É um instalador binário Flatpak, sem prévia de conteúdo em uma página web.
 
-O [download público da 0.1.13](../testes/resultados/0.1.13/download-integrity-2026-10-18.json)
-foi conferido sem login: HTTP200, tamanho e SHA-256 completos.
-A [auditoria independente](../testes/resultados/0.1.13/audit/review.json) reinstalou
-o mesmo bundle e aprovou cinco novos smoke checks.
+O pacote foi instalado e testado no sandbox do CI. A conferência do download público e a auditoria independente deste mesmo bundle serão registradas após a publicação.
 
 Em um desktop Linux com Flatpak e Flathub configurados, abra o terminal na
 pasta em que o arquivo foi baixado e execute:
 
 ```bash
-flatpak install --user ./LinuxitPDF-0.1.13-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.14-x86_64.flatpak
 flatpak run --user io.github.airtonbp19edu.LinuxitPDF
 ```
 
@@ -46,14 +43,14 @@ Abra o terminal na pasta do arquivo e execute:
 
 ```bash
 flatpak --version
-sha256sum LinuxitPDF-0.1.13-x86_64.flatpak
-flatpak install --user ./LinuxitPDF-0.1.13-x86_64.flatpak
+sha256sum LinuxitPDF-0.1.14-x86_64.flatpak
+flatpak install --user ./LinuxitPDF-0.1.14-x86_64.flatpak
 ```
 
-O SHA-256 esperado para a 0.1.13 é:
+O SHA-256 esperado para a 0.1.14 é:
 
 ```text
-0fa316cdb5bbf124dc411d79fad7135f77cbbeb3c158f319833b3ef33f6ad024
+795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f
 ```
 
 - Se o hash diferir, o arquivo baixado não é idêntico ao pacote publicado;

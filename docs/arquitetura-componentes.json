@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T10:53:45-03:00",
+  "reviewed_at_local": "2026-10-19T12:12:33.570392-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.14",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -555,7 +555,10 @@
         "app/main.py",
         "app/async_core.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -571,7 +574,10 @@
         "app/edit_tasks.py",
         "app/worker_cli.py",
         "app/local_files.py",
-        "app/folder_dialogs.py"
+        "app/folder_dialogs.py",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -581,7 +587,10 @@
       "contract_kind": "implemented_subset",
       "current_source_refs": [
         "app/presentation.py",
-        "app/page_cache.py"
+        "app/page_cache.py",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py"
       ],
       "future_boundary": null,
       "future_boundary_implemented": null
@@ -892,6 +901,7 @@
     }
   ],
   "runtime_limitations": [
+    "0.1.14:432/432 próprios por ambiente fonte/payload/sandbox,14 portáveis e15 GTK novos; leitura transacional/senha/recuperação/zoom/monitor. Original e hardware físico permanecem pendentes; histórico abaixo.",
     "Fonte0.1.14 em validação: leitura/senha/recuperação, zoom1–6400 e seleção de monitor;14 testes portáveis passaram. GTK/Linux/pacote e dois monitores físicos ainda não aprovados neste checkpoint.",
     "Current0.1.13:400/400 source/payload/installed sandbox passed, including14 portable and6 GTK annotation methods; all380 prior IDs retained. Full families, real desktop/device and original remain unverified.",
     "Historical pre-CI0.1.13 checkpoint:14 portable methods passed and6 GTK/Poppler pending then; superseded by the400/400 source/payload/sandbox CI recorded above.",
@@ -911,5 +921,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": true
+  "source_changes_unreleased": false
 }

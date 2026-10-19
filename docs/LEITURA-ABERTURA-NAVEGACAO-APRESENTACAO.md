@@ -1,6 +1,8 @@
 # Leitura: abertura, navegação e apresentação
 
-Checkpoint 2026-10-19T10:53:45-03:00. Implementação dos itens1–3 solicitados pelo usuário; não se confunde com P01–P03 do plano de execução. Fonte candidata0.1.14, ainda em validação.
+Entrega própria0.1.14 validada em2026-10-19T12:13:17-03:00:432/432 por ambiente fonte/payload/sandbox, duas telas virtuais e controles visíveis. Fonte/payload doCI39272792405 e sandbox concluído sem rebuild noCI39274463095. Hardware físico e comparação integral permanecem pendentes. Auditoria independente/download público após push. Registro inicial e evidências detalhadas abaixo.
+
+Checkpoint 2026-10-19T10:53:45-03:00. Implementação dos itens1–3 solicitados pelo usuário; não se confunde com P01–P03 do plano de execução. Checkpoint inicial; entrega própria0.1.14 validada posteriormente conforme registro abaixo.
 
 - Abertura transacional: mantém documento/página anteriores até validar candidato e render inicial. Senha pedida na interface, enviada por stdin ao worker e não salva em preferências/argv. Leitura de PDF cifrado usa representação privada descartável; salvar cópia, assinaturas e edição mantêm como referência o original. Sessão com leases adia limpeza até terminar leitores ativos.
 - Recuperação consentida: tentativa tolerante de estruturas que o pypdf consegue interpretar, incluindo xref incorreto; rejeição explícita de arquivos irrecuperáveis. Original sem sobrescrita; a representação de leitura não é uma reparação certificada nem substitui assinaturas do original.
@@ -12,3 +14,16 @@ O pedido GTK de fullscreen não garante que o compositor o conceda; estado efeti
 Validação inicial:14/14 testes portáveis, sem falhas/erros/skips; [relatório](../testes/resultados/leitura-2026-10-19/portable-initial.json). Linux/GTK, capturas e pacote ainda pendentes. Não representa aprovação de famílias ou equivalência Foxit. Usuário não tem ambiente Linux com dois monitores; controle de seleção/hotplug poderá ser simulado, validação física continua aberta. Impressão integrada da representação cifrada/recuperada permanece explicitamente recusada enquanto o fluxo de impressão próprio não for completado.
 
 VM0930 permanece suspensa pelo relógio09:54:23; nenhuma entrada/rede/reinício nesta rodada. Comparações13 iguais/quatro inconclusivas preservadas;39 critériosdone/19abertos,45.13% histórico e paridade0/25 intactos. Último Flatpak publicado ainda0.1.13/devel; não anunciar0.1.14 como entregue antes de testes/publicação confirmados.
+
+
+## Validação e entrega própria0.1.14 — 2026-10-19T12:12:33-03:00
+
+[RetomadaCI39274463095](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39274463095) do mesmo bundle (fonte/payload previamente432/432 noCI39272792405; sem rebuild), fonte `a4e017ae65784256583292ddbe502e182bb25a66`: **432/432 por ambiente** fonte,payload,sandbox instalado,0falhas/erros/skips. Os403 IDs da fonte anterior foram preservados;29 novos métodos (14 portáveis e15 GTK) cobrem abertura com senha/cancelamento/erro/recuperação, primeira renderização, mudança concorrente da origem, obsolescência/limpeza, controles, geometria e apresentação. São testes próprios delimitados; os50 planos completosS12 e equivalência de famílias continuam abertos.
+
+109 arquivos app conferem com fonte/payload. Smoke5/5 e launcher3/3; pastas foraHOME negada/concedida e dez cenários de painel passaram. Proveniência: 2849 arquivos de dependências/224 ELF/162 pacotes. Relatórios selados em[testes/resultados/0.1.14](../testes/resultados/0.1.14/), [manifesto](../releases/manifest-0.1.14.json) e [casos atuais](../testes/resultados/leitura-2026-10-19/validated-cases.json).
+
+Estado dos itens: abertura com senha/recuperação e navegação/zoom/rotação implementados e testados nos recortes próprios; apresentação inclui duas telas virtuais e fallback. Validação física de duas telas continua pendente pela indisponibilidade informada pelo usuário, assim como comparação integral comFoxit.
+
+Limites explícitos: origem de até256MiB/20000páginas, dimensões positivas/finitas de até200000pt, representação temporária até512MiB e senha de até127caracteres. A recuperação é tolerância do pypdf em estruturas interpretáveis, não reparação universal. Representação de leitura não prova assinatura; edição/segurança continuam operando no original e não ganham automaticamente suporte à senha de leitura. Impressão integrada de PDF cifrado/recuperado é recusada. Raster tem resolução limitada mesmo com zoom6400%; área lógica permanece navegável sem alocação de imagem gigante. Não há teste de monitor físico, compositorWayland ou equivalência integral Foxit nesta rodada.
+
+[Dois monitores virtuais](../testes/resultados/leitura-2026-10-19/virtual-monitors/review.json): CI39271276972 com duas saídasRandR/GDK1280x800@0,0 e1024x768@1280,0; fullscreen/posição0→1→0, controles inteiros e retirada/restauração da tela ativa passaram. Capturas examinadas. Xvfb/Xinerama e Xephyr/Xinerama anteriores não expuseram duas telas aoGTK e não foram aprovados; laboratório corrigido paraRandR. Não equivale a monitor físico ouWayland. [Base oficial de enumeraçãoGTK](https://github.com/GNOME/gtk/blob/gtk-3-24/gdk/x11/gdkscreen-x11.c).

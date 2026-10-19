@@ -2447,17 +2447,40 @@
     }
   ],
   "reading_workflow_followup": {
-    "updated_at_local": "2026-10-19T10:53:45-03:00",
+    "updated_at_local": "2026-10-19T12:12:33.570392-03:00",
     "report": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md",
     "scope": "User list items1–3; not execution packages P01–P03",
     "source_version": "0.1.14",
-    "status": "implementation_under_linux_validation",
+    "status": "own_linux_and_flatpak_validated_physical_and_original_pending",
     "portable_tests_passed": 14,
-    "linux_gtk_validated": false,
-    "flatpak_rebuilt": false,
+    "linux_gtk_validated": true,
+    "flatpak_rebuilt": true,
     "physical_multi_monitor_validated": false,
     "user_has_two_monitor_linux_environment": false,
     "original_vm_resumed": false,
-    "whole_family_parity_verified": false
+    "whole_family_parity_verified": false,
+    "virtual_multi_monitor_validated": true,
+    "virtual_active_monitor_removal_validated": true,
+    "virtual_monitor_evidence": "testes/resultados/leitura-2026-10-19/virtual-monitors/review.json",
+    "source_payload_sandbox_tests_passed_each": 432,
+    "new_portable_tests": 14,
+    "new_gtk_tests": 15,
+    "current_own_evidence": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+    "ci_run_id": 39274463095,
+    "source_payload_ci_run_id": 39272792405,
+    "flatpak_version": "0.1.14"
+  },
+  "latest_own_delivery": {
+    "version": "0.1.14",
+    "date_local": "2026-10-19T12:12:33.570392-03:00",
+    "manifest": "releases/manifest-0.1.14.json",
+    "source_commit": "a4e017ae65784256583292ddbe502e182bb25a66",
+    "ci_run_id": 39274463095,
+    "source_payload_ci_run_id": 39272792405,
+    "per_environment_tests_passed": 432,
+    "whole_family_parity_verified": false,
+    "includes_comment_author_fix": true,
+    "original_vm_resumed": false,
+    "independent_installed_audit": "pending_after_publication"
   }
 }

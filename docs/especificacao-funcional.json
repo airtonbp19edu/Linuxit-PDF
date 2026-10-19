@@ -23,16 +23,18 @@
     {
       "id": "open-render",
       "name": "Abrir PDF e renderizar páginas",
-      "matrix_implementation": "Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.",
       "inputs": [
         "Caminho de PDF local legível; página interna baseada em zero.",
-        "Viewport, tamanho solicitado e identidade do documento para cache."
+        "Viewport, tamanho solicitado e identidade do documento para cache.",
+        "Senha opcional até127caracteres e consentimento separado para leitura recuperada."
       ],
       "outputs": [
         "document_info: pages, sizes após CropBox/rotação intrínseca e metadata (title, author, subject, creator, producer).",
-        "Imagem de página concluída; render obsoleto não deve substituir o documento atual."
+        "Imagem de página concluída; render obsoleto não deve substituir o documento atual.",
+        "Sessão preparada e primeira imagem verificadas antes da troca; representação privada cifrada/recuperada quando necessária."
       ],
       "errors": [
         {
@@ -44,11 +46,17 @@
           "trigger": "Processo de renderização falha, excede tempo ou é cancelado",
           "response": "Erro/cancelamento sem publicar imagem parcial; subprocesso cancelável tem prazo próprio.",
           "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Senha incorreta, recuperação recusada ou candidato inválido",
+          "response": "Manter documento anterior; mostrar erro fixo sem credencial; permitir cancelar.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
         "Cache local pode ser criado; original permanece sem edição.",
-        "Abertura/fechamento muda o documento e invalida trabalhos da geração anterior."
+        "Abertura/fechamento muda o documento e invalida trabalhos da geração anterior.",
+        "Representação temporária usada somente para leitura, com leases para leitores ativos; original intacto."
       ],
       "source_refs": [
         "app/rendering.py",
@@ -56,7 +64,11 @@
         "app/async_core.py",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -96,6 +108,98 @@
         {
           "path": "tests/test_sync_folders_gtk.py",
           "test": "test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_broken_xref_requires_consent_then_recovers_content"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_cancellation_before_worker_leaves_no_reading_file"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_close_waits_for_active_reader_and_removes_private_view"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_invalid_request_and_existing_view_are_refused"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_irrecoverable_and_empty_sources_do_not_publish_view"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_owner_password_can_read_without_rewriting_original_permissions"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_password_is_absent_from_argv_and_worker_errors"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_password_required_then_invalid_then_correct_in_real_worker"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_plain_session_preserves_original_identity_and_no_view_copy"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_private_reading_file_is_not_world_readable"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_unicode_password_and_original_permission_policy"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_page_bounds_and_rejected_nonintegers"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_rotated_fit_page_stays_in_viewport"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_zoom_percent_decimal_and_clamped_bounds"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_authenticated_open_renders_searches_and_presents_without_mutating_source"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_cancel_password_and_wrong_password_preserve_previous_document"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_changed_source_after_initial_render_does_not_commit"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_document_close_cancels_open_and_resets_controls"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_failed_open_preserves_document_page_and_image"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_first_render_failure_does_not_commit_candidate"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_real_password_dialog_masks_and_clears_entry"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_recovery_decline_then_accept_preserves_original_and_content"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_superseded_open_cannot_replace_newer_document_and_cleans_session"
         }
       ],
       "dynamic_case_refs": [
@@ -142,12 +246,13 @@
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
-      "matrix_implementation": "Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Página/zoom digitáveis, zoom1–6400%, viewport virtual, geometria/rotação e foco. Subconjunto0.1.14; família integral aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Navegação por página e teclado com limites, zoom digitável1–6400% e ajustar página/largura, rotação/CropBox e viewport virtual. Raster tem limite de resolução; não promete nitidez ilimitada ou geometria integral Foxit.",
       "inputs": [
         "Documento carregado e índice solicitado; indicação UI usa página baseada em um.",
-        "Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro."
+        "Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro.",
+        "Percentual de zoom finito1–6400; página inteira limitada ao documento."
       ],
       "outputs": [
         "Página exibida, zoom/posição e orientação atualizados.",
@@ -179,7 +284,11 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -230,6 +339,34 @@
         {
           "path": "tests/test_sync_folders_gtk.py",
           "test": "test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_page_bounds_and_rejected_nonintegers"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_rotated_fit_page_stays_in_viewport"
+        },
+        {
+          "path": "tests/test_document_session.py",
+          "test": "test_zoom_percent_decimal_and_clamped_bounds"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_page_entries_clamp_and_restore_invalid_value_and_disable_edges"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_rotated_cropbox_geometry_matches_selection_and_presentation"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
         }
       ],
       "dynamic_case_refs": [
@@ -272,12 +409,13 @@
     {
       "id": "presentation",
       "name": "Apresentação ajustar/preencher",
-      "matrix_implementation": "Apresentação GTK própria; comparação integral ausente. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Apresentação com sessão autenticada, rotação, foco/atalhos e seleção de monitor/fallback. Subconjunto0.1.14; desktop físico e original pendentes.",
       "contract_kind": "implemented_subset",
-      "scope": "Apresentação GTK com ajustar/preencher, pan, zoom e ponteiro; não implica suporte a mídia embutida.",
+      "scope": "Apresentação GTK ajustar/preencher, pan/zoom/ponteiro, sessão/rotação herdadas, foco/F6/Tab/Escape e seleção de monitor/fallback. Fullscreen depende do compositor; validação virtual não aprova hardware físico.",
       "inputs": [
         "Documento, tamanhos de página, página inicial e dimensões do monitor/view.",
-        "Ações de navegação, fit/fill, pan e cor do ponteiro."
+        "Ações de navegação, fit/fill, pan e cor do ponteiro.",
+        "MonitorGDK selecionado e eventos de remoção/restauração; sessão/rotação herdadas."
       ],
       "outputs": [
         "Janela de apresentação com página assíncrona e imagem centralizada/recortada segundo o modo.",
@@ -300,7 +438,11 @@
       ],
       "source_refs": [
         "app/presentation.py",
-        "app/page_cache.py"
+        "app/page_cache.py",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -323,6 +465,18 @@
         {
           "path": "tests/test_viewer.py",
           "test": "test_presentation_handles_portrait_and_landscape"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_monitor_selection_removal_and_fullscreen_request"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_presentation_keys_respect_control_focus_and_restore_parent_focus"
+        },
+        {
+          "path": "tests/test_reading_workflows_gtk.py",
+          "test": "test_rotated_cropbox_geometry_matches_selection_and_presentation"
         }
       ],
       "dynamic_case_refs": [

@@ -1,5 +1,7 @@
 # Inventário operacional provisório — P01
 
+Revisão6: [leitura0.1.14](LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md).111 recortes provisórios:74 com código delimitado,34 pendentes/por caracterizar e3 adiados. Abertura com senha, recuperação consentida e seleção de monitor passam a código rastreável; testes próprios atuais separados da evidência histórica. Não são operações completas aprovadas, percentual de recodificação ou paridade. As revisões abaixo são históricas.
+
 Revisão5: [navegação/zoom observados e parada da VM](P03-INTERFACE-E-PARADA-2026-10-19.md).111 recortes/25 famílias e estados de implementação preservados; nenhum critério integral encerrado.
 
 Revisão4 em2026-10-19: [D12 ativo, N-up4mm comparado e mosaico48p](P03-CANCELAMENTO-MOSAICO-2026-10-19.md).13 métricas iguais/quatro inconclusivas;111 recortes/25 famílias e estados de implementação preservados. As revisões anteriores abaixo são históricas.
@@ -22,9 +24,9 @@ Fonte: [inventário estruturado](../progresso/inventario-operacoes-v1.json). [Re
 
 | Família | Recortes | Código delimitado | Pendentes/adiados | Original |
 |---|---:|---:|---:|---|
-|Abrir PDF e renderizar páginas|6|4|2|Subconjunto observado|
+|Abrir PDF e renderizar páginas|6|6|0|Subconjunto observado|
 |Navegação/rotação/zoom|4|4|0|Subconjunto observado|
-|Apresentação ajustar/preencher|3|2|1|Sem observação examinada|
+|Apresentação ajustar/preencher|3|3|0|Sem observação examinada|
 |Busca literal/palavra inteira/maiúsculas|6|6|0|Subconjunto observado|
 |Busca em marcadores|2|2|0|Subconjunto observado|
 |Busca em comentários|3|2|1|Subconjunto observado|

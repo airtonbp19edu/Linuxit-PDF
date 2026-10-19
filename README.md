@@ -6,10 +6,7 @@ O código do original não é incorporado ao aplicativo.
 O assistente de IA do Foxit e recursos generativos ficam [fora do escopo](docs/ESCOPO.md),
 conforme a decisão do usuário em 17/10/2026.
 
-A fonte posterior ao pacote0.1.13 [corrige a busca pelo autor de comentários](docs/BUSCA-AUTOR-COMENTARIOS.md):
-**403/403 testes Linux**,17/17 contratos próprios e11/11 recortes comparados
-com métricas iguais. Cinco recortes inconclusivos e um pendente permanecem.
-O Flatpak publicado continua0.1.13, anterior à correção; nenhum pacote novo.
+A **0.1.14 de desenvolvimento** acrescenta [abertura transacional com senha e recuperação consentida, zoom1–6400% e apresentação com seleção de monitor](docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md). Inclui também a [correção da busca pelo autor de comentários](docs/BUSCA-AUTOR-COMENTARIOS.md). **432/432 testes próprios passaram em cada ambiente** fonte Linux,payload e Flatpak instalado, sem falhas/erros/skips. Os limites de formatos, recuperação e validação física estão no relatório. [Instalação e SHA-256](docs/instalacao.md).
 
 A 0.1.13 acrescenta [sublinhado, tachado, ondulado, elipse e linha](docs/ANOTACOES-AMPLIADAS.md),
 com aparência própria e edição de comentário/autor no histórico de cópia.
@@ -22,7 +19,7 @@ A 0.1.11 acrescenta [OCR local em português e inglês](docs/OCR-LOCAL.md) para 
 cópia rasterizada pesquisável. Preserva o original, informa páginas sem texto
 detectado e explicita as perdas de links/formulários/assinaturas na nova cópia.
 
-A versão **0.1.13 de desenvolvimento** contém navegação, seleção, apresentação,
+A versão **0.1.14 de desenvolvimento** contém navegação, seleção, apresentação,
 temas, busca em texto/marcadores/comentários e preparação de impressão em
 livreto/N-up/mosaico. Inclui o painel para listar e salvar anexos de catálogo,
 árvores `/Kids` e anotações de página, as correções de origem do CropBox e preservação da página em memória,

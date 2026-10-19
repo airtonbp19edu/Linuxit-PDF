@@ -1,0 +1,29 @@
+{
+  "schema": "linuxit-reading-delivery-review-v1",
+  "date_local": "2026-10-19T12:13:17.839270-03:00",
+  "version": "0.1.14",
+  "source_commit": "a4e017ae65784256583292ddbe502e182bb25a66",
+  "source_payload_ci_run_id": 39272792405,
+  "installed_completion_ci_run_id": 39274463095,
+  "resumed_artifact_id": 12196314022,
+  "resumed_archive_sha256": "2d3a4203706bddbc8246de6cdd41d685e60221818dbf8966fa05a364342231f9",
+  "bundle_rebuilt_by_resume": false,
+  "source_payload_sandbox_passed_each": 432,
+  "prior_source_test_ids_retained": 403,
+  "new_portable_cases": 14,
+  "new_gtk_cases": 15,
+  "source_files_verified": 109,
+  "new_reading_images_examined": [
+    "reading-authenticated.png",
+    "reading-authenticated-presentation.png",
+    "reading-fit-page.png"
+  ],
+  "native_virtual_monitor_evidence": "testes/resultados/leitura-2026-10-19/virtual-monitors/review.json",
+  "native_two_monitor_test_profile": "source on Debian13/X11 dummy RandR; not an installed dual-monitor sandbox",
+  "physical_monitors_verified": false,
+  "foxit_executed": false,
+  "full_family_parity_verified": false,
+  "legacy_stages_unchanged": true,
+  "independent_audit_pending": true,
+  "bundle_sha256": "795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f"
+}

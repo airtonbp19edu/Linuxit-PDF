@@ -1,0 +1,9 @@
+{
+  "original_run_id": "39272792405",
+  "original_artifact_id": "12195849163",
+  "source_revision": "a4e017ae65784256583292ddbe502e182bb25a66",
+  "bundle_sha256": "795b09569ab825f2131a6ca22a919a9bebf6146a718f53288f085dba89b11e1f",
+  "rebuilt": false,
+  "source_and_payload_full_suites_reused": true,
+  "reason": "Flathub connection failed before installed validation"
+}

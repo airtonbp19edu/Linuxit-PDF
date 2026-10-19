@@ -44,27 +44,31 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 
 ## Abrir PDF e renderizar páginas
 
-Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar cópia é cópia do arquivo; não edição PDF. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.
 
 **Entradas**
 
 - Caminho de PDF local legível; página interna baseada em zero.
 - Viewport, tamanho solicitado e identidade do documento para cache.
+- Senha opcional até127caracteres e consentimento separado para leitura recuperada.
 
 **Saídas**
 
 - document_info: pages, sizes após CropBox/rotação intrínseca e metadata (title, author, subject, creator, producer).
 - Imagem de página concluída; render obsoleto não deve substituir o documento atual.
+- Sessão preparada e primeira imagem verificadas antes da troca; representação privada cifrada/recuperada quando necessária.
 
 **Erros e casos excepcionais**
 
 - Arquivo ausente, inválido, vazio ou protegido sem senha vazia válida: Falha do parser/worker; abertura não pode ser registrada como bem-sucedida. Mensagens e preservação do documento anterior precisam de teste GUI.
 - Processo de renderização falha, excede tempo ou é cancelado: Erro/cancelamento sem publicar imagem parcial; subprocesso cancelável tem prazo próprio.
+- Senha incorreta, recuperação recusada ou candidato inválido: Manter documento anterior; mostrar erro fixo sem credencial; permitir cancelar.
 
 **Estado e efeitos**
 
 - Cache local pode ser criado; original permanece sem edição.
 - Abertura/fechamento muda o documento e invalida trabalhos da geração anterior.
+- Representação temporária usada somente para leitura, com leases para leitores ativos; original intacto.
 
 **Critérios planejados**
 
@@ -80,9 +84,9 @@ Abrir PDF local, inspecionar páginas/metadados e renderizar páginas. Salvar c�
 
 Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 
-Fontes: [app/rendering.py](../app/rendering.py), [app/main.py](../app/main.py), [app/async_core.py](../app/async_core.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+Fontes: [app/rendering.py](../app/rendering.py), [app/main.py](../app/main.py), [app/async_core.py](../app/async_core.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/document_session.py](../app/document_session.py), [app/navigation.py](../app/navigation.py), [app/page_surface.py](../app/page_surface.py), [docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md](../docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_cache_distinguishes_documents](../tests/test_regressions.py); [test_latest_renderer_skips_obsolete_queue_entries](../tests/test_viewer.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_cache_distinguishes_documents](../tests/test_regressions.py); [test_latest_renderer_skips_obsolete_queue_entries](../tests/test_viewer.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_broken_xref_requires_consent_then_recovers_content](../tests/test_document_session.py); [test_cancellation_before_worker_leaves_no_reading_file](../tests/test_document_session.py); [test_close_waits_for_active_reader_and_removes_private_view](../tests/test_document_session.py); [test_invalid_request_and_existing_view_are_refused](../tests/test_document_session.py); [test_irrecoverable_and_empty_sources_do_not_publish_view](../tests/test_document_session.py); [test_owner_password_can_read_without_rewriting_original_permissions](../tests/test_document_session.py); [test_password_is_absent_from_argv_and_worker_errors](../tests/test_document_session.py); [test_password_required_then_invalid_then_correct_in_real_worker](../tests/test_document_session.py); [test_plain_session_preserves_original_identity_and_no_view_copy](../tests/test_document_session.py); [test_private_reading_file_is_not_world_readable](../tests/test_document_session.py); [test_unicode_password_and_original_permission_policy](../tests/test_document_session.py); [test_page_bounds_and_rejected_nonintegers](../tests/test_document_session.py); [test_rotated_fit_page_stays_in_viewport](../tests/test_document_session.py); [test_zoom_percent_decimal_and_clamped_bounds](../tests/test_document_session.py); [test_authenticated_open_renders_searches_and_presents_without_mutating_source](../tests/test_reading_workflows_gtk.py); [test_cancel_password_and_wrong_password_preserve_previous_document](../tests/test_reading_workflows_gtk.py); [test_changed_source_after_initial_render_does_not_commit](../tests/test_reading_workflows_gtk.py); [test_document_close_cancels_open_and_resets_controls](../tests/test_reading_workflows_gtk.py); [test_failed_open_preserves_document_page_and_image](../tests/test_reading_workflows_gtk.py); [test_first_render_failure_does_not_commit_candidate](../tests/test_reading_workflows_gtk.py); [test_real_password_dialog_masks_and_clears_entry](../tests/test_reading_workflows_gtk.py); [test_recovery_decline_then_accept_preserves_original_and_content](../tests/test_reading_workflows_gtk.py); [test_superseded_open_cannot_replace_newer_document_and_cleans_session](../tests/test_reading_workflows_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D01, D02, D13, D14, D15, D19, D20.
 
@@ -90,12 +94,13 @@ Relacionados aos planos dinâmicos/UI: D01, D02, D13, D14, D15, D19, D20.
 
 ## Navegação/rotação/zoom
 
-Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem gravar a rotação no PDF. Fonte 0.1.8: Rotação visual anterior preservada; nova operação rotate-page salva /Rotate permanentemente em cópia, sem alterar caixas/página fonte. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Navegação por página e teclado com limites, zoom digitável1–6400% e ajustar página/largura, rotação/CropBox e viewport virtual. Raster tem limite de resolução; não promete nitidez ilimitada ou geometria integral Foxit.
 
 **Entradas**
 
 - Documento carregado e índice solicitado; indicação UI usa página baseada em um.
 - Ação anterior/próxima, percentual de zoom, ajustar página/largura ou giro.
+- Percentual de zoom finito1–6400; página inteira limitada ao documento.
 
 **Saídas**
 
@@ -126,9 +131,9 @@ Navegar por página, aplicar zoom/ajuste e rotação de visualização, sem grav
 
 Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md), [docs/P03-INTERFACE-E-PARADA-2026-10-19.md](../docs/P03-INTERFACE-E-PARADA-2026-10-19.md).
 
-Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md), [docs/P03-INTERFACE-E-PARADA-2026-10-19.md](../docs/P03-INTERFACE-E-PARADA-2026-10-19.md).
+Fontes: [app/main.py](../app/main.py), [app/page_cache.py](../app/page_cache.py), [app/rendering.py](../app/rendering.py), [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/document_session.py](../app/document_session.py), [app/navigation.py](../app/navigation.py), [app/page_surface.py](../app/page_surface.py), [docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md](../docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md), [docs/ETAPA-11.md](../docs/ETAPA-11.md), [docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json](../docs/windows-evidence/foxit-rea/ui-state-contracts-2026-10-16.json), [docs/windows-evidence/foxit-rea/zoom-presets.json](../docs/windows-evidence/foxit-rea/zoom-presets.json), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md), [docs/P03-INTERFACE-E-PARADA-2026-10-19.md](../docs/P03-INTERFACE-E-PARADA-2026-10-19.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py); [test_five_panel_headers_fit_default_and_small_window](../tests/test_sidebar_layout_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py); [test_five_panel_headers_fit_default_and_small_window](../tests/test_sidebar_layout_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_page_bounds_and_rejected_nonintegers](../tests/test_document_session.py); [test_rotated_fit_page_stays_in_viewport](../tests/test_document_session.py); [test_zoom_percent_decimal_and_clamped_bounds](../tests/test_document_session.py); [test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list](../tests/test_reading_workflows_gtk.py); [test_page_entries_clamp_and_restore_invalid_value_and_disable_edges](../tests/test_reading_workflows_gtk.py); [test_rotated_cropbox_geometry_matches_selection_and_presentation](../tests/test_reading_workflows_gtk.py); [test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input](../tests/test_reading_workflows_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D03, UI03, UI04.
 
@@ -136,12 +141,13 @@ Relacionados aos planos dinâmicos/UI: D03, UI03, UI04.
 
 ## Apresentação ajustar/preencher
 
-Apresentação GTK com ajustar/preencher, pan, zoom e ponteiro; não implica suporte a mídia embutida.
+Apresentação GTK ajustar/preencher, pan/zoom/ponteiro, sessão/rotação herdadas, foco/F6/Tab/Escape e seleção de monitor/fallback. Fullscreen depende do compositor; validação virtual não aprova hardware físico.
 
 **Entradas**
 
 - Documento, tamanhos de página, página inicial e dimensões do monitor/view.
 - Ações de navegação, fit/fill, pan e cor do ponteiro.
+- MonitorGDK selecionado e eventos de remoção/restauração; sessão/rotação herdadas.
 
 **Saídas**
 
@@ -166,9 +172,9 @@ Apresentação GTK com ajustar/preencher, pan, zoom e ponteiro; não implica sup
 
 - Ajuste/preenchimento, atalhos e múltiplos monitores do original não foram observados.
 
-Fontes: [app/presentation.py](../app/presentation.py), [app/page_cache.py](../app/page_cache.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/presentation.py](../app/presentation.py), [app/page_cache.py](../app/page_cache.py), [app/document_session.py](../app/document_session.py), [app/navigation.py](../app/navigation.py), [app/page_surface.py](../app/page_surface.py), [docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md](../docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_presentation_fit_fill_center_and_error](../tests/test_viewer.py); [test_presentation_handles_portrait_and_landscape](../tests/test_viewer.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_presentation_fit_fill_center_and_error](../tests/test_viewer.py); [test_presentation_handles_portrait_and_landscape](../tests/test_viewer.py); [test_monitor_selection_removal_and_fullscreen_request](../tests/test_reading_workflows_gtk.py); [test_presentation_keys_respect_control_focus_and_restore_parent_focus](../tests/test_reading_workflows_gtk.py); [test_rotated_cropbox_geometry_matches_selection_and_presentation](../tests/test_reading_workflows_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D03.
 

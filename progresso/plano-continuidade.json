@@ -336,9 +336,10 @@
         "open-render",
         "security"
       ],
-      "remaining": "Entrada de senha integrada à abertura/renderização/busca; cancelar/erro, propagação controlada ao worker, permissões e recuperação. RMS exige caracterização/ambiente próprio, sem contornar proteção.",
+      "remaining": "Read opening/password/recovery own subset delivered0.1.14. Broader encrypted editing/printing/permission behavior, RMS and original characterization remain open.",
       "status": "planned",
-      "execution_step": "P06"
+      "execution_step": "P06",
+      "own_014_delivered_subset_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
     },
     {
       "id": "B04",
@@ -363,9 +364,10 @@
         "presentation",
         "selection"
       ],
-      "remaining": "Limites de zoom/ajuste, navegação em estados extremos, múltiplos monitores, seleção/ordem lógica, texto bidirecional e geometria em rotação.",
+      "remaining": "Own page/zoom/rotation/focus and virtual dual-monitor controls delivered0.1.14. Physical desktop, original comparison and selection/text-order/bidirectional contracts remain open.",
       "status": "planned",
-      "execution_step": "P06"
+      "execution_step": "P06",
+      "own_014_delivered_subset_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
     },
     {
       "id": "B06",
@@ -430,8 +432,8 @@
       "name": "Abrir PDF e renderizar páginas",
       "batch_id": "B03",
       "state": "incomplete",
-      "preserved_baseline": "Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados.",
-      "remaining": "Abertura cifrada integrada, recuperação e demais falhas/cancelamento/renderização; testar o ciclo completo de documento e tarefas.",
+      "preserved_baseline": "Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta.",
+      "remaining": "Broad damaged/encrypted format corpus, permission/edit/print integration beyond this reading subset and full original lifecycle comparison remain open.",
       "implementation_without_foxit_vm": true,
       "original_required_for_parity": true,
       "acceptance_case_ids": [
@@ -445,16 +447,21 @@
         "app/async_core.py",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
-      ]
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+      ],
+      "own_014_validation_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
     },
     {
       "id": "navigation",
       "name": "Navegação/rotação/zoom",
       "batch_id": "B05",
       "state": "incomplete",
-      "preserved_baseline": "Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1.",
-      "remaining": "Limites/modos efetivos, estados primeira/intermediária/última/sem documento e interação com rotação/CropBox.",
+      "preserved_baseline": "Página/zoom digitáveis, zoom1–6400%, viewport virtual, geometria/rotação e foco. Subconjunto0.1.14; família integral aberta.",
+      "remaining": "Complete original modes/inputs/focus and static-ID correspondence remain open; own input/zoom/CropBox/rotation controls passed in0.1.14.",
       "implementation_without_foxit_vm": true,
       "original_required_for_parity": true,
       "acceptance_case_ids": [
@@ -472,16 +479,21 @@
         "docs/SEGURANCA-ACESSIBILIDADE.md",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "docs/PASTAS-SINCRONIZADAS.md"
-      ]
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+      ],
+      "own_014_validation_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
     },
     {
       "id": "presentation",
       "name": "Apresentação ajustar/preencher",
       "batch_id": "B05",
       "state": "incomplete",
-      "preserved_baseline": "Apresentação GTK própria; comparação integral ausente.",
-      "remaining": "Ajustar/preencher, atalhos, foco e múltiplos monitores observados no alvo e validados no desktop.",
+      "preserved_baseline": "Apresentação com sessão autenticada, rotação, foco/atalhos e seleção de monitor/fallback. Subconjunto0.1.14; desktop físico e original pendentes.",
+      "remaining": "Real Linux desktop/compositor and physical dual-monitor/hotplug behavior; original presentation remains unobserved. Own GTK control tests and virtual desktop evidence are separate.",
       "implementation_without_foxit_vm": true,
       "original_required_for_parity": true,
       "acceptance_case_ids": [
@@ -491,8 +503,13 @@
       "specification_ref": "docs/especificacao-funcional.json",
       "source_refs": [
         "app/presentation.py",
-        "app/page_cache.py"
-      ]
+        "app/page_cache.py",
+        "app/document_session.py",
+        "app/navigation.py",
+        "app/page_surface.py",
+        "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
+      ],
+      "own_014_validation_ref": "docs/LEITURA-ABERTURA-NAVEGACAO-APRESENTACAO.md"
     },
     {
       "id": "search-text",
@@ -1211,6 +1228,6 @@
     "Root cause of stopped guest clock",
     "Unexamined original capabilities and external service dependencies"
   ],
-  "updated_at_local": "2026-10-19T01:08:44-03:00",
+  "updated_at_local": "2026-10-19T12:12:33.570392-03:00",
   "execution_state_ref": "progresso/execucao-plano.json"
 }
