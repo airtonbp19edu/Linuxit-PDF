@@ -797,6 +797,12 @@ class PDFWindow(Gtk.Window):
         self._error('O PDF foi alterado externamente ou está indisponível. Reabra o documento antes de salvar a cópia.')
         return False
 
+    def _document_name(self):
+        if not self.filepath:return 'Nenhum PDF aberto'
+        name = Path(self.filepath).name
+        if self.document_session and self.document_session.info['recovered']:name += ' — leitura recuperada'
+        return name
+
     def _cancel_document_open(self):
         self._open_generation += 1
         self.runner.invalidate('document-open')
@@ -807,7 +813,7 @@ class PDFWindow(Gtk.Window):
 
     def _cancel_open_requested(self, *_args):
         self._cancel_document_open()
-        self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+        self.status_file.set_text(self._document_name())
 
     def open_document(self, path, initial_page=0, password='', recover=False):
         self._cancel_document_open()
@@ -844,7 +850,7 @@ class PDFWindow(Gtk.Window):
             if info['status'] != 'ready':
                 candidate.close(); self._pending_document = None
                 self.cancel_open_button.hide()
-                self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+                self.status_file.set_text(self._document_name())
                 if info['status'] in ('password_required', 'password_invalid'):
                     value = self._ask_document_password(path, info['status'] == 'password_invalid')
                     if value is not None and generation == self._open_generation:
@@ -865,9 +871,9 @@ class PDFWindow(Gtk.Window):
             self._document_stamp = info['source_stamp']
             self.page_count = int(info['pages']); self.page_sizes = [tuple(x) for x in info['sizes']]; self.metadata = info.get('metadata', {})
             self.page = 0; self.rotation = 0; self.zoom_mode = 'fit-width'; self.zoom_percent = 100
-            self.status_file.set_text(Path(path).name)
-            self.set_title(f'{Path(path).name} — Linuxit PDF')
-            self.document_tab_label.set_text(Path(path).name)
+            self.status_file.set_text(self._document_name())
+            self.set_title(f'{self._document_name()} — Linuxit PDF')
+            self.document_tab_label.set_text(self._document_name())
             self.document_tab_label.set_tooltip_text(Path(path).name)
             self.document_tabbar.set_no_show_all(False)
             self.document_tabbar.show_all()
@@ -910,7 +916,7 @@ class PDFWindow(Gtk.Window):
         finally:dialog.destroy()
 
     def _load_failed(self, path, exc):
-        self.status_file.set_text(Path(self.filepath).name if self.filepath else 'Nenhum PDF aberto')
+        self.status_file.set_text(self._document_name())
         self._error(str(exc))
 
     def _clear_document_state(self):
@@ -1028,7 +1034,7 @@ class PDFWindow(Gtk.Window):
             self.rendered_pixbuf = pb
             self.displayed_page = page; self.displayed_rotation = rotation
             self._display_pixbuf(pb)
-            self.status_file.set_text(Path(path).name)
+            self.status_file.set_text(self._document_name())
             self._update_zoom_labels()
             self._request_nearby_thumbnails()
             self._prefetch_reader_pages()

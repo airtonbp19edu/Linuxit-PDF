@@ -77,7 +77,9 @@ class OCRGTKTests(unittest.TestCase):
         self.window.destroy()
         scan(self.source,('',))
         self.parent.open_document(str(self.source))
-        wait_for(lambda:self.parent.current_pixbuf is not None)
+        # A transactional open deliberately retains the previous image until
+        # the replacement has been validated; wait for the new blank document.
+        wait_for(lambda:self.parent._pending_document is None and self.parent.current_pixbuf is not None)
         self.parent._show_ocr();self.window=self.parent.ocr_window
         self.window.dpi.set_active_id('150')
         self.complete()

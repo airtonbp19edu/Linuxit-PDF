@@ -83,6 +83,8 @@ class ReadingWorkflowsGTKTests(unittest.TestCase):
         self.assertEqual(self.w.search_hits[0]['page'], 1)
         self.w.goto_page(1); wait_for(lambda:self.w.displayed_page == 1)
         p = self.presentation(); self.assertEqual(p.page, 1)
+        capture(p, 'reading-authenticated-presentation')
+        p.destroy(); self.w.present()
         capture(self.w, 'reading-authenticated')
         self.assertEqual(before, path.read_bytes()); self.assertTrue(PdfReader(path).is_encrypted)
         self.assertEqual(self.errors, [])
@@ -98,6 +100,7 @@ class ReadingWorkflowsGTKTests(unittest.TestCase):
             self.w.open_document(str(path))
             wait_for(lambda:self.w.filepath == str(path) and self.w.displayed_page == 0)
         self.assertTrue(self.w.document_session.info['recovered'])
+        self.assertIn('recuperada', self.w.document_tab_label.get_text())
         self.assertEqual(before, path.read_bytes()); self.assertEqual(self.errors, [])
 
     def test_superseded_open_cannot_replace_newer_document_and_cleans_session(self):

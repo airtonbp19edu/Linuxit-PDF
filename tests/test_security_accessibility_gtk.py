@@ -110,7 +110,7 @@ class SecurityGTKTests(_UISetup,unittest.TestCase):
         w.path.set_text(str(self.output));self.inspect(w);w.secrets['inspect'].set_text('synthetic-owner-pass')
         with patch.object(w,'_choose',return_value=str(plain)):w._unprotect()
         wait_for(lambda:not w.busy and plain.exists());self.assertIn('pelo proprietário',w.status.get_text())
-        self.parent.open_document(str(plain));wait_for(lambda:self.parent.displayed_page==0 and self.parent.current_pixbuf is not None)
+        self.parent.open_document(str(plain));wait_for(lambda:self.parent.filepath==str(plain) and self.parent.displayed_page==0 and self.parent.current_pixbuf is not None)
         self.assertEqual(self.parent.page_count,2);self.assertEqual(self.output.read_bytes(),original)
 
     def test_owner_copy_rejects_opening_password_and_clears_it(self):

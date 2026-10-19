@@ -43,7 +43,10 @@ class PageViewport(Gtk.Overlay, Gtk.Scrollable):
                 available = max(1, available)
                 upper = max(length + 48, available)
                 value = max(0, min(adjustment.get_value(), upper - available))
-                adjustment.configure(value, 0, upper, 40, available * .9, available)
+                desired = (value, 0, upper, 40, available * .9, available)
+                current = (adjustment.get_value(), adjustment.get_lower(), adjustment.get_upper(),
+                           adjustment.get_step_increment(), adjustment.get_page_increment(), adjustment.get_page_size())
+                if current != desired:adjustment.configure(*desired)
 
     def set_page_size(self, width, height):
         self.logical_size = (max(1, width), max(1, height))
