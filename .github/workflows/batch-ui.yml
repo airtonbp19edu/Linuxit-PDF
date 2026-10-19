@@ -1,0 +1,40 @@
+name: Functional batch visual review
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  captures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: debian:13
+    steps:
+      - name: Install focused UI dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            python3-pil python3-cryptography gir1.2-gtk-3.0 poppler-utils cups-client \
+            dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Capture own interfaces
+        run: |
+          useradd --create-home --uid 1001 linuxit-test
+          chown -R linuxit-test:linuxit-test "$GITHUB_WORKSPACE"
+          runuser -u linuxit-test -- bash -c '
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-ui-XXXXXX)"
+            export XDG_CONFIG_HOME="$PWD/analysis-local/ui-config"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            exec xvfb-run -a -s "-screen 0 1600x1000x24" dbus-run-session -- bash -c "openbox --sm-disable >/tmp/linuxit-ui-openbox.log 2>&1 & exec /usr/bin/python3 scripts/check_batch_ui.py --output dist/batch-ui-results/review.json"
+          '
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: linuxit-batch-ui-${{ github.sha }}
+          path: dist/batch-ui-results/
+          if-no-files-found: warn
+          retention-days: 14
