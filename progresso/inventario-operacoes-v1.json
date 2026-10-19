@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 6,
-  "reviewed_at_local": "2026-10-19T12:12:33.570392-03:00",
+  "revision": 7,
+  "reviewed_at_local": "2026-10-19T12:39:30-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -9,7 +9,7 @@
   "implementation_completion_percent": null,
   "weighting_defined": false,
   "operation_count_is_recoding_percentage": false,
-  "source_evidence_interpretation": "Bounded source and named own tests only; historical tests and new Linux0.1.14 evidence remain separate. No full operation/family acceptance or new original execution.",
+  "source_evidence_interpretation": "Current bounded source snapshots are not current runtime approval. Sealed0.1.14 validation is historical;0.1.15 source validation is pending. No new original execution or whole-family acceptance.",
   "unknowns": [
     "Unexamined Reader capabilities versus Editor-only resources",
     "Operations absent from current inventory",
@@ -577,30 +577,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -655,30 +660,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -705,9 +715,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.request_render",
-          "line": 1019,
-          "end_line": 1057,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1025,
+          "end_line": 1063,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "8cc1e23767f3df77e754c656eab1a46073f74cbdd2599925ccb2a6ca642651a2"
         }
       ],
@@ -733,30 +743,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -811,30 +826,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -869,9 +889,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 818,
-          "end_line": 892,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 823,
+          "end_line": 897,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "b94b0bff68d5e3b79c79624a56343c2c138340faef656ce1ba3354b0b6e15044"
         }
       ],
@@ -886,30 +906,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -944,9 +969,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 818,
-          "end_line": 892,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 823,
+          "end_line": 897,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "b94b0bff68d5e3b79c79624a56343c2c138340faef656ce1ba3354b0b6e15044"
         }
       ],
@@ -961,30 +986,35 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
-        "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
-        "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
-        "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
-        "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
-        "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
-        "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
-        "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
-        "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
-        "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
-        "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.DocumentSessionTests.test_broken_xref_requires_consent_then_recovers_content",
+            "test_document_session.DocumentSessionTests.test_cancellation_before_worker_leaves_no_reading_file",
+            "test_document_session.DocumentSessionTests.test_close_waits_for_active_reader_and_removes_private_view",
+            "test_document_session.DocumentSessionTests.test_invalid_request_and_existing_view_are_refused",
+            "test_document_session.DocumentSessionTests.test_irrecoverable_and_empty_sources_do_not_publish_view",
+            "test_document_session.DocumentSessionTests.test_owner_password_can_read_without_rewriting_original_permissions",
+            "test_document_session.DocumentSessionTests.test_password_is_absent_from_argv_and_worker_errors",
+            "test_document_session.DocumentSessionTests.test_password_required_then_invalid_then_correct_in_real_worker",
+            "test_document_session.DocumentSessionTests.test_plain_session_preserves_original_identity_and_no_view_copy",
+            "test_document_session.DocumentSessionTests.test_private_reading_file_is_not_world_readable",
+            "test_document_session.DocumentSessionTests.test_unicode_password_and_original_permission_policy",
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+          ]
+        }
       ]
     },
     {
@@ -1011,9 +1041,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.goto_page",
-          "line": 1149,
-          "end_line": 1163,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1155,
+          "end_line": 1169,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "1eb90bb3c3e2e3e591c39150b549c6a60a18cabdd3c2f6fe050a69f95862927a"
         }
       ],
@@ -1041,14 +1071,19 @@
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
       "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json",
-      "validated_current_test_ids": [
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+          ]
+        }
       ]
     },
     {
@@ -1075,9 +1110,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._fit_page",
-          "line": 1201,
-          "end_line": 1203,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1207,
+          "end_line": 1209,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "b7295c96009956c6e5790da30968d303af7503d64555d82b4efdbe28ce61bf38"
         }
       ],
@@ -1105,14 +1140,19 @@
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
       "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0930/review.json",
-      "validated_current_test_ids": [
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+          ]
+        }
       ]
     },
     {
@@ -1139,9 +1179,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._rotate",
-          "line": 1209,
-          "end_line": 1213,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1215,
+          "end_line": 1219,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "19c108be5fbaecc96d972a65b97a04aac217440ac10ea85d8d1e66d516c6861e"
         }
       ],
@@ -1167,14 +1207,19 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+          ]
+        }
       ]
     },
     {
@@ -1229,14 +1274,19 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
-        "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
-        "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_document_session.NavigationDomainTests.test_page_bounds_and_rejected_nonintegers",
+            "test_document_session.NavigationDomainTests.test_rotated_fit_page_stays_in_viewport",
+            "test_document_session.NavigationDomainTests.test_zoom_percent_decimal_and_clamped_bounds",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input"
+          ]
+        }
       ]
     },
     {
@@ -1288,10 +1338,15 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+          ]
+        }
       ]
     },
     {
@@ -1343,10 +1398,15 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+          ]
+        }
       ]
     },
     {
@@ -1395,10 +1455,15 @@
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
       "complete_operation_or_family_equivalence": false,
-      "validated_current_test_ids": [
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
-        "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+      "historical_own_test_ids": [
+        {
+          "evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json",
+          "ids": [
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+            "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation"
+          ]
+        }
       ]
     },
     {
@@ -1429,10 +1494,10 @@
         {
           "path": "app/search_engine.py",
           "symbol": "TextSearchIndex.search",
-          "line": 145,
-          "end_line": 189,
-          "file_sha256": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
-          "excerpt_sha256": "5d1df8ab9ad8c86b99870db814a47fe575048a3d68335fad5785243f0fff331b"
+          "line": 161,
+          "end_line": 211,
+          "file_sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf",
+          "excerpt_sha256": "480bf5620922ba10e12a07f124c377942c0040c0e6bf0eeed95c088d1d9c5a26"
         }
       ],
       "recorded_related_tests": [
@@ -1603,9 +1668,9 @@
           "path": "app/search_engine.py",
           "symbol": "page_hits",
           "line": 32,
-          "end_line": 63,
-          "file_sha256": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
-          "excerpt_sha256": "172036c1d8245c5aa375c0f2ae1c318d42520aa7ba2a27fe05b1da78b7907525"
+          "end_line": 72,
+          "file_sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf",
+          "excerpt_sha256": "4adbe5ffedb9aab6b214f81f82f5587d4b3b4bdbda3ad999bf7147a6b2638c4d"
         }
       ],
       "recorded_related_tests": [
@@ -1659,10 +1724,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1721,
-          "end_line": 1738,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
-          "excerpt_sha256": "f93cdd4c07dbb96860ad69e228ed49b2402b01cb6e2f17387fbe96fcab69c351"
+          "line": 1757,
+          "end_line": 1775,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
+          "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
       "recorded_related_tests": [
@@ -1718,10 +1783,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._start_search",
-          "line": 1776,
-          "end_line": 1823,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
-          "excerpt_sha256": "7666e175d79a0d6c80c7983b742662c476b64b3f50e668c5a5d413fcf1ebec55"
+          "line": 1815,
+          "end_line": 1865,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
+          "excerpt_sha256": "c60075ad4e0f2b5b4cce28d9b42ae0ef26030efe41974c055c56ae474ee575a1"
         }
       ],
       "recorded_related_tests": [
@@ -1775,10 +1840,10 @@
         {
           "path": "app/search_engine.py",
           "symbol": "TextSearchIndex._metadata_hits",
-          "line": 117,
-          "end_line": 143,
-          "file_sha256": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
-          "excerpt_sha256": "16f09d8701dcb72bfef84363be7070dd40326a600a1e91a02f294dabb6af3d29"
+          "line": 127,
+          "end_line": 159,
+          "file_sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf",
+          "excerpt_sha256": "6830a0d738251514b2157f8f48a8d8b6694c79843e119f17745ec6048d146f88"
         }
       ],
       "recorded_related_tests": [
@@ -1830,10 +1895,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1721,
-          "end_line": 1738,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
-          "excerpt_sha256": "f93cdd4c07dbb96860ad69e228ed49b2402b01cb6e2f17387fbe96fcab69c351"
+          "line": 1757,
+          "end_line": 1775,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
+          "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
       "recorded_related_tests": [
@@ -1885,10 +1950,10 @@
         {
           "path": "app/search_engine.py",
           "symbol": "TextSearchIndex._metadata_hits",
-          "line": 117,
-          "end_line": 143,
-          "file_sha256": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
-          "excerpt_sha256": "16f09d8701dcb72bfef84363be7070dd40326a600a1e91a02f294dabb6af3d29"
+          "line": 127,
+          "end_line": 159,
+          "file_sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf",
+          "excerpt_sha256": "6830a0d738251514b2157f8f48a8d8b6694c79843e119f17745ec6048d146f88"
         }
       ],
       "recorded_related_tests": [
@@ -1940,10 +2005,10 @@
         {
           "path": "app/search_engine.py",
           "symbol": "TextSearchIndex._metadata_hits",
-          "line": 117,
-          "end_line": 143,
-          "file_sha256": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
-          "excerpt_sha256": "16f09d8701dcb72bfef84363be7070dd40326a600a1e91a02f294dabb6af3d29"
+          "line": 127,
+          "end_line": 159,
+          "file_sha256": "5653e15cc4097a3f8b44d739643299c7290f6a8f76bd40720656e850b3aa56cf",
+          "excerpt_sha256": "6830a0d738251514b2157f8f48a8d8b6694c79843e119f17745ec6048d146f88"
         }
       ],
       "recorded_related_tests": [
@@ -1973,12 +2038,11 @@
       "id": "search-comments/replies",
       "family_id": "search-comments",
       "title": "Pesquisar respostas e demais tipos/campos",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
-        "Consulta, flags e include_comments=True; comentários com página associada.",
-        "As demais fontes podem ficar desativadas."
+        "PDF annotations; same-page /IRT and /RT R/Group; at most50000 annotations and64levels; text fields truncated65536characters after decoding."
       ],
-      "output_and_acceptance": "Comentários vinculados/respostas => extração, duplicação e destinos a caracterizar antes de equivalência.",
+      "output_and_acceptance": "Own inspection exposes stable object IDs, parent/type/depth, deduplicates aliases, preserves distinct same-text objects, reports invalid/partial graphs. Runtime validation pending; no equivalence asserted.",
       "failure_contract_refs": [
         {
           "family_id": "search-comments",
@@ -1989,7 +2053,16 @@
           "error_index": 1
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_comments.py",
+          "symbol": "inspect_comments",
+          "line": 47,
+          "end_line": 163,
+          "file_sha256": "12aab9e4588e6e54cfe5612e1c6a958e9b499acb19a42cc7b9180b11592ba23a",
+          "excerpt_sha256": "1daa2f33b4d4ca60d1a736511a3aa4777600b48332eca32a37265c4e7a68ffd0"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
@@ -2416,9 +2489,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_text_selection",
-          "line": 1640,
-          "end_line": 1664,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1662,
+          "end_line": 1686,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "cb05078b8c9ed8227ab3e9ffc129eef318e4a4ed8e8be158461eb5f3a356b8e1"
         }
       ],
@@ -2466,9 +2539,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_snapshot",
-          "line": 1599,
-          "end_line": 1609,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1621,
+          "end_line": 1631,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "7f2068aff3666b7c267c5233d78d805eecc858a92e6730003c0e751db2b9a754"
         }
       ],
@@ -4996,9 +5069,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._focus_region",
-          "line": 2187,
-          "end_line": 2201,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 2235,
+          "end_line": 2249,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "e431ab8d213fbbc3c0be18393be50ed80d2ee50e2261b67d626a5a17747eacb1"
         }
       ],
@@ -5098,9 +5171,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_measure",
-          "line": 1666,
-          "end_line": 1669,
-          "file_sha256": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+          "line": 1688,
+          "end_line": 1691,
+          "file_sha256": "f919c9e47ae60db3b9dcded6cdde4ad399f2c46913769c07a8bf1607165faf70",
           "excerpt_sha256": "858696789d42691f0a9e2328892c250f799408a3d0218e8d2e7c93ccbda25e00"
         }
       ],
@@ -5227,10 +5300,10 @@
         {
           "path": "app/pdf_panels.py",
           "symbol": "inspect_document_panels",
-          "line": 32,
-          "end_line": 108,
-          "file_sha256": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
-          "excerpt_sha256": "9f818c3a543ac18fdc4a248cb85aa13cee296422e80c3ec2c657db8389bf9de3"
+          "line": 33,
+          "end_line": 80,
+          "file_sha256": "19dca9a29a1da6c229fa9cf32ecbf3a49cfa721a073c609d0d19ceca487935a4",
+          "excerpt_sha256": "b9b6076a8acf8de7181e62c0e78611a26819aaa41040369fd25ab020d3295f8a"
         }
       ],
       "recorded_related_tests": [],
@@ -5977,8 +6050,8 @@
     "families": 25,
     "operations": 111,
     "implementation_states": {
-      "bounded_source_present": 74,
-      "pending_or_target_characterization": 34,
+      "bounded_source_present": 75,
+      "pending_or_target_characterization": 33,
       "deferred_by_user": 3
     },
     "families_with_original_partial_observations": 9,
@@ -5987,5 +6060,8 @@
     "complete_family_parity": 0
   },
   "recorded_related_test_evidence_ref": "testes/resultados/p01-2026-10-18/recorded-linux-cases.json",
-  "current_own_test_evidence_ref": "testes/resultados/leitura-2026-10-19/validated-cases.json"
+  "historical_own_test_evidence_refs": [
+    "testes/resultados/leitura-2026-10-19/validated-cases.json"
+  ],
+  "current_source_validation_pending_ref": "docs/LOTES-FUNCIONALIDADES.md"
 }

@@ -273,7 +273,7 @@ Relacionados aos planos dinâmicos/UI: D07, UI06.
 
 ## Busca em comentários
 
-Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentários; correção motivada pelo recorte C18-D09-author observado offline.
+Subconjunto próprio: assunto, conteúdo e autor pesquisados separadamente; respostas /IRT na mesma página, IDs de objetos, rich text textual e avisos de vínculos inválidos. Não modifica anotações.
 
 **Entradas**
 
@@ -284,6 +284,7 @@ Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentá
 
 - Hits source=comment, página conhecida e rects=[].
 - Assunto, conteúdo e autor são pesquisáveis pelas mesmas opções de consulta; resultados de metadados não recebem retângulos inventados.
+- Hits identificam campo e comentário/resposta; referências repetidas ao mesmo objeto não duplicam resultados. Comentários distintos com texto igual são preservados.
 
 **Erros e casos excepcionais**
 
@@ -307,7 +308,7 @@ Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentá
 
 Evidências: [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [docs/BUSCA-AUTOR-COMENTARIOS.md](../docs/BUSCA-AUTOR-COMENTARIOS.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md).
 
-Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [testes/resultados/vm-2026-10-18/foxit-observations.json](../testes/resultados/vm-2026-10-18/foxit-observations.json), [docs/BUSCA-AUTOR-COMENTARIOS.md](../docs/BUSCA-AUTOR-COMENTARIOS.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md).
+Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_comments.py](../app/pdf_comments.py), [docs/REA-BUSCA-IMPRESSAO.md](../docs/REA-BUSCA-IMPRESSAO.md), [docs/windows-evidence/foxit-rea/search-print-contracts.json](../docs/windows-evidence/foxit-rea/search-print-contracts.json), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md), [docs/VM-FOXIT-2026-10-18.md](../docs/VM-FOXIT-2026-10-18.md), [testes/resultados/vm-2026-10-18/foxit-observations.json](../testes/resultados/vm-2026-10-18/foxit-observations.json), [docs/BUSCA-AUTOR-COMENTARIOS.md](../docs/BUSCA-AUTOR-COMENTARIOS.md), [docs/P03-BUSCA-IMPRESSAO-2026-10-19.md](../docs/P03-BUSCA-IMPRESSAO-2026-10-19.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_comment_subject_contents_and_author_are_searchable](../tests/test_search_scopes.py); [test_preserved_author_only_term_matches_the_recorded_page](../tests/test_search_comment_author.py); [test_author_matching_respects_case_whole_words_and_accents](../tests/test_search_comment_author.py); [test_comment_without_author_still_searches_subject_and_body](../tests/test_search_comment_author.py).
 

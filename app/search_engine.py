@@ -30,7 +30,8 @@ class SearchOptions:
 
 
 def page_hits(data, query, page_index, match_case=False, whole_words=False,
-              ignore_accents=False, join_hyphens=False, mode="literal", proximity_distance=0):
+              ignore_accents=False, join_hyphens=False, mode="literal", proximity_distance=0,
+              cancel=None, max_hits=5000):
     needle = ' '.join(normalized(query, match_case, ignore_accents).split())
     if not needle:
         return []
@@ -39,8 +40,12 @@ def page_hits(data, query, page_index, match_case=False, whole_words=False,
         blocks.setdefault(word['block'], []).append(word)
     hits = []
     for words in blocks.values():
+        if cancel is not None and cancel.is_set():
+            break
         chars, owners = [], []
         for idx, word in enumerate(words):
+            if cancel is not None and cancel.is_set():
+                return hits
             join = (idx > 0 and join_hyphens and word['line'] != words[idx - 1]['line']
                     and words[idx - 1]['text'].endswith(('-', '\u00ad')))
             if join:
@@ -52,6 +57,8 @@ def page_hits(data, query, page_index, match_case=False, whole_words=False,
             chars.extend(folded); owners.extend([idx] * len(folded))
         text = ''.join(chars)
         for pos, end in query_spans(text, needle, whole_words, mode, proximity_distance):
+            if cancel is not None and cancel.is_set():
+                return hits
             selected = sorted({owner for owner in owners[pos:end] if owner is not None})
             if not selected:
                 continue
@@ -60,6 +67,8 @@ def page_hits(data, query, page_index, match_case=False, whole_words=False,
                          'rects': [[words[i][key] for key in ('x0', 'y0', 'x1', 'y1')] for i in selected],
                          'text': ' '.join(words[i]['text'] for i in selected),
                          'snippet': ' '.join(w['text'] for w in words[max(0, min(selected)-5):max(selected)+9])[:180]})
+            if len(hits) >= max_hits:
+                return hits
     return hits
 
 
@@ -100,24 +109,27 @@ class TextSearchIndex:
                 self.cache.popitem(last=False)
         return data
 
-    def _panels(self):
+    def _panels(self, cancel=None):
         if self._identity() != self.identity:
             raise RuntimeError('O PDF foi alterado. Reabra o documento para pesquisar.')
         with self.lock:
             cached = self.panel_cache
         if cached is not None:
             return cached
-        data = inspect_document_panels(self.path)
+        data = inspect_document_panels(self.path, cancel)
         if self._identity() != self.identity:
             raise RuntimeError('O PDF foi alterado durante a pesquisa. Reabra o documento.')
-        with self.lock:
-            self.panel_cache = data
+        if cancel is None or not cancel.is_set():
+            with self.lock:
+                self.panel_cache = data
         return data
 
-    def _metadata_hits(self, query, options, cancel):
+    def _metadata_hits(self, query, options, cancel, on_notice=None):
         if cancel is not None and cancel.is_set():
             return
-        data = self._panels()
+        data = self._panels(cancel)
+        if on_notice is not None and data.get('notices'):
+            on_notice({'metadata_notices': data['notices']})
         needle = ' '.join(normalized(query, options.match_case, options.ignore_accents).split())
         sources = []
         if options.include_bookmarks:
@@ -128,19 +140,23 @@ class TextSearchIndex:
             for item in items:
                 if cancel is not None and cancel.is_set():
                     return
-                text = item['title'] if source == 'bookmark' else ' '.join(
-                    value for value in (item.get('subject', ''), item.get('contents', ''),
-                                        item.get('author', '')) if value)
-                haystack = ' '.join(normalized(text, options.match_case, options.ignore_accents).split())
+                fields = [('title', item['title'])] if source == 'bookmark' else [
+                    (key, item.get(key, '')) for key in ('subject', 'contents', 'author')]
                 page = item.get('page')
                 if not isinstance(page, int) or not 0 <= page < self.page_count:
                     page = None
                 width, height = self.page_sizes[page] if page is not None else (0, 0)
-                for _ in query_spans(haystack, needle, options.whole_words, options.mode, options.proximity_distance):
-                    if cancel is not None and cancel.is_set():
-                        return
-                    yield {'source': source, 'page': page, 'width': width, 'height': height,
-                           'rects': [], 'text': text, 'snippet': ' '.join(text.split())[:180]}
+                for field, text in fields:
+                    haystack = ' '.join(normalized(text, options.match_case, options.ignore_accents).split())
+                    for _ in query_spans(haystack, needle, options.whole_words, options.mode, options.proximity_distance):
+                        if cancel is not None and cancel.is_set():
+                            return
+                        yield {'source': source, 'page': page, 'width': width, 'height': height,
+                               'rects': [], 'text': text, 'snippet': ' '.join(text.split())[:180],
+                               'item_id': item.get('item_id') or item.get('comment_id'),
+                               'match_field': field, 'is_reply': item.get('is_reply', False),
+                               'parent_comment_id': item.get('parent_comment_id'),
+                               'thread_depth': item.get('thread_depth', 0)}
 
     def search(self, query, max_hits=5000, cancel=None, on_page=None, on_notice=None, **kwargs):
         options = SearchOptions(**kwargs)
@@ -154,17 +170,23 @@ class TextSearchIndex:
             for index in range(self.page_count):
                 if cancel is not None and cancel.is_set():
                     return hits
-                data = self.page(index)
+                try:
+                    data = self.page(index)
+                except RuntimeError:
+                    if cancel is not None and cancel.is_set():
+                        return hits
+                    raise
                 if cancel is not None and cancel.is_set():
                     return hits
-                batch = page_hits(data, query, index, **options.text_options())[:max_hits - len(hits)]
+                batch = page_hits(data, query, index, cancel=cancel,
+                                  max_hits=max_hits - len(hits), **options.text_options())
                 hits.extend(batch)
                 if on_page is not None:
                     on_page(index + 1, batch)
                 if len(hits) >= max_hits:
                     return hits
         if options.include_bookmarks or options.include_comments:
-            for hit in self._metadata_hits(query, options, cancel):
+            for hit in self._metadata_hits(query, options, cancel, on_notice):
                 if cancel is not None and cancel.is_set():
                     break
                 hits.append(hit)

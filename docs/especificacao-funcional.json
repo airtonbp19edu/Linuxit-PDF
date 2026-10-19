@@ -517,7 +517,7 @@
     {
       "id": "search-text",
       "name": "Busca literal/palavra inteira/maiúsculas",
-      "matrix_implementation": "Literal/palavra inteira/caixa próprios e recortes comparados; D11-missing exato observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15 em desenvolvimento: Parar preserva hits entregues, descarta callbacks antigos e limita a construção de geometria. Validação Linux pendente; original/família completa abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Busca literal em texto de páginas, com caixa/palavra inteira e extensões próprias de acentos/hifenização.",
       "inputs": [
@@ -636,7 +636,7 @@
     {
       "id": "search-bookmarks",
       "name": "Busca em marcadores",
-      "matrix_implementation": "Busca própria em títulos; D07 distingue seleção de hit e ativação nativa1→2 no original. Paridade e destinos completos abertos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15 em desenvolvimento: identificador estável e seleção da linha de destino; destino externo/ausente não recebe página inventada. Validação Linux pendente; família completa aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Pesquisa em títulos de marcadores; leitura e navegação não equivalem a edição/persistência.",
       "inputs": [
@@ -739,16 +739,17 @@
     {
       "id": "search-comments",
       "name": "Busca em comentários",
-      "matrix_implementation": "Autor corrigido na fonte 168381b,403/403 Linux registrados; Flatpak0.1.13 anterior à correção. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Autor incluído no Flatpak0.1.14 validado432/432. Fonte0.1.15 acrescenta respostas /IRT, deduplicação por objeto, campos separados e destinos; validação Linux pendente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte posterior ao pacote0.1.13: busca em assunto, conteúdo e autor de comentários; correção motivada pelo recorte C18-D09-author observado offline.",
+      "scope": "Subconjunto próprio: assunto, conteúdo e autor pesquisados separadamente; respostas /IRT na mesma página, IDs de objetos, rich text textual e avisos de vínculos inválidos. Não modifica anotações.",
       "inputs": [
         "Consulta, flags e include_comments=True; comentários com página associada.",
         "As demais fontes podem ficar desativadas."
       ],
       "outputs": [
         "Hits source=comment, página conhecida e rects=[].",
-        "Assunto, conteúdo e autor são pesquisáveis pelas mesmas opções de consulta; resultados de metadados não recebem retângulos inventados."
+        "Assunto, conteúdo e autor são pesquisáveis pelas mesmas opções de consulta; resultados de metadados não recebem retângulos inventados.",
+        "Hits identificam campo e comentário/resposta; referências repetidas ao mesmo objeto não duplicam resultados. Comentários distintos com texto igual são preservados."
       ],
       "errors": [
         {
@@ -767,7 +768,8 @@
       ],
       "source_refs": [
         "app/search_engine.py",
-        "app/pdf_panels.py"
+        "app/pdf_panels.py",
+        "app/pdf_comments.py"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -3938,7 +3940,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T09:58:26-03:00",
+  "updated_at_local": "2026-10-19T12:39:30-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

@@ -11,6 +11,7 @@ if str(VENDOR) not in sys.path:
     sys.path.insert(0, str(VENDOR))
 
 from pypdf import PdfReader  # type: ignore  # noqa: E402
+from pdf_comments import inspect_comments
 
 
 def _obj(value):
@@ -29,7 +30,7 @@ def _text(value):
         return ''
 
 
-def inspect_document_panels(path):
+def inspect_document_panels(path, cancel=None):
     reader = PdfReader(path)
     if reader.is_encrypted:
         try:
@@ -41,6 +42,8 @@ def inspect_document_panels(path):
 
     def walk_outline(items, level=0):
         for item in items or []:
+            if cancel is not None and cancel.is_set():
+                return
             if isinstance(item, list):
                 walk_outline(item, level + 1)
                 continue
@@ -51,46 +54,15 @@ def inspect_document_panels(path):
             except Exception:
                 pass
             if title:
-                bookmarks.append({'title': title, 'page': page, 'level': level})
+                bookmarks.append({'title': title, 'page': page, 'level': level,
+                                  'item_id': 'bookmark:' + str(len(bookmarks))})
 
     try:
         walk_outline(reader.outline, 0)
     except Exception:
         pass
 
-    comments = []
-    comment_subtypes = {
-        '/Text': 'Nota', '/FreeText': 'Texto', '/Highlight': 'Destaque',
-        '/Underline': 'Sublinhado', '/StrikeOut': 'Tachado', '/Squiggly': 'Ondulado',
-        '/Stamp': 'Carimbo', '/Ink': 'Desenho', '/Line': 'Linha', '/Square': 'Retângulo',
-        '/Circle': 'Elipse', '/Polygon': 'Polígono', '/PolyLine': 'Polilinha',
-        '/FileAttachment': 'Anexo', '/Caret': 'Inserção',
-    }
-    for pidx, page in enumerate(reader.pages):
-        try:
-            annots = _obj(page.get('/Annots')) or []
-        except Exception:
-            annots = []
-        for ref in annots:
-            try:
-                annot = _obj(ref)
-                subtype = _text(annot.get('/Subtype'))
-                if subtype not in comment_subtypes:
-                    continue
-                contents = _text(annot.get('/Contents')).strip()
-                author = _text(annot.get('/T')).strip()
-                subject = _text(annot.get('/Subj')).strip()
-                label = subject or contents or comment_subtypes.get(subtype, subtype.strip('/'))
-                comments.append({
-                    'page': pidx,
-                    'type': comment_subtypes.get(subtype, subtype.strip('/')),
-                    'author': author,
-                    'text': label,
-                    'contents': contents,
-                    'subject': subject,
-                })
-            except Exception:
-                continue
+    comments, notices = inspect_comments(reader, cancel)
 
     layers = []
     try:
@@ -105,4 +77,4 @@ def inspect_document_panels(path):
     except Exception:
         pass
 
-    return {'bookmarks': bookmarks, 'comments': comments, 'layers': layers}
+    return {'bookmarks': bookmarks, 'comments': comments, 'layers': layers, 'notices': notices}

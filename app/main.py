@@ -111,6 +111,7 @@ class PDFWindow(Gtk.Window):
         self.search_index = None
         self.search_scanned = 0
         self.search_running = False
+        self.search_stopped = False
         self.thumb_rows = {}
         self.thumb_requested = set()
         self.thumb_build_next = 0
@@ -476,6 +477,10 @@ class PDFWindow(Gtk.Window):
         box.pack_start(self.find_entry, True, True, 0)
         prev = Gtk.Button(label='Anterior'); prev.connect('clicked', lambda *_: self._find_prev()); box.pack_start(prev, False, False, 0)
         nxt = Gtk.Button(label='Próximo'); nxt.connect('clicked', lambda *_: self._find_next()); box.pack_start(nxt, False, False, 0)
+        self.find_stop = Gtk.Button(label='Parar')
+        self.find_stop.set_sensitive(False)
+        self.find_stop.connect('clicked', self._stop_search)
+        box.pack_start(self.find_stop, False, False, 0)
         self.find_status = Gtk.Label(label=''); box.pack_start(self.find_status, False, False, 0)
         close = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
         close.connect('clicked', self._hide_find); box.pack_start(close, False, False, 0)
@@ -944,6 +949,7 @@ class PDFWindow(Gtk.Window):
             self.prefetch_runner.invalidate(str(key))
         self.prefetch_tasks.clear()
         self.search_cancel.set(); self.search_index = None; self.search_running = False
+        self.search_stopped = False; self.find_stop.set_sensitive(False)
         self.search_notices = []
         self.runner.invalidate('main-render'); self.runner.invalidate('search'); self.runner.invalidate('panels')
         self.runner.invalidate('selection-words')
@@ -1340,6 +1346,7 @@ class PDFWindow(Gtk.Window):
             self.bookmark_list.add(self._info_row('Este PDF não possui marcadores.'))
         for item in bookmarks:
             row = Gtk.ListBoxRow(); row.page_index = item.get('page')
+            row.item_id = item.get('item_id')
             box = Gtk.Box(spacing=6, margin=6)
             indent = max(0, int(item.get('level') or 0)) * 14
             lbl = Gtk.Label(label=str(item.get('title') or 'Marcador'), xalign=0)
@@ -1353,8 +1360,11 @@ class PDFWindow(Gtk.Window):
             self.comment_list.add(self._info_row('Nenhum comentário/anotação detectado.'))
         for item in comments:
             row = Gtk.ListBoxRow(); row.page_index = item.get('page')
+            row.item_id = item.get('comment_id')
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2, margin=6)
             title = f"{item.get('type') or 'Comentário'} • pág. {int(item.get('page') or 0) + 1}"
+            if item.get('is_reply'):
+                title = 'Resposta • ' + title
             lbl = Gtk.Label(label=title, xalign=0); lbl.get_style_context().add_class('panel-row-title'); box.pack_start(lbl, False, False, 0)
             text = item.get('text') or item.get('author') or ''
             if text:
@@ -1372,6 +1382,18 @@ class PDFWindow(Gtk.Window):
                 row.add(box); self.layer_list.add(row)
         for box in (self.bookmark_list, self.comment_list, self.layer_list):
             box.show_all()
+        self._select_metadata_search_row()
+
+    def _select_metadata_search_row(self):
+        if not 0 <= self.search_pos < len(self.search_hits):
+            return
+        hit = self.search_hits[self.search_pos]
+        box = {'bookmark': self.bookmark_list, 'comment': self.comment_list}.get(hit['source'])
+        if box is not None and hit.get('item_id'):
+            for row in box.get_children():
+                if getattr(row, 'item_id', None) == hit['item_id']:
+                    box.select_row(row)
+                    break
 
     def _bookmark_activated(self, _box, row):
         page = getattr(row, 'page_index', None)
@@ -1707,6 +1729,7 @@ class PDFWindow(Gtk.Window):
         self.search_cancel.set()
         self.runner.invalidate('search')
         self.search_running = False
+        self.search_stopped = False; self.find_stop.set_sensitive(False)
         if self.search_timer:
             GLib.source_remove(self.search_timer)
             self.search_timer = None
@@ -1718,6 +1741,19 @@ class PDFWindow(Gtk.Window):
         self._find_update_results()
         self.interaction_layer.queue_draw()
 
+    def _stop_search(self, *_args):
+        """Retain only results already delivered to the UI; reject late batches."""
+        if self.search_timer:
+            GLib.source_remove(self.search_timer)
+            self.search_timer = None
+        if self.search_running:
+            self.search_cancel.set()
+            self.runner.invalidate('search')
+            self.search_running = False
+            self.search_stopped = True
+        self.find_stop.set_sensitive(False)
+        self._update_find_status()
+
     def _select_search_hit(self, index):
         if not self.search_hits:
             return
@@ -1725,6 +1761,7 @@ class PDFWindow(Gtk.Window):
         self._search_scroll_pending = True
         self._update_find_status()
         hit = self.search_hits[self.search_pos]
+        self._select_metadata_search_row()
         if hit['page'] is None:
             self._search_scroll_pending = False
         elif hit['page'] != self.page:
@@ -1743,6 +1780,7 @@ class PDFWindow(Gtk.Window):
             return False
         hit = self.search_hits[self.search_pos]
         if hit['page'] != self.page or not hit['rects']:
+            self._search_scroll_pending = False
             return False
         coords = self._pdf_rect_to_display(hit['rects'][0], hit)
         origin_x, origin_y = self.page_overlay.page_origin()
@@ -1761,6 +1799,7 @@ class PDFWindow(Gtk.Window):
     def _find_changed(self, *_args):
         self.search_cancel.set()
         self.search_running = False
+        self.search_stopped = False; self.find_stop.set_sensitive(False)
         self.runner.invalidate('search')
         self.search_hits = []; self.search_pos = -1
         self.search_notices = []
@@ -1794,6 +1833,7 @@ class PDFWindow(Gtk.Window):
             self.search_index = TextSearchIndex(session.read_path, self.page_count, page_sizes=self.page_sizes)
         index = self.search_index
         self.search_scanned = 0; self.search_running = True
+        self.search_stopped = False; self.find_stop.set_sensitive(True)
         def progress(scanned, batch):
             def deliver():
                 if cancel.is_set() or self.filepath != path or self.search_cancel is not cancel:
@@ -1809,6 +1849,7 @@ class PDFWindow(Gtk.Window):
         def ok(hits):
             if cancel.is_set() or self.search_cancel is not cancel or path != self.filepath: return
             self.search_running = False
+            self.find_stop.set_sensitive(False)
             self.search_hits = hits
             self.search_notices = notices
             self.search_pos = min(max(0, self.search_pos), len(hits) - 1) if hits else -1
@@ -1817,6 +1858,7 @@ class PDFWindow(Gtk.Window):
         def error(exc):
             if not cancel.is_set():
                 self.search_running = False
+                self.find_stop.set_sensitive(False)
                 self.find_status.set_text(f'Erro: {exc}')
         self.runner.submit('search', lambda: session.call(lambda _path: index.search(query, cancel=cancel, on_page=progress,
                                                         on_notice=notices.append, **options)), ok, error)
@@ -1829,13 +1871,19 @@ class PDFWindow(Gtk.Window):
                      if self.find_options['include_page_text'].get_active() else ' • fontes do documento')
         elif len(self.search_hits) >= 5000:
             text += ' • limite de resultados'
+        if self.search_stopped:
+            text += ' • interrompida'
         notices = getattr(self, 'search_notices', [])
-        omissions = [item for notice in notices for item in notice['omissions']]
+        omissions = [item for notice in notices for item in notice.get('omissions', [])]
+        metadata_notices = [item for notice in notices for item in notice.get('metadata_notices', [])]
+        if metadata_notices:
+            text += ' • metadados parciais'
         if omissions:
             text += ' • anexos parciais'
-        if any(notice['limit_reached'] for notice in notices):
+        if any(notice.get('limit_reached') for notice in notices):
             text += ' • limite em anexos'
         detail = '\n'.join(display_attachment_name(f"{item['name']}: {item['reason']}") for item in omissions[:12])
+        detail = '\n'.join(filter(None, [detail, *metadata_notices[:12]]))
         self.find_status.set_tooltip_text(detail or None)
         self.find_status.set_text(text)
         self._find_update_results()
