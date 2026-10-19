@@ -85,6 +85,7 @@ def verify_trust(cms,content,policy):
         folder=Path(directory);ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle))
         signature=folder/'cms.der';signature.write_bytes(cms);data=folder/'data.bin';data.write_bytes(content)
         chain=folder/'included.pem';chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs))
+        empty_store=folder/'empty-ca-store';empty_store.mkdir()
         options=['-CAfile',str(ca),'-no-CApath','-no-CAstore','-attime',str(int(policy['moment'].timestamp()))]
         base=[executable,'cms','-verify','-binary','-inform','DER','-in',str(signature),'-content',str(data),'-purpose','any',*options,'-out',os.devnull]
         result['chain_verified']=usage_ok and _run(base)
@@ -97,7 +98,10 @@ def verify_trust(cms,content,policy):
                     if len(result['timestamps'])>=8:raise ValueError('CMS acima de8 carimbos de tempo.')
                     encoded=token.dump();token_path=folder/'timestamp.der';token_path.write_bytes(encoded)
                     value_path=folder/'signature-value.bin';value_path.write_bytes(signature_value)
-                    args=[executable,'ts','-verify','-token_in','-in',str(token_path),'-data',str(value_path),*options]
+                    # ts lacks cms' -no-CApath/-no-CAstore switches. Explicit
+                    # empty stores suppress platform anchors without those flags.
+                    ts_options=['-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(empty_store),'-attime',str(int(policy['moment'].timestamp()))]
+                    args=[executable,'ts','-verify','-token_in','-in',str(token_path),'-data',str(value_path),*ts_options]
                     if certs:args+=['-untrusted',str(chain)]
                     if policy['require_revocation']:args+=['-crl_check_all']
                     verified=_run(args)

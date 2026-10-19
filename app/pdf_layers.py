@@ -46,7 +46,24 @@ def create_layer_view(path,destination,visible):
     if not rows or not isinstance(visible,list) or len(visible)!=len(rows) or not all(type(v) is bool for v in visible):
         raise ValueError('Seleção de camadas inválida.')
     if any(row['locked'] and row['visible']!=visible[row['index']] for row in rows):raise ValueError('Camada bloqueada nesta configuração.')
-    writer=PdfWriter(clone_from=reader);props=writer.root_object['/OCProperties']
+    writer=PdfWriter(clone_from=reader)
+    apply_visibility(writer,visible)
+    try:
+        with target.open('xb') as stream:writer.write(stream)
+        if target.stat().st_size>64*1024**2:raise ValueError('Representação de camadas acima de64MiB.')
+        check=PdfReader(target,strict=True)
+        if len(check.pages)!=len(reader.pages) or [r['visible'] for r in inspect_layers(check)]!=visible:
+            raise ValueError('Visibilidade de leitura não confirmada.')
+        return str(target)
+    except BaseException:
+        target.unlink(missing_ok=True);raise
+
+
+def apply_visibility(writer,visible):
+    rows=inspect_layers(writer)
+    if not rows or not isinstance(visible,list) or len(visible)!=len(rows) or not all(type(v) is bool for v in visible):raise ValueError('Seleção de camadas inválida.')
+    if any(row['locked'] and row['visible']!=visible[row['index']] for row in rows):raise ValueError('Camada bloqueada nesta configuração.')
+    props=writer.root_object['/OCProperties']
     groups=props['/OCGs'];config=props.get('/D',DictionaryObject()).get_object()
     lookup={_key(ref):i for i,ref in enumerate(groups)}
     for group in _array(config,'/RBGroups'):
@@ -57,12 +74,3 @@ def create_layer_view(path,destination,visible):
     config[NameObject('/OFF')]=ArrayObject(ref for i,ref in enumerate(groups) if not visible[i])
     config.pop('/AS',None)  # Explicit reading override, not automatic usage selection.
     props[NameObject('/D')]=config
-    try:
-        with target.open('xb') as stream:writer.write(stream)
-        if target.stat().st_size>64*1024**2:raise ValueError('Representação de camadas acima de64MiB.')
-        check=PdfReader(target,strict=True)
-        if len(check.pages)!=len(reader.pages) or [r['visible'] for r in inspect_layers(check)]!=visible:
-            raise ValueError('Visibilidade de leitura não confirmada.')
-        return str(target)
-    except BaseException:
-        target.unlink(missing_ok=True);raise

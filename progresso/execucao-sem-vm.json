@@ -67,7 +67,7 @@
     {
       "id": "S06",
       "title": "Confiança de certificados e carimbos de tempo offline",
-      "status": "bounded_source_implemented_native_validation_pending",
+      "status": "native_chain_crl_passed_timestamp_fix_pending",
       "evidence_refs": [
         "docs/EXECUCAO-SEM-VM.md"
       ],
@@ -76,7 +76,7 @@
     {
       "id": "S07",
       "title": "Reprodução de voz e precisão/encaixe de medidas",
-      "status": "bounded_source_implemented_native_validation_pending",
+      "status": "own_native_playback_tests_passed_in_aeafdea_source_extended_later",
       "evidence_refs": [
         "docs/EXECUCAO-SEM-VM.md"
       ],
@@ -85,15 +85,19 @@
     {
       "id": "S08",
       "title": "Persistência de camadas e suporte a mídia/conteúdo3D",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "bounded_source_and_portable_tests_passed_native_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
       "id": "S09",
       "title": "Preferências e criação/conversão/OCR",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "bounded_source_and_portable_tests_passed_native_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
@@ -123,5 +127,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T15:50:33.578612-03:00"
+  "updated_at_local": "2026-10-19T16:00:23.494511-03:00"
 }

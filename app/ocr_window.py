@@ -12,6 +12,7 @@ from attachment_tasks import display_attachment_name
 from folder_dialogs import prepare_chooser, remember_selection
 from local_files import file_stamp
 from pdf_ocr import invoke_ocr, source_identity
+from tool_preferences import read_tool_preferences
 
 
 class OCRWindow(Gtk.Window):
@@ -20,6 +21,7 @@ class OCRWindow(Gtk.Window):
         self.set_destroy_with_parent(True)
         self.set_default_size(640, 340)
         self.path = str(Path(path).resolve())
+        defaults=read_tool_preferences()
         self.source_stamp = file_stamp(self.path)
         self.open_result = open_result
         self.closed = self.busy = False
@@ -44,14 +46,19 @@ class OCRWindow(Gtk.Window):
         self.language = Gtk.ComboBoxText()
         for key, label in [('por', 'Português'), ('eng', 'Inglês'), ('por+eng', 'Português e inglês')]:
             self.language.append(key, label)
-        self.language.set_active_id('por')
+        self.language.set_active_id(defaults['ocr_language'])
         bar.pack_start(self.language, False, False, 0)
         bar.pack_start(Gtk.Label(label='Resolução:'), False, False, 0)
         self.dpi = Gtk.ComboBoxText()
         for value in ('150', '300'):
             self.dpi.append(value, value + ' DPI')
-        self.dpi.set_active_id('300')
+        self.dpi.set_active_id(str(defaults['ocr_dpi']))
         bar.pack_start(self.dpi, False, False, 0)
+        self.psm=Gtk.ComboBoxText()
+        for value,label in [('3','Layout automático'),('6','Bloco único de texto'),('11','Texto esparso')]:self.psm.append(value,label)
+        self.psm.set_active_id(str(defaults['ocr_psm']));box.pack_start(self.psm,False,False,0)
+        self.pages=Gtk.Entry();self.pages.set_placeholder_text('Páginas para OCR:1,3,5 (vazio=todas);demais páginas copiadas')
+        self.pages.get_accessible().set_name('Páginas selecionadas para OCR');box.pack_start(self.pages,False,False,0)
         buttons = Gtk.Box(spacing=8)
         box.pack_start(buttons, False, False, 0)
         self.create = Gtk.Button(label='Criar cópia com OCR…')
@@ -64,7 +71,7 @@ class OCRWindow(Gtk.Window):
         cancel = Gtk.Button(label='Cancelar operação')
         cancel.connect('clicked', self._cancel)
         buttons.pack_end(cancel, False, False, 0)
-        self.controls = [self.create, self.language, self.dpi]
+        self.controls = [self.create, self.language, self.dpi,self.psm,self.pages]
         self.status = Gtk.Label(label='Escolha um nome novo para salvar todas as páginas.', xalign=0)
         self.status.set_line_wrap(True)
         self.status.set_selectable(True)
@@ -94,6 +101,9 @@ class OCRWindow(Gtk.Window):
         if not destination or self.closed:
             return
         language, dpi = self.language.get_active_id(), int(self.dpi.get_active_id())
+        pages=self.pages.get_text().strip();psm=int(self.psm.get_active_id())
+        try:selected=[int(value.strip()) for value in pages.split(',')] if pages else None
+        except ValueError:self.status.set_text('Informe números de páginas separados por vírgulas.');return
         self.result = None
         def task(cancel):
             if file_stamp(self.path) != self.source_stamp:
@@ -101,7 +111,9 @@ class OCRWindow(Gtk.Window):
             identity = source_identity(self.path)
             if file_stamp(self.path) != self.source_stamp:
                 raise ValueError('O PDF mudou. Reabra o documento antes do OCR.')
-            return invoke_ocr(self.path, destination, {'source_sha256': identity, 'language': language, 'dpi': dpi}, cancel)
+            request={'source_sha256': identity, 'language': language, 'dpi': dpi,'psm':psm}
+            if selected is not None:request['pages']=selected
+            return invoke_ocr(self.path, destination, request, cancel)
         def saved(result):
             self.result = result
             self.open_button.set_sensitive(True)

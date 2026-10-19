@@ -3408,7 +3408,9 @@
         "app/pdf_panels.py",
         "app/pdf_layers.py",
         "app/local_playback.py",
-        "app/media_window.py"
+        "app/media_window.py",
+        "app/pdf_media.py",
+        "app/media_assets_window.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3491,7 +3493,8 @@
         "app/local_files.py",
         "app/folder_dialogs.py",
         "docs/PASTAS-SINCRONIZADAS.md",
-        "app/reading_preferences.py"
+        "app/reading_preferences.py",
+        "app/tool_preferences.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",

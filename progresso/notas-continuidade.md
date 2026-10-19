@@ -3069,3 +3069,12 @@ S05 Linux540/540,portais/AT-SPI,CUPS4/4 examinados; artefatos conferidos pelo SH
 S06 política local CA/CRL/RFC3161 e S07 voz/medidas implementados, aguardando CI.
 Fonte0.1.16 sem novo pacote; VM intocada,paridade/pesos/critérios preservados.
 Próximo:validar esse commit e continuar S08–S12. Commit/push serão confirmados depois.
+
+### 2026/10/19 às 16:00 (America/Sao_Paulo, UTC-03:00) — S08/S09 e correção RFC3161
+
+S06/S07CIaeafdea:548/549; única falha TSA, reproduções e CA/CRL passaram.
+Correção ts preparada, aguardando nova integração. S08 mídia/camadas,S09 padrões
+eOCR seletivo acrescentados;5+3portáveis aprovados,2integrações nativas pendentes.
+Estática S11 iniciada:Ghidra-noanalysis,2sementes inéditas de transição reflow,
+resultado ainda em importação,não contado. VM intocada; nuvem adiada;0.1.15mantido.
+Próximo:CI corrigido,S10integrações,S11exame,S12Flatpak/auditoria.

@@ -951,7 +951,7 @@ Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos f
 
 - Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader.
 
-Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_layers.py](../app/pdf_layers.py), [app/local_playback.py](../app/local_playback.py), [app/media_window.py](../app/media_window.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_layers.py](../app/pdf_layers.py), [app/local_playback.py](../app/local_playback.py), [app/media_window.py](../app/media_window.py), [app/pdf_media.py](../app/pdf_media.py), [app/media_assets_window.py](../app/media_assets_window.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 <a id="preferences"></a>
 
@@ -987,7 +987,7 @@ Preferência própria system/light/dark com migração legada e persistência; s
 
 - Defaults, esquemas de persistência e dependências de todas as preferências do original.
 
-Fontes: [app/appearance.py](../app/appearance.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/reading_preferences.py](../app/reading_preferences.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [app/appearance.py](../app/appearance.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/reading_preferences.py](../app/reading_preferences.py), [app/tool_preferences.py](../app/tool_preferences.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_theme_persistence_and_contrast](../tests/test_viewer.py); [test_fresh_system_theme_initializes_and_migrates_legacy](../tests/test_consolidation.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
 

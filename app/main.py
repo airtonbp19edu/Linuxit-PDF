@@ -390,6 +390,7 @@ class PDFWindow(Gtk.Window):
                 self._command_button('mail-message-new-symbolic','Comentários',lambda *_: self._show_side_panel(2)),
                 self._command_button('view-grid-symbolic','Camadas',lambda *_: self._show_side_panel(3)),
                 self._command_button('mail-attachment-symbolic','Anexos',lambda *_: self._show_side_panel(4)),
+                self._command_button('video-x-generic-symbolic','Mídia',self._embedded_media),
             ]),
             self._ribbon_group('Visualização', [
                 self._command_button('object-rotate-left-symbolic','Girar ←',lambda *_: self._rotate(-90)),
@@ -1422,6 +1423,7 @@ class PDFWindow(Gtk.Window):
             self.layer_list.add(self._info_row('Este PDF não possui camadas opcionais detectáveis.'))
         else:
             self.layer_list.add(self._info_row('Visibilidade temporária de leitura; o PDF original é preservado.'))
+            row=Gtk.ListBoxRow();save=Gtk.Button(label='Salvar visibilidade em cópia…');save.connect('clicked',self._save_layer_visibility);row.add(save);self.layer_list.add(row)
             for item in layers:
                 row = Gtk.ListBoxRow(); box = Gtk.Box(spacing=6, margin=6)
                 check=Gtk.CheckButton(label=display_attachment_name(item.get('name') or 'Camada'))
@@ -1470,6 +1472,30 @@ class PDFWindow(Gtk.Window):
             if session is self.document_session:
                 self._layer_busy=False;self._load_side_panels();self._error(str(exc))
         self.runner.submit('layer-view',task,done,failed)
+
+    def _save_layer_visibility(self,*_):
+        if not self.filepath or getattr(self,'_layer_busy',False) or not self._reading_permission('modify') or not self._reading_permission('copy'):return
+        session=self.document_session;visible=[check.get_active() for check in self.layer_checks]
+        dialog=Gtk.FileChooserDialog(title='Salvar configuração de camadas em cópia',transient_for=self,modal=True,action=Gtk.FileChooserAction.SAVE)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Salvar cópia nova',Gtk.ResponseType.OK);dialog.set_current_name(Path(self.filepath).stem+'-camadas.pdf')
+        try:
+            if dialog.run()!=Gtk.ResponseType.OK:return
+            destination=dialog.get_filename()
+        finally:dialog.destroy()
+        auth=session.edit_authorization();source=session.source
+        def work():
+            session.assert_source_unchanged()
+            from pdf_changes import _sha
+            request=dict(source_sha256=_sha(source),operations=[dict(kind='set-layer-visibility',visible=visible)],auth=auth)
+            return run_search_worker('copy-edit',source,request,get_event(),destination=destination)
+        def done(result):
+            if result and self.document_session is session:self.status_file.set_text('Cópia com visibilidade salva. Criptografia/permissões da origem preservadas quando presentes.')
+        self.runner.submit('save-layer-config',work,done,lambda exc:self._error(str(exc)),priority='background')
+
+    def _embedded_media(self,*_):
+        if not self.filepath:return
+        from media_assets_window import MediaAssetsWindow
+        MediaAssetsWindow(self,self.document_session).show_all()
 
     def _select_metadata_search_row(self):
         if not 0 <= self.search_pos < len(self.search_hits):
@@ -2317,6 +2343,8 @@ class PDFWindow(Gtk.Window):
 
     def _reading_preferences(self,*_):
         values=read_preferences()
+        from tool_preferences import read_tool_preferences,save_tool_preferences
+        tools=read_tool_preferences()
         dialog=Gtk.Dialog(title='Preferências de leitura',transient_for=self,modal=True)
         dialog.set_destroy_with_parent(True)
         dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Salvar padrões',Gtk.ResponseType.OK)
@@ -2331,11 +2359,25 @@ class PDFWindow(Gtk.Window):
         mode.connect('changed',lambda *_:zoom.set_sensitive(mode.get_active_id()=='percent'))
         sidebar=Gtk.CheckButton(label='Exibir painel lateral');sidebar.set_active(values['sidebar']);box.add(sidebar)
         highlights=Gtk.CheckButton(label='Destacar todas as ocorrências na busca');highlights.set_active(values['highlight_all']);box.add(highlights)
+        grid=Gtk.Grid(column_spacing=10,row_spacing=8);box.add(grid)
+        tool_controls={}
+        for row,(key,label,choices) in enumerate([
+            ('speech_voice','Voz',[('pt-br','Português'),('en','Inglês')]),
+            ('ocr_language','Idioma OCR',[('por','Português'),('eng','Inglês'),('por+eng','Português/inglês')]),
+            ('ocr_psm','Layout OCR',[('3','Automático'),('6','Bloco único'),('11','Texto esparso')]),
+            ('ocr_dpi','Resolução OCR',[('150','150DPI'),('300','300DPI')])]):
+            control=Gtk.ComboBoxText()
+            for value,name in choices:control.append(value,name)
+            control.set_active_id(str(tools[key]));control.get_accessible().set_name(label);grid.attach(Gtk.Label(label=label,xalign=0),0,row,1,1);grid.attach(control,1,row,1,1);tool_controls[key]=control
+        rate=Gtk.SpinButton.new_with_range(80,300,1);rate.set_value(tools['speech_rate']);rate.get_accessible().set_name('Palavras por minuto da voz')
+        grid.attach(Gtk.Label(label='Voz(palavras/min):',xalign=0),0,4,1,1);grid.attach(rate,1,4,1,1)
         dialog.show_all()
         try:
             if dialog.run()==Gtk.ResponseType.OK:
-                try:save_preferences(dict(zoom_mode=mode.get_active_id(),zoom_percent=zoom.get_value_as_int(),
-                                          sidebar=sidebar.get_active(),highlight_all=highlights.get_active()))
+                try:
+                    save_preferences(dict(zoom_mode=mode.get_active_id(),zoom_percent=zoom.get_value_as_int(),sidebar=sidebar.get_active(),highlight_all=highlights.get_active()))
+                    settings={key:control.get_active_id() for key,control in tool_controls.items()}
+                    settings['ocr_psm']=int(settings['ocr_psm']);settings['ocr_dpi']=int(settings['ocr_dpi']);settings['speech_rate']=rate.get_value_as_int();save_tool_preferences(settings)
                 except OSError as exc:self._error(f'Não foi possível salvar as preferências: {exc}')
         finally:dialog.destroy()
 

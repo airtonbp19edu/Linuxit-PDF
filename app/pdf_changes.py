@@ -309,6 +309,10 @@ def _apply(writer, operation):
                 raw=fields[name].indirect_reference.get_object()
                 if value is None:raw.pop('/Ff',None)
                 else:raw[NameObject('/Ff')]=value
+    elif kind == 'set-layer-visibility':
+        _require(set(operation)=={'kind','visible'},'Alteração de camadas inválida.')
+        from pdf_layers import apply_visibility
+        apply_visibility(writer,operation['visible'])
     elif kind == 'fill-form-controls':
         _require(set(operation) == {'kind', 'values'}, 'Opções de formulário inválidas.')
         fill_controls(writer, operation['values'])

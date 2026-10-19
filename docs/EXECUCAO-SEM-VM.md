@@ -173,3 +173,30 @@ S04/S05 no commit53b4fd5:540/540 Linux e fila CUPS isolada4/4 aprovados, relató
 examinados em testes/resultados/sem-vm-2026-10-19/s05/. Primeiro erro de configuração
 preservado; repetição IPP corrigida sem impressora física. Novo código S06/S07
 não herda a aprovação desse commit e ainda precisa seu próprio CI/pacote.
+
+## S08 — visibilidade salva e mídia incorporada
+
+Visibilidade salva em nova cópia via operação de edição, com permissão modify,
+criptografia/senhas preservadas e guardas de campos/assinaturas existentes.
+Não equivale a achatar camadas nem avaliar todas as configurações opcionais.
+Movie/RichMedia com arquivos incorporados, Sound PCM8/16bits e3D podem ser listados
+ou extraídos. Referências externas ignoradas, nenhum evento/JavaScript é acionado.
+PCM PDF convertido para WAV; streams até64MiB,até256recursos/5000páginas.
+Reprodução explícita de áudio/vídeo via filesrc/decodebin e codecs locais.
+3D tem somente extração; renderizador U3D/PRC ainda é trabalho aberto sem VM.
+Cinco testes portáveis passaram para preservação,PCM e cópia criptografada.
+
+## S09 — padrões de ferramentas e OCR escolhido
+
+Preferências atômicas/validadas de idioma/velocidade de voz,idioma/layout/DPI OCR;
+configuração própria sem caminhos/senhas,chaves ou conteúdo. OCR permite escolher
+páginas únicas e layouts Tesseract3/6/11. Demais páginas são copiadas sem OCR.
+O contrato de cópia OCR ainda não preserva toda a estrutura documental; não é
+conversão de layout universal nem edição textual do PDF. Limites20páginas/150MP
+preservados.3portáveis novos passaram; teste nativo Poppler/Tesseract preparado.
+
+Rodadaaeafdea:549testes,548aprovados/1falha RFC3161. Reprodução nativa3/3 passou;
+CA/CRL também passaram. A falha era uso no subcomando ts de opções exclusivas CMS;
+foram substituídas por repositórios vazios explícitos para impedir raízes implícitas.
+Resultado corrigido ainda pendente;não declarar549/549. Evidência da falha preservada
+em testes/resultados/sem-vm-2026-10-19/s06-first/.

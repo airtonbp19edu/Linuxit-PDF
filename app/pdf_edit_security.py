@@ -29,7 +29,7 @@ def authorize_operations(reader,operations):
         kind=operation.get('kind','')
         if kind in ('fill-text-fields','fill-form-controls','fill-form-events'):permission='fill_forms'
         elif kind=='rotate-page':permission='assemble'
-        elif kind in ('add-bookmark','rename-bookmark','move-bookmark','delete-bookmark'):permission='modify'
+        elif kind in ('add-bookmark','rename-bookmark','move-bookmark','delete-bookmark','set-layer-visibility'):permission='modify'
         else:permission='annotate'
         if not allowed[permission]:raise ValueError('A permissão do PDF não autoriza este tipo de alteração.')
 

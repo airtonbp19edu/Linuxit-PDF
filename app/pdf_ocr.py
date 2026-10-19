@@ -39,7 +39,7 @@ def source_identity(path):
 
 
 def validate_request(request):
-    _require(isinstance(request, dict) and set(request) == {'source_sha256', 'language', 'dpi'},
+    _require(isinstance(request, dict) and {'source_sha256', 'language', 'dpi'}<=set(request)<={'source_sha256','language','dpi','pages','psm'},
              'Pedido de OCR inválido.')
     _require(isinstance(request['source_sha256'], str) and re.fullmatch('[0-9a-f]{64}', request['source_sha256']),
              'Identidade do PDF inválida; reabra o documento.')
@@ -47,6 +47,9 @@ def validate_request(request):
              'Escolha português, inglês ou português e inglês.')
     _require(type(request['dpi']) is int and request['dpi'] in (150, 300),
              'OCR aceita resolução de 150 ou 300 DPI.')
+    _require(type(request.get('psm',3)) is int and request.get('psm',3) in (3,6,11),'OCR aceita layout automático, bloco único ou texto esparso.')
+    if 'pages' in request:
+        _require(isinstance(request['pages'],list) and 1<=len(request['pages'])<=MAX_PAGES and all(type(v) is int and 1<=v<=MAX_PAGES for v in request['pages']) and len(set(request['pages']))==len(request['pages']),'Selecione páginas únicas entre1e20.')
     return request['source_sha256'], request['language'], request['dpi']
 
 
@@ -107,7 +110,9 @@ def create_searchable_copy(source, destination, request):
         data = stream.read(MAX_SOURCE_BYTES + 1)
     _require(len(data) <= MAX_SOURCE_BYTES, 'OCR aceita um PDF local de até 128 MiB.')
     _require(hashlib.sha256(data).hexdigest() == identity, 'O PDF mudou. Reabra o documento antes do OCR.')
-    sizes = _page_sizes(PdfReader(BytesIO(data)), dpi)
+    reader=PdfReader(BytesIO(data));sizes = _page_sizes(reader, dpi)
+    chosen=set(request.get('pages',range(1,len(sizes)+1)))
+    _require(chosen<=set(range(1,len(sizes)+1)),'Uma página selecionada não existe neste PDF.')
     writer = PdfWriter()
     writer.add_metadata({'/Creator': 'Linuxit PDF — OCR local', '/Title': 'Cópia rasterizada com OCR'})
     pages_info, total_page_bytes = [], 0
@@ -120,6 +125,11 @@ def create_searchable_copy(source, destination, request):
         _require(set(language.split('+')).issubset({line.strip() for line in available}),
                  'O idioma escolhido não está instalado no Tesseract local.')
         for index, (width, height) in enumerate(sizes, 1):
+            if index not in chosen:
+                writer.add_page(reader.pages[index-1])
+                retained_text=(reader.pages[index-1].extract_text() or '').strip()
+                pages_info.append({'page':index,'page_points':[width,height],'recognized_characters':len(retained_text),'text_detected':bool(retained_text),'ocr_applied':False})
+                continue
             prefix = work / 'page'
             image, page_pdf = prefix.with_suffix('.png'), prefix.with_suffix('.pdf')
             _run(['pdftocairo', '-f', str(index), '-l', str(index), '-singlefile', '-cropbox',
@@ -130,7 +140,7 @@ def create_searchable_copy(source, destination, request):
                 _require(rendered.format == 'PNG' and rendered.size == expected, 'Dimensões inesperadas na renderização de OCR.')
                 rendered.verify()
             _run(['tesseract', str(image), str(prefix), '-l', language, '--dpi', str(dpi),
-                  '--oem', '1', '--psm', '3', 'pdf'])
+                  '--oem', '1', '--psm', str(request.get('psm',3)), 'pdf'])
             _require(page_pdf.is_file(), 'O Tesseract não produziu a página PDF esperada.')
             total_page_bytes += page_pdf.stat().st_size
             _require(total_page_bytes <= MAX_OUTPUT_BYTES, 'O PDF de OCR excede o limite de 128 MiB.')
@@ -145,7 +155,7 @@ def create_searchable_copy(source, destination, request):
             writer.add_page(page)
             text = page.extract_text() or ''
             pages_info.append({'page': index, 'page_points': [width, height],
-                               'recognized_characters': len(text.strip()), 'text_detected': bool(text.strip())})
+                               'recognized_characters': len(text.strip()), 'text_detected': bool(text.strip()),'ocr_applied':True})
             image.unlink()
             page_pdf.unlink()
         output = work / 'searchable.pdf'
@@ -153,7 +163,8 @@ def create_searchable_copy(source, destination, request):
         _require(output.stat().st_size <= MAX_OUTPUT_BYTES, 'O PDF de OCR excede o limite de 128 MiB.')
         final = PdfReader(output, strict=True)
         _require(len(final.pages) == len(sizes) and not final.is_encrypted, 'PDF de OCR incompleto.')
-        for page, size in zip(final.pages, sizes):
+        for page_index,(page, size) in enumerate(zip(final.pages, sizes),1):
+            if page_index not in chosen:continue
             _require(all(math.isclose(float(a), b, abs_tol=1e-5) for a, b in
                          zip((page.mediabox.width, page.mediabox.height), size)), 'Dimensões finais inválidas no OCR.')
         output_hash = source_identity(output)
@@ -163,6 +174,7 @@ def create_searchable_copy(source, destination, request):
     return {'schema': 'linuxit-ocr-copy-v1', 'path': str(destination), 'source_sha256': identity,
             'output_sha256': output_hash, 'pages': len(sizes), 'language': language, 'dpi': dpi,
             'rasterized': True, 'pages_info': pages_info,
+            'rasterized_pages':sorted(chosen),'psm':request.get('psm',3),
             'pages_without_text': [p['page'] for p in pages_info if not p['text_detected']]}
 
 

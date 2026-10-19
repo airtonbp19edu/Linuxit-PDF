@@ -7,6 +7,7 @@ from async_core import BackgroundRunner
 from cancel_state import get_event
 from pdf_security import invoke_accessible_text
 from speech import invoke_speech
+from tool_preferences import read_tool_preferences
 
 
 class AccessibleTextWindow(Gtk.Window):
@@ -24,7 +25,9 @@ class AccessibleTextWindow(Gtk.Window):
         self.status = Gtk.Label(xalign=0);self.status.set_line_wrap(True)
         self.status.get_accessible().set_role(Atk.Role.STATUSBAR);box.pack_start(self.status, False, False, 0)
         row=Gtk.Box(spacing=6);box.pack_start(row,False,False,0)
-        self.voice=Gtk.ComboBoxText();self.voice.append('pt-br','Português');self.voice.append('en','Inglês');self.voice.set_active_id('pt-br');row.add(self.voice)
+        settings=read_tool_preferences()
+        self.voice=Gtk.ComboBoxText();self.voice.append('pt-br','Português');self.voice.append('en','Inglês');self.voice.set_active_id(settings['speech_voice']);row.add(self.voice)
+        self.rate=Gtk.SpinButton.new_with_range(80,300,1);self.rate.set_value(settings['speech_rate']);self.rate.get_accessible().set_name('Palavras por minuto');row.add(self.rate)
         speak=Gtk.Button(label='Salvar voz em WAV…');speak.connect('clicked',self._speech);row.add(speak)
         play=Gtk.Button(label='Ouvir texto');play.connect('clicked',self._listen);row.add(play)
         self.speech_windows=[]
@@ -58,10 +61,10 @@ class AccessibleTextWindow(Gtk.Window):
         text=buffer.get_text(*bounds,True)
         if not text.strip():self.status.set_text('Não há texto para narrar.');return
         temporary=tempfile.TemporaryDirectory(prefix='linuxit-listen-');target=Path(temporary.name)/'speech.wav'
-        generation=self.generation;voice=self.voice.get_active_id();self.status.set_text('Preparando narração local…')
+        generation=self.generation;voice=self.voice.get_active_id();rate=self.rate.get_value_as_int();self.status.set_text('Preparando narração local…')
         def work():
             try:
-                result=invoke_speech(target,text,voice,cancel=get_event())
+                result=invoke_speech(target,text,voice,rate,cancel=get_event())
                 if result is None:temporary.cleanup()
                 return result
             except BaseException:temporary.cleanup();raise
@@ -86,9 +89,9 @@ class AccessibleTextWindow(Gtk.Window):
             if dialog.run()!=Gtk.ResponseType.OK:return
             destination=dialog.get_filename()
         finally:dialog.destroy()
-        voice=self.voice.get_active_id();generation=self.generation;self.status.set_text('Gerando voz local…')
+        voice=self.voice.get_active_id();rate=self.rate.get_value_as_int();generation=self.generation;self.status.set_text('Gerando voz local…')
         def message(text):
             if generation==self.generation:self.status.set_text(text)
-        self.runner.submit('speech',lambda:invoke_speech(destination,text,voice,cancel=get_event()),
+        self.runner.submit('speech',lambda:invoke_speech(destination,text,voice,rate,cancel=get_event()),
             lambda result:message('Narração WAV salva.' if result else 'Narração cancelada.'),
             lambda exc:message(str(exc)),priority='background')
