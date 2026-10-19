@@ -811,6 +811,8 @@ class PDFWindow(Gtk.Window):
 
     def open_document(self, path, initial_page=0, password='', recover=False):
         self._cancel_document_open()
+        self._edit_generation = getattr(self, '_edit_generation', 0) + 1
+        self._copy_edit_busy = False
         path = os.path.abspath(path)
         if not os.path.isfile(path):
             self._error('Arquivo não encontrado.')
@@ -828,6 +830,8 @@ class PDFWindow(Gtk.Window):
                 if result and result['status'] == 'ready':
                     first = max(0, min(int(initial_page), result['pages'] - 1))
                     candidate.call(render_page, first, 800, self.cache_dir, 'open-check', image_format='jpeg')
+                    if file_stamp(path) != result['source_stamp']:
+                        raise RuntimeError('O PDF mudou durante a abertura. Abra o arquivo novamente.')
                 return result
             finally:
                 if event is not None and event.is_set():candidate.close()
@@ -848,6 +852,11 @@ class PDFWindow(Gtk.Window):
                 elif info['status'] == 'recovery_required':
                     if self._ask_document_recovery() and generation == self._open_generation:
                         self.open_document(path, initial_page, password, True)
+                return
+            try:unchanged = file_stamp(path) == info['source_stamp']
+            except OSError:unchanged = False
+            if not unchanged:
+                failed(RuntimeError('O PDF mudou durante a abertura. Abra o arquivo novamente.'))
                 return
             self._pending_document = None
             self._clear_document_state()
@@ -947,6 +956,8 @@ class PDFWindow(Gtk.Window):
         if hasattr(self, 'page_total_top'): self.page_total_top.set_text('0')
         if hasattr(self, 'document_tabbar'): self.document_tabbar.hide()
         self.set_title('Linuxit PDF')
+        self.zoom_mode = 'fit-page'; self.zoom_percent = 100
+        self.status_zoom.set_text(''); self.zoom_label_top.set_text(''); self.zoom_entry.set_text('')
         session, self.document_session = self.document_session, None
         if session is not None:session.close()
 
@@ -1266,7 +1277,7 @@ class PDFWindow(Gtk.Window):
     def _select_thumb_row(self, page):
         row = self.thumb_rows.get(page)
         if row:
-            self.thumb_list.select_row(row); row.grab_focus()
+            self.thumb_list.select_row(row)
 
     def _toggle_sidebar(self, *_args):
         if not hasattr(self, 'sidebar_notebook'):
@@ -1430,6 +1441,7 @@ class PDFWindow(Gtk.Window):
             self.attachment_controller.select(getattr(row, 'attachment_index', None))
 
     def _save_selected_attachment(self, *_args):
+        opening_generation = self._open_generation
         selection = self.attachment_controller.selection_token()
         if selection is None or self.attachment_controller.extracting:
             return
@@ -1444,7 +1456,7 @@ class PDFWindow(Gtk.Window):
             directory = dialog.get_filename() if response == Gtk.ResponseType.OK else None
         finally:
             dialog.destroy()
-        if directory:
+        if directory and opening_generation == self._open_generation:
             self.attachment_controller.extract(directory, selection)
 
     def _comment_activated(self, _box, row):
@@ -1567,10 +1579,13 @@ class PDFWindow(Gtk.Window):
                 cr.set_source_rgba(.16,.48,.92,.18); cr.rectangle(x0,y0,x1-x0,y1-y0); cr.fill_preserve(); cr.set_source_rgba(.16,.48,.92,.95); cr.set_line_width(1.5); cr.stroke()
         if self.active_tool == 'loupe' and self.loupe_pos:
             px,py=self.loupe_pos; W,H=self.current_pixbuf.get_width(),self.current_pixbuf.get_height(); size=72
-            x=max(0,min(max(0,W-size),int(px-size/2))); y=max(0,min(max(0,H-size),int(py-size/2)))
+            dw,dh=self.page_image.display_size
+            cw,ch=min(W,max(1,round(size*W/dw))),min(H,max(1,round(size*H/dh)))
+            x=max(0,min(W-cw,round(px*W/dw-cw/2))); y=max(0,min(H-ch,round(py*H/dh-ch/2)))
             try:
-                sub=self.current_pixbuf.new_subpixbuf(x,y,min(size,W-x),min(size,H-y)); mag=sub.scale_simple(180,180,GdkPixbuf.InterpType.BILINEAR)
-                alloc=widget.get_allocation(); lx=min(max(8,px+22),max(8,alloc.width-190)); ly=min(max(8,py+22),max(8,alloc.height-190))
+                sub=self.current_pixbuf.new_subpixbuf(x,y,cw,ch); mag=sub.scale_simple(180,180,GdkPixbuf.InterpType.BILINEAR)
+                alloc=widget.get_allocation(); ox,oy=self.page_overlay.offset()
+                lx=min(max(8-ox,px+22),max(8-ox,alloc.width-190-ox)); ly=min(max(8-oy,py+22),max(8-oy,alloc.height-190-oy))
                 cr.set_source_rgba(1,1,1,.96); cr.rectangle(lx-4,ly-4,188,188); cr.fill(); Gdk.cairo_set_source_pixbuf(cr,mag,lx,ly); cr.paint(); cr.set_source_rgb(.15,.15,.15); cr.set_line_width(2); cr.rectangle(lx-4,ly-4,188,188); cr.stroke(); cr.set_source_rgba(.85,.15,.12,.9); cr.move_to(lx+90,ly+80); cr.line_to(lx+90,ly+100); cr.move_to(lx+80,ly+90); cr.line_to(lx+100,ly+90); cr.stroke()
             except Exception: pass
         return False

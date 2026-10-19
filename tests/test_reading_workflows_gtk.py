@@ -207,3 +207,37 @@ class ReadingWorkflowsGTKTests(unittest.TestCase):
             self.w.open_document(str(new)); wait_for(lambda:bool(self.errors))
         self.assertEqual(self.w.filepath, str(self.pdf))
         self.assertEqual(self.w.displayed_page, 0)
+
+    def test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list(self):
+        self.w.interaction_layer.grab_focus()
+        self.assertTrue(self.w._on_key(self.w, self.event('Right')))
+        wait_for(lambda:self.w.displayed_page == 1)
+        self.assertIs(self.w.get_focus(), self.w.interaction_layer)
+        self.assertTrue(self.w._on_key(self.w, self.event('Left')))
+        wait_for(lambda:self.w.displayed_page == 0)
+
+    def test_changed_source_after_initial_render_does_not_commit(self):
+        path = self.root / 'changing.pdf'; path.write_bytes(text_pdf(['candidate']))
+        from main import render_page
+        def changed(source, *args, **kwargs):
+            result = render_page(source, *args, **kwargs)
+            if str(source) == str(path):path.write_bytes(path.read_bytes() + b'\n%external change\n')
+            return result
+        with patch('main.render_page', side_effect=changed):
+            self.w.open_document(str(path)); wait_for(lambda:bool(self.errors))
+        self.assertEqual(self.w.filepath, str(self.pdf))
+        self.assertIn('mudou', self.errors[-1])
+
+    def test_real_password_dialog_masks_and_clears_entry(self):
+        entries = []
+        def answer():
+            for dialog in Gtk.Window.list_toplevels():
+                if isinstance(dialog, Gtk.Dialog) and dialog.get_title() == 'Abrir PDF protegido':
+                    entry = next(child for child in dialog.get_content_area().get_children() if isinstance(child, Gtk.Entry))
+                    entries.append((entry, entry.get_visibility()))
+                    entry.set_text('dialog-secret'); dialog.response(Gtk.ResponseType.OK)
+                    return False
+            return True
+        GLib.timeout_add(20, answer)
+        self.assertEqual(self.w._ask_document_password(str(self.pdf)), 'dialog-secret')
+        self.assertFalse(entries[0][1]); self.assertEqual(entries[0][0].get_text(), '')

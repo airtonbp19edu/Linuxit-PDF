@@ -27,8 +27,12 @@ class PageViewport(Gtk.Overlay, Gtk.Scrollable):
         self._adjustment_signals = []
         for adjustment in (self.props.hadjustment, self.props.vadjustment):
             if adjustment is not None:
-                self._adjustment_signals.append((adjustment, adjustment.connect('value-changed', lambda *_:self.queue_draw())))
+                self._adjustment_signals.append((adjustment, adjustment.connect('value-changed', self._redraw)))
         self._configure()
+
+    def _redraw(self, *_args):
+        self.queue_draw()
+        for child in self.get_children():child.queue_draw()
 
     def _configure(self):
         allocation = self.get_allocation()

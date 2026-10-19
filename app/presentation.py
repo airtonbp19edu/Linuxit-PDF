@@ -158,7 +158,9 @@ class PresentationWindow(Gtk.Window):
     def _refresh_monitors(self, preferred=None):
         monitors = [self._display.get_monitor(i) for i in range(self._display.get_n_monitors())]
         monitors = [m for m in monitors if m is not None]
-        if not monitors:return
+        if not monitors:
+            self._monitor = None; self.monitor_combo.remove_all(); self.monitor_combo.hide()
+            return
         if preferred is not None and 0 <= preferred < len(monitors):chosen = preferred
         elif self._monitor in monitors:chosen = monitors.index(self._monitor)
         else:
@@ -599,7 +601,8 @@ class PresentationWindow(Gtk.Window):
         if key == 'F6':
             self.controls_visible = True; self.revealer.set_reveal_child(True)
             if self.get_focus() is self.canvas:
-                (self.previous_button if self.previous_button.get_sensitive() else self.next_button).grab_focus()
+                (self.previous_button if self.previous_button.get_sensitive() else
+                 self.next_button if self.next_button.get_sensitive() else self.fit_combo).grab_focus()
             else:self.canvas.grab_focus()
             return True
         if key == 'Tab':
