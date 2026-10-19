@@ -26,6 +26,8 @@ class AccessibleTextWindow(Gtk.Window):
         row=Gtk.Box(spacing=6);box.pack_start(row,False,False,0)
         self.voice=Gtk.ComboBoxText();self.voice.append('pt-br','Português');self.voice.append('en','Inglês');self.voice.set_active_id('pt-br');row.add(self.voice)
         speak=Gtk.Button(label='Salvar voz em WAV…');speak.connect('clicked',self._speech);row.add(speak)
+        play=Gtk.Button(label='Ouvir texto');play.connect('clicked',self._listen);row.add(play)
+        self.speech_windows=[]
         close = Gtk.Button(label='Fechar');close.connect('clicked', lambda *_:self.destroy());box.pack_start(close, False, False, 0)
         self.connect('destroy', self._destroy)
 
@@ -47,6 +49,31 @@ class AccessibleTextWindow(Gtk.Window):
 
     def _destroy(self, *_):
         self.closed = True;self.runner.shutdown()
+        for window in list(self.speech_windows):window.destroy()
+
+    def _listen(self,*_):
+        import tempfile
+        from pathlib import Path
+        buffer=self.text.get_buffer();bounds=buffer.get_selection_bounds() or (buffer.get_start_iter(),buffer.get_end_iter())
+        text=buffer.get_text(*bounds,True)
+        if not text.strip():self.status.set_text('Não há texto para narrar.');return
+        temporary=tempfile.TemporaryDirectory(prefix='linuxit-listen-');target=Path(temporary.name)/'speech.wav'
+        generation=self.generation;voice=self.voice.get_active_id();self.status.set_text('Preparando narração local…')
+        def work():
+            try:
+                result=invoke_speech(target,text,voice,cancel=get_event())
+                if result is None:temporary.cleanup()
+                return result
+            except BaseException:temporary.cleanup();raise
+        def done(result):
+            if self.closed or generation!=self.generation or not result:temporary.cleanup();return
+            try:
+                from media_window import MediaWindow
+                window=MediaWindow(self,target,cleanup=temporary.cleanup)
+                self.speech_windows.append(window);window.connect('destroy',lambda w:self.speech_windows.remove(w) if w in self.speech_windows else None)
+                window.show_all();window.player.play();self.status.set_text('Narração com reprodução, pausa e parada.')
+            except Exception as exc:temporary.cleanup();self.status.set_text(str(exc))
+        self.runner.submit('listen',work,done,lambda exc:self.status.set_text(str(exc)),priority='background')
 
     def _speech(self,*_):
         buffer=self.text.get_buffer();selection=buffer.get_selection_bounds()

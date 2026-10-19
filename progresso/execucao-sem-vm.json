@@ -47,9 +47,9 @@
     {
       "id": "S04",
       "title": "Fluxos autenticados de edição/impressão com permissões",
-      "status": "own_source_linux_validated_cups_probe_fix_pending",
+      "status": "own_linux_validated_in_revision_53b4fd5",
       "evidence_refs": [
-        "testes/resultados/sem-vm-2026-10-19/s04/review.json"
+        "testes/resultados/sem-vm-2026-10-19/s05/review.json"
       ],
       "limitations": [
         "Physical printer and original lifecycle not exercised."
@@ -58,24 +58,28 @@
     {
       "id": "S05",
       "title": "Formatos de anexos, manutenção/recuperação do índice e idiomas",
-      "status": "source_implemented_11_portable_passed_native_ocr_pending",
+      "status": "own_linux_validated_in_revision_53b4fd5",
       "evidence_refs": [
-        "docs/EXECUCAO-SEM-VM.md"
+        "testes/resultados/sem-vm-2026-10-19/s05/review.json"
       ],
       "limitations": []
     },
     {
       "id": "S06",
       "title": "Confiança de certificados e carimbos de tempo offline",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "bounded_source_implemented_native_validation_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
       "id": "S07",
       "title": "Reprodução de voz e precisão/encaixe de medidas",
-      "status": "pending",
-      "evidence_refs": [],
+      "status": "bounded_source_implemented_native_validation_pending",
+      "evidence_refs": [
+        "docs/EXECUCAO-SEM-VM.md"
+      ],
       "limitations": []
     },
     {
@@ -119,5 +123,5 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T15:43:28.941756-03:00"
+  "updated_at_local": "2026-10-19T15:50:33.578612-03:00"
 }

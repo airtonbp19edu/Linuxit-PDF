@@ -3062,3 +3062,10 @@ backup/recuperação/travas.11portáveis aprovados;1teste nativo não executáve
 Fonte0.1.16 sem pacote novo,0.1.15 preservado. VM intocada; nuvem direta adiada,
 paridade/critérios/pesos intactos. Próximo:S06 e CI Linux/CUPS deste checkpoint.
 Publicação:commit/push e confirmação feitos em seguida; não inferir pelo texto.
+
+### 2026/10/19 às 15:50 (America/Sao_Paulo, UTC-03:00) — S06/S07 preparados
+
+S05 Linux540/540,portais/AT-SPI,CUPS4/4 examinados; artefatos conferidos pelo SHA.
+S06 política local CA/CRL/RFC3161 e S07 voz/medidas implementados, aguardando CI.
+Fonte0.1.16 sem novo pacote; VM intocada,paridade/pesos/critérios preservados.
+Próximo:validar esse commit e continuar S08–S12. Commit/push serão confirmados depois.

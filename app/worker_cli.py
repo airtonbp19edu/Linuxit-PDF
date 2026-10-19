@@ -143,8 +143,8 @@ def main(argv):
         return
     if cmd == 'signature-info':
         from pdf_signatures import inspect_pdf_signatures
-        raw = sys.stdin.buffer.read(16385)
-        if len(raw) > 16384:raise ValueError('Pedido de assinaturas acima do limite.')
+        raw = sys.stdin.buffer.read(262145)
+        if len(raw) > 262144:raise ValueError('Pedido de assinaturas acima do limite.')
         print(json.dumps(inspect_pdf_signatures(argv[2],json.loads(raw)),ensure_ascii=True))
         return
     if cmd in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy'}:

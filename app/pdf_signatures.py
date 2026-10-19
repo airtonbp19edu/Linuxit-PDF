@@ -68,7 +68,11 @@ def _verify_detached(cms, content):
 
 
 def inspect_pdf_signatures(path, request):
-    if request != {}:raise ValueError('Pedido de assinaturas inválido.')
+    if not isinstance(request,dict) or set(request) not in (set(),{'trust_policy'}):raise ValueError('Pedido de assinaturas inválido.')
+    policy=request.get('trust_policy')
+    if policy is not None:
+        from signature_trust import trust_policy
+        trust_policy(policy)
     path = Path(path)
     if not path.is_file() or path.stat().st_size > MAX_PDF:raise ValueError('Selecione um PDF disponível de até 64 MiB.')
     with path.open('rb') as stream:raw = stream.read(MAX_PDF+1)
@@ -106,16 +110,21 @@ def inspect_pdf_signatures(path, request):
             record.update(integrity_verified=verified,backend=backend,
                           status='verified' if verified else 'not_verified' if verified is False else 'unavailable',
                           current_file_covered=right+tail == len(raw),covered_revision_bytes=right+tail)
+            if policy is not None:
+                from signature_trust import verify_trust
+                trust=verify_trust(cms,raw[:left]+raw[right:right+tail],policy)
+                record['trust']=trust;record['trust_chain_verified']=trust['chain_verified']
         except (ValueError, AttributeError, TypeError, KeyError, OverflowError):
             record['status'] = 'unsupported_or_malformed'
     if _sha(path) != identity:raise ValueError('O PDF mudou durante a verificação de assinaturas.')
     return {'schema':'linuxit-signature-integrity-v1','source_sha256':identity,'signatures':signatures,
             'omitted_signatures':omitted,'trust_chain_verified':False,'network_used':False,
-            'scope':'CMS integrity only; no chain, revocation, timestamp or legal validity assessment.'}
+            'trust_assessed':policy is not None,
+            'scope':'Per-signature explicit local CA/CRL/RFC3161 policy; no legal/LTV decision.' if policy is not None else 'CMS integrity only; no chain, revocation, timestamp or legal validity assessment.'}
 
 
-def invoke_signature_inspection(path, cancel=None):
-    result = run_search_worker('signature-info', path, {}, cancel, timeout=120)
+def invoke_signature_inspection(path, cancel=None,trust_policy=None):
+    result = run_search_worker('signature-info', path, {} if trust_policy is None else {'trust_policy':trust_policy}, cancel, timeout=300 if trust_policy else 120)
     if result is None:return None
     if (not isinstance(result, dict) or result.get('schema') != 'linuxit-signature-integrity-v1'
             or result.get('trust_chain_verified') is not False or not isinstance(result.get('signatures'), list)):

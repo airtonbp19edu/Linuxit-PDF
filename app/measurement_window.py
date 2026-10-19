@@ -2,7 +2,7 @@
 import gi
 gi.require_version('Gtk','3.0')
 from gi.repository import Gtk,Gdk
-from measurement import measure,calibrated_scale,UNITS_MM,MAX_POINTS
+from measurement import measure,calibrated_scale,UNITS_MM,MAX_POINTS,snap_point
 
 
 class MeasurementWindow(Gtk.Window):
@@ -18,6 +18,9 @@ class MeasurementWindow(Gtk.Window):
         self.unit=Gtk.ComboBoxText()
         for unit in UNITS_MM:self.unit.append(unit,unit)
         self.unit.set_active_id('cm');row.add(self.unit)
+        self.grid=Gtk.SpinButton.new_with_range(0,1000,.5);self.grid.get_accessible().set_name('Grade em pontos PDF; zero desativa')
+        row.add(Gtk.Label(label='Grade(pt):'));row.add(self.grid)
+        self.angle=Gtk.CheckButton(label='Ângulos45°');row.add(self.angle)
         done=Gtk.Button(label='Concluir');done.connect('clicked',self._measure);row.add(done)
         clear=Gtk.Button(label='Limpar pontos');clear.connect('clicked',self._clear);row.add(clear)
         hint=Gtk.Label(label='Clique nos pontos da página e conclua. A calibração vale nesta janela; o PDF original é preservado.',xalign=0)
@@ -58,6 +61,7 @@ class MeasurementWindow(Gtk.Window):
     def _click(self,widget,event):
         if event.button!=1:return False
         scale,x,y=self._geometry();point=((event.x-x)/scale,(event.y-y)/scale)
+        point=snap_point(point,self.points[-1] if self.points else None,self.grid.get_value(),45 if self.angle.get_active() or event.state&Gdk.ModifierType.SHIFT_MASK else 0)
         if 0<=point[0]<=self.page_size[0] and 0<=point[1]<=self.page_size[1] and len(self.points)<MAX_POINTS:
             self.points.append(point);self.status.set_text(f'{len(self.points)} ponto(s).');self.canvas.queue_draw()
         return True

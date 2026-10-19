@@ -41,7 +41,7 @@ def build(flatpak, stage, repo, extra):
     runtime_tree('/usr/lib/python3.13', files / 'python/lib/python3.13', ignore=ignore)
     site = files / 'python/lib/python3.13/site-packages'
     site.mkdir()
-    for module in ['gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser']:
+    for module in ['gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser', 'asn1crypto']:
         origin = Path('/usr/lib/python3/dist-packages') / module
         if origin.exists():
             runtime_tree(origin, site / module, ignore=ignore)
@@ -90,12 +90,13 @@ def build(flatpak, stage, repo, extra):
 <cachedir prefix="xdg">fontconfig</cachedir></fontconfig>
 ''')
     runtime_tree('/usr/lib/x86_64-linux-gnu/ossl-modules', files / 'runtime-lib/ossl-modules')
+    runtime_tree('/usr/lib/x86_64-linux-gnu/gstreamer-1.0', files / 'lib/gstreamer-1.0')
     # All ELF dependencies, including libc, are paired with their own loader.
     # This avoids mixing a newer host-built extension with a different runtime libc.
     probes = list((files / 'libexec').iterdir()) + list(files.rglob('*.so'))
     dynamic_gui = [Path('/usr/lib/x86_64-linux-gnu') / name for name in
                    ('libgtk-3.so.0', 'libgdk-3.so.0', 'libatk-1.0.so.0',
-                    'libpangocairo-1.0.so.0', 'libgdk_pixbuf-2.0.so.0', 'libpoppler-glib.so.8')]
+                    'libpangocairo-1.0.so.0', 'libgdk_pixbuf-2.0.so.0', 'libpoppler-glib.so.8', 'libgstreamer-1.0.so.0')]
     probes.extend(dynamic_gui)
     libraries = set(dynamic_gui)
     for probe in probes:
@@ -121,12 +122,16 @@ base="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 export PYTHONHOME="$base/python"
 export PYTHONPATH="$base/python/lib/python3.13/site-packages"
 export OPENSSL_MODULES="$base/runtime-lib/ossl-modules"
+export GST_PLUGIN_SYSTEM_PATH_1_0="$base/lib/gstreamer-1.0"
+export GST_PLUGIN_PATH_1_0=""
+export GST_REGISTRY_FORK=no
 unset LD_LIBRARY_PATH
 export GI_TYPELIB_PATH="$base/lib/girepository-1.0"
 export GSETTINGS_SCHEMA_DIR="$base/share/glib-2.0/schemas"
 cache_dir="${XDG_CACHE_HOME:-${TMPDIR:-/tmp}}/linuxit-pdf"
 mkdir -p "$cache_dir"
 cache_id="$(printf '%s' "$base" | cksum | cut -d ' ' -f 1)"
+export GST_REGISTRY_1_0="$cache_dir/gstreamer-$cache_id.bin"
 module_cache="$cache_dir/loaders-$cache_id.cache"
 if [ ! -f "$module_cache" ]; then
   temp_cache="$(mktemp "$cache_dir/.loaders-XXXXXX")"
@@ -266,7 +271,7 @@ command=linuxit-pdf
 
 [Context]
 shared=network;ipc;
-sockets=wayland;fallback-x11;cups;
+sockets=wayland;fallback-x11;cups;pulseaudio;
 devices=dri;
 filesystems=home;
 

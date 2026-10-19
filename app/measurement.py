@@ -5,6 +5,21 @@ UNITS_MM={'mm':1.0,'cm':10.0,'m':1000.0,'in':25.4,'ft':304.8}
 MAX_POINTS=512
 
 
+def snap_point(point,reference=None,grid=0,angle_step=0):
+    """Explicit PDF-point grid and angular constraint; no invisible vector guess."""
+    import math
+    point=points([point],1)[0]
+    if any(type(v) not in (int,float) or not math.isfinite(v) for v in (grid,angle_step)) or not 0<=grid<=1000 or not 0<=angle_step<=180:
+        raise ValueError('Grade0–1000pt e restrição angular0–180graus.')
+    x,y=point
+    if reference is not None and angle_step:
+        origin=points([reference],1)[0];dx,dy=x-origin[0],y-origin[1];radius=math.hypot(dx,dy)
+        step=math.radians(angle_step);angle=round(math.atan2(dy,dx)/step)*step
+        x,y=origin[0]+radius*math.cos(angle),origin[1]+radius*math.sin(angle)
+    elif grid:x,y=round(x/grid)*grid,round(y/grid)*grid
+    return x,y
+
+
 def points(value,minimum=2):
     if not isinstance(value,list) or not minimum<=len(value)<=MAX_POINTS:
         raise ValueError('Quantidade de pontos inválida; máximo512.')

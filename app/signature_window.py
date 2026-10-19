@@ -19,10 +19,11 @@ class SignatureWindow(Gtk.Window):
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
         self.path=Gtk.Entry();self.path.set_text(str(path or ''));self.path.get_accessible().set_name('PDF para verificar assinaturas')
         box.pack_start(self.path,False,False,0)
-        note=Gtk.Label(label='Verifica a integridade CMS offline. Confiança do certificado, revogação, carimbos de tempo e validade legal não são avaliados.',xalign=0)
+        note=Gtk.Label(label='Integridade CMS offline. A validação com CA usa somente raízes/CRL locais selecionadas; carimbos RFC3161 são verificados quando presentes. Não determina validade legal nem PAdES-LTV.',xalign=0)
         note.set_line_wrap(True);box.pack_start(note,False,False,0)
         actions=Gtk.Box(spacing=8);box.pack_start(actions,False,False,0)
         self.verify=Gtk.Button(label='Verificar');self.verify.connect('clicked',self._verify);actions.pack_start(self.verify,False,False,0)
+        self.trust=Gtk.Button(label='Validar com CA/CRL…');self.trust.connect('clicked',self._verify_trust);actions.pack_start(self.trust,False,False,0)
         self.sign=Gtk.Button(label='Assinar cópia com PEM…');self.sign.connect('clicked',self._sign);actions.pack_start(self.sign,False,False,0)
         cancel=Gtk.Button(label='Cancelar');cancel.connect('clicked',self._cancel);actions.pack_start(cancel,False,False,0)
         self.rows=Gtk.ListBox();scroll=Gtk.ScrolledWindow();scroll.add(self.rows);box.pack_start(scroll,True,True,0)
@@ -79,7 +80,18 @@ class SignatureWindow(Gtk.Window):
             finish();self.status.set_text(str(exc))
         self.runner.submit('signature-info',work,done,failed,priority='background')
 
-    def _verify(self,*_):
+    def _verify_trust(self,*_):
+        if self.busy or self.closed:return
+        root=self._identity_file('Escolher CA confiável PEM para esta validação')
+        if not root:return
+        dialog=Gtk.MessageDialog(transient_for=self,modal=True,message_type=Gtk.MessageType.QUESTION,buttons=Gtk.ButtonsType.YES_NO,text='Exigir revogação offline com uma CRL local? Sem CRL, a confiança da cadeia pode ser verificada, mas a revogação fica desconhecida.')
+        try:require=dialog.run()==Gtk.ResponseType.YES
+        finally:dialog.destroy()
+        crl=self._identity_file('Escolher lista de revogação CRL local') if require else None
+        if require and not crl:return
+        self._verify(policy=dict(roots=[root],crls=[crl] if crl else [],require_revocation=require,at_time=None))
+
+    def _verify(self,*_,policy=None):
         if self.busy or self.closed:return
         self.cancel=threading.Event();cancel=self.cancel;self.busy=True;self.result=None;path=self.path.get_text()
         for row in self.rows.get_children():self.rows.remove(row)
@@ -95,14 +107,19 @@ class SignatureWindow(Gtk.Window):
             for item in result['signatures']:
                 text=display_attachment_name(item['field'])+' · '+labels[item['status']]
                 if item['status']=='verified' and not item['current_file_covered']:text+=' · há dados posteriores à revisão assinada'
+                trust=item.get('trust')
+                if trust:
+                    text+=' · cadeia '+('confiável na CA selecionada' if trust['chain_verified'] else 'não validada')
+                    text+=' · revogação '+('verificada offline' if trust['revocation_verified'] else 'desconhecida/não validada')
+                    if trust['timestamps']:text+=' · carimbos '+str(sum(t['verified'] for t in trust['timestamps']))+'/'+str(len(trust['timestamps']))+' verificados'
                 label=Gtk.Label(label=text,xalign=0);label.set_line_wrap(True);label.set_selectable(True)
                 label.set_margin_top(5);label.set_margin_bottom(5);self.rows.add(label)
             self.rows.show_all()
-            self.status.set_text(f"{len(result['signatures'])} campo(s), {result['omitted_signatures']} omitido(s) pelo limite. Confiança dos certificados não avaliada.")
+            self.status.set_text(f"{len(result['signatures'])} campo(s), {result['omitted_signatures']} omitido(s) pelo limite. "+('Política de CA local aplicada por assinatura; sem decisão legal/LTV.' if policy else 'Confiança dos certificados não avaliada.'))
         def failed(exc):
             if self.closed or cancel.is_set():return
             finish();self.status.set_text(str(exc))
-        self.runner.submit('signature-info',lambda:invoke_signature_inspection(path,cancel),loaded,failed,priority='background')
+        self.runner.submit('signature-info',lambda:invoke_signature_inspection(path,cancel,policy),loaded,failed,priority='background')
 
     def _cancel(self,*_):
         if not self.busy:return

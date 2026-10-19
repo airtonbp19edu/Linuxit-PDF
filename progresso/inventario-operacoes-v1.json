@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 15,
-  "reviewed_at_local": "2026-10-19T15:43:24.926374-03:00",
+  "reviewed_at_local": "2026-10-19T15:50:57.644098-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5015,9 +5015,9 @@
           "path": "app/pdf_signatures.py",
           "symbol": "inspect_pdf_signatures",
           "line": 70,
-          "end_line": 114,
-          "file_sha256": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441",
-          "excerpt_sha256": "514f558c03c4138513dca9071820d616d46543a813ddd7f7f5fcbd0cd55a6d36"
+          "end_line": 123,
+          "file_sha256": "8da664db4de6198f74dacd4eb6bf3876adc9860a95717cc18cbf0d88b4dfe7fa",
+          "excerpt_sha256": "8bec0ef52a8277147859bde1e6d4e01d9e375bb1733761ba91466d28974e6323"
         }
       ],
       "recorded_related_tests": [
@@ -5061,7 +5061,7 @@
           "symbol": "_verify_detached",
           "line": 45,
           "end_line": 67,
-          "file_sha256": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441",
+          "file_sha256": "8da664db4de6198f74dacd4eb6bf3876adc9860a95717cc18cbf0d88b4dfe7fa",
           "excerpt_sha256": "0b76e79ac96b120f59d3077403f255eddee148ce5818696c2ac3b0d65b12b440"
         }
       ],
@@ -5420,9 +5420,9 @@
           "path": "app/accessible_reader.py",
           "symbol": "AccessibleTextWindow",
           "line": 12,
-          "end_line": 67,
-          "file_sha256": "385fe5c260c8f7027c80c20cf1c9a533183c0b1011732e68648caea8c6fbff79",
-          "excerpt_sha256": "6e916fb41f1270279186745fd0a9858071dadd1052e0280238d9aa75e03f670c"
+          "end_line": 94,
+          "file_sha256": "f360bf9c388205f5333b4729f106f30e8451afc5449dfd7831520da31c1a121f",
+          "excerpt_sha256": "bb2b3ef37e264f4408c6ee694dc0eeb3690d071153b3643ab1620f68f9c718e0"
         }
       ],
       "recorded_related_tests": [
@@ -5615,9 +5615,9 @@
         {
           "path": "app/measurement.py",
           "symbol": "calibrated_scale",
-          "line": 21,
-          "end_line": 27,
-          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "line": 36,
+          "end_line": 42,
+          "file_sha256": "e65b576bb772075b80e0bf232cb27e3fe7f7f31425e86f5d330565d728c7042a",
           "excerpt_sha256": "3fc902c385911376b2aed154ea3a0c793bd42e71441d697bb166cc839cc02c73"
         }
       ],
@@ -5654,9 +5654,9 @@
         {
           "path": "app/measurement.py",
           "symbol": "measure",
-          "line": 37,
-          "end_line": 57,
-          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "line": 52,
+          "end_line": 72,
+          "file_sha256": "e65b576bb772075b80e0bf232cb27e3fe7f7f31425e86f5d330565d728c7042a",
           "excerpt_sha256": "665a6a9b4195b0ffd890b3cac03dd90d71ef0e85003cc1e0ed4220151b931901"
         }
       ],
@@ -5693,9 +5693,9 @@
         {
           "path": "app/measurement.py",
           "symbol": "measure",
-          "line": 37,
-          "end_line": 57,
-          "file_sha256": "e96ce17801ecc96290bca218580d767f379915f4c667db798dbe58a43c76780d",
+          "line": 52,
+          "end_line": 72,
+          "file_sha256": "e65b576bb772075b80e0bf232cb27e3fe7f7f31425e86f5d330565d728c7042a",
           "excerpt_sha256": "665a6a9b4195b0ffd890b3cac03dd90d71ef0e85003cc1e0ed4220151b931901"
         }
       ],

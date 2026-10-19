@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T15:43:24.926374-03:00",
+  "reviewed_at_local": "2026-10-19T15:50:57.644098-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -419,6 +419,24 @@
       "path": "app/collection_recovery.py",
       "boundary": "portable_index",
       "responsibility": "Backup, restauração e revisão explícita de travas."
+    },
+    {
+      "id": "signature_trust",
+      "path": "app/signature_trust.py",
+      "boundary": "worker_service",
+      "responsibility": "Política offline de CA/CRL/carimbo RFC3161 com OpenSSL e ASN.1."
+    },
+    {
+      "id": "local_playback",
+      "path": "app/local_playback.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Pipeline GStreamer de arquivo local com pausa/parada."
+    },
+    {
+      "id": "media_window",
+      "path": "app/media_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "Reprodução local explícita com controles e vídeo GTK."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -939,7 +957,8 @@
         "app/search_tasks.py",
         "app/worker_cli.py",
         "app/main.py",
-        "app/pdf_signing.py"
+        "app/pdf_signing.py",
+        "app/signature_trust.py"
       ],
       "future_boundary": "Verificação criptográfica e confiança separadas da aparência visual.",
       "future_boundary_implemented": false
@@ -969,7 +988,9 @@
         "app/search_tasks.py",
         "app/worker_cli.py",
         "app/main.py",
-        "app/speech.py"
+        "app/speech.py",
+        "app/local_playback.py",
+        "app/media_window.py"
       ],
       "future_boundary": "Estrutura acessível e adaptador de tecnologia assistiva.",
       "future_boundary_implemented": false
@@ -990,7 +1011,9 @@
       "contract_kind": "implemented_subset",
       "current_source_refs": [
         "app/pdf_panels.py",
-        "app/pdf_layers.py"
+        "app/pdf_layers.py",
+        "app/local_playback.py",
+        "app/media_window.py"
       ],
       "future_boundary": "Visibilidade OCG, mídia e 3D como contratos distintos.",
       "future_boundary_implemented": false

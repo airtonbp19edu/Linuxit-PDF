@@ -140,3 +140,36 @@ remotas ou ativas preservadas. Cleanup não remove trava substituída.
 aprovou528/528 e portais/AT-SPI. Fila CUPS isolada teve falha de configuração
 (backend socket ausente); corrigida para backend IPP instalado, repetição pendente.
 Falha preservada em testes/resultados/sem-vm-2026-10-19/s04/.
+
+## S06 — CA/CRL e carimbos de tempo selecionados
+
+Política técnica explícita offline:CA PEM,CRL PEM/DER,tempo com fuso,OpenSSLCMS
+verifica criptografia/cadeia/expiração e uso da chave do signatário. Revogação
+exigida precisa CRL completa válida; desconhecida não vira aprovada. Âncoras
+exigem BasicConstraints CA. Sem confiar automaticamente em raízes do CMS ou SO.
+Carimbos RFC3161 de atributos não assinados são verificados contra os bytes da
+assinatura e as mesmas CAs selecionadas; hora só é exibida como verificada
+quando o token passa. ASN.1 via pacote Debian asn1crypto (MIT), atribuído pelo build.
+Não implementa PAdES-LTV, validação legal, OCSP online, DocTimeStamp separado,
+assinaturas incrementais/adicionais nem suporte universal a tokens. Esses
+contratos permanecem abertos, sem alegar dependência de VM.5testes preparados,
+incluindo CA/CRL/TSA sintéticas reais; validação nativa pendente.
+Referências:[CMS](https://docs.openssl.org/3.5/man1/openssl-cms/),
+[RFC3161/OpenSSL](https://docs.openssl.org/3.5/man1/openssl-ts/).
+
+## S07 — voz e restrições de medidas
+
+Ouvir texto gera WAV privado pelo worker e abre reprodução local GStreamer com
+reproduzir/pausar/parar/volume. Fonte do pipeline é filesrc, nunca URI/playlist;
+sem iniciar mídia ao abrir um PDF. Diálogo reutilizável com vídeo GTK. Dependências
+Debian e licenças entram no runtime atribuído; saída PulseAudio no Flatpak.
+Testes usam fakesink e não comprovam alto-falantes físicos. Teclado/leitor de tela
+real e áudio físico permanecem pendentes. Medidas ganham grade PDF em pontos e
+restrição angular45graus/Shift explícitas, preservando cálculo/calibração próprios.
+Não promete encaixe automático em caminhos vetoriais do PDF.4testes novos
+preparados (1portável e3GTK/GStreamer), aguardando Linux.
+
+S04/S05 no commit53b4fd5:540/540 Linux e fila CUPS isolada4/4 aprovados, relatórios
+examinados em testes/resultados/sem-vm-2026-10-19/s05/. Primeiro erro de configuração
+preservado; repetição IPP corrigida sem impressora física. Novo código S06/S07
+não herda a aprovação desse commit e ainda precisa seu próprio CI/pacote.

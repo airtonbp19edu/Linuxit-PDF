@@ -1,0 +1,10 @@
+{
+  "source_commit": "53b4fd57ea688b38983ee9cb9f2c02d19814c7b8",
+  "source_tests_passed": 540,
+  "linux_all_passed": true,
+  "cups_verified": true,
+  "source_artifact_sha256": "04a47811edccb8536d1a4b5c1452b478ccd373e5213e0df80727060ce3b11e2b",
+  "cups_artifact_sha256": "98176da60ec6ae6f87950a1df610a8a67e2e04d0a45edf352ad2e8c157b50840",
+  "reviewed_at_local": "2026-10-19T15:50:33.578612-03:00",
+  "original_executed": false
+}

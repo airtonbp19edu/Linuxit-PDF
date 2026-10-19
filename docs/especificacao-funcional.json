@@ -2718,7 +2718,8 @@
         "app/worker_cli.py",
         "app/main.py",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "app/pdf_signing.py"
+        "app/pdf_signing.py",
+        "app/signature_trust.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3109,7 +3110,9 @@
         "app/worker_cli.py",
         "app/main.py",
         "docs/SEGURANCA-ACESSIBILIDADE.md",
-        "app/speech.py"
+        "app/speech.py",
+        "app/local_playback.py",
+        "app/media_window.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -3403,7 +3406,9 @@
       ],
       "source_refs": [
         "app/pdf_panels.py",
-        "app/pdf_layers.py"
+        "app/pdf_layers.py",
+        "app/local_playback.py",
+        "app/media_window.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
