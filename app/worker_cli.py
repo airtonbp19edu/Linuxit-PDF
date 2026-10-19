@@ -79,6 +79,15 @@ def main(argv):
     if len(argv) < 3:
         raise SystemExit(2)
     cmd = argv[1]
+    if cmd == 'sign-copy':
+        from pdf_signing import sign_pdf_copy
+        raw=sys.stdin.buffer.read(65537)
+        if len(raw)>65536:raise ValueError('Pedido de assinatura acima de64KiB.')
+        try:result=sign_pdf_copy(argv[2],json.loads(raw))
+        except Exception:
+            print('ValueError: Não foi possível assinar. Confira o PDF, a identidade PEM, a senha e o destino novo.',file=sys.stderr)
+            raise SystemExit(1) from None
+        print(json.dumps(result,ensure_ascii=True));return
     if cmd == 'document-open':
         from document_session import prepare_document, DocumentError
         try:

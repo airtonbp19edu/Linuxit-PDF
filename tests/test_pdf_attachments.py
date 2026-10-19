@@ -171,8 +171,9 @@ class AttachmentTests(unittest.TestCase):
         for option in ('portfolio',):
             with self.subTest(option=option):
                 self.make_pdf([('note.txt', b'data')], **{option: True})
-                with self.assertRaises(NotImplementedError):
-                    attachments.list_attachments(self.pdf)
+                # Historical ID retained: valid collections now expose embedded files.
+                listing=attachments.list_attachments(self.pdf)
+                self.assertTrue(listing['portfolio']);self.assertEqual(len(listing['attachments']),1)
 
     def test_worker_protocol_lists_extracts_and_reports_conflict(self):
         self.make_pdf([('note.txt', b'worker bytes')])

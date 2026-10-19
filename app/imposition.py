@@ -12,6 +12,7 @@ configure_pdf_library()
 from pypdf import PdfReader, PdfWriter, Transformation  # type: ignore  # noqa: E402
 from pypdf._page import PageObject  # type: ignore  # noqa: E402
 from pypdf.generic import NameObject, RectangleObject  # type: ignore  # noqa: E402
+from pypdf.constants import UserAccessPermissions
 
 PT_PER_MM = 72.0 / 25.4
 MAX_POSTER_TILES = 100
@@ -122,7 +123,11 @@ def _reader(path):
     reader = PdfReader(path)
     if reader.is_encrypted:
         try:
-            reader.decrypt('')
+            role=reader.decrypt('')
+            if not role:raise ValueError('Senha necessária.')
+            if int(role)!=2 and not UserAccessPermissions(int(reader.trailer['/Encrypt'].get('/P',0))).to_dict().get('print'):
+                raise PermissionError('As permissões deste PDF não autorizam imprimir.')
+        except PermissionError:raise
         except Exception as exc:  # noqa: BLE001
             raise RuntimeError('PDF protegido por senha não pode ser preparado para impressão.') from exc
     return reader

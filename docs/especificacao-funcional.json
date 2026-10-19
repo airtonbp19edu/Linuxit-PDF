@@ -2520,7 +2520,7 @@
     {
       "id": "attachments",
       "name": "Anexos/portfólios",
-      "matrix_implementation": "Catálogo/árvores/anotação próprios; anexo original 22 bytes/hash comparado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: arquivos incorporados de portfólios e sessão autenticada integrada ao painel; extração negada sem permissão. Layout/campos de coleção completos e original abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; backend, controlador e seis métodos GTK testados em fonte/payload/Flatpak127/127. Portfólios e senha não vazia pendentes.",
       "inputs": [
@@ -2679,7 +2679,7 @@
     {
       "id": "signatures",
       "name": "Assinaturas/certificados",
-      "matrix_implementation": "Inspeção/integridade CMS offline separada de confiança. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI e confiança/TSA/LTV abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
       "inputs": [
@@ -2705,7 +2705,8 @@
         "app/search_tasks.py",
         "app/worker_cli.py",
         "app/main.py",
-        "docs/SEGURANCA-ACESSIBILIDADE.md"
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/pdf_signing.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2833,7 +2834,7 @@
     {
       "id": "security",
       "name": "Senhas/permissões/RMS",
-      "matrix_implementation": "Senha conhecida/permissões/cópias AES-256 e remoção com senha de proprietário em subconjunto; D15 original observado. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: permissões de cópia/impressão aplicadas também a anexos, busca em anexos e imposição de cifrado com senha vazia; política da sessão autenticada preservada. RMS/família ampla abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
       "inputs": [
@@ -3944,7 +3945,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T12:58:56-03:00",
+  "updated_at_local": "2026-10-19T13:08:15-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

@@ -1331,7 +1331,8 @@ class PDFWindow(Gtk.Window):
             return
         path = self.filepath
         session = self.document_session
-        self.attachment_controller.set_document(path)
+        self.attachment_controller.set_document(path, session=session,
+                                               allow_extract=session.info['permissions']['copy'])
         if self.sidebar_visible and self.sidebar_notebook.get_current_page() == 4:
             self.attachment_controller.ensure_loaded()
         self._clear_side_panels()
@@ -1475,6 +1476,7 @@ class PDFWindow(Gtk.Window):
             self.attachment_controller.select(getattr(row, 'attachment_index', None))
 
     def _save_selected_attachment(self, *_args):
+        if not self._reading_permission('copy'):return
         opening_generation = self._open_generation
         selection = self.attachment_controller.selection_token()
         if selection is None or self.attachment_controller.extracting:
@@ -1824,6 +1826,9 @@ class PDFWindow(Gtk.Window):
         self.find_status.set_text('Pesquisando…')
         cancel = threading.Event(); self.search_cancel = cancel
         options = {key: button.get_active() for key, button in self.find_options.items()}
+        if options['include_attachments'] and not self.document_session.info['permissions']['copy']:
+            self.find_status.set_text('As permissões deste PDF não autorizam pesquisar o conteúdo dos anexos.')
+            return False
         options.update(mode=self.find_mode.get_active_id(), proximity_distance=self.find_distance.get_value_as_int())
         notices = []
         self.search_notices = []
@@ -2197,6 +2202,7 @@ class PDFWindow(Gtk.Window):
     # ---------- printing ----------
     def _print(self, *_args):
         if not self.filepath: return
+        if not self._reading_permission('print'):return
         if self.document_session and (self.document_session.info['encrypted'] or self.document_session.info['recovered']):
             self._error('A impressão integrada de PDFs protegidos ou recuperados ainda requer um fluxo próprio. O original está preservado.')
             return
@@ -2206,6 +2212,7 @@ class PDFWindow(Gtk.Window):
     def _submit_print_job(self, job):
         path = self.filepath
         if not path: return
+        if not self._reading_permission('print'):return
         if getattr(self, 'print_cancel', None) is not None:
             self._error('Aguarde ou cancele a preparação atual.');return
         out = os.path.join(self.cache_dir, f'print-prepared-{GLib.get_monotonic_time()}.pdf')

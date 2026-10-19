@@ -53,6 +53,8 @@ class AttachmentPanelController:
     def __init__(self, runner, on_change, invoke=invoke_attachment_worker):
         self.runner, self.on_change, self.invoke = runner, on_change, invoke
         self.document = None
+        self.session = None
+        self.allow_extract = True
         self.generation = 0
         self.closed = False
         self.items = []
@@ -71,12 +73,13 @@ class AttachmentPanelController:
                             'can_extract': self.selection_token() is not None and not self.extracting,
                             'can_refresh': self.document is not None and not self.loading})
 
-    def set_document(self, path):
+    def set_document(self, path, session=None, allow_extract=True):
         if self.closed:
             return
         self.generation += 1
         self.runner.invalidate('attachments-list')
         self.document = str(path) if path is not None else None
+        self.session, self.allow_extract = session, bool(allow_extract)
         self.items, self.source_sha256, self.selected_index = [], None, None
         self.loading = self.requested = self.error = False
         self.message = 'Clique em Atualizar para consultar os anexos.' if path else 'Abra um PDF para consultar os anexos.'
@@ -90,7 +93,7 @@ class AttachmentPanelController:
         if self.closed or self.document is None or self.loading:
             return
         self.generation += 1
-        generation, path = self.generation, self.document
+        generation, path, session = self.generation, self.document, self.session
         self.items, self.source_sha256, self.selected_index = [], None, None
         self.loading = self.requested = True
         self.error = False
@@ -101,7 +104,7 @@ class AttachmentPanelController:
         def task():
             if not current():
                 raise RuntimeError('Consulta de anexos cancelada.')
-            return self.invoke('attachments', path)
+            return session.call(lambda read_path:self.invoke('attachments',read_path)) if session else self.invoke('attachments', path)
         def failed(exc):
             if current():
                 self.loading, self.error = False, True
@@ -122,6 +125,7 @@ class AttachmentPanelController:
                 return
             self.loading = False
             self.message = f'{len(self.items)} anexo(s).' if self.items else 'Nenhum anexo encontrado neste catálogo.'
+            if data.get('portfolio'):self.message += ' Portfólio: arquivos incorporados; layout e campos adicionais não interpretados.'
             self._publish()
         try:
             if self.runner.submit('attachments-list', task, loaded, failed) is None:
@@ -136,7 +140,7 @@ class AttachmentPanelController:
         self._publish()
 
     def selection_token(self):
-        if self.closed or self.loading or not self.document or not self.source_sha256:
+        if self.closed or self.loading or not self.document or not self.source_sha256 or not self.allow_extract:
             return None
         if not any(item['index'] == self.selected_index and item['filename_allowed'] for item in self.items):
             return None
@@ -146,6 +150,7 @@ class AttachmentPanelController:
         if self.closed or self.extracting or selection is None or selection != self.selection_token():
             return False
         generation, path, index, identity = selection
+        session = self.session
         self._job_id += 1
         job_id = self._job_id
         self.extracting, self.error = True, False
@@ -154,8 +159,9 @@ class AttachmentPanelController:
         def task():
             if self.closed:
                 raise RuntimeError('Extração de anexo cancelada.')
-            return self.invoke('extract-attachment', path, directory,
-                               {'index': index, 'source_sha256': identity})
+            def extract(read_path):return self.invoke('extract-attachment',read_path,directory,
+                                                      {'index':index,'source_sha256':identity})
+            return session.call(extract) if session else extract(path)
         def finish(result=None, error=None):
             if self.closed or self._job_id != job_id:
                 return

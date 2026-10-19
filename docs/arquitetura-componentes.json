@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T12:58:56-03:00",
+  "reviewed_at_local": "2026-10-19T13:08:15-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.15",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -311,6 +311,12 @@
       "path": "app/print_tasks.py",
       "boundary": "portable_logic",
       "responsibility": "Prepara PDF em worker cancelável e publica cópia de impressão de forma atômica."
+    },
+    {
+      "id": "pdf_signing",
+      "path": "app/pdf_signing.py",
+      "boundary": "portable_logic",
+      "responsibility": "Primeira assinatura CMS/SHA256 local em cópia nova, com identidade PEM selecionada e verificação matemática independente antes da publicação."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -807,7 +813,8 @@
         "app/signature_window.py",
         "app/search_tasks.py",
         "app/worker_cli.py",
-        "app/main.py"
+        "app/main.py",
+        "app/pdf_signing.py"
       ],
       "future_boundary": "Verificação criptográfica e confiança separadas da aparência visual.",
       "future_boundary_implemented": false

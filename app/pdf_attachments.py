@@ -9,6 +9,7 @@ from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader
 from pypdf.generic import ArrayObject, DictionaryObject, EmbeddedFile, NullObject
+from pypdf.constants import UserAccessPermissions
 
 MAX_ATTACHMENTS = 1000
 MAX_ATTACHMENT_BYTES = 64 * 1024 * 1024
@@ -26,16 +27,19 @@ def _stream_hash(stream):
 
 
 @contextmanager
-def _document(path, expected_sha256=None):
+def _document(path, expected_sha256=None, enforce_copy=False):
     with Path(path).open('rb') as stream:
         identity = _stream_hash(stream)
         if expected_sha256 is not None and identity != expected_sha256:
             raise ValueError('O PDF mudou desde a listagem dos anexos. Liste novamente.')
         reader = PdfReader(stream, strict=True)
-        if reader.is_encrypted and not reader.decrypt(''):
-            raise ValueError('O PDF exige senha; extração com senha não é suportada neste contrato.')
-        if '/Collection' in reader.root_object:
-            raise NotImplementedError('Portfólios PDF ainda não são suportados.')
+        if reader.is_encrypted:
+            role=reader.decrypt('')
+            if not role:raise ValueError('O PDF exige senha; abra-o na sessão de leitura antes de extrair anexos.')
+            if enforce_copy and int(role)!=2 and not UserAccessPermissions(int(reader.trailer['/Encrypt'].get('/P',0))).to_dict().get('extract'):
+                raise PermissionError('As permissões deste PDF não autorizam extrair anexos.')
+        if '/Collection' in reader.root_object and not isinstance(reader.root_object['/Collection'],DictionaryObject):
+            raise ValueError('Estrutura de portfólio /Collection inválida.')
         names = reader.root_object.get('/Names')
         if names is not None and not isinstance(names, NullObject):
             names = names.get_object()
@@ -156,8 +160,11 @@ def list_attachments(path):
             items.append({'index': index, 'name': name, 'declared_size_bytes': _declared_size(entry),
                           'filename_allowed': filename_error is None, 'filename_error': filename_error,
                           'origin': origin, 'page': page})
+        portfolio = '/Collection' in reader.root_object
     return {'schema': 'linuxit-attachments-v1', 'source_sha256': identity,
-            'supported_scope': 'catalog_name_tree_and_page_annotations', 'attachments': items}
+            'supported_scope': 'catalog_name_tree_and_page_annotations', 'attachments': items,
+            'portfolio':portfolio,
+            'portfolio_scope':'Arquivos incorporados; layout, ordenação e campos de coleção não interpretados.' if portfolio else None}
 
 
 def extract_attachment(path, index, directory, *, source_sha256):
@@ -169,7 +176,7 @@ def extract_attachment(path, index, directory, *, source_sha256):
     destination = Path(directory).resolve(strict=True)
     if not destination.is_dir():
         raise NotADirectoryError('O destino deve ser uma pasta existente escolhida para extração.')
-    with _document(path, source_sha256) as (reader, identity):
+    with _document(path, source_sha256, enforce_copy=True) as (reader, identity):
         selected = next((item[0] for number, item in _entries(reader) if number == index), None)
         if selected is None:
             raise ValueError('Anexo não encontrado; liste os anexos novamente.')

@@ -35,7 +35,7 @@ def search_attachment_text(path, request):
     needle = ' '.join(normalized(query, request['match_case'], request['ignore_accents']).split())
     hits, omissions, total = [], [], 0
     limit_reached = False
-    with _document(path) as (reader, identity):
+    with _document(path, enforce_copy=True) as (reader, identity):
         if needle:
             for index, (entry, origin, host_page) in _entries(reader):
                 name = _name(entry)[:240]

@@ -14,7 +14,7 @@ sys.path.insert(0, str(APP))
 from attachment_tasks import AttachmentPanelController, display_attachment_name, invoke_attachment_worker
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
-from pypdf import PdfWriter
+from pypdf import PdfReader, PdfWriter
 from pypdf.generic import DictionaryObject, NameObject
 
 
@@ -176,9 +176,12 @@ class AttachmentWorkflowTests(unittest.TestCase):
 
     def test_unsupported_pdf_is_an_error_not_an_empty_success(self):
         self.make_pdf(self.pdf, portfolio=True)
+        # Malformed Collection remains an error; valid portfolios are supported.
+        reader=PdfReader(self.pdf);writer=PdfWriter(clone_from=reader)
+        writer.root_object[NameObject('/Collection')]=NameObject('/Invalid');writer.write(self.pdf)
         self.load()
         self.assertTrue(self.states[-1]['error'])
-        self.assertIn('Portfólios', self.states[-1]['message'])
+        self.assertIn('portfólio', self.states[-1]['message'])
         self.assertFalse(self.states[-1]['can_extract'])
 
     def test_worker_timeout_and_invalid_protocol_are_reported_without_tracebacks(self):

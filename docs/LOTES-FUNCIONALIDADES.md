@@ -12,7 +12,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |7–9|Busca em anexos; índice; linguagem|Fonte0.1.15 implementada:8 novos portáveis e24 regressões passaram; Linux/GTK pendentes.|
 |10–12|Seleção; impressão; imposição|Fonte0.1.15: seleção por blocos, preparação cancelável, cópia atômica e geometria validada;6 portáveis+9 regressões passaram. Linux/físico/bidi completo pendentes.|
 |13–15|Marcadores; anotações; formulários|Fonte0.1.15: respostas/Ink/combo editável implementados;7 portáveis+21 regressões passaram. GTK/Linux e JavaScript/XFA abertos.|
-|16–18|Anexos; assinaturas; segurança|Portfólios/criptografia, assinatura local e permissões; confiança/LTV/RMS exigem contratos e serviços.|
+|16–18|Anexos; assinaturas; segurança|Fonte0.1.15: membros de portfólio/sessão por senha, assinatura local PEM e permissões;7 novos+28 regressões passaram. UI/Linux e confiança/LTV/RMS abertos.|
 |19–21|Acessibilidade; medidas; camadas/mídia|AT-SPI/voz, área/perímetro/calibração e visibilidade; mídia/3D exigem motores próprios.|
 |22–24|Preferências; nuvem; conversão|Preferências e formatos; **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário. Pastas sincronizadas preservadas.|
 |25|Plataforma|Portais, associação/atualização e Windows; validar o que estiver disponível no Linux do CI.|
@@ -141,3 +141,33 @@ e XFA seguem sujeitos às recusas anteriores de edição.
 passaram no Windows. As duas primeiras respostas de um teste precisavam usar o
 índice da nova anotação, e não o índice1 ocupado por Widget; expectativa corrigida.
 Não foi removida a proteção do backend nem foi executado o Foxit.
+
+
+## Lote16–18
+
+Portfólios expõem arquivos da árvore /EmbeddedFiles e anexos de página, sem
+executar apresentação, ações ou relações externas. Layout, ordenação/campos
+adicionais da coleção não são interpretados. O painel usa a sessão aberta por
+senha, mantendo lease enquanto lê/extrai; o hash é da representação privada
+efetivamente lida. A extração é desabilitada se a política original negar cópia.
+Workers de anexos/imposição também recusam extrair/imprimir quando a senha vazia
+autentica apenas como usuário sem a permissão correspondente. Não implementa RMS.
+
+Assinar cópia usa certificado PEM e chave PEM explicitamente escolhidos no
+diálogo, senha pelo stdin JSON e cryptography já existente no runtime. Limites:
+PDF64MiB, cada arquivo PEM1MiB, senha4096bytes, RSA>=2048/EC>=256 e CMS32KiB.
+Só primeira assinatura em PDF não cifrado, sem campo Sig prévio, XFA ou coleção,
+conforme guardas anteriores de edição; campo LinuxitSignature invisível,
+adbe.pkcs7.detached/SHA256 e ByteRange cobrindo o arquivo inteiro fora de Contents.
+Reservas precisam ser únicas e manter comprimento. .NET/OpenSSL conferem a
+assinatura antes de publicar arquivo novo; indisponibilidade/falha recusa a cópia.
+Original, certificado e chave são preservados. Não se afirma apagamento seguro
+de segredos da memória Python. Confiança, validade/revogação, cadeia, tokens,
+TSA e LTV não são avaliados nem implementados; a interface distingue esses estados.
+
+Semântica em [ISO32000-1 distribuída pela Adobe](https://developer.adobe.com/document-services/docs/assets/35e4369068f86065372c18787171a17e/PDF_ISO_32000-1.pdf)
+e [API PKCS7 de cryptography](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/serialization/).
+Nenhum código proprietário, certificado/chave de usuário ou Foxit foi usado.
+7 novos testes portáveis passaram,14 regressões de anexos e14 de coordenação
+passaram. Interface de assinatura/painel cifrado e runtime Linux aguardam CI.
+Os3 cancelamentos de runs queued retornaram409: continuam sem conclusão confirmada.
