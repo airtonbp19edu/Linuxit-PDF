@@ -95,7 +95,11 @@ class SidebarLayoutTests(unittest.TestCase):
         window = self.window
         window.open_document(str(path))
         show_panel(window, 4)
-        self.wait_for(lambda: window.attachment_controller.source_sha256 is not None)
+        self.wait_for(lambda: window.filepath == str(path)
+                      and not window.attachment_controller.loading
+                      and window.attachment_controller.source_sha256 is not None
+                      and len(window.attachment_controller.items) == 1)
+        self.assertEqual(window.attachment_controller.items[0]['name'], 'a' * 160 + '.txt')
         for width in (1180, 760):
             window.resize(width, 780)
             settle(.2)

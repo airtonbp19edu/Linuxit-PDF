@@ -24,3 +24,11 @@ flatpak run --user --filesystem="$PWD/scripts:ro" --env=PRINT_VIEW_TEST_APP=/app
   >"$results/published-bundle-smoke.json" 2>"$results/published-bundle-smoke.log"
 /usr/bin/python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); assert r["passed"] is True and r["inside_flatpak"] is True and len(r["checks"])==5 and all(r["checks"].values()) and not r["errors"]' \
   "$results/published-bundle-smoke.json"
+# Exercise the corrected session-readiness wait against the same published
+# bundle. This is a focused additional check, never a replacement full suite.
+flatpak run --user --filesystem="$PWD:ro" --filesystem="$results:rw" \
+  --env=PRINT_VIEW_TEST_APP=/app/share/linuxit-pdf --command=linuxit-python "$app" \
+  "$PWD/scripts/run_tests.py" --app /app/share/linuxit-pdf --pattern test_sidebar_layout_gtk.py \
+  --output "$results/sidebar-gtk-regression.json" >"$results/sidebar-gtk-regression.log" 2>&1
+/usr/bin/python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); assert r["run"]==r["passed"]==3 and all(r[k]==0 for k in ("failures","errors","skipped"))' \
+  "$results/sidebar-gtk-regression.json"

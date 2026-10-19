@@ -2942,3 +2942,10 @@ CI39270599017/490a904 aprovou duas saídasGDK/RandR1280x800 e1024x768 comfullscr
 ## 2026/10/19 às 11:41 (America/Sao_Paulo, UTC-03:00) — recorte de controles em1024 corrigido
 
 Exame visual das capturas do artefato12194817693/hash17c0007b06edc7269d1d81233fc7c4204a9904698cb07c0619ed1f62c9652c6b mostrou conteúdo legível nas duas telas, mas linha única cortava seletor de monitor/Sair em1024x768. Mudado app/presentation.py para duas linhas centralizadas e controleCI exige seleção/ajuste/Sair completamente dentro da janela. Captura passa a esperar resize/render estabilizados. Aprovação anterior de tamanho/fullscreen não aprovava o layout; novo app exige nova suíte/pacote e testeRandR. Catálogo recebeu somente atualização de hashes, sem promover estados. VM0930 suspensa/intocada; próximoCI da fonte corrigida.
+
+
+## 2026/10/19 às 11:45 (America/Sao_Paulo, UTC-03:00) — apresentação corrigida aprovada e espera de anexo ajustada
+
+CI39271276972/1675c2c: duas telas nativasGDK/RandR, posições0,0/1280,0, fullscreen0→1→0 e remoção/restauração da saída ativa passaram. Artefato12194713477/hash862d3638ca5b4904cabc97d4acaa1bf149dbe330d4ce5994657fb67f5da6c36c conferido; capturas examinadas mostram todos os controles visíveis em1280x800 e1024x768. Evidência pública emtestes/resultados/leitura-2026-10-19/virtual-monitors/. Sem hardware físico/Foxit.
+
+Build anterior39269568732/9848f2b:432/432 fonte e payload; sandbox431/432, uma falha no teste de anexo longo (botão desabilitado); entrega não aprovada. Artefato12195786612/hash3060c1b288215bacc109b99d5d31bd08d5b43f9ddcb3c9a9bb4cf8a654af9fe5 conferido. Teste podia aceitar metadados do documento anterior; agora exige caminho correto e um anexo carregado, mantendo asserção do nome/layout/botão. Auditoria independente terá mais3 testesGTK instalados deste recorte, no mesmo bundle sem rebuild. Build corrigido39271277016 continua; app não mudou após1675c2c. VM0930 intocada.

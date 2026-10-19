@@ -1,0 +1,133 @@
+{
+  "schema": "linuxit-native-virtual-monitors-v1",
+  "virtual_desktop": true,
+  "physical_monitor_validation": false,
+  "foxit_executed": false,
+  "passed": true,
+  "monitors": [
+    {
+      "index": 0,
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "index": 1,
+      "x": 1280,
+      "y": 0,
+      "width": 1024,
+      "height": 768
+    }
+  ],
+  "transitions": [
+    {
+      "selected": 0,
+      "fullscreen_active": true,
+      "window_size": [
+        1280,
+        800
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "page": 1
+    },
+    {
+      "selected": 1,
+      "fullscreen_active": true,
+      "window_size": [
+        1024,
+        768
+      ],
+      "position": [
+        1280,
+        0
+      ],
+      "page": 1
+    },
+    {
+      "selected": 0,
+      "fullscreen_active": true,
+      "window_size": [
+        1280,
+        800
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "page": 1
+    }
+  ],
+  "hotplug": [
+    {
+      "action": "remove-active-DUMMY1",
+      "remaining": 1,
+      "position": [
+        0,
+        0
+      ],
+      "fullscreen": true
+    },
+    {
+      "action": "restore-DUMMY1",
+      "available": 2
+    }
+  ],
+  "errors": [],
+  "screenshot_hashes": {
+    "monitor-0.png": "34b18df9e134b08595c01ec686b015964ad1e2f891a96f9f720e576b0c96ad8e",
+    "monitor-1.png": "77547348c3bc76ae3b27e48d2100705db7308a70337fe3bda4d8f299e26ab2ff"
+  },
+  "app_files": {
+    "app/edit_window.py": "d357f36f1b7b3e526eac640b066ef8a620cbb7281c5732e728819137de771c54",
+    "app/pdf_ocr.py": "21c0ea7b16f8e7c4d500ef8974ba27fb3b11150766830140c425afbc2b0393fc",
+    "app/accessible_reader.py": "258aef743f7de190c148bcc97f3477923ba6dcec4fab8c59bdfabc871afd6b07",
+    "app/search_matching.py": "714efb2fd0970f45a238126bd7260a883a3f6ddb67b360a3499c0f72939d1ddd",
+    "app/cancel_state.py": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+    "app/page_surface.py": "bd1256c0488be3449b721233d9c7263f99c7f6d45413c9779b6dceddbcf54956",
+    "app/windows_bootstrap.py": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+    "app/page_cache.py": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+    "app/main.py": "05d01361906fdcfdca3316364352d5051c0b614061c8306bcbca637749689fdc",
+    "app/rendering.py": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+    "app/pdf_creation.py": "8e0508948553f105423912ea68fb1ae1cdf8008cc2bdfbf1a5ad0ed5914fadf6",
+    "app/version.py": "c7c9a1e7ea35dfe2145737d26c0d504719dcf0a53497371e4b3a20a5bf90be74",
+    "app/pdf_signatures.py": "8bbd1e7c70a23f02821b2b3e072362e9ebdcd16d5fddb16268efa541011b5441",
+    "app/attachment_tasks.py": "bdcb24ffbd1dd0b1108a69af9b4e3b0e8a64c5174f0938b647fcbafbc3c314ea",
+    "app/windows_print.py": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+    "app/async_core.py": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+    "app/signature_window.py": "b260e51a589191b660ea0279578985cf1e23174f4998574a22175d4f0a687344",
+    "app/collection_index.py": "766b7a02f38a1e99c98b8ee5c863b39e3169ab763add37f1552df9f0aceba1fe",
+    "app/pdf_form_controls.py": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
+    "app/print_window.py": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+    "app/cups_backend.py": "cf6732cb028c35c9fc09abd394ed20864d71420e741a6a016f860b8f9508f282",
+    "app/document_session.py": "33ac446a9a742e5b2d4f34afc87062abf59db6b261dd9e2f504c6ea61d5c9c70",
+    "app/edit_history.py": "3de88becb307024cd4a6733a3014575628f968433dbff103d42374cf1f1755a5",
+    "app/navigation.py": "645932295f8d5190f88aa86698bdb32027bb40e697ca6b10b735cac8fc387988",
+    "app/attachment_search.py": "57c88501ca87033c5db5bea9b2f8bf774bb8eec7ec007ef6a6f50efda4d2d1c7",
+    "app/creation_window.py": "50a232ba90387632e4b2dc15a06df0ea253061ba4a38487ee72593edfdaef719",
+    "app/platform_runtime.py": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+    "app/collection_window.py": "eaa085603b1b041ba8b2d449903554e323fab37493fec6fc8f94e0f6d368b223",
+    "app/pdf_annotations.py": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+    "app/pdf_security.py": "1affcad5f55d5556024a49783ab4f9d378d4423089b1a905b247146edc810449",
+    "app/security_window.py": "6db12e27c8240a31a993689c4661298eaf31cfa420138d0f56ca840cb6c9bbcc",
+    "app/pdf_dependency.py": "b97a5431551b8a1fa5a3f49e27a7791e9753309975b9247baf8d70aac6cca8e5",
+    "app/imposition.py": "fbd5e024604c4cb78daa6d8ce00a673efbd9fc645af1c3a835c16543ddb7a65e",
+    "app/pdf_changes.py": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
+    "app/ocr_window.py": "08d7d09e295566966a2cdc48fdea510f8de4f3c26f28915071d9b2419dd1e2f3",
+    "app/search_tasks.py": "58968cbcbeee4b5540fff31d5a14e188898c6401c2db0223ec48768d6cab8dd6",
+    "app/appearance.py": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+    "app/presentation.py": "323211b98e8665a360a72a9714b0342af21ac8c08c0369e832b8e4d54af5d4c1",
+    "app/edit_tasks.py": "4e1be7e4f3966846e2ea055df0bbb0119c3dd1f8231fbeded47ba71e9923e1be",
+    "app/pdf_panels.py": "a4a00ba454842b5d1493e90c7d851b18031142ba205de2435a4d0d95f769f92a",
+    "app/themes.py": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+    "app/edit_dialogs.py": "ed39745b869af91c2f26db1163a1c996baa7a0818e416fb0e3bedcba1f647fd6",
+    "app/search_engine.py": "3ef15486342a381e61af3b9f83e5e22a3c97ee44cc8a53d73a355c2a678d2451",
+    "app/pdf_attachments.py": "c347ff91587f5d778515126796b4818cd56c2ef8453943be910920ba0dec269f",
+    "app/local_files.py": "94bfb4d55fa59232253a667ce4cf869ea0b447d8e771ca041cfbab9e2e6b663b",
+    "app/folder_dialogs.py": "5b088042c67f36ede62ce36ecd7223d3dbe06f3dcd9e5728fdd1cf00b7dc5c38",
+    "app/worker_cli.py": "53678ac06a37e5674c0cfbb7d7aab24dbba81af0fcc1e73248c380aeac001cdb"
+  }
+}

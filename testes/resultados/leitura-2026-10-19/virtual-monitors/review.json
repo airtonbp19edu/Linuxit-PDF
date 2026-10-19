@@ -1,0 +1,14 @@
+{
+  "ci_run_id": 39271276972,
+  "source_commit": "1675c2c34e577a411717b168bef2fdaa5f4cdd1c",
+  "artifact_id": 12194713477,
+  "archive_sha256": "862d3638ca5b4904cabc97d4acaa1bf149dbe330d4ce5994657fb67f5da6c36c",
+  "images_examined": true,
+  "controls_fully_inside_both_windows": true,
+  "native_gdk_monitors": 2,
+  "positions_and_fullscreen_verified": true,
+  "active_virtual_output_removed_and_restored": true,
+  "physical_monitors_tested": false,
+  "original_executed": false,
+  "date_local": "2026-10-19T11:45:00.454488-03:00"
+}
