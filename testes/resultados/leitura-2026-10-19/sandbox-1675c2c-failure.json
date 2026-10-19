@@ -1,0 +1,24 @@
+{
+  "schema": "linuxit-failed-candidate-review-v1",
+  "date_local": "2026-10-19T11:52:58.807211-03:00",
+  "ci_run_id": 39271277016,
+  "artifact_id": 12195458890,
+  "archive_sha256": "5e22c7c2985c787dbc9ec6b1c895a93855601ab0ab9994dd20f0fc89198e0928",
+  "source_passed": 432,
+  "payload_passed": 432,
+  "sandbox": {
+    "run": 432,
+    "passed": 431,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failed_cases": [
+    {
+      "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_long_attachment_name_keeps_header_and_save_button_inside_panel",
+      "status": "failed"
+    }
+  ],
+  "package_approved": false,
+  "cause": "Old sidebar test accepted metadata from the previous document; corrected wait is already in a4e017a. App bytes unchanged."
+}
