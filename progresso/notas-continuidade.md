@@ -2927,3 +2927,8 @@ Novo scripts/check_presentation_monitors.py e workflow presentation-monitors.yml
 ## 2026/10/19 às 11:33 (America/Sao_Paulo, UTC-03:00) — ajuste do laboratório virtual de apresentação
 
 CI39269569101 não aprovou monitores: Xvfb/Xinerama expôs somente um monitor GDK; nenhum teste de seleção foi executado. Artefato12195615434/hash8b272b7835dca0507d2295ea2b0db5335b0e72978877ebe3ce480668980fb995 conferido e preservado emanalysis-local/virtual-monitors-artifact-12195615434. Corrigido apenas laboratórioCI para Xephyr com duas cabeças em origens distintas, sobreXvfb; logs de servidor serão preservados. Não altera app nem aprova hardware físico. Build/suíte39269568732 continua na fonte9848f2b, app ainda idêntico. VM0930 intocada.
+
+
+## 2026/10/19 às 11:36 (America/Sao_Paulo, UTC-03:00) — diagnóstico de enumeração GTK
+
+CI39270001839 também não aprovou: Xephyr expôs duas cabeçasXinerama (1280x800@0,0 e1024x768@1280,0), masGTK viu só a área2304x800. Artefato12194752113/hashf7a5be9ffce4f40d935a044cdc9432982c3691cf775610efad62f4b56eedf66c conferido. Fonte oficialGTK3 gdkscreen-x11.c init_multihead usaRandR1.5/1.3 e fallback único, nãoXinerama. Laboratório passa aXorg dummy com duas saídasRandR; somente infraestruturaCI, app inalterado. Ainda não aprova monitores físicos. VM0930 suspensa.

@@ -19,7 +19,8 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
             python3-cryptography gir1.2-gtk-3.0 poppler-utils dbus dbus-x11 \
-            xvfb xauth xserver-xephyr x11-utils openbox fonts-dejavu-core adwaita-icon-theme
+            xserver-xorg-core xserver-xorg-video-dummy x11-xserver-utils x11-utils \
+            openbox fonts-dejavu-core adwaita-icon-theme
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -28,17 +29,24 @@ jobs:
         run: |
           useradd --create-home --uid 1001 linuxit-monitors
           chown -R linuxit-monitors:linuxit-monitors "$GITHUB_WORKSPACE"
-      - name: Exercise two actual GDK monitors on nested Xephyr
+      - name: Exercise two actual GDK monitors on dummy RandR outputs
         run: |
+          mkdir -p dist/presentation-monitor-diagnostics
+          chown -R linuxit-monitors:linuxit-monitors dist
+          /usr/lib/xorg/Xorg :93 -noreset -nolisten tcp -ac \
+            -config "$GITHUB_WORKSPACE/scripts/ci-dual-monitor.conf" \
+            -logfile "$GITHUB_WORKSPACE/dist/presentation-monitor-diagnostics/xorg.log" \
+            >dist/presentation-monitor-diagnostics/server-output.txt 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
           runuser -u linuxit-monitors -- bash -c '
             set -euo pipefail
             cd "$GITHUB_WORKSPACE"
             export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-two-monitors-XXXXXX)"
             chmod 700 "$XDG_RUNTIME_DIR"
             export PYTHONUTF8=1
-            dbus-run-session -- xvfb-run -a \
-              -s "-screen 0 2400x900x24 -nolisten tcp" \
-              bash scripts/ci_presentation_monitors.sh
+            export DISPLAY=:93
+            dbus-run-session -- bash scripts/ci_presentation_monitors.sh
           '
       - name: Preserve virtual monitor observations
         if: always()
