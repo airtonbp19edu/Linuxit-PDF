@@ -248,3 +248,13 @@ S11 acrescentou mais2entradas inéditas de alocação:total4novas/262instruçõe
 catálogo327=152REA+175diretas. O construtor anterior foi relido,sem nova contagem.
 Alocações N/A/B e somas prefixadas delimitadas; todos os chamadores/índices seguem
 abertos. Relatório REA-ARRAYS-REFLOW-2026-10-19.md.
+
+S10 segunda execução(a5ebda9):8/9controles do desktop0.1.15 passaram, incluindo
+associação/abertura real,grant após restart,revogação e atualização/rollback.
+A primeira leitura concedida foi feita antes de o processo --replace assumir
+o nome D-Bus do portal. Probe agora aguarda PID proprietário e exportação FUSE.
+Não suprimir/transformar a primeira falha em sucesso; terceira execução pendente.
+S11:duas contagens novas reduzem A=1/B=N no caminho direto examinado,sem nova
+contagem dos helpers de métricas já preservados. Seis entradas novas no dia,
+266instruções/803bytes,catálogo329=152REA+177diretas. Fonte/pacote não alterados
+por esta análise;ver REA-CONTAGENS-REFLOW-2026-10-19.md.

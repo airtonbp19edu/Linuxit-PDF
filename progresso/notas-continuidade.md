@@ -3099,3 +3099,12 @@ nova viaReleaseasset>100MiB preparada com SHA/tamanho e11controles aprovados.
 Estática4entradas novas total327,Capstone262instruções/793bytes. VM intocada,
 critérios/paridade intactos. Próximo:publicar código/repetir build+desktop;
 concluir auditoria/download e registrar limites restantes.
+
+### 2026/10/19 às 20:10 (America/Sao_Paulo, UTC-03:00) — portal8/9 e contagens
+
+Desktop a5ebda9:8/9 examinados,reinício preservou grant e revogação negou acesso;
+primeira leitura sofreu corrida de troca do próprio portal. GuardasPID/FUSE
+acrescentadas,teste ainda pendente. S11duas contagens novas conferidas,agora329
+entradas e266instruções/803bytes novos no dia. Original nunca executado/VMintocada.
+CI do novo pacote segueexecutando. Próximo:repetir somente desktop afetado e
+consolidar/auditar candidato aprovado. Critérios/paridade/nuvem intactos.

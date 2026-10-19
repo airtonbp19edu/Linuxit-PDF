@@ -1,0 +1,38 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/static-reflow-counts-2026-10-19/functions/0x15cb840.json",
+      "result_sha256": "f06f2dcd5999edbff60fdebeaac0cc6ae2bed6d1ae6e681c90b30f7f2fd3f03b",
+      "entry_va": "0x15cb840",
+      "analyst_name": "analyst_entry_15cb840",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 6,
+      "body_ranges": "[[015cb840, 015cb845]]",
+      "pseudocode_sha256": "cf0c6895c75f6ec9499c212322388ffe9a0b53504a11600a3789ea5b644c5731",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/static-reflow-counts-2026-10-19/functions/0x15cbb90.json",
+      "result_sha256": "cb51b602eb310db028e24fb3faaa0a63ef0bd0357e83080e723c898ee7445ed2",
+      "entry_va": "0x15cbb90",
+      "analyst_name": "analyst_entry_15cbb90",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 4,
+      "body_ranges": "[[015cbb90, 015cbb93]]",
+      "pseudocode_sha256": "46fdfd50e6e74b63fe11326e883a295ba225d6cf625aea9ba6be385bab370ed0",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 2,
+  "distinct_entries": 2,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

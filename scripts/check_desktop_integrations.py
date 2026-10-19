@@ -50,7 +50,11 @@ def main():
         while time.monotonic()<deadline:
             if process.poll() is not None:raise RuntimeError('Own document portal exited during startup')
             owned=connection.call_sync('org.freedesktop.DBus','/org/freedesktop/DBus','org.freedesktop.DBus','NameHasOwner',GLib.Variant('(s)',(BUS,)),None,Gio.DBusCallFlags.NONE,2000,None).unpack()[0]
-            if owned:return process
+            if owned:
+                try:
+                    pid=connection.call_sync('org.freedesktop.DBus','/org/freedesktop/DBus','org.freedesktop.DBus','GetConnectionUnixProcessID',GLib.Variant('(s)',(BUS,)),None,Gio.DBusCallFlags.NONE,2000,None).unpack()[0]
+                    if pid==process.pid:return process
+                except GLib.Error:pass
             time.sleep(.1)
         process.terminate();process.wait(timeout=5);raise RuntimeError('Own portal did not acquire its private bus name')
     def instances():
@@ -81,6 +85,9 @@ def main():
             # Flatpak maps the host's document mount into its canonical runtime
             # directory even when the ephemeral host XDG_RUNTIME_DIR is in /tmp.
             portal_path=Path('/run/user')/str(os.getuid())/'doc'/doc_id/source.name
+            ready=time.monotonic()+5
+            exported=Path(mount)/'by-app'/APP/doc_id/source.name
+            while not exported.is_file() and time.monotonic()<ready:time.sleep(.1)
             check=inside(portal_path);report['checks']['granted_document_reads_expected_bytes']=check.returncode==0 and check.stdout.strip()==digest
             report['grant_probe']=dict(host_mount=mount,app_path=str(portal_path),returncode=check.returncode,stderr=check.stderr[-1500:])
             server.terminate();server.wait(timeout=10);server=None;time.sleep(.2)

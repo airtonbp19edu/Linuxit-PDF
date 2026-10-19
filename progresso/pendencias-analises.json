@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-19T16:09:09.521221-03:00",
+  "reviewed_at_local": "2026-10-19T20:10:04.938405-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -63,9 +63,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -87,9 +89,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -115,9 +119,11 @@
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -140,9 +146,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -165,9 +173,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -190,9 +200,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -215,9 +227,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {
@@ -240,9 +254,11 @@
         "docs/REA-REFLOW-GEOMETRIA.md",
         "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
         "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md"
+        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
+        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "next_action": "Catalog325=152REA+173exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries.",
+      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
       "token_exhaustion_confirmed": null
     },
     {

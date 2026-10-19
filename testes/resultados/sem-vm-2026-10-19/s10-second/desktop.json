@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-desktop-integrations-v1",
+  "passed": false,
+  "checks": {
+    "actual_upgrade_rollback_and_upgrade": true,
+    "synthetic_preferences_survive_update": true,
+    "outside_home_denied_before_grant": true,
+    "granted_document_reads_expected_bytes": false,
+    "persistent_grant_survives_portal_restart": true,
+    "revoked_grant_denies_new_app_process": true,
+    "portal_never_changes_source": true,
+    "pdf_association_points_to_installed_app": true,
+    "associated_launch_opens_expected_reader_document": true
+  },
+  "errors": [],
+  "foxit_executed": false,
+  "physical_desktop": false,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.15",
+    "0.1.14",
+    "0.1.15"
+  ],
+  "grant_probe": {
+    "host_mount": "/tmp/linuxit-desktop-HyTRw6/doc",
+    "app_path": "/run/user/1001/doc/a2d9adfb/portal.pdf",
+    "returncode": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    from pathlib import Path;import hashlib,sys;print(hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest())\n                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/app/python/lib/python3.13/pathlib/_abc.py\", line 625, in read_bytes\n    with self.open(mode='rb') as f:\n         ~~~~~~~~~^^^^^^^^^^^\n  File \"/app/python/lib/python3.13/pathlib/_local.py\", line 539, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/run/user/1001/doc/a2d9adfb/portal.pdf'\n"
+  },
+  "restart_probe": {
+    "returncode": 0,
+    "stderr": ""
+  },
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.15-x86_64.flatpak",
+    "bytes": 58072096,
+    "sha256": "f511671c2b7a3f1e6c24a19951d586390c8a196f022f640c167b270e4ab5a2b9",
+    "digitally_signed": false
+  }
+}
