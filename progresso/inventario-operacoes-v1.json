@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 2,
-  "reviewed_at_local": "2026-10-19T00:36:40-03:00",
+  "revision": 3,
+  "reviewed_at_local": "2026-10-19T01:08:44-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -23,7 +23,8 @@
     "testes/resultados/busca-autor-2026-10-18/review.json",
     "testes/resultados/vm-2026-10-18-2020/comparison-rollup.json",
     "testes/resultados/vm-2026-10-18-2020/password-followup.json",
-    "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+    "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+    "docs/P03-PARADA-2026-10-19-0105.md"
   ],
   "families": [
     {
@@ -99,7 +100,7 @@
         "search-text/highlight",
         "search-text/cancel"
       ],
-      "original_recorded_subset_summary": "D10 misto: seis hits; texto navega2→1 e destaca três ocorrências. D12 terminou250 resultados antes de Stop observável; cancelamento ativo continua inconclusivo. Recortes anteriores preservados.",
+      "original_recorded_subset_summary": "D10 misto: seis hits; texto navega2→1 e destaca três ocorrências. D12 terminou250 resultados antes de Stop observável; cancelamento ativo continua inconclusivo. Recortes anteriores preservados. Corpus5000 tornou busca ativa observável; Stop enviado, resultado desconhecido pela parada da VM01:02:45.",
       "open_questions": "Destinos e ordenação mista, destaques, normalização completa, limites/cancelamento e vazio sem presumir retorno de backend.",
       "related_c18_cases": [
         {
@@ -140,7 +141,7 @@
       ],
       "full_family_parity": "not_verified",
       "global_family_inventory_complete": false,
-      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0048.json"
     },
     {
       "id": "search-bookmarks",
@@ -1480,13 +1481,14 @@
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
         "docs/VM-BUSCA-2026-10-18-2020.md",
-        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+        "docs/P03-PARADA-2026-10-19-0105.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
       "complete_operation_or_family_equivalence": false,
-      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-0048.json"
     },
     {
       "id": "search-bookmarks/titles",

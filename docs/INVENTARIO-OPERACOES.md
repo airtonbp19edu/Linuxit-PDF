@@ -1,5 +1,7 @@
 # Inventário operacional provisório — P01
 
+Revisão3 em 2026-10-19T01:08:44-03:00: [D12 ativo observado, efeito de Stop inconclusivo pela parada da VM](P03-PARADA-2026-10-19-0105.md). Catálogo111/25 e implementação intactos.
+
 Revisão2 de evidência em 2026-10-19T00:36:40-03:00: [P03 parcial](P03-BUSCA-IMPRESSAO-2026-10-19.md); 111 recortes/25 famílias e estados de implementação preservados. Resumos de busca/impressão atualizados no JSON, sem aceitação integral. A revisão1 abaixo é histórica.
 
 Revisão 1 em 2026-10-18T22:17:54-03:00. **111 recortes operacionais em 25 famílias.**

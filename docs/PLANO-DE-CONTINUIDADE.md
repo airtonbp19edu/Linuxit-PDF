@@ -1,5 +1,7 @@
 # Plano de continuidade do Linuxit PDF
 
+Checkpoint 2026-10-19T01:08:44-03:00: [P03 suspensa pelo relógio](P03-PARADA-2026-10-19-0105.md). Busca ativa no corpus5000 observada; Stop enviado uma vez, efeito desconhecido. Relógio01:02:45 sem avanço e capturas iguais após10s externos. Nenhuma nova entrada, rede, reboot/pause/kill após constatação; hostrunning/cabooff, original/observador0048 sem estado final confirmado. P02 concluída, P03 parcial/bloqueada; não superar a parada automaticamente. Gerador próprio preservado em scripts/prepare_search_cancel_variant.py. Histórico abaixo.
+
 Execução em 2026-10-19T00:36:40-03:00: P01 provisória preservada, P02 concluída e [P03 parcial](P03-BUSCA-IMPRESSAO-2026-10-19.md). Novo lote examinou busca/destinos, UI02/UI05 e saídas reais de N-up/livreto. Estado atual em execucao-plano.json; sem encerrar critérios amplos.
 
 Organizado em 2026-10-18T21:54:16-03:00. Base examinada: `c62ae3c4aece24f902c26f66aeeb81a4995f9b3c`.

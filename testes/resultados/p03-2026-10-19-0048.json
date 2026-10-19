@@ -1,0 +1,319 @@
+{
+  "schema": "linuxit-p03-stalled-attempt-v1",
+  "reviewed_at_local": "2026-10-19T01:08:44-03:00",
+  "base_commit": "61b5a17ece080507cc53a87c3ff639aa0e09cb67",
+  "run_id": "vm-20261019-0048",
+  "p02_status": "completed_validated_offline",
+  "p03_status": "partial_blocked_vm_clock",
+  "new_original_launches_this_attempt": 1,
+  "p03_original_launches_total_since_request": 2,
+  "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "preflight_completed": true,
+  "limited_session": 1,
+  "elevated": false,
+  "ten_inputs_equal_before": true,
+  "ten_inputs_rechecked_after": null,
+  "write_denied_before": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "host_containment_before": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261019-0048",
+    "created_at": "2026-10-19T00:55:55.9398830-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "fixture": {
+    "schema": "linuxit-d12-fixture-variant-v1",
+    "name": "12.pdf",
+    "pages": 5000,
+    "dense_lines_per_page": 60,
+    "query": "alvo",
+    "occurrences_per_page": 1,
+    "bytes": 2859494,
+    "sha256": "ce3fde0e23fb8c6622d434e939a03fa9a50c208cb272b5b0483fc9501339edf3",
+    "original_ten_inputs_changed": false,
+    "purpose": "Observe active Stop before action; no cancellation inferred if search completes first",
+    "limits": {
+      "pages": 5000,
+      "bytes": 16777216
+    },
+    "sample_pages_extracted": [
+      1,
+      2500,
+      5000
+    ]
+  },
+  "fixture_guest_transfer_verified": true,
+  "fixture_guest_readonly": true,
+  "fixture_generator": "scripts/prepare_search_cancel_variant.py",
+  "fixture_reproduced_byte_for_byte": true,
+  "observations": [
+    {
+      "case": "UI01",
+      "variant": "Open dialog without document then open synthetic PDF",
+      "status": "bounded_observed",
+      "fixture": "C:\\Linuxit\\Results\\12.pdf",
+      "document_opened_pages": 5000
+    },
+    {
+      "case": "D12",
+      "variant": "bounded dense5000",
+      "query": "alvo",
+      "scope": "Current PDF document",
+      "mode": "Match exact word or phrase",
+      "sources": [
+        "page_text",
+        "bookmarks",
+        "comments"
+      ],
+      "whole_words": false,
+      "match_case": false,
+      "attachments": false,
+      "stemming": false,
+      "highlight_all": false,
+      "active_visual_at": "01:02:15",
+      "active_progress_display": "Searching 296/5000",
+      "active_result_display": "1 document(s) with 348 instance(s)",
+      "last_progress_display": "Searching 1001/5000",
+      "last_result_display": "1 document(s) with 1005 instance(s)",
+      "progress_counts_are_atomic_backend_measurement": false,
+      "stop_input_dispatched": true,
+      "stop_processed_by_guest": null,
+      "stop_effect": null,
+      "cancel_passed": false,
+      "switch_close_active_not_executed": true,
+      "status": "inconclusive_vm_clock_stalled",
+      "private_evidence": [
+        "d12-options.png",
+        "d12-active.png",
+        "after-stop-a.png",
+        "after-stop-b.png"
+      ]
+    }
+  ],
+  "clock": {
+    "last_observed": "01:02:45",
+    "external_a": "2026-10-19T01:04:36.742654-03:00",
+    "external_b": "2026-10-19T01:05:20.933340-03:00",
+    "external_interval_seconds": 44.190686,
+    "explicit_external_wait_seconds": 10,
+    "captures_identical": true,
+    "capture_sha256": "e9b008b650a12930f11d40838eff553eeb6b52b2dd7621f3ce6a3c674e5ad424",
+    "same_as_capture_before_stop_input": true,
+    "stop_caused_stall": null,
+    "cause": null
+  },
+  "end_state": {
+    "host_vm_state": "running",
+    "cable_connected": false,
+    "last_launched_original_pid": 464,
+    "original_window_in_frozen_screen": true,
+    "original_current_process_state": null,
+    "collector_current_state": null,
+    "collector_stop_sent": false,
+    "new_preflight_sent_after_stall": false,
+    "new_guest_inputs_after_stall": 0,
+    "automatic_pause_resume_reboot_or_kill": false,
+    "user_notified": true
+  },
+  "transport_failures": [
+    {
+      "method": "native SSH stdin ReadToEnd",
+      "result": "No final receipt; host client interrupted and cable explicitly set off; later guest query confirmed12.pdf absent"
+    },
+    {
+      "method": "Paramiko SFTP first connect",
+      "result": "8second negotiation timeout; finally cableoff; no fixture copied"
+    },
+    {
+      "method": "Paramiko SFTP45second negotiation",
+      "result": "Success; exact2,859,494bytes/hash checked; original absent; Limited collector started and cableoff before tests"
+    }
+  ],
+  "remaining": [
+    "D12 Stop acknowledgement/outcome and active swap/close",
+    "D18 matching parameters and poster output",
+    "D07/D10 remaining activation/sort contexts",
+    "Remaining UI variants and Reader availability",
+    "Historical splwow64 wait cause and broader P03 operations"
+  ],
+  "new_comparison_imports": 0,
+  "legacy_criteria_or_weights_changed": false,
+  "app_or_flatpak_changed": false,
+  "whole_family_parity_verified": false,
+  "implementation_completion_percent": null,
+  "private_evidence": [
+    {
+      "path": "analysis-local/vm-20261019-0048/12.pdf",
+      "sha256": "ce3fde0e23fb8c6622d434e939a03fa9a50c208cb272b5b0483fc9501339edf3",
+      "bytes": 2859494
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-maintenance-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-staging-interrupted-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-stop-a-at.txt",
+      "sha256": "2a13338b8b9481fed7f733faadd15d60131f8e772f3438cf559c8891be4e9508",
+      "bytes": 35
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-stop-a.png",
+      "sha256": "e9b008b650a12930f11d40838eff553eeb6b52b2dd7621f3ce6a3c674e5ad424",
+      "bytes": 155069
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-stop-b-at.txt",
+      "sha256": "a01418e53ea4e2f1b67d3c3aeca8dc151b3fba7d3f11475ed72ca4092f67710e",
+      "bytes": 35
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/after-stop-b.png",
+      "sha256": "e9b008b650a12930f11d40838eff553eeb6b52b2dd7621f3ce6a3c674e5ad424",
+      "bytes": 155069
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/ctrl.png",
+      "sha256": "b51db696c412f11022151aa34472a09be485cb6f29e66f3cee3e257b693094c6",
+      "bytes": 238740
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/d12-active.png",
+      "sha256": "e9b008b650a12930f11d40838eff553eeb6b52b2dd7621f3ce6a3c674e5ad424",
+      "bytes": 155069
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/d12-options.png",
+      "sha256": "3b7ad9653492fb8ac0d3c4ca3ce1403cef3b91daf2e5d0d68cad9a380c1410d0",
+      "bytes": 160751
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/fixture-staging-guest.json",
+      "sha256": "ef0b1ef0c380fc90822d2a9c336edcadd85673a843123bc9c1c9cbd5ee4e136e",
+      "bytes": 272
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/fixture.json",
+      "sha256": "a35acc656437af269a14dc787e6b64cadb89039b77fee5e6fe8e592469f6faff",
+      "bytes": 548
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/foxit-absent-reviewed.json",
+      "sha256": "f486a0b7b03948211dc605f1ef3d62c6ba8aa0140f76b5bbcc7f02af9e7ce0be",
+      "bytes": 218
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/maintenance-guest.json",
+      "sha256": "b47a134d6f0b8d639043544f5e0c84aa53402a1d54633d4c259cdf84c8078a65",
+      "bytes": 440
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/observation-journal.json",
+      "sha256": "902341edece75b94a71d2edb1ad4c280e518f451015b0f941f92291d22b3259e",
+      "bytes": 1749
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/pf-guest.json",
+      "sha256": "2b201d07a096176ebe96a9f366af4be72f624166304ccf00f0e9f75abae1ab28",
+      "bytes": 4406
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/pf-host.json",
+      "sha256": "04924a89779cc0685e3b06188efa377bec989c49b3005ceb8290e01a68ad5a46",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/pf-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/pf-transport.json",
+      "sha256": "c5bd0e4a5e71b3802d67f6be47567415ae3713616a12858401da762907ee19a7",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/preflight-host.json",
+      "sha256": "758354280851496b21cb7b8bd73d23b37c95d80d4603d4e08f0bb3918ee8c2a1",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/preflight-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/repro-12.json",
+      "sha256": "f967f7abc109d316af27d2edfd50aabdf782536afe3e98d952c228f21e5a10ca",
+      "bytes": 515
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/repro-12.pdf",
+      "sha256": "ce3fde0e23fb8c6622d434e939a03fa9a50c208cb272b5b0483fc9501339edf3",
+      "bytes": 2859494
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/run-guest.json",
+      "sha256": "b492bfc79e38c77d1e3772631e473110ba42e4d96b919c5ac5ed666cf58dabb7",
+      "bytes": 1782
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/run-host.json",
+      "sha256": "5d366baa0701e0ce96b48d09e15f60b38b5273b92a247d4e3291fb998cb6ae82",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/run-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/run-transport.json",
+      "sha256": "05eaf92883c6e2a340d20b1cda879ba4a84bc593fb4b1866cd4047b222562607",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/staging-followup.json",
+      "sha256": "786885cf0c87303f0553b715289ae9e1d18ee15ae24ca6eb4e0238ea91973e7c",
+      "bytes": 179
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/stalled-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261019-0048/startup-guest.json",
+      "sha256": "bf67c6eab7dbc16f6942c77325e04d8208b8e7594f42d6f62d9be43333d54bd4",
+      "bytes": 175
+    }
+  ],
+  "verification": {
+    "fixture_deterministic_reproduction": true,
+    "out_of_bounds_counts_rejected": [
+      0,
+      5001
+    ],
+    "existing_pdf_not_overwritten": true,
+    "private_evidence_hashes_checked": 30,
+    "legacy_criteria_and_weights_unchanged": true,
+    "catalog_validator_passed": true,
+    "application_suite_rerun": false
+  }
+}
