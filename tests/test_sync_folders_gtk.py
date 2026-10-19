@@ -77,7 +77,7 @@ class SyncFolderGTKTests(_UISetup,unittest.TestCase):
         with patch('main.Gtk.FileChooserDialog') as chooser:
             self.parent._save_copy();self.parent._begin_copy_edit('add-bookmark');chooser.assert_not_called()
         self.assertEqual(len(self.messages),2);self.assertTrue(all('externamente' in m for m in self.messages))
-        self.parent.open_document(str(self.source));wait_for(lambda:self.parent.current_pixbuf is not None)
+        self.parent.open_document(str(self.source));wait_for(lambda:self.parent._pending_document is None and self.parent.current_pixbuf is not None)
         self.assertTrue(self.parent._source_unchanged())
 
     def test_document_change_during_destination_choice_does_not_start_stale_copy(self):

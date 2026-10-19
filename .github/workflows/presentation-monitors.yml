@@ -1,0 +1,52 @@
+name: Presentation on two virtual GDK monitors
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-virtual-monitors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: debian:13
+    steps:
+      - name: Install GTK and virtual desktop
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            python3-cryptography gir1.2-gtk-3.0 poppler-utils dbus dbus-x11 \
+            xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare dedicated user
+        run: |
+          useradd --create-home --uid 1001 linuxit-monitors
+          chown -R linuxit-monitors:linuxit-monitors "$GITHUB_WORKSPACE"
+      - name: Exercise two actual GDK monitors on Xvfb
+        run: |
+          runuser -u linuxit-monitors -- bash -c '
+            set -euo pipefail
+            cd "$GITHUB_WORKSPACE"
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-two-monitors-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            export PYTHONUTF8=1
+            dbus-run-session -- xvfb-run -a \
+              -s "-screen 0 1280x800x24 -screen 1 1024x768x24 +xinerama -extension RANDR -nolisten tcp" \
+              bash -c '\''openbox --sm-disable >/tmp/linuxit-monitor-openbox.log 2>&1 &
+                wm=$!; trap "kill $wm 2>/dev/null || true" EXIT
+                /usr/bin/python3 scripts/check_presentation_monitors.py dist/presentation-monitors'\''
+          '
+      - name: Preserve virtual monitor observations
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linuxit-virtual-monitors-${{ github.sha }}
+          path: dist/presentation-monitors/
+          if-no-files-found: warn
+          retention-days: 14

@@ -174,7 +174,8 @@ class AttachmentGTKTests(unittest.TestCase):
         self.window.open_document(str(target))
         # The panel is already visible from setUp; clicking it again hides it.
         # Opening the next document must refresh that visible panel automatically.
-        wait_for(lambda: self.window.attachment_controller.source_sha256 is not None
+        wait_for(lambda: self.window.filepath == str(target)
+                 and self.window.attachment_controller.source_sha256 is not None
                  and len(self.window.attachment_controller.items) == 2)
         self.assertEqual(self.window.filepath, str(target))
         self.assertTrue(self.window.sidebar_visible)
