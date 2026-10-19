@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T20:24:29.015608-03:00",
+  "reviewed_at_local": "2026-10-19T20:34:43.442911-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.16",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -1113,7 +1113,7 @@
     }
   ],
   "runtime_limitations": [
-    "0.1.16:564/564 próprios fonte/payload/sandbox,74 novos e490 IDs anteriores preservados. Windows nativo5/5 e desktop0.1.15 portal/associação/atualização9/9 em probes separados. Contratos limitados; famílias integrais,50S12, validação física/original/serviços continuam abertos. Auditoria instalada0.1.16 ainda pendente.",
+    "0.1.16:564/564 próprios fonte/payload/sandbox,74 novos e490 IDs anteriores preservados. Windows nativo5/5 e desktop0.1.15 portal/associação/atualização9/9 em probes separados. Contratos limitados; famílias integrais,50S12, validação física/original/serviços continuam abertos. Auditoria instalada0.1.16 aprovada11controles/5smoke/3GTK sem rebuild; desktop0.1.16 portal/associação/atualização9/9 também aprovado.",
     "0.1.15:490/490 próprios fonte/payload/sandbox,58 novos casos e432 anteriores preservados. AT-SPI/portal X11 sintéticos e camadas por pixels aprovados. Famílias amplas, original, hardware/desktop físico, Windows e nuvem direta continuam pendentes/adiados; histórico abaixo.",
     "0.1.14:432/432 próprios por ambiente fonte/payload/sandbox,14 portáveis e15 GTK novos; leitura transacional/senha/recuperação/zoom/monitor. Original e hardware físico permanecem pendentes; histórico abaixo.",
     "Histórico do checkpoint10:53, fonte0.1.14 em validação: leitura/senha/recuperação, zoom1–6400 e seleção de monitor;14 testes portáveis passaram. GTK/Linux/pacote e dois monitores físicos ainda não aprovados neste checkpoint.",

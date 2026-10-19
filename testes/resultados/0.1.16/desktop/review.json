@@ -1,0 +1,32 @@
+{
+  "schema": "linuxit-own-desktop-review-v1",
+  "date_local": "2026-10-19T20:34:43.442911-03:00",
+  "source_commit": "1fcc603cd3597478e2b36d92a448fdeab9baab3b",
+  "run_id": 39342162781,
+  "artifact_id": 12229257765,
+  "archive_sha256": "29232f1eeffa3c74c27e27d1e8ef037f923f7b90f04a711a75babfaeb0c95dca",
+  "second_artifact_id": 12229856171,
+  "second_archive_sha256": "49e0c3d628ecdc6dc4b902d4c56e3c55f73d0032ba3912cd94cca2022c0a6c93",
+  "independent_repetitions": 2,
+  "passed": true,
+  "checks_passed": 9,
+  "checks_passed_each": 9,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.16",
+    "0.1.14",
+    "0.1.16"
+  ],
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.16-x86_64.flatpak",
+    "bytes": 118393760,
+    "sha256": "ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816",
+    "digitally_signed": false
+  },
+  "portal_grant_persistent_and_revocation_verified": true,
+  "pdf_association_and_actual_launch_verified": true,
+  "upgrade_rollback_and_preferences_verified": true,
+  "physical_desktop_verified": false,
+  "original_executed": false,
+  "full_family_acceptance": false
+}

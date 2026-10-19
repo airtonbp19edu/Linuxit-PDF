@@ -75,5 +75,19 @@
     "native_pdf_portal_probe_is_persistent_flatpak_folder_access": false,
     "atspi_probe": "testes/resultados/lotes-2026-10-19/atspi-text.json",
     "physical_screen_reader_test": false
+  },
+  "non_vm_execution_followup": {
+    "updated_at_local": "2026-10-19T20:35:22.468299-03:00",
+    "report": "docs/EXECUCAO-SEM-VM.md",
+    "state": "progresso/execucao-sem-vm.json",
+    "source_and_package_version": "0.1.16",
+    "manifest": "releases/manifest-0.1.16.json",
+    "own_tests_per_environment": 564,
+    "desktop_independent_repetitions": 2,
+    "desktop_checks_each": 9,
+    "installed_audit": "testes/resultados/0.1.16/audit/review.json",
+    "original_vm_resumed": false,
+    "full_family_acceptance": false,
+    "all_non_vm_work_complete": false
   }
 }

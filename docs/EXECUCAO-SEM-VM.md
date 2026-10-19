@@ -4,12 +4,11 @@ Estado atual: **0.1.16/devel publicada** em GitHub Releases, CI39339330479,
 fonte `a5ebda9`. **564/564 próprios por ambiente** fonte Linux/payload/sandbox,
 sem falhas/erros/skips;490 IDs anteriores preservados e74 novos.177 arquivos app,
 11 relatórios selados; runtime3684 arquivos/483ELF/297avisos atribuídos. Smoke5/5,
-launcher3/3; três capturas examinadas. Auditoria independente/download completo
-estão em andamento e receberão seu comprovante. A execução anterior com erro
+launcher3/3; três capturas examinadas. [Auditoria independente](../testes/resultados/0.1.16/audit/review.json) aprovada11controles/5smoke/3GTK sem rebuild. [Download público completo](../testes/resultados/0.1.16/download-integrity-2026-10-19.json) aprovado HTTP200/118393760bytes/SHA256. A execução anterior com erro
 OpenSSL foi rejeitada e preservada, sem publicação.
 
-Probes separados: Windows nativo5/5; desktop Flatpak0.1.15 portal persistente,
-revogação, associação e atualização/retorno9/9. Repetição no0.1.16 pendente.
+Probes separados: Windows nativo5/5; desktop Flatpak0.1.16 portal persistente,
+revogação, associação e atualização/retorno9/9, incluindo preferências preservadas. A primeira aprovação0.1.15 continua histórica.
 Seis entradas estáticas novas examinadas,266instruções/803bytes; catálogo329.
 [Manifesto](../releases/manifest-0.1.16.json),
 [revisão](../testes/resultados/0.1.16/validation-review.json),
@@ -284,3 +283,8 @@ S11:duas contagens novas reduzem A=1/B=N no caminho direto examinado,sem nova
 contagem dos helpers de métricas já preservados. Seis entradas novas no dia,
 266instruções/803bytes,catálogo329=152REA+177diretas. Fonte/pacote não alterados
 por esta análise;ver REA-CONTAGENS-REFLOW-2026-10-19.md.
+
+
+## Auditoria e desktop confirmados — 2026-10-19T20:34:43.442911-03:00
+
+Auditoria39341656820, código517afaf:11controles,5novos smoke checks e3GTK passaram no mesmo bundle publicado sem rebuild. Deployment/OSTree/runtime177arquivos app,3684arquivos de dependências/483ELF/297avisos e versões fonte conferidos. Não repetiu a suíte integral564/564, cuja evidência selada ficou íntegra. Desktop39342162781:9/9, atualização0.1.14→0.1.16→0.1.14→0.1.16, preferências, portal persistente e revogação, associação e abertura real. Download público sem loginHTTP200/tamanho/SHA256 completos. [Review de entrega](../testes/resultados/0.1.16/validation-review.json). Não encerra famílias,aceitaçõesS12 nem obrigações físicas/original; nenhuma interação com a VM.

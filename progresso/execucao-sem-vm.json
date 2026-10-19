@@ -20,7 +20,7 @@
         "testes/resultados/0.1.16/validation-review.json"
       ],
       "limitations": [
-        "Full original/physical acceptance remains separate; source extended later in S04."
+        "Limites nativos Pango são usados quando disponíveis; fallback portátil é delimitado. Ordem lógica universal do texto PDF e equivalência integral continuam abertas."
       ]
     },
     {
@@ -32,7 +32,7 @@
         "testes/resultados/0.1.16/validation-review.json"
       ],
       "limitations": [
-        "General JavaScript and XFA not implemented; full original comparison remains separate."
+        "JavaScript geral, formatação arbitrária e XFA ainda não implementados; os helpers reconhecidos têm gramática fechada."
       ]
     },
     {
@@ -44,7 +44,7 @@
         "testes/resultados/0.1.16/validation-review.json"
       ],
       "limitations": [
-        "Full original/physical acceptance remains separate; source extended later in S04."
+        "Aparência textual até4096caracteres é recortada à área escolhida. Tipos/vínculos não cobertos continuam fora deste editor; não há família integral aprovada."
       ]
     },
     {
@@ -56,7 +56,7 @@
         "testes/resultados/0.1.16/validation-review.json"
       ],
       "limitations": [
-        "Physical printer and original lifecycle not exercised."
+        "Cancelamento confirma somente os trabalhos próprios capturados no CUPS. Impressora física e ciclo de impressão/fechamento original não foram concluídos."
       ]
     },
     {
@@ -67,7 +67,9 @@
         "testes/resultados/sem-vm-2026-10-19/s05/review.json",
         "testes/resultados/0.1.16/validation-review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "Office/RTF são extraídos passivamente com limites de tamanho/partes; fórmulas não são calculadas. OCR de anexos é opt-in e limitado; ordem visual e precisão universal não aprovadas."
+      ]
     },
     {
       "id": "S06",
@@ -113,18 +115,21 @@
         "testes/resultados/sem-vm-2026-10-19/s06-s09/review.json",
         "testes/resultados/0.1.16/validation-review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "OCR escolhido continua com perdas estruturais explícitas e qualidade limitada pelo reconhecimento. Edição do texto/imagens originais da página e conversões universais continuam abertas."
+      ]
     },
     {
       "id": "S10",
       "title": "Portal persistente, associação, atualização/rollback e adaptador Windows",
-      "status": "native_windows_five_checks_and_published_0_1_15_desktop_nine_checks_passed",
+      "status": "native_windows_five_checks_and_published_0_1_16_desktop_nine_checks_passed",
       "evidence_refs": [
         "testes/resultados/sem-vm-2026-10-19/s10-first/review.json",
-        "testes/resultados/sem-vm-2026-10-19/s10-third/review.json"
+        "testes/resultados/sem-vm-2026-10-19/s10-third/review.json",
+        "testes/resultados/0.1.16/desktop/review.json"
       ],
       "limitations": [
-        "Desktop test used the published0.1.15 bundle; retest0.1.16 after publication. Native Windows CI is not a complete Windows installer or physical printing test."
+        "Native Windows2022 CI source adapter is not a complete Windows installer, association, physical printer or user Win11 validation. Physical Linux desktop acceptance remains separate."
       ]
     },
     {
@@ -136,18 +141,23 @@
         "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
         "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
       ],
-      "limitations": []
+      "limitations": [
+        "Seis novas entradas estáticas examinadas não fecham todos os chamadores, índices, tipos ou ownership. Os50planos completosS12 permanecem not_run; testes próprios relacionados não substituem a execução integral."
+      ]
     },
     {
       "id": "S12",
       "title": "Validação Linux, entrega Flatpak, auditoria e continuidade",
-      "status": "source_payload_sandbox_564_each_passed_prerelease_asset_published_independent_audit_pending",
+      "status": "bounded_0_1_16_delivery_published_audited_same_bundle_public_download_verified",
       "evidence_refs": [
         "testes/resultados/sem-vm-2026-10-19/s12-first/review.json",
         "testes/resultados/0.1.16/validation-review.json",
-        "testes/resultados/0.1.16/release-publication.json"
+        "testes/resultados/0.1.16/release-publication.json",
+        "testes/resultados/0.1.16/audit/review.json"
       ],
-      "limitations": []
+      "limitations": [
+        "This milestone does not complete S11/full family acceptance, all non-VM development or original parity."
+      ]
     }
   ],
   "environment_dependencies": {
@@ -155,7 +165,7 @@
     "physical_acceptance": "Impressora, leitor de tela/áudio e monitores reais indisponíveis neste ambiente.",
     "service_acceptance": "RMS/identidade/serviços exigem ambiente e materiais autorizados; nuvem direta continua adiada."
   },
-  "updated_at_local": "2026-10-19T20:24:29.015608-03:00",
+  "updated_at_local": "2026-10-19T20:34:43.442911-03:00",
   "delivery_version": "0.1.16",
   "delivery_manifest": "releases/manifest-0.1.16.json",
   "delivery_tests_passed_each": 564,

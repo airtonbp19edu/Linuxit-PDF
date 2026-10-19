@@ -11,7 +11,7 @@ O download fica nos assets da versão de desenvolvimento no GitHub Releases,
 pois o pacote excede o limite de tamanho de um arquivo comum do Git. Os
 pacotes anteriores e seus relatórios foram preservados.
 
-Tamanho: **118,393,760 bytes** (112.9MiB). SHA-256:
+Tamanho: **118.393.760 bytes** (112,9 MiB). SHA-256:
 
 ```text
 ad02f4c5ebb3d3d740a1a5c56fa3f4a71b52e4ac2b94171973f92b7526190816
@@ -34,8 +34,7 @@ tem probe separado em desktop X11; impressora física e todos os ambientes
 desktop não estão aprovados por esse teste.
 
 Fonte, payload e sandbox instalado aprovaram **564/564 testes próprios** em
-cada ambiente, além de smoke5/5 e launcher3/3. O download público completo e
-a auditoria independente do mesmo bundle serão registrados após a publicação.
+cada ambiente, além de smoke5/5 e launcher3/3. O [download público completo](../testes/resultados/0.1.16/download-integrity-2026-10-19.json) passou HTTP200/tamanho/SHA256. A [auditoria independente](../testes/resultados/0.1.16/audit/review.json) reinstalou esse mesmo bundle sem recompilar:11controles/5smoke/3GTK aprovados. [Desktop](../testes/resultados/0.1.16/desktop/review.json):portal persistente,revogação,associação e atualização/retorno9/9 em cada uma de duas repetições novas no0.1.16.
 
 ## Se aparecer “corrompido ou faltando permissões”
 

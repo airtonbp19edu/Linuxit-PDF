@@ -662,6 +662,10 @@
     "report": "docs/EXECUCAO-SEM-VM.md",
     "own_tests_passed_each": 564,
     "full_family_acceptance": false,
-    "criteria_changed": false
+    "criteria_changed": false,
+    "installed_audit": "testes/resultados/0.1.16/audit/review.json",
+    "desktop_review": "testes/resultados/0.1.16/desktop/review.json",
+    "desktop_independent_repetitions": 2,
+    "desktop_checks_passed_each": 9
   }
 }

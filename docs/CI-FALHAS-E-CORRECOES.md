@@ -62,4 +62,7 @@ Agora o daemon controlado inicia no barramento privado antes da primeira
 execução Flatpak. Não substitui um processo que não criou, e espera sua própria
 montagem desaparecer antes de reiniciar. O workflow fará duas repetições em
 ambientes novos para conferir estabilidade; nenhuma falha será aceita como
-sucesso ou transformada em teste ignorado. Revalidação pendente.
+sucesso ou transformada em teste ignorado. Revalidação aprovada nas duas repetições abaixo.
+
+
+A [execução corrigida39342162781](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39342162781), fonte do probe1fcc603, passou9/9 em **cada um dos dois ambientes novos**, usando o pacote0.1.16 publicado. A auditoria independente39341656820 aprovou a instalação do mesmo arquivo sem rebuild. [Relatórios examinados](../testes/resultados/0.1.16/desktop/review.json). As falhas anteriores não foram apagadas nem tratadas como sucesso. Novas falhas reais ainda podem gerar avisos; não houve alteração das notificações da conta.

@@ -1,5 +1,7 @@
 # Execução das25 funcionalidades em lotes de3
 
+Atualização 2026-10-19T20:35:22.468299-03:00: [entrega e contratos próprios0.1.16](EXECUCAO-SEM-VM.md),564/564 por ambiente e auditoria independente11controles/5smoke/3GTK sem rebuild. Desktop0.1.16 passou9/9 em cada uma de duas repetições novas, após correção da sequência FUSE do probe. Source/app/bundle preservados durante a auditoria; VM intocada. S11, famílias completas,50S12 e19 critérios amplos continuam abertos; nuvem direta adiada. Histórico abaixo.
+
 Pedido do usuário em19/10/2026. Esta sequência usa a ordem das25 famílias da
 especificação, distinta dos pacotesP01–P10 e das21 etapas ponderadas.
 O estado por item está em [execucao-lotes-funcionalidades.json](../progresso/execucao-lotes-funcionalidades.json).

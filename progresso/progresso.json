@@ -1785,9 +1785,12 @@
     "non_vm_work_remaining": true,
     "criteria_status_or_weights_changed": false,
     "original_observations": 0,
-    "publication_state": "prerelease_asset_confirmed_metadata_pending_push",
+    "publication_state": "confirmed_at_recorded_commit",
     "direct_cloud_api_deferred": true,
-    "independent_installed_audit_passed": false
+    "independent_installed_audit_passed": true,
+    "confirmed_delivery_commit": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+    "publication_confirmed_at_local": "2026-10-19T20:34:43.442911-03:00",
+    "audit_review": "testes/resultados/0.1.16/audit/review.json"
   },
   "no_vm_execution_history": [
     {
@@ -2499,10 +2502,14 @@
     "new_own_cases": 74,
     "whole_family_parity_verified": false,
     "original_vm_resumed": false,
-    "independent_installed_audit": "pending_after_publication",
-    "public_download_integrity": "pending_after_publication",
+    "independent_installed_audit": "passed",
+    "public_download_integrity": "testes/resultados/0.1.16/download-integrity-2026-10-19.json",
     "functional_batch_report": "docs/EXECUCAO-SEM-VM.md",
-    "publication_receipt": "testes/resultados/0.1.16/release-publication.json"
+    "publication_receipt": "testes/resultados/0.1.16/release-publication.json",
+    "installed_audit_review": "testes/resultados/0.1.16/audit/review.json",
+    "desktop_review": "testes/resultados/0.1.16/desktop/review.json",
+    "publication_commit": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+    "publication_confirmed_at_local": "2026-10-19T20:34:43.442911-03:00"
   },
   "own_delivery_history": [
     {

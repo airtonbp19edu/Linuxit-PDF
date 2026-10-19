@@ -117,12 +117,15 @@
     "digitally_signed": false
   },
   "publication_pending": false,
-  "independent_installed_audit_pending": true,
+  "independent_installed_audit_pending": false,
   "public_download_pending": false,
   "foxit_executed": false,
   "full_family_acceptance": false,
   "criteria_changed": false,
   "cloud_direct_deferred": true,
   "publication_receipt": "testes/resultados/0.1.16/release-publication.json",
-  "public_download_integrity": "testes/resultados/0.1.16/download-integrity-2026-10-19.json"
+  "public_download_integrity": "testes/resultados/0.1.16/download-integrity-2026-10-19.json",
+  "installed_audit_review": "testes/resultados/0.1.16/audit/review.json",
+  "desktop_review": "testes/resultados/0.1.16/desktop/review.json",
+  "publication_commit": "517afaf7a45ce5e8a60602c2dd92c158348f1e72"
 }

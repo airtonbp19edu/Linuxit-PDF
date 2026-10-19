@@ -1,5 +1,7 @@
 # Pendências de análise e pontos de retomada
 
+Atualização 2026-10-19T20:35:22.468299-03:00: [entrega e contratos próprios0.1.16](../docs/EXECUCAO-SEM-VM.md),564/564 por ambiente e auditoria independente11controles/5smoke/3GTK sem rebuild. Desktop0.1.16 passou9/9 em cada uma de duas repetições novas, após correção da sequência FUSE do probe. Source/app/bundle preservados durante a auditoria; VM intocada. S11, famílias completas,50S12 e19 critérios amplos continuam abertos; nuvem direta adiada. Histórico abaixo.
+
 Atualização 2026-10-19T14:43:28-03:00: [entrega própria0.1.15/lotes](../docs/LOTES-FUNCIONALIDADES.md),490/490 por ambiente e auditoria instalada aprovada. Os19 critérios amplos permanecem abertos, sem mudança de pesos. VM suspensa no checkpoint09:54:23; nenhuma inspeção/entrada nova. Os estados anteriores abaixo são históricos.
 
 Atualização 2026-10-18T23:56:42-03:00: [P02 validada offline](../docs/P02-COLETOR-VALIDADO-2026-10-18.md).

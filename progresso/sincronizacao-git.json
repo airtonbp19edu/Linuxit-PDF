@@ -1,20 +1,20 @@
 {
   "repository": "https://github.com/airtonbp19edu/Linuxit-PDF",
   "branch": "main",
-  "last_confirmed_remote_commit": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+  "last_confirmed_remote_commit": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
   "status": "confirmed_at_recorded_commit",
   "sync_percent": 100,
   "measurement": "Tracked content compared to confirmed remote tree; this status file records the previous confirmed commit to avoid a self-referential commit hash.",
   "pending_publicable_files_at_recording": 0,
   "confirmation": {
     "branch": "main",
-    "local_head": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
-    "confirmed_remote_head": "d0d9becaa0f501abfc67cc7caac0378d45c0a94b",
+    "local_head": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+    "confirmed_remote_head": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
     "worktree_clean": true,
     "synchronized": true,
     "publicable_tracked_artifacts_percent": 100,
-    "method": "Successful push and remote-HEAD guard before independent audit dispatch at2026-10-19T17:38:50Z; not a claim about the later evidence-note commit."
+    "method": "Successful push and remote-HEAD guards before independent audit and desktop dispatches at2026-10-19T23:27Z; not a claim about the later evidence-note commit."
   },
-  "note": "Confirmed0.1.15 technical publication. Later evidence-note commit is verified separately by an external receipt to avoid self-reference.",
-  "date_local": "2026-10-19T14:43:28.143775-03:00"
+  "note": "Confirmed0.1.16 technical publication; final evidence-note commit is verified separately outside the checkout to avoid self-reference.",
+  "date_local": "2026-10-19T20:34:43.442911-03:00"
 }

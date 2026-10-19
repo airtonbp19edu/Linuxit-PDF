@@ -3915,7 +3915,7 @@
     {
       "id": "platform",
       "name": "Integrações de sistema/atualização",
-      "matrix_implementation": "0.1.16: pacote próprio564/564 por ambiente. Probes separados: Windows nativo5/5; desktop X11/Flatpak0.1.15 portal persistente/revogação/associação/atualização9/9. Repetição no0.1.16 e validação física/Windows completo permanecem separadas.",
+      "matrix_implementation": "0.1.16: pacote próprio564/564 por ambiente. Probes separados: Windows nativo5/5; desktop X11/Flatpak0.1.16 portal persistente/revogação/associação/atualização9/9. Validação física e Windows completo permanecem separados.",
       "contract_kind": "proposed_only",
       "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
       "inputs": [
