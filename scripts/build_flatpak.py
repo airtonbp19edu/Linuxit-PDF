@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'app'))
@@ -239,6 +240,14 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
             raise RuntimeError('Missing license for runtime overlay: ' + str(path))
         shutil.copy2(path, notices / 'python3-gi-cairo.txt')
     (docs / 'runtime-packages.tsv').write_text('binary_package\tversion\tsource_package\tsource_version\n' + '\n'.join(package_versions) + '\n')
+    source_access=[]
+    for line in package_versions:
+        binary,version,source,source_version=line.split('\t')
+        source=source or binary.split(':')[0];source_version=source_version or version
+        source_access.append(dict(binary_package=binary,binary_version=version,source_package=source,
+            source_version=source_version,corresponding_source_url='https://sources.debian.org/src/'+quote(source,safe='')+'/'+quote(source_version,safe='')+'/'))
+    (docs / 'runtime-source-access.json').write_text(json.dumps(source_access,indent=2)+'\n')
+    shutil.copy2(ROOT / 'docs/RUNTIME-SOURCE-ACCESS.md',docs / 'RUNTIME-SOURCE-ACCESS.md')
     (docs / 'runtime-origins.json').write_text(json.dumps({
         'schema': 'linuxit-bundled-runtime-origins-v1', 'all_files_attributed': True,
         'files_audited': len(records), 'elf_files_audited': sum(r['elf'] for r in records),
