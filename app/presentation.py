@@ -202,8 +202,10 @@ class PresentationWindow(Gtk.Window):
         return False
 
     def _toolbar(self):
-        bar = Gtk.Box(spacing=6, margin=8)
-        bar.get_style_context().add_class('presentation-toolbar')
+        controls = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6, margin=8)
+        controls.get_style_context().add_class('presentation-toolbar')
+        bar = Gtk.Box(spacing=6, halign=Gtk.Align.CENTER)
+        controls.pack_start(bar, False, False, 0)
         self.previous_button = prev = Gtk.Button(label='‹'); prev.connect('clicked', lambda *_: self._goto(self.page - 1)); bar.pack_start(prev, False, False, 0)
         prev.get_accessible().set_name('Página anterior da apresentação')
         self.page_label = Gtk.Label(); bar.pack_start(self.page_label, False, False, 0)
@@ -226,7 +228,10 @@ class PresentationWindow(Gtk.Window):
         self.fit_combo.set_tooltip_text('Preencher tela amplia a página; use a roda ou arraste para ver as bordas.')
         self.fit_combo.connect('changed', self._fit_changed)
         bar.pack_start(self.fit_combo, False, False, 0)
-        bar.pack_start(Gtk.Separator(orientation=Gtk.Orientation.VERTICAL), False, False, 4)
+        # Keep screen selection and exit reachable on narrower projectors.
+        # A single row exceeded 1024px and GTK clipped the trailing controls.
+        bar = Gtk.Box(spacing=6, halign=Gtk.Align.CENTER)
+        controls.pack_start(bar, False, False, 0)
         hint = Gtk.Label(label='↑↓: deslizar')
         hint.get_style_context().add_class('muted')
         bar.pack_start(hint, False, False, 4)
@@ -241,9 +246,9 @@ class PresentationWindow(Gtk.Window):
         self.monitor_combo.set_tooltip_text('Escolha o monitor. F6 alterna entre a página e os controles; H mostra ou oculta os controles.')
         self.monitor_combo.connect('changed', self._monitor_changed)
         bar.pack_start(self.monitor_combo, False, False, 0)
-        exit_btn = Gtk.Button(label='Sair'); exit_btn.connect('clicked', lambda *_: self.destroy()); bar.pack_end(exit_btn, False, False, 0)
+        self.exit_button = exit_btn = Gtk.Button(label='Sair'); exit_btn.connect('clicked', lambda *_: self.destroy()); bar.pack_end(exit_btn, False, False, 0)
         self._update_labels()
-        return bar
+        return controls
 
     def _update_labels(self):
         if hasattr(self, 'page_label'):

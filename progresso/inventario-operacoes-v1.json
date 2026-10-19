@@ -1043,9 +1043,9 @@
         {
           "path": "app/presentation.py",
           "symbol": "PresentationWindow._target_width_for",
-          "line": 315,
-          "end_line": 316,
-          "file_sha256": "023be56e61c76b913c02db19d97cb118e2d9fca6c2c76a724bf3f793ca26ab98",
+          "line": 320,
+          "end_line": 321,
+          "file_sha256": "323211b98e8665a360a72a9714b0342af21ac8c08c0369e832b8e4d54af5d4c1",
           "excerpt_sha256": "5a6683ab55a37a0efd5ae352d977421886f474cb9ce7bcaa456b5d49e35e066f"
         }
       ],
@@ -1093,9 +1093,9 @@
         {
           "path": "app/presentation.py",
           "symbol": "PresentationWindow._pan_bounds",
-          "line": 422,
-          "end_line": 433,
-          "file_sha256": "023be56e61c76b913c02db19d97cb118e2d9fca6c2c76a724bf3f793ca26ab98",
+          "line": 427,
+          "end_line": 438,
+          "file_sha256": "323211b98e8665a360a72a9714b0342af21ac8c08c0369e832b8e4d54af5d4c1",
           "excerpt_sha256": "5b3d4c60d46dae9d26b7be76d38ed220fb70f3756128337b7550b325a3339679"
         }
       ],

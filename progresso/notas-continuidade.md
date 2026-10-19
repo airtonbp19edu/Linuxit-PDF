@@ -2937,3 +2937,8 @@ CI39270001839 também não aprovou: Xephyr expôs duas cabeçasXinerama (1280x80
 ## 2026/10/19 às 11:39 (America/Sao_Paulo, UTC-03:00) — dois monitores virtuais aprovados
 
 CI39270599017/490a904 aprovou duas saídasGDK/RandR1280x800 e1024x768 comfullscreen/tamanho em0→1→0, app idêntico ao build9848f2b em andamento. Artefato12194817693 disponível para exame; não é hardware físico nemFoxit. Controle foi ampliado para conferir posição e remoção/restauração real da saída dummy ativa, sob flag exclusiva deCI; próximoCI não altera aplicativo nem a VM0930.
+
+
+## 2026/10/19 às 11:41 (America/Sao_Paulo, UTC-03:00) — recorte de controles em1024 corrigido
+
+Exame visual das capturas do artefato12194817693/hash17c0007b06edc7269d1d81233fc7c4204a9904698cb07c0619ed1f62c9652c6b mostrou conteúdo legível nas duas telas, mas linha única cortava seletor de monitor/Sair em1024x768. Mudado app/presentation.py para duas linhas centralizadas e controleCI exige seleção/ajuste/Sair completamente dentro da janela. Captura passa a esperar resize/render estabilizados. Aprovação anterior de tamanho/fullscreen não aprovava o layout; novo app exige nova suíte/pacote e testeRandR. Catálogo recebeu somente atualização de hashes, sem promover estados. VM0930 suspensa/intocada; próximoCI da fonte corrigida.

@@ -62,8 +62,15 @@ try:
                 'page':presentation.page + 1})
             # Capture this visible window, never the occluded parent.
             presentation.canvas.queue_draw()
-            settled=[]; GLib.timeout_add(180, lambda:(settled.append(True),False)[1]); wait(lambda:bool(settled))
+            settled=[]; GLib.timeout_add(350, lambda:(settled.append(True),False)[1]); wait(lambda:bool(settled))
+            wait(lambda:not presentation._loading and presentation._resize_source is None)
             allocation = presentation.get_allocation()
+            for control in (presentation.fit_combo,presentation.monitor_combo,presentation.exit_button):
+                x,y=control.translate_coordinates(presentation,0,0)
+                box=control.get_allocation()
+                if not (control.get_mapped() and x>=0 and y>=0
+                        and x+box.width<=allocation.width and y+box.height<=allocation.height):
+                    raise RuntimeError('Presentation control clipped outside the visible window')
             pixels = Gdk.pixbuf_get_from_window(presentation.get_window(),0,0,allocation.width,allocation.height)
             path = output / ('monitor-' + str(index) + '.png'); pixels.savev(str(path),'png',[],[])
         # CI-only explicit flag: never change an arbitrary user's desktop topology.
