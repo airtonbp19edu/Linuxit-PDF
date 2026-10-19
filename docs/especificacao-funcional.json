@@ -1551,7 +1551,7 @@
     {
       "id": "bookmarks-edit",
       "name": "Criar/mover/gravar marcadores",
-      "matrix_implementation": "Criar/renomear/mover/excluir subárvore em cópia e histórico de rascunho na 0.1.10. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Marcadores próprios: operações e hierarquia revalidadas em21 testes avançados no host; Linux0.1.15 pendente. Família/original completos abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: criar/renomear, mover subárvore por pai/posição e excluir subárvore em cópia; ligações, destinos e contagens preservados no subconjunto. Histórico de rascunho permite desfazer/refazer antes de salvar; cópias já salvas preservadas.",
       "inputs": [
@@ -1849,7 +1849,7 @@
     {
       "id": "annotations",
       "name": "Anotações/undo/gravação",
-      "matrix_implementation": "Oito tipos simples delimitados, cinco marcas adicionais e edição comentário/autor na 0.1.13. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: Ink vetorial até32 traços/4096 pontos e respostas encadeadas em cópia, com rascunho/desfazer/refazer.7 novos portáveis passaram; GTK/Linux pendentes. Família ampla aberta.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
       "inputs": [
@@ -2233,7 +2233,7 @@
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
-      "matrix_implementation": "Tx/checkbox/radio/combos sem texto livre/listas em cópia; histórico e ReadOnly no subconjunto. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Fonte0.1.15: checkbox/radio/listas e combo editável com texto livre/índices/AP;7 novos portáveis+21 regressões avançadas passaram. JavaScript/XFA e família completa abertos.",
       "contract_kind": "implemented_subset",
       "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
       "inputs": [
@@ -3944,7 +3944,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T12:51:56-03:00",
+  "updated_at_local": "2026-10-19T12:58:56-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

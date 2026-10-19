@@ -14,6 +14,7 @@ ACTIONS = [('add-bookmark','Adicionar marcador'),('rename-bookmark','Renomear ma
            ('add-rectangle','Adicionar retângulo'),('add-underline','Sublinhar área'),
            ('add-strikeout','Tachar área'),('add-squiggly','Sublinhar área com ondulado'),
            ('add-ellipse','Adicionar elipse'),('add-line','Adicionar linha'),
+           ('add-ink','Desenhar à mão livre'),('add-reply','Responder comentário'),
            ('update-annotation','Editar comentário da anotação'),('delete-annotation','Excluir anotação'),
            ('fill-text-fields','Preencher campo de texto'),('fill-form-controls','Preencher caixas e listas'),
            ('rotate-page','Girar página')]

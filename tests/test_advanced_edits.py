@@ -134,7 +134,8 @@ class AdvancedEditTests(unittest.TestCase):
         self.assert_rejected({'kind':'fill-form-controls','values':{'check':True}})
 
     def test_editable_combo_and_duplicate_exports_are_rejected(self):
-        self.choices['combo'][NameObject('/Ff')] = NumberObject((1<<17)|(1<<18))
+        # Edit without Combo is an invalid choice field, unlike a valid editable combo.
+        self.choices['combo'][NameObject('/Ff')] = NumberObject(1<<18)
         self.choices['choice']['/Opt'].append(self.choices['choice']['/Opt'][0]);self.writer.write(self.source);self._record()
         for name in ('combo','choice'):self.assert_rejected({'kind':'fill-form-controls','values':{name:['A']}})
 

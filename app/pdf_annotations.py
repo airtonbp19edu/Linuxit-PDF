@@ -105,3 +105,41 @@ def create_annotation(kind, cropbox, geometry, text):
         # bottom of the horizontal text area. The explicit /AP is authoritative.
         note[NameObject('/QuadPoints')] = _numbers([a,b,c,b,c,d,a,d])
     return note
+
+
+def create_ink(cropbox, paths, text):
+    """Own printable red Ink appearance, at most32 strokes/4096 points."""
+    left,bottom,right,top = _coordinates(cropbox)
+    _require(right-left >= MIN_SPAN and top-bottom >= MIN_SPAN,'CropBox inválido.')
+    _require(isinstance(text,str) and len(text.encode('utf-8')) <= MAX_TEXT_BYTES,'Comentário inválido.')
+    _require(isinstance(paths,list) and 1 <= len(paths) <= 32,'Use de1 a32 traços.')
+    total = 0;points=[]
+    for path in paths:
+        _require(isinstance(path,list) and len(path) >= 4 and len(path)%2 == 0,'Traço precisa de ao menos2 pontos.')
+        total += len(path)//2
+        _require(total <= 4096,'Desenho excede4096 pontos.')
+        _require(all(type(v) in (int,float) and math.isfinite(v) and abs(v) <= MAX_COORDINATE for v in path),
+                 'Coordenadas de desenho inválidas.')
+        pairs=list(zip(path[::2],path[1::2]))
+        _require(all(left <= x <= right and bottom <= y <= top for x,y in pairs),'Desenho fora do CropBox.')
+        _require(max(max(x for x,y in pairs)-min(x for x,y in pairs),
+                     max(y for x,y in pairs)-min(y for x,y in pairs)) >= MIN_SPAN,'Traço pequeno demais.')
+        points.extend(pairs)
+    stroke=min(1.25,(right-left)/8,(top-bottom)/8)
+    x0=max(left,min(x for x,y in points)-stroke/2);y0=max(bottom,min(y for x,y in points)-stroke/2)
+    x1=min(right,max(x for x,y in points)+stroke/2);y1=min(top,max(y for x,y in points)+stroke/2)
+    commands=[]
+    for path in paths:
+        commands.append(_command([path[0]-x0,path[1]-y0],'m'))
+        commands.extend(_command([x-x0,y-y0],'l') for x,y in zip(path[2::2],path[3::2]))
+    appearance=DecodedStreamObject()
+    appearance.set_data(('q\n1 0 0 RG\n'+_command([stroke],'w')+'\n1 J\n1 j\n'
+                         +'\n'.join(commands)+'\nS\nQ\n').encode('ascii'))
+    appearance.update({NameObject('/Type'):NameObject('/XObject'),NameObject('/Subtype'):NameObject('/Form'),
+                       NameObject('/FormType'):NumberObject(1),NameObject('/BBox'):_numbers([0,0,x1-x0,y1-y0]),
+                       NameObject('/Resources'):DictionaryObject()})
+    return DictionaryObject({NameObject('/Type'):NameObject('/Annot'),NameObject('/Subtype'):NameObject('/Ink'),
+        NameObject('/Rect'):_numbers([x0,y0,x1,y1]),NameObject('/InkList'):ArrayObject(_numbers(p) for p in paths),
+        NameObject('/Contents'):TextStringObject(text),NameObject('/F'):NumberObject(4),
+        NameObject('/C'):_numbers([1,0,0]),NameObject('/BS'):DictionaryObject({NameObject('/W'):FloatObject(stroke)}),
+        NameObject('/AP'):DictionaryObject({NameObject('/N'):appearance})})

@@ -14,7 +14,8 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Text, Rectangle, Highlight
 from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject, NumberObject, TextStringObject, FloatObject
 from pdf_form_controls import inspect_controls, fill_controls
-from pdf_annotations import ANNOTATION_KINDS, create_annotation
+from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
+from pdf_comments import COMMENT_TYPES
 
 MAX_OPERATIONS = 1000
 MAX_TEXT_BYTES = 64 * 1024
@@ -145,7 +146,7 @@ def _annotation_rect(page, rect):
 
 def _removable_annotation(note):
     return (isinstance(note, DictionaryObject) and note.get('/Subtype') in
-            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line')
+            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink')
             and not int(note.get('/F', 0)) & (64 | 128 | 512)
             and not any(key in note for key in ('/IRT', '/Popup', '/Parent')))
 
@@ -252,6 +253,15 @@ def inspect_editable_document(path):
         result['notes'], result['notes_truncated'] = _note_records(reader)
         result['form_controls'], result['unsupported_controls'] = inspect_controls(reader, fields)
         result['annotations'], result['annotations_truncated'] = _annotation_records(reader)
+        result['reply_targets'] = []
+        for page_index,page in enumerate(reader.pages):
+            annots=page.get('/Annots');annots=annots.get_object() if annots is not None else []
+            for index,ref in enumerate(annots):
+                note=ref.get_object()
+                if (len(result['reply_targets']) < 2000 and isinstance(note,DictionaryObject)
+                        and note.get('/Subtype') in COMMENT_TYPES and not int(note.get('/F',0)) & (64|128|512)):
+                    result['reply_targets'].append(dict(page=page_index,index=index,
+                        text=str(note.get('/Contents',''))[:180],subtype=str(note['/Subtype'])))
     _require(_sha(path) == identity, 'O PDF foi alterado durante a leitura.')
     return result
 
@@ -270,6 +280,33 @@ def _apply(writer, operation):
     elif kind == 'fill-form-controls':
         _require(set(operation) == {'kind', 'values'}, 'Opções de formulário inválidas.')
         fill_controls(writer, operation['values'])
+    elif kind == 'add-ink':
+        _require(set(operation)=={'kind','page','paths','text'},'Opções de desenho inválidas.')
+        page=_page(writer,operation['page'])
+        note=create_ink(list(map(float,page.cropbox)),operation['paths'],operation['text'])
+        note['/AP'][NameObject('/N')]=writer._add_object(note['/AP']['/N'])
+        writer.add_annotation(operation['page'],note)
+    elif kind == 'add-reply':
+        _require(set(operation)=={'kind','page','index','text','author'},'Opções de resposta inválidas.')
+        page=_page(writer,operation['page']);annots=page.get('/Annots')
+        annots=annots.get_object() if annots is not None else []
+        index=operation['index']
+        _require(type(index) is int and 0 <= index < len(annots),'Comentário de destino inválido.')
+        target=annots[index].get_object()
+        _require(isinstance(target,DictionaryObject) and target.get('/Subtype') in COMMENT_TYPES
+                 and not int(target.get('/F',0)) & (64|128|512),'Comentário bloqueado ou não suportado.')
+        current=target;seen=set();members={id(ref.get_object()) for ref in annots}
+        while current is not None:
+            _require(id(current) in members and id(current) not in seen and len(seen)<64,
+                     'Conversa cíclica, entre páginas ou profunda demais.')
+            seen.add(id(current));parent=current.get('/IRT');current=parent.get_object() if parent is not None else None
+        author=operation['author'];_require(isinstance(author,str) and len(author.encode('utf-8'))<=4096,'Autor inválido.')
+        rect=_annotation_rect(page,list(map(float,target.get('/Rect',page.cropbox))))
+        note=Text(rect=tuple(rect),text=_text(operation['text'],'Resposta'))
+        _require(hasattr(annots[index],'idnum'),'Comentário direto sem referência indireta não é suportado.')
+        note[NameObject('/IRT')]=annots[index];note[NameObject('/RT')]=NameObject('/R')
+        note[NameObject('/T')]=TextStringObject(author);note[NameObject('/F')]=NumberObject(4)
+        writer.add_annotation(operation['page'],note)
     elif kind in ('delete-annotation', 'update-annotation'):
         _require(set(operation) == ({'kind', 'page', 'index'} if kind == 'delete-annotation'
                                     else {'kind', 'page', 'index', 'text', 'author'}), 'Opções de anotação inválidas.')

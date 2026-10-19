@@ -85,9 +85,12 @@ def describe_control(document, name, field):
             require(len(set(states)) == 1 and value in (states[0], '/Off'), 'Estados de checkbox incompatíveis.')
             record.update(kind='checkbox', value=value != '/Off', on_state=states[0])
     elif kind == '/Ch':
-        require(not flags & (1 << 18), 'Caixas de combinação com texto livre ainda não são suportadas.')
+        editable = bool(flags & (1 << 18))
+        require(not editable or bool(flags & (1 << 17)) and not flags & (1 << 21),
+                'Texto livre exige combo de seleção única.')
         options = inherited(field, '/Opt', [])
-        require(isinstance(options, ArrayObject) and 0 < len(options) <= 512, 'Lista de opções inválida ou acima do limite.')
+        require((isinstance(options, ArrayObject) or editable and options == [])
+                and (0 if editable else 1) <= len(options) <= 512, 'Lista de opções inválida ou acima do limite.')
         pairs = []
         for option in options:
             option = option.get_object()
@@ -102,10 +105,11 @@ def describe_control(document, name, field):
         value = inherited(field, '/V', '')
         selected = list(value) if isinstance(value, ArrayObject) else [value] if value != '' else []
         multiple = bool(flags & (1 << 21))
-        require(all(isinstance(v, str) and v in values for v in selected)
+        require(all(isinstance(v, str) and (v in values or editable) for v in selected)
                 and len(set(selected)) == len(selected) and (multiple or len(selected) <= 1),
                 'Seleção original de lista inválida.')
-        record.update(kind='choice', value=selected, options=pairs, multiple=multiple, combo=bool(flags & (1 << 17)))
+        record.update(kind='choice', value=selected, options=pairs, multiple=multiple,
+                      combo=bool(flags & (1 << 17)), editable=editable)
     else:raise ValueError('Tipo de controle não suportado.')
     return record
 
@@ -145,7 +149,10 @@ def fill_controls(writer, values):
             require(isinstance(value, list) and all(isinstance(v, str) for v in value)
                     and len(set(value)) == len(value) and (record['multiple'] or len(value) <= 1), 'Seleção de lista inválida.')
             exports = [p['value'] for p in record['options']]
-            require(all(v in exports for v in value), 'Valor ausente nas opções da lista.')
+            require(all(v in exports or record['editable'] for v in value), 'Valor ausente nas opções da lista.')
+            if record['editable']:
+                require(all(len(v.encode('utf-8')) <= 4096 and not any(ord(c)<32 for c in v) for v in value),
+                        'Texto livre de combo inválido ou acima de4096bytes.')
             # Reject the library's bare-name alias ambiguity before generating appearances.
             for page in writer.pages:
                 for ref in _array(page, '/Annots'):
@@ -156,17 +163,18 @@ def fill_controls(writer, values):
             for key in ('/FT', '/Ff', '/Opt'):
                 item = inherited(field, key)
                 if item is not None:raw[NameObject(key)] = item
-            ordered = [v for v in exports if v in value]
+            ordered = list(value) if record['editable'] else [v for v in exports if v in value]
             # pypdf6.20.1 expects plain /Opt strings during appearance generation.
             # Generate against display labels, then restore the actual export schema/value.
-            options = raw['/Opt']
+            options = raw.get('/Opt', ArrayObject())
             labels = [p['label'] for p in record['options']]
-            selected_labels = [labels[exports.index(v)] for v in ordered]
+            selected_labels = [labels[exports.index(v)] if v in exports else v for v in ordered]
             raw[NameObject('/Opt')] = ArrayObject(TextStringObject(v) for v in labels)
             try:
                 writer.update_page_form_field_values(None, {name:selected_labels if record['multiple'] else selected_labels[0] if selected_labels else ''}, auto_regenerate=None)
             finally:raw[NameObject('/Opt')] = options
             raw[NameObject('/V')] = ArrayObject(TextStringObject(v) for v in ordered) if record['multiple'] else TextStringObject(ordered[0] if ordered else '')
-            raw[NameObject('/I')] = ArrayObject(NumberObject(exports.index(v)) for v in ordered)
+            if any(v not in exports for v in ordered):raw.pop('/I',None)
+            else:raw[NameObject('/I')] = ArrayObject(NumberObject(exports.index(v)) for v in ordered)
             require(inherited((writer.get_fields() or {})[name], '/V') == (ordered if record['multiple'] else ordered[0] if ordered else ''),
                     'Não foi possível atualizar os widgets do campo.')

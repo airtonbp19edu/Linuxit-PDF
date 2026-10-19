@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 9,
-  "reviewed_at_local": "2026-10-19T12:51:56-03:00",
+  "revision": 10,
+  "reviewed_at_local": "2026-10-19T12:58:56-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -1246,10 +1246,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3006,10 +3006,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3065,10 +3065,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3124,9 +3124,9 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_change_outline",
-          "line": 190,
-          "end_line": 234,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
+          "line": 191,
+          "end_line": 235,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3183,9 +3183,9 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_change_outline",
-          "line": 190,
-          "end_line": 234,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
+          "line": 191,
+          "end_line": 235,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3243,10 +3243,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3303,10 +3303,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3363,10 +3363,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3425,7 +3425,7 @@
           "symbol": "create_annotation",
           "line": 40,
           "end_line": 107,
-          "file_sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
           "excerpt_sha256": "32668bc19c9bf8ba2dad50d23006eb399659263b522ef3041d526592655c40a9"
         }
       ],
@@ -3485,7 +3485,7 @@
           "symbol": "create_annotation",
           "line": 40,
           "end_line": 107,
-          "file_sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
           "excerpt_sha256": "32668bc19c9bf8ba2dad50d23006eb399659263b522ef3041d526592655c40a9"
         }
       ],
@@ -3545,7 +3545,7 @@
           "symbol": "create_annotation",
           "line": 40,
           "end_line": 107,
-          "file_sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
           "excerpt_sha256": "32668bc19c9bf8ba2dad50d23006eb399659263b522ef3041d526592655c40a9"
         }
       ],
@@ -3605,7 +3605,7 @@
           "symbol": "create_annotation",
           "line": 40,
           "end_line": 107,
-          "file_sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
           "excerpt_sha256": "32668bc19c9bf8ba2dad50d23006eb399659263b522ef3041d526592655c40a9"
         }
       ],
@@ -3665,7 +3665,7 @@
           "symbol": "create_annotation",
           "line": 40,
           "end_line": 107,
-          "file_sha256": "e1517612d91a1156dddb1699a4b31523e85f901b43156aff2b4d99165b298b56",
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
           "excerpt_sha256": "32668bc19c9bf8ba2dad50d23006eb399659263b522ef3041d526592655c40a9"
         }
       ],
@@ -3723,10 +3723,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3783,10 +3783,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -3873,7 +3873,7 @@
       "id": "annotations/replies",
       "family_id": "annotations",
       "title": "Editar respostas/popup e vínculos",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -3899,7 +3899,16 @@
           "error_index": 3
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_changes.py",
+          "symbol": "_apply",
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -3913,7 +3922,7 @@
       "id": "annotations/freehand",
       "family_id": "annotations",
       "title": "Desenho livre e demais tipos",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -3939,7 +3948,24 @@
           "error_index": 3
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_annotations.py",
+          "symbol": "create_ink",
+          "line": 110,
+          "end_line": 145,
+          "file_sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
+          "excerpt_sha256": "a698903e8ab381f7602876d7767db770c00be439f1897eb3e7b43a17ffbde3ad"
+        },
+        {
+          "path": "app/edit_dialogs.py",
+          "symbol": "ink_operation_dialog",
+          "line": 8,
+          "end_line": 68,
+          "file_sha256": "1ecc27b953ae976b74a141fd6a60778bdca2dbc2e040d1975c61a4fec23f8daf",
+          "excerpt_sha256": "c11da83854a8507d3d591a7a72b9df6240945b4ac90219f04569df2b555b4034"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -3982,10 +4008,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 264,
-          "end_line": 391,
-          "file_sha256": "e07ce7fb37228e0bd49504e2a2e767139575e1b752f69ca6e30fdcdb1367b6d6",
-          "excerpt_sha256": "fcbdea95ce516b7d56e92e169d53b8dee15be436d60e3aace885aec3187743c5"
+          "line": 274,
+          "end_line": 428,
+          "file_sha256": "25453a0bf58fd0eaf352a1200a5dd4a809568cfcbdf6e844e32e133ad389c45a",
+          "excerpt_sha256": "18558ef191a22186b8a4c5a254009e6177ce13116a9ab062907f553df83b4110"
         }
       ],
       "recorded_related_tests": [
@@ -4041,10 +4067,10 @@
         {
           "path": "app/pdf_form_controls.py",
           "symbol": "fill_controls",
-          "line": 123,
-          "end_line": 172,
-          "file_sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
-          "excerpt_sha256": "630129957b946e5d01eb08384f55abc343ac0eb2add432fa53fb41f456b18e50"
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
         }
       ],
       "recorded_related_tests": [
@@ -4100,10 +4126,10 @@
         {
           "path": "app/pdf_form_controls.py",
           "symbol": "fill_controls",
-          "line": 123,
-          "end_line": 172,
-          "file_sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
-          "excerpt_sha256": "630129957b946e5d01eb08384f55abc343ac0eb2add432fa53fb41f456b18e50"
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
         }
       ],
       "recorded_related_tests": [
@@ -4159,10 +4185,10 @@
         {
           "path": "app/pdf_form_controls.py",
           "symbol": "fill_controls",
-          "line": 123,
-          "end_line": 172,
-          "file_sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
-          "excerpt_sha256": "630129957b946e5d01eb08384f55abc343ac0eb2add432fa53fb41f456b18e50"
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
         }
       ],
       "recorded_related_tests": [
@@ -4218,10 +4244,10 @@
         {
           "path": "app/pdf_form_controls.py",
           "symbol": "fill_controls",
-          "line": 123,
-          "end_line": 172,
-          "file_sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
-          "excerpt_sha256": "630129957b946e5d01eb08384f55abc343ac0eb2add432fa53fb41f456b18e50"
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
         }
       ],
       "recorded_related_tests": [
@@ -4277,10 +4303,10 @@
         {
           "path": "app/pdf_form_controls.py",
           "symbol": "fill_controls",
-          "line": 123,
-          "end_line": 172,
-          "file_sha256": "c80b2263dfd427e3f847b934aeb88c5544c6b1d04d454584dd872ec379a31937",
-          "excerpt_sha256": "630129957b946e5d01eb08384f55abc343ac0eb2add432fa53fb41f456b18e50"
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
         }
       ],
       "recorded_related_tests": [
@@ -4307,7 +4333,7 @@
       "id": "forms/combo-editable",
       "family_id": "forms",
       "title": "Preencher combo com texto livre",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -4332,7 +4358,16 @@
           "error_index": 3
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_form_controls.py",
+          "symbol": "fill_controls",
+          "line": 127,
+          "end_line": 180,
+          "file_sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+          "excerpt_sha256": "7f9c1f3f36cdf2c937662c56df4707ac1836015c68d73e9fba3a9d07159448ff"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -6085,8 +6120,8 @@
     "families": 25,
     "operations": 111,
     "implementation_states": {
-      "bounded_source_present": 78,
-      "pending_or_target_characterization": 30,
+      "bounded_source_present": 81,
+      "pending_or_target_characterization": 27,
       "deferred_by_user": 3
     },
     "families_with_original_partial_observations": 9,

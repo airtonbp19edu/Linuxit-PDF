@@ -1,20 +1,85 @@
 """GTK operation choices for the explicit copy-edit draft."""
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from attachment_tasks import display_attachment_name
+
+
+def ink_operation_dialog(parent, info, page):
+    """A bounded page-shaped drawing pad; original PDF remains untouched."""
+    from pdf_annotations import create_ink
+    dialog=Gtk.Dialog(title='Desenhar à mão livre',transient_for=parent,modal=True)
+    dialog.set_destroy_with_parent(True)
+    dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Preparar desenho',Gtk.ResponseType.OK)
+    box=dialog.get_content_area();box.set_spacing(6);box.set_border_width(10)
+    hint=Gtk.Label(label='Desenhe na folha abaixo. Ela representa a página antes da rotação, sem o conteúdo de fundo.',xalign=0)
+    hint.set_line_wrap(True);box.add(hint)
+    area=Gtk.DrawingArea();area.set_size_request(480,400)
+    area.get_accessible().set_name('Folha para desenhar à mão livre')
+    area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK|Gdk.EventMask.BUTTON_RELEASE_MASK|Gdk.EventMask.POINTER_MOTION_MASK)
+    box.add(area);paths=[];state={'active':False}
+    left,bottom,right,top=info['page_boxes'][page];width,height=right-left,top-bottom
+    def geometry():
+        scale=min((area.get_allocated_width()-20)/width,(area.get_allocated_height()-20)/height)
+        return max(.0001,scale)
+    def point(event):
+        scale=geometry();x=left+(event.x-10)/scale;y=top-(event.y-10)/scale
+        return (x,y) if left<=x<=right and bottom<=y<=top else None
+    def draw(widget,cr):
+        cr.set_source_rgb(.85,.85,.85);cr.paint();scale=geometry()
+        cr.set_source_rgb(1,1,1);cr.rectangle(10,10,width*scale,height*scale);cr.fill()
+        cr.set_source_rgb(1,0,0);cr.set_line_width(1.5)
+        for path in paths:
+            if len(path)<2:continue
+            cr.move_to(10+(path[0]-left)*scale,10+(top-path[1])*scale)
+            for x,y in zip(path[2::2],path[3::2]):cr.line_to(10+(x-left)*scale,10+(top-y)*scale)
+            cr.stroke()
+        return False
+    def press(widget,event):
+        position=point(event)
+        if event.button==1 and position and len(paths)<32:
+            paths.append(list(position));state['active']=True;area.queue_draw()
+        return True
+    def motion(widget,event):
+        position=point(event)
+        if state['active'] and position and sum(len(p)//2 for p in paths)<4096:
+            paths[-1].extend(position);area.queue_draw()
+        return True
+    def release(widget,event):
+        if event.button==1:
+            if state['active']:motion(widget,event)
+            state['active']=False
+            if paths and len(paths[-1])<4:paths.pop()
+        return True
+    area.connect('draw',draw);area.connect('button-press-event',press)
+    area.connect('motion-notify-event',motion);area.connect('button-release-event',release)
+    clear=Gtk.Button(label='Limpar desenho')
+    def clear_paths(*_):paths.clear();state['active']=False;area.queue_draw()
+    clear.connect('clicked',clear_paths);box.add(clear)
+    text=Gtk.Entry();text.set_placeholder_text('Comentário opcional');box.add(text)
+    error=Gtk.Label(xalign=0);error.set_line_wrap(True);box.add(error);dialog.show_all()
+    try:
+        while dialog.run()==Gtk.ResponseType.OK:
+            try:
+                create_ink(info['page_boxes'][page],paths,text.get_text())
+                return dict(kind='add-ink',page=page,paths=paths,text=text.get_text())
+            except ValueError as exc:error.set_text(str(exc))
+        return None
+    finally:dialog.destroy()
 
 ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
-                  'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line'}
+                  'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
           'fill-form-controls':'Preencher caixas e listas', 'delete-annotation':'Excluir anotação',
           'add-highlight':'Destacar área', 'add-rectangle':'Adicionar retângulo',
           'add-underline':'Sublinhar área', 'add-strikeout':'Tachar área', 'add-squiggly':'Sublinhar área com ondulado',
           'add-ellipse':'Adicionar elipse', 'add-line':'Adicionar linha', 'update-annotation':'Editar comentário da anotação'}
+TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder comentário'})
 
 
 def advanced_operation_dialog(parent, kind, info, page):
+    if kind == 'add-ink':return ink_operation_dialog(parent,info,page)
     if kind not in ADVANCED_KINDS:return None
     dialog = Gtk.Dialog(title=TITLES[kind], transient_for=parent, modal=True)
     dialog.set_destroy_with_parent(True)
@@ -81,6 +146,13 @@ def advanced_operation_dialog(parent, kind, info, page):
                     check = Gtk.CheckButton(label=display_attachment_name(option['label']))
                     check.set_active(option['value'] in record['value']);widget.add(check);checks.append(check)
                 current['checks'] = checks
+            elif record.get('editable'):
+                widget = Gtk.ComboBoxText.new_with_entry()
+                for option in record['options']:widget.append_text(option['label'])
+                exports = [o['value'] for o in record['options']]
+                value = record['value'][0] if record['value'] else ''
+                if value in exports:widget.set_active(exports.index(value))
+                else:widget.get_child().set_text(value)
             else:
                 widget = Gtk.ComboBoxText();widget.append_text('Sem seleção')
                 for option in record['options']:widget.append_text(display_attachment_name(option['label']))
@@ -101,12 +173,29 @@ def advanced_operation_dialog(parent, kind, info, page):
                 if widget.get_active() < 0:raise ValueError('Selecione uma opção.')
                 value = current['values'][widget.get_active()]
             elif record['multiple']:value = [o['value'] for o,c in zip(record['options'], current['checks']) if c.get_active()]
+            elif record.get('editable'):
+                selected = widget.get_active()
+                text = widget.get_child().get_text()
+                value = [record['options'][selected]['value'] if selected >= 0 else text] if text else []
             else:value = [] if widget.get_active() == 0 else [record['options'][widget.get_active()-1]['value']]
             return {'kind':kind, 'values':{record['name']:value}}
+    elif kind == 'add-reply':
+        records=[r for r in info.get('reply_targets',[]) if r['page']==page]
+        for record in records:combo.append_text(f"{record['index']+1} · {display_attachment_name(record['text'])}")
+        comment=Gtk.TextView();comment.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        comment.get_accessible().set_name('Texto da resposta')
+        scroll=Gtk.ScrolledWindow();scroll.set_min_content_height(120);scroll.add(comment);box.add(scroll)
+        author=Gtk.Entry();author.set_placeholder_text('Autor da resposta');box.add(author)
+        hint.set_text('Selecione o comentário desta página. A resposta será adicionada à conversa na cópia.')
+        def operation():
+            if combo.get_active()<0:raise ValueError('Não há comentários de destino suportados.')
+            buffer=comment.get_buffer();text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True)
+            if not text.strip():raise ValueError('Digite a resposta.')
+            return dict(kind=kind,page=page,index=records[combo.get_active()]['index'],text=text,author=author.get_text())
     elif kind in ('delete-annotation','update-annotation'):
         records = [r for r in info.get('annotations', []) if r['page'] == page]
         names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',
-                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha'}
+                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho'}
         for record in records:combo.append_text(f"{names[record['subtype']]} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
         if kind == 'update-annotation':
             box.add(Gtk.Label(label='Comentário (pode ficar vazio)', xalign=0))

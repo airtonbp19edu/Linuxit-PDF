@@ -11,7 +11,7 @@ Implementar um recorte próprio não encerra uma família nem comprova paridade.
 |4–6|Busca em texto; marcadores; comentários|Fonte0.1.15 preparada;7 portáveis passaram,2 GTK aguardam Linux.|
 |7–9|Busca em anexos; índice; linguagem|Fonte0.1.15 implementada:8 novos portáveis e24 regressões passaram; Linux/GTK pendentes.|
 |10–12|Seleção; impressão; imposição|Fonte0.1.15: seleção por blocos, preparação cancelável, cópia atômica e geometria validada;6 portáveis+9 regressões passaram. Linux/físico/bidi completo pendentes.|
-|13–15|Marcadores; anotações; formulários|Respostas/desenho e combo editável; JavaScript/XFA dependem de contratos e motores ainda não implementados.|
+|13–15|Marcadores; anotações; formulários|Fonte0.1.15: respostas/Ink/combo editável implementados;7 portáveis+21 regressões passaram. GTK/Linux e JavaScript/XFA abertos.|
 |16–18|Anexos; assinaturas; segurança|Portfólios/criptografia, assinatura local e permissões; confiança/LTV/RMS exigem contratos e serviços.|
 |19–21|Acessibilidade; medidas; camadas/mídia|AT-SPI/voz, área/perímetro/calibração e visibilidade; mídia/3D exigem motores próprios.|
 |22–24|Preferências; nuvem; conversão|Preferências e formatos; **23, nuvem direta, permanece adiada**, por confirmação explícita do usuário. Pastas sincronizadas preservadas.|
@@ -115,3 +115,29 @@ finitos/fora de faixa e CropBox não positivo ou acima dos limites. CropBox com
 origem negativa válida continua aceito.6 novos portáveis e9 regressões existentes
 passaram;1 GTK aguarda CI. Nenhuma operação física/bidi ampla foi promovida a
 concluída no inventário. Preservar todos os relatórios anteriores.
+
+
+## Lote13–15
+
+As operações existentes de marcadores/hierarquia passaram nas21 regressões
+avançadas, junto de checkbox/radio/listas/anotações. Combo editável aceita um
+valor livre de até4096bytes, sem caracteres de controle; preserva export/label
+das opções, gera AP e remove índices antigos quando o texto não é uma opção.
+Edit sem Combo, seleção múltipla editável, nomes ambíguos, readonly e valores
+inválidos continuam recusados. Não executa eventos/JavaScript; XFA continua
+explicitamente não implementado.
+
+Ink usa até32 traços/4096 pontos com aparência vetorial própria vermelha e flag
+de impressão. A folha de desenho GTK representa a página sem fundo e antes da
+rotação; não é uma sobreposição do documento nem seleção automática de texto.
+Traços minúsculos, fora da página, números não finitos e limites são recusados.
+Respostas adicionam Text com IRT/RT à anotação selecionada na mesma página,
+preservando o pai; recusam locks, vínculos cíclicos e profundidade excessiva.
+Editar/excluir pais com dependentes permanece bloqueado. Salvar exige arquivo
+novo; desfazer/refazer atua no rascunho. Documentos assinados, cifrados, portfólios
+e XFA seguem sujeitos às recusas anteriores de edição.
+
+7 novos métodos portáveis passaram,1 GTK aguarda CI;21 regressões avançadas
+passaram no Windows. As duas primeiras respostas de um teste precisavam usar o
+índice da nova anotação, e não o índice1 ocupado por Widget; expectativa corrigida.
+Não foi removida a proteção do backend nem foi executado o Foxit.
