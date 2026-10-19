@@ -3,7 +3,7 @@
   "created_at_local": "2026-10-18T21:54:16-03:00",
   "timezone": "America/Sao_Paulo",
   "base_commit": "c62ae3c4aece24f902c26f66aeeb81a4995f9b3c",
-  "status": "executing_original_environment_validated",
+  "status": "executing_original_observation_partial",
   "scope": "All currently recorded unfinished criteria and25 identified families. Operational inventory remains open; this plan is not proof of implementation or parity.",
   "authoritative_refs": [
     "AGENTS.md",
@@ -109,7 +109,7 @@
     {
       "id": "P03",
       "title": "Completar as observações do Foxit",
-      "status": "ready_pending_fresh_preflight",
+      "status": "partial_observed_offline",
       "environment": "VM offline aprovada em P02",
       "start_after": [
         "P02"
@@ -134,7 +134,8 @@
       "execution_evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
         "testes/resultados/vm-retomada-2026-10-18-2336.json",
-        "testes/resultados/p02-2026-10-18-2355.json"
+        "testes/resultados/p02-2026-10-18-2355.json",
+        "testes/resultados/p03-2026-10-19-2359.json"
       ]
     },
     {
@@ -1209,6 +1210,6 @@
     "Root cause of stopped guest clock",
     "Unexamined original capabilities and external service dependencies"
   ],
-  "updated_at_local": "2026-10-18T23:56:42-03:00",
+  "updated_at_local": "2026-10-19T00:36:40-03:00",
   "execution_state_ref": "progresso/execucao-plano.json"
 }

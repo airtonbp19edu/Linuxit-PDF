@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-progress-v1",
-  "date_utc": "2026-10-18",
+  "date_utc": "2026-10-19",
   "phase": "A; incremental B only for sufficiently specified contracts",
   "criteria_revision": 1,
   "unfinished_criteria_register": "progresso/pendencias-analises.json",
@@ -2307,29 +2307,22 @@
     "whole_family_parity_verified": false
   },
   "current_vm_followup": {
-    "run_id": "vm-20261018-2020",
-    "report": "docs/VM-BUSCA-2026-10-18-2020.md",
-    "review": "testes/resultados/vm-2026-10-18-2020/review.json",
-    "new_exact_original_cases": [
-      "C18-D11-missing"
-    ],
-    "new_matching_metric_cases": 1,
-    "previous_matching_metric_cases_reused": 11,
+    "run_id": "vm-20261018-2359",
+    "report": "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+    "review": "testes/resultados/p03-2026-10-19-2359.json",
+    "new_original_executions": 1,
+    "collector_normally_stopped": true,
+    "foxit_closed": true,
+    "network_connected": false,
+    "inputs_unchanged": true,
+    "last_observed_guest_clock": "00:30:58",
+    "previous_print_wait_chain_resolved": false,
+    "new_matching_metric_cases": 0,
     "total_distinct_matching_metric_cases": 12,
     "inconclusive_metric_cases": 5,
-    "awaiting_original_metric_cases": 0,
-    "whole_family_parity_verified": false,
-    "criteria_or_weights_changed": false,
     "app_or_flatpak_changed": false,
-    "additional_report": "docs/VM-SENHA-E-PARADA-2026-10-18.md",
-    "additional_observations": "testes/resultados/vm-2026-10-18-2020/password-followup.json",
-    "d15_fresh_correct_first_attempt_observed": true,
-    "ui05_extra_two_tab_cancel_observed": true,
-    "normal_close_this_context_without_residual_observed": true,
-    "previous_print_wait_chain_resolved": false,
-    "vm_tests_suspended_on_clock": "21:24:14",
-    "stop_confirmed_at_utc": "2026-10-19T00:27:45Z",
-    "corrected_guest_probe_deployed_or_integrated": false
+    "whole_family_parity_verified": false,
+    "criteria_or_weights_changed": false
   },
   "continuation_plan": {
     "document": "docs/PLANO-DE-CONTINUIDADE.md",
@@ -2352,15 +2345,43 @@
     "execution": "progresso/execucao-plano.json",
     "p01": "completed_provisional_v1",
     "p02": "completed_validated_offline",
-    "p03": "ready_pending_fresh_preflight",
+    "p03": "partial_observed_offline",
     "operations_catalogued": 111,
     "new_application_tests": 0,
-    "new_original_executions": 0,
+    "new_original_executions": 1,
     "criteria_or_weights_changed": false,
     "implementation_completion_percent": null,
-    "latest_resume_report": "docs/P02-COLETOR-VALIDADO-2026-10-18.md",
+    "latest_resume_report": "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
     "latest_readonly_vm_gate_ref": "testes/resultados/p02-2026-10-18-2355.json",
-    "latest_observed_guest_clock": "23:54:56",
-    "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json"
-  }
+    "latest_observed_guest_clock": "00:30:58",
+    "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json",
+    "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
+  },
+  "vm_followup_history": [
+    {
+      "run_id": "vm-20261018-2020",
+      "report": "docs/VM-BUSCA-2026-10-18-2020.md",
+      "review": "testes/resultados/vm-2026-10-18-2020/review.json",
+      "new_exact_original_cases": [
+        "C18-D11-missing"
+      ],
+      "new_matching_metric_cases": 1,
+      "previous_matching_metric_cases_reused": 11,
+      "total_distinct_matching_metric_cases": 12,
+      "inconclusive_metric_cases": 5,
+      "awaiting_original_metric_cases": 0,
+      "whole_family_parity_verified": false,
+      "criteria_or_weights_changed": false,
+      "app_or_flatpak_changed": false,
+      "additional_report": "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+      "additional_observations": "testes/resultados/vm-2026-10-18-2020/password-followup.json",
+      "d15_fresh_correct_first_attempt_observed": true,
+      "ui05_extra_two_tab_cancel_observed": true,
+      "normal_close_this_context_without_residual_observed": true,
+      "previous_print_wait_chain_resolved": false,
+      "vm_tests_suspended_on_clock": "21:24:14",
+      "stop_confirmed_at_utc": "2026-10-19T00:27:45Z",
+      "corrected_guest_probe_deployed_or_integrated": false
+    }
+  ]
 }

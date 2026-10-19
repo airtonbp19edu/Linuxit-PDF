@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+Atualização 2026-10-19T00:36:40-03:00: [P03 busca/impressão parcial](docs/P03-BUSCA-IMPRESSAO-2026-10-19.md). P02 concluída; P03 executou original offline com coletor2359 limitado. D07 seleção versus ativação1→2; D10 seis hits; D12 sem Stop ativo. N-up2/livreto4 páginas gerados, reabertos e renderizados, com parâmetros distintos de C18; comparação ainda aberta. UI05 par correto/No, UI02 sem documento; Foxit fechado sem residual identificado e tarefa2359 Ready/result0, cabooff e dez Inputs intactos. Não enviar comandos ao coletor encerrado; próximo RunId/preflight. Fila detalhada no relatório; critérios/pesos/app/pacote intactos. Registros anteriores abaixo são históricos.
+
 Atualização 2026-10-18T23:56:42-03:00: [P02 validada offline](docs/P02-COLETOR-VALIDADO-2026-10-18.md).
 Coletor corrigido instalado com token interativo limitado; startup/pf/col/end
 completos, dez Inputs/RX/isolamento conferidos e parada normal sem Foxit.

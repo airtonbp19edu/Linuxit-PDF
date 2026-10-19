@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-continuation-execution-v1",
-  "updated_at_local": "2026-10-18T23:56:42-03:00",
+  "updated_at_local": "2026-10-19T00:36:40-03:00",
   "request": "P01-P03",
   "steps": [
     {
@@ -30,21 +30,23 @@
     },
     {
       "id": "P03",
-      "status": "ready_pending_fresh_preflight",
-      "new_original_executions": 0,
+      "status": "partial_observed_offline",
+      "new_original_executions": 1,
       "evidence_refs": [
         "testes/resultados/p01-2026-10-18/vm-gate.json",
         "testes/resultados/vm-retomada-2026-10-18-2336.json",
-        "testes/resultados/p02-2026-10-18-2355.json"
+        "testes/resultados/p02-2026-10-18-2355.json",
+        "testes/resultados/p03-2026-10-19-2359.json"
       ],
-      "next": "New running observer, fresh offline preflight/control before P03.",
-      "latest_attempt_at_local": "2026-10-18T23:56:42-03:00",
-      "latest_observed_guest_clock": "23:54:56"
+      "next": "Novo observador/preflight; D12 ativo, parâmetros D18, destinos/ordenação e UI conforme fila P03.",
+      "latest_attempt_at_local": "2026-10-19T00:36:40-03:00",
+      "latest_observed_guest_clock": "00:30:58"
     }
   ],
   "legacy_criteria_changed": false,
   "new_recoding_percentage": null,
-  "latest_resume_request": "retome",
+  "latest_resume_request": "continue",
   "latest_readonly_vm_gate_ref": "testes/resultados/p02-2026-10-18-2355.json",
-  "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json"
+  "latest_original_environment_review_ref": "testes/resultados/p02-2026-10-18-2355.json",
+  "latest_original_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
 }

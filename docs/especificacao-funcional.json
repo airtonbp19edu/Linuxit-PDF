@@ -405,7 +405,8 @@
           "docs/windows-evidence/foxit-rea/search-print-contracts.json",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-BUSCA-2026-10-18-2020.md"
+          "docs/VM-BUSCA-2026-10-18-2020.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -413,10 +414,11 @@
         ],
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-BUSCA-2026-10-18-2020.md"
+          "docs/VM-BUSCA-2026-10-18-2020.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Literal/palavra/caixa/no-sources e missing-term exato em recortes. Consulta vazia sem resposta de backend continua inconclusiva."
+        "recorded_runtime_scope": "D10 misto: seis hits; texto navega2→1 e destaca três ocorrências. D12 terminou250 resultados antes de Stop observável; cancelamento ativo continua inconclusivo. Recortes anteriores preservados."
       },
       "existing_test_refs": [
         {
@@ -476,7 +478,7 @@
     {
       "id": "search-bookmarks",
       "name": "Busca em marcadores",
-      "matrix_implementation": "Dois hits observados; destinos inconclusivos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Busca própria em títulos; D07 distingue seleção de hit e ativação nativa1→2 no original. Paridade e destinos completos abertos. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Pesquisa em títulos de marcadores; leitura e navegação não equivalem a edição/persistência.",
       "inputs": [
@@ -514,7 +516,8 @@
           "docs/windows-evidence/foxit-rea/search-checkbox-bindings.json",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-BUSCA-2026-10-18-2020.md"
+          "docs/VM-BUSCA-2026-10-18-2020.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -523,10 +526,11 @@
         ],
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/VM-BUSCA-2026-10-18-2020.md"
+          "docs/VM-BUSCA-2026-10-18-2020.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Dois resultados e seleção observados; ativação/destinos permanecem inconclusivos."
+        "recorded_runtime_scope": "D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro navega1→2. Seleção/duplo clique no resultado não provou salto; segundo mantém página2 sem diálogo. Não inferir destino nulo."
       },
       "existing_test_refs": [
         {
@@ -615,7 +619,8 @@
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
           "testes/resultados/vm-2026-10-18/foxit-observations.json",
-          "docs/BUSCA-AUTOR-COMENTARIOS.md"
+          "docs/BUSCA-AUTOR-COMENTARIOS.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -632,10 +637,11 @@
         },
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
-          "docs/BUSCA-AUTOR-COMENTARIOS.md"
+          "docs/BUSCA-AUTOR-COMENTARIOS.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Corpo/assunto/autor da nota sintética observados. Autor corrigido na fonte; demais tipos e busca mista abertos."
+        "recorded_runtime_scope": "Recortes de corpo/assunto/autor preservados; D10 seleciona nota na página1 e abre Format sem editar. Autor corrigido somente na fonte; demais tipos/respostas ainda abertos."
       },
       "existing_test_refs": [
         {
@@ -1145,7 +1151,7 @@
     {
       "id": "printing",
       "name": "Prévia/plano de impressão",
-      "matrix_implementation": "Prévia/plano próprios e observação original D17 limitados; sem impressão física aprovada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Prévia/plano próprios; UI02/UI05 e saídas virtuais originais observados em recortes. Sem impressão física aprovada. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio não comprova impressão física.",
       "inputs": [
@@ -1191,17 +1197,19 @@
           "docs/AVANCO-SEM-VM.md",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-          "docs/VM-FOXIT-2026-10-18.md"
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
           "Predefinições, margens, fontes, flags, spooler físico e estados completos do original."
         ],
         "runtime_observation_refs": [
-          "docs/VM-FOXIT-2026-10-18.md"
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Prévia/cancelarD17; UI05extra com confirmação de lote/No. Não houve impressão física nem prova de saída completa."
+        "recorded_runtime_scope": "UI05 no par planejado confirma lote/No; UI02 Print desabilitado sem documento. Duas saídas virtuais geradas; fechamento normal sem Foxit/splwow64 nesta rodada. Causa histórica e impressão física abertas."
       },
       "existing_test_refs": [
         {
@@ -1253,7 +1261,7 @@
     {
       "id": "imposition",
       "name": "Livreto/N-up/mosaico",
-      "matrix_implementation": "Livreto/N-up/mosaico próprios; prévia original observada, saída correspondente inconclusiva. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
+      "matrix_implementation": "Livreto/N-up/mosaico próprios; saídas originais N-up/livreto medidas com parâmetros distintos de C18. Comparação equivalente ainda aberta. Full family incomplete; see progresso/inventario-operacoes-v1.json.",
       "contract_kind": "implemented_subset",
       "scope": "Composição independente em livreto, N-up e mosaico, herdada da base MIT e adaptada.",
       "inputs": [
@@ -1293,17 +1301,19 @@
           "docs/AVANCO-SEM-VM.md",
           "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-          "docs/VM-FOXIT-2026-10-18.md"
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "runtime_observed": true,
         "unresolved": [
           "Geometria completa, rotações, margens e ordenação de todas as combinações no Foxit."
         ],
         "runtime_observation_refs": [
-          "docs/VM-FOXIT-2026-10-18.md"
+          "docs/VM-FOXIT-2026-10-18.md",
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "Prévia de ordem em livreto/N-up observada; saída e parâmetros correspondentes ainda inconclusivos."
+        "recorded_runtime_scope": "N-up2 e livreto4 páginas gerados/reabertos/renderizados; sequência do stream registrada com margem5.08mm. Parâmetros C18 correspondentes, medidas e mosaico continuam abertos."
       },
       "existing_test_refs": [
         {
@@ -3766,7 +3776,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-18T22:17:54-03:00",
+  "updated_at_local": "2026-10-19T00:36:40-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

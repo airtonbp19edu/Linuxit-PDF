@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 1,
-  "reviewed_at_local": "2026-10-18T22:17:54-03:00",
+  "revision": 2,
+  "reviewed_at_local": "2026-10-19T00:36:40-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -22,7 +22,8 @@
     "progresso/matriz-paridade.csv",
     "testes/resultados/busca-autor-2026-10-18/review.json",
     "testes/resultados/vm-2026-10-18-2020/comparison-rollup.json",
-    "testes/resultados/vm-2026-10-18-2020/password-followup.json"
+    "testes/resultados/vm-2026-10-18-2020/password-followup.json",
+    "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
   ],
   "families": [
     {
@@ -98,7 +99,7 @@
         "search-text/highlight",
         "search-text/cancel"
       ],
-      "original_recorded_subset_summary": "Literal/palavra/caixa/no-sources e missing-term exato em recortes. Consulta vazia sem resposta de backend continua inconclusiva.",
+      "original_recorded_subset_summary": "D10 misto: seis hits; texto navega2→1 e destaca três ocorrências. D12 terminou250 resultados antes de Stop observável; cancelamento ativo continua inconclusivo. Recortes anteriores preservados.",
       "open_questions": "Destinos e ordenação mista, destaques, normalização completa, limites/cancelamento e vazio sem presumir retorno de backend.",
       "related_c18_cases": [
         {
@@ -138,7 +139,8 @@
         }
       ],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-bookmarks",
@@ -147,7 +149,7 @@
         "search-bookmarks/titles",
         "search-bookmarks/destinations"
       ],
-      "original_recorded_subset_summary": "Dois resultados e seleção observados; ativação/destinos permanecem inconclusivos.",
+      "original_recorded_subset_summary": "D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro navega1→2. Seleção/duplo clique no resultado não provou salto; segundo mantém página2 sem diálogo. Não inferir destino nulo.",
       "open_questions": "Ativação/destinos dos dois resultados, ordenação e associação dinâmica 7911/7913.",
       "related_c18_cases": [
         {
@@ -162,7 +164,8 @@
         }
       ],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-comments",
@@ -172,7 +175,7 @@
         "search-comments/author",
         "search-comments/replies"
       ],
-      "original_recorded_subset_summary": "Corpo/assunto/autor da nota sintética observados. Autor corrigido na fonte; demais tipos e busca mista abertos.",
+      "original_recorded_subset_summary": "Recortes de corpo/assunto/autor preservados; D10 seleciona nota na página1 e abre Format sem editar. Autor corrigido somente na fonte; demais tipos/respostas ainda abertos.",
       "open_questions": "Demais tipos/campos/respostas, duplicação, destinos e ordenação; empacotar correção de autor já validada na fonte.",
       "related_c18_cases": [
         {
@@ -197,7 +200,8 @@
         }
       ],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-attachments",
@@ -264,11 +268,12 @@
         "printing/physical",
         "printing/shutdown"
       ],
-      "original_recorded_subset_summary": "Prévia/cancelarD17; UI05extra com confirmação de lote/No. Não houve impressão física nem prova de saída completa.",
+      "original_recorded_subset_summary": "UI05 no par planejado confirma lote/No; UI02 Print desabilitado sem documento. Duas saídas virtuais geradas; fechamento normal sem Foxit/splwow64 nesta rodada. Causa histórica e impressão física abertas.",
       "open_questions": "Predefinições/margens/fontes/flags e fluxo completo da fila; impressão física e encerramento após impressão.",
       "related_c18_cases": [],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "imposition",
@@ -278,7 +283,7 @@
         "imposition/nup",
         "imposition/poster"
       ],
-      "original_recorded_subset_summary": "Prévia de ordem em livreto/N-up observada; saída e parâmetros correspondentes ainda inconclusivos.",
+      "original_recorded_subset_summary": "N-up2 e livreto4 páginas gerados/reabertos/renderizados; sequência do stream registrada com margem5.08mm. Parâmetros C18 correspondentes, medidas e mosaico continuam abertos.",
       "open_questions": "Saída PDF com margens/medidas/ordem correspondentes, rotações e combinações de livreto/N-up/mosaico.",
       "related_c18_cases": [
         {
@@ -293,7 +298,8 @@
         }
       ],
       "full_family_parity": "not_verified",
-      "global_family_inventory_complete": false
+      "global_family_inventory_complete": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "bookmarks-edit",
@@ -1184,12 +1190,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-BUSCA-2026-10-18-2020.md"
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-text/whole",
@@ -1412,12 +1420,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-BUSCA-2026-10-18-2020.md"
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-text/cancel",
@@ -1469,12 +1479,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-BUSCA-2026-10-18-2020.md"
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-bookmarks/titles",
@@ -1522,12 +1534,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-BUSCA-2026-10-18-2020.md"
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-bookmarks/destinations",
@@ -1575,12 +1589,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/VM-BUSCA-2026-10-18-2020.md"
+        "docs/VM-BUSCA-2026-10-18-2020.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-comments/body-subject",
@@ -1628,12 +1644,14 @@
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
         "docs/VM-FOXIT-2026-10-18.md",
-        "docs/BUSCA-AUTOR-COMENTARIOS.md"
+        "docs/BUSCA-AUTOR-COMENTARIOS.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "search-comments/author",
@@ -2279,12 +2297,14 @@
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
-        "docs/VM-FOXIT-2026-10-18.md"
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "printing/submit",
@@ -2335,12 +2355,14 @@
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
-        "docs/VM-FOXIT-2026-10-18.md"
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "printing/physical",
@@ -2407,12 +2429,14 @@
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
-        "docs/VM-FOXIT-2026-10-18.md"
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "imposition/booklet",
@@ -2459,12 +2483,14 @@
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
-        "docs/VM-FOXIT-2026-10-18.md"
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "imposition/nup",
@@ -2511,12 +2537,14 @@
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "partial_family_observation_only",
       "original_observation_refs": [
-        "docs/VM-FOXIT-2026-10-18.md"
+        "docs/VM-FOXIT-2026-10-18.md",
+        "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
       ],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P08",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "latest_bounded_observation_ref": "testes/resultados/p03-2026-10-19-2359.json"
     },
     {
       "id": "imposition/poster",

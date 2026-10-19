@@ -1,0 +1,856 @@
+{
+  "schema": "linuxit-p03-bounded-observation-v1",
+  "run_id": "vm-20261018-2359",
+  "reviewed_at_local": "2026-10-19T00:36:40-03:00",
+  "base_commit": "5e81af8db6bfcbc6cbb926b735c4c41c1a0ca793",
+  "status": "partial_observed_offline",
+  "p02_evidence": "testes/resultados/p02-2026-10-18-2355.json",
+  "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "reference_version": "2025.2.0.33046 x86",
+  "limited_interactive_session": 1,
+  "elevated": false,
+  "new_original_launches": 1,
+  "new_own_application_tests": 0,
+  "new_linux_or_flatpak_build": false,
+  "receipt_statuses": {
+    "startup": "ready",
+    "pf": "completed",
+    "launch": "completed",
+    "col": "completed",
+    "c2": "completed",
+    "post": "completed",
+    "end": "completed"
+  },
+  "host_guest_offline_during_original": true,
+  "host_containment_before_original": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261018-2359",
+    "created_at": "2026-10-19T00:00:01.7507605-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "host_containment_after_original": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261018-2359",
+    "created_at": "2026-10-19T00:29:22.3905181-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "inputs": [
+    {
+      "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "name": "busca-escopos.pdf",
+      "bytes": 7904
+    },
+    {
+      "sha256": "3dfce9fc83a6da03bfb47f52b824c62297f7a6c7eb758fc33e0dd22186a1ac2c",
+      "name": "busca-longa.pdf",
+      "bytes": 82663
+    },
+    {
+      "sha256": "270fd96210e68e08ea2ec27977744fb661aba97bb3f0280ee12fc65700a96d74",
+      "name": "com-anexo.pdf",
+      "bytes": 3377
+    },
+    {
+      "sha256": "1922651f70d7af3934bac3715ede6cf933fe70022fe2ab9b0f5055b28b9f685e",
+      "name": "com-senha.pdf",
+      "bytes": 3390
+    },
+    {
+      "sha256": "b4e81b193a7596beeaf4dd389a71245a6689c1221f66f3f5029ec261962e42d2",
+      "name": "controle.txt",
+      "bytes": 67
+    },
+    {
+      "sha256": "80d93b79bbf5afc7116f575baed34ee476af2e7c2b7ef8f6c6577e6fe65ea0f7",
+      "name": "geometria.pdf",
+      "bytes": 2980
+    },
+    {
+      "sha256": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e",
+      "name": "invalido.pdf",
+      "bytes": 39
+    },
+    {
+      "sha256": "1cb6771f51b79ab5acc0308eeed4784576d0786acc9b3bf4823b53ebdacb2540",
+      "name": "observacoes-comparativas-template.json",
+      "bytes": 5626
+    },
+    {
+      "sha256": "3fd1de80f87518be125da7fcb98e5061802c104ecbc78f2807638581555cdc96",
+      "name": "plano-comparativo.json",
+      "bytes": 17893
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "vazio.pdf",
+      "bytes": 0
+    }
+  ],
+  "inputs_unchanged": true,
+  "write_denied_after": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "maintenance": {
+    "sessions_in_this_P03_batch": 2,
+    "foxit_absent_before_connection": true,
+    "purpose": [
+      "start limited observer",
+      "retrieve two synthetic outputs after close"
+    ],
+    "cable_disconnected_in_finally": true,
+    "tests_with_connected_cable": false
+  },
+  "clock": {
+    "monitored_seconds": true,
+    "last_examined_guest_clock": "00:30:58",
+    "new_stall_observed": false,
+    "performance_timing_valid": false,
+    "prior_stall_cause": null
+  },
+  "observations": [
+    {
+      "case": "D10",
+      "query": "alvo",
+      "sources": [
+        "page_text",
+        "bookmarks",
+        "comments"
+      ],
+      "whole_words": false,
+      "match_case": false,
+      "stemming": false,
+      "attachments": false,
+      "highlight_all": false,
+      "mode": "Match exact word or phrase",
+      "count": 6,
+      "sort": "Relevance Ranking",
+      "source_order": [
+        "bookmark",
+        "bookmark",
+        "page_text",
+        "page_text",
+        "page_text",
+        "comment"
+      ],
+      "bookmark1_double_click_from_page": 1,
+      "bookmark1_visible_page_after": 1,
+      "bookmark1_destination_verified": false,
+      "text_hit_pages": [
+        1,
+        1,
+        1
+      ],
+      "text_hit1_navigation_before": 2,
+      "text_hit1_navigation_after": 1,
+      "text_hit_highlights": [
+        "alvo",
+        "ALVO",
+        "alvo prefix of alvoextra"
+      ],
+      "comment_activation_page": 1,
+      "comment_activation_effect": "Note selected; Format panel opened; no format control clicked; no modified marker observed",
+      "guest_clock": "00:06:46",
+      "status": "partial",
+      "full_case_or_family_passed": false,
+      "bookmark1_enter_effect": "Returned to new-search form; no destination navigation confirmed",
+      "comment_selected_settled_evidence": "d10-comment-selected.png",
+      "sort_alternatives": "Current PDF document: arrow pale; clicking did not expose alternative choices; unavailable_in_context is not global absence"
+    },
+    {
+      "case": "D07",
+      "query": "alvo",
+      "sources": [
+        "bookmarks"
+      ],
+      "other_options": false,
+      "count": 2,
+      "sort": "Relevance Ranking",
+      "titles": [
+        "ALVO marcador",
+        "alvo externo"
+      ],
+      "result1_double_click_page_before": 1,
+      "result1_double_click_page_after": 1,
+      "result_selection_effect": "Matching bookmark selected in left Bookmarks pane; no automatic destination established",
+      "native_panel_marker1_page_before": 1,
+      "native_panel_marker1_page_after": 2,
+      "native_panel_marker1_zoom_percent": 66.71,
+      "result2_page_before": 2,
+      "result2_page_after": 2,
+      "native_panel_marker2_page_before": 2,
+      "native_panel_marker2_page_after": 2,
+      "marker2_message_observed": null,
+      "status": "partial_observed_selection_vs_activation",
+      "full_case_or_family_passed": false,
+      "guest_clock": "00:09:35"
+    },
+    {
+      "case": "D12",
+      "fixture": "busca-longa.pdf",
+      "pages": 250,
+      "query": "alvo",
+      "sources": [
+        "page_text",
+        "bookmarks",
+        "comments"
+      ],
+      "other_options": false,
+      "final_count": 250,
+      "active_work_at_cancel_action_verified": false,
+      "stop_sent": false,
+      "outcome": "Search completed before a current active Stop control could be observed; no cancellation inferred",
+      "cancel_swap_close_remain": "inconclusive",
+      "status": "inconclusive_active_cancellation",
+      "guest_clock": "00:15:00"
+    },
+    {
+      "case": "UI05",
+      "variant": "planned pair / active geometria tab menu",
+      "fixtures": [
+        "busca-escopos.pdf",
+        "geometria.pdf"
+      ],
+      "control": "Print All Tabs",
+      "confirmation": "Batch Printing: Are you sure you want to print all open tabs?",
+      "dont_ask_again": false,
+      "response": "No",
+      "returned_to_pair": true,
+      "physical_job_submitted": false,
+      "status": "observed_bounded_variant",
+      "guest_clock": "00:20:47",
+      "evidence": [
+        "ui05-confirm.png"
+      ]
+    },
+    {
+      "case": "D18",
+      "variant": "N-up output at displayed margins",
+      "fixture": "geometria.pdf",
+      "printer": "Microsoft Print to PDF",
+      "mode": "Multiple Pages Per Sheet",
+      "layout": [
+        2,
+        2
+      ],
+      "page_order": "Horizontal",
+      "margin_inch": 0.2,
+      "margin_mm": 5.08,
+      "orientation": "Portrait",
+      "paper_display_inch": [
+        8.3,
+        11.7
+      ],
+      "auto_rotate": true,
+      "auto_center": true,
+      "border": false,
+      "all_pages": true,
+      "preview_sheets": 2,
+      "output_guest_path": "C:\\Linuxit\\Results\\10.pdf",
+      "sha256": "129cf5564dc27f8065f43471837f091029cb24be9f93cfdcb458776762637138",
+      "bytes": 84582,
+      "protocol_match": false,
+      "protocol_mismatch": "C18-D18-nup asks margin 4.0 mm; observed 5.08 mm. No parity imported.",
+      "status": "output_generated_and_inspected_variant_only",
+      "guest_clock": "00:23:28",
+      "evidence": [
+        "nup-params.png",
+        "c2-guest.json"
+      ],
+      "pages": 2,
+      "content_labels": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          6,
+          7,
+          8
+        ]
+      ],
+      "output_page_sizes_pt": [
+        [
+          595.32001,
+          841.92004
+        ],
+        [
+          595.32001,
+          841.92004
+        ]
+      ],
+      "visual_pages_examined": true,
+      "full_case_or_family_passed": false
+    },
+    {
+      "case": "D18",
+      "variant": "Booklet output at displayed margin",
+      "fixture": "geometria.pdf",
+      "printer": "Microsoft Print to PDF",
+      "binding": "Left",
+      "sides": "Both",
+      "margin_inch": 0.2,
+      "paper_display_inch": [
+        11.7,
+        8.3
+      ],
+      "orientation_control": "Portrait",
+      "auto_rotate": true,
+      "auto_center": true,
+      "all_pages": true,
+      "preview_sheets": 4,
+      "preview_first_pair": [
+        8,
+        1
+      ],
+      "output_guest_path": "C:\\Linuxit\\Results\\11.pdf",
+      "protocol_match": false,
+      "protocol_mismatch": "Safety5mm/gutter3mm mapping not established; single margin0.200inch is not those two controls.",
+      "status": "output_generated_and_inspected_variant_only",
+      "guest_clock": "00:26:07",
+      "evidence": [
+        "booklet-params.png"
+      ],
+      "sha256": "cc0b561aa21814884102e158e5b3155302bffc780208e6e2abe6e44aeabdb226",
+      "bytes": 85662,
+      "pages": 4,
+      "content_labels": [
+        [
+          8,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "output_page_sizes_pt": [
+        [
+          841.92004,
+          595.32001
+        ],
+        [
+          841.92004,
+          595.32001
+        ],
+        [
+          841.92004,
+          595.32001
+        ],
+        [
+          841.92004,
+          595.32001
+        ]
+      ],
+      "visual_pages_examined": true,
+      "full_case_or_family_passed": false
+    },
+    {
+      "case": "UI02",
+      "variant": "File menu without a document",
+      "print_visually_disabled": true,
+      "properties_save_saveas_close_visually_disabled": true,
+      "batch_print_visually_enabled": true,
+      "batch_print_not_activated_in_empty_context": true,
+      "status": "observed_bounded_variant",
+      "guest_clock": "00:28:11",
+      "evidence": [
+        "ui02-no-doc.png"
+      ]
+    },
+    {
+      "case": "D20",
+      "variant": "normal close after two completed virtual PDF outputs",
+      "normal_close_sent_at_guest_clock": "00:28:30",
+      "no_foxit_in_task_manager_at": "00:28:43",
+      "later_guest_process_query_at": "2026-10-19T00:30:37.6281409-03:00",
+      "foxit_processes": 0,
+      "splwow64_processes": 0,
+      "forced_kill": false,
+      "previous_wait_chain_resolved": false,
+      "status": "observed_bounded_variant",
+      "evidence": [
+        "closed.png",
+        "foxit-absent-final-reviewed.json",
+        "output-transfer-guest.json"
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "id": "D07/D10",
+      "remaining": "Confirmar demais meios de ativação e variantes de destino; comparar separadamente seleção do resultado e ativação nativa. Não inferir page=null da ausência de salto."
+    },
+    {
+      "id": "D10-sort",
+      "remaining": "Testar ordenações em contexto de coleção/índice alcançável; seta indisponível na busca no PDF atual não prova ausência global. Algoritmo de relevância ainda aberto."
+    },
+    {
+      "id": "D12",
+      "remaining": "Preparar variante sintética mais lenta, limitada e hasheada, separada dos dez Inputs. Observar trabalho ativo antes de Stop, troca e fechamento; a tentativa de250 páginas terminou sem Stop."
+    },
+    {
+      "id": "D18-nup",
+      "remaining": "Configurar e registrar margem equivalente a4mm antes de nova comparação; saída atual usa0.200inch=5.08mm e não aprova C18-D18-nup."
+    },
+    {
+      "id": "D18-booklet",
+      "remaining": "Resolver mapeamento safety5mm/gutter3mm com controles do Reader; único campo Margins não foi equiparado aos dois parâmetros."
+    },
+    {
+      "id": "D18-poster",
+      "remaining": "Mosaico, combinações de caixas/giro, sobreposição/marcas e saída correspondente ainda não executados neste lote."
+    },
+    {
+      "id": "D20",
+      "remaining": "Investigar causa da espera histórica em splwow64; ausência nesta rodada não resolve a causa nem valida impressão física."
+    },
+    {
+      "id": "UI01-UI10",
+      "remaining": "Completar por variante navegação/zoom/atalhos, contexto sem impressora, fontes7911/7913, índice/proximidade, destaques e diálogos de marcadores. UI02/UI05 observados aqui são recortes."
+    },
+    {
+      "id": "S12/P03-global",
+      "remaining": "Operações das demais famílias e50 planos completos ainda abertos; dois de nuvem direta adiados e IA/UPDF excluídos."
+    }
+  ],
+  "end_state": {
+    "foxit_processes": 0,
+    "splwow64_processes": 0,
+    "process_query_at": "2026-10-19T00:30:37.6281409-03:00",
+    "collector_stop_completed": true,
+    "collector_task_state": "Ready",
+    "collector_last_result": 0,
+    "network_connected": false,
+    "pause_resume_reboot_or_force_kill": false
+  },
+  "transport_archive": {
+    "run_id": "vm-20261018-2359",
+    "archived_receipts": 7,
+    "deleted_result_properties": 75,
+    "original_files_deleted": 0,
+    "system_or_command_properties_changed": false,
+    "created_at": "2026-10-19T00:34:27.7561413-03:00"
+  },
+  "archival_attempt_1940": "Missing property; guard refused before deletion; no guest file or property changed by that attempt.",
+  "private_evidence": [
+    {
+      "path": "analysis-local/vm-20261018-2359/10.pdf",
+      "sha256": "129cf5564dc27f8065f43471837f091029cb24be9f93cfdcb458776762637138",
+      "bytes": 84582
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/11.pdf",
+      "sha256": "cc0b561aa21814884102e158e5b3155302bffc780208e6e2abe6e44aeabdb226",
+      "bytes": 85662
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/after-maintenance-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/after-transfer-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/archived-result-properties.json",
+      "sha256": "d7272a29915cd883e4c64d1f0570251586f75a48dddc2232e41c750169d5f382",
+      "bytes": 58278
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/booklet-params.png",
+      "sha256": "6cae22a8b8e3dd5e041a5107cf472b62d0a82b65058dba85eb9297878ee009ee",
+      "bytes": 70119
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/c2-guest.json",
+      "sha256": "2e2e3a959459d66b22cfbcdb28a97344a5e64b24d2b330ac8d3c63b4b98bb194",
+      "bytes": 13202
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/c2-host.json",
+      "sha256": "e36acdb626529eaf236647af1f8bc623734b88ad9ed01095161a14be0e89f119",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/c2-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/c2-transport.json",
+      "sha256": "8aa5cc44da46e8e571319b312f321569ec2627d2c9cfec238ab41c54300d387e",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/closed.png",
+      "sha256": "30e999a8e94181256658eff38317c41c36650bdad02acf881a7e00923aeeb823",
+      "bytes": 264647
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/col-guest.json",
+      "sha256": "2cd5fdfd3d0a76b6ab8e47cd902e3997ac4cd0607bad0f5f026ceabf19a2046a",
+      "bytes": 12949
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/col-host.json",
+      "sha256": "ab29d20eac2c6e3ff4c5ea9584d3f981779926f27ba78153ebe1cc32df42cc64",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/col-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/col-transport.json",
+      "sha256": "8fa06c89070f8692f049d61bd3e7437182377844f172e69ffefefa2b70f26458",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ctl-host.json",
+      "sha256": "e4ad434355273e44a6808efa33a68d5a886b334ba3b0aae51a48634d2f87d86e",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ctl-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ctl.png",
+      "sha256": "b76bfaa1d790ab7d3cdc7a9eafae4feae948be37084b52c34ee269c20f99da50",
+      "bytes": 226104
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d07-hit1.png",
+      "sha256": "f26b2a874d5bc6c700a08ebfbd8b7ddd9cfb02206c9f7829bf174893c9db6723",
+      "bytes": 59425
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d07-hit2.png",
+      "sha256": "4094ad834993e33d31ee7531716b8f9910e32e03b4388ea6727ce22451ffa2bb",
+      "bytes": 58299
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d07-options.png",
+      "sha256": "0b781017b13fabfa33aa02c4088eb385f83019e949f2646c697040136d9d20ab",
+      "bytes": 64829
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d07-panel1.png",
+      "sha256": "1c6db15caedec3e8f92504a0a9b7c9086a69fba0eff02abf5344723a75108285",
+      "bytes": 59142
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d07-panel2.png",
+      "sha256": "4629d0a62c0d0735dde1c1bebe9e0c5e177d6ef4d68adecc70f7d48304068b70",
+      "bytes": 59184
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-comment-selected.png",
+      "sha256": "83a33ab599d27c920c71131323018164b899b9440a5f21d6bc56ac2e087fc770",
+      "bytes": 68496
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-comment.png",
+      "sha256": "0df4b5502b54b741b20d6a20d420d34fddddacd4af2baaf5403791df09c178a9",
+      "bytes": 68604
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-hit1-initial.png",
+      "sha256": "748d9b220221d061fbb4714768fba80ba88cbcf80ed61fb4f436b9854ce06749",
+      "bytes": 64763
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-marker1.png",
+      "sha256": "073e84ab0cd422af9d73f12b48b135e1eee16387941439be04501166c9aae50f",
+      "bytes": 64128
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-options.png",
+      "sha256": "88ad29dd52c3710275845aad4940e1c03311d918e822664945e42f4d9e0ccbf0",
+      "bytes": 65586
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-repeat.png",
+      "sha256": "bda9ca6edfa72ddf4c14e63e8f0407012eb7cb5f00c2915308ea1246169d08e6",
+      "bytes": 62626
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-sort-context.png",
+      "sha256": "c1049eccc9b0892d931464eade4d68850caa8a4d47aa4ee3dbb8e4ef832221fa",
+      "bytes": 62624
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-text1.png",
+      "sha256": "8ba9eb0c8d814a3b1bb1dd1bbea7ccab75fc2c43efaaaf108e3a74fd1a71cfda",
+      "bytes": 66222
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-text2.png",
+      "sha256": "998a5c19f583105f3549b66d41552eada3dcde5391ebd7d8a8b073dd9ece7f4d",
+      "bytes": 65241
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d10-text3.png",
+      "sha256": "6af733f35bcdd7950c8f389900fb7fdc06de7c74d9732c996bb591088e5dfc29",
+      "bytes": 66386
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d12-completed.png",
+      "sha256": "a54a5ca509f64768247929b471f5d6baa4784dfb94eb6d78ceaecc6ec2a38028",
+      "bytes": 64901
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d12-open.png",
+      "sha256": "c4d98cf8e3a2b12ce49770370a62d1d5c82dfe32ab566fe7313fbbfb4059b965",
+      "bytes": 61143
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/d12-options.png",
+      "sha256": "a321ac3e85cb7724f5a9942d5a7e7bb15aa8fdfa7c6e75b27e111cb34f5027e3",
+      "bytes": 61894
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/end-guest.json",
+      "sha256": "fd779568234af65dce9612cdd7b42165d9cdf07c5e76611df8af447e9a01ef73",
+      "bytes": 1719
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/end-host.json",
+      "sha256": "1a1fd3f02bd3828bdee2ed2c2774978917d03b55187002dd7bddf7263325bd28",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/end-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/end-transport.json",
+      "sha256": "6e25cd9a47c74e6b7c65dcb921b6615a121d8b3613eb55370ffefaf74ca2ca81",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/fixture-open.png",
+      "sha256": "a086620741bf67fffa0a3599edf679ac0b49f33f30cf68556ed2c8d426886f6b",
+      "bytes": 51780
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/foxit-absent-final-reviewed.json",
+      "sha256": "d9321a26fd650421db3d7536e0cabe573426a8e912de5924fc1743c59534f503",
+      "bytes": 266
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/foxit-absent-reviewed.json",
+      "sha256": "dfe5188391f2aa2f216e7e274f3711328622019ead3b01cca96c6bbccb67395f",
+      "bytes": 273
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/foxit-absent.png",
+      "sha256": "43617d9c142153f3357cd3d072f8581c287ecdcf05519b68355b2bb390b56e7f",
+      "bytes": 263537
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/launch-guest.json",
+      "sha256": "932b0870e84b5347af562f3e436ce6ebb09b97fd5c2a03cd5750c273ad44a126",
+      "bytes": 1786
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/launch-host.json",
+      "sha256": "615db00620e3efd69e47e303afd34e99bc42046e5bce0d4b624c128a2561f2b8",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/launch-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/launch-transport.json",
+      "sha256": "09fdf1ebcd49f6c54712055108710fc7839b620407dfb31c260653efa82d7da8",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/maintenance-guest.json",
+      "sha256": "978311bac9586d0b89ac6270529ec057e694f8a321b5c1db0f8567bd321acff7",
+      "bytes": 429
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/no-document.png",
+      "sha256": "e7edbb82b3488bf6dd08fc137d9e80ec20af3b30c731620f0a287abfbca9854f",
+      "bytes": 53607
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/nup-params.png",
+      "sha256": "e835cb3f830fd27099276bc148af5a86dc65cb23985b3fcc6cb82a902d6a6e8d",
+      "bytes": 74184
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/observation-journal.json",
+      "sha256": "2bd987fc6164ca2fa268af697745f1722043eab23f34ecede3ef04cbef9edb47",
+      "bytes": 8301
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/open-search.png",
+      "sha256": "e7d6cc4e506eaa55faf7adbaf6d10ffef9048854d13a46ad54e36e8b1af0c528",
+      "bytes": 51743
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/output-inspection.json",
+      "sha256": "45a15b22169660c0327354ad9b732c0162a87ff70eaffaa8ab70b231f6f96f5f",
+      "bytes": 3180
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/output-transfer-guest.json",
+      "sha256": "57cb800af5f8da8e672beb3f6395f91668a754b176692af81735fd1647cfcd3a",
+      "bytes": 227808
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/pf-guest.json",
+      "sha256": "b30cf1d74492766c91a8d977819db3911166aa0794fa0dac2d5aa3e53523b688",
+      "bytes": 4406
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/pf-host.json",
+      "sha256": "d06ebfe4cf553632514810ffb3ca376c0ba1bdaef5ef35d33826de86273af9b0",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/pf-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/pf-transport.json",
+      "sha256": "8c63782a8b2cbbfc6129ab17e08ea2e4d6b8cbaabbfafd9919dcdde35b375438",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/post-guest.json",
+      "sha256": "27a7b1563f3187493c0b386fa42b43baffc9c7693c881324b5029633434a8247",
+      "bytes": 4408
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/post-host.json",
+      "sha256": "a552e6f0ebc37da084390ed3217d02950bb83a223b2de17db3e4a9490a67b1a9",
+      "bytes": 368
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/post-host.txt",
+      "sha256": "69427dbf729202ba76e0c3c3d84cc7abffac7b23d9cdc58c609cd54d4ef4bc7b",
+      "bytes": 4628
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/post-transport.json",
+      "sha256": "60a45c706418fd5bb57f8995be035768a65df1e5be8fe47e754af18f2da07aea",
+      "bytes": 186
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/property-archive-summary.json",
+      "sha256": "5561c0910eb8e1fd1af5b8251b1ccf709b3726a195cf0280a98499b9e55370e3",
+      "bytes": 237
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-10-1.png",
+      "sha256": "4b54edde41f175403ebfab50c3f0944ea00b8b473a1d1aafa878f7447efada98",
+      "bytes": 6835
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-10-2.png",
+      "sha256": "e96bcff4c1cea78632ad31754855876e42b9b1c42884f98b4ece851008b61142",
+      "bytes": 6987
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-11-1.png",
+      "sha256": "9cf9168dd74ab5dfebb707e1782a865a2b0168565f57f7c8d91f583a5611d39f",
+      "bytes": 5872
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-11-2.png",
+      "sha256": "a26009df5cc28d0a20ebc62ae83e3609b49cc39b6c748c428dc6f04f1d43f35e",
+      "bytes": 5838
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-11-3.png",
+      "sha256": "e5afffa6fc081de2888bf0a49fa00f084efb76fe5a681e8a43aca5af8f2d5c6f",
+      "bytes": 5971
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/render-11-4.png",
+      "sha256": "22b057cf5ca146b1fe0bbd7f1707ed9ed08b33cbeadd9b1b93c3ee0a2757e8be",
+      "bytes": 5848
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/startup-guest.json",
+      "sha256": "1a4aeedf3475432796526bf70123fee3deeadbeae26ad2e62e351e1d18d59649",
+      "bytes": 175
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ui02-no-doc.png",
+      "sha256": "c1724bc4c25c0692d77f244d25b78d66190d3afbbf8c46edc445d70203433d98",
+      "bytes": 53568
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ui05-confirm.png",
+      "sha256": "6676f055ec108ba609e9e145a30dd42302387002d1033f37a0a5bff23a5cd550",
+      "bytes": 68125
+    },
+    {
+      "path": "analysis-local/vm-20261018-2359/ui05-pair-open.png",
+      "sha256": "2d3b2a0010794884a296eb968c7eec3fc25acf170082d76ea3393de66831c769",
+      "bytes": 60521
+    }
+  ],
+  "public_proprietary_binaries_or_screenshots": false,
+  "comparison_imported": false,
+  "new_distinct_matching_metrics": 0,
+  "preserved_matching_metrics": 12,
+  "preserved_inconclusive_metrics": 5,
+  "legacy_criteria_or_weights_changed": false,
+  "whole_family_parity_verified": false,
+  "implementation_completion_percent": null,
+  "verification": {
+    "json_and_report_links_valid": true,
+    "private_evidence_hashes_checked": 74,
+    "catalog_validator_passed": true,
+    "functional_spec_validator_passed": true,
+    "functional_spec_render_matches": true,
+    "legacy_stage_objects_identical_to_base": true,
+    "global_completion_still_null": true,
+    "app_tests_and_release_paths_unchanged": true,
+    "own_app_suite_rerun": false,
+    "full_s12_cases_still_not_run": 50
+  }
+}
