@@ -44,3 +44,22 @@ Os testes que detectaram as falhas foram mantidos. Notificações da conta não
 foram desativadas; apagar o aviso ou aceitar uma falha como sucesso ocultaria
 o estado real do projeto. Falhas futuras devem ser investigadas pelo primeiro
 passo que falhou e pelo relatório preservado em sua execução.
+
+
+## Corrida de montagem FUSE — repetição0.1.16
+
+A execução39341668923 passou atualização/retorno,preferências e negação inicial,
+mas o processo do portal encerrou com `fuse init failed: Unable to create dir`.
+Os demais controles não executaram; a auditoria independente do pacote passou
+separadamente. O erro foi preservado em[s10-fourth-fuse](../testes/resultados/sem-vm-2026-10-19/s10-fourth-fuse/review.json).
+
+O teste iniciava quatro instâncias Flatpak antes de assumir o portal. Essas
+instâncias podiam ativar outro daemon; `--replace` então disputava a desmontagem
+FUSE. Essa causa é uma inferência apoiada pelo log e pelo [código do portal1.20.3](https://github.com/flatpak/xdg-desktop-portal/blob/1.20.3/document-portal/document-portal-fuse.c#L3387),
+que tenta desmontar a montagem anterior antes de criar o diretório.
+
+Agora o daemon controlado inicia no barramento privado antes da primeira
+execução Flatpak. Não substitui um processo que não criou, e espera sua própria
+montagem desaparecer antes de reiniciar. O workflow fará duas repetições em
+ambientes novos para conferir estabilidade; nenhuma falha será aceita como
+sucesso ou transformada em teste ignorado. Revalidação pendente.

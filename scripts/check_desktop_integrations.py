@@ -30,7 +30,8 @@ def install(manifest):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',required=True,type=Path);args=parser.parse_args()
     if args.output.exists() or os.environ.get('LINUXIT_EPHEMERAL_DESKTOP')!='1':parser.error('New output and explicit ephemeral CI desktop required')
-    report=dict(schema='linuxit-desktop-integrations-v1',passed=False,checks={},errors=[],foxit_executed=False,physical_desktop=False)
+    report=dict(schema='linuxit-desktop-integrations-v1',passed=False,checks={},errors=[],foxit_executed=False,physical_desktop=False,
+        probe_code_commit=run(['git','rev-parse','HEAD']).stdout.strip(),controlled_portal_lifecycle=[])
     server=None;doc_id=None;window_instances=set();old_default=None
     args.output.parent.mkdir(parents=True,exist_ok=True)
     sys.path.insert(0,str(ROOT/'app'))
@@ -42,10 +43,23 @@ def main():
     BUS='org.freedesktop.portal.Documents';OBJECT='/org/freedesktop/portal/documents'
     def call(method,parameters=None):return connection.call_sync(BUS,OBJECT,BUS,method,parameters,None,Gio.DBusCallFlags.NONE,10000,None).unpack()
     log=args.output.with_suffix('.portal.log').open('wb')
+    portal_mount=Path(os.environ['XDG_RUNTIME_DIR'])/'doc'
+    def mounted():
+        # The CI-created runtime path has no escaped mountinfo characters.
+        return any(line.split()[4]==str(portal_mount) for line in Path('/proc/self/mountinfo').read_text().splitlines())
+    def wait_unmounted():
+        deadline=time.monotonic()+10
+        while mounted() and time.monotonic()<deadline:time.sleep(.1)
+        if mounted():raise RuntimeError('Owned document portal did not release its FUSE mount')
     def start_portal():
         executable=next((str(p) for p in [Path('/usr/libexec/xdg-document-portal'),Path('/usr/lib/xdg-document-portal')] if p.is_file()),None)
         if not executable:raise RuntimeError('Document portal executable missing')
-        process=subprocess.Popen([executable,'--replace'],stdout=log,stderr=log)
+        # Acquire the service before ANY Flatpak run can autoactivate a competing
+        # portal. Replacing an autoactivated daemon races its FUSE unmount.
+        owned=connection.call_sync('org.freedesktop.DBus','/org/freedesktop/DBus','org.freedesktop.DBus','NameHasOwner',GLib.Variant('(s)',(BUS,)),None,Gio.DBusCallFlags.NONE,2000,None).unpack()[0]
+        if owned:raise RuntimeError('Private CI bus already has an unowned document portal; refusing replacement')
+        wait_unmounted()
+        process=subprocess.Popen([executable],stdout=log,stderr=log)
         deadline=time.monotonic()+10
         while time.monotonic()<deadline:
             if process.poll() is not None:raise RuntimeError('Own document portal exited during startup')
@@ -53,7 +67,9 @@ def main():
             if owned:
                 try:
                     pid=connection.call_sync('org.freedesktop.DBus','/org/freedesktop/DBus','org.freedesktop.DBus','GetConnectionUnixProcessID',GLib.Variant('(s)',(BUS,)),None,Gio.DBusCallFlags.NONE,2000,None).unpack()[0]
-                    if pid==process.pid:return process
+                    if pid==process.pid:
+                        report['controlled_portal_lifecycle'].append(dict(action='started_before_flatpak_or_restarted',pid=pid,mount=str(portal_mount)))
+                        return process
                 except GLib.Error:pass
             time.sleep(.1)
         process.terminate();process.wait(timeout=5);raise RuntimeError('Own portal did not acquire its private bus name')
@@ -61,6 +77,7 @@ def main():
         result=run(['flatpak','ps','--columns=instance,application'],check=False)
         return {row.split()[0] for row in result.stdout.splitlines() if len(row.split())==2 and row.split()[1]==APP}
     try:
+        server=start_portal()
         manifest=json.loads((ROOT/'releases/manifest.json').read_text())
         old=json.loads((ROOT/'testes/resultados/0.1.14/candidate.json').read_text())
         sentinel=Path.home()/'.var/app'/APP/'config'/('linuxit-rollback-'+uuid.uuid4().hex+'.txt');sentinel.parent.mkdir(parents=True,exist_ok=True);sentinel.write_text('preserve own synthetic preferences')
@@ -74,7 +91,6 @@ def main():
             root=Path(directory);source=root/'portal.pdf';writer=PdfWriter();writer.add_blank_page(100,100);writer.write(source)
             digest=hashlib.sha256(source.read_bytes()).hexdigest()
             report['checks']['outside_home_denied_before_grant']=inside(source).returncode!=0
-            server=start_portal()
             descriptor=os.open(source,os.O_PATH|os.O_CLOEXEC)
             try:
                 descriptors=Gio.UnixFDList.new();number=descriptors.append(descriptor)
@@ -90,7 +106,8 @@ def main():
             while not exported.is_file() and time.monotonic()<ready:time.sleep(.1)
             check=inside(portal_path);report['checks']['granted_document_reads_expected_bytes']=check.returncode==0 and check.stdout.strip()==digest
             report['grant_probe']=dict(host_mount=mount,app_path=str(portal_path),returncode=check.returncode,stderr=check.stderr[-1500:])
-            server.terminate();server.wait(timeout=10);server=None;time.sleep(.2)
+            server.terminate();server.wait(timeout=10);server=None;wait_unmounted()
+            report['controlled_portal_lifecycle'].append(dict(action='stopped_and_fuse_unmounted'))
             server=start_portal()
             check=inside(portal_path);report['checks']['persistent_grant_survives_portal_restart']=check.returncode==0 and check.stdout.strip()==digest
             report['restart_probe']=dict(returncode=check.returncode,stderr=check.stderr[-1500:])

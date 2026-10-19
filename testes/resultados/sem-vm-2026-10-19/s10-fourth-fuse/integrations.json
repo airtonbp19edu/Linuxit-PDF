@@ -1,0 +1,20 @@
+{
+  "schema": "linuxit-desktop-integrations-v1",
+  "passed": false,
+  "checks": {
+    "actual_upgrade_rollback_and_upgrade": true,
+    "synthetic_preferences_survive_update": true,
+    "outside_home_denied_before_grant": true
+  },
+  "errors": [
+    "RuntimeError: Own document portal exited during startup"
+  ],
+  "foxit_executed": false,
+  "physical_desktop": false,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.16",
+    "0.1.14",
+    "0.1.16"
+  ]
+}

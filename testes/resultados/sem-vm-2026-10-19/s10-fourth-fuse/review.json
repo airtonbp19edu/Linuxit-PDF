@@ -1,0 +1,20 @@
+{
+  "schema": "linuxit-own-desktop-failure-review-v1",
+  "date_local": "2026-10-19T20:31:33.364927-03:00",
+  "ci_run_id": 39341668923,
+  "source_commit": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+  "artifact_id": 12228757508,
+  "archive_sha256": "c83a77f2c2a74860125421c98f2f93f85880025b4602f25bd7ae4a82f1d7e32f",
+  "checks_passed_before_startup_failure": 3,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.16",
+    "0.1.14",
+    "0.1.16"
+  ],
+  "failure": "Portal FUSE mkdir failed while replacing an autoactivated service; startup/unmount race inferred from log and daemon source, not an application upload failure.",
+  "correction": "Start the controlled portal on the private bus before the first Flatpak run; refuse an existing unowned daemon instead of --replace; wait for own FUSE unmount before restart.",
+  "revalidation_pending": true,
+  "original_executed": false,
+  "package_unchanged": true
+}
