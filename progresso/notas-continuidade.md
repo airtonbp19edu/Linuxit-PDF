@@ -2717,3 +2717,52 @@ Próximo passo: quando a VM responder, revisão visual recente/ausência do orig
 novo RunId, instalar coletor corrigido, cabooff, validar pf/col/end com token
 limitado e recibos completos antes do original. Depois D07/D10destinos,D12ativo,
 D18saída e UI restantes. Não enviar comandos esperando resposta do coletor2020.
+
+## 2026/10/18 às 21:55 (America/Sao_Paulo, UTC-03:00) — pendências organizadas em etapas
+
+Pedido: organizar tudo que falta em etapas para prosseguir. Examinados Git local
+e remoto c62ae3c, AGENTS, projeto/progresso, registro dos 19 critérios, matriz das 25
+famílias, especificação/50 planos, casosD/UI/C18, marcos recentes e próximos alvos
+REA preservados. A memória foi consultada por palavras-chave e não teve achados
+relevantes. Não houve nova inspeção/entrada na VM, execução do original, alteração
+de código do app, build Flatpak ou repetição das suítes Linux.
+
+Criados docs/PLANO-DE-CONTINUIDADE.md e progresso/plano-continuidade.json: dez
+pacotes P01–P10, dez lotes B01–B10 (B10cloud adiado), inventário resumido por
+família, dependências de início e de encerramento, entregas e critérios para
+concluir cada etapa; cruzamento exato dos 19 critérios antigos sem modificá-los.
+As21 etapas ponderadas não foram substituídas. A organização não conclui P01:
+falta decompor operações e reconciliar especificação/matriz com evidências recentes.
+
+Fila sem VM: P01 inventário/reconciliação; P06/B01 combo AcroForm editável como
+próximo incremento próprio com contrato suficiente; P04 estática dirigida, sem
+repetir48 entradas. P05 contratos/fixtures, P07 integrações reais Linux e P09
+marcos de pacote seguem por recursos disponíveis. Sequência original P02→P03→P08:
+validar coletor corrigido quando a VM responder, completar protocolos/UI e comparar.
+Último relógio21:24:14/parada permanece registro anterior, não confirmação atual.
+Coletor2020 terminou com erro; tarefa 2130 e deploy novo continuam não realizados.
+
+D11-missing e D15 independente preservados como observados, sem tratá-los como
+pendentes de primeira execução. D07/D10destinos,D12ativo,D18saída e espera de
+impressãoD20 seguem abertos; UI05extra não equivale ao par planejado. Plano cobre
+Windows nativo posterior, portal/cliente sincronizador/AT-SPI/impressora real,
+assinaturas/segurança, mídias/3D, OCR/conversões e demais operações por família.
+Nuvem direta e seus dois planos S12 mantidos adiados; pastas locais autorizadas
+preservadas. IA/generativos e UPDF excluídos; sem mudança de escopo/pesos.
+
+Indicadores preservados:45,13% checklist/39done/19abertos, paridade0/25 e
+porcentagem global de reconstrução null. Fonte403/403 e pacote400/400 continuam
+evidências anteriores, não execução desta rodada. Nenhum novo percentual foi
+inferido. Guias de retomada e pendências apontam para o plano executável.
+
+Conferência executada: os 19 critérios/25 famílias/50 planos foram mapeados sem
+omissões/duplicações; dependências sem ciclos, referências presentes, dois casos
+cloud adiados e critérios/pesos preservados. Verificador estrutural passou:
+44 módulos/58 interfaces/25 famílias/19 critérios abertos. Relatório publicável em
+testes/resultados/plano-continuidade-2026-10-18.json; relatórios locais e helpers
+em analysis-local/continuation-plan-* e build/finalize/verify_continuation_plan.py.
+Publicação progressiva autorizada: commit/push e conferência de remoto por
+verify_git_sync.py com recibo externo. Não declarar sincronização por commit local.
+Próximo passo: executar P01 em lote de reconciliação, depois operar os recursos
+sem VM; P02 só quando houver resposta e controles offline novos, respeitando a
+regra de parar/salvar/avisar. Nenhuma estimativa de prazo foi inventada.

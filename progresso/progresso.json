@@ -2330,5 +2330,17 @@
     "vm_tests_suspended_on_clock": "21:24:14",
     "stop_confirmed_at_utc": "2026-10-19T00:27:45Z",
     "corrected_guest_probe_deployed_or_integrated": false
+  },
+  "continuation_plan": {
+    "document": "docs/PLANO-DE-CONTINUIDADE.md",
+    "structured_plan": "progresso/plano-continuidade.json",
+    "execution_packages": 10,
+    "identified_families_mapped": 25,
+    "open_criteria_mapped": 19,
+    "planning_only": true,
+    "legacy_criteria_or_weights_changed": false,
+    "first_package": "P01",
+    "first_own_implementation_candidate": "P06/B01",
+    "original_execution_requires": "P02"
   }
 }

@@ -1,5 +1,9 @@
 # Pendências de análise e pontos de retomada
 
+Execução organizada no [plano P01–P10](../docs/PLANO-DE-CONTINUIDADE.md).
+[Mapeamento estruturado](plano-continuidade.json) cobre exatamente os 19 critérios
+abaixo e as 25 famílias. Nenhum status/peso foi alterado pelo planejamento.
+
 Continuação mais recente: [senha e parada](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 Relógio21:24:14 sem avanço após dez segundos externos: testes suspensos, Foxit
 já fechado/cabooff. Primeiro restabelecer resposta e integrar coletor corrigido

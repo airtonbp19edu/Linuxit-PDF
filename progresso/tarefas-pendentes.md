@@ -1,5 +1,12 @@
 # Tarefas atuais e ponto de retomada
 
+Fila organizada: [plano P01–P10](../docs/PLANO-DE-CONTINUIDADE.md) e
+[fonte estruturada](plano-continuidade.json). Toda pendência conhecida das 25
+famílias e dos 19 critérios tem etapa, dependência, entrega e condição de conclusão.
+Começar P01; sem VM, priorizar P06/B01 (combo editável) e P04 (estática dirigida).
+Preparar contratos em P05 e validar recursos Linux disponíveis em P07/P09.
+P02 antecede novas observações do original; manter a interrupção registrada.
+
 Último checkpoint: [senha e parada da VM](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
 Relógio21:24:14 não avançou na confirmação após10 segundos; testes suspensos,
 Foxit fechado/cabooff, sem reboot automático. Primeiro restaurar resposta e

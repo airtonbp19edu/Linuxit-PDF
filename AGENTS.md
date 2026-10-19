@@ -1,5 +1,11 @@
 # Linuxit PDF — continuidade do projeto
 
+Plano de execução: [P01–P10](docs/PLANO-DE-CONTINUIDADE.md), com inventário por família,
+dependências e critérios de conclusão. São pacotes de continuidade; não substituem
+as 21 etapas ponderadas. Começar por P01; sem VM, P06/B01 e P04 podem avançar
+com seus contratos/recursos. Testes do original exigem P02, sem revogar a regra
+de interrupção pelo relógio. Criar o plano não encerra nenhuma atividade técnica.
+
 Checkpoint mais recente: [senha e parada da VM](docs/VM-SENHA-E-PARADA-2026-10-18.md).
 D15 correto em abertura independente abriu8 páginas; UI05 extra/recusa e D20
 fechamento normal sem processo residual observados neste contexto. Relógio parou

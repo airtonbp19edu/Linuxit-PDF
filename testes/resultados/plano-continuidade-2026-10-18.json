@@ -1,0 +1,23 @@
+{
+  "schema": "linuxit-continuation-plan-review-v1",
+  "verified_at_local": "2026-10-18T21:56:37-03:00",
+  "steps_with_deliverables_and_gates": 10,
+  "dependency_graph_acyclic": true,
+  "open_criteria_mapped_exactly": 19,
+  "families_mapped_exactly_once": 25,
+  "initial_acceptance_plans_mapped": 50,
+  "cloud_plans_preserved_deferred": 2,
+  "references_checked": true,
+  "legacy_criteria_and_weights_unchanged": true,
+  "app_and_packages_unchanged": true,
+  "application_tests_executed_by_this_review": false,
+  "vm_inspected_or_acted_on_by_this_review": false,
+  "implementation_completion_percent": null,
+  "plan_ref": "progresso/plano-continuidade.json",
+  "document_ref": "docs/PLANO-DE-CONTINUIDADE.md",
+  "artifact_sha256": {
+    "progresso/plano-continuidade.json": "2a537cf3c509c1a15f02f6fbdcebc17b7fa031d2114be8472f4744eaa53b9a16",
+    "docs/PLANO-DE-CONTINUIDADE.md": "09c1a8c0df7323a3e12b8faeb9f7229c13efcc6e23ed0a38b662d2283b84994b"
+  },
+  "baseline_commit": "c62ae3c4aece24f902c26f66aeeb81a4995f9b3c"
+}

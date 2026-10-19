@@ -1,0 +1,1197 @@
+{
+  "schema": "linuxit-continuation-plan-v1",
+  "created_at_local": "2026-10-18T21:54:16-03:00",
+  "timezone": "America/Sao_Paulo",
+  "base_commit": "c62ae3c4aece24f902c26f66aeeb81a4995f9b3c",
+  "status": "organized_for_execution",
+  "scope": "All currently recorded unfinished criteria and25 identified families. Operational inventory remains open; this plan is not proof of implementation or parity.",
+  "authoritative_refs": [
+    "AGENTS.md",
+    "docs/RETOMADA.md",
+    "progresso/projeto.json",
+    "progresso/progresso.json",
+    "progresso/pendencias-analises.json",
+    "progresso/matriz-paridade.csv",
+    "docs/especificacao-funcional.json",
+    "testes/cenarios-dinamicos.json",
+    "testes/cenarios-interface.json",
+    "testes/plano-comparativo.json",
+    "docs/VM-SENHA-E-PARADA-2026-10-18.md",
+    "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+  ],
+  "snapshot": {
+    "checklist_percent": 45.13,
+    "done_criteria": 39,
+    "open_criteria": 19,
+    "identified_families": 25,
+    "full_acceptance_plans": 50,
+    "matching_subset_metrics": 12,
+    "inconclusive_subset_metrics": 5,
+    "whole_family_parity": 0,
+    "source_tests_last_recorded": 403,
+    "published_flatpak": "0.1.13/devel",
+    "packaged_tests_last_recorded_per_environment": 400,
+    "original_collector_2020": "Ready/LastTaskResult1 at last examination; no further commands",
+    "vm_stop_last_recorded": "Clock21:24:14; no new inspection or VM action by this planning task",
+    "implementation_completion_percent": null
+  },
+  "execution_rules": [
+    "P01–P10 are execution packages, not replacements for the original21 weighted stages.",
+    "start_after is a start dependency; completion_inputs are needed for complete closure, not for every independent task. Work by operation; no requirement to finish all of one stage before beginning the next eligible increment.",
+    "Original execution requires P02 and contained offline controls; never reconnect with Foxit running. Brief maintenance with original absent was previously authorized.",
+    "User stop-on-stall rule persists. This planning task does not resume the stopped VM tests.",
+    "Preserve source/Linux tests, original observations, differential evidence and packaging as distinct statuses.",
+    "Every bounded batch ends with technical evidence, actual SaoPaulo timestamp, RETOMADA/pending update, progressive commit/push and real remote confirmation.",
+    "No reanalysis of preserved baseline as new work; no code/assets of original in implementation or Git.",
+    "No new reconstruction percentage or reweighting of old criteria by creating this plan."
+  ],
+  "immediate_without_vm": [
+    "P01: reconcile inventory/matrix/specification against latest original observations and source/package identities.",
+    "P06/B01: implement editable AcroForm combo as the next bounded own-code increment using existing contracts, then validate source Linux.",
+    "P04: directed remaining targets from preserved catalog, without replaying the48 examined entries.",
+    "P05/P07/P09: prepare contracts/fixtures and exercise available Linux environments; physical desktop/client/device require their actual resources."
+  ],
+  "original_lane": [
+    "P02",
+    "P03",
+    "P08"
+  ],
+  "steps": [
+    {
+      "id": "P01",
+      "title": "Inventário de operações e medição",
+      "status": "ready",
+      "environment": "Sem VM; código e evidências preservadas",
+      "start_after": [],
+      "completion_inputs": [],
+      "tasks": [
+        "Decompor cada uma das 25 famílias em operações pequenas, com entrada, saída e critério de aceitação.",
+        "Conferir código, testes, especificação e matriz; corrigir registros atuais desatualizados sem reescrever evidência histórica. Exemplos: D11-missing já observado; D15 independente já observado; autor corrigido somente na fonte; impressão e anexos com observações limitadas.",
+        "Separar implementado, testado no Linux, observado no original e comparado. Registrar desconhecido, indisponível no contexto, adiado e excluído sem convertê-los em concluído.",
+        "Delimitar recursos do Reader 2025.2.0.33046; rótulos/templates do Editor ou plugins não demonstram disponibilidade.",
+        "Versionar catálogo de operações. Definir eventual medição do escopo conhecido com critérios/pesos explícitos, mantendo a porcentagem global nula enquanto o denominador continuar aberto."
+      ],
+      "deliverables": [
+        "Inventário operacional versionado, por família, com fonte e evidência por operação.",
+        "Especificação/matriz reconciliadas e lista explícita de operações ainda desconhecidas."
+      ],
+      "completion_gate": "25 famílias examinadas no nível de operações; toda afirmação de implementação/validação tem referência. Catálogo declarado provisório se restarem funções por descobrir. Não aprova paridade."
+    },
+    {
+      "id": "P02",
+      "title": "Validar o coletor e o ambiente do original",
+      "status": "awaiting_vm_responsiveness",
+      "environment": "VM Windows offline, após voltar a responder",
+      "start_after": [],
+      "completion_inputs": [],
+      "tasks": [
+        "Revalidar segundos e resposta de uma aplicação de controle; não assumir recuperação pelo estado running do VirtualBox.",
+        "Confirmar ausência do Foxit antes de manutenção breve já autorizada. Instalar o script corrigido em tarefa interativa limitada com RunId novo, preservando o anterior.",
+        "Manter rede desligada antes dos testes; conferir identidade, dez Inputs, negação de escrita, shares/USB/clipboard e demais controles documentados.",
+        "Validar IDs curtos como pf/col/end, recibos completos e parada do coletor sem iniciar Foxit. Arquivar resultados antigos antes de liberar somente suas propriedades.",
+        "Antes de executar o original, novo preflight e controle visual. Se relógio/ambiente parar, somente observar após 10 segundos externos, interromper entradas, salvar e avisar; sem pause/reboot automático."
+      ],
+      "deliverables": [
+        "Manifesto do novo observador, hash/perfil, contenção e recibos preflight/coleta/stop examinados."
+      ],
+      "completion_gate": "Coletor corrigido realmente instalado e validado ponta a ponta, com recibos completos e token limitado. Controles do host já passados não substituem esta integração."
+    },
+    {
+      "id": "P03",
+      "title": "Completar as observações do Foxit",
+      "status": "planned",
+      "environment": "VM offline aprovada em P02",
+      "start_after": [
+        "P02"
+      ],
+      "completion_inputs": [
+        "P01"
+      ],
+      "tasks": [
+        "D07/D10: ativação e destino de cada resultado, busca mista e alternativas de ordenação; não tratar seleção sem navegação como destino nulo.",
+        "D12: tornar trabalho ativo observável e medir cancelar, trocar e fechar durante a busca. O corpus250 páginas já concluído não provou cancelamento.",
+        "D18: gerar saída PDF com parâmetros realmente correspondentes aos protocolos de livreto/N-up/mosaico; conferir margens, giro, sequência e dimensões. Prévia visual não aprova o stream.",
+        "D20: investigar a espera anterior em splwow64 e encerramento após impressão. O fechamento sem residual do lote2020 fica preservado como contexto distinto.",
+        "Revisar UI01–UI10 por variante: impressão sem/com documento, navegação, limites de zoom, todas as abas no par planejado, fontes 7911/7913, proximidade/índice, destaques e diálogos de marcadores.",
+        "Não repetir D11-missing ou D15 independente como pendência. D11-vazio mantém métrica inconclusiva enquanto Search não produzir resposta de backend.",
+        "Estender observações para operações das demais famílias e os 50 planos; registrar disponibilidade Reader e requisitos de serviço sem ligar a VM offline a serviços remotos."
+      ],
+      "deliverables": [
+        "Observações por variante com corpus/opções/identidades, evidência privada e metadados publicáveis.",
+        "Fila de observações insuficientes ou indisponíveis no contexto, com causa explícita."
+      ],
+      "completion_gate": "Protocolos selecionados reproduzíveis e observáveis; cada lacuna aprovada para comparação ou declarada inconclusiva. Fechamento amplo exige também as operações descobertas em P01/P04."
+    },
+    {
+      "id": "P04",
+      "title": "Concluir análise estática dirigida",
+      "status": "ready",
+      "environment": "REA/Ghidra, sem executar original",
+      "start_after": [],
+      "completion_inputs": [
+        "P01",
+        "P03"
+      ],
+      "tasks": [
+        "Retomar catálogo 323 e projetos preservados; conferir ferramentas/perfis realmente disponíveis e não contar as 48 entradas anteriores novamente.",
+        "Busca/reflow: alocação/tamanhos e chamadores dos cinco arrays; transições0x15cd6e0/0x15cc9b0; atribuição de dialog+0x1e48, campos restantes e algoritmo0x1003f6b0.",
+        "Impressão/geometria: contexto0x138, serviços de imagem, concorrência, estados, ownership, falhas e fluxos completos de consumidores.",
+        "Resolver fronteiras do motor PDF, ciclo de vida dos componentes, assinaturas/tipos e fluxos das outras famílias conforme lacunas operacionais.",
+        "Confrontar IDs7911/7913 com observação dinâmica; preservar ambiguidades onde a evidência não resolve.",
+        "Checkpoint por lote: identidade, perfil, entradas novas versus reaproveitadas, resultados examinados, falhas, inferências e próximo alvo. Sem IA ou recursos proprietários na implementação."
+      ],
+      "deliverables": [
+        "Contratos de tipos, diagramas e catálogo incrementais com evidência técnica examinada.",
+        "Lista de ambiguidades e fronteiras ainda não resolvidas."
+      ],
+      "completion_gate": "Cada recorte tem tipos/estados/ownership rastreáveis. Os critérios universais antigos só fecham quando o universo definido estiver coberto, não ao terminar uma fila de sementes."
+    },
+    {
+      "id": "P05",
+      "title": "Consolidar contratos e casos de aceitação",
+      "status": "planned",
+      "environment": "Sem VM para preparar; P03/P04 para afirmar comportamento do original",
+      "start_after": [
+        "P01"
+      ],
+      "completion_inputs": [
+        "P03",
+        "P04"
+      ],
+      "tasks": [
+        "Detalhar entradas, saídas, mensagens, efeitos, cancelamento e limites por operação, diferenciando contrato próprio e comportamento observado.",
+        "Transformar os 50 planos S12 em procedimentos executáveis; adicionar casos por risco/descoberta. Dois planos da família cloud continuam adiados.",
+        "Preparar fixtures sintéticas determinísticas, oráculos e medidas; conectar variantesD/UI e recortesC18 aos contratos sem contar um subconjunto como família completa.",
+        "Definir tolerâncias/ordem/unidades antes de comparar. Indisponibilidade, dependência externa e caso não executado não recebem passed.",
+        "Atualizar contratos-funcionais.md pelo validador/render oficial, preservando proveniência e versões."
+      ],
+      "deliverables": [
+        "Especificação funcional e planos executáveis por operação; matriz de evidência e dependência."
+      ],
+      "completion_gate": "Contrato de cada operação implementada verificável; faseA só consolidada com lacunas explicitadas e obrigações ainda abertas visíveis."
+    },
+    {
+      "id": "P06",
+      "title": "Implementar funções PDF em lotes pequenos",
+      "status": "planned",
+      "environment": "Código próprio/Linux; VM para comprovar equivalência",
+      "start_after": [
+        "P01"
+      ],
+      "completion_inputs": [
+        "P05"
+      ],
+      "tasks": [
+        "Executar B01–B09 abaixo por operação já suficientemente especificada; não esperar encerrar todas as famílias para iniciar o primeiro lote.",
+        "Primeira entrega candidata: combo AcroForm editável, texto livre e aparência; preservar Opt, valores/índices, ReadOnly/flags, original, histórico e cópias já salvas.",
+        "Para cada operação: backend, worker e interface, erros/cancelamento e persistência; testes necessários de resultado e regressão no Linux.",
+        "Preservar base MIT/BSD e independência do código. Recusas atuais de formatos/recurso não suportado permanecem explícitas até implementação verificada.",
+        "Não implementar como fato comportamentos Foxit ainda inferidos. Lacunas de contrato voltam a P03/P04/P05; APIs cloud permanecem adiadas."
+      ],
+      "deliverables": [
+        "Incrementos de código/testes/GUI e nota de operação concluída com limites.",
+        "Atualização do inventário operacional sem promover família inteira por um recurso."
+      ],
+      "completion_gate": "Lote passa nos testes pertinentes da fonte Linux e tem comportamento/persistência examinados. Equivalência aguarda P08."
+    },
+    {
+      "id": "P07",
+      "title": "Validar integração no desktop Linux real",
+      "status": "planned",
+      "environment": "Desktop Linux, Flatpak, cliente sincronizador e impressora; sem VM Foxit",
+      "start_after": [],
+      "completion_inputs": [
+        "P06"
+      ],
+      "tasks": [
+        "Portais reais de abrir/salvar e concessão persistente fora HOME: permitido/negado, reabrir após reiniciar e restrições do sandbox.",
+        "Pastas sincronizadas com cliente real: salvar cópia local, envio externo, rede indisponível, conflito/mudança concorrente, sem anunciar upload a partir de simples gravação local.",
+        "AT-SPI/leitor de tela real, foco, teclado e ordem de leitura; manter distinção entre texto acessível exposto e conformidade integral.",
+        "Impressão física via backend Linux: papel/escala/margens, frente-verso suportado, cancelamento, fila e erros de dispositivo.",
+        "Associação de PDF, launcher, persistência/tema, múltiplos monitores e testes de interação não representados pelo CI headless."
+      ],
+      "deliverables": [
+        "Relatórios de desktop/dispositivo, versão/distro/portal/cliente e evidências examinadas."
+      ],
+      "completion_gate": "Cada integração tem resultado real e limitações registradas. CI e impressão virtual não substituem os cenários de equipamento."
+    },
+    {
+      "id": "P08",
+      "title": "Comparar, corrigir e executar aceitação",
+      "status": "planned",
+      "environment": "Resultados do original offline e reconstrução Linux; dispositivos conforme caso",
+      "start_after": [
+        "P03"
+      ],
+      "completion_inputs": [
+        "P05",
+        "P06",
+        "P07"
+      ],
+      "tasks": [
+        "Preservar consolidado12 medições iguais/cinco inconclusivas; resolver inconclusivos sem transformar ausência de observação em igualdade.",
+        "Executar cada plano S12 nominal/exceção no escopo autorizado, ligando fixture/protocolo/evidências/oráculos. Cloud adiada mantém seus casos sem execução.",
+        "Comparar por operação: contagens/destinos, estado persistido, geometria/pixels e arquivos quando pertinente; não depender só de igualdade de textos digitados manualmente.",
+        "Para cada divergência: reproduzir, corrigir em P06, testar regressão e repetir só os cenários afetados. Registrar diferenças intencionais como lacuna/decisão, nunca equivalência automática.",
+        "Validar cargas grandes, entradas inválidas, concorrência e cancelamento; separar falhas do ambiente, do observador e do aplicativo."
+      ],
+      "deliverables": [
+        "Matriz diferencial por operação/família, regressões e relatório de aceitação com proveniência."
+      ],
+      "completion_gate": "Cada caso aceito tem execução e evidência examinada nas duas aplicações. Os50 planos iniciais não são catálogo completo; família só verificada após todas as suas obrigações delimitadas."
+    },
+    {
+      "id": "P09",
+      "title": "Gerar e validar os marcos Flatpak",
+      "status": "planned",
+      "environment": "CI Linux e sandbox instalado; sem original Foxit",
+      "start_after": [],
+      "completion_inputs": [
+        "P06"
+      ],
+      "tasks": [
+        "Empacotar por marco útil, sem aguardar toda a reconstrução. Incluir a correção de busca por autor que ainda está só na fonte.",
+        "Versionar manifesto, manter runtime/loader pareados e proveniência/licenças; gerar bundle novo após mudanças do app.",
+        "Executar suíte apropriada completa em fonte/payload/sandbox, smoke e launcher; examinar capturas e diferenças reais, sem skips usados como aprovação de GUI.",
+        "Reinstalar e auditar o mesmo bundle publicado sem rebuild; conferir download, tamanho, SHA256 e instruções de instalação.",
+        "Publicar código/pacote/relatórios e confirmar remoto. Documentação ou plano não exigem gerar pacote novo."
+      ],
+      "deliverables": [
+        "Flatpak de desenvolvimento e manifesto, relatórios selados de builder/auditor e recibos de publicação."
+      ],
+      "completion_gate": "Bytes testados iguais aos publicados; versão e limites claros. Aceitar entrega parcial não declara aplicação inteira concluída."
+    },
+    {
+      "id": "P10",
+      "title": "Auditar o fechamento e preparar a continuidade",
+      "status": "planned",
+      "environment": "Repositório, relatórios e ambientes das etapas anteriores",
+      "start_after": [],
+      "completion_inputs": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09"
+      ],
+      "tasks": [
+        "Conferir um a um os 19 critérios antigos mapeados abaixo, com evidência técnica examinada e pesos intactos.",
+        "Auditar implementação, comparação, licenças/proveniência, pacote, testes e bloqueios; manter conclusão global nula se inventário ainda aberto.",
+        "Conferir nuvem adiada e Windows posterior. Não declarar conclusão global enquanto obrigações desses itens permanecerem no escopo; eventual mudança exige decisão/histórico explícito.",
+        "A cada lote, mesmo antes do encerramento: atualizar RETOMADA, pendências, notas com horário real de São Paulo; commit/push e recibo externo de sincronização."
+      ],
+      "deliverables": [
+        "Auditoria final do escopo efetivamente entregue, lista de obrigações restantes e passagem reproduzível para outra IA."
+      ],
+      "completion_gate": "Cada done tem evidência suficiente; bloqueios/adiamentos continuam abertos. Release utilizável e conclusão de toda a reconstrução são avaliações separadas."
+    }
+  ],
+  "implementation_batches": [
+    {
+      "id": "B01",
+      "title": "Formulários",
+      "family_ids": [
+        "forms"
+      ],
+      "remaining": "Combo editável primeiro; depois cálculo/validação/eventos, XFA e formatos restantes conforme disponibilidade Reader e contratos próprios examinados.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B02",
+      "title": "Marcadores e anotações",
+      "family_ids": [
+        "bookmarks-edit",
+        "annotations"
+      ],
+      "remaining": "Diálogos e persistência completos de marcadores; respostas/popup, aparências, autoria, desenho livre e demais anotações suportadas pelo alvo; histórico e vínculos.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B03",
+      "title": "Abertura, senhas e permissões",
+      "family_ids": [
+        "open-render",
+        "security"
+      ],
+      "remaining": "Entrada de senha integrada à abertura/renderização/busca; cancelar/erro, propagação controlada ao worker, permissões e recuperação. RMS exige caracterização/ambiente próprio, sem contornar proteção.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B04",
+      "title": "Busca",
+      "family_ids": [
+        "search-text",
+        "search-bookmarks",
+        "search-comments",
+        "search-attachments",
+        "search-index",
+        "search-language"
+      ],
+      "remaining": "Destinos/ordem/destaques e respostas; anexos e índices completos, normalização, idiomas/stemming/proximidade/coringas. Contratos atuais independentes não provam algoritmo Foxit.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B05",
+      "title": "Leitura e navegação",
+      "family_ids": [
+        "navigation",
+        "presentation",
+        "selection"
+      ],
+      "remaining": "Limites de zoom/ajuste, navegação em estados extremos, múltiplos monitores, seleção/ordem lógica, texto bidirecional e geometria em rotação.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B06",
+      "title": "Impressão e imposição",
+      "family_ids": [
+        "printing",
+        "imposition"
+      ],
+      "remaining": "Predefinições/flags, parâmetros e fluxo de fila; geometria, margens/rotações/ordem de livreto,N-up,mosaico; saída equivalente antes de aprovar.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B07",
+      "title": "Anexos e conversões",
+      "family_ids": [
+        "attachments",
+        "conversion"
+      ],
+      "remaining": "Portfólios, senha não vazia e políticas de extração; formatos/conversões adicionais confirmados no Reader, OCR/fidelidade e variantes de imagem ainda recusadas. TIFF 100/OCR 20 já entregues não são refeitos como novidade.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B08",
+      "title": "Assinaturas, medição e conteúdo especial",
+      "family_ids": [
+        "signatures",
+        "measurement",
+        "layers-media"
+      ],
+      "remaining": "Assinar versus validar, cadeia/revogação/tempo/PAdES conforme contrato; unidades/calibração/snapping/área/perímetro; visibilidade OCG/persistência, mídia e 3D conforme suporte real do alvo.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B09",
+      "title": "Preferências, acessibilidade e sistema",
+      "family_ids": [
+        "preferences",
+        "accessibility",
+        "platform"
+      ],
+      "remaining": "Preferências ainda ausentes, foco/voz/ordem acessível, portais/associação/atualização/rollback e adaptadores. Validação real em P07; Windows posteriormente.",
+      "status": "planned",
+      "execution_step": "P06"
+    },
+    {
+      "id": "B10",
+      "title": "Nuvem direta — adiada",
+      "family_ids": [
+        "cloud"
+      ],
+      "remaining": "Preservar cadastro/contratos pendentes; não iniciar login/APIs/upload/colaboração remota. Pastas sincronizadas locais já autorizadas seguem em P07.",
+      "status": "deferred_by_user",
+      "execution_step": null
+    }
+  ],
+  "family_backlog": [
+    {
+      "id": "open-render",
+      "name": "Abrir PDF e renderizar páginas",
+      "batch_id": "B03",
+      "state": "incomplete",
+      "preserved_baseline": "Leitura/render e cópias locais implementados em subconjunto; D02/D13/D14 limitados e D15 independente observados.",
+      "remaining": "Abertura cifrada integrada, recuperação e demais falhas/cancelamento/renderização; testar o ciclo completo de documento e tarefas.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-01-1",
+        "S12-01-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/rendering.py",
+        "app/main.py",
+        "app/async_core.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md"
+      ]
+    },
+    {
+      "id": "navigation",
+      "name": "Navegação/rotação/zoom",
+      "batch_id": "B05",
+      "state": "incomplete",
+      "preserved_baseline": "Navegação/zoom/rotação próprios; geometria original parcial e D15 navegação1/8/1.",
+      "remaining": "Limites/modos efetivos, estados primeira/intermediária/última/sem documento e interação com rotação/CropBox.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-02-1",
+        "S12-02-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/main.py",
+        "app/page_cache.py",
+        "app/rendering.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md"
+      ]
+    },
+    {
+      "id": "presentation",
+      "name": "Apresentação ajustar/preencher",
+      "batch_id": "B05",
+      "state": "incomplete",
+      "preserved_baseline": "Apresentação GTK própria; comparação integral ausente.",
+      "remaining": "Ajustar/preencher, atalhos, foco e múltiplos monitores observados no alvo e validados no desktop.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-03-1",
+        "S12-03-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/presentation.py",
+        "app/page_cache.py"
+      ]
+    },
+    {
+      "id": "search-text",
+      "name": "Busca literal/palavra inteira/maiúsculas",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Literal/palavra inteira/caixa próprios e recortes comparados; D11-missing exato observado.",
+      "remaining": "Destinos e ordenação mista, destaques, normalização completa, limites/cancelamento e vazio sem presumir retorno de backend.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-04-1",
+        "S12-04-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/search_engine.py",
+        "app/main.py",
+        "app/rendering.py"
+      ]
+    },
+    {
+      "id": "search-bookmarks",
+      "name": "Busca em marcadores",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Dois hits observados; destinos inconclusivos.",
+      "remaining": "Ativação/destinos dos dois resultados, ordenação e associação dinâmica 7911/7913.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-05-1",
+        "S12-05-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ]
+    },
+    {
+      "id": "search-comments",
+      "name": "Busca em comentários",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Autor corrigido na fonte 168381b,403/403 Linux registrados; Flatpak0.1.13 anterior à correção.",
+      "remaining": "Demais tipos/campos/respostas, duplicação, destinos e ordenação; empacotar correção de autor já validada na fonte.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-06-1",
+        "S12-06-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/search_engine.py",
+        "app/pdf_panels.py"
+      ]
+    },
+    {
+      "id": "search-attachments",
+      "name": "Busca em anexos",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Extratores UTF8/PDF e contratos próprios da 0.1.6; comparação integral ausente.",
+      "remaining": "Travessia/extratores/formatos/limites e associação de resultados comparados com o original.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-07-1",
+        "S12-07-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/attachment_search.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/pdf_attachments.py",
+        "app/search_engine.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ]
+    },
+    {
+      "id": "search-index",
+      "name": "Índice persistente/pesquisa de coleção",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Snapshot JSON local de PDFs selecionados; não equivale ao índice completo do Foxit.",
+      "remaining": "Disponibilidade Reader, manutenção/exclusões/locking/recuperação e formatos do índice; caracterizar suporte antes de ampliar.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-08-1",
+        "S12-08-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/collection_index.py",
+        "app/collection_window.py",
+        "app/search_tasks.py",
+        "app/search_matching.py",
+        "app/worker_cli.py",
+        "app/main.py"
+      ]
+    },
+    {
+      "id": "search-language",
+      "name": "Stemming/proximidade/coringas",
+      "batch_id": "B04",
+      "state": "incomplete",
+      "preserved_baseline": "Coringas/proximidade próprios em subconjunto; stemming ainda pendente.",
+      "remaining": "Stemming por idioma, distância/proximidade, escaping/expansão e combinação com índice.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-09-1",
+        "S12-09-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/search_matching.py",
+        "app/search_engine.py",
+        "app/attachment_search.py",
+        "app/collection_index.py",
+        "app/main.py",
+        "app/collection_window.py"
+      ]
+    },
+    {
+      "id": "selection",
+      "name": "Seleção/cópia/snapshot",
+      "batch_id": "B05",
+      "state": "incomplete",
+      "preserved_baseline": "Seleção retangular/cópia/snapshot próprios em subconjunto.",
+      "remaining": "Ordem lógica/bidirecional, permissões, snapping e coordenadas em todos os modos previstos.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-10-1",
+        "S12-10-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/main.py",
+        "app/rendering.py"
+      ]
+    },
+    {
+      "id": "printing",
+      "name": "Prévia/plano de impressão",
+      "batch_id": "B06",
+      "state": "incomplete",
+      "preserved_baseline": "Prévia/plano próprios e observação original D17 limitados; sem impressão física aprovada.",
+      "remaining": "Predefinições/margens/fontes/flags e fluxo completo da fila; impressão física e encerramento após impressão.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-11-1",
+        "S12-11-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/print_window.py",
+        "app/worker_cli.py",
+        "app/cups_backend.py",
+        "app/windows_print.py"
+      ]
+    },
+    {
+      "id": "imposition",
+      "name": "Livreto/N-up/mosaico",
+      "batch_id": "B06",
+      "state": "incomplete",
+      "preserved_baseline": "Livreto/N-up/mosaico próprios; prévia original observada, saída correspondente inconclusiva.",
+      "remaining": "Saída PDF com margens/medidas/ordem correspondentes, rotações e combinações de livreto/N-up/mosaico.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-12-1",
+        "S12-12-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/imposition.py",
+        "app/worker_cli.py"
+      ]
+    },
+    {
+      "id": "bookmarks-edit",
+      "name": "Criar/mover/gravar marcadores",
+      "batch_id": "B02",
+      "state": "incomplete",
+      "preserved_baseline": "Criar/renomear/mover/excluir subárvore em cópia e histórico de rascunho na 0.1.10.",
+      "remaining": "Diálogos e persistência completa, disponibilidade Reader, hierarquia/destinos/histórico em comparação.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-13-1",
+        "S12-13-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_panels.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
+      ]
+    },
+    {
+      "id": "annotations",
+      "name": "Anotações/undo/gravação",
+      "batch_id": "B02",
+      "state": "incomplete",
+      "preserved_baseline": "Oito tipos simples delimitados, cinco marcas adicionais e edição comentário/autor na 0.1.13.",
+      "remaining": "Respostas/popup/vínculos, aparências e operações restantes; tipos simples atuais não aprovam edição universal.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-14-1",
+        "S12-14-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_panels.py",
+        "app/search_engine.py",
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json",
+        "app/pdf_annotations.py",
+        "docs/ANOTACOES-AMPLIADAS.md",
+        "testes/resultados/annotation-extensions-portable-2026-10-18-round3.json",
+        "testes/resultados/0.1.13/validation-review.json"
+      ]
+    },
+    {
+      "id": "forms",
+      "name": "AcroForm/XFA/eventos",
+      "batch_id": "B01",
+      "state": "incomplete",
+      "preserved_baseline": "Tx/checkbox/radio/combos sem texto livre/listas em cópia; histórico e ReadOnly no subconjunto.",
+      "remaining": "Combo editável/texto livre/aparência primeiro; depois eventos, cálculo/validação, XFA e formas restantes de acordo com disponibilidade e contrato.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-15-1",
+        "S12-15-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_changes.py",
+        "app/edit_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "app/pdf_form_controls.py",
+        "app/edit_history.py",
+        "app/edit_dialogs.py",
+        "app/edit_window.py",
+        "docs/EDICAO-COM-HISTORICO.md",
+        "testes/resultados/0.1.10/validation-review.json"
+      ]
+    },
+    {
+      "id": "attachments",
+      "name": "Anexos/portfólios",
+      "batch_id": "B07",
+      "state": "incomplete",
+      "preserved_baseline": "Catálogo/árvores/anotação próprios; anexo original 22 bytes/hash comparado.",
+      "remaining": "Portfólios e senha não vazia, políticas de extração; completar comparação e desktop/acessibilidade.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-16-1",
+        "S12-16-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_attachments.py",
+        "app/worker_cli.py",
+        "app/attachment_tasks.py",
+        "app/main.py"
+      ]
+    },
+    {
+      "id": "signatures",
+      "name": "Assinaturas/certificados",
+      "batch_id": "B08",
+      "state": "incomplete",
+      "preserved_baseline": "Inspeção/integridade CMS offline separada de confiança.",
+      "remaining": "Assinatura de documentos, confiança/cadeia/revogação/tempo e PAdES/LTV; CMS atual só verifica integridade no recorte documentado.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-17-1",
+        "S12-17-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_signatures.py",
+        "app/signature_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Senhas/permissões/RMS",
+      "batch_id": "B03",
+      "state": "incomplete",
+      "preserved_baseline": "Senha conhecida/permissões/cópias AES-256 e remoção com senha de proprietário em subconjunto; D15 original observado.",
+      "remaining": "Fluxo cifrado integrado, aplicação de permissões e mensagens; RMS segue sem contrato completo e exige ambiente autorizado.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-18-1",
+        "S12-18-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_security.py",
+        "app/security_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "name": "Acessibilidade/voz",
+      "batch_id": "B09",
+      "state": "incomplete",
+      "preserved_baseline": "TextView/ATK.Text, nomes e atalhos próprios; validação AT-SPI real pendente.",
+      "remaining": "AT-SPI/leitor de tela real, ordem semântica, voz, foco/atalhos e cobertura efetiva.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-19-1",
+        "S12-19-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/accessible_reader.py",
+        "app/pdf_security.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/SEGURANCA-ACESSIBILIDADE.md"
+      ]
+    },
+    {
+      "id": "measurement",
+      "name": "Medição/calibração",
+      "batch_id": "B08",
+      "state": "incomplete",
+      "preserved_baseline": "Distância em centímetros entre pontos; sem calibração personalizada.",
+      "remaining": "Calibração/unidades, snapping/precisão, áreas e perímetros.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-20-1",
+        "S12-20-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/main.py"
+      ]
+    },
+    {
+      "id": "layers-media",
+      "name": "Camadas/mídia/3D",
+      "batch_id": "B08",
+      "state": "incomplete",
+      "preserved_baseline": "Listagem de nomes OCG; alternância/mídia/3D não implementadas integralmente.",
+      "remaining": "Alternar/persistir OCG, combinações, mídia/codecs/eventos e 3D conforme disponibilidade real do Reader.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-21-1",
+        "S12-21-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_panels.py"
+      ]
+    },
+    {
+      "id": "preferences",
+      "name": "Preferências/tema/persistência",
+      "batch_id": "B09",
+      "state": "incomplete",
+      "preserved_baseline": "Tema system/light/dark e pastas locais persistidos.",
+      "remaining": "Defaults, persistência e interdependência dos ajustes restantes; tema/pastas atuais já preservados.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-22-1",
+        "S12-22-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/appearance.py",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md"
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": "Nuvem/colaboração",
+      "batch_id": "B10",
+      "state": "deferred_by_user",
+      "preserved_baseline": "Integração direta adiada; fluxo de pasta local não a implementa.",
+      "remaining": "APIs/login/upload/colaboração remota adiados. Manter visíveis sem executá-los ou somar conclusão.",
+      "implementation_without_foxit_vm": false,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-23-1",
+        "S12-23-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "docs/PASTAS-SINCRONIZADAS.md"
+      ]
+    },
+    {
+      "id": "conversion",
+      "name": "Criação/conversão",
+      "batch_id": "B07",
+      "state": "incomplete",
+      "preserved_baseline": "PNG/JPEG/BMP/WebP simples, TIFF até 100 páginas e OCR local até 20, com limites registrados.",
+      "remaining": "Inventário Reader/Editor, formatos/conversões restantes, fidelidade/OCR e variantes recusadas; preservar TIFF multipágina 100/OCR 20 atuais.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-24-1",
+        "S12-24-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "app/pdf_creation.py",
+        "app/creation_window.py",
+        "app/search_tasks.py",
+        "app/worker_cli.py",
+        "app/main.py",
+        "docs/CRIACAO-IMAGENS.md",
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "docs/PASTAS-SINCRONIZADAS.md",
+        "testes/resultados/0.1.10/validation-review.json",
+        "app/pdf_ocr.py",
+        "app/ocr_window.py",
+        "docs/OCR-LOCAL.md",
+        "testes/resultados/ocr-portable-2026-10-18-round1.json",
+        "testes/resultados/0.1.11/validation-review.json",
+        "docs/TIFF-MULTIPAGINA.md",
+        "testes/resultados/tiff-multipage-portable-2026-10-18-round2.json",
+        "testes/resultados/tiff-creation-existing-2026-10-18-round2.json",
+        "testes/resultados/tiff-multipage-portable-2026-10-18-round3.json",
+        "testes/resultados/0.1.12/validation-review.json"
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "Integrações de sistema/atualização",
+      "batch_id": "B09",
+      "state": "incomplete",
+      "preserved_baseline": "Flatpak/launcher/controles fora HOME próprios; desktop real e adaptadores completos pendentes.",
+      "remaining": "Portais/concessão persistente reais, associação de arquivos, atualização/rollback e adaptador Windows posterior.",
+      "implementation_without_foxit_vm": true,
+      "original_required_for_parity": true,
+      "acceptance_case_ids": [
+        "S12-25-1",
+        "S12-25-2"
+      ],
+      "specification_ref": "docs/especificacao-funcional.json",
+      "source_refs": [
+        "docs/instalacao.md",
+        "app/platform_runtime.py",
+        "app/cups_backend.py"
+      ]
+    }
+  ],
+  "legacy_criteria_mapping": [
+    {
+      "stage_id": 3,
+      "criterion": "Motor PDF e fronteiras de todos os subsistemas identificados",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P04"
+      ]
+    },
+    {
+      "stage_id": 5,
+      "criterion": "Ciclo de vida de todos os componentes reconstruído",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P04"
+      ]
+    },
+    {
+      "stage_id": 7,
+      "criterion": "Universo relevante e assinaturas/saídas de todas as funções definidos",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P01",
+        "P04"
+      ]
+    },
+    {
+      "stage_id": 8,
+      "criterion": "Fluxo completo de impressão reconstruído",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 8,
+      "criterion": "Fluxo completo de busca reconstruído",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 8,
+      "criterion": "Demais famílias funcionais investigadas profundamente",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 9,
+      "criterion": "Diagramas e estados rastreáveis por subsistema",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 9,
+      "criterion": "Algoritmos completos de todas as famílias especificados",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 10,
+      "criterion": "Cenários locais observados e registrados",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P02",
+        "P03"
+      ]
+    },
+    {
+      "stage_id": 10,
+      "criterion": "Integrações autorizadas e casos excepcionais observados",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P02",
+        "P03"
+      ]
+    },
+    {
+      "stage_id": 11,
+      "criterion": "Disponibilidade e comportamento de todas as interações observados",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P03"
+      ]
+    },
+    {
+      "stage_id": 12,
+      "criterion": "Entradas/saídas/erros e critérios detalhados por funcionalidade",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P01",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 12,
+      "criterion": "Fase A consolidada sem lacunas não declaradas",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P01",
+        "P05"
+      ]
+    },
+    {
+      "stage_id": 15,
+      "criterion": "Todas as demais famílias implementadas e testadas",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P06"
+      ]
+    },
+    {
+      "stage_id": 16,
+      "criterion": "Demais interações e integrações funcionais",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P06",
+        "P07"
+      ]
+    },
+    {
+      "stage_id": 18,
+      "criterion": "Cenários diferenciais executados no original e na reconstrução",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P08"
+      ]
+    },
+    {
+      "stage_id": 18,
+      "criterion": "Resultados e divergências por família disponíveis",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P08"
+      ]
+    },
+    {
+      "stage_id": 19,
+      "criterion": "Divergências originais medidas e corrigidas",
+      "recorded_status": "partial",
+      "plan_step_ids": [
+        "P06",
+        "P08"
+      ]
+    },
+    {
+      "stage_id": 21,
+      "criterion": "Obrigações viáveis encerradas e bloqueios declarados",
+      "recorded_status": "pending",
+      "plan_step_ids": [
+        "P09",
+        "P10"
+      ]
+    }
+  ],
+  "later_items": [
+    {
+      "id": "windows-native",
+      "status": "later_platform",
+      "family_ids": [
+        "platform",
+        "printing",
+        "accessibility"
+      ],
+      "action": "Validate native Windows adapter, lifecycle/descendants, UI, association and printing after Linux priority milestones; Foxit in Windows VM is not Linuxit native Windows validation."
+    },
+    {
+      "id": "cloud",
+      "status": "deferred_by_user",
+      "family_ids": [
+        "cloud"
+      ],
+      "acceptance_case_ids": [
+        "S12-23-1",
+        "S12-23-2"
+      ],
+      "action": "Do not start direct cloud services until user reprioritizes. Keep outstanding obligations; synchronized local folders remain authorized in P07."
+    }
+  ],
+  "excluded_feature_ids": [
+    "foxit-ai"
+  ],
+  "plan_creation_changes_criteria": false,
+  "plan_creation_runs_application_tests": false,
+  "unknowns_remain": [
+    "Complete global operation inventory",
+    "Exact effort/duration per remaining operation",
+    "Root cause of stopped guest clock",
+    "Unexamined original capabilities and external service dependencies"
+  ]
+}

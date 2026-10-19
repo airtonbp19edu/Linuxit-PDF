@@ -611,5 +611,6 @@
       },
       "resolution_evidence": "docs/VM-FOXIT-2026-10-18.md"
     }
-  ]
+  ],
+  "execution_plan_ref": "progresso/plano-continuidade.json"
 }

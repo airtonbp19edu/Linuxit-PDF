@@ -1,5 +1,12 @@
 # Retomada do Linuxit PDF
 
+Sequência para prosseguir: [plano P01–P10](PLANO-DE-CONTINUIDADE.md),
+com os 19 critérios abertos e as 25 famílias mapeados. Primeiro P01: inventário
+operacional/reconciliação; primeira entrega própria candidata P06/B01: combo
+AcroForm editável. Análise estática P04 e testes Linux podem avançar sem VM.
+P02/P03 permanecem sujeitos à resposta da VM e contenção; o plano não retomou
+os testes suspensos nem alterou o aplicativo ou os pesos.
+
 **Testes suspensos pela regra do usuário:** relógio permaneceu em21:24:14 após
 dez segundos externos. Foxit já fechado normalmente, zero processos confirmado
 na manutenção; rede desligada. Não reiniciar/pausar automaticamente. Último lote:
