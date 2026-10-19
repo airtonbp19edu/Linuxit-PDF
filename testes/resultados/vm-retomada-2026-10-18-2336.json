@@ -1,0 +1,63 @@
+{
+  "schema": "linuxit-vm-readonly-entry-gate-v1",
+  "reviewed_at_local": "2026-10-18T23:39:28-03:00",
+  "timezone": "America/Sao_Paulo",
+  "request": "retome; resume P02 before P03",
+  "base_commit": "2ecf079f5af2d8adaef5834065b8f763a8657d69",
+  "base_remote_head_confirmed": "2ecf079f5af2d8adaef5834065b8f763a8657d69",
+  "vm_name": "Windows 10",
+  "host_state": "running",
+  "host_state_change_time_utc": "2026-10-19T02:35:15.443000000",
+  "observed_guest_clock": "23:36:09",
+  "host_capture_a_at": "2026-10-18T23:37:41.720309-03:00",
+  "host_capture_b_at": "2026-10-18T23:38:05.422463-03:00",
+  "external_elapsed_seconds": 23.702,
+  "separate_explicit_external_wait_seconds": 10,
+  "captures_identical": true,
+  "visual_clock_advanced": false,
+  "clock_gate_passed": false,
+  "root_cause": null,
+  "network_cable_connected": false,
+  "full_containment_revalidated": false,
+  "current_guest_process_inventory_revalidated": false,
+  "visible_guest_desktop": true,
+  "visible_foxit_window": false,
+  "last_confirmed_action": "Read-only screenshot and host configuration query; no guest input issued.",
+  "guest_inputs_sent": 0,
+  "guest_actions_with_unknown_outcome": [],
+  "original_launched": false,
+  "new_collector_registered": false,
+  "corrected_guest_script_deployed": false,
+  "network_reconnected": false,
+  "pause_resume_reboot_used": false,
+  "p02_state": "blocked_vm_not_responsive",
+  "p03_state": "not_started_blocked_by_P02",
+  "new_application_tests": 0,
+  "new_original_executions": 0,
+  "app_or_flatpak_changed": false,
+  "legacy_criteria_or_weights_changed": false,
+  "private_evidence": [
+    {
+      "file": "analysis-local/vm-resume-20261018-2336/clock-a.png",
+      "sha256": "646a2cc853cacce3c8430342492c1fc1dc327a8839e0b33109751838321ad96b"
+    },
+    {
+      "file": "analysis-local/vm-resume-20261018-2336/clock-b.png",
+      "sha256": "646a2cc853cacce3c8430342492c1fc1dc327a8839e0b33109751838321ad96b"
+    },
+    {
+      "file": "analysis-local/vm-resume-20261018-2336/host-state.txt",
+      "sha256": "172d0d50a5e9fad378377134ad1d9ad95396a0c074483b7b7bcb661670c6dd97"
+    },
+    {
+      "file": "analysis-local/vm-resume-20261018-2336/clock-a-time.txt",
+      "sha256": "53865c3c48b48ea4495711bd05b661374003200fa7ad7679cb28653176645a06"
+    },
+    {
+      "file": "analysis-local/vm-resume-20261018-2336/clock-b-time.txt",
+      "sha256": "7e91de61f2d84ad414307bc47d69c86a93ff72849dd12d999d0a9d6045a5d00c"
+    }
+  ],
+  "interpretation": "The clock differs from the previous checkpoint, but remained fixed during this fresh gate. Neither continuous stall since the earlier turn nor a Foxit defect or token exhaustion is established.",
+  "next": "Guest must respond again. Then validate clock and a control application, absence of original, and corrected limited collector offline before P03. No automatic pause/resume or reboot."
+}

@@ -1,5 +1,11 @@
 # Retomada do Linuxit PDF
 
+Retomada mais recente: [controle de entrada da VM](VM-RETOMADA-2026-10-18-2336.md), em 2026-10-18T23:39:28-03:00.
+Relógio23:36:09 sem avanço após10 segundos externos; duas capturas VBox idênticas.
+P02 permanece bloqueada e P03 não iniciada; nenhuma entrada/deploy/rede/reboot.
+P01 provisória preservada. Não superar a parada automaticamente. Registros
+anteriores abaixo são históricos; estado em progresso/execucao-plano.json.
+
 Pedido P01–P03 executado até o limite do ambiente: [P01 concluída para catálogo
 provisório; P02/P03 bloqueadas](EXECUCAO-P01-P03-2026-10-18.md). Inventário111
 recortes/25 famílias em INVENTARIO-OPERACOES.md; matriz/contratos reconciliados.

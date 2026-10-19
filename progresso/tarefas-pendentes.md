@@ -1,5 +1,11 @@
 # Tarefas atuais e ponto de retomada
 
+Retomada mais recente: [controle de entrada da VM](../docs/VM-RETOMADA-2026-10-18-2336.md), em 2026-10-18T23:39:28-03:00.
+Relógio23:36:09 sem avanço após10 segundos externos; duas capturas VBox idênticas.
+P02 permanece bloqueada e P03 não iniciada; nenhuma entrada/deploy/rede/reboot.
+P01 provisória preservada. Não superar a parada automaticamente. Registros
+anteriores abaixo são históricos; estado em progresso/execucao-plano.json.
+
 Estado de execução: [P01–P03](../docs/EXECUCAO-P01-P03-2026-10-18.md),
 [catálogo111](inventario-operacoes-v1.json) e [estado por etapa](execucao-plano.json).
 P01 concluída para inventário provisório; P02 bloqueada pelo relógio21:49:22,

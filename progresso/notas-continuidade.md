@@ -2807,3 +2807,31 @@ commit/push autorizado e recibo externo confirmando remoto. Próximo passo: apó
 resposta do guest, completar P02 com hash novo/RunId novo, perfil limitado,
 contenção/offline e pf/col/end; só então P03. Não superar parada automaticamente.
 Sem VM, outros pacotes próprios requerem continuidade de escopo pelo usuário.
+
+## 2026/10/18 às 23:39 (America/Sao_Paulo, UTC-03:00) — retomada bloqueada no relógio23:36:09
+
+Pedido retome: base local/remota `2ecf079f5af2d8adaef5834065b8f763a8657d69` e árvore limpa conferidas.
+CUA/sky somente leitura encontrou a janela atual, área de trabalho e relógio
+23:36:09. Reobservação após10 segundos externos explícitos manteve o horário.
+Capturas VBox independentes em 2026-10-18T23:37:41.720309-03:00 e 2026-10-18T23:38:05.422463-03:00, intervalo
+23.702s, bytes iguais/SHA256 `646a2cc853cacce3c8430342492c1fc1dc327a8839e0b33109751838321ad96b`.
+Host running/cableoff; clipboard, drag-and-drop e VRDE desativados. Não foi
+revalidado inventário de processos ou contenção completa; não afirmar Foxit
+ausente só porque nenhuma janela estava visível. Causa raiz null; não inferir
+parada contínua desde21:49:22, defeito Foxit ou tokens.
+
+Regra do usuário aplicada: nenhuma entrada no guest ou ação de efeito
+desconhecido; sem deploy/tarefa/rede/original/pause/reboot. Testes interrompidos e
+usuário avisado. P02 permanece blocked_vm_not_responsive, P03 não iniciada;
+P01 catálogo provisório111/25 preservado. App/pacote0.1.13 intactos; nenhuma suíte
+app, REA, nova observação funcional do original ou build. Critérios/pesos,
+45,13% do checklist, paridade0/25 e porcentagem globalnull preservados.
+
+Privados: analysis-local/vm-resume-20261018-2336/ e este helper de checkpoint.
+Publicáveis: docs/VM-RETOMADA-2026-10-18-2336.md e testes/resultados/vm-retomada-2026-10-18-2336.json; estado/plano/RETOMADA atualizados. Validação
+restrita a JSON/referências, hashes/capturas e preservação dos critérios/fonte;
+nenhum teste do app necessário para este checkpoint documental. Finalizar com
+commit/push progressivo autorizado e recibo externo de sincronização; não
+declarar publicação sem confirmação. Próximo passo: VM responder; depois
+controle visual, ausência do original, coletor corrigido limitado/RunId novo,
+pf/col/end e contenção offline. Somente então P03. Sem reinício automático.

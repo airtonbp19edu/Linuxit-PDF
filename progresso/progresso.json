@@ -2343,7 +2343,7 @@
     "first_own_implementation_candidate": "P06/B01",
     "original_execution_requires": "P02",
     "execution_state_ref": "progresso/execucao-plano.json",
-    "first_package_blocker_ref": "testes/resultados/p01-2026-10-18/vm-gate.json"
+    "first_package_blocker_ref": "testes/resultados/vm-retomada-2026-10-18-2336.json"
   },
   "current_plan_execution": {
     "report": "docs/EXECUCAO-P01-P03-2026-10-18.md",
@@ -2356,6 +2356,9 @@
     "new_application_tests": 0,
     "new_original_executions": 0,
     "criteria_or_weights_changed": false,
-    "implementation_completion_percent": null
+    "implementation_completion_percent": null,
+    "latest_resume_report": "docs/VM-RETOMADA-2026-10-18-2336.md",
+    "latest_readonly_vm_gate_ref": "testes/resultados/vm-retomada-2026-10-18-2336.json",
+    "latest_observed_guest_clock": "23:36:09"
   }
 }

@@ -101,7 +101,8 @@
       ],
       "completion_gate": "Coletor corrigido realmente instalado e validado ponta a ponta, com recibos completos e token limitado. Controles do host já passados não substituem esta integração.",
       "execution_evidence_refs": [
-        "testes/resultados/p01-2026-10-18/vm-gate.json"
+        "testes/resultados/p01-2026-10-18/vm-gate.json",
+        "testes/resultados/vm-retomada-2026-10-18-2336.json"
       ]
     },
     {
@@ -130,7 +131,8 @@
       ],
       "completion_gate": "Protocolos selecionados reproduzíveis e observáveis; cada lacuna aprovada para comparação ou declarada inconclusiva. Fechamento amplo exige também as operações descobertas em P01/P04.",
       "execution_evidence_refs": [
-        "testes/resultados/p01-2026-10-18/vm-gate.json"
+        "testes/resultados/p01-2026-10-18/vm-gate.json",
+        "testes/resultados/vm-retomada-2026-10-18-2336.json"
       ]
     },
     {
@@ -1205,6 +1207,6 @@
     "Root cause of stopped guest clock",
     "Unexamined original capabilities and external service dependencies"
   ],
-  "updated_at_local": "2026-10-18T22:23:05-03:00",
+  "updated_at_local": "2026-10-18T23:39:28-03:00",
   "execution_state_ref": "progresso/execucao-plano.json"
 }

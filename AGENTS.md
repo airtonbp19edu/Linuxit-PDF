@@ -1,5 +1,11 @@
 # Linuxit PDF — continuidade do projeto
 
+Retomada mais recente: [controle de entrada da VM](docs/VM-RETOMADA-2026-10-18-2336.md), em 2026-10-18T23:39:28-03:00.
+Relógio23:36:09 sem avanço após10 segundos externos; duas capturas VBox idênticas.
+P02 permanece bloqueada e P03 não iniciada; nenhuma entrada/deploy/rede/reboot.
+P01 provisória preservada. Não superar a parada automaticamente. Registros
+anteriores abaixo são históricos; estado em progresso/execucao-plano.json.
+
 Execução P01–P03: docs/EXECUCAO-P01-P03-2026-10-18.md. P01 concluída no
 catálogo provisório111 recortes/25 famílias; global aberto. P02 bloqueada no
 controle atual do relógio21:49:22 após10 segundos externos; P03 não iniciada.
