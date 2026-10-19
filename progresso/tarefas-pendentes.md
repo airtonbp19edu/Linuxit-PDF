@@ -1,5 +1,10 @@
 # Tarefas atuais e ponto de retomada
 
+Nova rodada offline2020: consulta exata D11 retornou zero e passou na comparação.
+Consolidado12/12 medições iguais, cinco inconclusivas; onze preservadas/uma nova.
+UI01 com documento/cancelar observado; destinos D07 ainda abertos. Ver
+[relatório atual](../docs/VM-BUSCA-2026-10-18-2020.md). App/Flatpak intactos; não são famílias completas.
+
 VM: [segundos habilitados e rodada posterior](../docs/VM-RELOGIO-SEGUNDOS.md).
 UI01 sem documento/cancelar e D07 com dois marcadores observados; destinos
 inconclusivos por resposta intermitente. `probe-stop:stop` da rodada vm-20261018-1940
@@ -7,8 +12,8 @@ confirmado completed em `followup.json`; coletor encerrado. Última coleta tinha
 Foxit5280 com janela; manter offline e revalidar resposta visual antes de retomar.
 
 Atualização posterior ao pacote: [busca por autor corrigida](../docs/BUSCA-AUTOR-COMENTARIOS.md) na fonte,
-**403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
-Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua
+**403/403 testes Linux** e 11/11 medições iguais na comparação anterior.
+Naquele marco havia cinco inconclusivos e um pendente; o consolidado atual está acima. O Flatpak 0.1.13 continua
 anterior à correção, com 400/400 por ambiente no marco de entrega. Nenhum novo
 pacote nesta rodada. D20: espera observada em splwow64.exe; causa aberta.
 

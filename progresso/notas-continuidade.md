@@ -2608,3 +2608,52 @@ Git inicial main/local/remoto5c6277cb2231a846e768fb5a212b9ae2fdc63a7e.
 Fechamento autorizado: publicar somente documentação/metadados deste checkpoint
 e conferir remoto por verify_git_sync.py, com recibo fora da árvore para evitar
 autorreferência. Nenhum reset/force push ou alteração alheia substituída.
+
+## 2026/10/18 às 20:53 (America/Sao_Paulo, UTC-03:00) — consulta exata D11 e checkpoint antes de senha
+
+Pedido: retomar e, se parar a VM, salvar e avisar. Regra registrada em AGENTS e
+VM-RELOGIO-SEGUNDOS; observar novamente após dez segundos externos sem nova
+entrada quando houver suspeita. Clock parado não define causa Foxit. Nesta
+rodada não houve pause/resume/reboot/restauração nem proteção alterada.
+
+Rodada vm-20261018-2020 preparada por manutenção SSH breve previamente autorizada
+com Foxit fechado, ausência examinada em Task Manager e conferida no guest;
+mesmo script próprio hash8a8b4ae...3e13, tarefa interativa limitada. Cabo off
+antes dos controles e original. Token1nãoelevado, dez Inputs iguais, escrita
+negada Reference/Input/Protocol e contenção host/guest conferidos. Notepad3128
+selecionou o marcador; original2444 lançado offline. CUA/sky e teclado nativo
+VirtualBox usados; não houve nova REA/Ghidra. Clock avançou, com atraso.
+
+UI01: Abrir com documento e Cancelar preservaram busca-escopos.pdf página1/2;
+variantes sem documento já preservadas1940. Sem correlação dinâmica do ID.
+D07 repetido: alvo, só marcadores, duas instâncias/mesma ordem; seleção refletiu
+painel lateral, página1 permaneceu nas tentativas; Enter terminou em New Search.
+Destinos/foco/ativação continuam inconclusivos, sem inferir null/defeito.
+
+C18-D11-missing realmente executado: termo-inexistente-123, literal, páginasoff,
+marcadores/comentárioson; case/whole/stemming/anexos/highlightoff. Zero documentos
+e instâncias observados; capturas opções/resultado examinadas. Comparação nova
+1/1 com medidas próprias já obtidas no CI39172130287/168381b;106arquivos app
+atuais iguais ao manifesto. Não repetida suíte403/403 nem pacote0.1.13/devel.
+Consolidado separado12casos distintos iguais:11preservados1710 e1novo2020;
+zero divergentes,cinco inconclusivos,zero aguardando original. Não repetir
+contagens de etapas/famílias:19critérios/pesos45,13%/paridade0/25 preservados.
+
+Postflight after-search-inputs trouxe payloadcompleted/identidade/dez Inputs
+inalterados/escrita negada/offline. Leitor normal não recebeu Count; oito partes
+realmente enumeradas recuperadas por leitura dupla idêntica, Base64 canônico,
+UTF8estrito e JSON completo, hash64368979...29ba2d. Metadados preservados; isso
+não prova saída da tarefa nem conclusão do transporte. Coleta complementar
+after-search-collect solicitada, conferir resultado antes de novo comando.
+
+Publicáveis: docs/VM-BUSCA-2026-10-18-2020.md,
+testes/resultados/vm-2026-10-18-2020/:foxit-observations,comparison-d11,
+comparison-rollup,review. Privados: analysis-local/vm-20261018-2020/ e helpers
+analysis-local/prepare_probe_2020.ps1,recover_vm_report.ps1,finalize_search2020.py.
+Nenhum payload Foxit publicado. Git base05218ff local/remoto confirmado; este
+marco é documentação/metadados. Commit/push e recibo externo fecharão publicação.
+
+Próximo passo concreto: D15 senha correta em abertura independente enquanto
+clock/controle responderem; D07/D10destinos,D12cancelamento,D18saída e UI restantes
+preservados. D11vazio continua inconclusivo: botão Search desabilitado não é
+zero de backend. Se relógio/ambiente parar, interromper entradas, salvar e avisar.

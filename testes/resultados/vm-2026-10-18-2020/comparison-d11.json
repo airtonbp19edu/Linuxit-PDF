@@ -1,0 +1,155 @@
+{
+  "schema": "linuxit-recorded-comparison-v1",
+  "cases": [
+    {
+      "id": "C18-D02-info",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D04-literal",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D05-whole",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D06-case",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D07-bookmarks",
+      "family_ids": [
+        "search-bookmarks"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D08-comments",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D09-subject",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D09-author",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D10-scopes",
+      "family_ids": [
+        "search-text",
+        "search-bookmarks",
+        "search-comments"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D11-empty",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D11-missing",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": []
+    },
+    {
+      "id": "C18-D11-no-sources",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D13-rejected",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D14-rejected",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D16-attachment",
+      "family_ids": [
+        "attachments"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D18-booklet",
+      "family_ids": [
+        "imposition"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    },
+    {
+      "id": "C18-D18-nup",
+      "family_ids": [
+        "imposition"
+      ],
+      "status": "awaiting_original",
+      "differences": []
+    }
+  ],
+  "recorded_metric_cases": 1,
+  "matches": 1,
+  "differences": 0,
+  "manual_evidence_requires_review": true,
+  "foxit_executed_by_this_tool": false,
+  "automatic_parity_update": false,
+  "whole_family_equivalence_verified": false,
+  "campaign_sha256": "cf52b7b99695b53fb3e62edc54104e0ccdd963c96ced38b259e1b581a91357e1",
+  "observations_sha256": "dee45edde3abb2b4f2238b644b3ca254a93c6aea6412a520ba5f3e8f18d0df24",
+  "own_measurements_reused_from_ci": true,
+  "own_source_git_head": "168381b15a501a5a53c933e8b8f3f479559630cb",
+  "current_app_files_identical_to_ci": true
+}

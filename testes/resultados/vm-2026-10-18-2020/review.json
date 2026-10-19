@@ -1,0 +1,188 @@
+{
+  "schema": "linuxit-vm-search-followup-v1",
+  "reviewed_at_local": "2026-10-18T20:51:56-03:00",
+  "run_id": "vm-20261018-2020",
+  "offline_preflight": {
+    "host": {
+      "schema": "linuxit-host-containment-v1",
+      "run_id": "vm-20261018-2020",
+      "created_at": "2026-10-18T20:23:14.3089465-03:00",
+      "verified_offline": true,
+      "connected_adapters": 0,
+      "shared_folders": 0,
+      "captured_usb_devices": 0,
+      "clipboard": "disabled",
+      "draganddrop": "disabled",
+      "vrde": "off",
+      "audio_in": "off",
+      "audio_out": "off"
+    },
+    "smb_mappings": [],
+    "adapters": [
+      {
+        "Name": "Ethernet",
+        "Status": "Disconnected"
+      }
+    ]
+  },
+  "offline_postflight": {
+    "host": {
+      "schema": "linuxit-host-containment-v1",
+      "run_id": "vm-20261018-2020",
+      "created_at": "2026-10-18T20:47:18.5924903-03:00",
+      "verified_offline": true,
+      "connected_adapters": 0,
+      "shared_folders": 0,
+      "captured_usb_devices": 0,
+      "clipboard": "disabled",
+      "draganddrop": "disabled",
+      "vrde": "off",
+      "audio_in": "off",
+      "audio_out": "off"
+    },
+    "smb_mappings": [],
+    "adapters": [
+      {
+        "Name": "Ethernet",
+        "Status": "Disconnected"
+      }
+    ]
+  },
+  "input_count": 10,
+  "inputs_unchanged": true,
+  "reference_unchanged": true,
+  "write_denied_before": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "write_denied_after": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "limited_session": true,
+  "original_pid_at_launch": 2444,
+  "control_before_launch_verified": true,
+  "ui01": {
+    "status": "observed_subset",
+    "with_document": "Open reached Input with busca-escopos.pdf loaded, page1/2.",
+    "cancel": "Returned to the same document/page.",
+    "dynamic_resource_id_verified": false,
+    "previous_without_document_evidence": "testes/resultados/vm-2026-10-18-segundos/followup.json",
+    "evidence": [
+      {
+        "file": "ui01-open-with-document.png",
+        "sha256": "25880b7bedfd8af1621eb957ef9c257c9ae9b9ad25f6f1edfdb432f81aa4e5cb"
+      },
+      {
+        "file": "ui01-cancel-preserved-document.png",
+        "sha256": "9b732a88a6ac9821ae376029ee159537b80e29200f809782e03f550981553057"
+      }
+    ]
+  },
+  "d07": {
+    "status": "partial",
+    "count": 2,
+    "labels": [
+      "ALVO marcador",
+      "alvo externo"
+    ],
+    "sort": "Relevance Ranking",
+    "search_selection_reflected_in_outline": true,
+    "destinations": null,
+    "metrics_imported_as_matched": false,
+    "observed_limit": "Page1 remained visible while selecting each result and attempting double-click. Enter attempt ended at New Search. Focus/activation semantics and destinations remain open; do not infer null destination or Foxit defect.",
+    "evidence": [
+      {
+        "file": "d07-options.png",
+        "sha256": "856f99f943720fef7b19a275f34f1dfde0b5c87e7a56ed2a0da155eba0d99296"
+      },
+      {
+        "file": "d07-results-baseline.png",
+        "sha256": "7952b185fda6b7008966ce51f633db2d9c0b11fdc5afbfda60ab97f0ef7ade04"
+      },
+      {
+        "file": "d07-after-enter.png",
+        "sha256": "7c00c7ef1d02f6b1f6e5eb9399c7ddd22f8c16f0e3e1ec1a7a9713b883f4af34"
+      }
+    ]
+  },
+  "d11_missing": {
+    "status": "observed",
+    "comparison_ref": "comparison-d11.json"
+  },
+  "postflight_recovery": {
+    "schema": "linuxit-readonly-report-recovery-v1",
+    "recovered_at": "2026-10-18T20:50:25.7936783-03:00",
+    "run_id": "vm-20261018-2020",
+    "id": "after-search-inputs",
+    "read_only": true,
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "two_reads_identical": true,
+    "base64_canonical": true,
+    "utf8_strict": true,
+    "json_complete": true,
+    "payload_status": "completed",
+    "count_receipt_required_by_normal_reader": true,
+    "normal_reader_count_not_ready": true,
+    "payload_sha256": "643689792e5a5bafc1395423adbfb02dc49e43d0df56ce2307cd88c22429ba2d",
+    "note": "Recovered only a complete immutable payload; this does not prove the guest task or its transport finished."
+  },
+  "new_full_source_suite_run": false,
+  "app_changed": false,
+  "flatpak_rebuilt": false,
+  "source_files_matching_prior_linux_ci": 106,
+  "whole_family_parity": "0/25",
+  "checklist_percent": 45.13,
+  "open_criteria": 19,
+  "evidence": [
+    {
+      "file": "foxit-absent-details.png",
+      "sha256": "a162687a86bc3d60044adab2f52dff66f85858463888082c4366fce25760abfe"
+    },
+    {
+      "file": "control-response.png",
+      "sha256": "479c08014fbbbf2e1fd88919f0c6c3da96669e021316b9d3a557c7910ea8a061"
+    },
+    {
+      "file": "startup-guest.json",
+      "sha256": "a4b6eb865f5cfc32ed51ca75bd26157483f7be2d3f535edb089b5efc40644e2a"
+    },
+    {
+      "file": "preflight-guest.json",
+      "sha256": "2dadbee9144b2a83df577459e8e929713a2e2553b5c5ff29d7a83953b8ec0a07"
+    },
+    {
+      "file": "launch-guest.json",
+      "sha256": "f8ac50870d8572ce263021e891261aa0cc4264998c4b73386bf9bfe651f40285"
+    },
+    {
+      "file": "after-search-inputs-guest.json",
+      "sha256": "643689792e5a5bafc1395423adbfb02dc49e43d0df56ce2307cd88c22429ba2d"
+    },
+    {
+      "file": "after-search-inputs-recovery.json",
+      "sha256": "1580d3286b0aaf9d170e64516b0668f16c4904adf06e07c446ecbb2a6478d310"
+    }
+  ],
+  "private_evidence_root": "analysis-local/vm-20261018-2020",
+  "next": [
+    "D15 independent correct-password opening",
+    "D07/D10 destinations",
+    "D12 active cancellation",
+    "D18 exact output",
+    "Remaining UI variants",
+    "D20 root cause"
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "linuxit-multi-session-comparison-v1",
+  "created_at_local": "2026-10-18T20:51:56-03:00",
+  "cases": [
+    {
+      "id": "C18-D02-info",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D04-literal",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D05-whole",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D06-case",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D07-bookmarks",
+      "family_ids": [
+        "search-bookmarks"
+      ],
+      "status": "inconclusive_original",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D08-comments",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D09-subject",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D09-author",
+      "family_ids": [
+        "search-comments"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D10-scopes",
+      "family_ids": [
+        "search-text",
+        "search-bookmarks",
+        "search-comments"
+      ],
+      "status": "inconclusive_original",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D11-empty",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "inconclusive_original",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D11-missing",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/vm-2026-10-18-2020/comparison-d11.json"
+    },
+    {
+      "id": "C18-D11-no-sources",
+      "family_ids": [
+        "search-text"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D13-rejected",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D14-rejected",
+      "family_ids": [
+        "open-render"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D16-attachment",
+      "family_ids": [
+        "attachments"
+      ],
+      "status": "match_recorded_metrics",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D18-booklet",
+      "family_ids": [
+        "imposition"
+      ],
+      "status": "inconclusive_original",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    },
+    {
+      "id": "C18-D18-nup",
+      "family_ids": [
+        "imposition"
+      ],
+      "status": "inconclusive_original",
+      "differences": [],
+      "comparison_ref": "testes/resultados/busca-autor-2026-10-18/comparison-after.json"
+    }
+  ],
+  "matches": 12,
+  "differences": 0,
+  "inconclusive": 5,
+  "awaiting_original": 0,
+  "current_original_session": "vm-20261018-2020",
+  "previous_original_session": "vm-20261018-1710",
+  "newly_observed_cases": [
+    "C18-D11-missing"
+  ],
+  "previous_comparison": {
+    "file": "testes\\resultados\\busca-autor-2026-10-18\\comparison-after.json",
+    "sha256": "719b20459089cfa2f60d2ae49a535635b79cafef19f13bb04a6d23dacd28c16a"
+  },
+  "current_comparison": {
+    "file": "testes\\resultados\\vm-2026-10-18-2020\\comparison-d11.json",
+    "sha256": "d967706c743936d7d65411c64d769f58e0bb1e742c6bd6e473b6a52d7589b192"
+  },
+  "whole_family_equivalence_verified": false,
+  "automatic_parity_update": false,
+  "note": "12 distinct metric subsets across two preserved original sessions. Eleven reused, one newly observed. This does not repeat earlier tests or close whole families."
+}

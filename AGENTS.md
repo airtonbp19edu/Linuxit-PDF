@@ -1,5 +1,16 @@
 # Linuxit PDF — continuidade do projeto
 
+Nova rodada offline2020: consulta exata D11 retornou zero e passou na comparação.
+Consolidado12/12 medições iguais, cinco inconclusivas; onze preservadas/uma nova.
+UI01 com documento/cancelar observado; destinos D07 ainda abertos. Ver
+[relatório atual](docs/VM-BUSCA-2026-10-18-2020.md). App/Flatpak intactos; não são famílias completas.
+
+Instrução do usuário em 18/10/2026: acompanhar os segundos do relógio da VM.
+Se deixarem de avançar ou o ambiente não responder, interromper os testes,
+salvar checkpoint com a última ação confirmada e avisar o usuário. Não repetir
+cliques nem classificar a parada como falha Foxit; preservar pendências. Ver
+protocolo em docs/VM-RELOGIO-SEGUNDOS.md.
+
 Rodada posterior da VM: [relógio com segundos e diagnóstico](docs/VM-RELOGIO-SEGUNDOS.md).
 RunId vm-20261018-1940: UI01/D07 parciais, resposta intermitente; não inferir falha
 Foxit ou destino nulo. Dez Inputs/identidade preservados. `probe-stop:stop`
@@ -7,8 +18,8 @@ confirmado completed; coletor encerrado, ver followup.json. Última coleta tinha
 Foxit5280 com janela; manter offline. Nenhum critério amplo encerrado.
 
 Atualização posterior ao pacote: [busca por autor corrigida](docs/BUSCA-AUTOR-COMENTARIOS.md) na fonte,
-**403/403 testes Linux** e 11/11 recortes diferenciais com métricas iguais.
-Cinco recortes seguem inconclusivos e um pendente. O Flatpak 0.1.13 continua
+**403/403 testes Linux** e 11/11 medições iguais na comparação anterior.
+Naquele marco havia cinco inconclusivos e um pendente; o consolidado atual está acima. O Flatpak 0.1.13 continua
 anterior à correção, com 400/400 por ambiente no marco de entrega. Nenhum novo
 pacote nesta rodada. D20: espera observada em splwow64.exe; causa aberta.
 

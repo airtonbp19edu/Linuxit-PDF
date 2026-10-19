@@ -2305,5 +2305,21 @@
     "d20_wait_chain_observed": true,
     "d20_root_cause_confirmed": false,
     "whole_family_parity_verified": false
+  },
+  "current_vm_followup": {
+    "run_id": "vm-20261018-2020",
+    "report": "docs/VM-BUSCA-2026-10-18-2020.md",
+    "review": "testes/resultados/vm-2026-10-18-2020/review.json",
+    "new_exact_original_cases": [
+      "C18-D11-missing"
+    ],
+    "new_matching_metric_cases": 1,
+    "previous_matching_metric_cases_reused": 11,
+    "total_distinct_matching_metric_cases": 12,
+    "inconclusive_metric_cases": 5,
+    "awaiting_original_metric_cases": 0,
+    "whole_family_parity_verified": false,
+    "criteria_or_weights_changed": false,
+    "app_or_flatpak_changed": false
   }
 }

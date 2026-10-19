@@ -1,5 +1,18 @@
 # Relógio com segundos no Windows 10 da VM
 
+## Regra de acompanhamento solicitada pelo usuário
+
+Em 18/10/2026, após confirmar que a VM havia travado temporariamente, o usuário
+pediu: se parar, salvar o progresso e avisá-lo. Antes de cada lote e entre ações
+que dependem de resposta, conferir o relógio da barra e a atualização da interface.
+Se houver suspeita de parada, fazer apenas nova observação após pelo menos dez
+segundos externos. Se o relógio continuar igual ou o ambiente não responder,
+interromper entradas/testes e salvar a última ação efetivamente confirmada,
+ações com efeito desconhecido, capturas/horários e pendências; avisar o usuário.
+Não insistir em cliques, reiniciar ou pausar/retomar automaticamente para vencer
+essa parada. Manter o isolamento. Relógio parado não determina a causa raiz;
+relógio avançando não substitui o controle de resposta do aplicativo.
+
 Em 18/10/2026, a pedido do usuário, os segundos foram habilitados na barra de
 tarefas do Windows 10 convidado. O relógio do hospedeiro não foi alterado.
 

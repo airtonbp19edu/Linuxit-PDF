@@ -1,0 +1,36 @@
+{
+  "schema": "linuxit-offline-observations-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "session": {
+    "target_sha256_before": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "target_sha256_after": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "offline": true,
+    "synthetic_profile": true,
+    "runtime_control_verified": true,
+    "observed_at": "2026-10-18T20:47:18-03:00",
+    "environment": "Windows10 Pro19045.3803 / VirtualBox7.2.20 / Foxit2025.2.0.33046 x86; limited session1; offline no shares/USB/clipboard. Before control selected synthetic marker in Notepad. Exact D11 options and zero-result screenshot manually examined. Guest clock delayed; not a performance benchmark. Postflight complete payload recovered read-only from eight stable base64 chunks; normal Count receipt was unavailable; no task-completion inference.",
+    "run_id": "vm-20261018-2020"
+  },
+  "cases": [
+    {
+      "id": "C18-D11-missing",
+      "fixture_sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+      "protocol_sha256": "9995b59886953ea6a7f646f1c72c2b2d0ff07311b6ea36d6d20e222fbae394cb",
+      "status": "observed",
+      "metrics": {
+        "count": 0,
+        "hits": []
+      },
+      "evidence": [
+        {
+          "file": "d11-exact-options.png",
+          "sha256": "c40774a4baf08e40456d1f8faec7bfce5febac9234c211187e0f90c96e3ab83d"
+        },
+        {
+          "file": "d11-exact-zero.png",
+          "sha256": "f18d8357f05da9ecd4532e86d57efea62d8b3548824676a0ff8b0fae8792a0d8"
+        }
+      ]
+    }
+  ]
+}
