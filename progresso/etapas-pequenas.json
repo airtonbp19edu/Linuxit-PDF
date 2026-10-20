@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T15:58:00-03:00",
+  "updated_at_local": "2026-10-20T16:09:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -284,16 +284,23 @@
       "id": "E14",
       "block": "Anotações e redação",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Marcar áreas para redação",
       "goal": "Criar anotações Redact sem aplicar, visíveis e editáveis.",
-      "verification": "Reabrir a cópia lista as marcas; texto original ainda presente."
+      "verification": "Reabrir a cópia lista as marcas; texto original ainda presente.",
+      "commit": "7488bc7",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e14.json",
+        "tests/test_redaction_marks.py",
+        "app/annotation_style.py"
+      ],
+      "note": "Áreas retangulares podem ser marcadas para redação numa cópia nova: vira uma anotação /Redact pendente com QuadPoints, preenchimento preto reservado para a aplicação e contorno tracejado vermelho próprio. Nada é removido: o texto marcado continua extraível e visível no Poppler. A marca aparece ao reabrir a cópia e pode ser redimensionada, recolorida, comentada ou excluída. Áreas fora da página e chaves extras são recusadas. Suíte 630/630; aceitação 71/71 na revisão 7488bc7."
     },
     {
       "id": "E15",
       "block": "Anotações e redação",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Aplicar redação",
       "goal": "Remover texto e imagens sob as áreas marcadas numa cópia nova, rasterizando só as páginas afetadas.",
       "verification": "Extração de texto da cópia não retorna o conteúdo redigido; demais páginas intactas."

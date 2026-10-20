@@ -3338,3 +3338,13 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 ## 2026/10/20 às 15:58 (America/Sao_Paulo, UTC-03:00) — E13 concluída
 
 **E13** (`9a10b42`): operação `resize-annotation` (`annotation_geometry.resize_annotation`): retângulo validado por `_annotation_rect` (dentro do CropBox), lado mínimo 0,25 pt, `/RD` removido; Square/Circle redesenhados por `restyle_annotation` com a cor e opacidade atuais (preto sem `/C`); FreeText diagramado de novo pelo worker `annotation-appearance`, agora compartilhado em `_text_appearance`. `edit-info` traz `resizable` e `rect`; diálogo com quatro campos já preenchidos. Testes `tests/test_annotation_resize.py` (3) e diálogo GTK; casos S12-14-5 e S12-14-6; operação `annotations/resize` no catálogo (113; 101/9/3); 20 pinos de `_apply` revistos. Suíte 624/624; aceitação 69/69 na revisão limpa. CI 39478253038 confirmou a E12 (suíte 620/620, aceitação 67/67). Próximo: E14.
+
+
+## 2026/10/20 às 16:09 (America/Sao_Paulo, UTC-03:00) — E14 concluída — marcar áreas para redação
+
+- Código `7488bc7`: operação `add-redaction` (app/pdf_changes.py) cria `/Redact` via `annotation_style.create_redaction` (Rect, QuadPoints, /IC preto, /BS tracejado, aparência própria vermelha tracejada). `/Redact` entrou em STYLEABLE, RESIZABLE (QuadPoints acompanham o novo Rect) e nos tipos editáveis/removíveis.
+- Diálogo "Marcar área para redação" no rascunho de edição (edit_dialogs/edit_window).
+- Testes: tests/test_redaction_marks.py (5, inclui pixels do Poppler) e teste GTK do diálogo. Suíte 630/630 sem pulos.
+- Aceitação S12-14-7 e S12-14-8; execução limpa 71/71 em `execucao-ubuntu24-e14.json`. Catálogo: operação annotations/redaction-mark (114 operações, 102 com fonte própria), revisão 18.
+- CI Debian 13 da E13 (execução 39479407491) confirmado: 624/624, aceitação 69/69 em 9a10b42 (`ci-debian13-e13-review.json`).
+- Próximo: E15 (aplicar redação numa cópia nova, rasterizando só as páginas afetadas).
