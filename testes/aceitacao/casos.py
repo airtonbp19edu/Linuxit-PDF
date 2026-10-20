@@ -642,6 +642,41 @@ def certification_blocks_signature(ctx):
     return dict(docmdp_p1_refused=True, output_created=False, original_preserved=True)
 
 
+def _stamped(ctx):
+    sys.path.insert(0, str(ctx.repository / 'testes' / 'aceitacao'))
+    import carimbo
+    source = ctx.copy(SCOPES, 'origem.pdf');stamped = ctx.work / 'carimbado.pdf'
+    ca = carimbo.add_document_timestamp(source, stamped, ctx.work / 'tsa')
+    return carimbo, source, stamped, ca
+
+
+@case('S12-17-5', 'worker signature-info (document timestamp)')
+def document_timestamp(ctx):
+    carimbo, _, stamped, ca = _stamped(ctx)
+    plain = ctx.worker('signature-info', stamped, request={})
+    item = plain['result']['signatures'][0]
+    check(item['kind'] == 'document_timestamp' and item['status'] == 'verified' and item['current_file_covered']
+          and item['timestamp_time'], f'carimbo: {item}')
+    policy = dict(roots=[str(ca)], crls=[], require_revocation=False, at_time=None)
+    trusted = ctx.worker('signature-info', stamped, request={'trust_policy': policy})['result']['signatures'][0]
+    other = carimbo.authority(ctx.work / 'outra-ca')
+    untrusted = ctx.worker('signature-info', stamped, request={'trust_policy': dict(policy, roots=[str(other)])})
+    untrusted = untrusted['result']['signatures'][0]
+    check(trusted['trust']['chain_verified'] and not untrusted['trust']['chain_verified'], 'confiança na TSA')
+    return dict(kind='document_timestamp', integrity_verified=True, trusted_with_selected_ca=True,
+                trusted_with_other_ca=False, network_used=False)
+
+
+@case('S12-17-6', 'worker signature-info (document timestamp)')
+def document_timestamp_changed(ctx):
+    _, _, stamped, _ = _stamped(ctx)
+    changed = ctx.work / 'carimbado-alterado.pdf'
+    raw = stamped.read_bytes();changed.write_bytes(raw.replace(b'alvo', b'ALVO', 1) if b'alvo' in raw else raw.replace(b'%PDF', b'%PDX', 1))
+    item = ctx.worker('signature-info', changed, request={})['result']['signatures'][0]
+    check(item['status'] != 'verified' and not item.get('timestamp_time'), f'carimbo aprovado: {item}')
+    return dict(status=item['status'], timestamp_time=None)
+
+
 # 18/19 — security and accessible text
 
 PASSWORDS = {'user_password': 'usuario-sintetico', 'owner_password': 'proprietario-sintetico'}

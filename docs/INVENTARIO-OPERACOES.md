@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T13:41:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T15:02:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (14 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (17 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -32,7 +32,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Anotações/undo/gravação|13|13|0|0|
 |AcroForm/XFA/eventos|9|9|0|0|
 |Anexos/portfólios|4|4|0|0|
-|Assinaturas/certificados|5|4|1|0|
+|Assinaturas/certificados|5|5|0|0|
 |Senhas/permissões/RMS|5|4|1|0|
 |Acessibilidade/voz|4|3|1|0|
 |Medição/calibração|4|4|0|0|
@@ -41,7 +41,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|111|98|10|3|
+|Total|111|99|9|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -268,11 +268,11 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`signatures/inspect` — Inspecionar campos e cobertura assinada|Código em subconjunto ([fonte](../app/pdf_signatures.py#L70))|Campos/ByteRange/Contents => cobertura da revisão e limites explícitos; não afirmar arquivo atual integralmente assinado indevidamente.|
+|`signatures/inspect` — Inspecionar campos e cobertura assinada|Código em subconjunto ([fonte](../app/pdf_signatures.py#L104))|Campos/ByteRange/Contents => cobertura da revisão e limites explícitos; não afirmar arquivo atual integralmente assinado indevidamente.|
 |`signatures/cms-integrity` — Verificar integridade CMS offline|Código em subconjunto ([fonte](../app/pdf_signatures.py#L45))|CMS destacado e bytes => resultado de integridade separado de confiança de certificado.|
-|`signatures/sign` — Assinar documento|Código em subconjunto ([fonte](../app/pdf_signing.py#L159))|Document and user-selected PEM identity => invisible CMS/SHA-256 signature (adbe.pkcs7.detached) in a new copy, always as an incremental revision appended to the exact source bytes (classic table or cross-reference stream, matching the previous section). Earlier signatures must verify before signing and still verify for their own revision afterwards; the new one must cover the whole file. Refused: DocMDP P=1, UR3, encrypted, XFA, portfolio, more than 15 signatures (E08). No trust, timestamp or LTV is added. Acceptance S12-17-1, S12-17-3, S12-17-4.|
-|`signatures/trust` — Validar cadeia/confiança/revogação|Código em subconjunto ([fonte](../app/signature_trust.py#L37))|Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.|
-|`signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV|Pendente/caracterizar|Assinatura e materiais de validação => contrato, tempo e cobertura ainda pendentes.|
+|`signatures/sign` — Assinar documento|Código em subconjunto ([fonte](../app/pdf_signing.py#L182))|Document and user-selected PEM identity => invisible CMS/SHA-256 signature (adbe.pkcs7.detached) in a new copy, always as an incremental revision appended to the exact source bytes (classic table or cross-reference stream, matching the previous section). Earlier signatures must verify before signing and still verify for their own revision afterwards; the new one must cover the whole file. Refused: DocMDP P=1, UR3, encrypted, XFA, portfolio, more than 15 signatures (E08). No trust, timestamp or LTV is added. Acceptance S12-17-1, S12-17-3, S12-17-4.|
+|`signatures/trust` — Validar cadeia/confiança/revogação|Código em subconjunto ([fonte](../app/signature_trust.py#L58))|Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.|
+|`signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV|Código em subconjunto ([fonte](../app/pdf_signatures.py#L73))|Existing RFC 3161 timestamps => document timestamps (ETSI.RFC3161) are recognised and verified offline: token signature plus messageImprint (SHA-256/384/512) against the covered bytes, generation time shown only when verified; TSA trust only through the selected CA (openssl ts -verify, platform anchors suppressed) (E09). Signature timestamps inside CMS were already checked. Creating document timestamps, PAdES-LTV, OCSP and legal validity remain open. Acceptance S12-17-5 and S12-17-6.|
 
 ## Senhas/permissões/RMS
 

@@ -156,6 +156,29 @@ def _incremental_signature(original, reader, name, signature_dict):
     return original+_incremental_update(original,reader,new,replaced)
 
 
+def append_signature_revision(original, reader, name, signature_dict, make_contents):
+    """Append a signature field whose /Contents is make_contents(covered bytes).
+
+    Used for CMS signatures here and, by the tests and acceptance cases, for
+    RFC 3161 document timestamps (E09). Returns (bytes, contents, left, right).
+    """
+    placeholder=os.urandom(RESERVATION)
+    signature_dict[NameObject('/ByteRange')]=ArrayObject(NumberObject(v) for v in (0,1111111111,2222222222,3333333333))
+    signature_dict[NameObject('/Contents')]=ByteStringObject(placeholder)
+    raw=_incremental_signature(original,reader,name,signature_dict)
+    marker=b'[ 0 1111111111 2222222222 3333333333 ]'
+    contents=b'<'+placeholder.hex().encode('ascii')+b'>'
+    _require(raw.count(marker)==raw.count(contents)==1,'Reserva de assinatura ambígua; cópia recusada.')
+    left=raw.index(contents);right=left+len(contents)
+    replacement=f'[ 0 {left:010d} {right:010d} {len(raw)-right:010d} ]'.encode('ascii')
+    _require(len(replacement)==len(marker),'PDF acima do limite de offsets.')
+    raw=raw.replace(marker,replacement)
+    der=make_contents(raw[:left]+raw[right:])
+    _require(len(der)<=RESERVATION,'Conteúdo da assinatura acima da reserva de32KiB.')
+    raw=raw[:left]+b'<'+der.hex().encode('ascii').ljust(RESERVATION*2,b'0')+b'>'+raw[right:]
+    return raw,der,left,right
+
+
 def sign_pdf_copy(path, request):
     keys={'destination','source_sha256','certificate','private_key','password'}
     _require(isinstance(request,dict) and set(request)==keys,'Pedido de assinatura inválido.')
@@ -180,30 +203,18 @@ def sign_pdf_copy(path, request):
         _require(len(reader.pages)>0,'PDF sem páginas.')
         name=_field_name(fields)
         previous=[n for n,f in fields.items() if _inherited(f,'/FT')=='/Sig' and f.get('/V') is not None]
-        placeholder=os.urandom(RESERVATION)
         signature_dict=DictionaryObject({
             NameObject('/Type'):NameObject('/Sig'),NameObject('/Filter'):NameObject('/Adobe.PPKLite'),
             NameObject('/SubFilter'):NameObject('/adbe.pkcs7.detached'),
-            NameObject('/ByteRange'):ArrayObject(NumberObject(v) for v in (0,1111111111,2222222222,3333333333)),
-            NameObject('/Contents'):ByteStringObject(placeholder),
             NameObject('/M'):TextStringObject(datetime.now(timezone.utc).strftime("D:%Y%m%d%H%M%S+00'00'")),
         })
         original=path.read_bytes()
         _require(hashlib.sha256(original).hexdigest()==identity,'O PDF mudou durante a assinatura.')
-        raw=_incremental_signature(original,reader,name,signature_dict)
-    marker=b'[ 0 1111111111 2222222222 3333333333 ]'
-    contents=b'<'+placeholder.hex().encode('ascii')+b'>'
-    _require(raw.count(marker)==raw.count(contents)==1,'Reserva de assinatura ambígua; cópia recusada.')
-    left=raw.index(contents);right=left+len(contents)
-    replacement=f'[ 0 {left:010d} {right:010d} {len(raw)-right:010d} ]'.encode('ascii')
-    _require(len(replacement)==len(marker),'PDF acima do limite de offsets.')
-    raw=raw.replace(marker,replacement)
-    cms=(pkcs7.PKCS7SignatureBuilder().set_data(raw[:left]+raw[right:])
-         .add_signer(cert,key,hashes.SHA256()).sign(serialization.Encoding.DER,
-              [pkcs7.PKCS7Options.DetachedSignature,pkcs7.PKCS7Options.Binary]))
-    _require(len(cms)<=RESERVATION,'CMS acima da reserva de32KiB.')
-    raw=raw[:left]+b'<'+cms.hex().encode('ascii').ljust(RESERVATION*2,b'0')+b'>'+raw[right:]
-    _require(len(raw)<=64*1024**2,'Cópia assinada acima de64MiB.')
+        def make_cms(covered):
+            return (pkcs7.PKCS7SignatureBuilder().set_data(covered)
+                    .add_signer(cert,key,hashes.SHA256()).sign(serialization.Encoding.DER,
+                         [pkcs7.PKCS7Options.DetachedSignature,pkcs7.PKCS7Options.Binary]))
+        raw,cms,left,right=append_signature_revision(original,reader,name,signature_dict,make_cms)
     _require(raw.startswith(original),'A atualização incremental alterou bytes da revisão assinada.')
     check=PdfReader(BytesIO(raw),strict=True)
     _require(name in (check.get_fields() or {}),'Campo assinado não confirmado.')

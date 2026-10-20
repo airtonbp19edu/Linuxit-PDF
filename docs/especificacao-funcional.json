@@ -3138,7 +3138,7 @@
       "name": "Assinaturas/certificados",
       "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. Assinaturas múltiplas (etapa E08): toda assinatura nova é uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior, tabela ou fluxo); cada assinatura anterior continua cobrindo a própria revisão e é reverificada antes de publicar. Recusas: assinatura existente que não verifica, certificação DocMDP P=1, direitos de uso UR3, PDF criptografado, XFA e portfólio; limite de 15 assinaturas. PAdES-LTV, DocTimeStamp separado, OCSP e validação legal continuam abertos.",
+      "scope": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. Assinaturas múltiplas (etapa E08): toda assinatura nova é uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior, tabela ou fluxo); cada assinatura anterior continua cobrindo a própria revisão e é reverificada antes de publicar. Recusas: assinatura existente que não verifica, certificação DocMDP P=1, direitos de uso UR3, PDF criptografado, XFA e portfólio; limite de 15 assinaturas. Carimbo de documento (etapa E09): campos /ETSI.RFC3161 (DocTimeStamp) são reconhecidos; a integridade confere a assinatura do token e o resumo (messageImprint SHA-256/384/512) contra os bytes cobertos, e o horário só aparece se verificar; com política offline, a TSA precisa encadear até a CA escolhida (openssl ts -verify, sem âncoras do sistema). Assinar depois de um carimbo mantém os dois válidos. Criar carimbos de documento, PAdES-LTV, OCSP e validação legal continuam abertos.",
       "inputs": [
         "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
@@ -3245,6 +3245,18 @@
         {
           "path": "tests/test_incremental_signatures.py",
           "test": "test_certification_without_changes_usage_rights_and_broken_previous_signature_are_refused"
+        },
+        {
+          "path": "tests/test_document_timestamps.py",
+          "test": "test_timestamp_is_recognised_verified_and_trusted_only_with_its_ca"
+        },
+        {
+          "path": "tests/test_document_timestamps.py",
+          "test": "test_changed_covered_bytes_and_wrong_imprint_fail"
+        },
+        {
+          "path": "tests/test_document_timestamps.py",
+          "test": "test_signature_after_a_timestamp_keeps_both_valid"
         }
       ],
       "dynamic_case_refs": [],
@@ -3317,6 +3329,28 @@
             "executed_at_local": "2026-10-20T13:45:34-03:00",
             "boundary": "worker sign-copy (incremental)"
           }
+        },
+        {
+          "id": "S12-17-5",
+          "kind": "nominal",
+          "given": "PDF sintético com carimbo de documento RFC 3161 de uma TSA sintética local.",
+          "when": "Inspecionar as assinaturas sem política e com política offline (CA da TSA e outra CA).",
+          "expected_linuxit": "O campo aparece como carimbo de documento, integridade verificada, cobrindo o arquivo e com horário; confiável só com a CA da TSA; nenhuma rede.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-17-6",
+          "kind": "exception",
+          "given": "O mesmo PDF carimbado com um byte coberto alterado.",
+          "when": "Inspecionar as assinaturas.",
+          "expected_linuxit": "O carimbo não é aprovado e nenhum horário é informado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -3362,6 +3396,11 @@
           "text": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.",
           "superseded_at_local": "2026-10-20T13:37:00-03:00",
           "reason": "Etapa E08: assinaturas múltiplas por revisão incremental."
+        },
+        {
+          "text": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. Assinaturas múltiplas (etapa E08): toda assinatura nova é uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior, tabela ou fluxo); cada assinatura anterior continua cobrindo a própria revisão e é reverificada antes de publicar. Recusas: assinatura existente que não verifica, certificação DocMDP P=1, direitos de uso UR3, PDF criptografado, XFA e portfólio; limite de 15 assinaturas. PAdES-LTV, DocTimeStamp separado, OCSP e validação legal continuam abertos.",
+          "superseded_at_local": "2026-10-20T15:01:00-03:00",
+          "reason": "Etapa E09: verificação de DocTimeStamp existente."
         }
       ]
     },

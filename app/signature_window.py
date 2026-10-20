@@ -106,6 +106,10 @@ class SignatureWindow(Gtk.Window):
                     'unsupported_or_malformed':'Formato não suportado ou inválido','unsigned':'Campo sem assinatura','unavailable':'Verificador indisponível ou sem resultado'}
             for item in result['signatures']:
                 text=display_attachment_name(item['field'])+' · '+labels[item['status']]
+                if item.get('kind')=='document_timestamp':
+                    # RFC 3161 document timestamp (E09): integrity is the token signature plus the imprint.
+                    text=display_attachment_name(item['field'])+' · Carimbo de tempo do documento · '+labels[item['status']]
+                    if item.get('timestamp_time'):text+=' · horário '+item['timestamp_time']
                 if item['status']=='verified' and not item['current_file_covered']:text+=' · há dados posteriores à revisão assinada'
                 trust=item.get('trust')
                 if trust:

@@ -67,6 +67,40 @@ def _verify_detached(cms, content):
         return result.returncode == 0, backend
 
 
+TIMESTAMP_DIGESTS = {'sha256', 'sha384', 'sha512'}
+
+
+def _verify_document_timestamp(token, content):
+    """Integrity of an RFC 3161 document timestamp: token signature and message imprint (E09).
+
+    Returns (verified, backend, generation time). Trust in the TSA is separate.
+    """
+    executable = shutil.which('openssl')
+    backend = 'OpenSSL CMS -noverify + TSTInfo imprint, signature only'
+    if not executable:return None, 'unavailable', None
+    from asn1crypto import cms as asn_cms, tsp
+    structure = asn_cms.ContentInfo.load(token, strict=True)
+    if structure['content_type'].native != 'signed_data' or \
+            structure['content']['encap_content_info']['content_type'].native != 'tst_info':
+        raise ValueError('Carimbo de documento sem TSTInfo.')
+    with tempfile.TemporaryDirectory(prefix='linuxit-doc-ts-') as folder:
+        folder = Path(folder);token_path = folder/'token.der';info_path = folder/'tstinfo.der'
+        token_path.write_bytes(token)
+        if os.name != 'nt':token_path.chmod(0o600)
+        try:
+            result = subprocess.run([executable, 'cms', '-verify', '-binary', '-inform', 'DER', '-noverify',
+                                     '-in', str(token_path), '-out', str(info_path)],
+                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=30, **subprocess_options())
+        except (OSError, subprocess.TimeoutExpired):return None, backend, None
+        if result.returncode != 0 or not info_path.is_file():return False, backend, None
+        info = tsp.TSTInfo.load(info_path.read_bytes(), strict=True)
+    algorithm = info['message_imprint']['hash_algorithm']['algorithm'].native
+    if algorithm not in TIMESTAMP_DIGESTS:raise ValueError('Algoritmo do carimbo não suportado.')
+    imprint = info['message_imprint']['hashed_message'].native
+    if hashlib.new(algorithm, content).digest() != imprint:return False, backend, None
+    return True, backend, info['gen_time'].native.isoformat()
+
+
 def inspect_pdf_signatures(path, request):
     if not isinstance(request,dict) or set(request) not in (set(),{'trust_policy'}):raise ValueError('Pedido de assinaturas inválido.')
     policy=request.get('trust_policy')
@@ -83,15 +117,17 @@ def inspect_pdf_signatures(path, request):
     for name, field in (reader.get_fields() or {}).items():
         if _inherited(field, '/FT') != '/Sig':continue
         if len(signatures) >= 16:omitted += 1;continue
-        record = {'field':name,'integrity_verified':None,'trust_chain_verified':False,
+        record = {'field':name,'kind':None,'integrity_verified':None,'trust_chain_verified':False,
                   'current_file_covered':False,'backend':None,'status':'unsigned','covered_revision_bytes':None}
         signatures.append(record)
         value = field.get('/V')
         if value is None:continue
         try:
             value = value.get_object()
-            if value.get('/SubFilter') not in ('/adbe.pkcs7.detached','/ETSI.CAdES.detached'):
-                raise ValueError('SubFilter não suportado; somente CMS destacado.')
+            subfilter = value.get('/SubFilter')
+            if subfilter not in ('/adbe.pkcs7.detached','/ETSI.CAdES.detached','/ETSI.RFC3161'):
+                raise ValueError('SubFilter não suportado; somente CMS destacado ou carimbo RFC 3161.')
+            record['kind'] = 'document_timestamp' if subfilter == '/ETSI.RFC3161' else 'signature'
             ranges = value.get('/ByteRange')
             if not isinstance(ranges, list) or len(ranges) != 4 or not all(type(x) is int or type(x).__name__ == 'NumberObject' for x in ranges):
                 raise ValueError('ByteRange inválido; são exigidos dois intervalos.')
@@ -106,13 +142,19 @@ def inspect_pdf_signatures(path, request):
             declared = bytes(declared) if isinstance(declared, bytes) else declared.original_bytes
             if content_bytes != declared:raise ValueError('Contents não corresponde ao intervalo excluído.')
             cms = _der_payload(content_bytes)
-            verified, backend = _verify_detached(cms, raw[:left]+raw[right:right+tail])
+            covered = raw[:left]+raw[right:right+tail]
+            if record['kind'] == 'document_timestamp':
+                verified, backend, moment = _verify_document_timestamp(cms, covered)
+                record['timestamp_time'] = moment
+            else:
+                verified, backend = _verify_detached(cms, covered)
             record.update(integrity_verified=verified,backend=backend,
                           status='verified' if verified else 'not_verified' if verified is False else 'unavailable',
                           current_file_covered=right+tail == len(raw),covered_revision_bytes=right+tail)
             if policy is not None:
-                from signature_trust import verify_trust
-                trust=verify_trust(cms,raw[:left]+raw[right:right+tail],policy)
+                from signature_trust import verify_document_timestamp, verify_trust
+                check = verify_document_timestamp if record['kind'] == 'document_timestamp' else verify_trust
+                trust=check(cms,covered,policy)
                 record['trust']=trust;record['trust_chain_verified']=trust['chain_verified']
         except (ValueError, AttributeError, TypeError, KeyError, OverflowError):
             record['status'] = 'unsupported_or_malformed'

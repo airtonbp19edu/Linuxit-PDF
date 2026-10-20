@@ -34,13 +34,9 @@ def _run(command):
     return result.returncode==0
 
 
-def verify_trust(cms,content,policy):
+def _anchors(policy):
     from cryptography import x509
     from cryptography.hazmat.primitives import serialization
-    from asn1crypto import cms as asn_cms,tsp
-    executable=shutil.which('openssl')
-    if not executable:raise RuntimeError('OpenSSL indisponível para política offline.')
-    policy=trust_policy(policy)
     bundle=[];identities=[]
     for name in policy['roots']:
         raw=_read(name)
@@ -56,6 +52,17 @@ def verify_trust(cms,content,policy):
         raw=_read(name)
         crl=x509.load_pem_x509_crl(raw) if b'-----BEGIN' in raw else x509.load_der_x509_crl(raw)
         bundle.append(crl.public_bytes(serialization.Encoding.PEM));identities.append(hashlib.sha256(raw).hexdigest())
+    return bundle,identities
+
+
+def verify_trust(cms,content,policy):
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
+    from asn1crypto import cms as asn_cms,tsp
+    executable=shutil.which('openssl')
+    if not executable:raise RuntimeError('OpenSSL indisponível para política offline.')
+    policy=trust_policy(policy)
+    bundle,identities=_anchors(policy)
     structure=asn_cms.ContentInfo.load(cms,strict=True)
     signed=structure['content'];signers=signed['signer_infos']
     if not 1<=len(signers)<=8:raise ValueError('CMS limitado a1–8 signatários.')
@@ -112,5 +119,36 @@ def verify_trust(cms,content,policy):
                     verified=_run(args)
                     timestamp=token['content']['encap_content_info']['content'].parsed['gen_time'].native
                     result['timestamps'].append(dict(verified=verified,time=timestamp.isoformat() if verified else None))
+        result['policy_satisfied']=result['chain_verified'] and (result['revocation_verified'] or not policy['require_revocation'])
+    return result
+
+
+def verify_document_timestamp(token,content,policy):
+    """RFC 3161 document timestamp (ETSI.RFC3161) against the caller's anchors only (E09)."""
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
+    from asn1crypto import cms as asn_cms
+    executable=shutil.which('openssl')
+    if not executable:raise RuntimeError('OpenSSL indisponível para política offline.')
+    policy=trust_policy(policy)
+    bundle,identities=_anchors(policy)
+    structure=asn_cms.ContentInfo.load(token,strict=True)
+    certs=[entry.chosen for entry in structure['content']['certificates'] if entry.name=='certificate']
+    if len(certs)>64:raise ValueError('Carimbo acima de64 certificados.')
+    result=dict(chain_verified=False,revocation_verified=False,revocation_required=policy['require_revocation'],
+                validation_time=policy['moment'].isoformat(),selected_material_sha256=identities,timestamps=[],network_used=False,
+                policy='OpenSSL ts -verify with explicit CA only; document timestamp, no legal/LTV decision')
+    with tempfile.TemporaryDirectory(prefix='linuxit-doc-ts-') as directory:
+        folder=Path(directory);ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle))
+        empty_store=folder/'empty-ca-store';empty_store.mkdir()
+        configuration=folder/'openssl.cnf';configuration.write_text('[default]\n')
+        token_path=folder/'token.der';token_path.write_bytes(token);data=folder/'data.bin';data.write_bytes(content)
+        chain=folder/'included.pem'
+        chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs))
+        args=[executable,'ts','-config',str(configuration),'-verify','-token_in','-in',str(token_path),'-data',str(data),
+              '-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(ca),'-attime',str(int(policy['moment'].timestamp()))]
+        if certs:args+=['-untrusted',str(chain)]
+        result['chain_verified']=_run(args)
+        if result['chain_verified'] and policy['crls']:result['revocation_verified']=_run([*args,'-crl_check_all'])
         result['policy_satisfied']=result['chain_verified'] and (result['revocation_verified'] or not policy['require_revocation'])
     return result
