@@ -3289,3 +3289,10 @@ Limite: a ausência de um evento raro não se prova estatisticamente; faulthandl
 ## 2026/10/20 às 12:37 (America/Sao_Paulo, UTC-03:00) — CI confirma a E07
 
 CI 39449238643 (Debian 13) na revisão `aff57e0`: suíte 607/607 e aceitação 57/57 (`ci-debian13-e07-review.json`). Nenhuma etapa nova iniciada; E08 aguarda o usuário.
+
+
+## 2026/10/20 às 12:47 (America/Sao_Paulo, UTC-03:00) — E28 concluída
+
+Pedido do usuário às 12:38: procurar a decisão sobre nuvem e pastas sincronizadas e fechar o ciclo. Decisões encontradas: "Deixar nuvem para depois" (17/10/2026 19:20) e fluxo de pastas sincronizadas por cliente externo (17/10/2026 20:51; `docs/PASTAS-SINCRONIZADAS.md`, `progresso/projeto.json` → `local_folder_workflow`). A família `cloud` era `proposed_only` com S12-23 sobre provedor simulado, por isso ficava fora da aceitação.
+
+**E28** (`033e245`): `cloud` passou a `implemented_subset` com o fluxo de pasta sincronizada; contrato anterior em `contract_previous`/`scope_previous`, casos anteriores em `expected_previous`. Novos S12-23-1 (abrir pela pasta preferida, seletor começa nela, cópia idêntica, sem temporários, estado "salva localmente… sincronizador") e S12-23-2 (troca externa bloqueia salvar até reabrir; arquivo criado pelo cliente com o mesmo nome não é sobrescrito; sem falso sucesso), na janela real com os seletores GTK respondidos como um usuário. Matriz de paridade, arquitetura, ESCOPO, projeto.json e PASTAS-SINCRONIZADAS atualizados. `cloud/login`, `cloud/transfer` e `cloud/collaboration` continuam `deferred_by_user`. `tests/test_acceptance_records.py` cria a própria família proposta, já que nenhuma real restou. Suíte 607/607; aceitação 59/59 na revisão limpa (`execucao-ubuntu24-e28.json`). Pendente fora do código: cliente sincronizador real. Parado; E08 aguarda o usuário.

@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T12:39:00-03:00. Pendente: 16, Em andamento: 1, Concluída: 10, Bloqueada: 1.
+Atualizado em 2026-10-20T12:47:00-03:00. Pendente: 16, Concluída: 11, Bloqueada: 1.
 
 **Regras**
 
@@ -24,7 +24,7 @@ Atualizado em 2026-10-20T12:39:00-03:00. Pendente: 16, Em andamento: 1, Concluí
 | E06 | XFA: leitura dos campos | Formulários | nada | Concluída |
 | E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Concluída |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Concluída |
-| E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Em andamento |
+| E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Concluída |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
@@ -171,7 +171,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json](
 
 **Como verificar:** Casos S12-23-1 e S12-23-2 executados na janela real; validador, arquitetura e catálogo coerentes; suíte e aceitação completas, inclusive no CI Debian 13.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+A família Nuvem deixou de ser proposta: o contrato agora é o fluxo de pasta sincronizada já implementado (pasta preferida, abrir dela, cópia completa e exclusiva que só diz "salva localmente", bloqueio quando o cliente troca o PDF aberto, nunca sobrescrever arquivo criado pelo cliente). S12-23-1 e S12-23-2 trocaram o provedor simulado por esse fluxo, na janela real; textos antigos preservados. Login, transferência por API e colaboração remota continuam adiados. Suíte 607/607; aceitação 59/59 (todos os planos) na revisão 033e245. Falta só testar com um cliente sincronizador real.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [testes/aceitacao/casos_gtk.py](../testes/aceitacao/casos_gtk.py). Commit `033e245`.
 
 ### E08 — Segunda assinatura em revisão incremental
 
