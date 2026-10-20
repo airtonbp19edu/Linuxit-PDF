@@ -367,6 +367,51 @@ def invalid_annotation(ctx):
     return dict(comments=contents, invalid_entries=2)
 
 
+def _styled_source(ctx):
+    from pypdf import PdfWriter
+    blank = ctx.work / 'branco.pdf';writer = PdfWriter();writer.add_blank_page(300, 300)
+    with blank.open('wb') as handle:writer.write(handle)
+    source = ctx.work / 'anotado.pdf'
+    request = {'source_sha256': sha256(blank), 'operations': [
+        {'kind': 'add-rectangle', 'page': 0, 'rect': [20, 200, 120, 280], 'text': 'retângulo'},
+        {'kind': 'add-note', 'page': 0, 'text': 'nota', 'rect': None}]}
+    run = ctx.worker('copy-edit', blank, source, request=request)
+    check(run['code'] == 0, run['stderr'])
+    info = ctx.worker('edit-info', source, request={})['result']['annotations']
+    return source, {r['subtype']: r['index'] for r in info}
+
+
+@case('S12-14-3', 'worker copy-edit (style-annotation) + Poppler')
+def annotation_style(ctx):
+    from pypdf import PdfReader
+    from PIL import Image
+    source, index = _styled_source(ctx);before = sha256(source);output = ctx.work / 'azul.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'style-annotation', 'page': 0, 'index': index['/Square'],
+                                                         'color': [0, 0, 1], 'opacity': 0.5}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] == 0, run['stderr'])
+    note = PdfReader(str(output)).pages[0]['/Annots'][index['/Square']].get_object()
+    check([float(c) for c in note['/C']] == [0, 0, 1] and float(note['/CA']) == 0.5, f"cor {note.get('/C')} opacidade {note.get('/CA')}")
+    base = ctx.work / 'render'
+    subprocess.run(['pdftoppm', '-r', '144', '-png', '-singlefile', str(output), str(base)], check=True, timeout=60)
+    r, g, b = Image.open(str(base) + '.png').convert('RGB').getpixel((int(20.6 * 2), int((300 - 240) * 2)))
+    check(b > r + 40 and r > 60, f'pixel da borda {(r, g, b)}')
+    check(sha256(source) == before, 'original alterado')
+    return dict(color=[0, 0, 1], opacity=0.5, rendered_border_rgb=[r, g, b], original_preserved=True)
+
+
+@case('S12-14-4', 'worker copy-edit (style-annotation)')
+def annotation_style_refused(ctx):
+    source, index = _styled_source(ctx);before = sha256(source);outcomes = {}
+    for label, operation in (('nota', {'index': index['/Text'], 'opacity': 0.5}), ('opacidade_5', {'index': index['/Square'], 'opacity': 0.05})):
+        output = ctx.work / f'{label}.pdf'
+        request = {'source_sha256': before, 'operations': [dict(kind='style-annotation', page=0, color=[0, 0, 1], **operation)]}
+        run = ctx.worker('copy-edit', source, output, request=request)
+        outcomes[label] = run['code'] != 0 and not output.exists()
+    check(all(outcomes.values()) and sha256(source) == before, f'recusas: {outcomes}')
+    return outcomes
+
+
 # 15 — forms
 
 def _form_request(path, values):

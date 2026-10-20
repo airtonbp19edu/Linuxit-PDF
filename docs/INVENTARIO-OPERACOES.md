@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T15:14:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T15:44:00-03:00. **112 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (17 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (20 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -29,7 +29,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Prévia/plano de impressão|4|2|2|0|
 |Livreto/N-up/mosaico|3|3|0|0|
 |Criar/mover/gravar marcadores|4|4|0|0|
-|Anotações/undo/gravação|13|13|0|0|
+|Anotações/undo/gravação|14|14|0|0|
 |AcroForm/XFA/eventos|9|9|0|0|
 |Anexos/portfólios|4|4|0|0|
 |Assinaturas/certificados|5|5|0|0|
@@ -41,7 +41,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|111|99|9|3|
+|Total|112|100|9|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -69,7 +69,7 @@ UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8
 |`navigation/goto` — Ir para página válida|Código em subconjunto ([fonte](../app/main.py#L1205))|Documento e índice => página correta; limites/sem documento não acessam índice inválido.|
 |`navigation/zoom` — Aplicar zoom e ajuste|Código em subconjunto ([fonte](../app/main.py#L1257))|Zoom/ajuste e viewport => página posicionada no recorte próprio; limites Foxit ainda requerem UI04.|
 |`navigation/view-rotation` — Rotacionar visualização|Código em subconjunto ([fonte](../app/main.py#L1265))|Rotação visual => tela e coordenadas coerentes sem alterar arquivo fonte.|
-|`navigation/saved-rotation` — Persistir rotação em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Página e ângulo aceito => /Rotate persistido na cópia, fonte preservada.|
+|`navigation/saved-rotation` — Persistir rotação em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Página e ângulo aceito => /Rotate persistido na cópia, fonte preservada.|
 
 ## Apresentação ajustar/preencher
 
@@ -202,10 +202,10 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`bookmarks-edit/create` — Criar marcador em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Título/página => novo marcador na cópia, arquivo original preservado.|
-|`bookmarks-edit/rename` — Renomear marcador|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Caminho/título => renomear o nó escolhido preservando destinos e estrutura.|
-|`bookmarks-edit/move` — Mover subárvore de marcadores|Código em subconjunto ([fonte](../app/pdf_changes.py#L223))|Caminho, pai e posição => mover sem ciclos, preservando filhos/destinos/contagens.|
-|`bookmarks-edit/delete` — Excluir subárvore em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L223))|Caminho => excluir subárvore e manter árvore restante consistente.|
+|`bookmarks-edit/create` — Criar marcador em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Título/página => novo marcador na cópia, arquivo original preservado.|
+|`bookmarks-edit/rename` — Renomear marcador|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Caminho/título => renomear o nó escolhido preservando destinos e estrutura.|
+|`bookmarks-edit/move` — Mover subárvore de marcadores|Código em subconjunto ([fonte](../app/pdf_changes.py#L226))|Caminho, pai e posição => mover sem ciclos, preservando filhos/destinos/contagens.|
+|`bookmarks-edit/delete` — Excluir subárvore em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L226))|Caminho => excluir subárvore e manter árvore restante consistente.|
 
 ## Anotações/undo/gravação
 
@@ -215,18 +215,19 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`annotations/note` — Criar nota Text|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Página, texto e retângulo => nota Text imprimível dentro do CropBox, em cópia.|
-|`annotations/highlight` — Criar destaque de área|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Página e retângulo => Highlight com QuadPoints e texto no recorte suportado.|
-|`annotations/rectangle` — Criar retângulo|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Retângulo dentro da página => Square imprimível com geometria persistida.|
+|`annotations/note` — Criar nota Text|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Página, texto e retângulo => nota Text imprimível dentro do CropBox, em cópia.|
+|`annotations/highlight` — Criar destaque de área|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Página e retângulo => Highlight com QuadPoints e texto no recorte suportado.|
+|`annotations/rectangle` — Criar retângulo|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Retângulo dentro da página => Square imprimível com geometria persistida.|
 |`annotations/underline` — Criar sublinhado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => sublinhado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/strikeout` — Criar tachado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => tachado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/squiggly` — Criar ondulado|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => ondulado com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/ellipse` — Criar elipse|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => elipse com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/line` — Criar linha|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => linha com aparência vetorial própria embutida; fonte preservada.|
-|`annotations/comment-author` — Editar comentário e autor|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Anotação simples desbloqueada e texto/autor => alterar/limpar metadados sem mudar geometria/aparência.|
-|`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
+|`annotations/comment-author` — Editar comentário e autor|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Anotação simples desbloqueada e texto/autor => alterar/limpar metadados sem mudar geometria/aparência.|
+|`annotations/style` — Mudar cor e opacidade de anotação existente|Código em subconjunto ([fonte](../app/annotation_style.py#L138))|Existing simple annotation (Square, Circle, Line, Highlight, Underline, StrikeOut, Squiggly, Ink, Polygon, PolyLine, Caret), RGB colour and opacity 10-100% => /C and /CA set and the normal appearance regenerated from the annotation geometry with an ExtGState (Multiply for highlights); notes, free text and stamps, locked annotations and ones with replies/popups are refused; copy only, original preserved (E12). Rendered result checked with Poppler. Acceptance S12-14-3 and S12-14-4.|
+|`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
 |`annotations/history` — Desfazer/refazer rascunho|Código em subconjunto ([fonte](../app/edit_history.py#L78))|Histórico do rascunho => reconstruir cursor correto sem alterar fonte/cópias já salvas.|
-|`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|
+|`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|
 |`annotations/freehand` — Desenho livre e demais tipos|Código em subconjunto ([fonte](../app/pdf_annotations.py#L110))|Geometria de desenho/tipo ainda ausente => especificar, implementar e comparar antes de declarar suporte.|
 
 ## AcroForm/XFA/eventos
@@ -237,7 +238,7 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`forms/text` — Preencher campo Tx|Código em subconjunto ([fonte](../app/pdf_changes.py#L326))|Campo terminal e texto => respeitar ReadOnly/MaxLen herdados e persistir valor/aparência em cópia.|
+|`forms/text` — Preencher campo Tx|Código em subconjunto ([fonte](../app/pdf_changes.py#L329))|Campo terminal e texto => respeitar ReadOnly/MaxLen herdados e persistir valor/aparência em cópia.|
 |`forms/checkbox` — Marcar/desmarcar checkbox|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Checkbox com aparências existentes e booleano => /V e /AS coerentes; ReadOnly recusado.|
 |`forms/radio` — Selecionar radio simples|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Grupo e estado válido => ativar somente widget selecionado; respeitar NoToggleToOff.|
 |`forms/combo-fixed` — Selecionar combo sem texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Opção existente => valor/índice/aparência coerentes; export/label preservados no subconjunto.|

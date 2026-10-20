@@ -391,6 +391,12 @@
       "responsibility": "Cria polígonos/textos e edita geometrias/conversas de anotações em cópias."
     },
     {
+      "id": "annotation_style",
+      "path": "app/annotation_style.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Cor e opacidade de anotações simples existentes, com aparência redesenhada a partir da geometria."
+    },
+    {
       "id": "text_appearance",
       "path": "app/text_appearance.py",
       "boundary": "worker_service",
@@ -941,7 +947,8 @@
         "app/pdf_annotations.py",
         "app/annotation_geometry.py",
         "app/text_appearance.py",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "app/annotation_style.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false

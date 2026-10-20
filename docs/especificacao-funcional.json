@@ -2034,7 +2034,7 @@
       "name": "Anotações/undo/gravação",
       "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2099,7 +2099,8 @@
         "app/annotation_geometry.py",
         "app/text_appearance.py",
         "app/pdf_edit_security.py",
-        "testes/resultados/0.1.16/validation-review.json"
+        "testes/resultados/0.1.16/validation-review.json",
+        "app/annotation_style.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2378,6 +2379,22 @@
         {
           "path": "tests/test_annotation_extensions_gtk.py",
           "test": "test_edited_nontext_annotation_comment_is_searchable_after_reopening_saved_copy"
+        },
+        {
+          "path": "tests/test_annotation_style.py",
+          "test": "test_every_supported_type_becomes_blue_and_half_transparent"
+        },
+        {
+          "path": "tests/test_annotation_style.py",
+          "test": "test_full_opacity_keeps_solid_colour_and_restyle_can_repeat"
+        },
+        {
+          "path": "tests/test_annotation_style.py",
+          "test": "test_notes_bad_colour_and_too_low_opacity_are_refused_without_output"
+        },
+        {
+          "path": "tests/test_annotation_style_gtk.py",
+          "test": "test_dialog_offers_styleable_records_with_current_style_and_returns_operation"
         }
       ],
       "dynamic_case_refs": [
@@ -2425,6 +2442,28 @@
             "executed_at_local": "2026-10-20T15:18:10-03:00",
             "boundary": "worker panels"
           }
+        },
+        {
+          "id": "S12-14-3",
+          "kind": "nominal",
+          "given": "PDF sintético com um retângulo vermelho criado pelo próprio aplicativo.",
+          "when": "Mudar a cor para azul com opacidade de 50% e salvar cópia nova.",
+          "expected_linuxit": "A cópia guarda /C azul e /CA 0,5, a aparência é redesenhada e o Poppler desenha a borda em azul-claro; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-14-4",
+          "kind": "exception",
+          "given": "O mesmo PDF, com uma nota (Text) e o retângulo.",
+          "when": "Pedir nova cor para a nota e opacidade de 5% para o retângulo.",
+          "expected_linuxit": "Recusar os dois pedidos sem criar saída; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -2433,6 +2472,11 @@
           "text": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+          "superseded_at_local": "2026-10-20T15:45:00-03:00",
+          "reason": "Etapa E12: cor e opacidade de anotações existentes."
         }
       ]
     },

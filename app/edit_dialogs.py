@@ -70,6 +70,7 @@ def ink_operation_dialog(parent, info, page):
 ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
                   'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
+ADVANCED_KINDS.add('style-annotation')
 ADVANCED_KINDS.update({'add-polygon','add-polyline','add-caret','add-freetext','add-stamp',
                        'move-annotation','update-comment','set-popup','delete-conversation'})
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
@@ -79,6 +80,7 @@ TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador 
           'add-ellipse':'Adicionar elipse', 'add-line':'Adicionar linha', 'update-annotation':'Editar comentário da anotação'}
 TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder comentário'})
 TITLES['fill-form-events']='Preencher com cálculos e validação'
+TITLES['style-annotation']='Cor e opacidade da anotação'
 TITLES.update({'add-polygon':'Adicionar polígono','add-polyline':'Adicionar polilinha','add-caret':'Marcar inserção',
     'add-freetext':'Adicionar texto livre','add-stamp':'Adicionar carimbo textual','move-annotation':'Mover anotação',
     'update-comment':'Editar comentário ou resposta','set-popup':'Configurar popup','delete-conversation':'Excluir conversa e popups'})
@@ -261,6 +263,31 @@ def advanced_operation_dialog(parent, kind, info, page):
             buffer=comment.get_buffer();text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True)
             if not text.strip():raise ValueError('Digite a resposta.')
             return dict(kind=kind,page=page,index=records[combo.get_active()]['index'],text=text,author=author.get_text())
+    elif kind == 'style-annotation':
+        # E12: colour and opacity of existing simple annotations; appearance regenerated.
+        records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('styleable')]
+        names = {'/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado','/StrikeOut':'Tachado',
+                 '/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho','/Polygon':'Polígono',
+                 '/PolyLine':'Polilinha','/Caret':'Inserção'}
+        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        color_button = Gtk.ColorButton();color_button.set_use_alpha(False);color_button.get_accessible().set_name('Cor da anotação')
+        opacity = Gtk.SpinButton.new_with_range(10, 100, 5);opacity.set_value(100);opacity.get_accessible().set_name('Opacidade em porcentagem')
+        grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid)
+        grid.attach(Gtk.Label(label='Cor', xalign=0), 0, 0, 1, 1);grid.attach(color_button, 1, 0, 1, 1)
+        grid.attach(Gtk.Label(label='Opacidade (%)', xalign=0), 0, 1, 1, 1);grid.attach(opacity, 1, 1, 1, 1)
+        def selected_style(*_):
+            if combo.get_active() < 0:return
+            record = records[combo.get_active()];rgba = Gdk.RGBA()
+            rgba.red, rgba.green, rgba.blue = record.get('color') or (1, 0, 0);rgba.alpha = 1
+            color_button.set_rgba(rgba);opacity.set_value(round(100 * record.get('opacity', 1)))
+        combo.connect('changed', selected_style)
+        hint.set_text('Muda cor e opacidade de retângulos, elipses, linhas, destaques, sublinhados, desenhos e polígonos já existentes; a aparência é redesenhada a partir da geometria. Notas, texto livre e carimbos não entram.')
+        def operation():
+            if combo.get_active() < 0:raise ValueError('Não há anotações com cor editável nesta página.')
+            rgba = color_button.get_rgba()
+            return dict(kind=kind, page=page, index=records[combo.get_active()]['index'],
+                        color=[round(rgba.red, 4), round(rgba.green, 4), round(rgba.blue, 4)],
+                        opacity=round(opacity.get_value() / 100, 4))
     elif kind in ('delete-annotation','update-annotation'):
         records = [r for r in info.get('annotations', []) if r['page'] == page]
         names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',

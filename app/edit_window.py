@@ -19,7 +19,7 @@ ACTIONS = [('add-bookmark','Adicionar marcador'),('rename-bookmark','Renomear ma
            ('add-caret','Marcar inserção'),('add-freetext','Adicionar texto livre'),('add-stamp','Adicionar carimbo textual'),
            ('move-annotation','Mover anotação'),('update-comment','Editar comentário ou resposta'),
            ('set-popup','Configurar popup'),('delete-conversation','Excluir conversa e popups'),
-           ('update-annotation','Editar comentário da anotação'),('delete-annotation','Excluir anotação'),
+           ('update-annotation','Editar comentário da anotação'),('style-annotation','Cor e opacidade da anotação'),('delete-annotation','Excluir anotação'),
            ('fill-text-fields','Preencher campo de texto'),('fill-form-controls','Preencher caixas e listas'),
            ('fill-form-events','Preencher com cálculos e validação'),
            ('rotate-page','Girar página')]
