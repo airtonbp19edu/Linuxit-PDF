@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T12:32:00-03:00. Pendente: 16, Concluída: 10, Bloqueada: 1.
+Atualizado em 2026-10-20T12:37:00-03:00. Pendente: 16, Concluída: 10, Bloqueada: 1.
 
 **Regras**
 
@@ -160,9 +160,9 @@ Evidência: [testes/resultados/e27-gc-threads/2026-10-20/revisao.json](../testes
 
 **Situação:** Concluída.
 
-Em PDF com campos AcroForm e XFA, preencher um campo (texto ou eventos) grava a cópia nova e copia cada valor de texto alterado, inclusive os calculados, para o elemento correspondente do pacote datasets. O elemento é achado pelo nome do campo sem os subformulários sem nome (#subform); só o conteúdo dele muda, o resto do XML fica byte a byte, e a cópia é reaberta e conferida antes de ser publicada. Recusados: formulário só XFA, campo sem dado correspondente, texto rico e outras alterações em XFA. O diálogo de preenchimento só oferece campos ligados aos dados. 7 testes novos (5 portáveis, 2 GTK); casos S12-15-10 e S12-15-11; suíte local 607/607; aceitação 57/57 na revisão aff57e0.
+Em PDF com campos AcroForm e XFA, preencher um campo (texto ou eventos) grava a cópia nova e copia cada valor de texto alterado, inclusive os calculados, para o elemento correspondente do pacote datasets. O elemento é achado pelo nome do campo sem os subformulários sem nome (#subform); só o conteúdo dele muda, o resto do XML fica byte a byte, e a cópia é reaberta e conferida antes de ser publicada. Recusados: formulário só XFA, campo sem dado correspondente, texto rico e outras alterações em XFA. O diálogo de preenchimento só oferece campos ligados aos dados. 7 testes novos (5 portáveis, 2 GTK); casos S12-15-10 e S12-15-11; suíte local 607/607; aceitação 57/57 na revisão aff57e0. CI Debian 13 (execução 39449238643, revisão aff57e0): suíte 607/607 e aceitação 57/57.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [tests/test_xfa_gtk.py](../tests/test_xfa_gtk.py). Commit `aff57e0`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [tests/test_xfa_gtk.py](../tests/test_xfa_gtk.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e07-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e07-review.json). Commit `aff57e0`.
 
 ### E08 — Segunda assinatura em revisão incremental
 

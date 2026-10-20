@@ -3284,3 +3284,8 @@ Limite: a ausência de um evento raro não se prova estatisticamente; faulthandl
 ## 2026/10/20 às 12:32 (America/Sao_Paulo, UTC-03:00) — E07 concluída
 
 **E07** (`aff57e0`): `pdf_changes._editable` ganhou `allow_xfa`; só a inspeção de edição e a gravação de cópias aceitam XFA, e apenas híbrido legível com pacote datasets (proteção e assinatura continuam recusando XFA). Em XFA, `save_edited_copy` aceita só `fill-text-fields` e `fill-form-events`; compara os valores de texto antes e depois e espelha cada valor alterado (digitado ou calculado) com `pdf_xfa.write_field_values`: caminho de dados = nome do campo sem segmentos `#...` e com `[0]` onde faltar índice; substituição só do conteúdo do elemento por deslocamento de bytes do expat (elemento vazio `<x/>` vira `<x>v</x>`), escape XML, declaração UTF-8 ou ASCII (referências numéricas), reanálise de conferência, novo fluxo FlateDecode no lugar do antigo. A cópia escrita é reaberta e AcroForm e datasets precisam bater. Recusas: só XFA, campo sem dado, texto rico, outras operações, pacote dividido entre fluxos. `edit-info` traz `xfa.bound_text_fields`; o diálogo de preenchimento só oferece esses campos e avisa que os dados XFA também mudam. Fixture `formulario-xfa.pdf` ganhou `form1[0].extra[0]` sem dado XFA. S12-15-8 deixou de esperar a recusa antiga (texto anterior em `expected_previous`); novos S12-15-10 e S12-15-11. Suíte local 607/607; aceitação 57/57 na revisão limpa (`execucao-ubuntu24-e07.json`). CI Debian 13 disparado. Parado; E08 aguarda o usuário.
+
+
+## 2026/10/20 às 12:37 (America/Sao_Paulo, UTC-03:00) — CI confirma a E07
+
+CI 39449238643 (Debian 13) na revisão `aff57e0`: suíte 607/607 e aceitação 57/57 (`ci-debian13-e07-review.json`). Nenhuma etapa nova iniciada; E08 aguarda o usuário.
