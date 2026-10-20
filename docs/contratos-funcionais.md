@@ -4,7 +4,7 @@ Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.p
 
 Escopo: **25 famílias identificadas**, **51 cenários planejados**; 24 subconjuntos implementados e 1 propostas futuras. O inventário global permanece aberto.
 
-O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **48**, das quais 48 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
+O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **49**, das quais 49 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
 Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem outros documentos continuam dependendo da criação/especialização do corpus descrito em sua condição inicial.
 
@@ -72,8 +72,8 @@ Abertura local transacional com senha, cópia privada de leitura e recuperação
 
 **Critérios planejados**
 
-- **S12-01-1** (nominal, contrato próprio atual, `passed`): dado busca-escopos.pdf legível. Ação: Inspecionar e abrir as duas páginas. Esperado: pages=2; tamanhos positivos; a imagem de cada página pertence ao documento aberto. Execução própria em 2026-10-20T00:36:31-03:00, revisão `353a30bbb4a9`, fronteira worker info + rendering.render_page: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-01-2** (exception, contrato próprio atual, `passed`): dado Arquivo inexistente ou PDF inválido. Ação: Solicitar inspeção/abertura. Esperado: O parser/worker falha; não produzir uma página válida fictícia. Execução própria em 2026-10-20T00:36:31-03:00, revisão `353a30bbb4a9`, fronteira worker info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-01-1** (nominal, contrato próprio atual, `passed`): dado busca-escopos.pdf legível. Ação: Inspecionar e abrir as duas páginas. Esperado: pages=2; tamanhos positivos; a imagem de cada página pertence ao documento aberto. Execução própria em 2026-10-20T00:46:34-03:00, revisão `0600b05aa24a`, fronteira worker info + rendering.render_page: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-01-2** (exception, contrato próprio atual, `passed`): dado Arquivo inexistente ou PDF inválido. Ação: Solicitar inspeção/abertura. Esperado: O parser/worker falha; não produzir uma página válida fictícia. Execução própria em 2026-10-20T00:46:34-03:00, revisão `0600b05aa24a`, fronteira worker info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -119,8 +119,8 @@ Navegação por página e teclado com limites, zoom digitável1–6400% e ajusta
 
 **Critérios planejados**
 
-- **S12-02-1** (nominal, contrato próprio atual, `passed`): dado PDF de duas páginas na primeira página. Ação: Navegar para a segunda e girar a visualização. Esperado: Página selecionada é a segunda; transformação visual permanece coerente com a geometria. Execução própria em 2026-10-20T00:36:31-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow.goto_page/_rotate: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-02-2** (exception, contrato próprio atual, `passed`): dado Render da página anterior ainda em andamento. Ação: Mudar página e aguardar os callbacks. Esperado: O resultado obsoleto não toma o lugar da página atual. Execução própria em 2026-10-20T00:36:33-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow.request_render callbacks: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-02-1** (nominal, contrato próprio atual, `passed`): dado PDF de duas páginas na primeira página. Ação: Navegar para a segunda e girar a visualização. Esperado: Página selecionada é a segunda; transformação visual permanece coerente com a geometria. Execução própria em 2026-10-20T00:46:34-03:00, revisão `0600b05aa24a`, fronteira PDFWindow.goto_page/_rotate: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-02-2** (exception, contrato próprio atual, `passed`): dado Render da página anterior ainda em andamento. Ação: Mudar página e aguardar os callbacks. Esperado: O resultado obsoleto não toma o lugar da página atual. Execução própria em 2026-10-20T00:46:36-03:00, revisão `0600b05aa24a`, fronteira PDFWindow.request_render callbacks: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -165,8 +165,8 @@ Apresentação GTK ajustar/preencher, pan/zoom/ponteiro, sessão/rotação herda
 
 **Critérios planejados**
 
-- **S12-03-1** (nominal, contrato próprio atual, `passed`): dado Página retrato e viewport paisagem. Ação: Alternar ajustar página e preencher. Esperado: A escala e o centro respeitam o modo próprio; não atribuir esse cálculo ao Foxit. Execução própria em 2026-10-20T00:36:36-03:00, revisão `353a30bbb4a9`, fronteira PresentationWindow fit/fill: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-03-2** (exception, contrato próprio atual, `passed`): dado Worker retorna falha de imagem. Ação: Entregar o erro à apresentação. Esperado: Exibir estado de falha, mantendo o ciclo de vida da janela válido. Execução própria em 2026-10-20T00:36:37-03:00, revisão `353a30bbb4a9`, fronteira PresentationWindow render failure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-03-1** (nominal, contrato próprio atual, `passed`): dado Página retrato e viewport paisagem. Ação: Alternar ajustar página e preencher. Esperado: A escala e o centro respeitam o modo próprio; não atribuir esse cálculo ao Foxit. Execução própria em 2026-10-20T00:46:38-03:00, revisão `0600b05aa24a`, fronteira PresentationWindow fit/fill: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-03-2** (exception, contrato próprio atual, `passed`): dado Worker retorna falha de imagem. Ação: Entregar o erro à apresentação. Esperado: Exibir estado de falha, mantendo o ciclo de vida da janela válido. Execução própria em 2026-10-20T00:46:40-03:00, revisão `0600b05aa24a`, fronteira PresentationWindow render failure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -207,8 +207,8 @@ Busca literal em texto de páginas, com caixa/palavra inteira e extensões próp
 
 **Critérios planejados**
 
-- **S12-04-1** (nominal, contrato próprio atual, `passed`): dado Fixture de busca; só páginas, sem caixa/palavra inteira. Ação: Pesquisar alvo. Esperado: Contrato próprio: três ocorrências; palavra inteira reduz para duas. Execução própria em 2026-10-20T00:36:39-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-04-2** (exception, contrato próprio atual, `passed`): dado Consulta com 257 caracteres. Ação: Chamar TextSearchIndex.search. Esperado: ValueError antes de extrair páginas. Execução própria em 2026-10-20T00:36:39-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-04-1** (nominal, contrato próprio atual, `passed`): dado Fixture de busca; só páginas, sem caixa/palavra inteira. Ação: Pesquisar alvo. Esperado: Contrato próprio: três ocorrências; palavra inteira reduz para duas. Execução própria em 2026-10-20T00:46:41-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-04-2** (exception, contrato próprio atual, `passed`): dado Consulta com 257 caracteres. Ação: Chamar TextSearchIndex.search. Esperado: ValueError antes de extrair páginas. Execução própria em 2026-10-20T00:46:41-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -251,8 +251,8 @@ Pesquisa em títulos de marcadores; leitura e navegação não equivalem a ediç
 
 **Critérios planejados**
 
-- **S12-05-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois títulos contendo alvo, só marcadores. Ação: Pesquisar alvo e selecionar os resultados. Esperado: Dois hits; um aponta à segunda página e outro permanece page=null; rects=[] em ambos. Execução própria em 2026-10-20T00:36:39-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow find bar + _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-05-2** (exception, contrato próprio atual, `passed`): dado Hit de marcador sem destino local. Ação: Selecionar esse resultado. Esperado: Não fabricar página de destino ou retângulo de destaque. Execução própria em 2026-10-20T00:36:41-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-05-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois títulos contendo alvo, só marcadores. Ação: Pesquisar alvo e selecionar os resultados. Esperado: Dois hits; um aponta à segunda página e outro permanece page=null; rects=[] em ambos. Execução própria em 2026-10-20T00:46:41-03:00, revisão `0600b05aa24a`, fronteira PDFWindow find bar + _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-05-2** (exception, contrato próprio atual, `passed`): dado Hit de marcador sem destino local. Ação: Selecionar esse resultado. Esperado: Não fabricar página de destino ou retângulo de destaque. Execução própria em 2026-10-20T00:46:44-03:00, revisão `0600b05aa24a`, fronteira PDFWindow _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -297,8 +297,8 @@ Subconjunto próprio: assunto, conteúdo e autor pesquisados separadamente; resp
 
 **Critérios planejados**
 
-- **S12-06-1** (nominal, contrato próprio atual, `passed`): dado Só comentários da fixture. Ação: Pesquisar assunto, depois alvo. Esperado: Uma ocorrência em cada consulta; o campo assunto é separado do conteúdo. Execução própria em 2026-10-20T00:36:44-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-06-2** (exception, contrato próprio atual, `passed`): dado Só comentários, consulta Autor. Ação: Pesquisar o campo de autor com o contrato corrigido na fonte posterior ao pacote0.1.13. Esperado: Uma ocorrência source=comment na página1 do fixture preservado; autoria é pesquisável junto de assunto/conteúdo. Execução própria em 2026-10-20T00:36:44-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-06-1** (nominal, contrato próprio atual, `passed`): dado Só comentários da fixture. Ação: Pesquisar assunto, depois alvo. Esperado: Uma ocorrência em cada consulta; o campo assunto é separado do conteúdo. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-06-2** (exception, contrato próprio atual, `passed`): dado Só comentários, consulta Autor. Ação: Pesquisar o campo de autor com o contrato corrigido na fonte posterior ao pacote0.1.13. Esperado: Uma ocorrência source=comment na página1 do fixture preservado; autoria é pesquisável junto de assunto/conteúdo. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -342,8 +342,8 @@ Fonte0.1.6: busca em anexos UTF-8 e texto de PDF de catálogo/árvores/anotaçõ
 
 **Critérios planejados**
 
-- **S12-07-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético com anexo textual contendo alvo; fixture ainda a especializar. Ação: Pesquisar incluindo anexos. Esperado: Encontrar o termo no anexo suportado e identificar índice/nome/página interna sem destino principal fictício. Execução própria em 2026-10-20T00:36:44-03:00, revisão `353a30bbb4a9`, fronteira worker search-attachments: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-07-2** (exception, contrato próprio atual, `passed`): dado Mesmo PDF com um anexo não suportado. Ação: Pesquisar incluindo anexos. Esperado: Informar o anexo omitido e seu motivo; UI deve indicar anexos parciais. Execução própria em 2026-10-20T00:36:44-03:00, revisão `353a30bbb4a9`, fronteira worker search-attachments: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-07-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético com anexo textual contendo alvo; fixture ainda a especializar. Ação: Pesquisar incluindo anexos. Esperado: Encontrar o termo no anexo suportado e identificar índice/nome/página interna sem destino principal fictício. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira worker search-attachments: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-07-2** (exception, contrato próprio atual, `passed`): dado Mesmo PDF com um anexo não suportado. Ação: Pesquisar incluindo anexos. Esperado: Informar o anexo omitido e seu motivo; UI deve indicar anexos parciais. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira worker search-attachments: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -384,8 +384,8 @@ Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escol
 
 **Critérios planejados**
 
-- **S12-08-1** (nominal, contrato próprio atual, `passed`): dado Coleção sintética de dois documentos e índice em pasta nova. Ação: Construir índice e consultar um termo presente em um documento. Esperado: Criar/reabrir índice e localizar termo no PDF/página corretos, sem alterar fontes. Execução própria em 2026-10-20T00:36:45-03:00, revisão `353a30bbb4a9`, fronteira worker index-build/index-search: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-08-2** (exception, contrato próprio atual, `passed`): dado Uma fonte foi alterada após indexação. Ação: Consultar sem atualização completa. Esperado: Excluir a fonte alterada e indicar que precisa atualizar o índice. Execução própria em 2026-10-20T00:36:45-03:00, revisão `353a30bbb4a9`, fronteira worker index-search: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-08-1** (nominal, contrato próprio atual, `passed`): dado Coleção sintética de dois documentos e índice em pasta nova. Ação: Construir índice e consultar um termo presente em um documento. Esperado: Criar/reabrir índice e localizar termo no PDF/página corretos, sem alterar fontes. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira worker index-build/index-search: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-08-2** (exception, contrato próprio atual, `passed`): dado Uma fonte foi alterada após indexação. Ação: Consultar sem atualização completa. Esperado: Excluir a fonte alterada e indicar que precisa atualizar o índice. Execução própria em 2026-10-20T00:46:47-03:00, revisão `0600b05aa24a`, fronteira worker index-search: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -424,8 +424,8 @@ Atual (0.1.16): busca literal, coringas por palavra, proximidade ordenada e radi
 
 **Critérios planejados**
 
-- **S12-09-1** (nominal, contrato próprio atual, `passed`): dado Corpus sintético com duas palavras separadas por distâncias conhecidas. Ação: Executar proximidade com duas distâncias explícitas. Esperado: Duas consultas com distâncias diferentes produzem hits conforme distância total/ordem documentadas. Execução própria em 2026-10-20T00:36:45-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-09-2** (exception, contrato próprio atual, `passed`): dado Consulta com coringa/operador cuja sintaxe não foi implementada. Ação: Executar esse modo. Esperado: Recusar sintaxe/operador não suportado sem trocar silenciosamente para literal. Execução própria em 2026-10-20T00:36:45-03:00, revisão `353a30bbb4a9`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-09-1** (nominal, contrato próprio atual, `passed`): dado Corpus sintético com duas palavras separadas por distâncias conhecidas. Ação: Executar proximidade com duas distâncias explícitas. Esperado: Duas consultas com distâncias diferentes produzem hits conforme distância total/ordem documentadas. Execução própria em 2026-10-20T00:46:48-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-09-2** (exception, contrato próprio atual, `passed`): dado Consulta com coringa/operador cuja sintaxe não foi implementada. Ação: Executar esse modo. Esperado: Recusar sintaxe/operador não suportado sem trocar silenciosamente para literal. Execução própria em 2026-10-20T00:46:48-03:00, revisão `0600b05aa24a`, fronteira search_engine.TextSearchIndex: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -465,8 +465,8 @@ Seleção retangular de palavras e cópia; snapshot de região; sem garantir ord
 
 **Critérios planejados**
 
-- **S12-10-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético e retângulo contendo uma palavra conhecida. Ação: Selecionar e copiar. Esperado: Clipboard contém a palavra selecionada; a seleção acompanha a transformação da imagem. Execução própria em 2026-10-20T00:36:45-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow _finish_text_selection + clipboard: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-10-2** (exception, contrato próprio atual, `passed`): dado Retângulo sobre região sem texto. Ação: Concluir seleção de texto. Esperado: Status informa ausência de texto; nenhum conteúdo fictício é produzido. Execução própria em 2026-10-20T00:36:47-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow _finish_text_selection: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-10-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético e retângulo contendo uma palavra conhecida. Ação: Selecionar e copiar. Esperado: Clipboard contém a palavra selecionada; a seleção acompanha a transformação da imagem. Execução própria em 2026-10-20T00:46:48-03:00, revisão `0600b05aa24a`, fronteira PDFWindow _finish_text_selection + clipboard: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-10-2** (exception, contrato próprio atual, `passed`): dado Retângulo sobre região sem texto. Ação: Concluir seleção de texto. Esperado: Status informa ausência de texto; nenhum conteúdo fictício é produzido. Execução própria em 2026-10-20T00:46:49-03:00, revisão `0600b05aa24a`, fronteira PDFWindow _finish_text_selection: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -505,8 +505,8 @@ Preparar PDF de saída, mostrar prévia e enviar ao backend escolhido; envio nã
 
 **Critérios planejados**
 
-- **S12-11-1** (nominal, contrato próprio atual, `passed`): dado Fixture e destino Salvar como PDF. Ação: Preparar saída e reabri-la. Esperado: Arquivo reabre e preserva o plano escolhido; sucesso de geração não é prova de impressão física. Execução própria em 2026-10-20T00:36:49-03:00, revisão `353a30bbb4a9`, fronteira worker prepare-print: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-11-2** (exception, contrato próprio atual, `passed`): dado Comando lp indisponível. Ação: Solicitar envio ao CUPS. Esperado: RuntimeError explícito; nenhum sucesso de envio é reportado. Execução própria em 2026-10-20T00:36:49-03:00, revisão `353a30bbb4a9`, fronteira cups_backend.print_file: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-11-1** (nominal, contrato próprio atual, `passed`): dado Fixture e destino Salvar como PDF. Ação: Preparar saída e reabri-la. Esperado: Arquivo reabre e preserva o plano escolhido; sucesso de geração não é prova de impressão física. Execução própria em 2026-10-20T00:46:51-03:00, revisão `0600b05aa24a`, fronteira worker prepare-print: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-11-2** (exception, contrato próprio atual, `passed`): dado Comando lp indisponível. Ação: Solicitar envio ao CUPS. Esperado: RuntimeError explícito; nenhum sucesso de envio é reportado. Execução própria em 2026-10-20T00:46:51-03:00, revisão `0600b05aa24a`, fronteira cups_backend.print_file: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -551,8 +551,8 @@ Composição independente em livreto, N-up e mosaico, herdada da base MIT e adap
 
 **Critérios planejados**
 
-- **S12-12-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético de oito páginas. Ação: Gerar livreto em ambos os lados e reabrir. Esperado: Quatro faces; ordem das duplas própria verificável, sem alterar o original. Execução própria em 2026-10-20T00:36:49-03:00, revisão `353a30bbb4a9`, fronteira worker prepare-print (booklet): [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-12-2** (exception, contrato próprio atual, `passed`): dado pages_per_sheet=4.5. Ação: Preparar modo multiple. Esperado: ValueError, sem aceitar silenciosamente uma quantidade inteira diferente. Execução própria em 2026-10-20T00:36:49-03:00, revisão `353a30bbb4a9`, fronteira imposition.prepare_output: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-12-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético de oito páginas. Ação: Gerar livreto em ambos os lados e reabrir. Esperado: Quatro faces; ordem das duplas própria verificável, sem alterar o original. Execução própria em 2026-10-20T00:46:51-03:00, revisão `0600b05aa24a`, fronteira worker prepare-print (booklet): [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-12-2** (exception, contrato próprio atual, `passed`): dado pages_per_sheet=4.5. Ação: Preparar modo multiple. Esperado: ValueError, sem aceitar silenciosamente uma quantidade inteira diferente. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira imposition.prepare_output: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -602,8 +602,8 @@ Fonte0.1.10: criar/renomear, mover subárvore por pai/posição e excluir subár
 
 **Critérios planejados**
 
-- **S12-13-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois marcadores. Ação: Inspecionar o painel. Esperado: Dois títulos, nível registrado e destino local conhecido ou null; nenhuma escrita no PDF. Execução própria em 2026-10-20T00:36:49-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-13-2** (exception, contrato próprio atual, `passed`): dado Marcador sem página local. Ação: Exibir seu destino. Esperado: Não atribuir a primeira página por padrão. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-13-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois marcadores. Ação: Inspecionar o painel. Esperado: Dois títulos, nível registrado e destino local conhecido ou null; nenhuma escrita no PDF. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-13-2** (exception, contrato próprio atual, `passed`): dado Marcador sem página local. Ação: Exibir seu destino. Esperado: Não atribuir a primeira página por padrão. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -651,8 +651,8 @@ Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlig
 
 **Critérios planejados**
 
-- **S12-14-1** (nominal, contrato próprio atual, `passed`): dado Fixture com nota contendo assunto e conteúdo distintos. Ação: Inspecionar o painel. Esperado: Assunto separado, comentário alvo e autor permanecem campos distintos na página conhecida. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-14-2** (exception, contrato próprio atual, `passed`): dado Objeto de anotação isolado inválido. Ação: Ler os demais comentários. Esperado: A falha de um objeto não deve ser reportada como criação/edição bem-sucedida de anotação. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-14-1** (nominal, contrato próprio atual, `passed`): dado Fixture com nota contendo assunto e conteúdo distintos. Ação: Inspecionar o painel. Esperado: Assunto separado, comentário alvo e autor permanecem campos distintos na página conhecida. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-14-2** (exception, contrato próprio atual, `passed`): dado Objeto de anotação isolado inválido. Ação: Ler os demais comentários. Esperado: A falha de um objeto não deve ser reportada como criação/edição bem-sucedida de anotação. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -698,9 +698,9 @@ Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências 
 
 **Critérios planejados**
 
-- **S12-15-1** (nominal, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx editável, sem XFA ou assinatura. Ação: Preencher o campo Tx e salvar cópia nova. Esperado: Reabrir a cópia confirma o texto; páginas e original são preservados. Widgets de escolha não estão neste subconjunto. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-15-2** (exception, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx ReadOnly ou MaxLen excedido. Ação: Tentar alterar o campo e salvar cópia. Esperado: Recusar a operação sem saída nova; preservar o original. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-15-3** (nominal, contrato próprio atual, `not_run`): dado AcroForm sintético com preço e quantidade (AFNumber_Keystroke com vírgula decimal) e total calculado com AFNumber_Format(2, 2, 0, 0, "R$ ", true). Ação: Preencher preço 1234,5 e quantidade 2 com cálculos e salvar cópia nova. Esperado: O total guarda 2469 sem formatação e a aparência mostra R$ 2.469,00; nenhum JavaScript é executado; o original é preservado.
+- **S12-15-1** (nominal, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx editável, sem XFA ou assinatura. Ação: Preencher o campo Tx e salvar cópia nova. Esperado: Reabrir a cópia confirma o texto; páginas e original são preservados. Widgets de escolha não estão neste subconjunto. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-15-2** (exception, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx ReadOnly ou MaxLen excedido. Ação: Tentar alterar o campo e salvar cópia. Esperado: Recusar a operação sem saída nova; preservar o original. Execução própria em 2026-10-20T00:46:52-03:00, revisão `0600b05aa24a`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-15-3** (nominal, contrato próprio atual, `passed`): dado AcroForm sintético com preço e quantidade (AFNumber_Keystroke com vírgula decimal) e total calculado com AFNumber_Format(2, 2, 0, 0, "R$ ", true). Ação: Preencher preço 1234,5 e quantidade 2 com cálculos e salvar cópia nova. Esperado: O total guarda 2469 sem formatação e a aparência mostra R$ 2.469,00; nenhum JavaScript é executado; o original é preservado. Execução própria em 2026-10-20T00:46:53-03:00, revisão `0600b05aa24a`, fronteira worker copy-edit (fill-form-events): [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -747,8 +747,8 @@ Atual0.1.4: catálogo plano/árvores Kids aninhadas e anexos de anotação; back
 
 **Critérios planejados**
 
-- **S12-16-1** (nominal, contrato próprio atual, `passed`): dado anexos-simples.pdf e uma pasta existente nova e vazia. Ação: Listar, usar o índice e SHA-256 devolvidos e extrair nota-sintetica.txt. Esperado: Bytes, tamanho e hash coincidem com anexos-simples.json; nada é executado. Execução própria em 2026-10-20T00:36:51-03:00, revisão `353a30bbb4a9`, fronteira worker attachments/extract-attachment: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-16-2** (exception, contrato próprio atual, `passed`): dado Nome de anexo ../fora.txt. Ação: Extrair. Esperado: A listagem marca o nome como não permitido e a extração falha sem criar arquivo fora ou dentro da pasta. Execução própria em 2026-10-20T00:36:51-03:00, revisão `353a30bbb4a9`, fronteira worker attachments/extract-attachment: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-16-1** (nominal, contrato próprio atual, `passed`): dado anexos-simples.pdf e uma pasta existente nova e vazia. Ação: Listar, usar o índice e SHA-256 devolvidos e extrair nota-sintetica.txt. Esperado: Bytes, tamanho e hash coincidem com anexos-simples.json; nada é executado. Execução própria em 2026-10-20T00:46:53-03:00, revisão `0600b05aa24a`, fronteira worker attachments/extract-attachment: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-16-2** (exception, contrato próprio atual, `passed`): dado Nome de anexo ../fora.txt. Ação: Extrair. Esperado: A listagem marca o nome como não permitido e a extração falha sem criar arquivo fora ou dentro da pasta. Execução própria em 2026-10-20T00:46:53-03:00, revisão `0600b05aa24a`, fronteira worker attachments/extract-attachment: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -790,8 +790,8 @@ Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/
 
 **Critérios planejados**
 
-- **S12-17-1** (nominal, contrato próprio atual, `passed`): dado PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos. Ação: Executar o subconjunto local descrito. Esperado: Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede. Execução própria em 2026-10-20T00:36:51-03:00, revisão `353a30bbb4a9`, fronteira worker sign-copy/signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-17-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação. Execução própria em 2026-10-20T00:36:52-03:00, revisão `353a30bbb4a9`, fronteira worker signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-17-1** (nominal, contrato próprio atual, `passed`): dado PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos. Ação: Executar o subconjunto local descrito. Esperado: Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede. Execução própria em 2026-10-20T00:46:54-03:00, revisão `0600b05aa24a`, fronteira worker sign-copy/signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-17-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação. Execução própria em 2026-10-20T00:46:54-03:00, revisão `0600b05aa24a`, fronteira worker signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -827,8 +827,8 @@ Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspe
 
 **Critérios planejados**
 
-- **S12-18-1** (nominal, contrato próprio atual, `passed`): dado PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis. Ação: Executar o subconjunto local descrito. Esperado: Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado. Execução própria em 2026-10-20T00:36:53-03:00, revisão `353a30bbb4a9`, fronteira worker protect-copy/security-info/owner-copy: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-18-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita. Execução própria em 2026-10-20T00:36:54-03:00, revisão `353a30bbb4a9`, fronteira worker security-info/owner-copy/protect-copy: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-18-1** (nominal, contrato próprio atual, `passed`): dado PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis. Ação: Executar o subconjunto local descrito. Esperado: Estado de autenticação/role/permissões sem senha no resultado; nova cópia AES-256 R6 verificada ou plaintext somente para owner autenticado. Execução própria em 2026-10-20T00:46:55-03:00, revisão `0600b05aa24a`, fronteira worker protect-copy/security-info/owner-copy: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-18-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: Credencial errada, role usuário para exportação plaintext, documento Sig/Perms/XFA/Collection, destino existente ou fonte alterada: recusa explícita. Execução própria em 2026-10-20T00:46:56-03:00, revisão `0600b05aa24a`, fronteira worker security-info/owner-copy/protect-copy: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -870,8 +870,8 @@ Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticad
 
 **Critérios planejados**
 
-- **S12-19-1** (nominal, contrato próprio atual, `passed`): dado PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8. Ação: Executar o subconjunto local descrito. Esperado: Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta. Execução própria em 2026-10-20T00:36:55-03:00, revisão `353a30bbb4a9`, fronteira worker accessible-text: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-19-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo. Execução própria em 2026-10-20T00:36:55-03:00, revisão `353a30bbb4a9`, fronteira worker accessible-text: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-19-1** (nominal, contrato próprio atual, `passed`): dado PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8. Ação: Executar o subconjunto local descrito. Esperado: Texto selecionável e acessível da página, status/cancelamento e descarte de resposta obsoleta. Execução própria em 2026-10-20T00:46:57-03:00, revisão `0600b05aa24a`, fronteira worker accessible-text: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-19-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: PDF cifrado, limite de texto excedido ou Poppler indisponível: erro explícito sem texto parcial apresentado como completo. Execução própria em 2026-10-20T00:46:57-03:00, revisão `0600b05aa24a`, fronteira worker accessible-text: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -910,8 +910,8 @@ Atual (0.1.16): janela de medidas sobre a página com calibração por comprimen
 
 **Critérios planejados**
 
-- **S12-20-1** (nominal, contrato próprio atual, `passed`): dado Imagem e página com escala conhecida; pontos separados por 72 pontos PDF. Ação: Medir o segmento horizontal. Esperado: Contrato próprio: 2,54 cm, formatado com duas casas decimais. Execução própria em 2026-10-20T00:36:56-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow _finish_measure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-20-2** (exception, contrato próprio atual, `passed`): dado Página sem pixbuf/tamanhos disponíveis. Ação: Concluir gesto de medida. Esperado: Nenhuma nova medida válida é publicada. Execução própria em 2026-10-20T00:36:57-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow _finish_measure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-20-1** (nominal, contrato próprio atual, `passed`): dado Imagem e página com escala conhecida; pontos separados por 72 pontos PDF. Ação: Medir o segmento horizontal. Esperado: Contrato próprio: 2,54 cm, formatado com duas casas decimais. Execução própria em 2026-10-20T00:46:58-03:00, revisão `0600b05aa24a`, fronteira PDFWindow _finish_measure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-20-2** (exception, contrato próprio atual, `passed`): dado Página sem pixbuf/tamanhos disponíveis. Ação: Concluir gesto de medida. Esperado: Nenhuma nova medida válida é publicada. Execução própria em 2026-10-20T00:46:59-03:00, revisão `0600b05aa24a`, fronteira PDFWindow _finish_measure: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -945,8 +945,8 @@ Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, 
 
 **Critérios planejados**
 
-- **S12-21-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético com OCGs nomeados, fixture a criar. Ação: Inspecionar painel. Esperado: Lista os nomes lidos, sem anunciar reprodução de mídia ou alteração de camada. Execução própria em 2026-10-20T00:36:57-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-21-2** (exception, contrato próprio atual, `passed`): dado PDF sem OCProperties. Ação: Inspecionar painel. Esperado: layers=[]; não criar uma camada fictícia. Execução própria em 2026-10-20T00:36:58-03:00, revisão `353a30bbb4a9`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-21-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético com OCGs nomeados, fixture a criar. Ação: Inspecionar painel. Esperado: Lista os nomes lidos, sem anunciar reprodução de mídia ou alteração de camada. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-21-2** (exception, contrato próprio atual, `passed`): dado PDF sem OCProperties. Ação: Inspecionar painel. Esperado: layers=[]; não criar uma camada fictícia. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -981,8 +981,8 @@ Preferência própria system/light/dark com migração legada e persistência; s
 
 **Critérios planejados**
 
-- **S12-22-1** (nominal, contrato próprio atual, `passed`): dado Configuração com modo dark e uma chave desconhecida. Ação: Salvar modo light e reabrir a preferência. Esperado: Modo light preservado e chave desconhecida conservada. Execução própria em 2026-10-20T00:36:58-03:00, revisão `353a30bbb4a9`, fronteira appearance.save_mode/read_mode: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-22-2** (exception, contrato próprio atual, `passed`): dado Modo inventado ao salvar. Ação: Chamar save_mode. Esperado: ValueError, sem tratar o modo como suportado. Execução própria em 2026-10-20T00:36:58-03:00, revisão `353a30bbb4a9`, fronteira appearance.save_mode: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-22-1** (nominal, contrato próprio atual, `passed`): dado Configuração com modo dark e uma chave desconhecida. Ação: Salvar modo light e reabrir a preferência. Esperado: Modo light preservado e chave desconhecida conservada. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira appearance.save_mode/read_mode: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-22-2** (exception, contrato próprio atual, `passed`): dado Modo inventado ao salvar. Ação: Chamar save_mode. Esperado: ValueError, sem tratar o modo como suportado. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira appearance.save_mode: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -1059,8 +1059,8 @@ Fonte0.1.12: TIFF multipágina em blocos, todas as páginas do IFD principal, at
 
 **Critérios planejados**
 
-- **S12-24-1** (nominal, contrato próprio atual, `passed`): dado PNG/JPEG sintéticos ordenados e DPI suportado. Ação: Converter para PDF em caminho novo. Esperado: Criar novo PDF RGB com orientação, ordem e dimensões declaradas; fontes intactas. Execução própria em 2026-10-20T00:36:58-03:00, revisão `353a30bbb4a9`, fronteira worker images-to-pdf: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-24-2** (exception, contrato próprio atual, `passed`): dado Arquivo GIF ou PNG/JPEG inválido. Ação: Solicitar conversão. Esperado: Recusar lote sem criar saída concluída e sem substituir arquivo existente. Execução própria em 2026-10-20T00:36:58-03:00, revisão `353a30bbb4a9`, fronteira worker images-to-pdf: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-24-1** (nominal, contrato próprio atual, `passed`): dado PNG/JPEG sintéticos ordenados e DPI suportado. Ação: Converter para PDF em caminho novo. Esperado: Criar novo PDF RGB com orientação, ordem e dimensões declaradas; fontes intactas. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira worker images-to-pdf: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-24-2** (exception, contrato próprio atual, `passed`): dado Arquivo GIF ou PNG/JPEG inválido. Ação: Solicitar conversão. Esperado: Recusar lote sem criar saída concluída e sem substituir arquivo existente. Execução própria em 2026-10-20T00:47:00-03:00, revisão `0600b05aa24a`, fronteira worker images-to-pdf: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 
@@ -1099,8 +1099,8 @@ Atual (0.1.16): abrir PDF pelo seletor do sistema (GtkFileChooserNative, portal 
 
 **Critérios planejados**
 
-- **S12-25-1** (nominal, contrato próprio atual, `passed`): dado Desktop Linux de teste com xdg-desktop-portal; aplicativo com GTK_USE_PORTAL=1, um documento aberto e outro PDF escolhido no seletor. Ação: Usar Abrir pelo seletor do sistema, escolher o arquivo no portal e confirmar. Esperado: Abrir somente o arquivo escolhido; a chamada e a resposta passam pelo portal; o documento anterior não é alterado e nenhum outro arquivo da pasta é aberto. Execução própria em 2026-10-20T00:36:59-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow._choose_open_native via xdg-desktop-portal: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
-- **S12-25-2** (exception, contrato próprio atual, `passed`): dado Mesmo desktop de teste com um documento aberto. Ação: Abrir o seletor do sistema e cancelar no portal. Esperado: Nenhum acesso ampliado, erro ou sucesso falso; o documento corrente continua aberto. Execução própria em 2026-10-20T00:37:32-03:00, revisão `353a30bbb4a9`, fronteira PDFWindow._choose_open_native via xdg-desktop-portal: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-25-1** (nominal, contrato próprio atual, `passed`): dado Desktop Linux de teste com xdg-desktop-portal; aplicativo com GTK_USE_PORTAL=1, um documento aberto e outro PDF escolhido no seletor. Ação: Usar Abrir pelo seletor do sistema, escolher o arquivo no portal e confirmar. Esperado: Abrir somente o arquivo escolhido; a chamada e a resposta passam pelo portal; o documento anterior não é alterado e nenhum outro arquivo da pasta é aberto. Execução própria em 2026-10-20T00:47:01-03:00, revisão `0600b05aa24a`, fronteira PDFWindow._choose_open_native via xdg-desktop-portal: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
+- **S12-25-2** (exception, contrato próprio atual, `passed`): dado Mesmo desktop de teste com um documento aberto. Ação: Abrir o seletor do sistema e cancelar no portal. Esperado: Nenhum acesso ampliado, erro ou sucesso falso; o documento corrente continua aberto. Execução própria em 2026-10-20T00:47:34-03:00, revisão `0600b05aa24a`, fronteira PDFWindow._choose_open_native via xdg-desktop-portal: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json).
 
 **Lacunas da referência Foxit**
 

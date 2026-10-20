@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T00:38:25-03:00",
+  "updated_at_local": "2026-10-20T00:48:15-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -44,16 +44,22 @@
       "id": "E03",
       "block": "Formulários",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Formatação de números (AFNumber_Format)",
       "goal": "Reconhecer AFNumber_Format por gramática fechada e aplicar casas decimais, separadores e símbolo ao valor e à aparência, sem executar JavaScript.",
-      "verification": "Testes portáveis novos e caso de aceitação com fixture de formulário formatado."
+      "verification": "Testes portáveis novos e caso de aceitação com fixture de formulário formatado.",
+      "commit": "0600b05",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json",
+        "tests/test_form_events.py"
+      ],
+      "note": "Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py."
     },
     {
       "id": "E04",
       "block": "Formulários",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Datas em formulários (AFDate_FormatEx)",
       "goal": "Validar e formatar datas com máscaras fechadas suportadas, recusando entradas inválidas.",
       "verification": "Testes portáveis com datas válidas, inválidas e limites."

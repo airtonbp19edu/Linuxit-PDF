@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T00:38:25-03:00. Pendente: 20, Em andamento: 1, Concluída: 2, Bloqueada: 1.
+Atualizado em 2026-10-20T00:48:15-03:00. Pendente: 19, Em andamento: 1, Concluída: 3, Bloqueada: 1.
 
 **Regras**
 
@@ -15,8 +15,8 @@ Atualizado em 2026-10-20T00:38:25-03:00. Pendente: 20, Em andamento: 1, Concluí
 |---|---|---|---|---|
 | E01 | Verificador do catálogo de operações verde | Base e entrega | nada | Concluída |
 | E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Concluída |
-| E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Em andamento |
-| E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Pendente |
+| E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Concluída |
+| E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Em andamento |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Pendente |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
@@ -70,7 +70,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json](
 
 **Como verificar:** Testes portáveis novos e caso de aceitação com fixture de formulário formatado.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `0600b05`.
 
 ### E04 — Datas em formulários (AFDate_FormatEx)
 
@@ -78,7 +82,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json](
 
 **Como verificar:** Testes portáveis com datas válidas, inválidas e limites.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E05 — Máscaras especiais (AFSpecial_Format 0–3)
 

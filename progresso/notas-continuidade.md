@@ -3201,3 +3201,12 @@ Correção de registro: horários da E01/E02 anotados adiantados (00:36, 00:38, 
 Limitações: portal sem FUSE no ambiente local (o seletor funciona; o portal de documentos não monta); confirmação no Debian 13 pendente no CI. Nenhum Flatpak novo; VM intocada.
 
 Próximo passo: E03, formatação AFNumber_Format por gramática fechada.
+
+
+## 2026/10/20 às 00:48 (America/Sao_Paulo, UTC-03:00) — E03 concluída
+
+- CI 39365389394 (Debian 13) confirmou a E02 na revisão `345b536`: aceitação 48/48 com os dois casos de portal real e suíte 571/571 (`testes/resultados/aceitacao/2026-10-20/ci-debian13-e02-review.json`).
+- **E03** (`0600b05`): `AFNumber_Format` e `AFNumber_Keystroke` por gramática fechada em `app/pdf_form_events.py`. O `/V` fica sem formatação e a aparência mostra o número formatado. Vírgula decimal é aceita nos estilos com vírgula; negativos em vermelho são recusados explicitamente. 5 testes novos e caso S12-15-3 com a fixture `formulario-numerico.pdf`. Suíte local 576/576; aceitação 49/49 (`execucao-ubuntu24-e03.json`).
+- Verificador do catálogo: `scripts/refresh_operation_pins.py` refixa trechos só deslocados e exige `--accept` depois de revisar trechos alterados. Foram revisadas e aceitas 11 operações: 10 citam o despachante `_apply`, cujo único ramo alterado é o de formulário com eventos, e `forms/events`, que teve o texto do contrato atualizado. Evidência própria desatualizada passa a ser informada, e só bloqueia se alguma operação depender dela.
+
+Próximo passo: E04, datas em formulários.
