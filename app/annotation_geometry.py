@@ -14,6 +14,40 @@ def _require(condition,message):
     if not condition:raise ValueError(message)
 
 
+def _text_appearance(writer,text,width,height,stamp):
+    """Shaped Unicode text with embedded fonts, laid out by the worker for a width x height box."""
+    _require(isinstance(text,str) and text.strip() and len(text)<=4096,'Texto deve ter de 1 a 4096 caracteres.')
+    from search_tasks import run_search_worker
+    from cancel_state import get_event
+    payload=run_search_worker('annotation-appearance','appearance',dict(text=text,width=width,height=height,stamp=stamp),get_event(),timeout=120)
+    if payload is None:raise ValueError('Preparação da anotação cancelada.')
+    raw=base64.b64decode(payload['pdf'],validate=True)
+    _require(len(raw)<=4*1024**2,'Aparência acima de 4MiB.')
+    document=PdfReader(io.BytesIO(raw));page=document.pages[0]
+    appearance=DecodedStreamObject();appearance.set_data(page.get_contents().get_data())
+    return appearance,page['/Resources'].clone(writer)
+
+
+def resize_annotation(writer,note,rect):
+    """E13: new /Rect for Square, Circle or FreeText with a regenerated, coherent appearance."""
+    from annotation_style import current_style,restyle_annotation
+    subtype=note.get('/Subtype')
+    _require(subtype in ('/Square','/Circle','/FreeText'),'Só retângulos, elipses e texto livre podem ser redimensionados.')
+    x0,y0,x1,y1=map(float,rect)
+    _require(min(x1-x0,y1-y0)>=MIN_SPAN,'A nova área deve ter ao menos 0,25 ponto de lado.')
+    note[NameObject('/Rect')]=_numbers([x0,y0,x1,y1])
+    note.pop('/RD',None)  # Inner margins referred to the old rectangle.
+    if subtype=='/FreeText':
+        appearance,resources=_text_appearance(writer,str(note.get('/Contents','')),x1-x0,y1-y0,False)
+        appearance.update({NameObject('/Type'):NameObject('/XObject'),NameObject('/Subtype'):NameObject('/Form'),
+            NameObject('/FormType'):NumberObject(1),NameObject('/BBox'):_numbers([0,0,x1-x0,y1-y0]),NameObject('/Resources'):resources})
+        note[NameObject('/AP')]=DictionaryObject({NameObject('/N'):writer._add_object(appearance)})
+        return note
+    color,opacity=current_style(note)
+    # Without /C viewers draw the border black; keep that look explicitly.
+    return restyle_annotation(writer,note,color or [0.0,0.0,0.0],max(opacity,0.1))
+
+
 def create_extra_annotation(writer,cropbox,operation):
     kind=operation['kind'];left,bottom,right,top=_coordinates(cropbox)
     text=operation['text']
@@ -40,16 +74,7 @@ def create_extra_annotation(writer,cropbox,operation):
         NameObject('/F'):NumberObject(4),NameObject('/C'):_numbers([.85,.1,.1])})
     appearance=DecodedStreamObject()
     if kind in ('add-freetext','add-stamp'):
-        _require(text.strip() and len(text)<=4096,'Texto deve ter de 1 a 4096 caracteres.')
-        from search_tasks import run_search_worker
-        from cancel_state import get_event
-        payload=run_search_worker('annotation-appearance','appearance',dict(text=text,width=x1-x0,height=y1-y0,stamp=kind=='add-stamp'),get_event(),timeout=120)
-        if payload is None:raise ValueError('Preparação da anotação cancelada.')
-        raw=base64.b64decode(payload['pdf'],validate=True)
-        _require(len(raw)<=4*1024**2,'Aparência acima de 4MiB.')
-        document=PdfReader(io.BytesIO(raw));page=document.pages[0]
-        appearance.set_data(page.get_contents().get_data())
-        resources=page['/Resources'].clone(writer)
+        appearance,resources=_text_appearance(writer,text,x1-x0,y1-y0,kind=='add-stamp')
         if kind=='add-freetext':note[NameObject('/DA')]=TextStringObject('/Helv 12 Tf 0.85 0.1 0.1 rg')
         else:note[NameObject('/Name')]=NameObject('/LinuxitCustom')
     else:

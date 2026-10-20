@@ -17,7 +17,7 @@ from pdf_form_controls import inspect_controls, fill_controls
 from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
 from pdf_form_events import inspect_form_events, calculate_form_values, format_form_values
-from annotation_geometry import EXTRA_KINDS, create_extra_annotation, move_annotation, conversation_members
+from annotation_geometry import EXTRA_KINDS, create_extra_annotation, resize_annotation, move_annotation, conversation_members
 from annotation_style import STYLEABLE, current_style, restyle_annotation
 from pdf_xfa import XFAError, field_data_path, inspect_xfa, write_field_values
 from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
@@ -213,7 +213,9 @@ def _annotation_records(reader):
             size += cost
             color, opacity = current_style(note)
             rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text, 'author':author,
-                         'styleable':note['/Subtype'] in STYLEABLE, 'color':color, 'opacity':opacity})
+                         'styleable':note['/Subtype'] in STYLEABLE, 'color':color, 'opacity':opacity,
+                         'resizable':note['/Subtype'] in ('/Square','/Circle','/FreeText'),
+                         'rect':[float(v) for v in note['/Rect']] if isinstance(note.get('/Rect'), list) and len(note['/Rect']) == 4 else None})
     return rows, truncated
 
 
@@ -426,6 +428,17 @@ def _apply(writer, operation):
         note[NameObject('/IRT')]=annots[index];note[NameObject('/RT')]=NameObject('/R')
         note[NameObject('/T')]=TextStringObject(author);note[NameObject('/F')]=NumberObject(4)
         writer.add_annotation(operation['page'],note)
+    elif kind == 'resize-annotation':
+        # E13: new rectangle for Square, Circle or FreeText, appearance regenerated.
+        _require(set(operation) == {'kind', 'page', 'index', 'rect'}, 'Opções de tamanho inválidas.')
+        page = _page(writer, operation['page']);annots = page.get('/Annots')
+        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
+        annots = annots.get_object();index = operation['index']
+        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
+        annotation = annots[index].get_object()
+        _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
+                 'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
+        resize_annotation(writer, annotation, _annotation_rect(page, operation['rect']))
     elif kind == 'style-annotation':
         # E12: colour and opacity of an existing simple annotation, appearance regenerated.
         _require(set(operation) == {'kind', 'page', 'index', 'color', 'opacity'}, 'Opções de estilo inválidas.')

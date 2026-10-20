@@ -412,6 +412,38 @@ def annotation_style_refused(ctx):
     return outcomes
 
 
+@case('S12-14-5', 'worker copy-edit (resize-annotation) + Poppler')
+def annotation_resize(ctx):
+    from pypdf import PdfReader
+    from PIL import Image
+    source, index = _styled_source(ctx);before = sha256(source);output = ctx.work / 'maior.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'resize-annotation', 'page': 0, 'index': index['/Square'],
+                                                         'rect': [40, 150, 200, 290]}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] == 0, run['stderr'])
+    note = PdfReader(str(output)).pages[0]['/Annots'][index['/Square']].get_object()
+    check([float(v) for v in note['/Rect']] == [40, 150, 200, 290], f"Rect {note['/Rect']}")
+    base = ctx.work / 'render'
+    subprocess.run(['pdftoppm', '-r', '144', '-png', '-singlefile', str(output), str(base)], check=True, timeout=60)
+    image = Image.open(str(base) + '.png').convert('RGB')
+    new_edge, old_edge = image.getpixel((81, 140)), image.getpixel((41, 100))
+    check(sum(new_edge) < 600 and sum(old_edge) > 740, f'borda nova {new_edge}, antiga {old_edge}')
+    check(sha256(source) == before, 'original alterado')
+    return dict(rect=[40, 150, 200, 290], new_edge_rgb=list(new_edge), old_edge_rgb=list(old_edge), original_preserved=True)
+
+
+@case('S12-14-6', 'worker copy-edit (resize-annotation)')
+def annotation_resize_refused(ctx):
+    source, index = _styled_source(ctx);before = sha256(source);outcomes = {}
+    for label, operation in (('nota', {'index': index['/Text'], 'rect': [10, 10, 60, 60]}),
+                             ('fora_da_pagina', {'index': index['/Square'], 'rect': [10, 10, 400, 60]})):
+        output = ctx.work / f'{label}.pdf'
+        run = ctx.worker('copy-edit', source, output, request={'source_sha256': before, 'operations': [dict(kind='resize-annotation', page=0, **operation)]})
+        outcomes[label] = run['code'] != 0 and not output.exists()
+    check(all(outcomes.values()) and sha256(source) == before, f'recusas: {outcomes}')
+    return outcomes
+
+
 # 15 — forms
 
 def _form_request(path, values):

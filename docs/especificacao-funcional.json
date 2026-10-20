@@ -2034,7 +2034,7 @@
       "name": "Anotações/undo/gravação",
       "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2395,6 +2395,22 @@
         {
           "path": "tests/test_annotation_style_gtk.py",
           "test": "test_dialog_offers_styleable_records_with_current_style_and_returns_operation"
+        },
+        {
+          "path": "tests/test_annotation_resize.py",
+          "test": "test_square_and_circle_are_redrawn_in_the_new_rectangle"
+        },
+        {
+          "path": "tests/test_annotation_resize.py",
+          "test": "test_freetext_is_laid_out_again_for_the_new_size"
+        },
+        {
+          "path": "tests/test_annotation_resize.py",
+          "test": "test_line_outside_page_and_tiny_rectangles_are_refused"
+        },
+        {
+          "path": "tests/test_annotation_style_gtk.py",
+          "test": "test_resize_dialog_prefills_the_current_rectangle_and_returns_the_new_one"
         }
       ],
       "dynamic_case_refs": [
@@ -2476,6 +2492,28 @@
             "executed_at_local": "2026-10-20T15:49:10-03:00",
             "boundary": "worker copy-edit (style-annotation)"
           }
+        },
+        {
+          "id": "S12-14-5",
+          "kind": "nominal",
+          "given": "PDF sintético com um retângulo criado pelo aplicativo em [20,200,120,280].",
+          "when": "Redimensionar para [40,150,200,290] e salvar cópia nova.",
+          "expected_linuxit": "O /Rect passa a [40,150,200,290]; o Poppler desenha a borda na nova posição e nada na borda antiga; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-14-6",
+          "kind": "exception",
+          "given": "O mesmo PDF, com uma nota e o retângulo.",
+          "when": "Redimensionar a nota e levar o retângulo para fora da página.",
+          "expected_linuxit": "Recusar os dois pedidos sem criar saída; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -2489,6 +2527,11 @@
           "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
           "superseded_at_local": "2026-10-20T15:45:00-03:00",
           "reason": "Etapa E12: cor e opacidade de anotações existentes."
+        },
+        {
+          "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+          "superseded_at_local": "2026-10-20T15:53:00-03:00",
+          "reason": "Etapa E13: redimensionar Square, Circle e FreeText."
         }
       ]
     },

@@ -70,7 +70,7 @@ def ink_operation_dialog(parent, info, page):
 ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
                   'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
-ADVANCED_KINDS.add('style-annotation')
+ADVANCED_KINDS.update({'style-annotation','resize-annotation'})
 ADVANCED_KINDS.update({'add-polygon','add-polyline','add-caret','add-freetext','add-stamp',
                        'move-annotation','update-comment','set-popup','delete-conversation'})
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
@@ -81,6 +81,7 @@ TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador 
 TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder comentário'})
 TITLES['fill-form-events']='Preencher com cálculos e validação'
 TITLES['style-annotation']='Cor e opacidade da anotação'
+TITLES['resize-annotation']='Redimensionar anotação'
 TITLES.update({'add-polygon':'Adicionar polígono','add-polyline':'Adicionar polilinha','add-caret':'Marcar inserção',
     'add-freetext':'Adicionar texto livre','add-stamp':'Adicionar carimbo textual','move-annotation':'Mover anotação',
     'update-comment':'Editar comentário ou resposta','set-popup':'Configurar popup','delete-conversation':'Excluir conversa e popups'})
@@ -263,6 +264,25 @@ def advanced_operation_dialog(parent, kind, info, page):
             buffer=comment.get_buffer();text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True)
             if not text.strip():raise ValueError('Digite a resposta.')
             return dict(kind=kind,page=page,index=records[combo.get_active()]['index'],text=text,author=author.get_text())
+    elif kind == 'resize-annotation':
+        # E13: new rectangle for rectangles, ellipses and free text, appearance regenerated.
+        records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('resizable') and r.get('rect')]
+        names = {'/Square':'Retângulo','/Circle':'Elipse','/FreeText':'Texto livre'}
+        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        left, bottom, right, top = info['page_boxes'][page]
+        grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid);spins = []
+        for row, label in enumerate(('Esquerda', 'Inferior', 'Direita', 'Superior')):
+            low, high = (left, right) if row in (0, 2) else (bottom, top)
+            spin = Gtk.SpinButton.new_with_range(low, high, 1);spin.set_digits(1);spin.get_accessible().set_name(label)
+            grid.attach(Gtk.Label(label=label, xalign=0), 0, row, 1, 1);grid.attach(spin, 1, row, 1, 1);spins.append(spin)
+        def selected_rect(*_):
+            if combo.get_active() < 0:return
+            for spin, value in zip(spins, records[combo.get_active()]['rect']):spin.set_value(value)
+        combo.connect('changed', selected_rect)
+        hint.set_text('Informe a nova área em pontos PDF, antes da rotação. O desenho é refeito no novo tamanho; o texto livre é diagramado de novo.')
+        def operation():
+            if combo.get_active() < 0:raise ValueError('Não há retângulos, elipses ou textos livres nesta página.')
+            return dict(kind=kind, page=page, index=records[combo.get_active()]['index'], rect=[round(s.get_value(), 3) for s in spins])
     elif kind == 'style-annotation':
         # E12: colour and opacity of existing simple annotations; appearance regenerated.
         records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('styleable')]
