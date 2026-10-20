@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T12:47:00-03:00. Pendente: 16, Concluída: 11, Bloqueada: 1.
+Atualizado em 2026-10-20T12:52:00-03:00. Pendente: 16, Concluída: 11, Bloqueada: 1.
 
 **Regras**
 
@@ -173,9 +173,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json](
 
 **Situação:** Concluída.
 
-A família Nuvem deixou de ser proposta: o contrato agora é o fluxo de pasta sincronizada já implementado (pasta preferida, abrir dela, cópia completa e exclusiva que só diz "salva localmente", bloqueio quando o cliente troca o PDF aberto, nunca sobrescrever arquivo criado pelo cliente). S12-23-1 e S12-23-2 trocaram o provedor simulado por esse fluxo, na janela real; textos antigos preservados. Login, transferência por API e colaboração remota continuam adiados. Suíte 607/607; aceitação 59/59 (todos os planos) na revisão 033e245. Falta só testar com um cliente sincronizador real.
+A família Nuvem deixou de ser proposta: o contrato agora é o fluxo de pasta sincronizada já implementado (pasta preferida, abrir dela, cópia completa e exclusiva que só diz "salva localmente", bloqueio quando o cliente troca o PDF aberto, nunca sobrescrever arquivo criado pelo cliente). S12-23-1 e S12-23-2 trocaram o provedor simulado por esse fluxo, na janela real; textos antigos preservados. Login, transferência por API e colaboração remota continuam adiados. Suíte 607/607; aceitação 59/59 (todos os planos) na revisão 033e245. Falta só testar com um cliente sincronizador real. CI Debian 13 (execução 39451575700, revisão 033e245): suíte 607/607 e aceitação 59/59.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [testes/aceitacao/casos_gtk.py](../testes/aceitacao/casos_gtk.py). Commit `033e245`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [testes/aceitacao/casos_gtk.py](../testes/aceitacao/casos_gtk.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e28-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e28-review.json). Commit `033e245`.
 
 ### E08 — Segunda assinatura em revisão incremental
 

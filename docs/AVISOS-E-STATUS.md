@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 12:47 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 12:52 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,14 +15,14 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **59 de 59 casos aprovados** na revisão `033e245`, agora incluindo os 2 de nuvem pelo fluxo de pasta sincronizada. O CI no Debian 13 confirmou a E07 (aceitação 57/57, suíte 607/607); o CI da E28 está em andamento. Suíte própria completa **607/607** no Ubuntu 24.04.
+- Execução registrada: **59 de 59 casos aprovados** na revisão `033e245`, agora incluindo os 2 de nuvem pelo fluxo de pasta sincronizada. O CI no Debian 13 confirmou a E28: aceitação 59/59 e suíte 607/607. Suíte própria completa **607/607** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Nada em execução além do CI da E28. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Aguardando você para a **E08**.
+- Nada em execução. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Aguardando você para a **E08**.
 
 ### Falta
 
@@ -88,3 +88,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 12:37** — CI no Debian 13 confirmou a E07: aceitação 57/57 e suíte 607/607, sem quedas. Nenhuma etapa nova iniciada; aguardando você para a E08.
 - **2026/10/20 às 12:39** — Pedido: procurar a decisão sobre nuvem e fechar o ciclo. Encontrada a decisão de 17/10/2026 às 20:51: usar pastas sincronizadas por programas externos; o Linuxit só trabalha com arquivos locais. Os 2 casos de aceitação de nuvem que faltavam ainda descreviam um provedor remoto simulado. Criada a etapa E28 para trocar esses casos pelo fluxo escolhido e executá-los. Login, envio por API e colaboração remota seguem adiados.
 - **2026/10/20 às 12:47** — E28 concluída (`033e245`): o ciclo da nuvem foi fechado com a sua decisão de 17/10/2026 (pastas sincronizadas por programas externos). Os 2 casos de nuvem agora testam esse fluxo na janela real: abrir da pasta, salvar cópia que só se declara salva localmente, bloquear quando o sincronizador troca o PDF aberto e nunca sobrescrever arquivo criado por ele. Aceitação 59/59 (todos os planos), suíte 607/607. Login, envio por API e colaboração remota seguem adiados. CI no Debian 13 em andamento. Parado, aguardando você para a E08.
+- **2026/10/20 às 12:52** — CI no Debian 13 confirmou a E28: aceitação 59/59 e suíte 607/607. Nenhuma etapa nova iniciada; aguardando você para a E08.
