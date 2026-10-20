@@ -37,6 +37,20 @@ def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+def tested_bytes(commit, name):
+    """A file exactly as it was in the tested source commit (the checkout may be newer)."""
+    require(re.fullmatch('[0-9a-f]{40}', commit), 'Invalid tested commit')
+    return subprocess.check_output(['git', 'show', commit + ':' + name], cwd=ROOT)
+
+
+def tested_inventory(commit, folder):
+    """{relative path: SHA-256} of every file under `folder` in the tested commit."""
+    listing = subprocess.check_output(['git', 'ls-tree', '-r', '-z', '--name-only', commit, '--', folder + '/'], cwd=ROOT)
+    names = [n.decode('utf-8') for n in listing.split(b'\0') if n]
+    return {n[len(folder) + 1:]: hashlib.sha256(tested_bytes(commit, n)).hexdigest() for n in names
+            if '__pycache__' not in n.split('/') and not n.endswith(('.pyc', '.pyo'))}
+
+
 def inventory(folder):
     return {p.relative_to(folder).as_posix(): sha(p) for p in folder.rglob('*')
             if p.is_file() and '__pycache__' not in p.parts and p.suffix not in ('.pyc', '.pyo')}
@@ -144,17 +158,22 @@ def audit(installed_root=None):
     require(read(reports / 'sandbox-smoke.json')['inside_flatpak'] is True, 'Smoke outside sandbox')
     integrity = read(reports / 'source-payload-integrity.json')
     files = indexed(integrity['files'])
+    # The audit may run on a newer checkout (development continues after a candidate);
+    # what must match is the tested source commit, read from Git, not the working tree.
+    commit = manifest['source_commit']
     require(integrity['all_match'] is True and integrity['matched_files'] == len(files)
-            and indexed(source['app_files']) == files == inventory(ROOT / 'app'), 'Application source changed since tests')
-    require(sha(ROOT / 'scripts/build_flatpak.py') == manifest['builder_sha256'], 'Builder changed since delivery')
+            and indexed(source['app_files']) == files == tested_inventory(commit, 'app'), 'Application source changed since tests')
+    require(hashlib.sha256(tested_bytes(commit, 'scripts/build_flatpak.py')).hexdigest() == manifest['builder_sha256'],
+            'Builder changed since delivery')
+    checkout_differs = inventory(ROOT / 'app') != files
     for name, digest in files.items():
         data = subprocess.check_output(['git', 'show', manifest['source_commit'] + ':app/' + name], cwd=ROOT)
         require(hashlib.sha256(data).hexdigest() == digest, 'Tested Git source differs: ' + name)
-    tree = ast.parse((ROOT / 'app/version.py').read_text())
+    tree = ast.parse(tested_bytes(commit, 'app/version.py').decode('utf-8'))
     source_version = next(n.value.value for n in tree.body if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'VERSION' for t in n.targets))
     require(version == source_version, 'Application/delivery version differs')
-    require('MIT License' in (ROOT / 'LICENSE').read_text(), 'Own MIT license missing')
-    require('Redistribution and use' in (ROOT / 'docs/pypdf-LICENSE.txt').read_text(), 'pypdf BSD notice missing')
+    require(b'MIT License' in tested_bytes(commit, 'LICENSE'), 'Own MIT license missing')
+    require(b'Redistribution and use' in tested_bytes(commit, 'docs/pypdf-LICENSE.txt'), 'pypdf BSD notice missing')
     require(read(ROOT / 'docs/proveniencia-base.json')['license'] == 'MIT', 'Base provenance missing')
     runtime = read(reports / 'runtime-origins.json')
     indexed(runtime['files'])
@@ -205,6 +224,7 @@ def audit(installed_root=None):
               'limitations': ['Checks own delivery and recorded evidence, not original Foxit behavior.',
                               'Existing done criteria get structural link checks, not a rerun of all reverse-engineering work.',
                               'GTK layout, desktop integrations, accessibility and physical printing remain open.']}
+    result['checkout_app_differs_from_tested_commit'] = checkout_differs
     if source_access_path:
         result['corresponding_source_versions_verified'] = len(package_rows)
         result['source_download_availability_live_checked'] = False
@@ -223,12 +243,13 @@ def audit(installed_root=None):
         for name in ('runtime-origins.json', 'runtime-packages.tsv'):
             reference = reports / name if name.endswith('.json') else local(ROOT, manifest['runtime_packages'])
             require(sha(local(payload, 'share/doc/linuxit-pdf/' + name)) == sha(reference), 'Installed provenance differs: ' + name)
-        require(sha(local(payload, 'share/doc/linuxit-pdf/LICENSE')) == sha(ROOT / 'LICENSE'), 'Installed MIT license differs')
-        require(sha(local(payload, 'share/doc/linuxit-pdf/pypdf-LICENSE.txt')) == sha(ROOT / 'docs/pypdf-LICENSE.txt'), 'Installed BSD license differs')
+        def tested_sha(name):return hashlib.sha256(tested_bytes(commit, name)).hexdigest()
+        require(sha(local(payload, 'share/doc/linuxit-pdf/LICENSE')) == tested_sha('LICENSE'), 'Installed MIT license differs')
+        require(sha(local(payload, 'share/doc/linuxit-pdf/pypdf-LICENSE.txt')) == tested_sha('docs/pypdf-LICENSE.txt'), 'Installed BSD license differs')
         if source_access_path:
             require(sha(local(payload, 'share/doc/linuxit-pdf/runtime-source-access.json')) == sha(source_access_path), 'Installed corresponding-source manifest differs')
-            require(sha(local(payload, 'share/doc/linuxit-pdf/RUNTIME-SOURCE-ACCESS.md')) == sha(ROOT / 'docs/RUNTIME-SOURCE-ACCESS.md'), 'Installed source-access instructions differ')
-            require(sha(local(payload, 'share/doc/linuxit-pdf/snowballstemmer-COPYING.txt')) == sha(ROOT / 'app/vendor/snowballstemmer/COPYING'), 'Installed Snowball BSD notice differs')
+            require(sha(local(payload, 'share/doc/linuxit-pdf/RUNTIME-SOURCE-ACCESS.md')) == tested_sha('docs/RUNTIME-SOURCE-ACCESS.md'), 'Installed source-access instructions differ')
+            require(sha(local(payload, 'share/doc/linuxit-pdf/snowballstemmer-COPYING.txt')) == tested_sha('app/vendor/snowballstemmer/COPYING'), 'Installed Snowball BSD notice differs')
         result['installed_runtime'] = verify_runtime_files(payload, runtime)
         result['installed_payload_verified'] = True
     return result

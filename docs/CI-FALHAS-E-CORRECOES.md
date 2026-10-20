@@ -110,3 +110,21 @@ mesmo pacote conferido. O dono abre o rascunho na página Releases e clica em
 "Publish release"; a tag é criada no commit testado com a permissão dele. Se a
 tag já existir e apontar para o commit testado, o fluxo publica direto nela. Nada
 foi recompilado e nenhum arquivo foi publicado na execução que falhou.
+
+
+## Auditoria da 0.1.17 — "Application source changed since tests" (2026-10-20)
+
+A [auditoria 39487498872](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39487498872)
+da 0.1.17 publicada parou antes de instalar o pacote: o auditor comparava os
+arquivos de `app/` do checkout atual com os testados no candidato. Depois do
+candidato `dec46c9` o desenvolvimento continuou (E12 a E15), então o checkout da
+`main` é legitimamente mais novo. Não era divergência do pacote.
+
+Correção: `scripts/audit_delivery.py` passa a ler do Git, no commit testado do
+manifesto, o inventário de `app/`, o construtor, `app/version.py` e as licenças
+comparadas com o pacote instalado. A exigência continua a mesma (pacote = fonte
+testada, arquivo por arquivo), mas não depende mais de a `main` estar parada. O
+relatório informa `checkout_app_differs_from_tested_commit`. Execução local:
+aprovada, 179 arquivos e 18 checksums conferidos. As integrações de desktop da
+0.1.17 ([39487502789](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39487502789))
+passaram nas duas repetições.
