@@ -3237,3 +3237,8 @@ Respostas do usuário às 01:08: D01, régua com vírgula decimal (2,54 cm); D02
 ## 2026/10/20 às 01:13 (America/Sao_Paulo, UTC-03:00) — CI confirma a E05
 
 CI 39367796407 (Debian 13) na revisão `860a958`: aceitação 53/53 e suíte 583/583, sem falhas; o teste de mídia passou no CI (`ci-debian13-e05-review.json`). Nenhuma etapa nova iniciada.
+
+
+## 2026/10/20 às 10:05 (America/Sao_Paulo, UTC-03:00) — E25 concluída
+
+Pedido do usuário às 09:58: continuar. **E25** (`db8c6fe`): `measurement.decimal_text` com vírgula decimal (decisão D01) na régua (2,54 cm), na janela de medidas (até seis algarismos significativos) e no tamanho da página (uma casa). Trecho `PDFWindow._finish_measure` revisado e refixado; texto da operação `measurement/distance` atualizado. Suíte local 584/584; aceitação 53/53 (`execucao-ubuntu24-e25.json`). Parado; E26 aguarda confirmação do usuário.

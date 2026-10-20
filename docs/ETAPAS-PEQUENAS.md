@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T01:13:06-03:00. Pendente: 20, Concluída: 5, Bloqueada: 1.
+Atualizado em 2026-10-20T10:05:50-03:00. Pendente: 19, Concluída: 6, Bloqueada: 1.
 
 **Regras**
 
@@ -19,7 +19,7 @@ Atualizado em 2026-10-20T01:13:06-03:00. Pendente: 20, Concluída: 5, Bloqueada:
 | E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Concluída |
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Concluída |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Concluída |
-| E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Pendente |
+| E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Concluída |
 | E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Pendente |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
@@ -109,7 +109,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](
 
 **Como verificar:** Caso S12-20-1 atualizado para 2,54 cm com teste GTK; demais exibições de medida conferidas.
 
-**Situação:** Pendente.
+**Situação:** Concluída.
+
+Função única measurement.decimal_text: régua com duas casas (2,54 cm), janela de medidas com até seis algarismos significativos (6,4516) e tamanho da página com uma casa (21,0 × 29,7 cm). Só o texto muda, nunca o valor medido. Suíte local 584/584; aceitação 53/53 com S12-20-1 esperando 2,54 cm.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json), [tests/test_measurement_layers_speech.py](../tests/test_measurement_layers_speech.py). Commit `db8c6fe`.
 
 ### E26 — Estabilizar o teste de reprodução de mídia
 

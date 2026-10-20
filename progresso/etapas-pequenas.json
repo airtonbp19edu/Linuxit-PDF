@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T01:13:06-03:00",
+  "updated_at_local": "2026-10-20T10:05:50-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -93,10 +93,16 @@
       "id": "E25",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "pendente",
+      "status": "concluida",
       "title": "Régua com vírgula decimal (2,54 cm)",
       "goal": "Mostrar as medidas da régua do visualizador com vírgula decimal e duas casas (ex.: 2,54 cm), conforme a decisão D01, e conferir o mesmo padrão na janela de medidas e no tamanho da página.",
-      "verification": "Caso S12-20-1 atualizado para 2,54 cm com teste GTK; demais exibições de medida conferidas."
+      "verification": "Caso S12-20-1 atualizado para 2,54 cm com teste GTK; demais exibições de medida conferidas.",
+      "commit": "db8c6fe",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json",
+        "tests/test_measurement_layers_speech.py"
+      ],
+      "note": "Função única measurement.decimal_text: régua com duas casas (2,54 cm), janela de medidas com até seis algarismos significativos (6,4516) e tamanho da página com uma casa (21,0 × 29,7 cm). Só o texto muda, nunca o valor medido. Suíte local 584/584; aceitação 53/53 com S12-20-1 esperando 2,54 cm."
     },
     {
       "id": "E26",
