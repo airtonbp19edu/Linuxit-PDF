@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T16:22:00-03:00",
+  "updated_at_local": "2026-10-20T16:33:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -202,9 +202,11 @@
       "evidence": [
         "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
         "tests/test_incremental_signatures.py",
-        "app/pdf_signing.py"
+        "app/pdf_signing.py",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-falha-review.json",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-fix-review.json"
       ],
-      "note": "Toda assinatura nova vira uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior). Cada assinatura anterior precisa verificar antes e continua verificando a própria revisão depois; a nova cobre o arquivo inteiro. O escritor incremental do pypdf foi descartado: na terceira assinatura ele reaproveitava números de objeto e corrompia a assinatura. Recusas com motivo visível: DocMDP P=1, UR3, assinatura anterior inválida, criptografia, XFA, portfólio e mais de 15 assinaturas. Três assinaturas seguidas conferidas também pelo pdfsig (poppler) e origem com fluxo de referência cruzada pelo qpdf. Suíte 610/610; aceitação 61/61 na revisão ae429cd."
+      "note": "Toda assinatura nova vira uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior). Cada assinatura anterior precisa verificar antes e continua verificando a própria revisão depois; a nova cobre o arquivo inteiro. O escritor incremental do pypdf foi descartado: na terceira assinatura ele reaproveitava números de objeto e corrompia a assinatura. Recusas com motivo visível: DocMDP P=1, UR3, assinatura anterior inválida, criptografia, XFA, portfólio e mais de 15 assinaturas. Três assinaturas seguidas conferidas também pelo pdfsig (poppler). Erro de CI corrigido: a execução 39460438529 falhou porque o teste de origem com xref em fluxo dependia do qpdf (ausente no CI) e foi pulado. Correções 9e75c0c (origem criada pelo pypdf) e f92278b (cópia conferida pelo pdfsig e qpdf instalado no CI). CI 39483614911 em f92278b: 638/638 sem pulos, aceitação 73/73. Suíte local 638/638."
     },
     {
       "id": "E09",

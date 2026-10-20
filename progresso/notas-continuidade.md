@@ -3357,3 +3357,12 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 - Testes: tests/test_redaction_apply.py (6) e tests/test_redaction_gtk.py (2). Suíte 638/638 sem pulos. Aceitação S12-14-9/10; execução limpa 73/73. Catálogo: annotations/redaction-apply (115 operações, 103 com fonte). Módulo novo registrado na arquitetura (79 módulos). Contrato em docs/ANOTACOES-AMPLIADAS.md.
 - CI Debian 13 da E14 (39481083740) confirmado: 630/630, 71/71 em 074087b.
 - Bloco E12–E15 concluído. Pedido do usuário às 16:17: retomar a E08 e resolver o erro.
+
+
+## 2026/10/20 às 16:33 (America/Sao_Paulo, UTC-03:00) — E08 — erro de CI resolvido; CI confirma E15
+
+- Falha original: CI 39460438529 (ae429cd), 609/610 com 1 pulado (`test_cross_reference_stream_source_gets_a_stream_update`, qpdf ausente). Revisão: `ci-debian13-e08-falha-review.json`; seção em docs/CI-FALHAS-E-CORRECOES.md.
+- Correções: 9e75c0c (fixture pelo pypdf) e f92278b (pdfsig confere 2 assinaturas válidas na cópia com xref em fluxo; `qpdf` instalado em no-vm-validation.yml).
+- Confirmação: CI 39483614911 em f92278b, 638/638 sem pulos, aceitação 73/73; o teste do xref em fluxo passou (`ci-debian13-e08-fix-review.json`).
+- CI 39482926923 em 500a7ed confirmou a E15: 638/638, 73/73 (`ci-debian13-e15-review.json`).
+- Parado. Pendente do usuário: publicar a 0.1.17 (E11).

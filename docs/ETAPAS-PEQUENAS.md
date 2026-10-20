@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T16:22:00-03:00. Pendente: 8, Concluída: 18, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T16:33:00-03:00. Pendente: 8, Concluída: 18, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -185,9 +185,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](
 
 **Situação:** Concluída.
 
-Toda assinatura nova vira uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior). Cada assinatura anterior precisa verificar antes e continua verificando a própria revisão depois; a nova cobre o arquivo inteiro. O escritor incremental do pypdf foi descartado: na terceira assinatura ele reaproveitava números de objeto e corrompia a assinatura. Recusas com motivo visível: DocMDP P=1, UR3, assinatura anterior inválida, criptografia, XFA, portfólio e mais de 15 assinaturas. Três assinaturas seguidas conferidas também pelo pdfsig (poppler) e origem com fluxo de referência cruzada pelo qpdf. Suíte 610/610; aceitação 61/61 na revisão ae429cd.
+Toda assinatura nova vira uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior). Cada assinatura anterior precisa verificar antes e continua verificando a própria revisão depois; a nova cobre o arquivo inteiro. O escritor incremental do pypdf foi descartado: na terceira assinatura ele reaproveitava números de objeto e corrompia a assinatura. Recusas com motivo visível: DocMDP P=1, UR3, assinatura anterior inválida, criptografia, XFA, portfólio e mais de 15 assinaturas. Três assinaturas seguidas conferidas também pelo pdfsig (poppler). Erro de CI corrigido: a execução 39460438529 falhou porque o teste de origem com xref em fluxo dependia do qpdf (ausente no CI) e foi pulado. Correções 9e75c0c (origem criada pelo pypdf) e f92278b (cópia conferida pelo pdfsig e qpdf instalado no CI). CI 39483614911 em f92278b: 638/638 sem pulos, aceitação 73/73. Suíte local 638/638.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json), [tests/test_incremental_signatures.py](../tests/test_incremental_signatures.py), [app/pdf_signing.py](../app/pdf_signing.py). Commit `ae429cd`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json), [tests/test_incremental_signatures.py](../tests/test_incremental_signatures.py), [app/pdf_signing.py](../app/pdf_signing.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-falha-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-falha-review.json), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-fix-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-fix-review.json). Commit `ae429cd`.
 
 ### E09 — Verificar DocTimeStamp existente
 
