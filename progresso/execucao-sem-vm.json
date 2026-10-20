@@ -135,14 +135,25 @@
     {
       "id": "S11",
       "title": "Contratos/casos executáveis e análise estática pendente",
-      "status": "six_new_static_entries_examined_266_instructions_803_bytes_full_acceptance_open",
+      "status": "own_acceptance_46_of_50_passed_revision_841557d_static_open",
       "evidence_refs": [
         "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
         "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
-        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
+        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md",
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24.json"
       ],
       "limitations": [
-        "Seis novas entradas estáticas examinadas não fecham todos os chamadores, índices, tipos ou ownership. Os50planos completosS12 permanecem not_run; testes próprios relacionados não substituem a execução integral."
+        "46 dos 50 planos S12 executados e aprovados como contrato próprio na revisão 841557d (Ubuntu 24.04, Python 3.12); S12-23 (nuvem adiada) e S12-25 (proposta) não executados. Não é observação Foxit nem aceitação integral das famílias.",
+        "Seis novas entradas estáticas examinadas não fecham todos os chamadores, índices, tipos ou ownership."
+      ],
+      "status_previous": [
+        {
+          "status": "six_new_static_entries_examined_266_instructions_803_bytes_full_acceptance_open",
+          "limitations": [
+            "Seis novas entradas estáticas examinadas não fecham todos os chamadores, índices, tipos ou ownership. Os50planos completosS12 permanecem not_run; testes próprios relacionados não substituem a execução integral."
+          ],
+          "superseded_at_local": "2026-10-20T00:14:00-03:00"
+        }
       ]
     },
     {

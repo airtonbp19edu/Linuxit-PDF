@@ -3142,3 +3142,29 @@ Ferramentas:Python stdlib/AST,git archive imutável,git cat-file --batch,PowerSh
 ## 2026/10/19 às 21:40 (America/Sao_Paulo, UTC-03:00) — conferência final do relatório integral
 
 Versão final com títulos/espaçamento de navegação revisados:Markdown6606786bytes/134942linhas/SHA256bb4a0dda13b6057b91f34a32b39f2d88088d4151383ac3813da36df2322cae3b;HTML8136186bytes/SHA256dd27d7664b640ceba4f6ebbcbda57653a218126b67babb882848af8fe0b5b9e7. O checkpoint anterior acima descreve a versão intermediária anterior à revisão de títulos; preservado como histórico. Nova conferência aprovou317hashesGit,4fontes editoriais,117textos integrais,564IDs nos três ambientes documentados,406blocosdetails balanceados e20capítulos sem âncoras duplicadas ou dependências externas. Inventários completos e evidências preservados; o próprio aplicativo não foi reexecutado. Gerador recusa sobrescrita e normaliza caminhos de saída; rascunhos próprios preservados no diretório ignorado. O relatório é fotografia b2bb821, e os links de retomada/README foram adicionados depois; isso evita autorreferência. Próximo:publicar e conferirHEAD/árvore limpa fora da árvore. Sem alteração de código app,versão,Flatpak,critérios,pesos ouVM.
+
+
+## 2026/10/20 às 00:19 (America/Sao_Paulo, UTC-03:00) — correção RFC 3161, registros reconciliados e aceitação S12 executável
+
+Pedido do usuário: corrigir os registros desatualizados, executar os planos de aceitação e fazer correções, saindo do ciclo de relatórios sem avanço verificável.
+
+O que foi feito:
+
+1. **Defeito corrigido** (`de7f218`): com OpenSSL 3.0 (Ubuntu 24.04), a verificação de carimbos RFC 3161 falhava sempre, porque `openssl ts -verify` recusa uma pasta vazia como `-CAstore`. O CI usa Debian 13 (OpenSSL mais novo) e não via isso. A loja agora aponta para o próprio arquivo de âncoras explícitas. Teste novo prova que uma autoridade conhecida só pela loja do sistema (`SSL_CERT_FILE`/`SSL_CERT_DIR`) continua recusada.
+2. **Registros reconciliados** (`de7f218`): os 8 textos de `scope` da especificação que ainda descreviam 0.1.6–0.1.13 foram reescritos conforme o código 0.1.16 (texto antigo em `scope_previous`); `next_action` desatualizados em `pendencias-analises.json` (antigos em `next_action_previous`); `desktop_portal_interaction_tested` em `projeto.json`; nota de reconciliação no plano; fila atual no topo de `tarefas-pendentes.md`.
+3. **Aceitação S12 executável** (`841557d`): `testes/aceitacao/` com 46 casos (36 sem tela pelo worker/módulos e 10 na janela GTK real), fixtures próprias determinísticas fixadas por SHA-256 e `scripts/run_acceptance.py`. O validador da especificação passou a aceitar `passed`/`failed` somente quando o arquivo de resultado confirma caso, estado, horário, fronteira e revisão limpa. Workflow `no-vm-validation.yml` passa a executar os casos no Debian 13.
+4. **Execução registrada**: revisão limpa `841557d` (00:18), **46/46 aprovados**, em `testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24.json`, aplicada à especificação e ao registro renderizado. S12-23 (nuvem adiada) e S12-25 (proposta) ficaram `not_run`.
+
+Ferramentas e ambiente: contêiner Ubuntu 24.04 com Python 3.12, GTK 3.24, Poppler 24.02, OpenSSL 3.0.13, Xvfb e dbus, usuário de teste sem privilégios. Suíte própria completa **571/571** (564 anteriores + 7 novos), sem falhas, erros ou skips. `check_architecture.py` e `validate_functional_spec.py --check-render` aprovados. Dois defeitos injetados de propósito (limite de 256 caracteres e `pages_per_sheet` fracionário) foram detectados pelos casos, confirmando que eles não passam por construção.
+
+Limitações:
+- O ambiente local não é o Debian 13 do CI; a execução do workflow ainda está pendente.
+- `check_operation_catalog.py` acusa drift esperado, porque está preso aos hashes de fontes da entrega 0.1.16; atualizar no próximo pacote validado.
+- Casos aprovados são contrato próprio, não observação Foxit, paridade ou família integral.
+- Nenhum pacote Flatpak novo, VM intocada, nuvem direta adiada, critérios e pesos inalterados.
+
+Achado menor, sem alteração: a régua do visualizador exibe `2.54 cm` (ponto decimal) numa interface em português; decidir se o padrão deve ser vírgula.
+
+Estado Git: commits `de7f218`, `841557d` e o desta nota, de autoria Claude, feitos localmente; publicação no GitHub pendente de acesso de escrita para esta sessão.
+
+Próximo passo concreto: publicar, executar `no-vm-validation.yml` no Debian 13 e registrar o resultado. Depois, contrato próprio para os casos S12-25 (o portal já foi validado 9/9) e as frentes da fila atual em `progresso/tarefas-pendentes.md`.
