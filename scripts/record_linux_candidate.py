@@ -80,6 +80,11 @@ def main():
                 'Bundled runtime provenance incomplete')
         require(not (reports / 'runtime-origins.json').exists(), 'Preserve previous runtime audit')
         shutil.copy2(origins_path, reports / 'runtime-origins.json')
+        access_path = args.stage / 'files/share/doc/linuxit-pdf/runtime-source-access.json'
+        if access_path.exists():
+            # The corresponding-source manifest travels with the reports for the release record.
+            require(not (reports / 'runtime-source-access.json').exists(), 'Preserve previous source-access manifest')
+            shutil.copy2(access_path, reports / 'runtime-source-access.json')
         def output(*command):
             return subprocess.check_output(command, cwd=ROOT, text=True).strip()
         result = {'schema': 'linuxit-linux-candidate-v1', 'date_utc': datetime.now(timezone.utc).isoformat(),

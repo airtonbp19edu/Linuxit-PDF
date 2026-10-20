@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-19T20:34:43.442911-03:00",
+  "reviewed_at_local": "2026-10-20T15:21:00-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.16",
+  "application_version": "0.1.17",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
