@@ -71,7 +71,9 @@ def load_cases(app):
     display = bool(os.environ.get('DISPLAY') or os.environ.get('WAYLAND_DISPLAY'))
     if display:
         import casos_gtk
+        import casos_portal  # registers its cases only when the portal desktop tools exist
         cases.update(casos_gtk.CASES)
+        cases.update(casos_portal.CASES)
     return casos, cases, display
 
 

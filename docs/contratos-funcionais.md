@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 23 subconjuntos implementados e 2 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **50 cenários planejados**; 24 subconjuntos implementados e 1 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **46**, das quais 46 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -38,7 +38,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Preferências/tema/persistência](#preferences) | Subconjunto atual; lacunas abertas |
 | [Nuvem/colaboração](#cloud) | Proposta; não implementado |
 | [Criação/conversão](#conversion) | Subconjunto atual; lacunas abertas |
-| [Integrações de sistema/atualização](#platform) | Proposta; não implementado |
+| [Integrações de sistema/atualização](#platform) | Subconjunto atual; lacunas abertas |
 
 <a id="open-render"></a>
 
@@ -1073,36 +1073,38 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_order_dimen
 
 ## Integrações de sistema/atualização
 
-Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.
+Atual (0.1.16): abrir PDF pelo seletor do sistema (GtkFileChooserNative, portal quando disponível), que entrega somente o arquivo escolhido; cancelar preserva o documento corrente. No Flatpak, concessão persistente, revogação pelo portal de documentos e associação de arquivos foram verificadas 9/9 em desktop efêmero. A janela de instalação informa versão e comando de atualização do sistema, sem consulta remota nem instalação pelo aplicativo. Desktop físico, impressão do sistema e Windows completo continuam abertos.
 
 **Entradas**
 
-- Ação específica do sistema, arquivo autorizado pelo portal ou artefato de atualização identificado.
-- Backend/ambiente versionados; nenhum instalador ou atualização é executado pela especificação.
+- Ação do usuário no seletor do sistema: portal no Flatpak ou com GTK_USE_PORTAL, diálogo nativo fora dele.
+- Arquivo autorizado pelo seletor; nenhum outro caminho da pasta é aberto.
 
 **Saídas**
 
-- Proposta: autorização/handle do portal ou cancelamento; atualização com origem/estado verificável e política própria.
-- O Flatpak devel e os adaptadores existentes são evidências parciais, não paridade de todas as integrações Windows.
+- Documento escolhido aberto na janela, ou nenhuma mudança quando o seletor é cancelado.
+- Informação de versão e do comando de atualização do sistema, sem executar atualização.
 
 **Erros e casos excepcionais**
 
-- Portal cancelado ou acesso revogado: Proposta: não usar caminhos não autorizados e preservar o documento atual.
-- Atualização sem integridade/origem verificável: Proposta: não instalar; manter a versão corrente utilizável.
+- Seletor cancelado ou acesso revogado: Não abrir outro arquivo nem usar caminho não autorizado; o documento corrente permanece aberto.
+- Seletor sem arquivo local disponível: Mensagem de erro; o documento corrente permanece aberto.
+- Pedido de atualização: O aplicativo não baixa nem instala atualizações; indica o gerenciador do sistema.
 
 **Estado e efeitos**
 
-- Proposta: associações, instalações e alterações do sistema exigem tarefa/escopo explícitos; esta etapa não as executa.
+- A escolha aceita registra a última pasta nas preferências do usuário; nenhum outro estado do sistema é alterado.
+- Associação de arquivos e permissões persistentes pertencem ao Flatpak e ao portal; o aplicativo não as altera.
 
 **Critérios planejados**
 
-- **S12-25-1** (nominal, proposta futura, `not_run`): dado Desktop Linux/Flatpak de teste e PDF selecionado em portal. Ação: Conceder acesso e abrir o arquivo. Esperado: Proposta: abrir apenas o recurso autorizado, registrando ambiente e URI/caminho aplicável.
-- **S12-25-2** (exception, proposta futura, `not_run`): dado Portal foi cancelado pelo usuário. Ação: Retornar à aplicação. Esperado: Proposta: nenhum acesso ampliado nem sucesso falso; documento corrente preservado.
+- **S12-25-1** (nominal, contrato próprio atual, `not_run`): dado Desktop Linux de teste com xdg-desktop-portal; aplicativo com GTK_USE_PORTAL=1, um documento aberto e outro PDF escolhido no seletor. Ação: Usar Abrir pelo seletor do sistema, escolher o arquivo no portal e confirmar. Esperado: Abrir somente o arquivo escolhido; a chamada e a resposta passam pelo portal; o documento anterior não é alterado e nenhum outro arquivo da pasta é aberto.
+- **S12-25-2** (exception, contrato próprio atual, `not_run`): dado Mesmo desktop de teste com um documento aberto. Ação: Abrir o seletor do sistema e cancelar no portal. Esperado: Nenhum acesso ampliado, erro ou sucesso falso; o documento corrente continua aberto.
 
 **Lacunas da referência Foxit**
 
 - Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows.
 
-Fontes: [docs/instalacao.md](../docs/instalacao.md), [app/platform_runtime.py](../app/platform_runtime.py), [app/cups_backend.py](../app/cups_backend.py), [app/installation_info.py](../app/installation_info.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [docs/instalacao.md](../docs/instalacao.md), [app/folder_dialogs.py](../app/folder_dialogs.py), [app/main.py](../app/main.py), [app/installation_info.py](../app/installation_info.py), [app/platform_runtime.py](../app/platform_runtime.py), [app/cups_backend.py](../app/cups_backend.py), [testes/aceitacao/casos_portal.py](../testes/aceitacao/casos_portal.py), [scripts/check_native_portal.py](../scripts/check_native_portal.py), [scripts/check_desktop_integrations.py](../scripts/check_desktop_integrations.py), [testes/resultados/0.1.16/desktop/review.json](../testes/resultados/0.1.16/desktop/review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 A especificação de referência e a consolidação da fase A continuam parciais. Não promover propostas, presença de recursos ou testes próprios a funcionalidade Foxit recuperada.

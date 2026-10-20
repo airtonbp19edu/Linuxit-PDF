@@ -1077,14 +1077,15 @@
     },
     {
       "id": "platform",
-      "contract_kind": "proposed_only",
+      "contract_kind": "implemented_subset",
       "current_source_refs": [
-        "app/platform_runtime.py",
-        "app/cups_backend.py",
+        "app/folder_dialogs.py",
+        "app/main.py",
         "app/installation_info.py",
-        "app/folder_dialogs.py"
+        "app/platform_runtime.py",
+        "app/cups_backend.py"
       ],
-      "future_boundary": "Portais, associações e atualização com testes próprios por plataforma.",
+      "future_boundary": "Desktop físico, impressão do sistema e Windows completo com testes próprios por plataforma.",
       "future_boundary_implemented": false
     }
   ],

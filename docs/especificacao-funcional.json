@@ -4248,38 +4248,48 @@
       "id": "platform",
       "name": "Integrações de sistema/atualização",
       "matrix_implementation": "0.1.16: pacote próprio564/564 por ambiente. Probes separados: Windows nativo5/5; desktop X11/Flatpak0.1.16 portal persistente/revogação/associação/atualização9/9. Validação física e Windows completo permanecem separados.",
-      "contract_kind": "proposed_only",
-      "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
+      "contract_kind": "implemented_subset",
+      "scope": "Atual (0.1.16): abrir PDF pelo seletor do sistema (GtkFileChooserNative, portal quando disponível), que entrega somente o arquivo escolhido; cancelar preserva o documento corrente. No Flatpak, concessão persistente, revogação pelo portal de documentos e associação de arquivos foram verificadas 9/9 em desktop efêmero. A janela de instalação informa versão e comando de atualização do sistema, sem consulta remota nem instalação pelo aplicativo. Desktop físico, impressão do sistema e Windows completo continuam abertos.",
       "inputs": [
-        "Ação específica do sistema, arquivo autorizado pelo portal ou artefato de atualização identificado.",
-        "Backend/ambiente versionados; nenhum instalador ou atualização é executado pela especificação."
+        "Ação do usuário no seletor do sistema: portal no Flatpak ou com GTK_USE_PORTAL, diálogo nativo fora dele.",
+        "Arquivo autorizado pelo seletor; nenhum outro caminho da pasta é aberto."
       ],
       "outputs": [
-        "Proposta: autorização/handle do portal ou cancelamento; atualização com origem/estado verificável e política própria.",
-        "O Flatpak devel e os adaptadores existentes são evidências parciais, não paridade de todas as integrações Windows."
+        "Documento escolhido aberto na janela, ou nenhuma mudança quando o seletor é cancelado.",
+        "Informação de versão e do comando de atualização do sistema, sem executar atualização."
       ],
       "errors": [
         {
-          "trigger": "Portal cancelado ou acesso revogado",
-          "response": "Proposta: não usar caminhos não autorizados e preservar o documento atual.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Seletor cancelado ou acesso revogado",
+          "response": "Não abrir outro arquivo nem usar caminho não autorizado; o documento corrente permanece aberto.",
+          "basis": "current_linuxit_source"
         },
         {
-          "trigger": "Atualização sem integridade/origem verificável",
-          "response": "Proposta: não instalar; manter a versão corrente utilizável.",
-          "basis": "proposed_independent_requirement"
+          "trigger": "Seletor sem arquivo local disponível",
+          "response": "Mensagem de erro; o documento corrente permanece aberto.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Pedido de atualização",
+          "response": "O aplicativo não baixa nem instala atualizações; indica o gerenciador do sistema.",
+          "basis": "current_linuxit_source"
         }
       ],
       "state_and_side_effects": [
-        "Proposta: associações, instalações e alterações do sistema exigem tarefa/escopo explícitos; esta etapa não as executa."
+        "A escolha aceita registra a última pasta nas preferências do usuário; nenhum outro estado do sistema é alterado.",
+        "Associação de arquivos e permissões persistentes pertencem ao Flatpak e ao portal; o aplicativo não as altera."
       ],
       "source_refs": [
         "docs/instalacao.md",
+        "app/folder_dialogs.py",
+        "app/main.py",
+        "app/installation_info.py",
         "app/platform_runtime.py",
         "app/cups_backend.py",
-        "app/installation_info.py",
-        "app/folder_dialogs.py",
-        "testes/resultados/0.1.16/validation-review.json"
+        "testes/aceitacao/casos_portal.py",
+        "scripts/check_native_portal.py",
+        "scripts/check_desktop_integrations.py",
+        "testes/resultados/0.1.16/desktop/review.json"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -4301,10 +4311,10 @@
         {
           "id": "S12-25-1",
           "kind": "nominal",
-          "given": "Desktop Linux/Flatpak de teste e PDF selecionado em portal.",
-          "when": "Conceder acesso e abrir o arquivo.",
-          "expected_linuxit": "Proposta: abrir apenas o recurso autorizado, registrando ambiente e URI/caminho aplicável.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "Desktop Linux de teste com xdg-desktop-portal; aplicativo com GTK_USE_PORTAL=1, um documento aberto e outro PDF escolhido no seletor.",
+          "when": "Usar Abrir pelo seletor do sistema, escolher o arquivo no portal e confirmar.",
+          "expected_linuxit": "Abrir somente o arquivo escolhido; a chamada e a resposta passam pelo portal; o documento anterior não é alterado e nenhum outro arquivo da pasta é aberto.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
@@ -4312,16 +4322,80 @@
         {
           "id": "S12-25-2",
           "kind": "exception",
-          "given": "Portal foi cancelado pelo usuário.",
-          "when": "Retornar à aplicação.",
-          "expected_linuxit": "Proposta: nenhum acesso ampliado nem sucesso falso; documento corrente preservado.",
-          "expected_basis": "proposed_independent_requirement",
+          "given": "Mesmo desktop de teste com um documento aberto.",
+          "when": "Abrir o seletor do sistema e cancelar no portal.",
+          "expected_linuxit": "Nenhum acesso ampliado, erro ou sucesso falso; o documento corrente continua aberto.",
+          "expected_basis": "current_linuxit_source",
           "foxit_expected": null,
           "foxit_observed": null,
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "contract_previous": [
+        {
+          "superseded_at_local": "2026-10-20T00:45:00-03:00",
+          "reason": "Proposta substituída pelo contrato próprio do código 0.1.16 (etapa E02).",
+          "contract": {
+            "contract_kind": "proposed_only",
+            "scope": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
+            "inputs": [
+              "Ação específica do sistema, arquivo autorizado pelo portal ou artefato de atualização identificado.",
+              "Backend/ambiente versionados; nenhum instalador ou atualização é executado pela especificação."
+            ],
+            "outputs": [
+              "Proposta: autorização/handle do portal ou cancelamento; atualização com origem/estado verificável e política própria.",
+              "O Flatpak devel e os adaptadores existentes são evidências parciais, não paridade de todas as integrações Windows."
+            ],
+            "errors": [
+              {
+                "trigger": "Portal cancelado ou acesso revogado",
+                "response": "Proposta: não usar caminhos não autorizados e preservar o documento atual.",
+                "basis": "proposed_independent_requirement"
+              },
+              {
+                "trigger": "Atualização sem integridade/origem verificável",
+                "response": "Proposta: não instalar; manter a versão corrente utilizável.",
+                "basis": "proposed_independent_requirement"
+              }
+            ],
+            "state_and_side_effects": [
+              "Proposta: associações, instalações e alterações do sistema exigem tarefa/escopo explícitos; esta etapa não as executa."
+            ],
+            "source_refs": [
+              "docs/instalacao.md",
+              "app/platform_runtime.py",
+              "app/cups_backend.py",
+              "app/installation_info.py",
+              "app/folder_dialogs.py",
+              "testes/resultados/0.1.16/validation-review.json"
+            ],
+            "acceptance_cases": [
+              {
+                "id": "S12-25-1",
+                "given": "Desktop Linux/Flatpak de teste e PDF selecionado em portal.",
+                "when": "Conceder acesso e abrir o arquivo.",
+                "expected_linuxit": "Proposta: abrir apenas o recurso autorizado, registrando ambiente e URI/caminho aplicável.",
+                "expected_basis": "proposed_independent_requirement"
+              },
+              {
+                "id": "S12-25-2",
+                "given": "Portal foi cancelado pelo usuário.",
+                "when": "Retornar à aplicação.",
+                "expected_linuxit": "Proposta: nenhum acesso ampliado nem sucesso falso; documento corrente preservado.",
+                "expected_basis": "proposed_independent_requirement"
+              }
+            ]
+          }
+        }
+      ],
+      "scope_previous": [
+        {
+          "text": "Requisito futuro: contratos separados para portais Linux/Flatpak, associação de arquivos, impressão e atualização.",
+          "superseded_at_local": "2026-10-20T00:45:00-03:00",
+          "reason": "Etapa E02: contrato próprio da integração com o sistema."
+        }
+      ]
     }
   ],
   "stage12_assessment": {
@@ -4330,7 +4404,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-20T00:18:56-03:00",
+  "updated_at_local": "2026-10-20T00:45:00-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }
