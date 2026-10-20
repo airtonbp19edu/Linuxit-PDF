@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 18,
-  "reviewed_at_local": "2026-10-20T20:40:00-03:00",
+  "reviewed_at_local": "2026-10-20T20:49:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -556,7 +556,7 @@
           "symbol": "document_info",
           "line": 67,
           "end_line": 87,
-          "file_sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+          "file_sha256": "9b05d9adfc0184c7fcdc6c2723e3220a9111d399bba0f8703e4b73324fad5186",
           "excerpt_sha256": "8c7d5415c965b9d5928db6d2cf10084198e5d69c39c4e79903c7b7c5b6c5b808"
         }
       ],
@@ -667,7 +667,7 @@
           "symbol": "render_page",
           "line": 126,
           "end_line": 212,
-          "file_sha256": "8d519f2129f2061b370b0b9d2eca6ee81f788b6a100c3e3f47c3552063cf08e4",
+          "file_sha256": "9b05d9adfc0184c7fcdc6c2723e3220a9111d399bba0f8703e4b73324fad5186",
           "excerpt_sha256": "453ba4a5a95936efdb3f85dcfbe9047ed7e4846e72b6e28c4863998331d93690"
         }
       ],
@@ -5676,7 +5676,7 @@
         "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
         "Foco e estado do documento/geração capturados antes da tarefa."
       ],
-      "output_and_acceptance": "Página suportada => texto Poppler em Gtk.TextView/ATK.Text com limites; não é garantia de ordem semântica.",
+      "output_and_acceptance": "Página suportada => texto Poppler em Gtk.TextView/ATK.Text com limites; não é garantia de ordem semântica. E19: page text comes in reading order from an own bounded heuristic (app/reading_order.py) over Poppler line boxes: columns read one after the other, full-width lines in place, up to three levels; no gutter keeps top-to-bottom. Also applies to OCR copies. Acceptance S12-19-3 and S12-19-4.",
       "failure_contract_refs": [
         {
           "family_id": "accessibility",

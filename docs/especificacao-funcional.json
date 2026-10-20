@@ -4091,7 +4091,7 @@
       "name": "Acessibilidade/voz",
       "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos aprovado. WAV/GTK/AT-SPI sintéticos aprovados; reprodução e leitor de tela físico abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticada, nomes acessíveis, navegação F6/Shift+F6/Ctrl+Shift+T e probe AT-SPI entre processos. Voz local eSpeak PT/EN gera WAV privado e reprodução GStreamer controlada (reproduzir/pausar/parar/volume). Ordem semântica garantida, leitor de tela real, áudio físico e conformidade integral continuam abertos.",
+      "scope": "Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticada, nomes acessíveis, navegação F6/Shift+F6/Ctrl+Shift+T e probe AT-SPI entre processos. Voz local eSpeak PT/EN gera WAV privado e reprodução GStreamer controlada (reproduzir/pausar/parar/volume). Ordem de leitura em colunas (etapa E19): o texto acessível (e a camada de texto de cópias com OCR) é lido coluna por coluna por heurística própria limitada sobre as caixas de linha do Poppler — vão vertical cruzado por poucas linhas, linhas de largura total separando faixas, até três níveis; sem vão claro, de cima para baixo. Tabelas, legendas dentro de colunas, texto girado e estrutura marcada não são analisados. Ordem semântica garantida, leitor de tela real, áudio físico e conformidade integral continuam abertos.",
       "inputs": [
         "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
         "Foco e estado do documento/geração capturados antes da tarefa."
@@ -4120,7 +4120,9 @@
         "app/speech.py",
         "app/local_playback.py",
         "app/media_window.py",
-        "testes/resultados/0.1.16/validation-review.json"
+        "testes/resultados/0.1.16/validation-review.json",
+        "app/reading_order.py",
+        "app/rendering.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -4239,6 +4241,26 @@
         {
           "path": "tests/test_security_accessibility_gtk.py",
           "test": "test_closing_text_worker_terminates_its_real_descendant_on_linux"
+        },
+        {
+          "path": "tests/test_reading_order.py",
+          "test": "test_two_columns_with_full_width_title_and_footer"
+        },
+        {
+          "path": "tests/test_reading_order.py",
+          "test": "test_three_columns_and_bands_separated_by_wide_lines"
+        },
+        {
+          "path": "tests/test_reading_order.py",
+          "test": "test_single_column_and_unclear_gutter_keep_top_to_bottom"
+        },
+        {
+          "path": "tests/test_reading_order.py",
+          "test": "test_accessible_text_reads_column_by_column"
+        },
+        {
+          "path": "tests/test_reading_order.py",
+          "test": "test_ocr_copy_text_layer_is_read_column_by_column"
         }
       ],
       "dynamic_case_refs": [
@@ -4279,6 +4301,28 @@
             "executed_at_local": "2026-10-20T20:44:37-03:00",
             "boundary": "worker accessible-text"
           }
+        },
+        {
+          "id": "S12-19-3",
+          "kind": "nominal",
+          "given": "PDF sintético de duas colunas com título e rodapé de largura total; no fluxo de conteúdo, a coluna da direita vem antes da esquerda.",
+          "when": "Pedir o texto acessível da página.",
+          "expected_linuxit": "Título, as quatro linhas da coluna esquerda, as quatro da direita e o rodapé, nessa ordem; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-19-4",
+          "kind": "exception",
+          "given": "PDF sintético de uma coluna com linhas de larguras variadas e uma única linha deslocada à direita.",
+          "when": "Pedir o texto acessível da página.",
+          "expected_linuxit": "Sem vão claro entre colunas, o texto sai de cima para baixo, sem inventar colunas; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -4319,6 +4363,11 @@
           "text": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticada, nomes acessíveis, navegação F6/Shift+F6/Ctrl+Shift+T e probe AT-SPI entre processos. Voz local eSpeak PT/EN gera WAV privado e reprodução GStreamer controlada (reproduzir/pausar/parar/volume). Ordem semântica garantida, leitor de tela real, áudio físico e conformidade integral continuam abertos.",
+          "superseded_at_local": "2026-10-20T20:48:00-03:00",
+          "reason": "Etapa E19: ordem de leitura em duas colunas."
         }
       ]
     },

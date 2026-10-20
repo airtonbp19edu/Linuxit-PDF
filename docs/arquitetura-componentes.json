@@ -223,6 +223,12 @@
       "responsibility": "Current-page extracted text via native ATK.Text and background worker."
     },
     {
+      "id": "reading_order",
+      "path": "app/reading_order.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Heurística própria limitada de ordem de leitura: colunas lidas uma após a outra a partir das caixas de linha do Poppler."
+    },
+    {
       "id": "local_files",
       "path": "app/local_files.py",
       "boundary": "portable local filesystem",
@@ -1043,7 +1049,9 @@
         "app/main.py",
         "app/speech.py",
         "app/local_playback.py",
-        "app/media_window.py"
+        "app/media_window.py",
+        "app/reading_order.py",
+        "app/rendering.py"
       ],
       "future_boundary": "Estrutura acessível e adaptador de tecnologia assistiva.",
       "future_boundary_implemented": false

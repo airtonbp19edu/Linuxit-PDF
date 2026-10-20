@@ -263,9 +263,14 @@ def render_page_to_png(path, page_index, output_path, dpi=180):
 
 
 def extract_page_text(path, page_index):
+    """Page text in reading order: columns are read one after the other (E19, reading_order)."""
+    from reading_order import order_lines, page_lines
     page_no = int(page_index) + 1
-    proc = _run(['pdftotext', '-f', str(page_no), '-l', str(page_no), '-layout', path, '-'], timeout=90)
-    return proc.stdout.decode('utf-8', errors='replace').strip()
+    proc = _run(['pdftotext', '-cropbox', '-bbox-layout', '-f', str(page_no), '-l', str(page_no), path, '-'], timeout=90)
+    import xml.etree.ElementTree as ET
+    try:lines, width = page_lines(proc.stdout)
+    except ET.ParseError as exc:raise RuntimeError('Não foi possível obter o texto desta página.') from exc
+    return '\n'.join(order_lines(lines, width)).strip()
 
 
 def _word_match_rectangle(word, box, first_char, last_char):

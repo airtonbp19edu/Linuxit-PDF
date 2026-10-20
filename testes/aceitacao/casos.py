@@ -1107,6 +1107,47 @@ def accessible_text_encrypted(ctx):
     return dict(exit=run['code'], partial_text=None)
 
 
+def _text_page(ctx, name, parts):
+    from pypdf import PdfWriter
+    from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
+    writer = PdfWriter();page = writer.add_blank_page(420, 400)
+    font = writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/Font'), NameObject('/Subtype'): NameObject('/Type1'),
+                                                NameObject('/BaseFont'): NameObject('/Helvetica')}))
+    page[NameObject('/Resources')] = DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/F1'): font})})
+    stream = DecodedStreamObject()
+    stream.set_data(b''.join(b'BT /F1 12 Tf %d %d Td (%s) Tj ET\n' % (x, y, t.encode()) for x, y, t in parts))
+    page[NameObject('/Contents')] = writer._add_object(stream)
+    source = ctx.work / name
+    with source.open('wb') as handle:writer.write(handle)
+    return source
+
+
+@case('S12-19-3', 'worker accessible-text (duas colunas)')
+def reading_order_columns(ctx):
+    left = ['esquerda um alfa', 'esquerda dois beta', 'esquerda tres gama', 'esquerda quatro delta']
+    right = ['direita um epsilon', 'direita dois zeta', 'direita tres eta', 'direita quatro teta']
+    title, footer = 'Titulo do documento ocupa a largura toda', 'Rodape tambem ocupa a largura toda da pagina'
+    parts = [(30, 360, title)] + [(230, 320 - 30 * i, t) for i, t in enumerate(right)] + [(30, 320 - 30 * i, t) for i, t in enumerate(left)] + [(30, 60, footer)]
+    source = _text_page(ctx, 'duas-colunas.pdf', parts);before = sha256(source)
+    run = ctx.worker('accessible-text', source, request={'page': 0})
+    check(run['code'] == 0, run['stderr'])
+    lines = run['result']['text'].splitlines()
+    check(lines == [title, *left, *right, footer] and sha256(source) == before, f'ordem: {lines}')
+    return dict(lines=len(lines), order='titulo, esquerda, direita, rodape', original_preserved=True)
+
+
+@case('S12-19-4', 'worker accessible-text (uma coluna)')
+def reading_order_single_column(ctx):
+    parts = [(30, 360, 'primeira linha longa do texto corrido'), (30, 330, 'segunda curta'), (230, 300, 'terceira deslocada'),
+             (30, 270, 'quarta linha longa do texto corrido'), (30, 240, 'quinta curta')]
+    source = _text_page(ctx, 'uma-coluna.pdf', parts);before = sha256(source)
+    run = ctx.worker('accessible-text', source, request={'page': 0})
+    check(run['code'] == 0, run['stderr'])
+    lines = run['result']['text'].splitlines()
+    check(lines == [t for _, _, t in parts] and sha256(source) == before, f'ordem: {lines}')
+    return dict(lines=len(lines), order='de cima para baixo', original_preserved=True)
+
+
 # 21 — layers
 
 @case('S12-21-1', 'worker panels')
