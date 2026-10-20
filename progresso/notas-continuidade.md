@@ -3456,3 +3456,12 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - CI 39514692788 (74f4f76) confirmou a E16: 651/651, 75/75.
 - Limite registrado: edição de leitura recuperada com fim reconstruído usa o leitor não estrito do original e pode recusar.
 - Próximo: E18 (corpus de criptografia).
+
+
+## 2026/10/20 às 20:45 (America/Sao_Paulo, UTC-03:00) — E18 concluída — corpus de criptografia
+
+- Código `8d106ed`: `app/pdf_crypt_compat.py` (instalado em `pdf_dependency.configure_pdf_library`) envolve `Encryption.decrypt_object/encrypt_object` do pypdf: fluxos /Type /Metadata com /EncryptMetadata false não são decifrados (o filtro /Crypt Identity é retirado em memória, com `decoded_self` para o get_data) e são regravados em claro com /Crypt Identity na cópia cifrada. Sem efeito em outros documentos.
+- Corpus: 5 PDFs + corpus.json, gerador `scripts/gerar_corpus_criptografia.py` (--check). Senhas sintéticas usuario-teste/dono-teste. Permissões: imprimir só em baixa qualidade, sem copiar/modificar/montar, anotar e formulários permitidos.
+- Testes: tests/test_encryption_corpus.py (4). Suíte 658/658. Aceitação S12-18-3/4; execução limpa 79/79. Módulo novo registrado (80 módulos).
+- CI 39515970950 (54e440a) confirmou a E17: 654/654, 77/77.
+- Próximo: E19 (ordem de leitura em duas colunas).

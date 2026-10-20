@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T20:35:00-03:00. Pendente: 5, Em andamento: 2, Concluída: 21, Bloqueada: 1.
+Atualizado em 2026-10-20T20:45:00-03:00. Pendente: 4, Em andamento: 2, Concluída: 22, Bloqueada: 1.
 
 **Regras**
 
@@ -36,8 +36,8 @@ Atualizado em 2026-10-20T20:35:00-03:00. Pendente: 5, Em andamento: 2, Concluíd
 | E15 | Aplicar redação | Anotações e redação | nada | Concluída |
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Concluída |
 | E17 | Corpus de PDFs danificados | Robustez | nada | Concluída |
-| E18 | Corpus de criptografia | Robustez | nada | Em andamento |
-| E19 | Ordem de leitura em duas colunas | Robustez | nada | Pendente |
+| E18 | Corpus de criptografia | Robustez | nada | Concluída |
+| E19 | Ordem de leitura em duas colunas | Robustez | nada | Em andamento |
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Pendente |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Pendente |
@@ -314,7 +314,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e17.json](
 
 **Como verificar:** Matriz de casos executáveis por perfil e operação.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Corpus próprio de criptografia com o mesmo documento em RC4-40, RC4-128, AES-128, AES-256 (R6) e AES-128 com metadados em claro, conferido por qpdf e Poppler. Matriz executável por perfil: abrir (senha de usuário, proprietário, errada e ausente, com as permissões certas), editar (mantém V/R/Length/P/EncryptMetadata e respeita as permissões do usuário) e preparar impressão. A matriz achou um defeito: o pypdf fixado regravava cifrado o XMP que o documento declara em claro; corrigido com um adaptador próprio. Suíte 658/658; aceitação 79/79 na revisão 8d106ed.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e18.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e18.json), [testes/fixtures/criptografia/corpus.json](../testes/fixtures/criptografia/corpus.json), [tests/test_encryption_corpus.py](../tests/test_encryption_corpus.py), [app/pdf_crypt_compat.py](../app/pdf_crypt_compat.py). Commit `8d106ed`.
 
 ### E19 — Ordem de leitura em duas colunas
 
@@ -322,7 +326,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e17.json](
 
 **Como verificar:** Fixture de duas colunas com ordem esperada; teste portátil.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E20 — Estudo de renderização U3D/PRC
 

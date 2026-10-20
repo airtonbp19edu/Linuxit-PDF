@@ -2,20 +2,20 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 20:35 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 20:45 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
 - Versão **0.1.17/devel** publicada como Flatpak (prerelease `v0.1.17-devel` no GitHub), auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 616/616 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. As etapas E12–E15 já estão no código, mas ainda não num pacote publicado.
-- Python + GTK, com 79 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
+- Python + GTK, com 80 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
 **Nesta sessão (19–20/10/2026)**
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **77 de 77 casos aprovados** na revisão `8e38205`. O CI no Debian 13 confirmou a E16 (75/75, 651/651); CI da E17 em andamento. Suíte própria completa **654/654** no Ubuntu 24.04.
+- Execução registrada: **79 de 79 casos aprovados** na revisão `8d106ed`. O CI no Debian 13 confirmou a E17 (77/77, 654/654); CI da E18 em andamento. Suíte própria completa **658/658** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -25,7 +25,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
 - E29: causa do 403 identificada pelo Codex e conferida pelo Claude na retomada das 20:10; falta só comprovar numa próxima publicação real (0.1.18). Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
-- Retomada das 20:10: **E16 e E17 concluídas**; executando a **E18** (corpus de criptografia); depois E19 e E20, e parar.
+- Retomada das 20:10: **E16, E17 e E18 concluídas**; executando a **E19** (ordem de leitura em duas colunas); depois E20, e parar.
 
 ### Falta
 
@@ -118,3 +118,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 20:12** — Retomada das 20:10: conferi o trabalho do Codex na E29. Causa confirmada (alvo da release com workflows diferentes da main exige permissão que o token automático não tem; mesmo token cria rascunho na main e falha no commit antigo — execução 39490423511), rascunhos de teste apagados, releases publicadas intactas, fluxo de publicação com conferência prévia aprovado (39491077708). Falta só comprovar numa próxima entrega real, que ficará para a 0.1.18. Seguindo com E16 a E20, como autorizado; depois paro.
 - **2026/10/20 às 20:23** — E16 concluída (`3f15382`): a janela de mídia mostra a imagem de apresentação de anotações 3D, com aviso de que a cena não é interativa; o modelo continua podendo ser salvo. Suíte 651/651, aceitação 75/75. Iniciando a E17.
 - **2026/10/20 às 20:35** — E17 concluída (`8e38205`): corpus de 12 PDFs danificados com o resultado esperado de cada um. A abertura passou a pedir consentimento também quando o PDF só abria por reparo silencioso, recupera arquivos com o fim perdido ou conteúdo truncado e nunca mostra página inventada; o tipo de dano aparece na pergunta. Suíte 654/654, aceitação 77/77. CI Debian 13 confirmou a E16 (651/651, 75/75). Iniciando a E18.
+- **2026/10/20 às 20:45** — E18 concluída (`8d106ed`): corpus de criptografia (RC4-40, RC4-128, AES-128, AES-256 e metadados em claro) com matriz abrir/editar/imprimir. Achou e corrigiu um defeito: ao editar um PDF com metadados declarados em claro, a cópia os cifrava. Suíte 658/658, aceitação 79/79. CI Debian 13 confirmou a E17 (654/654, 77/77). Iniciando a E19.
