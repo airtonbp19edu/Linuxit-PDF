@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T15:50:00-03:00. Pendente: 10, Em andamento: 1, Concluída: 15, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T15:58:00-03:00. Pendente: 9, Em andamento: 1, Concluída: 16, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -30,8 +30,8 @@ Atualizado em 2026-10-20T15:50:00-03:00. Pendente: 10, Em andamento: 1, Concluí
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Aguardando você |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
-| E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Em andamento |
-| E14 | Marcar áreas para redação | Anotações e redação | nada | Pendente |
+| E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
+| E14 | Marcar áreas para redação | Anotações e redação | nada | Em andamento |
 | E15 | Aplicar redação | Anotações e redação | nada | Pendente |
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Pendente |
 | E17 | Corpus de PDFs danificados | Robustez | nada | Pendente |
@@ -241,7 +241,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e12.json](
 
 **Como verificar:** Teste portátil de geometria e teste GTK de renderização.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Retângulos, elipses e texto livre já existentes podem receber uma nova área dentro da página numa cópia nova. Retângulos e elipses são redesenhados na cor e opacidade atuais; o texto livre é diagramado de novo com fontes incorporadas. O Poppler mostra a borda no lugar novo e nada no antigo. Outros tipos, anotações bloqueadas e com respostas são recusados. Diálogo já preenchido com a área atual. Suíte 624/624; aceitação 69/69 na revisão 9a10b42.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e13.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e13.json), [tests/test_annotation_resize.py](../tests/test_annotation_resize.py), [app/annotation_geometry.py](../app/annotation_geometry.py). Commit `9a10b42`.
 
 ### E14 — Marcar áreas para redação
 
@@ -249,7 +253,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e12.json](
 
 **Como verificar:** Reabrir a cópia lista as marcas; texto original ainda presente.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E15 — Aplicar redação
 
