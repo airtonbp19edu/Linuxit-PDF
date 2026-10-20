@@ -3447,3 +3447,12 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Código `3f15382`: `pdf_media._poster`/`render_poster` (aparência /AP /N, BBox via /Matrix → Rect, pdftocairo até 1600 px, publicação exclusiva), comando de worker `media-poster`, `media_assets_window.Poster3DWindow` com aviso acessível. Lista 3D ganhou `poster`, `model_embedded`, `views`; anotação 3D só com pôster também aparece; extração de recurso sem modelo é recusada.
 - Testes: tests/test_media_3d_poster.py (4) e GTK `test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive`. Suíte 651/651 (inclui os 8 testes de preflight do Codex). Aceitação S12-21-3/4; execução limpa 75/75. Catálogo: layers-media/3d-poster (116 operações, 104 com fonte); layers-media/3d (interação) continua pendente.
 - Próximo: E17 (corpus de PDFs danificados).
+
+
+## 2026/10/20 às 20:35 (America/Sao_Paulo, UTC-03:00) — E17 concluída — corpus de PDFs danificados
+
+- Código `8e38205`: `document_session` captura mensagens do pypdf (logger com handler próprio, propagate desligado, warnings registrados) e classifica em categorias fixas (`REPAIR_MARKERS`); `_check_pages` resolve conteúdos (em recuperação, decodifica e troca conteúdo ilegível por fluxo vazio, inclusive no objeto em cache usado pelo clone); `_rebuilt` tenta %%EOF e trailer mínimo; `_normalise_page_tree` remove Kids sem página e recalcula /Count; resposta ganhou `repairs`; `describe_repairs` dá texto fixo para a pergunta e o status (main.py).
+- Corpus: 12 fixtures + corpus.json (gerador com --check). Testes: tests/test_damaged_corpus.py (3). Suíte 654/654. Aceitação S12-01-3/4; execução limpa 77/77.
+- CI 39514692788 (74f4f76) confirmou a E16: 651/651, 75/75.
+- Limite registrado: edição de leitura recuperada com fim reconstruído usa o leitor não estrito do original e pode recusar.
+- Próximo: E18 (corpus de criptografia).

@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T20:23:00-03:00. Pendente: 6, Em andamento: 2, Concluída: 20, Bloqueada: 1.
+Atualizado em 2026-10-20T20:35:00-03:00. Pendente: 5, Em andamento: 2, Concluída: 21, Bloqueada: 1.
 
 **Regras**
 
@@ -35,8 +35,8 @@ Atualizado em 2026-10-20T20:23:00-03:00. Pendente: 6, Em andamento: 2, Concluíd
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
 | E15 | Aplicar redação | Anotações e redação | nada | Concluída |
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Concluída |
-| E17 | Corpus de PDFs danificados | Robustez | nada | Em andamento |
-| E18 | Corpus de criptografia | Robustez | nada | Pendente |
+| E17 | Corpus de PDFs danificados | Robustez | nada | Concluída |
+| E18 | Corpus de criptografia | Robustez | nada | Em andamento |
 | E19 | Ordem de leitura em duas colunas | Robustez | nada | Pendente |
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Pendente |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
@@ -302,7 +302,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e16.json](
 
 **Como verificar:** Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Corpus próprio de 12 PDFs danificados (testes/fixtures/danificados/, gerador scripts/gerar_corpus_danificado.py) com o resultado esperado de cada um. A abertura agora pede consentimento também quando o leitor repara em silêncio (xref deslocado, objeto ausente, /Length errado); a recuperação reconstrói o fim perdido do arquivo, deixa em branco o conteúdo de página ilegível, omite página inexistente (o Poppler desenha só as páginas reais) e informa o tipo de reparo na pergunta e no status; sem páginas reais, recusa sem cópia. Limite: editar uma leitura cujo fim foi reconstruído ainda pode falhar. Suíte 654/654; aceitação 77/77 na revisão 8e38205.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e17.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e17.json), [testes/fixtures/danificados/corpus.json](../testes/fixtures/danificados/corpus.json), [tests/test_damaged_corpus.py](../tests/test_damaged_corpus.py), [app/document_session.py](../app/document_session.py). Commit `8e38205`.
 
 ### E18 — Corpus de criptografia
 
@@ -310,7 +314,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e16.json](
 
 **Como verificar:** Matriz de casos executáveis por perfil e operação.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E19 — Ordem de leitura em duas colunas
 

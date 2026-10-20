@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T20:23:00-03:00",
+  "updated_at_local": "2026-10-20T20:35:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -357,16 +357,24 @@
       "id": "E17",
       "block": "Robustez",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Corpus de PDFs danificados",
       "goal": "Fixtures com xref quebrado, stream truncado e objeto ausente, com resultado esperado de abertura ou recuperação para cada um.",
-      "verification": "Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia."
+      "verification": "Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia.",
+      "commit": "8e38205",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e17.json",
+        "testes/fixtures/danificados/corpus.json",
+        "tests/test_damaged_corpus.py",
+        "app/document_session.py"
+      ],
+      "note": "Corpus próprio de 12 PDFs danificados (testes/fixtures/danificados/, gerador scripts/gerar_corpus_danificado.py) com o resultado esperado de cada um. A abertura agora pede consentimento também quando o leitor repara em silêncio (xref deslocado, objeto ausente, /Length errado); a recuperação reconstrói o fim perdido do arquivo, deixa em branco o conteúdo de página ilegível, omite página inexistente (o Poppler desenha só as páginas reais) e informa o tipo de reparo na pergunta e no status; sem páginas reais, recusa sem cópia. Limite: editar uma leitura cujo fim foi reconstruído ainda pode falhar. Suíte 654/654; aceitação 77/77 na revisão 8e38205."
     },
     {
       "id": "E18",
       "block": "Robustez",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Corpus de criptografia",
       "goal": "Fixtures RC4-40, RC4-128, AES-128, AES-256 e metadados não cifrados para abrir, editar e imprimir.",
       "verification": "Matriz de casos executáveis por perfil e operação."
