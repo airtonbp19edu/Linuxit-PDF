@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T13:47:00-03:00",
+  "updated_at_local": "2026-10-20T15:09:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -210,16 +210,23 @@
       "id": "E09",
       "block": "Assinaturas",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Verificar DocTimeStamp existente",
       "goal": "Reconhecer assinatura de carimbo de documento (ETSI.RFC3161) e verificá-la offline contra as âncoras escolhidas.",
-      "verification": "Fixture com DocTimeStamp de TSA sintética; alteração de bytes invalida."
+      "verification": "Fixture com DocTimeStamp de TSA sintética; alteração de bytes invalida.",
+      "commit": "df7207a",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+        "tests/test_document_timestamps.py",
+        "testes/aceitacao/carimbo.py"
+      ],
+      "note": "Campos de carimbo de documento (/ETSI.RFC3161) são reconhecidos e verificados offline: assinatura do token e resumo do documento (SHA-256/384/512) contra os bytes cobertos; o horário só aparece se os dois conferirem. Com política offline, a TSA só é confiável pela CA escolhida (openssl ts -verify, sem âncoras do sistema). Assinar depois de um carimbo mantém os dois válidos. A janela de assinaturas identifica o carimbo e mostra o horário. Carimbos de teste são gerados por uma TSA sintética local (testes/aceitacao/carimbo.py). Suíte 613/613; aceitação 63/63 na revisão df7207a."
     },
     {
       "id": "E10",
       "block": "Assinaturas",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Usar DSS/VRI embutidos na validação offline",
       "goal": "Ler certificados e CRLs do dicionário DSS e usá-los na verificação de cadeia e revogação, sem rede.",
       "verification": "Fixture com DSS sintético: revogação verificada só com o material embutido."

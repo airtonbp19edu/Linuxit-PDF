@@ -230,9 +230,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:06-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:06:59-03:00",
             "boundary": "worker info + rendering.render_page"
           }
         },
@@ -247,9 +247,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:06-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:06:59-03:00",
             "boundary": "worker info"
           }
         }
@@ -406,9 +406,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:06-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:06:59-03:00",
             "boundary": "PDFWindow.goto_page/_rotate"
           }
         },
@@ -423,9 +423,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:08-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:01-03:00",
             "boundary": "PDFWindow.request_render callbacks"
           }
         }
@@ -527,9 +527,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:11-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:03-03:00",
             "boundary": "PresentationWindow fit/fill"
           }
         },
@@ -544,9 +544,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:12-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:05-03:00",
             "boundary": "PresentationWindow render failure"
           }
         }
@@ -659,9 +659,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:14-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:07-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         },
@@ -676,9 +676,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:14-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:07-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         }
@@ -775,9 +775,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:14-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:07-03:00",
             "boundary": "PDFWindow find bar + _select_search_hit"
           }
         },
@@ -792,9 +792,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:16-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:09-03:00",
             "boundary": "PDFWindow _select_search_hit"
           }
         }
@@ -909,9 +909,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         },
@@ -926,9 +926,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         }
@@ -1037,9 +1037,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "worker search-attachments"
           }
         },
@@ -1054,9 +1054,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "worker search-attachments"
           }
         }
@@ -1174,9 +1174,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "worker index-build/index-search"
           }
         },
@@ -1191,9 +1191,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:19-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "worker index-search"
           }
         }
@@ -1307,9 +1307,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:20-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         },
@@ -1324,9 +1324,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:20-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "search_engine.TextSearchIndex"
           }
         }
@@ -1428,9 +1428,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:20-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:12-03:00",
             "boundary": "PDFWindow _finish_text_selection + clipboard"
           }
         },
@@ -1445,9 +1445,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:21-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:14-03:00",
             "boundary": "PDFWindow _finish_text_selection"
           }
         }
@@ -1555,9 +1555,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:23-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "worker prepare-print"
           }
         },
@@ -1572,9 +1572,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:23-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "cups_backend.print_file"
           }
         }
@@ -1692,9 +1692,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:23-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "worker prepare-print (booklet)"
           }
         },
@@ -1709,9 +1709,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:23-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "imposition.prepare_output"
           }
         }
@@ -2003,9 +2003,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:23-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "worker panels"
           }
         },
@@ -2020,9 +2020,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:16-03:00",
             "boundary": "worker panels"
           }
         }
@@ -2403,9 +2403,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker panels"
           }
         },
@@ -2420,9 +2420,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker panels"
           }
         }
@@ -2756,9 +2756,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker copy-edit"
           }
         },
@@ -2773,9 +2773,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:25-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker copy-edit"
           }
         },
@@ -2790,9 +2790,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:25-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:18-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
         },
@@ -2807,9 +2807,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:25-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:18-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
         },
@@ -2824,9 +2824,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:25-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:18-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
         },
@@ -2841,9 +2841,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:25-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:18-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
         },
@@ -2858,9 +2858,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:26-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:18-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
         },
@@ -2875,9 +2875,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:26-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:19-03:00",
             "boundary": "worker panels (XFA datasets)"
           },
           "expected_previous": [
@@ -2901,9 +2901,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:26-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:19-03:00",
             "boundary": "PDFWindow _xfa_dialog"
           }
         },
@@ -2918,9 +2918,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker copy-edit (XFA hybrid fill)"
           }
         },
@@ -2935,9 +2935,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:24-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:17-03:00",
             "boundary": "worker copy-edit (XFA hybrid fill)"
           }
         }
@@ -3107,9 +3107,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:29-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:22-03:00",
             "boundary": "worker attachments/extract-attachment"
           }
         },
@@ -3124,9 +3124,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:29-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:22-03:00",
             "boundary": "worker attachments/extract-attachment"
           }
         }
@@ -3273,9 +3273,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:30-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:22-03:00",
             "boundary": "worker sign-copy/signature-info"
           }
         },
@@ -3290,9 +3290,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:31-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:23-03:00",
             "boundary": "worker signature-info"
           }
         },
@@ -3307,9 +3307,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:32-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:24-03:00",
             "boundary": "worker sign-copy/signature-info (incremental)"
           }
         },
@@ -3324,9 +3324,9 @@
           "foxit_expected": null,
           "foxit_observed": null,
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:34-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:25-03:00",
             "boundary": "worker sign-copy (incremental)"
           }
         },
@@ -3337,9 +3337,15 @@
           "when": "Inspecionar as assinaturas sem política e com política offline (CA da TSA e outra CA).",
           "expected_linuxit": "O campo aparece como carimbo de documento, integridade verificada, cobrindo o arquivo e com horário; confiável só com a CA da TSA; nenhuma rede.",
           "expected_basis": "current_linuxit_source",
-          "execution_status": "not_run",
+          "execution_status": "passed",
           "foxit_expected": null,
-          "foxit_observed": null
+          "foxit_observed": null,
+          "execution": {
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:26-03:00",
+            "boundary": "worker signature-info (document timestamp)"
+          }
         },
         {
           "id": "S12-17-6",
@@ -3348,9 +3354,15 @@
           "when": "Inspecionar as assinaturas.",
           "expected_linuxit": "O carimbo não é aprovado e nenhum horário é informado.",
           "expected_basis": "current_linuxit_source",
-          "execution_status": "not_run",
+          "execution_status": "passed",
           "foxit_expected": null,
-          "foxit_observed": null
+          "foxit_observed": null,
+          "execution": {
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:28-03:00",
+            "boundary": "worker signature-info (document timestamp)"
+          }
         }
       ],
       "parity": "not_verified",
@@ -3594,9 +3606,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:35-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:28-03:00",
             "boundary": "worker protect-copy/security-info/owner-copy"
           }
         },
@@ -3611,9 +3623,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:36-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:29-03:00",
             "boundary": "worker security-info/owner-copy/protect-copy"
           }
         }
@@ -3830,9 +3842,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:37-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:30-03:00",
             "boundary": "worker accessible-text"
           }
         },
@@ -3847,9 +3859,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:37-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:30-03:00",
             "boundary": "worker accessible-text"
           }
         }
@@ -3963,9 +3975,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:38-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:31-03:00",
             "boundary": "PDFWindow _finish_measure"
           }
         },
@@ -3980,9 +3992,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:39-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:32-03:00",
             "boundary": "PDFWindow _finish_measure"
           }
         }
@@ -4066,9 +4078,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:39-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:32-03:00",
             "boundary": "worker panels"
           }
         },
@@ -4083,9 +4095,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:39-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:33-03:00",
             "boundary": "worker panels"
           }
         }
@@ -4182,9 +4194,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:40-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:33-03:00",
             "boundary": "appearance.save_mode/read_mode"
           }
         },
@@ -4199,9 +4211,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:40-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:33-03:00",
             "boundary": "appearance.save_mode"
           }
         }
@@ -4323,9 +4335,9 @@
             }
           ],
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:40-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:33-03:00",
             "boundary": "PDFWindow _open_sync_folder/_save_copy + worker copy-file"
           }
         },
@@ -4350,9 +4362,9 @@
             }
           ],
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:42-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:34-03:00",
             "boundary": "PDFWindow _save_copy + worker copy-file"
           }
         }
@@ -4617,9 +4629,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:43-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:36-03:00",
             "boundary": "worker images-to-pdf"
           }
         },
@@ -4634,9 +4646,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:44-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:37-03:00",
             "boundary": "worker images-to-pdf"
           }
         }
@@ -4750,9 +4762,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:45:44-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:07:37-03:00",
             "boundary": "PDFWindow._choose_open_native via xdg-desktop-portal"
           }
         },
@@ -4767,9 +4779,9 @@
           "foxit_observed": null,
           "execution_status": "passed",
           "execution": {
-            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json",
-            "revision": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
-            "executed_at_local": "2026-10-20T13:46:17-03:00",
+            "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json",
+            "revision": "df7207a1b0f78963ac5e4cc2a3996637e72ae0c5",
+            "executed_at_local": "2026-10-20T15:08:10-03:00",
             "boundary": "PDFWindow._choose_open_native via xdg-desktop-portal"
           }
         }
@@ -4847,7 +4859,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-20T13:46:34-03:00",
+  "updated_at_local": "2026-10-20T15:08:27-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

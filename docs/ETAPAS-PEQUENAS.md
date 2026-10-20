@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T13:47:00-03:00. Pendente: 14, Em andamento: 1, Concluída: 12, Bloqueada: 1.
+Atualizado em 2026-10-20T15:09:00-03:00. Pendente: 13, Em andamento: 1, Concluída: 13, Bloqueada: 1.
 
 **Regras**
 
@@ -26,8 +26,8 @@ Atualizado em 2026-10-20T13:47:00-03:00. Pendente: 14, Em andamento: 1, Concluí
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Concluída |
 | E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Concluída |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Concluída |
-| E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Em andamento |
-| E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
+| E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
+| E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Em andamento |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Pendente |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Pendente |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Pendente |
@@ -195,7 +195,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json](
 
 **Como verificar:** Fixture com DocTimeStamp de TSA sintética; alteração de bytes invalida.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Campos de carimbo de documento (/ETSI.RFC3161) são reconhecidos e verificados offline: assinatura do token e resumo do documento (SHA-256/384/512) contra os bytes cobertos; o horário só aparece se os dois conferirem. Com política offline, a TSA só é confiável pela CA escolhida (openssl ts -verify, sem âncoras do sistema). Assinar depois de um carimbo mantém os dois válidos. A janela de assinaturas identifica o carimbo e mostra o horário. Carimbos de teste são gerados por uma TSA sintética local (testes/aceitacao/carimbo.py). Suíte 613/613; aceitação 63/63 na revisão df7207a.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json), [tests/test_document_timestamps.py](../tests/test_document_timestamps.py), [testes/aceitacao/carimbo.py](../testes/aceitacao/carimbo.py). Commit `df7207a`.
 
 ### E10 — Usar DSS/VRI embutidos na validação offline
 
@@ -203,7 +207,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json](
 
 **Como verificar:** Fixture com DSS sintético: revogação verificada só com o material embutido.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E11 — Entrega 0.1.17
 
