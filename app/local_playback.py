@@ -14,7 +14,7 @@ class LocalPlayback:
         if not path.is_file() or not 0<path.stat().st_size<=64*1024**2 or path.suffix.lower() not in SUFFIXES:
             raise ValueError('Mídia local:WAV/OGG/WebM/MP4/MP3/AVI/MOV/MKV/FLAC de até64MiB.')
         if audio_sink not in {'autoaudiosink','fakesink'} or video_sink not in {'gtksink','fakesink'}:raise ValueError('Saída de mídia inválida.')
-        self.event=on_event;self.closed=False;self.state='stopped';self.linked=set()
+        self.event=on_event;self.closed=False;self.state='stopped';self.linked=set();self._play_after_preroll=False
         self.pipeline=Gst.Pipeline.new(None)
         self.source=self._element('filesrc');self.source.set_property('location',str(path))
         self.decoder=self._element('decodebin');self.source.link(self.decoder)
@@ -26,9 +26,10 @@ class LocalPlayback:
         self.video_queue.link(vconvert);vconvert.link(self.video)
         self.branches={'audio':[self.audio_queue,convert,resample,self.volume,self.audio],
                        'video':[self.video_queue,vconvert,self.video]}
-        # Unused branches must not hold the whole pipeline waiting for preroll.
-        for sink in (self.audio,self.video):
-            if sink.find_property('async'):sink.set_property('async',False)
+        # Sinks keep async preroll: only discovered branches are in the pipeline,
+        # so an unused sink never holds it, and PLAYING waits for real data.
+        # With async disabled, PLAYING could start before the audio branch was
+        # linked and a short file reached EOS at once (intermittent, 1 in 25).
         if audio_sink=='fakesink':self.audio.set_property('sync',True)
         if video_sink=='fakesink':self.video.set_property('sync',True)
         # Add only discovered streams; an unused sink would prevent pipeline EOS.
@@ -61,6 +62,10 @@ class LocalPlayback:
         if self.closed:return
         if message.type==Gst.MessageType.ERROR:
             error,debug=message.parse_error();self.pipeline.set_state(Gst.State.NULL);self.state='error';self.event('error',error.message[:500])
+        elif message.type==Gst.MessageType.ASYNC_DONE and message.src==self.pipeline and self._play_after_preroll:
+            self._play_after_preroll=False
+            if self.pipeline.set_state(Gst.State.PLAYING)==Gst.StateChangeReturn.FAILURE:
+                self.state='error';self.event('error','Falha ao iniciar mídia local.')
         elif message.type==Gst.MessageType.EOS:
             self.pipeline.set_state(Gst.State.NULL);self.state='ended';self.event('ended','')
         elif message.type==Gst.MessageType.STATE_CHANGED and message.src==self.pipeline:
@@ -69,15 +74,20 @@ class LocalPlayback:
                 self.state='playing' if new==Gst.State.PLAYING else 'paused';self.event(self.state,'')
 
     def play(self):
+        """From a prerolled pause, resume at once; otherwise preroll first, then play."""
         if self.closed:raise RuntimeError('Reprodutor encerrado.')
-        if self.pipeline.set_state(Gst.State.PLAYING)==Gst.StateChangeReturn.FAILURE:raise RuntimeError('Falha ao iniciar mídia local.')
+        prerolled=bool(self.linked) and self.state=='paused'
+        self._play_after_preroll=not prerolled
+        target=Gst.State.PLAYING if prerolled else Gst.State.PAUSED
+        if self.pipeline.set_state(target)==Gst.StateChangeReturn.FAILURE:
+            self._play_after_preroll=False;raise RuntimeError('Falha ao iniciar mídia local.')
 
     def pause(self):
-        if not self.closed:self.pipeline.set_state(Gst.State.PAUSED)
+        if not self.closed:self._play_after_preroll=False;self.pipeline.set_state(Gst.State.PAUSED)
 
     def stop(self):
         if self.closed:return
-        self.pipeline.set_state(Gst.State.NULL);self.linked.clear();self.state='stopped';self.event('stopped','')
+        self._play_after_preroll=False;self.pipeline.set_state(Gst.State.NULL);self.linked.clear();self.state='stopped';self.event('stopped','')
 
     def seek(self,seconds):
         import math

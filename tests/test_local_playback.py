@@ -41,6 +41,16 @@ class LocalPlaybackTests(unittest.TestCase):
         player.close();self.assertTrue(player.closed)
         with self.assertRaises(RuntimeError):player.play()
 
+    def test_short_file_plays_for_its_duration_instead_of_ending_at_once(self):
+        # Regression: PLAYING before the audio branch was prerolled let a 1 s file
+        # reach EOS within milliseconds (seen 1 in 25 runs before the fix).
+        from local_playback import LocalPlayback
+        for attempt in range(3):
+            player=LocalPlayback(self.path,audio_sink='fakesink',video_sink='fakesink');self.addCleanup(player.close)
+            started=time.monotonic();player.play();self.until(lambda:player.state=='ended')
+            with self.subTest(attempt=attempt):self.assertGreaterEqual(time.monotonic()-started,.8)
+            player.close()
+
     def test_stop_then_play_and_malformed_media_report_without_process_leak(self):
         from local_playback import LocalPlayback
         player=LocalPlayback(self.path,audio_sink='fakesink',video_sink='fakesink');self.addCleanup(player.close)

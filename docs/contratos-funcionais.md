@@ -927,7 +927,7 @@ Fontes: [app/main.py](../app/main.py), [app/measurement.py](../app/measurement.p
 
 ## Camadas/mídia/3D
 
-Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.
+Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.
 
 **Entradas**
 

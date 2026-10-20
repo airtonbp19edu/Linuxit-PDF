@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (7 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (9 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
