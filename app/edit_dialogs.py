@@ -379,3 +379,20 @@ def advanced_operation_dialog(parent, kind, info, page):
             except ValueError as exc:error.set_text(str(exc))
         return None
     finally:dialog.destroy()
+
+
+def redaction_apply_dialog(parent, marks):
+    """E15: confirm applying redaction marks; returns the raster resolution or None."""
+    dialog = Gtk.Dialog(title='Aplicar redação', transient_for=parent, modal=True)
+    dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Escolher destino…', Gtk.ResponseType.OK)
+    box = dialog.get_content_area();box.set_spacing(8);box.set_border_width(12)
+    text = Gtk.Label(label=(f'{marks} área(s) marcada(s). Numa cópia nova, o texto, os desenhos e as imagens sob as áreas são '
+                            'removidos e pintados com a cor de preenchimento da marca. Cada página com marcas vira uma imagem: '
+                            'o texto dela deixa de ser selecionável e pesquisável. Anotações sobre as áreas são removidas; '
+                            'páginas sem marcas não mudam. Títulos de marcadores, metadados e anexos não são verificados.'), xalign=0)
+    text.set_line_wrap(True);text.set_max_width_chars(70);box.add(text)
+    resolution = Gtk.ComboBoxText();resolution.get_accessible().set_name('Resolução das páginas redigidas')
+    resolution.append('150', '150 DPI (arquivo menor)');resolution.append('300', '300 DPI (mais nítido)')
+    resolution.set_active_id('150');box.add(resolution);dialog.show_all()
+    try:return int(resolution.get_active_id()) if dialog.run() == Gtk.ResponseType.OK else None
+    finally:dialog.destroy()

@@ -13,14 +13,14 @@ MAX_REPLY = 16 * 1024 * 1024
 
 
 def run_search_worker(command, path, request, cancel=None, timeout=120, destination=None):
-    if command not in {'media-info','media-extract','annotation-appearance', 'page-characters', 'document-open', 'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file', 'edit-info', 'copy-edit', 'ocr-copy', 'prepare-print', 'sign-copy', 'speech-export', 'layer-view'}:
+    if command not in {'media-info','media-extract','annotation-appearance', 'page-characters', 'document-open', 'search-attachments', 'index-build', 'index-search', 'images-to-pdf', 'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'signature-info', 'copy-file', 'edit-info', 'copy-edit', 'ocr-copy', 'prepare-print', 'sign-copy', 'speech-export', 'layer-view', 'redact-copy'}:
         raise ValueError('Comando de pesquisa inválido.')
-    if (command in {'copy-edit', 'ocr-copy', 'prepare-print', 'layer-view'}) != (destination is not None):
+    if (command in {'copy-edit', 'ocr-copy', 'prepare-print', 'layer-view', 'redact-copy'}) != (destination is not None):
         raise ValueError('Destino inválido para este comando.')
     if cancel is not None and cancel.is_set():
         return None
     payload = json.dumps(request, ensure_ascii=True).encode('utf-8')
-    limit = 1024 * 1024 if command == 'copy-edit' else 16384 if command in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'ocr-copy'} else 65536 if command == 'search-attachments' else 256 * 1024
+    limit = 1024 * 1024 if command == 'copy-edit' else 16384 if command in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy', 'ocr-copy', 'redact-copy'} else 65536 if command == 'search-attachments' else 256 * 1024
     if len(payload) > limit:
         raise ValueError('O pedido excede o limite permitido para esta operação.')
     argv = [worker_python(), '-X', 'utf8', str(Path(__file__).with_name('worker_cli.py')), command, str(path)]

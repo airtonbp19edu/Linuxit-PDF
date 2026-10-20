@@ -394,7 +394,13 @@
       "id": "annotation_style",
       "path": "app/annotation_style.py",
       "boundary": "portable_pdf_logic",
-      "responsibility": "Cor e opacidade de anotações simples existentes, com aparência redesenhada a partir da geometria."
+      "responsibility": "Cor e opacidade de anotações simples existentes, com aparência redesenhada a partir da geometria; marcas de redação pendentes."
+    },
+    {
+      "id": "pdf_redaction",
+      "path": "app/pdf_redaction.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Aplica marcas de redação em cópia nova: rasteriza só as páginas marcadas, pinta as áreas e remove anotações sobrepostas."
     },
     {
       "id": "text_appearance",
@@ -948,7 +954,8 @@
         "app/annotation_geometry.py",
         "app/text_appearance.py",
         "app/pdf_edit_security.py",
-        "app/annotation_style.py"
+        "app/annotation_style.py",
+        "app/pdf_redaction.py"
       ],
       "future_boundary": "Comandos de edição/undo e persistência, além da inspeção atual.",
       "future_boundary_implemented": false

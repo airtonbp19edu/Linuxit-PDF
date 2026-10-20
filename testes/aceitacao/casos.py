@@ -508,6 +508,92 @@ def redaction_mark_edit_and_refusals(ctx):
     return dict(resized_quadpoints=[20, 230, 200, 230, 20, 180, 200, 180], deleted=True, refusals=outcomes, originals_preserved=True)
 
 
+def _two_page_secret(ctx):
+    from pypdf import PdfWriter
+    from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject, NumberObject
+    writer = PdfWriter()
+    font = writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/Font'),
+        NameObject('/Subtype'): NameObject('/Type1'), NameObject('/BaseFont'): NameObject('/Helvetica')}))
+    image = DecodedStreamObject();image.set_data(bytes([255, 0, 0]) * 100)
+    image.update({NameObject('/Type'): NameObject('/XObject'), NameObject('/Subtype'): NameObject('/Image'),
+                  NameObject('/Width'): NumberObject(10), NameObject('/Height'): NumberObject(10),
+                  NameObject('/ColorSpace'): NameObject('/DeviceRGB'), NameObject('/BitsPerComponent'): NumberObject(8)})
+    image = writer._add_object(image)
+    for body in (b'BT /F1 14 Tf 40 200 Td (SEGREDO 123) Tj ET q 30 0 0 30 200 190 cm /Im1 Do Q BT /F1 14 Tf 40 60 Td (publico) Tj ET',
+                 b'BT /F1 14 Tf 40 200 Td (PAGINA DOIS) Tj ET'):
+        page = writer.add_blank_page(300, 300)
+        resources = DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/F1'): font})})
+        if b'/Im1' in body:resources[NameObject('/XObject')] = DictionaryObject({NameObject('/Im1'): image})
+        page[NameObject('/Resources')] = resources
+        stream = DecodedStreamObject();stream.set_data(body);page[NameObject('/Contents')] = writer._add_object(stream)
+    plain = ctx.work / 'duas-paginas.pdf'
+    with plain.open('wb') as handle:writer.write(handle)
+    marked = ctx.work / 'duas-paginas-marcado.pdf'
+    run = _mark(ctx, plain, marked, [{'kind': 'add-redaction', 'page': 0, 'rect': [30, 185, 240, 225], 'text': ''}])
+    check(run['code'] == 0, run['stderr'])
+    return plain, marked
+
+
+def _decoded(path):
+    import logging
+    from pypdf import PdfReader
+    logging.getLogger('pypdf').setLevel(logging.CRITICAL)
+    reader = PdfReader(str(path));chunks = [Path(path).read_bytes()]
+    for number in range(1, int(reader.trailer['/Size'])):
+        try:item = reader.get_object(number)
+        except Exception:continue
+        if item is not None and hasattr(item, 'get_data'):
+            try:chunks.append(item.get_data())
+            except Exception:pass
+    return b'\n'.join(chunks)
+
+
+@case('S12-14-9', 'worker redact-copy + Poppler')
+def redaction_apply(ctx):
+    from pypdf import PdfReader
+    from PIL import Image
+    _, marked = _two_page_secret(ctx);before = sha256(marked);output = ctx.work / 'redigido.pdf'
+    run = ctx.worker('redact-copy', marked, output, request={'source_sha256': before, 'dpi': 150})
+    check(run['code'] == 0, run['stderr'])
+    result = run['result']
+    data = _decoded(output)
+    check(b'SEGREDO 123' not in data and bytes([255, 0, 0]) * 10 not in data, 'conteúdo redigido ainda presente na cópia')
+    reader, original = PdfReader(str(output)), PdfReader(str(marked))
+    check(not reader.pages[0].extract_text().strip() and '/Annots' not in reader.pages[0], 'página 1 ainda com texto ou marcas')
+    check(reader.pages[1].get_contents().get_data() == original.pages[1].get_contents().get_data(), 'página 2 alterada')
+    base = ctx.work / 'render'
+    subprocess.run(['pdftoppm', '-r', '144', '-png', '-singlefile', '-f', '1', '-l', '1', str(output), str(base)], check=True, timeout=60)
+    image = Image.open(str(base) + '.png').convert('RGB')
+    black = image.getpixel((120, 190)) == (0, 0, 0) and image.getpixel((430, 190)) == (0, 0, 0)
+    public = any(sum(image.getpixel((x, y))) < 300 for x in range(80, 200) for y in range(450, 490))
+    check(black and public and sha256(marked) == before, f'preto {black}, público visível {public}')
+    return dict(redacted_pages=result['redacted_pages'], marks_applied=result['marks_applied'], secret_absent=True,
+                image_absent=True, page2_unchanged=True, public_text_visible=True, original_preserved=True)
+
+
+@case('S12-14-10', 'worker redact-copy')
+def redaction_apply_refused(ctx):
+    from pypdf import PdfWriter
+    from pypdf.generic import ArrayObject, DictionaryObject, FloatObject, NameObject, TextStringObject
+    plain, marked = _two_page_secret(ctx)
+    writer = PdfWriter(clone_from=str(marked))
+    writer.add_annotation(0, DictionaryObject({NameObject('/Type'): NameObject('/Annot'), NameObject('/Subtype'): NameObject('/Widget'),
+        NameObject('/FT'): NameObject('/Tx'), NameObject('/T'): TextStringObject('cpf'),
+        NameObject('/Rect'): ArrayObject(FloatObject(v) for v in (50, 195, 150, 215))}))
+    writer._root_object[NameObject('/AcroForm')] = DictionaryObject({NameObject('/Fields'): ArrayObject([writer.pages[0]['/Annots'][-1]])})
+    form = ctx.work / 'campo.pdf'
+    with form.open('wb') as handle:writer.write(handle)
+    existing = ctx.work / 'existente.pdf';existing.write_bytes(b'manter')
+    hashes = {p: sha256(p) for p in (plain, marked, form, existing)}
+    outcomes = {}
+    for label, source, output in (('sem_marcas', plain, ctx.work / 'a.pdf'), ('campo_sob_area', form, ctx.work / 'b.pdf'),
+                                  ('destino_existente', marked, existing)):
+        run = ctx.worker('redact-copy', source, output, request={'source_sha256': sha256(source), 'dpi': 150})
+        outcomes[label] = run['code'] != 0 and (output == existing or not output.exists())
+    check(all(outcomes.values()) and all(sha256(p) == h for p, h in hashes.items()), f'recusas: {outcomes}')
+    return outcomes
+
+
 # 15 — forms
 
 def _form_request(path, values):

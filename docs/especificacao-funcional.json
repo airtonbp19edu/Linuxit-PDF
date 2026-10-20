@@ -2034,7 +2034,7 @@
       "name": "Anotações/undo/gravação",
       "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Marcar redação (etapa E14): áreas retangulares viram anotações /Redact pendentes (QuadPoints, /IC preto para a aplicação futura) com contorno tracejado vermelho próprio; nada é removido do conteúdo; a marca aparece na lista de comentários e pode ser movida, redimensionada, recolorida, comentada ou excluída. Aplicação da redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Marcar redação (etapa E14): áreas retangulares viram anotações /Redact pendentes (QuadPoints, /IC preto para a aplicação futura) com contorno tracejado vermelho próprio; nada é removido do conteúdo; a marca aparece na lista de comentários e pode ser movida, redimensionada, recolorida, comentada ou excluída. Aplicar redação (etapa E15): numa cópia nova, cada página com marcas é renderizada sem anotações a 150 ou 300 DPI, as áreas são pintadas com a cor de preenchimento e o conteúdo da página vira essa única imagem; páginas sem marcas ficam byte a byte; marcas e anotações sobre as áreas saem, campo de formulário sob área é recusado, objetos órfãos são descartados e a árvore de estrutura é removida quando existe; marcadores, metadados e anexos não são verificados. Redação de texto vetorial sem rasterizar, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2100,7 +2100,8 @@
         "app/text_appearance.py",
         "app/pdf_edit_security.py",
         "testes/resultados/0.1.16/validation-review.json",
-        "app/annotation_style.py"
+        "app/annotation_style.py",
+        "app/pdf_redaction.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2435,6 +2436,38 @@
         {
           "path": "tests/test_annotation_style_gtk.py",
           "test": "test_redaction_dialog_returns_a_mark_without_applying_anything"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_text_and_image_under_the_mark_are_gone_and_other_pages_are_intact"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_overlapping_annotations_go_and_others_stay"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_rotated_page_is_painted_in_page_space"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_structure_tree_is_dropped"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_refusals_create_nothing"
+        },
+        {
+          "path": "tests/test_redaction_apply.py",
+          "test": "test_worker_round_trip_and_confirmation"
+        },
+        {
+          "path": "tests/test_redaction_gtk.py",
+          "test": "test_marks_in_the_draft_are_applied_to_a_new_copy"
+        },
+        {
+          "path": "tests/test_redaction_gtk.py",
+          "test": "test_confirmation_dialog_returns_the_chosen_resolution"
         }
       ],
       "dynamic_case_refs": [
@@ -2584,6 +2617,28 @@
             "executed_at_local": "2026-10-20T16:08:00-03:00",
             "boundary": "worker copy-edit (add-redaction, resize-annotation, delete-annotation)"
           }
+        },
+        {
+          "id": "S12-14-9",
+          "kind": "nominal",
+          "given": "PDF sintético de duas páginas: na primeira, \"SEGREDO 123\", uma imagem vermelha e \"publico\"; na segunda, \"PAGINA DOIS\". Uma marca de redação cobre o segredo e a imagem.",
+          "when": "Aplicar a redação a 150 DPI numa cópia nova.",
+          "expected_linuxit": "Nenhum objeto decodificado da cópia contém \"SEGREDO 123\" nem os bytes da imagem; a página 1 não tem texto extraível nem anotações e o Poppler mostra preto na área e o texto \"publico\" visível; a página 2 tem o mesmo conteúdo do original; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-14-10",
+          "kind": "exception",
+          "given": "O PDF sem marcas, o PDF marcado com um campo de formulário sob a área e um destino já existente.",
+          "when": "Aplicar a redação em cada caso.",
+          "expected_linuxit": "Recusar os três pedidos com mensagem própria, sem criar ou alterar arquivos.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -2607,6 +2662,11 @@
           "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
           "superseded_at_local": "2026-10-20T16:02:00-03:00",
           "reason": "Etapa E14: marcar áreas para redação sem aplicar."
+        },
+        {
+          "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Marcar redação (etapa E14): áreas retangulares viram anotações /Redact pendentes (QuadPoints, /IC preto para a aplicação futura) com contorno tracejado vermelho próprio; nada é removido do conteúdo; a marca aparece na lista de comentários e pode ser movida, redimensionada, recolorida, comentada ou excluída. Aplicação da redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+          "superseded_at_local": "2026-10-20T16:15:00-03:00",
+          "reason": "Etapa E15: aplicar redação em cópia nova."
         }
       ]
     },

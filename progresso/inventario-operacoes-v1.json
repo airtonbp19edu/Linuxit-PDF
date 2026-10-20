@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 18,
-  "reviewed_at_local": "2026-10-20T16:04:00-03:00",
+  "reviewed_at_local": "2026-10-20T16:16:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -337,6 +337,7 @@
         "annotations/style",
         "annotations/resize",
         "annotations/redaction-mark",
+        "annotations/redaction-apply",
         "annotations/delete",
         "annotations/history",
         "annotations/replies",
@@ -4149,6 +4150,53 @@
       "complete_operation_or_family_equivalence": false
     },
     {
+      "id": "annotations/redaction-apply",
+      "family_id": "annotations",
+      "title": "Aplicar redação em cópia nova",
+      "implementation_state": "bounded_source_present",
+      "input_context": [
+        "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
+        "PDF com marcas /Redact (criadas pelo aplicativo ou por outro programa); resolução 150 ou 300 DPI; destino novo com pasta existente."
+      ],
+      "output_and_acceptance": "Pages holding /Redact marks are rendered by Poppler without annotations and rotation, marked areas painted with /IC (one-pixel margin) and the page content replaced by that single image; unmarked pages byte-identical; marks and overlapping annotations (with popups/replies) removed, widgets under a mark refused; orphan objects dropped; structure tree removed when present; overlay text ignored and counted. Refused: encrypted, signed/Perms, XFA, portfolio, no marks, >50 pages/512 marks, >45 MP pages, existing destination. Outline titles, metadata and attachments not searched (E15). Acceptance S12-14-9 and S12-14-10.",
+      "failure_contract_refs": [
+        {
+          "family_id": "annotations",
+          "error_index": 0
+        },
+        {
+          "family_id": "annotations",
+          "error_index": 1
+        },
+        {
+          "family_id": "annotations",
+          "error_index": 2
+        },
+        {
+          "family_id": "annotations",
+          "error_index": 3
+        }
+      ],
+      "source_evidence": [
+        {
+          "path": "app/pdf_redaction.py",
+          "symbol": "redact_copy",
+          "line": 221,
+          "end_line": 294,
+          "file_sha256": "fcda9deb0b01723ef901234ba81826bc1a7f79c6941223ec7aa2c407e6fbc417",
+          "excerpt_sha256": "ca79c8e0c26c9f75a833a695fe85ce451d330f428866183e2d0a67ad82f50638"
+        }
+      ],
+      "recorded_related_tests": [],
+      "operation_acceptance_new_execution": "not_run",
+      "target_availability": "unconfirmed_for_operation",
+      "original_observation_refs": [],
+      "original_scope": "Family references only; they do not prove all behaviors of this operation.",
+      "comparison_state": "not_verified_as_complete_operation",
+      "next_package": "P08",
+      "complete_operation_or_family_equivalence": false
+    },
+    {
       "id": "annotations/delete",
       "family_id": "annotations",
       "title": "Excluir anotação simples",
@@ -4361,7 +4409,7 @@
           "symbol": "ink_operation_dialog",
           "line": 8,
           "end_line": 68,
-          "file_sha256": "f49b20c4e5045c05f7c91baed1b89715001797f1a1a8cba9cdd5c46761752ada",
+          "file_sha256": "45970d77b28a88c3955d7783211e6e1a17c01b70ad6dc2a9c061755038494bb4",
           "excerpt_sha256": "c11da83854a8507d3d591a7a72b9df6240945b4ac90219f04569df2b555b4034"
         }
       ],
@@ -6766,9 +6814,9 @@
   ],
   "summary": {
     "families": 25,
-    "operations": 114,
+    "operations": 115,
     "implementation_states": {
-      "bounded_source_present": 102,
+      "bounded_source_present": 103,
       "pending_or_target_characterization": 9,
       "deferred_by_user": 3
     },

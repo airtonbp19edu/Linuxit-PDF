@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 18, conferida em 2026-10-20T16:04:00-03:00. **114 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 18, conferida em 2026-10-20T16:16:00-03:00. **115 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (21 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (22 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -29,7 +29,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Prévia/plano de impressão|4|2|2|0|
 |Livreto/N-up/mosaico|3|3|0|0|
 |Criar/mover/gravar marcadores|4|4|0|0|
-|Anotações/undo/gravação|16|16|0|0|
+|Anotações/undo/gravação|17|17|0|0|
 |AcroForm/XFA/eventos|9|9|0|0|
 |Anexos/portfólios|4|4|0|0|
 |Assinaturas/certificados|5|5|0|0|
@@ -41,7 +41,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|114|102|9|3|
+|Total|115|103|9|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -227,6 +227,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |`annotations/style` — Mudar cor e opacidade de anotação existente|Código em subconjunto ([fonte](../app/annotation_style.py#L142))|Existing simple annotation (Square, Circle, Line, Highlight, Underline, StrikeOut, Squiggly, Ink, Polygon, PolyLine, Caret), RGB colour and opacity 10-100% => /C and /CA set and the normal appearance regenerated from the annotation geometry with an ExtGState (Multiply for highlights); notes, free text and stamps, locked annotations and ones with replies/popups are refused; copy only, original preserved (E12). Rendered result checked with Poppler. Acceptance S12-14-3 and S12-14-4.|
 |`annotations/resize` — Redimensionar retângulo, elipse ou texto livre|Código em subconjunto ([fonte](../app/annotation_geometry.py#L32))|Existing Square, Circle, FreeText or pending Redact mark (E14: QuadPoints follow the new rectangle) and a new rectangle inside the CropBox => /Rect replaced, /RD dropped; Square/Circle redrawn with their current colour and opacity, FreeText laid out again with embedded fonts; other types, locked annotations and ones with replies/popups refused; copy only (E13). Rendered result checked with Poppler. Acceptance S12-14-5 and S12-14-6.|
 |`annotations/redaction-mark` — Marcar áreas para redação (sem aplicar)|Código em subconjunto ([fonte](../app/annotation_style.py#L172))|Page and a rectangle inside the CropBox, optional comment up to 64 KiB => new /Redact annotation with /Rect, /QuadPoints, /IC black (fill for a later application) and an own dashed red outline appearance; page content untouched; the mark is listed and can be moved, resized, restyled, commented or deleted; extra keys and areas outside the page refused; copy only (E14). Rendered result checked with Poppler. Acceptance S12-14-7 and S12-14-8.|
+|`annotations/redaction-apply` — Aplicar redação em cópia nova|Código em subconjunto ([fonte](../app/pdf_redaction.py#L221))|Pages holding /Redact marks are rendered by Poppler without annotations and rotation, marked areas painted with /IC (one-pixel margin) and the page content replaced by that single image; unmarked pages byte-identical; marks and overlapping annotations (with popups/replies) removed, widgets under a mark refused; orphan objects dropped; structure tree removed when present; overlay text ignored and counted. Refused: encrypted, signed/Perms, XFA, portfolio, no marks, >50 pages/512 marks, >45 MP pages, existing destination. Outline titles, metadata and attachments not searched (E15). Acceptance S12-14-9 and S12-14-10.|
 |`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L331))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
 |`annotations/history` — Desfazer/refazer rascunho|Código em subconjunto ([fonte](../app/edit_history.py#L78))|Histórico do rascunho => reconstruir cursor correto sem alterar fonte/cópias já salvas.|
 |`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L331))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|

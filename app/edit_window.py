@@ -51,7 +51,9 @@ class EditWindow(Gtk.Window):
         self.undo_button = Gtk.Button(label='Desfazer');self.undo_button.connect('clicked',lambda *_:self._history(False))
         self.redo_button = Gtk.Button(label='Refazer');self.redo_button.connect('clicked',lambda *_:self._history(True))
         self.save_button = Gtk.Button(label='Salvar cópia nova…');self.save_button.connect('clicked',self._save)
-        for button in (self.undo_button,self.redo_button,self.save_button):bar.pack_start(button,False,False,0)
+        self.redact_button = Gtk.Button(label='Aplicar redação em cópia nova…');self.redact_button.connect('clicked',self._apply_redaction)
+        self.redact_button.set_tooltip_text('Remove o conteúdo sob as áreas marcadas para redação; as páginas marcadas viram imagem.')
+        for button in (self.undo_button,self.redo_button,self.save_button,self.redact_button):bar.pack_start(button,False,False,0)
         self.status = Gtk.Label(label='Lendo documento…',xalign=0);self.status.set_line_wrap(True);self.status.set_selectable(True)
         box.pack_start(self.status,False,False,0)
         self.connect('destroy',self._destroy);self.connect('key-press-event',self._key)
@@ -72,6 +74,7 @@ class EditWindow(Gtk.Window):
         self.undo_button.set_sensitive(ready and self.session.can_undo)
         self.redo_button.set_sensitive(ready and self.session.can_redo)
         self.save_button.set_sensitive(ready and self.session.can_undo)
+        self.redact_button.set_sensitive(ready and bool(self._redaction_marks()))
         for row in self.entries.get_children():self.entries.remove(row);row.destroy()
         if self.session is not None:
             for index,operation in enumerate(self.session.operations):
@@ -110,10 +113,44 @@ class EditWindow(Gtk.Window):
         if not (self.session.can_redo if redo else self.session.can_undo):return
         self._run(self.session.redo if redo else self.session.undo,'Reconstituindo rascunho…')
 
-    def _choose_destination(self):
+    def _redaction_marks(self):
+        if self.session is None:return []
+        return [a for a in self.session.info.get('annotations',[]) if a.get('subtype') == '/Redact']
+
+    def _apply_redaction(self,*_):
+        # E15: apply the marks of the current draft (or of the opened file) in a new copy.
+        if self.closed or self.busy or self.session is None or not self._redaction_marks():return
+        from edit_dialogs import redaction_apply_dialog
+        self.busy = True;self._refresh()
+        try:
+            dpi = redaction_apply_dialog(self,len(self._redaction_marks()))
+            target = self._choose_destination('-redigido.pdf') if dpi else None
+        finally:
+            self.busy = False
+            if not self.closed:self._refresh()
+        if not target or self.closed:return
+        source = self.session.preview if self.session.cursor and self.session.preview is not None else Path(self.path)
+        def task():
+            import hashlib
+            from pdf_redaction import invoke_redaction
+            with Path(source).open('rb') as stream:identity = hashlib.file_digest(stream,'sha256').hexdigest()
+            return invoke_redaction(source,target,{'source_sha256':identity,'dpi':dpi},self.cancel)
+        self.busy = True;self.status.set_text('Aplicando redação… Se interromper, confira o destino antes de repetir.');self._refresh()
+        def done(result):
+            if self.closed:return
+            self.busy = False
+            if result:
+                pages = ', '.join(str(p) for p in result['redacted_pages'])
+                extra = ' A árvore de estrutura (acessibilidade) foi removida.' if result['structure_tree_removed'] else ''
+                self.status.set_text(f"Redação aplicada em {Path(result['path']).name}: {result['marks_applied']} área(s), página(s) {pages} "
+                                     f"convertida(s) em imagem a {result['dpi']} DPI. Original e rascunho preservados.{extra}")
+            self._refresh()
+        self.runner.submit('draft',task,done,self._failed)
+
+    def _choose_destination(self,suffix='-editado.pdf'):
         dialog = Gtk.FileChooserDialog(title='Salvar cópia nova',transient_for=self,modal=True,action=Gtk.FileChooserAction.SAVE)
         dialog.set_destroy_with_parent(True);dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Salvar',Gtk.ResponseType.OK)
-        dialog.set_current_name(Path(self.path).stem+'-editado.pdf');prepare_chooser(dialog,'save',self.path)
+        dialog.set_current_name(Path(self.path).stem+suffix);prepare_chooser(dialog,'save',self.path)
         try:
             target = dialog.get_filename() if dialog.run() == Gtk.ResponseType.OK else None
             remember_selection(target,'save');return target

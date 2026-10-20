@@ -139,6 +139,15 @@ def main(argv):
             raise ValueError('Pedido de OCR acima do limite.')
         print(json.dumps(create_searchable_copy(argv[2], argv[3], json.loads(raw)), ensure_ascii=True))
         return
+    if cmd == 'redact-copy':
+        if len(argv) != 4:
+            raise SystemExit(2)
+        from pdf_redaction import redact_copy
+        raw = sys.stdin.buffer.read(16385)
+        if len(raw) > 16384:
+            raise ValueError('Pedido de redação acima do limite.')
+        print(json.dumps(redact_copy(argv[2], argv[3], json.loads(raw)), ensure_ascii=True))
+        return
     if cmd == 'copy-file':
         from local_files import copy_local_document
         raw = sys.stdin.buffer.read(16385)
