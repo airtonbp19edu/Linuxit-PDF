@@ -3434,3 +3434,9 @@ CI39491077708/dc49fcd aprovado: check_only:true, plano already_published para0.1
 ## 2026/10/20 às 17:43 (America/Sao_Paulo, UTC-03:00) — recado explícito para a retomada do Claude
 
 A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-ERRO-403-RELEASE.md e ponteiro no topo de docs/RETOMADA.md. Recado registra causa confirmada, commits/evidências, fluxo corrigido e CI aprovado, modo Conferir somente, procedimento de manter workflows iguais entre candidato/publicação e alternativa do rascunho do dono. Distingue correção validada da próxima publicação automática real ainda pendente. Orienta não repetir diagnóstico nem mudar o SHA para escapar da restrição. Nenhuma mensagem enviada a outro chat, agendamento alterado, release/tag criada ou teste de app/VM executado. Notas e aviso seguem para o GitHub nesta rodada.
+
+
+## 2026/10/20 às 20:12 (America/Sao_Paulo, UTC-03:00) — retomada do Claude: E29 conferida, início E16
+
+- Conferido: CI 39490423511 (038ae75) concluído com sucesso; probe com três rascunhos (alvo omitido e main criados e apagados; dec46c9 negado); inventário público igual; releases v0.1.16-devel e v0.1.17-devel com 1 asset cada. CI 39491077708 (check_only) aprovado com plano already_published. Causa considerada resolvida para fins da retomada; o critério final (próxima publicação automática real) fica para a entrega 0.1.18: workflows finalizados antes do candidato e iguais à main até publicar.
+- Prosseguindo com E16–E20 (autorização do usuário às 17:07); parar após E20.
