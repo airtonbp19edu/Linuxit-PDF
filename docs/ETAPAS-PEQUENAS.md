@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T15:40:00-03:00. Pendente: 12, Concluída: 14, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T15:41:00-03:00. Pendente: 11, Em andamento: 1, Concluída: 14, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -29,7 +29,7 @@ Atualizado em 2026-10-20T15:40:00-03:00. Pendente: 12, Concluída: 14, Bloqueada
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Aguardando você |
-| E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Pendente |
+| E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Em andamento |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Pendente |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Pendente |
 | E15 | Aplicar redação | Anotações e redação | nada | Pendente |
@@ -229,7 +229,7 @@ Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/61
 
 **Como verificar:** Teste com pixels da aparência antes e depois; original preservado.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E13 — Redimensionar Square, Circle e FreeText
 

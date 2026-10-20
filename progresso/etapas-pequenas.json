@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T15:40:00-03:00",
+  "updated_at_local": "2026-10-20T15:41:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -252,7 +252,7 @@
       "id": "E12",
       "block": "Anotações e redação",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Editar cor e opacidade de anotações existentes",
       "goal": "Alterar cor e opacidade de anotações simples já existentes, regenerando a aparência.",
       "verification": "Teste com pixels da aparência antes e depois; original preservado."

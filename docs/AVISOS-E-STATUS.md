@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 15:40 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 15:41 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -23,7 +23,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 (entrega 0.1.17) aguarda você**: o pacote foi montado e passou em 616/616 testes na fonte, no pacote e no sandbox, mas esta sessão não tem permissão para criar a release no GitHub. Para publicar: GitHub → Actions → "Publish tested development release (manual)" → Run workflow (versão 0.1.17).
-- Retomada agendada para **hoje às 15:00**: se o bloco não terminar, continuo de onde parou; se terminar antes, às 15:00 sigo com as próximas 4 (E12 a E15) e paro.
+- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Executando o bloco seguinte **E12 a E15** (anotações e redação); depois, parar.
 
 ### Falta
 
@@ -96,3 +96,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 15:19** — E10 concluída (`ba38ca7`): a verificação offline usa os certificados e as listas de revogação guardados dentro do PDF (DSS) para fechar a cadeia até a CA que você escolher e checar revogação, sem rede; esses certificados nunca passam a ser confiáveis por conta própria. Suíte 616/616, aceitação 65/65. O CI confirmou E08 e E09 (63/63, 613/613). Iniciando a E11 (entrega 0.1.17).
 - **2026/10/20 às 15:25** — CI no Debian 13 confirmou a E10: aceitação 65/65 e suíte 616/616. E11: versão 0.1.17 preparada (`dec46c9`); o pacote Flatpak está sendo montado e testado no CI (fonte, pacote e sandbox).
 - **2026/10/20 às 15:40** — E11: Flatpak 0.1.17 montado e aprovado no CI (616/616 na fonte, no pacote e no sandbox; smoke 5/5; launcher 3/3). A publicação como prerelease foi recusada para esta sessão (o GitHub não permite que ela crie releases). Preparei um fluxo que publica exatamente o arquivo testado, sem recompilar: no GitHub, abra Actions → "Publish tested development release (manual)" → Run workflow, com a versão 0.1.17. Depois disso eu confiro o download, rodo a auditoria e o teste de desktop.
+- **2026/10/20 às 15:41** — Retomada agendada recebida. E08, E09 e E10 concluídas; a E11 depende só de você disparar a publicação (Actions → "Publish tested development release (manual)", versão 0.1.17). Seguindo com E12, E13, E14 e E15; depois paro.
