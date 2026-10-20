@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T17:22:19.597513-03:00",
+  "updated_at_local": "2026-10-20T20:23:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -341,16 +341,23 @@
       "id": "E16",
       "block": "Mídia 3D",
       "requires": "nada",
-      "status": "pendente",
+      "status": "concluida",
       "title": "Imagem de apresentação de anotações 3D",
       "goal": "Exibir a aparência/poster de anotações 3D com o aviso de que a cena não é interativa.",
-      "verification": "Fixture com anotação 3D e aparência; teste GTK de pixels."
+      "verification": "Fixture com anotação 3D e aparência; teste GTK de pixels.",
+      "commit": "3f15382",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e16.json",
+        "tests/test_media_3d_poster.py",
+        "app/pdf_media.py"
+      ],
+      "note": "A janela de mídia mostra a imagem de apresentação (pôster) de anotações 3D: a aparência própria da anotação é desenhada como imagem fixa no tamanho do retângulo da anotação, numa janela que avisa que a cena 3D não é interativa e que o modelo U3D/PRC pode ser salvo. A lista informa pôster, modelo e número de vistas; anotação sem pôster é recusada com motivo. Suíte 651/651; aceitação 75/75 na revisão 3f15382."
     },
     {
       "id": "E17",
       "block": "Robustez",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Corpus de PDFs danificados",
       "goal": "Fixtures com xref quebrado, stream truncado e objeto ausente, com resultado esperado de abertura ou recuperação para cada um.",
       "verification": "Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia."

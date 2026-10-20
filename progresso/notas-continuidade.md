@@ -3440,3 +3440,10 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 
 - Conferido: CI 39490423511 (038ae75) concluído com sucesso; probe com três rascunhos (alvo omitido e main criados e apagados; dec46c9 negado); inventário público igual; releases v0.1.16-devel e v0.1.17-devel com 1 asset cada. CI 39491077708 (check_only) aprovado com plano already_published. Causa considerada resolvida para fins da retomada; o critério final (próxima publicação automática real) fica para a entrega 0.1.18: workflows finalizados antes do candidato e iguais à main até publicar.
 - Prosseguindo com E16–E20 (autorização do usuário às 17:07); parar após E20.
+
+
+## 2026/10/20 às 20:23 (America/Sao_Paulo, UTC-03:00) — E16 concluída — imagem de apresentação 3D
+
+- Código `3f15382`: `pdf_media._poster`/`render_poster` (aparência /AP /N, BBox via /Matrix → Rect, pdftocairo até 1600 px, publicação exclusiva), comando de worker `media-poster`, `media_assets_window.Poster3DWindow` com aviso acessível. Lista 3D ganhou `poster`, `model_embedded`, `views`; anotação 3D só com pôster também aparece; extração de recurso sem modelo é recusada.
+- Testes: tests/test_media_3d_poster.py (4) e GTK `test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive`. Suíte 651/651 (inclui os 8 testes de preflight do Codex). Aceitação S12-21-3/4; execução limpa 75/75. Catálogo: layers-media/3d-poster (116 operações, 104 com fonte); layers-media/3d (interação) continua pendente.
+- Próximo: E17 (corpus de PDFs danificados).

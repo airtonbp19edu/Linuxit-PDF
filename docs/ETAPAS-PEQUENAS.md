@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T17:22:19.597513-03:00. Pendente: 8, Em andamento: 1, Concluída: 19, Bloqueada: 1.
+Atualizado em 2026-10-20T20:23:00-03:00. Pendente: 6, Em andamento: 2, Concluída: 20, Bloqueada: 1.
 
 **Regras**
 
@@ -34,8 +34,8 @@ Atualizado em 2026-10-20T17:22:19.597513-03:00. Pendente: 8, Em andamento: 1, Co
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
 | E15 | Aplicar redação | Anotações e redação | nada | Concluída |
-| E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Pendente |
-| E17 | Corpus de PDFs danificados | Robustez | nada | Pendente |
+| E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Concluída |
+| E17 | Corpus de PDFs danificados | Robustez | nada | Em andamento |
 | E18 | Corpus de criptografia | Robustez | nada | Pendente |
 | E19 | Ordem de leitura em duas colunas | Robustez | nada | Pendente |
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Pendente |
@@ -290,7 +290,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json](
 
 **Como verificar:** Fixture com anotação 3D e aparência; teste GTK de pixels.
 
-**Situação:** Pendente.
+**Situação:** Concluída.
+
+A janela de mídia mostra a imagem de apresentação (pôster) de anotações 3D: a aparência própria da anotação é desenhada como imagem fixa no tamanho do retângulo da anotação, numa janela que avisa que a cena 3D não é interativa e que o modelo U3D/PRC pode ser salvo. A lista informa pôster, modelo e número de vistas; anotação sem pôster é recusada com motivo. Suíte 651/651; aceitação 75/75 na revisão 3f15382.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e16.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e16.json), [tests/test_media_3d_poster.py](../tests/test_media_3d_poster.py), [app/pdf_media.py](../app/pdf_media.py). Commit `3f15382`.
 
 ### E17 — Corpus de PDFs danificados
 
@@ -298,7 +302,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json](
 
 **Como verificar:** Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E18 — Corpus de criptografia
 

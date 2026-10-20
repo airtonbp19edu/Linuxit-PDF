@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 17:22 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 20:23 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,7 +15,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **73 de 73 casos aprovados** na revisão `61f180e`. O CI no Debian 13 confirmou a E14 (aceitação 71/71, suíte 630/630); CI no Debian 13 confirmou a E15 (73/73, 638/638). Suíte própria completa **638/638** no Ubuntu 24.04.
+- Execução registrada: **75 de 75 casos aprovados** na revisão `3f15382`. O CI no Debian 13 confirmou a E15 (73/73, 638/638); CI da E16 em andamento. Suíte própria completa **651/651** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -23,16 +23,16 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
-- **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases. Pedido ao Codex; o Claude retoma às 20:10.
+- E29: causa do 403 identificada pelo Codex e conferida pelo Claude na retomada das 20:10; falta só comprovar numa próxima publicação real (0.1.18). Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
-- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15 concluído. Erro de CI da E08 resolvido e confirmado no CI (execução 39483614911: 638/638, sem pulos). Parado, aguardando você.
+- Retomada das 20:10: **E16 concluída**; executando a **E17** (corpus de PDFs danificados); depois E18, E19 e E20, e parar.
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
 - Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
 - Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
-- 3D: renderizador U3D/PRC. Hoje só lista e extrai.
+- 3D: renderizador U3D/PRC e interação com a cena. Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16).
 - Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15).
 - Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
 
@@ -116,3 +116,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/20 às 17:43** — A pedido do usuário, resolução da E29 deixada como recado explícito para o Claude no documento prioritário e no topo da retomada: causa confirmada, correção/CI aprovados, próxima publicação real ainda pendente. Registrado no repositório para leitura ao retornar; agenda e releases preservadas.
 - **2026/10/20 às 20:12** — Retomada das 20:10: conferi o trabalho do Codex na E29. Causa confirmada (alvo da release com workflows diferentes da main exige permissão que o token automático não tem; mesmo token cria rascunho na main e falha no commit antigo — execução 39490423511), rascunhos de teste apagados, releases publicadas intactas, fluxo de publicação com conferência prévia aprovado (39491077708). Falta só comprovar numa próxima entrega real, que ficará para a 0.1.18. Seguindo com E16 a E20, como autorizado; depois paro.
+- **2026/10/20 às 20:23** — E16 concluída (`3f15382`): a janela de mídia mostra a imagem de apresentação de anotações 3D, com aviso de que a cena não é interativa; o modelo continua podendo ser salvo. Suíte 651/651, aceitação 75/75. Iniciando a E17.
