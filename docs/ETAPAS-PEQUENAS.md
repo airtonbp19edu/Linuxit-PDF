@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:05:50-03:00. Pendente: 19, Concluída: 6, Bloqueada: 1.
+Atualizado em 2026-10-20T10:11:35-03:00. Pendente: 19, Concluída: 6, Bloqueada: 1.
 
 **Regras**
 
@@ -111,9 +111,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](
 
 **Situação:** Concluída.
 
-Função única measurement.decimal_text: régua com duas casas (2,54 cm), janela de medidas com até seis algarismos significativos (6,4516) e tamanho da página com uma casa (21,0 × 29,7 cm). Só o texto muda, nunca o valor medido. Suíte local 584/584; aceitação 53/53 com S12-20-1 esperando 2,54 cm.
+Função única measurement.decimal_text: régua com duas casas (2,54 cm), janela de medidas com até seis algarismos significativos (6,4516) e tamanho da página com uma casa (21,0 × 29,7 cm). Só o texto muda, nunca o valor medido. Suíte local 584/584; aceitação 53/53 com S12-20-1 esperando 2,54 cm. Confirmado no CI Debian 13 (execução 39427531619): aceitação 53/53 e suíte 584/584.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json), [tests/test_measurement_layers_speech.py](../tests/test_measurement_layers_speech.py). Commit `db8c6fe`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json), [tests/test_measurement_layers_speech.py](../tests/test_measurement_layers_speech.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e25-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e25-review.json). Commit `db8c6fe`.
 
 ### E26 — Estabilizar o teste de reprodução de mídia
 

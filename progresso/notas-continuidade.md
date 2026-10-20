@@ -3242,3 +3242,8 @@ CI 39367796407 (Debian 13) na revisão `860a958`: aceitação 53/53 e suíte 583
 ## 2026/10/20 às 10:05 (America/Sao_Paulo, UTC-03:00) — E25 concluída
 
 Pedido do usuário às 09:58: continuar. **E25** (`db8c6fe`): `measurement.decimal_text` com vírgula decimal (decisão D01) na régua (2,54 cm), na janela de medidas (até seis algarismos significativos) e no tamanho da página (uma casa). Trecho `PDFWindow._finish_measure` revisado e refixado; texto da operação `measurement/distance` atualizado. Suíte local 584/584; aceitação 53/53 (`execucao-ubuntu24-e25.json`). Parado; E26 aguarda confirmação do usuário.
+
+
+## 2026/10/20 às 10:11 (America/Sao_Paulo, UTC-03:00) — CI confirma a E25
+
+CI 39427531619 (Debian 13) na revisão `d8c25ab`: aceitação 53/53 e suíte 584/584 (`ci-debian13-e25-review.json`). Nenhuma etapa nova iniciada.
