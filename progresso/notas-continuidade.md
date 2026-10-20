@@ -3366,3 +3366,11 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 - Confirmação: CI 39483614911 em f92278b, 638/638 sem pulos, aceitação 73/73; o teste do xref em fluxo passou (`ci-debian13-e08-fix-review.json`).
 - CI 39482926923 em 500a7ed confirmou a E15: 638/638, 73/73 (`ci-debian13-e15-review.json`).
 - Parado. Pendente do usuário: publicar a 0.1.17 (E11).
+
+
+## 2026/10/20 às 16:43 (America/Sao_Paulo, UTC-03:00) — E11: 403 na publicação, fluxo ajustado
+
+- Execução 39485174222 (disparada pelo usuário): download e conferência do pacote OK; `gh release create` → HTTP 403 "Resource not accessible by integration" com Contents: write. Sem rulesets. Causa provável: criar a tag em dec46c9 (workflows diferentes da main) exige permissão `workflows`.
+- Tentei criar a tag por git push desta sessão: não permitido. Não insisti.
+- Commit 8fbb7d5: o fluxo cria rascunho de prerelease (sem tag) com o mesmo pacote; o dono publica o rascunho na página Releases (a tag nasce no commit testado). Se a tag já existir no commit testado, publica direto.
+- Próximo: usuário roda de novo "Publish tested development release (manual)" e publica o rascunho.
