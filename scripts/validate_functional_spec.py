@@ -21,6 +21,20 @@ def local_file(name):
     return path
 
 
+EXECUTED = ('passed', 'failed')
+
+
+def execution_report(reference, cache):
+    """Load an acceptance run once; only clean-revision own runs can back a status."""
+    if reference not in cache:
+        report = json.loads(local_file(reference).read_text(encoding='utf-8'))
+        require(report.get('schema') == 'linuxit-acceptance-run-v1', 'Unknown acceptance result: ' + reference)
+        require(report['revision_dirty'] is False and report['revision'], 'Acceptance result is not from a clean revision')
+        require(report['foxit_observations'] == 0, 'Own acceptance runs cannot carry Foxit observations')
+        cache[reference] = {item['id']: item for item in report['results']}, report['revision']
+    return cache[reference]
+
+
 def validate(spec):
     require(spec.get('schema') == 'linuxit-functional-spec-v1', 'Unsupported schema')
     require(datetime.fromisoformat(spec['authored_at_local']).utcoffset() is not None, 'Timestamp must include timezone')
@@ -45,6 +59,7 @@ def validate(spec):
         scenario_ids.update(c['id'] for c in json.loads(local_file(name).read_text(encoding='utf-8'))['cases'])
     case_ids, tests, references = set(), set(), set()
     proposed, recorded_runtime_families = 0, 0
+    reports, executed, executed_passed = {}, 0, 0
     for family, row in zip(spec['families'], rows):
         prefix = family['id'] + ': '
         require(family['name'] == row['functionality'], prefix + 'Name differs from matrix')
@@ -95,7 +110,22 @@ def validate(spec):
             require(case['id'] not in case_ids, prefix + 'Duplicate acceptance ID')
             case_ids.add(case['id'])
             require(all(case[k].strip() for k in ('given', 'when', 'expected_linuxit')), prefix + 'Incomplete acceptance case')
-            require(case['execution_status'] == 'not_run', prefix + 'Referenced test is not a new acceptance execution')
+            status = case['execution_status']
+            require(status in ('not_run',) + EXECUTED, prefix + 'Unknown acceptance execution status')
+            if status == 'not_run':
+                require('execution' not in case, prefix + 'Execution record without an executed status')
+            else:
+                # A referenced unit test never counts; only a recorded run of this case does.
+                require(family['contract_kind'] == 'implemented_subset', prefix + 'A proposal cannot be executed as accepted')
+                record = case['execution']
+                require(set(record) == {'result_ref', 'revision', 'executed_at_local', 'boundary'}, prefix + 'Incomplete execution record')
+                require(datetime.fromisoformat(record['executed_at_local']).utcoffset() is not None, prefix + 'Execution time needs a zone')
+                results, revision = execution_report(record['result_ref'], reports)
+                item = results.get(case['id'])
+                require(item is not None and item['status'] == status and revision == record['revision']
+                        and item['started_at_local'] == record['executed_at_local'] and item['boundary'] == record['boundary'],
+                        prefix + 'Execution record differs from its result file')
+                executed += 1;executed_passed += status == 'passed'
             require(case['foxit_expected'] is None and case['foxit_observed'] is None, prefix + 'Original unknowns must remain null')
             expected_basis = ('proposed_independent_requirement' if family['contract_kind'] == 'proposed_only'
                               else 'current_linuxit_source')
@@ -108,7 +138,8 @@ def validate(spec):
     return {'families': len(rows), 'acceptance_cases': len(case_ids),
             'implemented_subsets': len(rows) - proposed, 'proposed_only': proposed,
             'unique_test_references_checked': len(tests), 'unique_source_references_checked': len(references),
-            'new_acceptance_executions': 0, 'foxit_observations': 0,
+            'new_acceptance_executions': 0, 'recorded_acceptance_executions': executed,
+            'recorded_acceptance_passed': executed_passed, 'foxit_observations': 0,
             'foxit_observations_scope': 'New observations by this validator only; preserved subsets are separate.',
             'families_with_recorded_original_subsets': recorded_runtime_families,
             'reference_specification_complete': False}
@@ -120,6 +151,8 @@ def render(spec, summary):
              f"Escopo: **{summary['families']} famílias identificadas**, **{summary['acceptance_cases']} cenários planejados**; "
              f"{summary['implemented_subsets']} subconjuntos implementados e {summary['proposed_only']} propostas futuras. O inventário global permanece aberto.", '',
              'O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. '
+             f"Execuções próprias registradas: **{summary['recorded_acceptance_executions']}**, "
+             f"das quais {summary['recorded_acceptance_passed']} aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. "
              'Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. '
              'Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente '
              'nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.', '',
@@ -141,8 +174,13 @@ def render(spec, summary):
         lines += ['', '**Estado e efeitos**', '', *['- ' + x for x in family['state_and_side_effects']], '', '**Critérios planejados**', '']
         for case in family['acceptance_cases']:
             basis = 'proposta futura' if case['expected_basis'] == 'proposed_independent_requirement' else 'contrato próprio atual'
-            lines += [f"- **{case['id']}** ({case['kind']}, {basis}, `not_run`): dado {case['given']} "
-                      f"Ação: {case['when']} Esperado: {case['expected_linuxit']}"]
+            line = (f"- **{case['id']}** ({case['kind']}, {basis}, `{case['execution_status']}`): dado {case['given']} "
+                    f"Ação: {case['when']} Esperado: {case['expected_linuxit']}")
+            if case['execution_status'] != 'not_run':
+                record = case['execution']
+                line += (f" Execução própria em {record['executed_at_local']}, revisão `{record['revision'][:12]}`, "
+                         f"fronteira {record['boundary']}: [resultado](../{record['result_ref']}).")
+            lines.append(line)
         lines += ['', '**Lacunas da referência Foxit**', '', *['- ' + x for x in family['foxit']['unresolved']], '']
         runtime_refs = family['foxit'].get('runtime_observation_refs', [])
         if family['foxit']['runtime_observed']:

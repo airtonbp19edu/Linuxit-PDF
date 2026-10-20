@@ -78,6 +78,18 @@ jobs:
               --profile linux --work-dir analysis-local/linux-source-validation \
               --output dist/no-vm-results/source-intermediate.json
           '
+      - name: Run own S12 acceptance cases
+        run: |
+          runuser -u linuxit-test -- bash -c '
+            set -euo pipefail
+            cd "$GITHUB_WORKSPACE"
+            export PYTHONUTF8=1
+            export XDG_RUNTIME_DIR="$(mktemp -d /tmp/linuxit-acceptance-XXXXXX)"
+            chmod 700 "$XDG_RUNTIME_DIR"
+            mkdir -p dist/no-vm-results
+            timeout 900 dbus-run-session -- xvfb-run -a /usr/bin/python3 scripts/run_acceptance.py run \
+              --output dist/no-vm-results/acceptance.json
+          '
       - name: Probe cross-process accessibility bus
         run: |
           runuser -u linuxit-test -- bash -c '
