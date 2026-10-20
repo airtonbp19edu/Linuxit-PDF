@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T12:25:00-03:00",
+  "updated_at_local": "2026-10-20T12:32:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -160,10 +160,17 @@
       "id": "E07",
       "block": "Formulários",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "XFA híbrido: preencher mantendo datasets coerente",
       "goal": "Em PDF com AcroForm e XFA, preencher um campo e atualizar o valor correspondente em datasets na cópia nova.",
-      "verification": "Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado."
+      "verification": "Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado.",
+      "commit": "aff57e0",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json",
+        "tests/test_pdf_xfa.py",
+        "tests/test_xfa_gtk.py"
+      ],
+      "note": "Em PDF com campos AcroForm e XFA, preencher um campo (texto ou eventos) grava a cópia nova e copia cada valor de texto alterado, inclusive os calculados, para o elemento correspondente do pacote datasets. O elemento é achado pelo nome do campo sem os subformulários sem nome (#subform); só o conteúdo dele muda, o resto do XML fica byte a byte, e a cópia é reaberta e conferida antes de ser publicada. Recusados: formulário só XFA, campo sem dado correspondente, texto rico e outras alterações em XFA. O diálogo de preenchimento só oferece campos ligados aos dados. 7 testes novos (5 portáveis, 2 GTK); casos S12-15-10 e S12-15-11; suíte local 607/607; aceitação 57/57 na revisão aff57e0."
     },
     {
       "id": "E08",

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 12:25 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 12:32 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,19 +15,19 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **55 de 57 casos aprovados** na revisão `79851e9` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E27: aceitação 55/55 e suíte 600/600. Suíte própria completa **600/600** no Ubuntu 24.04.
+- Execução registrada: **57 de 59 casos aprovados** na revisão `aff57e0` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E27: aceitação 55/55 e suíte 600/600; o CI da E07 está em andamento. Suíte própria completa **607/607** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E06 e E25 a E27 concluídas. Executando a **E07** (XFA híbrido: preencher mantendo os dados coerentes); depois dela, parar.
+- Nada em execução além do CI da E07. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E27 concluídas. Aguardando você para iniciar a **E08**.
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
-- Formulários: preenchimento XFA, datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, e leitura dos campos XFA.
+- Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
 - Assinaturas: assinatura incremental e múltipla, DocTimeStamp, PAdES-LTV e OCSP.
 - 3D: renderizador U3D/PRC. Hoje só lista e extrai.
 - Redação definitiva e edição universal de anotações.
@@ -84,3 +84,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 10:49** — CI no Debian 13 confirmou a E06: aceitação 55/55 e suíte 595/595, sem quedas. Nenhuma etapa nova iniciada; aguardando você para a E07 e a decisão D03.
 - **2026/10/20 às 10:54** — Decisão D03: investigar a queda do GTK como etapa própria (E27) e, em seguida, fazer a próxima da fila (E07). Iniciando a E27.
 - **2026/10/20 às 12:25** — E27 concluída (`79851e9`). A queda não se repetiu em cerca de 70 execuções, inclusive num Debian 13 local e em 18 execuções de diagnóstico no CI. Mas a investigação achou a causa provável: o coletor de lixo do Python às vezes rodava numa thread de trabalho e liberava botões, listas e até janelas do GTK fora da thread principal (546 objetos numa suíte completa), o que o GTK não suporta. Correção: a coleta passa a rodar só na thread principal; a contagem caiu para 0. Suíte 600/600, aceitação 55/55, CI Debian 13 aprovado. Iniciando a E07.
+- **2026/10/20 às 12:32** — E07 concluída (`aff57e0`): em formulários XFA híbridos, preencher um campo agora grava o mesmo valor nos campos comuns e nos dados XFA da cópia, inclusive valores calculados; a cópia é conferida antes de ser salva. Campos sem dado XFA correspondente e outras alterações em XFA são recusados. Suíte 607/607, aceitação 57/57. CI no Debian 13 em andamento. Parado, aguardando você para a E08.

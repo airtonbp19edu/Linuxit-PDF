@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T12:25:00-03:00. Pendente: 16, Em andamento: 1, Concluída: 9, Bloqueada: 1.
+Atualizado em 2026-10-20T12:32:00-03:00. Pendente: 16, Concluída: 10, Bloqueada: 1.
 
 **Regras**
 
@@ -23,7 +23,7 @@ Atualizado em 2026-10-20T12:25:00-03:00. Pendente: 16, Em andamento: 1, Concluí
 | E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Concluída |
 | E06 | XFA: leitura dos campos | Formulários | nada | Concluída |
 | E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Concluída |
-| E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Em andamento |
+| E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Concluída |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
@@ -158,7 +158,11 @@ Evidência: [testes/resultados/e27-gc-threads/2026-10-20/revisao.json](../testes
 
 **Como verificar:** Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Em PDF com campos AcroForm e XFA, preencher um campo (texto ou eventos) grava a cópia nova e copia cada valor de texto alterado, inclusive os calculados, para o elemento correspondente do pacote datasets. O elemento é achado pelo nome do campo sem os subformulários sem nome (#subform); só o conteúdo dele muda, o resto do XML fica byte a byte, e a cópia é reaberta e conferida antes de ser publicada. Recusados: formulário só XFA, campo sem dado correspondente, texto rico e outras alterações em XFA. O diálogo de preenchimento só oferece campos ligados aos dados. 7 testes novos (5 portáveis, 2 GTK); casos S12-15-10 e S12-15-11; suíte local 607/607; aceitação 57/57 na revisão aff57e0.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e07.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [tests/test_xfa_gtk.py](../tests/test_xfa_gtk.py). Commit `aff57e0`.
 
 ### E08 — Segunda assinatura em revisão incremental
 
