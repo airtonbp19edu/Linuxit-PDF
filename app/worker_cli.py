@@ -104,10 +104,14 @@ def main(argv):
         if len(raw)>256*1024:raise ValueError('Pedido de voz acima de256KiB.')
         print(json.dumps(export_speech(argv[2],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'sign-copy':
-        from pdf_signing import sign_pdf_copy
+        from pdf_signing import SigningRefused, sign_pdf_copy
         raw=sys.stdin.buffer.read(65537)
         if len(raw)>65536:raise ValueError('Pedido de assinatura acima de64KiB.')
         try:result=sign_pdf_copy(argv[2],json.loads(raw))
+        except SigningRefused as exc:
+            # Document-policy reasons (DocMDP, UR3, invalid earlier signature) carry no secrets.
+            print('ValueError: '+str(exc)[:300],file=sys.stderr)
+            raise SystemExit(1) from None
         except Exception:
             print('ValueError: Não foi possível assinar. Confira o PDF, a identidade PEM, a senha e o destino novo.',file=sys.stderr)
             raise SystemExit(1) from None

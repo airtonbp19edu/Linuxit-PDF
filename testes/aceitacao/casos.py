@@ -606,6 +606,42 @@ def signature_malformed(ctx):
     return states
 
 
+@case('S12-17-3', 'worker sign-copy/signature-info (incremental)')
+def second_signature(ctx):
+    source, signed = _signed(ctx);key, cert = _identity(ctx);second = ctx.work / 'assinado-2.pdf'
+    before = signed.read_bytes()
+    run = ctx.worker('sign-copy', signed, request=dict(destination=str(second), source_sha256=sha256(signed),
+                                                        certificate=str(cert), private_key=str(key), password='senha-sintetica'))
+    check(run['code'] == 0 and second.is_file(), 'segunda assinatura falhou: ' + run['stderr'])
+    check(second.read_bytes().startswith(before) and signed.read_bytes() == before, 'revisão anterior alterada')
+    info = ctx.worker('signature-info', second, request={})
+    items = {i['field']: i for i in info['result']['signatures']}
+    first, last = items.get('LinuxitSignature', {}), items.get('LinuxitSignature2', {})
+    check(first.get('status') == 'verified' and first.get('current_file_covered') is False
+          and first.get('covered_revision_bytes') == len(before), f'primeira: {first}')
+    check(last.get('status') == 'verified' and last.get('current_file_covered') is True, f'segunda: {last}')
+    return dict(first_verified_for_its_revision=True, first_covered_bytes=len(before), second_covers_file=True,
+                previous_revision_bytes_preserved=True)
+
+
+@case('S12-17-4', 'worker sign-copy (incremental)')
+def certification_blocks_signature(ctx):
+    from pypdf import PdfWriter
+    from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NumberObject
+    writer = PdfWriter();writer.add_blank_page(200, 200)
+    reference = DictionaryObject({NameObject('/TransformMethod'): NameObject('/DocMDP'),
+                                  NameObject('/TransformParams'): DictionaryObject({NameObject('/P'): NumberObject(1)})})
+    writer.root_object[NameObject('/Perms')] = DictionaryObject({NameObject('/DocMDP'): writer._add_object(
+        DictionaryObject({NameObject('/Type'): NameObject('/Sig'), NameObject('/Reference'): ArrayObject([reference])}))})
+    source = ctx.work / 'certificado-p1.pdf'
+    with source.open('wb') as handle:writer.write(handle)
+    key, cert = _identity(ctx);target = ctx.work / 'nao-publicar.pdf';before = sha256(source)
+    run = ctx.worker('sign-copy', source, request=dict(destination=str(target), source_sha256=before,
+                                                        certificate=str(cert), private_key=str(key), password='senha-sintetica'))
+    check(run['code'] != 0 and 'P=1' in run['stderr'] and not target.exists() and sha256(source) == before, run['stderr'][-300:])
+    return dict(docmdp_p1_refused=True, output_created=False, original_preserved=True)
+
+
 # 18/19 — security and accessible text
 
 PASSWORDS = {'user_password': 'usuario-sintetico', 'owner_password': 'proprietario-sintetico'}

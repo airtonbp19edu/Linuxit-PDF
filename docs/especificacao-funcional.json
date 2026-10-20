@@ -3138,7 +3138,7 @@
       "name": "Assinaturas/certificados",
       "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.",
+      "scope": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. Assinaturas múltiplas (etapa E08): toda assinatura nova é uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior, tabela ou fluxo); cada assinatura anterior continua cobrindo a própria revisão e é reverificada antes de publicar. Recusas: assinatura existente que não verifica, certificação DocMDP P=1, direitos de uso UR3, PDF criptografado, XFA e portfólio; limite de 15 assinaturas. PAdES-LTV, DocTimeStamp separado, OCSP e validação legal continuam abertos.",
       "inputs": [
         "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
@@ -3149,6 +3149,11 @@
         {
           "trigger": "Entrada não suportada, falha de autenticação/integridade ou cancelamento",
           "response": "ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.",
+          "basis": "current_linuxit_source"
+        },
+        {
+          "trigger": "Nova assinatura em PDF já assinado com DocMDP P=1, UR3 ou assinatura existente inválida",
+          "response": "Recusar sem criar saída; a revisão assinada nunca é reescrita.",
           "basis": "current_linuxit_source"
         }
       ],
@@ -3228,6 +3233,18 @@
         {
           "path": "tests/test_signature_gtk.py",
           "test": "test_unsigned_and_encrypted_inputs_have_distinct_results"
+        },
+        {
+          "path": "tests/test_incremental_signatures.py",
+          "test": "test_three_signatures_each_cover_their_revision"
+        },
+        {
+          "path": "tests/test_incremental_signatures.py",
+          "test": "test_cross_reference_stream_source_gets_a_stream_update"
+        },
+        {
+          "path": "tests/test_incremental_signatures.py",
+          "test": "test_certification_without_changes_usage_rights_and_broken_previous_signature_are_refused"
         }
       ],
       "dynamic_case_refs": [],
@@ -3266,6 +3283,28 @@
             "executed_at_local": "2026-10-20T12:45:45-03:00",
             "boundary": "worker signature-info"
           }
+        },
+        {
+          "id": "S12-17-3",
+          "kind": "nominal",
+          "given": "Cópia já assinada (S12-17-1) e a mesma identidade PEM sintética.",
+          "when": "Assinar de novo, gerando outra cópia.",
+          "expected_linuxit": "A nova cópia começa com os bytes exatos da assinada; a primeira assinatura continua verificada para a própria revisão (não cobre o arquivo todo) e a segunda cobre o arquivo inteiro.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-17-4",
+          "kind": "exception",
+          "given": "PDF sintético com certificação DocMDP P=1 (nenhuma alteração permitida).",
+          "when": "Tentar assinar.",
+          "expected_linuxit": "Recusar citando DocMDP P=1, sem criar saída; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -3306,6 +3345,11 @@
           "text": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.",
+          "superseded_at_local": "2026-10-20T13:37:00-03:00",
+          "reason": "Etapa E08: assinaturas múltiplas por revisão incremental."
         }
       ]
     },

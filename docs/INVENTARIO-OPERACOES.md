@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T12:26:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T13:41:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (10 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (14 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -270,7 +270,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |---|---|---|
 |`signatures/inspect` — Inspecionar campos e cobertura assinada|Código em subconjunto ([fonte](../app/pdf_signatures.py#L70))|Campos/ByteRange/Contents => cobertura da revisão e limites explícitos; não afirmar arquivo atual integralmente assinado indevidamente.|
 |`signatures/cms-integrity` — Verificar integridade CMS offline|Código em subconjunto ([fonte](../app/pdf_signatures.py#L45))|CMS destacado e bytes => resultado de integridade separado de confiança de certificado.|
-|`signatures/sign` — Assinar documento|Código em subconjunto ([fonte](../app/pdf_signing.py#L28))|Documento e certificado sintético autorizado => assinatura/persistência a especificar e implementar; inspeção atual não assina.|
+|`signatures/sign` — Assinar documento|Código em subconjunto ([fonte](../app/pdf_signing.py#L159))|Document and user-selected PEM identity => invisible CMS/SHA-256 signature (adbe.pkcs7.detached) in a new copy, always as an incremental revision appended to the exact source bytes (classic table or cross-reference stream, matching the previous section). Earlier signatures must verify before signing and still verify for their own revision afterwards; the new one must cover the whole file. Refused: DocMDP P=1, UR3, encrypted, XFA, portfolio, more than 15 signatures (E08). No trust, timestamp or LTV is added. Acceptance S12-17-1, S12-17-3, S12-17-4.|
 |`signatures/trust` — Validar cadeia/confiança/revogação|Código em subconjunto ([fonte](../app/signature_trust.py#L37))|Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.|
 |`signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV|Pendente/caracterizar|Assinatura e materiais de validação => contrato, tempo e cobertura ainda pendentes.|
 

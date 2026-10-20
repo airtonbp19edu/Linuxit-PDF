@@ -62,13 +62,14 @@ class SigningAttachmentsPermissionTests(unittest.TestCase):
         with self.assertRaises(ValueError):sign_pdf_copy(self.source,self.request())
         self.assertEqual(self.out.read_bytes(),b'preserve')
 
-    def test_changed_source_and_existing_signature_are_refused(self):
+    def test_changed_source_is_refused_and_a_second_signature_is_incremental(self):
         with self.assertRaises(ValueError):sign_pdf_copy(self.source,self.request(source_sha256='0'*64))
         sign_pdf_copy(self.source,self.request())
         second=self.root/'second.pdf'
-        with self.assertRaises(NotImplementedError):
-            sign_pdf_copy(self.out,self.request(destination=str(second),source_sha256=hashlib.sha256(self.out.read_bytes()).hexdigest()))
-        self.assertFalse(second.exists())
+        # Since E08 a signed PDF receives an incremental revision instead of being refused.
+        result=sign_pdf_copy(self.out,self.request(destination=str(second),source_sha256=hashlib.sha256(self.out.read_bytes()).hexdigest()))
+        self.assertEqual((result['field'],result['previous_signatures']),('LinuxitSignature2',['LinuxitSignature']))
+        self.assertTrue(second.read_bytes().startswith(self.out.read_bytes()))
 
     def portfolio(self,password=None,copying=True,printing=True):
         writer=PdfWriter();writer.add_blank_page(200,300);writer.add_attachment('member.txt',b'alpha attachment')

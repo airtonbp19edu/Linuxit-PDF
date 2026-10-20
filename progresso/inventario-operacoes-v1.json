@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 17,
-  "reviewed_at_local": "2026-10-20T12:26:00-03:00",
+  "reviewed_at_local": "2026-10-20T13:41:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5126,7 +5126,7 @@
       "input_context": [
         "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
-      "output_and_acceptance": "Documento e certificado sintético autorizado => assinatura/persistência a especificar e implementar; inspeção atual não assina.",
+      "output_and_acceptance": "Document and user-selected PEM identity => invisible CMS/SHA-256 signature (adbe.pkcs7.detached) in a new copy, always as an incremental revision appended to the exact source bytes (classic table or cross-reference stream, matching the previous section). Earlier signatures must verify before signing and still verify for their own revision afterwards; the new one must cover the whole file. Refused: DocMDP P=1, UR3, encrypted, XFA, portfolio, more than 15 signatures (E08). No trust, timestamp or LTV is added. Acceptance S12-17-1, S12-17-3, S12-17-4.",
       "failure_contract_refs": [
         {
           "family_id": "signatures",
@@ -5137,10 +5137,10 @@
         {
           "path": "app/pdf_signing.py",
           "symbol": "sign_pdf_copy",
-          "line": 28,
-          "end_line": 98,
-          "file_sha256": "9247a83f0ca30bc387079ec3b3e83d5a5a45bd31ba389e76c60c19417fc29095",
-          "excerpt_sha256": "6403f594a8d50e89042db96e51eb2de465ab7ed980f8a4e1f7703c8fe8ad8599"
+          "line": 159,
+          "end_line": 227,
+          "file_sha256": "77219112927e87a03e5a3b1fb185dc63814bbc750470b9697278cb29009f2547",
+          "excerpt_sha256": "e8a8b602a30573f2a6b9afcf15c752f5389d98bcdadc8cc309bff5216c4a9472"
         }
       ],
       "recorded_related_tests": [],
@@ -5150,7 +5150,13 @@
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "output_and_acceptance_previous": [
+        {
+          "text": "Documento e certificado sintético autorizado => assinatura/persistência a especificar e implementar; inspeção atual não assina.",
+          "superseded_at_local": "2026-10-20T13:38:00-03:00"
+        }
+      ]
     },
     {
       "id": "signatures/trust",

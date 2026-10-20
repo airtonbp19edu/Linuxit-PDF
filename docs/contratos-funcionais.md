@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **59 cenários planejados**; 25 subconjuntos implementados e 0 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **61 cenários planejados**; 25 subconjuntos implementados e 0 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **59**, das quais 59 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -777,7 +777,7 @@ Relacionados aos planos dinâmicos/UI: D16.
 
 ## Assinaturas/certificados
 
-Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.
+Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. Assinaturas múltiplas (etapa E08): toda assinatura nova é uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior, tabela ou fluxo); cada assinatura anterior continua cobrindo a própria revisão e é reverificada antes de publicar. Recusas: assinatura existente que não verifica, certificação DocMDP P=1, direitos de uso UR3, PDF criptografado, XFA e portfólio; limite de 15 assinaturas. PAdES-LTV, DocTimeStamp separado, OCSP e validação legal continuam abertos.
 
 **Entradas**
 
@@ -790,6 +790,7 @@ Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/
 **Erros e casos excepcionais**
 
 - Entrada não suportada, falha de autenticação/integridade ou cancelamento: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação.
+- Nova assinatura em PDF já assinado com DocMDP P=1, UR3 ou assinatura existente inválida: Recusar sem criar saída; a revisão assinada nunca é reescrita.
 
 **Estado e efeitos**
 
@@ -800,6 +801,8 @@ Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/
 
 - **S12-17-1** (nominal, contrato próprio atual, `passed`): dado PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos. Ação: Executar o subconjunto local descrito. Esperado: Status de integridade, cobertura da revisão/arquivo atual e trust_chain_verified=false; sem modificação do PDF ou rede. Execução própria em 2026-10-20T12:45:44-03:00, revisão `033e245d0a10`, fronteira worker sign-copy/signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json).
 - **S12-17-2** (exception, contrato próprio atual, `passed`): dado Entrada inválida ou recurso explicitamente não suportado. Ação: Solicitar a operação local. Esperado: ByteRange/Contents/DER malformado, filtro não suportado ou verificador ausente: status explícito sem aprovação. Execução própria em 2026-10-20T12:45:45-03:00, revisão `033e245d0a10`, fronteira worker signature-info: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json).
+- **S12-17-3** (nominal, contrato próprio atual, `not_run`): dado Cópia já assinada (S12-17-1) e a mesma identidade PEM sintética. Ação: Assinar de novo, gerando outra cópia. Esperado: A nova cópia começa com os bytes exatos da assinada; a primeira assinatura continua verificada para a própria revisão (não cobre o arquivo todo) e a segunda cobre o arquivo inteiro.
+- **S12-17-4** (exception, contrato próprio atual, `not_run`): dado PDF sintético com certificação DocMDP P=1 (nenhuma alteração permitida). Ação: Tentar assinar. Esperado: Recusar citando DocMDP P=1, sem criar saída; original preservado.
 
 **Lacunas da referência Foxit**
 
@@ -807,7 +810,7 @@ Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/
 
 Fontes: [app/pdf_signatures.py](../app/pdf_signatures.py), [app/signature_window.py](../app/signature_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/pdf_signing.py](../app/pdf_signing.py), [app/signature_trust.py](../app/signature_trust.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
-Testes próprios existentes, sem nova execução nesta tabela: [test_real_detached_cms_integrity_is_separate_from_certificate_trust](../tests/test_pdf_signatures.py); [test_modified_signed_bytes_fail_cryptographic_verification](../tests/test_pdf_signatures.py); [test_appended_bytes_report_only_signed_revision_coverage](../tests/test_pdf_signatures.py); [test_unsupported_filter_or_invalid_byte_range_never_report_verified](../tests/test_pdf_signatures.py); [test_der_bounds_and_padding_are_checked](../tests/test_pdf_signatures.py); [test_unsigned_fields_and_count_limit_are_explicit](../tests/test_pdf_signatures.py); [test_encrypted_pdf_input_size_and_invalid_request_are_refused](../tests/test_pdf_signatures.py); [test_missing_verifier_and_source_changes_do_not_approve_integrity](../tests/test_pdf_signatures.py); [test_real_worker_roundtrip_and_cancelled_request](../tests/test_pdf_signatures.py); [test_invalid_worker_confirmation_is_rejected](../tests/test_pdf_signatures.py); [test_integrity_ui_reports_verification_without_certificate_trust](../tests/test_signature_gtk.py); [test_unsigned_and_encrypted_inputs_have_distinct_results](../tests/test_signature_gtk.py).
+Testes próprios existentes, sem nova execução nesta tabela: [test_real_detached_cms_integrity_is_separate_from_certificate_trust](../tests/test_pdf_signatures.py); [test_modified_signed_bytes_fail_cryptographic_verification](../tests/test_pdf_signatures.py); [test_appended_bytes_report_only_signed_revision_coverage](../tests/test_pdf_signatures.py); [test_unsupported_filter_or_invalid_byte_range_never_report_verified](../tests/test_pdf_signatures.py); [test_der_bounds_and_padding_are_checked](../tests/test_pdf_signatures.py); [test_unsigned_fields_and_count_limit_are_explicit](../tests/test_pdf_signatures.py); [test_encrypted_pdf_input_size_and_invalid_request_are_refused](../tests/test_pdf_signatures.py); [test_missing_verifier_and_source_changes_do_not_approve_integrity](../tests/test_pdf_signatures.py); [test_real_worker_roundtrip_and_cancelled_request](../tests/test_pdf_signatures.py); [test_invalid_worker_confirmation_is_rejected](../tests/test_pdf_signatures.py); [test_integrity_ui_reports_verification_without_certificate_trust](../tests/test_signature_gtk.py); [test_unsigned_and_encrypted_inputs_have_distinct_results](../tests/test_signature_gtk.py); [test_three_signatures_each_cover_their_revision](../tests/test_incremental_signatures.py); [test_cross_reference_stream_source_gets_a_stream_update](../tests/test_incremental_signatures.py); [test_certification_without_changes_usage_rights_and_broken_previous_signature_are_refused](../tests/test_incremental_signatures.py).
 
 <a id="security"></a>
 
