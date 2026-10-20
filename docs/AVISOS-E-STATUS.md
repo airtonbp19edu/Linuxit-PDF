@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 15:41 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 15:50 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,7 +15,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **65 de 65 casos aprovados** na revisão `ba38ca7`. O CI no Debian 13 confirmou a E10 (aceitação 65/65, suíte 616/616). Suíte própria completa **616/616** no Ubuntu 24.04.
+- Execução registrada: **67 de 67 casos aprovados** na revisão `12dda24`. O CI no Debian 13 confirmou a E10 (aceitação 65/65, suíte 616/616); CI da E12 em andamento. Suíte própria completa **616/616** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -23,7 +23,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 (entrega 0.1.17) aguarda você**: o pacote foi montado e passou em 616/616 testes na fonte, no pacote e no sandbox, mas esta sessão não tem permissão para criar a release no GitHub. Para publicar: GitHub → Actions → "Publish tested development release (manual)" → Run workflow (versão 0.1.17).
-- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Executando o bloco seguinte **E12 a E15** (anotações e redação); depois, parar.
+- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15: E12 concluída; executando a **E13** (redimensionar Square, Circle e FreeText); depois E14 e E15, e parar.
 
 ### Falta
 
@@ -97,3 +97,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 15:25** — CI no Debian 13 confirmou a E10: aceitação 65/65 e suíte 616/616. E11: versão 0.1.17 preparada (`dec46c9`); o pacote Flatpak está sendo montado e testado no CI (fonte, pacote e sandbox).
 - **2026/10/20 às 15:40** — E11: Flatpak 0.1.17 montado e aprovado no CI (616/616 na fonte, no pacote e no sandbox; smoke 5/5; launcher 3/3). A publicação como prerelease foi recusada para esta sessão (o GitHub não permite que ela crie releases). Preparei um fluxo que publica exatamente o arquivo testado, sem recompilar: no GitHub, abra Actions → "Publish tested development release (manual)" → Run workflow, com a versão 0.1.17. Depois disso eu confiro o download, rodo a auditoria e o teste de desktop.
 - **2026/10/20 às 15:41** — Retomada agendada recebida. E08, E09 e E10 concluídas; a E11 depende só de você disparar a publicação (Actions → "Publish tested development release (manual)", versão 0.1.17). Seguindo com E12, E13, E14 e E15; depois paro.
+- **2026/10/20 às 15:50** — E12 concluída (`12dda24`): dá para mudar a cor e a opacidade de retângulos, elipses, linhas, destaques, sublinhados e desenhos já existentes, numa cópia nova; o desenho é refeito e conferido na imagem gerada pelo Poppler. Suíte 620/620, aceitação 67/67. A E11 continua aguardando você publicar a 0.1.17. Iniciando a E13.

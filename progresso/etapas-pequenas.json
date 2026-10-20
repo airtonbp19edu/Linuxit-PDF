@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T15:41:00-03:00",
+  "updated_at_local": "2026-10-20T15:50:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -252,16 +252,23 @@
       "id": "E12",
       "block": "Anotações e redação",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Editar cor e opacidade de anotações existentes",
       "goal": "Alterar cor e opacidade de anotações simples já existentes, regenerando a aparência.",
-      "verification": "Teste com pixels da aparência antes e depois; original preservado."
+      "verification": "Teste com pixels da aparência antes e depois; original preservado.",
+      "commit": "12dda24",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e12.json",
+        "tests/test_annotation_style.py",
+        "app/annotation_style.py"
+      ],
+      "note": "Retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes podem mudar de cor (RGB) e opacidade (10% a 100%) numa cópia nova; a aparência é redesenhada a partir da geometria da própria anotação, e o resultado foi conferido em pixels desenhados pelo Poppler. Notas, texto livre e carimbos ficam de fora. Diálogo com seletor de cor e opacidade no rascunho de edição. Suíte 620/620; aceitação 67/67 na revisão 12dda24."
     },
     {
       "id": "E13",
       "block": "Anotações e redação",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Redimensionar Square, Circle e FreeText",
       "goal": "Mudar o retângulo dessas anotações mantendo aparência coerente.",
       "verification": "Teste portátil de geometria e teste GTK de renderização."

@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T15:41:00-03:00. Pendente: 11, Em andamento: 1, Concluída: 14, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T15:50:00-03:00. Pendente: 10, Em andamento: 1, Concluída: 15, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -29,8 +29,8 @@ Atualizado em 2026-10-20T15:41:00-03:00. Pendente: 11, Em andamento: 1, Concluí
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Aguardando você |
-| E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Em andamento |
-| E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Pendente |
+| E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
+| E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Em andamento |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Pendente |
 | E15 | Aplicar redação | Anotações e redação | nada | Pendente |
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Pendente |
@@ -229,7 +229,11 @@ Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/61
 
 **Como verificar:** Teste com pixels da aparência antes e depois; original preservado.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes podem mudar de cor (RGB) e opacidade (10% a 100%) numa cópia nova; a aparência é redesenhada a partir da geometria da própria anotação, e o resultado foi conferido em pixels desenhados pelo Poppler. Notas, texto livre e carimbos ficam de fora. Diálogo com seletor de cor e opacidade no rascunho de edição. Suíte 620/620; aceitação 67/67 na revisão 12dda24.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e12.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e12.json), [tests/test_annotation_style.py](../tests/test_annotation_style.py), [app/annotation_style.py](../app/annotation_style.py). Commit `12dda24`.
 
 ### E13 — Redimensionar Square, Circle e FreeText
 
@@ -237,7 +241,7 @@ Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/61
 
 **Como verificar:** Teste portátil de geometria e teste GTK de renderização.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E14 — Marcar áreas para redação
 
