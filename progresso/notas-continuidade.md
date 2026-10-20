@@ -3374,3 +3374,12 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 - Tentei criar a tag por git push desta sessão: não permitido. Não insisti.
 - Commit 8fbb7d5: o fluxo cria rascunho de prerelease (sem tag) com o mesmo pacote; o dono publica o rascunho na página Releases (a tag nasce no commit testado). Se a tag já existir no commit testado, publica direto.
 - Próximo: usuário roda de novo "Publish tested development release (manual)" e publica o rascunho.
+
+
+## 2026/10/20 às 17:01 (America/Sao_Paulo, UTC-03:00) — E11 concluída — 0.1.17 publicada e auditada
+
+- Publicação: release 418804985, tag v0.1.17-devel → dec46c9, asset 660312363 (118422768 bytes, digest ec773a20…). Rascunho criado/publicado pela sessão do dono no navegador interno (confirmação do usuário às 16:53); pacote anexado pelo fluxo 39486650871 (publish-devel-release.yml agora só anexa a rascunho existente). Falhas 403 do token: 39485174222, 39486020955; causa não identificada (sem rulesets, sem imutabilidade; permissão padrão do repositório é leitura, mas o job recebia Contents: write).
+- Download público sem login: HTTP 200, 118422768 bytes, hash igual (`download-integrity-2026-10-20.json`). `releases/manifest.json` = 0.1.17; SHA256SUMS com a linha nova.
+- Auditoria: 39487498872 falhou ('Application source changed since tests' — main mais nova). `scripts/audit_delivery.py` lê app/, construtor, versão e licenças do commit testado via Git (12500d5). Reexecução 39488048823 aprovada: controles 11, smoke 5/5, GTK 3, 179 arquivos, runtime 3684/483 ELF/297 pacotes. Revisão em testes/resultados/0.1.17/audit/.
+- Desktop 39487502789: 9/9 × 2 repetições com 0.1.14↔0.1.17. Revisão em testes/resultados/0.1.17/desktop/.
+- Parado, aguardando o usuário.

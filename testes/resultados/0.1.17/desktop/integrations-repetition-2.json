@@ -1,0 +1,56 @@
+{
+  "schema": "linuxit-desktop-integrations-v1",
+  "passed": true,
+  "checks": {
+    "actual_upgrade_rollback_and_upgrade": true,
+    "synthetic_preferences_survive_update": true,
+    "outside_home_denied_before_grant": true,
+    "granted_document_reads_expected_bytes": true,
+    "persistent_grant_survives_portal_restart": true,
+    "revoked_grant_denies_new_app_process": true,
+    "portal_never_changes_source": true,
+    "pdf_association_points_to_installed_app": true,
+    "associated_launch_opens_expected_reader_document": true
+  },
+  "errors": [],
+  "foxit_executed": false,
+  "physical_desktop": false,
+  "probe_code_commit": "2a68df214a0dabda585d9ad368216a3b544682a0",
+  "controlled_portal_lifecycle": [
+    {
+      "action": "started_before_flatpak_or_restarted",
+      "pid": 7017,
+      "mount": "/tmp/linuxit-desktop-gJVAzP/doc"
+    },
+    {
+      "action": "stopped_and_fuse_unmounted"
+    },
+    {
+      "action": "started_before_flatpak_or_restarted",
+      "pid": 7282,
+      "mount": "/tmp/linuxit-desktop-gJVAzP/doc"
+    }
+  ],
+  "tested_versions": [
+    "0.1.14",
+    "0.1.17",
+    "0.1.14",
+    "0.1.17"
+  ],
+  "grant_probe": {
+    "host_mount": "/tmp/linuxit-desktop-gJVAzP/doc",
+    "app_path": "/run/user/1001/doc/a0ddf9fd/portal.pdf",
+    "returncode": 0,
+    "stderr": ""
+  },
+  "restart_probe": {
+    "returncode": 0,
+    "stderr": ""
+  },
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.17-x86_64.flatpak",
+    "bytes": 118422768,
+    "sha256": "ec773a2028b63a4026c32866472504bbf7aad7e9994ce2edb78954cfb8217a71",
+    "digitally_signed": false
+  }
+}

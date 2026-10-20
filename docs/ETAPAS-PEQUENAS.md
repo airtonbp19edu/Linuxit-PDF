@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T16:33:00-03:00. Pendente: 8, Concluída: 18, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T17:01:00-03:00. Pendente: 8, Concluída: 19, Bloqueada: 1.
 
 **Regras**
 
@@ -28,7 +28,7 @@ Atualizado em 2026-10-20T16:33:00-03:00. Pendente: 8, Concluída: 18, Bloqueada:
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Concluída |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
-| E11 | Entrega 0.1.17 | Base e entrega | nada | Aguardando você |
+| E11 | Entrega 0.1.17 | Base e entrega | nada | Concluída |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
@@ -219,9 +219,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json](
 
 **Como verificar:** Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados.
 
-**Situação:** Aguardando você.
+**Situação:** Concluída.
 
-Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/616 testes na fonte, no pacote e no Flatpak instalado (sandbox), smoke 5/5, launcher 3/3, 179 arquivos fonte/pacote iguais, 3684 arquivos de runtime auditados. Bundle LinuxitPDF-0.1.17-x86_64.flatpak, 118422768 bytes, SHA-256 ec773a20…7a71. Evidências em testes/resultados/0.1.17/ e manifesto releases/manifest-0.1.17.json. A publicação como prerelease foi bloqueada: esta sessão não tem permissão para criar releases no GitHub. Falta o usuário disparar o fluxo "Publish tested development release (manual)" (publish-devel-release.yml, versão 0.1.17), que publica o mesmo arquivo testado sem recompilar; depois: conferir o download, rodar a auditoria e o probe de desktop.
+0.1.17/devel publicada como prerelease v0.1.17-devel (tag no commit testado dec46c9) com o mesmo bundle aprovado no CI 39474059660, sem recompilar: 118422768 bytes, SHA-256 ec773a20…7a71. Download público sem login conferido (HTTP 200, mesmo tamanho e hash). Auditoria do pacote publicado instalado (CI 39488048823): 11 controles, smoke 5/5, 3 casos GTK, 179 arquivos de fonte, 3684 arquivos de runtime, 483 ELF, 297 pacotes. Integrações de desktop (CI 39487502789): 9/9 em duas repetições (atualização 0.1.14→0.1.17→0.1.14→0.1.17, preferências, portal, associação PDF). O token do Actions não pôde criar a release (403 em 39485174222 e 39486020955); o rascunho foi criado e publicado pela sessão do dono no navegador interno, com confirmação dele, e o fluxo anexou o pacote conferido (39486650871). A primeira auditoria (39487498872) falhou porque comparava o app/ da main mais nova; o auditor passou a comparar com o commit testado (12500d5).
+
+Evidência: [testes/resultados/0.1.17/release-publication.json](../testes/resultados/0.1.17/release-publication.json), [testes/resultados/0.1.17/download-integrity-2026-10-20.json](../testes/resultados/0.1.17/download-integrity-2026-10-20.json), [testes/resultados/0.1.17/audit/review.json](../testes/resultados/0.1.17/audit/review.json), [testes/resultados/0.1.17/desktop/review.json](../testes/resultados/0.1.17/desktop/review.json), [releases/manifest-0.1.17.json](../releases/manifest-0.1.17.json). Commit `dec46c9`.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 

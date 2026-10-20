@@ -1,0 +1,35 @@
+{
+  "schema": "linuxit-installed-audit-review-v1",
+  "date_local": "2026-10-20T17:01:01.027111-03:00",
+  "version": "0.1.17",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39488048823",
+  "audit_code_commit": "12500d501055740ec3ae969e1e560ca8989a0b1c",
+  "artifact_id": 12293468841,
+  "zip_sha256": "6655fe9986cbd7493dccf02b4d95148c14f48f0159f8f1dad67fb1b8e703aea5",
+  "new_controls_passed": 11,
+  "new_installed_smoke_checks_passed": 5,
+  "additional_sidebar_gtk_cases_passed": 3,
+  "source_full_suite_previously_passed_per_environment": 616,
+  "full_suite_rerun": false,
+  "source_payload_files": 179,
+  "runtime_files_verified": 3684,
+  "elf_files_verified": 483,
+  "package_notices_and_source_versions_verified": 297,
+  "checkout_app_differs_from_tested_commit": true,
+  "evidence_hashes": {
+    "auditor-controls.json": "7d998a4122b733f3451f621a8534d0d9517f674e909fd878d065a602a960dffb",
+    "installed-delivery-audit.json": "436afd48d25a48c080108ce1e2cc00373f5a1abde7aa9a1ab4b479d8f309713e",
+    "published-bundle-smoke.json": "773378b7da907003b1aa48a4c53031cfb02bc2be776f487c183d8cfd4adc5ce0",
+    "repository-audit.json": "306cb7b7f3b3b6cf25f027bcdcbf8af55784f291a18077fc4d5720796b2e1ba1",
+    "sidebar-gtk-regression.json": "b47e6972c76b1bc184b1b34caf5cbbd510edad384742a2412a1374011cfed38a"
+  },
+  "bundle_sha256": "ec773a2028b63a4026c32866472504bbf7aad7e9994ce2edb78954cfb8217a71",
+  "bundle_rebuilt_by_audit": false,
+  "public_download_verified": true,
+  "original_executed": false,
+  "project_complete": false,
+  "previous_failed_run": {
+    "url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39487498872",
+    "cause": "auditor compared app/ of the newer checkout instead of the tested commit; fixed in 12500d5"
+  }
+}

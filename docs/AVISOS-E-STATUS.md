@@ -2,12 +2,12 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 16:33 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 17:01 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
-- Versão 0.1.16/devel publicada como Flatpak (prerelease no GitHub), auditada no mesmo arquivo sem recompilar. Na entrega passou em 564/564 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado.
+- Versão **0.1.17/devel** publicada como Flatpak (prerelease `v0.1.17-devel` no GitHub), auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 616/616 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. As etapas E12–E15 já estão no código, mas ainda não num pacote publicado.
 - Python + GTK, com 79 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
@@ -22,7 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 (entrega 0.1.17) aguarda você**: o pacote foi montado e passou em 616/616 testes na fonte, no pacote e no sandbox, mas esta sessão não tem permissão para criar a release no GitHub. Para publicar: GitHub → Actions → "Publish tested development release (manual)" → Run workflow (versão 0.1.17).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
 - Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15 concluído. Erro de CI da E08 resolvido e confirmado no CI (execução 39483614911: 638/638, sem pulos). Parado, aguardando você.
 
 ### Falta
@@ -103,3 +103,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 16:22** — E15 concluída (`61f180e`): aplicar redação numa cópia nova. As páginas marcadas viram imagem com as áreas pintadas; o texto e as imagens sob as marcas desaparecem do arquivo (conferido em todos os objetos), e as demais páginas não mudam. Suíte 638/638, aceitação 73/73. CI Debian 13 confirmou a E14 (630/630, 71/71). Bloco E12–E15 concluído. Você pediu para retomar a E08 e resolver o erro: iniciando.
 - **2026/10/20 às 16:33** — E08 — erro resolvido: a falha de CI vinha de um teste que dependia do qpdf (ausente no CI) e era pulado. O teste agora cria a origem sem ferramenta externa, a cópia assinada é conferida pelo pdfsig, e o qpdf foi instalado no CI. CI Debian 13 (`f92278b`): 638/638 sem pulos, aceitação 73/73. CI também confirmou a E15. Parado, aguardando você (E11 depende da publicação manual).
 - **2026/10/20 às 16:43** — E11: a publicação pelo fluxo manual (execução 39485174222) conferiu o pacote, mas o GitHub recusou criar a tag no commit testado (403; o token automático não pode criar referência num commit cujos workflows diferem da main). O fluxo foi ajustado para criar a release como rascunho; você publica o rascunho com um clique em Releases. Nada foi publicado na tentativa que falhou.
+- **2026/10/20 às 17:01** — E11 concluída: **0.1.17/devel publicada** (prerelease `v0.1.17-devel`, mesmo pacote testado, SHA-256 ec773a20…7a71). Download público conferido; auditoria do pacote instalado aprovada; integrações de desktop 9/9 nas duas repetições. A release foi criada e publicada pelo navegador interno, com a sua confirmação, porque o token automático do GitHub foi recusado (403). A primeira auditoria falhou por comparar com a main mais nova; corrigido para comparar com o commit testado. Parado, aguardando você.
