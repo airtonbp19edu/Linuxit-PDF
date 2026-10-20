@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:11:35-03:00. Pendente: 19, Concluída: 6, Bloqueada: 1.
+Atualizado em 2026-10-20T10:25:22-03:00. Pendente: 17, Em andamento: 1, Concluída: 7, Bloqueada: 1.
 
 **Regras**
 
@@ -20,8 +20,8 @@ Atualizado em 2026-10-20T10:11:35-03:00. Pendente: 19, Concluída: 6, Bloqueada:
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Concluída |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Concluída |
 | E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Concluída |
-| E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Pendente |
-| E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
+| E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Concluída |
+| E06 | XFA: leitura dos campos | Formulários | nada | Em andamento |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
@@ -121,7 +121,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](
 
 **Como verificar:** O teste passa em 20 execuções seguidas no ambiente local e no CI Debian 13.
 
-**Situação:** Pendente.
+**Situação:** Concluída.
+
+A instabilidade era um defeito real: a reprodução podia começar antes de o áudio estar conectado, e um arquivo de 1 s terminava em milissegundos (1 em 25 execuções). Agora o reprodutor pré-carrega antes de tocar. Teste novo exige pelo menos 0,8 s de reprodução (o código antigo falhou 6 de 10). Testes de reprodução: 20 de 20 execuções seguidas; suíte local 585/585; aceitação 53/53.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json), [tests/test_local_playback.py](../tests/test_local_playback.py). Commit `5747278`.
 
 ### E06 — XFA: leitura dos campos
 
@@ -129,7 +133,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](
 
 **Como verificar:** Fixture XFA sintética; teste portátil e caso de aceitação.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E07 — XFA híbrido: preencher mantendo datasets coerente
 

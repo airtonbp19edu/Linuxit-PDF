@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 10:11 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 10:25 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,13 +15,13 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **53 de 55 casos aprovados** na revisão `db8c6fe` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E25: 53/53 e suíte 584/584. Suíte própria completa **571/571** no Ubuntu 24.04.
+- Execução registrada: **53 de 55 casos aprovados** na revisão `5747278` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E25: 53/53 e suíte 584/584. Suíte própria completa **571/571** no Ubuntu 24.04.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05 e E25 concluídas. **Parado, aguardando sua confirmação.** Próximas na fila: E26 (estabilizar o teste de mídia, decisão D02) e depois E06 (XFA: leitura dos campos). CI no Debian 13 confirmou a E25.
+- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05, E25 e E26 concluídas. Executando a **E06** (XFA: leitura dos campos), autorizada pelo usuário junto com a E26; depois dela, parar.
 
 ### Falta
 
@@ -51,7 +51,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 **Decisões tomadas**
 - D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
-- D02: o teste de mídia instável vira a etapa E26.
+- D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
 
 **Adiado e excluído**
 - Nuvem direta está adiada por decisão do usuário.
@@ -76,3 +76,5 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 01:13** — CI no Debian 13 confirmou a E05: aceitação 53/53 e suíte 583/583, sem falhas. Nenhuma etapa nova iniciada; aguardando você.
 - **2026/10/20 às 10:05** — E25 concluída (`db8c6fe`): régua, janela de medidas e tamanho da página mostram vírgula decimal (2,54 cm; 21,0 × 29,7 cm). Suíte 584/584, aceitação 53/53. Parado, aguardando você para a E26.
 - **2026/10/20 às 10:11** — CI no Debian 13 confirmou a E25: aceitação 53/53 e suíte 584/584. Nenhuma etapa nova iniciada; aguardando você para a E26.
+- **2026/10/20 às 10:16** — Pedido: fazer as duas próximas da fila (E26 e E06) e parar.
+- **2026/10/20 às 10:25** — E26 concluída (`5747278`): o teste instável revelou um defeito real. Um áudio curto podia "terminar" em milissegundos porque a reprodução começava antes de o som estar pronto. Corrigido para pré-carregar antes de tocar. Teste novo, 20 de 20 execuções seguidas, suíte 585/585, aceitação 53/53. Iniciando a E06.

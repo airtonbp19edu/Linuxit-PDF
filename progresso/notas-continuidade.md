@@ -3247,3 +3247,8 @@ Pedido do usuário às 09:58: continuar. **E25** (`db8c6fe`): `measurement.decim
 ## 2026/10/20 às 10:11 (America/Sao_Paulo, UTC-03:00) — CI confirma a E25
 
 CI 39427531619 (Debian 13) na revisão `d8c25ab`: aceitação 53/53 e suíte 584/584 (`ci-debian13-e25-review.json`). Nenhuma etapa nova iniciada.
+
+
+## 2026/10/20 às 10:25 (America/Sao_Paulo, UTC-03:00) — E26 concluída
+
+Pedido do usuário às 10:16: fazer as duas próximas da fila (E26 e E06) e parar. **E26** (`5747278`): reprodução de 25 execuções mostrou EOS a 0,02 s num WAV de 1 s; causa: sinks com `async=False` deixavam o pipeline ir a PLAYING antes de o ramo de áudio estar ligado. `play()` agora pré-carrega em PAUSED até `ASYNC_DONE` e então toca; retomar de uma pausa pré-carregada é imediato. Após a correção, 40/40 na reprodução; teste novo de duração mínima (código antigo falhou 6/10); testes de reprodução 20/20 seguidos; suíte 585/585; aceitação 53/53. Próximo: E06.
