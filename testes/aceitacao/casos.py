@@ -444,6 +444,70 @@ def annotation_resize_refused(ctx):
     return outcomes
 
 
+def _secret_source(ctx):
+    from pypdf import PdfWriter
+    from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
+    writer = PdfWriter();page = writer.add_blank_page(300, 300)
+    font = writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/Font'),
+        NameObject('/Subtype'): NameObject('/Type1'), NameObject('/BaseFont'): NameObject('/Helvetica')}))
+    page[NameObject('/Resources')] = DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/F1'): font})})
+    stream = DecodedStreamObject();stream.set_data(b'BT /F1 14 Tf 40 200 Td (SEGREDO 123) Tj ET')
+    page[NameObject('/Contents')] = writer._add_object(stream)
+    source = ctx.work / 'segredo.pdf'
+    with source.open('wb') as handle:writer.write(handle)
+    return source
+
+
+def _mark(ctx, source, output, operations):
+    return ctx.worker('copy-edit', source, output, request={'source_sha256': sha256(source), 'operations': operations})
+
+
+@case('S12-14-7', 'worker copy-edit (add-redaction) + Poppler')
+def redaction_mark(ctx):
+    from pypdf import PdfReader
+    from PIL import Image
+    source = _secret_source(ctx);before = sha256(source);output = ctx.work / 'marcado.pdf'
+    run = _mark(ctx, source, output, [{'kind': 'add-redaction', 'page': 0, 'rect': [30, 190, 160, 222], 'text': 'CPF'}])
+    check(run['code'] == 0, run['stderr'])
+    page = PdfReader(str(output)).pages[0];note = page['/Annots'][0].get_object()
+    check(note['/Subtype'] == '/Redact' and [float(v) for v in note['/Rect']] == [30, 190, 160, 222], f'anotação {note}')
+    check([float(v) for v in note['/QuadPoints']] == [30, 222, 160, 222, 30, 190, 160, 190], 'QuadPoints')
+    same_content = page['/Contents'].get_object().get_data() == PdfReader(str(source)).pages[0]['/Contents'].get_object().get_data()
+    check(same_content and 'SEGREDO 123' in page.extract_text(), 'conteúdo deveria continuar intacto')
+    base = ctx.work / 'render'
+    subprocess.run(['pdftoppm', '-r', '144', '-png', '-singlefile', str(output), str(base)], check=True, timeout=60)
+    image = Image.open(str(base) + '.png').convert('RGB')
+    border = [image.getpixel((x, 157)) for x in range(68, 312, 2)]
+    red = any(p[0] > 150 and p[1] < 80 and p[2] < 80 for p in border)
+    text_visible = any(sum(image.getpixel((x, y))) < 200 for x in range(80, 320) for y in range(170, 210))
+    check(red and text_visible and sha256(source) == before, f'contorno {red}, texto visível {text_visible}')
+    return dict(subtype='/Redact', rect=[30, 190, 160, 222], content_unchanged=True, red_outline=True,
+                text_still_visible=True, original_preserved=True)
+
+
+@case('S12-14-8', 'worker copy-edit (add-redaction, resize-annotation, delete-annotation)')
+def redaction_mark_edit_and_refusals(ctx):
+    from pypdf import PdfReader
+    source = _secret_source(ctx);marked = ctx.work / 'marcado.pdf'
+    check(_mark(ctx, source, marked, [{'kind': 'add-redaction', 'page': 0, 'rect': [30, 190, 160, 222], 'text': 'CPF'}])['code'] == 0, 'marca')
+    before = sha256(marked);resized = ctx.work / 'maior.pdf'
+    run = _mark(ctx, marked, resized, [{'kind': 'resize-annotation', 'page': 0, 'index': 0, 'rect': [20, 180, 200, 230]}])
+    check(run['code'] == 0, run['stderr'])
+    note = PdfReader(str(resized)).pages[0]['/Annots'][0].get_object()
+    check(note['/Subtype'] == '/Redact' and [float(v) for v in note['/QuadPoints']] == [20, 230, 200, 230, 20, 180, 200, 180], 'redimensionada')
+    deleted = ctx.work / 'sem-marca.pdf'
+    check(_mark(ctx, resized, deleted, [{'kind': 'delete-annotation', 'page': 0, 'index': 0}])['code'] == 0, 'exclusão')
+    check(not PdfReader(str(deleted)).pages[0].get('/Annots'), 'marca não excluída')
+    outcomes = {}
+    original = sha256(source)
+    for label, operation in (('fora_da_pagina', {'kind': 'add-redaction', 'page': 0, 'rect': [30, 190, 400, 222], 'text': ''}),
+                             ('chave_extra', {'kind': 'add-redaction', 'page': 0, 'rect': [30, 190, 160, 222], 'text': '', 'overlay': 'X'})):
+        output = ctx.work / f'{label}.pdf'
+        outcomes[label] = _mark(ctx, source, output, [operation])['code'] != 0 and not output.exists()
+    check(all(outcomes.values()) and sha256(source) == original and sha256(marked) == before, f'recusas: {outcomes}')
+    return dict(resized_quadpoints=[20, 230, 200, 230, 20, 180, 200, 180], deleted=True, refusals=outcomes, originals_preserved=True)
+
+
 # 15 — forms
 
 def _form_request(path, values):

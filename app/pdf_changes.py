@@ -17,8 +17,8 @@ from pdf_form_controls import inspect_controls, fill_controls
 from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
 from pdf_form_events import inspect_form_events, calculate_form_values, format_form_values
-from annotation_geometry import EXTRA_KINDS, create_extra_annotation, resize_annotation, move_annotation, conversation_members
-from annotation_style import STYLEABLE, current_style, restyle_annotation
+from annotation_geometry import EXTRA_KINDS, RESIZABLE, create_extra_annotation, resize_annotation, move_annotation, conversation_members
+from annotation_style import STYLEABLE, create_redaction, current_style, restyle_annotation
 from pdf_xfa import XFAError, field_data_path, inspect_xfa, write_field_values
 from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
 
@@ -179,7 +179,7 @@ def _annotation_rect(page, rect):
 
 def _removable_annotation(note):
     return (isinstance(note, DictionaryObject) and note.get('/Subtype') in
-            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink', '/Polygon', '/PolyLine', '/Caret', '/FreeText', '/Stamp')
+            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink', '/Polygon', '/PolyLine', '/Caret', '/FreeText', '/Stamp', '/Redact')
             and not int(note.get('/F', 0)) & (64 | 128 | 512)
             and not any(key in note for key in ('/IRT', '/Popup', '/Parent')))
 
@@ -214,7 +214,7 @@ def _annotation_records(reader):
             color, opacity = current_style(note)
             rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text, 'author':author,
                          'styleable':note['/Subtype'] in STYLEABLE, 'color':color, 'opacity':opacity,
-                         'resizable':note['/Subtype'] in ('/Square','/Circle','/FreeText'),
+                         'resizable':note['/Subtype'] in RESIZABLE,
                          'rect':[float(v) for v in note['/Rect']] if isinstance(note.get('/Rect'), list) and len(note['/Rect']) == 4 else None})
     return rows, truncated
 
@@ -428,6 +428,11 @@ def _apply(writer, operation):
         note[NameObject('/IRT')]=annots[index];note[NameObject('/RT')]=NameObject('/R')
         note[NameObject('/T')]=TextStringObject(author);note[NameObject('/F')]=NumberObject(4)
         writer.add_annotation(operation['page'],note)
+    elif kind == 'add-redaction':
+        # E14: mark an area for redaction; content is untouched until applied (E15).
+        _require(set(operation) == {'kind', 'page', 'rect', 'text'}, 'Opções de redação inválidas.')
+        page = _page(writer, operation['page'])
+        writer.add_annotation(operation['page'], create_redaction(writer, _annotation_rect(page, operation['rect']), operation['text']))
     elif kind == 'resize-annotation':
         # E13: new rectangle for Square, Circle or FreeText, appearance regenerated.
         _require(set(operation) == {'kind', 'page', 'index', 'rect'}, 'Opções de tamanho inválidas.')

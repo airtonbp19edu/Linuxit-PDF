@@ -70,7 +70,7 @@ def ink_operation_dialog(parent, info, page):
 ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
                   'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
-ADVANCED_KINDS.update({'style-annotation','resize-annotation'})
+ADVANCED_KINDS.update({'style-annotation','resize-annotation','add-redaction'})
 ADVANCED_KINDS.update({'add-polygon','add-polyline','add-caret','add-freetext','add-stamp',
                        'move-annotation','update-comment','set-popup','delete-conversation'})
 TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador e descendentes',
@@ -82,6 +82,7 @@ TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder coment�
 TITLES['fill-form-events']='Preencher com cálculos e validação'
 TITLES['style-annotation']='Cor e opacidade da anotação'
 TITLES['resize-annotation']='Redimensionar anotação'
+TITLES['add-redaction']='Marcar área para redação'
 TITLES.update({'add-polygon':'Adicionar polígono','add-polyline':'Adicionar polilinha','add-caret':'Marcar inserção',
     'add-freetext':'Adicionar texto livre','add-stamp':'Adicionar carimbo textual','move-annotation':'Mover anotação',
     'update-comment':'Editar comentário ou resposta','set-popup':'Configurar popup','delete-conversation':'Excluir conversa e popups'})
@@ -267,7 +268,7 @@ def advanced_operation_dialog(parent, kind, info, page):
     elif kind == 'resize-annotation':
         # E13: new rectangle for rectangles, ellipses and free text, appearance regenerated.
         records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('resizable') and r.get('rect')]
-        names = {'/Square':'Retângulo','/Circle':'Elipse','/FreeText':'Texto livre'}
+        names = {'/Square':'Retângulo','/Circle':'Elipse','/FreeText':'Texto livre','/Redact':'Redação marcada'}
         for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
         left, bottom, right, top = info['page_boxes'][page]
         grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid);spins = []
@@ -311,7 +312,8 @@ def advanced_operation_dialog(parent, kind, info, page):
     elif kind in ('delete-annotation','update-annotation'):
         records = [r for r in info.get('annotations', []) if r['page'] == page]
         names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',
-                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho'}
+                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho',
+                 '/Redact':'Redação marcada'}
         for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
         if kind == 'update-annotation':
             box.add(Gtk.Label(label='Comentário (pode ficar vazio)', xalign=0))
@@ -342,6 +344,8 @@ def advanced_operation_dialog(parent, kind, info, page):
         if line:hint.set_text('Informe início e fim em pontos PDF, antes da rotação. A linha pode ser horizontal, vertical ou diagonal; deve ficar dentro da página. Sem pontas de seta.')
         elif kind in ('add-freetext','add-stamp'):
             hint.set_text('Texto Unicode com fontes incorporadas na aparência. A área limita o texto visível; aumente-a para acomodar todo o conteúdo.')
+        elif kind == 'add-redaction':
+            hint.set_text('Marca a área com contorno tracejado vermelho, sem apagar nada. A marca pode ser movida, redimensionada, comentada ou excluída; o conteúdo só é removido ao aplicar a redação, em uma cópia nova.')
         elif kind not in ('add-highlight','add-rectangle'):
             hint.set_text(hint.get_text()+' Traço vermelho. A área é manual; não seleciona palavras automaticamente.')
         bounds = ((('X inicial' if line else 'Esquerda'),left,right,left+width*.1),

@@ -2034,7 +2034,7 @@
       "name": "Anotações/undo/gravação",
       "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Marcar redação (etapa E14): áreas retangulares viram anotações /Redact pendentes (QuadPoints, /IC preto para a aplicação futura) com contorno tracejado vermelho próprio; nada é removido do conteúdo; a marca aparece na lista de comentários e pode ser movida, redimensionada, recolorida, comentada ou excluída. Aplicação da redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2411,6 +2411,30 @@
         {
           "path": "tests/test_annotation_style_gtk.py",
           "test": "test_resize_dialog_prefills_the_current_rectangle_and_returns_the_new_one"
+        },
+        {
+          "path": "tests/test_redaction_marks.py",
+          "test": "test_mark_is_a_pending_redact_annotation_and_content_is_untouched"
+        },
+        {
+          "path": "tests/test_redaction_marks.py",
+          "test": "test_mark_is_listed_as_editable"
+        },
+        {
+          "path": "tests/test_redaction_marks.py",
+          "test": "test_mark_can_be_resized_commented_restyled_and_deleted"
+        },
+        {
+          "path": "tests/test_redaction_marks.py",
+          "test": "test_invalid_marks_are_refused"
+        },
+        {
+          "path": "tests/test_redaction_marks.py",
+          "test": "test_poppler_draws_the_outline_and_keeps_the_marked_text_visible"
+        },
+        {
+          "path": "tests/test_annotation_style_gtk.py",
+          "test": "test_redaction_dialog_returns_a_mark_without_applying_anything"
         }
       ],
       "dynamic_case_refs": [
@@ -2526,6 +2550,28 @@
             "executed_at_local": "2026-10-20T15:57:05-03:00",
             "boundary": "worker copy-edit (resize-annotation)"
           }
+        },
+        {
+          "id": "S12-14-7",
+          "kind": "nominal",
+          "given": "PDF sintético com o texto \"SEGREDO 123\" em uma página de 300×300 pontos.",
+          "when": "Marcar a área [30,190,160,222] para redação com o comentário \"CPF\" e salvar cópia nova.",
+          "expected_linuxit": "A cópia tem uma anotação /Redact com esse /Rect e QuadPoints; o conteúdo da página é idêntico ao original e o texto continua extraível e visível no Poppler, com contorno vermelho na borda; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-14-8",
+          "kind": "exception",
+          "given": "A cópia marcada do caso anterior e o PDF original.",
+          "when": "Redimensionar a marca e depois excluí-la; pedir uma marca fora da página e outra com chave extra (texto de sobreposição).",
+          "expected_linuxit": "A marca redimensionada mantém o tipo /Redact com QuadPoints atualizados e some ao ser excluída; os dois pedidos inválidos são recusados sem criar saída; originais preservados.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -2544,6 +2590,11 @@
           "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
           "superseded_at_local": "2026-10-20T15:53:00-03:00",
           "reason": "Etapa E13: redimensionar Square, Circle e FreeText."
+        },
+        {
+          "text": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Cor e opacidade (etapa E12): retângulos, elipses, linhas, destaques, sublinhados, tachados, ondulados, desenhos, polígonos, polilinhas e marcas de inserção já existentes recebem nova cor RGB e opacidade de 10% a 100%; /C e /CA são gravados e a aparência é redesenhada a partir da geometria da própria anotação (destaque com mesclagem Multiply); notas, texto livre e carimbos ficam de fora. Redimensionar (etapa E13): retângulos, elipses e texto livre recebem novo /Rect dentro da página; os dois primeiros são redesenhados na cor e opacidade atuais e o texto livre é diagramado de novo com fontes incorporadas; /RD antigo é removido. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
+          "superseded_at_local": "2026-10-20T16:02:00-03:00",
+          "reason": "Etapa E14: marcar áreas para redação sem aplicar."
         }
       ]
     },

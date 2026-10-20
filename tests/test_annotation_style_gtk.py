@@ -59,5 +59,29 @@ class AnnotationStyleDialogTests(unittest.TestCase):
         self.assertEqual(seen['initial'],[20,20,140,60])
         self.assertEqual(operation,{'kind':'resize-annotation','page':0,'index':1,'rect':[20,20,280,60]})
 
+    def test_redaction_dialog_returns_a_mark_without_applying_anything(self):
+        # E14: the dialog only marks; its hint says nothing is removed until applied.
+        import gi
+        gi.require_version('Gtk','3.0')
+        from gi.repository import Gtk
+        from edit_dialogs import advanced_operation_dialog
+        info={'page_boxes':[[0,0,300,300]],'annotations':[]}
+        seen={}
+        def run(dialog):
+            widgets=[];stack=[dialog]
+            while stack:
+                widget=stack.pop();widgets.append(widget)
+                if isinstance(widget,Gtk.Container):stack.extend(widget.get_children())
+            seen['title']=dialog.get_title()
+            seen['hints']=' '.join(w.get_text() for w in widgets if isinstance(w,Gtk.Label))
+            spins={w.get_accessible().get_name():w for w in widgets if isinstance(w,Gtk.SpinButton)}
+            for name,value in (('Esquerda',30),('Inferior',190),('Direita',160),('Superior',222)):spins[name].set_value(value)
+            entry=next(w for w in widgets if isinstance(w,Gtk.Entry) and not isinstance(w,Gtk.SpinButton));entry.set_text('CPF')
+            return Gtk.ResponseType.OK
+        with patch.object(Gtk.Dialog,'run',run):
+            operation=advanced_operation_dialog(None,'add-redaction',info,0)
+        self.assertEqual(seen['title'],'Marcar área para redação');self.assertIn('sem apagar nada',seen['hints'])
+        self.assertEqual(operation,{'kind':'add-redaction','page':0,'rect':[30,190,160,222],'text':'CPF'})
+
 
 if __name__=='__main__':unittest.main()

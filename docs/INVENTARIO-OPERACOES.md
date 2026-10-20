@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T15:53:00-03:00. **113 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 18, conferida em 2026-10-20T16:04:00-03:00. **114 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -29,7 +29,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Prévia/plano de impressão|4|2|2|0|
 |Livreto/N-up/mosaico|3|3|0|0|
 |Criar/mover/gravar marcadores|4|4|0|0|
-|Anotações/undo/gravação|15|15|0|0|
+|Anotações/undo/gravação|16|16|0|0|
 |AcroForm/XFA/eventos|9|9|0|0|
 |Anexos/portfólios|4|4|0|0|
 |Assinaturas/certificados|5|5|0|0|
@@ -41,7 +41,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|113|101|9|3|
+|Total|114|102|9|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -224,8 +224,9 @@ No dynamic observation of this family found in the examined preserved reports.
 |`annotations/ellipse` — Criar elipse|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => elipse com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/line` — Criar linha|Código em subconjunto ([fonte](../app/pdf_annotations.py#L40))|Página e geometria válida => linha com aparência vetorial própria embutida; fonte preservada.|
 |`annotations/comment-author` — Editar comentário e autor|Código em subconjunto ([fonte](../app/pdf_changes.py#L331))|Anotação simples desbloqueada e texto/autor => alterar/limpar metadados sem mudar geometria/aparência.|
-|`annotations/style` — Mudar cor e opacidade de anotação existente|Código em subconjunto ([fonte](../app/annotation_style.py#L138))|Existing simple annotation (Square, Circle, Line, Highlight, Underline, StrikeOut, Squiggly, Ink, Polygon, PolyLine, Caret), RGB colour and opacity 10-100% => /C and /CA set and the normal appearance regenerated from the annotation geometry with an ExtGState (Multiply for highlights); notes, free text and stamps, locked annotations and ones with replies/popups are refused; copy only, original preserved (E12). Rendered result checked with Poppler. Acceptance S12-14-3 and S12-14-4.|
-|`annotations/resize` — Redimensionar retângulo, elipse ou texto livre|Código em subconjunto ([fonte](../app/annotation_geometry.py#L31))|Existing Square, Circle or FreeText and a new rectangle inside the CropBox => /Rect replaced, /RD dropped; Square/Circle redrawn with their current colour and opacity, FreeText laid out again with embedded fonts; other types, locked annotations and ones with replies/popups refused; copy only (E13). Rendered result checked with Poppler. Acceptance S12-14-5 and S12-14-6.|
+|`annotations/style` — Mudar cor e opacidade de anotação existente|Código em subconjunto ([fonte](../app/annotation_style.py#L142))|Existing simple annotation (Square, Circle, Line, Highlight, Underline, StrikeOut, Squiggly, Ink, Polygon, PolyLine, Caret), RGB colour and opacity 10-100% => /C and /CA set and the normal appearance regenerated from the annotation geometry with an ExtGState (Multiply for highlights); notes, free text and stamps, locked annotations and ones with replies/popups are refused; copy only, original preserved (E12). Rendered result checked with Poppler. Acceptance S12-14-3 and S12-14-4.|
+|`annotations/resize` — Redimensionar retângulo, elipse ou texto livre|Código em subconjunto ([fonte](../app/annotation_geometry.py#L32))|Existing Square, Circle, FreeText or pending Redact mark (E14: QuadPoints follow the new rectangle) and a new rectangle inside the CropBox => /Rect replaced, /RD dropped; Square/Circle redrawn with their current colour and opacity, FreeText laid out again with embedded fonts; other types, locked annotations and ones with replies/popups refused; copy only (E13). Rendered result checked with Poppler. Acceptance S12-14-5 and S12-14-6.|
+|`annotations/redaction-mark` — Marcar áreas para redação (sem aplicar)|Código em subconjunto ([fonte](../app/annotation_style.py#L172))|Page and a rectangle inside the CropBox, optional comment up to 64 KiB => new /Redact annotation with /Rect, /QuadPoints, /IC black (fill for a later application) and an own dashed red outline appearance; page content untouched; the mark is listed and can be moved, resized, restyled, commented or deleted; extra keys and areas outside the page refused; copy only (E14). Rendered result checked with Poppler. Acceptance S12-14-7 and S12-14-8.|
 |`annotations/delete` — Excluir anotação simples|Código em subconjunto ([fonte](../app/pdf_changes.py#L331))|Índice atual => excluir somente tipo simples sem bloqueios/vínculos/dependentes, preservando widgets.|
 |`annotations/history` — Desfazer/refazer rascunho|Código em subconjunto ([fonte](../app/edit_history.py#L78))|Histórico do rascunho => reconstruir cursor correto sem alterar fonte/cópias já salvas.|
 |`annotations/replies` — Editar respostas/popup e vínculos|Código em subconjunto ([fonte](../app/pdf_changes.py#L331))|Threads/popup/dependentes => caracterizar autoria, vínculos, persistência e disponibilidade Reader.|

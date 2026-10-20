@@ -8,6 +8,7 @@ from pypdf.generic import ArrayObject,BooleanObject,DecodedStreamObject,Dictiona
 from measurement import points,measure
 
 EXTRA_KINDS={'add-polygon','add-polyline','add-caret','add-freetext','add-stamp'}
+RESIZABLE=('/Square','/Circle','/FreeText','/Redact')
 
 
 def _require(condition,message):
@@ -32,7 +33,7 @@ def resize_annotation(writer,note,rect):
     """E13: new /Rect for Square, Circle or FreeText with a regenerated, coherent appearance."""
     from annotation_style import current_style,restyle_annotation
     subtype=note.get('/Subtype')
-    _require(subtype in ('/Square','/Circle','/FreeText'),'Só retângulos, elipses e texto livre podem ser redimensionados.')
+    _require(subtype in RESIZABLE,'Só retângulos, elipses, texto livre e marcas de redação podem ser redimensionados.')
     x0,y0,x1,y1=map(float,rect)
     _require(min(x1-x0,y1-y0)>=MIN_SPAN,'A nova área deve ter ao menos 0,25 ponto de lado.')
     note[NameObject('/Rect')]=_numbers([x0,y0,x1,y1])
@@ -43,6 +44,9 @@ def resize_annotation(writer,note,rect):
             NameObject('/FormType'):NumberObject(1),NameObject('/BBox'):_numbers([0,0,x1-x0,y1-y0]),NameObject('/Resources'):resources})
         note[NameObject('/AP')]=DictionaryObject({NameObject('/N'):writer._add_object(appearance)})
         return note
+    if subtype=='/Redact':
+        from annotation_style import set_quad_to_rect
+        set_quad_to_rect(note)
     color,opacity=current_style(note)
     # Without /C viewers draw the border black; keep that look explicitly.
     return restyle_annotation(writer,note,color or [0.0,0.0,0.0],max(opacity,0.1))
