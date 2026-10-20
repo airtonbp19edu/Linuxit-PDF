@@ -91,3 +91,22 @@ Correção em duas partes:
 
 A execução falha foi mantida; revisão em
 `testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-falha-review.json`.
+
+
+## Publicação 0.1.17 — 403 ao criar a release (2026-10-20)
+
+A [execução 39485174222](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39485174222)
+do fluxo manual de publicação baixou o pacote testado e conferiu tamanho e
+SHA-256, mas `gh release create` voltou `HTTP 403: Resource not accessible by
+integration`, embora o token do job tivesse `Contents: write`. O repositório não
+tem rulesets. A causa provável: a release criava a tag `v0.1.17-devel` no commit
+testado `dec46c9`, cujos arquivos de workflow diferem dos da `main` (o próprio
+fluxo de publicação e a mudança do `qpdf` vieram depois); criar uma referência
+assim exige a permissão `workflows`, que o `GITHUB_TOKEN` nunca recebe. A 0.1.16
+foi publicada com o token do próprio dono, por isso não passou por isso.
+
+Correção: o fluxo agora cria a release como **rascunho** (sem criar tag) com o
+mesmo pacote conferido. O dono abre o rascunho na página Releases e clica em
+"Publish release"; a tag é criada no commit testado com a permissão dele. Se a
+tag já existir e apontar para o commit testado, o fluxo publica direto nela. Nada
+foi recompilado e nenhum arquivo foi publicado na execução que falhou.

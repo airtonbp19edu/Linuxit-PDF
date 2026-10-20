@@ -55,12 +55,31 @@ jobs:
           file="candidate/dist/${{ steps.manifest.outputs.file }}"
           test "$(stat -c %s "$file")" = "${{ steps.manifest.outputs.bytes }}"
           echo "${{ steps.manifest.outputs.sha }}  $file" | sha256sum -c -
-      - name: Create the prerelease and upload the bundle
+      - name: Create the prerelease (draft) and upload the bundle
+        # The job token cannot create the tag on the tested commit: that commit's workflow
+        # files differ from main, and creating such a ref needs the "workflows" permission,
+        # which GITHUB_TOKEN never has (run 39485174222: HTTP 403). So the release is created
+        # as a draft (no tag yet); the owner publishes it in the web page, which creates the tag
+        # on the tested commit with the owner's own permission. If the tag already exists and
+        # points at the tested commit, the release is published directly on it.
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.manifest.outputs.tag }}
+          COMMIT: ${{ steps.manifest.outputs.commit }}
         run: |
-          gh release create "${{ steps.manifest.outputs.tag }}" \
-            "candidate/dist/${{ steps.manifest.outputs.file }}" \
-            --repo "$GITHUB_REPOSITORY" --target "${{ steps.manifest.outputs.commit }}" \
-            --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
-            --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
+          file="candidate/dist/${{ steps.manifest.outputs.file }}"
+          existing=""
+          if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" > tag.json 2>/dev/null; then
+            existing="$(python3 -c "import json;print(json.load(open('tag.json'))['object']['sha'])")"
+          fi
+          if [ -n "$existing" ]; then
+            test "$existing" = "$COMMIT" || { echo "Tag $TAG points to $existing, not the tested $COMMIT"; exit 1; }
+            gh release create "$TAG" "$file" --repo "$GITHUB_REPOSITORY" --verify-tag \
+              --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
+              --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
+          else
+            gh release create "$TAG" "$file" --repo "$GITHUB_REPOSITORY" --target "$COMMIT" --draft \
+              --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
+              --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
+            echo "::notice::Rascunho criado. Abra Releases, edite o rascunho $TAG e clique em Publish release."
+          fi
