@@ -415,6 +415,12 @@
       "responsibility": "Autoriza operações conforme a credencial e preserva criptografia/identidades originais."
     },
     {
+      "id": "pdf_crypt_compat",
+      "path": "app/pdf_crypt_compat.py",
+      "boundary": "portable_pdf_logic",
+      "responsibility": "Adaptador do pypdf fixado para /EncryptMetadata false: lê e regrava metadados XMP em claro com o filtro Identity."
+    },
+    {
       "id": "print_queue",
       "path": "app/print_queue.py",
       "boundary": "gtk_ui",
@@ -1020,7 +1026,8 @@
         "app/main.py",
         "app/local_files.py",
         "app/folder_dialogs.py",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "app/pdf_crypt_compat.py"
       ],
       "future_boundary": "Entrada de senha e permissões locais; RMS tratado como integração distinta.",
       "future_boundary_implemented": false

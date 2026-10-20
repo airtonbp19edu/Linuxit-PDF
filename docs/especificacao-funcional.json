@@ -3775,7 +3775,7 @@
       "name": "Senhas/permissões/RMS",
       "matrix_implementation": "0.1.16: edição autenticada autoriza a operação e mantém criptografia, senhas usuário/proprietário e permissões na cópia. Quatro perfis de cifra/GTK próprios aprovados; suíte564/564 por ambiente. RMS e outros perfis abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspecionar permissões, criar cópia AES-256 ou sem criptografia com senha de proprietário, e editar/imprimir documento cifrado conforme as permissões, preservando criptografia, senhas e permissões na cópia (RC4-128, AES-128, AES-256-R5 e AES-256 conferidos). Fluxo de pasta preferida/sincronizada com cópias de publicação exclusiva. RMS, outros perfis de cifra e cliente sincronizador real continuam abertos.",
+      "scope": "Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspecionar permissões, criar cópia AES-256 ou sem criptografia com senha de proprietário, e editar/imprimir documento cifrado conforme as permissões, preservando criptografia, senhas e permissões na cópia (RC4-128, AES-128, AES-256-R5 e AES-256 conferidos). Fluxo de pasta preferida/sincronizada com cópias de publicação exclusiva. RMS, outros perfis de cifra e cliente sincronizador real continuam abertos. Corpus de criptografia (etapa E18, testes/fixtures/criptografia/): RC4-40, RC4-128, AES-128, AES-256 (R6) e AES-128 com /EncryptMetadata false, cada um aberto com senha de usuário/proprietário/errada/ausente, editado preservando V/R/Length/P/EncryptMetadata e com as permissões do usuário respeitadas, e preparado para impressão a partir da cópia de leitura; metadados XMP em claro (filtro Identity) passaram a ser lidos e regravados corretamente.",
       "inputs": [
         "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
         "Fonte SHA-256, seis permissões declaradas e destino novo."
@@ -3805,7 +3805,8 @@
         "app/folder_dialogs.py",
         "docs/PASTAS-SINCRONIZADAS.md",
         "app/pdf_edit_security.py",
-        "testes/resultados/0.1.16/validation-review.json"
+        "testes/resultados/0.1.16/validation-review.json",
+        "app/pdf_crypt_compat.py"
       ],
       "foxit": {
         "evidence_state": "runtime_observed_subset",
@@ -3942,12 +3943,33 @@
         {
           "path": "tests/test_sync_folders_gtk.py",
           "test": "test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save"
+        },
+        {
+          "path": "tests/test_encryption_corpus.py",
+          "test": "test_fixtures_match_the_manifest_and_independent_readers"
+        },
+        {
+          "path": "tests/test_encryption_corpus.py",
+          "test": "test_open_with_user_owner_wrong_and_missing_password"
+        },
+        {
+          "path": "tests/test_encryption_corpus.py",
+          "test": "test_edit_keeps_the_profile_and_follows_user_permissions"
+        },
+        {
+          "path": "tests/test_encryption_corpus.py",
+          "test": "test_print_preparation_uses_the_reading_copy_and_low_quality_only"
         }
       ],
       "dynamic_case_refs": [
         "D15"
       ],
-      "fixture_refs": [],
+      "fixture_refs": [
+        {
+          "path": "testes/fixtures/criptografia/corpus.json",
+          "status": "existing"
+        }
+      ],
       "acceptance_cases": [
         {
           "id": "S12-18-1",
@@ -3982,6 +4004,28 @@
             "executed_at_local": "2026-10-20T20:33:41-03:00",
             "boundary": "worker security-info/owner-copy/protect-copy"
           }
+        },
+        {
+          "id": "S12-18-3",
+          "kind": "nominal",
+          "given": "Corpus próprio testes/fixtures/criptografia/: o mesmo documento de 2 páginas em RC4-40, RC4-128, AES-128, AES-256 e AES-128 com metadados em claro; senha de usuário e de proprietário sintéticas.",
+          "when": "Abrir cada perfil com a senha de usuário, adicionar um marcador com a senha de proprietário em cópia nova e preparar impressão a partir da leitura.",
+          "expected_linuxit": "Abre com 2 páginas, texto e título XMP legíveis e as permissões do usuário (imprimir só em baixa qualidade, sem copiar nem modificar); a cópia editada mantém V/R/Length/P/EncryptMetadata, abre com a senha de usuário e tem o marcador; o PDF de impressão tem 2 páginas; originais preservados.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-18-4",
+          "kind": "exception",
+          "given": "Os mesmos cinco perfis.",
+          "when": "Abrir sem senha e com senha errada; com a senha de usuário, tentar adicionar um marcador (modificar não permitido).",
+          "expected_linuxit": "Pedir senha, recusar a senha errada e recusar a edição sem criar arquivo; originais preservados.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -4022,6 +4066,11 @@
           "text": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspecionar permissões, criar cópia AES-256 ou sem criptografia com senha de proprietário, e editar/imprimir documento cifrado conforme as permissões, preservando criptografia, senhas e permissões na cópia (RC4-128, AES-128, AES-256-R5 e AES-256 conferidos). Fluxo de pasta preferida/sincronizada com cópias de publicação exclusiva. RMS, outros perfis de cifra e cliente sincronizador real continuam abertos.",
+          "superseded_at_local": "2026-10-20T20:39:00-03:00",
+          "reason": "Etapa E18: corpus de criptografia."
         }
       ]
     },

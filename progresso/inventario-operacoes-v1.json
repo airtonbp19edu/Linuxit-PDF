@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 18,
-  "reviewed_at_local": "2026-10-20T20:29:00-03:00",
+  "reviewed_at_local": "2026-10-20T20:40:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5593,7 +5593,7 @@
         "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
         "Fonte SHA-256, seis permissões declaradas e destino novo."
       ],
-      "output_and_acceptance": "Permissões PDF e leitura/cópia/impressão/edição => política consistente entre interfaces, workers e erro; fluxo global pendente.",
+      "output_and_acceptance": "Permissões PDF e leitura/cópia/impressão/edição => política consistente entre interfaces, workers e erro; fluxo global pendente. E18 own encryption corpus (testes/fixtures/criptografia/): RC4-40, RC4-128, AES-128, AES-256 R6 and AES-128 with /EncryptMetadata false opened (user/owner/wrong/missing password), edited preserving the profile and user permissions, and prepared for printing from the reading copy; clear XMP read and rewritten with the Identity crypt filter. Acceptance S12-18-3 and S12-18-4.",
       "failure_contract_refs": [
         {
           "family_id": "security",

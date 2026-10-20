@@ -1,0 +1,82 @@
+{
+  "schema": "linuxit-encryption-corpus-v1",
+  "provenance": "Own synthetic PDFs from scripts/gerar_corpus_criptografia.py with the pinned BSD pypdf; synthetic passwords only.",
+  "user_password": "usuario-teste",
+  "owner_password": "dono-teste",
+  "content": {
+    "pages": 2,
+    "text": [
+      "alpha first page",
+      "beta second page"
+    ],
+    "info_title": "Titulo Info Linuxit",
+    "xmp_title": "Titulo XMP Linuxit"
+  },
+  "permissions_for_user": {
+    "copy": false,
+    "print": true,
+    "accessibility": true,
+    "print_high_quality": false,
+    "modify": false,
+    "annotate": true,
+    "fill_forms": true,
+    "assemble": false
+  },
+  "files": [
+    {
+      "file": "rc4-40.pdf",
+      "bytes": 1852,
+      "sha256": "43e6a1043d4e9f7e59154824b426bd21a804d2b356edbcbe42d378eeb8e8ca52",
+      "algorithm": "RC4-40",
+      "V": 1,
+      "R": 2,
+      "Length": 40,
+      "P": 4294964196,
+      "EncryptMetadata": true
+    },
+    {
+      "file": "rc4-128.pdf",
+      "bytes": 1853,
+      "sha256": "0797260e6d0f52fdab01628f5f2f606675bf2c8fdaaf45ca4df634259b8bfc50",
+      "algorithm": "RC4-128",
+      "V": 2,
+      "R": 3,
+      "Length": 128,
+      "P": 4294964196,
+      "EncryptMetadata": true
+    },
+    {
+      "file": "aes-128.pdf",
+      "bytes": 2108,
+      "sha256": "5f65c273b7ab8d75c42ba153860fcb516788ef2e551f1da2a377051f96965faf",
+      "algorithm": "AES-128",
+      "V": 4,
+      "R": 4,
+      "Length": 128,
+      "P": 4294964196,
+      "EncryptMetadata": true
+    },
+    {
+      "file": "aes-256.pdf",
+      "bytes": 2356,
+      "sha256": "4b91dd2d57d6935b23fcf372055301ee8a0280c1197f916fd6f1cee543277788",
+      "algorithm": "AES-256",
+      "V": 5,
+      "R": 6,
+      "Length": 256,
+      "P": 4294964196,
+      "EncryptMetadata": true
+    },
+    {
+      "file": "aes-128-metadados-claros.pdf",
+      "bytes": 2164,
+      "sha256": "af345c4cea1361d95e5bb3d88d4c159104c9d40f10ac3992c26ace4efda5af59",
+      "algorithm": "AES-128",
+      "V": 4,
+      "R": 4,
+      "Length": 128,
+      "P": 4294964196,
+      "EncryptMetadata": false
+    }
+  ]
+}

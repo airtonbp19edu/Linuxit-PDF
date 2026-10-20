@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 18, conferida em 2026-10-20T20:29:00-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 18, conferida em 2026-10-20T20:40:00-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (26 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (27 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -289,7 +289,7 @@ Cancelar/senha errada anteriores e correta na abertura independenteD15. Permiss�
 |`security/inspect` — Autenticar senha conhecida e inspecionar permissões|Código em subconjunto ([fonte](../app/pdf_security.py#L66))|PDF e senha opcional => papel/autenticação/permissões ou erro sem expor segredo.|
 |`security/protect` — Criar cópia AES-256|Código em subconjunto ([fonte](../app/pdf_security.py#L91))|PDF suportado e senhas/permissões => cópia AES256 nova; fonte/metadados/anexos preservados no recorte.|
 |`security/owner-copy` — Criar cópia sem cifra com senha de proprietário|Código em subconjunto ([fonte](../app/pdf_security.py#L157))|Autenticação de proprietário => cópia legível nova; senha só de abertura insuficiente.|
-|`security/enforcement` — Aplicar permissões em todos os fluxos|Código em subconjunto ([fonte](../app/pdf_attachments.py#L30))|Permissões PDF e leitura/cópia/impressão/edição => política consistente entre interfaces, workers e erro; fluxo global pendente.|
+|`security/enforcement` — Aplicar permissões em todos os fluxos|Código em subconjunto ([fonte](../app/pdf_attachments.py#L30))|Permissões PDF e leitura/cópia/impressão/edição => política consistente entre interfaces, workers e erro; fluxo global pendente. E18 own encryption corpus (testes/fixtures/criptografia/): RC4-40, RC4-128, AES-128, AES-256 R6 and AES-128 with /EncryptMetadata false opened (user/owner/wrong/missing password), edited preserving the profile and user permissions, and prepared for printing from the reading copy; clear XMP read and rewritten with the Identity crypt filter. Acceptance S12-18-3 and S12-18-4.|
 |`security/rms` — Processar proteção RMS autorizada|Pendente/caracterizar|Documento RMS e ambiente autorizado => caracterizar serviço/contrato sem contornar proteção; dependência externa não resolvida.|
 
 ## Acessibilidade/voz

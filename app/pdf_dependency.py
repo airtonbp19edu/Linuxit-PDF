@@ -6,4 +6,6 @@ def configure_pdf_library():
     vendor = str(Path(__file__).resolve().parent / 'vendor')
     if vendor not in sys.path:
         sys.path.insert(0, vendor)
+    from pdf_crypt_compat import install
+    install()  # /EncryptMetadata false support for the pinned pypdf (E18)
     return 'bundled'

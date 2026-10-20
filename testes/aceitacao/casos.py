@@ -1033,6 +1033,63 @@ def security_refusals(ctx):
     return outcomes
 
 
+CRYPT = 'testes/fixtures/criptografia/'
+
+
+def _crypt_manifest(ctx):
+    return json.loads(ctx.fixture(CRYPT + 'corpus.json').read_text(encoding='utf-8'))
+
+
+def _open_encrypted(ctx, source, password):
+    import tempfile
+    folder = tempfile.mkdtemp(prefix='linuxit-document-', dir=str(ctx.work))
+    return ctx.worker('document-open', source, request={'password': password, 'recover': False, 'view_dir': folder})
+
+
+@case('S12-18-3', 'worker document-open/copy-edit/prepare-print (corpus de criptografia)')
+def encryption_matrix(ctx):
+    from io import BytesIO
+    from pypdf import PdfReader
+    manifest = _crypt_manifest(ctx);user, owner = manifest['user_password'], manifest['owner_password'];rows = {}
+    for row in manifest['files']:
+        source = ctx.copy(CRYPT + row['file']);before = sha256(source)
+        opened = _open_encrypted(ctx, source, user)['result']
+        check(opened['status'] == 'ready' and opened['pages'] == 2 and opened['permissions'] == manifest['permissions_for_user'], f"{row['file']}: {opened}")
+        view = PdfReader(opened['read_path'], strict=True)
+        xmp = manifest['content']['xmp_title'].encode() in view.root_object['/Metadata'].get_object().get_data()
+        check([p.extract_text().strip() for p in view.pages] == manifest['content']['text'] and xmp, f"{row['file']}: leitura")
+        edited = ctx.work / ('editado-' + row['file'])
+        run = ctx.worker('copy-edit', source, edited, request={'source_sha256': before, 'auth': {'password': owner, 'recover': False},
+                                                               'operations': [{'kind': 'add-bookmark', 'title': 'Marcador cifrado', 'page': 1}]})
+        check(run['code'] == 0, run['stderr'])
+        data = edited.read_bytes();entry = PdfReader(BytesIO(data)).trailer['/Encrypt'].get_object()
+        flag = entry.get('/EncryptMetadata', True);clear = getattr(flag, 'value', flag) is False
+        same = (int(entry['/V']), int(entry['/R']), int(entry.get('/Length', 40)), int(entry['/P']), not clear) == \
+               (row['V'], row['R'], row['Length'], row['P'], row['EncryptMetadata'])
+        reader = PdfReader(BytesIO(data));check(same and reader.decrypt(user) and [o.title for o in reader.outline] == ['Marcador cifrado'], f"{row['file']}: edição")
+        printed = ctx.work / ('impressao-' + row['file'])
+        out = ctx.worker('prepare-print', opened['read_path'], printed, request={'scale_mode': 'fit', 'print_as_image': True, 'image_dpi': 150})
+        check(out['code'] == 0 and len(PdfReader(printed).pages) == 2 and sha256(source) == before, f"{row['file']}: impressão {out['stderr']}")
+        rows[row['file']] = dict(V=row['V'], R=row['R'], encrypt_metadata=row['EncryptMetadata'], opened=True, edited=True, printed=True)
+    return rows
+
+
+@case('S12-18-4', 'worker document-open/copy-edit (corpus de criptografia)')
+def encryption_matrix_refused(ctx):
+    manifest = _crypt_manifest(ctx);user = manifest['user_password'];outcomes = {}
+    for row in manifest['files']:
+        source = ctx.copy(CRYPT + row['file']);before = sha256(source)
+        missing = _open_encrypted(ctx, source, '')['result']['status']
+        wrong = _open_encrypted(ctx, source, 'senha-errada')['result']['status']
+        denied = ctx.work / ('negado-' + row['file'])
+        run = ctx.worker('copy-edit', source, denied, request={'source_sha256': before, 'auth': {'password': user, 'recover': False},
+                                                               'operations': [{'kind': 'add-bookmark', 'title': 'x', 'page': 0}]})
+        outcomes[row['file']] = (missing == 'password_required' and wrong == 'password_invalid' and run['code'] != 0
+                                 and not denied.exists() and sha256(source) == before and user not in run['stderr'])
+    check(all(outcomes.values()), f'recusas: {outcomes}')
+    return outcomes
+
+
 @case('S12-19-1', 'worker accessible-text')
 def accessible_text(ctx):
     run = ctx.worker('accessible-text', ctx.fixture(SCOPES), request={'page': 0})
