@@ -2,31 +2,31 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 10:25 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 10:43 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
 - Versão 0.1.16/devel publicada como Flatpak (prerelease no GitHub), auditada no mesmo arquivo sem recompilar. Na entrega passou em 564/564 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado.
-- Python + GTK, com 78 arquivos em `app/`. Das 111 operações do inventário, 97 têm algum código próprio. Isso não é porcentagem de conclusão.
+- Python + GTK, com 78 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
 **Nesta sessão (19–20/10/2026)**
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **53 de 55 casos aprovados** na revisão `5747278` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E25: 53/53 e suíte 584/584. Suíte própria completa **571/571** no Ubuntu 24.04.
+- Execução registrada: **55 de 57 casos aprovados** na revisão `06daa9d` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E26: 53/53 e suíte 585/585. Suíte própria completa **595/595** no Ubuntu 24.04.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05, E25 e E26 concluídas. Executando a **E06** (XFA: leitura dos campos), autorizada pelo usuário junto com a E26; depois dela, parar.
+- Nada em execução. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E06, E25 e E26 concluídas. Aguardando você para iniciar a **E07** (XFA híbrido: preencher mantendo os dados coerentes) e para responder a decisão **D03**.
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
-- Formulários: datas com nomes de mês ou horas, negativos em vermelho, XFA e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript.
+- Formulários: preenchimento XFA, datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, e leitura dos campos XFA.
 - Assinaturas: assinatura incremental e múltipla, DocTimeStamp, PAdES-LTV e OCSP.
 - 3D: renderizador U3D/PRC. Hoje só lista e extrai.
 - Redação definitiva e edição universal de anotações.
@@ -52,6 +52,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 **Decisões tomadas**
 - D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
 - D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
+- D03 (aguardando você): queda intermitente do GTK no CI Debian 13 durante um teste de comentários. Investigar como etapa própria?
 
 **Adiado e excluído**
 - Nuvem direta está adiada por decisão do usuário.
@@ -78,3 +79,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 10:11** — CI no Debian 13 confirmou a E25: aceitação 53/53 e suíte 584/584. Nenhuma etapa nova iniciada; aguardando você para a E26.
 - **2026/10/20 às 10:16** — Pedido: fazer as duas próximas da fila (E26 e E06) e parar.
 - **2026/10/20 às 10:25** — E26 concluída (`5747278`): o teste instável revelou um defeito real. Um áudio curto podia "terminar" em milissegundos porque a reprodução começava antes de o som estar pronto. Corrigido para pré-carregar antes de tocar. Teste novo, 20 de 20 execuções seguidas, suíte 585/585, aceitação 53/53. Iniciando a E06.
+- **2026/10/20 às 10:43** — E06 concluída (`06daa9d`): o aplicativo detecta formulários XFA e mostra os campos e valores em uma janela somente leitura (menu "Campos de formulário XFA…"), sem executar scripts. Suíte 595/595, aceitação 55/55. CI da E26: confirmada no Debian 13 na revisão `95a46ba` (suíte 585/585, aceitação 53/53). Antes disso, duas execuções caíram por uma falha nativa do GTK num teste de comentários, sem relação com a E26; ligado o registro de pilha e aberta a decisão D03 para você. Parado, aguardando você para a E07 e a D03.

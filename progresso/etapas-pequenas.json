@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T10:25:22-03:00",
+  "updated_at_local": "2026-10-20T10:43:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -116,18 +116,26 @@
       "commit": "5747278",
       "evidence": [
         "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json",
-        "tests/test_local_playback.py"
+        "tests/test_local_playback.py",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e26-review.json"
       ],
-      "note": "A instabilidade era um defeito real: a reprodução podia começar antes de o áudio estar conectado, e um arquivo de 1 s terminava em milissegundos (1 em 25 execuções). Agora o reprodutor pré-carrega antes de tocar. Teste novo exige pelo menos 0,8 s de reprodução (o código antigo falhou 6 de 10). Testes de reprodução: 20 de 20 execuções seguidas; suíte local 585/585; aceitação 53/53."
+      "note": "A instabilidade era um defeito real: a reprodução podia começar antes de o áudio estar conectado, e um arquivo de 1 s terminava em milissegundos (1 em 25 execuções). Agora o reprodutor pré-carrega antes de tocar. Teste novo exige pelo menos 0,8 s de reprodução (o código antigo falhou 6 de 10). Testes de reprodução: 20 de 20 execuções seguidas; suíte local 585/585; aceitação 53/53. CI Debian 13: a revisão d07a204 falhou duas vezes com queda nativa do GTK (SIGSEGV) num teste de comentários que roda antes do teste de mídia; a revisão 95a46ba (mesmo código, com faulthandler ligado) passou: suíte 585/585 e aceitação 53/53 (ci-debian13-e26-review.json). Queda registrada como decisão D03."
     },
     {
       "id": "E06",
       "block": "Formulários",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "XFA: leitura dos campos",
       "goal": "Detectar formulário XFA e listar campos e valores do pacote datasets, somente leitura, com limites de tamanho e profundidade.",
-      "verification": "Fixture XFA sintética; teste portátil e caso de aceitação."
+      "verification": "Fixture XFA sintética; teste portátil e caso de aceitação.",
+      "commit": "06daa9d",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json",
+        "tests/test_pdf_xfa.py",
+        "app/pdf_xfa.py"
+      ],
+      "note": "Novo módulo app/pdf_xfa.py: detecta XFA (fluxo único ou lista de pacotes, híbrido ou só XFA, dinâmico) e lista os valores do pacote datasets por caminho SOM, como form1[0].nome[0]. Somente leitura: o modelo e os scripts XFA não são interpretados nem executados; DOCTYPE e entidades são recusados; limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Menu \"Campos de formulário XFA…\" abre um diálogo de leitura. Gravação de PDFs XFA continua recusada (E07). 10 testes portáveis novos; casos de aceitação S12-15-8 (worker) e S12-15-9 (diálogo GTK); suíte local 595/595; aceitação 55/55 na revisão 06daa9d."
     },
     {
       "id": "E07",
@@ -306,6 +314,11 @@
       "question": "O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria?",
       "answer": "Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08).",
       "step": "E26"
+    },
+    {
+      "id": "D03",
+      "status": "aguardando_usuario",
+      "question": "No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria?"
     }
   ]
 }

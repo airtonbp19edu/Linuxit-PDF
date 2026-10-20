@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:25:22-03:00. Pendente: 17, Em andamento: 1, Concluída: 7, Bloqueada: 1.
+Atualizado em 2026-10-20T10:43:00-03:00. Pendente: 17, Concluída: 8, Bloqueada: 1.
 
 **Regras**
 
@@ -21,7 +21,7 @@ Atualizado em 2026-10-20T10:25:22-03:00. Pendente: 17, Em andamento: 1, Concluí
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Concluída |
 | E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Concluída |
 | E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Concluída |
-| E06 | XFA: leitura dos campos | Formulários | nada | Em andamento |
+| E06 | XFA: leitura dos campos | Formulários | nada | Concluída |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
@@ -123,9 +123,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e25.json](
 
 **Situação:** Concluída.
 
-A instabilidade era um defeito real: a reprodução podia começar antes de o áudio estar conectado, e um arquivo de 1 s terminava em milissegundos (1 em 25 execuções). Agora o reprodutor pré-carrega antes de tocar. Teste novo exige pelo menos 0,8 s de reprodução (o código antigo falhou 6 de 10). Testes de reprodução: 20 de 20 execuções seguidas; suíte local 585/585; aceitação 53/53.
+A instabilidade era um defeito real: a reprodução podia começar antes de o áudio estar conectado, e um arquivo de 1 s terminava em milissegundos (1 em 25 execuções). Agora o reprodutor pré-carrega antes de tocar. Teste novo exige pelo menos 0,8 s de reprodução (o código antigo falhou 6 de 10). Testes de reprodução: 20 de 20 execuções seguidas; suíte local 585/585; aceitação 53/53. CI Debian 13: a revisão d07a204 falhou duas vezes com queda nativa do GTK (SIGSEGV) num teste de comentários que roda antes do teste de mídia; a revisão 95a46ba (mesmo código, com faulthandler ligado) passou: suíte 585/585 e aceitação 53/53 (ci-debian13-e26-review.json). Queda registrada como decisão D03.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json), [tests/test_local_playback.py](../tests/test_local_playback.py). Commit `5747278`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json), [tests/test_local_playback.py](../tests/test_local_playback.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e26-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e26-review.json). Commit `5747278`.
 
 ### E06 — XFA: leitura dos campos
 
@@ -133,7 +133,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](
 
 **Como verificar:** Fixture XFA sintética; teste portátil e caso de aceitação.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Novo módulo app/pdf_xfa.py: detecta XFA (fluxo único ou lista de pacotes, híbrido ou só XFA, dinâmico) e lista os valores do pacote datasets por caminho SOM, como form1[0].nome[0]. Somente leitura: o modelo e os scripts XFA não são interpretados nem executados; DOCTYPE e entidades são recusados; limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Menu "Campos de formulário XFA…" abre um diálogo de leitura. Gravação de PDFs XFA continua recusada (E07). 10 testes portáveis novos; casos de aceitação S12-15-8 (worker) e S12-15-9 (diálogo GTK); suíte local 595/595; aceitação 55/55 na revisão 06daa9d.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [app/pdf_xfa.py](../app/pdf_xfa.py). Commit `06daa9d`.
 
 ### E07 — XFA híbrido: preencher mantendo datasets coerente
 
@@ -283,3 +287,4 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](
 
 - **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
 - **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.
+- **D03** (Aguardando você): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria?
