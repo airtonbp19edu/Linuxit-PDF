@@ -1,0 +1,157 @@
+{
+  "schema": "linuxit-complete-report-editorial-v1",
+  "snapshot_commit": "b2bb82114b58468b75f44fd1b77cfb2f354ba25e",
+  "scope": "Avaliação atual dos recortes conhecidos; não altera critérios, pesos, paridade ou casos de aceitação.",
+  "families": {
+    "open-render": {
+      "feito": ["Inspeção de páginas, caixas e metadados; abertura/renderização pelo backend próprio baseado em Poppler; cache separado pela identidade do documento.", "Abertura transacional: o documento anterior só é substituído depois de a nova sessão e o primeiro render serem aceitos; falha, cancelamento e troca concorrente preservam a leitura anterior.", "Senha conhecida transportada por stdin, representação privada de leitura, permissões da fonte preservadas como política da sessão e senha ausente de argv/resultados.", "Recuperação consentida de estruturas que o pypdf consegue interpretar; cópia nova, leitura privada com leases e conferência da identidade/alteração da fonte.", "Salvar cópia local completa com publicação exclusiva; a função não anuncia sincronização remota."],
+      "parcial": ["Recuperação não é universal e a representação de leitura não conserva automaticamente a assinatura do original.", "A integração posterior com edição/impressão autenticadas está coberta por testes próprios da0.1.16; textos antigos que dizem que isso não foi aprovado precisam ser lidos como históricos.", "Corpus de PDFs danificados, variantes de cifra, permissões, fontes e geometrias ainda não é universal."],
+      "falta": ["Ampliar corpus/aceitação por formato e situação de falha.", "Concluir observação comparável do ciclo completo no Reader; nenhum resultado atual encerra toda a família."],
+      "dependencias": ["Corpus e aceitações próprias:sem VM.", "Equivalência ao Reader:original offline operacional."]
+    },
+    "navigation": {
+      "feito": ["Página anterior/próxima, seleção de página e atalhos com validação de limites; callbacks e cache impedem que render antigo substitua a página atual.", "Zoom digitável de1% a6400%, ajustar página/largura, rotação, CropBox e viewport virtual para navegação em zoom grande.", "Transformações próprias compartilhadas com seleção, medidas e apresentação; testes de geometria e integração GTK."],
+      "parcial": ["O raster tem limite de resolução:zoom virtual não promete nitidez ilimitada.", "Documentos incomuns e todas as combinações de caixas, rotação, escala e input físico não foram integralmente comparados com o original."],
+      "falta": ["Executar a aceitação completa de navegação e ampliar comparações/variantes de documento e entrada."],
+      "dependencias": ["Geometria e testes próprios:sem VM.", "Referência integral:VM offline."]
+    },
+    "presentation": {
+      "feito": ["Janela de apresentação com ajustar/preencher, pan, zoom, ponteiro, página/rotação e sessão herdadas.", "Seleção de monitor, fallback quando o monitor desaparece, navegação por teclado, foco e saída por Escape.", "Testes próprios de layout, dois monitores virtuais e hotplug; apresentação de sessão autenticada exercitada."],
+      "parcial": ["Fullscreen e comportamento final dependem do compositor.", "O usuário informou não ter um desktop Linux com dois monitores físicos; o teste virtual não aprova esse hardware nem todos os compositores/Wayland."],
+      "falta": ["Aceitação física em telas disponíveis e comparação de todos os fluxos da apresentação do Reader."],
+      "dependencias": ["Aprimoramentos próprios:sem VM.", "Telas/compositor reais:hardware e desktop.", "Paridade:original offline."]
+    },
+    "search-text": {
+      "feito": ["Busca literal em texto das páginas, caixa, palavra inteira, acentos e hifenização conforme o contrato próprio; limite de consulta e limite de hits.", "Destinos e retângulos associados à página, navegação de hits, progresso e cancelamento do worker; isolamento de gerações/sessões e descarte de resultados obsoletos.", "Comparações delimitadas de contagem e consultas preservadas; busca ausente D11 observada com zero resultados no original."],
+      "parcial": ["As medições comparadas não equivalem à aceitação de toda busca, de todos os destinos ou de cada condição de cancelamento.", "A lógica completa do provedor/engine original, todos os estados e campos internos continuam parcialmente caracterizados."],
+      "falta": ["Aceitações integrais de consultas, destinos, cancelamento, arquivo alterado, documento grande e variantes relevantes.", "Concluir os chamadores/serviços/campos do fluxo original ainda abertos e comparar seus efeitos."],
+      "dependencias": ["Backend e casos próprios:sem VM.", "Observação e equivalência:original offline."]
+    },
+    "search-bookmarks": {
+      "feito": ["Busca em títulos de marcadores com identificação da origem; hits com página conhecida navegam e hits sem destino local conservam page=null e rects vazios.", "Não atribui a primeira página a um título que não tenha destino local válido."],
+      "parcial": ["Observação de seleção versus ativação e destino no Foxit é limitada; parte da campanha ficou inconclusiva ou interrompida."],
+      "falta": ["Fechar aceitação de ativação, destinos não locais/inválidos e demais variantes identificadas no original."],
+      "dependencias": ["Testes próprios:sem VM.", "Destino/ativação no Reader:original offline."]
+    },
+    "search-comments": {
+      "feito": ["Assunto, conteúdo e autor pesquisáveis com suas origens registradas; correção específica da divergência de autoria encontrada na comparação.", "Leitura de respostas /IRT, IDs de objetos, extração textual de rich text e avisos de relações inválidas, com limites para conversas.", "Casos de autoria/assunto/conteúdo preservados e regressões próprias da correção."],
+      "parcial": ["Pesquisar comentário não significa editar todos os seus tipos; a edição/conversa tem contrato próprio em outra família.", "Nem todo vínculo, tipo de anotação ou corpus de rich text foi aceito integralmente no Reader."],
+      "falta": ["Aceitar o fluxo completo de busca/navegação de conversas e variantes de autoria/assunto/conteúdo, com referência ampliada."],
+      "dependencias": ["Implementação e corpus próprios:sem VM.", "Paridade:original offline."]
+    },
+    "search-attachments": {
+      "feito": ["Busca passiva em anexos suportados, com índice/nome/origem/página interna, sem criar um destino fictício na página principal.", "Extração textual de UTF-8 e PDF, DOCX incluindo cabeçalhos/rodapés/notas/comentários, ODT com estilos, XLSX com strings/valores em cache, PPTX com notas e RTF Unicode.", "Objetos, macros, instruções e fórmulas não são executados; limites de ZIP/XML, texto, partes e profundidade, com omissões/motivos explícitos.", "OCR local opt-in de imagens anexas em português/inglês, com limites por imagem, quantidade e tempo; resultados não afirmam precisão universal."],
+      "parcial": ["A ordem das partes Office não garante a ordem visual completa.", "Fórmulas de planilha não são calculadas, variantes não decodificáveis e imagens multiquadro são recusadas por esse extrator; não há recursão irrestrita de anexos."],
+      "falta": ["Ampliar formatos/variantes conforme inventário confirmado e executar a aceitação de omissões, destinos internos, cifrados, limites e falhas."],
+      "dependencias": ["Extratores e aceitações próprias:sem VM.", "Compatibilidade do Reader:original offline."]
+    },
+    "search-index": {
+      "feito": ["Índice local versionado de uma coleção explicitamente escolhida, com consulta, reabertura e exclusão de fontes alteradas dos hits.", "Construção/atualização controladas e snapshot JSON com identidade das fontes.", "Backup exclusivo e recuperação validada por hash/esquema; destino anterior preservado antes da substituição, detecção de concorrência.", "Travas com host/pid/token; revisão explícita e remoção somente de trava local comprovadamente abandonada; não remove uma trava substituída por outro processo."],
+      "parcial": ["O índice próprio não é prova de compatibilidade de formato ou algoritmo com fxLuceneLib.", "Travas legadas/remotas/ativas são preservadas; a recuperação não inventa dados e arquivos fontes alterados continuam excluídos."],
+      "falta": ["Aceitação completa de manutenção, falhas, recuperação, concorrência e corpus de coleções.", "Caracterizar e comparar as partes ainda desconhecidas do provedor de índice do original."],
+      "dependencias": ["Índice/recuperação próprios:sem VM.", "Formato/provedor original:estática e VM para comportamento."]
+    },
+    "search-language": {
+      "feito": ["Coringas por palavra, proximidade ordenada com distância explícita e tratamento de sintaxes não suportadas.", "Stemming com36 algoritmos Snowball3.1.1 selecionáveis explicitamente; português/inglês anteriores preservados e casos de outros idiomas exercitados."],
+      "parcial": ["Não há detecção automática universal de idioma nem equivalência demonstrada com a tokenização/análise Lucene do original.", "Campos de opções, prioridades e estados do provedor original permanecem parcialmente reconstruídos."],
+      "falta": ["Ampliar corpus linguístico e aceitações dos operadores/limites/ordem.", "Concluir caracterização do contrato do Reader antes de afirmar compatibilidade integral."],
+      "dependencias": ["Algoritmos e testes próprios:sem VM.", "Equivalência:estática dirigida e original offline."]
+    },
+    "selection": {
+      "feito": ["Seleção retangular de palavras, cópia de texto, snapshot de região e transformação conforme a página visualizada.", "Ferramenta Caracteres:caixas reais PopplerGLib, seleção parcial/arrasto, cursor, setas visuais, Shift, Home/End e Ctrl+A/C.", "Limites nativos de grafema Pango quando disponíveis; fallback portátil cobre os agrupamentos explicitados; preserva a ordem Unicode entregue pelo extrator em vez de inverter strings RTL.", "Worker vinculado à sessão/página/rotação, cache, limite de100000caracteres por página e permissão de cópia da sessão."],
+      "parcial": ["Fallback não é implementação universal de todas as regras Unicode.", "Um PDF sem ordem lógica confiável não passa a ter semântica perfeita por possuir caixas de caracteres.", "Caixas/texto inconsistentes e limites excedidos são recusados, não corrigidos por geometria fictícia."],
+      "falta": ["Aceitação completa de clipboard, seleção vazia, idiomas complexos, documentos rotacionados e mudanças concorrentes.", "Comparar variantes do original e ampliar corpus de ordem de leitura."],
+      "dependencias": ["Seleção e corpus próprios:sem VM.", "Aceitação física e referência:desktop/clipboard real e original conforme o caso."]
+    },
+    "printing": {
+      "feito": ["Preparação de PDF de saída, prévia, plano escolhido e envio ao backend; caminho de saída exclusivo e preservação do original.", "Impressão da representação atual da sessão autenticada/recuperada e das camadas, com captura da origem e leases.", "Baixa qualidade imposta a150DPI quando a permissão original exige; salvar saída PDF exige cópia permitida.", "Consulta e cancelamento somente dos recibos CUPS capturados nesta execução, com IDs validados e sem shell.", "Fila IPP sintética real com trabalho retido, consulta/cancelamento e verificação da fila; quatro controles passaram."],
+      "parcial": ["Enviar ao CUPS não comprova impressão física; ausência na fila não é confirmação de página impressa.", "Cancelamento não recolhe folhas que o dispositivo já imprimiu.", "A saída de impressão é derivada e não preserva assinatura/proteção como o arquivo original.", "O fechamento/resíduo do Foxit teve comportamentos diferentes em rodadas e uma espera em splwow64; causa definitiva ainda aberta."],
+      "falta": ["Impressora/papel reais:escala, margens, orientação, duplex e cancelamento.", "Fechar fluxo do original, estados internos, erros e processo residual com ambiente respondendo.", "Executar aceitação completa dos planos e dos destinos, inclusive indisponibilidade de backend."],
+      "dependencias": ["Preparação/backend próprios:sem VM.", "Papel/fila do dispositivo:impressora real.", "Original/processos:VM offline operacional."]
+    },
+    "imposition": {
+      "feito": ["Livreto, N-up e mosaico com parâmetros próprios; reabertura da saída e preservação da origem.", "Correção de normalização de CropBox/rotação e desvinculação de referência indireta para evitar mutação do stream do reader.", "Marcas/legendas dependentes de Cairo incorporadas no runtime; oráculos próprios de geometria e ordem.", "Comparação delimitada N-up e saídas observadas de livreto/mosaico preservadas."],
+      "parcial": ["Algumas saídas originais usaram parâmetros distintos dos planos iniciais; não podem ser consideradas automaticamente a mesma aceitação.", "Cairo ausente em um perfil não prova marcas/legendas, mesmo que o PDF básico seja gerado."],
+      "falta": ["Igualar parâmetros/fixtures nas comparações ainda abertas; aceitar todos os lados, layouts, margens e marcas contratados.", "Confirmar o resultado em papel quando a obrigação for física."],
+      "dependencias": ["Geometria própria:sem VM.", "Referência:original offline.", "Resultado físico:impressora."]
+    },
+    "bookmarks-edit": {
+      "feito": ["Painel de títulos/destinos e navegação sem fabricar página quando não há destino local.", "Criar e renomear marcadores, mover subárvore por pai/posição e excluir subárvore em cópia, conservando ligações, destinos e contagens no subconjunto.", "Rascunho com desfazer/refazer antes de salvar, cópias anteriores preservadas; integração de edição autenticada na0.1.16."],
+      "parcial": ["Ações e destinos não suportados não se tornam universalmente editáveis; há guardas para estruturas fora do contrato.", "O plano de aceitação inicial dessa família ainda descreve principalmente inspeção, não toda a edição ampliada."],
+      "falta": ["Especializar a aceitação de edição/histórico, árvores complexas e destinos/ações relevantes.", "Comparar as operações contratadas com o original."],
+      "dependencias": ["Implementação/aceitação próprias:sem VM.", "Paridade:original offline."]
+    },
+    "annotations": {
+      "feito": ["Criar/editar no histórico os tipos simples contratados, destaque, retângulo, sublinhado, tachado, ondulado, elipse e linha, com aparência vetorial própria.", "Desenho Ink e respostas de conversas no marco0.1.15;0.1.16 acrescenta Polygon,PolyLine,Caret,FreeText e Stamp.", "Aparência textual Unicode com Pango/Cairo e fontes incorporadas próprias; até4096caracteres e recorte à área escolhida.", "Mover geometrias atualiza Rect,Vertices,QuadPoints,L e InkList conforme o tipo; editar resposta mantém IRT; popup com Parent/Open/Rect.", "Excluir conversa inclui descendentes e popups, com limites e recusas de bloqueios/vínculos entre páginas; edição em cópia autenticada e histórico preservado."],
+      "parcial": ["A edição não cobre indiscriminadamente todos os subtipos, ações, dependentes e estados de bloqueio do PDF.", "Texto FreeText/Stamp que exceda a área é recortado; o usuário precisa dimensioná-la.", "Redação definitiva e edição universal não estão implementadas nesse contrato; disponibilidade/escopo do Reader deve ser confirmada antes de ampliar a obrigação."],
+      "falta": ["Aceitações completas por tipo, conversa, aparência, persistência, permissões e histórico, com corpus mais amplo.", "Comparar os contratos efetivamente disponíveis no Reader; inventariar tipos restantes sem ampliar silenciosamente o escopo."],
+      "dependencias": ["Tipos e testes próprios:sem VM.", "Referência:original offline."]
+    },
+    "forms": {
+      "feito": ["AcroForm Tx, ReadOnly herdado, MaxLen e guardas de estruturas; checkbox com aparências existentes, radio simples, listas simples/múltiplas e combos.", "Combo editável com texto livre, preservação de Opt/valores/índices e aparência própria no marco0.1.15.", "0.1.16 reconhece AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate por gramática fechada, dependências, ciclos e validação antes de gravar.", "Até128regras/256resultados, profundidade64 e Decimal28dígitos nos cálculos; código JavaScript arbitrário não é executado.", "Cópia nova, rascunho/histórico, persistência/reabertura e edição autenticada exercitados."],
+      "parcial": ["Helpers reconhecidos não são um interpretador JavaScript geral nem todos os eventos/formatações.", "XFA continua não implementado e a edição atual recusa esse contrato.", "Campos, widgets e aparências fora dos perfis aceitos precisam de tratamento específico, não de promessa universal."],
+      "falta": ["Contrato e implementação XFA, se confirmado no escopo do Reader.", "Definir linguagem/eventos/APIs/isolamento para eventual JavaScript geral e formatações adicionais.", "Aceitação completa da família ampliada; os planos Tx iniciais são insuficientes para encerrar todos os controles novos."],
+      "dependencias": ["Projeto, parser, implementação e testes próprios:sem VM.", "Fidelidade aos eventos Reader:original offline."]
+    },
+    "attachments": {
+      "feito": ["Listar e extrair anexos de catálogo, árvores Kids aninhadas e anotações de página, com índice/hash, nome validado, limites e publicação sem sobrescrita.", "Painel GTK com carga sob demanda, gerações e seleção capturada antes do diálogo; extração já autorizada não contamina o status do documento seguinte.", "Recortes de portfólio e propriedades/membros incorporados no marco0.1.15; sessão por senha integrada conforme os contratos próprios.", "Conteúdo permanece passivo:salvar um anexo não executa seu programa ou ação."],
+      "parcial": ["Não há declaração de editor universal de portfólios, de todos os tipos de coleção ou de recursão irrestrita.", "Limites de tamanho real dependem da decodificação; árvores e referências malformadas são guardadas conforme o contrato."],
+      "falta": ["Ampliar corpus de portfólios, cifrados, árvores, anotações e erros; fechar aceitação e comparação de cada operação contratada."],
+      "dependencias": ["Backend/GUI/fixtures próprios:sem VM.", "Compatibilidade Reader:original offline."]
+    },
+    "signatures": {
+      "feito": ["Inspeção offline de ByteRange,Contents,CMS destacado, integridade e cobertura da revisão/arquivo, sem aprovar automaticamente confiança.", "Assinatura local com certificado/chave PEM no contrato do marco0.1.15; cópia e limites explicitados, sem usar certificado pessoal implicitamente.", "0.1.16 oferece política explícita CA/CRL local, instante com fuso, cadeia/expiração e uso de chave; âncoras exigem BasicConstraints CA.", "Token RFC3161 do atributo de tempo da assinatura vinculado aos bytes da assinatura; verificação com OpenSSL e ASN.1, sem raízes implícitas.", "Testes com CA,CRL,TSA sintéticas reais e alteração de bytes, inclusive dentro do Flatpak após corrigir configuração OpenSSL."],
+      "parcial": ["A confiança é resultado técnico da política escolhida; não é validação jurídica, registro de identidade ou prova de PAdES-LTV integral.", "Token de assinatura não equivale a DocTimeStamp independente.", "Não há OCSP online, validação universal de longo prazo, múltiplas assinaturas incrementais, todos os tokens/PFX ou provedores de assinatura."],
+      "falta": ["Contratos/implementação e aceitação de revisões incrementais, múltiplas assinaturas, DocTimeStamp, material de validação e PAdES-LTV.", "Ampliar perfis de CMS, cadeias, revogação e materiais reais autorizados; confirmar disponibilidade/contrato do Reader."],
+      "dependencias": ["Assinatura/validação sintéticas próprias:sem VM.", "Materiais/provedores reais:certificados e serviços autorizados quando necessários.", "Paridade:original offline."]
+    },
+    "security": {
+      "feito": ["Autenticação por senha conhecida, role usuário/proprietário e inspeção de permissões sem senha no relatório.", "Criar cópia AES-256 no contrato definido e exportar plaintext somente com autorização de proprietário; origem e destinos existentes preservados.", "Sessão autenticada de leitura e edição/impressão com política da fonte; senha em memória/stdin e guardas por operação.", "Edição cifrada preserva as senhas usuário/proprietário, ID e permissões; roundtrips RC4-128,AES-128,AES-256-R5 e AES-256 testados.", "Cópias locais em pastas sincronizadas publicadas completas e exclusivamente, sem declarar transferência de nuvem."],
+      "parcial": ["As identidades/objetos de criptografia são tratados por adaptador específico do pypdf6.20.1; não é suporte universal a todos os handlers/proteções PDF.", "Assinaturas, XFA, portfólios e estruturas específicas continuam sujeitos aos guardas do editor; não são removidas para forçar edição.", "RMS permanece pendente e exige identidade/serviço/documentos autorizados."],
+      "falta": ["Ampliar perfis/corpus de cifra e permissões e executar aceitação por operação.", "Caracterizar e integrar RMS autorizado quando houver ambiente e materiais; não contornar proteção."],
+      "dependencias": ["Cifra/permissões e testes próprios:sem VM.", "RMS:serviço/materiais/identidade.", "Paridade:original offline."]
+    },
+    "accessibility": {
+      "feito": ["Texto da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação de foco F6/Shift+F6/Ctrl+Shift+T.", "Probes AT-SPI entre processos em desktop CI e descarte/cancelamento de respostas antigas.", "Voz local:geração WAV via eSpeak e controles explícitos de reprodução GStreamer; preferências de idioma/voz/velocidade e limpeza de temporários."],
+      "parcial": ["Ordem semântica do PDF, texto marcado/estrutura acessível e experiência com leitor de tela real não são universalmente garantidos.", "Saída de teste/fakesink não aprova alto-falantes ou todos os dispositivos de áudio.", "Não há declaração de conformidade integral de acessibilidade."],
+      "falta": ["Aceitação com leitor de tela e áudio reais, foco/ordem/feedback e corpus representativo.", "Ampliar contratos de semântica/documentos acessíveis e comparar comportamentos relevantes."],
+      "dependencias": ["Código e testes automatizados próprios:sem VM.", "Aceitação real:desktop/leitor/áudio.", "Paridade:original offline."]
+    },
+    "measurement": {
+      "feito": ["Distância entre pontos convertida de pontos PDF para unidades apresentadas; transformações da visualização e estados sem geometria válida guardados.", "Calibração/escala e recortes de perímetro/área introduzidos no marco0.1.15.", "0.1.16 acrescenta grade explícita em pontos PDF e restrição angular45graus/Shift, com prioridade definida."],
+      "parcial": ["Não é encaixe automático em todos os caminhos vetoriais ou interpretação semântica de desenhos técnicos.", "Não há equivalência completa de unidades, calibrações, precisão visual e todos os modos do Reader."],
+      "falta": ["Aceitar cada modo/unidade/calibração contratados, ampliar corpus geométrico e comparar a referência."],
+      "dependencias": ["Geometria e aceitações próprias:sem VM.", "Referência:original offline."]
+    },
+    "layers-media": {
+      "feito": ["Leitura de OCGs, alternância de visibilidade e composição da representação de leitura; testes próprios por pixels.", "Salvar configuração escolhida em nova cópia, sem achatar, respeitando grupos bloqueados/exclusivos e mantendo cifra/senhas quando aplicável.", "Listagem/extração passiva de Movie,RichMedia Assets,Sound PCM e streams3D incorporados; referências externas ignoradas.", "PCM8/16bits convertido em WAV; seleção explícita para salvar/reproduzir áudio/vídeo local com pausa,parada,seek e volume.", "Limites de64MiB por stream,256recursos e5000páginas no extrator; nenhum autoplay ou JavaScript acionado ao abrir o PDF."],
+      "parcial": ["U3D/PRC têm somente extração:não há renderizador3D nem interação com modelos.", "Configurações opcionais e ações multimídia não cobrem todos os tipos PDF; Screen/Rendition e outros fluxos não são universalmente suportados.", "Codecs distribuídos não provam aceitação universal de formatos ou dispositivo de áudio/vídeo."],
+      "falta": ["Renderizador e interação3D, conforme disponibilidade e escopo confirmados.", "Contratos de demais ações/subtipos de mídia e configurações de camada, com aceitação e comparação.", "Dispositivos e reprodução reais onde exigidos pelo critério."],
+      "dependencias": ["Implementação/fixtures/renderizador próprio:sem VM, com dependências apropriadas.", "Dispositivo físico:áudio/vídeo real.", "Paridade:original offline."]
+    },
+    "preferences": {
+      "feito": ["Temas system/light/dark, migração legada e persistência; chaves desconhecidas preservadas no contrato de aparência.", "Preferências de leitura, apresentação e pastas locais; o arquivo de leitura mantém seu contrato separado.", "Padrões próprios atômicos/validados de voz e OCR, incluindo idioma, velocidade, layout e DPI; não guardam senhas/chaves/conteúdo de documentos."],
+      "parcial": ["Não reproduz todas as configurações, políticas e prioridades do Foxit.", "Preferências diferentes têm schemas/arquivos próprios; persistência de uma não aprova todas as outras."],
+      "falta": ["Inventariar ajustes relevantes ainda desconhecidos, definir migração/defaults e aceitar persistência/erros/atualização para cada contrato."],
+      "dependencias": ["Configurações e testes próprios:sem VM.", "Fidelidade aos ajustes do Reader:original offline e estática quando aplicável."]
+    },
+    "cloud": {
+      "feito": ["Decisão do usuário registrada:integração direta permanece adiada; IA generativa foi excluída separadamente.", "Fluxo auxiliar de pastas locais sincronizadas por outro cliente:cópia local exclusiva, pasta preferida/últimas pastas e controles de acesso. Isso pertence ao fluxo local, não é autenticação/transferência por API de nuvem."],
+      "parcial": ["Um cliente externo é responsável pelo envio e pelos conflitos. Nenhuma cópia local comprova que a transferência remota terminou.", "Cliente real, conflitos e estados de rede ainda precisam de seu ambiente de teste."],
+      "falta": ["Login remoto, upload/download direto e colaboração/conflitos por API continuam adiados e não devem ser iniciados nesta prioridade.", "Se o usuário retomar a integração direta, serão necessários provedores, contas/consentimento, versionamento, conflitos e contratos próprios; não contar como concluído antes disso."],
+      "dependencias": ["Nuvem direta:nova priorização do usuário e serviços autorizados.", "Teste de pasta sincronizada:cliente real; não exige FoxitVM."]
+    },
+    "conversion": {
+      "feito": ["Criar PDF a partir de PNG,JPEG,BMP,WebP e TIFF, com orientação, ordem,DPI e limites de imagens/pixels.", "TIFF multipágina em blocos, até100páginas totais; importação explícita de quadros estáticos de variantes animadas conforme o contrato posterior.", "OCR local Tesseract por/eng/por+eng em cópia pesquisável, até20páginas e150/300DPI, com limites agregados e páginas sem texto identificadas.", "Escolher páginas únicas e layouts3/6/11 para OCR; as páginas não escolhidas são copiadas sem OCR; preferências de idioma/layout/DPI.", "Fontes e destinos existentes preservados; validação de geometria e integração TIFF→PDF→OCR em testes próprios."],
+      "parcial": ["OCR é cópia derivada e não preserva universalmente estrutura, formulários, links, índices, metadados ou assinaturas.", "Precisão, ordem de leitura, manuscritos, layout complexo e variantes não decodificáveis não são universalmente garantidos.", "O contrato não implementa edição do texto/imagens originais da página nem todas as conversões de entrada/saída de um Editor PDF."],
+      "falta": ["Ampliar corpus, escolhas/limites e aceitações integrais de conversão/OCR.", "Confirmar quais outras conversões pertencem ao Reader de referência antes de adotá-las como obrigação.", "Tratar explicitamente formatos e variantes ainda recusados, sem promessa universal de fidelidade."],
+      "dependencias": ["Implementação/aceitação próprias:sem VM.", "Disponibilidade e equivalência Reader:original offline."]
+    },
+    "platform": {
+      "feito": ["Runtime de worker separado, recursos/licenças e bundle Linux/devel versionados; testes em fonte,payload e sandbox instalado.", "Portal Documents real em desktop X11 efêmero:negação antes de grant,leitura concedida,persistência após reinício do próprio portal,revogação e fonte intacta.", "Associação PDF com lançamento efetivo do aplicativo instalado e documento esperado.", "Atualização/retorno0.1.14→0.1.16→0.1.14→0.1.16 com preferência sintética preservada; nove controles passaram em cada um de dois ambientes novos.", "Adaptador Windows nativo da fonte:cinco controles em CI Server2022 com GTK/Pango/Poppler e captura examinada.", "Distribuição0.1.16 como asset de prerelease, download público/hash e cache auditável, sem arquivo novo acima do limite do Git comum."],
+      "parcial": ["CI X11 não é aprovação de todos os desktops físicos,compositores,Wayland ou clientes sincronizadores.", "O teste Windows da fonte não é instalador final,associação/impressão completa nem aprovação da máquina Windows11 do usuário.", "Atualização testada é instalação/reinstalação do bundle pelo Flatpak; não há atualizador remoto universal próprio ou publicação no Flathub."],
+      "falta": ["Aceitação dos desktops/dispositivos reais disponíveis e demais portais/fluxos contratados.", "Suporte/entrega Windows completos na prioridade posterior.", "Execução integral dos planos de plataforma, incluindo cancelamento e preservação de sessão; correções dos probes não fecham toda a família."],
+      "dependencias": ["Código e CI próprios:sem FoxitVM.", "Desktop/Windows/dispositivos reais:ambientes correspondentes.", "Paridade com Reader:original offline quando pertinente."]
+    }
+  }
+}

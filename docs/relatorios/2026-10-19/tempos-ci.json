@@ -1,0 +1,531 @@
+{
+  "schema": "linuxit-recorded-ci-timing-v1",
+  "interpretation": "Observed step boundaries from saved GitHub API results; not human working time, queue time or token usage. Parallel jobs are not summed as wall time.",
+  "runs": [
+    {
+      "id": 39339330479,
+      "head_sha": "a5ebda9dc358c59db24fe940e473ad4f1c90857c",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39339330479",
+      "jobs": [
+        {
+          "name": "linux-candidate",
+          "status": "completed",
+          "conclusion": "success",
+          "first_step_started_at": "2026-10-19T23:05:19Z",
+          "last_step_completed_at": "2026-10-19T23:21:02Z",
+          "observed_step_span_seconds": 943.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:05:19Z",
+              "completed_at": "2026-10-19T23:05:20Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:05:20Z",
+              "completed_at": "2026-10-19T23:05:23Z"
+            },
+            {
+              "name": "Install Debian build and GUI test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:05:23Z",
+              "completed_at": "2026-10-19T23:06:04Z"
+            },
+            {
+              "name": "Check out requested revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:06:04Z",
+              "completed_at": "2026-10-19T23:06:14Z"
+            },
+            {
+              "name": "Prepare isolated CI user and system bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:06:14Z",
+              "completed_at": "2026-10-19T23:06:14Z"
+            },
+            {
+              "name": "Validate source, build and test candidate",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:06:14Z",
+              "completed_at": "2026-10-19T23:20:53Z"
+            },
+            {
+              "name": "Preserve reports and candidate",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:20:53Z",
+              "completed_at": "2026-10-19T23:20:58Z"
+            },
+            {
+              "name": "Post Check out requested revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:20:58Z",
+              "completed_at": "2026-10-19T23:20:58Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:20:58Z",
+              "completed_at": "2026-10-19T23:21:02Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:21:02Z",
+              "completed_at": "2026-10-19T23:21:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39308706286,
+      "head_sha": "fda6183e561f93d39ba6a3ad9889506a223a258b",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39308706286",
+      "jobs": [
+        {
+          "name": "linux-candidate",
+          "status": "completed",
+          "conclusion": "failure",
+          "first_step_started_at": "2026-10-19T19:10:19Z",
+          "last_step_completed_at": "2026-10-19T19:24:54Z",
+          "observed_step_span_seconds": 875.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:10:19Z",
+              "completed_at": "2026-10-19T19:10:21Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:10:21Z",
+              "completed_at": "2026-10-19T19:10:27Z"
+            },
+            {
+              "name": "Install Debian build and GUI test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:10:27Z",
+              "completed_at": "2026-10-19T19:11:05Z"
+            },
+            {
+              "name": "Check out requested revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:11:05Z",
+              "completed_at": "2026-10-19T19:11:18Z"
+            },
+            {
+              "name": "Prepare isolated CI user and system bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:11:18Z",
+              "completed_at": "2026-10-19T19:11:18Z"
+            },
+            {
+              "name": "Validate source, build and test candidate",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2026-10-19T19:11:18Z",
+              "completed_at": "2026-10-19T19:24:45Z"
+            },
+            {
+              "name": "Preserve reports and candidate",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:24:45Z",
+              "completed_at": "2026-10-19T19:24:50Z"
+            },
+            {
+              "name": "Post Check out requested revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:24:50Z",
+              "completed_at": "2026-10-19T19:24:51Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:24:51Z",
+              "completed_at": "2026-10-19T19:24:54Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T19:24:54Z",
+              "completed_at": "2026-10-19T19:24:54Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39341656820,
+      "head_sha": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39341656820",
+      "jobs": [
+        {
+          "name": "installed-delivery-audit",
+          "status": "completed",
+          "conclusion": "success",
+          "first_step_started_at": "2026-10-19T23:27:19Z",
+          "last_step_completed_at": "2026-10-19T23:28:41Z",
+          "observed_step_span_seconds": 82.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:19Z",
+              "completed_at": "2026-10-19T23:27:19Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:19Z",
+              "completed_at": "2026-10-19T23:27:23Z"
+            },
+            {
+              "name": "Install audit and virtual display dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:23Z",
+              "completed_at": "2026-10-19T23:27:48Z"
+            },
+            {
+              "name": "Check out published bundle and audit source",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:48Z",
+              "completed_at": "2026-10-19T23:27:58Z"
+            },
+            {
+              "name": "Prepare dedicated CI user and bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:58Z",
+              "completed_at": "2026-10-19T23:27:58Z"
+            },
+            {
+              "name": "Audit existing bundle bytes, licenses and installed application",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:58Z",
+              "completed_at": "2026-10-19T23:28:37Z"
+            },
+            {
+              "name": "Preserve audit evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:37Z",
+              "completed_at": "2026-10-19T23:28:38Z"
+            },
+            {
+              "name": "Post Check out published bundle and audit source",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:38Z",
+              "completed_at": "2026-10-19T23:28:38Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:38Z",
+              "completed_at": "2026-10-19T23:28:41Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:41Z",
+              "completed_at": "2026-10-19T23:28:41Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39341668923,
+      "head_sha": "517afaf7a45ce5e8a60602c2dd92c158348f1e72",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39341668923",
+      "jobs": [
+        {
+          "name": "own-desktop",
+          "status": "completed",
+          "conclusion": "failure",
+          "first_step_started_at": "2026-10-19T23:27:26Z",
+          "last_step_completed_at": "2026-10-19T23:28:47Z",
+          "observed_step_span_seconds": 81.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:26Z",
+              "completed_at": "2026-10-19T23:27:27Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:27Z",
+              "completed_at": "2026-10-19T23:27:30Z"
+            },
+            {
+              "name": "Install ephemeral desktop dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:30Z",
+              "completed_at": "2026-10-19T23:27:59Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:27:59Z",
+              "completed_at": "2026-10-19T23:28:09Z"
+            },
+            {
+              "name": "Prepare isolated user and system bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:09Z",
+              "completed_at": "2026-10-19T23:28:09Z"
+            },
+            {
+              "name": "Check actual installed update, rollback, portal persistence and association",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2026-10-19T23:28:09Z",
+              "completed_at": "2026-10-19T23:28:42Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:42Z",
+              "completed_at": "2026-10-19T23:28:43Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:43Z",
+              "completed_at": "2026-10-19T23:28:43Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:43Z",
+              "completed_at": "2026-10-19T23:28:47Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:28:47Z",
+              "completed_at": "2026-10-19T23:28:47Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39342162781,
+      "head_sha": "1fcc603cd3597478e2b36d92a448fdeab9baab3b",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39342162781",
+      "jobs": [
+        {
+          "name": "own-desktop (2)",
+          "status": "completed",
+          "conclusion": "success",
+          "first_step_started_at": "2026-10-19T23:32:11Z",
+          "last_step_completed_at": "2026-10-19T23:33:47Z",
+          "observed_step_span_seconds": 96.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:11Z",
+              "completed_at": "2026-10-19T23:32:12Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:12Z",
+              "completed_at": "2026-10-19T23:32:16Z"
+            },
+            {
+              "name": "Install ephemeral desktop dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:16Z",
+              "completed_at": "2026-10-19T23:32:44Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:44Z",
+              "completed_at": "2026-10-19T23:32:56Z"
+            },
+            {
+              "name": "Prepare isolated user and system bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:56Z",
+              "completed_at": "2026-10-19T23:32:56Z"
+            },
+            {
+              "name": "Check actual installed update, rollback, portal persistence and association",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:56Z",
+              "completed_at": "2026-10-19T23:33:41Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:41Z",
+              "completed_at": "2026-10-19T23:33:42Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:42Z",
+              "completed_at": "2026-10-19T23:33:43Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:43Z",
+              "completed_at": "2026-10-19T23:33:47Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:47Z",
+              "completed_at": "2026-10-19T23:33:47Z"
+            }
+          ]
+        },
+        {
+          "name": "own-desktop (1)",
+          "status": "completed",
+          "conclusion": "success",
+          "first_step_started_at": "2026-10-19T23:32:12Z",
+          "last_step_completed_at": "2026-10-19T23:33:47Z",
+          "observed_step_span_seconds": 95.0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:12Z",
+              "completed_at": "2026-10-19T23:32:12Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:12Z",
+              "completed_at": "2026-10-19T23:32:21Z"
+            },
+            {
+              "name": "Install ephemeral desktop dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:21Z",
+              "completed_at": "2026-10-19T23:32:47Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:47Z",
+              "completed_at": "2026-10-19T23:32:58Z"
+            },
+            {
+              "name": "Prepare isolated user and system bus",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:58Z",
+              "completed_at": "2026-10-19T23:32:58Z"
+            },
+            {
+              "name": "Check actual installed update, rollback, portal persistence and association",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:32:58Z",
+              "completed_at": "2026-10-19T23:33:41Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:41Z",
+              "completed_at": "2026-10-19T23:33:42Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:42Z",
+              "completed_at": "2026-10-19T23:33:42Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:42Z",
+              "completed_at": "2026-10-19T23:33:47Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-10-19T23:33:47Z",
+              "completed_at": "2026-10-19T23:33:47Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

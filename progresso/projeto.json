@@ -89,5 +89,18 @@
     "original_vm_resumed": false,
     "full_family_acceptance": false,
     "all_non_vm_work_complete": false
+  },
+  "comprehensive_status_report": {
+    "created_at_local": "2026-10-19T21:38:45.818557-03:00",
+    "snapshot_commit": "b2bb82114b58468b75f44fd1b77cfb2f354ba25e",
+    "markdown": "docs/RELATORIO-COMPLETO-LINUXIT-PDF-2026-10-19.md",
+    "standalone_html": "docs/RELATORIO-COMPLETO-LINUXIT-PDF-2026-10-19.html",
+    "evidence": "testes/resultados/relatorio-completo-2026-10-19/review.json",
+    "full_known_inventory": true,
+    "full_original_inventory_known": false,
+    "application_tests_rerun": false,
+    "original_executed": false,
+    "vm_inspected": false,
+    "criteria_or_weights_changed": false
   }
 }
