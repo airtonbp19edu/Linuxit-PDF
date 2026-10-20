@@ -1067,9 +1067,14 @@
     },
     {
       "id": "cloud",
-      "contract_kind": "proposed_only",
-      "current_source_refs": [],
-      "future_boundary": "Adaptadores por provedor com laboratório local antes de contas reais.",
+      "contract_kind": "implemented_subset",
+      "current_source_refs": [
+        "app/local_files.py",
+        "app/folder_dialogs.py",
+        "app/main.py",
+        "app/worker_cli.py"
+      ],
+      "future_boundary": "Fluxo atual: pasta local sincronizada por cliente externo. Futuro adiado: adaptadores por provedor com laboratório local antes de contas reais.",
       "future_boundary_implemented": false
     },
     {

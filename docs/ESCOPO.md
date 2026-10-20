@@ -45,3 +45,9 @@ Em 2026-10-17T20:51:10-03:00, o usuário autorizou o [fluxo de pastas sincroniza
 O Linuxit trabalha com arquivos locais; o cliente externo gerencia a nuvem.
 APIs de provedor, login, upload e colaboração remota continuam adiados.
 Nenhuma família foi removida ou peso alterado.
+
+
+Em 2026-10-20T12:41-03:00, a pedido do usuário ("fechar logo esse ciclo"), a família Nuvem/colaboração
+passou a ser atendida pelo fluxo de pastas sincronizadas decidido em 17/10/2026: o contrato
+deixou de ser proposta e os casos S12-23 verificam esse fluxo (etapa E28). Login em provedor,
+transferência por API e colaboração remota continuam adiados; pesos e critérios não mudaram.

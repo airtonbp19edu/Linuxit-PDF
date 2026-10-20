@@ -61,7 +61,21 @@
     "desktop_portal_interaction_tested": true,
     "desktop_portal_evidence": "testes/resultados/0.1.16/desktop/review.json",
     "desktop_portal_reconciled_at_local": "2026-10-19T23:55:00-03:00",
-    "desktop_portal_note": "Record created on 2026-10-17 said false; the 0.1.16 desktop probe later verified persistent grant, revocation and association 9/9 twice. Real external sync client remains untested."
+    "desktop_portal_note": "Record created on 2026-10-17 said false; the 0.1.16 desktop probe later verified persistent grant, revocation and association 9/9 twice. Real external sync client remains untested.",
+    "closes_cloud_acceptance": {
+      "recorded_at_local": "2026-10-20T12:41:00-03:00",
+      "authority": "User asked on 2026-10-20 at 12:38 to find the earlier synced-folder decision and close the cloud cycle with it (step E28).",
+      "cloud_family_contract": "implemented_subset (synced-folder workflow)",
+      "acceptance_cases": [
+        "S12-23-1",
+        "S12-23-2"
+      ],
+      "still_deferred_operations": [
+        "cloud/login",
+        "cloud/transfer",
+        "cloud/collaboration"
+      ]
+    }
   },
   "original_dynamic_baseline": {
     "status": "partial_observed_offline",

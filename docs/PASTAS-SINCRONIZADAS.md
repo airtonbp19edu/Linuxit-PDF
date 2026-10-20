@@ -105,3 +105,14 @@ Sete controles do auditor e cinco novas verificações funcionais passaram.
 As suítes completas 290/290 são evidência do builder e não foram repetidas
 pela auditoria. [Relatórios e revisão](../testes/resultados/0.1.9/audit/review.json).
 Projeto ainda incompleto; pesos, paridade e adiamento das APIs de nuvem preservados.
+
+## Fechamento do ciclo da nuvem — 2026/10/20 às 12:41 (America/Sao_Paulo, UTC-03:00)
+
+Pedido do usuário: usar a decisão de 17/10/2026 (pastas sincronizadas por programas externos)
+para fechar o ciclo da nuvem. A família Nuvem/colaboração deixou de ser proposta e virou recorte
+implementado com este fluxo (etapa E28). Os casos de aceitação S12-23-1 e S12-23-2, que antes
+descreviam um provedor remoto simulado, agora rodam na janela real: abrir o PDF pela pasta
+preferida e salvar cópia completa que só se declara "salva localmente"; troca externa do PDF
+aberto bloqueia a cópia até reabrir; arquivo criado pelo cliente com o mesmo nome nunca é
+sobrescrito. Login, transferência por API e colaboração remota seguem adiados. O teste com um
+cliente sincronizador real (OneDrive, Dropbox, Nextcloud, Syncthing) continua pendente.

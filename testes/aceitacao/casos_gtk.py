@@ -5,6 +5,7 @@ call. Configuration and cache folders are redirected to the case folder so a
 run never touches the user's preferences. Not Foxit observations.
 """
 import os
+import shutil
 from pathlib import Path
 import threading
 import time
@@ -288,6 +289,87 @@ def xfa_dialog(ctx):
             dialog.destroy()
         check(plain == 'Este PDF não contém formulário XFA.', f'sem XFA: {plain!r}')
     return dict(rows=len(rows), first=list(rows[0]), summary=summary.splitlines()[0], without_xfa=plain)
+
+
+# 23 — cloud through a synced folder (user decision of 17/10/2026; external client syncs)
+
+def _answer_chooser(title, target, seen):
+    """Answer the real GTK chooser like a user; record the folder it first showed."""
+    Gtk, _, GLib = _gtk()
+    def respond():
+        dialog = next((w for w in Gtk.Window.list_toplevels()
+                       if isinstance(w, Gtk.FileChooserDialog) and w.get_title() == title), None)
+        if dialog is None:return True
+        current = dialog.get_current_folder()
+        if current is None:return True
+        seen.setdefault('first_folder', current)
+        if current != str(target.parent):dialog.set_current_folder(str(target.parent));return True
+        if dialog.get_action() == Gtk.FileChooserAction.SAVE:dialog.set_current_name(target.name)
+        elif dialog.get_filename() != str(target):dialog.select_filename(str(target));return True
+        dialog.response(Gtk.ResponseType.OK);return False
+    return GLib.timeout_add(40, respond)
+
+
+def _synced_window(ctx, w):
+    from local_files import remember_folder
+    w.errors = [];w._error = w.errors.append
+    folder = ctx.work / 'Pasta sincronizada';folder.mkdir()
+    remember_folder('sync_folder', str(folder))
+    source = folder / 'documento.pdf';shutil.copyfile(ctx.fixture(SCOPES), source)
+    seen = {};timer = _answer_chooser('Abrir PDF', source, seen)
+    try:w._open_sync_folder()
+    finally:_remove_source(timer)
+    check(wait_for(lambda: w.filepath == str(source) and w.current_pixbuf is not None), 'PDF da pasta não abriu')
+    check(seen.get('first_folder') == str(folder), f"seletor começou em {seen.get('first_folder')!r}")
+    wait_for(lambda: not w._render_pending);settle(.4)
+    return folder, source
+
+
+def _remove_source(timer):
+    _, _, GLib = _gtk()
+    if GLib.MainContext.default().find_source_by_id(timer):GLib.source_remove(timer)
+
+
+@case('S12-23-1', 'PDFWindow _open_sync_folder/_save_copy + worker copy-file')
+def synced_folder_roundtrip(ctx):
+    with Window(ctx) as w:
+        folder, source = _synced_window(ctx, w);original = source.read_bytes()
+        target = folder / 'documento-copia.pdf';seen = {}
+        timer = _answer_chooser('Salvar cópia', target, seen)
+        try:w._save_copy()
+        finally:_remove_source(timer)
+        check(wait_for(lambda: 'salva localmente' in w.status_file.get_text()), f'estado {w.status_file.get_text()!r}')
+        status = w.status_file.get_text()
+        check(target.read_bytes() == original and source.read_bytes() == original, 'cópia ou original diferente')
+        check('sincronizador' in status and not w.errors, f'estado {status!r}, erros {w.errors}')
+        leftovers = sorted(p.name for p in folder.iterdir() if p.name.startswith('.linuxit-'))
+        check(not leftovers, f'temporários na pasta: {leftovers}')
+        return dict(chooser_started_in_synced_folder=True, copy_identical=True, original_preserved=True,
+                    status=status, files=sorted(p.name for p in folder.iterdir()), network_or_account_used=False)
+
+
+@case('S12-23-2', 'PDFWindow _save_copy + worker copy-file')
+def synced_folder_external_changes(ctx):
+    with Window(ctx) as w:
+        folder, source = _synced_window(ctx, w)
+        # 1) The external client replaced the open PDF: no copy may start from the stale document.
+        replaced = source.read_bytes() + b'\n% versao trazida pelo sincronizador\n';source.write_bytes(replaced)
+        Gtk, _, _ = _gtk()
+        with patch.object(Gtk, 'FileChooserDialog', side_effect=AssertionError('seletor aberto')):w._save_copy()
+        check(w.errors and 'externamente' in w.errors[-1], f'erros {w.errors}')
+        check('salva' not in w.status_file.get_text() and source.read_bytes() == replaced, 'falso sucesso ou arquivo mudado')
+        # 2) After reopening, a destination the client created meanwhile is never overwritten.
+        w.open_document(str(source))
+        check(wait_for(lambda: w._pending_document is None and w.current_pixbuf is not None and w._source_unchanged()), 'não reabriu')
+        target = folder / 'conflito.pdf';target.write_bytes(b'versao de outro computador')
+        errors_before = len(w.errors);timer = _answer_chooser('Salvar cópia', target, {})
+        try:w._save_copy()
+        finally:_remove_source(timer)
+        check(wait_for(lambda: len(w.errors) > errors_before), 'sem aviso de destino existente')
+        check('nome novo' in w.errors[-1] and target.read_bytes() == b'versao de outro computador', f'erros {w.errors[-1:]}')
+        check('salva' not in w.status_file.get_text() and source.read_bytes() == replaced, 'falso sucesso')
+        return dict(stale_source_refused=True, existing_destination_preserved=True, false_success=False,
+                    messages=[w.errors[0][:120], w.errors[-1][:120]])
 
 
 # 20 — viewer ruler

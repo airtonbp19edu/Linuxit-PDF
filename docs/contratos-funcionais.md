@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **59 cenários planejados**; 24 subconjuntos implementados e 1 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **59 cenários planejados**; 25 subconjuntos implementados e 0 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **57**, das quais 57 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -36,7 +36,7 @@ O assistente de IA do Foxit e recursos generativos estão fora do escopo por dec
 | [Medição/calibração](#measurement) | Subconjunto atual; lacunas abertas |
 | [Camadas/mídia/3D](#layers-media) | Subconjunto atual; lacunas abertas |
 | [Preferências/tema/persistência](#preferences) | Subconjunto atual; lacunas abertas |
-| [Nuvem/colaboração](#cloud) | Proposta; não implementado |
+| [Nuvem/colaboração](#cloud) | Subconjunto atual; lacunas abertas |
 | [Criação/conversão](#conversion) | Subconjunto atual; lacunas abertas |
 | [Integrações de sistema/atualização](#platform) | Subconjunto atual; lacunas abertas |
 
@@ -1004,36 +1004,41 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_theme_persi
 
 ## Nuvem/colaboração
 
-Requisito futuro: integrações por provedor explícito, com contas/consentimento e estado offline separados. Adiado por decisão explícita do usuário: Deixar nuvem para depois. Família preservada, sem alteração de pesos. Autorizado apenas um fluxo auxiliar de arquivos locais em pasta sincronizada por outro programa; isso não implementa a integração remota desta família.
+Atual (E28): a nuvem é atendida pelo fluxo de pasta sincronizada escolhido pelo usuário em 17/10/2026 às 20:51 e confirmado como fechamento do ciclo em 20/10/2026 às 12:38. Um cliente externo (OneDrive, Dropbox, Nextcloud, Syncthing ou outro) sincroniza uma pasta local; o Linuxit guarda essa pasta como preferida, abre os PDFs dela pelos seletores do sistema, salva cópias exclusivas e completas (sem sobrescrever e sem publicar arquivo parcial) e informa só "salva localmente", deixando envio, autenticação e conflitos para o cliente externo. Uma troca externa do PDF aberto bloqueia salvar e editar até reabrir, e um nome que o cliente criou nesse meio-tempo nunca é sobrescrito. Não há conta, senha, token nem transmissão pelo Linuxit. Continuam adiados por decisão do usuário ("Deixar nuvem para depois", 17/10/2026): login em provedor, transferência por API e colaboração remota (operações cloud/login, cloud/transfer e cloud/collaboration). Cliente sincronizador real ainda não foi testado.
 
 **Entradas**
 
-- Provedor, operação, documento e autorização específica; testes iniciais usam backend local simulado.
-- Credenciais/serviços reais ficam fora desta campanha.
+- Pasta local escolhida explicitamente e sincronizada por um cliente externo; o Linuxit não detecta contas nem pastas.
+- PDF aberto dessa pasta e nome novo para a cópia, pelo seletor do sistema (FileChooser/portal).
 
 **Saídas**
 
-- Proposta: resultado remoto com identidade/versão ou indisponibilidade; nenhuma publicação implícita.
+- Cópia completa e idêntica publicada com o nome final na pasta; o estado diz "salva localmente" e que o envio é do sincronizador.
+- Preferência de pasta em $XDG_CONFIG_HOME/linuxit-pdf/folders.json, só com caminhos locais; esquecer a pasta não apaga arquivos.
 
 **Erros e casos excepcionais**
 
-- Sem rede ou token expirado: Proposta: estado offline/autenticação necessária; sem repetir envio silenciosamente.
-- Conflito de versão ou cancelamento: Proposta: preservar a cópia local e pedir resolução explícita antes de substituir conteúdo remoto.
+- O cliente externo trocou o PDF aberto: Bloquear salvar e editar até reabrir; nenhuma cópia parte do documento antigo.
+- O destino já existe ou surge durante a gravação (por exemplo, vindo de outro computador): Recusar sem sobrescrever e sem falso sucesso; original preservado.
+- Pasta preferida ausente, inválida ou sem permissão: Pedir nova escolha ou usar outra pasta; nenhuma rede ou conta é usada.
 
 **Estado e efeitos**
 
-- Proposta: operações remotas somente em tarefa especificamente autorizada; não implementar transmissão nesta etapa.
+- Grava só arquivos locais e a preferência de pastas; temporários .linuxit-* podem ser vistos pelo sincronizador até a publicação.
+- Envio, autenticação, versões e conflitos remotos ficam com o cliente externo; o Linuxit nunca afirma envio remoto.
 
 **Critérios planejados**
 
-- **S12-23-1** (nominal, proposta futura, `not_run`): dado Backend simulado de coleção remota e documento sintético. Ação: Simular download de uma versão identificada. Esperado: Proposta: receber os bytes/versionamento corretos sem usar conta real.
-- **S12-23-2** (exception, proposta futura, `not_run`): dado Mesmo provedor simulado em estado offline. Ação: Solicitar sincronização. Esperado: Proposta: indicar indisponibilidade e preservar a cópia local; nenhum falso sucesso.
+- **S12-23-1** (nominal, contrato próprio atual, `not_run`): dado Pasta local sincronizada escolhida como preferida, com um PDF sintético dentro (cliente externo representado pela própria pasta; sem cliente real). Ação: Abrir o PDF pela opção da pasta sincronizada e salvar uma cópia com nome novo na mesma pasta. Esperado: O seletor abre na pasta preferida; a cópia aparece completa e idêntica com o nome final, sem temporários; o estado diz "salva localmente" e que o envio é do sincronizador; original preservado; nenhuma conta ou rede.
+- **S12-23-2** (exception, contrato próprio atual, `not_run`): dado O mesmo PDF aberto da pasta sincronizada. Ação: O cliente externo troca o PDF aberto e, depois de reabrir, cria um arquivo com o nome escolhido para a cópia. Esperado: Salvar fica bloqueado até reabrir; depois, o arquivo criado pelo cliente não é sobrescrito; nenhum falso sucesso; arquivos preservados.
 
 **Lacunas da referência Foxit**
 
 - Contratos por provedor, serviços disponíveis, autorização, colaboração e conflitos; presença de plugins não valida APIs.
 
-Fontes: [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+Fontes: [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [app/main.py](../app/main.py), [app/worker_cli.py](../app/worker_cli.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [testes/resultados/0.1.16/desktop/review.json](../testes/resultados/0.1.16/desktop/review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_worker_roundtrip_preserves_source_and_never_claims_remote_sync](../tests/test_sync_folders.py); [test_existing_file_and_destination_race_are_never_overwritten](../tests/test_sync_folders.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_source_changed_before_or_during_copy_refuses_publication](../tests/test_sync_folders.py); [test_invalid_relative_missing_and_unknown_settings_are_refused](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_external_replacement_blocks_save_and_edit_until_reopen](../tests/test_sync_folders_gtk.py); [test_existing_destination_is_preserved_and_failure_is_shown](../tests/test_sync_folders_gtk.py).
 
 <a id="conversion"></a>
 

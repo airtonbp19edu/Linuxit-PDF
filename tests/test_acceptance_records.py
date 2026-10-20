@@ -67,7 +67,11 @@ class AcceptanceRecordTests(unittest.TestCase):
         self.record(self.result(foxit=1, name='foxit.json'))
         with self.assertRaisesRegex(ValueError, 'Foxit'):spec_check.validate(self.spec_copy)
         self.case['execution_status'] = 'not_run';self.case.pop('execution')
-        proposal = next(f for f in self.spec_copy['families'] if f['contract_kind'] == 'proposed_only')
+        # No family is a proposal any more (cloud closed in E28); make one in the copy to keep the rule tested.
+        proposal = next(f for f in self.spec_copy['families'] if f['id'] == 'cloud')
+        proposal['contract_kind'] = 'proposed_only';proposal['existing_test_refs'] = []
+        for case in proposal['acceptance_cases']:
+            case['expected_basis'] = 'proposed_independent_requirement';case['execution_status'] = 'not_run';case.pop('execution', None)
         self.case = proposal['acceptance_cases'][0];self.record(self.result(name='proposal.json'))
         with self.assertRaisesRegex(ValueError, 'proposal'):spec_check.validate(self.spec_copy)
 
