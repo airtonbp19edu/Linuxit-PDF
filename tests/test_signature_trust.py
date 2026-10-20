@@ -98,3 +98,57 @@ ess_cert_id_chain = no
         signer['signature']=bytes([signer['signature'].native[0]^1])+signer['signature'].native[1:]
         result=verify_trust(structure.dump(),self.content,self.policy)
         self.assertFalse(result['timestamps'][0]['verified']);self.assertIsNone(result['timestamps'][0]['time'])
+
+    def test_timestamp_authority_trusted_only_by_platform_store_is_rejected(self):
+        # Regression for OpenSSL 3.0, which refuses an empty directory as the
+        # ts -CAstore URI: the store must stay limited to explicit anchors.
+        from asn1crypto import cms
+        other_key=rsa.generate_private_key(public_exponent=65537,key_size=2048)
+        other_name=x509.Name([x509.NameAttribute(NameOID.COMMON_NAME,'Platform-only synthetic root')])
+        other=(x509.CertificateBuilder().subject_name(other_name).issuer_name(other_name).public_key(other_key.public_key()).serial_number(10)
+               .not_valid_before(self.now-timedelta(days=1)).not_valid_after(self.now+timedelta(days=2))
+               .add_extension(x509.BasicConstraints(ca=True,path_length=0),True).sign(other_key,hashes.SHA256()))
+        tsa_key=rsa.generate_private_key(public_exponent=65537,key_size=2048)
+        tsa=(x509.CertificateBuilder().subject_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME,'Platform-only TSA')]))
+             .issuer_name(other_name).public_key(tsa_key.public_key()).serial_number(11)
+             .not_valid_before(self.now-timedelta(hours=1)).not_valid_after(self.now+timedelta(days=1))
+             .add_extension(x509.BasicConstraints(ca=False,path_length=None),True)
+             .add_extension(x509.KeyUsage(True,False,False,False,False,False,False,False,False),True)
+             .add_extension(x509.ExtendedKeyUsage([ExtendedKeyUsageOID.TIME_STAMPING]),True).sign(other_key,hashes.SHA256()))
+        other_path=self.root/'platform-root.pem';other_path.write_bytes(other.public_bytes(serialization.Encoding.PEM))
+        cert=self.root/'tsa2.pem';key=self.root/'tsa2-key.pem';cert.write_bytes(tsa.public_bytes(serialization.Encoding.PEM))
+        key.write_bytes(tsa_key.private_bytes(serialization.Encoding.PEM,serialization.PrivateFormat.PKCS8,serialization.NoEncryption()))
+        structure=cms.ContentInfo.load(self.cms);signer=structure['content']['signer_infos'][0]
+        serial=self.root/'serial2';serial.write_text('01\n');data=self.root/'signature2.bin';data.write_bytes(signer['signature'].native)
+        config=self.root/'tsa2.cnf';config.write_text(f'''[tsa_config1]
+serial = {serial}
+crypto_device = builtin
+signer_cert = {cert}
+signer_key = {key}
+signer_digest = sha256
+default_policy = 1.2.3.4.1
+digests = sha256
+accuracy = secs:1
+ordering = yes
+tsa_name = yes
+ess_cert_id_chain = no
+''')
+        request=self.root/'request2.tsq';token=self.root/'token2.der'
+        subprocess.run(['openssl','ts','-query','-config',str(config),'-data',str(data),'-sha256','-cert','-out',str(request)],check=True,capture_output=True)
+        subprocess.run(['openssl','ts','-reply','-queryfile',str(request),'-config',str(config),'-section','tsa_config1','-token_out','-out',str(token)],check=True,capture_output=True)
+        signer['unsigned_attrs']=cms.CMSAttributes([cms.CMSAttribute({'type':'signature_time_stamp_token','values':[cms.ContentInfo.load(token.read_bytes())]})])
+        signed=structure.dump()
+        platform_dir=self.root/'platform-certs';platform_dir.mkdir()
+        # Directory stores look certificates up by subject hash, as c_rehash does.
+        subject_hash=subprocess.run(['openssl','x509','-hash','-noout','-in',str(other_path)],check=True,capture_output=True,text=True).stdout.strip()
+        (platform_dir/f'{subject_hash}.0').write_bytes(other_path.read_bytes())
+        previous={name:os.environ.get(name) for name in ('SSL_CERT_FILE','SSL_CERT_DIR')}
+        os.environ['SSL_CERT_FILE']=str(other_path);os.environ['SSL_CERT_DIR']=str(platform_dir)
+        try:result=verify_trust(signed,self.content,self.policy)
+        finally:
+            for name,value in previous.items():
+                if value is None:os.environ.pop(name,None)
+                else:os.environ[name]=value
+        self.assertTrue(result['chain_verified']);self.assertFalse(result['timestamps'][0]['verified'],result);self.assertIsNone(result['timestamps'][0]['time'])
+        explicit=verify_trust(signed,self.content,dict(self.policy,roots=[str(self.ca_path),str(other_path)]))
+        self.assertTrue(explicit['timestamps'][0]['verified'],explicit)

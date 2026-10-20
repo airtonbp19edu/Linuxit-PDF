@@ -399,7 +399,7 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_build_reope
 
 ## Stemming/proximidade/coringas
 
-Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.
+Atual (0.1.16): busca literal, coringas por palavra, proximidade ordenada e radicais por 36 opções de algoritmos Snowball 3.1.1 escolhidas explicitamente (sem detecção automática de idioma). Equivalência com o mecanismo do original (Lucene), tokenização universal e combinações com índice continuam abertas.
 
 **Entradas**
 
@@ -619,7 +619,7 @@ Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
 
 ## Anotações/undo/gravação
 
-Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.
+Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.
 
 **Entradas**
 
@@ -668,7 +668,7 @@ Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
 ## AcroForm/XFA/eventos
 
-Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.
+Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. XFA, JavaScript geral, formatação/localização e eventos arbitrários continuam abertos.
 
 **Entradas**
 
@@ -768,7 +768,7 @@ Relacionados aos planos dinâmicos/UI: D16.
 
 ## Assinaturas/certificados
 
-Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.
+Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.
 
 **Entradas**
 
@@ -804,7 +804,7 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_real_detach
 
 ## Senhas/permissões/RMS
 
-Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.
+Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspecionar permissões, criar cópia AES-256 ou sem criptografia com senha de proprietário, e editar/imprimir documento cifrado conforme as permissões, preservando criptografia, senhas e permissões na cópia (RC4-128, AES-128, AES-256-R5 e AES-256 conferidos). Fluxo de pasta preferida/sincronizada com cópias de publicação exclusiva. RMS, outros perfis de cifra e cliente sincronizador real continuam abertos.
 
 **Entradas**
 
@@ -847,7 +847,7 @@ Relacionados aos planos dinâmicos/UI: D15.
 
 ## Acessibilidade/voz
 
-Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.
+Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticada, nomes acessíveis, navegação F6/Shift+F6/Ctrl+Shift+T e probe AT-SPI entre processos. Voz local eSpeak PT/EN gera WAV privado e reprodução GStreamer controlada (reproduzir/pausar/parar/volume). Ordem semântica garantida, leitor de tela real, áudio físico e conformidade integral continuam abertos.
 
 **Entradas**
 
@@ -886,7 +886,7 @@ Relacionados aos planos dinâmicos/UI: UI10.
 
 ## Medição/calibração
 
-Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.
+Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.
 
 **Entradas**
 
@@ -922,7 +922,7 @@ Fontes: [app/main.py](../app/main.py), [app/measurement.py](../app/measurement.p
 
 ## Camadas/mídia/3D
 
-Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.
+Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.
 
 **Entradas**
 

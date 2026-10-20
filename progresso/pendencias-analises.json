@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-analysis-pendencies-v1",
-  "reviewed_at_local": "2026-10-19T20:24:29.015608-03:00",
+  "reviewed_at_local": "2026-10-19T23:55:00-03:00",
   "timezone": "America/Sao_Paulo",
   "progress_source": "progresso/progresso.json",
   "scope": "Snapshot of every unfinished criterion. Causes are not interchangeable; no status/weight changes.",
@@ -284,8 +284,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 10,
@@ -310,8 +316,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 11,
@@ -342,8 +354,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 12,
@@ -375,8 +393,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Family scope texts reconciled with the 0.1.16 code on 2026-10-19 (previous texts kept in scope_previous). 0.1.16 already ships the editable combo (0.1.15), declarative form calculations, local voice, saved layer visibility, CA/CRL/RFC3161 checks and the persistent portal; do not reimplement them. Next: execute eligible own S12 acceptance cases with hashed fixtures and record results per code revision; then contracts for XFA/general JavaScript, incremental signatures/PAdES-LTV and U3D/PRC rendering.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 12,
@@ -408,8 +432,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Phase A cannot close while acceptance cases remain unexecuted and original observations are suspended. 0.1.16 already ships the editable combo (0.1.15), declarative form calculations, local voice, saved layer visibility, CA/CRL/RFC3161 checks and the persistent portal; do not reimplement them. Next: execute eligible own S12 acceptance cases with hashed fixtures and record results per code revision; then contracts for XFA/general JavaScript, incremental signatures/PAdES-LTV and U3D/PRC rendering.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 15,
@@ -440,8 +470,14 @@
         "testes/resultados/0.1.12/validation-review.json",
         "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
-      "token_exhaustion_confirmed": null
+      "next_action": "0.1.16 already ships the editable combo (0.1.15), declarative form calculations, local voice, saved layer visibility, CA/CRL/RFC3161 checks and the persistent portal; do not reimplement them. Next: execute eligible own S12 acceptance cases with hashed fixtures and record results per code revision; then contracts for XFA/general JavaScript, incremental signatures/PAdES-LTV and U3D/PRC rendering.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 16,
@@ -475,8 +511,14 @@
         "testes/resultados/0.1.12/validation-review.json",
         "testes/resultados/0.1.13/validation-review.json"
       ],
-      "next_action": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Desktop portal persistent grant/revocation/association verified 9/9 on the published 0.1.16 bundle (two CI repetitions). Remaining: real external sync client, physical printer/audio/screen reader/monitors and authorized RMS materials; cloud direct stays deferred.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Own annotation extension and prior TIFF/OCR passed400/400 source/payload/sandbox. Next own operation: editable AcroForm combo free text, preserving Opt and generating appearance with ReadOnly/flags/history controls. Remaining annotation/local contracts and static analysis continue; real desktop/device and offline original comparison stay separate. Cloud APIs deferred.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 18,
@@ -506,8 +548,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 18,
@@ -537,8 +585,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 19,
@@ -569,8 +623,14 @@
         "docs/EXECUCAO-P01-P03-2026-10-18.md",
         "progresso/inventario-operacoes-v1.json"
       ],
-      "next_action": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Original tests suspended since the guest clock stopped at 09:54:23 on 2026-10-19 (P02 collector validated 2026-10-18 23:56; P03 partial). Resume only after the user authorizes it and the clock/response control passes; never override a stop automatically. Without the VM: prepare the own side of the matching S12 acceptance cases and their hashed fixtures so a later comparison only needs the original run.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Current read-only gate: guest clock21:49:22 unchanged across10s external wait and identical captures; no guest inputs. P01 v1 catalog111 operations completed, global inventory open. Restore responsiveness and complete P02 corrected collector before P03 original tests. D07/D10 destinations,D12 active cancellation,D18 output and remaining UI still open; retain D11/D15 and original observations already preserved.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     },
     {
       "stage_id": 21,
@@ -596,8 +656,14 @@
         "testes/resultados/0.1.8/audit/review.json",
         "docs/PASTAS-SINCRONIZADAS.md"
       ],
-      "next_action": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
-      "token_exhaustion_confirmed": null
+      "next_action": "Desktop portal persistent grant/revocation/association verified 9/9 on the published 0.1.16 bundle (CI 39342162781, two repetitions). Remaining before closure: real external sync client, physical devices, RMS materials and the open criteria of earlier stages.",
+      "token_exhaustion_confirmed": null,
+      "next_action_previous": [
+        {
+          "text": "Source/package 0.1.9 local folder workflow passed 290/290 own tests in each environment, plus outside-HOME access controls; published bundle installed audit passed 7+5 controls without rebuilding or rerunning full suites. Next: real desktop portal/persistent grant and external sync client (no Foxit VM). Other local operations/static analysis remain open. Direct cloud APIs deferred; original dynamic/differential validation requires offline VM.",
+          "superseded_at_local": "2026-10-19T23:55:00-03:00"
+        }
+      ]
     }
   ],
   "general_progress_percent": 45.13,

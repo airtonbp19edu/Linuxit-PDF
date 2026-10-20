@@ -1238,5 +1238,9 @@
     "own_editable_combo_delivered": true,
     "packages_p01_p10_automatically_closed": false,
     "original_vm_resumed": false
+  },
+  "reconciliation_note": {
+    "recorded_at_local": "2026-10-19T23:55:00-03:00",
+    "text": "Snapshot of plan creation (0.1.13). Later deliveries 0.1.14–0.1.16 implemented B01 (editable combo) and parts of P04–P09; the current queue is at the top of progresso/tarefas-pendentes.md. Package statuses below are historical unless restated there."
   }
 }

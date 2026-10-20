@@ -101,9 +101,11 @@ def verify_trust(cms,content,policy):
                     if len(result['timestamps'])>=8:raise ValueError('CMS acima de8 carimbos de tempo.')
                     encoded=token.dump();token_path=folder/'timestamp.der';token_path.write_bytes(encoded)
                     value_path=folder/'signature-value.bin';value_path.write_bytes(signature_value)
-                    # ts lacks cms' -no-CApath/-no-CAstore switches. Explicit
-                    # empty stores suppress platform anchors without those flags.
-                    ts_options=['-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(empty_store),'-attime',str(int(policy['moment'].timestamp()))]
+                    # ts lacks cms' -no-CApath/-no-CAstore switches. An explicit
+                    # empty CApath and a CAstore naming the caller's own anchors
+                    # suppress platform anchors. OpenSSL 3.0 refuses an empty
+                    # directory as a store URI, so the store is the anchor file.
+                    ts_options=['-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(ca),'-attime',str(int(policy['moment'].timestamp()))]
                     args=[executable,'ts','-config',str(configuration),'-verify','-token_in','-in',str(token_path),'-data',str(value_path),*ts_options]
                     if certs:args+=['-untrusted',str(chain)]
                     if policy['require_revocation']:args+=['-crl_check_all']

@@ -58,7 +58,10 @@
     "supersedes_cloud_deferral": false,
     "criteria_or_weights_changed": false,
     "real_sync_client_tested": false,
-    "desktop_portal_interaction_tested": false
+    "desktop_portal_interaction_tested": true,
+    "desktop_portal_evidence": "testes/resultados/0.1.16/desktop/review.json",
+    "desktop_portal_reconciled_at_local": "2026-10-19T23:55:00-03:00",
+    "desktop_portal_note": "Record created on 2026-10-17 said false; the 0.1.16 desktop probe later verified persistent grant, revocation and association 9/9 twice. Real external sync client remains untested."
   },
   "original_dynamic_baseline": {
     "status": "partial_observed_offline",

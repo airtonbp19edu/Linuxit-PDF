@@ -1117,7 +1117,7 @@
       "name": "Stemming/proximidade/coringas",
       "matrix_implementation": "Fonte0.1.15: literal, coringas, proximidade e radicais Snowball3.1.1 português/inglês; licença BSD preservada. Recorte próprio validado no Linux e Flatpak0.1.15; algoritmo/idiomas originais não comprovados. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
+      "scope": "Atual (0.1.16): busca literal, coringas por palavra, proximidade ordenada e radicais por 36 opções de algoritmos Snowball 3.1.1 escolhidas explicitamente (sem detecção automática de idioma). Equivalência com o mecanismo do original (Lucene), tokenização universal e combinações com índice continuam abertas.",
       "inputs": [
         "Consulta de até256 caracteres antes da normalização e modo explícito.",
         "Coringa: um padrão até64 caracteres normalizados, até8* ou?; proximidade:2–8 palavras ordenadas/distância total0–50."
@@ -1230,6 +1230,13 @@
           "from": "proposed_only",
           "to": "implemented_subset",
           "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
+        }
+      ],
+      "scope_previous": [
+        {
+          "text": "Fonte0.1.6: coringas por palavra e proximidade ordenada com contratos próprios; stemming/idiomas/Lucene ainda pendentes.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
         }
       ]
     },
@@ -1871,7 +1878,7 @@
       "name": "Anotações/undo/gravação",
       "matrix_implementation": "0.1.16: Polygon/PolyLine/Caret/FreeText/Stamp, aparência Unicode com fontes incorporadas, mover, editar respostas, popup e excluir conversa. Renderização/GTK próprios aprovados; suíte564/564 por ambiente. Família completa aberta.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
+      "scope": "Atual (0.1.16): notas (Text), retângulo (Square), marcações de área (Highlight, Underline, StrikeOut, Squiggly), Ink, Circle, Line, Polygon, PolyLine, Caret, FreeText e Stamp com aparência própria (Unicode, fontes incorporadas), mover anotações simples, comentários com respostas e popup, edição de autor/comentário e exclusão de conversa limitada; rascunho com desfazer/refazer e original preservado. Redação, edição universal de qualquer anotação e disponibilidade exata no Reader continuam abertas.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2252,14 +2259,21 @@
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "scope_previous": [
+        {
+          "text": "Fonte0.1.13: operações anteriores mais Underline/StrikeOut/Squiggly de área, elipse Circle e linha em qualquer direção, com aparência própria vermelha embutida. Edição de comentário/autor e exclusão limitada aos oito tipos simples desbloqueados, sem vínculos ou dependentes. Histórico de rascunho preservado.400/400 testes próprios por ambiente fonte/payload/sandbox passaram, incluindo14 portáveis novos e seis GTK/Poppler. Sem redação, popup/respostas, desenho livre ou edição universal.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
+      ]
     },
     {
       "id": "forms",
       "name": "AcroForm/XFA/eventos",
       "matrix_implementation": "0.1.16: AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate com gramática limitada, dependências e validação antes da cópia. Suíte própria564/564 por ambiente. XFA e JavaScript geral ainda abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
+      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. XFA, JavaScript geral, formatação/localização e eventos arbitrários continuam abertos.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2542,7 +2556,14 @@
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "scope_previous": [
+        {
+          "text": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
+      ]
     },
     {
       "id": "attachments",
@@ -2709,7 +2730,7 @@
       "name": "Assinaturas/certificados",
       "matrix_implementation": "Fonte0.1.15: primeira assinatura CMS/SHA256 invisível em cópia com PEM selecionado; verificação independente antes de publicar.7 novos portáveis passaram; Linux/UI próprios aprovados; confiança/TSA/LTV abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
+      "scope": "Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/SHA256 invisível em cópia nova com PEM escolhido, verificada antes de publicar; política explícita offline com CA PEM, CRL PEM/DER e horário com fuso, e verificação de carimbos RFC3161 já presentes contra os bytes da assinatura. A assinatura criada não inclui carimbo. PAdES-LTV, DocTimeStamp separado, assinaturas incrementais/múltiplas, OCSP e validação legal continuam abertos.",
       "inputs": [
         "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
@@ -2859,6 +2880,13 @@
             }
           ]
         }
+      ],
+      "scope_previous": [
+        {
+          "text": "Inspeção offline de integridade CMS destacada, separada da confiança do certificado. Sem assinatura de documentos, aprovação de cadeia, revogação, carimbo de tempo ou suporte PAdES/LTV completo.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
       ]
     },
     {
@@ -2866,7 +2894,7 @@
       "name": "Senhas/permissões/RMS",
       "matrix_implementation": "0.1.16: edição autenticada autoriza a operação e mantém criptografia, senhas usuário/proprietário e permissões na cópia. Quatro perfis de cifra/GTK próprios aprovados; suíte564/564 por ambiente. RMS e outros perfis abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+      "scope": "Atual (0.1.16): abrir com senha conhecida em sessão autenticada (0.1.14), inspecionar permissões, criar cópia AES-256 ou sem criptografia com senha de proprietário, e editar/imprimir documento cifrado conforme as permissões, preservando criptografia, senhas e permissões na cópia (RC4-128, AES-128, AES-256-R5 e AES-256 conferidos). Fluxo de pasta preferida/sincronizada com cópias de publicação exclusiva. RMS, outros perfis de cifra e cliente sincronizador real continuam abertos.",
       "inputs": [
         "PDF local sintético até 64 MiB, senha conhecida ou duas senhas novas distintas de 8–64 ASCII imprimíveis.",
         "Fonte SHA-256, seis permissões declaradas e destino novo."
@@ -3095,6 +3123,13 @@
             }
           ]
         }
+      ],
+      "scope_previous": [
+        {
+          "text": "Autenticar senha conhecida, inspecionar permissões, criar cópia AES-256 ou cópia sem criptografia com senha de proprietário. RMS e abertura cifrada integrada ao leitor continuam pendentes. Fonte0.1.9: fluxo local de pasta preferida/últimas pastas e cópias novas com publicação completa/exclusiva. Envio remoto é do sincronizador externo; fonte/payload/sandbox290/290 aprovados; cliente real e portal em desktop ainda pendentes.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
       ]
     },
     {
@@ -3102,7 +3137,7 @@
       "name": "Acessibilidade/voz",
       "matrix_implementation": "Fonte0.1.15: leitura ATK com sessão por senha e exportação WAV local eSpeak PT/EN; probe AT-SPI entre processos aprovado. WAV/GTK/AT-SPI sintéticos aprovados; reprodução e leitor de tela físico abertos. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
+      "scope": "Atual (0.1.16): texto da página em Gtk.TextView/ATK.Text com sessão autenticada, nomes acessíveis, navegação F6/Shift+F6/Ctrl+Shift+T e probe AT-SPI entre processos. Voz local eSpeak PT/EN gera WAV privado e reprodução GStreamer controlada (reproduzir/pausar/parar/volume). Ordem semântica garantida, leitor de tela real, áudio físico e conformidade integral continuam abertos.",
       "inputs": [
         "PDF não criptografado, página válida e ação do usuário; texto até 1 MiB UTF-8.",
         "Foco e estado do documento/geração capturados antes da tarefa."
@@ -3312,6 +3347,13 @@
             }
           ]
         }
+      ],
+      "scope_previous": [
+        {
+          "text": "Texto extraído da página em Gtk.TextView/ATK.Text, nomes acessíveis e navegação F6/Shift+F6/Ctrl+Shift+T. Sem OCR/voz, garantia de ordem semântica, teste com leitor de tela real ou conformidade integral.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
       ]
     },
     {
@@ -3319,7 +3361,7 @@
       "name": "Medição/calibração",
       "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK próprio aprovado; original aberto. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
+      "scope": "Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.",
       "inputs": [
         "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
         "Página usa a escala base de 72 pontos por polegada."
@@ -3394,14 +3436,21 @@
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "scope_previous": [
+        {
+          "text": "Atual: distância entre pontos na visualização, convertida de pontos PDF para centímetros; sem calibração personalizada.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
+      ]
     },
     {
       "id": "layers-media",
       "name": "Camadas/mídia/3D",
       "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK próprios aprovados; mídia/3D não implementados. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
+      "scope": "Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.",
       "inputs": [
         "PDF com /OCProperties e /OCGs; nomes de camadas.",
         "Mídia/3D exigirá identificar formato, ação e isolamento próprios."
@@ -3478,7 +3527,14 @@
           "execution_status": "not_run"
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "scope_previous": [
+        {
+          "text": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
+          "superseded_at_local": "2026-10-19T23:50:59-03:00",
+          "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        }
+      ]
     },
     {
       "id": "preferences",
@@ -3998,7 +4054,7 @@
     "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
   },
   "scope_exclusions_ref": "progresso/projeto.json",
-  "updated_at_local": "2026-10-19T20:24:29.015608-03:00",
+  "updated_at_local": "2026-10-19T23:50:59-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
   "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
 }

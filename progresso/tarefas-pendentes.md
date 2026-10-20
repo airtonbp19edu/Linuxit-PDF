@@ -1,5 +1,20 @@
 # Tarefas atuais e ponto de retomada
 
+## Fila atual — 2026/10/19 às 23:55 (America/Sao_Paulo, UTC-03:00)
+
+Esta tabela é a fila vigente. Tudo abaixo dela é histórico, inclusive a tabela da entrega 0.1.13 no fim do arquivo.
+
+| Frente | Próximo trabalho | Depende de |
+|---|---|---|
+| Aceitação própria (S12) | Executar os casos elegíveis com fixtures identificadas por hash e registrar o resultado por revisão do código | Nada externo |
+| Formulários | Contrato para XFA e JavaScript geral (o combo editável e os cálculos declarativos já existem) | Implementação própria |
+| Assinaturas | Assinaturas incrementais/múltiplas, DocTimeStamp e PAdES-LTV (CA/CRL e verificação RFC 3161 já existem) | Implementação própria |
+| Camadas/mídia/3D | Renderizador U3D/PRC (listar/extrair 3D, mídia e camadas salvas já existem) | Implementação própria |
+| Estática | Chamadores, tipos e propriedade/liberação a partir dos resultados preservados; não repetir sementes já feitas | Ghidra e original no PC Windows |
+| Original (VM) | Retomar só com autorização do usuário e controle do relógio; testes suspensos desde 09:54:23 de 19/10 | VM offline operacional |
+| Ambientes reais | Cliente sincronizador real, impressora, áudio/leitor de tela, monitores físicos, RMS | Equipamentos e materiais |
+| Nuvem direta | Adiada pelo usuário | Nova priorização |
+
 Entrega confirmada 2026-10-19T20:34:43.442911-03:00: fonte e Flatpak **0.1.16/devel**,564/564 testes próprios por ambiente,490 IDs anteriores preservados e74 novos. Publicação técnica517afaf; assetv0.1.16-devel/SHA256 completo e download público HTTP200/118393760bytes conferidos. Auditoria independente11controles/5smoke/3GTK no mesmo bundle sem rebuild,177 arquivos app/3684runtime/483ELF/297avisos e versões fonte conferidos. Desktop0.1.16 portal persistente/revogação/associação/atualização9/9 em cada uma de duas repetições novas, e Windows próprio5/5 em probe separado. [Estado e limites](../docs/EXECUCAO-SEM-VM.md). S11, famílias integrais,50S12 e19 critérios amplos continuam abertos. VM suspensa/intocada, nuvem direta adiada; percentual global desconhecido. Histórico abaixo.
 
 Marco 2026-10-19T20:25:14-03:00: fonte e Flatpak **0.1.16/devel** aprovados em564/564 testes próprios por ambiente (fonte Linux,payload,sandbox instalado),490 IDs anteriores preservados e74 novos. Pacote publicado como [prerelease](https://github.com/airtonbp19edu/Linuxit-PDF/releases/tag/v0.1.16-devel); download completo e auditoria independente ainda em andamento. Portal/associação/atualização9/9 no pacote0.1.15 e Windows próprio5/5 em probes separados. Catálogo estático329(152REA+177diretas), seis entradas novas examinadas. VM suspensa/intocada; nuvem direta adiada. S11, famílias integrais,50S12 e19 critérios amplos continuam abertos; isso não é porcentagem global da reconstrução. Histórico abaixo.
@@ -110,6 +125,8 @@ corrigida:11/11 métricas iguais;5 inconclusivos/1pendente preservados.
 D01–D20:14 observados no recorte,5 parciais,1 inconclusivo; cancelamento, destinos
 dos hits e saída de imposição abertos. D20 deixou processo sem janela; manter
 rede desligada e investigar. Nenhuma proteção do host foi alterada.
+
+Tabela histórica da entrega 0.1.13 (superada pela fila atual no topo):
 
 | Frente | Próximo trabalho | Dependência |
 |---|---|---|
