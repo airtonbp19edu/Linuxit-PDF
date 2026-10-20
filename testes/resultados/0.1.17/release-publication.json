@@ -1,0 +1,20 @@
+{
+  "schema": "linuxit-github-prerelease-publication-v1",
+  "date_utc": "2026-10-20T19:53:48+00:00",
+  "release_id": 418804985,
+  "tag": "v0.1.17-devel",
+  "source_commit": "dec46c979e56d722482a465563c6df97b898dcdc",
+  "release_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/tag/v0.1.17-devel",
+  "prerelease": true,
+  "draft": false,
+  "asset": {
+    "id": 660312363,
+    "name": "LinuxitPDF-0.1.17-x86_64.flatpak",
+    "size": 118422768,
+    "digest": "sha256:ec773a2028b63a4026c32866472504bbf7aad7e9994ce2edb78954cfb8217a71",
+    "browser_download_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.17-devel/LinuxitPDF-0.1.17-x86_64.flatpak"
+  },
+  "bundle_rebuilt": false,
+  "procedure": "Draft created by the owner's browser session (title, notes, target dec46c9, pre-release); bundle downloaded from CI run 39474059660 artifact, size/SHA-256 checked against releases/manifest-0.1.17.json and uploaded by publish-devel-release.yml run 39486650871; published by the owner's browser session with the owner's confirmation. Job-token release creation failed with HTTP 403 in runs 39485174222 and 39486020955.",
+  "public_get_confirmed_at_utc": "2026-10-20T19:54:21.611729+00:00"
+}

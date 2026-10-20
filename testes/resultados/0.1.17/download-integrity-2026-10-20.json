@@ -1,0 +1,17 @@
+{
+  "schema": "linuxit-public-download-integrity-v1",
+  "date_utc": "2026-10-20T19:54:21.611729+00:00",
+  "passed": true,
+  "authenticated": false,
+  "http_status": 200,
+  "url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.17-devel/LinuxitPDF-0.1.17-x86_64.flatpak",
+  "downloaded_bytes": 118422768,
+  "sha256": "ec773a2028b63a4026c32866472504bbf7aad7e9994ce2edb78954cfb8217a71",
+  "expected": {
+    "file": "LinuxitPDF-0.1.17-x86_64.flatpak",
+    "bytes": 118422768,
+    "sha256": "ec773a2028b63a4026c32866472504bbf7aad7e9994ce2edb78954cfb8217a71",
+    "digitally_signed": false
+  },
+  "original_executed": false
+}
