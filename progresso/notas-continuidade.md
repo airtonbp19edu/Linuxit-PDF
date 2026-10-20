@@ -3465,3 +3465,11 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Testes: tests/test_encryption_corpus.py (4). Suíte 658/658. Aceitação S12-18-3/4; execução limpa 79/79. Módulo novo registrado (80 módulos).
 - CI 39515970950 (54e440a) confirmou a E17: 654/654, 77/77.
 - Próximo: E19 (ordem de leitura em duas colunas).
+
+
+## 2026/10/20 às 20:54 (America/Sao_Paulo, UTC-03:00) — E19 concluída — ordem de leitura em duas colunas
+
+- Código `8b86243`: `app/reading_order.py` (`order_lines`, `_columns`, `_gutter`, `page_lines`); `rendering.extract_page_text` usa `pdftotext -cropbox -bbox-layout` + ordem própria em vez de `-layout`. Módulo registrado (81 módulos).
+- Testes: tests/test_reading_order.py (5, inclui OCR por Tesseract). Suíte 663/663. Aceitação S12-19-3/4; execução limpa 81/81.
+- CI 39517128164 (22e5e08) confirmou a E18: 658/658, 79/79.
+- Próximo: E20 (estudo de renderização U3D/PRC, sem implementar).

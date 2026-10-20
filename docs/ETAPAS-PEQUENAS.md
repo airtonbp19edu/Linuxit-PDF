@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T20:45:00-03:00. Pendente: 4, Em andamento: 2, Concluída: 22, Bloqueada: 1.
+Atualizado em 2026-10-20T20:54:00-03:00. Pendente: 3, Em andamento: 2, Concluída: 23, Bloqueada: 1.
 
 **Regras**
 
@@ -37,8 +37,8 @@ Atualizado em 2026-10-20T20:45:00-03:00. Pendente: 4, Em andamento: 2, Concluíd
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Concluída |
 | E17 | Corpus de PDFs danificados | Robustez | nada | Concluída |
 | E18 | Corpus de criptografia | Robustez | nada | Concluída |
-| E19 | Ordem de leitura em duas colunas | Robustez | nada | Em andamento |
-| E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Pendente |
+| E19 | Ordem de leitura em duas colunas | Robustez | nada | Concluída |
+| E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Em andamento |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Pendente |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
@@ -326,7 +326,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e18.json](
 
 **Como verificar:** Fixture de duas colunas com ordem esperada; teste portátil.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+O texto acessível (janela de texto e voz) e a camada de texto de cópias com OCR passam a seguir a ordem das colunas: heurística própria limitada sobre as caixas de linha do Poppler (vão vertical cruzado por poucas linhas, linhas de largura total separando faixas, até três níveis; sem vão claro, de cima para baixo). Antes, o texto vinha com as colunas intercaladas linha a linha. Tabelas, legendas dentro de colunas e texto girado não são analisados. Suíte 663/663; aceitação 81/81 na revisão 8b86243.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e19.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e19.json), [tests/test_reading_order.py](../tests/test_reading_order.py), [app/reading_order.py](../app/reading_order.py). Commit `8b86243`.
 
 ### E20 — Estudo de renderização U3D/PRC
 
@@ -334,7 +338,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e18.json](
 
 **Como verificar:** Documento com opções, licenças e decisão proposta ao usuário.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E21 — Atualizar o REA no PC
 

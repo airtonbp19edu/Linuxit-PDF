@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T20:45:00-03:00",
+  "updated_at_local": "2026-10-20T20:54:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -391,16 +391,23 @@
       "id": "E19",
       "block": "Robustez",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Ordem de leitura em duas colunas",
       "goal": "Texto acessível e OCR seguem coluna por coluna em páginas de duas colunas, com heurística própria limitada.",
-      "verification": "Fixture de duas colunas com ordem esperada; teste portátil."
+      "verification": "Fixture de duas colunas com ordem esperada; teste portátil.",
+      "commit": "8b86243",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e19.json",
+        "tests/test_reading_order.py",
+        "app/reading_order.py"
+      ],
+      "note": "O texto acessível (janela de texto e voz) e a camada de texto de cópias com OCR passam a seguir a ordem das colunas: heurística própria limitada sobre as caixas de linha do Poppler (vão vertical cruzado por poucas linhas, linhas de largura total separando faixas, até três níveis; sem vão claro, de cima para baixo). Antes, o texto vinha com as colunas intercaladas linha a linha. Tabelas, legendas dentro de colunas e texto girado não são analisados. Suíte 663/663; aceitação 81/81 na revisão 8b86243."
     },
     {
       "id": "E20",
       "block": "Mídia 3D",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Estudo de renderização U3D/PRC",
       "goal": "Avaliar bibliotecas abertas, licenças e tamanho para um renderizador 3D, sem implementar.",
       "verification": "Documento com opções, licenças e decisão proposta ao usuário."
