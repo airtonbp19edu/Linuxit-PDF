@@ -1,0 +1,237 @@
+{
+  "schema": "linuxit-small-steps-v1",
+  "created_at_local": "2026-10-20T00:30:00-03:00",
+  "updated_at_local": "2026-10-20T00:31:00-03:00",
+  "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
+  "rules": [
+    "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
+    "Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.",
+    "Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.",
+    "Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista."
+  ],
+  "steps": [
+    {
+      "id": "E01",
+      "block": "Base e entrega",
+      "requires": "nada",
+      "status": "em_andamento",
+      "title": "Verificador do catálogo de operações verde",
+      "goal": "Apontar a referência de testes do catálogo para a suíte confirmada no CI 39363684386 (571/571), em vez dos arquivos da 0.1.16.",
+      "verification": "scripts/check_operation_catalog.py passa; docs/INVENTARIO-OPERACOES.md renderizado sem diferença."
+    },
+    {
+      "id": "E02",
+      "block": "Base e entrega",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Contrato próprio da integração com o sistema",
+      "goal": "Passar a família platform de proposta para subconjunto implementado (portal, concessão persistente, revogação e associação já validados 9/9) e tornar S12-25 executável.",
+      "verification": "validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados no workflow de desktop e registrados."
+    },
+    {
+      "id": "E03",
+      "block": "Formulários",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Formatação de números (AFNumber_Format)",
+      "goal": "Reconhecer AFNumber_Format por gramática fechada e aplicar casas decimais, separadores e símbolo ao valor e à aparência, sem executar JavaScript.",
+      "verification": "Testes portáveis novos e caso de aceitação com fixture de formulário formatado."
+    },
+    {
+      "id": "E04",
+      "block": "Formulários",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Datas em formulários (AFDate_FormatEx)",
+      "goal": "Validar e formatar datas com máscaras fechadas suportadas, recusando entradas inválidas.",
+      "verification": "Testes portáveis com datas válidas, inválidas e limites."
+    },
+    {
+      "id": "E05",
+      "block": "Formulários",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Máscaras especiais (AFSpecial_Format 0–3)",
+      "goal": "Aplicar os quatro formatos especiais padronizados ao valor e à aparência.",
+      "verification": "Testes portáveis para cada formato e entrada fora do padrão."
+    },
+    {
+      "id": "E06",
+      "block": "Formulários",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "XFA: leitura dos campos",
+      "goal": "Detectar formulário XFA e listar campos e valores do pacote datasets, somente leitura, com limites de tamanho e profundidade.",
+      "verification": "Fixture XFA sintética; teste portátil e caso de aceitação."
+    },
+    {
+      "id": "E07",
+      "block": "Formulários",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "XFA híbrido: preencher mantendo datasets coerente",
+      "goal": "Em PDF com AcroForm e XFA, preencher um campo e atualizar o valor correspondente em datasets na cópia nova.",
+      "verification": "Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado."
+    },
+    {
+      "id": "E08",
+      "block": "Assinaturas",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Segunda assinatura em revisão incremental",
+      "goal": "Assinar um PDF já assinado por atualização incremental, mantendo a primeira assinatura válida para a revisão dela.",
+      "verification": "As duas assinaturas verificam integridade; a primeira cobre só a revisão original."
+    },
+    {
+      "id": "E09",
+      "block": "Assinaturas",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Verificar DocTimeStamp existente",
+      "goal": "Reconhecer assinatura de carimbo de documento (ETSI.RFC3161) e verificá-la offline contra as âncoras escolhidas.",
+      "verification": "Fixture com DocTimeStamp de TSA sintética; alteração de bytes invalida."
+    },
+    {
+      "id": "E10",
+      "block": "Assinaturas",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Usar DSS/VRI embutidos na validação offline",
+      "goal": "Ler certificados e CRLs do dicionário DSS e usá-los na verificação de cadeia e revogação, sem rede.",
+      "verification": "Fixture com DSS sintético: revogação verificada só com o material embutido."
+    },
+    {
+      "id": "E11",
+      "block": "Base e entrega",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Entrega 0.1.17",
+      "goal": "Versão, Flatpak testado em fonte, pacote e sandbox, publicação como prerelease, auditoria do mesmo arquivo, download conferido e probe de desktop.",
+      "verification": "Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados."
+    },
+    {
+      "id": "E12",
+      "block": "Anotações e redação",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Editar cor e opacidade de anotações existentes",
+      "goal": "Alterar cor e opacidade de anotações simples já existentes, regenerando a aparência.",
+      "verification": "Teste com pixels da aparência antes e depois; original preservado."
+    },
+    {
+      "id": "E13",
+      "block": "Anotações e redação",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Redimensionar Square, Circle e FreeText",
+      "goal": "Mudar o retângulo dessas anotações mantendo aparência coerente.",
+      "verification": "Teste portátil de geometria e teste GTK de renderização."
+    },
+    {
+      "id": "E14",
+      "block": "Anotações e redação",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Marcar áreas para redação",
+      "goal": "Criar anotações Redact sem aplicar, visíveis e editáveis.",
+      "verification": "Reabrir a cópia lista as marcas; texto original ainda presente."
+    },
+    {
+      "id": "E15",
+      "block": "Anotações e redação",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Aplicar redação",
+      "goal": "Remover texto e imagens sob as áreas marcadas numa cópia nova, rasterizando só as páginas afetadas.",
+      "verification": "Extração de texto da cópia não retorna o conteúdo redigido; demais páginas intactas."
+    },
+    {
+      "id": "E16",
+      "block": "Mídia 3D",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Imagem de apresentação de anotações 3D",
+      "goal": "Exibir a aparência/poster de anotações 3D com o aviso de que a cena não é interativa.",
+      "verification": "Fixture com anotação 3D e aparência; teste GTK de pixels."
+    },
+    {
+      "id": "E17",
+      "block": "Robustez",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Corpus de PDFs danificados",
+      "goal": "Fixtures com xref quebrado, stream truncado e objeto ausente, com resultado esperado de abertura ou recuperação para cada um.",
+      "verification": "Casos executáveis: abrir, recuperar com consentimento ou recusar sem página fictícia."
+    },
+    {
+      "id": "E18",
+      "block": "Robustez",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Corpus de criptografia",
+      "goal": "Fixtures RC4-40, RC4-128, AES-128, AES-256 e metadados não cifrados para abrir, editar e imprimir.",
+      "verification": "Matriz de casos executáveis por perfil e operação."
+    },
+    {
+      "id": "E19",
+      "block": "Robustez",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Ordem de leitura em duas colunas",
+      "goal": "Texto acessível e OCR seguem coluna por coluna em páginas de duas colunas, com heurística própria limitada.",
+      "verification": "Fixture de duas colunas com ordem esperada; teste portátil."
+    },
+    {
+      "id": "E20",
+      "block": "Mídia 3D",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Estudo de renderização U3D/PRC",
+      "goal": "Avaliar bibliotecas abertas, licenças e tamanho para um renderizador 3D, sem implementar.",
+      "verification": "Documento com opções, licenças e decisão proposta ao usuário."
+    },
+    {
+      "id": "E21",
+      "block": "PC Windows",
+      "requires": "PC do usuário",
+      "status": "pendente",
+      "title": "Atualizar o REA no PC",
+      "goal": "O usuário executa analysis-local\\rea-instalacao\\instalar-rea.cmd; conferir o log.",
+      "verification": "Log com REA 6.7.0 e doctor do Ghidra saudável."
+    },
+    {
+      "id": "E22",
+      "block": "PC Windows",
+      "requires": "PC do usuário",
+      "status": "pendente",
+      "title": "Estática: chamadores e tipos da busca",
+      "goal": "Continuar a partir dos resultados preservados os chamadores, tipos e propriedade dos objetos da busca.",
+      "verification": "Relatório com instruções conferidas e catálogo atualizado, sem repetir sementes."
+    },
+    {
+      "id": "E23",
+      "block": "Equipamentos reais",
+      "requires": "equipamentos",
+      "status": "pendente",
+      "title": "Validações físicas",
+      "goal": "Impressora física, leitor de tela, áudio, monitores físicos e cliente sincronizador real, com o usuário.",
+      "verification": "Registro de cada equipamento e resultado observado."
+    },
+    {
+      "id": "E24",
+      "block": "VM",
+      "requires": "VM e autorização do usuário",
+      "status": "bloqueada",
+      "title": "Retomar a comparação com o Foxit",
+      "goal": "Somente com autorização: preflight, controle do relógio e observador novo; continuar D01–D20 e UI01–UI10.",
+      "verification": "Comparações registradas com a mesma fixture; parada imediata se o relógio travar."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D01",
+      "status": "aguardando_usuario",
+      "question": "A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português?"
+    }
+  ]
+}

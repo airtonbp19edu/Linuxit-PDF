@@ -352,3 +352,7 @@ bloqueio, publicação, CI em andamento, pedido de ação) também é registrado
 `docs/AVISOS-E-STATUS.md` no GitHub e copiado para a pasta local do projeto
 como `AVISOS-LOCAL.md` (ignorado pelo Git). Atualize a seção "Situação atual"
 (feito, em andamento, falta) e acrescente o aviso datado ao histórico.
+
+Fila de execução em etapas pequenas (pedido do usuário em 20/10/2026): `progresso/etapas-pequenas.json`,
+renderizada em `docs/ETAPAS-PEQUENAS.md` por `scripts/render_small_steps.py` e copiada para
+`ETAPAS-LOCAL.md` na pasta local. Seguir a ordem; o que não precisa da VM vem primeiro.
