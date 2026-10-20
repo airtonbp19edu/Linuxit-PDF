@@ -3143,6 +3143,35 @@ Ferramentas:Python stdlib/AST,git archive imutável,git cat-file --batch,PowerSh
 
 Versão final com títulos/espaçamento de navegação revisados:Markdown6606786bytes/134942linhas/SHA256bb4a0dda13b6057b91f34a32b39f2d88088d4151383ac3813da36df2322cae3b;HTML8136186bytes/SHA256dd27d7664b640ceba4f6ebbcbda57653a218126b67babb882848af8fe0b5b9e7. O checkpoint anterior acima descreve a versão intermediária anterior à revisão de títulos; preservado como histórico. Nova conferência aprovou317hashesGit,4fontes editoriais,117textos integrais,564IDs nos três ambientes documentados,406blocosdetails balanceados e20capítulos sem âncoras duplicadas ou dependências externas. Inventários completos e evidências preservados; o próprio aplicativo não foi reexecutado. Gerador recusa sobrescrita e normaliza caminhos de saída; rascunhos próprios preservados no diretório ignorado. O relatório é fotografia b2bb821, e os links de retomada/README foram adicionados depois; isso evita autorreferência. Próximo:publicar e conferirHEAD/árvore limpa fora da árvore. Sem alteração de código app,versão,Flatpak,critérios,pesos ouVM.
 
+## 2026/10/19 às 23:44 (America/Sao_Paulo, UTC-03:00) — entrega integral conferida no chat do laboratório
+
+Usuário pediu arquivo com todo o realizado, parcial e pendente até a conclusão,
+e explicação completa da demora. Neste chat de infraestrutura, sem executar
+aplicativos nem acessar VM, foi conferido o relatório integral já consolidado
+na revisão befc320 (fotografia funcional b2bb821). Git remoto main confirmou
+befc320d62c68eaff03334e0b77472617c25605c; checkout limpo na conferência e nenhuma
+mudança em app/packaging/tests entre a fotografia e HEAD. API oficial GitHub
+reconfirmou prerelease0.1.16, asset118393760bytes/digest igual ao manifesto;
+sem novo download integral ou nova instalação.
+
+Validador original executado com as mesmas asserções, somente o destino do
+recibo redirecionado para a pasta desta entrega:317fontes Git,4editoriais,
+inventários completos e117textos integrais do HTML original conferidos.
+Acrescentados16registros integrais do laboratório, com aviso de que descrevem
+18/10 e não são estado atual da VM. Relatório original preservado integralmente;
+novo capítulo21 registra conferência e laboratório. HTML21capítulos/8226855bytes,
+Markdown136326linhas/6686327bytes. Nenhuma suíte de aplicativo ou nova análise do
+Foxit foi executada; testes seguem apenas no chat apropriado, parada preservada.
+
+Entrega no workspace irmão Testes de IA, em
+relatorios/Linuxit-PDF-2026-10-19-integral/:
+RELATORIO-INTEGRAL-LINUXIT-PDF-2026-10-19.html e .md,
+CONFERENCIA-DO-RELATORIO.json e CONFERENCIA-ORIGINAL-DO-PROJETO.json.
+Hash MD8ffb0fa65a32ba91e176123ce88e796c02b30f2bd52bbe2afb29d11af16ae448;
+HTMLb89bf67aaf8926759f9b71cf927049f2e9e5e0f8236638cc58c862387a92a65a.
+Código,pacote,critérios,pesos e resultados anteriores preservados. Sem commit/push
+nesta entrega do laboratório; esta nota local é a única alteração no projeto.
+
 
 ## 2026/10/20 às 00:19 (America/Sao_Paulo, UTC-03:00) — correção RFC 3161, registros reconciliados e aceitação S12 executável
 
@@ -3389,3 +3418,7 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 
 - Pedido do usuário: registrar como instrução prioritária o erro 403 do token do Actions ao criar releases; o Codex vai investigar. Documento: docs/PRIORIDADE-E29-ERRO-403-RELEASE.md (execuções, configurações verificadas, hipóteses, diagnóstico sugerido, regras). E29 inserida na lista como em andamento.
 - Retomada do Claude agendada para 20:10: ler as notas/commits do Codex; se a E29 estiver resolvida, prosseguir com E16–E20 (autorizado pelo usuário) e parar; se não, tentar resolver com base no diagnóstico do Codex.
+
+## 2026/10/20 às 17:14 (America/Sao_Paulo, UTC-03:00) — início E29 pelo Codex
+
+Atualizado de befc320 para 353aa73; nota local do laboratório guardada em backup e integrada sem perda das notas remotas. E29 é prioridade exclusiva. Documentação oficial https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28 (Create a release) confirma exigência Workflows em alvos cujos workflows diferem da main, mesmo rascunhos; GITHUB_TOKEN não recebe essa permissão. Preparado scripts/diagnose_release_403.py e fluxo manual diag-release-403.yml: três alvos, draft:true, limpeza por ID/tag/prefixo da própria execução, sem criação de refs, conferência de inventário público antes/depois. Somente contents:write; write-all não necessário antes da comparação. Execução e resultado ainda pendentes. Releases existentes, app, critérios e VM preservados.

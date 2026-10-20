@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 17:01 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 17:14 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,6 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
+- **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Diagnóstico preparado com três rascunhos descartáveis (alvo padrão, main atual e dec46c9), sem publicação nem criação de tags. A documentação oficial exige permissão Workflows quando o alvo difere em workflows da main, inclusive em rascunhos; confirmação no repositório em andamento.
 - **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases. Pedido ao Codex; o Claude retoma às 20:10.
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
 - Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15 concluído. Erro de CI da E08 resolvido e confirmado no CI (execução 39483614911: 638/638, sem pulos). Parado, aguardando você.
@@ -106,3 +107,5 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 16:43** — E11: a publicação pelo fluxo manual (execução 39485174222) conferiu o pacote, mas o GitHub recusou criar a tag no commit testado (403; o token automático não pode criar referência num commit cujos workflows diferem da main). O fluxo foi ajustado para criar a release como rascunho; você publica o rascunho com um clique em Releases. Nada foi publicado na tentativa que falhou.
 - **2026/10/20 às 17:01** — E11 concluída: **0.1.17/devel publicada** (prerelease `v0.1.17-devel`, mesmo pacote testado, SHA-256 ec773a20…7a71). Download público conferido; auditoria do pacote instalado aprovada; integrações de desktop 9/9 nas duas repetições. A release foi criada e publicada pelo navegador interno, com a sua confirmação, porque o token automático do GitHub foi recusado (403). A primeira auditoria falhou por comparar com a main mais nova; corrigido para comparar com o commit testado. Parado, aguardando você.
 - **2026/10/20 às 17:09** — Plano: a causa do 403 ao criar releases pelo GitHub Actions virou a etapa prioritária E29, para o Codex identificar (instruções em PRIORIDADE-E29-ERRO-403-RELEASE.md). O Claude retoma às 20:10: se a causa estiver resolvida, segue para E16–E20; se não, tenta resolver com base no que o Codex registrar.
+
+- **2026/10/20 às 17:14** — Codex leu a prioridade E29, sincronizou main 353aa73 e preservou ambos os históricos de continuidade. Preparado fluxo manual de diagnóstico com contents:write, sem tokens em arquivos, limpeza restrita aos próprios rascunhos e conferência das releases públicas. Nenhum teste de app/VM iniciado.

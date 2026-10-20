@@ -1,0 +1,37 @@
+name: Diagnose release 403 (drafts only, manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: diagnostic-release-403
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Compare default, current and old targets using disposable drafts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/diagnose_release_403.py --receipt e29-results/probe.json
+      - name: Always clean up only drafts created by this run
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/diagnose_release_403.py --receipt e29-results/probe.json --cleanup-only
+      - name: Preserve sanitized API evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: e29-release-403-${{ github.run_id }}-${{ github.run_attempt }}
+          path: e29-results/
+          if-no-files-found: error
+          retention-days: 14
