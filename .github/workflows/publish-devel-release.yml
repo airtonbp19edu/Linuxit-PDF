@@ -66,8 +66,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.manifest.outputs.tag }}
           COMMIT: ${{ steps.manifest.outputs.commit }}
+          BYTES: ${{ steps.manifest.outputs.bytes }}
         run: |
           file="candidate/dist/${{ steps.manifest.outputs.file }}"
+          # A draft prepared by the owner in the web page (tag not yet created) only receives the asset.
+          gh api "repos/$GITHUB_REPOSITORY/releases?per_page=30" > releases.json
+          draft="$(python3 -c "import json,os;print(next((str(r['id']) for r in json.load(open('releases.json')) if r['draft'] and r['tag_name']==os.environ['TAG'] and r['target_commitish']==os.environ['COMMIT']),''))")"
+          if [ -n "$draft" ]; then
+            name="$(basename "$file")"
+            curl --fail-with-body -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              -H "Content-Type: application/octet-stream" --data-binary @"$file" \
+              "https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$draft/assets?name=$name" > asset.json
+            python3 -c "import json,os;a=json.load(open('asset.json'));assert a['size']==int(os.environ['BYTES']) and a['state']=='uploaded',a;print('asset',a['id'],a['size'],a.get('digest'))"
+            echo "::notice::Pacote anexado ao rascunho $TAG. Publique o rascunho na página Releases."
+            exit 0
+          fi
           existing=""
           if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" > tag.json 2>/dev/null; then
             existing="$(python3 -c "import json;print(json.load(open('tag.json'))['object']['sha'])")"
