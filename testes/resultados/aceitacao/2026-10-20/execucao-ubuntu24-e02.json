@@ -1,0 +1,955 @@
+{
+  "schema": "linuxit-acceptance-run-v1",
+  "scope": "Own Linuxit contract executions of S12 cases; not Foxit observations, parity or whole-family acceptance.",
+  "started_at_local": "2026-10-20T00:36:31-03:00",
+  "finished_at_local": "2026-10-20T00:37:49-03:00",
+  "revision": "353a30bbb4a9f4688a054c6cc7062c740dbfb15a",
+  "revision_dirty": false,
+  "tested_app": "/home/linuxit-test/clean/app",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "display_present": true,
+    "poppler": "pdftotext version 24.02.0",
+    "openssl": "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)"
+  },
+  "acceptance_fixtures_sha256": {
+    "oito-paginas.pdf": "5c300bb1ba56f6fbbbae4ae2ae2f8fe9355ec7c0efd55273e06556c9e84f894f",
+    "proximidade.pdf": "93d68cf3886bf13a97a0b0f3f0e4f7f2d1c567e8b1506798c65b692649020471",
+    "formulario.pdf": "8fb3aa054c938ee1fe134b6907e000bca21992191d83ae40f1efa7485810420d",
+    "camadas.pdf": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5",
+    "anexo-nome-perigoso.pdf": "60a8ba7b7fbd4cae3f73d28ae3b4f6a96cee1347d288d101552e7b1c0442fa74"
+  },
+  "counts": {
+    "passed": 48,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "not_executed_proposed_only": [
+    "S12-23-1",
+    "S12-23-2"
+  ],
+  "not_executed_needing_display": [],
+  "foxit_observations": 0,
+  "results": [
+    {
+      "id": "S12-01-1",
+      "family": "open-render",
+      "kind": "nominal",
+      "boundary": "worker info + rendering.render_page",
+      "started_at_local": "2026-10-20T00:36:31-03:00",
+      "evidence": {
+        "pages": 2,
+        "sizes": [
+          [
+            420.0,
+            595.0
+          ],
+          [
+            420.0,
+            595.0
+          ]
+        ],
+        "page_image_sha256": [
+          "4f2086cea458cc4c6c3ffc9c0a5d2bbc58cc0ff5201685af7771da8fed5445fc",
+          "44d0f3f7ab6cf3be963b01ee53bc47006bcb477fb657b8250ccc336c189f31e7"
+        ],
+        "other_document_image_distinct": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.264,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+        "testes/aceitacao/fixtures/oito-paginas.pdf": "5c300bb1ba56f6fbbbae4ae2ae2f8fe9355ec7c0efd55273e06556c9e84f894f"
+      }
+    },
+    {
+      "id": "S12-01-2",
+      "family": "open-render",
+      "kind": "exception",
+      "boundary": "worker info",
+      "started_at_local": "2026-10-20T00:36:31-03:00",
+      "evidence": {
+        "missing_exit": 1,
+        "invalid_exit": 1
+      },
+      "status": "passed",
+      "elapsed_sec": 0.334,
+      "fixtures_sha256": {
+        "testes/fixtures/campaign18/invalido.pdf": "cb8e660bfd64dd889302a9c18d4a8111c7136b5ab9eb03f55011252874168f5e"
+      }
+    },
+    {
+      "id": "S12-02-1",
+      "family": "navigation",
+      "kind": "nominal",
+      "boundary": "PDFWindow.goto_page/_rotate",
+      "started_at_local": "2026-10-20T00:36:31-03:00",
+      "evidence": {
+        "page": 2,
+        "rotation": 90,
+        "displayed_ratio": 1.418,
+        "rotated_page_ratio": 1.417
+      },
+      "status": "passed",
+      "elapsed_sec": 1.767,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-02-2",
+      "family": "navigation",
+      "kind": "exception",
+      "boundary": "PDFWindow.request_render callbacks",
+      "started_at_local": "2026-10-20T00:36:33-03:00",
+      "evidence": {
+        "current_page": 3,
+        "obsolete_page": 6,
+        "obsolete_outcome": "RuntimeError: Tarefa de renderização cancelada.",
+        "display_kept": true
+      },
+      "status": "passed",
+      "elapsed_sec": 2.389,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/oito-paginas.pdf": "5c300bb1ba56f6fbbbae4ae2ae2f8fe9355ec7c0efd55273e06556c9e84f894f"
+      }
+    },
+    {
+      "id": "S12-03-1",
+      "family": "presentation",
+      "kind": "nominal",
+      "boundary": "PresentationWindow fit/fill",
+      "started_at_local": "2026-10-20T00:36:36-03:00",
+      "evidence": {
+        "viewport": [
+          1000,
+          494
+        ],
+        "fit": [
+          331,
+          469
+        ],
+        "fill": [
+          976,
+          1383
+        ],
+        "centered": true
+      },
+      "status": "passed",
+      "elapsed_sec": 1.726,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-03-2",
+      "family": "presentation",
+      "kind": "exception",
+      "boundary": "PresentationWindow render failure",
+      "started_at_local": "2026-10-20T00:36:37-03:00",
+      "evidence": {
+        "error_shown": true,
+        "window_alive": true,
+        "recovered": true
+      },
+      "status": "passed",
+      "elapsed_sec": 1.598,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-04-1",
+      "family": "search-text",
+      "kind": "nominal",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:39-03:00",
+      "evidence": {
+        "hits": 3,
+        "whole_word_hits": 2,
+        "pages": [
+          0
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.032,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-04-2",
+      "family": "search-text",
+      "kind": "exception",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:39-03:00",
+      "evidence": {
+        "value_error": true,
+        "pages_extracted": 0
+      },
+      "status": "passed",
+      "elapsed_sec": 0.001,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-05-1",
+      "family": "search-bookmarks",
+      "kind": "nominal",
+      "boundary": "PDFWindow find bar + _select_search_hit",
+      "started_at_local": "2026-10-20T00:36:39-03:00",
+      "evidence": {
+        "hits": [
+          [
+            "bookmark",
+            2,
+            []
+          ],
+          [
+            "bookmark",
+            null,
+            []
+          ]
+        ],
+        "selected_pages": [
+          2,
+          2
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 2.385,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-05-2",
+      "family": "search-bookmarks",
+      "kind": "exception",
+      "boundary": "PDFWindow _select_search_hit",
+      "started_at_local": "2026-10-20T00:36:41-03:00",
+      "evidence": {
+        "page_kept": 2,
+        "rects": [],
+        "scroll_pending": false
+      },
+      "status": "passed",
+      "elapsed_sec": 2.815,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-06-1",
+      "family": "search-comments",
+      "kind": "nominal",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:44-03:00",
+      "evidence": {
+        "subject_hits": 1,
+        "contents_hits": 1,
+        "subject": "Assunto separado",
+        "contents": "comentário alvo"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.005,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-06-2",
+      "family": "search-comments",
+      "kind": "exception",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:44-03:00",
+      "evidence": {
+        "hits": [
+          [
+            "comment",
+            1
+          ]
+        ],
+        "page_numbering": "um"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.003,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-07-1",
+      "family": "search-attachments",
+      "kind": "nominal",
+      "boundary": "worker search-attachments",
+      "started_at_local": "2026-10-20T00:36:44-03:00",
+      "evidence": {
+        "hits": 2,
+        "attachment": "notas.txt",
+        "index": 2,
+        "internal_page": null,
+        "main_page": null
+      },
+      "status": "passed",
+      "elapsed_sec": 0.173,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-avancada/anexos.pdf": "4c4d7dba27add3d8826fc41455b5f1b0e745aa0aa27d83f347aef27dcbc262ac"
+      }
+    },
+    {
+      "id": "S12-07-2",
+      "family": "search-attachments",
+      "kind": "exception",
+      "boundary": "worker search-attachments",
+      "started_at_local": "2026-10-20T00:36:44-03:00",
+      "evidence": {
+        "omitted": [
+          {
+            "index": 1,
+            "name": "nao-suportado.bin",
+            "reason": "Formato não suportado pela busca textual."
+          }
+        ],
+        "complete": false
+      },
+      "status": "passed",
+      "elapsed_sec": 0.182,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-avancada/anexos.pdf": "4c4d7dba27add3d8826fc41455b5f1b0e745aa0aa27d83f347aef27dcbc262ac"
+      }
+    },
+    {
+      "id": "S12-08-1",
+      "family": "search-index",
+      "kind": "nominal",
+      "boundary": "worker index-build/index-search",
+      "started_at_local": "2026-10-20T00:36:45-03:00",
+      "evidence": {
+        "documents": 2,
+        "pages": 3,
+        "hits": [
+          [
+            "colecao-dois.pdf",
+            0
+          ]
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.332,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-avancada/colecao-um.pdf": "80b4cd711250c1b82d7815c32e4cc5fc01cab4d61c741a1ad73be0c6ead29d8c",
+        "testes/fixtures/busca-avancada/colecao-dois.pdf": "f04c197fa695d0d30d9cdee016f60bfaf8b954d03216f90b50bd580cf0d7965f"
+      }
+    },
+    {
+      "id": "S12-08-2",
+      "family": "search-index",
+      "kind": "exception",
+      "boundary": "worker index-search",
+      "started_at_local": "2026-10-20T00:36:45-03:00",
+      "evidence": {
+        "hits": 0,
+        "stale": 1
+      },
+      "status": "passed",
+      "elapsed_sec": 0.363,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-avancada/colecao-um.pdf": "80b4cd711250c1b82d7815c32e4cc5fc01cab4d61c741a1ad73be0c6ead29d8c",
+        "testes/fixtures/busca-avancada/colecao-dois.pdf": "f04c197fa695d0d30d9cdee016f60bfaf8b954d03216f90b50bd580cf0d7965f"
+      }
+    },
+    {
+      "id": "S12-09-1",
+      "family": "search-language",
+      "kind": "nominal",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:45-03:00",
+      "evidence": {
+        "d1": 0,
+        "d2": 1,
+        "reverse_d50": 0
+      },
+      "status": "passed",
+      "elapsed_sec": 0.015,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/proximidade.pdf": "93d68cf3886bf13a97a0b0f3f0e4f7f2d1c567e8b1506798c65b692649020471"
+      }
+    },
+    {
+      "id": "S12-09-2",
+      "family": "search-language",
+      "kind": "exception",
+      "boundary": "search_engine.TextSearchIndex",
+      "started_at_local": "2026-10-20T00:36:45-03:00",
+      "evidence": {
+        "refused": {
+          "alv[o]": true,
+          "alvo OR texto!": true
+        },
+        "literal_fallback": false
+      },
+      "status": "passed",
+      "elapsed_sec": 0.001,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-10-1",
+      "family": "selection",
+      "kind": "nominal",
+      "boundary": "PDFWindow _finish_text_selection + clipboard",
+      "started_at_local": "2026-10-20T00:36:45-03:00",
+      "evidence": {
+        "clipboard": [
+          "alvo",
+          "alvo"
+        ],
+        "rotations": [
+          0,
+          90
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 1.771,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-10-2",
+      "family": "selection",
+      "kind": "exception",
+      "boundary": "PDFWindow _finish_text_selection",
+      "started_at_local": "2026-10-20T00:36:47-03:00",
+      "evidence": {
+        "status": "Nenhum texto detectado na seleção.",
+        "clipboard_unchanged": true
+      },
+      "status": "passed",
+      "elapsed_sec": 1.598,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-11-1",
+      "family": "printing",
+      "kind": "nominal",
+      "boundary": "worker prepare-print",
+      "started_at_local": "2026-10-20T00:36:49-03:00",
+      "evidence": {
+        "output_pages": 1,
+        "both_pages_on_sheet": true,
+        "physical_print": false
+      },
+      "status": "passed",
+      "elapsed_sec": 0.349,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-11-2",
+      "family": "printing",
+      "kind": "exception",
+      "boundary": "cups_backend.print_file",
+      "started_at_local": "2026-10-20T00:36:49-03:00",
+      "evidence": {
+        "outcome": "RuntimeError: O comando lp não está instalado. Instale cups-client."
+      },
+      "status": "passed",
+      "elapsed_sec": 0.001,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-12-1",
+      "family": "imposition",
+      "kind": "nominal",
+      "boundary": "worker prepare-print (booklet)",
+      "started_at_local": "2026-10-20T00:36:49-03:00",
+      "evidence": {
+        "faces": 4,
+        "pairs": [
+          [
+            8,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.383,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/oito-paginas.pdf": "5c300bb1ba56f6fbbbae4ae2ae2f8fe9355ec7c0efd55273e06556c9e84f894f"
+      }
+    },
+    {
+      "id": "S12-12-2",
+      "family": "imposition",
+      "kind": "exception",
+      "boundary": "imposition.prepare_output",
+      "started_at_local": "2026-10-20T00:36:49-03:00",
+      "evidence": {
+        "value_error": true,
+        "output_created": false
+      },
+      "status": "passed",
+      "elapsed_sec": 0.0,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-13-1",
+      "family": "bookmarks-edit",
+      "kind": "nominal",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:49-03:00",
+      "evidence": {
+        "bookmarks": [
+          [
+            "ALVO marcador",
+            0,
+            1
+          ],
+          [
+            "alvo externo",
+            0,
+            null
+          ]
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.177,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-13-2",
+      "family": "bookmarks-edit",
+      "kind": "exception",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:50-03:00",
+      "evidence": {
+        "page": null
+      },
+      "status": "passed",
+      "elapsed_sec": 0.179,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-14-1",
+      "family": "annotations",
+      "kind": "nominal",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:50-03:00",
+      "evidence": {
+        "page": 0,
+        "subject": "Assunto separado",
+        "contents": "comentário alvo",
+        "author": "Autor não pesquisável"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.167,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-14-2",
+      "family": "annotations",
+      "kind": "exception",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:50-03:00",
+      "evidence": {
+        "comments": [
+          "comentário alvo"
+        ],
+        "invalid_entries": 2
+      },
+      "status": "passed",
+      "elapsed_sec": 0.161,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-15-1",
+      "family": "forms",
+      "kind": "nominal",
+      "boundary": "worker copy-edit",
+      "started_at_local": "2026-10-20T00:36:50-03:00",
+      "evidence": {
+        "reopened_value": "Linuxit aceitação",
+        "pages": 1,
+        "original_preserved": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.264,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/formulario.pdf": "8fb3aa054c938ee1fe134b6907e000bca21992191d83ae40f1efa7485810420d"
+      }
+    },
+    {
+      "id": "S12-15-2",
+      "family": "forms",
+      "kind": "exception",
+      "boundary": "worker copy-edit",
+      "started_at_local": "2026-10-20T00:36:50-03:00",
+      "evidence": {
+        "readonly": "refused",
+        "maxlen": "refused"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.36,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/formulario.pdf": "8fb3aa054c938ee1fe134b6907e000bca21992191d83ae40f1efa7485810420d"
+      }
+    },
+    {
+      "id": "S12-16-1",
+      "family": "attachments",
+      "kind": "nominal",
+      "boundary": "worker attachments/extract-attachment",
+      "started_at_local": "2026-10-20T00:36:51-03:00",
+      "evidence": {
+        "name": "nota-sintetica.txt",
+        "size": 30,
+        "sha256": "e76ffda88c45942c35f2137d9217e3f3710396b9420c961f2a40ac776a367189"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.321,
+      "fixtures_sha256": {
+        "testes/fixtures/anexos-simples.pdf": "2e87c2d10327756305b9db95fddb51e06fe675d9a7b9d8bc199df08a538492ce",
+        "testes/fixtures/anexos-simples.json": "c4ef384cbbaf6302371eb41bcbaf89a5ec9a37fa267847b239d22f3204338811"
+      }
+    },
+    {
+      "id": "S12-16-2",
+      "family": "attachments",
+      "kind": "exception",
+      "boundary": "worker attachments/extract-attachment",
+      "started_at_local": "2026-10-20T00:36:51-03:00",
+      "evidence": {
+        "filename_allowed": false,
+        "extraction": "refused",
+        "files_created": 0
+      },
+      "status": "passed",
+      "elapsed_sec": 0.306,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/anexo-nome-perigoso.pdf": "60a8ba7b7fbd4cae3f73d28ae3b4f6a96cee1347d288d101552e7b1c0442fa74"
+      }
+    },
+    {
+      "id": "S12-17-1",
+      "family": "signatures",
+      "kind": "nominal",
+      "boundary": "worker sign-copy/signature-info",
+      "started_at_local": "2026-10-20T00:36:51-03:00",
+      "evidence": {
+        "integrity_verified": true,
+        "current_file_covered": true,
+        "trust_chain_verified": false,
+        "network_used": false
+      },
+      "status": "passed",
+      "elapsed_sec": 0.752,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-17-2",
+      "family": "signatures",
+      "kind": "exception",
+      "boundary": "worker signature-info",
+      "started_at_local": "2026-10-20T00:36:52-03:00",
+      "evidence": {
+        "der": "unsupported_or_malformed",
+        "bytes": "not_verified"
+      },
+      "status": "passed",
+      "elapsed_sec": 0.917,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-18-1",
+      "family": "security",
+      "kind": "nominal",
+      "boundary": "worker protect-copy/security-info/owner-copy",
+      "started_at_local": "2026-10-20T00:36:53-03:00",
+      "evidence": {
+        "user_role": "user",
+        "owner_role": "owner",
+        "aes256_v_r": [
+          5,
+          6
+        ],
+        "owner_plaintext_copy": true,
+        "passwords_in_results": false
+      },
+      "status": "passed",
+      "elapsed_sec": 1.063,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-18-2",
+      "family": "security",
+      "kind": "exception",
+      "boundary": "worker security-info/owner-copy/protect-copy",
+      "started_at_local": "2026-10-20T00:36:54-03:00",
+      "evidence": {
+        "wrong_password": true,
+        "user_plaintext": true,
+        "existing_destination": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.834,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-19-1",
+      "family": "accessibility",
+      "kind": "nominal",
+      "boundary": "worker accessible-text",
+      "started_at_local": "2026-10-20T00:36:55-03:00",
+      "evidence": {
+        "characters": 25,
+        "contains_target": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.181,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-19-2",
+      "family": "accessibility",
+      "kind": "exception",
+      "boundary": "worker accessible-text",
+      "started_at_local": "2026-10-20T00:36:55-03:00",
+      "evidence": {
+        "exit": 1,
+        "partial_text": null
+      },
+      "status": "passed",
+      "elapsed_sec": 0.495,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-20-1",
+      "family": "measurement",
+      "kind": "nominal",
+      "boundary": "PDFWindow _finish_measure",
+      "started_at_local": "2026-10-20T00:36:56-03:00",
+      "evidence": {
+        "result": "2.54 cm",
+        "decimals": 2,
+        "decimal_separator": "ponto"
+      },
+      "status": "passed",
+      "elapsed_sec": 1.452,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-20-2",
+      "family": "measurement",
+      "kind": "exception",
+      "boundary": "PDFWindow _finish_measure",
+      "started_at_local": "2026-10-20T00:36:57-03:00",
+      "evidence": {
+        "measure_result": null
+      },
+      "status": "passed",
+      "elapsed_sec": 0.307,
+      "fixtures_sha256": {}
+    },
+    {
+      "id": "S12-21-1",
+      "family": "layers-media",
+      "kind": "nominal",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:57-03:00",
+      "evidence": {
+        "layers": [
+          [
+            "Base",
+            true
+          ],
+          [
+            "Notas",
+            false
+          ]
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.167,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/camadas.pdf": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5"
+      }
+    },
+    {
+      "id": "S12-21-2",
+      "family": "layers-media",
+      "kind": "exception",
+      "boundary": "worker panels",
+      "started_at_local": "2026-10-20T00:36:58-03:00",
+      "evidence": {
+        "layers": []
+      },
+      "status": "passed",
+      "elapsed_sec": 0.166,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-22-1",
+      "family": "preferences",
+      "kind": "nominal",
+      "boundary": "appearance.save_mode/read_mode",
+      "started_at_local": "2026-10-20T00:36:58-03:00",
+      "evidence": {
+        "mode": "light",
+        "unknown_key_preserved": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.001,
+      "fixtures_sha256": {}
+    },
+    {
+      "id": "S12-22-2",
+      "family": "preferences",
+      "kind": "exception",
+      "boundary": "appearance.save_mode",
+      "started_at_local": "2026-10-20T00:36:58-03:00",
+      "evidence": {
+        "value_error": true,
+        "file_unchanged": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.0,
+      "fixtures_sha256": {}
+    },
+    {
+      "id": "S12-24-1",
+      "family": "conversion",
+      "kind": "nominal",
+      "boundary": "worker images-to-pdf",
+      "started_at_local": "2026-10-20T00:36:58-03:00",
+      "evidence": {
+        "pages": 2,
+        "sizes": [
+          [
+            40,
+            20
+          ],
+          [
+            40,
+            20
+          ]
+        ],
+        "order": [
+          "transparencia.png",
+          "orientacao.jpg"
+        ]
+      },
+      "status": "passed",
+      "elapsed_sec": 0.347,
+      "fixtures_sha256": {
+        "testes/fixtures/criacao-imagens/manifest.json": "0eb697f83194977b018ad16d5e213c9b85cef10bfcc2559eef7bbd3ff55b71df",
+        "testes/fixtures/criacao-imagens/transparencia.png": "e3c1c6c1487947c43922b948c5209a5866048eb861d4f1278a4ff31029d75745",
+        "testes/fixtures/criacao-imagens/orientacao.jpg": "69b41bd3a4d73a26b82fdaf51a714b4c1d2807ed6a6985d3eeb2f6bb89461658"
+      }
+    },
+    {
+      "id": "S12-24-2",
+      "family": "conversion",
+      "kind": "exception",
+      "boundary": "worker images-to-pdf",
+      "started_at_local": "2026-10-20T00:36:58-03:00",
+      "evidence": {
+        "gif": true,
+        "png_invalido": true,
+        "existing_destination": true
+      },
+      "status": "passed",
+      "elapsed_sec": 0.5,
+      "fixtures_sha256": {
+        "testes/fixtures/criacao-imagens/transparencia.png": "e3c1c6c1487947c43922b948c5209a5866048eb861d4f1278a4ff31029d75745"
+      }
+    },
+    {
+      "id": "S12-25-1",
+      "family": "platform",
+      "kind": "nominal",
+      "boundary": "PDFWindow._choose_open_native via xdg-desktop-portal",
+      "started_at_local": "2026-10-20T00:36:59-03:00",
+      "evidence": {
+        "opened": "autorizado.pdf",
+        "pages": 8,
+        "portal_call": true,
+        "portal_response": true,
+        "other_file_opened": false
+      },
+      "status": "passed",
+      "elapsed_sec": 33.194,
+      "fixtures_sha256": {
+        "testes/aceitacao/fixtures/oito-paginas.pdf": "5c300bb1ba56f6fbbbae4ae2ae2f8fe9355ec7c0efd55273e06556c9e84f894f",
+        "testes/aceitacao/fixtures/proximidade.pdf": "93d68cf3886bf13a97a0b0f3f0e4f7f2d1c567e8b1506798c65b692649020471",
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    },
+    {
+      "id": "S12-25-2",
+      "family": "platform",
+      "kind": "exception",
+      "boundary": "PDFWindow._choose_open_native via xdg-desktop-portal",
+      "started_at_local": "2026-10-20T00:37:32-03:00",
+      "evidence": {
+        "current_document_kept": true,
+        "pages": 2,
+        "errors": [],
+        "status": "atual.pdf"
+      },
+      "status": "passed",
+      "elapsed_sec": 16.797,
+      "fixtures_sha256": {
+        "testes/fixtures/busca-escopos.pdf": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
-  "created_at_local": "2026-10-20T00:30:00-03:00",
-  "updated_at_local": "2026-10-20T00:38:00-03:00",
+  "created_at_local": "2026-10-20T00:27:00-03:00",
+  "updated_at_local": "2026-10-20T00:38:25-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -29,16 +29,22 @@
       "id": "E02",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Contrato próprio da integração com o sistema",
       "goal": "Passar a família platform de proposta para subconjunto implementado (portal, concessão persistente, revogação e associação já validados 9/9) e tornar S12-25 executável.",
-      "verification": "validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados no workflow de desktop e registrados."
+      "verification": "validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados com o portal real (xdg-desktop-portal) e registrados.",
+      "commit": "353a30b",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json",
+        "docs/contratos-funcionais.md"
+      ],
+      "note": "A família platform deixou de ser proposta. Os casos acionam o botão real \"Abrir pelo seletor do sistema\" com o portal; um defeito injetado no cancelamento fez o caso falhar. Aceitação total: 48/48 na revisão 353a30b."
     },
     {
       "id": "E03",
       "block": "Formulários",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Formatação de números (AFNumber_Format)",
       "goal": "Reconhecer AFNumber_Format por gramática fechada e aplicar casas decimais, separadores e símbolo ao valor e à aparência, sem executar JavaScript.",
       "verification": "Testes portáveis novos e caso de aceitação com fixture de formulário formatado."

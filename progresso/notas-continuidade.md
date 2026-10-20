@@ -3186,3 +3186,18 @@ Novo pedido do usuário: todo aviso também vai para `docs/AVISOS-E-STATUS.md` (
 Limitações: nenhum Flatpak novo, VM intocada, nuvem adiada, critérios e pesos inalterados.
 
 Próximo passo: entrega 0.1.17 com a correção RFC 3161, ou o primeiro item sem VM da fila em `docs/AVISOS-E-STATUS.md`.
+
+
+## 2026/10/20 às 00:39 (America/Sao_Paulo, UTC-03:00) — etapas pequenas, E01 e E02 concluídas
+
+Pedido do usuário: organizar o que falta em etapas pequenas, salvar nos repositórios e começar pelo que não precisa da VM. Lista em `progresso/etapas-pequenas.json`, renderizada em `docs/ETAPAS-PEQUENAS.md` (24 etapas e a decisão D01), com cópia local `ETAPAS-LOCAL.md`.
+
+- **E01** (`9c10dc4`): `check_operation_catalog.py` voltou a passar. A referência própria agora é o CI 39363684386 (fonte 571/571, hashes da revisão `a43e0ba`). O trecho `verify_trust` foi refixado e o inventário renderizado, que estava desatualizado (95/13 em vez de 97/11), foi regenerado.
+- **E02** (`353a30b`): a família platform passou de proposta a contrato próprio (texto anterior em `contract_previous`). S12-25-1 e S12-25-2 acionam o botão real "Abrir pelo seletor do sistema" contra `xdg-desktop-portal` num desktop X11 efêmero, dirigidos por xdotool, com preferências isoladas. Um defeito injetado no cancelamento fez o caso falhar.
+- Aceitação: **48/48** na revisão limpa `353a30b` (Ubuntu 24.04), em `testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json`, aplicada à especificação. Só S12-23 (nuvem adiada) fica `not_run`. Suíte própria 571/571 local.
+
+Correção de registro: horários da E01/E02 anotados adiantados (00:36, 00:38, 00:45) foram trocados pelos horários reais dos commits.
+
+Limitações: portal sem FUSE no ambiente local (o seletor funciona; o portal de documentos não monta); confirmação no Debian 13 pendente no CI. Nenhum Flatpak novo; VM intocada.
+
+Próximo passo: E03, formatação AFNumber_Format por gramática fechada.

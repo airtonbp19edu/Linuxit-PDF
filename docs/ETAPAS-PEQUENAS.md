@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T00:38:00-03:00. Pendente: 21, Em andamento: 1, Concluída: 1, Bloqueada: 1.
+Atualizado em 2026-10-20T00:38:25-03:00. Pendente: 20, Em andamento: 1, Concluída: 2, Bloqueada: 1.
 
 **Regras**
 
@@ -14,8 +14,8 @@ Atualizado em 2026-10-20T00:38:00-03:00. Pendente: 21, Em andamento: 1, Concluí
 | # | Etapa | Bloco | Precisa de | Situação |
 |---|---|---|---|---|
 | E01 | Verificador do catálogo de operações verde | Base e entrega | nada | Concluída |
-| E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Em andamento |
-| E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Pendente |
+| E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Concluída |
+| E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Em andamento |
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Pendente |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Pendente |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
@@ -56,9 +56,13 @@ Evidência: [testes/resultados/sem-vm-2026-10-20/own-validated-cases.json](../te
 
 **Objetivo:** Passar a família platform de proposta para subconjunto implementado (portal, concessão persistente, revogação e associação já validados 9/9) e tornar S12-25 executável.
 
-**Como verificar:** validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados no workflow de desktop e registrados.
+**Como verificar:** validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados com o portal real (xdg-desktop-portal) e registrados.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+A família platform deixou de ser proposta. Os casos acionam o botão real "Abrir pelo seletor do sistema" com o portal; um defeito injetado no cancelamento fez o caso falhar. Aceitação total: 48/48 na revisão 353a30b.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json), [docs/contratos-funcionais.md](../docs/contratos-funcionais.md). Commit `353a30b`.
 
 ### E03 — Formatação de números (AFNumber_Format)
 
@@ -66,7 +70,7 @@ Evidência: [testes/resultados/sem-vm-2026-10-20/own-validated-cases.json](../te
 
 **Como verificar:** Testes portáveis novos e caso de aceitação com fixture de formulário formatado.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E04 — Datas em formulários (AFDate_FormatEx)
 

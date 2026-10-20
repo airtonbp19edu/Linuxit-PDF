@@ -15,18 +15,17 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **46 de 50 casos aprovados** na revisão `841557d`. Suíte própria completa **571/571** no Ubuntu 24.04.
+- Execução registrada: **48 de 50 casos aprovados** na revisão `353a30b` (os 2 restantes são de nuvem, adiada); antes, 46/46 na `841557d`. Suíte própria completa **571/571** no Ubuntu 24.04.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 concluída. Executando a **E02**: contrato próprio da integração com o sistema.
+- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 e E02 concluídas. Executando a **E03**: formatação de números em formulários (AFNumber_Format). CI no Debian 13 sendo disparado para confirmar os 48 casos.
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
-- Escrever o contrato próprio da integração com o sistema (casos S12-25). O portal já foi validado 9/9 no desktop.
 - Formulários: XFA e JavaScript geral. Hoje só há cálculos declarativos limitados, sem executar JavaScript.
 - Assinaturas: assinatura incremental e múltipla, DocTimeStamp, PAdES-LTV e OCSP.
 - 3D: renderizador U3D/PRC. Hoje só lista e extrai.
@@ -64,5 +63,6 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 00:20** — Publicado: `main` em `a43e0ba`. Os 3 commits foram refeitos com autoria do Claude, para aparecerem como verificados, e os 46 casos de aceitação rodaram de novo na revisão `841557d`, todos aprovados. CI no Debian 13 iniciado. O `publicar.cmd` do PC deixou de ser necessário; basta `git pull`.
 - **2026/10/20 às 00:22** — Regra registrada: avisos vão para este arquivo no GitHub e para `AVISOS-LOCAL.md` na pasta local.
 - **2026/10/20 às 00:25** — CI no Debian 13 aprovado: suíte 571/571 e aceitação 46/46 na revisão `a43e0ba`, além da campanha preservada, acessibilidade e portal. Nada em andamento agora.
-- **2026/10/20 às 00:31** — O que falta foi organizado em 24 etapas pequenas, com o que não precisa da VM primeiro: [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) no GitHub e `ETAPAS-LOCAL.md` na pasta local. Execução iniciada pela E01. Decisão D01 (vírgula decimal na régua) aguardando você.
-- **2026/10/20 às 00:38** — E01 concluída (`9c10dc4`): o verificador do catálogo de operações voltou a passar, agora ligado à suíte 571/571 do CI Debian 13. O inventário renderizado também estava desatualizado e foi corrigido. Iniciando a E02.
+- **2026/10/20 às 00:27** — O que falta foi organizado em 24 etapas pequenas, com o que não precisa da VM primeiro: [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) no GitHub e `ETAPAS-LOCAL.md` na pasta local. Execução iniciada pela E01. Decisão D01 (vírgula decimal na régua) aguardando você.
+- **2026/10/20 às 00:28** — E01 concluída (`9c10dc4`): o verificador do catálogo de operações voltou a passar, agora ligado à suíte 571/571 do CI Debian 13. O inventário renderizado também estava desatualizado e foi corrigido. Iniciando a E02.
+- **2026/10/20 às 00:38** — E02 concluída (`353a30b`): a integração com o sistema ganhou contrato próprio e os casos S12-25 agora rodam com o portal real. Aceitação **48 de 50** aprovada; só a nuvem (adiada) fica de fora. Correção: alguns horários da E01/E02 tinham sido anotados adiantados e foram trocados pelos horários reais dos commits. Iniciando a E03.
