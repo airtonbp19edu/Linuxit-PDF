@@ -18,6 +18,7 @@ from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
 from pdf_form_events import inspect_form_events, calculate_form_values, format_form_values
 from annotation_geometry import EXTRA_KINDS, create_extra_annotation, move_annotation, conversation_members
+from pdf_xfa import XFAError, field_data_path, inspect_xfa, write_field_values
 from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
 
 MAX_OPERATIONS = 1000
@@ -71,8 +72,34 @@ def _terminal(field):
     return not any('/T' in child for child in children)
 
 
+XFA_OPERATIONS = {'fill-text-fields', 'fill-form-events'}
+
+
+def _xfa_state(reader, allow_xfa):
+    """None without XFA; for hybrid forms the read-only XFA description (E07)."""
+    form = reader.root_object.get('/AcroForm')
+    if form is None or isinstance(form.get_object(), NullObject) or '/XFA' not in form.get_object():
+        return None
+    if not allow_xfa:
+        raise NotImplementedError('Gravação de formulários XFA ainda não é suportada.')
+    try:
+        info = inspect_xfa(reader)
+    except XFAError as exc:
+        raise NotImplementedError(f'Formulário XFA não pode ser gravado: {exc}') from None
+    if info['error']:
+        raise NotImplementedError('Formulário XFA não pode ser gravado: ' + info['error'])
+    if not info['hybrid']:
+        raise NotImplementedError('Formulários somente XFA (sem campos AcroForm) não podem ser preenchidos.')
+    return info
+
+
+def _text_values(document):
+    return {name: str(field['/V']) for name, field in (document.get_fields() or {}).items()
+            if _inherited(field, '/FT') == '/Tx' and isinstance(field.get('/V'), str)}
+
+
 @contextmanager
-def _editable(path, expected=None, password=None, recover=False):
+def _editable(path, expected=None, password=None, recover=False, allow_xfa=False):
     path = Path(path)
     identity = _sha(path)
     if expected is not None:
@@ -90,9 +117,7 @@ def _editable(path, expected=None, password=None, recover=False):
         fields = reader.get_fields() or {}
         if '/Perms' in reader.root_object or any(_inherited(f, '/FT') == '/Sig' for f in fields.values()):
             raise NotImplementedError('Gravação de documentos com assinatura ou campos de assinatura ainda não é suportada.')
-        form = reader.root_object.get('/AcroForm')
-        if form is not None and not isinstance(form.get_object(), NullObject) and '/XFA' in form.get_object():
-            raise NotImplementedError('Gravação de formulários XFA ainda não é suportada.')
+        reader._linuxit_xfa = _xfa_state(reader, allow_xfa)
         if '/Collection' in reader.root_object:
             raise NotImplementedError('Gravação de portfólios ainda não é suportada.')
         yield reader, fields, identity
@@ -245,7 +270,7 @@ def _change_outline(writer, operation):
 def inspect_editable_document(path, *, auth=None):
     """Describe the bounded edit contract without decoding embedded payloads."""
     password,recover=edit_auth(auth)
-    with _editable(path,password=password,recover=recover) as (reader, fields, identity):
+    with _editable(path,password=password,recover=recover,allow_xfa=True) as (reader, fields, identity):
         result = {'schema': 'linuxit-copy-edit-info-v1', 'source_sha256': identity,
                   'pages': len(reader.pages), 'text_fields': [], 'edit_permissions':edit_permissions(reader),
                   'page_boxes':[list(map(float, page.cropbox)) for page in reader.pages]}
@@ -261,6 +286,16 @@ def inspect_editable_document(path, *, auth=None):
         result['notes'], result['notes_truncated'] = _note_records(reader)
         result['form_controls'], result['unsupported_controls'] = inspect_controls(reader, fields)
         result['form_events'] = inspect_form_events(reader)
+        result['xfa'] = None
+        if reader._linuxit_xfa is not None:
+            paths = {f['path'] for f in reader._linuxit_xfa['fields']}
+            bound = []
+            for record in result['text_fields']:
+                try:
+                    if field_data_path(record['name']) in paths:bound.append(record['name'])
+                except XFAError:
+                    pass
+            result['xfa'] = {'hybrid': True, 'operations': sorted(XFA_OPERATIONS), 'bound_text_fields': bound}
         result['annotations'], result['annotations_truncated'] = _annotation_records(reader)
         result['reply_targets'] = []
         result['conversation_comments']=[];result['conversation_comments_truncated']=False;comment_bytes=0
@@ -524,11 +559,21 @@ def save_edited_copy(path, destination, *, source_sha256, operations, auth=None)
     created = False
     password,recover=edit_auth(auth)
     try:
-        with _editable(path, source_sha256,password=password,recover=recover) as (reader, fields, identity):
+        with _editable(path, source_sha256,password=password,recover=recover,allow_xfa=True) as (reader, fields, identity):
             authorize_operations(reader,operations)
+            xfa = reader._linuxit_xfa
+            if xfa is not None and not all(isinstance(op, dict) and op.get('kind') in XFA_OPERATIONS for op in operations):
+                raise NotImplementedError('Em formulários XFA só o preenchimento de campos de texto é suportado.')
             writer = PdfWriter(clone_from=reader)
+            before = _text_values(writer) if xfa is not None else {}
             for operation in operations:
                 _apply(writer, operation)
+            changed = {}
+            if xfa is not None:
+                # Every changed text value (typed or calculated) is mirrored into datasets.
+                changed = {name: value for name, value in _text_values(writer).items() if before.get(name) != value}
+                if changed:
+                    write_field_values(writer, changed)
             preserve_encryption(writer,reader)
             with tempfile.NamedTemporaryFile(dir=destination.parent, prefix='.linuxit-copy-', suffix='.pdf', delete=False) as stream:
                 temporary = Path(stream.name)
@@ -539,6 +584,11 @@ def save_edited_copy(path, destination, *, source_sha256, operations, auth=None)
                     _require(check.is_encrypted and check.decrypt(password),'A cópia gerada não preservou a autenticação.')
                     _require(check.trailer['/Encrypt']['/P']==reader.trailer['/Encrypt']['/P'],'A cópia alterou as permissões originais.')
                 _require(len(check.pages) == len(reader.pages), 'A cópia gerada não preservou as páginas.')
+                if changed:
+                    data = {f['path']: f['value'] for f in inspect_xfa(check)['fields']}
+                    reopened = _text_values(check)
+                    _require(all(data.get(field_data_path(name)) == reopened.get(name) == value for name, value in changed.items()),
+                             'A cópia gerada não manteve AcroForm e dados XFA coerentes.')
         _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')
         def unchanged():
             _require(_sha(path) == identity, 'O PDF foi alterado durante a preparação da cópia.')
@@ -546,7 +596,8 @@ def save_edited_copy(path, destination, *, source_sha256, operations, auth=None)
         created = True
         return {'schema': 'linuxit-copy-edit-result-v1', 'source_sha256': identity,
                 'output_sha256': _sha(destination), 'path': str(destination),
-                'pages': len(writer.pages), 'operations_applied': len(operations)}
+                'pages': len(writer.pages), 'operations_applied': len(operations),
+                'xfa_synced_fields': sorted(changed)}
     except BaseException:
         if created:
             destination.unlink()

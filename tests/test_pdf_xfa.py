@@ -9,6 +9,8 @@ from pypdf.generic import ArrayObject,BooleanObject,DecodedStreamObject,Dictiona
 import pdf_xfa
 from pdf_xfa import XFAError,inspect_xfa,parse_datasets
 from pdf_panels import inspect_document_panels
+from pdf_changes import inspect_editable_document,save_edited_copy
+from pypdf.generic import NumberObject
 
 NS='xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"'
 
@@ -107,6 +109,100 @@ class XFADocumentTests(unittest.TestCase):
         writer=PdfWriter();writer.add_blank_page(100,100);path=self.dir/'plain.pdf'
         with open(path,'wb') as handle:writer.write(handle)
         self.assertIsNone(inspect_xfa(PdfReader(path)));self.assertIsNone(inspect_document_panels(str(path))['xfa'])
+
+
+TEMPLATE=b'<template xmlns="http://www.xfa.org/schema/xfa-template/3.3/"><subform name="form1"><subform><field name="nome"/></subform></subform></template>'
+
+
+def hybrid_pdf(path,body,names,*,single=False,calculate=None,encoding='UTF-8'):
+    """Hybrid form: AcroForm text widgets named like form1[0].#subform[0].x[0] and a datasets packet."""
+    writer=PdfWriter();page=writer.add_blank_page(300,60+40*len(names))
+    font=writer._add_object(DictionaryObject({NameObject('/Type'):NameObject('/Font'),NameObject('/Subtype'):NameObject('/Type1'),NameObject('/BaseFont'):NameObject('/Helvetica')}))
+    refs=[]
+    for index,(name,value) in enumerate(names):
+        widget=DictionaryObject({NameObject('/Type'):NameObject('/Annot'),NameObject('/Subtype'):NameObject('/Widget'),NameObject('/FT'):NameObject('/Tx'),
+            NameObject('/T'):TextStringObject(name),NameObject('/V'):TextStringObject(value),NameObject('/DA'):TextStringObject('/Helv 10 Tf 0 g'),
+            NameObject('/Rect'):ArrayObject([NumberObject(v) for v in (10,20+40*index,280,40+40*index)])})
+        if calculate and name==calculate[0]:
+            widget[NameObject('/AA')]=DictionaryObject({NameObject('/C'):DictionaryObject({NameObject('/S'):NameObject('/JavaScript'),NameObject('/JS'):TextStringObject(calculate[1])})})
+        refs.append(writer._add_object(widget))
+    page[NameObject('/Annots')]=ArrayObject(refs)
+    data=(f'<?xml version="1.0" encoding="{encoding}"?>'.encode()+datasets(body))
+    def stream(raw):
+        value=DecodedStreamObject();value.set_data(raw);return writer._add_object(value.flate_encode())
+    if single:xfa=stream(b'<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">'+TEMPLATE+data.split(b'?>',1)[1]+b'</xdp:xdp>')
+    else:xfa=ArrayObject([TextStringObject('template'),stream(TEMPLATE),TextStringObject('datasets'),stream(data)])
+    form=DictionaryObject({NameObject('/Fields'):ArrayObject(refs),NameObject('/XFA'):xfa,NameObject('/DA'):TextStringObject('/Helv 10 Tf 0 g'),
+        NameObject('/DR'):DictionaryObject({NameObject('/Font'):DictionaryObject({NameObject('/Helv'):font})})})
+    if calculate:form[NameObject('/CO')]=ArrayObject([refs[[n for n,_ in names].index(calculate[0])]])
+    writer.root_object[NameObject('/AcroForm')]=writer._add_object(form)
+    with open(path,'wb') as handle:writer.write(handle)
+    return path
+
+
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def xfa_values(path):
+    return {f['path']:f['value'] for f in inspect_xfa(PdfReader(path))['fields']}
+
+
+class HybridFillTests(unittest.TestCase):
+    """E07: filling a hybrid form keeps AcroForm and datasets equal in the new copy."""
+    NAME='form1[0].#subform[0].nome[0]'
+
+    def setUp(self):
+        self.folder=tempfile.TemporaryDirectory();self.addCleanup(self.folder.cleanup);self.dir=Path(self.folder.name)
+
+    def fill(self,source,values,kind='fill-text-fields',name='copia.pdf'):
+        output=self.dir/name
+        return output,save_edited_copy(source,output,source_sha256=sha(source),operations=[{'kind':kind,'values':values}])
+
+    def test_text_fill_updates_acroform_and_datasets_and_preserves_the_rest(self):
+        source=hybrid_pdf(self.dir/'h.pdf','<form1><nome>Ana</nome><outro>fixo</outro></form1>',[(self.NAME,'Ana')])
+        before=sha(source);template=PdfReader(source).root_object['/AcroForm']['/XFA'][1].get_object().get_data()
+        output,result=self.fill(source,{self.NAME:'Bia & Cia <ç>'})
+        reader=PdfReader(output)
+        self.assertEqual(reader.get_fields()[self.NAME]['/V'],'Bia & Cia <ç>')
+        self.assertEqual(xfa_values(output),{'form1[0].nome[0]':'Bia & Cia <ç>','form1[0].outro[0]':'fixo'})
+        self.assertEqual(reader.root_object['/AcroForm']['/XFA'][1].get_object().get_data(),template)
+        self.assertEqual(result['xfa_synced_fields'],[self.NAME]);self.assertEqual(sha(source),before)
+
+    def test_empty_element_single_stream_and_ascii_declaration(self):
+        source=hybrid_pdf(self.dir/'s.pdf','<form1><nome/></form1>',[(self.NAME,'')],single=True)
+        output,_=self.fill(source,{self.NAME:'José'})
+        self.assertEqual(xfa_values(output),{'form1[0].nome[0]':'José'})
+        raw=PdfReader(output).root_object['/AcroForm']['/XFA'].get_object().get_data()
+        self.assertIn('<nome>José</nome>'.encode(),raw)
+        ascii_source=hybrid_pdf(self.dir/'a.pdf','<form1><nome/></form1>',[(self.NAME,'')],encoding='US-ASCII')
+        output,_=self.fill(ascii_source,{self.NAME:'José'},name='a-out.pdf')
+        self.assertEqual(xfa_values(output),{'form1[0].nome[0]':'José'})
+        self.assertIn(b'<nome>Jos&#233;</nome>',PdfReader(output).root_object['/AcroForm']['/XFA'][3].get_object().get_data())
+
+    def test_calculated_values_are_mirrored_too(self):
+        names=[('form1[0].a[0]','1'),('form1[0].b[0]','2'),('form1[0].total[0]','3')]
+        source=hybrid_pdf(self.dir/'c.pdf','<form1><a>1</a><b>2</b><total>3</total></form1>',names,
+                          calculate=('form1[0].total[0]','AFSimple_Calculate("SUM", ["form1[0].a[0]", "form1[0].b[0]"]);'))
+        output,result=self.fill(source,{'form1[0].a[0]':'10'},kind='fill-form-events')
+        self.assertEqual(xfa_values(output),{'form1[0].a[0]':'10','form1[0].b[0]':'2','form1[0].total[0]':'12'})
+        self.assertEqual(result['xfa_synced_fields'],['form1[0].a[0]','form1[0].total[0]'])
+
+    def test_unbound_field_other_operations_and_xfa_only_are_refused_without_output(self):
+        source=hybrid_pdf(self.dir/'u.pdf','<form1><outro>x</outro></form1>',[(self.NAME,'')])
+        with self.assertRaisesRegex(ValueError,'sem dado XFA'):self.fill(source,{self.NAME:'novo'})
+        bookmark={'kind':'add-bookmark','title':'x','page':0}
+        with self.assertRaisesRegex(NotImplementedError,'só o preenchimento'):
+            save_edited_copy(source,self.dir/'m.pdf',source_sha256=sha(source),operations=[bookmark])
+        rich=hybrid_pdf(self.dir/'r.pdf','<form1><nome xfa:contentType="text/html"><b>x</b></nome></form1>',[(self.NAME,'x')])
+        with self.assertRaisesRegex(ValueError,'sem dado XFA'):self.fill(rich,{self.NAME:'y'},name='r-out.pdf')
+        only=xfa_pdf(self.dir/'o.pdf',[('datasets',datasets('<f><a>1</a></f>'))],fields=False)
+        with self.assertRaisesRegex(NotImplementedError,'somente XFA'):inspect_editable_document(only)
+        self.assertEqual(sorted(p.name for p in self.dir.iterdir()),['o.pdf','r.pdf','u.pdf'])
+
+    def test_edit_info_lists_bound_text_fields(self):
+        source=hybrid_pdf(self.dir/'i.pdf','<form1><nome>Ana</nome></form1>',[(self.NAME,'Ana'),('form1[0].solto[0]','')])
+        info=inspect_editable_document(source)
+        self.assertEqual(info['xfa']['bound_text_fields'],[self.NAME]);self.assertTrue(info['xfa']['hybrid'])
 
 
 if __name__=='__main__':unittest.main()

@@ -468,7 +468,7 @@ def masked_refused(ctx):
     return outcomes
 
 
-@case('S12-15-8', 'worker panels (XFA datasets) + copy-edit')
+@case('S12-15-8', 'worker panels (XFA datasets)')
 def xfa_read_only(ctx):
     source = ctx.fixture(OWN + 'formulario-xfa.pdf');before = sha256(source)
     run = ctx.worker('panels', source)
@@ -478,11 +478,41 @@ def xfa_read_only(ctx):
     expected = [('form1[0].nome[0]', 'Ana Souza'), ('form1[0].itens[0].item[0]', 'Caneta'),
                 ('form1[0].itens[0].item[1]', 'Caderno'), ('form1[0].obs[0]', '')]
     check(listed == expected and xfa['hybrid'] and xfa['error'] is None, f'campos XFA: {listed}')
-    output = ctx.work / 'nao-gravar.pdf'
-    edit = ctx.worker('copy-edit', source, output, request=_form_request(source, {'form1[0].nome[0]': 'Outro'}))
-    check(edit['code'] != 0 and 'XFA' in edit['stderr'] and not output.exists(), 'gravação XFA aceita')
     check(sha256(source) == before, 'original alterado')
-    return dict(fields=dict(listed), hybrid=True, write_refused=True, scripts_executed=False, original_preserved=True)
+    return dict(fields=dict(listed), hybrid=True, scripts_executed=False, original_preserved=True)
+
+
+def _xfa_data(path):
+    from pypdf import PdfReader
+    from pdf_xfa import inspect_xfa
+    return {f['path']: f['value'] for f in inspect_xfa(PdfReader(str(path)))['fields']}
+
+
+@case('S12-15-10', 'worker copy-edit (XFA hybrid fill)')
+def xfa_hybrid_fill(ctx):
+    from pypdf import PdfReader
+    source = ctx.fixture(OWN + 'formulario-xfa.pdf');before = sha256(source);output = ctx.work / 'xfa-preenchido.pdf'
+    run = ctx.worker('copy-edit', source, output, request=_form_request(source, {'form1[0].nome[0]': 'Bia Lima'}))
+    check(run['code'] == 0, run['stderr'])
+    acroform = PdfReader(str(output)).get_fields()['form1[0].nome[0]'].get('/V')
+    data = _xfa_data(output)
+    check(acroform == data['form1[0].nome[0]'] == 'Bia Lima', f'AcroForm {acroform!r}, datasets {data}')
+    check(data['form1[0].itens[0].item[1]'] == 'Caderno' and _xfa_data(source)['form1[0].nome[0]'] == 'Ana Souza', 'outros dados alterados')
+    check(sha256(source) == before, 'original alterado')
+    return dict(acroform=acroform, datasets=data['form1[0].nome[0]'], other_values_kept=True, original_preserved=True)
+
+
+@case('S12-15-11', 'worker copy-edit (XFA hybrid fill)')
+def xfa_hybrid_refused(ctx):
+    source = ctx.fixture(OWN + 'formulario-xfa.pdf');before = sha256(source);outcomes = {}
+    requests = {'campo_sem_dado_xfa': _form_request(source, {'form1[0].extra[0]': 'x'}),
+                'marcador_em_xfa': {'source_sha256': before, 'operations': [{'kind': 'add-bookmark', 'title': 'x', 'page': 0}]}}
+    for label, request in requests.items():
+        output = ctx.work / f'{label}.pdf'
+        run = ctx.worker('copy-edit', source, output, request=request)
+        outcomes[label] = run['code'] != 0 and not output.exists()
+    check(all(outcomes.values()) and sha256(source) == before, f'recusas: {outcomes}')
+    return outcomes
 
 
 # 16 — attachments

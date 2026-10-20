@@ -6,11 +6,12 @@ values in the ``datasets`` packet are listed, by their SOM-style path
 element depth, field count and value length are capped, and DOCTYPE or
 entity declarations are refused before any expansion can happen.
 """
+import re
 from xml.parsers import expat
 
 from pdf_dependency import configure_pdf_library
 configure_pdf_library()
-from pypdf.generic import ArrayObject, NullObject  # noqa: E402
+from pypdf.generic import ArrayObject, DecodedStreamObject, NameObject, NullObject  # noqa: E402
 
 DATA_NS = 'http://www.xfa.org/schema/xfa-data/1.0/'
 MAX_BYTES = 8 * 1024 ** 2
@@ -67,7 +68,9 @@ def xfa_source(reader):
 
 
 class _Collector:
-    def __init__(self):
+    def __init__(self, parser=None):
+        self.parser = parser     # set to record byte offsets of value elements
+        self.locations = {}
         self.stack = []          # frames: [local name, element uri, data frame or None]
         self.fields = []
         self.truncated = False
@@ -93,7 +96,8 @@ class _Collector:
                 prefix = parent_data['path'] + '.' if parent_data is not None else ''
                 node = attrs.get(DATA_NS + ' dataNode')
                 frame = {'name': local, 'counts': {}, 'children': False, 'text': [], 'size': 0,
-                         'group': node == 'dataGroup',
+                         'start': self.parser.CurrentByteIndex if self.parser is not None else None,
+                         'rich': (DATA_NS + ' contentType') in attrs, 'group': node == 'dataGroup',
                          'value': node == 'dataValue' or (DATA_NS + ' contentType') in attrs,
                          'path': (prefix + f'{local}[{index}]')[:MAX_PATH]}
         elif uri == DATA_NS and local == 'datasets':
@@ -118,6 +122,8 @@ class _Collector:
             self.truncated = True
             return
         value = ''.join(frame['text'])
+        if self.parser is not None and not frame['rich'] and not frame['children']:
+            self.locations[frame['path']] = (frame['start'], self.parser.CurrentByteIndex)
         self.fields.append({'path': frame['path'], 'name': frame['name'], 'value': value[:MAX_VALUE],
                             'value_truncated': len(value) > MAX_VALUE})
 
@@ -126,11 +132,10 @@ def _refuse(*_args):
     raise XFAError('XFA com DOCTYPE ou entidades não é aceito.')
 
 
-def parse_datasets(xdp):
-    """List data values in a bounded XDP document or bare datasets packet."""
+def _parse(xdp, offsets=False):
     _require(isinstance(xdp, (bytes, bytearray)) and len(xdp) <= MAX_BYTES, 'Formulário XFA acima de 8 MiB.')
-    collector = _Collector()
     parser = expat.ParserCreate(namespace_separator=' ')
+    collector = _Collector(parser if offsets else None)
     parser.SetParamEntityParsing(expat.XML_PARAM_ENTITY_PARSING_NEVER)
     parser.StartDoctypeDeclHandler = _refuse
     parser.EntityDeclHandler = _refuse
@@ -143,6 +148,12 @@ def parse_datasets(xdp):
         parser.Parse(bytes(xdp), True)
     except expat.ExpatError as exc:
         raise XFAError('XML do formulário XFA inválido.') from exc
+    return collector
+
+
+def parse_datasets(xdp):
+    """List data values in a bounded XDP document or bare datasets packet."""
+    collector = _parse(xdp)
     return collector.datasets, collector.fields, collector.truncated
 
 
@@ -174,3 +185,100 @@ def inspect_xfa(reader):
     if not found:
         result['error'] = 'O formulário XFA não tem pacote de dados.'
     return result
+
+
+# ---------- E07: keep datasets coherent when a hybrid form is filled ----------
+
+def field_data_path(name):
+    """AcroForm name of a hybrid XFA field -> datasets path under normal binding.
+
+    Unnamed subforms (#subform[0]) are transparent to data binding and are
+    dropped; a segment without an index is the first occurrence ([0]).
+    Explicit bindings (dataRef/global) are not interpreted: a field whose path
+    is absent from datasets is refused instead of guessed.
+    """
+    _require(isinstance(name, str) and 0 < len(name) <= MAX_PATH, 'Nome de campo XFA inválido.')
+    parts = []
+    for segment in name.split('.'):
+        _require(segment != '', 'Nome de campo XFA inválido.')
+        if segment.startswith('#'):
+            continue
+        parts.append(segment if segment.endswith(']') else segment + '[0]')
+    _require(parts, 'Campo XFA sem caminho de dados.')
+    return '.'.join(parts)
+
+
+def _open_tag_end(data, start):
+    """Index after the '>' of the tag starting at data[start] and whether it is empty."""
+    quote = None
+    for index in range(start + 1, len(data)):
+        char = data[index]
+        if quote is not None:
+            if char == quote:
+                quote = None
+        elif char in (0x22, 0x27):
+            quote = char
+        elif char == 0x3E:
+            return index + 1, data[index - 1] == 0x2F
+    raise XFAError('Marca XML do formulário XFA incompleta.')
+
+
+def _encoding(data):
+    head = data[:200].decode('ascii', 'replace')
+    match = re.match(r'\ufeff?\s*<\?xml[^>]*encoding\s*=\s*["\']([^"\']+)', head.lstrip('\ufeff'))
+    name = (match.group(1) if match else 'utf-8').lower().replace('_', '-')
+    _require(name in ('utf-8', 'utf8', 'us-ascii', 'ascii'), 'Codificação do pacote XFA não suportada para gravação.')
+    return 'ascii' if 'ascii' in name else 'utf-8'
+
+
+def set_datasets_values(data, values):
+    """Return datasets bytes with plain value elements replaced; everything else is kept byte for byte."""
+    _require(isinstance(values, dict) and values, 'Informe os valores XFA.')
+    collector = _parse(bytes(data), offsets=True)
+    _require(collector.datasets, 'O formulário XFA não tem pacote de dados.')
+    encoding = _encoding(data)
+    edits = []
+    for path, value in values.items():
+        _require(isinstance(value, str) and len(value) <= MAX_VALUE, 'Valor XFA inválido.')
+        _require(path in collector.locations, f'Campo sem dado XFA correspondente: {path}')
+        start, end = collector.locations[path]
+        open_end, empty = _open_tag_end(data, start)
+        text = (value.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\r', '&#13;')
+                .encode(encoding, 'xmlcharrefreplace'))
+        if empty:
+            name = re.match(rb'<([^\s/>]+)', data[start:open_end]).group(1)
+            edits.append((start, open_end, data[start:open_end - 2].rstrip() + b'>' + text + b'</' + name + b'>'))
+        else:
+            _require(end >= open_end, 'Elemento XFA inesperado.')
+            edits.append((open_end, end, text))
+    result = bytes(data)
+    for begin, finish, replacement in sorted(edits, reverse=True):
+        result = result[:begin] + replacement + result[finish:]
+    written = {f['path']: f['value'] for f in _parse(result).fields}
+    _require(all(written.get(path) == value for path, value in values.items()), 'Dados XFA não conferem após a gravação.')
+    return result
+
+
+def write_field_values(writer, values):
+    """Mirror AcroForm values {field name: value} into the datasets packet of a writer copy."""
+    form = _obj(writer.root_object['/AcroForm'])
+    xfa = _obj(form['/XFA'])
+    by_path = {field_data_path(name): value for name, value in values.items()}
+    if isinstance(xfa, ArrayObject):
+        names = [str(_obj(xfa[i])) for i in range(0, len(xfa), 2)]
+        _require('datasets' in names, 'O formulário XFA não tem pacote de dados.')
+        slot = 2 * names.index('datasets') + 1
+        try:
+            updated = set_datasets_values(_stream_bytes(xfa[slot]), by_path)
+        except XFAError as exc:
+            raise XFAError(f'Pacote de dados XFA não pode ser atualizado sozinho: {exc}') from None
+        xfa[slot] = _new_stream(writer, updated)
+    else:
+        form[NameObject('/XFA')] = _new_stream(writer, set_datasets_values(_stream_bytes(xfa), by_path))
+    return sorted(by_path)
+
+
+def _new_stream(writer, data):
+    stream = DecodedStreamObject()
+    stream.set_data(data)
+    return writer._add_object(stream.flate_encode())

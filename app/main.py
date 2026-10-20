@@ -2188,6 +2188,10 @@ class PDFWindow(Gtk.Window):
 
     def _copy_edit_operation_dialog(self, kind, info, page):
         from edit_dialogs import ADVANCED_KINDS, advanced_operation_dialog
+        xfa = info.get('xfa')
+        if xfa and kind not in xfa['operations']:
+            self._error('Em formulários XFA só o preenchimento de campos é suportado; a cópia manteria os dados XFA divergentes.')
+            return None
         if kind in ADVANCED_KINDS:return advanced_operation_dialog(self,kind,info,page)
         if kind in {'rotate-page', 'rename-bookmark', 'update-note'}:
             return self._extended_edit_dialog(kind, info, page)
@@ -2196,6 +2200,9 @@ class PDFWindow(Gtk.Window):
         if kind not in titles:
             return None
         fields = [field for field in info['text_fields'] if not field['read_only']]
+        if xfa:
+            # Only fields with a matching datasets value can be kept coherent (E07).
+            fields = [field for field in fields if field['name'] in xfa['bound_text_fields']]
         if kind == 'fill-text-fields' and not fields:
             self._error('Este PDF não possui campos de texto editáveis suportados.')
             return None
@@ -2206,7 +2213,8 @@ class PDFWindow(Gtk.Window):
         box = dialog.get_content_area()
         box.set_spacing(8)
         box.set_border_width(12)
-        hint = Gtk.Label(label='A alteração será salva em uma cópia nova. O PDF aberto será preservado.', xalign=0)
+        hint = Gtk.Label(label='A alteração será salva em uma cópia nova. O PDF aberto será preservado.'
+                         + (' Formulário XFA híbrido: o valor também é gravado nos dados XFA.' if xfa else ''), xalign=0)
         hint.set_line_wrap(True)
         box.add(hint)
         entry = Gtk.Entry()

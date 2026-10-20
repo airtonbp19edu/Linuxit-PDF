@@ -40,9 +40,9 @@
     },
     {
       "file": "formulario-xfa.pdf",
-      "bytes": 1685,
-      "sha256": "b602cad314790b14dd47a708cd36ea3d11d44dc94930912dde23127cf0d989a1",
-      "description": "XFA híbrido: AcroForm form1[0].nome[0] e pacotes template/datasets com nome, dois itens e obs vazio."
+      "bytes": 1870,
+      "sha256": "d557b6f31755919e295b8e45834343eda0bc2f4c9db1f90d907cfb175e7185d1",
+      "description": "XFA híbrido: AcroForm form1[0].nome[0] (ligado aos dados) e form1[0].extra[0] (sem dado XFA); pacotes template/datasets com nome, dois itens e obs vazio."
     },
     {
       "file": "camadas.pdf",

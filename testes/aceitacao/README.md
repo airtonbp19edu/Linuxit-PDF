@@ -1,11 +1,11 @@
 # Aceitação própria S12 executável
 
-Dos 57 planos de aceitação de `docs/especificacao-funcional.json`, 55 têm casos
+Dos 59 planos de aceitação de `docs/especificacao-funcional.json`, 57 têm casos
 executáveis. Cada caso segue o texto dado/ação/esperado da especificação, por uma
 fronteira pública do aplicativo: o worker de linha de comando usado pela
 interface, o módulo que a interface chama ou a própria janela GTK.
 
-- `casos.py`: 42 casos sem tela.
+- `casos.py`: 44 casos sem tela.
 - `casos_gtk.py`: 11 casos com a janela real (navegação, apresentação, seleção
   de resultados, área de transferência, régua e diálogo de campos XFA).
   Precisam de `DISPLAY`.
