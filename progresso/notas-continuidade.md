@@ -3318,3 +3318,8 @@ CI da E08 (39460438529, `ae429cd`): falhou só no portão de 'nenhum teste pulad
 ## 2026/10/20 às 15:19 (America/Sao_Paulo, UTC-03:00) — E10 concluída
 
 **E10** (`ba38ca7`): `pdf_signatures._dss_material` lê `/DSS` (`/Certs` ≤64, `/CRLs` ≤32, ≤1 MiB cada, todos analisados; `/OCSPs` e `/VRI` só contados) e o relatório ganha `dss`/`dss_error`. `signature_trust._dss_files`; `verify_trust(…, dss)` acrescenta os certificados do DSS a uma cópia de verificação do conjunto de certificados do CMS (o `openssl cms -verify` 3.0 não tem `-untrusted` e `-certfile` só procura o signatário; o conjunto de certificados não é assinado, então a integridade não muda) e as CRLs ao arquivo de âncoras; `verify_document_timestamp(…, dss)` usa `-untrusted`. Âncoras continuam só as escolhidas pelo usuário (teste com raiz posta no DSS). Revisão DSS de teste via `carimbo.add_dss` (mesmo escritor incremental). Testes `tests/test_dss_validation.py` (3); casos S12-17-7 e S12-17-8. Suíte 616/616; aceitação 65/65 na revisão limpa. CI 39472280348 em `9e75c0c` confirmou E08+E09: suíte 613/613, aceitação 63/63 (`ci-debian13-e09-review.json`). Próximo: E11 (entrega 0.1.17).
+
+
+## 2026/10/20 às 15:25 (America/Sao_Paulo, UTC-03:00) — CI confirma a E10; E11 em andamento
+
+CI 39473724324 (Debian 13) na revisão `ba38ca7`: suíte 616/616 e aceitação 65/65 (`ci-debian13-e10-review.json`). E11: `dec46c9` muda a versão para 0.1.17 (app, mapa de arquitetura, notas AppStream) e faz `record_linux_candidate.py` copiar `runtime-source-access.json` para os relatórios. Construção e testes do Flatpak no fluxo `linux-flatpak.yml` (execução 39474059660) em andamento.

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 15:19 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 15:25 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,7 +15,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **65 de 65 casos aprovados** na revisão `ba38ca7`. O CI no Debian 13 confirmou E08 e E09 na revisão `9e75c0c` (aceitação 63/63, suíte 613/613); CI da E10 em andamento. Suíte própria completa **616/616** no Ubuntu 24.04.
+- Execução registrada: **65 de 65 casos aprovados** na revisão `ba38ca7`. O CI no Debian 13 confirmou a E10 (aceitação 65/65, suíte 616/616). Suíte própria completa **616/616** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -94,3 +94,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 13:47** — E08 concluída (`ae429cd`): já é possível assinar um PDF que já tem assinatura. A nova assinatura é anexada ao final do arquivo, sem mexer nos bytes assinados, e as anteriores continuam válidas para a versão delas (conferido também pelo pdfsig do poppler, com três assinaturas seguidas). Certificação que proíbe alterações e assinatura anterior inválida são recusadas com o motivo. Suíte 610/610, aceitação 61/61. Iniciando a E09.
 - **2026/10/20 às 15:09** — E09 concluída (`df7207a`): o aplicativo reconhece e verifica carimbos de tempo de documento já presentes no PDF, sem rede; o horário só aparece se o carimbo conferir com o arquivo, e a autoridade só é confiável pela CA que você escolher. Suíte 613/613, aceitação 63/63. Aviso: o CI da E08 falhou porque um teste dependia do qpdf, que não existe no CI e foi pulado (a suíte não aceita testes pulados). O teste foi refeito sem essa dependência (`9e75c0c`) e o CI foi disparado de novo. Iniciando a E10.
 - **2026/10/20 às 15:19** — E10 concluída (`ba38ca7`): a verificação offline usa os certificados e as listas de revogação guardados dentro do PDF (DSS) para fechar a cadeia até a CA que você escolher e checar revogação, sem rede; esses certificados nunca passam a ser confiáveis por conta própria. Suíte 616/616, aceitação 65/65. O CI confirmou E08 e E09 (63/63, 613/613). Iniciando a E11 (entrega 0.1.17).
+- **2026/10/20 às 15:25** — CI no Debian 13 confirmou a E10: aceitação 65/65 e suíte 616/616. E11: versão 0.1.17 preparada (`dec46c9`); o pacote Flatpak está sendo montado e testado no CI (fonte, pacote e sandbox).
