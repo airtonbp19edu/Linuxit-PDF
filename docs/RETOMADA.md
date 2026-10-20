@@ -1,5 +1,7 @@
 # Retomada do Linuxit PDF
 
+**Para o Claude na retomada (2026/10/20 às 17:43):** leia o [recado direto sobre a resolução da E29](PRIORIDADE-E29-ERRO-403-RELEASE.md#recado-direto-ao-claude-na-retomada). Causa confirmada e fluxo corrigido; não refazer o diagnóstico. A próxima publicação real ainda é o comprovante pendente.
+
 **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases.
 
 **E29 — diagnóstico confirmado em 2026/10/20 às 17:22:** mesmo token criou rascunhos na main (201/201), mas alvo antigo com workflows diferentes recebeu403. Causa e correção no documento prioritário vinculado acima. Fluxo corrigido passou em conferência somente leitura (CI39491077708), oito guardas aprovadas. Releases/VM intactas. Falta validar a próxima publicação automática autorizada; E29 permanece aberta nesse critério. Não repetir análise da causa nem publicar nova versão nesta rodada.

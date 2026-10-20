@@ -6,6 +6,19 @@ antes de qualquer outra etapa. O Claude retoma às 20:10 do mesmo dia com base n
 for registrado aqui e nas notas de continuidade.
 
 
+## Recado direto ao Claude na retomada
+
+Registrado em 2026/10/20 às 17:43 (America/Sao_Paulo, UTC-03:00).
+
+**A causa do 403 já foi identificada e reproduzida. Não é necessário reiniciar o diagnóstico.** A correção e os comprovantes foram publicados até o commit `ef40885`.
+
+- O commit testado `dec46c9` possui workflows diferentes da branch padrão. Criar a release nesse alvo exige `Workflows:write`, indisponível no `GITHUB_TOKEN`, inclusive para rascunhos. O mesmo token retornou 201/201 na main e 403 no alvo antigo (CI 39490423511).
+- O fluxo `publish-devel-release.yml` agora usa `scripts/release_preflight.py`: confere tag/SHA/digest, reconhece a versão já publicada e detecta antecipadamente a necessidade de rascunho do dono. Oito testes passaram; CI 39491077708 aprovou a conferência somente leitura da 0.1.17, sem republicação.
+- Para a próxima entrega automática: finalize os workflows **antes de gerar o candidato** e mantenha sua árvore igual à da branch padrão até publicar. Use o SHA e o pacote testados; nunca substitua pelo HEAD atual para evitar a restrição. `Conferir somente` começa habilitado; desmarcar somente numa publicação autorizada.
+- Se houver mudança de workflows após o candidato, gere/valide candidato novo ou use um rascunho preparado pelo dono no SHA exato e deixe o fluxo somente anexar o pacote. Não é necessário mudar permissões globais nem pedir token pessoal para esse procedimento.
+- **Pendente restrito da E29:** comprovar uma próxima publicação automática real, com tag, asset, download e auditoria conferidos. Isso não foi executado porque esta rodada proíbe publicar releases/tags. A causa está confirmada, mas o critério final da etapa continua aberto.
+- A 0.1.17, seus assets e a VM foram preservados. Rascunhos descartáveis removidos e ausência de tags confirmada. Veja os recibos em `testes/resultados/e29-release-403/` e as notas de 17:19/17:22 em `progresso/notas-continuidade.md`. Retome pela fila e pelas autorizações já registradas.
+
 ## Diagnóstico confirmado pelo Codex — 20/10/2026
 
 [Execução 39490423511](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39490423511), commit `038ae75`: **mesmo GITHUB_TOKEN, contents:write, mesma sessão e três rascunhos**, alterando apenas o alvo:
