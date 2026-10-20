@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 18, conferida em 2026-10-20T16:16:00-03:00. **115 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 18, conferida em 2026-10-20T20:15:00-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (22 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (25 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -36,12 +36,12 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Senhas/permissões/RMS|5|4|1|0|
 |Acessibilidade/voz|4|3|1|0|
 |Medição/calibração|4|4|0|0|
-|Camadas/mídia/3D|4|3|1|0|
+|Camadas/mídia/3D|5|4|1|0|
 |Preferências/tema/persistência|3|3|0|0|
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|115|103|9|3|
+|Total|116|104|9|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -328,7 +328,8 @@ No dynamic observation of this family found in the examined preserved reports.
 |---|---|---|
 |`layers-media/list` — Listar nomes de camadas OCG|Código em subconjunto ([fonte](../app/pdf_panels.py#L35))|PDF com OCG => nomes listados; isso não altera visibilidade nem comprova suporte a mídia.|
 |`layers-media/toggle` — Alternar e persistir visibilidade OCG|Código em subconjunto ([fonte](../app/pdf_layers.py#L39))|Combinação de camadas => render e estado de visibilidade coerentes; implementação/persistência pendentes.|
-|`layers-media/media` — Reproduzir mídia embutida|Código em subconjunto ([fonte](../app/pdf_media.py#L84))|Movie/RichMedia/Sound incorporados extraídos sem ações/URLs; reprodução GStreamer explícita por codec instalado. Eventos de PDF, codecs universais e3D completos abertos.|
+|`layers-media/media` — Reproduzir mídia embutida|Código em subconjunto ([fonte](../app/pdf_media.py#L168))|Movie/RichMedia/Sound incorporados extraídos sem ações/URLs; reprodução GStreamer explícita por codec instalado. Eventos de PDF, codecs universais e3D completos abertos.|
+|`layers-media/3d-poster` — Imagem de apresentação de anotações 3D|Código em subconjunto ([fonte](../app/pdf_media.py#L91))|3D annotation normal appearance (poster) rendered as a still PNG scaled to the annotation rectangle (BBox through /Matrix), shown with a notice that the scene is not interactive; listing reports poster, embedded model and view count; annotations without poster, non-PNG destination and changed source refused, nothing published (E16). Acceptance S12-21-3 and S12-21-4. No 3D renderer or interaction.|
 |`layers-media/3d` — Interagir com conteúdo 3D|Pendente/caracterizar|U3D/conteúdo3D => caracterizar disponibilidade Reader/render/estado; presença de plugin não comprova suporte.|
 
 ## Preferências/tema/persistência

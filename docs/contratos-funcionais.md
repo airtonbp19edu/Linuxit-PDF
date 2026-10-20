@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **73 cenários planejados**; 25 subconjuntos implementados e 0 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **75 cenários planejados**; 25 subconjuntos implementados e 0 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **73**, das quais 73 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -946,7 +946,7 @@ Fontes: [app/main.py](../app/main.py), [app/measurement.py](../app/measurement.p
 
 ## Camadas/mídia/3D
 
-Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.
+Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Imagem de apresentação 3D (etapa E16): a aparência normal da anotação 3D (o pôster) é desenhada como imagem fixa, no tamanho do retângulo da anotação, numa janela com aviso de que a cena não é interativa; a lista informa se há pôster, modelo incorporado e quantas vistas; anotação sem pôster é recusada com motivo. Renderizador U3D/PRC, interação com a cena, eventos de mídia e todas as configurações opcionais continuam abertos.
 
 **Entradas**
 
@@ -970,12 +970,16 @@ Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, 
 
 - **S12-21-1** (nominal, contrato próprio atual, `passed`): dado PDF sintético com OCGs nomeados, fixture a criar. Ação: Inspecionar painel. Esperado: Lista os nomes lidos, sem anunciar reprodução de mídia ou alteração de camada. Execução própria em 2026-10-20T16:20:45-03:00, revisão `61f180ed6d4c`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json).
 - **S12-21-2** (exception, contrato próprio atual, `passed`): dado PDF sem OCProperties. Ação: Inspecionar painel. Esperado: layers=[]; não criar uma camada fictícia. Execução própria em 2026-10-20T16:20:45-03:00, revisão `61f180ed6d4c`, fronteira worker panels: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json).
+- **S12-21-3** (nominal, contrato próprio atual, `not_run`): dado PDF sintético com duas anotações 3D com modelo U3D: a primeira com imagem de apresentação (caixa azul com a metade esquerda vermelha, BBox 50×25 num retângulo 100×50); a segunda sem imagem. Ação: Listar a mídia e pedir a imagem de apresentação da primeira. Esperado: A lista marca imagem e modelo em cada uma e informa que não há renderizador 3D; o PNG tem proporção 2:1, vermelho à esquerda e azul à direita, e a resposta diz que a cena não é interativa; original preservado.
+- **S12-21-4** (exception, contrato próprio atual, `not_run`): dado O mesmo PDF. Ação: Pedir a imagem da anotação sem pôster, pedir com extensão .jpg e pedir com identidade SHA-256 errada. Esperado: Os três pedidos são recusados sem criar arquivos; original preservado.
 
 **Lacunas da referência Foxit**
 
 - Combinações OCG, visibilidade, persistência, codecs, eventos e suporte U3D/Reader.
 
 Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_layers.py](../app/pdf_layers.py), [app/local_playback.py](../app/local_playback.py), [app/media_window.py](../app/media_window.py), [app/pdf_media.py](../app/pdf_media.py), [app/media_assets_window.py](../app/media_assets_window.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+Testes próprios existentes, sem nova execução nesta tabela: [test_listing_reports_poster_model_and_views_without_a_renderer](../tests/test_media_3d_poster.py); [test_poster_is_the_annotation_appearance_scaled_to_its_rectangle](../tests/test_media_3d_poster.py); [test_poster_without_model_and_page_rendering_show_the_same_appearance](../tests/test_media_3d_poster.py); [test_refusals_publish_nothing](../tests/test_media_3d_poster.py); [test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive](../tests/test_media_assets_gtk.py).
 
 <a id="preferences"></a>
 

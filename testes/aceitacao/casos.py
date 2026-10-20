@@ -1030,6 +1030,59 @@ def no_layers(ctx):
     return dict(layers=[])
 
 
+def _poster_3d(ctx):
+    """Two 3D annotations: one with a poster (blue box, red left half) and a U3D model, one with a model only."""
+    from pypdf import PdfWriter
+    from pypdf.generic import ArrayObject, DecodedStreamObject, DictionaryObject, FloatObject, NameObject, NumberObject
+    writer = PdfWriter();page = writer.add_blank_page(300, 300)
+    def numbers(*values):return ArrayObject(FloatObject(v) for v in values)
+    def model():
+        data = DecodedStreamObject();data.set_data(b'SYNTHETIC U3D fixture, not a renderable model')
+        data[NameObject('/Subtype')] = NameObject('/U3D');return writer._add_object(data)
+    poster = DecodedStreamObject();poster.set_data(b'0 0 1 rg 0 0 50 25 re f 1 0 0 rg 0 0 25 25 re f')
+    poster.update({NameObject('/Type'): NameObject('/XObject'), NameObject('/Subtype'): NameObject('/Form'), NameObject('/BBox'): numbers(0, 0, 50, 25)})
+    notes = []
+    for rect, appearance in (([20, 200, 120, 250], writer._add_object(poster)), ([150, 20, 250, 80], None)):
+        note = DictionaryObject({NameObject('/Type'): NameObject('/Annot'), NameObject('/Subtype'): NameObject('/3D'),
+                                 NameObject('/Rect'): numbers(*rect), NameObject('/F'): NumberObject(4), NameObject('/3DD'): model()})
+        if appearance is not None:note[NameObject('/AP')] = DictionaryObject({NameObject('/N'): appearance})
+        notes.append(writer._add_object(note))
+    page[NameObject('/Annots')] = ArrayObject(notes)
+    source = ctx.work / 'modelo-3d.pdf'
+    with source.open('wb') as handle:writer.write(handle)
+    return source
+
+
+@case('S12-21-3', 'worker media-info + media-poster')
+def three_d_poster(ctx):
+    from PIL import Image
+    source = _poster_3d(ctx);before = sha256(source)
+    listing = ctx.worker('media-info', source, request={})
+    check(listing['code'] == 0, listing['stderr'])
+    rows = [(r['kind'], r['poster'], r['model_embedded']) for r in listing['result']['assets']]
+    check(rows == [('3d', True, True), ('3d', False, True)] and listing['result']['three_d_renderer_available'] is False, f'lista {rows}')
+    target = ctx.work / 'poster.png'
+    run = ctx.worker('media-poster', source, request={'index': 0, 'destination': str(target), 'source_sha256': before})
+    check(run['code'] == 0, run['stderr'])
+    result = run['result'];image = Image.open(target).convert('RGB');w, h = image.size
+    left, right = image.getpixel((w // 4, h // 2)), image.getpixel((3 * w // 4, h // 2))
+    check(result['interactive'] is False and result['model_format'] == 'u3d' and left == (255, 0, 0) and right == (0, 0, 255)
+          and abs(w / h - 2) < .05 and sha256(source) == before, f'poster {result} {left} {right} {w}x{h}')
+    return dict(assets=len(rows), poster_size=[w, h], left_rgb=list(left), right_rgb=list(right), interactive=False, original_preserved=True)
+
+
+@case('S12-21-4', 'worker media-poster')
+def three_d_poster_refused(ctx):
+    source = _poster_3d(ctx);before = sha256(source);outcomes = {}
+    for label, request in (('sem_imagem', {'index': 1, 'destination': str(ctx.work / 'a.png'), 'source_sha256': before}),
+                           ('extensao', {'index': 0, 'destination': str(ctx.work / 'b.jpg'), 'source_sha256': before}),
+                           ('identidade', {'index': 0, 'destination': str(ctx.work / 'c.png'), 'source_sha256': '0' * 64})):
+        run = ctx.worker('media-poster', source, request=request)
+        outcomes[label] = run['code'] != 0 and not Path(request['destination']).exists()
+    check(all(outcomes.values()) and sha256(source) == before, f'recusas: {outcomes}')
+    return outcomes
+
+
 # 22 — preferences
 
 @case('S12-22-1', 'appearance.save_mode/read_mode')

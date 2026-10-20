@@ -160,11 +160,11 @@ def main(argv):
         if len(raw) > 262144:raise ValueError('Pedido de assinaturas acima do limite.')
         print(json.dumps(inspect_pdf_signatures(argv[2],json.loads(raw)),ensure_ascii=True))
         return
-    if cmd in ('media-info','media-extract'):
-        from pdf_media import inspect_media,extract_media
+    if cmd in ('media-info','media-extract','media-poster'):
+        from pdf_media import inspect_media,extract_media,render_poster
         raw=sys.stdin.buffer.read(16385)
         if len(raw)>16384:raise ValueError('Pedido de mídia acima do limite.')
-        result=(inspect_media if cmd=='media-info' else extract_media)(argv[2],json.loads(raw))
+        result={'media-info':inspect_media,'media-extract':extract_media,'media-poster':render_poster}[cmd](argv[2],json.loads(raw))
         print(json.dumps(result,ensure_ascii=True));return
     if cmd in {'security-info', 'protect-copy', 'accessible-text', 'owner-copy'}:
         # Never emit a traceback or library exception containing a password.

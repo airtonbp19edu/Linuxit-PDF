@@ -40,3 +40,33 @@ class MediaAssetGTKTests(unittest.TestCase):
             wait_for(lambda:target.exists() and not dialog.busy);self.assertTrue(target.read_bytes().startswith(b'RIFF'))
             capture(dialog,'embedded-media-assets')
         finally:fixture.doCleanups()
+
+
+@unittest.skipUnless(Gtk is not None and os.environ.get('DISPLAY'),'Native Linux GTK3')
+class Poster3DGTKTests(unittest.TestCase):
+    """E16: the media window shows a 3D annotation's poster with a non-interactive notice."""
+    def setUp(self):
+        from main import PDFWindow
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name)
+        self.quit=patch.object(Gtk,'main_quit');self.quit.start();self.addCleanup(self.quit.stop)
+        self.window=PDFWindow();self.addCleanup(self.window.destroy);self.errors=[];self.window._error=self.errors.append
+
+    def test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive(self):
+        from media_assets_window import MediaAssetsWindow,Poster3DWindow
+        from test_media_3d_poster import poster_pdf
+        source=self.root/'3d.pdf';poster_pdf(source);before=source.read_bytes()
+        self.window.open_document(str(source));wait_for(lambda:self.window.displayed_page==0)
+        dialog=MediaAssetsWindow(self.window,self.window.document_session);self.addCleanup(dialog.destroy);dialog.show_all()
+        wait_for(lambda:dialog.report is not None and not dialog.busy)
+        dialog.assets.set_active_id('2');dialog._play()
+        self.assertIn('não tem imagem de apresentação',dialog.status.get_text());self.assertFalse(dialog.children)
+        dialog.assets.set_active_id('0');dialog._play()
+        wait_for(lambda:not dialog.busy and dialog.children)
+        poster=dialog.children[0];self.assertIsInstance(poster,Poster3DWindow)
+        self.assertIn('não é interativa',poster.notice.get_text());self.assertIn('U3D',poster.notice.get_text())
+        pixbuf=poster.image.get_pixbuf();self.assertGreater(pixbuf.get_width(),pixbuf.get_height())
+        pixels=pixbuf.get_pixels();stride=pixbuf.get_rowstride();channels=pixbuf.get_n_channels()
+        def rgb(x,y):offset=y*stride+x*channels;return tuple(pixels[offset:offset+3])
+        self.assertEqual(rgb(pixbuf.get_width()//4,pixbuf.get_height()//2),(255,0,0))
+        self.assertEqual(rgb(3*pixbuf.get_width()//4,pixbuf.get_height()//2),(0,0,255))
+        capture(poster,'media-3d-poster');self.assertEqual(source.read_bytes(),before);self.assertFalse(self.errors)

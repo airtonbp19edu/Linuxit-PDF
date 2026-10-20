@@ -4310,7 +4310,7 @@
       "name": "Camadas/mídia/3D",
       "matrix_implementation": "Fonte0.1.15: visibilidade temporária de camadas default ON/OFF com locks/grupos exclusivos e leases privados. Pixels/GTK próprios aprovados; mídia/3D não implementados. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.",
+      "scope": "Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Imagem de apresentação 3D (etapa E16): a aparência normal da anotação 3D (o pôster) é desenhada como imagem fixa, no tamanho do retângulo da anotação, numa janela com aviso de que a cena não é interativa; a lista informa se há pôster, modelo incorporado e quantas vistas; anotação sem pôster é recusada com motivo. Renderizador U3D/PRC, interação com a cena, eventos de mídia e todas as configurações opcionais continuam abertos.",
       "inputs": [
         "PDF com /OCProperties e /OCGs; nomes de camadas.",
         "Mídia/3D exigirá identificar formato, ação e isolamento próprios."
@@ -4355,7 +4355,28 @@
         "full_family_runtime_verified": false,
         "recorded_runtime_scope": "No original dynamic observation of this family recorded in reviewed evidence."
       },
-      "existing_test_refs": [],
+      "existing_test_refs": [
+        {
+          "path": "tests/test_media_3d_poster.py",
+          "test": "test_listing_reports_poster_model_and_views_without_a_renderer"
+        },
+        {
+          "path": "tests/test_media_3d_poster.py",
+          "test": "test_poster_is_the_annotation_appearance_scaled_to_its_rectangle"
+        },
+        {
+          "path": "tests/test_media_3d_poster.py",
+          "test": "test_poster_without_model_and_page_rendering_show_the_same_appearance"
+        },
+        {
+          "path": "tests/test_media_3d_poster.py",
+          "test": "test_refusals_publish_nothing"
+        },
+        {
+          "path": "tests/test_media_assets_gtk.py",
+          "test": "test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive"
+        }
+      ],
       "dynamic_case_refs": [],
       "fixture_refs": [
         {
@@ -4397,6 +4418,28 @@
             "executed_at_local": "2026-10-20T16:20:45-03:00",
             "boundary": "worker panels"
           }
+        },
+        {
+          "id": "S12-21-3",
+          "kind": "nominal",
+          "given": "PDF sintético com duas anotações 3D com modelo U3D: a primeira com imagem de apresentação (caixa azul com a metade esquerda vermelha, BBox 50×25 num retângulo 100×50); a segunda sem imagem.",
+          "when": "Listar a mídia e pedir a imagem de apresentação da primeira.",
+          "expected_linuxit": "A lista marca imagem e modelo em cada uma e informa que não há renderizador 3D; o PNG tem proporção 2:1, vermelho à esquerda e azul à direita, e a resposta diz que a cena não é interativa; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-21-4",
+          "kind": "exception",
+          "given": "O mesmo PDF.",
+          "when": "Pedir a imagem da anotação sem pôster, pedir com extensão .jpg e pedir com identidade SHA-256 errada.",
+          "expected_linuxit": "Os três pedidos são recusados sem criar arquivos; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -4405,6 +4448,11 @@
           "text": "Atual: listar nomes de OCGs. Alternar visibilidade, mídia e 3D são contratos futuros distintos.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): listar OCGs, alternar visibilidade temporária (default ON/OFF, locks e grupos exclusivos) e salvar a visibilidade em cópia nova com criptografia preservada. Movie/RichMedia com arquivos incorporados, Sound PCM8/16 (convertido para WAV) e 3D podem ser listados/extraídos; áudio/vídeo locais têm reprodução explícita; desde a etapa E26 a reprodução só começa depois do pré-carregamento, evitando que um arquivo curto termine de imediato. Renderizador U3D/PRC, eventos de mídia e todas as configurações opcionais continuam abertos.",
+          "superseded_at_local": "2026-10-20T20:15:00-03:00",
+          "reason": "Etapa E16: imagem de apresentação de anotações 3D."
         }
       ]
     },

@@ -17,11 +17,11 @@ class MediaAssetsWindow(Gtk.Window):
         self.session=session;self.runner=BackgroundRunner(workers=1);self.cancel=threading.Event();self.closed=self.busy=False
         self.folder=tempfile.TemporaryDirectory(prefix='linuxit-media-view-');self.children=[];self.report=None
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=8,margin=12);self.add(box)
-        note=Gtk.Label(label='Selecione para salvar ou reproduzir. Ações e URLs do PDF não são executadas. Modelos3D podem ser extraídos; renderizador U3D/PRC ainda indisponível.',xalign=0);note.set_line_wrap(True);box.add(note)
+        note=Gtk.Label(label='Selecione para salvar ou reproduzir. Ações e URLs do PDF não são executadas. Modelos 3D podem ser salvos e sua imagem de apresentação pode ser vista; a cena 3D não é interativa (renderizador U3D/PRC indisponível).',xalign=0);note.set_line_wrap(True);box.add(note)
         self.assets=Gtk.ComboBoxText();box.add(self.assets)
         row=Gtk.Box(spacing=8);box.add(row)
         self.controls=[]
-        for name,callback in [('Atualizar',self._refresh),('Reproduzir selecionado',self._play),('Salvar selecionado…',self._save)]:
+        for name,callback in [('Atualizar',self._refresh),('Reproduzir ou ver selecionado',self._play),('Salvar selecionado…',self._save)]:
             button=Gtk.Button(label=name);button.connect('clicked',callback);row.add(button);self.controls.append(button)
         self.status=Gtk.Label(xalign=0);self.status.set_line_wrap(True);self.status.set_selectable(True);box.add(self.status)
         self.connect('destroy',self._destroy);self._refresh()
@@ -67,7 +67,8 @@ class MediaAssetsWindow(Gtk.Window):
         if self.busy:return
         item=self._selected()
         if not item:return
-        if item['kind']=='3d' or item['suffix'] not in SUFFIXES:self.status.set_text('Renderizador desse formato indisponível. É possível salvar o recurso.');return
+        if item['kind']=='3d':self._poster(item);return
+        if item['suffix'] not in SUFFIXES:self.status.set_text('Renderizador desse formato indisponível. É possível salvar o recurso.');return
         import uuid
         target=Path(self.folder.name)/(uuid.uuid4().hex+item['suffix'])
         def loaded(result):
@@ -76,6 +77,19 @@ class MediaAssetsWindow(Gtk.Window):
             window.connect('destroy',lambda w:self.children.remove(w) if w in self.children else None);window.show_all();window.player.play()
             self.status.set_text('Reprodução local iniciada por sua seleção.')
         self._extract(item,target,loaded)
+
+    def _poster(self,item):
+        # E16: still image of the 3D annotation (its own appearance); the scene is never rendered.
+        if not item.get('poster'):
+            self.status.set_text('Este modelo 3D não tem imagem de apresentação. É possível salvar o modelo, mas a cena 3D não é exibida.');return
+        import uuid
+        target=Path(self.folder.name)/(uuid.uuid4().hex+'.png');identity=self.report['source_sha256']
+        def loaded(result):
+            if result.get('schema')!='linuxit-3d-poster-v1' or result.get('interactive') is not False:raise RuntimeError('Resposta de imagem 3D inválida.')
+            window=Poster3DWindow(self,target,result,item);self.children.append(window)
+            window.connect('destroy',lambda w:(self.children.remove(w) if w in self.children else None,target.unlink(missing_ok=True)))
+            window.show_all();self.status.set_text('Imagem de apresentação aberta. A cena 3D não é interativa.')
+        self._submit(lambda cancel:self.session.call(lambda path:run_search_worker('media-poster',path,dict(index=item['index'],destination=str(target),source_sha256=identity),cancel)),loaded)
 
     def _save(self,*_):
         if self.busy:return
@@ -93,3 +107,20 @@ class MediaAssetsWindow(Gtk.Window):
         self.closed=True;self.cancel.set();self.runner.shutdown()
         for child in list(self.children):child.destroy()
         if not self.busy:self.folder.cleanup()
+
+
+class Poster3DWindow(Gtk.Window):
+    """Still poster of a 3D annotation with an explicit non-interactive notice."""
+    def __init__(self,parent,image_path,result,item):
+        super().__init__(title='Anotação 3D — imagem de apresentação',transient_for=parent)
+        self.set_destroy_with_parent(True);self.set_default_size(640,520)
+        from gi.repository import GdkPixbuf
+        box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=8,margin=12);self.add(box)
+        fmt=(result.get('model_format') or '').upper()
+        text=('Imagem de apresentação da anotação 3D da página '+str(result['page']+1)+'. A cena 3D não é interativa: '
+              'não é possível girar, aproximar nem trocar vistas nesta versão.'+(' O modelo '+fmt+' pode ser salvo pela janela de mídia.' if fmt else ' O PDF não traz o modelo.'))
+        self.notice=Gtk.Label(label=text,xalign=0);self.notice.set_line_wrap(True);self.notice.set_selectable(True)
+        self.notice.get_accessible().set_name('Aviso: cena 3D não interativa');box.add(self.notice)
+        pixbuf=GdkPixbuf.Pixbuf.new_from_file_at_scale(str(image_path),900,700,True)
+        self.image=Gtk.Image.new_from_pixbuf(pixbuf);self.image.get_accessible().set_name('Imagem de apresentação do modelo 3D')
+        scroll=Gtk.ScrolledWindow();scroll.add(self.image);box.pack_start(scroll,True,True,0)

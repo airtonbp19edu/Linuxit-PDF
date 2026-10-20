@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 18,
-  "reviewed_at_local": "2026-10-20T16:16:00-03:00",
+  "reviewed_at_local": "2026-10-20T20:15:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -459,6 +459,7 @@
         "layers-media/list",
         "layers-media/toggle",
         "layers-media/media",
+        "layers-media/3d-poster",
         "layers-media/3d"
       ],
       "original_recorded_subset_summary": "No dynamic observation of this family found in the examined preserved reports.",
@@ -6091,10 +6092,48 @@
         {
           "path": "app/pdf_media.py",
           "symbol": "extract_media",
-          "line": 84,
-          "end_line": 102,
-          "file_sha256": "9eb14bea8e49875c90ea73ff23ba8d22e223eed83eadb0ff0adea36f77bb667d",
-          "excerpt_sha256": "6aab217c2e9a155511563b9531038fc1809a080283ae1d22eb6adb9db204974a"
+          "line": 168,
+          "end_line": 187,
+          "file_sha256": "937e11a1a03a32fc3f362f877bff4cbdb3df3bff4ffe16be07b0579708751bcc",
+          "excerpt_sha256": "18b4c1903adadb1bd429b0f7b055c28435c0d9bd19e7e138ac459c9c50219bcc"
+        }
+      ],
+      "recorded_related_tests": [],
+      "operation_acceptance_new_execution": "not_run",
+      "target_availability": "unconfirmed_for_operation",
+      "original_observation_refs": [],
+      "original_scope": "Family references only; they do not prove all behaviors of this operation.",
+      "comparison_state": "not_verified_as_complete_operation",
+      "next_package": "P06",
+      "complete_operation_or_family_equivalence": false
+    },
+    {
+      "id": "layers-media/3d-poster",
+      "family_id": "layers-media",
+      "title": "Imagem de apresentação de anotações 3D",
+      "implementation_state": "bounded_source_present",
+      "input_context": [
+        "PDF com anotação /3D cuja aparência normal (/AP /N) é um XObject de formulário; modelo U3D/PRC opcional."
+      ],
+      "output_and_acceptance": "3D annotation normal appearance (poster) rendered as a still PNG scaled to the annotation rectangle (BBox through /Matrix), shown with a notice that the scene is not interactive; listing reports poster, embedded model and view count; annotations without poster, non-PNG destination and changed source refused, nothing published (E16). Acceptance S12-21-3 and S12-21-4. No 3D renderer or interaction.",
+      "failure_contract_refs": [
+        {
+          "family_id": "layers-media",
+          "error_index": 0
+        },
+        {
+          "family_id": "layers-media",
+          "error_index": 1
+        }
+      ],
+      "source_evidence": [
+        {
+          "path": "app/pdf_media.py",
+          "symbol": "render_poster",
+          "line": 91,
+          "end_line": 138,
+          "file_sha256": "937e11a1a03a32fc3f362f877bff4cbdb3df3bff4ffe16be07b0579708751bcc",
+          "excerpt_sha256": "adfebee45a71c6159e710cd9cf3a1d6e43ba510b8eeda794a6cc73438d0f25d8"
         }
       ],
       "recorded_related_tests": [],
@@ -6814,9 +6853,9 @@
   ],
   "summary": {
     "families": 25,
-    "operations": 115,
+    "operations": 116,
     "implementation_states": {
-      "bounded_source_present": 103,
+      "bounded_source_present": 104,
       "pending_or_target_characterization": 9,
       "deferred_by_user": 3
     },
