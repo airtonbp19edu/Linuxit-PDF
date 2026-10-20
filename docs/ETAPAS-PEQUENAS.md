@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T01:08:58-03:00. Pendente: 20, Concluída: 5, Bloqueada: 1.
+Atualizado em 2026-10-20T01:13:06-03:00. Pendente: 20, Concluída: 5, Bloqueada: 1.
 
 **Regras**
 
@@ -99,9 +99,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](
 
 **Situação:** Concluída.
 
-AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02).
+AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02). Confirmado no CI Debian 13 (execução 39367796407): aceitação 53/53 e suíte 583/583; o teste de mídia passou no CI.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `e8cface`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json), [tests/test_form_events.py](../tests/test_form_events.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e05-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e05-review.json). Commit `e8cface`.
 
 ### E25 — Régua com vírgula decimal (2,54 cm)
 

@@ -3232,3 +3232,8 @@ Próximo passo: E05, AFSpecial_Format.
 ## 2026/10/20 às 01:09 (America/Sao_Paulo, UTC-03:00) — decisões D01 e D02 registradas
 
 Respostas do usuário às 01:08: D01, régua com vírgula decimal (2,54 cm); D02, tornar estável o teste de mídia como etapa própria. Criadas as etapas E25 e E26, colocadas logo depois da E05 na lista. Nada foi executado; o usuário vai continuar depois. CI 39367796407 (Debian 13) ainda confirmando a E05.
+
+
+## 2026/10/20 às 01:13 (America/Sao_Paulo, UTC-03:00) — CI confirma a E05
+
+CI 39367796407 (Debian 13) na revisão `860a958`: aceitação 53/53 e suíte 583/583, sem falhas; o teste de mídia passou no CI (`ci-debian13-e05-review.json`). Nenhuma etapa nova iniciada.

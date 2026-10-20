@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T01:08:58-03:00",
+  "updated_at_local": "2026-10-20T01:13:06-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -84,9 +84,10 @@
       "commit": "e8cface",
       "evidence": [
         "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json",
-        "tests/test_form_events.py"
+        "tests/test_form_events.py",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e05-review.json"
       ],
-      "note": "AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02)."
+      "note": "AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02). Confirmado no CI Debian 13 (execução 39367796407): aceitação 53/53 e suíte 583/583; o teste de mídia passou no CI."
     },
     {
       "id": "E25",
