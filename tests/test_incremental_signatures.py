@@ -44,18 +44,21 @@ class IncrementalSignatureTests(unittest.TestCase):
             self.assertEqual(report.count('Signature Validation: Signature is Valid.'),3)
             self.assertEqual(report.count('Total document signed'),1)
 
-    @unittest.skipUnless(shutil.which('qpdf'),'qpdf creates the cross-reference-stream fixture')
     def test_cross_reference_stream_source_gets_a_stream_update(self):
         plain=self.root/'plain.pdf';plain.write_bytes(text_pdf(['beta']))
+        # pypdf's incremental writer ends the file with a cross-reference stream: a portable fixture.
+        writer=PdfWriter(PdfReader(plain),incremental=True);writer.add_metadata({'/Title':'xref stream'})
         source=self.root/'xrefstream.pdf'
-        subprocess.run(['qpdf','--object-streams=generate',str(plain),str(source)],check=True,timeout=60)
-        self.assertIn(b'/XRef',source.read_bytes())
+        with open(source,'wb') as handle:writer.write(handle)
+        self.assertIn(b'/Type /XRef',source.read_bytes()[len(plain.read_bytes()):])
         first,_=self.sign(source,'1.pdf');second,_=self.sign(first,'2.pdf')
         tail=second.read_bytes()[len(first.read_bytes()):]
         self.assertIn(b'/Type /XRef',tail);self.assertNotIn(b'\nxref\n',tail)
         self.assertEqual([s for _,s,_ in self.statuses(second)],['verified','verified'])
-        result=subprocess.run(['qpdf','--check',str(second)],capture_output=True,text=True,timeout=60)
-        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        PdfReader(second,strict=True)
+        if shutil.which('qpdf'):
+            result=subprocess.run(['qpdf','--check',str(second)],capture_output=True,text=True,timeout=60)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
 
     def with_perms(self,level=None,usage_rights=False):
         writer=PdfWriter();writer.add_blank_page(200,200)
