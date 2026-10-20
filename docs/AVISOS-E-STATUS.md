@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 00:55 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 01:06 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,18 +15,18 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **51 de 53 casos aprovados** na revisão `34ebb46` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E03: 49/49 e suíte 576/576. Suíte própria completa **571/571** no Ubuntu 24.04.
+- Execução registrada: **53 de 55 casos aprovados** na revisão `e8cface` (os 2 restantes são de nuvem, adiada). O CI no Debian 13 confirmou a E04: 51/51 e suíte 579/579. Suíte própria completa **571/571** no Ubuntu 24.04.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E04 concluídas. Executando a **E05**: máscaras especiais em formulários (AFSpecial_Format).
+- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05 concluídas. **Parado, aguardando sua confirmação para iniciar a E06** (XFA: leitura dos campos). Decisões pendentes: D01 (vírgula decimal na régua) e D02 (teste de mídia instável).
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
-- Formulários: máscaras especiais, datas com nomes de mês ou horas, XFA e JavaScript geral. Hoje há cálculos, validação de faixa, números e datas numéricas declarativos, sem executar JavaScript.
+- Formulários: datas com nomes de mês ou horas, negativos em vermelho, XFA e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript.
 - Assinaturas: assinatura incremental e múltipla, DocTimeStamp, PAdES-LTV e OCSP.
 - 3D: renderizador U3D/PRC. Hoje só lista e extrai.
 - Redação definitiva e edição universal de anotações.
@@ -69,3 +69,5 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 00:47** — CI no Debian 13 confirmou a E02: aceitação 48/48 (inclusive os dois casos com o portal real) e suíte 571/571.
 - **2026/10/20 às 00:48** — E03 concluída (`0600b05`): formulários reconhecem formatação de números (ex.: R$ 2.469,00) e aceitam vírgula decimal na entrada, sem executar JavaScript. Aceitação 49/49, suíte 576/576. O verificador do catálogo deixou de quebrar a cada edição. Iniciando a E04.
 - **2026/10/20 às 00:55** — CI no Debian 13 confirmou a E03 (49/49, suíte 576/576). E04 concluída (`34ebb46`): campos de data validam e formatam datas numéricas (1/2/2026 aparece como 01/02/2026) e recusam datas inexistentes como 31/02. Aceitação 51/51, suíte 579/579. Iniciando a E05.
+- **2026/10/20 às 00:58** — Regra nova: depois de cada etapa, parar e esperar a sua confirmação antes de iniciar a próxima. Registrada no AGENTS.md e na lista de etapas.
+- **2026/10/20 às 01:06** — CI no Debian 13 confirmou a E04 (51/51, suíte 579/579). E05 concluída (`e8cface`): máscaras especiais e livres (CEP 01310-100, CPF, telefone (555) 123-4567). Aceitação 53/53. Achado: um teste de mídia já existente falha de forma intermitente (1 em 3), sem relação com a E05; decisão D02 com você. Parado, aguardando a sua confirmação para iniciar a E06.

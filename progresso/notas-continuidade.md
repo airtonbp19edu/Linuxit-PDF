@@ -3218,3 +3218,12 @@ Próximo passo: E04, datas em formulários.
 - **E04** (`34ebb46`): `AFDate_FormatEx` e `AFDate_KeystrokeEx` com dia, mês e ano numéricos e separadores `/ - .` ou espaço. Datas inexistentes são recusadas; `yy` vale 1950–2049. O valor fica como digitado e a aparência mostra a data formatada. Nomes de mês, horas e texto no padrão são recusados explicitamente. 3 testes novos, fixture `formulario-data.pdf` e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51 (`execucao-ubuntu24-e04.json`). Trecho `calculate_form_values` revisado e refixado.
 
 Próximo passo: E05, AFSpecial_Format.
+
+
+## 2026/10/20 às 01:06 (America/Sao_Paulo, UTC-03:00) — E05 concluída; parada aguardando o usuário
+
+- CI 39366798234 (Debian 13) confirmou a E04 na revisão `f20d23e`: aceitação 51/51 e suíte 579/579 (`ci-debian13-e04-review.json`).
+- **E05** (`e8cface`): `AFSpecial_Format` e `AFSpecial_Keystroke` 0–3 guardam só os dígitos e mostram a máscara. `AFSpecial_KeystrokeEx` com máscara livre (9, A, O, X e literais) aceita o texto com ou sem os literais e guarda o texto mascarado. 4 testes novos, fixture `formulario-mascaras.pdf` e casos S12-15-6/S12-15-7. Na primeira execução, a conferência do caso S12-15-6 procurava bytes sem escape na aparência (o PDF escapa parênteses); foi corrigida para usar o texto visível via `pdftotext`. Aceitação 53/53 (`execucao-ubuntu24-e05.json`).
+- Uma primeira tentativa da aceitação foi encerrada pelo ambiente (código 137) e repetida.
+- Achado: `test_local_playback` (GStreamer) falhou 1 vez em 3 neste contêiner, sem relação com a E05. Fica registrado como decisão D02.
+- **Regra nova do usuário (00:58)**: ao concluir uma etapa, parar e aguardar confirmação antes da próxima. Registrada em AGENTS.md e nas regras da lista. E06 permanece pendente.

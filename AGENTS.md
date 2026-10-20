@@ -356,3 +356,6 @@ como `AVISOS-LOCAL.md` (ignorado pelo Git). Atualize a seção "Situação atual
 Fila de execução em etapas pequenas (pedido do usuário em 20/10/2026): `progresso/etapas-pequenas.json`,
 renderizada em `docs/ETAPAS-PEQUENAS.md` por `scripts/render_small_steps.py` e copiada para
 `ETAPAS-LOCAL.md` na pasta local. Seguir a ordem; o que não precisa da VM vem primeiro.
+
+A pedido do usuário em 20/10/2026 às 00:58: ao concluir uma etapa da lista, pare e aguarde a confirmação
+do usuário antes de iniciar a próxima. Não avance automaticamente.

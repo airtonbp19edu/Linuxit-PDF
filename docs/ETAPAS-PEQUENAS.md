@@ -2,11 +2,12 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T00:55:02-03:00. Pendente: 18, Em andamento: 1, Concluída: 4, Bloqueada: 1.
+Atualizado em 2026-10-20T01:06:21-03:00. Pendente: 18, Concluída: 5, Bloqueada: 1.
 
 **Regras**
 
 - A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.
+- Ao concluir uma etapa, parar e aguardar a confirmação do usuário antes de iniciar a próxima (pedido do usuário em 20/10/2026 às 00:58).
 - Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.
 - Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.
 - Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.
@@ -17,7 +18,7 @@ Atualizado em 2026-10-20T00:55:02-03:00. Pendente: 18, Em andamento: 1, Concluí
 | E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Concluída |
 | E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Concluída |
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Concluída |
-| E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Em andamento |
+| E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Concluída |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
@@ -84,9 +85,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](
 
 **Situação:** Concluída.
 
-Datas numéricas (d, dd, m, mm, yy, yyyy; separadores / - . e espaço); data inexistente recusada; valor como digitado e aparência formatada (1/2/2026 → 01/02/2026). Nomes de mês e horas recusados explicitamente. 3 testes novos e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51.
+Datas numéricas (d, dd, m, mm, yy, yyyy; separadores / - . e espaço); data inexistente recusada; valor como digitado e aparência formatada (1/2/2026 → 01/02/2026). Nomes de mês e horas recusados explicitamente. 3 testes novos e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51. Confirmado no CI Debian 13 (execução 39366798234): aceitação 51/51 e suíte 579/579.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `34ebb46`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json), [tests/test_form_events.py](../tests/test_form_events.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e04-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e04-review.json). Commit `34ebb46`.
 
 ### E05 — Máscaras especiais (AFSpecial_Format 0–3)
 
@@ -94,7 +95,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](
 
 **Como verificar:** Testes portáveis para cada formato e entrada fora do padrão.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02).
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `e8cface`.
 
 ### E06 — XFA: leitura dos campos
 
@@ -251,3 +256,4 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](
 ## Decisões pendentes
 
 - **D01** (Aguardando você): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português?
+- **D02** (Aguardando você): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria?
