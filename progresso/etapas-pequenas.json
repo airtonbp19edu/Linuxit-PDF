@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T10:54:00-03:00",
+  "updated_at_local": "2026-10-20T12:25:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -142,16 +142,25 @@
       "id": "E27",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Investigar a queda do GTK no CI Debian 13",
       "goal": "Encontrar a causa do SIGSEGV após \"Gtk-CRITICAL _gtk_css_rgba_value_get_rgba\" em test_comment_threads no Debian 13 (2 de 3 execuções do CI) e corrigir o código ou o teste sem enfraquecer o que ele verifica (decisão D03).",
-      "verification": "Reproduzir ou explicar a queda com evidência; depois da correção, o teste passa repetidamente no ambiente local e no CI Debian 13."
+      "verification": "Reproduzir ou explicar a queda com evidência; depois da correção, o teste passa repetidamente no ambiente local e no CI Debian 13.",
+      "commit": "79851e9",
+      "evidence": [
+        "testes/resultados/e27-gc-threads/2026-10-20/revisao.json",
+        "testes/resultados/e27-gc-threads/2026-10-20/probe-antes-06daa9d.json",
+        "testes/resultados/e27-gc-threads/2026-10-20/probe-depois-79851e9.json",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e27-review.json",
+        "tests/test_main_thread_gc.py"
+      ],
+      "note": "A queda não se repetiu sob demanda (0 em cerca de 70 execuções, inclusive 18 no CI com parada no primeiro aviso crítico), mas a causa provável foi encontrada: o coletor de lixo do Python rodava às vezes em threads de trabalho e liberava widgets GTK fora da thread principal, o que o GTK 3 não suporta. Uma sonda contou 546 objetos GTK liberados assim numa suíte completa, inclusive janelas inteiras. Correção: a coleta passa a rodar só na thread principal (app/main_thread_gc.py); a sonda conta 0. 5 testes novos; suíte local 600/600; aceitação 55/55; CI Debian 13: suíte 600/600, aceitação 55/55 e 18 execuções de diagnóstico sem nenhum aviso crítico."
     },
     {
       "id": "E07",
       "block": "Formulários",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "XFA híbrido: preencher mantendo datasets coerente",
       "goal": "Em PDF com AcroForm e XFA, preencher um campo e atualizar o valor correspondente em datasets na cópia nova.",
       "verification": "Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado."

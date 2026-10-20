@@ -3266,3 +3266,16 @@ Parado. Próximo: E07 e a resposta da D03, ambas aguardando confirmação do usu
 ## 2026/10/20 às 10:49 (America/Sao_Paulo, UTC-03:00) — CI confirma a E06
 
 CI 39432901662 (Debian 13) na revisão `9abc923`: suíte 595/595 e aceitação 55/55 (`ci-debian13-e06-review.json`), sem a queda do GTK desta vez. Nenhuma etapa nova iniciada; E07 e D03 aguardam o usuário.
+
+
+## 2026/10/20 às 12:25 (America/Sao_Paulo, UTC-03:00) — E27 concluída
+
+Pedido do usuário às 10:53 (decisão D03): investigar a queda do GTK como etapa própria e, em seguida, fazer a próxima etapa. **E27** (`79851e9`; revisão em `testes/resultados/e27-gc-threads/2026-10-20/revisao.json`).
+
+Reprodução: imagem Debian 13 local (Docker, `mirror.gcr.io/library/debian:13`, mesma lista de pacotes do CI, GTK 3.24.49-3): 11 execuções completas do `check_intermediate.py` (7 no HEAD, 4 em `d07a204`) e 17 do subconjunto inicial de testes, sem queda. Novo fluxo manual `native-crash-diagnosis.yml` + `scripts/diagnose_native_crash.py` (`c22ae74`): 6 fragmentos × 3 suítes com `G_DEBUG=fatal-criticals` e pilhas faulthandler em SIGTRAP/SIGSEGV; execução 39441225225 sem nenhum aviso crítico. Uma terceira tentativa da execução 39430260690 em `d07a204` passou. Conclusão: evento raro, dependente de tempo.
+
+Causa: a sonda `scripts/probe_gc_threads.py` (DEBUG_SAVEALL + callbacks do gc) mostrou que o coletor cíclico automático do Python rodava em threads de trabalho e liberava objetos GTK fora da thread principal: 546 numa suíte completa em `06daa9d` (222 Button, 72 ToggleButton, ListBox, ScrolledWindow e janelas PDFWindow inteiras). O GTK 3 não é seguro entre threads; finalizar estilos em paralelo com o cálculo de CSS na thread principal explica o aviso `_gtk_css_rgba_value_get_rgba` seguido de SIGSEGV. É a melhor explicação compatível com a evidência, não uma pilha capturada.
+
+Correção: `app/main_thread_gc.py`, instalado por `PDFWindow.__init__`, desliga a coleta automática em processos com interface e executa a mesma política geracional por um temporizador GLib (250 ms, prioridade baixa) na thread principal. Contagem de referências inalterada; processos só de worker mantêm o coletor padrão. Sonda depois: 0 objetos GTK liberados por threads de trabalho. Testes novos em `tests/test_main_thread_gc.py` (5, incluindo um que demonstra o perigo sem o módulo). Suíte local 600/600; aceitação 55/55 (`execucao-ubuntu24-e27.json`); CI 39446879815: suíte 600/600, aceitação 55/55; diagnóstico 39446885599 depois da correção: 18 suítes sem aviso crítico.
+
+Limite: a ausência de um evento raro não se prova estatisticamente; faulthandler e o fluxo de diagnóstico ficam disponíveis. Próximo: E07, já autorizada.

@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:54:00-03:00. Pendente: 17, Em andamento: 1, Concluída: 8, Bloqueada: 1.
+Atualizado em 2026-10-20T12:25:00-03:00. Pendente: 16, Em andamento: 1, Concluída: 9, Bloqueada: 1.
 
 **Regras**
 
@@ -22,8 +22,8 @@ Atualizado em 2026-10-20T10:54:00-03:00. Pendente: 17, Em andamento: 1, Concluí
 | E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Concluída |
 | E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Concluída |
 | E06 | XFA: leitura dos campos | Formulários | nada | Concluída |
-| E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Em andamento |
-| E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
+| E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Concluída |
+| E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Em andamento |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
@@ -146,7 +146,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](
 
 **Como verificar:** Reproduzir ou explicar a queda com evidência; depois da correção, o teste passa repetidamente no ambiente local e no CI Debian 13.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+A queda não se repetiu sob demanda (0 em cerca de 70 execuções, inclusive 18 no CI com parada no primeiro aviso crítico), mas a causa provável foi encontrada: o coletor de lixo do Python rodava às vezes em threads de trabalho e liberava widgets GTK fora da thread principal, o que o GTK 3 não suporta. Uma sonda contou 546 objetos GTK liberados assim numa suíte completa, inclusive janelas inteiras. Correção: a coleta passa a rodar só na thread principal (app/main_thread_gc.py); a sonda conta 0. 5 testes novos; suíte local 600/600; aceitação 55/55; CI Debian 13: suíte 600/600, aceitação 55/55 e 18 execuções de diagnóstico sem nenhum aviso crítico.
+
+Evidência: [testes/resultados/e27-gc-threads/2026-10-20/revisao.json](../testes/resultados/e27-gc-threads/2026-10-20/revisao.json), [testes/resultados/e27-gc-threads/2026-10-20/probe-antes-06daa9d.json](../testes/resultados/e27-gc-threads/2026-10-20/probe-antes-06daa9d.json), [testes/resultados/e27-gc-threads/2026-10-20/probe-depois-79851e9.json](../testes/resultados/e27-gc-threads/2026-10-20/probe-depois-79851e9.json), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e27-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e27-review.json), [tests/test_main_thread_gc.py](../tests/test_main_thread_gc.py). Commit `79851e9`.
 
 ### E07 — XFA híbrido: preencher mantendo datasets coerente
 
@@ -154,7 +158,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](
 
 **Como verificar:** Reabrir a cópia: AcroForm e datasets com o mesmo valor; original preservado.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E08 — Segunda assinatura em revisão incremental
 

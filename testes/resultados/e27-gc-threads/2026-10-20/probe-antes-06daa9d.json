@@ -1,0 +1,41 @@
+{
+  "schema": "linuxit-gc-thread-probe-v1",
+  "run_tests_args": [
+    "--temp-dir",
+    "/tmp/pb/clean-t",
+    "--output",
+    "/tmp/pb/clean-r.json"
+  ],
+  "main_thread_gc_installed": false,
+  "collections": {
+    "main_collections": 1872,
+    "main_collected": 2376987,
+    "worker_collections": 77,
+    "worker_collected": 33537
+  },
+  "worker_freed_gobjects": 546,
+  "worker_freed_gobject_types": {
+    "Button": 222,
+    "ToggleButton": 72,
+    "CheckButton": 42,
+    "Label": 36,
+    "Box": 28,
+    "ScrolledWindow": 24,
+    "ListBox": 24,
+    "Entry": 16,
+    "ComboBoxText": 14,
+    "Pixbuf": 12,
+    "Revealer": 10,
+    "DrawingArea": 6,
+    "Scale": 6,
+    "PDFWindow": 4,
+    "Stack": 4,
+    "SpinButton": 4,
+    "Paned": 4,
+    "Notebook": 4,
+    "PageViewport": 4,
+    "PageSurface": 4,
+    "MenuButton": 4,
+    "PresentationWindow": 2
+  }
+}

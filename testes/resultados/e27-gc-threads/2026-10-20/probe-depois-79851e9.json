@@ -1,0 +1,16 @@
+{
+  "schema": "linuxit-gc-thread-probe-v1",
+  "run_tests_args": [
+    "--temp-dir",
+    "/tmp/e27/pt",
+    "--output",
+    "/tmp/e27/probe-run.json"
+  ],
+  "main_thread_gc_installed": true,
+  "collections": {
+    "main_collections": 1290,
+    "main_collected": 983577
+  },
+  "worker_freed_gobjects": 0,
+  "worker_freed_gobject_types": {}
+}

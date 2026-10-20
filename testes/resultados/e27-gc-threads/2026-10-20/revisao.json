@@ -1,0 +1,77 @@
+{
+  "schema": "linuxit-e27-review-v1",
+  "reviewed_at_local": "2026-10-20T12:25:00-03:00",
+  "symptom": {
+    "ci_run": 39430260690,
+    "revision": "d07a204cb5ca3d036e0c66897b5e87847750797b",
+    "attempts_crashed": [
+      1,
+      2
+    ],
+    "attempt_3": "success",
+    "signal": "SIGSEGV (return code -11) after Gtk-CRITICAL _gtk_css_rgba_value_get_rgba during test_comment_threads.CommentSearchGUITests.test_reply_and_bookmark_hits_select_the_actual_panel_row; no Python stack (faulthandler was not enabled)"
+  },
+  "reproduction_attempts": {
+    "debian13_container_local": {
+      "image": "debian:13 with the CI package list, GTK 3.24.49-3",
+      "full_check_intermediate_runs": {
+        "at_d05acfd": 7,
+        "at_d07a204": 4
+      },
+      "early_test_subset_runs": 17,
+      "crashes": 0
+    },
+    "ci_diagnosis_workflow": {
+      "run": 39441225225,
+      "revision": "c22ae74",
+      "shards": 6,
+      "suite_runs": 18,
+      "g_debug": "fatal-criticals",
+      "criticals": 0,
+      "crashes": 0
+    },
+    "ubuntu_24_04_local": {
+      "test_comment_threads_runs": 25,
+      "crashes": 0
+    },
+    "conclusion": "Not reproduced on demand: 2 crashes in the same CI run, 0 in about 70 other runs. Rare, timing dependent."
+  },
+  "root_cause": {
+    "finding": "Python's automatic cyclic garbage collector runs in whichever thread crosses the allocation threshold. In this application that is often a background worker (search, rendering, indexing), so GTK widgets kept in reference cycles were finalized off the main thread while the main thread computed CSS styles. GTK 3 is not thread-safe; finalizing style contexts and CSS values concurrently can corrupt shared style data, which matches a CSS color-value assertion followed by a segmentation fault.",
+    "evidence": {
+      "probe_before": "testes/resultados/e27-gc-threads/2026-10-20/probe-antes-06daa9d.json",
+      "probe_after": "testes/resultados/e27-gc-threads/2026-10-20/probe-depois-79851e9.json",
+      "worker_freed_gobjects_before": 546,
+      "worker_freed_gobjects_after": 0,
+      "tool": "scripts/probe_gc_threads.py"
+    },
+    "certainty": "The unsafe mechanism is demonstrated (546 GObjects freed by worker threads in one full run, including whole PDFWindow instances). That it caused the two CI crashes is the best explanation consistent with the evidence, not a captured stack."
+  },
+  "fix": {
+    "commit": "79851e9",
+    "module": "app/main_thread_gc.py",
+    "installed_by": "PDFWindow.__init__",
+    "behaviour": "Automatic cyclic GC disabled in GUI processes; the same generational policy runs from a GLib timeout (250 ms, low priority) on the main context. Reference counting unchanged; worker-only processes keep the default collector.",
+    "tests": "tests/test_main_thread_gc.py (5 tests: policy, the hazard without the module finalizes in the worker, main-thread finalization with it, PDFWindow installs it)"
+  },
+  "validation": {
+    "local_ubuntu_suite": "600/600",
+    "local_acceptance": "55/55 (execucao-ubuntu24-e27.json)",
+    "ci_validation": {
+      "run": 39446879815,
+      "suite": "600/600",
+      "acceptance": "55/55",
+      "review": "testes/resultados/aceitacao/2026-10-20/ci-debian13-e27-review.json"
+    },
+    "ci_diagnosis_after_fix": {
+      "run": 39446885599,
+      "revision": "79851e9",
+      "suite_runs": 18,
+      "g_debug": "fatal-criticals",
+      "criticals": 0,
+      "crashes": 0
+    }
+  },
+  "limits": "Absence of the crash after the fix cannot be proven statistically from a rare event; faulthandler and the diagnosis workflow remain available to capture a stack if it ever happens again.",
+  "foxit_executed": false
+}
