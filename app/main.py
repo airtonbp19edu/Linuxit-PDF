@@ -30,6 +30,7 @@ from platform_runtime import worker_python, subprocess_options
 from attachment_tasks import AttachmentPanelController, display_attachment_name
 from local_files import read_folders, remember_folder, file_stamp
 from folder_dialogs import prepare_chooser, remember_selection, choose_sync_folder, choose_pdf_native
+from measurement import decimal_text
 from text_selection import select_words, selection_text
 from character_extraction import page_characters
 from character_selection import nearest_caret, select_range, move_caret, caret_rectangle
@@ -1849,7 +1850,7 @@ class PDFWindow(Gtk.Window):
     def _finish_measure(self, rect):
         if not self.current_pixbuf or not self.page_sizes: return
         x0,y0,x1,y1=rect; pw,ph=self._page_dimensions_rotated(); W,H=self.page_image.display_size; sx=pw/max(1,W); sy=ph/max(1,H)
-        points=math.hypot((x1-x0)*sx,(y1-y0)*sy); self.measure_result=f'{points/72.0*2.54:.2f} cm'; self.status_file.set_text(f'Distância medida: {self.measure_result}')
+        points=math.hypot((x1-x0)*sx,(y1-y0)*sy); self.measure_result=decimal_text(points/72.0*2.54,2)+' cm'; self.status_file.set_text(f'Distância medida: {self.measure_result}')
 
     def _find_result_activated(self, _list, row):
         pos = getattr(row, 'hit_index', None)
@@ -2335,7 +2336,7 @@ class PDFWindow(Gtk.Window):
         if not self.filepath: return
         lines = [f'Arquivo: {self.filepath}', f'Páginas: {self.page_count}']
         if self.page_sizes:
-            w,h = self.page_sizes[self.page]; lines.append(f'Página atual: {w/72*2.54:.1f} × {h/72*2.54:.1f} cm')
+            w,h = self.page_sizes[self.page]; lines.append(f'Página atual: {decimal_text(w/72*2.54,1)} × {decimal_text(h/72*2.54,1)} cm')
         for key, label in [('title','Título'),('author','Autor'),('subject','Assunto'),('creator','Criador'),('producer','Produtor')]:
             if self.metadata.get(key): lines.append(f'{label}: {self.metadata[key]}')
         dlg = Gtk.MessageDialog(transient_for=self, modal=True, message_type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.OK, text='Propriedades do PDF')

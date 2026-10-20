@@ -27,6 +27,12 @@ def layer_pdf(path,locked=False):
 
 
 class MeasurementLayersSpeechTests(unittest.TestCase):
+    def test_measurement_text_uses_portuguese_decimal_comma(self):
+        from measurement import decimal_text
+        self.assertEqual([decimal_text(2.54,2),decimal_text(21.0,1),decimal_text(6.4516),decimal_text(100.0)],['2,54','21,0','6,4516','100'])
+        for value in (float('nan'),float('inf'),'2.54'):
+            with self.subTest(value=value),self.assertRaises(ValueError):decimal_text(value)
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
 
@@ -114,7 +120,7 @@ class MeasurementLayersVoiceLinuxTests(unittest.TestCase):
                 self.assertNotEqual(window.document_session.read_path,str(source.resolve()))
                 measurement=MeasurementWindow(window,window.current_pixbuf,(72,72),'synthetic')
                 measurement.points=[(0,0),(72,0),(72,72),(0,72)];measurement.kind.set_active_id('area')
-                measurement._measure();self.assertIn('6.4516',measurement.status.get_text())
+                measurement._measure();self.assertIn('6,4516',measurement.status.get_text())
                 measurement.known.set_value(10);measurement._calibrate();measurement._measure()
                 self.assertEqual(measurement.status.get_text(),'100 cm²')
             finally:

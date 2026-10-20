@@ -3674,7 +3674,7 @@
       "name": "Medição/calibração",
       "matrix_implementation": "Fonte0.1.15: janela de medidas sobre snapshot da página, calibração e distância/perímetro/área em mm/cm/m/in/ft; geometria própria testada. GTK próprio aprovado; original aberto. Atualização0.1.16: contratos delimitados emdocs/EXECUCAO-SEM-VM.md, suíte própria564/564 por ambiente; família completa não aprovada.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.",
+      "scope": "Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Fonte posterior à 0.1.16 (etapa E25, decisão D01): régua, janela de medidas e tamanho da página exibem vírgula decimal (ex.: 2,54 cm). Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.",
       "inputs": [
         "Dois pontos em pixels, tamanho da página rotacionada e dimensão da imagem.",
         "Página usa a escala base de 72 pontos por polegada."

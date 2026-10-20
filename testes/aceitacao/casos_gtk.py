@@ -273,8 +273,8 @@ def measure_inch(ctx):
         page_w, _ = w._page_dimensions_rotated();display_w, _ = w.page_image.display_size
         dx = 72 * display_w / page_w
         w._finish_measure((10, 40, 10 + dx, 40))
-        check(w.measure_result == '2.54 cm', f'resultado {w.measure_result!r}')
-        return dict(result=w.measure_result, decimals=2, decimal_separator='ponto')
+        check(w.measure_result == '2,54 cm', f'resultado {w.measure_result!r}')
+        return dict(result=w.measure_result, decimals=2, decimal_separator='vírgula')
 
 
 @case('S12-20-2', 'PDFWindow _finish_measure')

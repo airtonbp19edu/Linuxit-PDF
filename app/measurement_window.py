@@ -2,7 +2,7 @@
 import gi
 gi.require_version('Gtk','3.0')
 from gi.repository import Gtk,Gdk
-from measurement import measure,calibrated_scale,UNITS_MM,MAX_POINTS,snap_point
+from measurement import measure,calibrated_scale,UNITS_MM,MAX_POINTS,snap_point,decimal_text
 
 
 class MeasurementWindow(Gtk.Window):
@@ -70,7 +70,7 @@ class MeasurementWindow(Gtk.Window):
         try:
             kind=self.kind.get_active_id();unit=self.unit.get_active_id()
             result=measure(self.points,kind,unit,self.scale)
-            self.status.set_text(f'{result:.6g} {unit}'+('²' if kind=='area' else ''))
+            self.status.set_text(f'{decimal_text(result)} {unit}'+('²' if kind=='area' else ''))
         except ValueError as exc:self.status.set_text(str(exc))
 
     def _calibrate(self,*_):

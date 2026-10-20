@@ -891,7 +891,7 @@ Relacionados aos planos dinâmicos/UI: UI10.
 
 ## Medição/calibração
 
-Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.
+Atual (0.1.16): janela de medidas sobre a página com calibração por comprimento conhecido, distância, perímetro e área em mm/cm/m/in/ft, grade em pontos PDF e restrição angular de 45 graus. Fonte posterior à 0.1.16 (etapa E25, decisão D01): régua, janela de medidas e tamanho da página exibem vírgula decimal (ex.: 2,54 cm). Encaixe automático em caminhos vetoriais, precisão comparada ao original e paridade completa continuam abertos.
 
 **Entradas**
 

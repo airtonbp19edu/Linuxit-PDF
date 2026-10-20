@@ -5,6 +5,17 @@ UNITS_MM={'mm':1.0,'cm':10.0,'m':1000.0,'in':25.4,'ft':304.8}
 MAX_POINTS=512
 
 
+def decimal_text(value,places=None):
+    """Portuguese decimal comma for displayed measurements (user decision D01).
+
+    With places the text has that many decimals; without it, up to six
+    significant digits as before. Values are never changed, only shown.
+    """
+    if type(value) not in (int,float) or not math.isfinite(value):raise ValueError('Medida inválida.')
+    text=f'{value:.{places}f}' if places is not None else f'{value:.6g}'
+    return text.replace('.',',')
+
+
 def snap_point(point,reference=None,grid=0,angle_step=0):
     """Explicit PDF-point grid and angular constraint; no invisible vector guess."""
     import math
