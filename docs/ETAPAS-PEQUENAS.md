@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T00:31:00-03:00. Pendente: 22, Em andamento: 1, Bloqueada: 1.
+Atualizado em 2026-10-20T00:38:00-03:00. Pendente: 21, Em andamento: 1, Concluída: 1, Bloqueada: 1.
 
 **Regras**
 
@@ -13,8 +13,8 @@ Atualizado em 2026-10-20T00:31:00-03:00. Pendente: 22, Em andamento: 1, Bloquead
 
 | # | Etapa | Bloco | Precisa de | Situação |
 |---|---|---|---|---|
-| E01 | Verificador do catálogo de operações verde | Base e entrega | nada | Em andamento |
-| E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Pendente |
+| E01 | Verificador do catálogo de operações verde | Base e entrega | nada | Concluída |
+| E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Em andamento |
 | E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Pendente |
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Pendente |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Pendente |
@@ -46,7 +46,11 @@ Atualizado em 2026-10-20T00:31:00-03:00. Pendente: 22, Em andamento: 1, Bloquead
 
 **Como verificar:** scripts/check_operation_catalog.py passa; docs/INVENTARIO-OPERACOES.md renderizado sem diferença.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+check_operation_catalog.py e render_operation_catalog.py --check-render passam. O inventário renderizado também estava desatualizado (95/13 em vez de 97/11) e foi regenerado.
+
+Evidência: [testes/resultados/sem-vm-2026-10-20/own-validated-cases.json](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json), [docs/INVENTARIO-OPERACOES.md](../docs/INVENTARIO-OPERACOES.md). Commit `9c10dc4`.
 
 ### E02 — Contrato próprio da integração com o sistema
 
@@ -54,7 +58,7 @@ Atualizado em 2026-10-20T00:31:00-03:00. Pendente: 22, Em andamento: 1, Bloquead
 
 **Como verificar:** validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados no workflow de desktop e registrados.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E03 — Formatação de números (AFNumber_Format)
 

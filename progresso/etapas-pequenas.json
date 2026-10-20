@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:30:00-03:00",
-  "updated_at_local": "2026-10-20T00:31:00-03:00",
+  "updated_at_local": "2026-10-20T00:38:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -14,16 +14,22 @@
       "id": "E01",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Verificador do catálogo de operações verde",
       "goal": "Apontar a referência de testes do catálogo para a suíte confirmada no CI 39363684386 (571/571), em vez dos arquivos da 0.1.16.",
-      "verification": "scripts/check_operation_catalog.py passa; docs/INVENTARIO-OPERACOES.md renderizado sem diferença."
+      "verification": "scripts/check_operation_catalog.py passa; docs/INVENTARIO-OPERACOES.md renderizado sem diferença.",
+      "commit": "9c10dc4",
+      "evidence": [
+        "testes/resultados/sem-vm-2026-10-20/own-validated-cases.json",
+        "docs/INVENTARIO-OPERACOES.md"
+      ],
+      "note": "check_operation_catalog.py e render_operation_catalog.py --check-render passam. O inventário renderizado também estava desatualizado (95/13 em vez de 97/11) e foi regenerado."
     },
     {
       "id": "E02",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Contrato próprio da integração com o sistema",
       "goal": "Passar a família platform de proposta para subconjunto implementado (portal, concessão persistente, revogação e associação já validados 9/9) e tornar S12-25 executável.",
       "verification": "validate_functional_spec.py passa; S12-25-1 e S12-25-2 executados no workflow de desktop e registrados."

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 00:31 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 00:38 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -21,7 +21,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). Executando a **E01**: verificador do catálogo de operações.
+- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 concluída. Executando a **E02**: contrato próprio da integração com o sistema.
 
 ### Falta
 
@@ -46,7 +46,6 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 **Entrega**
 - Próximo pacote 0.1.17: Flatpak, testes nos três ambientes e auditoria, incluindo a correção RFC 3161.
-- Atualizar a referência de `check_operation_catalog.py`, que está presa aos arquivos da 0.1.16.
 
 **Medição**
 - 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
@@ -66,3 +65,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 00:22** — Regra registrada: avisos vão para este arquivo no GitHub e para `AVISOS-LOCAL.md` na pasta local.
 - **2026/10/20 às 00:25** — CI no Debian 13 aprovado: suíte 571/571 e aceitação 46/46 na revisão `a43e0ba`, além da campanha preservada, acessibilidade e portal. Nada em andamento agora.
 - **2026/10/20 às 00:31** — O que falta foi organizado em 24 etapas pequenas, com o que não precisa da VM primeiro: [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) no GitHub e `ETAPAS-LOCAL.md` na pasta local. Execução iniciada pela E01. Decisão D01 (vírgula decimal na régua) aguardando você.
+- **2026/10/20 às 00:38** — E01 concluída (`9c10dc4`): o verificador do catálogo de operações voltou a passar, agora ligado à suíte 571/571 do CI Debian 13. O inventário renderizado também estava desatualizado e foi corrigido. Iniciando a E02.
