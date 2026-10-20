@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 16,
-  "reviewed_at_local": "2026-10-19T20:24:29.015608-03:00",
+  "revision": 17,
+  "reviewed_at_local": "2026-10-20T00:36:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5139,9 +5139,9 @@
           "path": "app/signature_trust.py",
           "symbol": "verify_trust",
           "line": 37,
-          "end_line": 114,
-          "file_sha256": "ad454c996b1746e44b6300d2b230a35c300a693508ad37db1cabb92401cdd37b",
-          "excerpt_sha256": "2ab490399d6854147d1f919a93cfee0ab0bbe61d97b1ef551b4e2d794fdaf58a"
+          "end_line": 116,
+          "file_sha256": "617f4b69322010c475967b05c725e504025e4cd4a4e86fbfdf45bcca134961fd",
+          "excerpt_sha256": "e8382161a3e955d2abb31a90b7b58e505c793ed7b10385c113984e2865544de4"
         }
       ],
       "recorded_related_tests": [],
@@ -6564,7 +6564,8 @@
   "recorded_related_test_evidence_ref": "testes/resultados/p01-2026-10-18/recorded-linux-cases.json",
   "historical_own_test_evidence_refs": [
     "testes/resultados/leitura-2026-10-19/validated-cases.json",
-    "testes/resultados/lotes-2026-10-19/release-validated-cases.json"
+    "testes/resultados/lotes-2026-10-19/release-validated-cases.json",
+    "testes/resultados/0.1.16/own-validated-cases.json"
   ],
-  "current_own_test_evidence_ref": "testes/resultados/0.1.16/own-validated-cases.json"
+  "current_own_test_evidence_ref": "testes/resultados/sem-vm-2026-10-20/own-validated-cases.json"
 }
