@@ -346,3 +346,9 @@ feito, ferramentas/perfis, evidências locais e publicáveis, verificações,
 limitações, estado Git/publicação e o próximo passo concreto. Acrescente novas
 notas ao final; preserve notas anteriores. Não dependa do histórico do chat.
 Não declare publicação remota sem confirmação; registre bloqueios de acesso.
+
+A pedido do usuário em 20/10/2026, todo aviso dado ao usuário (resultado,
+bloqueio, publicação, CI em andamento, pedido de ação) também é registrado em
+`docs/AVISOS-E-STATUS.md` no GitHub e copiado para a pasta local do projeto
+como `AVISOS-LOCAL.md` (ignorado pelo Git). Atualize a seção "Situação atual"
+(feito, em andamento, falta) e acrescente o aviso datado ao histórico.

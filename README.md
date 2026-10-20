@@ -1,5 +1,7 @@
 # Linuxit PDF
 
+**Situação atual, avisos e o que falta:** [docs/AVISOS-E-STATUS.md](docs/AVISOS-E-STATUS.md).
+
 Leitor de PDF para Linux, com implementação própria a partir da base MIT
 Winux/Print&View e investigação incremental do Foxit Reader com REA/Ghidra.
 O código do original não é incorporado ao aplicativo.

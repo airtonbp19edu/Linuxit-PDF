@@ -3,3 +3,6 @@ __pycache__/
 dist/
 .flatpak-builder/
 analysis-local/
+
+# Cópia local dos avisos ao usuário; a versão versionada é docs/AVISOS-E-STATUS.md
+AVISOS-LOCAL.md
