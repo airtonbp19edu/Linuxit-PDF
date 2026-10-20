@@ -3168,3 +3168,21 @@ Achado menor, sem alteração: a régua do visualizador exibe `2.54 cm` (ponto d
 Estado Git: commits `de7f218`, `841557d` e o desta nota, de autoria Claude, feitos localmente; publicação no GitHub pendente de acesso de escrita para esta sessão.
 
 Próximo passo concreto: publicar, executar `no-vm-validation.yml` no Debian 13 e registrar o resultado. Depois, contrato próprio para os casos S12-25 (o portal já foi validado 9/9) e as frentes da fila atual em `progresso/tarefas-pendentes.md`.
+
+
+## 2026/10/20 às 00:25 (America/Sao_Paulo, UTC-03:00) — CI Debian 13 confirma a rodada e avisos centralizados
+
+Publicação confirmada no GitHub (`a43e0ba`, depois `7b11659`), commits de autoria do Claude. Workflow `no-vm-validation.yml`, execução 39363684386 em `a43e0ba`: jobs `linux-source` e `cups-queue` com sucesso. Artefato 12238690916, ZIP SHA-256 `8da34209d6dc3231fdc93a1606276f2f08fd9d36ff5b3db95404131dbe2b075f`, examinado.
+
+Resultados do artefato:
+- Suíte própria **571/571**, sem falhas, erros ou skips (Debian 13, Python 3.13.5, Poppler 25.03, OpenSSL 3.5.7).
+- Aceitação **46/46** na revisão limpa `a43e0ba`; o harness tem o mesmo conteúdo de `841557d`.
+- Campanha preservada 17/17, AT-SPI entre processos e portal nativo aprovados.
+
+Evidências em `testes/resultados/aceitacao/2026-10-20/execucao-ci-debian13.json` e `ci-debian13-review.json`. A especificação continua apontando para a execução registrada de `841557d`; a do CI é confirmação independente em outro ambiente.
+
+Novo pedido do usuário: todo aviso também vai para `docs/AVISOS-E-STATUS.md` (GitHub) e para `AVISOS-LOCAL.md` na pasta local (ignorado pelo Git). Regra registrada no AGENTS.md.
+
+Limitações: nenhum Flatpak novo, VM intocada, nuvem adiada, critérios e pesos inalterados.
+
+Próximo passo: entrega 0.1.17 com a correção RFC 3161, ou o primeiro item sem VM da fila em `docs/AVISOS-E-STATUS.md`.

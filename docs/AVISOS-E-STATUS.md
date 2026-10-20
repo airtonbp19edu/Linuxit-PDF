@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 00:22 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 00:25 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -16,11 +16,12 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
 - Execução registrada: **46 de 50 casos aprovados** na revisão `841557d`. Suíte própria completa **571/571** no Ubuntu 24.04.
-- Publicado no GitHub: `main` em `a43e0ba`, commits de autoria do Claude.
+- Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
+- Publicado no GitHub, com commits de autoria do Claude.
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- CI de validação no Debian 13, execução [39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386). A fila de impressão isolada já passou; a suíte completa e os casos de aceitação estão rodando.
+- Nada rodando agora. Próximo trabalho sugerido: o primeiro item de "Falta" sem VM ou a entrega 0.1.17.
 
 ### Falta
 
@@ -63,3 +64,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 00:15** — Envio ao GitHub recusado: o app do Claude não estava instalado na conta. Opções: instalar em https://github.com/apps/claude/installations/select_target ou publicar pelo PC com `analysis-local\publicar-2026-10-20\publicar.cmd`.
 - **2026/10/20 às 00:20** — Publicado: `main` em `a43e0ba`. Os 3 commits foram refeitos com autoria do Claude, para aparecerem como verificados, e os 46 casos de aceitação rodaram de novo na revisão `841557d`, todos aprovados. CI no Debian 13 iniciado. O `publicar.cmd` do PC deixou de ser necessário; basta `git pull`.
 - **2026/10/20 às 00:22** — Regra registrada: avisos vão para este arquivo no GitHub e para `AVISOS-LOCAL.md` na pasta local.
+- **2026/10/20 às 00:25** — CI no Debian 13 aprovado: suíte 571/571 e aceitação 46/46 na revisão `a43e0ba`, além da campanha preservada, acessibilidade e portal. Nada em andamento agora.
