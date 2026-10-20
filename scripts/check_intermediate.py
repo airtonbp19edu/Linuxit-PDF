@@ -161,7 +161,7 @@ def main(argv=None):
         patterns = PORTABLE_PATTERNS if args.profile == 'portable' else ('test*.py',) if linux_ready else ()
         for index, pattern in enumerate(patterns):
             result_file = work / ('tests-' + str(index) + '.json')
-            proc = run('tests-' + str(index), [sys.executable, '-X', 'utf8', str(ROOT / 'scripts/run_tests.py'),
+            proc = run('tests-' + str(index), [sys.executable, '-X', 'utf8', '-X', 'faulthandler', str(ROOT / 'scripts/run_tests.py'),
                        '--app', str(candidate / 'app'), '--pattern', pattern,
                        '--temp-dir', str(temp), '--output', str(result_file)], 600)
             result = json.loads(result_file.read_text()) if result_file.exists() else {}
