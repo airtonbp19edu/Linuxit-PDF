@@ -3261,3 +3261,8 @@ Pedido do usuário às 10:16: fazer as duas próximas da fila (E26 e E06) e para
 **CI da E26**: a execução 39430260690 (revisão `d07a204`) falhou nas duas tentativas com SIGSEGV logo após `Gtk-CRITICAL _gtk_css_rgba_value_get_rgba` em `test_comment_threads...test_reply_and_bookmark_hits_select_the_actual_panel_row`, sem pilha Python. Os pacotes Debian eram iguais aos da E25 aprovada, e o código da E26 não roda antes desse teste; no Ubuntu o mesmo arquivo de teste passou 25/25. O commit `95a46ba` liga `-X faulthandler` na suíte do `check_intermediate.py`; a execução 39431578427 nesse commit passou (suíte 585/585, aceitação 53/53; `ci-debian13-e26-review.json`). A queda foi registrada como decisão D03, aguardando o usuário.
 
 Parado. Próximo: E07 e a resposta da D03, ambas aguardando confirmação do usuário. CI da E06 a disparar após a publicação.
+
+
+## 2026/10/20 às 10:49 (America/Sao_Paulo, UTC-03:00) — CI confirma a E06
+
+CI 39432901662 (Debian 13) na revisão `9abc923`: suíte 595/595 e aceitação 55/55 (`ci-debian13-e06-review.json`), sem a queda do GTK desta vez. Nenhuma etapa nova iniciada; E07 e D03 aguardam o usuário.

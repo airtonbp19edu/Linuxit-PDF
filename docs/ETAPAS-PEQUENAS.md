@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:43:00-03:00. Pendente: 17, Concluída: 8, Bloqueada: 1.
+Atualizado em 2026-10-20T10:49:00-03:00. Pendente: 17, Concluída: 8, Bloqueada: 1.
 
 **Regras**
 
@@ -135,9 +135,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](
 
 **Situação:** Concluída.
 
-Novo módulo app/pdf_xfa.py: detecta XFA (fluxo único ou lista de pacotes, híbrido ou só XFA, dinâmico) e lista os valores do pacote datasets por caminho SOM, como form1[0].nome[0]. Somente leitura: o modelo e os scripts XFA não são interpretados nem executados; DOCTYPE e entidades são recusados; limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Menu "Campos de formulário XFA…" abre um diálogo de leitura. Gravação de PDFs XFA continua recusada (E07). 10 testes portáveis novos; casos de aceitação S12-15-8 (worker) e S12-15-9 (diálogo GTK); suíte local 595/595; aceitação 55/55 na revisão 06daa9d.
+Novo módulo app/pdf_xfa.py: detecta XFA (fluxo único ou lista de pacotes, híbrido ou só XFA, dinâmico) e lista os valores do pacote datasets por caminho SOM, como form1[0].nome[0]. Somente leitura: o modelo e os scripts XFA não são interpretados nem executados; DOCTYPE e entidades são recusados; limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Menu "Campos de formulário XFA…" abre um diálogo de leitura. Gravação de PDFs XFA continua recusada (E07). 10 testes portáveis novos; casos de aceitação S12-15-8 (worker) e S12-15-9 (diálogo GTK); suíte local 595/595; aceitação 55/55 na revisão 06daa9d. CI Debian 13 (execução 39432901662, revisão 9abc923): suíte 595/595 e aceitação 55/55.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [app/pdf_xfa.py](../app/pdf_xfa.py). Commit `06daa9d`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [app/pdf_xfa.py](../app/pdf_xfa.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e06-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e06-review.json). Commit `06daa9d`.
 
 ### E07 — XFA híbrido: preencher mantendo datasets coerente
 
