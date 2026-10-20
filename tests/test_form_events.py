@@ -6,7 +6,7 @@ from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader,PdfWriter
 from pypdf.generic import ArrayObject,DictionaryObject,NameObject,NumberObject,TextStringObject
-from pdf_form_events import inspect_form_events,calculate_form_values,parse_calculation,parse_validation,parse_number_format,format_number,parse_date_format,parse_date,format_date
+from pdf_form_events import inspect_form_events,calculate_form_values,parse_calculation,parse_validation,parse_number_format,format_number,parse_date_format,parse_date,format_date,parse_special,parse_mask,special_value,format_special,mask_value
 from decimal import Decimal
 from pdf_changes import save_edited_copy,inspect_editable_document
 
@@ -165,6 +165,49 @@ class DateFormatTests(unittest.TestCase):
         bad=self.path.with_name('bad.pdf')
         with self.assertRaisesRegex(ValueError,'inexistente'):
             save_edited_copy(self.path,bad,source_sha256=identity,operations=[dict(kind='fill-form-events',values={'a':'3','b':'31/02/2026'})])
+        self.assertFalse(bad.exists());self.assertEqual(self.path.read_bytes(),before)
+
+
+class SpecialMaskTests(unittest.TestCase):
+    """AFSpecial_Format/Keystroke 0–3 and AFSpecial_KeystrokeEx free masks by closed grammar."""
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.path=Path(self.temp.name)/'form.pdf'
+
+    def test_fixed_styles_keep_digits_and_display_masks(self):
+        expected={0:('12345','12345'),1:('12345-6789','12345-6789'),2:('(555) 123-4567','(555) 123-4567'),3:('123 45 6789','123-45-6789')}
+        for style,(typed,shown) in expected.items():
+            rule=parse_special(f'AFSpecial_Format({style});','AFSpecial_Format');digits=special_value(typed,rule)
+            with self.subTest(style=style):self.assertTrue(digits.isdigit());self.assertEqual(format_special(digits,rule),shown)
+        self.assertEqual(format_special('1234567',parse_special('AFSpecial_Keystroke(2);','AFSpecial_Keystroke')),'123-4567')
+
+    def test_free_masks_accept_masked_or_bare_input_and_refuse_wrong_classes(self):
+        cep=parse_mask('AFSpecial_KeystrokeEx("99999-999");');plate=parse_mask("AFSpecial_KeystrokeEx('AAA-9O99');")
+        self.assertEqual([mask_value(t,cep) for t in ('01310100','01310-100',' 01310 100 ')],['01310-100']*3)
+        self.assertEqual(mask_value('abc1d23',plate),'abc-1d23')
+        for text,rule in (('0131010',cep),('0131010A',cep),('ab1-1d23',plate),('013101000',cep)):
+            with self.subTest(text=text),self.assertRaises(ValueError):mask_value(text,rule)
+
+    def test_unknown_styles_masks_without_positions_and_extra_code_are_refused(self):
+        for script in ('AFSpecial_Format(4);','AFSpecial_Format(1); app.alert(1);','AFSpecial_Format("1");'):
+            with self.subTest(script=script),self.assertRaises(ValueError):parse_special(script,'AFSpecial_Format')
+        for script in ('AFSpecial_KeystrokeEx("--");','AFSpecial_KeystrokeEx("99"+x);','AFSpecial_KeystrokeEx("9"); evil();'):
+            with self.subTest(script=script),self.assertRaises(ValueError):parse_mask(script)
+
+    def test_masked_copy_roundtrip_and_refusal_without_output(self):
+        writer,raws=form_pdf(self.path)
+        def action(script):return DictionaryObject({NameObject('/S'):NameObject('/JavaScript'),NameObject('/JS'):TextStringObject(script)})
+        raws['b'][NameObject('/AA')]=DictionaryObject({NameObject('/K'):action('AFSpecial_KeystrokeEx("99999-999");'),
+                                                       NameObject('/F'):action('AFSpecial_KeystrokeEx("99999-999");')})
+        raws['total']['/AA'][NameObject('/C')]=action('AFSimple_Calculate("SUM", ["a"]);')
+        writer.write(self.path);before=self.path.read_bytes();identity=hashlib.sha256(before).hexdigest()
+        out=self.path.with_name('copy.pdf')
+        save_edited_copy(self.path,out,source_sha256=identity,operations=[dict(kind='fill-form-events',values={'a':'1','b':'01310100'})])
+        reader=PdfReader(out);self.assertEqual(str(reader.get_fields()['b']['/V']),'01310-100')
+        self.assertIn(b'01310-100',reader.pages[0]['/Annots'][1].get_object()['/AP']['/N'].get_object().get_data())
+        bad=self.path.with_name('bad.pdf')
+        with self.assertRaisesRegex(ValueError,'máscara'):
+            save_edited_copy(self.path,bad,source_sha256=identity,operations=[dict(kind='fill-form-events',values={'a':'1','b':'0131010'})])
         self.assertFalse(bad.exists());self.assertEqual(self.path.read_bytes(),before)
 
 

@@ -2441,7 +2441,7 @@
       "name": "AcroForm/XFA/eventos",
       "matrix_implementation": "0.1.16: AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate com gramática limitada, dependências e validação antes da cópia. Suíte própria564/564 por ambiente. XFA e JavaScript geral ainda abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16: AFNumber_Format e AFNumber_Keystroke (etapa E03) com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. AFDate_FormatEx e AFDate_KeystrokeEx (etapa E04) com dia, mês e ano numéricos e separadores / - . ou espaço; datas inexistentes são recusadas, o valor fica como digitado e a aparência mostra a data formatada. XFA, JavaScript geral, negativos em vermelho, datas com nomes de mês ou horas, máscaras especiais e eventos arbitrários continuam abertos.",
+      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16: AFNumber_Format e AFNumber_Keystroke (etapa E03) com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. AFDate_FormatEx e AFDate_KeystrokeEx (etapa E04) com dia, mês e ano numéricos e separadores / - . ou espaço; datas inexistentes são recusadas, o valor fica como digitado e a aparência mostra a data formatada. AFSpecial_Format/AFSpecial_Keystroke 0–3 (etapa E05) guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999) aceita o texto com ou sem os literais e guarda o texto mascarado. XFA, JavaScript geral, negativos em vermelho, datas com nomes de mês ou horas e eventos arbitrários continuam abertos.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2785,6 +2785,28 @@
             "executed_at_local": "2026-10-20T00:53:30-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
+        },
+        {
+          "id": "S12-15-6",
+          "kind": "nominal",
+          "given": "AcroForm sintético com cep (AFSpecial_KeystrokeEx \"99999-999\") e telefone (AFSpecial_Keystroke/Format 2).",
+          "when": "Preencher cep 01310100 e telefone 5551234567 com eventos e salvar cópia nova.",
+          "expected_linuxit": "cep guarda 01310-100; telefone guarda só os dígitos e aparece como (555) 123-4567; nenhum JavaScript é executado; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-15-7",
+          "kind": "exception",
+          "given": "Mesmo formulário de máscaras.",
+          "when": "Preencher cep com letra ou telefone com 8 dígitos e tentar salvar.",
+          "expected_linuxit": "Recusar cada caso sem criar saída; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",

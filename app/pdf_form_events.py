@@ -120,12 +120,60 @@ def format_date(value, rule):
     return ''.join(text.get(part,part) for part in rule['parts'])
 
 
+# AFSpecial styles 0–3: allowed digit counts and masks ('9' is a digit). Own contract.
+SPECIAL_MASKS = {0: {5: '99999'}, 1: {9: '99999-9999'}, 2: {10: '(999) 999-9999', 7: '999-9999'}, 3: {9: '999-99-9999'}}
+MASK_CLASSES = {'9': str.isdigit, 'A': str.isalpha, 'O': str.isalnum, 'X': lambda c: c.isprintable()}
+
+
+def parse_special(script, helper):
+    match=re.fullmatch(helper+r'\(\s*([0-3])\s*\)\s*;?',script)
+    require(match is not None,helper+' fora do subconjunto suportado.')
+    return dict(kind='special',style=int(match[1]))
+
+
+def parse_mask(script):
+    match=re.fullmatch(r'AFSpecial_KeystrokeEx\(\s*(?:"([^"\\\n]{1,64})"|\'([^\'\\\n]{1,64})\')\s*\)\s*;?',script)
+    require(match is not None,'AFSpecial_KeystrokeEx fora do subconjunto suportado.')
+    mask=match[1] if match[1] is not None else match[2]
+    require(any(c in MASK_CLASSES for c in mask),'Máscara sem posições variáveis.')
+    return dict(kind='mask',mask=mask)
+
+
+def special_value(text, rule):
+    """Digits only for styles 0–3; spaces, hyphens, dots and parentheses are ignored."""
+    digits=re.sub(r'[\s().-]','',text)
+    require(digits.isdigit() and len(digits) in SPECIAL_MASKS[rule['style']],'Valor não corresponde ao formato especial do campo.')
+    return digits
+
+
+def format_special(digits, rule):
+    mask=SPECIAL_MASKS[rule['style']][len(digits)];characters=iter(digits)
+    return ''.join(next(characters) if c=='9' else c for c in mask)
+
+
+def mask_value(text, rule):
+    """Accept the masked text or only its variable characters; return the masked text."""
+    mask=rule['mask'];literals={c for c in mask if c not in MASK_CLASSES}
+    raw=[c for c in text if c not in literals and not c.isspace()]
+    variable=[c for c in mask if c in MASK_CLASSES]
+    require(len(raw)==len(variable) and all(MASK_CLASSES[m](c) for m,c in zip(variable,raw)),
+            'Valor não corresponde à máscara '+mask+'.')
+    characters=iter(raw)
+    return ''.join(next(characters) if c in MASK_CLASSES else c for c in mask)
+
+
 def _format_rule(script):
-    return parse_date_format(script) if script.startswith('AFDate_') else parse_number_format(script)
+    if script.startswith('AFDate_'):return parse_date_format(script)
+    if script.startswith('AFSpecial_KeystrokeEx'):return parse_mask(script)
+    if script.startswith('AFSpecial_'):return parse_special(script,'AFSpecial_Format')
+    return parse_number_format(script)
 
 
 def _keystroke_rule(script):
-    return parse_date_keystroke(script) if script.startswith('AFDate_') else parse_number_keystroke(script)
+    if script.startswith('AFDate_'):return parse_date_keystroke(script)
+    if script.startswith('AFSpecial_KeystrokeEx'):return parse_mask(script)
+    if script.startswith('AFSpecial_'):return parse_special(script,'AFSpecial_Keystroke')
+    return parse_number_keystroke(script)
 
 
 def format_number(number, rule):
@@ -201,8 +249,12 @@ def calculate_form_values(document,values):
     numbers={name:rule for name,rule in keystrokes.items() if rule['kind']=='number'}
     result={name:_input_number(text,numbers.get(name)) for name,text in values.items()}
     for name in keystrokes.keys()&result.keys():
-        if keystrokes[name]['kind']=='number':_number(result[name])
-        elif result[name].strip():parse_date(result[name],keystrokes[name])
+        rule=keystrokes[name]
+        if rule['kind']=='number':_number(result[name])
+        elif not result[name].strip():continue
+        elif rule['kind']=='date':parse_date(result[name],rule)
+        elif rule['kind']=='special':result[name]=special_value(result[name],rule)
+        else:result[name]=mask_value(result[name],rule)
     visiting=set();completed=set()
     def value(name):
         require(name in fields and terminal(fields[name]),'Campo dependente do cálculo não encontrado.')
@@ -241,6 +293,8 @@ def format_form_values(document,values):
         rule=formats.get(name)
         if rule is None or not value.strip():continue
         if rule['kind']=='number':display[name]=format_number(_number(value),rule)
+        elif rule['kind']=='special':display[name]=format_special(special_value(value,rule),rule)
+        elif rule['kind']=='mask':display[name]=mask_value(value,rule)
         else:
             source=keystrokes.get(name) if keystrokes.get(name,{}).get('kind')=='date' else rule
             display[name]=format_date(parse_date(value,source),rule)

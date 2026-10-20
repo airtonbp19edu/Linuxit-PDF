@@ -439,6 +439,35 @@ def impossible_date(ctx):
     return dict(refused=True, output_created=False)
 
 
+@case('S12-15-6', 'worker copy-edit (fill-form-events)')
+def masked_fields(ctx):
+    from pypdf import PdfReader
+    source = ctx.fixture(OWN + 'formulario-mascaras.pdf');before = sha256(source);output = ctx.work / 'mascaras.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'fill-form-events', 'values': {'cep': '01310100', 'telefone': '5551234567'}}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] == 0, run['stderr'])
+    reader = PdfReader(str(output));fields = reader.get_fields()
+    values = {name: str(fields[name]['/V']) for name in ('cep', 'telefone')}
+    check(values == {'cep': '01310-100', 'telefone': '5551234567'}, f'valores: {values}')
+    # Visible page text: parentheses are escaped inside appearance string literals.
+    shown = subprocess.run(['pdftotext', '-layout', str(output), '-'], capture_output=True, text=True).stdout
+    check('01310-100' in shown and '(555) 123-4567' in shown, f'aparências sem máscara: {shown.strip()!r}')
+    check(sha256(source) == before, 'original alterado')
+    return dict(values=values, appearance={'cep': '01310-100', 'telefone': '(555) 123-4567'}, javascript_executed=False)
+
+
+@case('S12-15-7', 'worker copy-edit (fill-form-events)')
+def masked_refused(ctx):
+    source = ctx.fixture(OWN + 'formulario-mascaras.pdf');before = sha256(source);outcomes = {}
+    for label, values in (('cep_com_letra', {'cep': '0131010A'}), ('telefone_curto', {'telefone': '55512345'})):
+        output = ctx.work / f'{label}.pdf'
+        request = {'source_sha256': before, 'operations': [{'kind': 'fill-form-events', 'values': values}]}
+        run = ctx.worker('copy-edit', source, output, request=request)
+        outcomes[label] = run['code'] != 0 and not output.exists()
+    check(all(outcomes.values()) and sha256(source) == before, f'recusas: {outcomes}')
+    return outcomes
+
+
 # 16 — attachments
 
 @case('S12-16-1', 'worker attachments/extract-attachment')

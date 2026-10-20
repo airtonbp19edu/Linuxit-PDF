@@ -33,6 +33,12 @@
       "description": "AcroForm: campo vencimento com AFDate_KeystrokeEx e AFDate_FormatEx(\"dd/mm/yyyy\")."
     },
     {
+      "file": "formulario-mascaras.pdf",
+      "bytes": 1299,
+      "sha256": "0294fe62502f5b9dedae943bc85beb5a33af63629d3dee3b0b071ed444f63074",
+      "description": "AcroForm: cep com máscara livre 99999-999 e telefone com AFSpecial_Format(2)."
+    },
+    {
       "file": "camadas.pdf",
       "bytes": 970,
       "sha256": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5",

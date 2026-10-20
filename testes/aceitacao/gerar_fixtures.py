@@ -114,6 +114,26 @@ def date_form():
     return _bytes(writer)
 
 
+def mask_form():
+    writer = PdfWriter();font = _font(writer)
+    page = writer.add_blank_page(300, 150)
+    action = lambda script: DictionaryObject({NameObject('/S'): NameObject('/JavaScript'), NameObject('/JS'): TextStringObject(script)})
+    fields = []
+    for name, y, keystroke, display in (('cep', 90, 'AFSpecial_KeystrokeEx("99999-999");', 'AFSpecial_KeystrokeEx("99999-999");'),
+                                        ('telefone', 40, 'AFSpecial_Keystroke(2);', 'AFSpecial_Format(2);')):
+        widget = DictionaryObject({NameObject('/Type'): NameObject('/Annot'), NameObject('/Subtype'): NameObject('/Widget'),
+            NameObject('/FT'): NameObject('/Tx'), NameObject('/T'): TextStringObject(name), NameObject('/V'): TextStringObject(''),
+            NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+            NameObject('/Rect'): ArrayObject([NumberObject(v) for v in (20, y, 280, y + 20)]),
+            NameObject('/AA'): DictionaryObject({NameObject('/K'): action(keystroke), NameObject('/F'): action(display)})})
+        reference = writer._add_object(widget);fields.append(reference)
+        page.setdefault(NameObject('/Annots'), ArrayObject()).append(reference)
+    writer.root_object[NameObject('/AcroForm')] = writer._add_object(DictionaryObject({
+        NameObject('/Fields'): ArrayObject(fields), NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+        NameObject('/DR'): DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/Helv'): font})})}))
+    return _bytes(writer)
+
+
 def layers():
     writer = PdfWriter();font = _font(writer)
     groups = [writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/OCG'),
@@ -140,6 +160,7 @@ FIXTURES = {
     'formulario.pdf': (form, 'AcroForm Tx: nome editável, fixo ReadOnly e curto com MaxLen 5; sem XFA ou assinatura.'),
     'formulario-numerico.pdf': (numeric_form, 'AcroForm: preco e quantidade com AFNumber_Keystroke (vírgula decimal); total calculado com AFNumber_Format em reais.'),
     'formulario-data.pdf': (date_form, 'AcroForm: campo vencimento com AFDate_KeystrokeEx e AFDate_FormatEx("dd/mm/yyyy").'),
+    'formulario-mascaras.pdf': (mask_form, 'AcroForm: cep com máscara livre 99999-999 e telefone com AFSpecial_Format(2).'),
     'camadas.pdf': (layers, 'Dois OCGs nomeados: Base visível e Notas desligada na configuração padrão.'),
     'anexo-nome-perigoso.pdf': (dangerous_attachment, 'Um anexo de catálogo chamado ../fora.txt.'),
 }
