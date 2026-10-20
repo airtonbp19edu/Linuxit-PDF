@@ -468,6 +468,23 @@ def masked_refused(ctx):
     return outcomes
 
 
+@case('S12-15-8', 'worker panels (XFA datasets) + copy-edit')
+def xfa_read_only(ctx):
+    source = ctx.fixture(OWN + 'formulario-xfa.pdf');before = sha256(source)
+    run = ctx.worker('panels', source)
+    check(run['code'] == 0 and isinstance(run['result'], dict), run['stderr'])
+    xfa = run['result']['xfa']
+    listed = [(f['path'], f['value']) for f in xfa['fields']]
+    expected = [('form1[0].nome[0]', 'Ana Souza'), ('form1[0].itens[0].item[0]', 'Caneta'),
+                ('form1[0].itens[0].item[1]', 'Caderno'), ('form1[0].obs[0]', '')]
+    check(listed == expected and xfa['hybrid'] and xfa['error'] is None, f'campos XFA: {listed}')
+    output = ctx.work / 'nao-gravar.pdf'
+    edit = ctx.worker('copy-edit', source, output, request=_form_request(source, {'form1[0].nome[0]': 'Outro'}))
+    check(edit['code'] != 0 and 'XFA' in edit['stderr'] and not output.exists(), 'gravação XFA aceita')
+    check(sha256(source) == before, 'original alterado')
+    return dict(fields=dict(listed), hybrid=True, write_refused=True, scripts_executed=False, original_preserved=True)
+
+
 # 16 — attachments
 
 @case('S12-16-1', 'worker attachments/extract-attachment')

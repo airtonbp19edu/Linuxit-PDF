@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T09:59:47-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T10:35:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (9 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (10 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -30,7 +30,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Livreto/N-up/mosaico|3|3|0|0|
 |Criar/mover/gravar marcadores|4|4|0|0|
 |Anotações/undo/gravação|13|13|0|0|
-|AcroForm/XFA/eventos|9|8|1|0|
+|AcroForm/XFA/eventos|9|9|0|0|
 |Anexos/portfólios|4|4|0|0|
 |Assinaturas/certificados|5|4|1|0|
 |Senhas/permissões/RMS|5|4|1|0|
@@ -41,7 +41,7 @@ Zero na coluna de pendências significa somente que os recortes listados têm c�
 |Nuvem/colaboração|3|0|0|3|
 |Criação/conversão|5|5|0|0|
 |Integrações de sistema/atualização|5|1|4|0|
-|Total|111|97|11|3|
+|Total|111|98|10|3|
 
 ## Abrir PDF e renderizar páginas
 
@@ -53,7 +53,7 @@ Abertura/erros/cópia em recortes; senha correta em abertura independenteD15 abr
 |---|---|---|
 |`open-render/inspect` — Inspecionar páginas, caixas e metadados|Código em subconjunto ([fonte](../app/rendering.py#L67))|PDF local legível => páginas/tamanhos/metadados; erro de parser não produz documento válido fictício.|
 |`open-render/render` — Renderizar página e reutilizar cache|Código em subconjunto ([fonte](../app/rendering.py#L126))|PDF, página e largura => imagem válida associada à identidade do documento; cache não mistura documentos.|
-|`open-render/obsolete` — Descartar renderização obsoleta|Código em subconjunto ([fonte](../app/main.py#L1071))|Troca/fechamento durante render => callback antigo não substitui documento atual.|
+|`open-render/obsolete` — Descartar renderização obsoleta|Código em subconjunto ([fonte](../app/main.py#L1072))|Troca/fechamento durante render => callback antigo não substitui documento atual.|
 |`open-render/copy` — Salvar cópia local completa e exclusiva|Código em subconjunto ([fonte](../app/local_files.py#L106))|Origem identificada e destino novo => cópia completa sem sobrescrita; não afirmar sincronização remota.|
 |`open-render/password-open` — Abrir PDF cifrado integrado ao leitor|Código em subconjunto ([fonte](../app/document_session.py#L35))|Credential via stdin, private reading representation and first-render commit; reject/cancel preserves prior document. Original unchanged; printing the representation remains refused.|
 |`open-render/recovery` — Recuperar documentos danificados|Código em subconjunto ([fonte](../app/document_session.py#L35))|Explicit consent permits pypdf best-effort recovery; broken xref fixture opens, irrecoverable input fails without replacing prior document. No universal repair guarantee.|
@@ -66,9 +66,9 @@ UI03/04 em geometria.pdf: sem documento controles pálidos; Next1→2→3, Last8
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`navigation/goto` — Ir para página válida|Código em subconjunto ([fonte](../app/main.py#L1201))|Documento e índice => página correta; limites/sem documento não acessam índice inválido.|
-|`navigation/zoom` — Aplicar zoom e ajuste|Código em subconjunto ([fonte](../app/main.py#L1253))|Zoom/ajuste e viewport => página posicionada no recorte próprio; limites Foxit ainda requerem UI04.|
-|`navigation/view-rotation` — Rotacionar visualização|Código em subconjunto ([fonte](../app/main.py#L1261))|Rotação visual => tela e coordenadas coerentes sem alterar arquivo fonte.|
+|`navigation/goto` — Ir para página válida|Código em subconjunto ([fonte](../app/main.py#L1202))|Documento e índice => página correta; limites/sem documento não acessam índice inválido.|
+|`navigation/zoom` — Aplicar zoom e ajuste|Código em subconjunto ([fonte](../app/main.py#L1254))|Zoom/ajuste e viewport => página posicionada no recorte próprio; limites Foxit ainda requerem UI04.|
+|`navigation/view-rotation` — Rotacionar visualização|Código em subconjunto ([fonte](../app/main.py#L1262))|Rotação visual => tela e coordenadas coerentes sem alterar arquivo fonte.|
 |`navigation/saved-rotation` — Persistir rotação em cópia|Código em subconjunto ([fonte](../app/pdf_changes.py#L291))|Página e ângulo aceito => /Rotate persistido na cópia, fonte preservada.|
 
 ## Apresentação ajustar/preencher
@@ -95,8 +95,8 @@ D12 no corpus5000: Stop ativo encerra e preserva232 resultados; troca para geome
 |`search-text/whole` — Aplicar palavra inteira|Código em subconjunto ([fonte](../app/search_matching.py#L60))|Consulta e texto => respeitar fronteiras de palavra do contrato próprio.|
 |`search-text/case` — Distinguir maiúsculas/minúsculas|Código em subconjunto ([fonte](../app/search_matching.py#L6))|Consulta e opção de caixa => resultados conforme configuração, inclusive expansão casefold.|
 |`search-text/normalization` — Normalizar acentos e hifenização|Código em subconjunto ([fonte](../app/search_engine.py#L33))|Texto/colunas => normalização própria sem unir colunas indevidamente; algoritmo Foxit completo aberto.|
-|`search-text/highlight` — Destacar e navegar por ocorrências|Código em subconjunto ([fonte](../app/main.py#L1919))|Resultado e destaque global => pixels/navegação atualizados sem nova busca indevida.|
-|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1977))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
+|`search-text/highlight` — Destacar e navegar por ocorrências|Código em subconjunto ([fonte](../app/main.py#L1924))|Resultado e destaque global => pixels/navegação atualizados sem nova busca indevida.|
+|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1982))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
 
 ## Busca em marcadores
 
@@ -107,7 +107,7 @@ D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro na
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`search-bookmarks/titles` — Pesquisar títulos de marcadores|Código em subconjunto ([fonte](../app/search_engine.py#L128))|Consulta só marcadores => resultados independentes com destino local quando conhecido.|
-|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1919))|Hit com página ou sem destino => navegar apenas quando conhecido; não inventar página0. Ativação Foxit ainda inconclusiva.|
+|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1924))|Hit com página ou sem destino => navegar apenas quando conhecido; não inventar página0. Ativação Foxit ainda inconclusiva.|
 
 ## Busca em comentários
 
@@ -165,8 +165,8 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`selection/text` — Selecionar e copiar palavras por área|Código em subconjunto ([fonte](../app/main.py#L1789))|Região da visualização => palavras/cópia com transformação coerente no recorte próprio.|
-|`selection/snapshot` — Copiar snapshot de região|Código em subconjunto ([fonte](../app/main.py#L1748))|Região da página => imagem do recorte, sem declarar ordem semântica de texto; teste dedicado não mapeado nesta revisão.|
+|`selection/text` — Selecionar e copiar palavras por área|Código em subconjunto ([fonte](../app/main.py#L1794))|Região da visualização => palavras/cópia com transformação coerente no recorte próprio.|
+|`selection/snapshot` — Copiar snapshot de região|Código em subconjunto ([fonte](../app/main.py#L1753))|Região da página => imagem do recorte, sem declarar ordem semântica de texto; teste dedicado não mapeado nesta revisão.|
 |`selection/bidi` — Garantir ordem lógica e texto bidirecional|Código em subconjunto ([fonte](../app/character_selection.py#L85))|Character/caret subset uses actual Poppler offsets and Unicode text; native Pango boundaries added after initial498/498 Linux run. No universal recovery of malformed PDF reading order or full original parity.|
 
 ## Prévia/plano de impressão
@@ -245,7 +245,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |`forms/list-multiple` — Selecionar lista múltipla|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Conjunto de exports => valores e índices canônicos persistidos sem duplicação.|
 |`forms/combo-editable` — Preencher combo com texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Texto fora de Opt em combo editável => gerar valor/aparência, preservar opções e ReadOnly; ainda recusado atualmente.|
 |`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L239))|Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format/AFNumber_Keystroke and AFDate_FormatEx/AFDate_KeystrokeEx (numeric d/m/y), AFSpecial_Format/Keystroke 0-3 and AFSpecial_KeystrokeEx free-mask helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, month-name or time dates, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3 to S12-15-7.|
-|`forms/xfa` — Processar XFA|Pendente/caracterizar|Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.|
+|`forms/xfa` — Processar XFA|Código em subconjunto ([fonte](../app/pdf_xfa.py#L149))|XFA form (single XDP stream or packet array, hybrid or XFA-only, dynamic flag) => detected and the datasets values are listed read-only by SOM path (form1[0].nome[0]) in the panels worker and a GTK dialog; the template and scripts are never interpreted or run; DOCTYPE/entities refused; limits 8 MiB, depth 64, 5000 values, 4096 characters per value. Filling XFA (E07) and rendering dynamic XFA remain unsupported; copy edits of XFA documents are still refused. Acceptance S12-15-8 and S12-15-9.|
 
 ## Anexos/portfólios
 
@@ -297,7 +297,7 @@ No dynamic observation of this family found in the examined preserved reports.
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`accessibility/text` — Expor texto da página por ATK.Text|Código em subconjunto ([fonte](../app/accessible_reader.py#L13))|Página suportada => texto Poppler em Gtk.TextView/ATK.Text com limites; não é garantia de ordem semântica.|
-|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2515))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
+|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2561))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
 |`accessibility/screen-reader` — Validar leitor de tela e ordem real|Pendente/caracterizar|Desktop AT-SPI e leitor de tela real => foco, ordem e feedback conferidos; CI sem barramento não aprova.|
 |`accessibility/voice` — Ler em voz alta|Código em subconjunto ([fonte](../app/speech.py#L9))|Texto e controles de voz => disponibilidade Reader, síntese e interrupção ainda a delimitar; OCR não implementa voz.|
 
@@ -309,7 +309,7 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`measurement/distance` — Medir distância entre pontos|Código em subconjunto ([fonte](../app/main.py#L1850))|Dois pontos da visualização => distância em centímetros com duas casas e vírgula decimal (2,54 cm para 72 pontos PDF, decisão D01); sem página exibida nenhuma medida é publicada. Acceptance S12-20-1/S12-20-2.|
+|`measurement/distance` — Medir distância entre pontos|Código em subconjunto ([fonte](../app/main.py#L1855))|Dois pontos da visualização => distância em centímetros com duas casas e vírgula decimal (2,54 cm para 72 pontos PDF, decisão D01); sem página exibida nenhuma medida é publicada. Acceptance S12-20-1/S12-20-2.|
 |`measurement/calibrate` — Calibrar escala e unidades|Código em subconjunto ([fonte](../app/measurement.py#L47))|Distância conhecida/unidade => calibração e snapping/precisão persistidos conforme contrato futuro.|
 |`measurement/area` — Medir área|Código em subconjunto ([fonte](../app/measurement.py#L63))|Polígono/região => área em unidade calibrada; operação ainda pendente.|
 |`measurement/perimeter` — Medir perímetro|Código em subconjunto ([fonte](../app/measurement.py#L63))|Traçado/polígono => perímetro em unidade calibrada; operação ainda pendente.|
@@ -322,7 +322,7 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`layers-media/list` — Listar nomes de camadas OCG|Código em subconjunto ([fonte](../app/pdf_panels.py#L34))|PDF com OCG => nomes listados; isso não altera visibilidade nem comprova suporte a mídia.|
+|`layers-media/list` — Listar nomes de camadas OCG|Código em subconjunto ([fonte](../app/pdf_panels.py#L35))|PDF com OCG => nomes listados; isso não altera visibilidade nem comprova suporte a mídia.|
 |`layers-media/toggle` — Alternar e persistir visibilidade OCG|Código em subconjunto ([fonte](../app/pdf_layers.py#L39))|Combinação de camadas => render e estado de visibilidade coerentes; implementação/persistência pendentes.|
 |`layers-media/media` — Reproduzir mídia embutida|Código em subconjunto ([fonte](../app/pdf_media.py#L84))|Movie/RichMedia/Sound incorporados extraídos sem ações/URLs; reprodução GStreamer explícita por codec instalado. Eventos de PDF, codecs universais e3D completos abertos.|
 |`layers-media/3d` — Interagir com conteúdo 3D|Pendente/caracterizar|U3D/conteúdo3D => caracterizar disponibilidade Reader/render/estado; presença de plugin não comprova suporte.|

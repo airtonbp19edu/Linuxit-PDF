@@ -134,6 +134,34 @@ def mask_form():
     return _bytes(writer)
 
 
+XFA_TEMPLATE = (b'<template xmlns="http://www.xfa.org/schema/xfa-template/3.3/"><subform name="form1">'
+                b'<field name="nome"/><subform name="itens"><field name="item"/></subform><field name="obs"/>'
+                b'</subform></template>')
+XFA_DATASETS = ('<xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><xfa:data><form1>'
+                '<nome>Ana Souza</nome><itens><item>Caneta</item><item>Caderno</item></itens><obs/>'
+                '</form1></xfa:data></xfa:datasets>').encode('utf-8')
+
+
+def xfa_form():
+    writer = PdfWriter();font = _font(writer)
+    page = writer.add_blank_page(300, 120)
+    widget = DictionaryObject({NameObject('/Type'): NameObject('/Annot'), NameObject('/Subtype'): NameObject('/Widget'),
+        NameObject('/FT'): NameObject('/Tx'), NameObject('/T'): TextStringObject('form1[0].nome[0]'),
+        NameObject('/V'): TextStringObject('Ana Souza'), NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+        NameObject('/Rect'): ArrayObject([NumberObject(v) for v in (20, 50, 280, 70)])})
+    reference = writer._add_object(widget);page[NameObject('/Annots')] = ArrayObject([reference])
+    packets = ArrayObject()
+    for name, data in (('xdp:xdp', b'<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">'), ('template', XFA_TEMPLATE),
+                       ('datasets', XFA_DATASETS), ('</xdp:xdp>', b'</xdp:xdp>')):
+        stream = DecodedStreamObject();stream.set_data(data)
+        packets += [TextStringObject(name), writer._add_object(stream)]
+    writer.root_object[NameObject('/AcroForm')] = writer._add_object(DictionaryObject({
+        NameObject('/Fields'): ArrayObject([reference]), NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+        NameObject('/DR'): DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/Helv'): font})}),
+        NameObject('/XFA'): packets}))
+    return _bytes(writer)
+
+
 def layers():
     writer = PdfWriter();font = _font(writer)
     groups = [writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/OCG'),
@@ -161,6 +189,7 @@ FIXTURES = {
     'formulario-numerico.pdf': (numeric_form, 'AcroForm: preco e quantidade com AFNumber_Keystroke (vírgula decimal); total calculado com AFNumber_Format em reais.'),
     'formulario-data.pdf': (date_form, 'AcroForm: campo vencimento com AFDate_KeystrokeEx e AFDate_FormatEx("dd/mm/yyyy").'),
     'formulario-mascaras.pdf': (mask_form, 'AcroForm: cep com máscara livre 99999-999 e telefone com AFSpecial_Format(2).'),
+    'formulario-xfa.pdf': (xfa_form, 'XFA híbrido: AcroForm form1[0].nome[0] e pacotes template/datasets com nome, dois itens e obs vazio.'),
     'camadas.pdf': (layers, 'Dois OCGs nomeados: Base visível e Notas desligada na configuração padrão.'),
     'anexo-nome-perigoso.pdf': (dangerous_attachment, 'Um anexo de catálogo chamado ../fora.txt.'),
 }

@@ -13,6 +13,7 @@ if str(VENDOR) not in sys.path:
 from pypdf import PdfReader  # type: ignore  # noqa: E402
 from pdf_comments import inspect_comments
 from pdf_layers import inspect_layers
+from pdf_xfa import XFAError, inspect_xfa
 
 
 def _obj(value):
@@ -37,7 +38,7 @@ def inspect_document_panels(path, cancel=None):
         try:
             reader.decrypt('')
         except Exception:
-            return {'bookmarks': [], 'comments': [], 'layers': []}
+            return {'bookmarks': [], 'comments': [], 'layers': [], 'xfa': None}
 
     bookmarks = []
 
@@ -71,4 +72,12 @@ def inspect_document_panels(path, cancel=None):
     except Exception:
         notices.append('Camadas inválidas ou acima do limite; painel parcial.')
 
-    return {'bookmarks': bookmarks, 'comments': comments, 'layers': layers, 'notices': notices}
+    try:
+        xfa = inspect_xfa(reader)
+    except XFAError as exc:
+        xfa = {'packets': [], 'hybrid': False, 'dynamic': False, 'fields': [], 'truncated': False, 'error': str(exc)}
+    except Exception:
+        xfa = {'packets': [], 'hybrid': False, 'dynamic': False, 'fields': [], 'truncated': False,
+               'error': 'Não foi possível ler o formulário XFA.'}
+
+    return {'bookmarks': bookmarks, 'comments': comments, 'layers': layers, 'xfa': xfa, 'notices': notices}

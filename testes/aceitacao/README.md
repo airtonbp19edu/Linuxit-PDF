@@ -1,19 +1,21 @@
 # Aceitação própria S12 executável
 
-Os 50 planos de aceitação de `docs/especificacao-funcional.json` agora têm casos
+Dos 57 planos de aceitação de `docs/especificacao-funcional.json`, 55 têm casos
 executáveis. Cada caso segue o texto dado/ação/esperado da especificação, por uma
 fronteira pública do aplicativo: o worker de linha de comando usado pela
 interface, o módulo que a interface chama ou a própria janela GTK.
 
-- `casos.py`: 36 casos sem tela.
-- `casos_gtk.py`: 10 casos com a janela real (navegação, apresentação, seleção
-  de resultados, área de transferência e régua). Precisam de `DISPLAY`.
+- `casos.py`: 42 casos sem tela.
+- `casos_gtk.py`: 11 casos com a janela real (navegação, apresentação, seleção
+  de resultados, área de transferência, régua e diálogo de campos XFA).
+  Precisam de `DISPLAY`.
+- `casos_portal.py`: 2 casos S12-25 com o portal real do desktop
+  (`xdg-desktop-portal-gtk`), conduzidos por `xdotool`. Precisam de `DISPLAY`.
 - `fixtures/`: PDFs sintéticos próprios gerados por `gerar_fixtures.py`, sem
   material Foxit. `manifest.json` fixa tamanho e SHA-256; o executor recusa
   fixtures divergentes. `gerar_fixtures.py --check` confirma os bytes.
 
-Fora desta execução: S12-23 (nuvem direta, adiada pelo usuário) e S12-25
-(plataforma, proposta ainda sem contrato próprio implementado).
+Fora desta execução: os 2 casos S12-23 (nuvem direta, adiada pelo usuário).
 
 ## Executar
 

@@ -291,6 +291,7 @@ class PDFWindow(Gtk.Window):
                     ('Editar nota da página em cópia…', lambda: self._begin_copy_edit('update-note')),
                     ('Girar página em cópia…', lambda: self._begin_copy_edit('rotate-page')),
                     ('Preencher campo de texto…', lambda: self._begin_copy_edit('fill-text-fields')),
+                    ('Campos de formulário XFA…', self._show_xfa_fields),
                     ('Imprimir…', self._print), ('Trabalhos de impressão…',self._show_print_jobs), ('Propriedades do documento', self._properties),
                     ('Fechar PDF', self._close_document)):
                     item = Gtk.MenuItem(label=text)
@@ -1376,7 +1377,7 @@ class PDFWindow(Gtk.Window):
                                                allow_extract=session.info['permissions']['copy'])
         if self.sidebar_visible and self.sidebar_notebook.get_current_page() == 4:
             self.attachment_controller.ensure_loaded()
-        self._clear_side_panels()
+        self._clear_side_panels(); self.xfa_info = None; self.xfa_state = 'loading'
         self.bookmark_list.add(self._info_row('Carregando marcadores…'))
         self.comment_list.add(self._info_row('Carregando comentários…'))
         self.layer_list.add(self._info_row('Carregando camadas…'))
@@ -1385,10 +1386,14 @@ class PDFWindow(Gtk.Window):
         def ok(data):
             if path == self.filepath:
                 self._populate_side_panels(data)
-        self.runner.submit('panels', lambda: session.call(inspect_document_panels), ok, lambda _e: self._populate_side_panels({}))
+        def failed(_error):
+            if path == self.filepath:
+                self._populate_side_panels({}); self.xfa_state = 'failed'
+        self.runner.submit('panels', lambda: session.call(inspect_document_panels), ok, failed)
 
     def _populate_side_panels(self, data):
         self._clear_side_panels()
+        self.xfa_info = data.get('xfa'); self.xfa_state = 'ready'
         bookmarks = data.get('bookmarks') or []
         if not bookmarks:
             self.bookmark_list.add(self._info_row('Este PDF não possui marcadores.'))
@@ -2331,6 +2336,47 @@ class PDFWindow(Gtk.Window):
             self._error('As permissões deste PDF não autorizam esta operação.')
             return False
         return True
+
+    def _xfa_dialog(self, info, state='ready'):
+        """Read-only list of XFA data values; the template and its scripts are never run."""
+        if not info or state != 'ready':
+            dialog = Gtk.MessageDialog(transient_for=self, modal=True, message_type=Gtk.MessageType.INFO,
+                                       buttons=Gtk.ButtonsType.OK, text='Formulário XFA')
+            dialog.format_secondary_text({'loading': 'O documento ainda está sendo lido. Tente de novo em instantes.',
+                                          'failed': 'Não foi possível ler a estrutura deste PDF.'}.get(
+                                              state, 'Este PDF não contém formulário XFA.'))
+            return dialog
+        dialog = Gtk.Dialog(title='Campos de formulário XFA', transient_for=self, modal=True)
+        dialog.set_destroy_with_parent(True); dialog.add_buttons('Fechar', Gtk.ResponseType.CLOSE)
+        dialog.set_default_size(560, 420)
+        box = dialog.get_content_area(); box.set_spacing(8); box.set_border_width(12)
+        kind = 'híbrido (também tem campos AcroForm)' if info.get('hybrid') else 'somente XFA'
+        lines = [f"Formulário {kind}{', dinâmico' if info.get('dynamic') else ''}. "
+                 f"{len(info.get('fields') or [])} valores no pacote de dados.",
+                 'Somente leitura: o modelo XFA e seus scripts não são executados.']
+        if info.get('truncated'):
+            lines.append('Lista limitada aos primeiros 5000 valores.')
+        if info.get('error'):
+            lines.append(str(info['error']))
+        summary = Gtk.Label(label='\n'.join(lines), xalign=0); summary.set_line_wrap(True); box.add(summary)
+        store = Gtk.ListStore(str, str)
+        for field in info.get('fields') or []:
+            value = str(field.get('value', ''))
+            store.append([str(field.get('path', '')), value + ('…' if field.get('value_truncated') else '')])
+        view = Gtk.TreeView(model=store); view.get_accessible().set_name('Valores do formulário XFA')
+        for column, title in enumerate(('Campo', 'Valor')):
+            renderer = Gtk.CellRendererText(); renderer.set_property('ellipsize', 3)
+            col = Gtk.TreeViewColumn(title, renderer, text=column); col.set_resizable(True); col.set_expand(True)
+            view.append_column(col)
+        scroll = Gtk.ScrolledWindow(); scroll.set_vexpand(True); scroll.add(view); box.pack_start(scroll, True, True, 0)
+        dialog.xfa_store = store; dialog.xfa_summary = summary
+        return dialog
+
+    def _show_xfa_fields(self, *_args):
+        if not self.filepath:
+            return
+        dialog = self._xfa_dialog(getattr(self, 'xfa_info', None), getattr(self, 'xfa_state', 'loading'))
+        dialog.show_all(); dialog.run(); dialog.destroy()
 
     def _properties(self, *_args):
         if not self.filepath: return

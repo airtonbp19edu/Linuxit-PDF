@@ -2441,7 +2441,7 @@
       "name": "AcroForm/XFA/eventos",
       "matrix_implementation": "0.1.16: AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate com gramática limitada, dependências e validação antes da cópia. Suíte própria564/564 por ambiente. XFA e JavaScript geral ainda abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16: AFNumber_Format e AFNumber_Keystroke (etapa E03) com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. AFDate_FormatEx e AFDate_KeystrokeEx (etapa E04) com dia, mês e ano numéricos e separadores / - . ou espaço; datas inexistentes são recusadas, o valor fica como digitado e a aparência mostra a data formatada. AFSpecial_Format/AFSpecial_Keystroke 0–3 (etapa E05) guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999) aceita o texto com ou sem os literais e guarda o texto mascarado. XFA, JavaScript geral, negativos em vermelho, datas com nomes de mês ou horas e eventos arbitrários continuam abertos.",
+      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16: AFNumber_Format e AFNumber_Keystroke (etapa E03) com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. AFDate_FormatEx e AFDate_KeystrokeEx (etapa E04) com dia, mês e ano numéricos e separadores / - . ou espaço; datas inexistentes são recusadas, o valor fica como digitado e a aparência mostra a data formatada. AFSpecial_Format/AFSpecial_Keystroke 0–3 (etapa E05) guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999) aceita o texto com ou sem os literais e guarda o texto mascarado. Leitura XFA (etapa E06): o formulário XFA é detectado (pacote único ou lista de pacotes, híbrido ou só XFA, dinâmico) e os valores do pacote datasets são listados por caminho SOM, como form1[0].nome[0], em diálogo somente leitura; o modelo e os scripts XFA não são interpretados nem executados, DOCTYPE/entidades são recusados e há limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Preenchimento XFA, JavaScript geral, negativos em vermelho, datas com nomes de mês ou horas e eventos arbitrários continuam abertos.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2496,7 +2496,9 @@
         "testes/resultados/0.1.10/validation-review.json",
         "app/pdf_form_events.py",
         "app/pdf_edit_security.py",
-        "testes/resultados/0.1.16/validation-review.json"
+        "testes/resultados/0.1.16/validation-review.json",
+        "app/pdf_xfa.py",
+        "app/pdf_panels.py"
       ],
       "foxit": {
         "evidence_state": "partial_static_only",
@@ -2696,6 +2698,26 @@
         {
           "path": "tests/test_edit_draft_gtk.py",
           "test": "test_saved_form_and_highlight_render_with_poppler"
+        },
+        {
+          "path": "tests/test_pdf_xfa.py",
+          "test": "test_paths_follow_som_indices_and_skip_groups"
+        },
+        {
+          "path": "tests/test_pdf_xfa.py",
+          "test": "test_doctype_entities_malformed_and_depth_are_refused"
+        },
+        {
+          "path": "tests/test_pdf_xfa.py",
+          "test": "test_field_count_value_length_and_size_are_bounded"
+        },
+        {
+          "path": "tests/test_pdf_xfa.py",
+          "test": "test_hybrid_packet_array_is_listed_without_changing_the_file"
+        },
+        {
+          "path": "tests/test_pdf_xfa.py",
+          "test": "test_elements_split_across_packets_use_the_joined_document"
         }
       ],
       "dynamic_case_refs": [],
@@ -2819,6 +2841,28 @@
             "executed_at_local": "2026-10-20T10:24:04-03:00",
             "boundary": "worker copy-edit (fill-form-events)"
           }
+        },
+        {
+          "id": "S12-15-8",
+          "kind": "nominal",
+          "given": "PDF sintético XFA híbrido: campo AcroForm form1[0].nome[0] e pacotes template/datasets com nome, dois itens e obs vazio.",
+          "when": "Ler os painéis do documento e tentar gravar o campo AcroForm em cópia nova.",
+          "expected_linuxit": "Listar form1[0].nome[0]=Ana Souza, form1[0].itens[0].item[0]=Caneta, item[1]=Caderno e obs vazio, marcado como híbrido; recusar a gravação XFA sem criar saída; nenhum script executado; original preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-15-9",
+          "kind": "nominal",
+          "given": "O mesmo PDF XFA e o formulário AcroForm sem XFA, abertos na janela.",
+          "when": "Abrir Campos de formulário XFA… depois de carregados os painéis.",
+          "expected_linuxit": "Diálogo somente leitura com quatro linhas, a primeira form1[0].nome[0] = Ana Souza, resumo híbrido que avisa que scripts não são executados; no PDF sem XFA, aviso de que não há formulário XFA.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
@@ -2827,6 +2871,11 @@
           "text": "Fonte0.1.10: Tx anterior, checkbox com aparências existentes, radio simples, combos sem texto livre e listas simples/múltiplas em cópia nova; rótulos/valores/índices e ReadOnly herdado conferidos. XFA/eventos/combos editáveis e formatos não suportados permanecem pendentes.",
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
+        },
+        {
+          "text": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16: AFNumber_Format e AFNumber_Keystroke (etapa E03) com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. AFDate_FormatEx e AFDate_KeystrokeEx (etapa E04) com dia, mês e ano numéricos e separadores / - . ou espaço; datas inexistentes são recusadas, o valor fica como digitado e a aparência mostra a data formatada. AFSpecial_Format/AFSpecial_Keystroke 0–3 (etapa E05) guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999) aceita o texto com ou sem os literais e guarda o texto mascarado. XFA, JavaScript geral, negativos em vermelho, datas com nomes de mês ou horas e eventos arbitrários continuam abertos.",
+          "superseded_at_local": "2026-10-20T10:35:00-03:00",
+          "reason": "Etapa E06: leitura somente leitura dos valores do pacote datasets de formulários XFA."
         }
       ]
     },

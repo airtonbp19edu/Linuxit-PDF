@@ -265,6 +265,31 @@ def select_empty(ctx):
         return dict(status=w.status_file.get_text(), clipboard_unchanged=True)
 
 
+# 15 — forms
+
+@case('S12-15-9', 'PDFWindow _xfa_dialog')
+def xfa_dialog(ctx):
+    with Window(ctx, ctx.fixture(OWN + 'formulario-xfa.pdf')) as w:
+        check(wait_for(lambda: getattr(w, 'xfa_state', None) == 'ready'), 'painéis não carregaram')
+        dialog = w._xfa_dialog(w.xfa_info, w.xfa_state)
+        try:
+            rows = [tuple(row) for row in dialog.xfa_store]
+            summary = dialog.xfa_summary.get_text()
+        finally:
+            dialog.destroy()
+        check(rows[0] == ('form1[0].nome[0]', 'Ana Souza') and len(rows) == 4, f'linhas {rows}')
+        check('híbrido' in summary and 'não são executados' in summary, f'resumo {summary!r}')
+    with Window(ctx, ctx.fixture(OWN + 'formulario.pdf')) as w:
+        check(wait_for(lambda: getattr(w, 'xfa_state', None) == 'ready'), 'painéis não carregaram')
+        dialog = w._xfa_dialog(w.xfa_info, w.xfa_state)
+        try:
+            plain = dialog.get_property('secondary-text')
+        finally:
+            dialog.destroy()
+        check(plain == 'Este PDF não contém formulário XFA.', f'sem XFA: {plain!r}')
+    return dict(rows=len(rows), first=list(rows[0]), summary=summary.splitlines()[0], without_xfa=plain)
+
+
 # 20 — viewer ruler
 
 @case('S12-20-1', 'PDFWindow _finish_measure')

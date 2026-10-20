@@ -343,6 +343,12 @@
       "responsibility": "Inspeção da configuração OC default e representação privada de visibilidade de leitura."
     },
     {
+      "id": "pdf_xfa",
+      "path": "app/pdf_xfa.py",
+      "boundary": "portable_logic",
+      "responsibility": "Detecção XFA e listagem somente leitura dos valores do pacote datasets, com análise XML limitada e sem executar o modelo ou scripts."
+    },
+    {
       "id": "reading_preferences",
       "path": "app/reading_preferences.py",
       "boundary": "portable_logic",
@@ -949,7 +955,9 @@
         "app/edit_dialogs.py",
         "app/edit_window.py",
         "app/pdf_form_events.py",
-        "app/pdf_edit_security.py"
+        "app/pdf_edit_security.py",
+        "app/pdf_xfa.py",
+        "app/pdf_panels.py"
       ],
       "future_boundary": "Contratos separados AcroForm/XFA, eventos e persistência.",
       "future_boundary_implemented": false

@@ -39,6 +39,12 @@
       "description": "AcroForm: cep com máscara livre 99999-999 e telefone com AFSpecial_Format(2)."
     },
     {
+      "file": "formulario-xfa.pdf",
+      "bytes": 1685,
+      "sha256": "b602cad314790b14dd47a708cd36ea3d11d44dc94930912dde23127cf0d989a1",
+      "description": "XFA híbrido: AcroForm form1[0].nome[0] e pacotes template/datasets com nome, dois itens e obs vazio."
+    },
+    {
       "file": "camadas.pdf",
       "bytes": 970,
       "sha256": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5",

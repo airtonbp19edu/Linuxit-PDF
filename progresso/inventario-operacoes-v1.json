@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 17,
-  "reviewed_at_local": "2026-10-20T09:59:47-03:00",
+  "reviewed_at_local": "2026-10-20T10:35:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -771,9 +771,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.request_render",
-          "line": 1071,
-          "end_line": 1109,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1072,
+          "end_line": 1110,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "8cc1e23767f3df77e754c656eab1a46073f74cbdd2599925ccb2a6ca642651a2"
         }
       ],
@@ -1001,9 +1001,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 864,
-          "end_line": 942,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 865,
+          "end_line": 943,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "4c7f8b6b13aeb7fe870ea6772dfe1fdd2f81ed9198054d08e31e97a253c5c51d"
         }
       ],
@@ -1109,9 +1109,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 864,
-          "end_line": 942,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 865,
+          "end_line": 943,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "4c7f8b6b13aeb7fe870ea6772dfe1fdd2f81ed9198054d08e31e97a253c5c51d"
         }
       ],
@@ -1209,9 +1209,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.goto_page",
-          "line": 1201,
-          "end_line": 1215,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1202,
+          "end_line": 1216,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "1eb90bb3c3e2e3e591c39150b549c6a60a18cabdd3c2f6fe050a69f95862927a"
         }
       ],
@@ -1290,9 +1290,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._fit_page",
-          "line": 1253,
-          "end_line": 1255,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1254,
+          "end_line": 1256,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "b7295c96009956c6e5790da30968d303af7503d64555d82b4efdbe28ce61bf38"
         }
       ],
@@ -1371,9 +1371,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._rotate",
-          "line": 1261,
-          "end_line": 1265,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1262,
+          "end_line": 1266,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "19c108be5fbaecc96d972a65b97a04aac217440ac10ea85d8d1e66d516c6861e"
         }
       ],
@@ -1964,9 +1964,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1919,
-          "end_line": 1937,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1924,
+          "end_line": 1942,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
@@ -2023,9 +2023,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._start_search",
-          "line": 1977,
-          "end_line": 2030,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1982,
+          "end_line": 2035,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "bcd85060e829fb2402bd76dbda1b972c01ec9e4a10badcbd1d56a13da7eea13d"
         }
       ],
@@ -2135,9 +2135,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1919,
-          "end_line": 1937,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1924,
+          "end_line": 1942,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "c746779b750a06f4f91f9bfb49c536c12a3ed60739830535088bbc057ca9e4fa"
         }
       ],
@@ -2764,9 +2764,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_text_selection",
-          "line": 1789,
-          "end_line": 1806,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1794,
+          "end_line": 1811,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "8c62be73a4cbc67e777f66c1571ff478f41d29acff21501cc6bc3dcfafd73f63"
         }
       ],
@@ -2814,9 +2814,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_snapshot",
-          "line": 1748,
-          "end_line": 1758,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1753,
+          "end_line": 1763,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "7f2068aff3666b7c267c5233d78d805eecc858a92e6730003c0e751db2b9a754"
         }
       ],
@@ -4696,13 +4696,13 @@
       "id": "forms/xfa",
       "family_id": "forms",
       "title": "Processar XFA",
-      "implementation_state": "pending_or_target_characterization",
+      "implementation_state": "bounded_source_present",
       "input_context": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
         "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
-      "output_and_acceptance": "Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.",
+      "output_and_acceptance": "XFA form (single XDP stream or packet array, hybrid or XFA-only, dynamic flag) => detected and the datasets values are listed read-only by SOM path (form1[0].nome[0]) in the panels worker and a GTK dialog; the template and scripts are never interpreted or run; DOCTYPE/entities refused; limits 8 MiB, depth 64, 5000 values, 4096 characters per value. Filling XFA (E07) and rendering dynamic XFA remain unsupported; copy edits of XFA documents are still refused. Acceptance S12-15-8 and S12-15-9.",
       "failure_contract_refs": [
         {
           "family_id": "forms",
@@ -4721,7 +4721,16 @@
           "error_index": 3
         }
       ],
-      "source_evidence": [],
+      "source_evidence": [
+        {
+          "path": "app/pdf_xfa.py",
+          "symbol": "inspect_xfa",
+          "line": 149,
+          "end_line": 176,
+          "file_sha256": "d99aa56fe6774a1698cbe4316c2a61ac8b7164a1e3aef58b04536f009f5540d7",
+          "excerpt_sha256": "6ae8d9254814116e3f71f0fbcfd0fc3619152966c696de6310bbc47b8325913d"
+        }
+      ],
       "recorded_related_tests": [],
       "operation_acceptance_new_execution": "not_run",
       "target_availability": "unconfirmed_for_operation",
@@ -4729,7 +4738,13 @@
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "output_and_acceptance_previous": [
+        {
+          "text": "Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.",
+          "superseded_at_local": "2026-10-20T10:35:00-03:00"
+        }
+      ]
     },
     {
       "id": "attachments/list",
@@ -4984,10 +4999,10 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._load_side_panels",
-          "line": 1369,
-          "end_line": 1388,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
-          "excerpt_sha256": "ceb9acb80027515f128b888ac7dccb5be14f45458d45c341f3e6a43f50a48d91"
+          "line": 1370,
+          "end_line": 1392,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
+          "excerpt_sha256": "fe678900bad53fca9b9ea7115818e403ab64042766da36111ca433b15cd27711"
         }
       ],
       "recorded_related_tests": [],
@@ -5367,9 +5382,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._reading_permission",
-          "line": 2328,
-          "end_line": 2333,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 2333,
+          "end_line": 2338,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "58620b6daf9f29705392cc747851b881cc188bc5158d1fb66b3a04fb84451ee4"
         }
       ],
@@ -5480,9 +5495,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._focus_region",
-          "line": 2515,
-          "end_line": 2529,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 2561,
+          "end_line": 2575,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "e431ab8d213fbbc3c0be18393be50ed80d2ee50e2261b67d626a5a17747eacb1"
         }
       ],
@@ -5591,9 +5606,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_measure",
-          "line": 1850,
-          "end_line": 1853,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1855,
+          "end_line": 1858,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "35e0d8e5330427bb4b8285e5bdee9a1e437ee071254cee12b3f42fa6fab12281"
         }
       ],
@@ -5753,10 +5768,10 @@
         {
           "path": "app/pdf_panels.py",
           "symbol": "inspect_document_panels",
-          "line": 34,
-          "end_line": 74,
-          "file_sha256": "11d44d3c9ac19a892485538ed447324e815e916a2d09712d18fb87bcd7e14038",
-          "excerpt_sha256": "ecf5929a24532a7ac577ac9a73c5e8ea756112d7a9338c372ed372f9c992d4a1"
+          "line": 35,
+          "end_line": 83,
+          "file_sha256": "a9ce243a085d84216702d14f051bc499a22fe80d71d936a6e09e70cef0d98397",
+          "excerpt_sha256": "9c57836d93d22251c6d70f3a7368d00bc24a4714d451b31a9a5d20d3313dfff4"
         }
       ],
       "recorded_related_tests": [],
@@ -5800,9 +5815,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._layer_toggled",
-          "line": 1439,
-          "end_line": 1475,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 1444,
+          "end_line": 1480,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "915aab4840e3ffcec1dccca8fb9f30df45b2c42c3f46d4254c52eee7edc902e3"
         }
       ],
@@ -6016,9 +6031,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._reading_preferences",
-          "line": 2345,
-          "end_line": 2383,
-          "file_sha256": "d57c9a9ac6d9b9a53e29094c4af78097a88c1a73dca31130da2a13b53958303e",
+          "line": 2391,
+          "end_line": 2429,
+          "file_sha256": "68d648b5fc8cee572d496e9b1dc6ef385b5b048df010f59294df0596df6ba47f",
           "excerpt_sha256": "037d89517a4f46673c86601bc0862dd361635c8e4d2038727b3691329910f804"
         }
       ],
@@ -6564,8 +6579,8 @@
     "families": 25,
     "operations": 111,
     "implementation_states": {
-      "bounded_source_present": 97,
-      "pending_or_target_characterization": 11,
+      "bounded_source_present": 98,
+      "pending_or_target_characterization": 10,
       "deferred_by_user": 3
     },
     "families_with_original_partial_observations": 9,
