@@ -3383,3 +3383,9 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 - Auditoria: 39487498872 falhou ('Application source changed since tests' — main mais nova). `scripts/audit_delivery.py` lê app/, construtor, versão e licenças do commit testado via Git (12500d5). Reexecução 39488048823 aprovada: controles 11, smoke 5/5, GTK 3, 179 arquivos, runtime 3684/483 ELF/297 pacotes. Revisão em testes/resultados/0.1.17/audit/.
 - Desktop 39487502789: 9/9 × 2 repetições com 0.1.14↔0.1.17. Revisão em testes/resultados/0.1.17/desktop/.
 - Parado, aguardando o usuário.
+
+
+## 2026/10/20 às 17:09 (America/Sao_Paulo, UTC-03:00) — E29 prioritária (403 ao criar release)
+
+- Pedido do usuário: registrar como instrução prioritária o erro 403 do token do Actions ao criar releases; o Codex vai investigar. Documento: docs/PRIORIDADE-E29-ERRO-403-RELEASE.md (execuções, configurações verificadas, hipóteses, diagnóstico sugerido, regras). E29 inserida na lista como em andamento.
+- Retomada do Claude agendada para 20:10: ler as notas/commits do Codex; se a E29 estiver resolvida, prosseguir com E16–E20 (autorizado pelo usuário) e parar; se não, tentar resolver com base no diagnóstico do Codex.

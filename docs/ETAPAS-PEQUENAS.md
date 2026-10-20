@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T17:01:00-03:00. Pendente: 8, Concluída: 19, Bloqueada: 1.
+Atualizado em 2026-10-20T17:09:00-03:00. Pendente: 8, Em andamento: 1, Concluída: 19, Bloqueada: 1.
 
 **Regras**
 
@@ -29,6 +29,7 @@ Atualizado em 2026-10-20T17:01:00-03:00. Pendente: 8, Concluída: 19, Bloqueada:
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Concluída |
+| E29 | PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions | Base e entrega | Codex (diagnóstico); talvez o dono para mudar uma configuração | Em andamento |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
@@ -224,6 +225,14 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json](
 0.1.17/devel publicada como prerelease v0.1.17-devel (tag no commit testado dec46c9) com o mesmo bundle aprovado no CI 39474059660, sem recompilar: 118422768 bytes, SHA-256 ec773a20…7a71. Download público sem login conferido (HTTP 200, mesmo tamanho e hash). Auditoria do pacote publicado instalado (CI 39488048823): 11 controles, smoke 5/5, 3 casos GTK, 179 arquivos de fonte, 3684 arquivos de runtime, 483 ELF, 297 pacotes. Integrações de desktop (CI 39487502789): 9/9 em duas repetições (atualização 0.1.14→0.1.17→0.1.14→0.1.17, preferências, portal, associação PDF). O token do Actions não pôde criar a release (403 em 39485174222 e 39486020955); o rascunho foi criado e publicado pela sessão do dono no navegador interno, com confirmação dele, e o fluxo anexou o pacote conferido (39486650871). A primeira auditoria (39487498872) falhou porque comparava o app/ da main mais nova; o auditor passou a comparar com o commit testado (12500d5).
 
 Evidência: [testes/resultados/0.1.17/release-publication.json](../testes/resultados/0.1.17/release-publication.json), [testes/resultados/0.1.17/download-integrity-2026-10-20.json](../testes/resultados/0.1.17/download-integrity-2026-10-20.json), [testes/resultados/0.1.17/audit/review.json](../testes/resultados/0.1.17/audit/review.json), [testes/resultados/0.1.17/desktop/review.json](../testes/resultados/0.1.17/desktop/review.json), [releases/manifest-0.1.17.json](../releases/manifest-0.1.17.json). Commit `dec46c9`.
+
+### E29 — PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions
+
+**Objetivo:** Descobrir por que o GITHUB_TOKEN com Contents: write recebe 403 ao criar release (mesmo rascunho) e deixar a publicação de versões automática de novo.
+
+**Como verificar:** Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.
+
+**Situação:** Em andamento.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 

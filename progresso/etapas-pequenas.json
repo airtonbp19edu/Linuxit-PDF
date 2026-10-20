@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T17:01:00-03:00",
+  "updated_at_local": "2026-10-20T17:09:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -257,6 +257,15 @@
         "testes/resultados/0.1.17/desktop/review.json",
         "releases/manifest-0.1.17.json"
       ]
+    },
+    {
+      "id": "E29",
+      "block": "Base e entrega",
+      "requires": "Codex (diagnóstico); talvez o dono para mudar uma configuração",
+      "status": "em_andamento",
+      "title": "PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions",
+      "goal": "Descobrir por que o GITHUB_TOKEN com Contents: write recebe 403 ao criar release (mesmo rascunho) e deixar a publicação de versões automática de novo.",
+      "verification": "Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md."
     },
     {
       "id": "E12",
