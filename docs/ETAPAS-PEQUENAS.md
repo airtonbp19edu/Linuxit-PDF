@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T01:06:21-03:00. Pendente: 18, Concluída: 5, Bloqueada: 1.
+Atualizado em 2026-10-20T01:08:58-03:00. Pendente: 20, Concluída: 5, Bloqueada: 1.
 
 **Regras**
 
@@ -19,6 +19,8 @@ Atualizado em 2026-10-20T01:06:21-03:00. Pendente: 18, Concluída: 5, Bloqueada:
 | E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Concluída |
 | E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Concluída |
 | E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Concluída |
+| E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Pendente |
+| E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Pendente |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
@@ -100,6 +102,22 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](
 AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02).
 
 Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `e8cface`.
+
+### E25 — Régua com vírgula decimal (2,54 cm)
+
+**Objetivo:** Mostrar as medidas da régua do visualizador com vírgula decimal e duas casas (ex.: 2,54 cm), conforme a decisão D01, e conferir o mesmo padrão na janela de medidas e no tamanho da página.
+
+**Como verificar:** Caso S12-20-1 atualizado para 2,54 cm com teste GTK; demais exibições de medida conferidas.
+
+**Situação:** Pendente.
+
+### E26 — Estabilizar o teste de reprodução de mídia
+
+**Objetivo:** Encontrar a causa da falha intermitente de test_local_playback (estado nativo que não chega a tempo) e corrigir o teste ou o código, sem enfraquecer o que ele verifica (decisão D02).
+
+**Como verificar:** O teste passa em 20 execuções seguidas no ambiente local e no CI Debian 13.
+
+**Situação:** Pendente.
 
 ### E06 — XFA: leitura dos campos
 
@@ -253,7 +271,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e05.json](
 
 **Situação:** Bloqueada.
 
-## Decisões pendentes
+## Decisões
 
-- **D01** (Aguardando você): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português?
-- **D02** (Aguardando você): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria?
+- **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
+- **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.

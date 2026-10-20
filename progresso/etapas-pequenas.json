@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T01:06:21-03:00",
+  "updated_at_local": "2026-10-20T01:08:58-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -87,6 +87,24 @@
         "tests/test_form_events.py"
       ],
       "note": "AFSpecial_Format/Keystroke 0–3 guardam só os dígitos e mostram a máscara; AFSpecial_KeystrokeEx com máscara livre (9, A, O, X e literais, como CEP 99999-999 e CPF 999.999.999-99) aceita o texto com ou sem os literais. 4 testes novos e casos S12-15-6/S12-15-7. Aceitação 53/53. Na suíte local, um teste de mídia já existente falhou de forma intermitente (decisão D02)."
+    },
+    {
+      "id": "E25",
+      "block": "Base e entrega",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Régua com vírgula decimal (2,54 cm)",
+      "goal": "Mostrar as medidas da régua do visualizador com vírgula decimal e duas casas (ex.: 2,54 cm), conforme a decisão D01, e conferir o mesmo padrão na janela de medidas e no tamanho da página.",
+      "verification": "Caso S12-20-1 atualizado para 2,54 cm com teste GTK; demais exibições de medida conferidas."
+    },
+    {
+      "id": "E26",
+      "block": "Base e entrega",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Estabilizar o teste de reprodução de mídia",
+      "goal": "Encontrar a causa da falha intermitente de test_local_playback (estado nativo que não chega a tempo) e corrigir o teste ou o código, sem enfraquecer o que ele verifica (decisão D02).",
+      "verification": "O teste passa em 20 execuções seguidas no ambiente local e no CI Debian 13."
     },
     {
       "id": "E06",
@@ -263,13 +281,17 @@
   "decisions": [
     {
       "id": "D01",
-      "status": "aguardando_usuario",
-      "question": "A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português?"
+      "status": "decidida",
+      "question": "A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português?",
+      "answer": "Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08).",
+      "step": "E25"
     },
     {
       "id": "D02",
-      "status": "aguardando_usuario",
-      "question": "O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria?"
+      "status": "decidida",
+      "question": "O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria?",
+      "answer": "Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08).",
+      "step": "E26"
     }
   ]
 }

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'progresso' / 'etapas-pequenas.json'
 PAGE = ROOT / 'docs' / 'ETAPAS-PEQUENAS.md'
 STATUSES = {'pendente': 'Pendente', 'em_andamento': 'Em andamento', 'concluida': 'Concluída',
-            'bloqueada': 'Bloqueada', 'aguardando_usuario': 'Aguardando você'}
+            'bloqueada': 'Bloqueada', 'aguardando_usuario': 'Aguardando você', 'decidida': 'Decidida'}
 
 
 def require(condition, message):
@@ -36,6 +36,8 @@ def validate(data):
                 require((ROOT / name).is_file(), step['id'] + ': missing evidence ' + name)
     for decision in data['decisions']:
         require(decision['status'] in STATUSES, decision['id'] + ': unknown status')
+        require(decision['status'] != 'decidida' or decision.get('answer'), decision['id'] + ': decided without answer')
+        require(not decision.get('step') or decision['step'] in ids, decision['id'] + ': unknown step')
     return {status: sum(s['status'] == status for s in data['steps']) for status in STATUSES}
 
 
@@ -58,9 +60,12 @@ def render(data, counts):
         if step['status'] == 'concluida':
             lines += ['', 'Evidência: ' + ', '.join(f'[{n}](../{n})' for n in step['evidence']) + f". Commit `{step['commit']}`."]
         lines.append('')
-    lines += ['## Decisões pendentes', '']
+    lines += ['## Decisões', '']
     for decision in data['decisions']:
-        lines.append(f"- **{decision['id']}** ({STATUSES[decision['status']]}): {decision['question']}")
+        line = f"- **{decision['id']}** ({STATUSES[decision['status']]}): {decision['question']}"
+        if decision.get('answer'):
+            line += f" **Resposta:** {decision['answer']}" + (f" Etapa {decision['step']}." if decision.get('step') else '')
+        lines.append(line)
     return '\n'.join(lines) + '\n'
 
 

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 01:06 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 01:08 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -21,7 +21,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05 concluídas. **Parado, aguardando sua confirmação para iniciar a E06** (XFA: leitura dos campos). Decisões pendentes: D01 (vírgula decimal na régua) e D02 (teste de mídia instável).
+- Lista de etapas pequenas criada em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md) (24 etapas, sem VM primeiro). E01 a E05 concluídas. **Parado, aguardando sua confirmação.** Próximas na fila: E25 (régua com vírgula decimal, decisão D01), E26 (estabilizar o teste de mídia, decisão D02) e depois E06 (XFA: leitura dos campos). CI no Debian 13 confirmando a E05.
 
 ### Falta
 
@@ -49,8 +49,9 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 **Medição**
 - 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
 
-**Decisão pequena pendente**
-- A régua mostra "2.54 cm", com ponto decimal, numa interface em português.
+**Decisões tomadas**
+- D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25.
+- D02: o teste de mídia instável vira a etapa E26.
 
 **Adiado e excluído**
 - Nuvem direta está adiada por decisão do usuário.
@@ -71,3 +72,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 00:55** — CI no Debian 13 confirmou a E03 (49/49, suíte 576/576). E04 concluída (`34ebb46`): campos de data validam e formatam datas numéricas (1/2/2026 aparece como 01/02/2026) e recusam datas inexistentes como 31/02. Aceitação 51/51, suíte 579/579. Iniciando a E05.
 - **2026/10/20 às 00:58** — Regra nova: depois de cada etapa, parar e esperar a sua confirmação antes de iniciar a próxima. Registrada no AGENTS.md e na lista de etapas.
 - **2026/10/20 às 01:06** — CI no Debian 13 confirmou a E04 (51/51, suíte 579/579). E05 concluída (`e8cface`): máscaras especiais e livres (CEP 01310-100, CPF, telefone (555) 123-4567). Aceitação 53/53. Achado: um teste de mídia já existente falha de forma intermitente (1 em 3), sem relação com a E05; decisão D02 com você. Parado, aguardando a sua confirmação para iniciar a E06.
+- **2026/10/20 às 01:08** — Decisões registradas: D01 → vírgula decimal na régua (etapa E25); D02 → tornar estável o teste de mídia (etapa E26). As duas foram colocadas logo depois da E05 na lista. Nada foi executado; aguardando você para continuar.
