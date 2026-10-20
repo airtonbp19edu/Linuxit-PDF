@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T13:29:00-03:00. Pendente: 15, Em andamento: 1, Concluída: 11, Bloqueada: 1.
+Atualizado em 2026-10-20T13:47:00-03:00. Pendente: 14, Em andamento: 1, Concluída: 12, Bloqueada: 1.
 
 **Regras**
 
@@ -25,8 +25,8 @@ Atualizado em 2026-10-20T13:29:00-03:00. Pendente: 15, Em andamento: 1, Concluí
 | E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Concluída |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Concluída |
 | E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Concluída |
-| E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Em andamento |
-| E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
+| E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Concluída |
+| E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Em andamento |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Pendente |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Pendente |
@@ -183,7 +183,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](
 
 **Como verificar:** As duas assinaturas verificam integridade; a primeira cobre só a revisão original.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Toda assinatura nova vira uma revisão incremental anexada aos bytes exatos da origem (objetos novos, AcroForm atualizado e seção de referência cruzada do mesmo tipo da anterior). Cada assinatura anterior precisa verificar antes e continua verificando a própria revisão depois; a nova cobre o arquivo inteiro. O escritor incremental do pypdf foi descartado: na terceira assinatura ele reaproveitava números de objeto e corrompia a assinatura. Recusas com motivo visível: DocMDP P=1, UR3, assinatura anterior inválida, criptografia, XFA, portfólio e mais de 15 assinaturas. Três assinaturas seguidas conferidas também pelo pdfsig (poppler) e origem com fluxo de referência cruzada pelo qpdf. Suíte 610/610; aceitação 61/61 na revisão ae429cd.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e08.json), [tests/test_incremental_signatures.py](../tests/test_incremental_signatures.py), [app/pdf_signing.py](../app/pdf_signing.py). Commit `ae429cd`.
 
 ### E09 — Verificar DocTimeStamp existente
 
@@ -191,7 +195,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](
 
 **Como verificar:** Fixture com DocTimeStamp de TSA sintética; alteração de bytes invalida.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E10 — Usar DSS/VRI embutidos na validação offline
 
