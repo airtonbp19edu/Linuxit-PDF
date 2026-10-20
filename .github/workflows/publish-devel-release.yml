@@ -12,10 +12,18 @@ on:
         description: Version to publish (releases/manifest-<version>.json must exist)
         required: true
         default: '0.1.17'
+      check_only:
+        description: Conferir o plano sem criar release, tag ou anexar arquivos
+        type: boolean
+        default: true
 
 permissions:
   contents: write
   actions: read
+
+concurrency:
+  group: publish-development-release
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -43,7 +51,16 @@ jobs:
               out.write(f"run_id={run_id}\nsha={m['artifact']['sha256']}\nbytes={m['artifact']['bytes']}\n")
               out.write(f"file={m['artifact']['file']}\ncommit={m['source_commit']}\ntag={m['distribution']['tag']}\n")
           PY
+      - name: Check permissions, target, existing tag and asset (read only)
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: python3 scripts/release_preflight.py --manifest "releases/manifest-$VERSION.json" --output release-plan.json
+      - name: Check publication guards
+        run: python3 -m unittest tests.test_release_preflight -v
       - name: Download the tested artifact (no rebuild)
+        if: ${{ !inputs.check_only && (steps.plan.outputs.mode == 'create_release' || steps.plan.outputs.mode == 'upload_draft') }}
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: linuxit-linux-${{ steps.manifest.outputs.commit }}
@@ -51,48 +68,44 @@ jobs:
           github-token: ${{ github.token }}
           path: candidate
       - name: Verify bytes against the manifest
+        if: ${{ !inputs.check_only && (steps.plan.outputs.mode == 'create_release' || steps.plan.outputs.mode == 'upload_draft') }}
         run: |
           file="candidate/dist/${{ steps.manifest.outputs.file }}"
           test "$(stat -c %s "$file")" = "${{ steps.manifest.outputs.bytes }}"
           echo "${{ steps.manifest.outputs.sha }}  $file" | sha256sum -c -
-      - name: Create the prerelease (draft) and upload the bundle
-        # The job token cannot create the tag on the tested commit: that commit's workflow
-        # files differ from main, and creating such a ref needs the "workflows" permission,
-        # which GITHUB_TOKEN never has (run 39485174222: HTTP 403). So the release is created
-        # as a draft (no tag yet); the owner publishes it in the web page, which creates the tag
-        # on the tested commit with the owner's own permission. If the tag already exists and
-        # points at the tested commit, the release is published directly on it.
+      - name: Publish eligible candidate or upload only to the owner's draft
+        if: ${{ !inputs.check_only && (steps.plan.outputs.mode == 'create_release' || steps.plan.outputs.mode == 'upload_draft') }}
+        # E29 confirmed that the restriction also applies to draft creation, regardless
+        # of tag creation. Never substitute main for the tested commit to avoid the 403.
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.manifest.outputs.tag }}
           COMMIT: ${{ steps.manifest.outputs.commit }}
           BYTES: ${{ steps.manifest.outputs.bytes }}
+          MODE: ${{ steps.plan.outputs.mode }}
+          DRAFT_ID: ${{ steps.plan.outputs.release_id }}
         run: |
           file="candidate/dist/${{ steps.manifest.outputs.file }}"
-          # A draft prepared by the owner in the web page (tag not yet created) only receives the asset.
-          gh api "repos/$GITHUB_REPOSITORY/releases?per_page=30" > releases.json
-          draft="$(python3 -c "import json,os;print(next((str(r['id']) for r in json.load(open('releases.json')) if r['draft'] and r['tag_name']==os.environ['TAG'] and r['target_commitish']==os.environ['COMMIT']),''))")"
-          if [ -n "$draft" ]; then
+          if [ "$MODE" = 'upload_draft' ]; then
+            # Recheck identity immediately before upload; never edit a published release.
+            gh api "repos/$GITHUB_REPOSITORY/releases/$DRAFT_ID" > draft.json
+            python3 -c "import json,os;r=json.load(open('draft.json'));assert r['draft'] and r['tag_name']==os.environ['TAG'] and r['target_commitish']==os.environ['COMMIT']"
             name="$(basename "$file")"
             curl --fail-with-body -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
               -H "Content-Type: application/octet-stream" --data-binary @"$file" \
-              "https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$draft/assets?name=$name" > asset.json
+              "https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$DRAFT_ID/assets?name=$name" > asset.json
             python3 -c "import json,os;a=json.load(open('asset.json'));assert a['size']==int(os.environ['BYTES']) and a['state']=='uploaded',a;print('asset',a['id'],a['size'],a.get('digest'))"
             echo "::notice::Pacote anexado ao rascunho $TAG. Publique o rascunho na página Releases."
             exit 0
           fi
-          existing=""
-          if gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" > tag.json 2>/dev/null; then
-            existing="$(python3 -c "import json;print(json.load(open('tag.json'))['object']['sha'])")"
-          fi
-          if [ -n "$existing" ]; then
-            test "$existing" = "$COMMIT" || { echo "Tag $TAG points to $existing, not the tested $COMMIT"; exit 1; }
-            gh release create "$TAG" "$file" --repo "$GITHUB_REPOSITORY" --verify-tag \
-              --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
-              --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
-          else
-            gh release create "$TAG" "$file" --repo "$GITHUB_REPOSITORY" --target "$COMMIT" --draft \
-              --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
-              --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
-            echo "::notice::Rascunho criado. Abra Releases, edite o rascunho $TAG e clique em Publish release."
-          fi
+          test "$MODE" = 'create_release'
+          gh release create "$TAG" "$file" --repo "$GITHUB_REPOSITORY" --target "$COMMIT" \
+            --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
+            --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease
+      - name: Preserve read-only publication plan
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-plan-${{ github.run_id }}
+          path: release-plan.json
+          if-no-files-found: warn

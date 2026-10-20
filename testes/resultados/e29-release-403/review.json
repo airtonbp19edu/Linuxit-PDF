@@ -1,0 +1,35 @@
+{
+  "schema": "linuxit-e29-review-v1",
+  "date_local": "2026-10-20T17:19:24.241360-03:00",
+  "diagnostic_run": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39490423511",
+  "workflow_commit": "038ae7522805d0033a14cbf90097a142415770e1",
+  "artifact_id": 12295886172,
+  "artifact_zip_sha256": "0fa3a6b6778971e5e307e666d6d5b3a7fef148b694ce9a1f057ffd423d50b2c3",
+  "api_receipt_sha256": "f76e93faf9d2f7469cd227280ca8f5449e1e0cc833ab84b560cb33a99ab440d2",
+  "http_statuses": [
+    201,
+    201,
+    403
+  ],
+  "cleanup_deleted_ids": [
+    418829657,
+    418829690
+  ],
+  "no_probe_git_refs": true,
+  "published_releases_and_assets_unchanged": true,
+  "old_workflow_tree": "7356b1dc456c603ee1969270771897312fdfbbfb",
+  "default_workflow_tree": "ce43e856b533733406f27f7b93fa3d92c374a5e5",
+  "cause": "Release target workflows differ from default branch; GITHUB_TOKEN cannot receive workflows:write. Draft creation is also checked.",
+  "official_source": "https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release",
+  "repository_settings_changed": false,
+  "write_all_needed": false,
+  "token_saved": false,
+  "local_preflight_regressions": {
+    "run": 8,
+    "passed": 8
+  },
+  "limits": [
+    "No public release/tag created. Next actual authorized release remains to validate automatic creation.",
+    "No app suite/VM execution. Existing bundle preserved."
+  ]
+}

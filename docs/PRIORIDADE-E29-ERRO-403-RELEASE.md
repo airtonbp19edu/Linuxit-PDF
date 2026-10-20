@@ -5,6 +5,35 @@ instrução prioritária para a próxima IA (Codex)**: identificar a causa do er
 antes de qualquer outra etapa. O Claude retoma às 20:10 do mesmo dia com base no que
 for registrado aqui e nas notas de continuidade.
 
+
+## Diagnóstico confirmado pelo Codex — 20/10/2026
+
+[Execução 39490423511](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39490423511), commit `038ae75`: **mesmo GITHUB_TOKEN, contents:write, mesma sessão e três rascunhos**, alterando apenas o alvo:
+
+| Alvo do rascunho | HTTP | Resultado |
+|---|---|---|
+| Omitido (branch padrão) | 201 | Criado e apagado (DELETE 204) |
+| SHA atual da main (`038ae75`) | 201 | Criado e apagado (DELETE 204) |
+| SHA testado da 0.1.17 (`dec46c9`) | 403 | Resource not accessible by integration |
+
+**Causa identificada:** os arquivos de `.github/workflows/` do alvo antigo diferem dos da branch padrão. O endpoint de criação exige autorização adicional `Workflows:write` nessa situação, inclusive com `draft:true`. O `GITHUB_TOKEN` não pode receber essa permissão. A [documentação oficial de Create a release](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release) descreve expressamente essa restrição e o 403/404. Portanto o rascunho não enfraquece a hipótese 1: a verificação ocorre na criação da release e não apenas na criação da tag.
+
+O cabeçalho aceito foi `contents=write; contents=write,workflows=write`. Os dois rascunhos criados foram removidos; os três nomes de tag retornaram 404 após o teste. Inventário completo das releases públicas e de seus assets idêntico antes/depois. Não foi necessário `write-all`, alterar permissões padrão, imutabilidade, regras ou usar novo token.
+
+Evidências integrais: [respostas HTTP](../testes/resultados/e29-release-403/probe-39490423511.json) e [revisão com hashes](../testes/resultados/e29-release-403/review.json). O 403 do terceiro caso é o resultado esperado do experimento, e não uma falha do job.
+
+### Correção do fluxo e uso daqui em diante
+
+- `scripts/release_preflight.py` consulta apenas leituras da API. Confere tag (inclusive anotada), SHA testado, rascunho, tamanho/digest do asset e árvores de workflows; não cria nem altera nada.
+- `publish-devel-release.yml` começa em **Conferir somente**, habilitado por padrão. Desabilite essa opção apenas numa entrega autorizada para publicar/anexar. O plano fica no resumo e num artefato.
+- Versão já publicada e correta: `already_published`, sem download/reenvio/recriação da release. Se tag ou bytes divergirem, interrompe; nunca substitui silenciosamente.
+- Candidato com a mesma árvore de workflows da branch padrão: `create_release`, pode publicar automaticamente no **SHA testado**, conservando o artefato verificado. Pode haver commits novos de app/docs na main; a comparação verifica a árvore de workflows.
+- Candidato histórico com workflows diferentes: `owner_draft_required`, explica a ação necessária e encerra sem tentar a chamada que recebe 403. O dono prepara um rascunho na página Releases com a tag e SHA exatos do manifesto; depois o fluxo só anexa os bytes testados (`upload_draft`). Um rascunho que já tem o pacote correto retorna `draft_ready`, aguardando publicação pelo dono. Esse caminho já funcionou na entrega 0.1.17.
+- Para a **próxima entrega automática**, finalize os workflows antes de gerar o candidato e mantenha `.github/workflows/` igual até a publicação. Não é preciso congelar app/docs. Se alterar workflows após o candidato, valide um candidato novo ou use o rascunho do dono.
+- Não apontar a tag à main nem usar `--target main` para escapar do erro: isso perderia a identidade testada. Não aumentar permissões globais nem gravar tokens. Um token próprio com permissões extras seria alternativa opcional do dono, não requisito da solução adotada.
+
+**Limite da conclusão:** a causa foi reproduzida e a correção está em validação somente leitura. A publicação automática de uma próxima versão continua sem execução, porque esta E29 proíbe publicar ou criar tags públicas. O critério final da E29 exige essa próxima entrega; não declarar esse critério cumprido com rascunhos ou com a conferência da 0.1.17 já existente. Risco de concorrência permanece se outra sessão mudar workflows entre a conferência e a chamada de criação; a API continua aplicando sua proteção.
+
 ## O erro
 
 `gh release create` no fluxo manual `.github/workflows/publish-devel-release.yml` falha com:
