@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T12:52:00-03:00. Pendente: 16, Concluída: 11, Bloqueada: 1.
+Atualizado em 2026-10-20T13:29:00-03:00. Pendente: 15, Em andamento: 1, Concluída: 11, Bloqueada: 1.
 
 **Regras**
 
@@ -25,7 +25,7 @@ Atualizado em 2026-10-20T12:52:00-03:00. Pendente: 16, Concluída: 11, Bloqueada
 | E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Concluída |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Concluída |
 | E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Concluída |
-| E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
+| E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Em andamento |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Pendente |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Pendente |
@@ -183,7 +183,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e28.json](
 
 **Como verificar:** As duas assinaturas verificam integridade; a primeira cobre só a revisão original.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E09 — Verificar DocTimeStamp existente
 

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 12:52 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 13:29 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,7 +22,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Nada em execução. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Aguardando você para a **E08**.
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Executando o bloco autorizado **E08, E09, E10 e E11** (entrega 0.1.17).
+- Retomada agendada para **hoje às 15:00**: se o bloco não terminar, continuo de onde parou; se terminar antes, às 15:00 sigo com as próximas 4 (E12 a E15) e paro.
 
 ### Falta
 
@@ -89,3 +90,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 12:39** — Pedido: procurar a decisão sobre nuvem e fechar o ciclo. Encontrada a decisão de 17/10/2026 às 20:51: usar pastas sincronizadas por programas externos; o Linuxit só trabalha com arquivos locais. Os 2 casos de aceitação de nuvem que faltavam ainda descreviam um provedor remoto simulado. Criada a etapa E28 para trocar esses casos pelo fluxo escolhido e executá-los. Login, envio por API e colaboração remota seguem adiados.
 - **2026/10/20 às 12:47** — E28 concluída (`033e245`): o ciclo da nuvem foi fechado com a sua decisão de 17/10/2026 (pastas sincronizadas por programas externos). Os 2 casos de nuvem agora testam esse fluxo na janela real: abrir da pasta, salvar cópia que só se declara salva localmente, bloquear quando o sincronizador troca o PDF aberto e nunca sobrescrever arquivo criado por ele. Aceitação 59/59 (todos os planos), suíte 607/607. Login, envio por API e colaboração remota seguem adiados. CI no Debian 13 em andamento. Parado, aguardando você para a E08.
 - **2026/10/20 às 12:52** — CI no Debian 13 confirmou a E28: aceitação 59/59 e suíte 607/607. Nenhuma etapa nova iniciada; aguardando você para a E08.
+- **2026/10/20 às 13:29** — Pedido: fazer as 4 próximas etapas (E08 a E11) e agendar retomada às 15:00. Agendado. Se o bloco não terminar até lá, retomo de onde parou; se terminar, às 15:00 sigo com as próximas 4 que não dependem da VM, do PC ou de equipamentos (E12 a E15) e paro. Iniciando a E08.

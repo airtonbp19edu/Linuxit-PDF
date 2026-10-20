@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T12:52:00-03:00",
+  "updated_at_local": "2026-10-20T13:29:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -194,7 +194,7 @@
       "id": "E08",
       "block": "Assinaturas",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Segunda assinatura em revisão incremental",
       "goal": "Assinar um PDF já assinado por atualização incremental, mantendo a primeira assinatura válida para a revisão dela.",
       "verification": "As duas assinaturas verificam integridade; a primeira cobre só a revisão original."
