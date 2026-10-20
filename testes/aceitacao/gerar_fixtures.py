@@ -74,6 +74,29 @@ def form():
     return _bytes(writer)
 
 
+def numeric_form():
+    writer = PdfWriter();font = _font(writer)
+    page = writer.add_blank_page(300, 200)
+    action = lambda script: DictionaryObject({NameObject('/S'): NameObject('/JavaScript'), NameObject('/JS'): TextStringObject(script)})
+    keystroke = 'AFNumber_Keystroke(2, 2, 0, 0, "", true);'
+    fields = []
+    for name, y, flags, events in (
+            ('preco', 150, 0, {'/K': keystroke}), ('quantidade', 100, 0, {'/K': keystroke}),
+            ('total', 50, 1, {'/C': 'AFSimple_Calculate("PRD", ["preco", "quantidade"]);',
+                              '/F': 'AFNumber_Format(2, 2, 0, 0, "R$ ", true);'})):
+        widget = DictionaryObject({NameObject('/Type'): NameObject('/Annot'), NameObject('/Subtype'): NameObject('/Widget'),
+            NameObject('/FT'): NameObject('/Tx'), NameObject('/T'): TextStringObject(name), NameObject('/V'): TextStringObject('0'),
+            NameObject('/Ff'): NumberObject(flags), NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+            NameObject('/Rect'): ArrayObject([NumberObject(v) for v in (20, y, 280, y + 20)]),
+            NameObject('/AA'): DictionaryObject({NameObject(k): action(v) for k, v in events.items()})})
+        reference = writer._add_object(widget);fields.append(reference)
+        page.setdefault(NameObject('/Annots'), ArrayObject()).append(reference)
+    writer.root_object[NameObject('/AcroForm')] = writer._add_object(DictionaryObject({
+        NameObject('/Fields'): ArrayObject(fields), NameObject('/DA'): TextStringObject('/Helv 10 Tf 0 g'),
+        NameObject('/DR'): DictionaryObject({NameObject('/Font'): DictionaryObject({NameObject('/Helv'): font})})}))
+    return _bytes(writer)
+
+
 def layers():
     writer = PdfWriter();font = _font(writer)
     groups = [writer._add_object(DictionaryObject({NameObject('/Type'): NameObject('/OCG'),
@@ -98,6 +121,7 @@ FIXTURES = {
     'oito-paginas.pdf': (eight_pages, 'Oito páginas PAGE1..PAGE8 em A4 retrato para imposição.'),
     'proximidade.pdf': (proximity, 'Uma página com "alfa um dois beta": duas palavras entre alfa e beta.'),
     'formulario.pdf': (form, 'AcroForm Tx: nome editável, fixo ReadOnly e curto com MaxLen 5; sem XFA ou assinatura.'),
+    'formulario-numerico.pdf': (numeric_form, 'AcroForm: preco e quantidade com AFNumber_Keystroke (vírgula decimal); total calculado com AFNumber_Format em reais.'),
     'camadas.pdf': (layers, 'Dois OCGs nomeados: Base visível e Notas desligada na configuração padrão.'),
     'anexo-nome-perigoso.pdf': (dangerous_attachment, 'Um anexo de catálogo chamado ../fora.txt.'),
 }

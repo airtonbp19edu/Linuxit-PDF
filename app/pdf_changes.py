@@ -16,7 +16,7 @@ from pypdf.generic import ArrayObject, DictionaryObject, NameObject, NullObject,
 from pdf_form_controls import inspect_controls, fill_controls
 from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
-from pdf_form_events import inspect_form_events, calculate_form_values
+from pdf_form_events import inspect_form_events, calculate_form_values, format_form_values
 from annotation_geometry import EXTRA_KINDS, create_extra_annotation, move_annotation, conversation_members
 from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
 
@@ -303,7 +303,11 @@ def _apply(writer, operation):
                 raw=fields[name].indirect_reference.get_object()
                 flags[name]=raw.get('/Ff')
                 raw[NameObject('/Ff')]=NumberObject(int(_inherited(fields[name],'/Ff',0)) & ~1)
-            _apply(writer,dict(kind='fill-text-fields',values=values))
+            # Formatted numbers go to the appearance only; /V keeps the unformatted value.
+            display=format_form_values(writer,values)
+            _apply(writer,dict(kind='fill-text-fields',values={**values,**display}))
+            for name in display:
+                fields[name].indirect_reference.get_object()[NameObject('/V')]=TextStringObject(values[name])
         finally:
             for name,value in flags.items():
                 raw=fields[name].indirect_reference.get_object()

@@ -6,7 +6,8 @@ from pdf_dependency import configure_pdf_library
 configure_pdf_library()
 from pypdf import PdfReader,PdfWriter
 from pypdf.generic import ArrayObject,DictionaryObject,NameObject,NumberObject,TextStringObject
-from pdf_form_events import inspect_form_events,calculate_form_values,parse_calculation,parse_validation
+from pdf_form_events import inspect_form_events,calculate_form_values,parse_calculation,parse_validation,parse_number_format,format_number
+from decimal import Decimal
 from pdf_changes import save_edited_copy,inspect_editable_document
 
 
@@ -70,6 +71,61 @@ class FormEventTests(unittest.TestCase):
         before=self.path.read_bytes();info=inspect_editable_document(self.path)
         self.assertEqual(len(info['form_events']['rules']),2);self.assertEqual(info['form_events']['unsupported'],[])
         self.assertEqual(self.path.read_bytes(),before)
+
+
+class NumberFormatTests(unittest.TestCase):
+    """AFNumber_Format/AFNumber_Keystroke by closed grammar; own display contract, no JavaScript."""
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.path=Path(self.temp.name)/'form.pdf'
+
+    def numeric_form(self,fmt='AFNumber_Format(2, 2, 0, 0, "R$ ", true);',key='AFNumber_Keystroke(2, 2, 0, 0, "", true);'):
+        writer,raws=form_pdf(self.path)
+        def action(script):return DictionaryObject({NameObject('/S'):NameObject('/JavaScript'),NameObject('/JS'):TextStringObject(script)})
+        raws['total']['/AA'][NameObject('/F')]=action(fmt)
+        for name in ('a','b'):raws[name].setdefault(NameObject('/AA'),DictionaryObject())[NameObject('/K')]=action(key)
+        writer.write(self.path);return writer
+
+    def test_display_styles_rounding_currency_and_negatives(self):
+        rule=parse_number_format('AFNumber_Format(2, 2, 0, 0, "R$ ", true);')
+        cases=[('1234.5',rule,'R$ 1.234,50'),('-1234.5',rule,'-R$ 1.234,50'),('-0.004',rule,'R$ 0,00'),
+               ('1234567.891',dict(rule,separator=0,negative=2,currency=' €',prepend=False),'1,234,567.89 €'),
+               ('-2',dict(rule,separator=0,negative=2,currency='',prepend=True),'(2.00)'),
+               ('2.5',dict(rule,decimals=0,separator=4,currency=''),'3'),('1234.5',dict(rule,separator=1,currency=''),'1234.50'),
+               ('1234.5',dict(rule,separator=3,currency=''),'1234,50'),('1234567',dict(rule,decimals=0,separator=4,currency=''),"1'234'567")]
+        for number,parsed,expected in cases:
+            with self.subTest(number=number,expected=expected):self.assertEqual(format_number(Decimal(number),parsed),expected)
+
+    def test_parser_refuses_red_negatives_other_styles_and_extra_code(self):
+        for script in ('AFNumber_Format(2, 2, 1, 0, "", true);','AFNumber_Format(2, 2, 0, 1, "", true);',
+                       'AFNumber_Format(2, 9, 0, 0, "", true);','AFNumber_Format(11, 0, 0, 0, "", true);',
+                       'AFNumber_Format(2, 2, 0, 0, "", true); app.alert(1);','AFNumber_Format(2, 2, 0, 0, "x\\"y", true);'):
+            with self.subTest(script=script),self.assertRaises(ValueError):parse_number_format(script)
+
+    def test_comma_decimal_input_formatted_appearance_and_raw_value_roundtrip(self):
+        self.numeric_form();before=self.path.read_bytes();out=self.path.with_name('copy.pdf')
+        save_edited_copy(self.path,out,source_sha256=hashlib.sha256(before).hexdigest(),
+                         operations=[dict(kind='fill-form-events',values={'a':'12,5','b':'1234.25'})])
+        reader=PdfReader(out);fields=reader.get_fields()
+        self.assertEqual((str(fields['a']['/V']),str(fields['total']['/V'])),('12.5','1246.75'))
+        widget=reader.pages[0]['/Annots'][2].get_object()
+        appearance=widget['/AP']['/N'].get_object().get_data()
+        self.assertIn(b'R$ 1.246,75',appearance);self.assertNotIn(b'1246.75',appearance)
+        self.assertEqual(self.path.read_bytes(),before)
+
+    def test_keystroke_refuses_thousands_separators_and_dot_style_keeps_dot_only(self):
+        writer=self.numeric_form()
+        for value in ('1.234,5','1,2,3','abc'):
+            with self.subTest(value=value),self.assertRaises(ValueError):calculate_form_values(writer,{'a':value})
+        writer=self.numeric_form(key='AFNumber_Keystroke(2, 0, 0, 0, "", true);')
+        with self.assertRaises(ValueError):calculate_form_values(writer,{'a':'1,5'})
+        self.assertEqual(calculate_form_values(writer,{'a':'1.5','b':'1'})['total'],'2.5')
+
+    def test_red_negative_format_keeps_whole_fill_refused_without_running_scripts(self):
+        writer=self.numeric_form(fmt='AFNumber_Format(2, 2, 1, 0, "", true);')
+        inspected=inspect_form_events(writer)
+        self.assertEqual(len(inspected['unsupported']),1);self.assertFalse(inspected['javascript_executed'])
+        with self.assertRaisesRegex(ValueError,'não suportados'):calculate_form_values(writer,{'a':'1'})
 
 
 @unittest.skipUnless(os.environ.get('DISPLAY'),'Requires GTK and X display')

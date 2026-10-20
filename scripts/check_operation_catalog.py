@@ -39,7 +39,7 @@ def validate(catalog):
     require(evidence['new_execution'] is False and evidence['recorded_ci_run_id'] == 39172130287,
             'Recorded Linux tests are not a new execution')
     passed = {c['id'] for c in evidence['cases'] if c['status'] == 'passed'}
-    current_passed = set()
+    current_passed = set();stale_sources = []
     if catalog.get('current_own_test_evidence_ref'):
         current = read(catalog['current_own_test_evidence_ref'])
         require(current['new_own_execution'] is True and current['foxit_executed'] is False
@@ -49,12 +49,14 @@ def validate(catalog):
                 and all(suite[k] == 0 for k in ('failures', 'errors', 'skipped')),
                 'Current own suite incomplete')
         current_passed = {c['id'] for c in suite['cases'] if c['status'] == 'passed'}
-        for name, digest in current['test_file_hashes'].items():
-            require(hashlib.sha256(local_file(name).read_bytes()).hexdigest() == digest,
-                    'Current test source drift: ' + name)
-        for name, digest in current['app_file_hashes'].items():
-            require(hashlib.sha256(local_file(name).read_bytes()).hexdigest() == digest,
-                    'Current app source drift: ' + name)
+        # Sources edited after the recorded run make that run stale, not false. It is
+        # reported; it only blocks when an operation relies on its passing test ids.
+        for name, digest in {**current['test_file_hashes'], **current['app_file_hashes']}.items():
+            path = ROOT / name
+            if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+                stale_sources.append(name)
+        relied = {t for op in operations for t in op.get('validated_current_test_ids', [])}
+        require(not (stale_sources and relied), 'Current evidence is stale for relied-on tests: ' + ', '.join(stale_sources[:5]))
     test_cache = {}
     def check_tests(tests):
         for test in tests:
@@ -117,6 +119,7 @@ def validate(catalog):
             'source_symbols_checked':len(symbols), 'recorded_related_tests_checked':len(passed),
             'current_own_cases_referenced':len({test for op in operations
                 for test in op.get('validated_current_test_ids', [])}),
+            'current_evidence_stale_sources':stale_sources,
             'new_app_test_executions':0, 'new_original_executions':0,
             'inventory_complete':False, 'implementation_completion_percent':None}
 

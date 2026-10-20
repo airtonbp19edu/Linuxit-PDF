@@ -398,6 +398,23 @@ def fill_refused(ctx):
     return outcomes
 
 
+@case('S12-15-3', 'worker copy-edit (fill-form-events)')
+def formatted_number(ctx):
+    from pypdf import PdfReader
+    source = ctx.fixture(OWN + 'formulario-numerico.pdf');before = sha256(source);output = ctx.work / 'numerico.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'fill-form-events', 'values': {'preco': '1234,5', 'quantidade': '2'}}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] == 0, run['stderr'])
+    reader = PdfReader(str(output));fields = reader.get_fields()
+    raw = {name: str(fields[name]['/V']) for name in ('preco', 'quantidade', 'total')}
+    check(raw == {'preco': '1234.5', 'quantidade': '2', 'total': '2469'}, f'valores gravados: {raw}')
+    widget = next(a.get_object() for a in reader.pages[0]['/Annots'] if a.get_object()['/T'] == 'total')
+    shown = widget['/AP']['/N'].get_object().get_data()
+    check(b'R$ 2.469,00' in shown, 'aparência sem o número formatado')
+    check(sha256(source) == before, 'original alterado')
+    return dict(values=raw, appearance_text='R$ 2.469,00', javascript_executed=False)
+
+
 # 16 — attachments
 
 @case('S12-16-1', 'worker attachments/extract-attachment')

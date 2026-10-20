@@ -12,7 +12,7 @@ def cell(value):
 
 
 def render(catalog):
-    validate(catalog)
+    summary = validate(catalog)
     operation_count = len(catalog['operations'])
     family_count = len(catalog['families'])
     current = catalog.get('current_own_test_evidence_ref')
@@ -29,6 +29,9 @@ def render(catalog):
         lines += [f"Evidência própria atual: **{evidence['source_suite_passed']} testes Linux aprovados**, "
             f"[casos e hashes](../{current}). A evidência informa separadamente os ambientes executados. "
             'Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.', '']
+        if summary['current_evidence_stale_sources']:
+            lines += [f"Fontes alteradas depois dessa execução ({len(summary['current_evidence_stale_sources'])} arquivos); "
+                      'a próxima execução no CI substitui esta evidência.', '']
     lines += ['## Estado por família', '',
         'Zero na coluna de pendências significa somente que os recortes listados têm código. '
         'Não encerra a família, seu inventário global ou suas lacunas.', '',

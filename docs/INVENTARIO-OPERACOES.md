@@ -1,12 +1,14 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T00:28:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T00:42:31-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
 **Não é percentual de reconstrução.** Código delimitado, testes próprios, observações parciais do original e aceitação integral são estados distintos. Nenhuma família integral foi aprovada; todos os 50 planos completos S12 permanecem abertos.
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
+
+Fontes alteradas depois dessa execução (3 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -242,7 +244,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |`forms/list-single` — Selecionar lista simples|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Lista simples e opção ou vazio => seleção única ou limpeza consistente.|
 |`forms/list-multiple` — Selecionar lista múltipla|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Conjunto de exports => valores e índices canônicos persistidos sem duplicação.|
 |`forms/combo-editable` — Preencher combo com texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Texto fora de Opt em combo editável => gerar valor/aparência, preservar opções e ReadOnly; ainda recusado atualmente.|
-|`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L82))|Recognized AFSimple_Calculate and AFRange_Validate helpers are interpreted declaratively with bounded dependency order, range checks and atomic copy publication. General JavaScript/XFA remains unsupported; seven new portable cases passed, Linux pending.|
+|`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L132))|Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format and AFNumber_Keystroke helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3.|
 |`forms/xfa` — Processar XFA|Pendente/caracterizar|Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.|
 
 ## Anexos/portfólios

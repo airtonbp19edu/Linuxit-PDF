@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 17,
-  "reviewed_at_local": "2026-10-20T00:28:00-03:00",
+  "reviewed_at_local": "2026-10-20T00:42:31-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -1451,9 +1451,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3256,9 +3256,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3315,9 +3315,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3375,7 +3375,7 @@
           "symbol": "_change_outline",
           "line": 198,
           "end_line": 242,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3434,7 +3434,7 @@
           "symbol": "_change_outline",
           "line": 198,
           "end_line": 242,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3493,9 +3493,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3553,9 +3553,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3613,9 +3613,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -3973,9 +3973,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -4033,9 +4033,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -4153,9 +4153,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [],
@@ -4258,9 +4258,9 @@
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
           "line": 291,
-          "end_line": 508,
-          "file_sha256": "e74ad577d23e5a98f8780975e56b87a5978f0fbe7762f8841d5cd3b76a6afb36",
-          "excerpt_sha256": "a265f1069d3bfb0d4646be759977f27ecaaea2ae8bf2b627c0727a5a02d180b3"
+          "end_line": 512,
+          "file_sha256": "119e4484fb4e09d4a0249ebcbec450f94ba7def093ace4ec894b87d7c6c51e0c",
+          "excerpt_sha256": "ba18eaa7fadfb01b3c27bc26c45c3476a61decc9b0c54b8b7b01c92d10bd3df8"
         }
       ],
       "recorded_related_tests": [
@@ -4648,7 +4648,7 @@
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
         "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
-      "output_and_acceptance": "Recognized AFSimple_Calculate and AFRange_Validate helpers are interpreted declaratively with bounded dependency order, range checks and atomic copy publication. General JavaScript/XFA remains unsupported; seven new portable cases passed, Linux pending.",
+      "output_and_acceptance": "Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format and AFNumber_Keystroke helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3.",
       "failure_contract_refs": [
         {
           "family_id": "forms",
@@ -4671,10 +4671,10 @@
         {
           "path": "app/pdf_form_events.py",
           "symbol": "calculate_form_values",
-          "line": 82,
-          "end_line": 116,
-          "file_sha256": "0e611d31d897d3e52086bcd5d902f564ea1f17412fa5e4c7105e4cc826e7e075",
-          "excerpt_sha256": "4f0ca5e01ad2f321d606456a8fff635886901cb2d20d3e23a9cf57901a6772c8"
+          "line": 132,
+          "end_line": 170,
+          "file_sha256": "7ecc732bb6888151e5f900881efb5e3422f4e6655d253694f2c0ced6c8a5730a",
+          "excerpt_sha256": "c89f7551824d037804f99617fa4034f4743edf3f58d4c799bc6b831ceeb941cd"
         }
       ],
       "recorded_related_tests": [],
@@ -4684,7 +4684,13 @@
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "output_and_acceptance_previous": [
+        {
+          "text": "Recognized AFSimple_Calculate and AFRange_Validate helpers are interpreted declaratively with bounded dependency order, range checks and atomic copy publication. General JavaScript/XFA remains unsupported; seven new portable cases passed, Linux pending.",
+          "superseded_at_local": "2026-10-20T00:42:31-03:00"
+        }
+      ]
     },
     {
       "id": "forms/xfa",

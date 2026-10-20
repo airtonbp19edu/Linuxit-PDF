@@ -2,7 +2,7 @@
 
 Gerado de `especificacao-funcional.json` por `scripts/validate_functional_spec.py`.
 
-Escopo: **25 famílias identificadas**, **50 cenários planejados**; 24 subconjuntos implementados e 1 propostas futuras. O inventário global permanece aberto.
+Escopo: **25 famílias identificadas**, **51 cenários planejados**; 24 subconjuntos implementados e 1 propostas futuras. O inventário global permanece aberto.
 
 O campo esperado é do contrato próprio atual ou de uma proposta explicitamente identificada. Execuções próprias registradas: **48**, das quais 48 aprovadas; cada uma aponta o arquivo de resultado e a revisão do código. Expectativas/observações Foxit dos cenários completos S12 permanecem `null`. Observações parciais preservadas por família são registradas separadamente. Referenciar um teste existente não o executa novamente nem comprova paridade. As duas situações de cada família são um início de cobertura, não uma lista exaustiva.
 
@@ -668,7 +668,7 @@ Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
 ## AcroForm/XFA/eventos
 
-Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. XFA, JavaScript geral, formatação/localização e eventos arbitrários continuam abertos.
+Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16 (etapa E03): AFNumber_Format e AFNumber_Keystroke com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. XFA, JavaScript geral, negativos em vermelho, datas, máscaras especiais e eventos arbitrários continuam abertos.
 
 **Entradas**
 
@@ -700,6 +700,7 @@ Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências 
 
 - **S12-15-1** (nominal, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx editável, sem XFA ou assinatura. Ação: Preencher o campo Tx e salvar cópia nova. Esperado: Reabrir a cópia confirma o texto; páginas e original são preservados. Widgets de escolha não estão neste subconjunto. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
 - **S12-15-2** (exception, contrato próprio atual, `passed`): dado AcroForm sintético com campo Tx ReadOnly ou MaxLen excedido. Ação: Tentar alterar o campo e salvar cópia. Esperado: Recusar a operação sem saída nova; preservar o original. Execução própria em 2026-10-20T00:36:50-03:00, revisão `353a30bbb4a9`, fronteira worker copy-edit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json).
+- **S12-15-3** (nominal, contrato próprio atual, `not_run`): dado AcroForm sintético com preço e quantidade (AFNumber_Keystroke com vírgula decimal) e total calculado com AFNumber_Format(2, 2, 0, 0, "R$ ", true). Ação: Preencher preço 1234,5 e quantidade 2 com cálculos e salvar cópia nova. Esperado: O total guarda 2469 sem formatação e a aparência mostra R$ 2.469,00; nenhum JavaScript é executado; o original é preservado.
 
 **Lacunas da referência Foxit**
 

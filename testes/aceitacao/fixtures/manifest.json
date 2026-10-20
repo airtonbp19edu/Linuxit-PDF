@@ -21,6 +21,12 @@
       "description": "AcroForm Tx: nome editável, fixo ReadOnly e curto com MaxLen 5; sem XFA ou assinatura."
     },
     {
+      "file": "formulario-numerico.pdf",
+      "bytes": 1634,
+      "sha256": "b4035e6185e826122629fbcefa52aebaedc93078ff2d542163f8f5cd115b8056",
+      "description": "AcroForm: preco e quantidade com AFNumber_Keystroke (vírgula decimal); total calculado com AFNumber_Format em reais."
+    },
+    {
       "file": "camadas.pdf",
       "bytes": 970,
       "sha256": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5",

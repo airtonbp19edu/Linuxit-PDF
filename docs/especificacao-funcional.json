@@ -2441,7 +2441,7 @@
       "name": "AcroForm/XFA/eventos",
       "matrix_implementation": "0.1.16: AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e AFRange_Validate com gramática limitada, dependências e validação antes da cópia. Suíte própria564/564 por ambiente. XFA e JavaScript geral ainda abertos.",
       "contract_kind": "implemented_subset",
-      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. XFA, JavaScript geral, formatação/localização e eventos arbitrários continuam abertos.",
+      "scope": "Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências existentes, rádio, listas simples/múltiplas e combo, inclusive combo editável com texto livre (0.1.15). Cálculos AFSimple_Calculate SUM/AVG/PRD/MIN/MAX e validação AFRange_Validate por gramática fechada, com dependências até64 níveis e ciclos recusados; nenhum JavaScript é executado. Fonte posterior à 0.1.16 (etapa E03): AFNumber_Format e AFNumber_Keystroke com estilos de separador 0–4, moeda, sinal ou parênteses; o valor fica sem formatação, a aparência mostra o número formatado e a entrada aceita vírgula decimal nos estilos com vírgula. XFA, JavaScript geral, negativos em vermelho, datas, máscaras especiais e eventos arbitrários continuam abertos.",
       "inputs": [
         "PDF local não criptografado, sem assinatura/Perms/XFA/Collection, fonte identificada por SHA-256.",
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
@@ -2734,6 +2734,17 @@
             "executed_at_local": "2026-10-20T00:36:50-03:00",
             "boundary": "worker copy-edit"
           }
+        },
+        {
+          "id": "S12-15-3",
+          "kind": "nominal",
+          "given": "AcroForm sintético com preço e quantidade (AFNumber_Keystroke com vírgula decimal) e total calculado com AFNumber_Format(2, 2, 0, 0, \"R$ \", true).",
+          "when": "Preencher preço 1234,5 e quantidade 2 com cálculos e salvar cópia nova.",
+          "expected_linuxit": "O total guarda 2469 sem formatação e a aparência mostra R$ 2.469,00; nenhum JavaScript é executado; o original é preservado.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
       "parity": "not_verified",
