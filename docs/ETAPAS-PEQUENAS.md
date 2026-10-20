@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T10:49:00-03:00. Pendente: 17, Concluída: 8, Bloqueada: 1.
+Atualizado em 2026-10-20T10:54:00-03:00. Pendente: 17, Em andamento: 1, Concluída: 8, Bloqueada: 1.
 
 **Regras**
 
@@ -22,6 +22,7 @@ Atualizado em 2026-10-20T10:49:00-03:00. Pendente: 17, Concluída: 8, Bloqueada:
 | E25 | Régua com vírgula decimal (2,54 cm) | Base e entrega | nada | Concluída |
 | E26 | Estabilizar o teste de reprodução de mídia | Base e entrega | nada | Concluída |
 | E06 | XFA: leitura dos campos | Formulários | nada | Concluída |
+| E27 | Investigar a queda do GTK no CI Debian 13 | Base e entrega | nada | Em andamento |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Pendente |
@@ -138,6 +139,14 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e26.json](
 Novo módulo app/pdf_xfa.py: detecta XFA (fluxo único ou lista de pacotes, híbrido ou só XFA, dinâmico) e lista os valores do pacote datasets por caminho SOM, como form1[0].nome[0]. Somente leitura: o modelo e os scripts XFA não são interpretados nem executados; DOCTYPE e entidades são recusados; limites de 8 MiB, profundidade 64, 5000 valores e 4096 caracteres por valor. Menu "Campos de formulário XFA…" abre um diálogo de leitura. Gravação de PDFs XFA continua recusada (E07). 10 testes portáveis novos; casos de aceitação S12-15-8 (worker) e S12-15-9 (diálogo GTK); suíte local 595/595; aceitação 55/55 na revisão 06daa9d. CI Debian 13 (execução 39432901662, revisão 9abc923): suíte 595/595 e aceitação 55/55.
 
 Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json), [tests/test_pdf_xfa.py](../tests/test_pdf_xfa.py), [app/pdf_xfa.py](../app/pdf_xfa.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e06-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e06-review.json). Commit `06daa9d`.
+
+### E27 — Investigar a queda do GTK no CI Debian 13
+
+**Objetivo:** Encontrar a causa do SIGSEGV após "Gtk-CRITICAL _gtk_css_rgba_value_get_rgba" em test_comment_threads no Debian 13 (2 de 3 execuções do CI) e corrigir o código ou o teste sem enfraquecer o que ele verifica (decisão D03).
+
+**Como verificar:** Reproduzir ou explicar a queda com evidência; depois da correção, o teste passa repetidamente no ambiente local e no CI Debian 13.
+
+**Situação:** Em andamento.
 
 ### E07 — XFA híbrido: preencher mantendo datasets coerente
 
@@ -287,4 +296,4 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e06.json](
 
 - **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
 - **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.
-- **D03** (Aguardando você): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria?
+- **D03** (Decidida): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria? **Resposta:** Investigar como uma etapa própria e, em seguida, fazer a próxima etapa (usuário, 20/10/2026 às 10:53). Etapa E27.

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 10:49 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 10:54 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -21,7 +21,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Nada em execução. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E06, E25 e E26 concluídas. Aguardando você para iniciar a **E07** (XFA híbrido: preencher mantendo os dados coerentes) e para responder a decisão **D03**.
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E06, E25 e E26 concluídas. Executando a **E27** (investigar a queda do GTK no CI Debian 13, decisão D03); depois dela, a **E07**, e então parar.
 
 ### Falta
 
@@ -52,7 +52,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 **Decisões tomadas**
 - D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
 - D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
-- D03 (aguardando você): queda intermitente do GTK no CI Debian 13 durante um teste de comentários. Investigar como etapa própria?
+- D03: a queda intermitente do GTK no CI Debian 13 virou a etapa E27, em andamento.
 
 **Adiado e excluído**
 - Nuvem direta está adiada por decisão do usuário.
@@ -81,3 +81,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 10:25** — E26 concluída (`5747278`): o teste instável revelou um defeito real. Um áudio curto podia "terminar" em milissegundos porque a reprodução começava antes de o som estar pronto. Corrigido para pré-carregar antes de tocar. Teste novo, 20 de 20 execuções seguidas, suíte 585/585, aceitação 53/53. Iniciando a E06.
 - **2026/10/20 às 10:43** — E06 concluída (`06daa9d`): o aplicativo detecta formulários XFA e mostra os campos e valores em uma janela somente leitura (menu "Campos de formulário XFA…"), sem executar scripts. Suíte 595/595, aceitação 55/55. CI da E26: confirmada no Debian 13 na revisão `95a46ba` (suíte 585/585, aceitação 53/53). Antes disso, duas execuções caíram por uma falha nativa do GTK num teste de comentários, sem relação com a E26; ligado o registro de pilha e aberta a decisão D03 para você. Parado, aguardando você para a E07 e a D03.
 - **2026/10/20 às 10:49** — CI no Debian 13 confirmou a E06: aceitação 55/55 e suíte 595/595, sem quedas. Nenhuma etapa nova iniciada; aguardando você para a E07 e a decisão D03.
+- **2026/10/20 às 10:54** — Decisão D03: investigar a queda do GTK como etapa própria (E27) e, em seguida, fazer a próxima da fila (E07). Iniciando a E27.
