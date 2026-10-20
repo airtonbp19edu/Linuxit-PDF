@@ -415,6 +415,30 @@ def formatted_number(ctx):
     return dict(values=raw, appearance_text='R$ 2.469,00', javascript_executed=False)
 
 
+@case('S12-15-4', 'worker copy-edit (fill-form-events)')
+def formatted_date(ctx):
+    from pypdf import PdfReader
+    source = ctx.fixture(OWN + 'formulario-data.pdf');before = sha256(source);output = ctx.work / 'data.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'fill-form-events', 'values': {'vencimento': '1/2/2026'}}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] == 0, run['stderr'])
+    reader = PdfReader(str(output));value = str(reader.get_fields()['vencimento']['/V'])
+    shown = reader.pages[0]['/Annots'][0].get_object()['/AP']['/N'].get_object().get_data()
+    check(value == '1/2/2026' and b'01/02/2026' in shown, f'valor {value!r} ou aparência sem 01/02/2026')
+    check(sha256(source) == before, 'original alterado')
+    return dict(value=value, appearance_text='01/02/2026', javascript_executed=False)
+
+
+@case('S12-15-5', 'worker copy-edit (fill-form-events)')
+def impossible_date(ctx):
+    source = ctx.fixture(OWN + 'formulario-data.pdf');before = sha256(source);output = ctx.work / 'data.pdf'
+    request = {'source_sha256': before, 'operations': [{'kind': 'fill-form-events', 'values': {'vencimento': '31/02/2026'}}]}
+    run = ctx.worker('copy-edit', source, output, request=request)
+    check(run['code'] != 0 and not output.exists(), 'data inexistente aceita')
+    check(sha256(source) == before and not list(ctx.work.glob('.linuxit-copy-*')), 'original/temporários afetados')
+    return dict(refused=True, output_created=False)
+
+
 # 16 — attachments
 
 @case('S12-16-1', 'worker attachments/extract-attachment')

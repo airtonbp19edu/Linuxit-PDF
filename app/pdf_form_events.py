@@ -1,5 +1,6 @@
 """Declarative Acrobat helper subset; never execute JavaScript from a PDF."""
 import ast
+from datetime import date
 from decimal import ROUND_HALF_UP, Decimal, InvalidOperation, localcontext
 import re
 
@@ -58,7 +59,7 @@ def _number_arguments(helper, script):
     require(decimals<=10 and separator in SEPARATORS and style==0,helper+' com parâmetros não suportados.')
     require(negative in (0,2),'Negativos em vermelho ainda não são suportados; use sinal ou parênteses.')
     currency=match[5] if match[5] is not None else match[6]
-    return dict(decimals=decimals,separator=separator,negative=negative,currency=currency,prepend=match[7]=='true')
+    return dict(kind='number',decimals=decimals,separator=separator,negative=negative,currency=currency,prepend=match[7]=='true')
 
 
 def parse_number_format(script):
@@ -67,6 +68,64 @@ def parse_number_format(script):
 
 def parse_number_keystroke(script):
     return _number_arguments('AFNumber_Keystroke',script)
+
+
+DATE_TOKENS = ('yyyy', 'yy', 'mm', 'm', 'dd', 'd')
+DATE_LITERALS = '/-. '
+
+
+def _date_arguments(helper, script):
+    match=re.fullmatch(helper+r'\(\s*(?:"([^"\\\n]{1,32})"|\'([^\'\\\n]{1,32})\')\s*\)\s*;?',script)
+    require(match is not None,helper+' fora do subconjunto suportado.')
+    pattern=match[1] if match[1] is not None else match[2]
+    require('mmm' not in pattern and re.fullmatch(r'[dmy/. -]+',pattern) is not None,
+            'Formato de data com nomes de mês, horas ou texto ainda não suportado: '+pattern)
+    parts,index=[],0
+    while index<len(pattern):
+        token=next((t for t in DATE_TOKENS if pattern.startswith(t,index)),None)
+        if token:
+            parts.append(token);index+=len(token)
+        else:
+            require(pattern[index] in DATE_LITERALS,'Formato de data com nomes de mês, horas ou texto ainda não suportado: '+pattern)
+            parts.append(pattern[index]);index+=1
+    kinds=[t[0] for t in parts if t in DATE_TOKENS]
+    require(sorted(kinds)==['d','m','y'],'O formato de data precisa de exatamente um dia, um mês e um ano: '+pattern)
+    return dict(kind='date',pattern=pattern,parts=parts)
+
+
+def parse_date_format(script):
+    return _date_arguments('AFDate_FormatEx',script)
+
+
+def parse_date_keystroke(script):
+    return _date_arguments('AFDate_KeystrokeEx',script)
+
+
+def parse_date(text, rule):
+    """Strict own parse: day/month accept one or two digits, yy maps to 1950–2049."""
+    groups={'d':r'(\d{1,2})','dd':r'(\d{1,2})','m':r'(\d{1,2})','mm':r'(\d{1,2})','yy':r'(\d{2})','yyyy':r'(\d{4})'}
+    regex=''.join(groups.get(part,re.escape(part)) for part in rule['parts'])
+    match=re.fullmatch(regex,text.strip()) if len(text)<=64 else None
+    require(match is not None,'Data fora do formato '+rule['pattern']+'.')
+    values=dict(zip((p[0] for p in rule['parts'] if p in groups),map(int,match.groups())))
+    year=values['y']
+    if next(p for p in rule['parts'] if p.startswith('y'))=='yy':year+=2000 if year<50 else 1900
+    try:return date(year,values['m'],values['d'])
+    except ValueError:raise ValueError('Data inexistente para o formato '+rule['pattern']+'.') from None
+
+
+def format_date(value, rule):
+    text={'d':str(value.day),'dd':f'{value.day:02d}','m':str(value.month),'mm':f'{value.month:02d}',
+          'yy':f'{value.year%100:02d}','yyyy':f'{value.year:04d}'}
+    return ''.join(text.get(part,part) for part in rule['parts'])
+
+
+def _format_rule(script):
+    return parse_date_format(script) if script.startswith('AFDate_') else parse_number_format(script)
+
+
+def _keystroke_rule(script):
+    return parse_date_keystroke(script) if script.startswith('AFDate_') else parse_number_keystroke(script)
 
 
 def format_number(number, rule):
@@ -87,7 +146,7 @@ def format_number(number, rule):
     return text
 
 
-def _input_number(value, keystroke):
+def _input_number(value, keystroke):  # number keystroke rules only
     """Canonical dot-decimal text for a field whose keystroke rule allows a comma decimal."""
     text=value.strip()
     if keystroke is None or SEPARATORS[keystroke['separator']][1]!=',' or ',' not in text:
@@ -112,8 +171,8 @@ def inspect_form_events(document):
                 script=_script(action)
                 if event=='/C':rule=parse_calculation(script)
                 elif event=='/V':rule=parse_validation(script)
-                elif event=='/F':rule=parse_number_format(script)
-                elif event=='/K':rule=parse_number_keystroke(script)
+                elif event=='/F':rule=_format_rule(script)
+                elif event=='/K':rule=_keystroke_rule(script)
                 else:raise ValueError('Evento ainda não suportado pelo motor declarativo.')
                 rules.append(dict(field=name,event=event,rule=rule))
             except (ValueError,UnicodeError) as exc:unsupported.append(dict(field=name,event=event,reason=str(exc)))
@@ -139,9 +198,11 @@ def calculate_form_values(document,values):
     calculations={r['field']:r['rule'] for r in configuration['rules'] if r['event']=='/C'}
     require(not set(values)&calculations.keys(),'Preencha os dados de entrada; os campos calculados são produzidos pelo cálculo.')
     keystrokes={r['field']:r['rule'] for r in configuration['rules'] if r['event']=='/K'}
-    result={name:_input_number(text,keystrokes.get(name)) for name,text in values.items()}
+    numbers={name:rule for name,rule in keystrokes.items() if rule['kind']=='number'}
+    result={name:_input_number(text,numbers.get(name)) for name,text in values.items()}
     for name in keystrokes.keys()&result.keys():
-        _number(result[name])
+        if keystrokes[name]['kind']=='number':_number(result[name])
+        elif result[name].strip():parse_date(result[name],keystrokes[name])
     visiting=set();completed=set()
     def value(name):
         require(name in fields and terminal(fields[name]),'Campo dependente do cálculo não encontrado.')
@@ -172,6 +233,15 @@ def calculate_form_values(document,values):
 
 def format_form_values(document,values):
     """Display text for fields with AFNumber_Format; field values stay unformatted."""
-    formats={r['field']:r['rule'] for r in inspect_form_events(document)['rules'] if r['event']=='/F'}
-    return {name:format_number(_number(value),formats[name]) for name,value in values.items()
-            if name in formats and value.strip()}
+    rules=inspect_form_events(document)['rules']
+    formats={r['field']:r['rule'] for r in rules if r['event']=='/F'}
+    keystrokes={r['field']:r['rule'] for r in rules if r['event']=='/K'}
+    display={}
+    for name,value in values.items():
+        rule=formats.get(name)
+        if rule is None or not value.strip():continue
+        if rule['kind']=='number':display[name]=format_number(_number(value),rule)
+        else:
+            source=keystrokes.get(name) if keystrokes.get(name,{}).get('kind')=='date' else rule
+            display[name]=format_date(parse_date(value,source),rule)
+    return display

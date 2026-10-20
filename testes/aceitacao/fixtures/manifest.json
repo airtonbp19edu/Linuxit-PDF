@@ -27,6 +27,12 @@
       "description": "AcroForm: preco e quantidade com AFNumber_Keystroke (vírgula decimal); total calculado com AFNumber_Format em reais."
     },
     {
+      "file": "formulario-data.pdf",
+      "bytes": 1005,
+      "sha256": "3100945fa78c36ae81d305611f0afbdcc4de56aa7e1b34d10e1c40df74eb7ec2",
+      "description": "AcroForm: campo vencimento com AFDate_KeystrokeEx e AFDate_FormatEx(\"dd/mm/yyyy\")."
+    },
+    {
       "file": "camadas.pdf",
       "bytes": 970,
       "sha256": "9eb734288c8769aaa8a07024b3af353cac157c844e6e83ef7787496cf4e598b5",

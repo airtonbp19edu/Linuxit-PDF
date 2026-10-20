@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 17,
-  "reviewed_at_local": "2026-10-20T00:42:31-03:00",
+  "reviewed_at_local": "2026-10-20T00:50:08-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -4648,7 +4648,7 @@
         "Operação selecionada, página base zero para marcador/nota ou nome do campo Tx e texto; destino novo com pasta existente.",
         "Operação adicional de formulário/árvore/anotação descrita em docs/EDICAO-COM-HISTORICO.md; histórico de até100 passos."
       ],
-      "output_and_acceptance": "Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format and AFNumber_Keystroke helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3.",
+      "output_and_acceptance": "Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format/AFNumber_Keystroke and AFDate_FormatEx/AFDate_KeystrokeEx (numeric d/m/y) helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, month-name or time dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3 to S12-15-5.",
       "failure_contract_refs": [
         {
           "family_id": "forms",
@@ -4671,10 +4671,10 @@
         {
           "path": "app/pdf_form_events.py",
           "symbol": "calculate_form_values",
-          "line": 132,
-          "end_line": 170,
-          "file_sha256": "7ecc732bb6888151e5f900881efb5e3422f4e6655d253694f2c0ced6c8a5730a",
-          "excerpt_sha256": "c89f7551824d037804f99617fa4034f4743edf3f58d4c799bc6b831ceeb941cd"
+          "line": 191,
+          "end_line": 231,
+          "file_sha256": "7cd12923ce2a6a172640ff19fce8d4e8095e3cd1b64334aa9bae9350504d0d4c",
+          "excerpt_sha256": "a11bcce4264a0659add3e4b75c114e10dd8e86cec658629114c86c04a2dc4e3a"
         }
       ],
       "recorded_related_tests": [],

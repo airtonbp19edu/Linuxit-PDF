@@ -1,0 +1,89 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 5 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+/AcroForm 7 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/Resources <<
+>>
+/MediaBox [ 0.0 0.0 300 120 ]
+/Parent 2 0 R
+/Annots [ 6 0 R ]
+>>
+endobj
+6 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/FT /Tx
+/T (vencimento)
+/V ()
+/DA (\057Helv 10 Tf 0 g)
+/Rect [ 20 50 280 70 ]
+/AA <<
+/K <<
+/S /JavaScript
+/JS (AFDate\137KeystrokeEx\050\042dd\057mm\057yyyy\042\051\073)
+>>
+/F <<
+/S /JavaScript
+/JS (AFDate\137FormatEx\050\042dd\057mm\057yyyy\042\051\073)
+>>
+>>
+>>
+endobj
+7 0 obj
+<<
+/Fields [ 6 0 R ]
+/DA (\057Helv 10 Tf 0 g)
+/DR <<
+/Font <<
+/Helv 4 0 R
+>>
+>>
+>>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000054 00000 n 
+0000000113 00000 n 
+0000000178 00000 n 
+0000000248 00000 n 
+0000000360 00000 n 
+0000000672 00000 n 
+trailer
+<<
+/Size 8
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+770
+%%EOF

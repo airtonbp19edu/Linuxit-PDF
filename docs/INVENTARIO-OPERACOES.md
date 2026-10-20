@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T00:42:31-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T00:50:08-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -244,7 +244,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |`forms/list-single` — Selecionar lista simples|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Lista simples e opção ou vazio => seleção única ou limpeza consistente.|
 |`forms/list-multiple` — Selecionar lista múltipla|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Conjunto de exports => valores e índices canônicos persistidos sem duplicação.|
 |`forms/combo-editable` — Preencher combo com texto livre|Código em subconjunto ([fonte](../app/pdf_form_controls.py#L127))|Texto fora de Opt em combo editável => gerar valor/aparência, preservar opções e ReadOnly; ainda recusado atualmente.|
-|`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L132))|Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format and AFNumber_Keystroke helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3.|
+|`forms/events` — Calcular e validar eventos de formulário|Código em subconjunto ([fonte](../app/pdf_form_events.py#L191))|Recognized AFSimple_Calculate, AFRange_Validate, AFNumber_Format/AFNumber_Keystroke and AFDate_FormatEx/AFDate_KeystrokeEx (numeric d/m/y) helpers are interpreted declaratively (closed grammar, no JavaScript): bounded dependency order, range checks, comma-decimal input for comma styles, unformatted /V with formatted appearance, atomic copy publication. Red negatives, month-name or time dates, special masks, general JavaScript and XFA remain unsupported. Validated on Linux; acceptance S12-15-3 to S12-15-5.|
 |`forms/xfa` — Processar XFA|Pendente/caracterizar|Formulário XFA => disponibilidade e contrato do alvo ainda a caracterizar; edição atual recusa.|
 
 ## Anexos/portfólios
