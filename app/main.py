@@ -17,6 +17,7 @@ gi.require_version('GLib', '2.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf, GLib, Pango
 
 from async_core import BackgroundRunner
+import main_thread_gc
 import cups_backend as cups
 from print_window import PrintWindow
 from presentation import PresentationWindow, LASER_COLORS
@@ -75,6 +76,8 @@ class PDFWindow(Gtk.Window):
         self.connect('key-press-event', self._on_key)
         self.connect('size-allocate', self._on_resize)
 
+        # Python's cyclic GC must not finalize GTK widgets in worker threads (E27).
+        main_thread_gc.install(GLib)
         self.runner = BackgroundRunner(workers=4)
         self.render_runner = BackgroundRunner(workers=1, latest_only=True)
         self.prefetch_runner = BackgroundRunner(workers=1, latest_only=True)

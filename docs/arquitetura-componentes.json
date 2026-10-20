@@ -43,6 +43,12 @@
       "responsibility": "Filas, cancelamento cooperativo e entrega por geração via GLib."
     },
     {
+      "id": "main_thread_gc",
+      "path": "app/main_thread_gc.py",
+      "boundary": "glib_scheduler",
+      "responsibility": "Coleta cíclica do Python só na thread principal do GTK (temporizador GLib), para que widgets em ciclos nunca sejam finalizados por threads de trabalho."
+    },
+    {
       "id": "search_engine",
       "path": "app/search_engine.py",
       "boundary": "portable_pdf_services",
