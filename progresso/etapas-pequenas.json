@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T15:09:00-03:00",
+  "updated_at_local": "2026-10-20T15:19:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -226,16 +226,23 @@
       "id": "E10",
       "block": "Assinaturas",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Usar DSS/VRI embutidos na validação offline",
       "goal": "Ler certificados e CRLs do dicionário DSS e usá-los na verificação de cadeia e revogação, sem rede.",
-      "verification": "Fixture com DSS sintético: revogação verificada só com o material embutido."
+      "verification": "Fixture com DSS sintético: revogação verificada só com o material embutido.",
+      "commit": "ba38ca7",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json",
+        "tests/test_dss_validation.py",
+        "app/signature_trust.py"
+      ],
+      "note": "Certificados e CRLs do dicionário DSS do PDF entram na validação offline: certificados só ajudam a montar o caminho até a CA escolhida (nunca viram âncora) e CRLs servem para a revogação; OCSP e VRI são contados, não usados; DSS inválido é informado e ignorado. A janela mostra o resumo do DSS e o que foi usado. Suíte 616/616; aceitação 65/65 na revisão ba38ca7."
     },
     {
       "id": "E11",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Entrega 0.1.17",
       "goal": "Versão, Flatpak testado em fonte, pacote e sandbox, publicação como prerelease, auditoria do mesmo arquivo, download conferido e probe de desktop.",
       "verification": "Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados."

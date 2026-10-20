@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T15:09:00-03:00. Pendente: 13, Em andamento: 1, Concluída: 13, Bloqueada: 1.
+Atualizado em 2026-10-20T15:19:00-03:00. Pendente: 12, Em andamento: 1, Concluída: 14, Bloqueada: 1.
 
 **Regras**
 
@@ -27,8 +27,8 @@ Atualizado em 2026-10-20T15:09:00-03:00. Pendente: 13, Em andamento: 1, Concluí
 | E28 | Fechar a nuvem pelo fluxo de pastas sincronizadas | Nuvem (pastas sincronizadas) | nada | Concluída |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Concluída |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
-| E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Em andamento |
-| E11 | Entrega 0.1.17 | Base e entrega | nada | Pendente |
+| E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
+| E11 | Entrega 0.1.17 | Base e entrega | nada | Em andamento |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Pendente |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Pendente |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Pendente |
@@ -207,7 +207,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json](
 
 **Como verificar:** Fixture com DSS sintético: revogação verificada só com o material embutido.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Certificados e CRLs do dicionário DSS do PDF entram na validação offline: certificados só ajudam a montar o caminho até a CA escolhida (nunca viram âncora) e CRLs servem para a revogação; OCSP e VRI são contados, não usados; DSS inválido é informado e ignorado. A janela mostra o resumo do DSS e o que foi usado. Suíte 616/616; aceitação 65/65 na revisão ba38ca7.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json), [tests/test_dss_validation.py](../tests/test_dss_validation.py), [app/signature_trust.py](../app/signature_trust.py). Commit `ba38ca7`.
 
 ### E11 — Entrega 0.1.17
 
@@ -215,7 +219,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e09.json](
 
 **Como verificar:** Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 
