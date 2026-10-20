@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 12:37 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 12:39 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,7 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Nada em execução. Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E27 concluídas. Aguardando você para iniciar a **E08**.
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E27 concluídas. Executando a **E28** (fechar a nuvem pelo fluxo de pastas sincronizadas, pedido seu); depois dela, parar. A E08 continua aguardando você.
 
 ### Falta
 
@@ -86,3 +86,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 12:25** — E27 concluída (`79851e9`). A queda não se repetiu em cerca de 70 execuções, inclusive num Debian 13 local e em 18 execuções de diagnóstico no CI. Mas a investigação achou a causa provável: o coletor de lixo do Python às vezes rodava numa thread de trabalho e liberava botões, listas e até janelas do GTK fora da thread principal (546 objetos numa suíte completa), o que o GTK não suporta. Correção: a coleta passa a rodar só na thread principal; a contagem caiu para 0. Suíte 600/600, aceitação 55/55, CI Debian 13 aprovado. Iniciando a E07.
 - **2026/10/20 às 12:32** — E07 concluída (`aff57e0`): em formulários XFA híbridos, preencher um campo agora grava o mesmo valor nos campos comuns e nos dados XFA da cópia, inclusive valores calculados; a cópia é conferida antes de ser salva. Campos sem dado XFA correspondente e outras alterações em XFA são recusados. Suíte 607/607, aceitação 57/57. CI no Debian 13 em andamento. Parado, aguardando você para a E08.
 - **2026/10/20 às 12:37** — CI no Debian 13 confirmou a E07: aceitação 57/57 e suíte 607/607, sem quedas. Nenhuma etapa nova iniciada; aguardando você para a E08.
+- **2026/10/20 às 12:39** — Pedido: procurar a decisão sobre nuvem e fechar o ciclo. Encontrada a decisão de 17/10/2026 às 20:51: usar pastas sincronizadas por programas externos; o Linuxit só trabalha com arquivos locais. Os 2 casos de aceitação de nuvem que faltavam ainda descreviam um provedor remoto simulado. Criada a etapa E28 para trocar esses casos pelo fluxo escolhido e executá-los. Login, envio por API e colaboração remota seguem adiados.
