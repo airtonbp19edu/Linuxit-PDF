@@ -470,6 +470,13 @@
       "question": "No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria?",
       "answer": "Investigar como uma etapa própria e, em seguida, fazer a próxima etapa (usuário, 20/10/2026 às 10:53).",
       "step": "E27"
+    },
+    {
+      "id": "D04",
+      "status": "pendente",
+      "question": "Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC?",
+      "answer": null,
+      "step": "E20"
     }
   ]
 }
