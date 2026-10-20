@@ -1,0 +1,60 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_release_preflight.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 8,
+  "passed": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 0.0,
+  "cases": [
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_api_permission_error_fails_closed",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_changed_workflows_require_owner_without_retargeting",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_draft_with_wrong_target_refuses_upload",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_identical_workflows_allow_candidate_even_after_app_commits",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_owner_draft_accepts_upload_but_never_auto_publication",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_published_matching_asset_and_annotated_tag_are_noop",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_wrong_published_bytes_refuse_replacement",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_release_preflight.ReleasePreflightTests.test_wrong_tag_refuses_even_when_asset_matches",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

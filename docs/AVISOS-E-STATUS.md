@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 17:14 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 17:22 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,7 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura em andamento. Próxima publicação real permanece pendente e não será feita nesta etapa.
+- **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
 - **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases. Pedido ao Codex; o Claude retoma às 20:10.
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
 - Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15 concluído. Erro de CI da E08 resolvido e confirmado no CI (execução 39483614911: 638/638, sem pulos). Parado, aguardando você.
@@ -48,7 +48,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Impressora física, áudio e leitor de tela, monitores físicos, cliente sincronizador real e materiais RMS. Windows completo vem depois do Linux.
 
 **Entrega**
-- Próximo pacote 0.1.17: Flatpak, testes nos três ambientes e auditoria, incluindo a correção RFC 3161.
+- A 0.1.17 já está publicada e auditada. Próxima entrega deve incorporar E12–E15 e demais alterações autorizadas; requer candidato novo, três ambientes e auditoria. Não há nova publicação autorizada nesta E29.
 
 **Medição**
 - 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
@@ -111,3 +111,5 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 17:14** — Codex leu a prioridade E29, sincronizou main 353aa73 e preservou ambos os históricos de continuidade. Preparado fluxo manual de diagnóstico com contents:write, sem tokens em arquivos, limpeza restrita aos próprios rascunhos e conferência das releases públicas. Nenhum teste de app/VM iniciado.
 
 - **2026/10/20 às 17:19** — E29: reproduzida a causa (201/201/403 pelo mesmo token); não é falta de contents:write nem corrupção do pacote. GITHUB_TOKEN não pode receber Workflows:write exigido pelo alvo antigo. Preparado preflight para evitar repetir a operação recusada e preservar SHA/asset testados; oito testes de guardas aprovados. Sem alteração de configuração da conta ou VM.
+
+- **2026/10/20 às 17:22** — E29: fluxo corrigido aprovado no CI39491077708 em somente leitura (already_published, oito testes), sem reenvio/criação. Confirmados novamente releases/assets intactos e ausência de rascunhos/tags de diagnóstico. Solução e procedimento da próxima publicação salvos no documento prioritário, retomada e etapas. Falta comprovar publicação automática de um próximo candidato autorizado; critério final da E29 permanece aberto. Nenhuma etapa seguinte iniciada.

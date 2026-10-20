@@ -2,6 +2,8 @@
 
 **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases.
 
+**E29 — diagnóstico confirmado em 2026/10/20 às 17:22:** mesmo token criou rascunhos na main (201/201), mas alvo antigo com workflows diferentes recebeu403. Causa e correção no documento prioritário vinculado acima. Fluxo corrigido passou em conferência somente leitura (CI39491077708), oito guardas aprovadas. Releases/VM intactas. Falta validar a próxima publicação automática autorizada; E29 permanece aberta nesse critério. Não repetir análise da causa nem publicar nova versão nesta rodada.
+
 Situação atual (feito, em andamento, falta) e avisos ao usuário: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
 Atualização 2026/10/20 às 00:19 (America/Sao_Paulo, UTC-03:00): defeito RFC 3161 com OpenSSL 3.0 corrigido; registros atuais reconciliados com o código 0.1.16; **46 dos 50 planos de aceitação S12 executados e aprovados** como contrato próprio na revisão 841557d ([como executar](../testes/aceitacao/README.md), [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24.json)); suíte própria 571/571 local e no CI Debian 13 (execução 39363684386, aceitação 46/46). Fila vigente no topo de [tarefas-pendentes](../progresso/tarefas-pendentes.md). Detalhes na última nota de continuidade.

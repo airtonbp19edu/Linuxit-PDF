@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T17:09:00-03:00. Pendente: 8, Em andamento: 1, Concluída: 19, Bloqueada: 1.
+Atualizado em 2026-10-20T17:22:19.597513-03:00. Pendente: 8, Em andamento: 1, Concluída: 19, Bloqueada: 1.
 
 **Regras**
 
@@ -233,6 +233,8 @@ Evidência: [testes/resultados/0.1.17/release-publication.json](../testes/result
 **Como verificar:** Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.
 
 **Situação:** Em andamento.
+
+Causa confirmada pelo Codex: mesmo GITHUB_TOKEN contents:write retorna201/201 para branch padrão/main e403 para dec46c9, cujos workflows diferem. Rascunhos apagados, sem tags nem publicação. Fluxo corrigido passou no CI39491077708 em check_only:true e em oito testes de guardas. Registros em testes/resultados/e29-release-403/. Falta somente comprovar a próxima entrega automática autorizada com workflows iguais ao candidato; não foi publicada por proibição expressa desta etapa. Não repetir o diagnóstico nem abrir nova versão apenas para fechar o item.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 

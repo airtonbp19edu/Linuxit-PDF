@@ -1,7 +1,13 @@
 """Release identity and permission guards, independent from GTK/Flatpak."""
 import unittest
+import importlib.util
+from pathlib import Path
 
-from scripts.release_preflight import release_plan
+_spec = importlib.util.spec_from_file_location('release_preflight',
+    Path(__file__).resolve().parents[1] / 'scripts' / 'release_preflight.py')
+_module = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_module)
+release_plan = _module.release_plan
 
 
 class ReleasePreflightTests(unittest.TestCase):

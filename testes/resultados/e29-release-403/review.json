@@ -31,5 +31,29 @@
   "limits": [
     "No public release/tag created. Next actual authorized release remains to validate automatic creation.",
     "No app suite/VM execution. Existing bundle preserved."
-  ]
+  ],
+  "read_only_workflow_validation": {
+    "run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39491077708",
+    "tested_commit": "dc49fcddf9dd2742983425e15d39d05db7080f26",
+    "conclusion": "success",
+    "check_only": true,
+    "preflight_tests": {
+      "run": 8,
+      "passed": 8
+    },
+    "plan": "already_published",
+    "artifact_id": 12295596448,
+    "artifact_zip_sha256": "b71351fbff1b3e6665356f016432ca30cf6f0051d3448e84f0b115c9bb7dfe91",
+    "publication_steps_skipped": true
+  },
+  "focused_repository_runner": {
+    "result": "preflight-tests-windows.json",
+    "run": 8,
+    "passed": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "Infrastructure guards only; not full app suite"
+  },
+  "post_check": "post-check.json"
 }

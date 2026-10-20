@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T17:09:00-03:00",
+  "updated_at_local": "2026-10-20T17:22:19.597513-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -265,7 +265,13 @@
       "status": "em_andamento",
       "title": "PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions",
       "goal": "Descobrir por que o GITHUB_TOKEN com Contents: write recebe 403 ao criar release (mesmo rascunho) e deixar a publicação de versões automática de novo.",
-      "verification": "Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md."
+      "verification": "Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.",
+      "note": "Causa confirmada pelo Codex: mesmo GITHUB_TOKEN contents:write retorna201/201 para branch padrão/main e403 para dec46c9, cujos workflows diferem. Rascunhos apagados, sem tags nem publicação. Fluxo corrigido passou no CI39491077708 em check_only:true e em oito testes de guardas. Registros em testes/resultados/e29-release-403/. Falta somente comprovar a próxima entrega automática autorizada com workflows iguais ao candidato; não foi publicada por proibição expressa desta etapa. Não repetir o diagnóstico nem abrir nova versão apenas para fechar o item.",
+      "evidence": [
+        "testes/resultados/e29-release-403/review.json",
+        "docs/PRIORIDADE-E29-ERRO-403-RELEASE.md"
+      ],
+      "commit": "dc49fcd"
     },
     {
       "id": "E12",

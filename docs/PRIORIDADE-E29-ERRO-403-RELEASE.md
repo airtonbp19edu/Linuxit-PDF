@@ -32,7 +32,17 @@ Evidências integrais: [respostas HTTP](../testes/resultados/e29-release-403/pro
 - Para a **próxima entrega automática**, finalize os workflows antes de gerar o candidato e mantenha `.github/workflows/` igual até a publicação. Não é preciso congelar app/docs. Se alterar workflows após o candidato, valide um candidato novo ou use o rascunho do dono.
 - Não apontar a tag à main nem usar `--target main` para escapar do erro: isso perderia a identidade testada. Não aumentar permissões globais nem gravar tokens. Um token próprio com permissões extras seria alternativa opcional do dono, não requisito da solução adotada.
 
-**Limite da conclusão:** a causa foi reproduzida e a correção está em validação somente leitura. A publicação automática de uma próxima versão continua sem execução, porque esta E29 proíbe publicar ou criar tags públicas. O critério final da E29 exige essa próxima entrega; não declarar esse critério cumprido com rascunhos ou com a conferência da 0.1.17 já existente. Risco de concorrência permanece se outra sessão mudar workflows entre a conferência e a chamada de criação; a API continua aplicando sua proteção.
+**Limite da conclusão:** a causa foi reproduzida e a correção passou no CI em modo somente leitura. A publicação automática de uma próxima versão continua sem execução, porque esta E29 proíbe publicar ou criar tags públicas. O critério final da E29 exige essa próxima entrega; não declarar esse critério cumprido com rascunhos ou com a conferência da 0.1.17 já existente. Risco de concorrência permanece se outra sessão mudar workflows entre a conferência e a chamada de criação; a API continua aplicando sua proteção.
+
+### Validação da correção, sem publicação
+
+[Execução 39491077708](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39491077708), revisão `dc49fcd`, aprovada: `check_only:true`, plano `already_published`, tag `v0.1.17-devel` e commit `dec46c9` preservados, oito testes de guardas aprovados. Download/envio/criação foram pulados intencionalmente, porque essa verificação não publica nada; não confundir esses passos com testes de app pulados. [Plano preservado](../testes/resultados/e29-release-403/release-plan-39491077708.json).
+
+No Windows, os oito testes também passaram pelo runner padrão do projeto, como subconjunto explícito, sem GTK. A importação da ferramenta nos testes foi ajustada para funcionar tanto via unittest quanto pelo runner (mesmo padrão dos auditores existentes). Conferência final independente da API confirmou ambos os IDs apagados404, três tags404, nenhum rascunho de diagnóstico e inventário público de releases/assets inalterado: [post-check.json](../testes/resultados/e29-release-403/post-check.json).
+
+**Próximo teste de fechamento:** numa próxima entrega autorizada, produzir candidato com workflows finalizados e iguais aos da branch padrão, executar o fluxo com Conferir somente desmarcado, conferir a tag no SHA testado, asset e download, depois auditoria do mesmo bundle. Nenhuma dessas publicações foi executada nesta rodada. O status da E29 fica em andamento até esse comprovante; a causa não está mais em investigação. A etapa seguinte não foi iniciada.
+
+## Registro original (preservado como histórico)
 
 ## O erro
 
