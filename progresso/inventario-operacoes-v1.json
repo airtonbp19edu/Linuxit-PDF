@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
   "revision": 17,
-  "reviewed_at_local": "2026-10-20T15:02:00-03:00",
+  "reviewed_at_local": "2026-10-20T15:14:00-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -5047,10 +5047,10 @@
         {
           "path": "app/pdf_signatures.py",
           "symbol": "inspect_pdf_signatures",
-          "line": 104,
-          "end_line": 165,
-          "file_sha256": "034a8a0cbda4b03ee69e546dcae1c159705f1822574e615b992266136e511a86",
-          "excerpt_sha256": "0ee23bdcba482668589eed6b871f07a7f7702678a2fcad7280dd1de5bd7de2e8"
+          "line": 137,
+          "end_line": 206,
+          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
+          "excerpt_sha256": "164133634dba7fd06f12677d32aeb971dc96037ec5d1a4916e139d9eb74f14bc"
         }
       ],
       "recorded_related_tests": [
@@ -5094,7 +5094,7 @@
           "symbol": "_verify_detached",
           "line": 45,
           "end_line": 67,
-          "file_sha256": "034a8a0cbda4b03ee69e546dcae1c159705f1822574e615b992266136e511a86",
+          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
           "excerpt_sha256": "0b76e79ac96b120f59d3077403f255eddee148ce5818696c2ac3b0d65b12b440"
         }
       ],
@@ -5166,7 +5166,7 @@
       "input_context": [
         "PDF não criptografado até 64 MiB; até 16 campos Sig; CMS DER até 2 MiB; quatro intervalos ByteRange válidos."
       ],
-      "output_and_acceptance": "Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.",
+      "output_and_acceptance": "Explicit offline CA/CRL policy and date => chain, revocation and integrity reported separately; RFC 3161 signature and document timestamps checked against the selected CA. DSS certificates and CRLs embedded in the PDF are used offline: certificates only as untrusted path helpers (added to a verification copy of the CMS certificate set), CRLs for revocation; OCSP/VRI counted, not used (E10). Legal validity and writing DSS/LTV remain open. Acceptance S12-17-5 to S12-17-8.",
       "failure_contract_refs": [
         {
           "family_id": "signatures",
@@ -5177,10 +5177,10 @@
         {
           "path": "app/signature_trust.py",
           "symbol": "verify_trust",
-          "line": 58,
-          "end_line": 123,
-          "file_sha256": "8e93547e6888a8f6bdd97249747a8fdfeaf08038d49b632deaa12e2d1052d541",
-          "excerpt_sha256": "952efba1ba55d659016f36bdaf56a8468de4982fb2a0aeaa937e325201f5674a"
+          "line": 69,
+          "end_line": 148,
+          "file_sha256": "7a2770c6fc905f3ec13802c4b5a320ba7a4431a7dd7c5ae883ef6aa4358db918",
+          "excerpt_sha256": "52ddec5e09e86010df8f289f6b1b890ba428c0d385bd100cbfa65dccbbc7f9a5"
         }
       ],
       "recorded_related_tests": [],
@@ -5190,7 +5190,13 @@
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
       "next_package": "P06",
-      "complete_operation_or_family_equivalence": false
+      "complete_operation_or_family_equivalence": false,
+      "output_and_acceptance_previous": [
+        {
+          "text": "Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.",
+          "superseded_at_local": "2026-10-20T15:14:00-03:00"
+        }
+      ]
     },
     {
       "id": "signatures/timestamp-ltv",
@@ -5211,9 +5217,9 @@
         {
           "path": "app/pdf_signatures.py",
           "symbol": "_verify_document_timestamp",
-          "line": 73,
-          "end_line": 101,
-          "file_sha256": "034a8a0cbda4b03ee69e546dcae1c159705f1822574e615b992266136e511a86",
+          "line": 106,
+          "end_line": 134,
+          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
           "excerpt_sha256": "9008df51314dfa3845971b581f7ec95680cc5e92fa9ae43fba5a3e7ab9148582"
         }
       ],

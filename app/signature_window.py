@@ -116,10 +116,15 @@ class SignatureWindow(Gtk.Window):
                     text+=' · cadeia '+('confiável na CA selecionada' if trust['chain_verified'] else 'não validada')
                     text+=' · revogação '+('verificada offline' if trust['revocation_verified'] else 'desconhecida/não validada')
                     if trust['timestamps']:text+=' · carimbos '+str(sum(t['verified'] for t in trust['timestamps']))+'/'+str(len(trust['timestamps']))+' verificados'
+                    used=trust.get('dss_used') or {}
+                    if used.get('certificates') or used.get('crls'):text+=f" · DSS usado: {used.get('certificates',0)} certificado(s), {used.get('crls',0)} CRL(s)"
                 label=Gtk.Label(label=text,xalign=0);label.set_line_wrap(True);label.set_selectable(True)
                 label.set_margin_top(5);label.set_margin_bottom(5);self.rows.add(label)
             self.rows.show_all()
-            self.status.set_text(f"{len(result['signatures'])} campo(s), {result['omitted_signatures']} omitido(s) pelo limite. "+('Política de CA local aplicada por assinatura; sem decisão legal/LTV.' if policy else 'Confiança dos certificados não avaliada.'))
+            dss=result.get('dss')
+            dss_text=(f"DSS no PDF: {dss['certificates']} certificado(s), {dss['crls']} CRL(s), {dss['ocsp_responses']} OCSP (não usados). " if dss
+                      else (result.get('dss_error')+' ' if result.get('dss_error') else ''))
+            self.status.set_text(dss_text+f"{len(result['signatures'])} campo(s), {result['omitted_signatures']} omitido(s) pelo limite. "+('Política de CA local aplicada por assinatura; sem decisão legal/LTV.' if policy else 'Confiança dos certificados não avaliada.'))
         def failed(exc):
             if self.closed or cancel.is_set():return
             finish();self.status.set_text(str(exc))

@@ -68,6 +68,39 @@ def _verify_detached(cms, content):
 
 
 TIMESTAMP_DIGESTS = {'sha256', 'sha384', 'sha512'}
+MAX_DSS_CERTS = 64
+MAX_DSS_CRLS = 32
+MAX_DSS_ITEM = 1024**2
+
+
+def _dss_material(reader):
+    """Certificates and CRLs of the document security store (/DSS), bounded (E10).
+
+    They are validation material only: certificates never become trust anchors and
+    nothing is fetched; OCSP responses and VRI entries are counted, not used.
+    """
+    dss = reader.root_object.get('/DSS')
+    if dss is None:return None
+    dss = dss.get_object()
+    if not hasattr(dss, 'get'):raise ValueError('DSS inválido.')
+    def items(key, limit):
+        values = dss.get(key)
+        values = values.get_object() if values is not None else []
+        if not isinstance(values, list) or len(values) > limit:raise ValueError('DSS acima do limite: ' + key)
+        result = []
+        for value in values:
+            data = value.get_object().get_data()
+            if not data or len(data) > MAX_DSS_ITEM:raise ValueError('Item do DSS vazio ou acima de 1 MiB.')
+            result.append(data)
+        return result
+    vri = dss.get('/VRI');vri = vri.get_object() if vri is not None else {}
+    ocsps = dss.get('/OCSPs');ocsps = ocsps.get_object() if ocsps is not None else []
+    from cryptography import x509
+    certificates, crls = items('/Certs', MAX_DSS_CERTS), items('/CRLs', MAX_DSS_CRLS)
+    for data in certificates:x509.load_der_x509_certificate(data)
+    for data in crls:x509.load_der_x509_crl(data)
+    return {'certificates': certificates, 'crls': crls,
+            'ocsp_responses': len(ocsps) if isinstance(ocsps, list) else 0, 'vri_entries': len(vri) if hasattr(vri, 'keys') else 0}
 
 
 def _verify_document_timestamp(token, content):
@@ -114,6 +147,11 @@ def inspect_pdf_signatures(path, request):
     identity = hashlib.sha256(raw).hexdigest();reader = PdfReader(BytesIO(raw), strict=True)
     if reader.is_encrypted:raise ValueError('A inspeção de assinaturas em PDFs criptografados ainda não é suportada.')
     signatures, omitted = [], 0
+    dss_error = None
+    try:
+        dss = _dss_material(reader)
+    except (ValueError, AttributeError, TypeError, KeyError):
+        dss, dss_error = None, 'DSS inválido ou acima dos limites; ignorado.'
     for name, field in (reader.get_fields() or {}).items():
         if _inherited(field, '/FT') != '/Sig':continue
         if len(signatures) >= 16:omitted += 1;continue
@@ -154,13 +192,16 @@ def inspect_pdf_signatures(path, request):
             if policy is not None:
                 from signature_trust import verify_document_timestamp, verify_trust
                 check = verify_document_timestamp if record['kind'] == 'document_timestamp' else verify_trust
-                trust=check(cms,covered,policy)
+                trust=check(cms,covered,policy,dss)
                 record['trust']=trust;record['trust_chain_verified']=trust['chain_verified']
         except (ValueError, AttributeError, TypeError, KeyError, OverflowError):
             record['status'] = 'unsupported_or_malformed'
     if _sha(path) != identity:raise ValueError('O PDF mudou durante a verificação de assinaturas.')
     return {'schema':'linuxit-signature-integrity-v1','source_sha256':identity,'signatures':signatures,
             'omitted_signatures':omitted,'trust_chain_verified':False,'network_used':False,
+            'dss':None if dss is None else {'certificates':len(dss['certificates']),'crls':len(dss['crls']),
+                                            'ocsp_responses':dss['ocsp_responses'],'vri_entries':dss['vri_entries']},
+            'dss_error':dss_error,
             'trust_assessed':policy is not None,
             'scope':'Per-signature explicit local CA/CRL/RFC3161 policy; no legal/LTV decision.' if policy is not None else 'CMS integrity only; no chain, revocation, timestamp or legal validity assessment.'}
 

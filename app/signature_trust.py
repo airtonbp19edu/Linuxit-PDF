@@ -55,7 +55,18 @@ def _anchors(policy):
     return bundle,identities
 
 
-def verify_trust(cms,content,policy):
+def _dss_files(folder,dss):
+    """Write DSS material (E10): certificates only as untrusted helpers, CRLs as revocation data."""
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
+    dss=dss or {'certificates':[],'crls':[]}
+    certs=[x509.load_der_x509_certificate(raw).public_bytes(serialization.Encoding.PEM) for raw in dss['certificates']]
+    crls=[x509.load_der_x509_crl(raw).public_bytes(serialization.Encoding.PEM) for raw in dss['crls']]
+    path=Path(folder)/'dss-untrusted.pem';path.write_bytes(b''.join(certs))
+    return (path if certs else None),crls,dict(certificates=len(certs),crls=len(crls))
+
+
+def verify_trust(cms,content,policy,dss=None):
     from cryptography import x509
     from cryptography.hazmat.primitives import serialization
     from asn1crypto import cms as asn_cms,tsp
@@ -89,9 +100,23 @@ def verify_trust(cms,content,policy):
                 validation_time=policy['moment'].isoformat(),selected_material_sha256=identities,timestamps=[],network_used=False,
                 policy='OpenSSL explicit CA, purpose any, signing key usage; no legal/LTV decision')
     with tempfile.TemporaryDirectory(prefix='linuxit-trust-') as directory:
-        folder=Path(directory);ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle))
-        signature=folder/'cms.der';signature.write_bytes(cms);data=folder/'data.bin';data.write_bytes(content)
-        chain=folder/'included.pem';chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs))
+        folder=Path(directory)
+        dss_certs,dss_crls,result['dss_used']=_dss_files(folder,dss)
+        ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle+dss_crls))
+        # `openssl cms -verify` builds the chain only from the SignedData certificates and the
+        # store, so DSS certificates join the (unsigned) certificate set of a verification copy:
+        # they help to build a path but never become anchors.
+        verified_cms=cms
+        if dss and dss['certificates']:
+            from asn1crypto import x509 as asn_x509
+            augmented=asn_cms.ContentInfo.load(cms,strict=True)
+            present={c.dump() for c in certs}
+            extra=[asn_cms.CertificateChoices({'certificate':asn_x509.Certificate.load(raw)}) for raw in dss['certificates'] if raw not in present]
+            augmented['content']['certificates']=asn_cms.CertificateSet(list(augmented['content']['certificates'])+extra)
+            verified_cms=augmented.dump()
+        signature=folder/'cms.der';signature.write_bytes(verified_cms);data=folder/'data.bin';data.write_bytes(content)
+        chain=folder/'included.pem';chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs)
+                                                       +(dss_certs.read_bytes() if dss_certs else b''))
         empty_store=folder/'empty-ca-store';empty_store.mkdir()
         # The ts command always loads a config, including for verification.
         # Use an own empty policy file rather than assuming /etc/ssl is mounted.
@@ -99,7 +124,7 @@ def verify_trust(cms,content,policy):
         options=['-CAfile',str(ca),'-no-CApath','-no-CAstore','-attime',str(int(policy['moment'].timestamp()))]
         base=[executable,'cms','-verify','-binary','-inform','DER','-in',str(signature),'-content',str(data),'-purpose','any',*options,'-out',os.devnull]
         result['chain_verified']=usage_ok and _run(base)
-        if result['chain_verified'] and policy['crls']:result['revocation_verified']=_run([*base,'-crl_check_all'])
+        if result['chain_verified'] and (policy['crls'] or dss_crls):result['revocation_verified']=_run([*base,'-crl_check_all'])
         for signer in signers:
             signature_value=signer['signature'].native
             for attribute in signer['unsigned_attrs']:
@@ -114,7 +139,7 @@ def verify_trust(cms,content,policy):
                     # directory as a store URI, so the store is the anchor file.
                     ts_options=['-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(ca),'-attime',str(int(policy['moment'].timestamp()))]
                     args=[executable,'ts','-config',str(configuration),'-verify','-token_in','-in',str(token_path),'-data',str(value_path),*ts_options]
-                    if certs:args+=['-untrusted',str(chain)]
+                    if certs or dss_certs:args+=['-untrusted',str(chain)]
                     if policy['require_revocation']:args+=['-crl_check_all']
                     verified=_run(args)
                     timestamp=token['content']['encap_content_info']['content'].parsed['gen_time'].native
@@ -123,7 +148,7 @@ def verify_trust(cms,content,policy):
     return result
 
 
-def verify_document_timestamp(token,content,policy):
+def verify_document_timestamp(token,content,policy,dss=None):
     """RFC 3161 document timestamp (ETSI.RFC3161) against the caller's anchors only (E09)."""
     from cryptography import x509
     from cryptography.hazmat.primitives import serialization
@@ -139,16 +164,19 @@ def verify_document_timestamp(token,content,policy):
                 validation_time=policy['moment'].isoformat(),selected_material_sha256=identities,timestamps=[],network_used=False,
                 policy='OpenSSL ts -verify with explicit CA only; document timestamp, no legal/LTV decision')
     with tempfile.TemporaryDirectory(prefix='linuxit-doc-ts-') as directory:
-        folder=Path(directory);ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle))
+        folder=Path(directory)
+        dss_certs,dss_crls,result['dss_used']=_dss_files(folder,dss)
+        ca=folder/'ca.pem';ca.write_bytes(b'\n'.join(bundle+dss_crls))
         empty_store=folder/'empty-ca-store';empty_store.mkdir()
         configuration=folder/'openssl.cnf';configuration.write_text('[default]\n')
         token_path=folder/'token.der';token_path.write_bytes(token);data=folder/'data.bin';data.write_bytes(content)
         chain=folder/'included.pem'
-        chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs))
+        chain.write_bytes(b''.join(x509.load_der_x509_certificate(c.dump()).public_bytes(serialization.Encoding.PEM) for c in certs)
+                          +(dss_certs.read_bytes() if dss_certs else b''))
         args=[executable,'ts','-config',str(configuration),'-verify','-token_in','-in',str(token_path),'-data',str(data),
               '-CAfile',str(ca),'-CApath',str(empty_store),'-CAstore',str(ca),'-attime',str(int(policy['moment'].timestamp()))]
-        if certs:args+=['-untrusted',str(chain)]
+        if certs or dss_certs:args+=['-untrusted',str(chain)]
         result['chain_verified']=_run(args)
-        if result['chain_verified'] and policy['crls']:result['revocation_verified']=_run([*args,'-crl_check_all'])
+        if result['chain_verified'] and (policy['crls'] or dss_crls):result['revocation_verified']=_run([*args,'-crl_check_all'])
         result['policy_satisfied']=result['chain_verified'] and (result['revocation_verified'] or not policy['require_revocation'])
     return result

@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 17, conferida em 2026-10-20T15:02:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 17, conferida em 2026-10-20T15:14:00-03:00. **111 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -268,11 +268,11 @@ No dynamic observation of this family found in the examined preserved reports.
 
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
-|`signatures/inspect` — Inspecionar campos e cobertura assinada|Código em subconjunto ([fonte](../app/pdf_signatures.py#L104))|Campos/ByteRange/Contents => cobertura da revisão e limites explícitos; não afirmar arquivo atual integralmente assinado indevidamente.|
+|`signatures/inspect` — Inspecionar campos e cobertura assinada|Código em subconjunto ([fonte](../app/pdf_signatures.py#L137))|Campos/ByteRange/Contents => cobertura da revisão e limites explícitos; não afirmar arquivo atual integralmente assinado indevidamente.|
 |`signatures/cms-integrity` — Verificar integridade CMS offline|Código em subconjunto ([fonte](../app/pdf_signatures.py#L45))|CMS destacado e bytes => resultado de integridade separado de confiança de certificado.|
 |`signatures/sign` — Assinar documento|Código em subconjunto ([fonte](../app/pdf_signing.py#L182))|Document and user-selected PEM identity => invisible CMS/SHA-256 signature (adbe.pkcs7.detached) in a new copy, always as an incremental revision appended to the exact source bytes (classic table or cross-reference stream, matching the previous section). Earlier signatures must verify before signing and still verify for their own revision afterwards; the new one must cover the whole file. Refused: DocMDP P=1, UR3, encrypted, XFA, portfolio, more than 15 signatures (E08). No trust, timestamp or LTV is added. Acceptance S12-17-1, S12-17-3, S12-17-4.|
-|`signatures/trust` — Validar cadeia/confiança/revogação|Código em subconjunto ([fonte](../app/signature_trust.py#L58))|Política offline explícita CA/CRL e data; confiança, revogação e integridade separados. TSA ainda em correção/teste; legal/LTV abertos.|
-|`signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV|Código em subconjunto ([fonte](../app/pdf_signatures.py#L73))|Existing RFC 3161 timestamps => document timestamps (ETSI.RFC3161) are recognised and verified offline: token signature plus messageImprint (SHA-256/384/512) against the covered bytes, generation time shown only when verified; TSA trust only through the selected CA (openssl ts -verify, platform anchors suppressed) (E09). Signature timestamps inside CMS were already checked. Creating document timestamps, PAdES-LTV, OCSP and legal validity remain open. Acceptance S12-17-5 and S12-17-6.|
+|`signatures/trust` — Validar cadeia/confiança/revogação|Código em subconjunto ([fonte](../app/signature_trust.py#L69))|Explicit offline CA/CRL policy and date => chain, revocation and integrity reported separately; RFC 3161 signature and document timestamps checked against the selected CA. DSS certificates and CRLs embedded in the PDF are used offline: certificates only as untrusted path helpers (added to a verification copy of the CMS certificate set), CRLs for revocation; OCSP/VRI counted, not used (E10). Legal validity and writing DSS/LTV remain open. Acceptance S12-17-5 to S12-17-8.|
+|`signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV|Código em subconjunto ([fonte](../app/pdf_signatures.py#L106))|Existing RFC 3161 timestamps => document timestamps (ETSI.RFC3161) are recognised and verified offline: token signature plus messageImprint (SHA-256/384/512) against the covered bytes, generation time shown only when verified; TSA trust only through the selected CA (openssl ts -verify, platform anchors suppressed) (E09). Signature timestamps inside CMS were already checked. Creating document timestamps, PAdES-LTV, OCSP and legal validity remain open. Acceptance S12-17-5 and S12-17-6.|
 
 ## Senhas/permissões/RMS
 

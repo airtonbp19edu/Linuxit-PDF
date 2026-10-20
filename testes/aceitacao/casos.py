@@ -677,6 +677,42 @@ def document_timestamp_changed(ctx):
     return dict(status=item['status'], timestamp_time=None)
 
 
+def _dss_signed(ctx, revoked=False):
+    sys.path.insert(0, str(ctx.repository / 'testes' / 'aceitacao'))
+    import carimbo
+    identity = carimbo.chain_identity(ctx.work / 'cadeia')
+    source = ctx.copy(SCOPES, 'origem.pdf');signed = ctx.work / 'assinado.pdf'
+    run = ctx.worker('sign-copy', source, request=dict(destination=str(signed), source_sha256=sha256(source),
+                     certificate=str(identity['certificate']), private_key=str(identity['key']), password=''))
+    check(run['code'] == 0, run['stderr'])
+    crls = [identity['crl']('mid', [identity['leaf_serial']] if revoked else []), identity['crl']('root')]
+    with_dss = ctx.work / 'com-dss.pdf';carimbo.add_dss(signed, with_dss, [identity['intermediate']], crls)
+    policy = dict(roots=[str(identity['root'])], crls=[], require_revocation=True, at_time=None)
+    return signed, with_dss, policy
+
+
+@case('S12-17-7', 'worker signature-info (trust policy + DSS)')
+def dss_completes_chain(ctx):
+    signed, with_dss, policy = _dss_signed(ctx)
+    before = ctx.worker('signature-info', signed, request={'trust_policy': policy})['result']['signatures'][0]['trust']
+    report = ctx.worker('signature-info', with_dss, request={'trust_policy': policy})['result']
+    trust = report['signatures'][0]['trust']
+    check(not before['chain_verified'], 'cadeia aprovada sem o intermediário')
+    check(trust['chain_verified'] and trust['revocation_verified'] and trust['policy_satisfied'] and not trust['network_used'], f'confiança: {trust}')
+    check(report['dss'] == {'certificates': 1, 'crls': 2, 'ocsp_responses': 0, 'vri_entries': 0}, f"dss: {report['dss']}")
+    return dict(without_dss_chain=False, with_dss_chain=True, revocation_from_dss=True, dss=report['dss'], network_used=False)
+
+
+@case('S12-17-8', 'worker signature-info (trust policy + DSS)')
+def dss_revoked(ctx):
+    _, with_dss, policy = _dss_signed(ctx, revoked=True)
+    item = ctx.worker('signature-info', with_dss, request={'trust_policy': policy})['result']['signatures'][0]
+    trust = item['trust']
+    check(item['status'] == 'verified' and trust['chain_verified'] and not trust['revocation_verified']
+          and not trust['policy_satisfied'], f'revogação: {trust}')
+    return dict(integrity_verified=True, chain_verified=True, revocation_verified=False, policy_satisfied=False)
+
+
 # 18/19 — security and accessible text
 
 PASSWORDS = {'user_password': 'usuario-sintetico', 'owner_password': 'proprietario-sintetico'}
