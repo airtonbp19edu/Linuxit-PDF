@@ -3348,3 +3348,12 @@ CI 39474059660 (`linux-flatpak.yml`, revisão `dec46c9`): 616/616 em fonte, payl
 - Aceitação S12-14-7 e S12-14-8; execução limpa 71/71 em `execucao-ubuntu24-e14.json`. Catálogo: operação annotations/redaction-mark (114 operações, 102 com fonte própria), revisão 18.
 - CI Debian 13 da E13 (execução 39479407491) confirmado: 624/624, aceitação 69/69 em 9a10b42 (`ci-debian13-e13-review.json`).
 - Próximo: E15 (aplicar redação numa cópia nova, rasterizando só as páginas afetadas).
+
+
+## 2026/10/20 às 16:22 (America/Sao_Paulo, UTC-03:00) — E15 concluída — aplicar redação
+
+- Código `61f180e`: `app/pdf_redaction.py` (`redact_copy`, `invoke_redaction`), comando de worker `redact-copy`, botão "Aplicar redação em cópia nova…" no rascunho (`edit_window._apply_redaction`, diálogo `edit_dialogs.redaction_apply_dialog`, 150/300 DPI). Usa o estado atual do rascunho; original e rascunho intactos.
+- Página marcada: renderizada pelo pdftocairo sem anotações e com /Rotate 0, áreas pintadas com /IC (+1 px), conteúdo trocado por uma imagem Flate. `compress_identical_objects(remove_duplicates=False, remove_unreferenced=True)` descarta o conteúdo antigo. Árvore de estrutura removida quando existe.
+- Testes: tests/test_redaction_apply.py (6) e tests/test_redaction_gtk.py (2). Suíte 638/638 sem pulos. Aceitação S12-14-9/10; execução limpa 73/73. Catálogo: annotations/redaction-apply (115 operações, 103 com fonte). Módulo novo registrado na arquitetura (79 módulos). Contrato em docs/ANOTACOES-AMPLIADAS.md.
+- CI Debian 13 da E14 (39481083740) confirmado: 630/630, 71/71 em 074087b.
+- Bloco E12–E15 concluído. Pedido do usuário às 16:17: retomar a E08 e resolver o erro.

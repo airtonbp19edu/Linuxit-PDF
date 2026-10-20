@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T16:09:00-03:00. Pendente: 8, Em andamento: 1, Concluída: 17, Bloqueada: 1, Aguardando você: 1.
+Atualizado em 2026-10-20T16:22:00-03:00. Pendente: 8, Concluída: 18, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -32,7 +32,7 @@ Atualizado em 2026-10-20T16:09:00-03:00. Pendente: 8, Em andamento: 1, Concluíd
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
-| E15 | Aplicar redação | Anotações e redação | nada | Em andamento |
+| E15 | Aplicar redação | Anotações e redação | nada | Concluída |
 | E16 | Imagem de apresentação de anotações 3D | Mídia 3D | nada | Pendente |
 | E17 | Corpus de PDFs danificados | Robustez | nada | Pendente |
 | E18 | Corpus de criptografia | Robustez | nada | Pendente |
@@ -265,7 +265,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e14.json](
 
 **Como verificar:** Extração de texto da cópia não retorna o conteúdo redigido; demais páginas intactas.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Numa cópia nova, cada página com marcas de redação é renderizada sem anotações (150 ou 300 DPI), as áreas são pintadas com a cor de preenchimento da marca e o conteúdo da página vira essa única imagem; páginas sem marcas ficam byte a byte. Marcas e anotações sobre as áreas são removidas, campo de formulário sob área é recusado, objetos órfãos são descartados e a árvore de estrutura sai quando existe. A varredura de todos os objetos decodificados da cópia não encontra o texto nem os bytes da imagem redigidos. Botão no rascunho de edição, com confirmação da resolução. Suíte 638/638; aceitação 73/73 na revisão 61f180e.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e15.json), [tests/test_redaction_apply.py](../tests/test_redaction_apply.py), [app/pdf_redaction.py](../app/pdf_redaction.py). Commit `61f180e`.
 
 ### E16 — Imagem de apresentação de anotações 3D
 

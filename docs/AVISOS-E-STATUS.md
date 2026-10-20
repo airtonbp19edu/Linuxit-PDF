@@ -2,20 +2,20 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 16:09 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 16:22 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
 - Versão 0.1.16/devel publicada como Flatpak (prerelease no GitHub), auditada no mesmo arquivo sem recompilar. Na entrega passou em 564/564 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado.
-- Python + GTK, com 78 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
+- Python + GTK, com 79 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
 **Nesta sessão (19–20/10/2026)**
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **71 de 71 casos aprovados** na revisão `7488bc7`. O CI no Debian 13 confirmou a E13 (aceitação 69/69, suíte 624/624); CI da E14 em andamento. Suíte própria completa **630/630** no Ubuntu 24.04.
+- Execução registrada: **73 de 73 casos aprovados** na revisão `61f180e`. O CI no Debian 13 confirmou a E14 (aceitação 71/71, suíte 630/630); CI da E15 em andamento. Suíte própria completa **638/638** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -23,7 +23,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 (entrega 0.1.17) aguarda você**: o pacote foi montado e passou em 616/616 testes na fonte, no pacote e no sandbox, mas esta sessão não tem permissão para criar a release no GitHub. Para publicar: GitHub → Actions → "Publish tested development release (manual)" → Run workflow (versão 0.1.17).
-- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15: E12, E13 e E14 concluídas; executando a **E15** (aplicar redação); depois parar.
+- Retomada das 15:00 recebida: E08 a E10 prontas e a E11 só depende da sua publicação. Bloco E12 a E15 concluído. A seu pedido, revisando a E08 para corrigir o erro de CI registrado nela.
 
 ### Falta
 
@@ -31,7 +31,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
 - Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
 - 3D: renderizador U3D/PRC. Hoje só lista e extrai.
-- Aplicação da redação (E15, em andamento) e edição universal de anotações. Marcar áreas para redação já existe (E14).
+- Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15).
 - Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
 
 **Análise estática (Ghidra e o Foxit original ficam no PC Windows)**
@@ -100,3 +100,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 15:50** — E12 concluída (`12dda24`): dá para mudar a cor e a opacidade de retângulos, elipses, linhas, destaques, sublinhados e desenhos já existentes, numa cópia nova; o desenho é refeito e conferido na imagem gerada pelo Poppler. Suíte 620/620, aceitação 67/67. A E11 continua aguardando você publicar a 0.1.17. Iniciando a E13.
 - **2026/10/20 às 15:58** — E13 concluída (`9a10b42`): retângulos, elipses e caixas de texto livre já existentes podem ser redimensionados numa cópia nova; o desenho é refeito no novo tamanho e o texto é diagramado de novo. Suíte 624/624, aceitação 69/69. O CI confirmou a E12 (67/67, 620/620). Iniciando a E14.
 - **2026/10/20 às 16:09** — E14 concluída: marcar áreas para redação sem apagar nada (anotação /Redact editável). Suíte 630/630, aceitação 71/71 (`7488bc7`). CI Debian 13 confirmou a E13 (624/624, 69/69). Iniciando a E15.
+- **2026/10/20 às 16:22** — E15 concluída (`61f180e`): aplicar redação numa cópia nova. As páginas marcadas viram imagem com as áreas pintadas; o texto e as imagens sob as marcas desaparecem do arquivo (conferido em todos os objetos), e as demais páginas não mudam. Suíte 638/638, aceitação 73/73. CI Debian 13 confirmou a E14 (630/630, 71/71). Bloco E12–E15 concluído. Você pediu para retomar a E08 e resolver o erro: iniciando.

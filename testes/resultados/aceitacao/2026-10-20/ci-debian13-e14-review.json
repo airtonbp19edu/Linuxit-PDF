@@ -1,0 +1,44 @@
+{
+  "schema": "linuxit-ci-review-v1",
+  "reviewed_at_local": "2026-10-20T16:21:00-03:00",
+  "workflow": "no-vm-validation.yml",
+  "run_id": 39481083740,
+  "run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39481083740",
+  "head_sha": "074087bdb5f1b631f822864268dca672e1910200",
+  "conclusion": "success",
+  "jobs": {
+    "linux-source": "success",
+    "cups-queue": "success"
+  },
+  "artifact": {
+    "id": 12291578394,
+    "zip_sha256": "2c85f4672fe095c3cd0dd67a8dbf11bd7bc3f7dadef01b6f62cb6e620fd5fbb5"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.41",
+    "display_present": true,
+    "poppler": "pdftotext version 25.03.0",
+    "openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)"
+  },
+  "own_suite": {
+    "run": 630,
+    "passed": 630,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "acceptance": {
+    "revision": "074087bdb5f1b631f822864268dca672e1910200",
+    "revision_dirty": false,
+    "counts": {
+      "passed": 71,
+      "failed": 0,
+      "error": 0,
+      "not_run": 0
+    },
+    "result_ref": "testes/resultados/aceitacao/2026-10-20/execucao-ci-debian13-e14.json"
+  },
+  "foxit_executed": false,
+  "flatpak_built": false
+}
