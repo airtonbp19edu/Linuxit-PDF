@@ -1,0 +1,19 @@
+{
+  "schema": "linuxit-ci-review-v1",
+  "reviewed_at_local": "2026-10-20T16:27:00-03:00",
+  "workflow": "no-vm-validation.yml",
+  "run_id": 39460438529,
+  "run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39460438529",
+  "head_sha": "ae429cdd25db267a33ca8d47bf1e9a74099f16f2",
+  "conclusion": "failure",
+  "artifact": {"id": 12283061364, "sha256_reported_by_upload": "4832c88a0da84deb0dd0bb1724dae1541884f698fc9e19375c494b78840c0df2"},
+  "own_suite": {"run": 610, "passed": 609, "failures": 0, "errors": 0, "skipped": 1},
+  "cause": "test_incremental_signatures.IncrementalSignatureTests.test_cross_reference_stream_source_gets_a_stream_update skipped: 'qpdf creates the cross-reference-stream fixture'. qpdf is not installed in the CI image and the suite gate rejects any skip.",
+  "application_defect": false,
+  "fix": [
+    {"commit": "9e75c0c", "change": "Fixture built with pypdf's incremental writer (ends with a cross-reference stream); no external tool needed to create it."},
+    {"commit": "this review's commit", "change": "The signed xref-stream copy is now also checked by pdfsig (2 valid signatures) and qpdf is installed in the CI image so 'qpdf --check' runs there too."}
+  ],
+  "confirmation": {"run_id": 39472280348, "head_sha": "9e75c0c16b8ed0b684e3fd3bb012ff793003ace2", "own_suite": "613/613, 0 skipped", "acceptance": "63/63"},
+  "failed_run_kept": "The failed run is not deleted or rerun as success; it documents the defect of the test fixture."
+}

@@ -56,6 +56,11 @@ class IncrementalSignatureTests(unittest.TestCase):
         self.assertIn(b'/Type /XRef',tail);self.assertNotIn(b'\nxref\n',tail)
         self.assertEqual([s for _,s,_ in self.statuses(second)],['verified','verified'])
         PdfReader(second,strict=True)
+        # Independent parsers: Poppler (present wherever the suite runs with poppler-utils) and qpdf (CI installs it).
+        if shutil.which('pdfsig'):
+            report=subprocess.run(['pdfsig',str(second)],capture_output=True,text=True,timeout=60).stdout
+            self.assertEqual(report.count('Signature Validation: Signature is Valid.'),2,report)
+            self.assertEqual(report.count('Total document signed'),1,report)
         if shutil.which('qpdf'):
             result=subprocess.run(['qpdf','--check',str(second)],capture_output=True,text=True,timeout=60)
             self.assertEqual(result.returncode,0,result.stdout+result.stderr)

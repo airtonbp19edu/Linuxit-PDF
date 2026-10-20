@@ -66,3 +66,28 @@ sucesso ou transformada em teste ignorado. Revalidação aprovada nas duas repet
 
 
 A [execução corrigida39342162781](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39342162781), fonte do probe1fcc603, passou9/9 em **cada um dos dois ambientes novos**, usando o pacote0.1.16 publicado. A auditoria independente39341656820 aprovou a instalação do mesmo arquivo sem rebuild. [Relatórios examinados](../testes/resultados/0.1.16/desktop/review.json). As falhas anteriores não foram apagadas nem tratadas como sucesso. Novas falhas reais ainda podem gerar avisos; não houve alteração das notificações da conta.
+
+
+## E08 — teste pulado por falta do qpdf (2026-10-20)
+
+A [execução 39460438529](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39460438529),
+revisão `ae429cd` (E08), terminou com 609 aprovados e **1 pulado** em 610; a
+regra do CI não aceita testes pulados. O teste
+`test_cross_reference_stream_source_gets_a_stream_update` usava o `qpdf` para
+criar o PDF de origem com fluxo de referência cruzada, e o `qpdf` não existe na
+imagem Debian 13 do CI. Não era defeito do aplicativo: a assinatura incremental
+estava correta, mas aquele caminho (origem com xref em fluxo) ficava sem teste
+no CI.
+
+Correção em duas partes:
+
+1. `9e75c0c`: a origem passou a ser criada pelo escritor incremental do pypdf,
+   que termina o arquivo com fluxo de referência cruzada. Confirmado pela
+   [execução 39472280348](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39472280348):
+   613/613, nenhum pulado, aceitação 63/63.
+2. Revisão desta seção: a cópia assinada com xref em fluxo agora também é
+   conferida pelo `pdfsig` (duas assinaturas válidas) e o `qpdf` foi instalado
+   no CI, para que o `qpdf --check` rode lá e não só localmente.
+
+A execução falha foi mantida; revisão em
+`testes/resultados/aceitacao/2026-10-20/ci-debian13-e08-falha-review.json`.
