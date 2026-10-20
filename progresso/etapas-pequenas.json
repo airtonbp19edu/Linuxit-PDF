@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T15:19:00-03:00",
+  "updated_at_local": "2026-10-20T15:40:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -242,10 +242,11 @@
       "id": "E11",
       "block": "Base e entrega",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "aguardando_usuario",
       "title": "Entrega 0.1.17",
       "goal": "Versão, Flatpak testado em fonte, pacote e sandbox, publicação como prerelease, auditoria do mesmo arquivo, download conferido e probe de desktop.",
-      "verification": "Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados."
+      "verification": "Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados.",
+      "note": "Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/616 testes na fonte, no pacote e no Flatpak instalado (sandbox), smoke 5/5, launcher 3/3, 179 arquivos fonte/pacote iguais, 3684 arquivos de runtime auditados. Bundle LinuxitPDF-0.1.17-x86_64.flatpak, 118422768 bytes, SHA-256 ec773a20…7a71. Evidências em testes/resultados/0.1.17/ e manifesto releases/manifest-0.1.17.json. A publicação como prerelease foi bloqueada: esta sessão não tem permissão para criar releases no GitHub. Falta o usuário disparar o fluxo \"Publish tested development release (manual)\" (publish-devel-release.yml, versão 0.1.17), que publica o mesmo arquivo testado sem recompilar; depois: conferir o download, rodar a auditoria e o probe de desktop."
     },
     {
       "id": "E12",

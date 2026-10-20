@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T15:19:00-03:00. Pendente: 12, Em andamento: 1, Concluída: 14, Bloqueada: 1.
+Atualizado em 2026-10-20T15:40:00-03:00. Pendente: 12, Concluída: 14, Bloqueada: 1, Aguardando você: 1.
 
 **Regras**
 
@@ -28,7 +28,7 @@ Atualizado em 2026-10-20T15:19:00-03:00. Pendente: 12, Em andamento: 1, Concluí
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Concluída |
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
-| E11 | Entrega 0.1.17 | Base e entrega | nada | Em andamento |
+| E11 | Entrega 0.1.17 | Base e entrega | nada | Aguardando você |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Pendente |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Pendente |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Pendente |
@@ -219,7 +219,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e10.json](
 
 **Como verificar:** Workflows linux-flatpak, delivery-audit e desktop-integrations aprovados e examinados.
 
-**Situação:** Em andamento.
+**Situação:** Aguardando você.
+
+Candidato 0.1.17 (revisão dec46c9) montado e aprovado no CI 39474059660: 616/616 testes na fonte, no pacote e no Flatpak instalado (sandbox), smoke 5/5, launcher 3/3, 179 arquivos fonte/pacote iguais, 3684 arquivos de runtime auditados. Bundle LinuxitPDF-0.1.17-x86_64.flatpak, 118422768 bytes, SHA-256 ec773a20…7a71. Evidências em testes/resultados/0.1.17/ e manifesto releases/manifest-0.1.17.json. A publicação como prerelease foi bloqueada: esta sessão não tem permissão para criar releases no GitHub. Falta o usuário disparar o fluxo "Publish tested development release (manual)" (publish-devel-release.yml, versão 0.1.17), que publica o mesmo arquivo testado sem recompilar; depois: conferir o download, rodar a auditoria e o probe de desktop.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 

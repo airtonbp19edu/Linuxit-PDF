@@ -1,0 +1,66 @@
+name: Publish tested development release (manual)
+
+# Publishes an already tested Flatpak candidate as a GitHub prerelease without
+# rebuilding it. The bundle is taken from the artifact of the candidate run and
+# must match releases/manifest-<version>.json byte for byte (size and SHA-256).
+# Run by the repository owner from the Actions tab ("Run workflow").
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to publish (releases/manifest-<version>.json must exist)
+        required: true
+        default: '0.1.17'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out manifests and notes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Read the tested candidate identity
+        id: manifest
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          version = os.environ['VERSION']
+          assert re.fullmatch(r'\d+\.\d+\.\d+', version), version
+          m = json.load(open(f'releases/manifest-{version}.json'))
+          run_id = m['ci_run_url'].rstrip('/').rsplit('/', 1)[1]
+          assert m['version'] == version and m['flatpak_branch'] == 'devel' and run_id.isdigit()
+          assert m['distribution']['tag'] == f'v{version}-devel'
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f"run_id={run_id}\nsha={m['artifact']['sha256']}\nbytes={m['artifact']['bytes']}\n")
+              out.write(f"file={m['artifact']['file']}\ncommit={m['source_commit']}\ntag={m['distribution']['tag']}\n")
+          PY
+      - name: Download the tested artifact (no rebuild)
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: linuxit-linux-${{ steps.manifest.outputs.commit }}
+          run-id: ${{ steps.manifest.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: candidate
+      - name: Verify bytes against the manifest
+        run: |
+          file="candidate/dist/${{ steps.manifest.outputs.file }}"
+          test "$(stat -c %s "$file")" = "${{ steps.manifest.outputs.bytes }}"
+          echo "${{ steps.manifest.outputs.sha }}  $file" | sha256sum -c -
+      - name: Create the prerelease and upload the bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.manifest.outputs.tag }}" \
+            "candidate/dist/${{ steps.manifest.outputs.file }}" \
+            --repo "$GITHUB_REPOSITORY" --target "${{ steps.manifest.outputs.commit }}" \
+            --title "Linuxit PDF ${{ inputs.version }} — desenvolvimento" \
+            --notes-file "releases/notes-${{ inputs.version }}.md" --prerelease

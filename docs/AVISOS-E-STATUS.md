@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 15:25 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 15:40 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,7 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas; executando a **E11** (entrega 0.1.17).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 (entrega 0.1.17) aguarda você**: o pacote foi montado e passou em 616/616 testes na fonte, no pacote e no sandbox, mas esta sessão não tem permissão para criar a release no GitHub. Para publicar: GitHub → Actions → "Publish tested development release (manual)" → Run workflow (versão 0.1.17).
 - Retomada agendada para **hoje às 15:00**: se o bloco não terminar, continuo de onde parou; se terminar antes, às 15:00 sigo com as próximas 4 (E12 a E15) e paro.
 
 ### Falta
@@ -95,3 +95,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 15:09** — E09 concluída (`df7207a`): o aplicativo reconhece e verifica carimbos de tempo de documento já presentes no PDF, sem rede; o horário só aparece se o carimbo conferir com o arquivo, e a autoridade só é confiável pela CA que você escolher. Suíte 613/613, aceitação 63/63. Aviso: o CI da E08 falhou porque um teste dependia do qpdf, que não existe no CI e foi pulado (a suíte não aceita testes pulados). O teste foi refeito sem essa dependência (`9e75c0c`) e o CI foi disparado de novo. Iniciando a E10.
 - **2026/10/20 às 15:19** — E10 concluída (`ba38ca7`): a verificação offline usa os certificados e as listas de revogação guardados dentro do PDF (DSS) para fechar a cadeia até a CA que você escolher e checar revogação, sem rede; esses certificados nunca passam a ser confiáveis por conta própria. Suíte 616/616, aceitação 65/65. O CI confirmou E08 e E09 (63/63, 613/613). Iniciando a E11 (entrega 0.1.17).
 - **2026/10/20 às 15:25** — CI no Debian 13 confirmou a E10: aceitação 65/65 e suíte 616/616. E11: versão 0.1.17 preparada (`dec46c9`); o pacote Flatpak está sendo montado e testado no CI (fonte, pacote e sandbox).
+- **2026/10/20 às 15:40** — E11: Flatpak 0.1.17 montado e aprovado no CI (616/616 na fonte, no pacote e no sandbox; smoke 5/5; launcher 3/3). A publicação como prerelease foi recusada para esta sessão (o GitHub não permite que ela crie releases). Preparei um fluxo que publica exatamente o arquivo testado, sem recompilar: no GitHub, abra Actions → "Publish tested development release (manual)" → Run workflow, com a versão 0.1.17. Depois disso eu confiro o download, rodo a auditoria e o teste de desktop.
