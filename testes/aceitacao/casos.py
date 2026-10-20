@@ -113,6 +113,45 @@ def open_invalid(ctx):
     return dict(missing_exit=missing['code'], invalid_exit=invalid['code'])
 
 
+DAMAGED = 'testes/fixtures/danificados/'
+
+
+def _open_damaged(ctx, name, recover):
+    import tempfile
+    folder = tempfile.mkdtemp(prefix='linuxit-document-', dir=str(ctx.work))
+    return ctx.worker('document-open', ctx.copy(DAMAGED + name), request={'password': '', 'recover': recover, 'view_dir': folder}), Path(folder)
+
+
+@case('S12-01-3', 'worker document-open (corpus danificado) + Poppler')
+def open_damaged_recovered(ctx):
+    from pypdf import PdfReader
+    results = {}
+    for name, pages, texts in (('stream-truncado.pdf', 2, ['alpha first page', '']), ('pagina-ausente.pdf', 1, ['alpha first page']),
+                               ('xref-deslocado.pdf', 2, ['alpha first page', 'beta second page'])):
+        first, _ = _open_damaged(ctx, name, False)
+        check(first['code'] == 0 and first['result']['status'] == 'recovery_required', f'{name}: abriu sem consentimento {first}')
+        run, folder = _open_damaged(ctx, name, True)
+        check(run['code'] == 0 and run['result']['status'] == 'ready' and run['result']['recovered'], f'{name}: {run}')
+        view = run['result']['read_path'];found = [(p.extract_text() or '').strip() for p in PdfReader(view, strict=True).pages]
+        out = folder / 'r';out.mkdir()
+        subprocess.run(['pdftoppm', '-r', '20', '-png', view, str(out / 'p')], check=True, timeout=60)
+        rendered = len(list(out.glob('p*.png')))
+        check(run['result']['pages'] == pages == rendered and found == texts, f'{name}: páginas {run["result"]["pages"]}/{rendered}, texto {found}')
+        results[name] = dict(pages=pages, rendered=rendered, repairs=run['result']['repairs'])
+    check(all(ctx.unchanged().values()), 'fixture alterada')
+    return results
+
+
+@case('S12-01-4', 'worker document-open (corpus danificado)')
+def open_damaged_refused(ctx):
+    outcomes = {}
+    for name in ('catalogo-sem-paginas.pdf', 'nao-pdf.pdf'):
+        run, folder = _open_damaged(ctx, name, True)
+        outcomes[name] = run['code'] != 0 and run['result'] is None and not (folder / 'view.pdf').exists()
+    check(all(outcomes.values()) and all(ctx.unchanged().values()), f'recusas: {outcomes}')
+    return outcomes
+
+
 # 04 — text search
 
 @case('S12-04-1', 'search_engine.TextSearchIndex')

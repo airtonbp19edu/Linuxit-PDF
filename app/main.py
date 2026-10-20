@@ -37,7 +37,7 @@ from character_extraction import page_characters
 from character_selection import nearest_caret, select_range, move_caret, caret_rectangle
 from print_tasks import prepare_print, publish_print_copy
 from search_tasks import run_search_worker
-from document_session import DocumentSession
+from document_session import describe_repairs, DocumentSession
 from cancel_state import get_event
 from reading_preferences import read_preferences, save_preferences
 from navigation import page_index, zoom_value, page_width, MIN_ZOOM, MAX_ZOOM
@@ -906,7 +906,7 @@ class PDFWindow(Gtk.Window):
                     if value is not None and generation == self._open_generation:
                         self.open_document(path, initial_page, value, recover)
                 elif info['status'] == 'recovery_required':
-                    if self._ask_document_recovery() and generation == self._open_generation:
+                    if self._ask_document_recovery(info.get('repairs', [])) and generation == self._open_generation:
                         self.open_document(path, initial_page, password, True)
                 return
             try:unchanged = file_stamp(path) == info['source_stamp']
@@ -936,7 +936,8 @@ class PDFWindow(Gtk.Window):
             self._load_side_panels()
             self.goto_page(min(max(0, initial_page), self.page_count - 1), force=True)
             if info['recovered']:
-                self.status_file.set_text(Path(path).name + ' — leitura recuperada; original preservado')
+                found = describe_repairs(info.get('repairs', []))
+                self.status_file.set_text(Path(path).name + ' — leitura recuperada; original preservado' + (' (' + found + ')' if found else ''))
         def failed(exc):
             candidate.close()
             if generation == self._open_generation:
@@ -960,11 +961,12 @@ class PDFWindow(Gtk.Window):
         finally:
             entry.set_text(''); dialog.destroy()
 
-    def _ask_document_recovery(self):
+    def _ask_document_recovery(self, repairs=()):
         dialog = Gtk.MessageDialog(transient_for=self, modal=True,
             message_type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.NONE,
             text='Tentar recuperar a leitura deste PDF?')
-        dialog.format_secondary_text('O arquivo possui uma estrutura irregular. A tentativa usa uma representação temporária; o original será preservado. Nem todo arquivo danificado pode ser recuperado.')
+        found = describe_repairs(repairs)
+        dialog.format_secondary_text('O arquivo possui uma estrutura irregular' + (': ' + found if found else '') + '. A tentativa usa uma representação temporária; o original será preservado. Partes perdidas ficam em branco ou são omitidas; nenhuma página é inventada. Nem todo arquivo danificado pode ser recuperado.')
         dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Tentar recuperar', Gtk.ResponseType.OK)
         try:return dialog.run() == Gtk.ResponseType.OK
         finally:dialog.destroy()

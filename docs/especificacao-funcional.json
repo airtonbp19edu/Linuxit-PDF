@@ -25,7 +25,7 @@
       "name": "Abrir PDF e renderizar páginas",
       "matrix_implementation": "Leitura transacional com senha via worker, recuperação consentida, render inicial antes do commit e preservação em falha/cancelamento. Subconjunto0.1.14; família integral aberta. Preservado na regressão própria0.1.15.",
       "contract_kind": "implemented_subset",
-      "scope": "Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.",
+      "scope": "Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Corpus de PDFs danificados (etapa E17, testes/fixtures/danificados/): reparos silenciosos do leitor (xref deslocado, objeto ausente, /Length errado) também pedem consentimento; a recuperação reconstrói o fim perdido do arquivo, deixa em branco conteúdo de página ilegível, omite página inexistente da árvore e informa as categorias de reparo; sem páginas reais, recusa sem cópia de leitura. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.",
       "inputs": [
         "Caminho de PDF local legível; página interna baseada em zero.",
         "Viewport, tamanho solicitado e identidade do documento para cache.",
@@ -201,6 +201,18 @@
         {
           "path": "tests/test_reading_workflows_gtk.py",
           "test": "test_superseded_open_cannot_replace_newer_document_and_cleans_session"
+        },
+        {
+          "path": "tests/test_damaged_corpus.py",
+          "test": "test_fixtures_match_the_manifest_and_the_generator"
+        },
+        {
+          "path": "tests/test_damaged_corpus.py",
+          "test": "test_every_fixture_follows_its_expected_outcome_through_the_real_worker"
+        },
+        {
+          "path": "tests/test_damaged_corpus.py",
+          "test": "test_repair_labels_are_fixed_text_only"
         }
       ],
       "dynamic_case_refs": [
@@ -215,6 +227,10 @@
       "fixture_refs": [
         {
           "path": "testes/fixtures/busca-escopos.pdf",
+          "status": "existing"
+        },
+        {
+          "path": "testes/fixtures/danificados/corpus.json",
           "status": "existing"
         }
       ],
@@ -252,9 +268,38 @@
             "executed_at_local": "2026-10-20T20:21:21-03:00",
             "boundary": "worker info"
           }
+        },
+        {
+          "id": "S12-01-3",
+          "kind": "nominal",
+          "given": "Corpus próprio testes/fixtures/danificados/: stream-truncado.pdf (cortado no meio do conteúdo da página 2), pagina-ausente.pdf (Kids aponta para objeto inexistente) e xref-deslocado.pdf (tabela xref deslocada).",
+          "when": "Abrir cada um sem consentimento e depois com recuperação consentida.",
+          "expected_linuxit": "Sem consentimento: recovery_required. Com consentimento: cópia de leitura com 2, 1 e 2 páginas respectivamente; o Poppler desenha exatamente esse número de páginas; texto preservado onde existe e página com conteúdo perdido em branco; fixtures intactas.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
+        },
+        {
+          "id": "S12-01-4",
+          "kind": "exception",
+          "given": "catalogo-sem-paginas.pdf (catálogo aponta para árvore de páginas inexistente) e nao-pdf.pdf (bytes arbitrários).",
+          "when": "Abrir com recuperação consentida.",
+          "expected_linuxit": "Recusar os dois sem cópia de leitura e sem página fictícia; fixtures intactas.",
+          "expected_basis": "current_linuxit_source",
+          "execution_status": "not_run",
+          "foxit_expected": null,
+          "foxit_observed": null
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "scope_previous": [
+        {
+          "text": "Abertura local transacional com senha, cópia privada de leitura e recuperação consentida de estruturas interpretáveis pelo pypdf. Valida render inicial antes da troca. Falha/cancelamento preserva leitura anterior. Original não é sobrescrito; recuperação universal, assinatura da representação e impressão cifrada/recuperada não aprovadas.",
+          "superseded_at_local": "2026-10-20T20:29:00-03:00",
+          "reason": "Etapa E17: corpus de PDFs danificados."
+        }
+      ]
     },
     {
       "id": "navigation",

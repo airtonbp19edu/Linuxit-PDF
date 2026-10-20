@@ -1,0 +1,218 @@
+{
+  "schema": "linuxit-damaged-corpus-v1",
+  "provenance": "Own synthetic PDFs from scripts/gerar_corpus_danificado.py; no third-party or Foxit material.",
+  "contract": "Abrir direto só sem reparo; com dano, pedir consentimento; recuperar sem inventar páginas (conteúdo perdido fica em branco, página inexistente é omitida); recusar sem cópia de leitura quando não há páginas.",
+  "files": [
+    {
+      "file": "integro.pdf",
+      "bytes": 940,
+      "sha256": "d9694e654034d33412cc62cbcd41372fd5ae4ff6ab8c56e92e1631afc3c1124b",
+      "damage": "Sem dano (controle).",
+      "expected": {
+        "open": "ready",
+        "pages": 2,
+        "text": [
+          "alpha first page",
+          "beta second page"
+        ],
+        "repairs": []
+      }
+    },
+    {
+      "file": "startxref-errado.pdf",
+      "bytes": 938,
+      "sha256": "0c1da08629a9c4f6907a786e863f592ca80bce8269806aef4ba85a4cebb5f28b",
+      "damage": "startxref aponta para o byte 1.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "xref"
+          ]
+        }
+      }
+    },
+    {
+      "file": "xref-deslocado.pdf",
+      "bytes": 940,
+      "sha256": "99f81fd134249e8e9a0c5e8a3da8946b3fe81afc573c3889a79214e9d8fc3bd7",
+      "damage": "Todas as entradas da tabela xref deslocadas 7 bytes.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "xref"
+          ]
+        }
+      }
+    },
+    {
+      "file": "sem-xref-trailer.pdf",
+      "bytes": 697,
+      "sha256": "ba093f56f4a84ab497849371b751497e2b4a2625fc2e7939d2d17e571029a52d",
+      "damage": "Arquivo cortado antes da tabela xref: sem xref, trailer e %%EOF.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "fim_do_arquivo",
+            "xref"
+          ]
+        }
+      }
+    },
+    {
+      "file": "sem-eof.pdf",
+      "bytes": 935,
+      "sha256": "f59254c72adbb8cce20cc46f4c365ac3abfc52a9715ad807b6b9118683d03a4a",
+      "damage": "Marcador %%EOF removido.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "fim_do_arquivo"
+          ]
+        }
+      }
+    },
+    {
+      "file": "length-errado.pdf",
+      "bytes": 940,
+      "sha256": "ef319b0a42ee5ef44d353486d4ddd140c09872c4a1c82a238c51633c255a2840",
+      "damage": "/Length do primeiro fluxo menor que o real.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "estrutura"
+          ]
+        }
+      }
+    },
+    {
+      "file": "stream-truncado.pdf",
+      "bytes": 660,
+      "sha256": "55f6a321ad0f5aac9e54657da1d9840d2819527939248c07bc0edaea4afc6e9b",
+      "damage": "Arquivo cortado no meio do fluxo da página 2.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            ""
+          ],
+          "repairs": [
+            "conteudo_ilegivel",
+            "fim_do_arquivo",
+            "xref"
+          ]
+        }
+      }
+    },
+    {
+      "file": "conteudo-ausente.pdf",
+      "bytes": 941,
+      "sha256": "dc6e7457fa5661ce3786424b69f58ffffd659a7171ae342d63814a1dbf85e7ef",
+      "damage": "Página 2 aponta para um fluxo de conteúdo inexistente.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            ""
+          ],
+          "repairs": [
+            "conteudo_ilegivel",
+            "objeto_ausente"
+          ]
+        }
+      }
+    },
+    {
+      "file": "pagina-ausente.pdf",
+      "bytes": 941,
+      "sha256": "b854f6e169721f8cc2d8036032041e8a33e2131b46e949da77c865f28b7216e2",
+      "damage": "A árvore de páginas aponta para uma página inexistente.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 1,
+          "text": [
+            "alpha first page"
+          ],
+          "repairs": [
+            "objeto_ausente",
+            "pagina_ausente"
+          ]
+        }
+      }
+    },
+    {
+      "file": "catalogo-sem-paginas.pdf",
+      "bytes": 941,
+      "sha256": "bb04cb52e316ef2283c73f2024cd1cf234e0c93690ca3417a92da98436d59509",
+      "damage": "O catálogo aponta para uma árvore de páginas inexistente.",
+      "expected": {
+        "open": "recovery_required",
+        "refused": true
+      }
+    },
+    {
+      "file": "cabecalho-invalido.pdf",
+      "bytes": 939,
+      "sha256": "cfd14f756c01fc39efcef59c90d9d22e2b7b16d1e9ee454119504573d16bf802",
+      "damage": "Cabeçalho %PDF trocado por bytes inválidos.",
+      "expected": {
+        "open": "recovery_required",
+        "recovered": {
+          "pages": 2,
+          "text": [
+            "alpha first page",
+            "beta second page"
+          ],
+          "repairs": [
+            "cabecalho",
+            "xref"
+          ]
+        }
+      }
+    },
+    {
+      "file": "nao-pdf.pdf",
+      "bytes": 2048,
+      "sha256": "10fc3c51a152e90e5b90319b601d92ccf37290ef53c35ff92507687d8a911a08",
+      "damage": "Bytes arbitrários com extensão .pdf.",
+      "expected": {
+        "open": "recovery_required",
+        "refused": true
+      }
+    }
+  ]
+}
