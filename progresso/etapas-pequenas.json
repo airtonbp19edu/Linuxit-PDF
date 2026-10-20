@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T00:48:15-03:00",
+  "updated_at_local": "2026-10-20T00:55:02-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -51,24 +51,31 @@
       "commit": "0600b05",
       "evidence": [
         "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json",
-        "tests/test_form_events.py"
+        "tests/test_form_events.py",
+        "testes/resultados/aceitacao/2026-10-20/ci-debian13-e03-review.json"
       ],
-      "note": "Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py."
+      "note": "Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py. Confirmado no CI Debian 13 (execução 39366205486): aceitação 49/49 e suíte 576/576."
     },
     {
       "id": "E04",
       "block": "Formulários",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Datas em formulários (AFDate_FormatEx)",
       "goal": "Validar e formatar datas com máscaras fechadas suportadas, recusando entradas inválidas.",
-      "verification": "Testes portáveis com datas válidas, inválidas e limites."
+      "verification": "Testes portáveis com datas válidas, inválidas e limites.",
+      "commit": "34ebb46",
+      "evidence": [
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json",
+        "tests/test_form_events.py"
+      ],
+      "note": "Datas numéricas (d, dd, m, mm, yy, yyyy; separadores / - . e espaço); data inexistente recusada; valor como digitado e aparência formatada (1/2/2026 → 01/02/2026). Nomes de mês e horas recusados explicitamente. 3 testes novos e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51."
     },
     {
       "id": "E05",
       "block": "Formulários",
       "requires": "nada",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Máscaras especiais (AFSpecial_Format 0–3)",
       "goal": "Aplicar os quatro formatos especiais padronizados ao valor e à aparência.",
       "verification": "Testes portáveis para cada formato e entrada fora do padrão."

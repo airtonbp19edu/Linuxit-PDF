@@ -3210,3 +3210,11 @@ Próximo passo: E03, formatação AFNumber_Format por gramática fechada.
 - Verificador do catálogo: `scripts/refresh_operation_pins.py` refixa trechos só deslocados e exige `--accept` depois de revisar trechos alterados. Foram revisadas e aceitas 11 operações: 10 citam o despachante `_apply`, cujo único ramo alterado é o de formulário com eventos, e `forms/events`, que teve o texto do contrato atualizado. Evidência própria desatualizada passa a ser informada, e só bloqueia se alguma operação depender dela.
 
 Próximo passo: E04, datas em formulários.
+
+
+## 2026/10/20 às 00:55 (America/Sao_Paulo, UTC-03:00) — E04 concluída
+
+- CI 39366205486 (Debian 13) confirmou a E03 na revisão `9ab22e5`: aceitação 49/49 e suíte 576/576 (`ci-debian13-e03-review.json`).
+- **E04** (`34ebb46`): `AFDate_FormatEx` e `AFDate_KeystrokeEx` com dia, mês e ano numéricos e separadores `/ - .` ou espaço. Datas inexistentes são recusadas; `yy` vale 1950–2049. O valor fica como digitado e a aparência mostra a data formatada. Nomes de mês, horas e texto no padrão são recusados explicitamente. 3 testes novos, fixture `formulario-data.pdf` e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51 (`execucao-ubuntu24-e04.json`). Trecho `calculate_form_values` revisado e refixado.
+
+Próximo passo: E05, AFSpecial_Format.

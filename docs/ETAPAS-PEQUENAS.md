@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T00:48:15-03:00. Pendente: 19, Em andamento: 1, Concluída: 3, Bloqueada: 1.
+Atualizado em 2026-10-20T00:55:02-03:00. Pendente: 18, Em andamento: 1, Concluída: 4, Bloqueada: 1.
 
 **Regras**
 
@@ -16,8 +16,8 @@ Atualizado em 2026-10-20T00:48:15-03:00. Pendente: 19, Em andamento: 1, Concluí
 | E01 | Verificador do catálogo de operações verde | Base e entrega | nada | Concluída |
 | E02 | Contrato próprio da integração com o sistema | Base e entrega | nada | Concluída |
 | E03 | Formatação de números (AFNumber_Format) | Formulários | nada | Concluída |
-| E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Em andamento |
-| E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Pendente |
+| E04 | Datas em formulários (AFDate_FormatEx) | Formulários | nada | Concluída |
+| E05 | Máscaras especiais (AFSpecial_Format 0–3) | Formulários | nada | Em andamento |
 | E06 | XFA: leitura dos campos | Formulários | nada | Pendente |
 | E07 | XFA híbrido: preencher mantendo datasets coerente | Formulários | nada | Pendente |
 | E08 | Segunda assinatura em revisão incremental | Assinaturas | nada | Pendente |
@@ -72,9 +72,9 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e02.json](
 
 **Situação:** Concluída.
 
-Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py.
+Valor do campo sem formatação e aparência formatada (ex.: R$ 2.469,00); vírgula decimal aceita na entrada; negativos em vermelho recusados de forma explícita. 5 testes novos e caso S12-15-3. Suíte local 576/576; aceitação 49/49. O verificador do catálogo deixou de falhar a cada edição: trechos só deslocados são refixados por scripts/refresh_operation_pins.py. Confirmado no CI Debian 13 (execução 39366205486): aceitação 49/49 e suíte 576/576.
 
-Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `0600b05`.
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json), [tests/test_form_events.py](../tests/test_form_events.py), [testes/resultados/aceitacao/2026-10-20/ci-debian13-e03-review.json](../testes/resultados/aceitacao/2026-10-20/ci-debian13-e03-review.json). Commit `0600b05`.
 
 ### E04 — Datas em formulários (AFDate_FormatEx)
 
@@ -82,7 +82,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](
 
 **Como verificar:** Testes portáveis com datas válidas, inválidas e limites.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Datas numéricas (d, dd, m, mm, yy, yyyy; separadores / - . e espaço); data inexistente recusada; valor como digitado e aparência formatada (1/2/2026 → 01/02/2026). Nomes de mês e horas recusados explicitamente. 3 testes novos e casos S12-15-4/S12-15-5. Suíte local 579/579; aceitação 51/51.
+
+Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e04.json), [tests/test_form_events.py](../tests/test_form_events.py). Commit `34ebb46`.
 
 ### E05 — Máscaras especiais (AFSpecial_Format 0–3)
 
@@ -90,7 +94,7 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e03.json](
 
 **Como verificar:** Testes portáveis para cada formato e entrada fora do padrão.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
 
 ### E06 — XFA: leitura dos campos
 
