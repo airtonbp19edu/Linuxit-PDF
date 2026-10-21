@@ -3516,3 +3516,8 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Download público sem login: HTTP 200, mesmo tamanho e hash. `releases/manifest.json` = 0.1.18; SHA256SUMS com a linha nova.
 - Auditoria 39531197763: 11 controles, smoke 5/5, GTK 3, 183 arquivos, runtime 3684/483 ELF/297 pacotes (testes/resultados/0.1.18/audit/). Desktop 39531200040: 9/9 × 2 (testes/resultados/0.1.18/desktop/).
 - E29 concluída. Instrução de foco exclusivo cumprida; aguardando o usuário.
+
+
+## 2026/10/20 às 23:16 (America/Sao_Paulo, UTC-03:00) — Windows nativo reconferido
+
+- windows-native.yml (execução 39531850858, 2d4d442, Windows Server 2022 + MSYS2 UCRT64): 5/5 (informação Poppler, geometria de caracteres, página renderizada no leitor real, cópia editada reabre, original preservado). Relatório em testes/resultados/windows-native/2026-10-20/. Não há instalador Windows nem suíte completa no Windows; impressão física não testada.
