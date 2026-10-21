@@ -108,3 +108,38 @@ Em todas, os passos anteriores (baixar o artefato do CI 39474059660 e conferir t
 - Não publicar release, não criar tag pública, não apagar a `v0.1.16-devel` nem a `v0.1.17-devel`.
 - Não pedir nem gravar tokens em arquivos; se a solução for um token pessoal como segredo, só o dono cria e salva.
 - Registrar tudo em `progresso/notas-continuidade.md` e `docs/AVISOS-E-STATUS.md` com data e horário, e publicar no GitHub.
+
+
+## Retomada exclusiva da E29 pelo Claude — 2026/10/20 às 22:09 (America/Sao_Paulo, UTC-03:00)
+
+**Instrução do usuário (20/10/2026 às 22:06): até segunda ordem, trabalhar apenas em descobrir e
+resolver este erro.** Nenhuma outra etapa deve ser iniciada enquanto ela valer.
+
+### Causa conferida de forma independente
+
+- Documentação oficial do endpoint "Create a release" (consultada em 2026/10/20 às 22:09): se o commit de
+  `target_commitish` (ou o último da branch padrão, quando omitido) adiciona ou altera arquivos em
+  `.github/workflows/` em relação à branch padrão, o token precisa da permissão **Workflows
+  (write)**; o `GITHUB_TOKEN` do Actions "não pode ser autorizado para isso"; sem essa autorização a
+  API responde 404 ou, em alguns caminhos de autenticação, 403. Fonte:
+  https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release
+- Recibo do Codex (CI 39490423511): o cabeçalho `X-Accepted-GitHub-Permissions` do endpoint foi
+  `contents=write; contents=write,workflows=write` nos três pedidos; com o mesmo token, os
+  rascunhos sem alvo e com alvo na `main` foram criados (201) e o alvo `dec46c9` foi recusado (403,
+  "Resource not accessible by integration").
+- Por que a 0.1.17 caiu nisso: o candidato `dec46c9` foi montado **antes** de o fluxo
+  `publish-devel-release.yml` existir e antes da mudança do `qpdf` no CI; na hora de publicar, a
+  `main` já tinha outros workflows. Logo, o alvo "alterava" workflows em relação à branch padrão.
+
+### Solução e comprovação em curso
+
+- Regra: **workflows finalizados antes de montar o candidato e iguais aos da `main` até publicar**
+  (o fluxo de publicação confere isso no modo "Conferir somente").
+- Candidato 0.1.18: `b60b6e6` (versão) e `3871138` (testes ajustados ao sandbox), ambos com a
+  árvore de workflows `59487bae5b42163c1ccc68e0dc04218f5fd564b6`, igual à da `main`. Nenhum arquivo
+  de workflow será alterado até a publicação.
+- Primeira montagem (CI 39522091373) falhou só no sandbox por testes que usavam `pdftoppm` e por
+  OCR exato; corrigido em `3871138`. Montagem nova: CI 39524293929.
+- Próximos passos: registrar o candidato, rodar a publicação em "Conferir somente" (plano esperado:
+  `create_release`), pedir a confirmação do usuário e publicar com o token automático; conferir a
+  release, o download público, a auditoria e o teste de desktop.

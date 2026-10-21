@@ -3486,3 +3486,10 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 
 - Pedido do usuário às 21:18: deixar o 3D para atualização futura e guardar tudo o que se sabe. `docs/ESTUDO-3D-U3D-PRC.md` ganhou a seção "Guia para a implementação futura" (recursos do Foxit e evidência estática do plugin U3DBrowser.fpi/Direct3D 11, chaves PDF de 3D, blocos U3D, estrutura PRC, glTF, arquitetura proposta com worker `model3d-load`, limites, corpus e testes, código atual e esforço). D04 decidida; `layers-media/3d` com next_package future_update_3d; especificação e ESCOPO atualizados.
 - Revisão de pendências: E29 (prova na 0.1.18), E12–E19 ainda fora de pacote publicado, E21/E22 (PC), E23 (equipamentos), E24 (VM), limites registrados de E15/E17/E19.
+
+
+## 2026/10/20 às 22:09 (America/Sao_Paulo, UTC-03:00) — E29 exclusiva: causa conferida na documentação oficial
+
+- Instrução do usuário às 22:06: até segunda ordem, só descobrir e resolver o erro da E29.
+- Documentação oficial de Create a release confirma: alvo que adiciona/altera `.github/workflows/` em relação à branch padrão exige Workflows (write); GITHUB_TOKEN não pode recebê-la; resposta 404 ou 403. Coerente com o recibo do Codex (201/201/403, cabeçalho `contents=write; contents=write,workflows=write`).
+- Candidato 0.1.18: b60b6e6 e 3871138 com árvore de workflows 59487bae… igual à main. CI 39522091373 falhou só no sandbox (pdftoppm ausente, OCR exato); corrigido em 3871138; CI 39524293929 em execução. Detalhes em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.
