@@ -330,7 +330,7 @@ No dynamic observation of this family found in the examined preserved reports.
 |`layers-media/toggle` — Alternar e persistir visibilidade OCG|Código em subconjunto ([fonte](../app/pdf_layers.py#L39))|Combinação de camadas => render e estado de visibilidade coerentes; implementação/persistência pendentes.|
 |`layers-media/media` — Reproduzir mídia embutida|Código em subconjunto ([fonte](../app/pdf_media.py#L168))|Movie/RichMedia/Sound incorporados extraídos sem ações/URLs; reprodução GStreamer explícita por codec instalado. Eventos de PDF, codecs universais e3D completos abertos.|
 |`layers-media/3d-poster` — Imagem de apresentação de anotações 3D|Código em subconjunto ([fonte](../app/pdf_media.py#L91))|3D annotation normal appearance (poster) rendered as a still PNG scaled to the annotation rectangle (BBox through /Matrix), shown with a notice that the scene is not interactive; listing reports poster, embedded model and view count; annotations without poster, non-PNG destination and changed source refused, nothing published (E16). Acceptance S12-21-3 and S12-21-4. No 3D renderer or interaction.|
-|`layers-media/3d` — Interagir com conteúdo 3D|Pendente/caracterizar|U3D/conteúdo3D => caracterizar disponibilidade Reader/render/estado; presença de plugin não comprova suporte.|
+|`layers-media/3d` — Interagir com conteúdo 3D|Pendente/caracterizar|U3D/PRC/glTF 3D content => interactive rendering (rotate, zoom, views, model tree, measures). Deferred by the user to a future update on 2026-10-20 21:18 (decision D04); study and implementation guide in docs/ESTUDO-3D-U3D-PRC.md. Today: poster still image and model extraction only (layers-media/3d-poster).|
 
 ## Preferências/tema/persistência
 

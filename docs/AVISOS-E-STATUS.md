@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 21:01 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 21:20 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -24,16 +24,17 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 ### Em andamento
 - **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
 - E29: causa do 403 identificada pelo Codex e conferida pelo Claude na retomada das 20:10; falta só comprovar numa próxima publicação real (0.1.18). Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
-- Retomada das 20:10: **E16 a E20 concluídas**. Parado, aguardando você. Decisão pendente D04 sobre o caminho do 3D ([estudo](ESTUDO-3D-U3D-PRC.md)).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20 e E25 a E28 concluídas (0.1.17 publicada na E11). Pendentes: E21 e E22 (seu PC), E23 (equipamentos reais), E24 (VM, só com sua autorização) e a prova final da E29 na próxima entrega.
+- Retomada das 20:10: **E16 a E20 concluídas**. 3D adiado para atualização futura (D04). Parado, aguardando você.
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
 - Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
 - Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
-- 3D: renderizador U3D/PRC e interação com a cena. Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16). Caminho estudado na E20; aguarda a decisão D04.
-- Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15).
+- 3D: **adiado pelo usuário para atualização futura** (D04). Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16). Tudo o que foi levantado (Foxit, estruturas do PDF, U3D, PRC, glTF, bibliotecas, licenças, arquitetura, testes e esforço) está em [ESTUDO-3D-U3D-PRC.md](ESTUDO-3D-U3D-PRC.md).
+- Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15); a aplicação não procura o texto redigido em marcadores, metadados e anexos.
+- Recuperação de PDFs danificados (E17): editar uma leitura cujo fim do arquivo foi reconstruído ainda pode ser recusado.
 - Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
 
 **Análise estática (Ghidra e o Foxit original ficam no PC Windows)**
@@ -48,7 +49,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Impressora física, áudio e leitor de tela, monitores físicos, cliente sincronizador real e materiais RMS. Windows completo vem depois do Linux.
 
 **Entrega**
-- A 0.1.17 já está publicada e auditada. Próxima entrega deve incorporar E12–E15 e demais alterações autorizadas; requer candidato novo, três ambientes e auditoria. Não há nova publicação autorizada nesta E29.
+- A 0.1.17 já está publicada e auditada. A próxima (0.1.18) deve levar E12–E19 e comprovar a publicação automática (E29): workflows finalizados antes de montar o candidato e iguais à main até publicar; candidato novo, três ambientes e auditoria. Só com a sua autorização.
 
 **Medição**
 - 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
@@ -57,9 +58,11 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
 - D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
 - D03: a queda intermitente do GTK no CI Debian 13 virou a etapa E27, concluída: causa provável encontrada e corrigida.
+- D04: 3D adiado para atualização futura (20/10/2026 às 21:18), com guia completo para retomar.
 
 **Adiado e excluído**
 - Nuvem: atendida pelo fluxo de pastas sincronizadas (E28, decisão de 17/10/2026). Login em provedor, envio por API e colaboração remota seguem adiados por decisão do usuário. Falta testar com um cliente sincronizador real.
+- Renderização 3D: adiada para atualização futura (D04).
 - Recursos de IA estão excluídos.
 
 ## Histórico de avisos
@@ -121,3 +124,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 20:45** — E18 concluída (`8d106ed`): corpus de criptografia (RC4-40, RC4-128, AES-128, AES-256 e metadados em claro) com matriz abrir/editar/imprimir. Achou e corrigiu um defeito: ao editar um PDF com metadados declarados em claro, a cópia os cifrava. Suíte 658/658, aceitação 79/79. CI Debian 13 confirmou a E17 (654/654, 77/77). Iniciando a E19.
 - **2026/10/20 às 20:54** — E19 concluída (`8b86243`): o texto acessível e a voz leem páginas de duas colunas coluna por coluna (antes, as colunas saíam misturadas linha a linha); vale também para cópias com OCR. Suíte 663/663, aceitação 81/81. CI Debian 13 confirmou a E18 (658/658, 79/79). Iniciando a E20.
 - **2026/10/20 às 21:01** — E20 concluída (`cdef750`): estudo de renderização 3D em docs/ESTUDO-3D-U3D-PRC.md, sem implementar. Proposta: renderizador próprio por software e leitores próprios de U3D e PRC; bibliotecas existentes só como alternativa (a de PRC é AGPL). Três decisões pedidas (D04). CI Debian 13 confirmou a E19 (663/663, 81/81). Bloco E16–E20 concluído; parado, aguardando você.
+- **2026/10/20 às 21:20** — 3D adiado para atualização futura, a seu pedido (D04). O estudo virou um guia completo para retomar depois (docs/ESTUDO-3D-U3D-PRC.md); catálogo, especificação e escopo atualizados. Revisão geral do que ficou pendente registrada acima.

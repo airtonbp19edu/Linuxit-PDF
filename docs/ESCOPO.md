@@ -51,3 +51,9 @@ Em 2026-10-20T12:41-03:00, a pedido do usuário ("fechar logo esse ciclo"), a fa
 passou a ser atendida pelo fluxo de pastas sincronizadas decidido em 17/10/2026: o contrato
 deixou de ser proposta e os casos S12-23 verificam esse fluxo (etapa E28). Login em provedor,
 transferência por API e colaboração remota continuam adiados; pesos e critérios não mudaram.
+
+
+Em 2026-10-20T21:18-03:00, o usuário decidiu deixar a **renderização 3D** (U3D/PRC/glTF, girar,
+vistas, árvore de peças, medidas) para uma atualização futura. Fica no inventário como pendente
+adiada (operação `layers-media/3d`); hoje há imagem de apresentação e extração do modelo. Tudo o
+que foi levantado está em [ESTUDO-3D-U3D-PRC.md](ESTUDO-3D-U3D-PRC.md). Pesos e critérios não mudaram.

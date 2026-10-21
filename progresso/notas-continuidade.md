@@ -3480,3 +3480,9 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Documento `docs/ESTUDO-3D-U3D-PRC.md` (commit cdef750): ponto de partida, requisitos (decodificar, desenhar, interagir, isolar), tabela de bibliotecas com licença e situação, caminhos A/B/C, tamanho estimado (B não medido), proposta e decisões D-3D-1..3, fontes consultadas em 20/10/2026. Decisão D04 registrada como pendente na lista de etapas.
 - CI 39518058286 (d9e0b99) confirmou a E19: 663/663, 81/81.
 - Bloco E16–E20 concluído conforme a retomada das 20:10. E29 (403 de release) resolvida na causa; prova final fica para a 0.1.18. Parado, aguardando o usuário.
+
+
+## 2026/10/20 às 21:20 (America/Sao_Paulo, UTC-03:00) — 3D adiado (D04) e revisão de pendências
+
+- Pedido do usuário às 21:18: deixar o 3D para atualização futura e guardar tudo o que se sabe. `docs/ESTUDO-3D-U3D-PRC.md` ganhou a seção "Guia para a implementação futura" (recursos do Foxit e evidência estática do plugin U3DBrowser.fpi/Direct3D 11, chaves PDF de 3D, blocos U3D, estrutura PRC, glTF, arquitetura proposta com worker `model3d-load`, limites, corpus e testes, código atual e esforço). D04 decidida; `layers-media/3d` com next_package future_update_3d; especificação e ESCOPO atualizados.
+- Revisão de pendências: E29 (prova na 0.1.18), E12–E19 ainda fora de pacote publicado, E21/E22 (PC), E23 (equipamentos), E24 (VM), limites registrados de E15/E17/E19.

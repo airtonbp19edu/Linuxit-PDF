@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T21:01:00-03:00. Pendente: 3, Em andamento: 1, Concluída: 24, Bloqueada: 1.
+Atualizado em 2026-10-20T21:20:00-03:00. Pendente: 3, Em andamento: 1, Concluída: 24, Bloqueada: 1.
 
 **Regras**
 
@@ -381,4 +381,4 @@ Evidência: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md). Commit `c
 - **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
 - **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.
 - **D03** (Decidida): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria? **Resposta:** Investigar como uma etapa própria e, em seguida, fazer a próxima etapa (usuário, 20/10/2026 às 10:53). Etapa E27.
-- **D04** (Pendente): Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC?
+- **D04** (Decidida): Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC? **Resposta:** Deixar o 3D para uma atualização futura, sem foco agora; guardar tudo o que se sabe para implementar depois (usuário, 20/10/2026 às 21:18). As perguntas sobre caminho, AGPL e ordem U3D/PRC ficam para quando o 3D for retomado. Guia em docs/ESTUDO-3D-U3D-PRC.md. Etapa E20.

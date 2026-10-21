@@ -6154,7 +6154,7 @@
         "PDF com /OCProperties e /OCGs; nomes de camadas.",
         "Mídia/3D exigirá identificar formato, ação e isolamento próprios."
       ],
-      "output_and_acceptance": "U3D/conteúdo3D => caracterizar disponibilidade Reader/render/estado; presença de plugin não comprova suporte.",
+      "output_and_acceptance": "U3D/PRC/glTF 3D content => interactive rendering (rotate, zoom, views, model tree, measures). Deferred by the user to a future update on 2026-10-20 21:18 (decision D04); study and implementation guide in docs/ESTUDO-3D-U3D-PRC.md. Today: poster still image and model extraction only (layers-media/3d-poster).",
       "failure_contract_refs": [
         {
           "family_id": "layers-media",
@@ -6172,7 +6172,7 @@
       "original_observation_refs": [],
       "original_scope": "Family references only; they do not prove all behaviors of this operation.",
       "comparison_state": "not_verified_as_complete_operation",
-      "next_package": "P06",
+      "next_package": "future_update_3d",
       "complete_operation_or_family_equivalence": false
     },
     {
