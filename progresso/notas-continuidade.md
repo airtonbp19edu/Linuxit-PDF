@@ -3473,3 +3473,10 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Testes: tests/test_reading_order.py (5, inclui OCR por Tesseract). Suíte 663/663. Aceitação S12-19-3/4; execução limpa 81/81.
 - CI 39517128164 (22e5e08) confirmou a E18: 658/658, 79/79.
 - Próximo: E20 (estudo de renderização U3D/PRC, sem implementar).
+
+
+## 2026/10/20 às 21:01 (America/Sao_Paulo, UTC-03:00) — E20 concluída — estudo U3D/PRC; bloco E16–E20 concluído
+
+- Documento `docs/ESTUDO-3D-U3D-PRC.md` (commit cdef750): ponto de partida, requisitos (decodificar, desenhar, interagir, isolar), tabela de bibliotecas com licença e situação, caminhos A/B/C, tamanho estimado (B não medido), proposta e decisões D-3D-1..3, fontes consultadas em 20/10/2026. Decisão D04 registrada como pendente na lista de etapas.
+- CI 39518058286 (d9e0b99) confirmou a E19: 663/663, 81/81.
+- Bloco E16–E20 concluído conforme a retomada das 20:10. E29 (403 de release) resolvida na causa; prova final fica para a 0.1.18. Parado, aguardando o usuário.

@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T20:54:00-03:00",
+  "updated_at_local": "2026-10-20T21:01:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -407,10 +407,15 @@
       "id": "E20",
       "block": "Mídia 3D",
       "requires": "nada",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "Estudo de renderização U3D/PRC",
       "goal": "Avaliar bibliotecas abertas, licenças e tamanho para um renderizador 3D, sem implementar.",
-      "verification": "Documento com opções, licenças e decisão proposta ao usuário."
+      "verification": "Documento com opções, licenças e decisão proposta ao usuário.",
+      "commit": "cdef750",
+      "evidence": [
+        "docs/ESTUDO-3D-U3D-PRC.md"
+      ],
+      "note": "Estudo concluído, sem implementação. Opções abertas comparadas (20/10/2026): U3D Sample Software e o fork ningfei/u3d (Apache-2.0, código antigo e voltado a gerar U3D), nanoPRC (AGPL-3.0 ou comercial; lê PRC, com visualizador de demonstração), Asymptote (só gera PRC), decodificadores próprios em Python para o subconjunto comum de U3D e o PRC tesselado, ou manter pôster e extração. Proposta: primeiro um renderizador próprio por software (girar, aproximar, vistas), depois decodificadores próprios; bibliotecas só como alternativa. Três decisões pedidas ao usuário (D04)."
     },
     {
       "id": "E21",

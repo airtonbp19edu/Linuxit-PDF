@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 20:54 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 21:01 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -15,7 +15,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
 - Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
 - Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **81 de 81 casos aprovados** na revisão `8b86243`. O CI no Debian 13 confirmou a E18 (79/79, 658/658); CI da E19 em andamento. Suíte própria completa **663/663** no Ubuntu 24.04.
+- Execução registrada: **81 de 81 casos aprovados** na revisão `8b86243`. O CI no Debian 13 confirmou a E19 (81/81, 663/663). Suíte própria completa **663/663** no Ubuntu 24.04.
 - Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
 - Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
 - Publicado no GitHub, com commits de autoria do Claude.
@@ -25,14 +25,14 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
 - E29: causa do 403 identificada pelo Codex e conferida pelo Claude na retomada das 20:10; falta só comprovar numa próxima publicação real (0.1.18). Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E07 e E25 a E28 concluídas. Bloco autorizado E08 a E11: E08, E09 e E10 concluídas. **E11 concluída**: 0.1.17 publicada, baixada e auditada.
-- Retomada das 20:10: **E16 a E19 concluídas**; executando a **E20** (estudo de renderização U3D/PRC); depois parar.
+- Retomada das 20:10: **E16 a E20 concluídas**. Parado, aguardando você. Decisão pendente D04 sobre o caminho do 3D ([estudo](ESTUDO-3D-U3D-PRC.md)).
 
 ### Falta
 
 **Sem VM, desenvolvimento próprio**
 - Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
 - Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
-- 3D: renderizador U3D/PRC e interação com a cena. Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16).
+- 3D: renderizador U3D/PRC e interação com a cena. Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16). Caminho estudado na E20; aguarda a decisão D04.
 - Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15).
 - Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
 
@@ -120,3 +120,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 20:35** — E17 concluída (`8e38205`): corpus de 12 PDFs danificados com o resultado esperado de cada um. A abertura passou a pedir consentimento também quando o PDF só abria por reparo silencioso, recupera arquivos com o fim perdido ou conteúdo truncado e nunca mostra página inventada; o tipo de dano aparece na pergunta. Suíte 654/654, aceitação 77/77. CI Debian 13 confirmou a E16 (651/651, 75/75). Iniciando a E18.
 - **2026/10/20 às 20:45** — E18 concluída (`8d106ed`): corpus de criptografia (RC4-40, RC4-128, AES-128, AES-256 e metadados em claro) com matriz abrir/editar/imprimir. Achou e corrigiu um defeito: ao editar um PDF com metadados declarados em claro, a cópia os cifrava. Suíte 658/658, aceitação 79/79. CI Debian 13 confirmou a E17 (654/654, 77/77). Iniciando a E19.
 - **2026/10/20 às 20:54** — E19 concluída (`8b86243`): o texto acessível e a voz leem páginas de duas colunas coluna por coluna (antes, as colunas saíam misturadas linha a linha); vale também para cópias com OCR. Suíte 663/663, aceitação 81/81. CI Debian 13 confirmou a E18 (658/658, 79/79). Iniciando a E20.
+- **2026/10/20 às 21:01** — E20 concluída (`cdef750`): estudo de renderização 3D em docs/ESTUDO-3D-U3D-PRC.md, sem implementar. Proposta: renderizador próprio por software e leitores próprios de U3D e PRC; bibliotecas existentes só como alternativa (a de PRC é AGPL). Três decisões pedidas (D04). CI Debian 13 confirmou a E19 (663/663, 81/81). Bloco E16–E20 concluído; parado, aguardando você.

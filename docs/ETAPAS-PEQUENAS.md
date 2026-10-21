@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T20:54:00-03:00. Pendente: 3, Em andamento: 2, Concluída: 23, Bloqueada: 1.
+Atualizado em 2026-10-20T21:01:00-03:00. Pendente: 3, Em andamento: 1, Concluída: 24, Bloqueada: 1.
 
 **Regras**
 
@@ -38,7 +38,7 @@ Atualizado em 2026-10-20T20:54:00-03:00. Pendente: 3, Em andamento: 2, Concluíd
 | E17 | Corpus de PDFs danificados | Robustez | nada | Concluída |
 | E18 | Corpus de criptografia | Robustez | nada | Concluída |
 | E19 | Ordem de leitura em duas colunas | Robustez | nada | Concluída |
-| E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Em andamento |
+| E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Concluída |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Pendente |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
@@ -338,7 +338,11 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e19.json](
 
 **Como verificar:** Documento com opções, licenças e decisão proposta ao usuário.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
+
+Estudo concluído, sem implementação. Opções abertas comparadas (20/10/2026): U3D Sample Software e o fork ningfei/u3d (Apache-2.0, código antigo e voltado a gerar U3D), nanoPRC (AGPL-3.0 ou comercial; lê PRC, com visualizador de demonstração), Asymptote (só gera PRC), decodificadores próprios em Python para o subconjunto comum de U3D e o PRC tesselado, ou manter pôster e extração. Proposta: primeiro um renderizador próprio por software (girar, aproximar, vistas), depois decodificadores próprios; bibliotecas só como alternativa. Três decisões pedidas ao usuário (D04).
+
+Evidência: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md). Commit `cdef750`.
 
 ### E21 — Atualizar o REA no PC
 
@@ -377,3 +381,4 @@ Evidência: [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e19.json](
 - **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
 - **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.
 - **D03** (Decidida): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria? **Resposta:** Investigar como uma etapa própria e, em seguida, fazer a próxima etapa (usuário, 20/10/2026 às 10:53). Etapa E27.
+- **D04** (Pendente): Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC?
