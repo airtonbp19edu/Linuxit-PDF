@@ -3502,3 +3502,9 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Aceitação limpa 81/81 em 2b49d68 (`execucao-ubuntu24-e29-0.1.18.json`).
 - Registros: testes/resultados/0.1.18/, releases/manifest-0.1.18.json, runtime-packages/source-access-0.1.18, notes-0.1.18.md. manifest.json e SHA256SUMS seguem em 0.1.17 até a publicação.
 - Árvore de workflows do candidato e da main: 59487bae5b42163c1ccc68e0dc04218f5fd564b6.
+
+
+## 2026/10/20 às 22:38 (America/Sao_Paulo, UTC-03:00) — E29: plano create_release confirmado
+
+- publish-devel-release.yml em modo check_only (execução 39528468258, main c801404): plano `create_release`, target 2b49d68, árvores de workflow alvo/main 59487bae5b42163c1ccc68e0dc04218f5fd564b6, tag inexistente. Artefato 12314111055 (ZIP c5d03b68…b1f1); plano em testes/resultados/e29-release-403/release-plan-39528468258.json. Download/criação pulados de propósito.
+- Aguardando confirmação do usuário para a publicação real (conteúdo público).

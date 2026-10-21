@@ -1,0 +1,11 @@
+{
+  "tag": "v0.1.18-devel",
+  "source_commit": "2b49d686483989da00efd2aeeaf7512102a90508",
+  "release_id": "",
+  "existing_tag": false,
+  "default_branch": "main",
+  "default_commit": "c80140493b4af9d5cdc8ef56f25c213ed9e4a0da",
+  "target_workflow_tree": "59487bae5b42163c1ccc68e0dc04218f5fd564b6",
+  "default_workflow_tree": "59487bae5b42163c1ccc68e0dc04218f5fd564b6",
+  "mode": "create_release"
+}
