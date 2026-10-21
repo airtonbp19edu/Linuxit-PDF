@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T23:09:00-03:00",
+  "updated_at_local": "2026-10-21T20:24:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -434,10 +434,21 @@
       "id": "E22",
       "block": "PC Windows",
       "requires": "PC do usuário",
-      "status": "pendente",
+      "status": "concluida",
       "title": "Estática: chamadores e tipos da busca",
       "goal": "Continuar a partir dos resultados preservados os chamadores, tipos e propriedade dos objetos da busca.",
-      "verification": "Relatório com instruções conferidas e catálogo atualizado, sem repetir sementes."
+      "verification": "Relatório com instruções conferidas e catálogo atualizado, sem repetir sementes.",
+      "commit": "6d8fd2d",
+      "evidence": [
+        "docs/REA-PROVEDOR-BUSCA-2026-10-21.md",
+        "testes/resultados/static-search-provider-2026-10-21/machine-checks.json",
+        "testes/resultados/static-search-provider-2026-10-21/structural-joins.json",
+        "testes/resultados/static-search-provider-owner-2026-10-21/machine-checks.json",
+        "docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-2026-10-21.json",
+        "docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-owner-2026-10-21.json",
+        "engenharia-reversa/funcoes.csv"
+      ],
+      "note": "Feita na nuvem do Claude com o FoxitPDFReader.exe e a fxLuceneLib.dll do PC (hashes conferidos) e o Ghidra 12.1.4 do PC (módulos necessários), sem VM e sem executar o Foxit. 7 entradas novas, 1.128 instruções/3.992 bytes conferidos por Capstone; catálogo 329→336. Cadeia do provedor de índice ligada: LoadLibraryW de fxLuceneLib.dll (0x172a2e0), NewIndexHandle cria fxindex::fxLuncenLib de 0x20 bytes em dialog+0x1e48 (0x1770e90/0x1728ab0), o destrutor de CFindToolDlgAdv espera a thread de busca e chama DeleteIndexHandle (0x175eb50/0x1728850), CFindToolModule chama FreeLibrary (0x1726b90). Critérios das etapas 3/5/7/8/9 continuam abertos; índice 45,13% inalterado."
     },
     {
       "id": "E23",

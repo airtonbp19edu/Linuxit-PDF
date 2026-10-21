@@ -3529,3 +3529,13 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Pontos abertos por bloco: análise do Foxit (etapas 3,5,7,8,9) ≈24; observação/comparação (10,11,18,19) ≈13; implementação (15,16) ≈9; especificação/auditoria (12,21) ≈4,5.
 - implementation_completion_percent continua null (sem medida confiável). Indicadores auxiliares: etapas pequenas 25/29, operações 104/116, paridade 0/25, testes 664/664 ×3, aceitação 81/81.
 - Próximo: aguardar o usuário. Pendentes: E21–E22 (PC), E23 (equipamentos), E24 (VM, só com autorização).
+
+
+## 2026/10/21 às 20:24 (America/Sao_Paulo, UTC-03:00) — E22 concluída — provedor do índice de busca (análise estática na nuvem)
+
+- Ambiente: FoxitPDFReader.exe (90208c9e…b3a6) e fxLuceneLib.dll (20908415…82e1) copiados de A:\Programas\Foxit PDF Reader; Ghidra 12.1.4 (rev 8b6bbb85) montado em /home/claude/tools a partir de A:\Programas\ghidra_12.1.4_PUBLIC (Framework, Base, Decompiler linux, Microsoft*, PDB, x86 com .sinc); OpenJDK 21.0.12; seeds do REA 6.7.0. Duas tentativas falharam antes da importação (.sla mais antigos que .slaspec; .sinc ausentes) e ficaram preservadas em analysis-local.
+- Rodadas: static-search-provider-2026-10-21 (0x172a2e0, 0x1728ab0, 0x1728850, 0x1770e90, 0x1776070, 0x175eb50: 901 instr/3.292 bytes) e static-search-provider-owner-2026-10-21 (0x1726b90: 227/700). check_foxit_machine aprovado; catalog_foxit_headless + catalog_foxit_functions: 336 entradas (152 REA, 184 diretas).
+- Novo scripts/check_search_provider_joins.py: relê os binários pelos hashes e confere strings/imports/exports/RTTI/instruções da cadeia; saída testes/resultados/static-search-provider-2026-10-21/structural-joins.json (all_expected_facts_present=true).
+- progresso.json: evidência e nota acrescentadas aos 8 critérios abertos das etapas 3/5/7/8/9 que citavam a continuação de 18/10; status/pesos sem mudança; update_progress.py → 45,13%. progresso.md regenerado (estava em 0.1.15/323).
+- Próximos recortes: chamadores de 0x1770e90; classe/laço da thread +0x1e3c; campos +3/+6/+7/+0xc/+0x10 e 0x1003f6b0; contexto 0x138; arrays do reflow. Para repetir na nuvem, recopiar os arquivos do PC (o contêiner é temporário).
+- Suíte própria: 664/664 na fonte Linux (Ubuntu 24.04), sem alteração no aplicativo.

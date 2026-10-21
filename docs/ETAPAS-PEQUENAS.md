@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T23:09:00-03:00. Pendente: 3, Concluída: 25, Bloqueada: 1.
+Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 2, Concluída: 26, Bloqueada: 1.
 
 **Regras**
 
@@ -40,7 +40,7 @@ Atualizado em 2026-10-20T23:09:00-03:00. Pendente: 3, Concluída: 25, Bloqueada:
 | E19 | Ordem de leitura em duas colunas | Robustez | nada | Concluída |
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Concluída |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
-| E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Pendente |
+| E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Concluída |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Bloqueada |
 
@@ -360,7 +360,11 @@ Evidência: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md). Commit `c
 
 **Como verificar:** Relatório com instruções conferidas e catálogo atualizado, sem repetir sementes.
 
-**Situação:** Pendente.
+**Situação:** Concluída.
+
+Feita na nuvem do Claude com o FoxitPDFReader.exe e a fxLuceneLib.dll do PC (hashes conferidos) e o Ghidra 12.1.4 do PC (módulos necessários), sem VM e sem executar o Foxit. 7 entradas novas, 1.128 instruções/3.992 bytes conferidos por Capstone; catálogo 329→336. Cadeia do provedor de índice ligada: LoadLibraryW de fxLuceneLib.dll (0x172a2e0), NewIndexHandle cria fxindex::fxLuncenLib de 0x20 bytes em dialog+0x1e48 (0x1770e90/0x1728ab0), o destrutor de CFindToolDlgAdv espera a thread de busca e chama DeleteIndexHandle (0x175eb50/0x1728850), CFindToolModule chama FreeLibrary (0x1726b90). Critérios das etapas 3/5/7/8/9 continuam abertos; índice 45,13% inalterado.
+
+Evidência: [docs/REA-PROVEDOR-BUSCA-2026-10-21.md](../docs/REA-PROVEDOR-BUSCA-2026-10-21.md), [testes/resultados/static-search-provider-2026-10-21/machine-checks.json](../testes/resultados/static-search-provider-2026-10-21/machine-checks.json), [testes/resultados/static-search-provider-2026-10-21/structural-joins.json](../testes/resultados/static-search-provider-2026-10-21/structural-joins.json), [testes/resultados/static-search-provider-owner-2026-10-21/machine-checks.json](../testes/resultados/static-search-provider-owner-2026-10-21/machine-checks.json), [docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-2026-10-21.json](../docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-2026-10-21.json), [docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-owner-2026-10-21.json](../docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-owner-2026-10-21.json), [engenharia-reversa/funcoes.csv](../engenharia-reversa/funcoes.csv). Commit `6d8fd2d`.
 
 ### E23 — Validações físicas
 
