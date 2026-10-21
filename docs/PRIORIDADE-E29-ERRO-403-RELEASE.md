@@ -143,3 +143,16 @@ resolver este erro.** Nenhuma outra etapa deve ser iniciada enquanto ela valer.
 - Próximos passos: registrar o candidato, rodar a publicação em "Conferir somente" (plano esperado:
   `create_release`), pedir a confirmação do usuário e publicar com o token automático; conferir a
   release, o download público, a auditoria e o teste de desktop.
+
+
+## Conclusão — E29 resolvida e comprovada (20/10/2026, 23:06)
+
+- Candidato 0.1.18 `2b49d68` aprovado no CI 39526036575 (664/664 em fonte, pacote e sandbox; smoke 5/5;
+  launcher 3/3). Conferência sem publicar (39528468258): plano `create_release`, árvores de workflow
+  do alvo e da `main` iguais (`59487bae…`).
+- Publicação real (39531093804), com a confirmação do usuário: o `GITHUB_TOKEN` criou a pre-release
+  `v0.1.18-devel` no commit testado e anexou o pacote (autor `github-actions[bot]`), sem rascunho nem
+  passo manual. Download público, auditoria do pacote instalado (39531197763) e integrações de desktop
+  (39531200040) aprovados.
+- **Regra para as próximas entregas:** finalizar os workflows antes de montar o candidato e não
+  alterá-los até publicar; o fluxo de publicação confere isso (modo "Conferir somente" primeiro).

@@ -1,0 +1,75 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "/__w/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.13.5",
+  "test_pattern": "test_delivery_audit.py",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 11,
+  "passed": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 0.014533210999999824,
+  "cases": [
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_changed_runtime_bytes_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0014734370000013541
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_complete_synthetic_payload_includes_hashed_notice",
+      "status": "passed",
+      "elapsed_sec": 0.0014068100000059758
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_duplicate_inventory_and_escaping_paths_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0008257349999922781
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_missing_notice_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0011490010000017037
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_skips_and_duplicate_test_ids_cannot_approve_evidence",
+      "status": "passed",
+      "elapsed_sec": 0.001491384000004814
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_unattributed_file_and_unknown_derivation_are_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.001034721999999988
+    },
+    {
+      "id": "test_delivery_audit.DeliveryAuditControls.test_uncatalogued_native_file_is_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0012048829999997679
+    },
+    {
+      "id": "test_delivery_audit.ReleaseBundleControls.test_local_previous_bundle_is_verified_without_network",
+      "status": "passed",
+      "elapsed_sec": 0.0010220039999921937
+    },
+    {
+      "id": "test_delivery_audit.ReleaseBundleControls.test_published_asset_is_cached_only_after_size_and_hash_match",
+      "status": "passed",
+      "elapsed_sec": 0.0022595240000100603
+    },
+    {
+      "id": "test_delivery_audit.ReleaseBundleControls.test_unrelated_origin_and_path_traversal_never_trigger_download",
+      "status": "passed",
+      "elapsed_sec": 0.0004517250000048989
+    },
+    {
+      "id": "test_delivery_audit.ReleaseBundleControls.test_wrong_hash_and_oversized_download_never_publish_partial_cache",
+      "status": "passed",
+      "elapsed_sec": 0.001867958999994812
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

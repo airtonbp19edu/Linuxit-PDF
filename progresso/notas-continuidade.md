@@ -3508,3 +3508,11 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 
 - publish-devel-release.yml em modo check_only (execução 39528468258, main c801404): plano `create_release`, target 2b49d68, árvores de workflow alvo/main 59487bae5b42163c1ccc68e0dc04218f5fd564b6, tag inexistente. Artefato 12314111055 (ZIP c5d03b68…b1f1); plano em testes/resultados/e29-release-403/release-plan-39528468258.json. Download/criação pulados de propósito.
 - Aguardando confirmação do usuário para a publicação real (conteúdo público).
+
+
+## 2026/10/20 às 23:09 (America/Sao_Paulo, UTC-03:00) — E29 concluída — 0.1.18 publicada automaticamente
+
+- Publicação: execução 39531093804 (publish-devel-release.yml, check_only=false, main c0e0545) com GITHUB_TOKEN: release 419065220 `v0.1.18-devel` (prerelease, autor github-actions[bot]), tag → 2b49d686483989da00efd2aeeaf7512102a90508, asset 661077599 (118440408 bytes, digest sha256:058ebbe0…b985). Confirmação do usuário às 23:05.
+- Download público sem login: HTTP 200, mesmo tamanho e hash. `releases/manifest.json` = 0.1.18; SHA256SUMS com a linha nova.
+- Auditoria 39531197763: 11 controles, smoke 5/5, GTK 3, 183 arquivos, runtime 3684/483 ELF/297 pacotes (testes/resultados/0.1.18/audit/). Desktop 39531200040: 9/9 × 2 (testes/resultados/0.1.18/desktop/).
+- E29 concluída. Instrução de foco exclusivo cumprida; aguardando o usuário.

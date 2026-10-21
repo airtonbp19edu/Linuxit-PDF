@@ -1,0 +1,24 @@
+{
+  "schema": "linuxit-desktop-integration-review-v1",
+  "date_local": "2026-10-20T23:09:25.177960-03:00",
+  "version": "0.1.18",
+  "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39531200040",
+  "artifacts": {
+    "12315541077": "1a7543e82e2ed4ff97b27fd9deb8530c53b130f66fc3c61aede3ba9d0d917289",
+    "12315298524": "1a383fc8338890bfeb8b957f33495a5fae9f77e0b1647cc57c15cb7ca0fddc43"
+  },
+  "repetitions_passed": 2,
+  "checks_per_repetition": [
+    9,
+    9
+  ],
+  "tested_bundle_sha256": [
+    "058ebbe0ceb0904abe86e5ad2eaadef4540e42a51028341c2cd70d735ce1b985",
+    "058ebbe0ceb0904abe86e5ad2eaadef4540e42a51028341c2cd70d735ce1b985"
+  ],
+  "evidence_hashes": {
+    "integrations-repetition-2.json": "e3f0c02322e022a2625838dde88d6c39160b3870a62dbf19f765eb0664eb1834",
+    "integrations.json": "a4b56c45bd037a7476e154d42ebab463cc200e014a38fda231ef88da20915b91"
+  },
+  "original_executed": false
+}

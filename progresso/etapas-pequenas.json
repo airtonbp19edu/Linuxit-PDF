@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-20T21:20:00-03:00",
+  "updated_at_local": "2026-10-20T23:09:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -262,16 +262,20 @@
       "id": "E29",
       "block": "Base e entrega",
       "requires": "Codex (diagnóstico); talvez o dono para mudar uma configuração",
-      "status": "em_andamento",
+      "status": "concluida",
       "title": "PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions",
       "goal": "Descobrir por que o GITHUB_TOKEN com Contents: write recebe 403 ao criar release (mesmo rascunho) e deixar a publicação de versões automática de novo.",
       "verification": "Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.",
-      "note": "Causa confirmada pelo Codex: mesmo GITHUB_TOKEN contents:write retorna201/201 para branch padrão/main e403 para dec46c9, cujos workflows diferem. Rascunhos apagados, sem tags nem publicação. Fluxo corrigido passou no CI39491077708 em check_only:true e em oito testes de guardas. Registros em testes/resultados/e29-release-403/. Falta somente comprovar a próxima entrega automática autorizada com workflows iguais ao candidato; não foi publicada por proibição expressa desta etapa. Não repetir o diagnóstico nem abrir nova versão apenas para fechar o item.",
+      "note": "Resolvida e comprovada. Causa (confirmada pelo Codex e na documentação oficial do GitHub): criar uma release num commit cujos arquivos de workflow diferem dos da branch padrão exige a permissão Workflows, que o token do Actions não pode ter; a 0.1.17 foi montada antes de o fluxo de publicação existir. Solução: workflows finalizados antes de montar a versão e iguais aos da main até publicar, conferidos pelo fluxo antes de publicar. Prova: a 0.1.18 (commit 2b49d68, workflows iguais aos da main) foi publicada inteiramente pelo token automático (execução 39531093804, autor github-actions[bot]), sem rascunho nem passo manual; download público conferido; auditoria do pacote instalado aprovada (39531197763) e integrações de desktop 9/9 nas duas repetições (39531200040).",
       "evidence": [
-        "testes/resultados/e29-release-403/review.json",
+        "testes/resultados/0.1.18/release-publication.json",
+        "testes/resultados/0.1.18/download-integrity-2026-10-20.json",
+        "testes/resultados/0.1.18/audit/review.json",
+        "testes/resultados/0.1.18/desktop/review.json",
+        "testes/resultados/e29-release-403/release-plan-39528468258.json",
         "docs/PRIORIDADE-E29-ERRO-403-RELEASE.md"
       ],
-      "commit": "dc49fcd"
+      "commit": "c119ef6"
     },
     {
       "id": "E12",

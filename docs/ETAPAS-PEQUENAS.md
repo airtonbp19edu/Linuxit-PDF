@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-20T21:20:00-03:00. Pendente: 3, Em andamento: 1, Concluída: 24, Bloqueada: 1.
+Atualizado em 2026-10-20T23:09:00-03:00. Pendente: 3, Concluída: 25, Bloqueada: 1.
 
 **Regras**
 
@@ -29,7 +29,7 @@ Atualizado em 2026-10-20T21:20:00-03:00. Pendente: 3, Em andamento: 1, Concluíd
 | E09 | Verificar DocTimeStamp existente | Assinaturas | nada | Concluída |
 | E10 | Usar DSS/VRI embutidos na validação offline | Assinaturas | nada | Concluída |
 | E11 | Entrega 0.1.17 | Base e entrega | nada | Concluída |
-| E29 | PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions | Base e entrega | Codex (diagnóstico); talvez o dono para mudar uma configuração | Em andamento |
+| E29 | PRIORIDADE: causa do 403 ao criar release pelo GitHub Actions | Base e entrega | Codex (diagnóstico); talvez o dono para mudar uma configuração | Concluída |
 | E12 | Editar cor e opacidade de anotações existentes | Anotações e redação | nada | Concluída |
 | E13 | Redimensionar Square, Circle e FreeText | Anotações e redação | nada | Concluída |
 | E14 | Marcar áreas para redação | Anotações e redação | nada | Concluída |
@@ -232,9 +232,11 @@ Evidência: [testes/resultados/0.1.17/release-publication.json](../testes/result
 
 **Como verificar:** Fluxo de diagnóstico com rascunhos descartáveis registra status e cabeçalhos; causa identificada e corrigida; a próxima entrega publica sem passo manual. Instruções em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.
 
-**Situação:** Em andamento.
+**Situação:** Concluída.
 
-Causa confirmada pelo Codex: mesmo GITHUB_TOKEN contents:write retorna201/201 para branch padrão/main e403 para dec46c9, cujos workflows diferem. Rascunhos apagados, sem tags nem publicação. Fluxo corrigido passou no CI39491077708 em check_only:true e em oito testes de guardas. Registros em testes/resultados/e29-release-403/. Falta somente comprovar a próxima entrega automática autorizada com workflows iguais ao candidato; não foi publicada por proibição expressa desta etapa. Não repetir o diagnóstico nem abrir nova versão apenas para fechar o item.
+Resolvida e comprovada. Causa (confirmada pelo Codex e na documentação oficial do GitHub): criar uma release num commit cujos arquivos de workflow diferem dos da branch padrão exige a permissão Workflows, que o token do Actions não pode ter; a 0.1.17 foi montada antes de o fluxo de publicação existir. Solução: workflows finalizados antes de montar a versão e iguais aos da main até publicar, conferidos pelo fluxo antes de publicar. Prova: a 0.1.18 (commit 2b49d68, workflows iguais aos da main) foi publicada inteiramente pelo token automático (execução 39531093804, autor github-actions[bot]), sem rascunho nem passo manual; download público conferido; auditoria do pacote instalado aprovada (39531197763) e integrações de desktop 9/9 nas duas repetições (39531200040).
+
+Evidência: [testes/resultados/0.1.18/release-publication.json](../testes/resultados/0.1.18/release-publication.json), [testes/resultados/0.1.18/download-integrity-2026-10-20.json](../testes/resultados/0.1.18/download-integrity-2026-10-20.json), [testes/resultados/0.1.18/audit/review.json](../testes/resultados/0.1.18/audit/review.json), [testes/resultados/0.1.18/desktop/review.json](../testes/resultados/0.1.18/desktop/review.json), [testes/resultados/e29-release-403/release-plan-39528468258.json](../testes/resultados/e29-release-403/release-plan-39528468258.json), [docs/PRIORIDADE-E29-ERRO-403-RELEASE.md](../docs/PRIORIDADE-E29-ERRO-403-RELEASE.md). Commit `c119ef6`.
 
 ### E12 — Editar cor e opacidade de anotações existentes
 

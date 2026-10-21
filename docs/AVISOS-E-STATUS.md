@@ -2,12 +2,12 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 21:20 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 23:09 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
-- Versão **0.1.17/devel** publicada como Flatpak (prerelease `v0.1.17-devel` no GitHub), auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 616/616 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. As etapas E12–E15 já estão no código, mas ainda não num pacote publicado.
+- Versão **0.1.18/devel** publicada como Flatpak (prerelease `v0.1.18-devel` no GitHub) **automaticamente pelo GitHub Actions**, auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 664/664 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. Inclui as etapas E12 a E19.
 - Python + GTK, com 81 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
@@ -22,10 +22,9 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
-- **E29 prioritária:** Codex sincronizou a cópia local e preservou a nota local do laboratório. Causa confirmada no CI 39490423511: mesmo token cria rascunhos na main (201/201), mas recusa o commit antigo com workflows diferentes (403). Dois rascunhos apagados e nenhuma release/tag pública alterada. Fluxo corrigido com conferência prévia e reconhecimento de versões já publicadas; validação somente leitura aprovada no CI39491077708 (oito guardas). Próxima publicação real permanece pendente e não será feita nesta etapa.
-- E29: causa do 403 identificada pelo Codex e conferida pelo Claude na retomada das 20:10; falta só comprovar numa próxima publicação real (0.1.18). Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20 e E25 a E28 concluídas (0.1.17 publicada na E11). Pendentes: E21 e E22 (seu PC), E23 (equipamentos reais), E24 (VM, só com sua autorização) e a prova final da E29 na próxima entrega.
-- Retomada das 20:10: **E16 a E20 concluídas**. 3D adiado para atualização futura (D04). Parado, aguardando você.
+- **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20, E25 a E29 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E21 e E22 (seu PC), E23 (equipamentos reais) e E24 (VM, só com sua autorização).
+- Foco exclusivo na E29 cumprido. Parado, aguardando a sua próxima ordem.
 
 ### Falta
 
@@ -49,7 +48,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - Impressora física, áudio e leitor de tela, monitores físicos, cliente sincronizador real e materiais RMS. Windows completo vem depois do Linux.
 
 **Entrega**
-- A 0.1.17 já está publicada e auditada. A próxima (0.1.18) deve levar E12–E19 e comprovar a publicação automática (E29): workflows finalizados antes de montar o candidato e iguais à main até publicar; candidato novo, três ambientes e auditoria. Só com a sua autorização.
+- 0.1.18 publicada e auditada; a publicação automática funciona. Para as próximas: workflows finalizados antes de montar a versão e iguais aos da main até publicar (o fluxo confere antes).
 
 **Medição**
 - 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
@@ -128,3 +127,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 22:09** — A seu pedido, foco exclusivo na E29 até segunda ordem. Causa do 403 conferida também na documentação oficial do GitHub (alvo com workflows diferentes da branch padrão exige permissão Workflows, que o token do Actions não pode ter). Comprovação: candidato 0.1.18 com workflows idênticos aos da main, em teste no CI (39524293929); antes de publicar, peço sua confirmação.
 - **2026/10/20 às 22:38** — E29: candidato 0.1.18 aprovado no CI 39526036575 (commit `2b49d68`): 664/664 testes na fonte, no pacote e no Flatpak instalado, smoke 5/5, launcher 3/3; aceitação 81/81. Pacote 118.440.408 bytes, SHA-256 `058ebbe0…b985`. Workflows idênticos aos da main. Próximo: conferência da publicação (sem publicar) e, com a sua confirmação, publicação pelo token automático.
 - **2026/10/20 às 22:38** — E29: conferência da publicação sem publicar (execução 39528468258) aprovada com o plano **`create_release`**: workflows do candidato `2b49d68` e da main iguais (árvore `59487bae…`), tag `v0.1.18-devel` ainda inexistente. Falta só a sua confirmação para publicar a 0.1.18 pelo token automático, o que comprova a correção.
+- **2026/10/20 às 23:09** — **E29 resolvida e comprovada.** A 0.1.18 foi publicada sozinha pelo GitHub Actions (execução 39531093804, sem rascunho nem passo manual), com o mesmo pacote testado (664/664 em fonte, pacote e sandbox; SHA-256 058ebbe0…b985). Download público conferido, auditoria do pacote instalado aprovada e integrações de desktop 9/9 nas duas repetições. As etapas E12–E19 agora estão num pacote publicado. Parado, aguardando você.

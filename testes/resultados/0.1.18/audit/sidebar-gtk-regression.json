@@ -1,0 +1,35 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "/app/share/linuxit-pdf",
+  "python": "3.13.5",
+  "test_pattern": "test_sidebar_layout_gtk.py",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 3,
+  "passed": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 6.6017253260000075,
+  "cases": [
+    {
+      "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_divider_hide_show_and_reading_restore_keep_controls_visible",
+      "status": "passed",
+      "elapsed_sec": 1.8349949550000133
+    },
+    {
+      "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_five_panel_headers_fit_default_and_small_window",
+      "status": "passed",
+      "elapsed_sec": 2.635357053000007
+    },
+    {
+      "id": "test_sidebar_layout_gtk.SidebarLayoutTests.test_long_attachment_name_keeps_header_and_save_button_inside_panel",
+      "status": "passed",
+      "elapsed_sec": 2.1310479189999967
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}
