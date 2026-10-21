@@ -57,7 +57,7 @@ def all_decoded(path):
 
 class RedactionApplyTests(unittest.TestCase):
     def setUp(self):
-        if not shutil.which('pdftocairo') or not shutil.which('pdftoppm'):self.skipTest('Poppler required')
+        if not shutil.which('pdftocairo'):self.skipTest('Poppler pdftocairo required')
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name);self.count=0
 
     def source(self,data=None,operations=None,**kwargs):
@@ -76,7 +76,7 @@ class RedactionApplyTests(unittest.TestCase):
     def render(self,path,page=1):
         from PIL import Image
         base=self.root/f'render-{path.stem}-{page}'
-        subprocess.run(['pdftoppm','-r','144','-png','-singlefile','-f',str(page),'-l',str(page),str(path),str(base)],check=True,timeout=60)
+        subprocess.run(['pdftocairo','-png','-r','144','-singlefile','-f',str(page),'-l',str(page),str(path),str(base)],check=True,timeout=60)
         return Image.open(str(base)+'.png').convert('RGB')
 
     def test_text_and_image_under_the_mark_are_gone_and_other_pages_are_intact(self):

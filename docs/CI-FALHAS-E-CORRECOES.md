@@ -128,3 +128,19 @@ relatório informa `checkout_app_differs_from_tested_commit`. Execução local:
 aprovada, 179 arquivos e 18 checksums conferidos. As integrações de desktop da
 0.1.17 ([39487502789](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39487502789))
 passaram nas duas repetições.
+
+
+## Candidato 0.1.18 — testes novos no sandbox Flatpak (2026-10-20)
+
+A [execução 39522091373](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39522091373)
+(candidato `b60b6e6`) passou 663/663 na fonte e no pacote, mas no Flatpak instalado teve
+651 aprovados, 10 pulados, 1 erro e 1 falha. Não era defeito do aplicativo:
+
+- testes das etapas E12–E16 desenhavam com `pdftoppm`, que não vem no Flatpak (o aplicativo usa
+  `pdftocairo`, que vem); no sandbox foram pulados ou deram erro. Agora usam `pdftocairo`;
+- o teste de OCR da E19 exigia que o Tesseract reconhecesse palavras exatas, e o Tesseract do
+  sandbox leu algumas de outro jeito ("titulo", "epsilon"). O teste agora confere só a ordem das
+  colunas (todas as linhas da esquerda antes das da direita), que é o que a etapa promete.
+
+Os arquivos de workflow não mudaram; o candidato novo continua com a mesma árvore de workflows da
+`main`, condição para a publicação automática (E29).

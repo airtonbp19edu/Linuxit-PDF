@@ -32,10 +32,10 @@ class AnnotationStyleTests(unittest.TestCase):
             {'kind':'add-note','page':0,'text':'nota','rect':None}])
 
     def pixel(self,path,x,y,scale=2):
-        if not shutil.which('pdftoppm'):self.skipTest('Poppler pdftoppm required')
+        if not shutil.which('pdftocairo'):self.skipTest('Poppler pdftocairo required')
         from PIL import Image
         base=self.root/f'render-{path.stem}'
-        subprocess.run(['pdftoppm','-r',str(72*scale),'-png','-singlefile',str(path),str(base)],check=True,timeout=60)
+        subprocess.run(['pdftocairo','-png','-r',str(72*scale),'-singlefile',str(path),str(base)],check=True,timeout=60)
         image=Image.open(str(base)+'.png').convert('RGB')
         return image.getpixel((int(x*scale),int((300-y)*scale)))
 

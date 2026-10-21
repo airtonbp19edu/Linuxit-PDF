@@ -29,7 +29,7 @@ class DamagedCorpusTests(unittest.TestCase):
             self.assertEqual(result.returncode,0,result.stderr)
 
     def test_every_fixture_follows_its_expected_outcome_through_the_real_worker(self):
-        render=shutil.which('pdftoppm')
+        render=shutil.which('pdftocairo')  # shipped in the Flatpak; pdftoppm is not
         for row in load()['files']:
             with self.subTest(row['file']):
                 source=self.root/row['file'];shutil.copyfile(CORPUS/row['file'],source);before=source.read_bytes()
@@ -54,7 +54,7 @@ class DamagedCorpusTests(unittest.TestCase):
                     self.assertEqual([(p.extract_text() or '').strip() for p in view.pages],want['text'])
                     if render:
                         out=self.root/(row['file']+'-r');out.mkdir()
-                        subprocess.run([render,'-r','20','-png',session.read_path,str(out/'p')],check=True,timeout=60)
+                        subprocess.run([render,'-png','-r','20',session.read_path,str(out/'p')],check=True,timeout=60)
                         self.assertEqual(len(list(out.glob('p*.png'))),want['pages'],'nenhuma página inventada')
                     self.assertTrue(describe_repairs(info['repairs']))
                 self.assertEqual(source.read_bytes(),before)

@@ -80,10 +80,10 @@ class RedactionMarkTests(unittest.TestCase):
             self.save(self.source,[{'kind':'add-redaction','page':0,'rect':[30,190,160,222],'text':'x'*70000}])
 
     def test_poppler_draws_the_outline_and_keeps_the_marked_text_visible(self):
-        if not shutil.which('pdftoppm'):self.skipTest('Poppler pdftoppm required')
+        if not shutil.which('pdftocairo'):self.skipTest('Poppler pdftocairo required')
         from PIL import Image
         path=self.marked();base=self.root/'render'
-        subprocess.run(['pdftoppm','-r','144','-png','-singlefile',str(path),str(base)],check=True,timeout=60)
+        subprocess.run(['pdftocairo','-png','-r','144','-singlefile',str(path),str(base)],check=True,timeout=60)
         image=Image.open(str(base)+'.png').convert('RGB')
         border=[image.getpixel((x*2,int((300-221.5)*2))) for x in range(34,156,2)]
         self.assertTrue(any(p[0]>150 and p[1]<80 and p[2]<80 for p in border),border)

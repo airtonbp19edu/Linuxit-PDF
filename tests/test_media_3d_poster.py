@@ -73,7 +73,7 @@ class Poster3DTests(unittest.TestCase):
         result=render_poster(self.source,self.request(1,'green.png'));self.assertIsNone(result['model_format'])
         image=Image.open(result['path']).convert('RGB');self.assertEqual(image.getpixel((image.size[0]//2,image.size[1]//2)),(0,255,0))
         base=self.root/'page'
-        subprocess.run(['pdftoppm','-r','72','-png','-singlefile',str(self.source),str(base)],check=True,timeout=60)
+        subprocess.run(['pdftocairo','-png','-r','72','-singlefile',str(self.source),str(base)],check=True,timeout=60)
         page=Image.open(str(base)+'.png').convert('RGB')
         self.assertEqual(page.getpixel((30,300-225)),RED);self.assertEqual(page.getpixel((100,300-225)),BLUE)
         with self.assertRaisesRegex(ValueError,'não tem modelo incorporado'):

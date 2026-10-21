@@ -28,10 +28,10 @@ class AnnotationResizeTests(unittest.TestCase):
     def note(self,path,index):return PdfReader(path).pages[0]['/Annots'][index].get_object()
 
     def pixel(self,path,x,y):
-        if not shutil.which('pdftoppm'):self.skipTest('Poppler pdftoppm required')
+        if not shutil.which('pdftocairo'):self.skipTest('Poppler pdftocairo required')
         from PIL import Image
         base=self.root/f'render-{path.stem}'
-        subprocess.run(['pdftoppm','-r','144','-png','-singlefile',str(path),str(base)],check=True,timeout=60)
+        subprocess.run(['pdftocairo','-png','-r','144','-singlefile',str(path),str(base)],check=True,timeout=60)
         return Image.open(str(base)+'.png').convert('RGB').getpixel((int(x*2),int((300-y)*2)))
 
     def test_square_and_circle_are_redrawn_in_the_new_rectangle(self):
