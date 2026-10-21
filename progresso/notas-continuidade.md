@@ -3493,3 +3493,12 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Instrução do usuário às 22:06: até segunda ordem, só descobrir e resolver o erro da E29.
 - Documentação oficial de Create a release confirma: alvo que adiciona/altera `.github/workflows/` em relação à branch padrão exige Workflows (write); GITHUB_TOKEN não pode recebê-la; resposta 404 ou 403. Coerente com o recibo do Codex (201/201/403, cabeçalho `contents=write; contents=write,workflows=write`).
 - Candidato 0.1.18: b60b6e6 e 3871138 com árvore de workflows 59487bae… igual à main. CI 39522091373 falhou só no sandbox (pdftoppm ausente, OCR exato); corrigido em 3871138; CI 39524293929 em execução. Detalhes em docs/PRIORIDADE-E29-ERRO-403-RELEASE.md.
+
+
+## 2026/10/20 às 22:38 (America/Sao_Paulo, UTC-03:00) — E29: candidato 0.1.18 aprovado
+
+- CI 39526036575 (linux-flatpak.yml) em `2b49d68`: fonte/payload/sandbox 664/664 sem pulos, smoke 5/5, launcher 3/3, 183 arquivos fonte=pacote, runtime 3684/483 ELF/297 pacotes. Artefato 12313559782 (ZIP SHA-256 acab6423…5740). Bundle `LinuxitPDF-0.1.18-x86_64.flatpak` 118440408 bytes, SHA-256 058ebbe0ceb0904abe86e5ad2eaadef4540e42a51028341c2cd70d735ce1b985.
+- Montagens anteriores: 39522091373 (b60b6e6, pdftoppm ausente no sandbox e OCR exato) e 39524293929 (3871138, OCR com grafia diferente) — só testes ajustados.
+- Aceitação limpa 81/81 em 2b49d68 (`execucao-ubuntu24-e29-0.1.18.json`).
+- Registros: testes/resultados/0.1.18/, releases/manifest-0.1.18.json, runtime-packages/source-access-0.1.18, notes-0.1.18.md. manifest.json e SHA256SUMS seguem em 0.1.17 até a publicação.
+- Árvore de workflows do candidato e da main: 59487bae5b42163c1ccc68e0dc04218f5fd564b6.
