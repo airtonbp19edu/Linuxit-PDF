@@ -1,0 +1,21 @@
+{
+  "schema": "linuxit-github-prerelease-publication-v1",
+  "date_utc": "2026-10-21T02:06:18+00:00",
+  "release_id": 419065220,
+  "tag": "v0.1.18-devel",
+  "source_commit": "2b49d686483989da00efd2aeeaf7512102a90508",
+  "release_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/tag/v0.1.18-devel",
+  "prerelease": true,
+  "draft": false,
+  "author": "github-actions[bot]",
+  "asset": {
+    "id": 661077599,
+    "name": "LinuxitPDF-0.1.18-x86_64.flatpak",
+    "size": 118440408,
+    "digest": "sha256:058ebbe0ceb0904abe86e5ad2eaadef4540e42a51028341c2cd70d735ce1b985",
+    "browser_download_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.18-devel/LinuxitPDF-0.1.18-x86_64.flatpak"
+  },
+  "bundle_rebuilt": false,
+  "procedure": "Created entirely by publish-devel-release.yml run 39531093804 with GITHUB_TOKEN (plan create_release; candidate and main workflow tree 59487bae5b42163c1ccc68e0dc04218f5fd564b6), after read-only check 39528468258 and the owner's confirmation. No manual draft or owner session involved (E29 proof).",
+  "public_get_confirmed_at_utc": "2026-10-21T02:06:39.056866+00:00"
+}
