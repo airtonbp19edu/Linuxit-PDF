@@ -71,11 +71,26 @@ class ReadingOrderPdfTests(unittest.TestCase):
         target=self.root/'ocr.pdf'
         create_searchable_copy(source,target,{'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'language':'por','dpi':300,'psm':3})
         lines=[l.lower() for l in extract_page_text(str(target),0).splitlines() if l.strip()]
-        # OCR quality varies with the Tesseract build (source vs sandbox); the order is what is checked:
-        # every recognised left-column line comes before every recognised right-column line.
-        left=[i for i,l in enumerate(lines) if 'esquerda' in l];right=[i for i,l in enumerate(lines) if 'direita' in l]
-        self.assertGreaterEqual(len(left),3,lines);self.assertGreaterEqual(len(right),3,lines)
-        self.assertLess(max(left),min(right),lines)
-        self.assertEqual(left,list(range(left[0],left[0]+len(left))),'coluna esquerda contínua')
+        self.assertTrue(ordered_like_expected(lines),lines)
+
+    def test_fuzzy_order_check_accepts_misread_words_and_rejects_interleaving(self):
+        # Words as the Flatpak Tesseract read them in CI 39524293929 (order right, spelling not).
+        sandbox=['tal do docum ento ocupa a armguia toda','esquerda um alfa','esquerda dois beta','esquerda tes gama',
+                 'esquerda quatro delta','direta um epsibn','direta dois zeta','dieta tes eta','dieta quato teta',
+                 'rodape tam bem ocupa a argura toda da pagha']
+        self.assertTrue(ordered_like_expected(sandbox))
+        interleaved=[TITLE,LEFT[0],RIGHT[0],LEFT[1],RIGHT[1],LEFT[2],RIGHT[2],LEFT[3],RIGHT[3],FOOTER]
+        self.assertFalse(ordered_like_expected([l.lower() for l in interleaved]))
+
+
+def ordered_like_expected(lines):
+    """OCR quality varies with the Tesseract build (source vs sandbox), so each recognised line is
+    matched to the closest expected line; the check is the order, not the spelling."""
+    from difflib import SequenceMatcher
+    expected=[e.lower() for e in EXPECTED];found=[]
+    for line in lines:
+        score,index=max((SequenceMatcher(None,line,e).ratio(),i) for i,e in enumerate(expected))
+        if score>=0.6:found.append(index)
+    return len(set(found))>=8 and found==sorted(found) and len(found)==len(set(found))
 
 if __name__=='__main__':unittest.main()

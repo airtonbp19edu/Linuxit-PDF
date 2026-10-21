@@ -144,3 +144,11 @@ A [execução 39522091373](https://github.com/airtonbp19edu/Linuxit-PDF/actions/
 
 Os arquivos de workflow não mudaram; o candidato novo continua com a mesma árvore de workflows da
 `main`, condição para a publicação automática (E29).
+
+Segunda montagem ([39524293929](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39524293929),
+`3871138`): 663/663 na fonte e no pacote; no sandbox 662/663. A única falha foi o teste de OCR da
+E19: a ordem das colunas saiu certa, mas o Tesseract do Flatpak leu "direita" como "direta"/"dieta"
+(e "epsilon" como "epsibn"). O teste passou a casar cada linha reconhecida com a linha esperada mais
+parecida (semelhança de texto) e a conferir só a ordem; um teste novo usa exatamente as linhas lidas
+no sandbox e outro garante que colunas intercaladas continuam sendo recusadas. Observação para depois
+da E29: o OCR do Flatpak reconhece pior que o do sistema (registrado em "Qualidade de OCR").
