@@ -2,13 +2,13 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/20 às 23:09 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/20 às 23:25 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
 **O aplicativo**
 - Versão **0.1.18/devel** publicada como Flatpak (prerelease `v0.1.18-devel` no GitHub) **automaticamente pelo GitHub Actions**, auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 664/664 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. Inclui as etapas E12 a E19.
-- Python + GTK, com 81 arquivos em `app/`. Das 111 operações do inventário, 98 têm algum código próprio (a 98ª é a leitura XFA da E06). Isso não é porcentagem de conclusão.
+- Python + GTK. Das 116 operações do inventário, 104 têm algum código próprio, em recortes limitados ([INVENTARIO-OPERACOES.md](INVENTARIO-OPERACOES.md)). Isso não é porcentagem de conclusão.
 - Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
 
 **Nesta sessão (19–20/10/2026)**
@@ -50,8 +50,21 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 **Entrega**
 - 0.1.18 publicada e auditada; a publicação automática funciona. Para as próximas: workflows finalizados antes de montar a versão e iguais aos da main até publicar (o fluxo confere antes).
 
-**Medição**
-- 19 dos 58 critérios das 21 etapas continuam abertos. O percentual global é desconhecido e não deve ser estimado.
+**Medição (conferida em 2026/10/20 às 23:25)**
+- **Índice oficial: 45,13%**, recalculado de `progresso/progresso.json`. São 21 etapas com pesos que somam 100. Cada critério só conta quando está totalmente concluído; parcial vale zero.
+- **39 de 58 critérios concluídos.** Os 19 abertos são 13 parciais e 6 pendentes. As entregas de 20/10 (E14–E20, E29 e a 0.1.18) avançaram critérios amplos, mas não fecharam nenhum por inteiro, então o índice não mudou desde 19/10.
+- Onde estão os 54,87 pontos que faltam:
+  - Análise do Foxit (etapas 3, 5, 7, 8 e 9): cerca de 24 pontos. Depende do PC (E21–E22).
+  - Observação e comparação com o original (etapas 10, 11, 18 e 19): cerca de 13 pontos. Depende da VM (E24) e de equipamentos (E23).
+  - Implementação própria restante (etapas 15 e 16): cerca de 9 pontos.
+  - Especificação e auditoria final (etapas 12 e 21): cerca de 4,5 pontos.
+- Outros indicadores. Cada um mede uma coisa diferente e nenhum substitui o índice:
+  - etapas pequenas: 25 de 29 concluídas;
+  - operações com código próprio limitado: 104 de 116;
+  - paridade comprovada com o Foxit: 0 de 25 famílias;
+  - testes próprios: 664/664 em três ambientes;
+  - aceitação: 81/81.
+- O percentual de reimplementação total (`implementation_completion_percent`) continua desconhecido e não deve ser estimado.
 
 **Decisões tomadas**
 - D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
@@ -129,3 +142,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 22:38** — E29: conferência da publicação sem publicar (execução 39528468258) aprovada com o plano **`create_release`**: workflows do candidato `2b49d68` e da main iguais (árvore `59487bae…`), tag `v0.1.18-devel` ainda inexistente. Falta só a sua confirmação para publicar a 0.1.18 pelo token automático, o que comprova a correção.
 - **2026/10/20 às 23:09** — **E29 resolvida e comprovada.** A 0.1.18 foi publicada sozinha pelo GitHub Actions (execução 39531093804, sem rascunho nem passo manual), com o mesmo pacote testado (664/664 em fonte, pacote e sandbox; SHA-256 058ebbe0…b985). Download público conferido, auditoria do pacote instalado aprovada e integrações de desktop 9/9 nas duas repetições. As etapas E12–E19 agora estão num pacote publicado. Parado, aguardando você.
 - **2026/10/20 às 23:16** — Pergunta: já dá para reconstruir o aplicativo para testes no Windows e no Linux? Linux: sim, completo (fonte, Flatpak construído no CI, 664/664 testes em três ambientes; 0.1.18 publicada). Windows: roda pela fonte com MSYS2 (GTK 3 + Poppler); conferência nativa reexecutada agora no código atual (execução 39531850858): 5/5, mas sem instalador e sem a suíte completa no Windows. Nenhum código alterado.
+- **2026/10/20 às 23:25** — Progresso atual: **45,13%** pelo índice oficial. Fechados 39 de 58 critérios. As entregas de hoje não fecharam critério inteiro, então o índice ficou igual. O que falta está concentrado na análise e na comparação com o Foxit, que dependem do PC e da VM: cerca de 37 dos 54,87 pontos. Outros indicadores: etapas pequenas 25/29, operações 104/116 (recortes limitados), paridade 0/25, testes 664/664, aceitação 81/81. Pedido do usuário: salvar tudo no GitHub e na pasta do PC para manter o Codex atualizado.

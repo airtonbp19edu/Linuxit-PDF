@@ -3521,3 +3521,11 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 ## 2026/10/20 às 23:16 (America/Sao_Paulo, UTC-03:00) — Windows nativo reconferido
 
 - windows-native.yml (execução 39531850858, 2d4d442, Windows Server 2022 + MSYS2 UCRT64): 5/5 (informação Poppler, geometria de caracteres, página renderizada no leitor real, cópia editada reabre, original preservado). Relatório em testes/resultados/windows-native/2026-10-20/. Não há instalador Windows nem suíte completa no Windows; impressão física não testada.
+
+
+## 2026/10/20 às 23:25 (America/Sao_Paulo, UTC-03:00) — Medição de progresso conferida (sem mudança de código)
+
+- Índice oficial recalculado de progresso/progresso.json (soma por etapa de weight_percent × peso concluído / peso total): 45,13%. Igual ao valor gravado; 39/58 critérios concluídos, 13 parciais e 6 pendentes. Nenhum critério fechou com E14–E20/E29, então progresso.json não foi alterado.
+- Pontos abertos por bloco: análise do Foxit (etapas 3,5,7,8,9) ≈24; observação/comparação (10,11,18,19) ≈13; implementação (15,16) ≈9; especificação/auditoria (12,21) ≈4,5.
+- implementation_completion_percent continua null (sem medida confiável). Indicadores auxiliares: etapas pequenas 25/29, operações 104/116, paridade 0/25, testes 664/664 ×3, aceitação 81/81.
+- Próximo: aguardar o usuário. Pendentes: E21–E22 (PC), E23 (equipamentos), E24 (VM, só com autorização).
