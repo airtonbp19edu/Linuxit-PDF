@@ -94,9 +94,10 @@
           "status": "pending",
           "evidence": [
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
       "verified_fraction": 0.5,
@@ -156,9 +157,10 @@
           "status": "pending",
           "evidence": [
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
       "verified_fraction": 0.428571,
@@ -217,9 +219,10 @@
           "status": "pending",
           "evidence": [
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
       "verified_fraction": 0.333333,
@@ -256,9 +259,10 @@
             "docs/REA-IMPRESSAO-CONSUMIDORES.md",
             "docs/windows-evidence/foxit-rea/windows-print-followup-contracts.json",
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         },
         {
           "criterion": "Fluxo completo de busca reconstruído",
@@ -268,9 +272,10 @@
             "docs/REA-BUSCA-IMPRESSAO.md",
             "docs/windows-evidence/foxit-rea/search-print-contracts.json",
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         },
         {
           "criterion": "Demais famílias funcionais investigadas profundamente",
@@ -278,9 +283,10 @@
           "status": "pending",
           "evidence": [
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
       "verified_fraction": 0.130435,
@@ -306,9 +312,10 @@
           "evidence": [
             "docs/fluxos.md",
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         },
         {
           "criterion": "Algoritmos completos de todas as famílias especificados",
@@ -316,9 +323,10 @@
           "status": "pending",
           "evidence": [
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md"
+            "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
+            "docs/REA-PROVEDOR-BUSCA-2026-10-21.md"
           ],
-          "note": "Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
       "verified_fraction": 0.090909,

@@ -4,13 +4,13 @@
 
 **Índice histórico do checklist do roteiro: 45.13%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
 
-**Pacote registrado:** 0.1.15 de desenvolvimento. [Manifesto](../releases/manifest-0.1.15.json).
+**Pacote registrado:** 0.1.18 de desenvolvimento. [Manifesto](../releases/manifest-0.1.18.json).
 
-**Validação própria registrada nesse pacote:** fonte 490/490; payload 490/490; sandbox instalado 490/490. São evidências da entrega; este gerador não executa a suíte novamente e a quantidade de testes não mede conclusão funcional.
+**Validação própria registrada nesse pacote:** fonte 664/664; payload 664/664; sandbox instalado 664/664. São evidências da entrega; este gerador não executa a suíte novamente e a quantidade de testes não mede conclusão funcional.
 
 **Paridade Foxit comprovada:** 0/25 famílias identificadas por inteiro. O inventário funcional permanece aberto; esse contador não descreve quanto de cada família foi implementado. Testes próprios não contam como testes diferenciais.
 
-**Cobertura global de engenharia reversa:** não calculável. Há 323 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
+**Cobertura global de engenharia reversa:** não calculável. Há 336 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
 
 A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro original. Fração de critérios verificados não é fração de funcionalidades pronta.
 

@@ -121,8 +121,9 @@ estavam catalogados e não são novas entradas. O slot `+0x58` aponta para
 `0x1003af20`; seu auxiliar novo `0x1003ac90` constrói consulta pelo campo
 `version` com o texto `*` e extrai a versão armazenada.
 
-Isso fornece uma implementação concreta compatível com a interface. Ainda
-falta provar o escritor/fábrica que atribui a instância ativa a `dialog+0x1e48`;
+Isso fornece uma implementação concreta compatível com a interface. *(Atualização de
+21/10/2026: a atribuição ativa foi ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md).)* Ainda
+faltava provar o escritor/fábrica que atribui a instância ativa a `dialog+0x1e48`;
 não se afirma que todo provedor do diálogo seja essa classe. `0x174b670` revelou
 limpeza de árvore/nós, corrigindo a hipótese inicial de fábrica. `0x1787510`
 consulta interface global e pode retornar `0x80004005`; também não fecha essa

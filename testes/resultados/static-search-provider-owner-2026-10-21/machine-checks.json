@@ -1,0 +1,24 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/static-search-provider-owner-2026-10-21",
+  "entries": [
+    {
+      "entry": "0x1726b90",
+      "instructions": 227,
+      "body_bytes": 700,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "47d9945e662a003e3f0ad82080c03a89470047ac0eecf326d9767604954b6135",
+      "pseudocode_sha256": "4e8b00bdbf196d2c9e222d87f3f3c7c80dadb0be2915b43c0f8787b9880f13af"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

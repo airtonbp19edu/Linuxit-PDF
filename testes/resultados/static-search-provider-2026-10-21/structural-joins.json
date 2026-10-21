@@ -1,0 +1,73 @@
+{
+  "schema": "linuxit-structural-joins-v1",
+  "subjects": {
+    "FoxitPDFReader.exe": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "fxLuceneLib.dll": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1"
+  },
+  "tools": {
+    "capstone": "5.0.6",
+    "pefile": "2024.8.26"
+  },
+  "checks": {
+    "loader_0x172a2e0": {
+      "appends_string": "\\fxLuceneLib.dll",
+      "string_pushed_at": "0x172a31f",
+      "guard_on_cached_module": "0x172a329",
+      "import_called": "LoadLibraryW",
+      "stores_module_at": "0x172a34a"
+    },
+    "create_wrapper_0x1728ab0": {
+      "export_name": "NewIndexHandle",
+      "import_called": "GetProcAddress",
+      "null_proc_guard": "0x1728aba",
+      "tail_jump": "0x1728acd"
+    },
+    "release_wrapper_0x1728850": {
+      "export_name": "DeleteIndexHandle",
+      "null_argument_guard": "0x172885a",
+      "null_proc_guard": null,
+      "tail_jump": "0x1728873",
+      "note": "GetProcAddress result is not tested before the tail jump; only module and argument are."
+    },
+    "dialog_create_0x1770e90": {
+      "stores_owner_at_0x1d7c": "0x1770eba",
+      "loads_library_via": "0x1770ec0",
+      "tests_field_zero": "0x1770ec8",
+      "creates_via": "0x1770ed3",
+      "stores_field": "0x1770edb",
+      "dialog_template_id": 6359,
+      "context_string": "FindTool_Dll"
+    },
+    "dialog_destructor_0x175eb50": {
+      "class": ".?AVCFindToolDlgAdv@@",
+      "secondary_vtable_class": ".?AVCFindToolDlgAdv@@",
+      "waits_worker_thread": [
+        "GetExitCodeThread",
+        "WaitForSingleObject"
+      ],
+      "closes_handle_field_0x1e40": "CloseHandle",
+      "releases_field_via": "0x175ec18",
+      "clears_field": "0x175ec20"
+    },
+    "module_owner_destructor_0x1726b90": {
+      "class": ".?AVCFindToolModule@@",
+      "free_import": "FreeLibrary",
+      "free_call": "0x1726cd3",
+      "clears_module": "0x1726cd9"
+    },
+    "dll_exports": {
+      "NewIndexHandle": "0x10033c90",
+      "allocation_size": 32,
+      "constructor_jump": "0x10033ca4",
+      "DeleteIndexHandle": "0x10033c70",
+      "deleting_destructor_call": "0x10033c7e"
+    }
+  },
+  "all_expected_facts_present": true,
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Static byte/instruction joins only; runtime order, threads and failure paths were not observed.",
+    "Virtual-call targets through the owner object (+0x1d7c) remain unresolved."
+  ]
+}
