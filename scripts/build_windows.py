@@ -32,6 +32,37 @@ def nsis(value):
     return str(value).replace('$','$$').replace('"','$\\"').replace('\n','')
 
 
+CACHE_GROUPS={
+    'schemas':('bin/glib-compile-schemas.exe','share/glib-2.0/schemas','*.xml'),
+    'icons':('bin/gtk-update-icon-cache.exe','share/icons/Adwaita','*'),
+    'mime':('bin/update-mime-database.exe','share/mime/packages','*.xml'),
+    'gio':('bin/gio-querymodules.exe','lib/gio/modules','*.dll'),
+    'immodules':('bin/gtk-query-immodules-3.0.exe','lib/gtk-3.0','*.dll'),
+}
+
+def cache_group(relative):
+    if relative=='runtime/share/glib-2.0/schemas/gschemas.compiled':return 'schemas'
+    if relative=='runtime/share/icons/Adwaita/icon-theme.cache':return 'icons'
+    if relative.startswith('runtime/share/mime/') and '/packages/' not in relative:return 'mime'
+    if relative=='runtime/lib/gio/modules/giomodule.cache':return 'gio'
+    if relative.startswith('runtime/lib/gtk-3.0/') and relative.endswith('/immodules.cache'):return 'immodules'
+    return None
+
+def cache_inputs(prefix,ownership,group):
+    generator,directory,pattern=CACHE_GROUPS[group]
+    sources=[prefix/generator,*sorted((prefix/directory).rglob(pattern))]
+    records=[]
+    for path in sources:
+        if not path.is_file():continue
+        source='/ucrt64/'+path.relative_to(prefix).as_posix();owner=ownership.get(source)
+        if owner is None:
+            if path.name.endswith('.cache'):continue
+            raise ValueError('Generated cache input without provenance: '+source)
+        records.append(dict(source=source,sha256=sha(path),package=owner))
+    if len(records)<2 or not (prefix/generator).is_file():raise ValueError('Generated cache needs its packaged generator and inputs: '+group)
+    return dict(method='MSYS2 post-install generated cache; input bytes and packages recorded',generator='/ucrt64/'+generator,inputs=records)
+
+
 def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman'):
     prefix,stage,output=Path(prefix).resolve(),Path(stage).resolve(),Path(output).resolve()
     if stage.exists() or output.exists():raise ValueError('Use novos caminhos; payload e instaladores anteriores são preservados.')
@@ -47,6 +78,7 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
         origin=prefix/relative
         if origin.exists():
             for path in origin.rglob('*'):
+                if path.name=='loaders.cache':continue  # Regenerated after relocation by windows_bootstrap.
                 if path.is_file() and '__pycache__' not in path.parts and path.suffix not in ('.pyc','.pyo','.a','.h'):
                     file(path,runtime/path.relative_to(prefix))
     for name in BINARIES:
@@ -75,19 +107,24 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     packages=sorted({ownership[source] for source in origins.values() if source in ownership})
     package_info=subprocess.run([pacman,'-Qi',*packages],check=True,capture_output=True,text=True,encoding='utf-8').stdout
     (stage/'runtime-package-info.txt').write_text(package_info,encoding='utf-8')
-    records=[]
+    records=[];generated={}
     for path in sorted(stage.rglob('*')):
         if not path.is_file():continue
         relative=path.relative_to(stage).as_posix();source=origins.get(relative)
         owner=ownership.get(source) if source else None
+        group=None
         if source and owner is None:
-            if 'quickjs' not in path.name and not any('quickjs' in part for part in path.parts):
-                raise ValueError('Runtime sem proveniência de pacote: '+relative)
-            owner='python-quickjs-ng==0.15.1.1 (compiled UCRT64 overlay)'
-        records.append(dict(path=relative,bytes=path.stat().st_size,sha256=sha(path),package=owner,source=source))
+            group=cache_group(relative)
+            if group:
+                if group not in generated:generated[group]=cache_inputs(prefix,ownership,group)
+                owner='generated-cache:'+group
+            elif path.name.startswith('_quickjs') and path.suffix=='.pyd' or path.name=='quickjs-installation.json':
+                owner='python-quickjs-ng==0.15.1.1 (compiled UCRT64 overlay)'
+            else:raise ValueError('Runtime sem proveniência de pacote: '+relative)
+        records.append(dict(path=relative,bytes=path.stat().st_size,sha256=sha(path),package=owner,source=source,generated_from=group))
     manifest=dict(schema='linuxit-windows-payload-v1',version=VERSION,development=True,source_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
                   native_windows=True,architecture='x86_64',runtime='MSYS2 UCRT64',administrator_required=False,
-                  records=records,packages=packages,quickjs='python-quickjs-ng==0.15.1.1',
+                  records=records,packages=packages,generated_cache_groups=generated,quickjs='python-quickjs-ng==0.15.1.1',
                   limitations=['Windows development candidate; unsigned installer.', 'Original Foxit and whole-family parity are not tested by this packaging.'])
     (stage/'windows-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     output.parent.mkdir(parents=True,exist_ok=True)
