@@ -482,6 +482,15 @@
       "title": "Continuar a comparação com o Foxit",
       "goal": "UI01 com documento, UI02, UI05, UI09, UI10, D10–D20 restantes; repetir a primeira busca após reabrir (comentário ausente) e observar o processo residual ao fechar.",
       "verification": "Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos."
+    },
+    {
+      "id": "E31",
+      "block": "Busca",
+      "requires": "nada",
+      "status": "pendente",
+      "title": "Ordem dos resultados e clique em marcador como no Foxit (D05)",
+      "goal": "Marcadores, depois texto, depois comentários; resultado de marcador só seleciona o marcador, sem mudar de página.",
+      "verification": "Testes próprios e aceitação S12-05-1 atualizados e aprovados."
     }
   ],
   "decisions": [
@@ -512,6 +521,12 @@
       "question": "Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC?",
       "answer": "Deixar o 3D para uma atualização futura, sem foco agora; guardar tudo o que se sabe para implementar depois (usuário, 20/10/2026 às 21:18). As perguntas sobre caminho, AGPL e ordem U3D/PRC ficam para quando o 3D for retomado. Guia em docs/ESTUDO-3D-U3D-PRC.md.",
       "step": "E20"
+    },
+    {
+      "id": "D05",
+      "status": "decidida",
+      "question": "Depois da E24: o Linuxit deve seguir o Foxit (1) na ordem dos resultados (marcadores, texto, comentários) e (2) no clique em resultado de marcador (só seleciona, não muda de página)?",
+      "answer": "Sim, nos dois pontos (usuário, 21/10/2026 às 21:11). Implementado na E31."
     }
   ]
 }
