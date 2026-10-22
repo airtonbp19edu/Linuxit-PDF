@@ -1,37 +1,37 @@
 {
   "schema": "linuxit-019-candidate-review-v1",
-  "reviewed_at_local": "2026-10-22T19:56:37-03:00",
-  "ci_run_id": 39864579949,
-  "ci_source_commit": "7f0f9c15ac9d07c81b2a380a013e2faf28746d4b",
+  "reviewed_at_local": "2026-10-22T20:32:54-03:00",
+  "ci_run_id": 39869848800,
+  "ci_source_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
   "ci_conclusion": "success",
-  "artifact_id": 12463863765,
-  "zip_sha256": "ac24a04c8feba38d2c3acecc5c0bee2034478f3034e74bad3b177c0f02cfa7d0",
-  "zip_bytes": 121615759,
+  "artifact_id": 12467036137,
+  "zip_sha256": "b87295323dd78a8f73252fe3bb684107128e256759c73cc6b10b28648f5cf0a3",
+  "zip_bytes": 121614997,
   "github_digest_matches": true,
   "artifact": {
     "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
-    "bytes": 120445752,
-    "sha256": "f1ac26367ed390bf10bbe88c04df68828eb4954ef188a8d77f935f870c49723d",
+    "bytes": 120445160,
+    "sha256": "ea5d76eb3ba779f38477652a5794c309e8ad1ae7197dcd1ab3392c1e35d9818e",
     "digitally_signed": false
   },
   "validation": {
     "source": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "payload": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "sandbox": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
@@ -44,8 +44,13 @@
     "ui/ocr-copy.png",
     "ui/sidebar.png"
   ],
-  "visual_scope": "Own CI source UI readability/layout only, not visual parity or physical desktop proof.",
+  "visual_scope": "Own CI source UI readability/layout only, not Foxit visual parity or physical desktop proof.",
   "new_ocr_cleanup_actual_worker_passed_in": [
+    "source",
+    "payload",
+    "installed_flatpak"
+  ],
+  "real_gtk_source_identity_regression_passed_in": [
     "source",
     "payload",
     "installed_flatpak"
@@ -54,8 +59,9 @@
   "published": false,
   "release_or_tag_created": false,
   "vm_or_original_executed": false,
-  "local_bundle": "analysis-local\\a456-artifact-12463863765\\dist\\LinuxitPDF-0.1.19-x86_64.flatpak",
+  "local_bundle": "analysis-local\\a456-artifact-12467036137\\dist\\LinuxitPDF-0.1.19-x86_64.flatpak",
   "preflight": "pending_check_only",
   "independent_after_publication_audit": "not_run",
-  "physical_devices": "not_tested"
+  "physical_devices": "not_tested",
+  "superseded_candidate_reports": "testes/resultados/0.1.19-before-identity-fix/"
 }

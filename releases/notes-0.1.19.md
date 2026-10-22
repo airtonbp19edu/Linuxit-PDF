@@ -31,12 +31,15 @@ usuário após a validação; estas notas preparadas não anunciam uma Release.
 
 ## Validação e limites
 
-Candidato aprovado no CI39864579949: **742/742 testes próprios em cada ambiente**
-(fonte Linux,payload e Flatpak instalado), zero falhas/erros/skips. Fumaça5/5,
-launcher3/3 e193 arquivos fonte/pacote iguais. Bundle120.445.752bytes,
-SHA-256 `f1ac26367ed390bf10bbe88c04df68828eb4954ef188a8d77f935f870c49723d`.
-Aceitação própria81/81 na fonte e02dda2, preservada separadamente. A validação
-do candidato inclui execução real dos novos controlesJS/XFA e doOCR no sandbox.
+Candidato aprovado no CI39869848800, fonte9fb4f3a: **744/744 testes próprios em
+cada ambiente** (fonte Linux, payload e Flatpak instalado), zero falhas/erros/skips.
+Fumaça5/5, launcher3/3 e193 arquivos fonte/pacote iguais.
+Bundle120445160bytes, SHA-256 `ea5d76eb3ba779f38477652a5794c309e8ad1ae7197dcd1ab3392c1e35d9818e`.
+Aceitação própria81/81 na mesma revisão, em execução separada39869853238.
+Os três ambientes executaram o OCR real com limpeza/idiomas, o JavaScript,
+XFA, preservação e a regressãoGTK da identidade da fonte durante o diálogo.
+Corrigida a redação para recusar um PDF substituído depois de exibido no editor;
+o primeiro candidato foi preservado como histórico e substituído por este.
 Instalador Windows é uma frente separada, sem assinatura e sem certificação de
 hardware real. IA permanece fora do escopo; 3D e nuvem direta estão adiados.
 

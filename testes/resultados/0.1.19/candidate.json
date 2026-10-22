@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-linux-candidate-v1",
-  "date_utc": "2026-10-22T22:40:00.142472+00:00",
+  "date_utc": "2026-10-22T23:26:37.751500+00:00",
   "version": "0.1.19",
   "status": "development; full reconstruction incomplete",
   "application_id": "io.github.airtonbp19edu.LinuxitPDF",
@@ -8,34 +8,34 @@
   "architecture": "x86_64",
   "runtime": "org.freedesktop.Platform/x86_64/25.08",
   "runtime_commit_tested": "08713ee4ce58fee0b8ff2f5bb58e511ff2009c4d72209270d2ddd01fb0336a04",
-  "app_ostree_commit": "019f3c17bb359c4f728d2092ed964ac0dc22a7b8fbd9e0b39264311e32405058",
-  "source_commit": "7f0f9c15ac9d07c81b2a380a013e2faf28746d4b",
-  "validation_commit": "7f0f9c15ac9d07c81b2a380a013e2faf28746d4b",
+  "app_ostree_commit": "dac18fa3d58b8d0af7cf59c231b9413675a9ada3eafa1e1ba10718e218518544",
+  "source_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
+  "validation_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
   "builder_sha256": "3aa1b4d872b55eb7fe53283d02d4cdc7f05b7e4bb49b266c0a0d36df3529416c",
   "artifact": {
     "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
-    "bytes": 120445752,
-    "sha256": "f1ac26367ed390bf10bbe88c04df68828eb4954ef188a8d77f935f870c49723d",
+    "bytes": 120445160,
+    "sha256": "ea5d76eb3ba779f38477652a5794c309e8ad1ae7197dcd1ab3392c1e35d9818e",
     "digitally_signed": false
   },
   "validation": {
     "source": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "payload": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "sandbox": {
-      "run": 742,
-      "passed": 742,
+      "run": 744,
+      "passed": 744,
       "failures": 0,
       "errors": 0,
       "skipped": 0
@@ -48,15 +48,15 @@
   "sandbox_smoke_checks_passed": 5,
   "normal_launcher_checks_passed": 3,
   "report_hashes": {
-    "sidebar-before.json": "d39b9d2f51db9a88909e0a429a70358fb3d3e8a0773a51196c6ef9cb3e3f3f58",
-    "source-payload-integrity.json": "9c47ecb1646cd4a1b920dacf7013c585a948cfe5c02b5bdc5dfb95b99c4f987c",
-    "sandbox-smoke.json": "098d81f6adc53053f82ada2e674dd8cb00f5a54f6fa92989927daa376c371620",
-    "source-intermediate.json": "9368ff8f989d30d88558b4e32bd895761162ad9b231555b627c605969ed8b1fe",
-    "sidebar-after.json": "a34d5b7e4f0cace1f5b5530dc68a3219e4a1233d07d17cf1a3857082e5fc4604",
+    "sidebar-before.json": "be90554e314b5c596eaf521792b2a3a5800ad00c202d7974692c556298a2ccde",
+    "source-payload-integrity.json": "248ee63e6a041aa824e7f5ca4690075023731372d75b12a23cc2ccbfbeb2f7ac",
+    "sandbox-smoke.json": "a81d1b1f340d78b265d4fdb6c780e390a1075c5780093bf1fa0b595852905a19",
+    "source-intermediate.json": "28ec9f4971e5c4f1920ce530ccfcafedf38a9e55f4bce10d7b0cab7aa533a7d4",
+    "sidebar-after.json": "b8e8380282f05467a6b95e309042709e0b4597ed749b1eea5c3971913a54fcf6",
     "sync-folder-denied.json": "3a2715caa4f16fc0e4db93926d42cb98e2dbfb564675a5223307495b4435cff8",
     "sync-folder-granted.json": "370b488d36e1396963583e1b798cd6cbd16c5ce5e5d95980fd35b0166e7f3685",
-    "sandbox-tests.json": "2ccabfad19ba71e2449d022646d4d2cdf75160a3519a64eb958119edd61e0490",
-    "payload-tests.json": "ed0f6fe7674ffb80ae1fd221f425533f2f0bb8425561def3c4b66275b06d516f",
+    "sandbox-tests.json": "b21685836d41fe5e6edb22c20dc43f70218fd98f847024cb3b99504b8c71db79",
+    "payload-tests.json": "65d6d87fe0d292f8914e31255d7f5b7050361157c4c7652c3764b910a6413654",
     "runtime-source-access.json": "412c4d3a0148329b043a26f257f1a976503d3e00aa60502ff22a410db696f165",
     "flatpak-normal-launch.json": "181ed5dae57b86b764d1a7b633c389ace1de8eca48d82b4e5ae4ecbd9da6d010",
     "runtime-origins.json": "b1cdf334ac8ae824c2282f0e33d18a53f357b63fe397efcccc518ec6e4036f5b"

@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-sidebar-layout-v1",
-  "date_local": "2026-10-22T19:25:22.420811-03:00",
+  "date_local": "2026-10-22T20:10:00.528066-03:00",
   "app_main_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
   "observation_only": false,
   "scenarios": [
@@ -792,7 +792,7 @@
     },
     {
       "file": "sidebar-4.png",
-      "sha256": "8b10cfa36ced507479649f6d5c610ed9dee829a55a5be991cbeeb5b324aa4408"
+      "sha256": "3bb51a5eaf0a469a6220adaea2744d66ae6f6aa86edb4350973615e10a10fe6b"
     }
   ],
   "errors": [],

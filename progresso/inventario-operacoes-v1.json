@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 20,
-  "reviewed_at_local": "2026-10-22T19:58:19-03:00",
+  "revision": 21,
+  "reviewed_at_local": "2026-10-22T20:32:54-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -9,7 +9,7 @@
   "implementation_completion_percent": null,
   "weighting_defined": false,
   "operation_count_is_recoding_percentage": false,
-  "source_evidence_interpretation": "Own0.1.19 candidate source/payload/installed Flatpak passed742/742 each in CI39864579949, source7f0f9c1. Source acceptance81/81 from e02dda2 is separate. Candidate not published;0.1.18 remains the public delivery. No complete operation/family/original parity follows.",
+  "source_evidence_interpretation": "Own0.1.19 candidate source/payload/installed Flatpak passed744/744 each in CI39869848800, source9fb4f3a. Source acceptance81/81 from same revision in CI39869853238 is separate. Candidate not published;0.1.18 remains public. No complete operation/family/original parity follows.",
   "unknowns": [
     "Unexamined Reader capabilities versus Editor-only resources",
     "Operations absent from current inventory",
