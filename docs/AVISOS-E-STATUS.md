@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/21 às 20:24 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/21 às 21:05 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -23,8 +23,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20, E22 e E25 a E29 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E21 (atualizar o REA no seu PC), E23 (equipamentos reais) e E24 (VM, só com sua autorização).
-- **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). Parado, aguardando a sua próxima ordem.
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20, E22 e E24 a E29 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E21 (atualizar o REA no seu PC), E23 (equipamentos reais) e E30 (continuar a comparação na VM).
+- **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). **E24 concluída:** a VM foi retomada com a sua autorização e o primeiro bloco de comparação foi feito ([VM-E24-2026-10-21.md](VM-E24-2026-10-21.md)). Parado, aguardando a sua próxima ordem.
 
 ### Falta
 
@@ -144,3 +144,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/20 às 23:16** — Pergunta: já dá para reconstruir o aplicativo para testes no Windows e no Linux? Linux: sim, completo (fonte, Flatpak construído no CI, 664/664 testes em três ambientes; 0.1.18 publicada). Windows: roda pela fonte com MSYS2 (GTK 3 + Poppler); conferência nativa reexecutada agora no código atual (execução 39531850858): 5/5, mas sem instalador e sem a suíte completa no Windows. Nenhum código alterado.
 - **2026/10/20 às 23:25** — Progresso atual: **45,13%** pelo índice oficial. Fechados 39 de 58 critérios. As entregas de hoje não fecharam critério inteiro, então o índice ficou igual. O que falta está concentrado na análise e na comparação com o Foxit, que dependem do PC e da VM: cerca de 37 dos 54,87 pontos. Outros indicadores: etapas pequenas 25/29, operações 104/116 (recortes limitados), paridade 0/25, testes 664/664, aceitação 81/81. Pedido do usuário: salvar tudo no GitHub e na pasta do PC para manter o Codex atualizado.
 - **2026/10/21 às 20:24** — **E22 concluída** (análise estática das etapas 3, 5, 7, 8 e 9, sem usar a VM). O Foxit e o Ghidra foram copiados do seu PC para a nuvem só para leitura, com hashes conferidos. 7 funções novas descompiladas e conferidas byte a byte (1.128 instruções); catálogo 329→336. Fechada a pergunta aberta desde 18/10: o diálogo de busca carrega a fxLuceneLib.dll, cria o índice com NewIndexHandle, espera a thread de busca antes de liberá-lo com DeleteIndexHandle, e o módulo dono descarrega a DLL. Os critérios dessas etapas são amplos e continuam abertos; o índice segue 45,13%. Suíte própria 664/664 na fonte Linux (Ubuntu 24.04), sem alteração no aplicativo.
+- **2026/10/21 às 21:05** — **E24 concluída** (VM autorizada por você às 20:38). Preflight aprovado: Foxit e as 10 entradas com os mesmos hashes, sem rede, relógio andando sem travar. Comparados busca por fontes (UI06), proximidade (UI07), destacar todas (UI08) e destino de marcador (D07). As contagens do Foxit e do Linuxit coincidem em todas as variantes, menos a primeira busca do Foxit, que omitiu o comentário. Divergências registradas: ordem dos resultados e o Linuxit navega ao destino do marcador enquanto o Foxit não. O processo do Foxit continuou ativo após fechar a janela e não foi encerrado à força. Paridade segue 0/25 e o índice 45,13%. Próximo bloco na E30. Suíte 664/664.

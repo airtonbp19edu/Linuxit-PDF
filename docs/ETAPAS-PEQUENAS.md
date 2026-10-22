@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 3, Concluída: 26, Bloqueada: 1.
+Atualizado em 2026-10-21T21:05:00-03:00. Pendente: 3, Concluída: 27.
 
 **Regras**
 
@@ -42,7 +42,7 @@ Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 3, Concluída: 26, Bloqueada:
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Concluída |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
-| E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Bloqueada |
+| E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
 | E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
 
 ## Detalhes
@@ -381,7 +381,11 @@ Evidência: [docs/REA-PROVEDOR-BUSCA-2026-10-21.md](../docs/REA-PROVEDOR-BUSCA-2
 
 **Como verificar:** Comparações registradas com a mesma fixture; parada imediata se o relógio travar.
 
-**Situação:** Bloqueada.
+**Situação:** Concluída.
+
+Retomada com autorização (21/10 20:38). Preflight: hash do Foxit e 10 entradas iguais, Ethernet desconectada, relógio andando (20:38:30→20:59:59). Controle pela tela com o Teclado Virtual do convidado. Observados UI06 (fontes da busca), UI07 (Proximidade só em índice + todas as palavras), UI08 (destacar todas) e D07 (marcador não navega). Contagens iguais ao motor próprio, exceto a 1ª busca do Foxit (sem o comentário). Divergências: ordem dos resultados e navegação ao destino do marcador. Processo do Foxit continuou ativo após fechar a janela (não encerrado). Restante em E30.
+
+Evidência: [docs/VM-E24-2026-10-21.md](../docs/VM-E24-2026-10-21.md), [testes/resultados/vm-2026-10-21-e24/observations.json](../testes/resultados/vm-2026-10-21-e24/observations.json). Commit `d732e78`.
 
 ### E30 — Continuar a comparação com o Foxit
 

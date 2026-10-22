@@ -3539,3 +3539,13 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - progresso.json: evidência e nota acrescentadas aos 8 critérios abertos das etapas 3/5/7/8/9 que citavam a continuação de 18/10; status/pesos sem mudança; update_progress.py → 45,13%. progresso.md regenerado (estava em 0.1.15/323).
 - Próximos recortes: chamadores de 0x1770e90; classe/laço da thread +0x1e3c; campos +3/+6/+7/+0xc/+0x10 e 0x1003f6b0; contexto 0x138; arrays do reflow. Para repetir na nuvem, recopiar os arquivos do PC (o contêiner é temporário).
 - Suíte própria: 664/664 na fonte Linux (Ubuntu 24.04), sem alteração no aplicativo.
+
+
+## 2026/10/21 às 21:05 (America/Sao_Paulo, UTC-03:00) — E24 concluída — comparação com o Foxit retomada na VM
+
+- VM: snapshot 01-linuxit-configurado-offline, ligada pelo usuário; sessão desktop-hui8ndv\ia machine; controle por computer use (VirtualBoxVM liberado), teclado do host não chega ao convidado e o clipboard está desligado, então comandos via Teclado Virtual do Windows convidado (mapa de teclas em /home/claude/work-vm/osk2.py, temporário).
+- Preflight PowerShell: get-filehash reference/input (hash 90208c9e… e 10 entradas iguais ao P03 0930), get-netadapter Disconnected, ps foxit* vazio, sem SMB. Postflight: entradas iguais; FoxitPDFReader PID 1220 ativo 2,5 min após fechar a janela (CPU 52,5 s constante), não encerrado.
+- Observações e comparação: testes/resultados/vm-2026-10-21-e24/observations.json; 26 capturas privadas em analysis-local/vm-20261021-e24 (hashes no JSON).
+- Divergências a decidir: ordem dos resultados (Foxit: marcadores, texto, comentário) e navegação do resultado de marcador (Foxit não navega; Linuxit navega via _select_search_hit). Código não alterado.
+- progresso.json: evidência nos 4 critérios parciais das etapas 10, 11 e 18; status/pesos sem mudança; 45,13%. Nova etapa E30 para continuar.
+- Suíte própria 664/664.

@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-21T20:24:00-03:00",
+  "updated_at_local": "2026-10-21T21:05:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -463,10 +463,16 @@
       "id": "E24",
       "block": "VM",
       "requires": "VM e autorização do usuário",
-      "status": "bloqueada",
+      "status": "concluida",
       "title": "Retomar a comparação com o Foxit",
       "goal": "Somente com autorização: preflight, controle do relógio e observador novo; continuar D01–D20 e UI01–UI10.",
-      "verification": "Comparações registradas com a mesma fixture; parada imediata se o relógio travar."
+      "verification": "Comparações registradas com a mesma fixture; parada imediata se o relógio travar.",
+      "commit": "d732e78",
+      "evidence": [
+        "docs/VM-E24-2026-10-21.md",
+        "testes/resultados/vm-2026-10-21-e24/observations.json"
+      ],
+      "note": "Retomada com autorização (21/10 20:38). Preflight: hash do Foxit e 10 entradas iguais, Ethernet desconectada, relógio andando (20:38:30→20:59:59). Controle pela tela com o Teclado Virtual do convidado. Observados UI06 (fontes da busca), UI07 (Proximidade só em índice + todas as palavras), UI08 (destacar todas) e D07 (marcador não navega). Contagens iguais ao motor próprio, exceto a 1ª busca do Foxit (sem o comentário). Divergências: ordem dos resultados e navegação ao destino do marcador. Processo do Foxit continuou ativo após fechar a janela (não encerrado). Restante em E30."
     },
     {
       "id": "E30",
