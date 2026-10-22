@@ -1,6 +1,6 @@
 # Linuxit PDF — continuidade do projeto
 
-**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](docs/PASSOS-2-3-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 19:36 (America/Sao_Paulo, UTC-03:00):** Passos4–6 autorizados pelo usuário e em execução. Passo4 registrado mantendopartial/45,13%. CandidatoFlatpakCI39864579949/7f0f9c1 e WindowsCI39864966247/51ade8e em testes. Fonte anterior e02dda2 aprovada742/742 e81/81; não é ainda aprovação do novo pacote. Sem release/VM/B3. [Estado e limites](docs/PASSOS-4-6-A456-2026-10-22.md).
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
 
