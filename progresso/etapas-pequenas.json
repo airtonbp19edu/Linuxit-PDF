@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-21T21:05:00-03:00",
+  "updated_at_local": "2026-10-21T21:29:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -487,10 +487,19 @@
       "id": "E31",
       "block": "Busca",
       "requires": "nada",
-      "status": "pendente",
+      "status": "concluida",
       "title": "Ordem dos resultados e clique em marcador como no Foxit (D05)",
       "goal": "Marcadores, depois texto, depois comentários; resultado de marcador só seleciona o marcador, sem mudar de página.",
-      "verification": "Testes próprios e aceitação S12-05-1 atualizados e aprovados."
+      "verification": "Testes próprios e aceitação S12-05-1 atualizados e aprovados.",
+      "commit": "e4c6aac",
+      "evidence": [
+        "app/search_engine.py",
+        "app/main.py",
+        "tests/test_search_foxit_order_gtk.py",
+        "testes/aceitacao/casos_gtk.py",
+        "testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e31.json"
+      ],
+      "note": "Decisão D05 do usuário (21/10 21:11) aplicada: o motor lista marcadores, depois texto da página, depois comentários (anexos por último), como o Relevance Ranking observado no Foxit; selecionar resultado de marcador só seleciona o marcador no painel e não muda de página; ativar o marcador continua navegando. Testes atualizados (test_search_scopes) e 2 testes GTK novos; aceitação S12-05-1 ajustada; pins das 6 operações de busca revisados. Suíte 666/666; aceitação limpa 81/81 (ac89254)."
     }
   ],
   "decisions": [

@@ -3549,3 +3549,11 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Divergências a decidir: ordem dos resultados (Foxit: marcadores, texto, comentário) e navegação do resultado de marcador (Foxit não navega; Linuxit navega via _select_search_hit). Código não alterado.
 - progresso.json: evidência nos 4 critérios parciais das etapas 10, 11 e 18; status/pesos sem mudança; 45,13%. Nova etapa E30 para continuar.
 - Suíte própria 664/664.
+
+
+## 2026/10/21 às 21:29 (America/Sao_Paulo, UTC-03:00) — E31 concluída — busca na ordem do Foxit e clique em marcador sem mudar de página (D05)
+
+- Código: search_engine.TextSearchIndex.search reordenado (marcadores → texto → comentários → anexos) com _metadata_hits(kinds=...); on_notice dos painéis enviado uma vez. main._select_search_hit não chama goto_page para source=bookmark.
+- Testes: test_search_scopes (ordem e limite max_hits=4 agora bookmark+3 textos; GUI renomeado para test_ui_toggles_scopes_and_bookmark_result_keeps_page) e novo tests/test_search_foxit_order_gtk.py (2). Especificação e contratos atualizados; operação search-bookmarks/destinations reescrita; refresh_operation_pins --accept nas 6 operações de busca.
+- Aceitação: casos_gtk S12-05-1 ajustado; execução limpa e31 81/81 na revisão ac89254.
+- Processo residual do Foxit (PID 1220) segue na VM; não encerrado. Pedido ao usuário: autorização para encerrá-lo no início da E30.

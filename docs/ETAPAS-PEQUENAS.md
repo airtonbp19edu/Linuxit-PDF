@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-21T21:05:00-03:00. Pendente: 3, Concluída: 27.
+Atualizado em 2026-10-21T21:29:00-03:00. Pendente: 3, Concluída: 28.
 
 **Regras**
 
@@ -44,6 +44,7 @@ Atualizado em 2026-10-21T21:05:00-03:00. Pendente: 3, Concluída: 27.
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
 | E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
+| E31 | Ordem dos resultados e clique em marcador como no Foxit (D05) | Busca | nada | Concluída |
 
 ## Detalhes
 
@@ -395,9 +396,22 @@ Evidência: [docs/VM-E24-2026-10-21.md](../docs/VM-E24-2026-10-21.md), [testes/r
 
 **Situação:** Pendente.
 
+### E31 — Ordem dos resultados e clique em marcador como no Foxit (D05)
+
+**Objetivo:** Marcadores, depois texto, depois comentários; resultado de marcador só seleciona o marcador, sem mudar de página.
+
+**Como verificar:** Testes próprios e aceitação S12-05-1 atualizados e aprovados.
+
+**Situação:** Concluída.
+
+Decisão D05 do usuário (21/10 21:11) aplicada: o motor lista marcadores, depois texto da página, depois comentários (anexos por último), como o Relevance Ranking observado no Foxit; selecionar resultado de marcador só seleciona o marcador no painel e não muda de página; ativar o marcador continua navegando. Testes atualizados (test_search_scopes) e 2 testes GTK novos; aceitação S12-05-1 ajustada; pins das 6 operações de busca revisados. Suíte 666/666; aceitação limpa 81/81 (ac89254).
+
+Evidência: [app/search_engine.py](../app/search_engine.py), [app/main.py](../app/main.py), [tests/test_search_foxit_order_gtk.py](../tests/test_search_foxit_order_gtk.py), [testes/aceitacao/casos_gtk.py](../testes/aceitacao/casos_gtk.py), [testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e31.json](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e31.json). Commit `e4c6aac`.
+
 ## Decisões
 
 - **D01** (Decidida): A régua mostra 2.54 cm com ponto decimal. Usar vírgula (2,54 cm) na interface em português? **Resposta:** Usar vírgula decimal: 2,54 cm (usuário, 20/10/2026 às 01:08). Etapa E25.
 - **D02** (Decidida): O teste de reprodução de mídia (test_local_playback, GStreamer) falhou 1 vez em 3 no ambiente local, sem relação com as etapas atuais. Tornar esse teste robusto como uma etapa própria? **Resposta:** Tornar o teste estável como uma etapa própria (usuário, 20/10/2026 às 01:08). Etapa E26.
 - **D03** (Decidida): No CI Debian 13 o processo de testes caiu 2 vezes em 3 (SIGSEGV após um aviso interno do GTK sobre cor CSS) no teste de busca em comentários test_comment_threads, sem relação com E26 ou E06; no Ubuntu passou 25 de 25. O registro de pilha (faulthandler) já foi ligado para a próxima queda. Investigar como uma etapa própria? **Resposta:** Investigar como uma etapa própria e, em seguida, fazer a próxima etapa (usuário, 20/10/2026 às 10:53). Etapa E27.
 - **D04** (Decidida): Renderização 3D (estudo E20, docs/ESTUDO-3D-U3D-PRC.md): (1) seguir a proposta (renderizador próprio por software + decodificadores próprios de U3D e PRC), ficar só com pôster e extração, ou priorizar bibliotecas existentes? (2) aceita um componente AGPL-3.0 (nanoPRC) em processo separado no Flatpak se o leitor próprio de PRC não bastar? (3) começar por U3D ou por PRC? **Resposta:** Deixar o 3D para uma atualização futura, sem foco agora; guardar tudo o que se sabe para implementar depois (usuário, 20/10/2026 às 21:18). As perguntas sobre caminho, AGPL e ordem U3D/PRC ficam para quando o 3D for retomado. Guia em docs/ESTUDO-3D-U3D-PRC.md. Etapa E20.
+- **D05** (Decidida): Depois da E24: o Linuxit deve seguir o Foxit (1) na ordem dos resultados (marcadores, texto, comentários) e (2) no clique em resultado de marcador (só seleciona, não muda de página)? **Resposta:** Sim, nos dois pontos (usuário, 21/10/2026 às 21:11). Implementado na E31.
