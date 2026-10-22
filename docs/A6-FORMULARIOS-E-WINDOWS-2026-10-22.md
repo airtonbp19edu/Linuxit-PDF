@@ -1,5 +1,7 @@
 # A6 — formulários e candidato Windows
 
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Evidência final do recorte](PASSOS-4-6-A456-2026-10-22.md). Os resultados locais abaixo são históricos.
+
 Registro de implementação em 2026/10/22 às 08:45 (America/Sao_Paulo, UTC-03:00).
 Esta frente executou código próprio e fixtures sintéticas; não executou Foxit,
 não inspecionou a VM e não comprovou paridade diferencial. IA e nuvem direta
@@ -36,10 +38,13 @@ Fronteira implementada:
 
 Contenção implementada:
 
-- Processo filho dedicado, `python -I`, sem herdar imports do diretório atual,
-  `PYTHONPATH` ou user-site. O diretório da extensão nativa conhecida é passado
-  explicitamente pelo processo pai; isso permite o runtime `/opt/linuxit-js` no
-  CI sem abrir importação para o PDF.
+- Processo filho dedicado: na fonte usa `python -I`; no Flatpak usa o loader,
+  bibliotecas, Python e biblioteca padrão empacotados e pareados. Nesse ramo,
+  `-s -P` e um ambiente sanitizado permitem indicar os diretórios confiáveis da
+  biblioteca padrão e da extensão nativa. Não são herdados caminhos de importação
+  do documento, `PYTHONPATH` externo ou user-site. O `-I` ignoraria `PYTHONHOME`
+  e poderia selecionar a biblioteca padrão do host; por isso os dois contextos
+  têm inicialização explícita própria, testada no sandbox instalado.
 - Contexto QuickJS sem callbacks Python, módulo `std`/`os`, loader de arquivos,
   rede, navegador, timers ou objetos GTK. Um `Function` obtido por construtor
   também permanece no ambiente ECMAScript sem capacidades do host.

@@ -604,9 +604,15 @@
             "testes/resultados/0.1.4/payload-tests.json",
             "testes/resultados/0.1.4/sandbox-tests.json",
             "testes/resultados/0.1.4/validation-review.json",
-            "docs/EDICAO-COM-HISTORICO.md"
+            "docs/EDICAO-COM-HISTORICO.md",
+            "docs/PASSOS-4-6-A456-2026-10-22.md",
+            "testes/resultados/0.1.19/a6-review.json",
+            "testes/resultados/0.1.19/review.json",
+            "testes/resultados/0.1.19/source-intermediate.json",
+            "testes/resultados/0.1.19/payload-tests.json",
+            "testes/resultados/0.1.19/sandbox-tests.json"
           ],
-          "note": "Own annotation extension validated400/400 source/payload/sandbox, including20 new methods. Remaining form/annotation/full-family, reference and desktop obligations stay partial. Status/weights unchanged."
+          "note": "A6 bounded own subsets validated744/744 source/payload/installed Flatpak, revision9fb4f3a CI39869848800; clean source acceptance81/81 separately. Universal features, original comparison, hardware and Windows limits remain open. Status/weights unchanged; B3 not decided."
         }
       ],
       "verified_fraction": 0.333333,
@@ -674,9 +680,15 @@
             "testes/resultados/0.1.4/payload-tests.json",
             "testes/resultados/0.1.4/sandbox-tests.json",
             "testes/resultados/0.1.4/validation-review.json",
-            "docs/EDICAO-COM-HISTORICO.md"
+            "docs/EDICAO-COM-HISTORICO.md",
+            "docs/PASSOS-4-6-A456-2026-10-22.md",
+            "testes/resultados/0.1.19/a6-review.json",
+            "testes/resultados/0.1.19/review.json",
+            "testes/resultados/0.1.19/source-intermediate.json",
+            "testes/resultados/0.1.19/payload-tests.json",
+            "testes/resultados/0.1.19/sandbox-tests.json"
           ],
-          "note": "Own annotation extension validated400/400 source/payload/sandbox, including20 new methods. Remaining form/annotation/full-family, reference and desktop obligations stay partial. Status/weights unchanged."
+          "note": "A6 bounded own subsets validated744/744 source/payload/installed Flatpak, revision9fb4f3a CI39869848800; clean source acceptance81/81 separately. Universal features, original comparison, hardware and Windows limits remain open. Status/weights unchanged; B3 not decided."
         }
       ],
       "verified_fraction": 0.333333,

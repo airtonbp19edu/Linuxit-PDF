@@ -1,0 +1,50 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_windows_cache_provenance.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 6,
+  "passed": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 0.17199999999957072,
+  "cases": [
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_arbitrary_cache_path_is_not_automatically_attributed",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_ci_commit_identity_does_not_require_git_executable",
+      "status": "passed",
+      "elapsed_sec": 0.01599999999962165
+    },
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_generator_and_input_hashes_are_individually_retained",
+      "status": "passed",
+      "elapsed_sec": 0.07800000000042928
+    },
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_malformed_ci_identity_is_never_recorded_as_a_commit",
+      "status": "passed",
+      "elapsed_sec": 0.01599999999962165
+    },
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_missing_input_owner_is_refused",
+      "status": "passed",
+      "elapsed_sec": 0.03099999999994907
+    },
+    {
+      "id": "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_nsis_target_uses_native_separators_and_unquoted_final_directory",
+      "status": "passed",
+      "elapsed_sec": 0.015000000000327418
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

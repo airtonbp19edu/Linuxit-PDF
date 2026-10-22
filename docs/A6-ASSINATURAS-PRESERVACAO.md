@@ -1,5 +1,7 @@
 # A6 — DSS incremental, OCSP offline e criação de carimbos RFC 3161
 
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Evidência final do recorte](PASSOS-4-6-A456-2026-10-22.md). Os resultados locais abaixo são históricos.
+
 Implementação própria de 2026/10/22. Não executa o Foxit e não usa serviços de
 rede. Os módulos são `app/pdf_preservation.py`, `app/signature_ocsp.py`,
 `app/pdf_signatures.py` e `app/signature_trust.py`. A interface de assinaturas

@@ -1,0 +1,11 @@
+{
+  "tag": "v0.1.19-devel",
+  "source_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
+  "release_id": "",
+  "existing_tag": false,
+  "default_branch": "main",
+  "default_commit": "7c0cb7ddab5b21323904c84d37b884963243eea0",
+  "target_workflow_tree": "df2e143226f31343781b1598f3bcf6b6e8dae5e7",
+  "default_workflow_tree": "df2e143226f31343781b1598f3bcf6b6e8dae5e7",
+  "mode": "create_release"
+}

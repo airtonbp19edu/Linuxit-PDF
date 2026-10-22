@@ -1,0 +1,30 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_test_runner_progress.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 2,
+  "passed": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 1.7660000000005311,
+  "cases": [
+    {
+      "id": "test_test_runner_progress.TestRunnerProgressTests.test_abrupt_exit_keeps_completed_case_and_active_test_without_approval",
+      "status": "passed",
+      "elapsed_sec": 0.9070000000001528
+    },
+    {
+      "id": "test_test_runner_progress.TestRunnerProgressTests.test_success_retains_normal_final_report_and_distinct_partial_schema",
+      "status": "passed",
+      "elapsed_sec": 0.8590000000003783
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

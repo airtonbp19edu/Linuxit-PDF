@@ -1,86 +1,14 @@
 # Avisos e situação do Linuxit PDF
 
-**Atualização — 2026/10/22 às 19:36 (America/Sao_Paulo, UTC-03:00):** Passos4–6 autorizados pelo usuário e em execução. Passo4 registrado mantendopartial/45,13%. CandidatoFlatpakCI39864579949/7f0f9c1 e WindowsCI39864966247/51ade8e em testes. Fonte anterior e02dda2 aprovada742/742 e81/81; não é ainda aprovação do novo pacote. Sem release/VM/B3. [Estado e limites](PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](PASSOS-4-6-A456-2026-10-22.md).
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00)
 
-Passos2/3 autorizados executados: correções e verificações preparatórias, fonte742/742 e aceitação81/81 no CI39862477446/e02dda2. Código salvo na main; Flatpak0.1.19 ainda não montado. OCR no pacote instalado aguardaPasso5 e Windows permanece sem validação completa. Parar antes do Passo4.
+Candidato0.1.19 retido e validado744/744 por ambiente, aceitação81/81 na mesma revisão9fb4f3a. O candidato inicial foi substituído pela correção de identidade da redação; seus resultados foram preservados. Windows: QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.
 
-### Feito
-
-**O aplicativo**
-- Versão **0.1.18/devel** publicada como Flatpak (prerelease `v0.1.18-devel` no GitHub) **automaticamente pelo GitHub Actions**, auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 664/664 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. Inclui as etapas E12 a E19.
-- Python + GTK. Das 116 operações do inventário, 104 têm algum código próprio, em recortes limitados ([INVENTARIO-OPERACOES.md](INVENTARIO-OPERACOES.md)). Isso não é porcentagem de conclusão.
-- Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
-
-**Nesta sessão (19–20/10/2026)**
-- Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
-- Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
-- Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
-- Execução registrada: **81 de 81 casos aprovados** na revisão `8b86243`. O CI no Debian 13 confirmou a E19 (81/81, 663/663). Suíte própria completa **663/663** no Ubuntu 24.04.
-- Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
-- Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
-- Publicado no GitHub, com commits de autoria do Claude.
-- REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
-
-### Em andamento
-- **REA no Codex:** integração registrada e diagnosticada; comunicação MCP independente passou. Reiniciar o Codex para carregar neste chat. Nenhum binário/original/VM aberto. [Capacidades e limites](REA-CODEX-CONFIGURACAO-2026-10-22.md).
-- **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E22, E24 a E29 e E31 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E23 (equipamentos reais) e E30 (continuar a comparação na VM).
-- **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). **E24 concluída:** a VM foi retomada com a sua autorização e o primeiro bloco de comparação foi feito ([VM-E24-2026-10-21.md](VM-E24-2026-10-21.md)). Parado, aguardando a sua próxima ordem.
-
-### Falta
-
-**Sem VM, desenvolvimento próprio**
-- Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
-- Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
-- 3D: **adiado pelo usuário para atualização futura** (D04). Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16). Tudo o que foi levantado (Foxit, estruturas do PDF, U3D, PRC, glTF, bibliotecas, licenças, arquitetura, testes e esforço) está em [ESTUDO-3D-U3D-PRC.md](ESTUDO-3D-U3D-PRC.md).
-- Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15); a aplicação não procura o texto redigido em marcadores, metadados e anexos.
-- Recuperação de PDFs danificados (E17): editar uma leitura cujo fim do arquivo foi reconstruído ainda pode ser recusado.
-- Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
-
-**Análise estática (agora também na nuvem do Claude, com os arquivos do PC)**
-- Catálogo com 336 entradas. Provedor do índice ligado (E22). Faltam: chamadores de 0x1770e90, a thread de busca (+0x1e3c), campos restantes das opções e o algoritmo 0x1003f6b0, o contexto 0x138 da impressão e os arrays do reflow.
-- O instalador do REA 6.7.0 no PC (`analysis-local\rea-instalacao\instalar-rea.cmd`) ainda não foi executado.
-
-**Comparação com o Foxit (VM)**
-- Testes suspensos desde que o relógio da VM parou em 09:54:23 de 19/10. Só retomar com a sua autorização.
-- Equivalência comprovada em 0 de 25 famílias; casos D01–D20 e UI01–UI10 incompletos.
-
-**Ambientes reais**
-- Impressora física, áudio e leitor de tela, monitores físicos, cliente sincronizador real e materiais RMS. Windows completo vem depois do Linux.
-
-**Entrega**
-- 0.1.18 publicada e auditada; a publicação automática funciona. Para as próximas: workflows finalizados antes de montar a versão e iguais aos da main até publicar (o fluxo confere antes).
-
-**Medição (conferida em 2026/10/20 às 23:25)**
-- **Índice oficial: 45,13%**, recalculado de `progresso/progresso.json`. São 21 etapas com pesos que somam 100. Cada critério só conta quando está totalmente concluído; parcial vale zero.
-- **39 de 58 critérios concluídos.** Os 19 abertos são 13 parciais e 6 pendentes. As entregas de 20/10 (E14–E20, E29 e a 0.1.18) avançaram critérios amplos, mas não fecharam nenhum por inteiro, então o índice não mudou desde 19/10.
-- Onde estão os 54,87 pontos que faltam:
-  - Análise do Foxit (etapas 3, 5, 7, 8 e 9): cerca de 24 pontos. Depende do PC (E21–E22).
-  - Observação e comparação com o original (etapas 10, 11, 18 e 19): cerca de 13 pontos. Depende da VM (E24) e de equipamentos (E23).
-  - Implementação própria restante (etapas 15 e 16): cerca de 9 pontos.
-  - Especificação e auditoria final (etapas 12 e 21): cerca de 4,5 pontos.
-- Outros indicadores. Cada um mede uma coisa diferente e nenhum substitui o índice:
-  - etapas pequenas: 25 de 29 concluídas;
-  - operações com código próprio limitado: 104 de 116;
-  - paridade comprovada com o Foxit: 0 de 25 famílias;
-  - testes próprios: 664/664 em três ambientes;
-  - aceitação: 81/81.
-- O percentual de reimplementação total (`implementation_completion_percent`) continua desconhecido e não deve ser estimado.
-
-**Decisões tomadas**
-- D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
-- D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
-- D03: a queda intermitente do GTK no CI Debian 13 virou a etapa E27, concluída: causa provável encontrada e corrigida.
-- D04: 3D adiado para atualização futura (20/10/2026 às 21:18), com guia completo para retomar.
-
-**Adiado e excluído**
-- Nuvem: atendida pelo fluxo de pastas sincronizadas (E28, decisão de 17/10/2026). Login em provedor, envio por API e colaboração remota seguem adiados por decisão do usuário. Falta testar com um cliente sincronizador real.
-- Renderização 3D: adiada para atualização futura (D04).
-- Recursos de IA estão excluídos.
+Publicação e Passo7 aguardam instrução. Original/VM intactos, critérios e pesos preservados. [Evidências e limites](PASSOS-4-6-A456-2026-10-22.md).
 
 ## Histórico de avisos
 
@@ -173,3 +101,82 @@ Backup A4/A6 inclui os módulos, testes, scripts, workflows e documentos própri
 Lacunas concretas do Passo2: conversion_window usa runner.close inexistente (usar shutdown), captura hash ao executar em vez de ao abrir e precisa proteger ciclo de vida/identidade; corrigir antes de CI. Rever leitura limitada do backend de conversão. Finalizar/testar integração de anotações, registrar proveniência/hash fixo QuickJS e conferir catálogo/arquitetura/contratos. Há validação de arquitetura anterior, não é aprovação da suíte. Nenhuma nova execução de suíte completa, aceitação, CI, original ou VM neste Passo1. Nenhuma release criada/apagada, nenhuma alteração de segurança do host.
 
 Próximo passo, somente após resposta do usuário: Passo2 da ORDEM-CODEX (fechar lacunas e verificadores). Depois pedir autorização para Passo3 (main/CI); candidato e publicação têm suas próprias paradas. Conferir recibo local analysis-local/a456-step1-sync.json para SHA e igualdade remota após push.
+
+
+## Histórico da situação anterior — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00)
+
+Passos2/3 autorizados executados: correções e verificações preparatórias, fonte742/742 e aceitação81/81 no CI39862477446/e02dda2. Código salvo na main; Flatpak0.1.19 ainda não montado. OCR no pacote instalado aguardaPasso5 e Windows permanece sem validação completa. Parar antes do Passo4.
+
+### Feito
+
+**O aplicativo**
+- Versão **0.1.18/devel** publicada como Flatpak (prerelease `v0.1.18-devel` no GitHub) **automaticamente pelo GitHub Actions**, auditada no mesmo arquivo sem recompilar, com download público conferido e integrações de desktop 9/9 em duas repetições. Na entrega passou em 664/664 testes próprios em cada ambiente: fonte Linux, pacote e sandbox instalado. Inclui as etapas E12 a E19.
+- Python + GTK. Das 116 operações do inventário, 104 têm algum código próprio, em recortes limitados ([INVENTARIO-OPERACOES.md](INVENTARIO-OPERACOES.md)). Isso não é porcentagem de conclusão.
+- Leitura e navegação, busca (texto, marcadores, comentários, anexos, índice, coringas, proximidade, radicais em 36 idiomas), anotações, formulários AcroForm com combo editável e cálculos limitados, anexos, impressão e imposição, OCR local, assinatura e verificação offline, proteção por senha, acessibilidade com voz local, camadas e mídia, pastas sincronizadas e integração com portal do desktop. Todos são recortes próprios com limites documentados.
+
+**Nesta sessão (19–20/10/2026)**
+- Defeito corrigido: a verificação de carimbo de tempo RFC 3161 falhava sempre com OpenSSL 3.0 (Ubuntu 24.04). Teste novo garante que a correção não confia em autoridades do sistema.
+- Registros desatualizados corrigidos: 8 textos de escopo que diziam "pendente" para recursos já existentes, próximos passos antigos, a marcação do portal e a fila de tarefas.
+- Testes de aceitação: o validador exigia que os 50 planos ficassem "não executados", o que impedia registrar avanço. Agora 46 casos rodam contra o aplicativo real, incluindo a janela GTK, com fixtures próprias fixadas por hash. O resultado fica ligado à revisão do código.
+- Execução registrada: **81 de 81 casos aprovados** na revisão `8b86243`. O CI no Debian 13 confirmou a E19 (81/81, 663/663). Suíte própria completa **663/663** no Ubuntu 24.04.
+- Defeito de estabilidade corrigido (E27): o coletor de lixo do Python liberava widgets GTK em threads de trabalho, o que pode derrubar o aplicativo. Agora a coleta roda só na thread principal.
+- Confirmado no CI Debian 13 ([execução 39363684386](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39363684386)): suíte **571/571**, aceitação **46/46** na revisão `a43e0ba`, campanha preservada 17/17, acessibilidade entre processos e portal nativo aprovados. Revisão em `testes/resultados/aceitacao/2026-10-20/ci-debian13-review.json`.
+- Publicado no GitHub, com commits de autoria do Claude.
+- REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
+
+### Em andamento
+- **REA no Codex:** integração registrada e diagnosticada; comunicação MCP independente passou. Reiniciar o Codex para carregar neste chat. Nenhum binário/original/VM aberto. [Capacidades e limites](REA-CODEX-CONFIGURACAO-2026-10-22.md).
+- **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E22, E24 a E29 e E31 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E23 (equipamentos reais) e E30 (continuar a comparação na VM).
+- **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). **E24 concluída:** a VM foi retomada com a sua autorização e o primeiro bloco de comparação foi feito ([VM-E24-2026-10-21.md](VM-E24-2026-10-21.md)). Parado, aguardando a sua próxima ordem.
+
+### Falta
+
+**Sem VM, desenvolvimento próprio**
+- Formulários: XFA dinâmico (só XFA), datas com nomes de mês ou horas, negativos em vermelho e JavaScript geral. Hoje há cálculos, validação de faixa, números, datas numéricas e máscaras declarativos, sem executar JavaScript, leitura dos campos XFA e preenchimento de XFA híbrido.
+- Assinaturas: gravar DSS (LTV), OCSP e criar carimbos (feitos: assinaturas múltiplas E08, verificação de carimbo de documento E09 e uso do DSS na validação E10).
+- 3D: **adiado pelo usuário para atualização futura** (D04). Hoje lista, extrai o modelo e mostra a imagem de apresentação (E16). Tudo o que foi levantado (Foxit, estruturas do PDF, U3D, PRC, glTF, bibliotecas, licenças, arquitetura, testes e esforço) está em [ESTUDO-3D-U3D-PRC.md](ESTUDO-3D-U3D-PRC.md).
+- Redação sem rasterizar a página (hoje a página marcada vira imagem) e edição universal de anotações. Marcar e aplicar redação já existem (E14 e E15); a aplicação não procura o texto redigido em marcadores, metadados e anexos.
+- Recuperação de PDFs danificados (E17): editar uma leitura cujo fim do arquivo foi reconstruído ainda pode ser recusado.
+- Qualidade de OCR e ordem de leitura, conversões mais amplas e um corpus maior de PDFs danificados, cifras e fontes.
+
+**Análise estática (agora também na nuvem do Claude, com os arquivos do PC)**
+- Catálogo com 336 entradas. Provedor do índice ligado (E22). Faltam: chamadores de 0x1770e90, a thread de busca (+0x1e3c), campos restantes das opções e o algoritmo 0x1003f6b0, o contexto 0x138 da impressão e os arrays do reflow.
+- O instalador do REA 6.7.0 no PC (`analysis-local\rea-instalacao\instalar-rea.cmd`) ainda não foi executado.
+
+**Comparação com o Foxit (VM)**
+- Testes suspensos desde que o relógio da VM parou em 09:54:23 de 19/10. Só retomar com a sua autorização.
+- Equivalência comprovada em 0 de 25 famílias; casos D01–D20 e UI01–UI10 incompletos.
+
+**Ambientes reais**
+- Impressora física, áudio e leitor de tela, monitores físicos, cliente sincronizador real e materiais RMS. Windows completo vem depois do Linux.
+
+**Entrega**
+- 0.1.18 publicada e auditada; a publicação automática funciona. Para as próximas: workflows finalizados antes de montar a versão e iguais aos da main até publicar (o fluxo confere antes).
+
+**Medição (conferida em 2026/10/20 às 23:25)**
+- **Índice oficial: 45,13%**, recalculado de `progresso/progresso.json`. São 21 etapas com pesos que somam 100. Cada critério só conta quando está totalmente concluído; parcial vale zero.
+- **39 de 58 critérios concluídos.** Os 19 abertos são 13 parciais e 6 pendentes. As entregas de 20/10 (E14–E20, E29 e a 0.1.18) avançaram critérios amplos, mas não fecharam nenhum por inteiro, então o índice não mudou desde 19/10.
+- Onde estão os 54,87 pontos que faltam:
+  - Análise do Foxit (etapas 3, 5, 7, 8 e 9): cerca de 24 pontos. Depende do PC (E21–E22).
+  - Observação e comparação com o original (etapas 10, 11, 18 e 19): cerca de 13 pontos. Depende da VM (E24) e de equipamentos (E23).
+  - Implementação própria restante (etapas 15 e 16): cerca de 9 pontos.
+  - Especificação e auditoria final (etapas 12 e 21): cerca de 4,5 pontos.
+- Outros indicadores. Cada um mede uma coisa diferente e nenhum substitui o índice:
+  - etapas pequenas: 25 de 29 concluídas;
+  - operações com código próprio limitado: 104 de 116;
+  - paridade comprovada com o Foxit: 0 de 25 famílias;
+  - testes próprios: 664/664 em três ambientes;
+  - aceitação: 81/81.
+- O percentual de reimplementação total (`implementation_completion_percent`) continua desconhecido e não deve ser estimado.
+
+**Decisões tomadas**
+- D01: a régua passa a usar vírgula decimal (2,54 cm), etapa E25 concluída.
+- D02: o teste de mídia instável virou a etapa E26, concluída: era um defeito real de reprodução, corrigido.
+- D03: a queda intermitente do GTK no CI Debian 13 virou a etapa E27, concluída: causa provável encontrada e corrigida.
+- D04: 3D adiado para atualização futura (20/10/2026 às 21:18), com guia completo para retomar.
+
+**Adiado e excluído**
+- Nuvem: atendida pelo fluxo de pastas sincronizadas (E28, decisão de 17/10/2026). Login em provedor, envio por API e colaboração remota seguem adiados por decisão do usuário. Falta testar com um cliente sincronizador real.
+- Renderização 3D: adiada para atualização futura (D04).
+- Recursos de IA estão excluídos.

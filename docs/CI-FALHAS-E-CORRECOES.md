@@ -1,5 +1,38 @@
 # Avisos de falha do GitHub Actions
 
+## A4–A6 — situação conferida em 2026/10/22 às 20:39 (America/Sao_Paulo, UTC-03:00)
+
+O [novo candidato Linux39869848800](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39869848800)
+passou744/744 na fonte, payload e sandbox; aceitação81/81 na mesma revisão9fb4f3a
+em39869853238. O primeiro candidato foi substituído pela correção da identidade
+da redação; os relatórios antigos permanecem preservados. A conferência de
+publicação39872660861 passou somente em `check_only:true`; nove guardas e nenhum
+passo de publicação executado.
+
+Windows é uma frente separada no ramo `codex/windows-installer-diagnostics`:
+
+| Execução | Resultado observado | Encaminhamento |
+|---|---|---|
+|39864184215|QuickJS não compilou: três headers gerados ausentes no sdist fixado|51ade8e usa headers do upstream oficial pareado, com hashes e fontes comparadas|
+|39864966247|QuickJS compilou e probe nativo passou; suíte sem relatório final após cerca19min|Execução cancelada;53d4247 adiciona checkpoints atômicos e limites, testa instalador antes da suíte|
+|39867476955|Cache gerado do runtime sem proveniência|4f9a6f0 atribui caches por gerador/inputs/pacotes/hash e recusa desconhecidos|
+|39868278905|Git ausente ao identificar revisão|691ee0d inclui ferramenta no runner e usa GITHUB_SHA validado|
+|39869202445|NSIS não encontrou include gerado|350ae12 gera unidade NSIS completa com inventário inline|
+|39870917937|NSIS compilou, mas instalação não deixou manifesto no destino pedido|459f618 normaliza separadores nativos e aguarda manifesto; seis controles locais aprovados|
+|39871829847|QuickJS compilado/probe nativo5/5/NSIS gerado; manifesto ainda ausente após instalação|**Aberto**. A correção do caminho não resolveu o defeito; causa do destino real não determinada|
+
+A última execução preservou o resultado de falha. Suíte completa e aceitação
+Windows foram puladas após a verificação da instalação; desinstalação e aplicativo
+instalado não foram aprovados. Não se desativou a falha para suprimir notificações.
+É necessário registrar InstallLocation real no HKCU e o conteúdo do destino,
+verificar saída final NSIS e só então corrigir a causa observada. Nada foi instalado
+no PC do usuário. [Relatórios e próximos diagnósticos](../testes/resultados/a6-windows-2026-10-22/review.json).
+
+Os workflows Windows ficam no ramo separado para preservar a árvore main/candidato
+exigida pela E29; sua incorporação deve ocorrer depois da publicação autorizada
+ou exigir novo candidato. As falhas Windows não reprovam a validação Linux acima.
+
+
 ## A4–A6, Passos2/3 — 22/10/2026
 
 CI [39861626936](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39861626936),

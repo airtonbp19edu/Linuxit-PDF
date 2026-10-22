@@ -1,6 +1,6 @@
 # Retomada do Linuxit PDF
 
-**Atualização — 2026/10/22 às 19:36 (America/Sao_Paulo, UTC-03:00):** Passos4–6 autorizados pelo usuário e em execução. Passo4 registrado mantendopartial/45,13%. CandidatoFlatpakCI39864579949/7f0f9c1 e WindowsCI39864966247/51ade8e em testes. Fonte anterior e02dda2 aprovada742/742 e81/81; não é ainda aprovação do novo pacote. Sem release/VM/B3. [Estado e limites](PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](PASSOS-4-6-A456-2026-10-22.md).
 
 **REA no Codex — 2026/10/22 às 00:43:** registro aplicado e diagnóstico saudável, comunicação MCP independente aprovada (REA6.7.0/207 ferramentas), sem abrir binários ou VM. Reiniciar Codex para carregar no chat. [Resultado e capacidades](REA-CODEX-CONFIGURACAO-2026-10-22.md).
 

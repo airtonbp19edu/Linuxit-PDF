@@ -1,0 +1,44 @@
+{
+  "schema": "linuxit-a6-windows-review-v1",
+  "reviewed_at_local": "2026-10-22T20:37:41-03:00",
+  "status": "partial_installer_verification_blocked",
+  "summary": "QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.",
+  "ci_run_id": 39871829847,
+  "ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39871829847",
+  "conclusion": "failure",
+  "branch": "codex/windows-installer-diagnostics",
+  "branch_commit": "459f6187a56f1bb6c034b9e4c0db6510293843f1",
+  "app_same_as_linux_candidate": true,
+  "tested_platform": "Windows Server2022 ephemeral GitHub runner",
+  "native_checks_passed": 5,
+  "installer_built": true,
+  "installer_installed_validated": false,
+  "full_suite": "skipped_after_installer_failure",
+  "acceptance": "skipped_after_installer_failure",
+  "uninstallation": "not_reached",
+  "local_controls": {
+    "progress": 2,
+    "cache_provenance_and_native_target": 6
+  },
+  "evidence_origin": "JSON objects emitted by workflow and extracted from downloaded job logs; installer ZIP not downloaded or independently hashed locally",
+  "logs_zip_sha256": "10451f8d43d1fecd42381295cebbecec869a8a0f3d55c125539f23dac0c60368",
+  "artifact_metadata": {
+    "id": 12466304567,
+    "zip_bytes": 106424159,
+    "github_digest": "sha256:d83ce5148f55d429043cf7dc72aae64707d63fe7f9eeb56d99a23fe9b430655e",
+    "expires_at": "2026-11-05T23:34:56Z",
+    "locally_downloaded": false
+  },
+  "next_diagnostics": [
+    "Record actual HKCU InstallLocation immediately after NSIS exit and enumerate the requested RUNNER_TEMP subtree.",
+    "Record the NSIS final installation path and require manifest existence before installer exits0.",
+    "Distinguish wrong directory, unexpected nested payload and asynchronous installer child using evidence; do not guess.",
+    "After fixing the observed cause, rerun installed-byte, GTK/QuickJS child, exe launcher, per-user registry and inventory-only uninstaller checks.",
+    "Then execute native full suite with atomic progress checkpoints and timeout; retain unsupported/errors rather than treating skips as success."
+  ],
+  "limits": [
+    "Unsigned development build; no Windows10/11 user hardware certification.",
+    "Do not merge diagnostic workflows into main before candidate publication: E29 trees would differ.",
+    "No user-host installation, Foxit or VM execution; Linux candidate does not depend on Windows success."
+  ]
+}

@@ -1,5 +1,7 @@
 # A6 — revisão limitada de anotações
 
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Evidência final do recorte](PASSOS-4-6-A456-2026-10-22.md). Os resultados locais abaixo são históricos.
+
 O rascunho `annotation_editing.py` foi preservado no backup e agora recebeu testes
 de topologia recíproca, referências entre páginas, bloqueios, ciclos, exclusão de
 folha/popup e movimento atômico. `annotation_geometry.conversation_members` usa

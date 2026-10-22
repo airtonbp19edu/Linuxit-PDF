@@ -1,0 +1,328 @@
+{
+  "schema": "linuxit-a6-bounded-review-v1",
+  "reviewed_at_local": "2026-10-22T20:37:47-03:00",
+  "source_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
+  "linux_ci": 39869848800,
+  "source_acceptance_ci": 39869853238,
+  "items": [
+    {
+      "id": "javascript",
+      "title": "JavaScript de formulários",
+      "status": "bounded_own_subset_validated",
+      "implemented": "QuickJS real, processo separado, autorização explícita e eventos K/V/C/F de campos textuais.",
+      "limits": "Não é a API inteira Acrobat/Foxit. Scripts de documento/abertura/página e APIs de rede/arquivos não são executados.",
+      "test_modules": [
+        "test_form_javascript",
+        "test_form_javascript_security",
+        "test_forms_a6_gtk"
+      ],
+      "passed_related_cases": 16,
+      "related_case_ids": [
+        "test_form_javascript.JavaScriptTests.test_calculation_order_and_helper_compatibility",
+        "test_form_javascript.JavaScriptTests.test_endless_loop_cpu_limit_stops_transaction",
+        "test_form_javascript.JavaScriptTests.test_external_api_and_python_bridge_are_absent_even_through_function_constructor",
+        "test_form_javascript.JavaScriptTests.test_format_display_is_distinct_from_raw_field_value",
+        "test_form_javascript.JavaScriptTests.test_getfield_value_setter_updates_other_writable_fields",
+        "test_form_javascript.JavaScriptTests.test_heap_and_recursion_budgets_fail_without_crashing_parent",
+        "test_form_javascript.JavaScriptTests.test_invalid_targets_and_non_finite_values_are_refused",
+        "test_form_javascript.JavaScriptTests.test_open_actions_and_document_scripts_are_not_executed",
+        "test_form_javascript.JavaScriptTests.test_real_language_functions_arrays_conditions_and_calculated_field_roundtrip",
+        "test_form_javascript.JavaScriptTests.test_validation_failure_is_atomic_and_no_output_is_published",
+        "test_form_javascript_security.JavaScriptSecurityTests.test_chained_action_is_refused_before_engine_and_original_is_preserved",
+        "test_form_javascript_security.JavaScriptSecurityTests.test_global_intrinsic_replacement_cannot_skip_validation_or_calculation",
+        "test_form_javascript_security.JavaScriptSecurityTests.test_prototype_tojson_cannot_forge_readonly_transaction_result",
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_javascript_dialog_is_explicit_and_accepts_custom_script_configuration",
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_missing_quickjs_dependency_refuses_before_any_dialog_is_run",
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_xfa_flow_window_loads_fields_and_disables_value_changes_during_instance_operation"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "xfa",
+      "title": "XFA dinâmico próprio",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Fluxo tb, instâncias repetíveis, paginação, campos AcroForm e datasets coerentes.",
+      "limits": "Sem layout posicionado, FormCalc/scripts, renderização universal XFA ou cobertura universal de fontes/controles. UI compartilhada com JavaScript nos três testes GTK.",
+      "test_modules": [
+        "test_xfa_flow",
+        "test_xfa_flow_security",
+        "test_forms_a6_gtk"
+      ],
+      "passed_related_cases": 16,
+      "related_case_ids": [
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_javascript_dialog_is_explicit_and_accepts_custom_script_configuration",
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_missing_quickjs_dependency_refuses_before_any_dialog_is_run",
+        "test_forms_a6_gtk.AdvancedFormsGTKTests.test_xfa_flow_window_loads_fields_and_disables_value_changes_during_instance_operation",
+        "test_xfa_flow.XFAFlowTests.test_document_entities_duplicate_binding_and_unknown_fields_are_refused",
+        "test_xfa_flow.XFAFlowTests.test_dynamic_form_becomes_coherent_hybrid_copy_with_real_widget_appearances",
+        "test_xfa_flow.XFAFlowTests.test_info_lists_groups_and_default_template_nodes_without_writing_source",
+        "test_xfa_flow.XFAFlowTests.test_instance_minimum_maximum_and_missing_paths_are_refused_atomically",
+        "test_xfa_flow.XFAFlowTests.test_many_repeated_rows_paginate_and_each_widget_is_on_exactly_one_page",
+        "test_xfa_flow.XFAFlowTests.test_no_overwrite_hash_guard_unicode_limit_and_source_preservation",
+        "test_xfa_flow.XFAFlowTests.test_repeat_insertion_creates_defaults_and_values_are_bound_after_insertion",
+        "test_xfa_flow.XFAFlowTests.test_repeat_removal_to_zero_preserves_minimum_zero_without_respawning",
+        "test_xfa_flow.XFAFlowTests.test_scripts_bindings_positioned_layout_and_other_controls_are_never_silently_accepted",
+        "test_xfa_flow_security.XFAFlowSecurityTests.test_exponential_default_instantiation_stops_during_allocation",
+        "test_xfa_flow_security.XFAFlowSecurityTests.test_many_tiny_xml_nodes_are_refused_before_elementtree_allocation",
+        "test_xfa_flow_security.XFAFlowSecurityTests.test_readonly_xfa_is_refused_before_publishing_editable_widgets",
+        "test_xfa_flow_security.XFAFlowSecurityTests.test_repeated_draw_rows_share_the_global_row_budget"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "preservation",
+      "title": "DSS/LTV, OCSP e carimbo",
+      "status": "bounded_own_subset_validated",
+      "implemented": "DSS incremental local, verificação OCSP offline e RFC3161 em duas fases, nonce e CA explícita.",
+      "limits": "Não consulta automaticamente OCSP/TSA real nem garante PAdES-LTA universal. Fixtures e CA sintéticas; dispositivos/serviços reais continuam pendentes.",
+      "test_modules": [
+        "test_signature_preservation",
+        "test_signature_trust",
+        "test_document_timestamps"
+      ],
+      "passed_related_cases": 18,
+      "related_case_ids": [
+        "test_document_timestamps.DocumentTimestampTests.test_changed_covered_bytes_and_wrong_imprint_fail",
+        "test_document_timestamps.DocumentTimestampTests.test_signature_after_a_timestamp_keeps_both_valid",
+        "test_document_timestamps.DocumentTimestampTests.test_timestamp_is_recognised_verified_and_trusted_only_with_its_ca",
+        "test_signature_preservation.PreservationTests.test_dss_appends_certificates_and_ocsp_and_preserves_earlier_bytes",
+        "test_signature_preservation.PreservationTests.test_dss_ocsp_satisfies_required_revocation_and_revoked_overrides_clear_crl",
+        "test_signature_preservation.PreservationTests.test_dss_rejects_unsigned_changed_and_malformed_input_without_output",
+        "test_signature_preservation.PreservationTests.test_nonce_mismatch_and_changed_preparation_are_refused_before_publish",
+        "test_signature_preservation.PreservationTests.test_ocsp_delegation_requires_eku_and_actual_issuer",
+        "test_signature_preservation.PreservationTests.test_ocsp_good_revoked_unknown_and_stale_are_distinct",
+        "test_signature_preservation.PreservationTests.test_ocsp_requires_matching_certid_signature_and_explicit_anchor",
+        "test_signature_preservation.PreservationTests.test_timestamp_query_is_nonce_bound_to_exact_prepared_revision_and_export_is_exclusive",
+        "test_signature_preservation.PreservationTests.test_timestamp_response_import_trust_and_prior_signature_preserved",
+        "test_signature_trust.OfflineTrustTests.test_actual_rfc3161_token_is_bound_to_signer_signature_value",
+        "test_signature_trust.OfflineTrustTests.test_explicit_ca_trust_integrity_and_expiry_are_independent_of_revocation",
+        "test_signature_trust.OfflineTrustTests.test_non_ca_anchor_and_unrelated_ca_are_not_implicitly_trusted",
+        "test_signature_trust.OfflineTrustTests.test_offline_crl_required_missing_clear_and_revoked",
+        "test_signature_trust.OfflineTrustTests.test_timestamp_authority_trusted_only_by_platform_store_is_rejected",
+        "test_signature_trust.TrustPolicyTests.test_policy_requires_explicit_anchors_bounded_files_and_zoned_time"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "redaction",
+      "title": "Redação sem rasterizar",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Conteúdo simples/Standard14; remove objetos inteiros intersectantes, limpa recursos/miniatura; identidade do PDF fixada antes do diálogo.",
+      "limits": "Tr1/2, clipping, FormXObject e outros conteúdos complexos são recusados. Pode remover conteúdo vizinho. Não procura resíduos em propriedades, marcadores ou anexos. Rasterização permanece disponível.",
+      "test_modules": [
+        "test_vector_redaction",
+        "test_vector_redaction_review",
+        "test_redaction_apply",
+        "test_redaction_gtk",
+        "test_redaction_marks"
+      ],
+      "passed_related_cases": 24,
+      "related_case_ids": [
+        "test_redaction_apply.RedactionApplyTests.test_overlapping_annotations_go_and_others_stay",
+        "test_redaction_apply.RedactionApplyTests.test_refusals_create_nothing",
+        "test_redaction_apply.RedactionApplyTests.test_rotated_page_is_painted_in_page_space",
+        "test_redaction_apply.RedactionApplyTests.test_structure_tree_is_dropped",
+        "test_redaction_apply.RedactionApplyTests.test_text_and_image_under_the_mark_are_gone_and_other_pages_are_intact",
+        "test_redaction_apply.RedactionApplyTests.test_worker_round_trip_and_confirmation",
+        "test_redaction_gtk.RedactionDraftGTKTests.test_confirmation_dialog_returns_the_chosen_resolution",
+        "test_redaction_gtk.RedactionDraftGTKTests.test_confirmation_explicit_vector_method_disables_raster_resolution",
+        "test_redaction_gtk.RedactionDraftGTKTests.test_external_source_replacement_during_destination_dialog_refuses_redaction",
+        "test_redaction_gtk.RedactionDraftGTKTests.test_marks_in_the_draft_are_applied_to_a_new_copy",
+        "test_redaction_marks.RedactionMarkTests.test_invalid_marks_are_refused",
+        "test_redaction_marks.RedactionMarkTests.test_mark_can_be_resized_commented_restyled_and_deleted",
+        "test_redaction_marks.RedactionMarkTests.test_mark_is_a_pending_redact_annotation_and_content_is_untouched",
+        "test_redaction_marks.RedactionMarkTests.test_mark_is_listed_as_editable",
+        "test_redaction_marks.RedactionMarkTests.test_poppler_draws_the_outline_and_keeps_the_marked_text_visible",
+        "test_vector_redaction.VectorRedactionTests.test_complex_content_is_refused_without_publishing",
+        "test_vector_redaction.VectorRedactionTests.test_no_overwrite_and_changed_source_guard",
+        "test_vector_redaction.VectorRedactionTests.test_paths_are_removed_by_intersection_and_public_vectors_remain",
+        "test_vector_redaction.VectorRedactionTests.test_rotation_does_not_change_page_space_selection",
+        "test_vector_redaction.VectorRedactionTests.test_secret_bytes_and_image_removed_public_text_stays_selectable",
+        "test_vector_redaction.VectorRedactionTests.test_tj_arrays_and_quote_strings_are_really_removed",
+        "test_vector_redaction_review.VectorReviewTests.test_repeated_finite_transforms_cannot_overflow_into_unsafe_geometry",
+        "test_vector_redaction_review.VectorReviewTests.test_thumbnail_and_private_page_payloads_are_removed",
+        "test_vector_redaction_review.VectorReviewTests.test_wide_text_stroke_is_refused_instead_of_preserving_secret"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "annotations",
+      "title": "Edição de anotações",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Validação de vínculos/popups/respostas; exclusão de conversa; texto/autor de carimbo preserva AP gráfica e remove RC conflitante.",
+      "limits": "Não é edição universal. Helpers de mover/excluir folha testados não significam controles completos na UI. Widgets, mídia, grupos e relações complexas permanecem restritos.",
+      "test_modules": [
+        "test_annotation_editing",
+        "test_annotation_geometry_threads"
+      ],
+      "passed_related_cases": 15,
+      "related_case_ids": [
+        "test_annotation_editing.AnnotationEditingTests.test_cross_page_inbound_reply_blocks_conversation_and_metadata",
+        "test_annotation_editing.AnnotationEditingTests.test_delete_leaf_removes_popup_but_not_attachment_payload_claim",
+        "test_annotation_editing.AnnotationEditingTests.test_locked_popup_and_cyclic_reply_refused",
+        "test_annotation_editing.AnnotationEditingTests.test_metadata_keeps_graphical_stamp_appearance_and_clears_rich_text",
+        "test_annotation_editing.AnnotationEditingTests.test_moving_popup_is_atomic_when_popup_would_leave_page",
+        "test_annotation_editing.AnnotationEditingTests.test_subtree_does_not_remove_reply_parent",
+        "test_annotation_geometry_threads.AnnotationAppearanceLinuxTests.test_polygon_dialog_returns_its_vertices",
+        "test_annotation_geometry_threads.AnnotationAppearanceLinuxTests.test_unicode_freetext_and_stamp_embed_fonts_and_render_real_pixels",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_cross_page_reply_refuses_deletion_without_leaving_orphan",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_invalid_polygon_and_out_of_bounds_move_never_publish",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_locked_descendant_refuses_entire_conversation",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_move_keeps_all_polygon_geometry_and_appearance_relative",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_polygon_polyline_and_caret_have_explicit_printable_vector_appearances",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_popup_parent_toggle_and_whole_conversation_delete_preserve_other_notes",
+        "test_annotation_geometry_threads.AnnotationGeometryThreadTests.test_reply_edit_retains_parent_and_full_text_in_editor"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "recovery",
+      "title": "Editar documento recuperado",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Normaliza documentos recuperáveis aceitos pelo mecanismo próprio e produz cópia editável.",
+      "limits": "Dois casos de corpus danificado; não recuperação universal nem promessa para qualquer cifra/fonte/arquivo.",
+      "test_modules": [
+        "test_recovered_edit"
+      ],
+      "passed_related_cases": 2,
+      "related_case_ids": [
+        "test_recovered_edit.RecoveredEditTests.test_consented_corpus_edits_publish_new_strictly_readable_copies",
+        "test_recovered_edit.RecoveredEditTests.test_unrecoverable_input_does_not_create_destination"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "ocr",
+      "title": "OCR com limpeza",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Contraste e limiar opt-in, dimensões preservadas; ferramenta e idiomas eng/por+eng reais no sandbox instalado.",
+      "limits": "Sem qualidade universal/corpus amplo/ordem de leitura integral. A limpeza é opcional e o padrão permanece sem pré-processamento.",
+      "test_modules": [
+        "test_ocr_cleanup",
+        "test_pdf_ocr",
+        "test_ocr_linux",
+        "test_ocr_gtk"
+      ],
+      "passed_related_cases": 34,
+      "related_case_ids": [
+        "test_ocr_cleanup.OCRCleanupTests.test_contrast_and_otsu_are_explicit_geometry_preserving_options",
+        "test_ocr_cleanup.OCRCleanupTests.test_real_worker_cleanup_with_portuguese_and_english_keeps_dimensions",
+        "test_ocr_cleanup.OCRCleanupTests.test_unknown_cleanup_is_refused",
+        "test_ocr_gtk.OCRGTKTests.test_blank_page_has_explicit_no_text_notice",
+        "test_ocr_gtk.OCRGTKTests.test_cancel_and_document_close_stop_real_worker_and_ignore_stale_callbacks",
+        "test_ocr_gtk.OCRGTKTests.test_cancelled_dialog_and_existing_destination_keep_files",
+        "test_ocr_gtk.OCRGTKTests.test_changed_source_and_changed_result_are_not_silently_opened",
+        "test_ocr_gtk.OCRGTKTests.test_menu_workflow_recognizes_opens_and_renders_actual_copy",
+        "test_ocr_linux.OCRLinuxTests.test_actual_portuguese_combined_models_and_300_dpi",
+        "test_ocr_linux.OCRLinuxTests.test_blank_page_notice_and_page_order_are_real",
+        "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+        "test_ocr_linux.OCRLinuxTests.test_crop_and_rotation_preserve_display_size_and_raster_appearance",
+        "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+        "test_ocr_linux.OCRLinuxTests.test_real_english_worker_adds_searchable_text_and_keeps_scan",
+        "test_pdf_ocr.OCRControlsTests.test_blank_text_is_reported_without_claiming_recognition",
+        "test_pdf_ocr.OCRControlsTests.test_cancelled_request_never_starts_child_and_command_requires_destination",
+        "test_pdf_ocr.OCRControlsTests.test_changed_source_is_not_published",
+        "test_pdf_ocr.OCRControlsTests.test_cropbox_rotation_userunit_and_nonfinite_geometry_guarded",
+        "test_pdf_ocr.OCRControlsTests.test_destination_appearing_at_publication_is_preserved",
+        "test_pdf_ocr.OCRControlsTests.test_encrypted_input_is_rejected_without_attempting_empty_password",
+        "test_pdf_ocr.OCRControlsTests.test_existing_destination_original_and_dangling_link_not_overwritten",
+        "test_pdf_ocr.OCRControlsTests.test_external_missing_failure_and_timeout_use_bounded_local_errors",
+        "test_pdf_ocr.OCRControlsTests.test_invalid_request_types_values_and_extra_keys_rejected",
+        "test_pdf_ocr.OCRControlsTests.test_missing_language_stops_before_rendering",
+        "test_pdf_ocr.OCRControlsTests.test_missing_wrong_geometry_and_multiple_ocr_pages_refused",
+        "test_pdf_ocr.OCRControlsTests.test_output_budget_failure_leaves_no_destination",
+        "test_pdf_ocr.OCRControlsTests.test_page_source_pixel_and_total_budgets_precede_external_tools",
+        "test_pdf_ocr.OCRControlsTests.test_publication_copy_failure_cleans_staging",
+        "test_pdf_ocr.OCRControlsTests.test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original",
+        "test_pdf_ocr.OCRControlsTests.test_renderer_missing_or_wrong_size_is_not_accepted",
+        "test_pdf_ocr.OCRControlsTests.test_source_identity_mismatch_prevents_external_tools",
+        "test_pdf_ocr.OCRControlsTests.test_tool_arguments_do_not_use_shell_and_thread_count_is_bounded",
+        "test_pdf_ocr.OCRControlsTests.test_worker_reply_cannot_claim_a_different_destination_or_missing_page",
+        "test_pdf_ocr.OCRControlsTests.test_wrong_extension_and_missing_parent_refused"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "conversion",
+      "title": "Conversões adicionais",
+      "status": "bounded_own_subset_validated",
+      "implemented": "Texto UTF-8, PNG/JPEG em ZIP e TIFF multipágina; saídas exclusivas, hash e reabertura.",
+      "limits": "Até100 páginas de texto/20 de imagens, com orçamentos de bytes/pixels; não conversão Office editável nem formatos universais.",
+      "test_modules": [
+        "test_pdf_conversion",
+        "test_conversion_gtk"
+      ],
+      "passed_related_cases": 6,
+      "related_case_ids": [
+        "test_conversion_gtk.ConversionGTKTests.test_window_pins_identity_before_document_replacement_and_shuts_down",
+        "test_pdf_conversion.PDFConversionTests.test_bad_requests_and_overwrite_do_not_publish",
+        "test_pdf_conversion.PDFConversionTests.test_captured_source_identity_refuses_replaced_file_before_export",
+        "test_pdf_conversion.PDFConversionTests.test_real_text_images_and_tiff_exports_preserve_original",
+        "test_pdf_conversion.PDFConversionTests.test_source_changed_during_converter_never_publishes",
+        "test_pdf_conversion.PDFConversionTests.test_source_reader_enforces_budget_after_open"
+      ],
+      "tested_environments": [
+        "linux_source",
+        "payload",
+        "installed_flatpak"
+      ],
+      "complete_family": false,
+      "foxit_equivalence": false
+    },
+    {
+      "id": "windows",
+      "title": "Instalador Windows",
+      "status": "partial_installer_verification_blocked",
+      "evidence": "testes/resultados/a6-windows-2026-10-22/review.json",
+      "limits": "Candidato sem assinatura; runner Windows Server2022 não certifica todo Windows10/11 ou hardware real. Ferramentas/workflow corrigidos estão em ramo separado para preservar E29."
+    }
+  ],
+  "case_groups_overlap": true,
+  "counts_not_additive": true,
+  "complete_families": 0,
+  "foxit_executed": false,
+  "vm_executed": false,
+  "published": false
+}

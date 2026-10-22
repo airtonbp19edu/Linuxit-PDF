@@ -1,0 +1,39 @@
+{
+  "schema": "linuxit-019-readonly-preflight-review-v1",
+  "reviewed_at_local": "2026-10-22T20:35:44-03:00",
+  "ci_run_id": 39872660861,
+  "ci_commit": "7c0cb7ddab5b21323904c84d37b884963243eea0",
+  "candidate_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
+  "check_only": true,
+  "conclusion": "success",
+  "plan": {
+    "tag": "v0.1.19-devel",
+    "source_commit": "9fb4f3a2cb6d31bbaac764e21b65b70296db20ab",
+    "release_id": "",
+    "existing_tag": false,
+    "default_branch": "main",
+    "default_commit": "7c0cb7ddab5b21323904c84d37b884963243eea0",
+    "target_workflow_tree": "df2e143226f31343781b1598f3bcf6b6e8dae5e7",
+    "default_workflow_tree": "df2e143226f31343781b1598f3bcf6b6e8dae5e7",
+    "mode": "create_release"
+  },
+  "guards_passed": 9,
+  "artifact_id": 12467336200,
+  "artifact_zip_sha256": "15ec2d5932a68218d0d268313ef5a4af1d47c6b581102cf0b9c3c65dc5e2a04e",
+  "mutating_steps": [
+    {
+      "name": "Download the tested artifact (no rebuild)",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Verify bytes against the manifest",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Publish eligible candidate or upload only to the owner's draft",
+      "conclusion": "skipped"
+    }
+  ],
+  "release_or_tag_created": false,
+  "asset_uploaded": false
+}

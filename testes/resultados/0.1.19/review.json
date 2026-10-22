@@ -60,7 +60,7 @@
   "release_or_tag_created": false,
   "vm_or_original_executed": false,
   "local_bundle": "analysis-local\\a456-artifact-12467036137\\dist\\LinuxitPDF-0.1.19-x86_64.flatpak",
-  "preflight": "pending_check_only",
+  "preflight": "passed_check_only_CI39872660861",
   "independent_after_publication_audit": "not_run",
   "physical_devices": "not_tested",
   "superseded_candidate_reports": "testes/resultados/0.1.19-before-identity-fix/"

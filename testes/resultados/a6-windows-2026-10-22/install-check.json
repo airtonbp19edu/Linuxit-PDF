@@ -1,0 +1,15 @@
+{
+  "schema": "linuxit-windows-installer-validation-v1",
+  "passed": false,
+  "checks": {
+    "silent_install_exit_zero": true
+  },
+  "errors": [
+    "FileNotFoundError: [Errno 2] No such file or directory: 'D:/a/_temp/linuxit-installer-validation/installed app com espaços/windows-manifest.json'"
+  ],
+  "ephemeral_ci": true,
+  "host_user_installation": false,
+  "administrator_required": false,
+  "physical_hardware_tested": false,
+  "installation_directory": "D:/a/_temp/linuxit-installer-validation/installed app com espaços"
+}

@@ -1,0 +1,17 @@
+﻿2026-10-22T23:30:06.0347255Z ##[group]Run export PYTHONUTF8=1
+2026-10-22T23:30:06.0347670Z [36;1mexport PYTHONUTF8=1[0m
+2026-10-22T23:30:06.0348220Z [36;1mversion=$(/ucrt64/bin/python -c 'import sys;sys.path.insert(0,"app");from version import VERSION;print(VERSION)')[0m
+2026-10-22T23:30:06.0348872Z [36;1m/ucrt64/bin/python scripts/build_windows.py --prefix /ucrt64 \[0m
+2026-10-22T23:30:06.0349291Z [36;1m  --stage dist/windows-native/payload \[0m
+2026-10-22T23:30:06.0349749Z [36;1m  --output "dist/windows-native/LinuxitPDF-${version}-windows-x86_64.exe" \[0m
+2026-10-22T23:30:06.0350284Z [36;1m  --makensis /ucrt64/bin/makensis.exe --compiler /ucrt64/bin/gcc.exe \[0m
+2026-10-22T23:30:06.0350812Z [36;1m  --quickjs-notices "$RUNNER_TEMP/linuxit-quickjs-build/quickjs-notices.txt"[0m
+2026-10-22T23:30:06.0352941Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-10-22T23:30:06.0353220Z env:
+2026-10-22T23:30:06.0353403Z   MSYSTEM: UCRT64
+2026-10-22T23:30:06.0353594Z ##[endgroup]
+2026-10-22T23:30:12.7089046Z D:/a/Linuxit-PDF/Linuxit-PDF/packaging/windows/launcher.c:2:9: warning: 'UNICODE' redefined
+2026-10-22T23:30:12.7090173Z     2 | #define UNICODE
+2026-10-22T23:30:12.7090558Z       |         ^~~~~~~
+2026-10-22T23:30:12.7091134Z <command-line>: note: this is the location of the previous definition
+2026-10-22T23:33:00.0379775Z {"schema": "linuxit-windows-installer-build-v1", "version": "0.1.19", "path": "D:/a/Linuxit-PDF/Linuxit-PDF/dist/windows-native/LinuxitPDF-0.1.19-windows-x86_64.exe", "bytes": 105925705, "sha256": "c689dc2c7f620544d5a26f31765a7361e04f34ee065405e4154cdc0222b22883", "generated_nsis_sha256": "9903cfc59640201200affd72c0d1ddc801ecbc383d281d2b601de8b6e2df039e", "payload_files": 8878, "runtime_packages": 145, "installed_or_published": false}

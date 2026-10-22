@@ -1,0 +1,22 @@
+﻿2026-10-22T23:33:00.0727804Z ##[group]Run export PYTHONUTF8=1
+2026-10-22T23:33:00.0728537Z [36;1mexport PYTHONUTF8=1[0m
+2026-10-22T23:33:00.0729159Z [36;1minstaller=$(find dist/windows-native -maxdepth 1 -name 'LinuxitPDF-*-windows-x86_64.exe' -print -quit)[0m
+2026-10-22T23:33:00.0729919Z [36;1m/ucrt64/bin/python scripts/check_windows_installer.py --installer "$installer" \[0m
+2026-10-22T23:33:00.0730641Z [36;1m  --stage dist/windows-native/payload --output dist/windows-native/installer-validation.json[0m
+2026-10-22T23:33:00.0733609Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-10-22T23:33:00.0733964Z env:
+2026-10-22T23:33:00.0734196Z   MSYSTEM: UCRT64
+2026-10-22T23:33:00.0734443Z ##[endgroup]
+2026-10-22T23:34:56.4252519Z Traceback (most recent call last):
+2026-10-22T23:34:56.4259127Z   File "D:/a/Linuxit-PDF/Linuxit-PDF/scripts/check_windows_installer.py", line 43, in main
+2026-10-22T23:34:56.4260296Z     manifest=json.loads((target/'windows-manifest.json').read_text(encoding='utf-8'))
+2026-10-22T23:34:56.4262498Z                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2026-10-22T23:34:56.4263229Z   File "D:/a/_temp/msys64/ucrt64/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+2026-10-22T23:34:56.4264729Z     with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+2026-10-22T23:34:56.4265409Z          ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-22T23:34:56.4266048Z   File "D:/a/_temp/msys64/ucrt64/lib/python3.14/pathlib/__init__.py", line 771, in open
+2026-10-22T23:34:56.4266747Z     return io.open(self, mode, buffering, encoding, errors, newline)
+2026-10-22T23:34:56.4267286Z            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-22T23:34:56.4269042Z FileNotFoundError: [Errno 2] No such file or directory: 'D:/a/_temp/linuxit-installer-validation/installed app com espaços/windows-manifest.json'
+2026-10-22T23:34:56.4272137Z {"schema": "linuxit-windows-installer-validation-v1", "passed": false, "checks": {"silent_install_exit_zero": true}, "errors": ["FileNotFoundError: [Errno 2] No such file or directory: 'D:/a/_temp/linuxit-installer-validation/installed app com espa\u00e7os/windows-manifest.json'"], "ephemeral_ci": true, "host_user_installation": false, "administrator_required": false, "physical_hardware_tested": false, "installation_directory": "D:/a/_temp/linuxit-installer-validation/installed app com espa\u00e7os"}
+2026-10-22T23:34:56.4414612Z ##[error]Process completed with exit code 1.

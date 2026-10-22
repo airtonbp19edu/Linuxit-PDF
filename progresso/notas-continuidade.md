@@ -3669,3 +3669,11 @@ A revisão9fb4f3a fixa o hash exibido pelo editor antes do diálogo de destino. 
 CI do novo Flatpak39869848800 terminou com sucesso; artefato12467036137 em download para exame/hash local. O antigo candidato7f0f9c1 foi marcado superseded_pending_identity_fix e a guarda de publicação passou9/9 testes; não publicar aquele bundle nem usar o preflight39868718314 como aprovação do novo. Releases/tags não criadas; manifesto global0.1.18 preservado.
 
 Windows no ramo codex/windows-installer-diagnostics:350ae12 gerou o instalador NSIS; a instalação retornou zero mas não entregou o manifesto no destino pedido.459f618 normaliza o argumentoNSIS para barras nativas, mantendo espaços/Unicode, e aguarda a conclusão; seis controles locais passaram. CI39871829847 repete instalação. Todos os testes são no runner efêmero, nada instalado no host e VM/original intactos.
+
+## 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00) — Passos4–6 conferidos, versão retida
+
+**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado.
+
+Bundle120445160bytes/SHAea5d76eb3ba779f38477652a5794c309e8ad1ae7197dcd1ab3392c1e35d9818e; artefato12467036137/digestb8729532…cf0a3 conferido. Relatórios emtestes/resultados/0.1.19/. QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.
+
+Workflows Windows permanecem no ramo separado; main/candidato têm árvoredf2e143226f31343781b1598f3bcf6b6e8dae5e7. Manifesto global0.1.18 preservado. Após autorização da publicação: publicar os mesmos bytes e fonte, conferir download público, auditoria independente e integrações do desktop. Não confundir registro dos resultados com autorização para executar original ou mudarB3.

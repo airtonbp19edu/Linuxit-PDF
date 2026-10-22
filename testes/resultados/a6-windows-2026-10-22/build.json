@@ -1,0 +1,11 @@
+{
+  "schema": "linuxit-windows-installer-build-v1",
+  "version": "0.1.19",
+  "path": "D:/a/Linuxit-PDF/Linuxit-PDF/dist/windows-native/LinuxitPDF-0.1.19-windows-x86_64.exe",
+  "bytes": 105925705,
+  "sha256": "c689dc2c7f620544d5a26f31765a7361e04f34ee065405e4154cdc0222b22883",
+  "generated_nsis_sha256": "9903cfc59640201200affd72c0d1ddc801ecbc383d281d2b601de8b6e2df039e",
+  "payload_files": 8878,
+  "runtime_packages": 145,
+  "installed_or_published": false
+}
