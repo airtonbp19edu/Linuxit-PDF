@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-22T00:00:00-03:00. Pendente: 2, Concluída: 29.
+Atualizado em 2026-10-22T00:44:19.700001-03:00. Pendente: 2, Concluída: 29.
 
 **Regras**
 
@@ -356,9 +356,9 @@ Evidência: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md). Commit `c
 
 **Situação:** Concluída.
 
-Usuário executou analysis-local\rea-instalacao\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador.
+Usuário executou analysis-local\rea-instalacao\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador. Complemento em22/10 pelo Codex: registro somente Codex aplicado, skill42 instalada e doctor Codex/Ghidra alinhado/saudável. Cliente MCP independente confirmou servidor6.7.0,207 ferramentas e binary_session sem alvo aberto. Backup e demais configurações preservados. Falta reiniciar o Codex para o catálogo deste chat carregar a integração; app Claude não alterado. Ver docs/REA-CODEX-CONFIGURACAO-2026-10-22.md.
 
-Evidência: [testes/resultados/e21-rea-pc/review.json](../testes/resultados/e21-rea-pc/review.json). Commit `a1647c1`.
+Evidência: [testes/resultados/e21-rea-pc/review.json](../testes/resultados/e21-rea-pc/review.json), [testes/resultados/e21-rea-pc/codex-registration-2026-10-22.json](../testes/resultados/e21-rea-pc/codex-registration-2026-10-22.json). Commit `a1647c1`.
 
 ### E22 — Estática: chamadores e tipos da busca
 

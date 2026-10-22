@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-22T00:00:00-03:00",
+  "updated_at_local": "2026-10-22T00:44:19.700001-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -431,9 +431,10 @@
       "verification": "Log com REA 6.7.0 e doctor do Ghidra saudável.",
       "commit": "a1647c1",
       "evidence": [
-        "testes/resultados/e21-rea-pc/review.json"
+        "testes/resultados/e21-rea-pc/review.json",
+        "testes/resultados/e21-rea-pc/codex-registration-2026-10-22.json"
       ],
-      "note": "Usuário executou analysis-local\\rea-instalacao\\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador."
+      "note": "Usuário executou analysis-local\\rea-instalacao\\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador. Complemento em22/10 pelo Codex: registro somente Codex aplicado, skill42 instalada e doctor Codex/Ghidra alinhado/saudável. Cliente MCP independente confirmou servidor6.7.0,207 ferramentas e binary_session sem alvo aberto. Backup e demais configurações preservados. Falta reiniciar o Codex para o catálogo deste chat carregar a integração; app Claude não alterado. Ver docs/REA-CODEX-CONFIGURACAO-2026-10-22.md."
     },
     {
       "id": "E22",

@@ -1,0 +1,166 @@
+{
+  "schema": "linuxit-rea-codex-registration-v1",
+  "verified_at_local": "2026-10-22T00:43:37.858977-03:00",
+  "repository_base_commit": "1daa5d2",
+  "package_version": "6.7.0",
+  "setup_scope": [
+    "codex",
+    "bundled REA skill"
+  ],
+  "unrelated_configuration_preserved": true,
+  "backup_verified": true,
+  "config_path": "C:\\Users\\Airtonbp19\\.codex\\config.toml",
+  "backup_path": "C:\\Users\\Airtonbp19\\.codex\\config.toml.rea.backup",
+  "doctor_healthy": true,
+  "doctor_scope": {
+    "mode": "explicit",
+    "clients": [
+      "codex"
+    ],
+    "providers": [
+      "ghidra"
+    ],
+    "skill": false,
+    "target": null
+  },
+  "codex_registration_state": "aligned",
+  "ghidra_version": "12.1.4",
+  "java_version": "21.0.12.1",
+  "mcp_test": {
+    "initialize_succeeded": true,
+    "tools_list_count": 207,
+    "binary_session_succeeded": true,
+    "server_identity": {
+      "package": {
+        "name": "rea-agents",
+        "version": "6.7.0",
+        "root_path": "C:\\Users\\Airtonbp19\\AppData\\Roaming\\npm\\node_modules\\rea-agents",
+        "build_commit": null
+      },
+      "server": {
+        "name": "rea",
+        "version": "6.7.0",
+        "started_at": "2026-10-22T03:40:48.259Z",
+        "command_path": "C:\\Users\\Airtonbp19\\AppData\\Roaming\\npm\\node_modules\\rea-agents\\scripts\\rea.mjs"
+      },
+      "sdk": {
+        "server": "2.3.1",
+        "client_test": "2.3.1",
+        "core": "2.3.1"
+      },
+      "negotiated_protocol_version": "2025-11-25",
+      "client": {
+        "name": "Linuxit-REA-registration-check",
+        "version": "1.0"
+      },
+      "skill": {
+        "name": "reverse-engineer-anything",
+        "expected_version": "42"
+      },
+      "catalog": {
+        "counts": {
+          "cli_commands": 153,
+          "mcp_tools": 207,
+          "mcp_prompts": 6
+        },
+        "digests": {
+          "tools_sha256": "af39310c9591bb981893ec0d2188b1bcf6e9cc8ba3ac513d5bbefc8ddcb85639",
+          "prompts_sha256": "7152916ab48bd2a9677a5ad9cdbde0a51dc53c113934952ad096e93f5f18aa7e",
+          "combined_sha256": "96d8f6e6ea1b1ba13557216624a3461c738729d53c79b4b0100d1f3a3a32441c"
+        }
+      },
+      "protocol_features": {
+        "progress": true,
+        "cancellation": true,
+        "elicitation": false
+      },
+      "alignment": {
+        "state": "unknown",
+        "reasons": [],
+        "remediation": "Supply expected package, catalog, or registration identity to compare the live server."
+      }
+    },
+    "target_open": false,
+    "cleanup_pending": false,
+    "client": "independent stdio smoke; not active chat attachment"
+  },
+  "ghidra_advertised_operations": [
+    "address_name",
+    "inspect_native_data_type",
+    "inspect_native_instruction",
+    "procedure_callees",
+    "procedure_callers",
+    "procedure_info",
+    "resolve_native_call_targets",
+    "address_to_file_offset",
+    "analyze_function",
+    "inspect_native_load_image",
+    "list_documents",
+    "list_names",
+    "list_procedures",
+    "procedure_address",
+    "list_segments",
+    "list_strings",
+    "procedure_assembly",
+    "procedure_pseudo_code",
+    "procedure_references",
+    "read_binary_inventory_summary",
+    "read_bytes",
+    "read_function_instructions",
+    "resolve_containing_procedure",
+    "search_bytes",
+    "search_procedures",
+    "search_strings",
+    "xrefs"
+  ],
+  "ghidra_unavailable_groups": [
+    {
+      "operations": [
+        "annotate_native_function"
+      ],
+      "reason": "Windows Ghidra P0 does not admit database mutation."
+    },
+    {
+      "operations": [
+        "set_address_name",
+        "set_addresses_names"
+      ],
+      "reason": "Windows Ghidra P0 does not admit database mutation."
+    }
+  ],
+  "private_evidence": [
+    {
+      "path": "analysis-local\\rea-instalacao\\codex-before-20261022.json",
+      "sha256": "b0171089a516b9aa954ac4179cd173a9bd357bc82bf4b73a298bac215a394d54"
+    },
+    {
+      "path": "analysis-local\\rea-instalacao\\codex-setup-20261022.json",
+      "sha256": "a583b68d6e73dd69811213f8ad2bf2ed64b9331b8df08c4ddb63f614a262d305"
+    },
+    {
+      "path": "analysis-local\\rea-instalacao\\codex-doctor-20261022.json",
+      "sha256": "ff3e04586aa5e44c2e630a62a3ea6a200f88c859aac587070db519f1f0f5da0c"
+    },
+    {
+      "path": "analysis-local\\rea-instalacao\\codex-mcp-smoke-20261022.json",
+      "sha256": "fd8156875034620134d16aae9ceb2889424ca6e24bed5e5193f6923caf215dbe"
+    },
+    {
+      "path": "analysis-local\\rea-instalacao\\check_mcp.py",
+      "sha256": "6171569a76b0050349cd72127da6ddf3ff3ba733e7fdfb72c9295481b525eff5"
+    }
+  ],
+  "original_executed": false,
+  "vm_accessed": false,
+  "binary_target_opened": false,
+  "app_suite_rerun": false,
+  "restart_required_for_active_chat": true,
+  "official_codex_docs": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli",
+  "limitations": [
+    "207 advertised tools are not 207 enabled tools on Windows.",
+    "Ghidra native operations require an admitted local NTFS target and completed analysis. No target was opened in this registration check.",
+    "Windows Ghidra P0 does not allow annotation/rename database mutation.",
+    "Other optional engines are not installed/configured by this task.",
+    "Skill installation does not hot-add tools to a running chat."
+  ]
+}

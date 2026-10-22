@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 00:29 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 00:43 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -22,6 +22,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - REA 6.7.0 (morluto/rea) instalado no ambiente de nuvem do Claude. Esse ambiente é temporário; ver `claude/retomada-instalacao-rea.md` no projeto do claude.ai.
 
 ### Em andamento
+- **REA no Codex:** integração registrada e diagnosticada; comunicação MCP independente passou. Reiniciar o Codex para carregar neste chat. Nenhum binário/original/VM aberto. [Capacidades e limites](REA-CODEX-CONFIGURACAO-2026-10-22.md).
 - **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
 - Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E22, E24 a E29 e E31 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E23 (equipamentos reais) e E30 (continuar a comparação na VM).
 - **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). **E24 concluída:** a VM foi retomada com a sua autorização e o primeiro bloco de comparação foi feito ([VM-E24-2026-10-21.md](VM-E24-2026-10-21.md)). Parado, aguardando a sua próxima ordem.
@@ -150,3 +151,5 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/21 às 21:57** — CI do Debian 13 aprovado na E31 ([39702160473](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39702160473), `b75c8d6`). Duas execuções anteriores falharam porque dois verificadores do CI (campanha preservada e teste rápido de interface) ainda esperavam o comportamento antigo da busca; ambos foram ajustados à decisão D05. Detalhes em [CI-FALHAS-E-CORRECOES.md](CI-FALHAS-E-CORRECOES.md).
 - **2026/10/22 às 00:00** — **E21 concluída.** Você rodou o instalador no PC às 23:54. O log confirma o REA 6.7.0 (repositório oficial morluto/rea) e o diagnóstico do Ghidra 12.1.4 saudável, com o Java 21. O passo final (registrar o REA no Codex e no app Claude) estava aguardando na janela do instalador.
 - **2026/10/22 às 00:29** — Conferência do último passo da E21: o log do instalador não registrou o passo 6 e o `config.toml` do Codex (lido sem alterar, modificado pela última vez em 21/10 às 17:30) não tem o REA. Ou seja, o REA está instalado no PC, mas **ainda não está registrado no Codex**. Para registrar, rode o instalador de novo e responda S para o Codex e N para o app Claude, aprove o plano e reinicie o Codex.
+
+- **2026/10/22 às 00:43** — Codex configurou REA6.7.0 somente neste cliente, preservou demais configurações e conferiu backup. Skill42 instalada; doctor Codex/Ghidra saudável; handshake MCP,207 ferramentas e binary_session aprovados com cliente independente. Ghidra Windows disponível para estática; anotação/renomeação do banco indisponíveis neste perfil. Precisa reiniciar o Codex para o chat carregar ferramentas. Recibo e guia publicados nesta rodada; sem análise de alvo, VM ou novo pacote.
