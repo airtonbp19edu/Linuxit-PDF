@@ -359,9 +359,10 @@
             "testes/cenarios-dinamicos.json",
             "docs/ETAPA-10.md",
             "docs/VM-FOXIT-2026-10-18.md",
-            "testes/resultados/vm-2026-10-18/session.json"
+            "testes/resultados/vm-2026-10-18/session.json",
+            "docs/VM-E24-2026-10-21.md"
           ],
-          "note": "Initial D01-D20 campaign has14 observed bounded cases,5 partial,1 inconclusive; not full25families/50acceptance cases. Eleven C18 subsets imported:10 matches/1 author-search difference,5inconclusive/1awaiting."
+          "note": "2026-10-21 E24: VM resumed with authorization; UI06/UI07/UI08/D07 observed on busca-escopos.pdf and compared with the own engine (counts equal except first Foxit search; order and bookmark-navigation divergences). Criterion stays open. Previous: Initial D01-D20 campaign has14 observed bounded cases,5 partial,1 inconclusive; not full25families/50acceptance cases. Eleven C18 subsets imported:10 matches/1 author-search difference,5inconclusive/1awaiting."
         },
         {
           "criterion": "Integrações autorizadas e casos excepcionais observados",
@@ -412,9 +413,10 @@
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
             "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
             "docs/VM-FOXIT-2026-10-18.md",
-            "testes/resultados/vm-2026-10-18/session.json"
+            "testes/resultados/vm-2026-10-18/session.json",
+            "docs/VM-E24-2026-10-21.md"
           ],
-          "note": "Initial offline observations remain partial; author-search follow-up corrected and validated403/403 own source Linux tests with11/11 imported metrics matching. Full UI interactions/UI01-UI10,cancel and print-output parity remain open; source correction documented in docs/BUSCA-AUTOR-COMENTARIOS.md."
+          "note": "2026-10-21 E24: VM resumed with authorization; UI06/UI07/UI08/D07 observed on busca-escopos.pdf and compared with the own engine (counts equal except first Foxit search; order and bookmark-navigation divergences). Criterion stays open. Previous: Initial offline observations remain partial; author-search follow-up corrected and validated403/403 own source Linux tests with11/11 imported metrics matching. Full UI interactions/UI01-UI10,cancel and print-output parity remain open; source correction documented in docs/BUSCA-AUTOR-COMENTARIOS.md."
         }
       ],
       "verified_fraction": 0.25,
@@ -957,9 +959,10 @@
             "docs/VM-FOXIT-2026-10-18.md",
             "testes/resultados/vm-2026-10-18/session.json",
             "docs/BUSCA-AUTOR-COMENTARIOS.md",
-            "testes/resultados/busca-autor-2026-10-18/review.json"
+            "testes/resultados/busca-autor-2026-10-18/review.json",
+            "docs/VM-E24-2026-10-21.md"
           ],
-          "note": "Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
+          "note": "2026-10-21 E24: VM resumed with authorization; UI06/UI07/UI08/D07 observed on busca-escopos.pdf and compared with the own engine (counts equal except first Foxit search; order and bookmark-navigation divergences). Criterion stays open. Previous: Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
         },
         {
           "criterion": "Resultados e divergências por família disponíveis",
@@ -969,9 +972,10 @@
             "docs/VM-FOXIT-2026-10-18.md",
             "testes/resultados/vm-2026-10-18/session.json",
             "docs/BUSCA-AUTOR-COMENTARIOS.md",
-            "testes/resultados/busca-autor-2026-10-18/review.json"
+            "testes/resultados/busca-autor-2026-10-18/review.json",
+            "docs/VM-E24-2026-10-21.md"
           ],
-          "note": "Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
+          "note": "2026-10-21 E24: VM resumed with authorization; UI06/UI07/UI08/D07 observed on busca-escopos.pdf and compared with the own engine (counts equal except first Foxit search; order and bookmark-navigation divergences). Criterion stays open. Previous: Bounded author-search difference corrected in source commit168381b;403/403 own Linux tests,17/17 own subsets,11/11 recorded exact-protocol metrics match. Historical difference preserved. Five inconclusive/one awaiting; complete families/cancel/print output and other divergences remain open."
         }
       ],
       "verified_fraction": 0.1,

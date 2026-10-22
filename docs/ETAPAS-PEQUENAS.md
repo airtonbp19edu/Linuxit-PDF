@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 2, Concluída: 26, Bloqueada: 1.
+Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 3, Concluída: 26, Bloqueada: 1.
 
 **Regras**
 
@@ -43,6 +43,7 @@ Atualizado em 2026-10-21T20:24:00-03:00. Pendente: 2, Concluída: 26, Bloqueada:
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Concluída |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Bloqueada |
+| E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
 
 ## Detalhes
 
@@ -381,6 +382,14 @@ Evidência: [docs/REA-PROVEDOR-BUSCA-2026-10-21.md](../docs/REA-PROVEDOR-BUSCA-2
 **Como verificar:** Comparações registradas com a mesma fixture; parada imediata se o relógio travar.
 
 **Situação:** Bloqueada.
+
+### E30 — Continuar a comparação com o Foxit
+
+**Objetivo:** UI01 com documento, UI02, UI05, UI09, UI10, D10–D20 restantes; repetir a primeira busca após reabrir (comentário ausente) e observar o processo residual ao fechar.
+
+**Como verificar:** Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos.
+
+**Situação:** Pendente.
 
 ## Decisões
 

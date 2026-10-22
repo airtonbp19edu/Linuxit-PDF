@@ -1,0 +1,459 @@
+{
+  "schema": "linuxit-offline-observations-v1",
+  "step": "E24",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "session": {
+    "observed_at_local": "2026-10-21T20:38:30-03:00/2026-10-21T21:00:00-03:00",
+    "environment": "Windows 10 (VM VirtualBox, snapshot 01-linuxit-configurado-offline, ligada pelo usuário) / Foxit 2025.2.0.33046 x86 em C:\\Linuxit\\Reference; sessão desktop-hui8ndv\\ia machine; controle pela tela (Claude computer use) com teclado virtual do Windows convidado, porque o teclado do host não chegava ao convidado e a área de transferência está desligada.",
+    "preflight": {
+      "reference_sha256_matches": true,
+      "inputs_equal_to_p03_0930": 10,
+      "ethernet": "Disconnected",
+      "smb_mappings": 0,
+      "foxit_running_before": false
+    },
+    "clock": {
+      "seconds_visible": true,
+      "samples": [
+        "20:38:30",
+        "20:38:40",
+        "20:38:51",
+        "20:48:18",
+        "20:52:25",
+        "20:55:11",
+        "20:58:38",
+        "20:59:59"
+      ],
+      "stopped": false,
+      "note": "Relógio do convidado avançou durante toda a sessão; nenhuma parada."
+    },
+    "postflight": {
+      "inputs_unchanged": true,
+      "foxit_process_after_window_close": {
+        "pid": 1220,
+        "still_running_at": [
+          "20:58:38",
+          "20:59:59"
+        ],
+        "window_closed_at": "~20:57:35",
+        "cpu_seconds_constant": 52.5,
+        "action": "nenhuma; processo não foi encerrado (regra de não matar processos automaticamente)"
+      }
+    }
+  },
+  "fixture": {
+    "file": "busca-escopos.pdf",
+    "sha256": "25b8f1cbb1b589a4460074144553869796f898b155c03527dc1e409d85217b01",
+    "page_text": [
+      "alvo texto ALVO alvoextra",
+      "outra página"
+    ],
+    "bookmarks": [
+      {
+        "title": "ALVO marcador",
+        "dest_page_index": 1
+      },
+      {
+        "title": "alvo externo",
+        "dest": null
+      }
+    ],
+    "comment": "comentário alvo (página 1)"
+  },
+  "cases": {
+    "UI06": {
+      "status": "observed",
+      "query": "alvo",
+      "default_state": {
+        "whole_words": false,
+        "case_sensitive": false,
+        "page_text": true,
+        "bookmarks": true,
+        "comments": true
+      },
+      "variants": {
+        "ambos_primeira_busca": {
+          "options": {
+            "include_page_text": 1,
+            "include_bookmarks": 1,
+            "include_comments": 1
+          },
+          "count": 5,
+          "order": [
+            "bookmark:ALVO marcador",
+            "bookmark:alvo externo",
+            "page_text:alvo",
+            "page_text:ALVO",
+            "page_text:alvo(alvoextra)"
+          ],
+          "evidence": "08-ui06-ambos.jpg",
+          "note": "Comentário ausente na primeira busca após abrir; na repetição apareceu. Causa não determinada."
+        },
+        "ambos_repeticao": {
+          "options": {
+            "include_page_text": 1,
+            "include_bookmarks": 1,
+            "include_comments": 1
+          },
+          "count": 6,
+          "order": [
+            "bookmark:ALVO marcador",
+            "bookmark:alvo externo",
+            "page_text:alvo",
+            "page_text:ALVO",
+            "page_text:alvo(alvoextra)",
+            "comment:comentário alvo"
+          ],
+          "evidence": "14-ui06-ambos-repeticao.jpg"
+        },
+        "so_paginas": {
+          "options": {
+            "include_page_text": 1,
+            "include_bookmarks": 0,
+            "include_comments": 0
+          },
+          "count": 3,
+          "first_result_navigates_to_page": 1,
+          "evidence": "09-ui06-so-paginas.jpg"
+        },
+        "so_marcadores": {
+          "options": {
+            "include_page_text": 0,
+            "include_bookmarks": 1,
+            "include_comments": 0
+          },
+          "count": 2,
+          "evidence": "10-ui06-so-marcadores.jpg"
+        },
+        "so_comentarios": {
+          "options": {
+            "include_page_text": 0,
+            "include_bookmarks": 0,
+            "include_comments": 1
+          },
+          "count": 1,
+          "selecting_result_opens": "Format panel (note style) for the annotation",
+          "evidence": "12-so-comentarios-format.jpg"
+        },
+        "nenhuma": {
+          "options": {
+            "include_page_text": 0,
+            "include_bookmarks": 0,
+            "include_comments": 0
+          },
+          "count": 0,
+          "message": "0 document(s) with 0 instance(s); sem aviso",
+          "evidence": "15-ui06-nenhuma.jpg"
+        }
+      },
+      "linuxit_engine": {
+        "ambos_primeira_busca": [
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvo"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "ALVO"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvoextra"
+          },
+          {
+            "source": "bookmark",
+            "page": 1,
+            "text": "ALVO marcador"
+          },
+          {
+            "source": "bookmark",
+            "page": null,
+            "text": "alvo externo"
+          },
+          {
+            "source": "comment",
+            "page": 0,
+            "text": "comentário alvo"
+          }
+        ],
+        "ambos_repeticao": [
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvo"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "ALVO"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvoextra"
+          },
+          {
+            "source": "bookmark",
+            "page": 1,
+            "text": "ALVO marcador"
+          },
+          {
+            "source": "bookmark",
+            "page": null,
+            "text": "alvo externo"
+          },
+          {
+            "source": "comment",
+            "page": 0,
+            "text": "comentário alvo"
+          }
+        ],
+        "so_paginas": [
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvo"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "ALVO"
+          },
+          {
+            "source": "page_text",
+            "page": 0,
+            "text": "alvoextra"
+          }
+        ],
+        "so_marcadores": [
+          {
+            "source": "bookmark",
+            "page": 1,
+            "text": "ALVO marcador"
+          },
+          {
+            "source": "bookmark",
+            "page": null,
+            "text": "alvo externo"
+          }
+        ],
+        "so_comentarios": [
+          {
+            "source": "comment",
+            "page": 0,
+            "text": "comentário alvo"
+          }
+        ],
+        "nenhuma": []
+      },
+      "comparison": [
+        {
+          "variant": "ambos_primeira_busca",
+          "foxit_count": 5,
+          "linuxit_count": 6,
+          "count_equal": false
+        },
+        {
+          "variant": "ambos_repeticao",
+          "foxit_count": 6,
+          "linuxit_count": 6,
+          "count_equal": true
+        },
+        {
+          "variant": "so_paginas",
+          "foxit_count": 3,
+          "linuxit_count": 3,
+          "count_equal": true
+        },
+        {
+          "variant": "so_marcadores",
+          "foxit_count": 2,
+          "linuxit_count": 2,
+          "count_equal": true
+        },
+        {
+          "variant": "so_comentarios",
+          "foxit_count": 1,
+          "linuxit_count": 1,
+          "count_equal": true
+        },
+        {
+          "variant": "nenhuma",
+          "foxit_count": 0,
+          "linuxit_count": 0,
+          "count_equal": true
+        }
+      ],
+      "divergences": [
+        "Ordem: o Foxit (Relevance Ranking) lista marcadores antes do texto e o comentário por último; o Linuxit lista texto, marcadores e comentário.",
+        "Primeira busca do Foxit após abrir omitiu o comentário (5 em vez de 6); repetição deu 6."
+      ],
+      "ids_7911_7913": "Não resolvido dinamicamente: sem ligação entre caixa e ID nesta sessão."
+    },
+    "UI07": {
+      "status": "observed",
+      "visible_only_when": "Escopo \"Currently Selected Indexes\" + modo \"Match All of the words\"",
+      "toggle": "liga/desliga sem alterar outras opções visíveis",
+      "index_search_executed": false,
+      "other_index_fields": "Use these additional criteria (2 linhas de critérios)",
+      "evidence": "22-ui07-proximidade.jpg"
+    },
+    "UI08": {
+      "status": "observed",
+      "highlight_all_on": "3 ocorrências realçadas ao mesmo tempo (alvo, ALVO e o prefixo alvo de alvoextra); a atual em tom mais escuro; clicar em outro resultado muda só a atual",
+      "new_search_clears_page_highlights": true,
+      "highlight_all_off": "só a ocorrência atual realçada",
+      "evidence": [
+        "16-ui08-destacar-todas.jpg",
+        "17-ui08-nova-busca-limpa.jpg",
+        "18-ui08-sem-destaque.jpg"
+      ]
+    },
+    "D07": {
+      "status": "observed",
+      "bookmark_result_click": "seleciona o marcador no painel Marcadores; a página exibida não muda (continua na página 1, embora o destino de ALVO marcador seja a página 2); duplo clique idem",
+      "unresolved_bookmark": "alvo externo é listado e selecionado sem navegação",
+      "linuxit": "_select_search_hit chama goto_page(hit['page']) para marcador com destino: navega para a página 2 — divergência",
+      "evidence": [
+        "11-d07-alvo-externo.jpg",
+        "23-d07-duplo-clique-marcador.jpg"
+      ]
+    }
+  },
+  "match_modes_current_document": [
+    "Match exact word or phrase",
+    "Match any of the words",
+    "Looks like search pattern"
+  ],
+  "match_modes_index": [
+    "Match exact word or phrase",
+    "Match any of the words",
+    "Match All of the words"
+  ],
+  "search_locations": [
+    "In the current PDF document",
+    "All open PDF documents",
+    "All PDF document in",
+    "Currently Selected Indexes",
+    "Select Index..."
+  ],
+  "more_options": [
+    "Include Attachments",
+    "Stemming",
+    "Highlight All Text"
+  ],
+  "private_evidence": [
+    {
+      "file": "01-relogio-203830.jpg",
+      "sha256": "bb74a9ac98f8586acf4cf7b2b6d433cfe961168c2d2aa20efbaaabaff7c99dc7"
+    },
+    {
+      "file": "02-relogio-203840.jpg",
+      "sha256": "a4b9ae15bb9144a6449d397261010ef9afeba974e723c2a887b3e6f411ca2111"
+    },
+    {
+      "file": "03-preflight-hashes.jpg",
+      "sha256": "249a8992364bfb3dbc0b69a3a851aada8df849c1e623a439c0932c8a4bac8487"
+    },
+    {
+      "file": "04-preflight-rede.jpg",
+      "sha256": "2fc012da582f5733028f5b5ae4d9dc9db917fa5f024139cceb1b9191d342c62c"
+    },
+    {
+      "file": "05-foxit-aberto.jpg",
+      "sha256": "897cf76c63e56d8182924943cdb916f8c6ddb7ccee3544da049615b88f09bbd1"
+    },
+    {
+      "file": "06-menu-busca.jpg",
+      "sha256": "39ef49961d7e62aba6ba93d17c7b0c3052a03ff341d4717d9744c12e2b56e3a4"
+    },
+    {
+      "file": "07-ui06-estado-inicial.jpg",
+      "sha256": "38082ee189fc0aeec0cfa9420815ed0944e0a3964af59a55d2a4000c0dc72ccf"
+    },
+    {
+      "file": "08-ui06-ambos.jpg",
+      "sha256": "908d4e2c53409c3222ee762d5ec5fd2e90a1dd69b357b826ce0d7e98c7a14dc4"
+    },
+    {
+      "file": "09-ui06-so-paginas.jpg",
+      "sha256": "940594defcea6072c08c86da2436a648e078b8541fe00be7d014e0c81993bcaf"
+    },
+    {
+      "file": "10-ui06-so-marcadores.jpg",
+      "sha256": "8d01a5f06bd60964d706f64bcf666e33f3c67294783dd15aeeb75b4cc8de348c"
+    },
+    {
+      "file": "11-d07-alvo-externo.jpg",
+      "sha256": "6cadf2a64595e2f805e2e76c757c725e0b638170fab315a749717a94c49d57a5"
+    },
+    {
+      "file": "12-so-comentarios-format.jpg",
+      "sha256": "fbe5fd8789373b6bfa58b31876de1a5ea3a8a3d4c50fc780f8b6b5f1d4395be1"
+    },
+    {
+      "file": "13-so-comentarios.jpg",
+      "sha256": "550331cec4061ab149985d5116c5b809d0055b71d70b879a688a3520705b65a3"
+    },
+    {
+      "file": "14-ui06-ambos-repeticao.jpg",
+      "sha256": "7eb86c9df39f43899097abecf510c9e046a98e7fcfe82ef25c977907508ff872"
+    },
+    {
+      "file": "15-ui06-nenhuma.jpg",
+      "sha256": "d08955f3826b5f3482e6660ea4b6baa35db445d08f54ab3cfa8a00e4b4b25f2c"
+    },
+    {
+      "file": "16-ui08-destacar-todas.jpg",
+      "sha256": "cfa103194aaf3a27958480c28791b4464b9d0b8617dc21c8975ebf097c902b05"
+    },
+    {
+      "file": "17-ui08-nova-busca-limpa.jpg",
+      "sha256": "a9b36257ecc39784e47b21d28bed270a40843567b137a8dff24e47bcb9442d15"
+    },
+    {
+      "file": "18-ui08-sem-destaque.jpg",
+      "sha256": "8dd95508ebfeafe205cf75e38ead0c4f44c2dcb6a84151a13f3a5365d27e833d"
+    },
+    {
+      "file": "19-modos-documento.jpg",
+      "sha256": "9815145d03a9ab875953ba55cbbad89a6cbad8ce6746051ec6e6e0e35a7e0459"
+    },
+    {
+      "file": "20-locais-busca.jpg",
+      "sha256": "ed0598051060354b0c5fec1d2607bc531328329ee0e048abab18976fbd2acd09"
+    },
+    {
+      "file": "21-indice-criterios.jpg",
+      "sha256": "d5ca265d09bb69d613df89290c8547ac2e6f6ae838e7e0b7b680839aa3a72d39"
+    },
+    {
+      "file": "22-ui07-proximidade.jpg",
+      "sha256": "7c25eb8cf1c29facc0b52c08bbd8a7f1a69747cb67fe476d3de6918d5fd00f5b"
+    },
+    {
+      "file": "23-d07-duplo-clique-marcador.jpg",
+      "sha256": "9960220b66e99555b0180236593a8d25f8378e1a067674f22d0a2a3610b219f3"
+    },
+    {
+      "file": "24-postflight-processo.jpg",
+      "sha256": "e384b68197f2d76017da7680b4ae1cb9c03502b6bea6015803bea270c56c1f03"
+    },
+    {
+      "file": "25-postflight-hashes.jpg",
+      "sha256": "39d8d5de402db007733560f17f3a70e67726e5da7ba89584293e5f428ad8d39d"
+    },
+    {
+      "file": "26-processo-residual-205959.jpg",
+      "sha256": "abd8f208697ab92c8675fd933e18f6b368a6d61a548a4603c629654c715ebdec"
+    }
+  ],
+  "limitations": [
+    "Observação visual pela tela; sem coletor no convidado nesta sessão.",
+    "Relógio do convidado sem uso para medir desempenho.",
+    "Não é paridade integral da família de busca."
+  ]
+}

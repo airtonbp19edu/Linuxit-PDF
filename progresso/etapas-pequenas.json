@@ -467,6 +467,15 @@
       "title": "Retomar a comparação com o Foxit",
       "goal": "Somente com autorização: preflight, controle do relógio e observador novo; continuar D01–D20 e UI01–UI10.",
       "verification": "Comparações registradas com a mesma fixture; parada imediata se o relógio travar."
+    },
+    {
+      "id": "E30",
+      "block": "VM",
+      "requires": "VM e autorização do usuário",
+      "status": "pendente",
+      "title": "Continuar a comparação com o Foxit",
+      "goal": "UI01 com documento, UI02, UI05, UI09, UI10, D10–D20 restantes; repetir a primeira busca após reabrir (comentário ausente) e observar o processo residual ao fechar.",
+      "verification": "Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos."
     }
   ],
   "decisions": [
