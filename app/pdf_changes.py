@@ -398,14 +398,8 @@ def _apply(writer, operation):
             popup[NameObject('/Rect')]=ArrayObject(FloatObject(v) for v in rect);popup[NameObject('/Open')]=BooleanObject(operation['open'])
             if note.get('/Subtype')=='/Text':note[NameObject('/Open')]=BooleanObject(operation['open'])
         else:
-            text=operation['text'];author=operation['author']
-            _require(isinstance(text,str) and len(text.encode('utf-8'))<=MAX_TEXT_BYTES and isinstance(author,str) and len(author.encode('utf-8'))<=4096,'Comentário ou autor inválido.')
-            if note.get('/Subtype') in ('/FreeText','/Stamp'):
-                replacement=create_extra_annotation(writer,list(map(float,page.cropbox)),dict(kind='add-freetext' if note['/Subtype']=='/FreeText' else 'add-stamp',rect=list(map(float,note['/Rect'])),text=text))
-                note[NameObject('/AP')]=replacement['/AP']
-            note[NameObject('/Contents')]=TextStringObject(text)
-            if author:note[NameObject('/T')]=TextStringObject(author)
-            else:note.pop('/T',None)
+            from annotation_editing import update_annotation_comment
+            update_annotation_comment(writer,page,index,operation['text'],operation['author'])
     elif kind == 'add-ink':
         _require(set(operation)=={'kind','page','paths','text'},'Opções de desenho inválidas.')
         page=_page(writer,operation['page'])
