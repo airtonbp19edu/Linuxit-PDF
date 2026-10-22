@@ -12,6 +12,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import re
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'app'))
@@ -30,6 +31,12 @@ def sha(path):
 
 def nsis(value):
     return str(value).replace('$','$$').replace('"','$\\"').replace('\n','')
+
+def source_revision():
+    revision=os.environ.get('GITHUB_SHA')
+    if not revision:revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+    if not re.fullmatch('[0-9a-f]{40}',revision):raise ValueError('Source revision must be a full commit SHA')
+    return revision
 
 
 CACHE_GROUPS={
@@ -51,6 +58,7 @@ def cache_group(relative):
 def cache_inputs(prefix,ownership,group):
     generator,directory,pattern=CACHE_GROUPS[group]
     sources=[prefix/generator,*sorted((prefix/directory).rglob(pattern))]
+    if group=='schemas':sources.extend(sorted((prefix/directory).rglob('*.gschema.override')))
     records=[]
     for path in sources:
         if not path.is_file():continue
@@ -122,7 +130,7 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
                 owner='python-quickjs-ng==0.15.1.1 (compiled UCRT64 overlay)'
             else:raise ValueError('Runtime sem proveniência de pacote: '+relative)
         records.append(dict(path=relative,bytes=path.stat().st_size,sha256=sha(path),package=owner,source=source,generated_from=group))
-    manifest=dict(schema='linuxit-windows-payload-v1',version=VERSION,development=True,source_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+    manifest=dict(schema='linuxit-windows-payload-v1',version=VERSION,development=True,source_revision=source_revision(),
                   native_windows=True,architecture='x86_64',runtime='MSYS2 UCRT64',administrator_required=False,
                   records=records,packages=packages,generated_cache_groups=generated,quickjs='python-quickjs-ng==0.15.1.1',
                   limitations=['Windows development candidate; unsigned installer.', 'Original Foxit and whole-family parity are not tested by this packaging.'])
