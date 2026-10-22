@@ -21,9 +21,9 @@ começar, avisar na nota de continuidade quem pegou a tarefa, para os dois não 
 
 | # | Tarefa | Critério que pode fechar | Pontos | Quem pode fazer |
 |---|---|---|---:|---|
-| A1 | Busca: thread `+0x1e3c` e laço de busca, chamadores de `0x1770e90`, campos `+3/+6/+7/+0xc/+0x10` das opções, algoritmo `0x1003f6b0` da DLL e diagrama final do fluxo | Etapa 8, “Fluxo completo de busca” | 1,74 | Codex no PC (REA MCP) ou Claude na nuvem |
-| A2 | Impressão: contexto de `0x138` bytes, serviços de imagem, concorrência e diagrama final | Etapa 8, “Fluxo completo de impressão” | 1,74 | Codex ou Claude |
-| A3 | Diagramas e estados por subsistema, a partir das evidências já preservadas | Etapa 9, “Diagramas e estados” | 1,27 | Qualquer um (não precisa do Foxit) |
+| A1 ✅ (22/10, Claude) | Busca: thread `+0x1e3c` e laço de busca, chamadores de `0x1770e90`, campos `+3/+6/+7/+0xc/+0x10` das opções, algoritmo `0x1003f6b0` da DLL e diagrama final do fluxo | Etapa 8, “Fluxo completo de busca” | 1,74 | Codex no PC (REA MCP) ou Claude na nuvem |
+| A2 ✅ (22/10, Claude) | Impressão: contexto de `0x138` bytes, serviços de imagem, concorrência e diagrama final | Etapa 8, “Fluxo completo de impressão” | 1,74 | Codex ou Claude |
+| A3 ✅ (22/10, Claude) | Diagramas e estados por subsistema, a partir das evidências já preservadas | Etapa 9, “Diagramas e estados” | 1,27 | Qualquer um (não precisa do Foxit) |
 | A4 | Entradas, saídas e erros detalhados por funcionalidade nas 25 famílias da especificação | Etapa 12 | 1,5 | Qualquer um |
 | A5 | Montar o candidato 0.1.19 com a E31, mantendo os workflows iguais aos da `main` | — | — | Claude ou Codex; publicar só com a confirmação do usuário |
 | A6 | Desenvolvimento próprio (ver a lista abaixo) | Etapas 15 e 16, parciais | — | Qualquer um |

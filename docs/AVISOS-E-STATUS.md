@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 08:37 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -154,3 +154,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/22 às 00:43** — Codex configurou REA6.7.0 somente neste cliente, preservou demais configurações e conferiu backup. Skill42 instalada; doctor Codex/Ghidra saudável; handshake MCP,207 ferramentas e binary_session aprovados com cliente independente. Ghidra Windows disponível para estática; anotação/renomeação do banco indisponíveis neste perfil. Precisa reiniciar o Codex para o chat carregar ferramentas. Recibo e guia publicados nesta rodada; sem análise de alvo, VM ou novo pacote.
 - **2026/10/22 às 00:45** — Correção do aviso anterior: o REA **está registrado no Codex**. O próprio Codex aplicou o registro às 00:39 (`[mcp_servers.rea]` no `config.toml`, doctor com registro `aligned`, teste MCP feito). Lista do que pode ser feito agora, compartilhada com o Codex: [O-QUE-FAZER-AGORA-2026-10-22.md](O-QUE-FAZER-AGORA-2026-10-22.md).
+- **2026/10/22 às 08:37** — Tarefas **A1, A2 e A3** feitas (análise estática na nuvem, Foxit não executado). Busca: fluxo do diálogo e do provedor ligado de ponta a ponta e identificada a thread de segundo plano que limpa a lista de resultados (nome real no binário: `CFindToolDlgAdv::ClearDataFindThreadProc`). Impressão: hierarquia de classes mapeada (gerente, impressão com diálogo/silenciosa/lote/fatura, drivers GDI e PostScript, marca d'água). Diagramas dos dois subsistemas consolidados. 7 funções novas conferidas byte a byte (catálogo 343). Documentos: [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md), [REA-FLUXO-IMPRESSAO-2026-10-22.md](REA-FLUXO-IMPRESSAO-2026-10-22.md). Os três critérios ganharam evidência mas seguem parciais, porque a algoritmia interna (busca Lucene e renderização/envio da impressão) é lacuna declarada; o índice continua 45,13%.
