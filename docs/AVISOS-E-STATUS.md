@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/21 às 21:57 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 00:00 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -23,7 +23,7 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 ### Em andamento
 - **E29 concluída:** o erro 403 ao publicar foi resolvido e comprovado com a publicação automática da 0.1.18. Detalhes em [PRIORIDADE-E29-ERRO-403-RELEASE.md](PRIORIDADE-E29-ERRO-403-RELEASE.md).
-- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E20, E22, E24 a E29 e E31 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E21 (atualizar o REA no seu PC), E23 (equipamentos reais) e E30 (continuar a comparação na VM).
+- Lista de etapas pequenas em [ETAPAS-PEQUENAS.md](ETAPAS-PEQUENAS.md): E01 a E22, E24 a E29 e E31 concluídas (0.1.17 publicada na E11, 0.1.18 na E29). Pendentes: E23 (equipamentos reais) e E30 (continuar a comparação na VM).
 - **E22 concluída:** a análise estática passou a rodar na nuvem do Claude, com o Foxit e o Ghidra copiados do seu PC só para leitura; não precisa da VM. Cadeia do provedor do índice de busca ligada em [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md). **E24 concluída:** a VM foi retomada com a sua autorização e o primeiro bloco de comparação foi feito ([VM-E24-2026-10-21.md](VM-E24-2026-10-21.md)). Parado, aguardando a sua próxima ordem.
 
 ### Falta
@@ -148,3 +148,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/21 às 21:29** — **E31 concluída** (decisão D05, sua resposta das 21:11). A busca do Linuxit agora lista marcadores, depois o texto e por último os comentários, como o Foxit; e clicar num resultado de marcador só seleciona o marcador, sem mudar de página (clicar no próprio marcador continua levando à página). Suíte própria 666/666 e aceitação 81/81. Explicado o processo do Foxit que fica aberto depois de fechar a janela: é comportamento do próprio Foxit, isolado na VM; não afeta o seu PC nem o Linuxit, mas pode influenciar o próximo teste, e por isso a sua autorização foi pedida para encerrá-lo no início da E30.
 - **2026/10/21 às 21:36** — Você autorizou (D06) encerrar na VM o processo do Foxit que fica ativo após fechar a janela, no início da E30 e entre casos. Passagem para o Codex em [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md). Como o índice pode subir: os critérios mais próximos de fechar são os fluxos de busca e de impressão (1,74 ponto cada, só análise estática), diagramas por subsistema (1,27), entradas/saídas/erros por funcionalidade (1,5), cenários locais D01–D20 e interações UI01–UI10 na VM (2,4 + 3,0) e, ao final, fase A consolidada (2,0) e auditoria final (0,5): cerca de 14 pontos, levando o índice a uns 59%. O restante (cerca de 41 pontos) está em critérios com "todas as famílias", que só fecham com o universo definido (25 famílias e 116 operações) e com a comparação completa na VM.
 - **2026/10/21 às 21:57** — CI do Debian 13 aprovado na E31 ([39702160473](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39702160473), `b75c8d6`). Duas execuções anteriores falharam porque dois verificadores do CI (campanha preservada e teste rápido de interface) ainda esperavam o comportamento antigo da busca; ambos foram ajustados à decisão D05. Detalhes em [CI-FALHAS-E-CORRECOES.md](CI-FALHAS-E-CORRECOES.md).
+- **2026/10/22 às 00:00** — **E21 concluída.** Você rodou o instalador no PC às 23:54. O log confirma o REA 6.7.0 (repositório oficial morluto/rea) e o diagnóstico do Ghidra 12.1.4 saudável, com o Java 21. O passo final (registrar o REA no Codex e no app Claude) estava aguardando na janela do instalador.

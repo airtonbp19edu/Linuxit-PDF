@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-21T21:29:00-03:00",
+  "updated_at_local": "2026-10-22T00:00:00-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -425,10 +425,15 @@
       "id": "E21",
       "block": "PC Windows",
       "requires": "PC do usuário",
-      "status": "pendente",
+      "status": "concluida",
       "title": "Atualizar o REA no PC",
       "goal": "O usuário executa analysis-local\\rea-instalacao\\instalar-rea.cmd; conferir o log.",
-      "verification": "Log com REA 6.7.0 e doctor do Ghidra saudável."
+      "verification": "Log com REA 6.7.0 e doctor do Ghidra saudável.",
+      "commit": "a1647c1",
+      "evidence": [
+        "testes/resultados/e21-rea-pc/review.json"
+      ],
+      "note": "Usuário executou analysis-local\\rea-instalacao\\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador."
     },
     {
       "id": "E22",

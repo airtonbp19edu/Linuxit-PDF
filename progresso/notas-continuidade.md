@@ -3571,3 +3571,10 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - 39700044694 falhou (campanha preservada 16/17: plano-comparativo C18-D10 esperava texto primeiro) → expectativa reordenada (19dd72a).
 - 39701199175 falhou só na fumaça GTK (smoke_linuxit esperava navegação ao resultado de marcador) → fumaça ajustada a D05.
 - 39702160473 aprovado em b75c8d6. check_intermediate linux local: 666 testes, fumaça 5/5.
+
+
+## 2026/10/22 às 00:00 (America/Sao_Paulo, UTC-03:00) — E21 concluída — REA 6.7.0 no PC do usuário
+
+- Log no PC: analysis-local/rea-instalacao/instalacao-rea-20261021-235457.log (fora do Git); resumo sanitizado em testes/resultados/e21-rea-pc/review.json com SHA-256 do log.
+- Doctor Ghidra: 10 checagens ok; environment_healthy=false por Hopper/IDA/JADX/Kuna ausentes e registros desatualizados (antigravity pedia 6.5.0; claude_code, claude_desktop, codex, gemini_cli e vscode sem registro) antes do rea setup.
+- Passo 6 (rea setup --client codex --client claude_desktop) pendente na janela no momento da conferência; depois dele, reiniciar o Codex. Se o registro do app Claude for refeito, fechar o app por completo antes (o app aberto pode regravar a configuração).

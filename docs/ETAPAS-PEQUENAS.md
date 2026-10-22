@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-21T21:29:00-03:00. Pendente: 3, Concluída: 28.
+Atualizado em 2026-10-22T00:00:00-03:00. Pendente: 2, Concluída: 29.
 
 **Regras**
 
@@ -39,7 +39,7 @@ Atualizado em 2026-10-21T21:29:00-03:00. Pendente: 3, Concluída: 28.
 | E18 | Corpus de criptografia | Robustez | nada | Concluída |
 | E19 | Ordem de leitura em duas colunas | Robustez | nada | Concluída |
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Concluída |
-| E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Pendente |
+| E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Concluída |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Concluída |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
@@ -354,7 +354,11 @@ Evidência: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md). Commit `c
 
 **Como verificar:** Log com REA 6.7.0 e doctor do Ghidra saudável.
 
-**Situação:** Pendente.
+**Situação:** Concluída.
+
+Usuário executou analysis-local\rea-instalacao\instalar-rea.cmd em 21/10 às 23:54. Log conferido: Node 24.22.0, pacote rea-agents 6.7.0 do repositório morluto/rea, instalado 6.7.0; rea doctor --provider ghidra: healthy=true (Ghidra 12.1.4, decompilador nativo, Temurin JDK 21.0.12.1, controles nativos do Windows). environment_healthy=false só por provedores não usados e registros de clientes ainda antigos. O registro no Codex e no app Claude (passo 6) estava aguardando na janela do instalador.
+
+Evidência: [testes/resultados/e21-rea-pc/review.json](../testes/resultados/e21-rea-pc/review.json). Commit `a1647c1`.
 
 ### E22 — Estática: chamadores e tipos da busca
 
