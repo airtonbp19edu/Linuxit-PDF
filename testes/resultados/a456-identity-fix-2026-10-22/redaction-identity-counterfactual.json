@@ -1,0 +1,25 @@
+{
+  "schema": "linuxit-redaction-identity-control-v1",
+  "control": "Actual old/new own method AST with stub UI and real vector worker; not a GTK execution",
+  "reference_foxit_executed": false,
+  "results": [
+    {
+      "version": "before",
+      "output_created": true,
+      "source_replacement_preserved": true,
+      "messages": [
+        "Aplicando redação… Se interromper, confira o destino antes de repetir.",
+        "Redação aplicada em result.pdf: 1 área(s), página(s) 1 com objetos inteiros removidos, sem rasterizar. Original e rascunho preservados."
+      ]
+    },
+    {
+      "version": "after",
+      "output_created": false,
+      "source_replacement_preserved": true,
+      "messages": [
+        "Aplicando redação… Se interromper, confira o destino antes de repetir.",
+        "O PDF mudou. Reabra o documento antes da redação."
+      ]
+    }
+  ]
+}

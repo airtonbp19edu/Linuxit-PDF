@@ -1,0 +1,16 @@
+{
+  "schema": "linuxit-atspi-text-v1",
+  "passed": true,
+  "observed": {
+    "name": "Texto extra\u00eddo da p\u00e1gina PDF",
+    "role": "text",
+    "text": "Linuxit synthetic accessible text 2026"
+  },
+  "stderr": "",
+  "cross_process": true,
+  "foxit_executed": false,
+  "physical_screen_reader_test": false,
+  "limitations": [
+    "Synthetic widget text; no Orca/physical desktop or complete PDF reading-order acceptance."
+  ]
+}
