@@ -253,7 +253,7 @@ Pesquisa em títulos de marcadores; leitura e navegação não equivalem a ediç
 
 **Critérios planejados**
 
-- **S12-05-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois títulos contendo alvo, só marcadores. Ação: Pesquisar alvo e selecionar os resultados. Esperado: Dois hits; um aponta à segunda página e outro permanece page=null; rects=[] em ambos. Execução própria em 2026-10-20T22:35:36-03:00, revisão `2b49d6864839`, fronteira PDFWindow find bar + _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e29-0.1.18.json).
+- **S12-05-1** (nominal, contrato próprio atual, `passed`): dado Fixture com dois títulos contendo alvo, só marcadores. Ação: Pesquisar alvo, selecionar os resultados e ativar o marcador no painel. Esperado: Dois hits; um aponta à segunda página e outro permanece page=null; rects=[] em ambos. Selecionar o resultado só seleciona o marcador (página não muda, como no Foxit em E24); ativar o marcador leva à segunda página. Execução própria em 2026-10-20T22:35:36-03:00, revisão `2b49d6864839`, fronteira PDFWindow find bar + _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e29-0.1.18.json).
 - **S12-05-2** (exception, contrato próprio atual, `passed`): dado Hit de marcador sem destino local. Ação: Selecionar esse resultado. Esperado: Não fabricar página de destino ou retângulo de destaque. Execução própria em 2026-10-20T22:35:39-03:00, revisão `2b49d6864839`, fronteira PDFWindow _select_search_hit: [resultado](../testes/resultados/aceitacao/2026-10-20/execucao-ubuntu24-e29-0.1.18.json).
 
 **Lacunas da referência Foxit**

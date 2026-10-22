@@ -202,12 +202,19 @@ def bookmark_hits(ctx):
         hits = _bookmark_search(w)
         summary = [(h['source'], h['page'], h['rects']) for h in hits]
         check(summary == [('bookmark', 1, []), ('bookmark', None, [])], f'hits: {summary}')
+        # Decision D05 (21/10/2026), after the Foxit observation of E24: selecting a bookmark
+        # result only selects the bookmark; activating the bookmark row navigates.
         w._select_search_hit(0)
-        check(wait_for(lambda: w.page == 1 and w.displayed_page == 1), 'hit de marcador não levou à segunda página')
+        check(wait_for(lambda: w.bookmark_list.get_selected_row() is not None), 'marcador não selecionado no painel')
+        settle(.5)
+        check(w.page == 0 and w.displayed_page == 0, 'hit de marcador mudou a página')
+        w._bookmark_activated(w.bookmark_list, w.bookmark_list.get_selected_row())
+        check(wait_for(lambda: w.page == 1 and w.displayed_page == 1), 'ativar o marcador não levou à segunda página')
         w._select_search_hit(1)
         settle(.5)
         check(w.page == 1 and w.search_pos == 1, 'hit sem destino moveu a página')
-        return dict(hits=[[s, None if p is None else p + 1, r] for s, p, r in summary], selected_pages=[2, 2])
+        return dict(hits=[[s, None if p is None else p + 1, r] for s, p, r in summary],
+                    selected_pages=[1, 2], activated_bookmark_page=2)
 
 
 @case('S12-05-2', 'PDFWindow _select_search_hit')
