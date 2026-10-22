@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-22T00:44:19.700001-03:00. Pendente: 2, Concluída: 29.
+Atualizado em 2026-10-22T18:51:40-03:00. Pendente: 2, Concluída: 29.
 
 **Regras**
 
@@ -11,6 +11,7 @@ Atualizado em 2026-10-22T00:44:19.700001-03:00. Pendente: 2, Concluída: 29.
 - Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.
 - Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.
 - Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.
+- Retomada A4/A5/A6 em 22/10/2026: seguir os passos de docs/ORDEM-CODEX-2026-10-22.md, com confirmação do usuário entre passos. Passo1 salvo em ramo de segurança; suíte/candidato/publicação ainda pendentes.
 
 | # | Etapa | Bloco | Precisa de | Situação |
 |---|---|---|---|---|

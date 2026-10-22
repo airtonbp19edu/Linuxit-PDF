@@ -2,7 +2,9 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 08:37 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00)
+
+**Retomada A4–A6:** Passo1 (backup e integração) preparado em `codex/a456-wip`; a sincronização será conferida no recibo local. A main conserva a entrega anterior. A4:116 contratos; A5:candidato ainda não construído; A6:implementação parcial sem suíte completa nova. Seguir a [ordem do Claude](ORDEM-CODEX-2026-10-22.md), perguntando antes de cada próximo passo. S1 permanece aberta. [Checkpoint detalhado](A456-EXECUCAO-2026-10-22.md).
 
 ### Feito
 
@@ -157,3 +159,15 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/22 às 08:37** — Tarefas **A1, A2 e A3** feitas (análise estática na nuvem, Foxit não executado). Busca: fluxo do diálogo e do provedor ligado de ponta a ponta e identificada a thread de segundo plano que limpa a lista de resultados (nome real no binário: `CFindToolDlgAdv::ClearDataFindThreadProc`). Impressão: hierarquia de classes mapeada (gerente, impressão com diálogo/silenciosa/lote/fatura, drivers GDI e PostScript, marca d'água). Diagramas dos dois subsistemas consolidados. 7 funções novas conferidas byte a byte (catálogo 343). Documentos: [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md), [REA-FLUXO-IMPRESSAO-2026-10-22.md](REA-FLUXO-IMPRESSAO-2026-10-22.md). Os três critérios ganharam evidência mas seguem parciais, porque a algoritmia interna (busca Lucene e renderização/envio da impressão) é lacuna declarada; o índice continua 45,13%.
 - **2026/10/22 às 12:07** — A pedido do usuário, ordem detalhada para o Codex em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md), com a lista completa do que falta no projeto. Conferido na pasta do PC (só leitura): o Codex escreveu A4 (contratos das 116 operações), A5 (versão 0.1.19) e A6 (JavaScript isolado, XFA de fluxo próprio, DSS/OCSP/carimbo, redação vetorial, edição de recuperado, OCR, conversões, instalador Windows) entre 08:30 e 08:48, mas **nada tem commit, nada foi enviado e o CI não rodou**. O primeiro passo da ordem é salvar e sincronizar esse trabalho. A1–A3 seguem concluídas (Claude). Índice 45,13%; 19 critérios abertos, 54,87 pontos.
 - **2026/10/22 às 18:47** — S1 (algoritmo interno da busca) pedida ao Claude: **não concluída**. A análise foi interrompida antes de produzir resultado; nenhuma função nova foi catalogada, nenhum critério mudou e o índice continua 45,13%. A S1 segue aberta na [ordem do Codex](ORDEM-CODEX-2026-10-22.md).
+
+## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
+
+Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.
+
+Atualização do Claude às18:47: S1 não concluída e livre; levantamento interrompido sem resultado novo. A1/A2/A3 anteriores significam recortes estáticos/diagramas, não critérios amplos concluídos. S1–S4 seguem abertos conforme a ordem. Índice/paridade sem mudança nesta rodada.
+
+Backup A4/A6 inclui os módulos, testes, scripts, workflows e documentos próprios; arquivos em analysis-local, caches e originais permanecem ignorados. Restos de annotation_editing.py/annotation_geometry.py são WIP preservado, ainda sem integração/testes finais: não contar como edição universal entregue. A4 tem 116 contratos/25 famílias e validação local preservada; isso não fecha o critério amplo12. A5 tem fonte0.1.19 preparada, mas nenhum Flatpak0.1.19 gerado/aprovado/publicado. A6 permanece parcial: os testes portáveis preservados não substituem Linux/GTK/Flatpak/Windows.
+
+Lacunas concretas do Passo2: conversion_window usa runner.close inexistente (usar shutdown), captura hash ao executar em vez de ao abrir e precisa proteger ciclo de vida/identidade; corrigir antes de CI. Rever leitura limitada do backend de conversão. Finalizar/testar integração de anotações, registrar proveniência/hash fixo QuickJS e conferir catálogo/arquitetura/contratos. Há validação de arquitetura anterior, não é aprovação da suíte. Nenhuma nova execução de suíte completa, aceitação, CI, original ou VM neste Passo1. Nenhuma release criada/apagada, nenhuma alteração de segurança do host.
+
+Próximo passo, somente após resposta do usuário: Passo2 da ORDEM-CODEX (fechar lacunas e verificadores). Depois pedir autorização para Passo3 (main/CI); candidato e publicação têm suas próprias paradas. Conferir recibo local analysis-local/a456-step1-sync.json para SHA e igualdade remota após push.

@@ -109,24 +109,5 @@ def move_annotation(page,note,dx,dy):
 
 
 def conversation_members(document,page,index):
-    annots=page.get('/Annots',[]);objects=[ref.get_object() for ref in annots]
-    _require(type(index) is int and 0<=index<len(objects),'Comentário de destino inválido.')
-    from pdf_comments import COMMENT_TYPES
-    _require(objects[index].get('/Subtype') in COMMENT_TYPES,'Destino não é comentário suportado.')
-    members={id(objects[index])};changed=True
-    while changed:
-        changed=False
-        for note in objects:
-            related=[note.get(k) for k in ('/IRT','/Parent')]
-            if id(note) not in members and any(r is not None and id(r.get_object()) in members for r in related):members.add(id(note));changed=True
-            popup=note.get('/Popup')
-            if id(note) in members and popup is not None and id(popup.get_object()) not in members:members.add(id(popup.get_object()));changed=True
-        _require(len(members)<=2000,'Conversa acima de 2000 objetos.')
-    for other_page in document.pages:
-        for ref in other_page.get('/Annots',[]):
-            note=ref.get_object()
-            if id(note) in members:
-                _require(note.get('/Subtype') in set(COMMENT_TYPES)|{'/Popup'} and not int(note.get('/F',0))&(64|128|512),'Conversa contém objeto bloqueado ou não suportado.')
-            elif other_page is not page:
-                _require(not any(note.get(k) is not None and id(note[k]) in members for k in ('/IRT','/Parent')),'Conversa ligada a outra página não pode ser excluída neste fluxo.')
-    return members
+    from annotation_editing import conversation_members as validated_members
+    return validated_members(document,page,index)

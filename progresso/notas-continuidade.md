@@ -3623,3 +3623,15 @@ Pedido do usuário (12:04): ordem minuciosa para o Codex continuar e lista de to
 ## 2026/10/22 às 18:47 (America/Sao_Paulo, UTC-03:00) — S1 não concluída pelo Claude
 
 Pedido do usuário: fazer a S1. O Claude conferiu o hash da fxLuceneLib.dll (20908415…82e1) e começou o levantamento, mas a análise foi interrompida antes de produzir resultado. Nenhuma semente, catálogo, critério ou código foi alterado. S1 continua aberta e livre na ORDEM-CODEX-2026-10-22 (Parte 3.2). O Codex não deve contar a S1 como feita.
+
+## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
+
+Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.
+
+Atualização do Claude às18:47: S1 não concluída e livre; levantamento interrompido sem resultado novo. A1/A2/A3 anteriores significam recortes estáticos/diagramas, não critérios amplos concluídos. S1–S4 seguem abertos conforme a ordem. Índice/paridade sem mudança nesta rodada.
+
+Backup A4/A6 inclui os módulos, testes, scripts, workflows e documentos próprios; arquivos em analysis-local, caches e originais permanecem ignorados. Restos de annotation_editing.py/annotation_geometry.py são WIP preservado, ainda sem integração/testes finais: não contar como edição universal entregue. A4 tem 116 contratos/25 famílias e validação local preservada; isso não fecha o critério amplo12. A5 tem fonte0.1.19 preparada, mas nenhum Flatpak0.1.19 gerado/aprovado/publicado. A6 permanece parcial: os testes portáveis preservados não substituem Linux/GTK/Flatpak/Windows.
+
+Lacunas concretas do Passo2: conversion_window usa runner.close inexistente (usar shutdown), captura hash ao executar em vez de ao abrir e precisa proteger ciclo de vida/identidade; corrigir antes de CI. Rever leitura limitada do backend de conversão. Finalizar/testar integração de anotações, registrar proveniência/hash fixo QuickJS e conferir catálogo/arquitetura/contratos. Há validação de arquitetura anterior, não é aprovação da suíte. Nenhuma nova execução de suíte completa, aceitação, CI, original ou VM neste Passo1. Nenhuma release criada/apagada, nenhuma alteração de segurança do host.
+
+Próximo passo, somente após resposta do usuário: Passo2 da ORDEM-CODEX (fechar lacunas e verificadores). Depois pedir autorização para Passo3 (main/CI); candidato e publicação têm suas próprias paradas. Conferir recibo local analysis-local/a456-step1-sync.json para SHA e igualdade remota após push.
