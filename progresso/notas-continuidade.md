@@ -3595,3 +3595,7 @@ Pedido explícito do usuário: configurar conexão e explicar capacidades. Plano
 - Conferido: ~/.codex/config.toml modificado às 00:39 com [mcp_servers.rea] (node + rea.mjs mcp, GHIDRA_INSTALL_DIR e JAVA_HOME); codex-doctor-20261022.json com registration:codex ok/aligned; segundo log de instalação às 00:35 (6.7.0, Ghidra saudável). Corrige a nota anterior (registro ausente às 00:28).
 - Nova lista docs/O-QUE-FAZER-AGORA-2026-10-22.md (A1–A6 sem o usuário; B1–B3 com o usuário), apontada no topo de AGENTS.md, docs/RETOMADA.md e RETOMADA-2026-10-21.
 - Antes de pegar uma tarefa, registrar aqui quem a assumiu (Claude ou Codex).
+
+## 2026/10/22 às 08:28 (America/Sao_Paulo, UTC-03:00) — Codex assume A4, A5 e A6
+
+Pedido explícito do usuário autoriza este bloco de três tarefas. Codex assume contratos A4 nas25 famílias/116 operações, candidato0.1.19 A5 com E31 sem publicar release, e desenvolvimento próprio A6. Trabalho dividido em contratos, formulários e assinaturas com agentes auxiliares locais; coordenação/integracao, redação/OCR/conversões/Windows e pacote pelo principal. Não alterar pesos nem presumir que subconjunto fecha família universal. Não executar original ou VM, manter IA/nuvem direta/3D fora conforme decisões. Preparar contratos por operação e recursos concretos verificáveis; publicação da release somente após OK separado. Sincronizado4338ade. Ressalvas: A6 é frente ampla com recursos universais ainda abertos; resultados serão discriminados por recurso e validação, sem declarar completude só por percorrer a lista.
