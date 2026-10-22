@@ -116,6 +116,13 @@ def main(argv):
             print('ValueError: Não foi possível assinar. Confira o PDF, a identidade PEM, a senha e o destino novo.',file=sys.stderr)
             raise SystemExit(1) from None
         print(json.dumps(result,ensure_ascii=True));return
+    if cmd in ('signature-dss','timestamp-prepare','timestamp-complete'):
+        from pdf_preservation import append_dss_copy,prepare_document_timestamp,complete_document_timestamp
+        raw=sys.stdin.buffer.read(256*1024+1)
+        if len(raw)>256*1024:raise ValueError('Pedido de preservação acima de256KiB.')
+        method={'signature-dss':append_dss_copy,'timestamp-prepare':prepare_document_timestamp,
+                'timestamp-complete':complete_document_timestamp}[cmd]
+        print(json.dumps(method(argv[2],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'document-open':
         from document_session import prepare_document, DocumentError
         try:
@@ -130,6 +137,14 @@ def main(argv):
             raise SystemExit(1) from None
         print(json.dumps(result, ensure_ascii=True))
         return
+    if cmd == 'xfa-flow-info':
+        from pdf_xfa_flow import inspect_xfa_flow
+        print(json.dumps(inspect_xfa_flow(argv[2]),ensure_ascii=True));return
+    if cmd == 'xfa-flow-copy':
+        from pdf_xfa_flow import create_xfa_flow_copy
+        raw=sys.stdin.buffer.read(1024**2+1)
+        if len(raw)>1024**2 or len(argv)!=4:raise ValueError('Pedido de layout XFA inválido ou acima de 1 MiB.')
+        print(json.dumps(create_xfa_flow_copy(argv[2],argv[3],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'ocr-copy':
         if len(argv) != 4:
             raise SystemExit(2)
@@ -139,6 +154,11 @@ def main(argv):
             raise ValueError('Pedido de OCR acima do limite.')
         print(json.dumps(create_searchable_copy(argv[2], argv[3], json.loads(raw)), ensure_ascii=True))
         return
+    if cmd == 'convert-copy':
+        from pdf_conversion import convert_copy
+        raw=sys.stdin.buffer.read(16385)
+        if len(raw)>16384 or len(argv)!=4:raise ValueError('Pedido de conversão inválido.')
+        print(json.dumps(convert_copy(argv[2],argv[3],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'redact-copy':
         if len(argv) != 4:
             raise SystemExit(2)

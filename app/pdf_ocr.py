@@ -39,7 +39,7 @@ def source_identity(path):
 
 
 def validate_request(request):
-    _require(isinstance(request, dict) and {'source_sha256', 'language', 'dpi'}<=set(request)<={'source_sha256','language','dpi','pages','psm'},
+    _require(isinstance(request, dict) and {'source_sha256', 'language', 'dpi'}<=set(request)<={'source_sha256','language','dpi','pages','psm','preprocess'},
              'Pedido de OCR inválido.')
     _require(isinstance(request['source_sha256'], str) and re.fullmatch('[0-9a-f]{64}', request['source_sha256']),
              'Identidade do PDF inválida; reabra o documento.')
@@ -48,9 +48,29 @@ def validate_request(request):
     _require(type(request['dpi']) is int and request['dpi'] in (150, 300),
              'OCR aceita resolução de 150 ou 300 DPI.')
     _require(type(request.get('psm',3)) is int and request.get('psm',3) in (3,6,11),'OCR aceita layout automático, bloco único ou texto esparso.')
+    _require(request.get('preprocess','none') in ('none','contrast','threshold'), 'Pré-processamento OCR inválido.')
     if 'pages' in request:
         _require(isinstance(request['pages'],list) and 1<=len(request['pages'])<=MAX_PAGES and all(type(v) is int and 1<=v<=MAX_PAGES for v in request['pages']) and len(set(request['pages']))==len(request['pages']),'Selecione páginas únicas entre1e20.')
     return request['source_sha256'], request['language'], request['dpi']
+
+
+def preprocess_image(path, mode):
+    """Explicit scan cleanup; does not rotate, crop or change page dimensions."""
+    if mode=='none':return
+    from PIL import ImageOps,ImageFilter
+    with Image.open(path) as raw:
+        image=ImageOps.autocontrast(raw.convert('L'),cutoff=1)
+        if mode=='threshold':
+            # Otsu threshold maximizes inter-class variance of the scan histogram.
+            hist=image.histogram();total=sum(hist);weighted=sum(i*n for i,n in enumerate(hist))
+            count=partial=0;best=-1;level=127
+            for i,n in enumerate(hist):
+                count+=n;partial+=i*n
+                if not count or count==total:continue
+                variance=count*(total-count)*(partial/count-(weighted-partial)/(total-count))**2
+                if variance>best:best=variance;level=i
+            image=image.point(lambda p:255 if p>level else 0)
+        image.save(path,'PNG')
 
 
 def _run(argv, timeout=120):
@@ -139,6 +159,7 @@ def create_searchable_copy(source, destination, request):
             with Image.open(image) as rendered:
                 _require(rendered.format == 'PNG' and rendered.size == expected, 'Dimensões inesperadas na renderização de OCR.')
                 rendered.verify()
+            preprocess_image(image, request.get('preprocess','none'))
             _run(['tesseract', str(image), str(prefix), '-l', language, '--dpi', str(dpi),
                   '--oem', '1', '--psm', str(request.get('psm',3)), 'pdf'])
             _require(page_pdf.is_file(), 'O Tesseract não produziu a página PDF esperada.')
@@ -175,6 +196,7 @@ def create_searchable_copy(source, destination, request):
             'output_sha256': output_hash, 'pages': len(sizes), 'language': language, 'dpi': dpi,
             'rasterized': True, 'pages_info': pages_info,
             'rasterized_pages':sorted(chosen),'psm':request.get('psm',3),
+            'preprocess':request.get('preprocess','none'),
             'pages_without_text': [p['page'] for p in pages_info if not p['text_detected']]}
 
 

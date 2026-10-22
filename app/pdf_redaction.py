@@ -49,7 +49,8 @@ def _require(value, message):
 
 
 def validate_request(request):
-    _require(isinstance(request, dict) and set(request) == {'source_sha256', 'dpi'}, 'Pedido de redação inválido.')
+    _require(isinstance(request, dict) and {'source_sha256', 'dpi'} <= set(request) <= {'source_sha256', 'dpi', 'mode'}, 'Pedido de redação inválido.')
+    _require(request.get('mode', 'raster') in ('raster', 'vector'), 'Modo de redação inválido.')
     _require(isinstance(request['source_sha256'], str) and re.fullmatch('[0-9a-f]{64}', request['source_sha256']),
              'Identidade do PDF inválida; reabra o documento.')
     _require(type(request['dpi']) is int and request['dpi'] in DPI_CHOICES, 'A redação aceita 150 ou 300 DPI.')
@@ -243,10 +244,13 @@ def redact_copy(source, destination, request):
     plan = _plan(reader, dpi)
     writer = PdfWriter(clone_from=reader)
     removed_annotations = 0
+    vector_mode = request.get('mode', 'raster') == 'vector'
+    vector_counts = {'text_objects_removed':0,'paths_removed':0,'images_removed':0}
     with tempfile.TemporaryDirectory(prefix='linuxit-redact-') as folder:
         work = Path(folder)
         for index, item in plan.items():
-            image = _paint(_render(work, data, index, dpi, item['size']), reader.pages[index], item['marks'], dpi)
+            if not vector_mode:
+                image = _paint(_render(work, data, index, dpi, item['size']), reader.pages[index], item['marks'], dpi)
             page = writer.pages[index]
             annots = page.get('/Annots')
             annots = annots.get_object() if annots is not None else ArrayObject()
@@ -257,7 +261,12 @@ def redact_copy(source, destination, request):
             removed_annotations += len(annots) - len(keep)
             if keep:page[NameObject('/Annots')] = keep
             else:page.pop('/Annots', None)
-            _image_page(writer, page, image)
+            if vector_mode:
+                from vector_redaction import redact_page
+                counts = redact_page(writer,page,item['marks'])
+                for key,value in counts.items():vector_counts[key]+=value
+            else:
+                _image_page(writer, page, image)
         structure_removed = '/StructTreeRoot' in writer._root_object
         if structure_removed:
             writer._root_object.pop('/StructTreeRoot', None)
@@ -272,7 +281,8 @@ def redact_copy(source, destination, request):
         _require(len(final.pages) == len(reader.pages) and not final.is_encrypted, 'Cópia redigida incompleta.')
         for index, page in enumerate(final.pages):
             if index in plan:
-                _require(not (page.extract_text() or '').strip(), 'Ainda há texto numa página redigida.')
+                if not vector_mode:
+                    _require(not (page.extract_text() or '').strip(), 'Ainda há texto numa página redigida.')
                 notes = page.get('/Annots')
                 notes = notes.get_object() if notes is not None else []
                 _require(all(n.get_object().get('/Subtype') != '/Redact' for n in notes), 'Marca de redação não removida.')
@@ -291,7 +301,8 @@ def redact_copy(source, destination, request):
             'marks_applied': sum(len(item['marks']) for item in plan.values()),
             'annotations_removed': removed_annotations,
             'overlay_text_ignored': sum(item['overlay_ignored'] for item in plan.values()),
-            'structure_tree_removed': structure_removed, 'rasterized': True}
+            'structure_tree_removed': structure_removed, 'rasterized': not vector_mode,
+            'mode':'vector' if vector_mode else 'raster', 'objects_removed':vector_counts if vector_mode else None}
 
 
 def invoke_redaction(source, destination, request, cancel=None, timeout=900):
@@ -300,7 +311,7 @@ def invoke_redaction(source, destination, request, cancel=None, timeout=900):
     if result is None:
         return None
     _require(isinstance(result, dict) and result.get('schema') == SCHEMA and result.get('source_sha256') == identity
-             and result.get('dpi') == dpi and result.get('rasterized') is True
+             and result.get('dpi') == dpi and result.get('rasterized') is (request.get('mode','raster')!='vector')
              and Path(result.get('path', '')).resolve() == Path(destination).resolve()
              and isinstance(result.get('output_sha256'), str) and re.fullmatch('[0-9a-f]{64}', result['output_sha256'])
              and isinstance(result.get('redacted_pages'), list) and result['redacted_pages']

@@ -1,0 +1,51 @@
+{
+  "schema": "linuxit-a4-contract-review-v1",
+  "reviewed_at_local": "2026-10-22T08:42:07-03:00",
+  "timezone": "America/Sao_Paulo",
+  "summary": {
+    "operation_contracts_checked": 116,
+    "operation_contract_families": 25,
+    "operation_source_symbols_checked": 95,
+    "operation_requirement_references_checked": 5,
+    "complete_bounded_register_is_reference_completion": false,
+    "families": 25,
+    "acceptance_cases": 81,
+    "implemented_subsets": 25,
+    "proposed_only": 0,
+    "unique_test_references_checked": 284,
+    "unique_source_references_checked": 121,
+    "new_acceptance_executions": 0,
+    "recorded_acceptance_executions": 81,
+    "recorded_acceptance_passed": 81,
+    "foxit_observations": 0,
+    "foxit_observations_scope": "New observations by this validator only; preserved subsets are separate.",
+    "families_with_recorded_original_subsets": 9,
+    "reference_specification_complete": false
+  },
+  "checks": {
+    "individual_contract_register": "passed",
+    "render_matches_spec": "passed",
+    "validator_adversarial_tests": {
+      "passed": 8,
+      "failed": 0,
+      "errors": 0
+    },
+    "independent_vector_review": {
+      "new_adversarial_tests": 3,
+      "combined_original_and_new_passed": 9
+    }
+  },
+  "new_foxit_observations": 0,
+  "vm_touched": false,
+  "stage12_reference_criterion_closed": false,
+  "application_acceptance_rerun_by_a4": false,
+  "note": "A4 validates written contracts. Vector review executed only own synthetic inputs; A6 runtime claims require their own reports. Initial validator unittest run hit sandbox TEMP denial, corrected by in-memory contract input; no app fault inferred.",
+  "input_hashes": {
+    "docs/contratos-operacoes-v1.json": "b5d5449d8505c33b7d87fe30298c20b382ce2363e92d86c323c479e6647c8514",
+    "docs/especificacao-funcional.json": "a82b01459d39f5a6f76b12c2bb2bff7054102d6af6de609e5dd599b88c974180",
+    "docs/contratos-funcionais.md": "4193c474d2b2972a0062b593e6a526d807b542b6d856e377695913a0ddfc974c",
+    "scripts/validate_functional_spec.py": "6ca0fdf5b1b9f31ff5121197cdda68bd1016b19a943c3c35f2e51d2fbe4f6734",
+    "tests/test_operation_contracts.py": "67dd9d982d50b29e8b386acbb724b912f0906f6d49fc7b2abc305223feb2441f",
+    "tests/test_vector_redaction_review.py": "437d231961100bf001d17444c346ac50fdc9534f878121b08cc9b65c29e4abe7"
+  }
+}

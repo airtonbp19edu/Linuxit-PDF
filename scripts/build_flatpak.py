@@ -41,6 +41,12 @@ def build(flatpak, stage, repo, extra):
     runtime_tree('/usr/lib/python3.13', files / 'python/lib/python3.13', ignore=ignore)
     site = files / 'python/lib/python3.13/site-packages'
     site.mkdir()
+    js = Path('/opt/linuxit-js')
+    if not (js/'quickjs-notices.txt').is_file():
+        raise RuntimeError('Pinned QuickJS runtime and complete engine notices required.')
+    for origin in js.glob('_quickjs*.so'):
+        runtime_file(origin, site/origin.name)
+    if not list(site.glob('_quickjs*.so')):raise RuntimeError('QuickJS extension missing for bundled Python.')
     for module in ['gi', 'cairo', 'PIL', 'cryptography', 'cffi', 'pycparser', 'asn1crypto']:
         origin = Path('/usr/lib/python3/dist-packages') / module
         if origin.exists():
@@ -98,6 +104,7 @@ def build(flatpak, stage, repo, extra):
                    ('libgtk-3.so.0', 'libgdk-3.so.0', 'libatk-1.0.so.0',
                     'libpangocairo-1.0.so.0', 'libgdk_pixbuf-2.0.so.0', 'libpoppler-glib.so.8', 'libgstreamer-1.0.so.0')]
     probes.extend(dynamic_gui)
+    probes.extend(site.glob('_quickjs*.so'))
     libraries = set(dynamic_gui)
     for probe in probes:
         result = subprocess.run(['ldd', str(probe)], capture_output=True, text=True)
@@ -210,6 +217,8 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
         if not package_owners:
             if origin.is_relative_to(extra / 'gi-cairo'):
                 overlay_notice = 'python3-gi-cairo.txt'
+            elif origin.is_relative_to(js):
+                overlay_notice = 'quickjs.txt'
             elif origin.is_relative_to(Path('/usr/share/mime')) and not origin.is_relative_to(Path('/usr/share/mime/packages')):
                 derivation = 'mime'
             elif origin == Path('/usr/share/glib-2.0/schemas/gschemas.compiled'):
@@ -245,6 +254,8 @@ exec "$base/bin/linuxit-python" "$base/share/linuxit-pdf/main.py" "$@"
             raise RuntimeError('Missing license for runtime overlay: ' + str(path))
         shutil.copy2(path, notices / 'python3-gi-cairo.txt')
     (docs / 'runtime-packages.tsv').write_text('binary_package\tversion\tsource_package\tsource_version\n' + '\n'.join(package_versions) + '\n')
+    shutil.copy2(js/'quickjs-notices.txt',notices/'quickjs.txt')
+    shutil.copy2(js/'quickjs-provenance.json',docs/'quickjs-provenance.json')
     source_access=[]
     for line in package_versions:
         binary,version,source,source_version=line.split('\t')

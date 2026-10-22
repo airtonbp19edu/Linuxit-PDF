@@ -73,7 +73,7 @@ def _terminal(field):
     return not any('/T' in child for child in children)
 
 
-XFA_OPERATIONS = {'fill-text-fields', 'fill-form-events'}
+XFA_OPERATIONS = {'fill-text-fields', 'fill-form-events', 'fill-form-javascript'}
 
 
 def _xfa_state(reader, allow_xfa):
@@ -108,7 +108,8 @@ def _editable(path, expected=None, password=None, recover=False, allow_xfa=False
                  'Informe o SHA-256 atual do PDF.')
         _require(identity == expected, 'O PDF mudou. Leia o documento novamente.')
     with path.open('rb') as stream:
-        reader = PdfReader(stream, strict=not recover)
+        from recovered_edit import reader_for_edit
+        reader = reader_for_edit(stream, recover)
         if reader.is_encrypted:
             if password is None:raise NotImplementedError('Gravação de cópias de PDFs criptografados exige uma sessão autenticada.')
             try:role=int(reader.decrypt(password))
@@ -334,9 +335,14 @@ def _apply(writer, operation):
     _require(isinstance(kind, str), 'Tipo de alteração inválido.')
     if kind in ('move-bookmark', 'delete-bookmark'):
         _change_outline(writer, operation)
-    elif kind == 'fill-form-events':
+    elif kind in ('fill-form-events', 'fill-form-javascript'):
         _require(set(operation)=={'kind','values'},'Opções de formulário inválidas.')
-        values=calculate_form_values(writer,operation['values'])
+        if kind == 'fill-form-javascript':
+            from pdf_form_javascript import run_form_javascript
+            values, display = run_form_javascript(writer, operation['values'])
+        else:
+            values=calculate_form_values(writer,operation['values'])
+            display=format_form_values(writer,values)
         fields=writer.get_fields() or {};flags={}
         try:
             for name in values:
@@ -344,7 +350,6 @@ def _apply(writer, operation):
                 flags[name]=raw.get('/Ff')
                 raw[NameObject('/Ff')]=NumberObject(int(_inherited(fields[name],'/Ff',0)) & ~1)
             # Formatted numbers go to the appearance only; /V keeps the unformatted value.
-            display=format_form_values(writer,values)
             _apply(writer,dict(kind='fill-text-fields',values={**values,**display}))
             for name in display:
                 fields[name].indirect_reference.get_object()[NameObject('/V')]=TextStringObject(values[name])

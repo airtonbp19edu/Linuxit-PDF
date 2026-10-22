@@ -17,7 +17,7 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            git ca-certificates python3 python3-gi python3-cairo python3-gi-cairo \
+            git ca-certificates python3 python3-pip python3-gi python3-cairo python3-gi-cairo \
             python3-pil python3-cryptography python3-asn1crypto gir1.2-gstreamer-1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-gtk3 gstreamer1.0-libav gir1.2-gtk-3.0 gir1.2-poppler-0.18 poppler-utils qpdf cups-client \
             dbus dbus-x11 xvfb xauth openbox fonts-dejavu-core adwaita-icon-theme openssl \
             tesseract-ocr tesseract-ocr-por tesseract-ocr-eng espeak-ng \
@@ -28,6 +28,10 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Prepare pinned JavaScript runtime
+        run: |
+          /usr/bin/python3 scripts/prepare_js_runtime.py --target /opt/linuxit-js
+          echo 'PYTHONPATH=/opt/linuxit-js' >> "$GITHUB_ENV"
       - name: Prepare test user
         run: |
           useradd --create-home --uid 1001 linuxit-test

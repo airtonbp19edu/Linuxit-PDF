@@ -95,7 +95,7 @@ def verify_runtime_files(payload, audit):
             expected_elf.add(row['file'])
         packages.update(row['packages'])
         if row['overlay_notice']:
-            require(row['overlay_notice'] == 'python3-gi-cairo.txt', 'Unknown overlay notice')
+            require(row['overlay_notice'] in ('python3-gi-cairo.txt','quickjs.txt'), 'Unknown overlay notice')
             notice_hashes[row['overlay_notice']] = sha(local(payload, 'share/doc/linuxit-pdf/runtime-copyright/' + row['overlay_notice']))
     actual_elf = set()
     for path in payload.rglob('*'):

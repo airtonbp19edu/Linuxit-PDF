@@ -19,6 +19,7 @@ ACTIONS = [('add-bookmark','Adicionar marcador'),('rename-bookmark','Renomear ma
            ('add-caret','Marcar inserção'),('add-freetext','Adicionar texto livre'),('add-stamp','Adicionar carimbo textual'),
            ('move-annotation','Mover anotação'),('update-comment','Editar comentário ou resposta'),
            ('set-popup','Configurar popup'),('delete-conversation','Excluir conversa e popups'),
+           ('fill-form-javascript','Preencher com JavaScript isolado…'),
            ('update-annotation','Editar comentário da anotação'),('style-annotation','Cor e opacidade da anotação'),('resize-annotation','Redimensionar anotação'),('add-redaction','Marcar área para redação'),('delete-annotation','Excluir anotação'),
            ('fill-text-fields','Preencher campo de texto'),('fill-form-controls','Preencher caixas e listas'),
            ('fill-form-events','Preencher com cálculos e validação'),
@@ -123,8 +124,10 @@ class EditWindow(Gtk.Window):
         from edit_dialogs import redaction_apply_dialog
         self.busy = True;self._refresh()
         try:
-            dpi = redaction_apply_dialog(self,len(self._redaction_marks()))
-            target = self._choose_destination('-redigido.pdf') if dpi else None
+            choice = redaction_apply_dialog(self,len(self._redaction_marks()))
+            dpi = choice.get('dpi') if isinstance(choice,dict) else choice
+            mode = choice.get('mode','raster') if isinstance(choice,dict) else 'raster'
+            target = self._choose_destination('-redigido.pdf') if choice else None
         finally:
             self.busy = False
             if not self.closed:self._refresh()
@@ -134,7 +137,7 @@ class EditWindow(Gtk.Window):
             import hashlib
             from pdf_redaction import invoke_redaction
             with Path(source).open('rb') as stream:identity = hashlib.file_digest(stream,'sha256').hexdigest()
-            return invoke_redaction(source,target,{'source_sha256':identity,'dpi':dpi},self.cancel)
+            return invoke_redaction(source,target,{'source_sha256':identity,'dpi':dpi,'mode':mode},self.cancel)
         self.busy = True;self.status.set_text('Aplicando redação… Se interromper, confira o destino antes de repetir.');self._refresh()
         def done(result):
             if self.closed:return
@@ -142,8 +145,10 @@ class EditWindow(Gtk.Window):
             if result:
                 pages = ', '.join(str(p) for p in result['redacted_pages'])
                 extra = ' A árvore de estrutura (acessibilidade) foi removida.' if result['structure_tree_removed'] else ''
+                method = (f"convertida(s) em imagem a {result['dpi']} DPI" if result['rasterized']
+                          else 'com objetos inteiros removidos, sem rasterizar')
                 self.status.set_text(f"Redação aplicada em {Path(result['path']).name}: {result['marks_applied']} área(s), página(s) {pages} "
-                                     f"convertida(s) em imagem a {result['dpi']} DPI. Original e rascunho preservados.{extra}")
+                                     f"{method}. Original e rascunho preservados.{extra}")
             self._refresh()
         self.runner.submit('draft',task,done,self._failed)
 

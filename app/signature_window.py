@@ -7,6 +7,7 @@ from async_core import BackgroundRunner
 from attachment_tasks import display_attachment_name
 from pdf_signatures import invoke_signature_inspection
 from pdf_signing import invoke_sign_copy
+from pdf_preservation import invoke_preservation
 from pdf_changes import _sha
 from pathlib import Path
 
@@ -19,13 +20,17 @@ class SignatureWindow(Gtk.Window):
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
         self.path=Gtk.Entry();self.path.set_text(str(path or ''));self.path.get_accessible().set_name('PDF para verificar assinaturas')
         box.pack_start(self.path,False,False,0)
-        note=Gtk.Label(label='Integridade CMS offline. A validação com CA usa somente raízes/CRL locais selecionadas; carimbos RFC3161 são verificados quando presentes. Não determina validade legal nem PAdES-LTV.',xalign=0)
+        note=Gtk.Label(label='Integridade CMS offline. CA, CRL e OCSP locais; DSS incremental e carimbos RFC3161 com pedido/resposta de TSA. Nenhum serviço é contatado. Não determina validade legal nem PAdES-LTA universal.',xalign=0)
         note.set_line_wrap(True);box.pack_start(note,False,False,0)
         actions=Gtk.Box(spacing=8);box.pack_start(actions,False,False,0)
         self.verify=Gtk.Button(label='Verificar');self.verify.connect('clicked',self._verify);actions.pack_start(self.verify,False,False,0)
         self.trust=Gtk.Button(label='Validar com CA/CRL…');self.trust.connect('clicked',self._verify_trust);actions.pack_start(self.trust,False,False,0)
         self.sign=Gtk.Button(label='Assinar cópia com PEM…');self.sign.connect('clicked',self._sign);actions.pack_start(self.sign,False,False,0)
         cancel=Gtk.Button(label='Cancelar');cancel.connect('clicked',self._cancel);actions.pack_start(cancel,False,False,0)
+        preservation=Gtk.Box(spacing=8);box.pack_start(preservation,False,False,0)
+        for label,callback in (('Incorporar DSS em cópia…',self._add_dss),('Exportar pedido TSA…',self._prepare_timestamp),
+                               ('Importar resposta TSA…',self._complete_timestamp)):
+            button=Gtk.Button(label=label);button.connect('clicked',callback);preservation.pack_start(button,False,False,0)
         self.rows=Gtk.ListBox();scroll=Gtk.ScrolledWindow();scroll.add(self.rows);box.pack_start(scroll,True,True,0)
         self.status=Gtk.Label(label='Informe um PDF local de até 64 MiB.',xalign=0);self.status.set_line_wrap(True);box.pack_start(self.status,False,False,0)
         self.path.connect('changed',self._changed);self.connect('destroy',self._destroy)
@@ -80,15 +85,86 @@ class SignatureWindow(Gtk.Window):
             finish();self.status.set_text(str(exc))
         self.runner.submit('signature-info',work,done,failed,priority='background')
 
+    def _material_files(self,title):
+        dialog=Gtk.FileChooserDialog(title=title,transient_for=self,modal=True,action=Gtk.FileChooserAction.OPEN)
+        dialog.set_select_multiple(True)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Sem estes arquivos',Gtk.ResponseType.NO,'Selecionar',Gtk.ResponseType.OK)
+        try:
+            response=dialog.run()
+            return dialog.get_filenames() if response==Gtk.ResponseType.OK else [] if response==Gtk.ResponseType.NO else None
+        finally:dialog.destroy()
+
+    def _preserve(self,command,source,request,message):
+        self.cancel=threading.Event();cancel=self.cancel;self.busy=True
+        self.path.set_sensitive(False);self.verify.set_sensitive(False);self.sign.set_sensitive(False);self.status.set_text(message)
+        def work():
+            return invoke_preservation(command,source,dict(request,source_sha256=_sha(source)),cancel)
+        def finish():
+            self.busy=False;self.path.set_sensitive(True);self.verify.set_sensitive(True);self.sign.set_sensitive(True)
+        def done(result):
+            if self.closed or cancel.is_set():return
+            finish()
+            if not result:return
+            if command=='timestamp-prepare':
+                self.status.set_text('Pedido salvo em '+result['query']+'. A pasta contém uma revisão incompleta; obtenha uma resposta TSA e use Importar resposta TSA. Nenhuma conexão foi feita.')
+            else:
+                self.path.set_text(result['path'])
+                self.status.set_text('Cópia incremental salva: '+result['path']+'. As revisões anteriores foram preservadas. Verifique com CA local; sem garantia PAdES-LTA universal.')
+        def failed(exc):
+            if self.closed or cancel.is_set():return
+            finish();self.status.set_text(str(exc))
+        self.runner.submit('signature-info',work,done,failed,priority='background')
+
+    def _add_dss(self,*_):
+        if self.busy or self.closed:return
+        source=self.path.get_text().strip()
+        if not source:self.status.set_text('Informe um PDF assinado para preservar material DSS.');return
+        request={}
+        for key,title in (('certificates','Certificados locais PEM/DER para DSS'),('crls','CRLs locais PEM/DER para DSS'),
+                          ('ocsps','Respostas OCSP locais DER para DSS')):
+            values=self._material_files(title)
+            if values is None:return
+            request[key]=values
+        if not any(request.values()):self.status.set_text('Selecione ao menos um certificado, CRL ou OCSP.');return
+        destination=self._identity_file('Salvar cópia com DSS em arquivo novo',True,Path(source).stem+'-dss.pdf')
+        if not destination:return
+        self._preserve('signature-dss',source,dict(request,destination=destination),'Acrescentando material DSS em uma cópia incremental…')
+
+    def _prepare_timestamp(self,*_):
+        if self.busy or self.closed:return
+        source=self.path.get_text().strip()
+        if not source:self.status.set_text('Informe o PDF que receberá o carimbo de documento.');return
+        folder=self._identity_file('Escolher nome de uma NOVA pasta para o pedido TSA',True,Path(source).stem+'-pedido-tsa')
+        if not folder:return
+        self._preserve('timestamp-prepare',source,dict(folder=folder),'Preparando revisão e pedido RFC3161 com nonce…')
+
+    def _complete_timestamp(self,*_):
+        if self.busy or self.closed:return
+        source=self.path.get_text().strip()
+        if not source:self.status.set_text('Informe o mesmo PDF usado para exportar o pedido TSA.');return
+        dialog=Gtk.FileChooserDialog(title='Pasta do pedido TSA exportado',transient_for=self,modal=True,action=Gtk.FileChooserAction.SELECT_FOLDER)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Selecionar',Gtk.ResponseType.OK)
+        try:folder=dialog.get_filename() if dialog.run()==Gtk.ResponseType.OK else None
+        finally:dialog.destroy()
+        if not folder:return
+        response=self._identity_file('Resposta TSA DER (TimeStampResp .tsr)')
+        if not response:return
+        ca=self._identity_file('CA confiável PEM da TSA, selecionada explicitamente')
+        if not ca:return
+        destination=self._identity_file('Salvar nova cópia com carimbo de documento',True,Path(source).stem+'-carimbado.pdf')
+        if not destination:return
+        policy=dict(roots=[ca],crls=[],require_revocation=False,at_time=None)
+        self._preserve('timestamp-complete',source,dict(folder=folder,response=response,destination=destination,trust_policy=policy),
+                       'Validando resposta, nonce, resumo e cadeia TSA antes de publicar a cópia…')
+
     def _verify_trust(self,*_):
         if self.busy or self.closed:return
         root=self._identity_file('Escolher CA confiável PEM para esta validação')
         if not root:return
-        dialog=Gtk.MessageDialog(transient_for=self,modal=True,message_type=Gtk.MessageType.QUESTION,buttons=Gtk.ButtonsType.YES_NO,text='Exigir revogação offline com uma CRL local? Sem CRL, a confiança da cadeia pode ser verificada, mas a revogação fica desconhecida.')
+        dialog=Gtk.MessageDialog(transient_for=self,modal=True,message_type=Gtk.MessageType.QUESTION,buttons=Gtk.ButtonsType.YES_NO,text='Exigir revogação offline por CRL ou OCSP? O material DSS do PDF também será considerado. A seguir, cancele a seleção de CRL para usar somente o DSS.')
         try:require=dialog.run()==Gtk.ResponseType.YES
         finally:dialog.destroy()
         crl=self._identity_file('Escolher lista de revogação CRL local') if require else None
-        if require and not crl:return
         self._verify(policy=dict(roots=[root],crls=[crl] if crl else [],require_revocation=require,at_time=None))
 
     def _verify(self,*_,policy=None):
@@ -122,7 +198,7 @@ class SignatureWindow(Gtk.Window):
                 label.set_margin_top(5);label.set_margin_bottom(5);self.rows.add(label)
             self.rows.show_all()
             dss=result.get('dss')
-            dss_text=(f"DSS no PDF: {dss['certificates']} certificado(s), {dss['crls']} CRL(s), {dss['ocsp_responses']} OCSP (não usados). " if dss
+            dss_text=(f"DSS no PDF: {dss['certificates']} certificado(s), {dss['crls']} CRL(s), {dss['ocsp_responses']} OCSP. " if dss
                       else (result.get('dss_error')+' ' if result.get('dss_error') else ''))
             self.status.set_text(dss_text+f"{len(result['signatures'])} campo(s), {result['omitted_signatures']} omitido(s) pelo limite. "+('Política de CA local aplicada por assinatura; sem decisão legal/LTV.' if policy else 'Confiança dos certificados não avaliada.'))
         def failed(exc):

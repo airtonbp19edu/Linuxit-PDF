@@ -10,6 +10,8 @@ Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem
 
 Índices internos de página usam base zero; páginas em relatórios de observação usam base um.
 
+A4: **116 operações conhecidas** detalhadas individualmente em [contratos operacionais](contratos-operacoes-v1.json), com entradas, saídas, limites, erros, efeitos, cancelamento e fontes. A cobertura desta lista não fecha o universo Foxit. Âncoras line_at_review/hash são fotografia da revisão; o validador resolve os símbolos atuais por AST.
+
 O assistente de IA do Foxit e recursos generativos estão fora do escopo por decisão do usuário em 17/10/2026; ver [escopo do projeto](ESCOPO.md). As 25 famílias atuais e os registros históricos são preservados.
 
 | Família | Estado do contrato |
@@ -92,6 +94,129 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_cache_disti
 
 Relacionados aos planos dinâmicos/UI: D01, D02, D13, D14, D15, D19, D20.
 
+### Contratos individuais de operações
+
+#### `open-render/inspect` — Inspecionar páginas, caixas e metadados
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Caminho de PDF local, bytes identificados por SHA-256, parser pypdf.
+
+**Saídas:** Objeto pages/sizes/metadata com título, autor, assunto, criador e produtor; tamanhos consideram CropBox e rotação intrínseca.
+
+**Limites:** A sessão de leitura aceita 1–20000 páginas e fonte não vazia até 256 MiB; parser não estabelece integridade semântica de todo conteúdo.
+
+**Erros:** Arquivo vazio, parser inválido ou senha ausente → erro de leitura, sem páginas fictícias.
+
+**Estado e efeitos:** Lê metadados e geometria, sem editar a fonte.
+
+**Cancelamento:** Inspeção síncrona no worker; a geração da abertura descarta resposta tardia.
+
+Fontes/requisitos: [app/rendering.py — document_info](../app/rendering.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `open-render/render` — Renderizar página e reutilizar cache
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF da sessão, índice interno inteiro, largura de destino, diretório de cache, chave e formato PNG/JPEG.
+
+**Saídas:** Imagem validada pelo tamanho e assinatura, associada à identidade do PDF/página/largura/formato.
+
+**Limites:** Render requer Poppler/pdftocairo e dimensões finitas; limite de pixels e prazo do renderizador continuam aplicáveis.
+
+**Erros:** Formato desconhecido, tamanho inválido, saída truncada ou pdftocairo ausente → erro sem imagem publicada como concluída.
+
+**Estado e efeitos:** Pode criar arquivo de cache e processo pdftocairo; original não muda.
+
+**Cancelamento:** Evento de cancelamento encerra subprocesso e rejeita cache incompleto; callback da geração antiga não desenha.
+
+Fontes/requisitos: [app/rendering.py — render_page](../app/rendering.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `open-render/obsolete` — Descartar renderização obsoleta
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Conclusão assíncrona contendo chave de documento, página, zoom e geração capturada no pedido.
+
+**Saídas:** Só o pedido ainda atual atualiza pixbuf, status e geometria.
+
+**Limites:** Fila de LatestRenderer ignora entradas substituídas; validade é identidade, não apenas caminho textual.
+
+**Erros:** Concluir render antigo depois de abrir outro PDF → resultado ignorado, preservando tela atual.
+
+**Estado e efeitos:** Substitui somente imagem/estado visual da geração atual; nenhum PDF é escrito.
+
+**Cancelamento:** Fechar/trocar documento invalida geração e cancela trabalhos; callback já enfileirado deve validar novamente.
+
+Fontes/requisitos: [app/main.py — PDFWindow.request_render](../app/main.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `open-render/copy` — Salvar cópia local completa e exclusiva
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Origem local, identidade esperada e caminho .pdf novo em pasta existente.
+
+**Saídas:** Cópia integral publicada exclusivamente e recibo do salvamento local.
+
+**Limites:** Fonte até 512 MiB; pasta precisa oferecer publicação sem sobrescrita; arquivo remoto placeholder precisa estar disponível localmente.
+
+**Erros:** Destino existente, fonte alterada ou publicação exclusiva indisponível → erro sem substituir arquivo existente.
+
+**Estado e efeitos:** Cria cópia final só após copiar e conferir identidade; sucesso local não confirma sincronização remota.
+
+**Cancelamento:** Cópia roda no worker; cancelamento/timeout pode exigir conferir pasta; não promete revogar cópia já publicada.
+
+Fontes/requisitos: [app/local_files.py — copy_local_document](../app/local_files.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `open-render/password-open` — Abrir PDF cifrado integrado ao leitor
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF cifrado, senha conhecida até 127 caracteres enviada por stdin, sessão privada e página inicial.
+
+**Saídas:** Autenticação user/owner, representação privada de leitura e commit somente após primeiro render válido.
+
+**Limites:** Senha não vai em argv/log; fonte até 256 MiB, representação até 512 MiB; política original /P é mantida na sessão.
+
+**Erros:** Senha errada ou render inicial falho → erro fixo sem credencial, documento anterior preservado.
+
+**Estado e efeitos:** Arquivo temporário privado e leases; fonte permanece cifrada, senha só em memória da sessão.
+
+**Cancelamento:** Recusar diálogo ou cancelar abertura destrói candidato e preserva sessão anterior; lease ativo adia remoção de representação.
+
+Fontes/requisitos: [app/document_session.py — prepare_document](../app/document_session.py), [app/main.py — PDFWindow.open_document](../app/main.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `open-render/recovery` — Recuperar documentos danificados
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF danificado, consentimento explícito recover e destino privado da sessão. Extensão A6: edição recebe recover consentido e SHA-256 do original danificado, operações próprias e destino novo.
+
+**Saídas:** Representação legível e categorias de reparo (xref, EOF, objeto ausente, conteúdo ilegível ou página omitida). reader_for_edit normaliza página/estrutura recuperável para edição de cópia, reabre strict e conserva verificações de autenticação/permissão no backend; sem reparo universal.
+
+**Limites:** Recuperação melhor esforço; 1–20000 páginas reais, até 256 MiB na fonte/512 MiB na representação; não promete conteúdo perdido recuperado.
+
+**Erros:** Recuperação recusada ou nenhuma página real recuperável → erro sem publicar representação nem trocar documento.
+
+**Estado e efeitos:** Repara cópia privada; página com stream ilegível pode ficar branca e nó de página inexistente pode ser omitido.
+
+**Cancelamento:** Cancelar candidato antes do commit mantém documento anterior e remove temporários liberados; não há reparo in-place.
+
+Fontes/requisitos: [app/document_session.py — prepare_document](../app/document_session.py), [app/main.py — PDFWindow.open_document](../app/main.py), [app/recovered_edit.py — reader_for_edit](../app/recovered_edit.py).
+
+Planos relacionados da família: S12-01-1, S12-01-2, S12-01-3, S12-01-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="navigation"></a>
 
 ## Navegação/rotação/zoom
@@ -139,6 +264,89 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_search_navi
 
 Relacionados aos planos dinâmicos/UI: D03, UI03, UI04.
 
+### Contratos individuais de operações
+
+#### `navigation/goto` — Ir para página válida
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Documento aberto, número interno de página inteiro e parâmetro force opcional.
+
+**Saídas:** Página atual limitada aos extremos válidos e pedido de render correspondente.
+
+**Limites:** Sem documento não há salto; entrada de UI baseada em um converte uma vez para índice baseado em zero.
+
+**Erros:** Índice fora dos extremos → navegação fica no extremo; bool/decimal não é índice válido no domínio Navigation.
+
+**Estado e efeitos:** Muda página, seleção visual e render; não muda conteúdo do arquivo.
+
+**Cancelamento:** Ação de UI é síncrona; render anterior é invalidado ao pedir a nova página.
+
+Fontes/requisitos: [app/main.py — PDFWindow.goto_page](../app/main.py).
+
+Planos relacionados da família: S12-02-1, S12-02-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `navigation/zoom` — Aplicar zoom e ajuste
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Modo fit-page/fit-width ou percentual digitado e viewport disponível.
+
+**Saídas:** Largura/escala e superfície virtual coerentes com CropBox/rotação.
+
+**Limites:** Percentual 1–6400; dimensão máxima de render é limitada pela superfície virtual, não alocação ilimitada do zoom.
+
+**Erros:** Percentual não numérico ou não finito → rejeitar entrada; extremos são limitados a 1/6400 no domínio.
+
+**Estado e efeitos:** Atualiza escala, scroll e render, sem /Rotate salvo.
+
+**Cancelamento:** Troca de zoom invalida render anterior; o ajuste síncrono não tem tarefa longa para cancelar.
+
+Fontes/requisitos: [app/main.py — PDFWindow._fit_page](../app/main.py).
+
+Planos relacionados da família: S12-02-1, S12-02-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `navigation/view-rotation` — Rotacionar visualização
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página atual e incremento de rotação visual pelo controle da UI.
+
+**Saídas:** Página girada e transformações tela↔PDF atualizadas.
+
+**Limites:** Rotação de visualização é separada da rotação persistida no PDF.
+
+**Erros:** Sem documento/página → não publicar rotação ou coordenadas válidas fictícias.
+
+**Estado e efeitos:** Muda orientação visual/cache; arquivo original não é regravado.
+
+**Cancelamento:** Ação síncrona; nova geração de render descarta conclusão na orientação anterior.
+
+Fontes/requisitos: [app/main.py — PDFWindow._rotate](../app/main.py).
+
+Planos relacionados da família: S12-02-1, S12-02-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `navigation/saved-rotation` — Persistir rotação em cópia
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Operação rotate-page com page inteiro e angle em -270,-180,-90,90,180,270; hash atual e cópia nova.
+
+**Saídas:** /Rotate da página atualizado na cópia verificada.
+
+**Limites:** Não aceita 0/45/360 nem página fora do documento; lote de alterações até 1000.
+
+**Erros:** Ângulo não suportado ou página inexistente → ValueError antes da publicação final.
+
+**Estado e efeitos:** Escreve cópia; não gira bytes de conteúdo nem muda fonte; entra no histórico de rascunho.
+
+**Cancelamento:** Desfazer remove operação do rascunho; cancelamento do worker não altera fonte nem cópia já salva.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-02-1, S12-02-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="presentation"></a>
 
 ## Apresentação ajustar/preencher
@@ -179,6 +387,69 @@ Fontes: [app/presentation.py](../app/presentation.py), [app/page_cache.py](../ap
 Testes próprios existentes, sem nova execução nesta tabela: [test_presentation_fit_fill_center_and_error](../tests/test_viewer.py); [test_presentation_handles_portrait_and_landscape](../tests/test_viewer.py); [test_monitor_selection_removal_and_fullscreen_request](../tests/test_reading_workflows_gtk.py); [test_presentation_keys_respect_control_focus_and_restore_parent_focus](../tests/test_reading_workflows_gtk.py); [test_rotated_cropbox_geometry_matches_selection_and_presentation](../tests/test_reading_workflows_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D03.
+
+### Contratos individuais de operações
+
+#### `presentation/fit-fill` — Apresentar com ajustar/preencher
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Sessão aberta, página e modo ajustar/preencher com dimensões da janela de apresentação.
+
+**Saídas:** Enquadramento completo em ajustar ou recorte preenchendo viewport em preencher.
+
+**Limites:** Respeita proporção, rotação e dimensões válidas; não é transformação persistida.
+
+**Erros:** Documento ausente → erro Abra um documento antes de iniciar a apresentação.
+
+**Estado e efeitos:** Cria janela de apresentação, cache e render próprios; não modifica PDF.
+
+**Cancelamento:** Fechar apresentação cancela/ignora renders da janela; mudança de modo substitui pedido anterior.
+
+Fontes/requisitos: [app/presentation.py — PresentationWindow._target_width_for](../app/presentation.py).
+
+Planos relacionados da família: S12-03-1, S12-03-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `presentation/pan` — Mover página na apresentação
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Posição de arraste/tecla/roda, tamanho da página escalada e viewport.
+
+**Saídas:** Deslocamento limitado pelo excesso de conteúdo nos dois eixos.
+
+**Limites:** Pan depende de conteúdo maior que viewport; passo de teclas 110 e roda 95 pixels no código atual.
+
+**Erros:** Movimento além da borda → posição limitada ao pan possível, sem mover para área vazia ilimitada.
+
+**Estado e efeitos:** Só altera enquadramento/laser visual na apresentação.
+
+**Cancelamento:** Interação local síncrona; fechar janela encerra animação, sem tarefa de arquivo pendente.
+
+Fontes/requisitos: [app/presentation.py — PresentationWindow._pan_bounds](../app/presentation.py).
+
+Planos relacionados da família: S12-03-1, S12-03-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `presentation/monitors` — Apresentar em múltiplos monitores
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Índice de monitor enumerado por GDK e solicitação de fullscreen.
+
+**Saídas:** Solicitação ao compositor e estado concedido observado; fallback quando monitor desaparece.
+
+**Limites:** Monitores virtuais testados separadamente de monitores físicos; compositor pode recusar fullscreen.
+
+**Erros:** Monitor removido/inválido → atualizar enumeração e usar fallback, sem prometer posição física não observada.
+
+**Estado e efeitos:** Move janela/fullscreen; não muda configuração de monitores do host.
+
+**Cancelamento:** Fechar apresentação sai de fullscreen; mudança de monitor substitui escolha local sem aguardar render antigo.
+
+Fontes/requisitos: [app/presentation.py — PresentationWindow._refresh_monitors](../app/presentation.py), [app/presentation.py — PresentationWindow._fullscreen_on_selected_monitor](../app/presentation.py).
+
+Planos relacionados da família: S12-03-1, S12-03-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="search-text"></a>
 
@@ -226,6 +497,129 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_options_and
 
 Relacionados aos planos dinâmicos/UI: D04, D05, D06, D10, D11, D12, UI08.
 
+### Contratos individuais de operações
+
+#### `search-text/literal` — Pesquisar texto literal
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Consulta Unicode, flags explícitas de fontes e TextSearchIndex da sessão.
+
+**Saídas:** Hits com origem, página, intervalo/snippet e geometria quando conhecida, mais avisos/limite.
+
+**Limites:** Entrada até 256 caracteres; max_hits padrão 5000; vazio retorna zero; texto não pesquisável não vira OCR automático.
+
+**Erros:** Fonte alterada entre indexação e consulta → RuntimeError e pedido de reabertura; não usar coordenadas antigas.
+
+**Estado e efeitos:** Cacheia extração por identidade e preenche resultados; não grava PDF.
+
+**Cancelamento:** Evento cancel é consultado entre páginas/lotes; resultados da geração anterior não entram na nova lista.
+
+Fontes/requisitos: [app/search_engine.py — TextSearchIndex.search](../app/search_engine.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-text/whole` — Aplicar palavra inteira
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Texto normalizado, consulta e whole_words booleano.
+
+**Saídas:** Spans somente quando ambos os limites não pertencem a palavra Unicode.
+
+**Limites:** Palavra inclui categorias Unicode L/N/M e underscore; não equivale ao segmentador linguístico completo Foxit.
+
+**Erros:** Consulta vazia → nenhum span; ocorrência dentro de palavra
+
+**Estado e efeitos:** Cálculo puro sobre strings, sem alterar índice nem PDF.
+
+**Cancelamento:** Gerador de spans não tem token próprio; o chamador de busca interrompe entre páginas/lotes.
+
+Fontes/requisitos: [app/search_matching.py — literal_spans](../app/search_matching.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-text/case` — Distinguir maiúsculas/minúsculas
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Texto e consulta, match_case e ignore_accents.
+
+**Saídas:** Texto normalizado NFC e, quando solicitado, casefold/remoção NFD de marcas; offsets mapeados pelo índice.
+
+**Limites:** Expansão casefold admite até 768 caracteres normalizados após limite de 256 na entrada.
+
+**Erros:** Modo/consulta inválidos na validação → ValueError; normalização não autoriza regex livre.
+
+**Estado e efeitos:** Função pura; cache de página mantém mapeamento para geometria original.
+
+**Cancelamento:** Não há processo cancelável nesta transformação curta; busca externa controla interrupção.
+
+Fontes/requisitos: [app/search_matching.py — normalized](../app/search_matching.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-text/normalization` — Normalizar acentos e hifenização
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Texto extraído, posições de linhas/colunas, flags de acento e junção de hifens.
+
+**Saídas:** Hits mapeados de texto normalizado para retângulos reais sem unir colunas arbitrariamente.
+
+**Limites:** Junção por hífen é opcional; ordem de leitura é heurística delimitada, não recuperação universal de layout.
+
+**Erros:** Geometria ausente → resultado sem retângulo inventado; fonte alterada
+
+**Estado e efeitos:** Cria representação normalizada em memória, original preservado.
+
+**Cancelamento:** page_hits recebe cancel; retorno parcial não deve ser apresentado como varredura concluída.
+
+Fontes/requisitos: [app/search_engine.py — page_hits](../app/search_engine.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-text/highlight` — Destacar e navegar por ocorrências
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Hit selecionado, tipo de origem, página/retângulos conhecidos e highlight_all.
+
+**Saídas:** Seleção de resultado, destaque e navegação apropriados ao tipo.
+
+**Limites:** Hit textual pode navegar; marcador seleciona painel; resultados de anexo não viram coordenadas no hospedeiro.
+
+**Erros:** Página/destino desconhecidos → selecionar/listar sem salto para página zero nem retângulo fictício.
+
+**Estado e efeitos:** Muda UI, cache e destaque; não refaz consulta ao só trocar highlight_all.
+
+**Cancelamento:** Seleção síncrona; render do novo destino verifica geração antes de exibir.
+
+Fontes/requisitos: [app/main.py — PDFWindow._select_search_hit](../app/main.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-text/cancel` — Cancelar pesquisa e descartar resultados antigos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Busca ativa e ações Stop, consulta nova, documento fechado/trocado.
+
+**Saídas:** Tarefa sinalizada, resultados antigos impedidos de repovoar a geração atual.
+
+**Limites:** Sem latência máxima de parada comprovada; contagens parciais dependem do instante de interrupção.
+
+**Erros:** Worker cancelado → estado cancelado/resultado parcial conforme chamador, nunca busca completa silenciosamente.
+
+**Estado e efeitos:** Libera geração/trabalho; não modifica fonte nem históricos já salvos.
+
+**Cancelamento:** Cancelamento é cooperativo e subprocesso cancelável; não repetir comandos à VM travada.
+
+Fontes/requisitos: [app/main.py — PDFWindow._start_search](../app/main.py).
+
+Planos relacionados da família: S12-04-1, S12-04-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="search-bookmarks"></a>
 
 ## Busca em marcadores
@@ -270,6 +664,49 @@ Fontes: [app/search_engine.py](../app/search_engine.py), [app/pdf_panels.py](../
 Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_ui_toggles_scopes_and_bookmark_result_keeps_page](../tests/test_search_scopes.py); [test_bookmark_result_selects_bookmark_without_changing_page](../tests/test_search_foxit_order_gtk.py); [test_results_list_bookmarks_then_page_text_then_comments](../tests/test_search_foxit_order_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D07, UI06.
+
+### Contratos individuais de operações
+
+#### `search-bookmarks/titles` — Pesquisar títulos de marcadores
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Consulta e fonte marcadores habilitada, títulos/árvore lidos do PDF.
+
+**Saídas:** Hits independentes source=bookmark com título e referência ao nó.
+
+**Limites:** Destino pode estar ausente; texto segue flags Unicode/limite da busca.
+
+**Erros:** Marcador sem destino → hit ainda pode ser listado; não inventar número de página.
+
+**Estado e efeitos:** Lê outline e adiciona resultados sem editar marcadores.
+
+**Cancelamento:** Consulta de metadados respeita cancelamento do índice; UI ignora geração obsoleta.
+
+Fontes/requisitos: [app/search_engine.py — TextSearchIndex._metadata_hits](../app/search_engine.py).
+
+Planos relacionados da família: S12-05-1, S12-05-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Hit de marcador e ativação posterior do próprio nó no painel.
+
+**Saídas:** Selecionar hit só destaca marcador; ativar nó navega quando há destino local conhecido.
+
+**Limites:** Seleção de busca e ativação do marcador são ações distintas; URI/ação remota não é salto local presumido.
+
+**Erros:** Destino não resolvido → manter página atual; não inferir que página zero é destino.
+
+**Estado e efeitos:** Seleção de painel e, na ativação válida, página atual; PDF preservado.
+
+**Cancelamento:** Ação síncrona; mudança de documento invalida associação ao nó antigo.
+
+Fontes/requisitos: [app/main.py — PDFWindow._select_search_hit](../app/main.py).
+
+Planos relacionados da família: S12-05-1, S12-05-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="search-comments"></a>
 
@@ -316,6 +753,69 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_comment_sub
 
 Relacionados aos planos dinâmicos/UI: D08, D09.
 
+### Contratos individuais de operações
+
+#### `search-comments/body-subject` — Pesquisar assunto/conteúdo de comentário
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Consulta, fonte comentários e registros de assunto/conteúdo inspecionados.
+
+**Saídas:** Hits source=comment ligados à identidade do objeto e página quando conhecida.
+
+**Limites:** Metadados textuais não executam rich text/scripts; inclui assuntos/conteúdos dentro dos limites do inspetor.
+
+**Erros:** Grafo de anotações inválido → aviso de inspeção parcial, sem afirmar busca completa.
+
+**Estado e efeitos:** Lê comentários e produz resultados; não edita texto/autor.
+
+**Cancelamento:** Inspeção e índice usam cancel; resultados de tarefa antiga são descartados pela geração.
+
+Fontes/requisitos: [app/search_engine.py — TextSearchIndex._metadata_hits](../app/search_engine.py).
+
+Planos relacionados da família: S12-06-1, S12-06-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-comments/author` — Pesquisar autor de comentário
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Consulta e campo /T de autor de comentário, além dos demais campos pesquisáveis.
+
+**Saídas:** Hit do comentário quando o autor casa; identidade evita deduplicar objetos distintos só por texto igual.
+
+**Limites:** Busca por autor é textual, não autenticação de identidade nem prova de autoria.
+
+**Erros:** Autor ausente → não acrescentar autor fictício; consulta ausente no autor não elimina hits de conteúdo.
+
+**Estado e efeitos:** Não altera comentário nem assinatura; correção própria já está na fonte.
+
+**Cancelamento:** Segue cancelamento da busca e invalidação por documento/consulta.
+
+Fontes/requisitos: [app/search_engine.py — TextSearchIndex._metadata_hits](../app/search_engine.py).
+
+Planos relacionados da família: S12-06-1, S12-06-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-comments/replies` — Pesquisar respostas e demais tipos/campos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Reader, cancel opcional e grafo de Annots, IRT/RT/Popup.
+
+**Saídas:** Comentários com IDs estáveis, pai/tipo/profundidade e avisos de grafos parciais.
+
+**Limites:** Até 50000 anotações, texto 65536 e profundidade 64; aliases são deduplicados por objeto.
+
+**Erros:** Ciclo, resposta sem pai ou referência inconsistente → aviso/registro parcial, sem fundir objetos distintos iguais em texto.
+
+**Estado e efeitos:** Somente inspeção; não conserta vínculos silenciosamente.
+
+**Cancelamento:** Callback cancel interrompe inspeção; lista parcial mantém aviso de incompletude.
+
+Fontes/requisitos: [app/pdf_comments.py — inspect_comments](../app/pdf_comments.py).
+
+Planos relacionados da família: S12-06-1, S12-06-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="search-attachments"></a>
 
 ## Busca em anexos
@@ -357,6 +857,69 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_embedded_pd
 
 Relacionados aos planos dinâmicos/UI: D16.
 
+### Contratos individuais de operações
+
+#### `search-attachments/utf8` — Pesquisar anexo UTF-8
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF hospedeiro, consulta, flags, anexos com extensão textual e max_hits.
+
+**Saídas:** Hits ligados a índice/nome do anexo e trechos UTF-8/BOM; omissões explícitas.
+
+**Limites:** 100 anexos por busca, 2 MiB por conteúdo/texto e 8 MiB de payload total.
+
+**Erros:** Bytes binários/UTF-8 inválido ou limite excedido → omissão com motivo, sem executar conteúdo.
+
+**Estado e efeitos:** Decodifica passivamente em worker; não extrai arquivo público nem altera hospedeiro.
+
+**Cancelamento:** invoke_attachment_search recebe cancel e timeout 120 s; geração antiga não substitui resultados novos.
+
+Fontes/requisitos: [app/attachment_search.py — search_attachment_text](../app/attachment_search.py).
+
+Planos relacionados da família: S12-07-1, S12-07-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-attachments/pdf` — Pesquisar texto de PDF anexado
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF anexado, consulta e índice de anexo identificado no hospedeiro.
+
+**Saídas:** Hit preserva página interna do PDF anexo separada da página do hospedeiro.
+
+**Limites:** PDF anexado até 100 páginas e limites de payload 2/8 MiB; não autentica senha própria do anexo.
+
+**Erros:** PDF cifrado ou grande demais → omissão PDF anexo criptografado/excede páginas, não busca vazia completa.
+
+**Estado e efeitos:** Abre bytes anexados para extração passiva, sem execução nem alteração do PDF externo.
+
+**Cancelamento:** Worker de busca cancelável; conteúdo temporário limpo no encerramento da tarefa.
+
+Fontes/requisitos: [app/attachment_search.py — search_attachment_text](../app/attachment_search.py).
+
+Planos relacionados da família: S12-07-1, S12-07-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-attachments/formats` — Cobrir demais extratores e travessia completa
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Payload de anexo e extensão txt/csv/md/log/json/xml/PDF/Office/HTML/RTF ou imagem com OCR opt-in.
+
+**Saídas:** Texto passivo e hits; formatos/partes omitidos descritos em avisos.
+
+**Limites:** Office até 2000 entradas, 256 partes e 2 MiB expandidos; OCR até 10 imagens por busca; sem macros executadas.
+
+**Erros:** DTD/entidade, contêiner cifrado, parte repetida ou extensão não suportada → omissão/ValueError do extrator.
+
+**Estado e efeitos:** Pode invocar OCR explicitamente; texto Office não preserva layout nem fórmulas calculadas.
+
+**Cancelamento:** Extrator de bytes é síncrono; worker externo tem cancel/timeout e não confirma busca concluída após interrupção.
+
+Fontes/requisitos: [app/attachment_formats.py — extract_passive_text](../app/attachment_formats.py).
+
+Planos relacionados da família: S12-07-1, S12-07-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="search-index"></a>
 
 ## Índice persistente/pesquisa de coleção
@@ -396,6 +959,69 @@ Fonte0.1.6: snapshot JSON local versionado de texto de PDFs explicitamente escol
 Fontes: [app/collection_index.py](../app/collection_index.py), [app/collection_window.py](../app/collection_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/search_matching.py](../app/search_matching.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [app/collection_recovery.py](../app/collection_recovery.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/windows-evidence/foxit-rea/index-interface.json](../docs/windows-evidence/foxit-rea/index-interface.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md](../docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md), [docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md](../docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_build_reopen_worker_and_query_preserve_sources_and_real_pages](../tests/test_collection_index.py); [test_changed_missing_sources_are_excluded_until_explicit_rebuild](../tests/test_collection_index.py); [test_update_failure_preserves_old_index_and_removes_temporary](../tests/test_collection_index.py); [test_collection_build_query_and_open_result_on_its_actual_page](../tests/test_search_extensions_gtk.py); [test_collection_changed_result_is_refused_before_opening](../tests/test_search_extensions_gtk.py); [test_closing_collection_terminates_pending_worker_without_callbacks](../tests/test_search_extensions_gtk.py).
+
+### Contratos individuais de operações
+
+#### `search-index/build` — Construir snapshot de coleção
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Lista explícita de 1–100 PDFs e destino .linuxit-index.json, expected_index_sha256 quando atualizar.
+
+**Saídas:** Snapshot com schema, data, hashes de fontes, texto por página e body_sha256.
+
+**Limites:** 1000 páginas, 64 MiB/PDF, 256 MiB fontes, 16 MiB texto e 64 MiB índice; fontes cifradas recusadas.
+
+**Erros:** Fonte repetida/mudada, índice alterado ou lock presente → erro sem substituir snapshot anterior.
+
+**Estado e efeitos:** Adquire trava local, cria backup/temporário e publica índice atômico conferido.
+
+**Cancelamento:** Worker cancelável via invoke_collection; trava/temporários são tratados ao sair; não remover trava de outro processo automaticamente.
+
+Fontes/requisitos: [app/collection_index.py — build_index](../app/collection_index.py).
+
+Planos relacionados da família: S12-08-1, S12-08-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-index/query` — Consultar índice e excluir fonte alterada
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Índice próprio válido, consulta, flags e limite inteiro de 1–5000.
+
+**Saídas:** Hits com caminho, página, snippet, hash; lista stale e limit_reached.
+
+**Limites:** Consulta não reconstrói índice; fonte ausente/alterada é excluída até rebuild explícito.
+
+**Erros:** Schema/hash inválido ou índice mudado durante consulta → erro; fonte stale vira registro explícito.
+
+**Estado e efeitos:** Somente leitura de índice/fontes e lista de resultados.
+
+**Cancelamento:** Consulta em worker aceita cancel; não publicar relatório final de geração antiga.
+
+Fontes/requisitos: [app/collection_index.py — search_index](../app/collection_index.py).
+
+Planos relacionados da família: S12-08-1, S12-08-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-index/maintenance` — Manter índice completo e recuperação
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Snapshot atual, lista de documentos, hash esperado e escolha rebuild/backup/restore/revisar trava.
+
+**Saídas:** Snapshot novo conferido ou relatório de backup/restauração/trava local.
+
+**Limites:** Operações sobre formato Linuxit; trava abandonada exige revisão PID, não prova de locking distribuído/NFS.
+
+**Erros:** Hash diferente/lock de processo ativo → recusa; backup inválido
+
+**Estado e efeitos:** Pode criar .lock/backup e substituir exclusivamente índice próprio após validação.
+
+**Cancelamento:** Cancelar confirmação não inicia manutenção; worker cancelável; publicação já concluída não é desfeita automaticamente.
+
+Fontes/requisitos: [app/collection_index.py — build_index](../app/collection_index.py), [app/collection_window.py — CollectionWindow._maintain](../app/collection_window.py).
+
+Planos relacionados da família: S12-08-1, S12-08-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="search-language"></a>
 
@@ -439,6 +1065,69 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_proximity_u
 
 Relacionados aos planos dinâmicos/UI: UI07.
 
+### Contratos individuais de operações
+
+#### `search-language/wildcard` — Pesquisar coringas por palavra
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Modo wildcard e um token Unicode contendo * ou ?.
+
+**Saídas:** Spans de palavras completas que casam com o glob próprio.
+
+**Limites:** Até 64 caracteres, 8 coringas, ao menos letra/número; token de texto até 4096; não é regex.
+
+**Erros:** Padrão só coringas, pontuação indevida ou token grande → ValueError, sem fallback literal silencioso.
+
+**Estado e efeitos:** Cálculo em memória sobre texto; não altera índice/disco.
+
+**Cancelamento:** Gerador síncrono; busca externa consulta cancel entre páginas e lotes.
+
+Fontes/requisitos: [app/search_matching.py — query_spans](../app/search_matching.py).
+
+Planos relacionados da família: S12-09-1, S12-09-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-language/proximity` — Pesquisar proximidade ordenada
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** 2–8 palavras em ordem e proximidade inteira 0–50.
+
+**Saídas:** Span cobre primeira à última palavra quando intervalo total satisfaz limite.
+
+**Limites:** Mantém ordem desejada e não cruza arbitrariamente limites da representação textual da página.
+
+**Erros:** Uma palavra, distância negativa/bool ou pontuação de regex → ValueError.
+
+**Estado e efeitos:** Cálculo puro; não aprende regras nem reescreve documento.
+
+**Cancelamento:** Interrupção controlada pelo chamador da página; não possui subprocesso próprio.
+
+Fontes/requisitos: [app/search_matching.py — query_spans](../app/search_matching.py).
+
+Planos relacionados da família: S12-09-1, S12-09-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `search-language/stemming` — Aplicar stemming por idioma
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Modo stem-<código> de idioma suportado e 1–8 palavras Unicode.
+
+**Saídas:** Spans de sequências com radicais Snowball iguais em ordem.
+
+**Limites:** 36 idiomas de search_languages; token até 4096; stemming não é tradução nem semântica universal.
+
+**Erros:** Idioma/helper indisponível ou consulta fora da gramática → erro, não aproximação ao algoritmo Foxit.
+
+**Estado e efeitos:** Carrega stemmer local; não envia texto à nuvem.
+
+**Cancelamento:** Busca externa cancelável; cálculo do stemmer não anuncia SLA de interrupção por token.
+
+Fontes/requisitos: [app/search_matching.py — query_spans](../app/search_matching.py), [app/search_languages.py — python_stemmer](../app/search_languages.py).
+
+Planos relacionados da família: S12-09-1, S12-09-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="selection"></a>
 
 ## Seleção/cópia/snapshot
@@ -477,6 +1166,69 @@ Seleção retangular de palavras e cópia; snapshot de região; sem garantir ord
 Fontes: [app/main.py](../app/main.py), [app/rendering.py](../app/rendering.py), [app/text_selection.py](../app/text_selection.py), [app/character_selection.py](../app/character_selection.py), [app/character_extraction.py](../app/character_extraction.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_search_navigation_selection_and_rotation](../tests/test_gui.py); [test_intrinsic_rotation_and_cropbox_match_text_geometry](../tests/test_regressions.py).
+
+### Contratos individuais de operações
+
+#### `selection/text` — Selecionar e copiar palavras por área
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Arraste na página exibida e transformação tela↔PDF atual, caixas de palavras da sessão.
+
+**Saídas:** Texto selecionado/copiar conforme região e geometria disponível.
+
+**Limites:** Respeita permissão de extração; ordem extraída depende da representação textual do PDF.
+
+**Erros:** Sem mapa/permissão/página → seleção não deve copiar texto não autorizado ou inventado.
+
+**Estado e efeitos:** Seleção e clipboard podem mudar; original permanece intacto.
+
+**Cancelamento:** Soltar conclui seleção local; trocar documento descarta mapas e seleção pendentes.
+
+Fontes/requisitos: [app/main.py — PDFWindow._finish_text_selection](../app/main.py).
+
+Planos relacionados da família: S12-10-1, S12-10-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `selection/snapshot` — Copiar snapshot de região
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Retângulo positivo na página exibida e imagem renderizada atual.
+
+**Saídas:** Imagem recortada para clipboard/uso explícito do usuário.
+
+**Limites:** Snapshot não contém necessariamente texto/estrutura; deve respeitar permissão de cópia.
+
+**Erros:** Área fora da página, vazia ou documento ausente → não publicar imagem válida fictícia.
+
+**Estado e efeitos:** Pode mudar clipboard com pixels; não escreve PDF nem exporta automaticamente.
+
+**Cancelamento:** Ação local de recorte; fechar documento limpa seleção; não há fila remota.
+
+Fontes/requisitos: [app/main.py — PDFWindow._finish_snapshot](../app/main.py).
+
+Planos relacionados da família: S12-10-1, S12-10-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `selection/bidi` — Garantir ordem lógica e texto bidirecional
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Texto Unicode, caixas reais, carets Pango e offsets âncora/foco.
+
+**Saídas:** Intervalo textual e retângulos/caret, com movimentos visuais por linha.
+
+**Limites:** Até 100000 caracteres; limites de grafema e bidi nativos quando disponíveis; fallback delimitado.
+
+**Erros:** Offset fora do texto, coordenada não finita ou mapa acima do limite → ValueError.
+
+**Estado e efeitos:** Estado de seleção somente em memória; não reordena conteúdo salvo.
+
+**Cancelamento:** Transformações síncronas; carregamento do mapa é invalidado ao trocar página/documento.
+
+Fontes/requisitos: [app/character_selection.py — select_range](../app/character_selection.py).
+
+Planos relacionados da família: S12-10-1, S12-10-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="printing"></a>
 
@@ -524,6 +1276,89 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_pre
 
 Relacionados aos planos dinâmicos/UI: D17, UI02, UI05.
 
+### Contratos individuais de operações
+
+#### `printing/preview` — Preparar prévia e opções de impressão
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Documento da sessão e job com intervalo, papel, orientação, escala/imposição e camadas.
+
+**Saídas:** Prévia das folhas planejadas pelo mesmo backend de preparação próprio.
+
+**Limites:** Prévia visual não certifica driver, papel físico nem spooler; política /P aplicada à sessão.
+
+**Erros:** Intervalo/mode inválido ou preparação falha → erro na prévia, sem enviar trabalho.
+
+**Estado e efeitos:** Cria PDF/rasters temporários de prévia; não altera fonte.
+
+**Cancelamento:** Mudar opções cancela/ignora prévias antigas; fechar janela libera temporários após leitores.
+
+Fontes/requisitos: [app/print_window.py — PrintWindow._draw_preview](../app/print_window.py).
+
+Planos relacionados da família: S12-11-1, S12-11-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `printing/submit` — Enviar arquivo ao backend Linux
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF preparado, nome de impressora e job com opções aceitas pelo CUPS.
+
+**Saídas:** Recibo do lp com identificação do trabalho quando reconhecida.
+
+**Limites:** Requer cups-client e impressora selecionada; cancelamento posterior só usa ID validado do próprio recibo.
+
+**Erros:** lp ausente, nenhuma impressora ou retorno não zero → RuntimeError com diagnóstico, sem declarar impressão concluída.
+
+**Estado e efeitos:** Envia trabalho externo à fila, que pode persistir após fechar janela.
+
+**Cancelamento:** Antes do envio pode cancelar preparação; depois exige cancel_job e confirmação da fila, sem garantir papel não saiu.
+
+Fontes/requisitos: [app/cups_backend.py — print_file](../app/cups_backend.py).
+
+Planos relacionados da família: S12-11-1, S12-11-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `printing/physical` — Imprimir e cancelar em dispositivo físico
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Impressora e papel reais, régua, job identificado, driver e configuração duplex/escala.
+
+**Saídas:** Plano de aceitação física com medidas, frente/verso, fila e cancelamento observados.
+
+**Limites:** Ainda depende de equipamentos; CUPS virtual não fecha este contrato físico.
+
+**Erros:** Papel/driver divergente, atolamento ou cancelamento não confirmado → registrar falha/inconclusivo, sem afirmar conformidade.
+
+**Estado e efeitos:** Pode consumir papel/tinta e alterar fila; executar só campanha específica.
+
+**Cancelamento:** Solicitar cancelamento do ID da campanha e conferir fila/dispositivo; requisito proposto, não medição já executada.
+
+Fontes/requisitos: [docs/O-QUE-FAZER-AGORA-2026-10-22.md](../docs/O-QUE-FAZER-AGORA-2026-10-22.md).
+
+Planos relacionados da família: S12-11-1, S12-11-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `printing/shutdown` — Encerrar após impressão sem processo preso
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Job concluído/cancelado e sequência de fechamento com observador de processos autorizado.
+
+**Saídas:** Evidências de janela, processos residuais e fila após fechamento normal.
+
+**Limites:** Espera splwow64 previamente vista não tem causa definitiva; não atribuir falha a Foxit por VM parada.
+
+**Erros:** Processo residual ou relógio congelado → preservar evidência/inconclusivo e interromper entradas.
+
+**Estado e efeitos:** Não requer kill automático; investigação do original só em contenção e campanha autorizada.
+
+**Cancelamento:** Ao congelar, salvar checkpoint e avisar; encerramento residual segue decisão D06 e contexto da campanha, nunca dedução automática.
+
+Fontes/requisitos: [docs/VM-SENHA-E-PARADA-2026-10-18.md](../docs/VM-SENHA-E-PARADA-2026-10-18.md).
+
+Planos relacionados da família: S12-11-1, S12-11-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="imposition"></a>
 
 ## Livreto/N-up/mosaico
@@ -569,6 +1404,69 @@ Fontes: [app/imposition.py](../app/imposition.py), [app/worker_cli.py](../app/wo
 Testes próprios existentes, sem nova execução nesta tabela: [test_booklet_generated_sides_and_binding](../tests/test_regressions.py); [test_nup_worker_rejects_fractional_count](../tests/test_regressions.py); [test_worker_prepares_nup_and_poster](../tests/test_regressions.py); [test_actual_size_centers_the_visible_crop_not_the_media_origin](../tests/test_imposition_cropbox.py); [test_intrinsic_rotation_keeps_shifted_crop_aligned](../tests/test_imposition_cropbox.py); [test_inputs_and_in_memory_page_geometry_are_preserved](../tests/test_imposition_cropbox.py); [test_poster_single_sheet_and_tiles_keep_crop_placement_without_marks](../tests/test_imposition_cropbox.py).
 
 Relacionados aos planos dinâmicos/UI: D18.
+
+### Contratos individuais de operações
+
+#### `imposition/booklet` — Compor livreto
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF, seleção, papel, binding left/right e sides both/front/back; margens de segurança/lombada.
+
+**Saídas:** Folhas com pares de livreto e preenchimento branco quando necessário.
+
+**Limites:** Frente/verso manual é diferente de duplex do driver; CropBox/rotação normalizados na cópia.
+
+**Erros:** Lados desconhecidos, geometria inválida ou permissão de impressão negada → ValueError/PermissionError.
+
+**Estado e efeitos:** Gera PDF imposto; não muda stream/caixas da fonte em memória.
+
+**Cancelamento:** Preparação no worker cancelável; uma folha já enviada ao CUPS exige cancelamento separado.
+
+Fontes/requisitos: [app/imposition.py — create_booklet](../app/imposition.py).
+
+Planos relacionados da família: S12-12-1, S12-12-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `imposition/nup` — Compor N-up
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF, intervalo, ordem, papel/orientação, pages_per_sheet, layout e margem.
+
+**Saídas:** PDF com páginas escaladas em células corretas preservando recorte próprio.
+
+**Limites:** Grades aceitas 1/2/4/6/9/16; margem em mm e coordenadas em pontos.
+
+**Erros:** pages_per_sheet fora da lista ou CropBox sem área → ValueError antes do envio.
+
+**Estado e efeitos:** Gera cópia temporária/saída própria, sem modificar source reader.
+
+**Cancelamento:** Cancelamento do worker interrompe preparação; não revoga PDF já publicado/enviado.
+
+Fontes/requisitos: [app/imposition.py — create_nup](../app/imposition.py).
+
+Planos relacionados da família: S12-12-1, S12-12-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `imposition/poster` — Compor mosaico
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, papel/área imprimível, escala, sobreposição, margens, marcas e rótulos.
+
+**Saídas:** Tiles em PDF, com marcas/legendas vetoriais quando Cairo disponível.
+
+**Limites:** Até 100 folhas por página e 300 no trabalho; geometria da impressora limita área útil.
+
+**Erros:** Sobreposição/escala exigindo mais folhas que limite → ValueError orienta reduzir; não truncar pôster silenciosamente.
+
+**Estado e efeitos:** Escreve PDF de mosaico; sem alteração da fonte.
+
+**Cancelamento:** Worker/geração de prévia canceláveis; envio e cancelamento da fila têm recibos separados.
+
+Fontes/requisitos: [app/imposition.py — create_poster](../app/imposition.py).
+
+Planos relacionados da família: S12-12-1, S12-12-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="bookmarks-edit"></a>
 
@@ -616,6 +1514,89 @@ Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_changes.py](../app/p
 Testes próprios existentes, sem nova execução nesta tabela: [test_bookmark_without_local_page_is_not_given_a_fake_destination](../tests/test_search_scopes.py); [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_combined_edits_preserve_tree_destinations_geometry_and_source](../tests/test_extended_edits.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_info_distinguishes_checkbox_radio_choice_combo_and_multiselect](../tests/test_advanced_edits.py); [test_checkbox_sets_and_clears_value_and_visible_appearance](../tests/test_advanced_edits.py); [test_radio_activates_only_the_selected_widget_and_can_clear](../tests/test_advanced_edits.py); [test_radio_no_toggle_off_is_enforced](../tests/test_advanced_edits.py); [test_single_and_combo_values_indices_and_generated_appearances_roundtrip](../tests/test_advanced_edits.py); [test_multiselect_uses_export_values_and_canonical_indices](../tests/test_advanced_edits.py); [test_choice_selection_can_be_cleared](../tests/test_advanced_edits.py); [test_invalid_values_do_not_publish_partial_batch](../tests/test_advanced_edits.py); [test_read_only_and_unsupported_button_appearance_are_explicit](../tests/test_advanced_edits.py); [test_editable_combo_and_duplicate_exports_are_rejected](../tests/test_advanced_edits.py); [test_inherited_checkbox_flags_and_type_are_respected](../tests/test_advanced_edits.py); [test_checkbox_widget_absent_from_pages_is_unsupported](../tests/test_advanced_edits.py); [test_closed_outline_counts_remain_closed_after_move](../tests/test_advanced_edits.py); [test_move_preserves_subtree_destinations_and_sibling_links](../tests/test_advanced_edits.py); [test_move_child_to_root_and_reorder_same_parent](../tests/test_advanced_edits.py); [test_delete_bookmark_removes_subtree_and_last_root](../tests/test_advanced_edits.py); [test_move_into_descendant_invalid_positions_and_boolean_paths_are_refused](../tests/test_advanced_edits.py); [test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text](../tests/test_advanced_edits.py); [test_delete_supported_annotation_preserves_widgets_and_other_pages](../tests/test_advanced_edits.py); [test_locked_notes_widgets_and_replies_are_not_deleted](../tests/test_advanced_edits.py); [test_invalid_annotation_geometry_and_extra_parameters_are_rejected](../tests/test_advanced_edits.py); [test_undo_redo_rebuild_actual_pdfs_and_save_current_cursor_only](../tests/test_edit_history.py); [test_undo_all_restores_base_and_disables_save_until_redone](../tests/test_edit_history.py); [test_new_branch_discards_redo_but_invalid_branch_preserves_it](../tests/test_edit_history.py); [test_operation_values_are_defensively_copied](../tests/test_edit_history.py); [test_changed_original_blocks_add_undo_redo_and_save](../tests/test_edit_history.py); [test_existing_destination_is_not_overwritten_and_draft_survives](../tests/test_edit_history.py); [test_closed_session_refuses_work_and_removes_private_previews](../tests/test_edit_history.py); [test_pre_cancelled_session_does_not_start_worker](../tests/test_edit_history.py); [test_buttons_undo_redo_save_selected_history_and_preserve_prior_copy](../tests/test_edit_draft_gtk.py); [test_real_form_dialog_checkbox_radio_list_and_multiselect](../tests/test_edit_draft_gtk.py); [test_real_move_and_delete_bookmark_dialogs_use_updated_paths](../tests/test_edit_draft_gtk.py); [test_real_area_annotation_dialog_and_delete_keep_other_annotations](../tests/test_edit_draft_gtk.py); [test_failed_operation_and_existing_destination_keep_history_usable](../tests/test_edit_draft_gtk.py); [test_cancel_dialog_and_reopen_parent_close_draft_without_publishing](../tests/test_edit_draft_gtk.py); [test_cancelling_save_and_repeated_clicks_do_not_duplicate_writes](../tests/test_edit_draft_gtk.py); [test_saved_form_and_highlight_render_with_poppler](../tests/test_edit_draft_gtk.py).
 
 Relacionados aos planos dinâmicos/UI: D07, UI09, UI10.
+
+### Contratos individuais de operações
+
+#### `bookmarks-edit/create` — Criar marcador em cópia
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** kind add-bookmark, title não vazio e page inteiro válido, identidade/hash e destino novo.
+
+**Saídas:** Novo nó de marcador com título e destino local na cópia.
+
+**Limites:** Título até 4096 bytes; árvore até 2048 entradas e 32 níveis no inspetor.
+
+**Erros:** Título vazio/página fora da faixa → ValueError, sem arquivo final parcial.
+
+**Estado e efeitos:** Adiciona operação ao rascunho; salvar copia árvore sem alterar fonte.
+
+**Cancelamento:** Desfazer antes de salvar remove criação; cópia salva permanece independente do histórico.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-13-1, S12-13-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `bookmarks-edit/rename` — Renomear marcador
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Caminho ordinal do nó e title novo não vazio.
+
+**Saídas:** Mesmo nó/destino/filhos com título atualizado.
+
+**Limites:** Caminho tem 1–32 índices de 0–2047; título até 4096 bytes.
+
+**Erros:** Caminho não encontrado ou título inválido → erro sem renomear outro nó por coincidência.
+
+**Estado e efeitos:** Rascunho e cópia própria apenas; destinos preservados.
+
+**Cancelamento:** Undo/redo por reconstrução do rascunho; cancelar diálogo não cria operação.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-13-1, S12-13-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `bookmarks-edit/move` — Mover subárvore de marcadores
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** path de origem, parent de destino (raiz=[]), position medida após retirada.
+
+**Saídas:** Nó e subárvore movidos com destinos e contagens de irmãos coerentes.
+
+**Limites:** Proibido mover para própria subárvore; profundidade 32 e posição dentro do pai atual.
+
+**Erros:** Ciclo/posição fora da faixa/pai ausente → ValueError sem árvore parcial publicada.
+
+**Estado e efeitos:** Reestrutura cópia/rascunho; fonte não muda.
+
+**Cancelamento:** Undo reconstrói árvore anterior; trocar documento fecha sessão de edição antiga.
+
+Fontes/requisitos: [app/pdf_changes.py — _change_outline](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-13-1, S12-13-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `bookmarks-edit/delete` — Excluir subárvore em cópia
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Caminho ordinal do marcador no estado atual do rascunho.
+
+**Saídas:** Remove nó e todos os descendentes; restante do outline consistente.
+
+**Limites:** Não é remoção apenas do título; confirmar consequências da subárvore.
+
+**Erros:** Caminho inexistente ou árvore cíclica/inválida → erro sem excluir nó diferente.
+
+**Estado e efeitos:** Exclui subárvore na cópia, preservando páginas e fonte.
+
+**Cancelamento:** Cancelar confirmação conserva árvore; undo antes do save restaura rascunho.
+
+Fontes/requisitos: [app/pdf_changes.py — _change_outline](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-13-1, S12-13-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="annotations"></a>
 
@@ -674,6 +1655,349 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_comment_sub
 
 Relacionados aos planos dinâmicos/UI: D08, D09, D19.
 
+### Contratos individuais de operações
+
+#### `annotations/note` — Criar nota Text
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, texto, rect e author opcional em coordenadas PDF.
+
+**Saídas:** Anotação /Text imprimível com geometria e texto persistidos em cópia.
+
+**Limites:** Área dentro de CropBox; texto até 64 KiB UTF-8; autor até 4096 bytes.
+
+**Erros:** Retângulo fora da página ou texto inválido → ValueError sem anotação parcial.
+
+**Estado e efeitos:** Anexa anotação à página do rascunho, sem mudar conteúdo da página.
+
+**Cancelamento:** Cancelar diálogo não cria operação; undo remove nota no rascunho e mantém cópias já salvas.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/highlight` — Criar destaque de área
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, retângulo positivo e comentário da operação add-highlight.
+
+**Saídas:** /Highlight com QuadPoints e aparência própria na área escolhida.
+
+**Limites:** Geometria por área não reconstrói seleção semântica multilinha universal.
+
+**Erros:** Área fora de CropBox ou vazia → rejeição antes da publicação.
+
+**Estado e efeitos:** Cria anotação sobre conteúdo; não altera texto original.
+
+**Cancelamento:** Segue undo/redo do rascunho; cancelar preparação não publica cópia final.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/rectangle` — Criar retângulo
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, rect dentro do CropBox e texto.
+
+**Saídas:** /Square imprimível com retângulo e aparência persistidos.
+
+**Limites:** Coordenadas finitas em pontos PDF; preenchimento/estilo seguem aparência própria.
+
+**Erros:** Retângulo invertido/fora da página → ValueError.
+
+**Estado e efeitos:** Anotação de desenho separada do conteúdo; fonte intacta.
+
+**Cancelamento:** Diálogo cancelado descarta pedido; undo refaz rascunho sem o Square.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/underline` — Criar sublinhado
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, rect e comentário em add-underline.
+
+**Saídas:** /Underline e QuadPoints com aparência vetorial própria vermelha.
+
+**Limites:** Área mínima 0,25 ponto em cada eixo; coordenadas absolutas até 10 milhões; texto até 64 KiB.
+
+**Erros:** Área pequena, fora de CropBox ou coordenadas não finitas → ValueError.
+
+**Estado e efeitos:** Adiciona anotação vetorial à cópia, sem riscar bytes do conteúdo.
+
+**Cancelamento:** Undo/redo remove/reaplica no rascunho; cancelamento do worker mantém fonte.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_annotation](../app/pdf_annotations.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/strikeout` — Criar tachado
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, rect e comentário em add-strikeout.
+
+**Saídas:** /StrikeOut com aparência vetorial própria no meio da área.
+
+**Limites:** Mínimo 0,25 ponto em ambos os eixos; não calcula baseline tipográfica real.
+
+**Erros:** Área inválida ou texto acima de 64 KiB → ValueError.
+
+**Estado e efeitos:** Adiciona anotação; texto da página continua pesquisável e não é redação.
+
+**Cancelamento:** Undo remove marca do rascunho; cópia já salva não é modificada.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_annotation](../app/pdf_annotations.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/squiggly` — Criar ondulado
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, rect e comentário em add-squiggly.
+
+**Saídas:** /Squiggly com caminho ondulado vetorial e QuadPoints.
+
+**Limites:** Geometria finita e área mínima 0,25 ponto, dentro do CropBox.
+
+**Erros:** Coordenada fora da página ou área degenerada → ValueError sem aparência truncada válida.
+
+**Estado e efeitos:** Cria marca de revisão; não altera conteúdo nem fonte.
+
+**Cancelamento:** Cancelamento do diálogo descarta geometria; histórico pode desfazer/refazer.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_annotation](../app/pdf_annotations.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/ellipse` — Criar elipse
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, rect e comentário em add-ellipse.
+
+**Saídas:** /Circle com elipse vetorial inscrita no retângulo.
+
+**Limites:** Rect positivo mínimo 0,25 ponto por eixo, até 10 milhões em módulo.
+
+**Erros:** Área/coord fora dos limites → ValueError.
+
+**Estado e efeitos:** Anotação separada com aparência própria; PDF original preservado.
+
+**Cancelamento:** Undo/redo no rascunho; worker cancelado não modifica fonte.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_annotation](../app/pdf_annotations.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/line` — Criar linha
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, dois extremos [x1,y1,x2,y2] e comentário.
+
+**Saídas:** /Line com /L e aparência na direção dos extremos, inclusive diagonal invertida.
+
+**Limites:** Comprimento mínimo 0,25 ponto; todos os pontos dentro de CropBox.
+
+**Erros:** Extremos coincidentes/fora da página → rejeição; não ordenar extremos como retângulo.
+
+**Estado e efeitos:** Adiciona traço vetorial e bounds próprios na cópia.
+
+**Cancelamento:** Cancelar captura descarta extremos; undo remove operação do histórico.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_annotation](../app/pdf_annotations.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/comment-author` — Editar comentário e autor
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, índice da anotação atual e strings text/author.
+
+**Saídas:** /Contents e /T atualizados ou limpos sem alterar geometria.
+
+**Limites:** Texto até 64 KiB, autor até 4096 bytes; somente tipos suportados desbloqueados e sem dependentes no comando simples.
+
+**Erros:** Índice stale, lock, popup/resposta dependente ou tipo incompatível → recusa, sem editar widget.
+
+**Estado e efeitos:** Muda metadados na cópia; não prova identidade de autor.
+
+**Cancelamento:** Cancelar diálogo preserva metadados; undo reconstrói texto/autor anteriores do rascunho.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/style` — Mudar cor e opacidade de anotação existente
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, índice, color RGB de três componentes e opacity.
+
+**Saídas:** /C, /CA e aparência normal regeneradas com ExtGState; Multiply para highlight.
+
+**Limites:** Opacidade 0,1–1; tipos STYLEABLE incluindo Redact, sem locks/vínculos incompatíveis.
+
+**Erros:** Text/FreeText/Stamp ou anotação com popup/respostas → recusa do comando de estilo simples.
+
+**Estado e efeitos:** Altera aparência de anotação, sem rasterizar página; geometria mantida.
+
+**Cancelamento:** Cancelar diálogo não modifica rascunho; undo restaura estilo anterior.
+
+Fontes/requisitos: [app/annotation_style.py — restyle_annotation](../app/annotation_style.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/resize` — Redimensionar retângulo, elipse ou texto livre
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, índice e novo rect dentro do CropBox.
+
+**Saídas:** /Rect atualizado, /RD removido e aparência refeita; Redact atualiza QuadPoints.
+
+**Limites:** Aceita Square/Circle/FreeText/Redact; outros tipos exigem operação específica.
+
+**Erros:** Tipo não redimensionável, lock ou dependentes → erro, sem deslocar widgets/conversa.
+
+**Estado e efeitos:** Muda anotação na cópia; FreeText pode redispor texto com fonte incorporada.
+
+**Cancelamento:** Undo reconstrói estado anterior; cancelar geometria descarta pedido.
+
+Fontes/requisitos: [app/annotation_geometry.py — resize_annotation](../app/annotation_geometry.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/redaction-mark` — Marcar áreas para redação (sem aplicar)
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, retângulo e comentário opcional.
+
+**Saídas:** /Redact com Rect/QuadPoints, IC preto e AP própria tracejada vermelha.
+
+**Limites:** Só marca intenção; conteúdo original continua presente até aplicação; texto até 64 KiB.
+
+**Erros:** Área fora do CropBox/chaves extras → ValueError.
+
+**Estado e efeitos:** Cria anotação pendente movível/redimensionável; não remove informações.
+
+**Cancelamento:** Cancelar marca/undo conserva página; exclusão simples remove somente intenção.
+
+Fontes/requisitos: [app/annotation_style.py — create_redaction](../app/annotation_style.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/redaction-apply` — Aplicar redação em cópia nova
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF com marcas /Redact, novo destino e DPI permitido. Extensão A6: mode=vector explícito, com mesmo hash/destino/marcas; raster continua default.
+
+**Saídas:** Cópia com páginas marcadas rasterizadas sem anotações, áreas cobertas e objetos órfãos removidos; relatório de perdas. Modo vetorial conservador remove objetos BT inteiros, caminhos pintados inteiros e usos de imagem inteiros que intersectam a marca; preserva texto/vetores públicos admitidos sem rasterizar.
+
+**Limites:** 150/300 DPI, até 50 páginas marcadas, 512 marcas e 45 MP por página; não promete remoção em anexos/metadados/títulos. Perfil vetorial: fontes Type1 Standard14 sem descritores/larguras/custom encoding; sem gs, clipping, Form XObjects, marked content, inline image ou texto com contorno (Tr1/2); operações desconhecidas recusadas. Até200000 operações/página e stack64; derivações numéricas devem ser finitas.
+
+**Erros:** Cifrado/assinado/XFA/portfólio, widget sobreposto ou nenhum Redact → recusa sem saída final.; Operador/estrutura gráfica fora do perfil vetorial ou geometria composta não finita → ValueError sem publicar cópia; oferecer escolha explícita do modo raster, sem fallback silencioso.
+
+**Estado e efeitos:** Substitui conteúdo das páginas marcadas por imagem; remove anotações sobrepostas e estrutura quando presente; páginas não marcadas preservadas. No modo vector remove Thumb/PieceInfo/StructParents/SeparationInfo da página, XObjects não usados e objetos órfãos, além das anotações/estrutura tratadas pelo backend comum; não busca segredos em metadata/anexos/outras páginas.
+
+**Cancelamento:** Worker cancelável/timeout 900 s; se interrompido antes de publicar não criar cópia final; destino existente nunca sobrescrito.
+
+Fontes/requisitos: [app/pdf_redaction.py — redact_copy](../app/pdf_redaction.py), [app/vector_redaction.py — redact_page](../app/vector_redaction.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/delete` — Excluir anotação simples
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página e índice de anotação simples no rascunho atual.
+
+**Saídas:** Anotação removida de Annots com resto da página preservado.
+
+**Limites:** Não é remoção universal; exige tipo suportado, desbloqueado e sem popup/respostas/vínculos.
+
+**Erros:** Widget, tipo estranho, lock ou dependente → ValueError, sem excluir conteúdo relacionado por suposição.
+
+**Estado e efeitos:** Altera cópia/rascunho; fonte e cópias anteriores ficam intactas.
+
+**Cancelamento:** Confirmar/cancelar antes da operação; undo restaura anotação no rascunho.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/history` — Desfazer/refazer rascunho
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** EditSession, operação válida e cursor atual de alterações.
+
+**Saídas:** Undo/redo reconstrói cópia do rascunho correspondente ao cursor.
+
+**Limites:** Até 100 passos na UI; novo add após undo elimina ramo redo; worker aceita no máximo 1000 operações por lote.
+
+**Erros:** Undo vazio, redo vazio ou adicionar após 100 passos → ValueError; save sem alteração também recusado.
+
+**Estado e efeitos:** Rascunho temporário substituído, nunca fonte/cópias já salvas.
+
+**Cancelamento:** Cancelar tarefa de reconstrução mantém fonte e não aprova rascunho incompleto.
+
+Fontes/requisitos: [app/edit_history.py — EditSession.undo](../app/edit_history.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/replies` — Editar respostas/popup e vínculos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página/índice alvo, resposta text/author e comando popup/update/delete-conversation quando escolhido.
+
+**Saídas:** /IRT e /RT, popup e conversa persistidos no subconjunto suportado.
+
+**Limites:** Profundidade de conversa 64; exige referência indireta, mesma página e tipos sem locks.
+
+**Erros:** Conversa cíclica/entre páginas, alvo direto ou bloqueado → recusa atômica.
+
+**Estado e efeitos:** Adiciona/edita dependentes somente na cópia; exclusão da conversa exige seleção própria.
+
+**Cancelamento:** Cancelar diálogo conserva conversa; histórico desfaz lote no rascunho, não cópia já publicada.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py), [app/annotation_geometry.py — conversation_members](../app/annotation_geometry.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `annotations/freehand` — Desenho livre e demais tipos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Página, 1–32 caminhos de pares XY e comentário.
+
+**Saídas:** /Ink com InkList e aparência vetorial própria.
+
+**Limites:** Até 4096 pontos no total, dois por traço, variação mínima 0,25 ponto; coordenadas dentro de CropBox.
+
+**Erros:** Traço degenerado, ímpar ou fora da página → ValueError.
+
+**Estado e efeitos:** Adiciona desenho sem rasterizar conteúdo, fonte preservada.
+
+**Cancelamento:** Limpar/cancelar captura descarta caminhos; undo remove operação Ink inteira.
+
+Fontes/requisitos: [app/pdf_annotations.py — create_ink](../app/pdf_annotations.py), [app/edit_dialogs.py — ink_operation_dialog](../app/edit_dialogs.py).
+
+Planos relacionados da família: S12-14-1, S12-14-2, S12-14-3, S12-14-4, S12-14-5, S12-14-6, S12-14-7, S12-14-8, S12-14-9, S12-14-10. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="forms"></a>
 
 ## AcroForm/XFA/eventos
@@ -727,6 +2051,189 @@ Atual (0.1.16): preenchimento em cópia nova de texto, checkbox com aparências 
 Fontes: [app/pdf_changes.py](../app/pdf_changes.py), [app/edit_tasks.py](../app/edit_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/pdf_form_controls.py](../app/pdf_form_controls.py), [app/edit_history.py](../app/edit_history.py), [app/edit_dialogs.py](../app/edit_dialogs.py), [app/edit_window.py](../app/edit_window.py), [docs/EDICAO-COM-HISTORICO.md](../docs/EDICAO-COM-HISTORICO.md), [testes/resultados/0.1.10/validation-review.json](../testes/resultados/0.1.10/validation-review.json), [app/pdf_form_events.py](../app/pdf_form_events.py), [app/pdf_edit_security.py](../app/pdf_edit_security.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [app/pdf_xfa.py](../app/pdf_xfa.py), [app/pdf_panels.py](../app/pdf_panels.py), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md), [docs/AVANCO-SEM-VM.md](../docs/AVANCO-SEM-VM.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_combined_copy_preserves_source_metadata_attachment_and_previous_objects](../tests/test_pdf_changes.py); [test_encryption_signature_permissions_xfa_and_portfolio_are_explicitly_unsupported](../tests/test_pdf_changes.py); [test_real_dialogs_and_worker_create_bookmark_note_and_form_copies](../tests/test_copy_edit_gtk.py); [test_reopening_same_document_during_dialog_blocks_stale_save](../tests/test_copy_edit_gtk.py); [test_existing_destination_is_preserved_and_busy_state_is_released](../tests/test_copy_edit_gtk.py); [test_nested_field_inherits_read_only_and_max_length](../tests/test_pdf_changes.py); [test_form_max_length_and_value_types_are_enforced](../tests/test_pdf_changes.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_info_distinguishes_checkbox_radio_choice_combo_and_multiselect](../tests/test_advanced_edits.py); [test_checkbox_sets_and_clears_value_and_visible_appearance](../tests/test_advanced_edits.py); [test_radio_activates_only_the_selected_widget_and_can_clear](../tests/test_advanced_edits.py); [test_radio_no_toggle_off_is_enforced](../tests/test_advanced_edits.py); [test_single_and_combo_values_indices_and_generated_appearances_roundtrip](../tests/test_advanced_edits.py); [test_multiselect_uses_export_values_and_canonical_indices](../tests/test_advanced_edits.py); [test_choice_selection_can_be_cleared](../tests/test_advanced_edits.py); [test_invalid_values_do_not_publish_partial_batch](../tests/test_advanced_edits.py); [test_read_only_and_unsupported_button_appearance_are_explicit](../tests/test_advanced_edits.py); [test_editable_combo_and_duplicate_exports_are_rejected](../tests/test_advanced_edits.py); [test_inherited_checkbox_flags_and_type_are_respected](../tests/test_advanced_edits.py); [test_checkbox_widget_absent_from_pages_is_unsupported](../tests/test_advanced_edits.py); [test_closed_outline_counts_remain_closed_after_move](../tests/test_advanced_edits.py); [test_move_preserves_subtree_destinations_and_sibling_links](../tests/test_advanced_edits.py); [test_move_child_to_root_and_reorder_same_parent](../tests/test_advanced_edits.py); [test_delete_bookmark_removes_subtree_and_last_root](../tests/test_advanced_edits.py); [test_move_into_descendant_invalid_positions_and_boolean_paths_are_refused](../tests/test_advanced_edits.py); [test_highlight_and_rectangle_roundtrip_geometry_print_flags_and_text](../tests/test_advanced_edits.py); [test_delete_supported_annotation_preserves_widgets_and_other_pages](../tests/test_advanced_edits.py); [test_locked_notes_widgets_and_replies_are_not_deleted](../tests/test_advanced_edits.py); [test_invalid_annotation_geometry_and_extra_parameters_are_rejected](../tests/test_advanced_edits.py); [test_undo_redo_rebuild_actual_pdfs_and_save_current_cursor_only](../tests/test_edit_history.py); [test_undo_all_restores_base_and_disables_save_until_redone](../tests/test_edit_history.py); [test_new_branch_discards_redo_but_invalid_branch_preserves_it](../tests/test_edit_history.py); [test_operation_values_are_defensively_copied](../tests/test_edit_history.py); [test_changed_original_blocks_add_undo_redo_and_save](../tests/test_edit_history.py); [test_existing_destination_is_not_overwritten_and_draft_survives](../tests/test_edit_history.py); [test_closed_session_refuses_work_and_removes_private_previews](../tests/test_edit_history.py); [test_pre_cancelled_session_does_not_start_worker](../tests/test_edit_history.py); [test_buttons_undo_redo_save_selected_history_and_preserve_prior_copy](../tests/test_edit_draft_gtk.py); [test_real_form_dialog_checkbox_radio_list_and_multiselect](../tests/test_edit_draft_gtk.py); [test_real_move_and_delete_bookmark_dialogs_use_updated_paths](../tests/test_edit_draft_gtk.py); [test_real_area_annotation_dialog_and_delete_keep_other_annotations](../tests/test_edit_draft_gtk.py); [test_failed_operation_and_existing_destination_keep_history_usable](../tests/test_edit_draft_gtk.py); [test_cancel_dialog_and_reopen_parent_close_draft_without_publishing](../tests/test_edit_draft_gtk.py); [test_cancelling_save_and_repeated_clicks_do_not_duplicate_writes](../tests/test_edit_draft_gtk.py); [test_saved_form_and_highlight_render_with_poppler](../tests/test_edit_draft_gtk.py); [test_paths_follow_som_indices_and_skip_groups](../tests/test_pdf_xfa.py); [test_doctype_entities_malformed_and_depth_are_refused](../tests/test_pdf_xfa.py); [test_field_count_value_length_and_size_are_bounded](../tests/test_pdf_xfa.py); [test_hybrid_packet_array_is_listed_without_changing_the_file](../tests/test_pdf_xfa.py); [test_elements_split_across_packets_use_the_joined_document](../tests/test_pdf_xfa.py); [test_text_fill_updates_acroform_and_datasets_and_preserves_the_rest](../tests/test_pdf_xfa.py); [test_calculated_values_are_mirrored_too](../tests/test_pdf_xfa.py); [test_unbound_field_other_operations_and_xfa_only_are_refused_without_output](../tests/test_pdf_xfa.py); [test_only_bound_fields_are_offered_and_value_reaches_the_operation](../tests/test_xfa_gtk.py).
+
+### Contratos individuais de operações
+
+#### `forms/text` — Preencher campo Tx
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Mapa de 1–256 campos terminais /Tx para strings e cópia nova.
+
+**Saídas:** /V e aparência de widgets atualizados; em híbridos suportados espelha datasets XFA.
+
+**Limites:** ReadOnly/MaxLen herdados; texto até 64 KiB; campo com referência indireta e widgets de página.
+
+**Erros:** Campo inexistente, readonly, MaxLen excedido ou widget não localizável → erro sem cópia parcial.
+
+**Estado e efeitos:** Preenche cópia verificada, não executa JavaScript nem muda original.
+
+**Cancelamento:** Cancelar entrada não adiciona operação; desfazer volta a valores anteriores no rascunho.
+
+Fontes/requisitos: [app/pdf_changes.py — _apply](../app/pdf_changes.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/checkbox` — Marcar/desmarcar checkbox
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Mapa de controles, nome de checkbox e valor booleano real.
+
+**Saídas:** /V e /AS mudam entre /Off e estado ligado já existente.
+
+**Limites:** Exige aparências Off/On válidas, até 128 widgets por controle e 256 controles por operação.
+
+**Erros:** String 'true', ReadOnly ou aparências incompatíveis → recusa.
+
+**Estado e efeitos:** Atualiza valor/aparência da cópia, sem redesenhar aparência de botão inexistente.
+
+**Cancelamento:** Cancelamento do diálogo conserva seleção; histórico desfaz preenchimento antes de save.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/radio` — Selecionar radio simples
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Nome de grupo radio e estado exportado existente ou Off permitido.
+
+**Saídas:** Somente widget selecionado fica On, /V do grupo coerente.
+
+**Limites:** NoToggleToOff respeitado; estados repetidos ou grupo sem widgets suportados não aceitos.
+
+**Erros:** Estado ausente ou limpar grupo que proíbe Off → ValueError.
+
+**Estado e efeitos:** Muda seleção do grupo na cópia sem alterar opções originais.
+
+**Cancelamento:** Cancelar diálogo conserva grupo; undo/redo restaura seleção anterior.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/combo-fixed` — Selecionar combo sem texto livre
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Nome do combo de seleção única e opção exportada existente.
+
+**Saídas:** Valor/índice/aparência coerentes; export e label preservados.
+
+**Limites:** Até 512 opções; export/labels duplicados e valores locais ambíguos recusados.
+
+**Erros:** Texto fora de Opt ou campo readonly → erro, sem converter silenciosamente a combo editável.
+
+**Estado e efeitos:** Muda só seleção da cópia; lista Opt preservada.
+
+**Cancelamento:** Cancelar seleção conserva valor; undo remove operação do rascunho.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/list-single` — Selecionar lista simples
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Lista de uma opção exportada ou lista vazia para limpeza.
+
+**Saídas:** /V único ou vazio e /I coerente com aparências.
+
+**Limites:** Campo lista de seleção única; no máximo um valor e opções até 512.
+
+**Erros:** Dois valores, repetidos ou ausentes nas opções → ValueError.
+
+**Estado e efeitos:** Atualiza seleção/limpeza na cópia e widgets ligados.
+
+**Cancelamento:** Cancelar diálogo conserva índice; undo/redo opera sobre rascunho.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/list-multiple` — Selecionar lista múltipla
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Lista de valores exportados distintos para um controle MultiSelect.
+
+**Saídas:** /V e /I canônicos na ordem de opções, sem duplicação.
+
+**Limites:** Até 512 opções; readonly e referências de widgets verificadas.
+
+**Erros:** Duplicata/valor ausente/controle single → erro sem gravar subconjunto válido parcial.
+
+**Estado e efeitos:** Preenche conjunto na cópia; não reorganiza opções originais.
+
+**Cancelamento:** Cancelar confirmação conserva conjunto anterior; histórico desfaz lote.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/combo-editable` — Preencher combo com texto livre
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Campo Combo+Edit de seleção única e texto livre fora ou dentro de Opt.
+
+**Saídas:** /V livre com aparência gerada e /I somente quando corresponde à opção.
+
+**Limites:** Até 4096 bytes por texto, sem controles ASCII; conserva Opt e ReadOnly.
+
+**Erros:** MultiSelect, readonly ou texto excessivo → ValueError; não exige opção preexistente.
+
+**Estado e efeitos:** Cria aparência do texto próprio na cópia; não executa eventos desconhecidos.
+
+**Cancelamento:** Cancelar diálogo conserva texto; undo reconstrói valor anterior.
+
+Fontes/requisitos: [app/pdf_form_controls.py — fill_controls](../app/pdf_form_controls.py), [app/pdf_form_controls.py — describe_control](../app/pdf_form_controls.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/events` — Calcular e validar eventos de formulário
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Valores de entrada e /AA de cálculo/validação/formatação reconhecidos. Extensão A6: comando separado fill-form-javascript, opt-in, com values textuais para campos /Tx e eventos K/V/C/F.
+
+**Saídas:** Valores calculados e aparências numéricas/data/máscara; /V mantém dado sem formatação quando adequado. QuickJS-NG executa JavaScript ECMAScript real no subconjunto event/getField/numFields/getNthFieldName e helpers AF admitidos; falha de script recusa lote completo. O comando declarativo anterior permanece separado.
+
+**Limites:** Gramática fechada AFSimple/AFRange/AFNumber/AFDate numérico/AFSpecial; até 128 regras e script 16384; não é motor JS geral. QuickJS 0.15.1.1: CPU 1s, heap32MiB, stack512KiB e timeout externo6s; sem callbacks Python, filesystem/rede/DOM; sem scripts document/open/page e sem API Acrobat universal.
+
+**Erros:** Ciclo, campo inexistente, script fora da gramática ou validação falha → recusa de todo lote.; API JS não suportada, event.rc=false, script acima de tempo/memória ou dependência QuickJS ausente → Erro atômico, sem executar a ação desconhecida nem publicar campos parcialmente alterados.
+
+**Estado e efeitos:** Interpretação declarativa em cópia atômica; sem eval, rede ou chamadas JavaScript.
+
+**Cancelamento:** Cancelar diálogo não calcula; worker pode ser cancelado antes da cópia final, sem persistir metade dos campos.
+
+Fontes/requisitos: [app/pdf_form_events.py — calculate_form_values](../app/pdf_form_events.py), [app/pdf_form_events.py — inspect_form_events](../app/pdf_form_events.py), [app/pdf_form_javascript.py — run_form_javascript](../app/pdf_form_javascript.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `forms/xfa` — Processar XFA
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** XDP único ou array de pacotes; datasets e nomes SOM; híbrido AcroForm para edição suportada. Extensão A6: create_xfa_flow_copy com hash, values por SOM e instances add/remove em grupo repetido; destino novo.
+
+**Saídas:** Detecção/dynamic flag, valores somente leitura; espelhamento de texto híbrido com XML preservado fora dos trechos editados. Cópia com layout fluido próprio top-to-bottom, subform repetido por occur min/max, datasets e AcroForm/AP coerentes; não renderiza template XFA arbitrário.
+
+**Limites:** Inspeção/espelhamento híbrido:8MiB,64 pacotes/níveis,5000 valores,4096 por valor; não executa template/script. Layout fluido próprio fica no comando A6 separado, sem renderizar XFA arbitrário. Até100 páginas/5000 linhas,256 valores/100 operações de instância; sem scripts/FormCalc, positioned layout, binding complexo ou Unicode fora de CP1252. Original cifrado/assinado recusado.
+
+**Erros:** DOCTYPE/entidades, XFA-only para escrita, rich text ou binding dataRef/global → Recusa no espelhamento híbrido básico; XFA-only/layout fluido só no comando separado A6 se todo o modelo suportado for validado.; XFA com layout/script/binding não suportado ou repetição fora de min/max → Recusar cópia fluida inteira; não executar XML/script nem converter silenciosamente só campos conhecidos.
+
+**Estado e efeitos:** Inspeção passiva; edição híbrida suportada grava cópia e verifica igualdade AcroForm/datasets.
+
+**Cancelamento:** Parser XML é síncrono; worker/diálogo canceláveis antes do commit; nenhum script XFA roda.
+
+Fontes/requisitos: [app/pdf_xfa.py — inspect_xfa](../app/pdf_xfa.py), [app/pdf_xfa.py — write_field_values](../app/pdf_xfa.py), [app/pdf_xfa_flow.py — create_xfa_flow_copy](../app/pdf_xfa_flow.py).
+
+Planos relacionados da família: S12-15-1, S12-15-2, S12-15-3, S12-15-4, S12-15-5, S12-15-6, S12-15-7, S12-15-8, S12-15-9, S12-15-10, S12-15-11. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="attachments"></a>
 
@@ -783,6 +2290,89 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_listing_kee
 
 Relacionados aos planos dinâmicos/UI: D16.
 
+### Contratos individuais de operações
+
+#### `attachments/list` — Listar catálogo/árvores/anotações
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF legível da sessão, catálogo EmbeddedFiles/Kids e FileAttachment de página.
+
+**Saídas:** Índices, nomes, origem catalog/annotation, página e identidade sem decodificar payload na listagem.
+
+**Limites:** Até 1000 anexos, 4000 nós e profundidade 64; lista não prova payload íntegro.
+
+**Erros:** Árvore cíclica, nó misturando Kids/Names ou FileSpec inválido → erro sem lista completa fictícia.
+
+**Estado e efeitos:** Somente leitura dos metadados e estado de seleção do painel.
+
+**Cancelamento:** Refresh em worker; fechar/trocar documento invalida listagem antiga por geração.
+
+Fontes/requisitos: [app/pdf_attachments.py — list_attachments](../app/pdf_attachments.py).
+
+Planos relacionados da família: S12-16-1, S12-16-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `attachments/extract` — Extrair anexo sem sobrescrever
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Índice do anexo, SHA-256 do hospedeiro e pasta de destino nova.
+
+**Saídas:** Bytes do payload e recibo de arquivo extraído conferidos.
+
+**Limites:** Até 64 MiB por payload após decodificar; nome seguro até 240 bytes; não executa anexo.
+
+**Erros:** Nome com caminho/reservado, destino existente ou fonte alterada → recusa sem sobrescrita.
+
+**Estado e efeitos:** Publica arquivo explícito em pasta escolhida; anexo original preservado.
+
+**Cancelamento:** Extração já autorizada pode concluir após troca de documento sem atualizar status do novo; timeout pede conferir destino.
+
+Fontes/requisitos: [app/pdf_attachments.py — extract_attachment](../app/pdf_attachments.py).
+
+Planos relacionados da família: S12-16-1, S12-16-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `attachments/portfolio` — Abrir portfólio completo
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF com /Collection dicionário válido e EmbeddedFiles suportados.
+
+**Saídas:** Inventário e extração dos anexos com mesmos IDs/controles; não implementa navegador universal de portfólio.
+
+**Limites:** Esquemas, apresentação e ações particulares do portfólio não são executados.
+
+**Erros:** /Collection não dicionário ou árvore de anexos inválida → erro, não portfólio vazio fictício.
+
+**Estado e efeitos:** Leitura passiva/listagem; extração só por escolha explícita.
+
+**Cancelamento:** Cancelamento da listagem/worker não muda portfólio; extração publicada precisa tratamento independente.
+
+Fontes/requisitos: [app/pdf_attachments.py — list_attachments](../app/pdf_attachments.py), [app/pdf_attachments.py — _document](../app/pdf_attachments.py).
+
+Planos relacionados da família: S12-16-1, S12-16-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `attachments/encrypted` — Extrair anexo com senha não vazia
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Sessão autenticada e permissão de extração, ou PDF com senha vazia válida no backend direto.
+
+**Saídas:** Listagem sobre representação privada; extração autorizada conforme política original.
+
+**Limites:** Senha é da sessão, não argumento de linha de comando; liberação de lease só após leitura terminar.
+
+**Erros:** PDF exige senha sem sessão ou /P nega extração ao usuário → erro; owner segue papel autenticado.
+
+**Estado e efeitos:** Usa temporário privado sem publicar versão descifrada do hospedeiro.
+
+**Cancelamento:** Cancelamento fecha lease e invalida callback; extração já confirmada não é apagada ao trocar documento.
+
+Fontes/requisitos: [app/attachment_tasks.py — AttachmentPanelController.refresh](../app/attachment_tasks.py), [app/main.py — PDFWindow._load_side_panels](../app/main.py).
+
+Planos relacionados da família: S12-16-1, S12-16-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="signatures"></a>
 
 ## Assinaturas/certificados
@@ -825,6 +2415,109 @@ Atual (0.1.16): inspeção offline da integridade CMS destacada; assinatura CMS/
 Fontes: [app/pdf_signatures.py](../app/pdf_signatures.py), [app/signature_window.py](../app/signature_window.py), [app/search_tasks.py](../app/search_tasks.py), [app/worker_cli.py](../app/worker_cli.py), [app/main.py](../app/main.py), [docs/SEGURANCA-ACESSIBILIDADE.md](../docs/SEGURANCA-ACESSIBILIDADE.md), [app/pdf_signing.py](../app/pdf_signing.py), [app/signature_trust.py](../app/signature_trust.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_real_detached_cms_integrity_is_separate_from_certificate_trust](../tests/test_pdf_signatures.py); [test_modified_signed_bytes_fail_cryptographic_verification](../tests/test_pdf_signatures.py); [test_appended_bytes_report_only_signed_revision_coverage](../tests/test_pdf_signatures.py); [test_unsupported_filter_or_invalid_byte_range_never_report_verified](../tests/test_pdf_signatures.py); [test_der_bounds_and_padding_are_checked](../tests/test_pdf_signatures.py); [test_unsigned_fields_and_count_limit_are_explicit](../tests/test_pdf_signatures.py); [test_encrypted_pdf_input_size_and_invalid_request_are_refused](../tests/test_pdf_signatures.py); [test_missing_verifier_and_source_changes_do_not_approve_integrity](../tests/test_pdf_signatures.py); [test_real_worker_roundtrip_and_cancelled_request](../tests/test_pdf_signatures.py); [test_invalid_worker_confirmation_is_rejected](../tests/test_pdf_signatures.py); [test_integrity_ui_reports_verification_without_certificate_trust](../tests/test_signature_gtk.py); [test_unsigned_and_encrypted_inputs_have_distinct_results](../tests/test_signature_gtk.py); [test_three_signatures_each_cover_their_revision](../tests/test_incremental_signatures.py); [test_cross_reference_stream_source_gets_a_stream_update](../tests/test_incremental_signatures.py); [test_certification_without_changes_usage_rights_and_broken_previous_signature_are_refused](../tests/test_incremental_signatures.py); [test_timestamp_is_recognised_verified_and_trusted_only_with_its_ca](../tests/test_document_timestamps.py); [test_changed_covered_bytes_and_wrong_imprint_fail](../tests/test_document_timestamps.py); [test_signature_after_a_timestamp_keeps_both_valid](../tests/test_document_timestamps.py); [test_intermediate_and_crls_from_dss_complete_the_offline_chain](../tests/test_dss_validation.py); [test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor](../tests/test_dss_validation.py); [test_malformed_dss_is_reported_and_ignored](../tests/test_dss_validation.py).
+
+### Contratos individuais de operações
+
+#### `signatures/inspect` — Inspecionar campos e cobertura assinada
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF local e pedido de inspeção, ByteRange/Contents dos campos de assinatura.
+
+**Saídas:** Estado por assinatura/revisão, cobertura integral da revisão versus arquivo atual, avisos e metadados.
+
+**Limites:** Fonte até 64 MiB; aceita dois intervalos cujo vão contém somente Contents hexadecimal; cifrados recusados.
+
+**Erros:** ByteRange fora da revisão ou Contents divergente → assinatura inválida/diagnóstico, sem aprovado fictício.
+
+**Estado e efeitos:** Somente leitura e temporários de verificação; não altera assinatura.
+
+**Cancelamento:** invoke_signature_inspection aceita cancel; resultado velho não atualiza outro documento.
+
+Fontes/requisitos: [app/pdf_signatures.py — inspect_pdf_signatures](../app/pdf_signatures.py).
+
+Planos relacionados da família: S12-17-1, S12-17-2, S12-17-3, S12-17-4, S12-17-5, S12-17-6, S12-17-7, S12-17-8. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `signatures/cms-integrity` — Verificar integridade CMS offline
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** CMS destacado DER e bytes exatos cobertos pela revisão.
+
+**Saídas:** Integridade criptográfica válida/inválida/indisponível separada de confiança.
+
+**Limites:** Suporta CMS destacado esperado; verificação por OpenSSL ou mecanismo Windows; nenhuma validade jurídica inferida.
+
+**Erros:** DER truncado, assinatura incorreta ou backend indisponível → falha/indisponível, não certificado confiável.
+
+**Estado e efeitos:** Pode criar temporários e subprocesso, sem rede e sem fonte regravada.
+
+**Cancelamento:** Cancelamento do chamador encerra worker; verificação já feita não é uma operação de assinatura.
+
+Fontes/requisitos: [app/pdf_signatures.py — _verify_detached](../app/pdf_signatures.py).
+
+Planos relacionados da família: S12-17-1, S12-17-2, S12-17-3, S12-17-4, S12-17-5, S12-17-6, S12-17-7, S12-17-8. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `signatures/sign` — Assinar documento
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF e certificado/chave PEM selecionados, senha opcional e novo destino.
+
+**Saídas:** CMS SHA-256 invisível adbe.pkcs7.detached em revisão incremental da fonte exata.
+
+**Limites:** Até 15 assinaturas existentes; anteriores devem verificar; reserva CMS 32768; sem LTV automático.
+
+**Erros:** DocMDP P=1, UR3, cifrado, XFA, portfólio, chave inválida ou assinatura anterior inválida → recusa.
+
+**Estado e efeitos:** Anexa revisão em cópia preservando bytes anteriores; reabre e verifica cobertura e assinaturas.
+
+**Cancelamento:** Worker cancelável antes da publicação; nunca apagar fonte nem revogar cópia já assinada por cancelar UI depois.
+
+Fontes/requisitos: [app/pdf_signing.py — sign_pdf_copy](../app/pdf_signing.py).
+
+Planos relacionados da família: S12-17-1, S12-17-2, S12-17-3, S12-17-4, S12-17-5, S12-17-6, S12-17-7, S12-17-8. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `signatures/trust` — Validar cadeia/confiança/revogação
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** CMS/conteúdo, CA e CRL locais explícitos e data com fuso; DSS opcional.
+
+**Saídas:** Cadeia, revogação e integridade separados; DSS Certs só ajuda cadeia não confiável por si. Extensão A6: OCSP DER local/DSS é verificado offline; estado good+fresh autenticado exigido para não-âncoras sob a política aplicável, revoked prevalece.
+
+**Limites:** 1–16 raízes/até16 CRLs explícitas, arquivos até1MiB; até8 signatários/64 certs; DSS Certs ajuda cadeia sem virar âncora; OCSP local é tratado pela extensão A6; VRI não estabelece PAdES-LTA completo. OCSP: até32 respostas DER locais,1MiB cada; ausência/tempo/assinatura não verificável não vira estado good; não consulta responder online.
+
+**Erros:** CA sem CA=true, data sem fuso, CRL incompatível ou OpenSSL ausente → erro/estado indeterminado, sem confiança automática.
+
+**Estado e efeitos:** Verificação offline, sem obter certificado pessoal/rede; âncoras só as selecionadas.
+
+**Cancelamento:** Cancelamento do worker interrompe consulta; nunca transforma timeout em revogado ou confiável.
+
+Fontes/requisitos: [app/signature_trust.py — verify_trust](../app/signature_trust.py).
+
+Planos relacionados da família: S12-17-1, S12-17-2, S12-17-3, S12-17-4, S12-17-5, S12-17-6, S12-17-7, S12-17-8. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `signatures/timestamp-ltv` — Processar carimbo de tempo/PAdES/LTV
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Token RFC3161 existente em CMS ou DocTimeStamp e bytes cobertos, CA local opcional. Extensão A6: append_dss_copy com certificados/CRL/OCSP locais; prepare_document_timestamp com pasta nova e complete_document_timestamp com TimeStampResp DER, destino e trust_policy explícita.
+
+**Saídas:** Assinatura/imprint verificados, generationTime só confiável quando validado e TSA avaliada pela CA explícita. DSS incremental preservando bytes e VRI anterior, deduplicação global; preparação offline cria manifest/document.pending/timestamp.tsq com nonce128/SHA256; conclusão valida nonce/imprint/TSA/CA e publica DocTimeStamp incremental.
+
+**Limites:** SHA-256/384/512; inspeção não cria carimbo nem DSS/LTV; OCSP online fora deste subconjunto. Sem contato TSA/OCSP/AIA automático; PDF64MiB, item1MiB, token32KiB, até64 certificados/32CRLs/32OCSP; exige assinatura anterior verificada, recusa DocMDP P1/UR3/cifrado/XFA/portfólio. Não é garantia PAdES-LTA universal.
+
+**Erros:** TSTInfo ausente, algoritmo não suportado ou imprint errado → carimbo inválido; relógio local não substitui TSA.; TimeStampResp com nonce/imprint/assinatura/CA incompatíveis ou DSS excedendo orçamento → Recusar publicação incremental; preservar fonte e kit preparado para inspeção, sem confiar no relógio local como TSA.
+
+**Estado e efeitos:** Somente lê token e DSS; nenhum registro novo de longo prazo é escrito.
+
+**Cancelamento:** Worker cancelável, sem publicação; cancelamento deixa análise incompleta explicitamente.
+
+Fontes/requisitos: [app/pdf_signatures.py — _verify_document_timestamp](../app/pdf_signatures.py), [app/signature_trust.py — verify_document_timestamp](../app/signature_trust.py), [app/pdf_preservation.py — append_dss_copy](../app/pdf_preservation.py), [app/pdf_preservation.py — prepare_document_timestamp](../app/pdf_preservation.py), [app/pdf_preservation.py — complete_document_timestamp](../app/pdf_preservation.py).
+
+Planos relacionados da família: S12-17-1, S12-17-2, S12-17-3, S12-17-4, S12-17-5, S12-17-6, S12-17-7, S12-17-8. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="security"></a>
 
@@ -871,6 +2564,109 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted
 
 Relacionados aos planos dinâmicos/UI: D15.
 
+### Contratos individuais de operações
+
+#### `security/inspect` — Autenticar senha conhecida e inspecionar permissões
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF e credencial opcional transmitida em pedido privado.
+
+**Saídas:** Tipo de cifra, papel user/owner, flags de permissão e autenticação.
+
+**Limites:** PDFs suportados pelo parser; não contorna senha nem RMS.
+
+**Erros:** Credencial errada, método não suportado ou fonte alterada → SecurityError sem divulgar segredo.
+
+**Estado e efeitos:** Somente leitura/temporários; sem alteração do arquivo.
+
+**Cancelamento:** invoke_security aceita cancel e timeout; credenciais não ficam no argv/log do worker.
+
+Fontes/requisitos: [app/pdf_security.py — inspect_pdf_security](../app/pdf_security.py).
+
+Planos relacionados da família: S12-18-1, S12-18-2, S12-18-3, S12-18-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `security/protect` — Criar cópia AES-256
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF suportado não cifrado, senhas e mapa de permissões; destino novo.
+
+**Saídas:** Cópia AES-256 conferida com autenticação e flags solicitadas.
+
+**Limites:** Até 1000 páginas no backend; cryptography requerido; preservar páginas/metadados/anexos no recorte.
+
+**Erros:** Assinado/XFA/portfólio/já cifrado, destino existente ou runtime sem crypto → SecurityError.
+
+**Estado e efeitos:** Cria cópia protegida; fonte continua idêntica; não transmite senhas.
+
+**Cancelamento:** Worker cancelável antes de publicar; pedido concluído não é desfeito ao fechar janela.
+
+Fontes/requisitos: [app/pdf_security.py — protect_pdf_copy](../app/pdf_security.py).
+
+Planos relacionados da família: S12-18-1, S12-18-2, S12-18-3, S12-18-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `security/owner-copy` — Criar cópia sem cifra com senha de proprietário
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF cifrado, senha de proprietário válida e destino novo.
+
+**Saídas:** Cópia legível autorizada pelo owner com páginas preservadas.
+
+**Limites:** Senha de abertura user sozinha não autoriza remover proteção.
+
+**Erros:** Papel diferente de owner ou cópia não verificável → recusa sem saída final.
+
+**Estado e efeitos:** Publica cópia sem cifra; original cifrado fica intacto.
+
+**Cancelamento:** Cancelar antes do commit elimina temporários; cópia já publicada é arquivo independente.
+
+Fontes/requisitos: [app/pdf_security.py — unprotect_owner_copy](../app/pdf_security.py).
+
+Planos relacionados da família: S12-18-1, S12-18-2, S12-18-3, S12-18-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `security/enforcement` — Aplicar permissões em todos os fluxos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Papel e /P originais da sessão, operação copy/print/modify/annotate/fill/assemble.
+
+**Saídas:** Aceitar ou negar em UI e worker conforme operação e papel autenticado.
+
+**Limites:** RC4-40/128 e AES-128/256 R6 corpus próprio; XMP Identity preservado no recorte; não é RMS.
+
+**Erros:** Permissão negada → erro explícito antes de extrair/imprimir/editar; senha user não equivale a owner.
+
+**Estado e efeitos:** Sessão guarda política original mesmo com representação legível; edição preserva cifra/P/ID no subconjunto.
+
+**Cancelamento:** Cancelar operação nega publicação futura da tarefa, sem alterar política nem permissões do original.
+
+Fontes/requisitos: [app/pdf_attachments.py — _document](../app/pdf_attachments.py), [app/imposition.py — _reader](../app/imposition.py), [app/main.py — PDFWindow._reading_permission](../app/main.py).
+
+Planos relacionados da família: S12-18-1, S12-18-2, S12-18-3, S12-18-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `security/rms` — Processar proteção RMS autorizada
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Documento RMS e ambiente de serviço/licença legitimamente autorizado.
+
+**Saídas:** Proposta: relatar disponibilidade e permissões do serviço, sem remover proteção.
+
+**Limites:** Sem adaptador RMS implementado/contrato Reader caracterizado; credenciais e serviço externos pendentes.
+
+**Erros:** Serviço/licença indisponível → informar não suportado/indisponível, não tentar contornar proteção.
+
+**Estado e efeitos:** Nenhuma chamada de serviço nesta entrega; sem upload/credencial automática.
+
+**Cancelamento:** Proposta: cancelar antes da autenticação/transação externa e preservar original; comportamento específico ainda não observado.
+
+Fontes/requisitos: [docs/ESCOPO.md](../docs/ESCOPO.md).
+
+Planos relacionados da família: S12-18-1, S12-18-2, S12-18-3, S12-18-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="accessibility"></a>
 
 ## Acessibilidade/voz
@@ -912,6 +2708,89 @@ Testes próprios existentes, sem nova execução nesta tabela: [test_unencrypted
 
 Relacionados aos planos dinâmicos/UI: UI10.
 
+### Contratos individuais de operações
+
+#### `accessibility/text` — Expor texto da página por ATK.Text
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Sessão/página autorizada e caixas de linhas Poppler.
+
+**Saídas:** Texto em Gtk.TextView/ATK.Text, ordenado por heurística própria de colunas.
+
+**Limites:** Heurística até três níveis e linhas full-width; não garante ordem semântica de PDF malformado.
+
+**Erros:** Permissão de extração negada → PermissionError; sem texto
+
+**Estado e efeitos:** Janela de leitura e mapa acessível; original intacto.
+
+**Cancelamento:** Carregamento em worker/geração; trocar página/documento descarta texto antigo.
+
+Fontes/requisitos: [app/accessible_reader.py — AccessibleTextWindow](../app/accessible_reader.py).
+
+Planos relacionados da família: S12-19-1, S12-19-2, S12-19-3, S12-19-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `accessibility/keyboard` — Navegar por regiões pelo teclado
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Tecla F6/ShiftF6, região de foco atual e controles disponíveis.
+
+**Saídas:** Foco alterna regiões acessíveis com nomes; setas delegadas ao controle adequado.
+
+**Limites:** Atalhos dependem da janela/foco; não substituir navegação interna de campos textuais.
+
+**Erros:** Região oculta/inexistente → escolher região disponível sem foco em widget destruído.
+
+**Estado e efeitos:** Só estado de foco/seleção; nenhuma escrita de arquivo.
+
+**Cancelamento:** Ação síncrona; fechar diálogo restaura foco possível, sem tarefa longa.
+
+Fontes/requisitos: [app/main.py — PDFWindow._focus_region](../app/main.py).
+
+Planos relacionados da família: S12-19-1, S12-19-2, S12-19-3, S12-19-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `accessibility/screen-reader` — Validar leitor de tela e ordem real
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Desktop Linux real, bus AT-SPI e leitor de tela escolhido.
+
+**Saídas:** Proposta: evidências faladas de foco, ordem, rótulos e mudanças do documento.
+
+**Limites:** Probe AT-SPI próprio não é prova de Orca/áudio real no dispositivo do usuário.
+
+**Erros:** Leitor/bus indisponível ou leitura incorreta → pendente/inconclusivo, não declarar acessibilidade integral.
+
+**Estado e efeitos:** Pode emitir áudio/alterar foco durante campanha específica.
+
+**Cancelamento:** Proposta: parar fala e restaurar foco; a interação real ainda depende do ambiente.
+
+Fontes/requisitos: [docs/EXECUCAO-SEM-VM.md](../docs/EXECUCAO-SEM-VM.md).
+
+Planos relacionados da família: S12-19-1, S12-19-2, S12-19-3, S12-19-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `accessibility/voice` — Ler em voz alta
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Texto explícito, voz pt-br/en, velocidade e destino .wav novo ou reprodução escolhida.
+
+**Saídas:** WAV PCM mono e reprodução controlada pelo usuário.
+
+**Limites:** Até 20000 caracteres, 80–300 palavras/minuto e áudio até 64 MiB; eSpeak NG/local requerido.
+
+**Erros:** Voz inválida, eSpeak ausente ou WAV inválido → erro sem áudio concluído falso.
+
+**Estado e efeitos:** Gera WAV local; play explícito pode emitir som; texto não vai à nuvem.
+
+**Cancelamento:** Synthesis via worker cancelável; Stop da reprodução encerra áudio próprio sem encerrar outros sons do host.
+
+Fontes/requisitos: [app/speech.py — export_speech](../app/speech.py).
+
+Planos relacionados da família: S12-19-1, S12-19-2, S12-19-3, S12-19-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="measurement"></a>
 
 ## Medição/calibração
@@ -947,6 +2826,89 @@ Atual (0.1.16): janela de medidas sobre a página com calibração por comprimen
 - Unidades, calibração, snapping, precisão, áreas e perímetros do original.
 
 Fontes: [app/main.py](../app/main.py), [app/measurement.py](../app/measurement.py), [app/measurement_window.py](../app/measurement_window.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+### Contratos individuais de operações
+
+#### `measurement/distance` — Medir distância entre pontos
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Dois pontos da página exibida e transformação PDF, unidade cm por padrão.
+
+**Saídas:** Distância apresentada com duas casas e vírgula: 72 pt = 2,54 cm sem calibração.
+
+**Limites:** Só página exibida; domínio exige dois pontos distintos, finitos e até 2 milhões em módulo.
+
+**Erros:** Sem página ou pontos repetidos → não publicar medida; domínio lança ValueError.
+
+**Estado e efeitos:** Desenha marca/resultado em UI, não grava anotação PDF automaticamente.
+
+**Cancelamento:** Cancelar captura limpa pontos; nova página invalida escala visual anterior.
+
+Fontes/requisitos: [app/main.py — PDFWindow._finish_measure](../app/main.py), [app/measurement.py — measure](../app/measurement.py).
+
+Planos relacionados da família: S12-20-1, S12-20-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `measurement/calibrate` — Calibrar escala e unidades
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Dois pontos de referência, comprimento conhecido positivo e unidade mm/cm/m/in/ft.
+
+**Saídas:** Fator mm_por_ponto calculado para medidas seguintes.
+
+**Limites:** Comprimento e fator até 1e12, referência de comprimento positivo; snapping grade 0–1000pt/ângulo 0–180.
+
+**Erros:** Unidade desconhecida ou referência degenerada → ValueError, sem escala infinita.
+
+**Estado e efeitos:** Altera configuração de medição da sessão; não transforma geometria da página.
+
+**Cancelamento:** Cancelar diálogo conserva calibração anterior; cálculo é síncrono.
+
+Fontes/requisitos: [app/measurement.py — calibrated_scale](../app/measurement.py).
+
+Planos relacionados da família: S12-20-1, S12-20-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `measurement/area` — Medir área
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Polígono com 3–512 vértices, unidade e fator calibrado.
+
+**Saídas:** Área absoluta em unidade ao quadrado pelo método shoelace translado.
+
+**Limites:** Polígono simples; fechamento inicial/final duplicado é normalizado; sem áreas curvas/auto-interseção.
+
+**Erros:** Auto-interseção, zero área ou unidade/fator inválido → ValueError, sem área enganosa.
+
+**Estado e efeitos:** Resultado e desenho locais; não cria objeto PDF de medida por si.
+
+**Cancelamento:** Cancelar captura descarta polígono; operação matemática síncrona sem processo persistente.
+
+Fontes/requisitos: [app/measurement.py — measure](../app/measurement.py).
+
+Planos relacionados da família: S12-20-1, S12-20-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `measurement/perimeter` — Medir perímetro
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Lista de 2–512 pontos, unidade e fator calibrado.
+
+**Saídas:** Soma fechada de distâncias, incluindo último→primeiro.
+
+**Limites:** Este comando mede perímetro fechado, não polilinha aberta; coordenadas finitas até 2 milhões.
+
+**Erros:** Pontos consecutivos iguais/unidade inválida → ValueError.
+
+**Estado e efeitos:** Mostra medida/desenho em memória, fonte preservada.
+
+**Cancelamento:** Cancelar captura não publica resultado; cálculo puro não tem job de cancelamento.
+
+Fontes/requisitos: [app/measurement.py — measure](../app/measurement.py).
+
+Planos relacionados da família: S12-20-1, S12-20-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="layers-media"></a>
 
@@ -987,6 +2949,109 @@ Fontes: [app/pdf_panels.py](../app/pdf_panels.py), [app/pdf_layers.py](../app/pd
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_listing_reports_poster_model_and_views_without_a_renderer](../tests/test_media_3d_poster.py); [test_poster_is_the_annotation_appearance_scaled_to_its_rectangle](../tests/test_media_3d_poster.py); [test_poster_without_model_and_page_rendering_show_the_same_appearance](../tests/test_media_3d_poster.py); [test_refusals_publish_nothing](../tests/test_media_3d_poster.py); [test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive](../tests/test_media_assets_gtk.py).
 
+### Contratos individuais de operações
+
+#### `layers-media/list` — Listar nomes de camadas OCG
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Reader e /OCProperties/OCGs e configuração default.
+
+**Saídas:** Nomes/IDs e estado das camadas suportadas; inventário de mídia separado.
+
+**Limites:** Até 256 OCG; nomes não provam visibilidade nem renderer 3D.
+
+**Erros:** OCG repetida, BaseState incompatível ou estrutura inválida → erro explícito.
+
+**Estado e efeitos:** Somente inspeção de metadados; sem ação de mídia executada.
+
+**Cancelamento:** Painel usa worker com geração; resposta antiga não muda novo documento.
+
+Fontes/requisitos: [app/pdf_panels.py — inspect_document_panels](../app/pdf_panels.py).
+
+Planos relacionados da família: S12-21-1, S12-21-2, S12-21-3, S12-21-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `layers-media/toggle` — Alternar e persistir visibilidade OCG
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** IDs de camadas visíveis e configuração atual; sessão autenticada quando cifrado.
+
+**Saídas:** Representação de leitura e render com configuração escolhida; save pode persistir configuração sem flatten.
+
+**Limites:** Até 256 camadas e cópia privada até 64 MiB; Locked/RBGroups respeitados.
+
+**Erros:** Camada bloqueada, seleção inválida ou grupo exclusivo conflitante → erro e seleção anterior preservada.
+
+**Estado e efeitos:** Cria representação privada; salvar cópia altera configuração OCG mantendo conteúdo/cifra no recorte.
+
+**Cancelamento:** Mudar seleção invalida render antigo; cancelar/fechar remove representação quando leases liberados.
+
+Fontes/requisitos: [app/pdf_layers.py — create_layer_view](../app/pdf_layers.py), [app/main.py — PDFWindow._layer_toggled](../app/main.py).
+
+Planos relacionados da família: S12-21-1, S12-21-2, S12-21-3, S12-21-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `layers-media/media` — Reproduzir mídia embutida
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Anotação Movie/RichMedia/Sound e índice/identidade; destino com extensão preservada.
+
+**Saídas:** Extração de bytes incorporados ou WAV PCM; reprodução GStreamer somente explícita.
+
+**Limites:** PDF/payload até 64 MiB, 5000 páginas, 10000 anotações/página e 256 recursos; PCM 8/16 bit,1–2 canais,8–192kHz.
+
+**Erros:** URI externa, codec ausente ou conteúdo não incorporado → omissão/erro, não download nem execução de ação PDF.
+
+**Estado e efeitos:** Cria arquivo escolhido e player local quando solicitado; sem autoplay de scripts.
+
+**Cancelamento:** Extração em worker cancelável; Stop encerra apenas player criado pelo app.
+
+Fontes/requisitos: [app/pdf_media.py — extract_media](../app/pdf_media.py).
+
+Planos relacionados da família: S12-21-1, S12-21-2, S12-21-3, S12-21-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `layers-media/3d-poster` — Imagem de apresentação de anotações 3D
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Anotação /3D com aparência normal, source identity e destino .png.
+
+**Saídas:** PNG estático ajustado ao Rect/BBox/Matrix e aviso de que não é cena interativa.
+
+**Limites:** Requer Poppler/pdftocairo; modelo U3D/PRC não é interpretado pelo poster.
+
+**Erros:** Sem AP, fonte alterada, geometria inválida ou destino não PNG → erro sem imagem publicada.
+
+**Estado e efeitos:** Rasteriza somente aparência para arquivo novo; modelo incorporado permanece intacto.
+
+**Cancelamento:** Worker/cancelamento de tarefa podem interromper render; não muda estado de animação 3D inexistente.
+
+Fontes/requisitos: [app/pdf_media.py — render_poster](../app/pdf_media.py).
+
+Planos relacionados da família: S12-21-1, S12-21-2, S12-21-3, S12-21-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `layers-media/3d` — Interagir com conteúdo 3D
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Modelo U3D/PRC e vistas, gestos de rotação/zoom e árvore de cena.
+
+**Saídas:** Proposta futura de renderer interativo; hoje só poster/extrair modelo separados.
+
+**Limites:** Adiado por decisão D04; sem motor U3D/PRC interativo implementado.
+
+**Erros:** Modelo/formato sem renderer → informar limitação, não apresentar poster como interação 3D.
+
+**Estado e efeitos:** Nenhuma interpretação dinâmica/execução de script 3D nesta entrega.
+
+**Cancelamento:** Proposta futura: parar renderer e liberar recursos; sem runtime ativo a encerrar hoje.
+
+Fontes/requisitos: [docs/ESTUDO-3D-U3D-PRC.md](../docs/ESTUDO-3D-U3D-PRC.md).
+
+Planos relacionados da família: S12-21-1, S12-21-2, S12-21-3, S12-21-4. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="preferences"></a>
 
 ## Preferências/tema/persistência
@@ -1024,6 +3089,69 @@ Preferência própria system/light/dark com migração legada e persistência; s
 Fontes: [app/appearance.py](../app/appearance.py), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/reading_preferences.py](../app/reading_preferences.py), [app/tool_preferences.py](../app/tool_preferences.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_theme_persistence_and_contrast](../tests/test_viewer.py); [test_fresh_system_theme_initializes_and_migrates_legacy](../tests/test_consolidation.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py).
+
+### Contratos individuais de operações
+
+#### `preferences/theme` — Persistir e aplicar tema
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Modo system/light/dark e arquivo de preferências do usuário.
+
+**Saídas:** Modo lido/aplicado e persistido, seguindo sistema quando escolhido.
+
+**Limites:** Só três modos válidos; fallback de leitura não deve ser chamado de migração universal.
+
+**Erros:** Modo desconhecido → ValueError; arquivo ilegível
+
+**Estado e efeitos:** Grava configuração de aparência, não modifica documentos.
+
+**Cancelamento:** Seleção/aplicação síncronas; cancelar diálogo conserva opção anterior.
+
+Fontes/requisitos: [app/appearance.py — save_mode](../app/appearance.py).
+
+Planos relacionados da família: S12-22-1, S12-22-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `preferences/folders` — Persistir pasta preferida e últimas pastas
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Chave da operação e diretório local explicitamente escolhido.
+
+**Saídas:** Pasta preferida por operação, fallback para caminho disponível e opção esquecer.
+
+**Limites:** Guardar caminho não autentica conta nem comprova sincronização; pasta pode ficar offline.
+
+**Erros:** Chave/diretório inválido → erro/fallback; esquecer não apaga arquivos nem conta externa.
+
+**Estado e efeitos:** Persiste preferência de pasta local; nenhuma API de nuvem.
+
+**Cancelamento:** Cancelar file chooser não confirma salvamento/pasta; transferência de arquivo tem seu próprio cancelamento.
+
+Fontes/requisitos: [app/local_files.py — remember_folder](../app/local_files.py).
+
+Planos relacionados da família: S12-22-1, S12-22-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `preferences/remaining` — Cobrir demais ajustes e defaults
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Mapa exato zoom_mode,zoom_percent,sidebar,highlight_all e preferências OCR/voz separadas.
+
+**Saídas:** Defaults próprios validados e escrita atômica em reading.json.
+
+**Limites:** fit-width/100/sidebar=true/highlight_all=true; percentual inteiro 1–6400; leitura de config até 8192 bytes.
+
+**Erros:** Chave extra/tipo errado → ValueError no save; arquivo ausente/corrompido
+
+**Estado e efeitos:** Cria diretório privado e substitui config atômica; não guarda senhas/chaves.
+
+**Cancelamento:** Cancelar diálogo conserva config; gravação curta síncrona, sem publicação remota.
+
+Fontes/requisitos: [app/reading_preferences.py — save_preferences](../app/reading_preferences.py), [app/main.py — PDFWindow._reading_preferences](../app/main.py).
+
+Planos relacionados da família: S12-22-1, S12-22-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="cloud"></a>
 
@@ -1064,6 +3192,69 @@ Atual (E28): a nuvem é atendida pelo fluxo de pasta sincronizada escolhido pelo
 Fontes: [docs/PASTAS-SINCRONIZADAS.md](../docs/PASTAS-SINCRONIZADAS.md), [app/local_files.py](../app/local_files.py), [app/folder_dialogs.py](../app/folder_dialogs.py), [app/main.py](../app/main.py), [app/worker_cli.py](../app/worker_cli.py), [testes/resultados/0.1.16/validation-review.json](../testes/resultados/0.1.16/validation-review.json), [testes/resultados/0.1.16/desktop/review.json](../testes/resultados/0.1.16/desktop/review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_worker_roundtrip_preserves_source_and_never_claims_remote_sync](../tests/test_sync_folders.py); [test_existing_file_and_destination_race_are_never_overwritten](../tests/test_sync_folders.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_source_changed_before_or_during_copy_refuses_publication](../tests/test_sync_folders.py); [test_invalid_relative_missing_and_unknown_settings_are_refused](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_external_replacement_blocks_save_and_edit_until_reopen](../tests/test_sync_folders_gtk.py); [test_existing_destination_is_preserved_and_failure_is_shown](../tests/test_sync_folders_gtk.py).
+
+### Contratos individuais de operações
+
+#### `cloud/login` — Autenticar provedor remoto
+
+Estado: `deferred_by_user`; base: `proposed_independent_requirement`.
+
+**Entradas:** Conta/provedor e eventual credencial OAuth futura.
+
+**Saídas:** Adiado: nenhum login direto implementado nem sessão remota criada.
+
+**Limites:** Decisão explícita de adiar APIs diretas; uso de pasta sincronizada externa é outro fluxo.
+
+**Erros:** Tentativa de usar login direto → funcionalidade indisponível; nunca pedir/salvar token sem trabalho autorizado.
+
+**Estado e efeitos:** Nenhuma credencial/token/rede criada por este contrato.
+
+**Cancelamento:** Cancelamento não tem transação ativa; fluxo OAuth só será detalhado se adiamento for revogado.
+
+Fontes/requisitos: decisão de adiamento; ver escopo da família.
+
+Planos relacionados da família: S12-23-1, S12-23-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `cloud/transfer` — Transferir arquivos por API de nuvem
+
+Estado: `deferred_by_user`; base: `proposed_independent_requirement`.
+
+**Entradas:** Arquivo/provedor e escolha futura upload/download.
+
+**Saídas:** Adiado: nenhum recibo de transferência remota; salvar pasta confirma só cópia local.
+
+**Limites:** Não equiparar cópia local a upload ou sucesso do cliente sincronizador.
+
+**Erros:** Sem cliente/pasta disponível → erro local; não inventar resultado remoto.
+
+**Estado e efeitos:** Nenhuma API/objeto remoto alterado; apenas fluxo local existente separado.
+
+**Cancelamento:** Transferência direta inexiste; cliente externo controla cancelamento/sincronização próprios.
+
+Fontes/requisitos: decisão de adiamento; ver escopo da família.
+
+Planos relacionados da família: S12-23-1, S12-23-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `cloud/collaboration` — Colaborar remotamente e resolver conflitos
+
+Estado: `deferred_by_user`; base: `proposed_independent_requirement`.
+
+**Entradas:** Participantes, arquivo e versões remotas futuras.
+
+**Saídas:** Adiado: sem coedição/revisão remota direta implementada.
+
+**Limites:** Não enviar convites/mensagens nem acessar identidade de terceiros por mera proposta.
+
+**Erros:** Conflito/serviço indisponível deverá ser especificado quando escopo reabrir; hoje informar não suportado. → Não aprovar a operação; Conflito/serviço indisponível deverá ser especificado quando escopo reabrir; hoje informar não suportado.
+
+**Estado e efeitos:** Nenhum participante/permissão/versão remota é alterado.
+
+**Cancelamento:** Não há tarefa colaborativa ativa para cancelar; não revogar versões externas automaticamente.
+
+Fontes/requisitos: decisão de adiamento; ver escopo da família.
+
+Planos relacionados da família: S12-23-1, S12-23-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 <a id="conversion"></a>
 
@@ -1108,6 +3299,109 @@ Fontes: [app/pdf_creation.py](../app/pdf_creation.py), [app/creation_window.py](
 
 Testes próprios existentes, sem nova execução nesta tabela: [test_order_dimensions_lossless_rgb_and_source_identity](../tests/test_pdf_creation.py); [test_alpha_and_palette_transparency_are_composited_on_white](../tests/test_pdf_creation.py); [test_exif_orientation_applied_and_private_metadata_not_copied](../tests/test_pdf_creation.py); [test_corrupt_unsupported_animated_and_truncated_inputs_leave_no_output](../tests/test_pdf_creation.py); [test_partial_final_write_removed_on_handled_failure](../tests/test_pdf_creation.py); [test_ordered_creation_opens_actual_pdf_and_poppler_renders_pixels](../tests/test_creation_gtk.py); [test_cancel_and_destroy_kill_real_worker_without_stale_callbacks](../tests/test_creation_gtk.py); [test_pinned_fixture_manifest_matches_sources_and_oriented_dimensions](../tests/test_pdf_creation.py); [test_final_name_is_absent_while_real_copy_is_in_progress](../tests/test_sync_folders.py); [test_save_copy_uses_worker_preserves_original_and_only_confirms_local_save](../tests/test_sync_folders_gtk.py); [test_bmp_webp_and_single_tiff_preserve_pixels_dimensions_and_order](../tests/test_pdf_creation.py); [test_webp_alpha_is_composited_over_white](../tests/test_pdf_creation.py); [test_multiframe_tiff_is_imported_and_animated_webp_is_refused](../tests/test_pdf_creation.py); [test_bmp_renamed_as_jpeg_is_identified_by_content](../tests/test_pdf_creation.py); [test_real_worker_supports_compressed_tiff_without_external_conversion](../tests/test_pdf_creation.py); [test_bmp_webp_tiff_selection_worker_and_opening](../tests/test_creation_gtk.py); [test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original](../tests/test_pdf_ocr.py); [test_encrypted_input_is_rejected_without_attempting_empty_password](../tests/test_pdf_ocr.py); [test_real_english_worker_adds_searchable_text_and_keeps_scan](../tests/test_ocr_linux.py); [test_cancel_stops_worker_and_its_actual_tesseract_child](../tests/test_ocr_linux.py); [test_menu_workflow_recognizes_opens_and_renders_actual_copy](../tests/test_ocr_gtk.py); [test_file_order_expands_all_tiff_pages_with_dimensions_and_provenance](../tests/test_tiff_multipage.py); [test_each_frame_orientation_is_applied_once_without_leaking_tags](../tests/test_tiff_multipage.py); [test_cyclic_out_of_range_and_truncated_ifd_chains_are_not_silently_shortened](../tests/test_tiff_multipage.py); [test_real_worker_reports_input_count_frame_mapping_and_page_count](../tests/test_tiff_multipage.py); [test_tiff_block_order_expands_pages_and_poppler_renders_each_color](../tests/test_creation_gtk.py); [test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page](../tests/test_ocr_linux.py).
 
+### Contratos individuais de operações
+
+#### `conversion/images` — Criar PDF de imagens simples
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Lista ordenada de imagens, DPI/fit/opções e destino PDF novo.
+
+**Saídas:** PDF RGB com páginas e geometria derivadas, ordem preservada e recibo.
+
+**Limites:** Até 100 entradas/páginas,45 MP por imagem,150 MP total; formatos aceitos por decodificador validado.
+
+**Erros:** Imagem inválida, orçamento excedido ou destino existente → erro sem PDF final parcial.
+
+**Estado e efeitos:** Decodifica cópias e publica PDF novo; originais de imagem preservados.
+
+**Cancelamento:** Worker cancelável com timeout 120 s; cancelar antes de publicar remove temporários.
+
+Fontes/requisitos: [app/pdf_creation.py — create_pdf_from_images](../app/pdf_creation.py).
+
+Planos relacionados da família: S12-24-1, S12-24-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `conversion/tiff` — Expandir TIFF multipágina
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** TIFF suportado, ordem de frames explícita e opções de criação.
+
+**Saídas:** Páginas do TIFF em ordem com orientação/tamanho conferidos.
+
+**Limites:** Até 100 páginas totais; limites de pixels compartilhados; não promete todas as variantes TIFF.
+
+**Erros:** IFD cíclico/BigTIFF não suportado/frames inválidos → recusa sem converter só prefixo silenciosamente.
+
+**Estado e efeitos:** Lê múltiplos frames e cria PDF novo, TIFF intacto.
+
+**Cancelamento:** Mesmo worker cancelável da criação de imagens; arquivo final só aparece após validação.
+
+Fontes/requisitos: [app/pdf_creation.py — _tiff_page_count](../app/pdf_creation.py).
+
+Planos relacionados da família: S12-24-1, S12-24-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `conversion/ocr` — Gerar cópia PDF pesquisável local
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** PDF/imagens, páginas escolhidas, idiomas por/eng instalados, layout psm e destino novo.
+
+**Saídas:** PDF pesquisável com camada de texto e relatório de páginas/idiomas; precisão não universal.
+
+**Limites:** Até 20 páginas selecionadas,45 MP/página,150 MP total; PSM 3/6/11 e Tesseract/Poppler.
+
+**Erros:** Idioma ausente, tempo por página excedido ou raster grande → erro sem saída final; não afirmar OCR perfeito.
+
+**Estado e efeitos:** Cria cópia OCR; estrutura/anotações/metadados podem ter limites explicitados, fonte preservada.
+
+**Cancelamento:** Worker cancelável com timeout geral 600 s; não publicar parcialmente reconhecido como completo.
+
+Fontes/requisitos: [app/pdf_ocr.py — create_searchable_copy](../app/pdf_ocr.py).
+
+Planos relacionados da família: S12-24-1, S12-24-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `conversion/animation` — Converter animações/variantes ainda recusadas
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** GIF/APNG suportado e escolha explícita de importar todos os quadros.
+
+**Saídas:** PDF com um frame por página na ordem; tempos/animação não são preservados.
+
+**Limites:** Até 100 páginas e orçamento de pixels; APNG com default separado não suportado.
+
+**Erros:** Sem confirmação multiframe ou APNG com default separado → ValueError, sem escolher frame silenciosamente.
+
+**Estado e efeitos:** Gera PDF estático novo; imagem animada original intacta.
+
+**Cancelamento:** Cancelar confirmação não decodifica job; worker usa cancelamento da criação de imagens.
+
+Fontes/requisitos: [app/pdf_creation.py — create_pdf_from_images](../app/pdf_creation.py).
+
+Planos relacionados da família: S12-24-1, S12-24-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `conversion/other-formats` — Cobrir demais conversões disponíveis no Reader
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** Imagem estática/animada/TIFF suportada, ou formato de documento solicitado.
+
+**Saídas:** Conversões de imagens existentes; Office/HTML/RTF em anexos fornecem texto passivo, não conversão visual universal.
+
+**Limites:** PDF→DOCX/planilha/edição universal e fidelidade Office permanecem fora do subconjunto de criação.
+
+**Erros:** Formato não decodificável como imagem → erro; extração textual não deve ser rotulada como conversão fiel.
+
+**Estado e efeitos:** Nenhum aplicativo Office/arquivo anexado é executado automaticamente.
+
+**Cancelamento:** Criação suportada cancelável; formato não implementado não inicia job fictício.
+
+Fontes/requisitos: [app/pdf_creation.py — create_pdf_from_images](../app/pdf_creation.py).
+
+Planos relacionados da família: S12-24-1, S12-24-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+
 <a id="platform"></a>
 
 ## Integrações de sistema/atualização
@@ -1145,5 +3439,108 @@ Atual (0.1.16): abrir PDF pelo seletor do sistema (GtkFileChooserNative, portal 
 - Portais em desktop real, integração shell/browser, atualização, rollback e equivalência do adaptador Windows.
 
 Fontes: [docs/instalacao.md](../docs/instalacao.md), [app/folder_dialogs.py](../app/folder_dialogs.py), [app/main.py](../app/main.py), [app/installation_info.py](../app/installation_info.py), [app/platform_runtime.py](../app/platform_runtime.py), [app/cups_backend.py](../app/cups_backend.py), [testes/aceitacao/casos_portal.py](../testes/aceitacao/casos_portal.py), [scripts/check_native_portal.py](../scripts/check_native_portal.py), [scripts/check_desktop_integrations.py](../scripts/check_desktop_integrations.py), [testes/resultados/0.1.16/desktop/review.json](../testes/resultados/0.1.16/desktop/review.json), [docs/FOXIT-REA.md](../docs/FOXIT-REA.md).
+
+### Contratos individuais de operações
+
+#### `platform/worker-runtime` — Selecionar runtime de worker
+
+Estado: `current_bounded_source`; base: `current_linuxit_source`.
+
+**Entradas:** sys.executable, ambiente empacotado e caminho do módulo worker.
+
+**Saídas:** Python correto pareado com runtime e opções de subprocesso, incluindo janela oculta no Windows.
+
+**Limites:** Não misturar biblioteca nativa do sistema com /app/lib; caminho Windows GUI pode exigir python.exe.
+
+**Erros:** Runtime/dependência não localizados → falha de worker, não sucesso vazio.
+
+**Estado e efeitos:** Inicia subprocessos próprios; não altera instalação Python do host.
+
+**Cancelamento:** Chamadores têm cancel/timeouts próprios; resolver executável em si é função curta síncrona.
+
+Fontes/requisitos: [app/platform_runtime.py — worker_python](../app/platform_runtime.py).
+
+Planos relacionados da família: S12-25-1, S12-25-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `platform/portal` — Validar portal real e concessão persistente
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Desktop Linux/Flatpak, file chooser e pasta fora de HOME com decisão conceder/negar.
+
+**Saídas:** Evidência de concessão persistente, leitura por processo novo e revogação; próprio probe existente separado.
+
+**Limites:** Document portal real e compositor/bus/FUSE necessários; simulação de diálogo não substitui ambiente.
+
+**Erros:** Negação/revogação → novo processo deve falhar ao ler; ausência do portal
+
+**Estado e efeitos:** Pode criar concessão em documents portal; não ampliar filesystem de todo host.
+
+**Cancelamento:** Cancelar diálogo não cria autorização; encerramento do probe só restaura serviço que ele próprio criou.
+
+Fontes/requisitos: [docs/EXECUCAO-SEM-VM.md](../docs/EXECUCAO-SEM-VM.md).
+
+Planos relacionados da família: S12-25-1, S12-25-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `platform/association` — Associar e abrir PDF pelo desktop
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Arquivo .pdf e shell desktop com launcher instalado.
+
+**Saídas:** Ativação do app com caminho correto e evidência da associação no ambiente testado.
+
+**Limites:** Probe Linux próprio não certifica todos os desktops nem associação Windows.
+
+**Erros:** Desktop entry/caminho/launcher inválido → falha observada, não declarar associação instalada por arquivo existente.
+
+**Estado e efeitos:** Pode registrar/selecionar associação na campanha própria; restaurar preferência anterior do ambiente quando aplicável.
+
+**Cancelamento:** Cancelar escolha não muda app padrão; fechar app não desfaz associação persistida.
+
+Fontes/requisitos: [docs/EXECUCAO-SEM-VM.md](../docs/EXECUCAO-SEM-VM.md).
+
+Planos relacionados da família: S12-25-1, S12-25-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `platform/update` — Atualizar e reverter entrega
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Bundle anterior/novo, branch devel e preferências existentes.
+
+**Saídas:** Atualização/rollback instalados com versão e preferências conferidas no recorte próprio.
+
+**Limites:** Probes 0.1.14↔0.1.16 não provam todo caminho futuro nem atualização automática de qualquer origem.
+
+**Erros:** Hash/runtime/versão incompatíveis → falha de instalação, preservando evidência e dados do usuário.
+
+**Estado e efeitos:** Muda deployment Flatpak e histórico OSTree; fonte de publicação separada.
+
+**Cancelamento:** Cancelar install segue Flatpak; verificar deployment ativo após interrupção, não inferir versão pelo download.
+
+Fontes/requisitos: [docs/EXECUCAO-SEM-VM.md](../docs/EXECUCAO-SEM-VM.md).
+
+Planos relacionados da família: S12-25-1, S12-25-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
+#### `platform/windows` — Validar Linuxit nativo no Windows
+
+Estado: `pending_environment_or_reference`; base: `proposed_independent_requirement`.
+
+**Entradas:** Fonte própria no Windows/GTK e futuro instalador, associação e impressão reais.
+
+**Saídas:** Probe de runtime/UI/subprocessos próprio; instalador/suíte completa ainda precisa evidências específicas.
+
+**Limites:** Windows tem prioridade posterior ao Linux; smoke MSYS2 não equivale a instalador validado no PC do usuário.
+
+**Erros:** Dependência GTK/Cairo/Poppler ausente ou adaptador falho → erro de ambiente, sem aprovação do sistema completo.
+
+**Estado e efeitos:** Pode preparar pacote próprio; não alterar VM Foxit nem proteções do host por dedução.
+
+**Cancelamento:** Workers próprios canceláveis; instalação/desinstalação requer fluxo do instalador e preservação dos documentos.
+
+Fontes/requisitos: [docs/EXECUCAO-SEM-VM.md](../docs/EXECUCAO-SEM-VM.md).
+
+Planos relacionados da família: S12-25-1, S12-25-2. Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; expectativa e observação integral Foxit: `null`.
+
 
 A especificação de referência e a consolidação da fase A continuam parciais. Não promover propostas, presença de recursos ou testes próprios a funcionalidade Foxit recuperada.

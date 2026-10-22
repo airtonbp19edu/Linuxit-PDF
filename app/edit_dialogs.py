@@ -67,7 +67,7 @@ def ink_operation_dialog(parent, info, page):
         return None
     finally:dialog.destroy()
 
-ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events',
+ADVANCED_KINDS = {'move-bookmark', 'delete-bookmark', 'fill-form-controls', 'fill-form-events', 'fill-form-javascript',
                   'delete-annotation', 'update-annotation', 'add-highlight', 'add-rectangle',
                   'add-underline', 'add-strikeout', 'add-squiggly', 'add-ellipse', 'add-line', 'add-ink', 'add-reply'}
 ADVANCED_KINDS.update({'style-annotation','resize-annotation','add-redaction'})
@@ -80,6 +80,7 @@ TITLES = {'move-bookmark':'Mover marcador', 'delete-bookmark':'Excluir marcador 
           'add-ellipse':'Adicionar elipse', 'add-line':'Adicionar linha', 'update-annotation':'Editar comentário da anotação'}
 TITLES.update({'add-ink':'Desenhar à mão livre','add-reply':'Responder comentário'})
 TITLES['fill-form-events']='Preencher com cálculos e validação'
+TITLES['fill-form-javascript']='Preencher com JavaScript isolado'
 TITLES['style-annotation']='Cor e opacidade da anotação'
 TITLES['resize-annotation']='Redimensionar anotação'
 TITLES['add-redaction']='Marcar área para redação'
@@ -177,15 +178,22 @@ def advanced_operation_dialog(parent, kind, info, page):
                 buffer=comment.get_buffer();result.update(text=buffer.get_text(buffer.get_start_iter(),buffer.get_end_iter(),True),author=author.get_text())
             elif kind=='set-popup':result.update(rect=[s.get_value() for s in spins],open=opened.get_active())
             return result
-    elif kind == 'fill-form-events':
+    elif kind in ('fill-form-events', 'fill-form-javascript'):
         configuration=info.get('form_events',{})
         calculated={r['field'] for r in configuration.get('rules',[]) if r['event']=='/C'}
-        if configuration.get('unsupported'):
+        if kind == 'fill-form-events' and configuration.get('unsupported'):
             dialog.destroy();raise ValueError('Este formulário contém eventos fora do subconjunto suportado. Nenhum script foi executado.')
+        if kind == 'fill-form-javascript':
+            from pdf_form_javascript import available
+            if not available():
+                dialog.destroy();raise ValueError('JavaScript isolado requer python-quickjs-ng 0.15.1.1.')
+            calculated.update(r['field'] for r in configuration.get('unsupported',[]) if r['event']=='/C')
         records=[r for r in info['text_fields'] if not r['read_only'] and r['name'] not in calculated]
         if not records:
             dialog.destroy();raise ValueError('Nenhum campo de entrada editável disponível.')
         hint.set_text('Preencha entradas. Cálculos simples e limites numéricos reconhecidos serão aplicados à cópia; scripts gerais não são executados.')
+        if kind == 'fill-form-javascript':
+            hint.set_text('Ao confirmar você autoriza os eventos K/V/C/F em um processo QuickJS limitado, sem rede nem arquivos. Ações ao abrir, scripts de documento e APIs externas não são executados. Erros cancelam a cópia inteira.')
         fields=[];grid=Gtk.Grid(column_spacing=8,row_spacing=6)
         for row,record in enumerate(records[:256]):
             entry=Gtk.Entry();entry.set_text(record['value']);entry.get_accessible().set_name(record['name'])
@@ -382,7 +390,7 @@ def advanced_operation_dialog(parent, kind, info, page):
 
 
 def redaction_apply_dialog(parent, marks):
-    """E15: confirm applying redaction marks; returns the raster resolution or None."""
+    """Confirm the selected redaction method; raster returns its historical DPI value."""
     dialog = Gtk.Dialog(title='Aplicar redação', transient_for=parent, modal=True)
     dialog.add_buttons('Cancelar', Gtk.ResponseType.CANCEL, 'Escolher destino…', Gtk.ResponseType.OK)
     box = dialog.get_content_area();box.set_spacing(8);box.set_border_width(12)
@@ -391,8 +399,16 @@ def redaction_apply_dialog(parent, marks):
                             'o texto dela deixa de ser selecionável e pesquisável. Anotações sobre as áreas são removidas; '
                             'páginas sem marcas não mudam. Títulos de marcadores, metadados e anexos não são verificados.'), xalign=0)
     text.set_line_wrap(True);text.set_max_width_chars(70);box.add(text)
+    method = Gtk.ComboBoxText();method.get_accessible().set_name('Método de redação')
+    method.append('raster','Rasterizado (compatibilidade ampla)')
+    method.append('vector','Sem rasterizar (fontes padrão e objetos simples)');method.set_active_id('raster');box.add(method)
+    explanation=Gtk.Label(label='Sem rasterizar: remove objetos inteiros que tocam a área; pode remover texto ou desenho vizinho. Conteúdo complexo é recusado. O texto restante continua selecionável.',xalign=0)
+    explanation.set_line_wrap(True);explanation.set_max_width_chars(70);box.add(explanation)
     resolution = Gtk.ComboBoxText();resolution.get_accessible().set_name('Resolução das páginas redigidas')
     resolution.append('150', '150 DPI (arquivo menor)');resolution.append('300', '300 DPI (mais nítido)')
     resolution.set_active_id('150');box.add(resolution);dialog.show_all()
-    try:return int(resolution.get_active_id()) if dialog.run() == Gtk.ResponseType.OK else None
+    try:
+        if dialog.run()!=Gtk.ResponseType.OK:return None
+        dpi=int(resolution.get_active_id())
+        return {'mode':'vector','dpi':dpi} if method.get_active_id()=='vector' else dpi
     finally:dialog.destroy()

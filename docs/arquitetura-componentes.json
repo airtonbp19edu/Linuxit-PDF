@@ -1,8 +1,8 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-20T15:21:00-03:00",
+  "reviewed_at_local": "2026-10-22T08:42:58.255791-03:00",
   "timezone": "America/Sao_Paulo",
-  "application_version": "0.1.18",
+  "application_version": "0.1.19",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
@@ -491,6 +491,60 @@
       "path": "app/tool_preferences.py",
       "boundary": "portable_settings",
       "responsibility": "Padrões validados e atômicos para voz/OCR."
+    },
+    {
+      "id": "conversion_window",
+      "path": "app/conversion_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "A6: serviço próprio conversion_window; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "pdf_conversion",
+      "path": "app/pdf_conversion.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio pdf_conversion; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "pdf_form_javascript",
+      "path": "app/pdf_form_javascript.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio pdf_form_javascript; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "pdf_preservation",
+      "path": "app/pdf_preservation.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio pdf_preservation; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "pdf_xfa_flow",
+      "path": "app/pdf_xfa_flow.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio pdf_xfa_flow; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "recovered_edit",
+      "path": "app/recovered_edit.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio recovered_edit; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "signature_ocsp",
+      "path": "app/signature_ocsp.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio signature_ocsp; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "vector_redaction",
+      "path": "app/vector_redaction.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "A6: serviço próprio vector_redaction; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "xfa_window",
+      "path": "app/xfa_window.py",
+      "boundary": "gtk_ui",
+      "responsibility": "A6: serviço próprio xfa_window; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
     }
   ],
   "no_gtk_or_cairo_import_closure": [

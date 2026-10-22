@@ -4,8 +4,10 @@ import argparse
 import ast
 import csv
 from datetime import datetime
+from functools import lru_cache
 import json
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,6 +24,103 @@ def local_file(name):
 
 
 EXECUTED = ('passed', 'failed')
+
+
+@lru_cache(maxsize=256)
+def symbol_tree(path):
+    return ast.parse(path.read_text(encoding='utf-8'))
+
+
+def symbol_node(path, symbol):
+    """Resolve a qualified Python symbol without importing application dependencies."""
+    tree = symbol_tree(path)
+    def find(nodes, prefix=''):
+        for node in nodes:
+            if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+                name = prefix + node.name
+                if name == symbol:
+                    return node
+                if isinstance(node, ast.ClassDef):
+                    result = find(node.body, name + '.')
+                    if result:
+                        return result
+        return None
+    return find(tree.body)
+
+
+def validate_operation_contracts(spec, acceptance_ids):
+    """Check every inventoried operation, including pending/deferred requirements.
+
+    These checks establish completeness of the written bounded register only.
+    They do not execute the application or infer original behavior.
+    """
+    reference = spec.get('operation_contracts_ref')
+    require(reference == 'docs/contratos-operacoes-v1.json', 'Missing operation contract register')
+    data = json.loads(local_file(reference).read_text(encoding='utf-8'))
+    require(data.get('schema') == 'linuxit-operation-contracts-v1', 'Unknown operation contract schema')
+    require(data['timezone'] == 'America/Sao_Paulo' and
+            datetime.fromisoformat(data['authored_at_local']).utcoffset() is not None,
+            'Operation contract date must include its continuity timezone')
+    require(data['inventory_complete'] is False and data['reference_specification_complete'] is False,
+            'Operation register cannot close the original inventory/reference specification')
+    inventory = json.loads(local_file(data['inventory_ref']).read_text(encoding='utf-8'))
+    items = data['operations']
+    operations = {item['id']: item for item in inventory['operations']}
+    require(len(items) == len(operations) and len({item['id'] for item in items}) == len(items)
+            and {item['id'] for item in items} == set(operations),
+            'Operation contracts must cover inventory IDs exactly once')
+    sources, requirements = set(), set()
+    states = {'current_bounded_source', 'pending_environment_or_reference', 'deferred_by_user'}
+    grouped = {family['id']: [] for family in spec['families']}
+    for item in items:
+        prefix = item['id'] + ': '
+        operation = operations[item['id']]
+        require(item['family_id'] == operation['family_id'] and item['title'] == operation['title'],
+                prefix + 'Operation identity differs from inventory')
+        grouped[item['family_id']].append(item['id'])
+        require(item['contract_state'] in states, prefix + 'Unknown contract state')
+        expected_state = ('current_bounded_source' if operation['implementation_state'] == 'bounded_source_present'
+                          else 'deferred_by_user' if operation['implementation_state'] == 'deferred_by_user'
+                          else 'pending_environment_or_reference')
+        require(item['contract_state'] == expected_state, prefix + 'Implementation state drift')
+        expected_basis = ('current_linuxit_source' if expected_state == 'current_bounded_source'
+                          else 'proposed_independent_requirement')
+        require(item['basis'] == expected_basis, prefix + 'Proposal/implementation conflation')
+        for field in ('inputs', 'outputs', 'constraints', 'state_and_side_effects', 'foxit_unknowns'):
+            require(isinstance(item[field], list) and item[field] and
+                    all(isinstance(value, str) and value.strip() for value in item[field]),
+                    prefix + 'Missing ' + field)
+        require(isinstance(item['cancellation'], str) and item['cancellation'].strip(),
+                prefix + 'Missing operation cancellation boundary')
+        require(item['errors'] and all(error['trigger'].strip() and error['response'].strip()
+                                     and error['basis'] == expected_basis for error in item['errors']),
+                prefix + 'Missing or conflated error contract')
+        require(item['foxit_expected'] is None and item['foxit_observed'] is None and
+                item['new_execution_status'] == 'not_run', prefix + 'Contract review is not a runtime execution')
+        require(item['validation_boundary'].strip(), prefix + 'Acceptance scope boundary missing')
+        require(item['acceptance_plan_refs'] and set(item['acceptance_plan_refs']) <= acceptance_ids,
+                prefix + 'Unknown family acceptance reference')
+        require(expected_state != 'current_bounded_source' or item['source_anchors'],
+                prefix + 'Current contract needs its source symbol')
+        for source in item['source_anchors']:
+            path = local_file(source['path'])
+            require(path.suffix == '.py' and symbol_node(path, source['symbol']) is not None,
+                    prefix + 'Missing source symbol ' + source['symbol'])
+            require(type(source['line_at_review']) is int and source['line_at_review'] > 0 and
+                    type(source['end_line_at_review']) is int and
+                    source['end_line_at_review'] >= source['line_at_review'] and
+                    re.fullmatch('[0-9a-f]{64}', source['excerpt_sha256_at_review']),
+                    prefix + 'Invalid historical source anchor')
+            sources.add((source['path'], source['symbol']))
+        for name in item['requirement_refs']:
+            local_file(name); requirements.add(name)
+    for family in spec['families']:
+        require(family['operation_contract_ids'] == grouped[family['id']],
+                family['id'] + ': Contract IDs differ from family membership')
+    return {'operation_contracts_checked': len(items), 'operation_contract_families': len(grouped),
+            'operation_source_symbols_checked': len(sources),
+            'operation_requirement_references_checked': len(requirements),
+            'complete_bounded_register_is_reference_completion': False}
 
 
 def execution_report(reference, cache):
@@ -135,7 +234,8 @@ def validate(spec):
             require(not family['existing_test_refs'], prefix + 'Proposal cannot inherit a full implementation test')
     require(spec['stage12_assessment']['detailed_contract_check'] == 'partial', 'Reference specification is incomplete')
     require(spec['stage12_assessment']['phase_a_consolidated'] is False, 'Phase A cannot be closed here')
-    return {'families': len(rows), 'acceptance_cases': len(case_ids),
+    operation_summary = validate_operation_contracts(spec, case_ids)
+    return {**operation_summary, 'families': len(rows), 'acceptance_cases': len(case_ids),
             'implemented_subsets': len(rows) - proposed, 'proposed_only': proposed,
             'unique_test_references_checked': len(tests), 'unique_source_references_checked': len(references),
             'new_acceptance_executions': 0, 'recorded_acceptance_executions': executed,
@@ -159,6 +259,10 @@ def render(spec, summary):
              'Os campos `fixture_refs` apontam materiais já disponíveis; cenários que pedem outros documentos '
              'continuam dependendo da criação/especialização do corpus descrito em sua condição inicial.', '',
              'Índices internos de página usam base zero; páginas em relatórios de observação usam base um.', '',
+             f"A4: **{summary['operation_contracts_checked']} operações conhecidas** detalhadas individualmente "
+             'em [contratos operacionais](contratos-operacoes-v1.json), com entradas, saídas, limites, erros, '
+             'efeitos, cancelamento e fontes. A cobertura desta lista não fecha o universo Foxit. '
+             'Âncoras line_at_review/hash são fotografia da revisão; o validador resolve os símbolos atuais por AST.', '',
              'O assistente de IA do Foxit e recursos generativos estão fora do escopo por decisão do usuário '
              'em 17/10/2026; ver [escopo do projeto](ESCOPO.md). As 25 famílias atuais e os registros históricos são preservados.', '',
              '| Família | Estado do contrato |', '|---|---|']
@@ -193,6 +297,25 @@ def render(spec, summary):
                       '; '.join(f'[{t["test"]}](../{t["path"]})' for t in family['existing_test_refs']) + '.']
         if family['dynamic_case_refs']:
             lines += ['', 'Relacionados aos planos dinâmicos/UI: ' + ', '.join(family['dynamic_case_refs']) + '.']
+        contracts = json.loads(local_file(spec['operation_contracts_ref']).read_text(encoding='utf-8'))
+        lines += ['', '### Contratos individuais de operações', '']
+        for operation in contracts['operations']:
+            if operation['family_id'] != family['id']:
+                continue
+            lines += [f"#### `{operation['id']}` — {operation['title']}", '',
+                      f"Estado: `{operation['contract_state']}`; base: `{operation['basis']}`.", '',
+                      '**Entradas:** ' + ' '.join(operation['inputs']), '',
+                      '**Saídas:** ' + ' '.join(operation['outputs']), '',
+                      '**Limites:** ' + ' '.join(operation['constraints']), '',
+                      '**Erros:** ' + '; '.join(error['trigger'] + ' → ' + error['response'] for error in operation['errors']), '',
+                      '**Estado e efeitos:** ' + ' '.join(operation['state_and_side_effects']), '',
+                      '**Cancelamento:** ' + operation['cancellation'], '']
+            refs = [f"[{source['path']} — {source['symbol']}](../{source['path']})" for source in operation['source_anchors']]
+            refs += [f'[{name}](../{name})' for name in operation['requirement_refs']]
+            lines += ['Fontes/requisitos: ' + (', '.join(refs) if refs else 'decisão de adiamento; ver escopo da família') + '.', '',
+                      'Planos relacionados da família: ' + ', '.join(operation['acceptance_plan_refs']) + '. '
+                      'Não são aceitação completa desta operação. Nova execução neste registro: `not_run`; '
+                      'expectativa e observação integral Foxit: `null`.', '']
     lines += ['', 'A especificação de referência e a consolidação da fase A continuam parciais. '
               'Não promover propostas, presença de recursos ou testes próprios a funcionalidade Foxit recuperada.', '']
     return '\n'.join(lines)

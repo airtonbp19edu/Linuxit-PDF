@@ -311,6 +311,14 @@
           "superseded_at_local": "2026-10-20T20:29:00-03:00",
           "reason": "Etapa E17: corpus de PDFs danificados."
         }
+      ],
+      "operation_contract_ids": [
+        "open-render/inspect",
+        "open-render/render",
+        "open-render/obsolete",
+        "open-render/copy",
+        "open-render/password-open",
+        "open-render/recovery"
       ]
     },
     {
@@ -487,7 +495,13 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "navigation/goto",
+        "navigation/zoom",
+        "navigation/view-rotation",
+        "navigation/saved-rotation"
+      ]
     },
     {
       "id": "presentation",
@@ -608,7 +622,12 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "presentation/fit-fill",
+        "presentation/pan",
+        "presentation/monitors"
+      ]
     },
     {
       "id": "search-text",
@@ -740,7 +759,15 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "search-text/literal",
+        "search-text/whole",
+        "search-text/case",
+        "search-text/normalization",
+        "search-text/highlight",
+        "search-text/cancel"
+      ]
     },
     {
       "id": "search-bookmarks",
@@ -866,7 +893,11 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "search-bookmarks/titles",
+        "search-bookmarks/destinations"
+      ]
     },
     {
       "id": "search-comments",
@@ -1000,7 +1031,12 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "search-comments/body-subject",
+        "search-comments/author",
+        "search-comments/replies"
+      ]
     },
     {
       "id": "search-attachments",
@@ -1136,6 +1172,11 @@
           "to": "implemented_subset",
           "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
         }
+      ],
+      "operation_contract_ids": [
+        "search-attachments/utf8",
+        "search-attachments/pdf",
+        "search-attachments/formats"
       ]
     },
     {
@@ -1273,6 +1314,11 @@
           "to": "implemented_subset",
           "reason": "Implemented bounded own contract; acceptance expectations revised explicitly, execution statuses remain not_run and Foxit reference null."
         }
+      ],
+      "operation_contract_ids": [
+        "search-index/build",
+        "search-index/query",
+        "search-index/maintenance"
       ]
     },
     {
@@ -1413,6 +1459,11 @@
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
         }
+      ],
+      "operation_contract_ids": [
+        "search-language/wildcard",
+        "search-language/proximity",
+        "search-language/stemming"
       ]
     },
     {
@@ -1519,7 +1570,12 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "selection/text",
+        "selection/snapshot",
+        "selection/bidi"
+      ]
     },
     {
       "id": "printing",
@@ -1646,7 +1702,13 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "printing/preview",
+        "printing/submit",
+        "printing/physical",
+        "printing/shutdown"
+      ]
     },
     {
       "id": "imposition",
@@ -1783,7 +1845,12 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "imposition/booklet",
+        "imposition/nup",
+        "imposition/poster"
+      ]
     },
     {
       "id": "bookmarks-edit",
@@ -2094,7 +2161,13 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "bookmarks-edit/create",
+        "bookmarks-edit/rename",
+        "bookmarks-edit/move",
+        "bookmarks-edit/delete"
+      ]
     },
     {
       "id": "annotations",
@@ -2747,6 +2820,25 @@
           "superseded_at_local": "2026-10-20T16:15:00-03:00",
           "reason": "Etapa E15: aplicar redação em cópia nova."
         }
+      ],
+      "operation_contract_ids": [
+        "annotations/note",
+        "annotations/highlight",
+        "annotations/rectangle",
+        "annotations/underline",
+        "annotations/strikeout",
+        "annotations/squiggly",
+        "annotations/ellipse",
+        "annotations/line",
+        "annotations/comment-author",
+        "annotations/style",
+        "annotations/resize",
+        "annotations/redaction-mark",
+        "annotations/redaction-apply",
+        "annotations/delete",
+        "annotations/history",
+        "annotations/replies",
+        "annotations/freehand"
       ]
     },
     {
@@ -3272,6 +3364,17 @@
           "superseded_at_local": "2026-10-20T12:26:00-03:00",
           "reason": "Etapa E07: preenchimento de formulários XFA híbridos com o pacote datasets mantido coerente."
         }
+      ],
+      "operation_contract_ids": [
+        "forms/text",
+        "forms/checkbox",
+        "forms/radio",
+        "forms/combo-fixed",
+        "forms/list-single",
+        "forms/list-multiple",
+        "forms/combo-editable",
+        "forms/events",
+        "forms/xfa"
       ]
     },
     {
@@ -3444,7 +3547,13 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "attachments/list",
+        "attachments/extract",
+        "attachments/portfolio",
+        "attachments/encrypted"
+      ]
     },
     {
       "id": "signatures",
@@ -3778,6 +3887,13 @@
           "superseded_at_local": "2026-10-20T15:14:00-03:00",
           "reason": "Etapa E10: DSS na validação offline."
         }
+      ],
+      "operation_contract_ids": [
+        "signatures/inspect",
+        "signatures/cms-integrity",
+        "signatures/sign",
+        "signatures/trust",
+        "signatures/timestamp-ltv"
       ]
     },
     {
@@ -4094,6 +4210,13 @@
           "superseded_at_local": "2026-10-20T20:39:00-03:00",
           "reason": "Etapa E18: corpus de criptografia."
         }
+      ],
+      "operation_contract_ids": [
+        "security/inspect",
+        "security/protect",
+        "security/owner-copy",
+        "security/enforcement",
+        "security/rms"
       ]
     },
     {
@@ -4391,6 +4514,12 @@
           "superseded_at_local": "2026-10-20T20:48:00-03:00",
           "reason": "Etapa E19: ordem de leitura em duas colunas."
         }
+      ],
+      "operation_contract_ids": [
+        "accessibility/text",
+        "accessibility/keyboard",
+        "accessibility/screen-reader",
+        "accessibility/voice"
       ]
     },
     {
@@ -4492,6 +4621,12 @@
           "superseded_at_local": "2026-10-19T23:50:59-03:00",
           "reason": "Texto da etapa anterior; substituído pela leitura atual conferida no código 0.1.16 (capítulo 15 do relatório completo)."
         }
+      ],
+      "operation_contract_ids": [
+        "measurement/distance",
+        "measurement/calibrate",
+        "measurement/area",
+        "measurement/perimeter"
       ]
     },
     {
@@ -4660,6 +4795,13 @@
           "superseded_at_local": "2026-10-20T21:20:00-03:00",
           "reason": "Decisão D04: 3D adiado para atualização futura."
         }
+      ],
+      "operation_contract_ids": [
+        "layers-media/list",
+        "layers-media/toggle",
+        "layers-media/media",
+        "layers-media/3d-poster",
+        "layers-media/3d"
       ]
     },
     {
@@ -4769,7 +4911,12 @@
           }
         }
       ],
-      "parity": "not_verified"
+      "parity": "not_verified",
+      "operation_contract_ids": [
+        "preferences/theme",
+        "preferences/folders",
+        "preferences/remaining"
+      ]
     },
     {
       "id": "cloud",
@@ -4967,6 +5114,11 @@
           "superseded_at_local": "2026-10-20T12:41:00-03:00",
           "reason": "Pedido do usuário em 20/10/2026 às 12:38: fechar o ciclo da nuvem com a decisão de 17/10/2026 às 20:51 (pastas sincronizadas por programas externos). Etapa E28."
         }
+      ],
+      "operation_contract_ids": [
+        "cloud/login",
+        "cloud/transfer",
+        "cloud/collaboration"
       ]
     },
     {
@@ -5236,6 +5388,13 @@
             }
           ]
         }
+      ],
+      "operation_contract_ids": [
+        "conversion/images",
+        "conversion/tiff",
+        "conversion/ocr",
+        "conversion/animation",
+        "conversion/other-formats"
       ]
     },
     {
@@ -5401,16 +5560,26 @@
           "superseded_at_local": "2026-10-20T00:36:00-03:00",
           "reason": "Etapa E02: contrato próprio da integração com o sistema."
         }
+      ],
+      "operation_contract_ids": [
+        "platform/worker-runtime",
+        "platform/portal",
+        "platform/association",
+        "platform/update",
+        "platform/windows"
       ]
     }
   ],
   "stage12_assessment": {
     "detailed_contract_check": "partial",
     "phase_a_consolidated": false,
-    "reason": "Entries/outputs/errors and acceptance plans are written for the identified families, but proposed-only contracts, unsupported subfeatures, missing fixtures and unobserved original behavior prevent closing the reference specification."
+    "reason": "A4 detalha entradas, saídas, erros, limites, efeitos e cancelamento de todas as operações conhecidas com âncoras de código/requisitos; contratos do original e fase A continuam parciais. Completude desta lista não redefine o universo Foxit nem aprova paridade.",
+    "own_inventory_detailed_contracts": "complete_for_known_inventory_only",
+    "known_operation_count": 116
   },
   "scope_exclusions_ref": "progresso/projeto.json",
   "updated_at_local": "2026-10-21T21:25:57-03:00",
   "operation_catalog_ref": "progresso/inventario-operacoes-v1.json",
-  "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified."
+  "runtime_reconciliation_scope": "Preserved family subset observations; all50 full acceptance plans remain not_run and full-family parity not_verified.",
+  "operation_contracts_ref": "docs/contratos-operacoes-v1.json"
 }

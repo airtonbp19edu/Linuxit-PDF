@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Compile pinned QuickJS with the runner's UCRT64 Python ABI, not an MSVC wheel."""
+import argparse
+import hashlib
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+import sysconfig
+import tarfile
+import urllib.request
+
+VERSION='0.15.1.1'
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--work',required=True,type=Path);args=parser.parse_args()
+    if os.name!='nt' or os.environ.get('GITHUB_ACTIONS')!='true':parser.error('Native ephemeral Windows runner required')
+    if args.work.exists():parser.error('Fresh build directory required')
+    args.work.mkdir(parents=True)
+    with urllib.request.urlopen(f'https://pypi.org/pypi/python-quickjs-ng/{VERSION}/json',timeout=60) as response:metadata=json.load(response)
+    source=next(row for row in metadata['urls'] if row['packagetype']=='sdist')
+    if not source['url'].startswith('https://files.pythonhosted.org/') or source['size']>20*1024**2:raise ValueError('Invalid QuickJS source location/size')
+    with urllib.request.urlopen(source['url'],timeout=60) as response:archive=response.read(20*1024**2+1)
+    digest=hashlib.sha256(archive).hexdigest()
+    if digest!=source['digests']['sha256'] or len(archive)!=source['size']:raise ValueError('QuickJS source digest mismatch')
+    notices=[]
+    with tarfile.open(fileobj=io.BytesIO(archive),mode='r:gz') as source_tar:
+        for entry in source_tar.getmembers():
+            if not entry.isfile():continue
+            raw=source_tar.extractfile(entry).read()
+            if Path(entry.name).name.upper() in ('LICENSE','LICENSE.TXT','COPYING'):
+                notices.append(entry.name+'\n'+raw.decode('utf-8'))
+            elif entry.name.endswith(('.c','.h')):
+                comment=re.match(r'\s*(/\*.*?\*/)',raw[:32768].decode('utf-8','replace'),re.S)
+                if comment and 'copyright' in comment[1].lower():notices.append(entry.name+'\n'+comment[1])
+        source_tar.extractall(args.work,filter='data')
+    roots=[path for path in args.work.iterdir() if path.is_dir()]
+    if len(roots)!=1 or not notices or not any('Bellard' in n for n in notices):raise ValueError('QuickJS source/notices incomplete')
+    root=roots[0]
+    build_script=root/'linuxit_build.py'
+    build_script.write_text('from setuptools import setup,Extension\n'
+        'setup(name="linuxit-quickjs-ucrt64",version="'+VERSION+'",ext_modules=[Extension("_quickjs",'
+        'sources=["module.c","upstream-quickjs/dtoa.c","upstream-quickjs/libregexp.c","upstream-quickjs/libunicode.c","upstream-quickjs/quickjs.c"],'
+        'extra_compile_args=["-std=c11"],extra_link_args=["-static-libgcc"],py_limited_api=False)])\n',encoding='utf-8')
+    subprocess.run([sys.executable,str(build_script),'build_ext','--inplace'],cwd=root,check=True)
+    modules=list(root.glob('_quickjs*.pyd'))
+    if len(modules)!=1:raise ValueError('Native UCRT64 extension was not generated')
+    site=Path(sysconfig.get_path('platlib'));site.mkdir(parents=True,exist_ok=True)
+    installed=site/modules[0].name;shutil.copy2(modules[0],installed)
+    (args.work/'quickjs-notices.txt').write_text('\n\n'.join(notices),encoding='utf-8')
+    provenance=dict(name='python-quickjs-ng',version=VERSION,source_url=source['url'],source_sha256=digest,
+        source_bytes=len(archive),module_sha256=hashlib.sha256(installed.read_bytes()).hexdigest(),python=sys.version,
+        compiler=sysconfig.get_config_var('CC'),native_abi=sysconfig.get_config_var('EXT_SUFFIX'),
+        build_script_sha256=hashlib.sha256(build_script.read_bytes()).hexdigest(),
+        upstream_c_sources_modified=False,build_recipe='setuptools Extension without MSVC-only flags and without MSVC stable-ABI wheel')
+    (site/'quickjs-installation.json').write_text(json.dumps(provenance,indent=2)+'\n',encoding='utf-8')
+    (args.work/'quickjs-provenance.json').write_text(json.dumps(provenance,indent=2)+'\n',encoding='utf-8')
+    subprocess.run([sys.executable,'-c','import _quickjs; assert _quickjs.Context().eval("1+2")==3'],check=True)
+    print(json.dumps(provenance))
+
+
+if __name__=='__main__':main()

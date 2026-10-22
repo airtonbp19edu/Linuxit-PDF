@@ -57,6 +57,9 @@ class OCRWindow(Gtk.Window):
         self.psm=Gtk.ComboBoxText()
         for value,label in [('3','Layout automático'),('6','Bloco único de texto'),('11','Texto esparso')]:self.psm.append(value,label)
         self.psm.set_active_id(str(defaults['ocr_psm']));box.pack_start(self.psm,False,False,0)
+        self.preprocess=Gtk.ComboBoxText()
+        for value,label in [('none','Imagem original'),('contrast','Limpar contraste (escaneamento apagado)'),('threshold','Preto e branco automático (pode perder detalhes)')]:self.preprocess.append(value,label)
+        self.preprocess.set_active_id('none');self.preprocess.get_accessible().set_name('Pré-processamento OCR');box.pack_start(self.preprocess,False,False,0)
         self.pages=Gtk.Entry();self.pages.set_placeholder_text('Páginas para OCR:1,3,5 (vazio=todas);demais páginas copiadas')
         self.pages.get_accessible().set_name('Páginas selecionadas para OCR');box.pack_start(self.pages,False,False,0)
         buttons = Gtk.Box(spacing=8)
@@ -71,7 +74,7 @@ class OCRWindow(Gtk.Window):
         cancel = Gtk.Button(label='Cancelar operação')
         cancel.connect('clicked', self._cancel)
         buttons.pack_end(cancel, False, False, 0)
-        self.controls = [self.create, self.language, self.dpi,self.psm,self.pages]
+        self.controls = [self.create, self.language, self.dpi,self.psm,self.pages,self.preprocess]
         self.status = Gtk.Label(label='Escolha um nome novo para salvar todas as páginas.', xalign=0)
         self.status.set_line_wrap(True)
         self.status.set_selectable(True)
@@ -101,7 +104,7 @@ class OCRWindow(Gtk.Window):
         if not destination or self.closed:
             return
         language, dpi = self.language.get_active_id(), int(self.dpi.get_active_id())
-        pages=self.pages.get_text().strip();psm=int(self.psm.get_active_id())
+        pages=self.pages.get_text().strip();psm=int(self.psm.get_active_id());preprocess=self.preprocess.get_active_id()
         try:selected=[int(value.strip()) for value in pages.split(',')] if pages else None
         except ValueError:self.status.set_text('Informe números de páginas separados por vírgulas.');return
         self.result = None
@@ -111,7 +114,7 @@ class OCRWindow(Gtk.Window):
             identity = source_identity(self.path)
             if file_stamp(self.path) != self.source_stamp:
                 raise ValueError('O PDF mudou. Reabra o documento antes do OCR.')
-            request={'source_sha256': identity, 'language': language, 'dpi': dpi,'psm':psm}
+            request={'source_sha256': identity, 'language': language, 'dpi': dpi,'psm':psm,'preprocess':preprocess}
             if selected is not None:request['pages']=selected
             return invoke_ocr(self.path, destination, request, cancel)
         def saved(result):

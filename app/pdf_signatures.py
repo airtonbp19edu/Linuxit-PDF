@@ -70,6 +70,7 @@ def _verify_detached(cms, content):
 TIMESTAMP_DIGESTS = {'sha256', 'sha384', 'sha512'}
 MAX_DSS_CERTS = 64
 MAX_DSS_CRLS = 32
+MAX_DSS_OCSPS = 32
 MAX_DSS_ITEM = 1024**2
 
 
@@ -77,7 +78,7 @@ def _dss_material(reader):
     """Certificates and CRLs of the document security store (/DSS), bounded (E10).
 
     They are validation material only: certificates never become trust anchors and
-    nothing is fetched; OCSP responses and VRI entries are counted, not used.
+    nothing is fetched. OCSP is checked separately against an explicit local chain.
     """
     dss = reader.root_object.get('/DSS')
     if dss is None:return None
@@ -94,13 +95,15 @@ def _dss_material(reader):
             result.append(data)
         return result
     vri = dss.get('/VRI');vri = vri.get_object() if vri is not None else {}
-    ocsps = dss.get('/OCSPs');ocsps = ocsps.get_object() if ocsps is not None else []
     from cryptography import x509
+    from cryptography.x509 import ocsp
     certificates, crls = items('/Certs', MAX_DSS_CERTS), items('/CRLs', MAX_DSS_CRLS)
+    ocsps = items('/OCSPs', MAX_DSS_OCSPS)
     for data in certificates:x509.load_der_x509_certificate(data)
     for data in crls:x509.load_der_x509_crl(data)
-    return {'certificates': certificates, 'crls': crls,
-            'ocsp_responses': len(ocsps) if isinstance(ocsps, list) else 0, 'vri_entries': len(vri) if hasattr(vri, 'keys') else 0}
+    for data in ocsps:ocsp.load_der_ocsp_response(data)
+    return {'certificates': certificates, 'crls': crls, 'ocsps': ocsps,
+            'ocsp_responses': len(ocsps), 'vri_entries': len(vri) if hasattr(vri, 'keys') else 0}
 
 
 def _verify_document_timestamp(token, content):

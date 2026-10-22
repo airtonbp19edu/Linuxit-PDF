@@ -284,6 +284,7 @@ class PDFWindow(Gtk.Window):
                     ('Preferências de leitura…', self._reading_preferences),
                     ('Criar PDF de imagens…', self._show_creation),
                     ('Criar cópia pesquisável com OCR…', self._show_ocr),
+                    ('Exportar PDF como texto ou imagens…', self._show_conversion),
                     ('Senhas e permissões…', self._show_security),
                     ('Verificar assinaturas…', self._show_signatures),
                     ('Texto da página… (Ctrl+Shift+T)', self._show_accessible_text),
@@ -2129,6 +2130,11 @@ class PDFWindow(Gtk.Window):
             window.show_all()
         window.present()
 
+    def _show_conversion(self,*_args):
+        if not self.filepath:return
+        from conversion_window import ConversionWindow
+        window=ConversionWindow(self,self.filepath);window.show_all();window.present()
+
     def _show_edit_draft(self, *_):
         if not self.filepath or not self._source_unchanged():return
         from edit_window import EditWindow
@@ -2384,8 +2390,16 @@ class PDFWindow(Gtk.Window):
             col = Gtk.TreeViewColumn(title, renderer, text=column); col.set_resizable(True); col.set_expand(True)
             view.append_column(col)
         scroll = Gtk.ScrolledWindow(); scroll.set_vexpand(True); scroll.add(view); box.pack_start(scroll, True, True, 0)
+        flow=Gtk.Button(label='Gerar cópia com layout fluido próprio…')
+        flow.connect('clicked',self._show_xfa_flow);box.pack_start(flow,False,False,0)
         dialog.xfa_store = store; dialog.xfa_summary = summary
         return dialog
+
+    def _show_xfa_flow(self,*_):
+        if not self.filepath or not self._source_unchanged():return
+        from xfa_window import XFAFlowWindow
+        window=XFAFlowWindow(self,self.filepath,self.open_document)
+        window.show_all();window.present()
 
     def _show_xfa_fields(self, *_args):
         if not self.filepath:

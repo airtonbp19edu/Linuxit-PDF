@@ -1,4 +1,4 @@
-"""Offline CMS chain/CRL and RFC3161 checks against explicitly selected anchors.
+"""Offline CMS chain/CRL/OCSP and RFC3161 checks against explicitly selected anchors.
 
 This is a technical policy (purpose=any plus digitalSignature key usage), not
 PAdES-LTV, an identity registry, or a legal validity decision. No URLs fetched.
@@ -10,16 +10,44 @@ from platform_runtime import subprocess_options
 
 
 def trust_policy(request):
-    if not isinstance(request,dict) or set(request)!={'roots','crls','require_revocation','at_time'}:
+    required={'roots','crls','require_revocation','at_time'}
+    if not isinstance(request,dict) or set(request) not in (required,required|{'ocsps'}):
         raise ValueError('Política de confiança inválida.')
     if type(request['require_revocation']) is not bool:raise ValueError('Opção de revogação inválida.')
     for key in ('roots','crls'):
         values=request[key]
         if not isinstance(values,list) or not (1 if key=='roots' else 0)<=len(values)<=16 or not all(isinstance(v,str) and len(v)<=4096 for v in values):
             raise ValueError('Escolha1–16 arquivos de raízes e até16 arquivos CRL locais.')
+    if 'ocsps' in request:
+        values=request['ocsps']
+        if not isinstance(values,list) or len(values)>32 or not all(isinstance(v,str) and 0<len(v)<=4096 for v in values):
+            raise ValueError('Escolha até32 respostas OCSP locais.')
     moment=datetime.now(timezone.utc) if request['at_time'] is None else datetime.fromisoformat(request['at_time'])
     if moment.utcoffset() is None:raise ValueError('A data de validação deve incluir fuso horário.')
     return dict(request,moment=moment)
+
+
+def _ocsp_assessment(signers,certs,policy,dss):
+    """Assess local OCSP on actual signer chains, without promoting DSS roots."""
+    from cryptography import x509
+    from signature_ocsp import verify_ocsp_chain
+    anchors=[]
+    for name in policy['roots']:anchors.extend(x509.load_pem_x509_certificates(_read(name)))
+    helpers=[x509.load_der_x509_certificate(c.dump()) for c in certs]
+    helpers.extend(x509.load_der_x509_certificate(raw) for raw in (dss or {}).get('certificates',[]))
+    selected=[]
+    for signer in signers:
+        sid=signer['sid'];matching=[]
+        for cert in certs:
+            if sid.name=='issuer_and_serial_number':
+                value=sid.chosen
+                same=cert.serial_number==value['serial_number'].native and cert.issuer.dump()==value['issuer'].dump()
+            else:same=cert.key_identifier==sid.native
+            if same:matching.append(cert)
+        if len(matching)==1:selected.append(x509.load_der_x509_certificate(matching[0].dump()))
+    responses=[_read(name) for name in policy.get('ocsps',[])]+(dss or {}).get('ocsps',[])
+    if len(responses)>64:raise ValueError('OCSP combinado acima de64 respostas.')
+    return verify_ocsp_chain(selected,helpers,anchors,responses,policy['moment'])
 
 
 def _read(path):
@@ -125,6 +153,9 @@ def verify_trust(cms,content,policy,dss=None):
         base=[executable,'cms','-verify','-binary','-inform','DER','-in',str(signature),'-content',str(data),'-purpose','any',*options,'-out',os.devnull]
         result['chain_verified']=usage_ok and _run(base)
         if result['chain_verified'] and (policy['crls'] or dss_crls):result['revocation_verified']=_run([*base,'-crl_check_all'])
+        result['ocsp']=_ocsp_assessment(signers,certs,policy,dss)
+        if result['chain_verified'] and result['ocsp']['verified']:result['revocation_verified']=True
+        if result['ocsp']['revoked']:result['revocation_verified']=False
         for signer in signers:
             signature_value=signer['signature'].native
             for attribute in signer['unsigned_attrs']:
@@ -144,7 +175,7 @@ def verify_trust(cms,content,policy,dss=None):
                     verified=_run(args)
                     timestamp=token['content']['encap_content_info']['content'].parsed['gen_time'].native
                     result['timestamps'].append(dict(verified=verified,time=timestamp.isoformat() if verified else None))
-        result['policy_satisfied']=result['chain_verified'] and (result['revocation_verified'] or not policy['require_revocation'])
+        result['policy_satisfied']=result['chain_verified'] and not result['ocsp']['revoked'] and (result['revocation_verified'] or not policy['require_revocation'])
     return result
 
 
@@ -178,5 +209,8 @@ def verify_document_timestamp(token,content,policy,dss=None):
         if certs or dss_certs:args+=['-untrusted',str(chain)]
         result['chain_verified']=_run(args)
         if result['chain_verified'] and (policy['crls'] or dss_crls):result['revocation_verified']=_run([*args,'-crl_check_all'])
-        result['policy_satisfied']=result['chain_verified'] and (result['revocation_verified'] or not policy['require_revocation'])
+        result['ocsp']=_ocsp_assessment(structure['content']['signer_infos'],certs,policy,dss)
+        if result['chain_verified'] and result['ocsp']['verified']:result['revocation_verified']=True
+        if result['ocsp']['revoked']:result['revocation_verified']=False
+        result['policy_satisfied']=result['chain_verified'] and not result['ocsp']['revoked'] and (result['revocation_verified'] or not policy['require_revocation'])
     return result
