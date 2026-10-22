@@ -28,6 +28,22 @@ def _require(value, message):
         raise ValueError(message)
 
 
+def _engine_process(extension):
+    """Sanitized host interpreter or the packaged, paired loader and stdlib."""
+    binary=Path(sys.executable).resolve();base=binary.parent.parent
+    site=Path(extension).resolve().parent
+    script=[str(Path(__file__).resolve()),'--worker',str(site)]
+    environment={key:value for key,value in os.environ.items() if key.upper() in ('SYSTEMROOT','WINDIR','PATH','TEMP','TMP')}
+    bundled_site=base/'python/lib'/f'python{sys.version_info.major}.{sys.version_info.minor}'/'site-packages'
+    loader=base/'runtime-lib/ld-linux-x86-64.so.2'
+    if binary==base/'libexec/python3' and site==bundled_site and loader.is_file():
+        # -I ignores PYTHONHOME and would use the host stdlib (or fail in the
+        # sandbox). Honor only these two trusted bundled directories instead.
+        environment['PYTHONHOME']=str(base/'python');environment['PYTHONPATH']=str(site)
+        return [str(loader),'--library-path',str(base/'runtime-lib'),str(binary),'-s','-P',*script],environment
+    return [str(binary),'-I',*script],environment
+
+
 def _request(document, changes):
     from pdf_form_controls import inherited, terminal
     from pdf_form_events import _script
@@ -81,11 +97,7 @@ def run_form_javascript(document, changes):
     spec = importlib.util.find_spec('_quickjs')
     if spec is None or not spec.origin:
         raise RuntimeError('JavaScript isolado requer python-quickjs-ng ' + ENGINE_VERSION + '.')
-    # -I ignores PYTHONPATH/user-site/current-directory imports. Only the known
-    # binary-extension directory is explicitly appended inside the child.
-    command = [sys.executable, '-I', str(Path(__file__).resolve()), '--worker', str(Path(spec.origin).parent)]
-    environment = {key: value for key, value in os.environ.items()
-                   if key.upper() in ('SYSTEMROOT', 'WINDIR', 'PATH', 'TEMP', 'TMP', 'LD_LIBRARY_PATH')}
+    command,environment = _engine_process(spec.origin)
     with subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                           env=environment, cwd=str(Path(__file__).parent),
                           creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0)) as process:
