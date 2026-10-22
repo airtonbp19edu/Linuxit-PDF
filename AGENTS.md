@@ -2,6 +2,8 @@
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
 
+**CODEX, LEIA PRIMEIRO (2026/10/22 às 12:07):** [ORDEM-CODEX-2026-10-22](docs/ORDEM-CODEX-2026-10-22.md). O trabalho A4/A5/A6 feito no PC das 08:30 às 08:48 **não tem commit nem foi enviado**; o Passo 1 da ordem salva e sincroniza antes de qualquer outra coisa. A mesma ordem lista tudo o que falta no projeto.
+
 **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [docs/PRIORIDADE-E29-ERRO-403-RELEASE.md](docs/PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases.
 
 **E29 — diagnóstico confirmado em 2026/10/20 às 17:22:** mesmo token criou rascunhos na main (201/201), mas alvo antigo com workflows diferentes recebeu403. Causa e correção no documento prioritário vinculado acima. Fluxo corrigido passou em conferência somente leitura (CI39491077708), oito guardas aprovadas. Releases/VM intactas. Falta validar a próxima publicação automática autorizada; E29 permanece aberta nesse critério. Não repetir análise da causa nem publicar nova versão nesta rodada.

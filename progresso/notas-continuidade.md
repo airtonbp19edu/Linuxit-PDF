@@ -3612,3 +3612,10 @@ Pedido explícito do usuário autoriza este bloco de três tarefas. Codex assume
 - A2 impressão: RTTI CReader_PrintMgrEx (vtable 0x53d6bfc), CReader_BasePrinter (0x53d7788) e subclasses Dlg/Quiet/Batch/Invoice; CReader_PrintProviderEx; CGdiPrinterDriver vs CFX_PSPrinterDriver; CPDF_BackgroundDrawer (0x54151a0). Ctors 0x1645710/0x165c230 conferidos. Gap: laço de impressão/DEVMODE/spooler e contexto 0x138.
 - A3: tabela de diagramas por subsistema em docs/fluxos.md; Mermaid de busca e impressão nos dois documentos.
 - Critérios (etapas 8 busca, 8 impressão, 9 diagramas) com evidência nova, status parcial mantido; 45,13%. Sem mudança de código; suíte 666/666 preservada. Commit 38dde0a.
+
+## 2026/10/22 às 12:07 (America/Sao_Paulo, UTC-03:00) — Claude deixa a ordem para o Codex
+
+Pedido do usuário (12:04): ordem minuciosa para o Codex continuar e lista de todo o restante. Documento: `docs/ORDEM-CODEX-2026-10-22.md`, apontado no topo do `AGENTS.md` e da lista O-QUE-FAZER.
+- Conferência na pasta do PC, só leitura (listagem e cópia de 4 documentos do Codex para a nuvem): trabalho A4/A5/A6 com horários de 08:30 a 08:48 em app/, tests/, scripts/, docs/ (A4-CONTRATOS-OPERACIONAIS, A456-EXECUCAO, A6-ASSINATURAS-PRESERVACAO, A6-FORMULARIOS-E-WINDOWS) e analysis-local/ (a6-js-01 10/10, a6-xfa-01 9/9, a6-form-regression 19+1 GTK não executado, a6-xfa-regression 15/15). Nenhum commit depois de b79aca7; a cópia do PC também não tem 32fc157/bd2eeb4.
+- Ordem: (1) ramo de segurança codex-a456-wip + rebase sobre bd2eeb4, mantendo as notas dos dois; (2) proveniência QuickJS-NG, annotation_editing sem documento, OCR no Flatpak, verificadores; (3) commits temáticos, main, CI no-vm-validation, GTK reais; (4) A4 como evidência, critério continua parcial sem B3; (5) 0.1.19 com workflows iguais à main, linux-flatpak, check_only, parar para confirmação; (6) A6 item por item; (7) E32/E33/E34 e registros.
+- Lista restante: 19 critérios (54,87 pontos), estática S1–S4, B1/B2/B3, adiados. Nenhum código alterado pelo Claude nesta rodada; .gitignore passa a ignorar O-QUE-FAZER-AGORA-LOCAL.md e ORDEM-CODEX-LOCAL.md (cópias da raiz do PC).
