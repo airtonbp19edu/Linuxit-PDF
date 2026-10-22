@@ -50,11 +50,18 @@ def probe(destination):
     configure_pdf_library()
     from pypdf import PdfWriter,PdfReader
     import tempfile
-    from pdf_form_javascript import available
+    from pdf_form_javascript import available,run_form_javascript
     result=dict(schema='linuxit-windows-installed-probe-v1',version=VERSION,checks={})
     result['checks']['gtk_initialized']=bool(Gtk.init_check()[0])
     result['checks']['quickjs_calculation']=_quickjs.Context().eval('[1,2,3].reduce((a,b)=>a+b,0)')==6
     result['checks']['quickjs_worker_dependency']=available()
+    from pypdf.generic import DictionaryObject,NameObject,TextStringObject,ArrayObject
+    form_document=PdfWriter();form_document.add_blank_page(200,200)
+    action=DictionaryObject({NameObject('/S'):NameObject('/JavaScript'),NameObject('/JS'):TextStringObject('event.value="v="+event.value;')})
+    field=DictionaryObject({NameObject('/FT'):NameObject('/Tx'),NameObject('/T'):TextStringObject('entry'),NameObject('/V'):TextStringObject('0'),NameObject('/AA'):DictionaryObject({NameObject('/F'):action})})
+    form_document.root_object[NameObject('/AcroForm')]=DictionaryObject({NameObject('/Fields'):ArrayObject([form_document._add_object(field)])})
+    values,display=run_form_javascript(form_document,{'entry':'4'})
+    result['checks']['quickjs_worker_executed']=values.get('entry')=='4' and display.get('entry')=='v=4'
     with tempfile.TemporaryDirectory(prefix='linuxit-installed-') as folder:
         path=Path(folder)/'fixture.pdf';writer=PdfWriter();writer.add_blank_page(200,200);writer.write(path)
         document=Poppler.Document.new_from_file(path.as_uri(),None)

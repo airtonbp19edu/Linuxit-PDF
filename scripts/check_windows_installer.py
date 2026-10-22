@@ -18,14 +18,17 @@ def main():
         parser.error('Installation is allowed only on an ephemeral GitHub Windows runner')
     if args.output.exists():parser.error('Use a new report path')
     base=Path(os.environ['RUNNER_TEMP']).resolve()
-    target=(base/'linuxit-installer-validation'/'installed').resolve()
+    target=(base/'linuxit-installer-validation'/'installed app com espaços').resolve()
     if not target.is_relative_to(base) or target.exists():parser.error('Fresh installation inside RUNNER_TEMP required')
     target.parent.mkdir(parents=True,exist_ok=True)
     report=dict(schema='linuxit-windows-installer-validation-v1',passed=False,checks={},errors=[],
                 ephemeral_ci=True,host_user_installation=False,administrator_required=False,physical_hardware_tested=False)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     try:
-        install=subprocess.run([str(args.installer.resolve()),'/S','/D='+str(target)],capture_output=True,timeout=600)
+        # NSIS /D must be last and unquoted, including when the directory has
+        # spaces. A raw Windows command line is not interpreted by a shell.
+        install_command=subprocess.list2cmdline([str(args.installer.resolve()),'/S'])+' /D='+str(target)
+        install=subprocess.run(install_command,capture_output=True,timeout=600)
         report['checks']['silent_install_exit_zero']=install.returncode==0
         manifest=json.loads((target/'windows-manifest.json').read_text(encoding='utf-8'))
         mismatches=[]
@@ -48,6 +51,14 @@ def main():
                                env=environment,cwd=str(base),capture_output=True,timeout=120)
         report['probe_stderr']=checked.stderr.decode('utf-8','replace')[-4000:]
         report['checks']['installed_native_probe']=checked.returncode==0 and probe.exists() and json.loads(probe.read_text(encoding='utf-8'))['passed']
+        launcher_probe=args.output.with_name('installed-launcher-probe.json').resolve()
+        launched=subprocess.run([str(target/'LinuxitPDF.exe'),'--probe',str(launcher_probe)],env=environment,cwd=str(base),capture_output=True,timeout=30)
+        deadline=time.monotonic()+90
+        launcher_result={}
+        while time.monotonic()<deadline:
+            try:launcher_result=json.loads(launcher_probe.read_text(encoding='utf-8'));break
+            except (FileNotFoundError,json.JSONDecodeError):time.sleep(.2)
+        report['checks']['installed_exe_launcher']=launched.returncode==0 and launcher_result.get('passed') is True
         import winreg
         key=r'Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-'+manifest['version']
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key) as registry:
@@ -68,7 +79,7 @@ def main():
             removed=False
         except FileNotFoundError:removed=True
         report['checks']['uninstall_registry_removed']=removed
-        report['passed']=all(report['checks'].values()) and len(report['checks'])==7
+        report['passed']=all(report['checks'].values()) and len(report['checks'])==8
     except Exception as exc:
         import traceback
         report['errors'].append(type(exc).__name__+': '+str(exc));traceback.print_exc()

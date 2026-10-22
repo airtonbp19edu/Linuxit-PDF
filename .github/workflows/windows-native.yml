@@ -46,32 +46,6 @@ jobs:
           export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-test-config"
           export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-test-cache"
           /ucrt64/bin/python scripts/check_windows_native.py --output dist/windows-native/report.json
-      - name: Run the entire own test suite on native Windows
-        id: suite
-        continue-on-error: true
-        shell: msys2 {0}
-        run: |
-          export PYTHONUTF8=1
-          export GDK_BACKEND=win32
-          export DISPLAY=:0
-          export LINUXIT_WINDOWS_GUI_TESTS=1
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-suite-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-suite-cache"
-          /ucrt64/bin/python scripts/run_tests.py --temp-dir "$RUNNER_TEMP/linuxit-suite-temp" \
-            --traceback-after 120 --output dist/windows-native/full-suite.json \
-            >dist/windows-native/full-suite.stdout 2>dist/windows-native/full-suite.stderr
-      - name: Run own acceptance on native Windows and retain unsupported cases
-        id: acceptance
-        continue-on-error: true
-        shell: msys2 {0}
-        run: |
-          export PYTHONUTF8=1
-          export GDK_BACKEND=win32
-          export DISPLAY=:0
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-acceptance-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-acceptance-cache"
-          /ucrt64/bin/python scripts/run_acceptance.py run --output dist/windows-native/acceptance.json \
-            >dist/windows-native/acceptance.stdout 2>dist/windows-native/acceptance.stderr
       - name: Build per-user installer with complete runtime and provenance
         shell: msys2 {0}
         run: |
@@ -89,11 +63,47 @@ jobs:
           installer=$(find dist/windows-native -maxdepth 1 -name 'LinuxitPDF-*-windows-x86_64.exe' -print -quit)
           /ucrt64/bin/python scripts/check_windows_installer.py --installer "$installer" \
             --stage dist/windows-native/payload --output dist/windows-native/installer-validation.json
+      - name: Run the entire own test suite on native Windows
+        id: suite
+        timeout-minutes: 15
+        continue-on-error: true
+        shell: msys2 {0}
+        run: |
+          export PYTHONUTF8=1
+          export GDK_BACKEND=win32
+          export DISPLAY=:0
+          export LINUXIT_WINDOWS_GUI_TESTS=1
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-suite-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-suite-cache"
+          /ucrt64/bin/python scripts/run_tests.py --temp-dir "$RUNNER_TEMP/linuxit-suite-temp" \
+            --traceback-after 120 --progress-output dist/windows-native/full-suite-progress.json --output dist/windows-native/full-suite.json \
+            >dist/windows-native/full-suite.stdout 2>dist/windows-native/full-suite.stderr
+      - name: Run own acceptance on native Windows and retain unsupported cases
+        id: acceptance
+        timeout-minutes: 10
+        continue-on-error: true
+        shell: msys2 {0}
+        run: |
+          export PYTHONUTF8=1
+          export GDK_BACKEND=win32
+          export DISPLAY=:0
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-acceptance-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-acceptance-cache"
+          /ucrt64/bin/python scripts/run_acceptance.py run --output dist/windows-native/acceptance.json \
+            >dist/windows-native/acceptance.stdout 2>dist/windows-native/acceptance.stderr
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: linuxit-own-windows-${{ github.sha }}
-          path: dist/windows-native/
+          path: |
+            dist/windows-native/*.json
+            dist/windows-native/*.stdout
+            dist/windows-native/*.stderr
+            dist/windows-native/*.png
+            dist/windows-native/*.exe
+            dist/windows-native/payload/windows-manifest.json
+            dist/windows-native/payload/runtime-package-info.txt
+            dist/windows-native/payload/quickjs-notices.txt
           if-no-files-found: warn
           retention-days: 14
       - name: Preserve failure status instead of declaring Windows complete
