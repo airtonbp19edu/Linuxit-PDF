@@ -170,3 +170,25 @@ Os textos são `1.0.0`, `1.1.0`, `1.2.0`, `1.3.0`. Não foram identificados como
 versão do formato PDF ou do produto. O tipo concreto do provedor e os demais
 campos da estrutura continuam parciais. Os fluxos completos do original não
 foram fechados por este refinamento.
+
+## Diagramas e estados por subsistema — 22/10/2026
+
+Consolidação da tarefa A3. Cada subsistema abaixo tem um diagrama rastreável, ligado por assembly
+e dados do PE (sem execução do original). A tabela indica o estado de cada um; "mapa estrutural"
+significa fronteiras e fluxo na aplicação ligados de ponta a ponta, com a algoritmia interna
+declarada como lacuna.
+
+| Subsistema | Diagrama | Estado |
+|---|---|---|
+| Busca — criação do diálogo e provedor | [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md) e [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md) | mapa estrutural completo; algoritmo Lucene parcial |
+| Busca — thread de limpeza de resultados | REA-FLUXO-BUSCA-2026-10-22.md | completo (thread, evento, seção crítica) |
+| Busca — opções e enum do provedor | [fluxos.md, seção de 18/10](#texto-do-provedor-e-enum-de-busca--18102026) | parcial (bytes 3/5/6/7 abertos) |
+| Impressão — hierarquia de classes e estratégias | [REA-FLUXO-IMPRESSAO-2026-10-22.md](REA-FLUXO-IMPRESSAO-2026-10-22.md) | mapa estrutural; renderização/envio parcial |
+| Impressão — consumidores e geometria | [REA-IMPRESSAO-CONSUMIDORES.md](REA-IMPRESSAO-CONSUMIDORES.md) | parcial |
+| Reflow — layout, geometria, arrays e transições | [REA-REFLOW.md](REA-REFLOW.md) e relacionados | parcial |
+
+Os diagramas Mermaid de busca e impressão estão nos dois documentos de 22/10. Eles fecham o
+desenho de **fluxo e estado** desses dois subsistemas no nível estrutural; o critério "Diagramas e
+estados rastreáveis por subsistema" (etapa 9) continua parcial enquanto houver subsistemas sem o
+mesmo nível de detalhe (anotações, formulários, assinaturas, camadas/mídia) e enquanto a
+algoritmia interna da busca e da impressão não estiver reconstruída.

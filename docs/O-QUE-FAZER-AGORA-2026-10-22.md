@@ -17,16 +17,20 @@ começar, avisar na nota de continuidade quem pegou a tarefa, para os dois não 
 - **VM:** só com o usuário ligando a máquina. A decisão D06 permite encerrar o processo residual
   do Foxit no início da E30 e entre casos.
 
+**Atualização 2026/10/22 às 12:07:** o Codex escreveu A4/A5/A6 no PC (08:30–08:48), mas sem
+commit, sem envio e sem CI. A ordem detalhada para ele continuar, e a lista completa do que falta
+no projeto, está em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md).
+
 ## Tarefas que não dependem de nada do usuário
 
 | # | Tarefa | Critério que pode fechar | Pontos | Quem pode fazer |
 |---|---|---|---:|---|
-| A1 | Busca: thread `+0x1e3c` e laço de busca, chamadores de `0x1770e90`, campos `+3/+6/+7/+0xc/+0x10` das opções, algoritmo `0x1003f6b0` da DLL e diagrama final do fluxo | Etapa 8, “Fluxo completo de busca” | 1,74 | Codex no PC (REA MCP) ou Claude na nuvem |
-| A2 | Impressão: contexto de `0x138` bytes, serviços de imagem, concorrência e diagrama final | Etapa 8, “Fluxo completo de impressão” | 1,74 | Codex ou Claude |
-| A3 | Diagramas e estados por subsistema, a partir das evidências já preservadas | Etapa 9, “Diagramas e estados” | 1,27 | Qualquer um (não precisa do Foxit) |
-| A4 | Entradas, saídas e erros detalhados por funcionalidade nas 25 famílias da especificação | Etapa 12 | 1,5 | Qualquer um |
-| A5 | Montar o candidato 0.1.19 com a E31, mantendo os workflows iguais aos da `main` | — | — | Claude ou Codex; publicar só com a confirmação do usuário |
-| A6 | Desenvolvimento próprio (ver a lista abaixo) | Etapas 15 e 16, parciais | — | Qualquer um |
+| A1 ✅ (22/10, Claude) | Busca: thread `+0x1e3c` e laço de busca, chamadores de `0x1770e90`, campos `+3/+6/+7/+0xc/+0x10` das opções, algoritmo `0x1003f6b0` da DLL e diagrama final do fluxo | Etapa 8, “Fluxo completo de busca” | 1,74 | Codex no PC (REA MCP) ou Claude na nuvem |
+| A2 ✅ (22/10, Claude) | Impressão: contexto de `0x138` bytes, serviços de imagem, concorrência e diagrama final | Etapa 8, “Fluxo completo de impressão” | 1,74 | Codex ou Claude |
+| A3 ✅ (22/10, Claude) | Diagramas e estados por subsistema, a partir das evidências já preservadas | Etapa 9, “Diagramas e estados” | 1,27 | Qualquer um (não precisa do Foxit) |
+| A4 🔄 (Codex, sem commit) | Entradas, saídas e erros detalhados por funcionalidade nas 25 famílias da especificação | Etapa 12 | 1,5 | Qualquer um |
+| A5 🔄 (Codex, sem commit) | Montar o candidato 0.1.19 com a E31, mantendo os workflows iguais aos da `main` | — | — | Claude ou Codex; publicar só com a confirmação do usuário |
+| A6 🔄 (Codex, sem commit) | Desenvolvimento próprio (ver a lista abaixo) | Etapas 15 e 16, parciais | — | Qualquer um |
 
 **Itens de desenvolvimento próprio (A6):**
 
