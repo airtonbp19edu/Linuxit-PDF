@@ -69,7 +69,13 @@ def main():
         retained=target/'user-created-preserve.txt';retained.write_text('keep',encoding='utf-8')
         uninstall=subprocess.run([str(target/'uninstall.exe'),'/S'],capture_output=True,timeout=120)
         deadline=time.monotonic()+90
-        while time.monotonic()<deadline and (target/'windows-manifest.json').exists():time.sleep(.2)
+        # The default NSIS uninstaller runs a temporary child. Its manifest can
+        # disappear early; the registry key is removed by its final instruction.
+        while time.monotonic()<deadline:
+            try:
+                with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key):pass
+            except FileNotFoundError:break
+            time.sleep(.2)
         remaining=[entry['path'] for entry in manifest['records'] if (target/entry['path']).exists()]
         report['remaining_owned_files']=remaining
         report['checks']['uninstaller_removes_owned_files']=uninstall.returncode==0 and not remaining
