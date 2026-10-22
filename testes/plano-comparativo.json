@@ -319,24 +319,24 @@
         "count": 6,
         "hits": [
           {
-            "source": "page_text",
-            "page": 1
-          },
-          {
-            "source": "page_text",
-            "page": 1
-          },
-          {
-            "source": "page_text",
-            "page": 1
-          },
-          {
             "source": "bookmark",
             "page": 2
           },
           {
             "source": "bookmark",
             "page": null
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
+          },
+          {
+            "source": "page_text",
+            "page": 1
           },
           {
             "source": "comment",
