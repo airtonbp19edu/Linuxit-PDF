@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-22T08:42:58.255791-03:00",
+  "reviewed_at_local": "2026-10-22T18:57:04.807627-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.19",
   "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
@@ -545,6 +545,12 @@
       "path": "app/xfa_window.py",
       "boundary": "gtk_ui",
       "responsibility": "A6: serviço próprio xfa_window; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
+    },
+    {
+      "id": "annotation_editing",
+      "path": "app/annotation_editing.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Valida topologia de comentários e preserva aparência em alterações limitadas; docs/A6-ANOTACOES-2026-10-22.md."
     }
   ],
   "no_gtk_or_cairo_import_closure": [

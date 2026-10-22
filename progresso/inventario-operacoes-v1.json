@@ -776,9 +776,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.request_render",
-          "line": 1077,
-          "end_line": 1115,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1078,
+          "end_line": 1116,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "8cc1e23767f3df77e754c656eab1a46073f74cbdd2599925ccb2a6ca642651a2"
         }
       ],
@@ -1006,9 +1006,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 868,
-          "end_line": 947,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 869,
+          "end_line": 948,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "38d3e0d71c5416ff0296396fa2728faff9e1174347066ba803626ef7d4450bc3"
         }
       ],
@@ -1114,9 +1114,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.open_document",
-          "line": 868,
-          "end_line": 947,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 869,
+          "end_line": 948,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "38d3e0d71c5416ff0296396fa2728faff9e1174347066ba803626ef7d4450bc3"
         }
       ],
@@ -1214,9 +1214,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow.goto_page",
-          "line": 1207,
-          "end_line": 1221,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1208,
+          "end_line": 1222,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "1eb90bb3c3e2e3e591c39150b549c6a60a18cabdd3c2f6fe050a69f95862927a"
         }
       ],
@@ -1295,9 +1295,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._fit_page",
-          "line": 1259,
-          "end_line": 1261,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1260,
+          "end_line": 1262,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "b7295c96009956c6e5790da30968d303af7503d64555d82b4efdbe28ce61bf38"
         }
       ],
@@ -1376,9 +1376,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._rotate",
-          "line": 1267,
-          "end_line": 1271,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1268,
+          "end_line": 1272,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "19c108be5fbaecc96d972a65b97a04aac217440ac10ea85d8d1e66d516c6861e"
         }
       ],
@@ -1455,10 +1455,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -1970,9 +1970,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1929,
-          "end_line": 1949,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1930,
+          "end_line": 1950,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "5f67e7c3ce918db5d28988af36871c1c93202eaa8a26a4eb29db4f2d6b51f6fe"
         }
       ],
@@ -2029,9 +2029,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._start_search",
-          "line": 1989,
-          "end_line": 2042,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1990,
+          "end_line": 2043,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "bcd85060e829fb2402bd76dbda1b972c01ec9e4a10badcbd1d56a13da7eea13d"
         }
       ],
@@ -2142,9 +2142,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._select_search_hit",
-          "line": 1929,
-          "end_line": 1949,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1930,
+          "end_line": 1950,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "5f67e7c3ce918db5d28988af36871c1c93202eaa8a26a4eb29db4f2d6b51f6fe"
         }
       ],
@@ -2773,9 +2773,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_text_selection",
-          "line": 1799,
-          "end_line": 1816,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1800,
+          "end_line": 1817,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "8c62be73a4cbc67e777f66c1571ff478f41d29acff21501cc6bc3dcfafd73f63"
         }
       ],
@@ -2823,9 +2823,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_snapshot",
-          "line": 1758,
-          "end_line": 1768,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1759,
+          "end_line": 1769,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "7f2068aff3666b7c267c5233d78d805eecc858a92e6730003c0e751db2b9a754"
         }
       ],
@@ -3264,10 +3264,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -3323,10 +3323,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -3382,9 +3382,9 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_change_outline",
-          "line": 228,
-          "end_line": 272,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
+          "line": 229,
+          "end_line": 273,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3441,9 +3441,9 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_change_outline",
-          "line": 228,
-          "end_line": 272,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
+          "line": 229,
+          "end_line": 273,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
           "excerpt_sha256": "746620ae87c9766e9c8d4e4de2dd47943c33e5cce3ad2bbab8b218e355e23a12"
         }
       ],
@@ -3501,10 +3501,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -3561,10 +3561,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -3621,10 +3621,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -3981,10 +3981,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -4092,7 +4092,7 @@
           "symbol": "resize_annotation",
           "line": 32,
           "end_line": 52,
-          "file_sha256": "02edf91292d7e203853d7d88f56abba5a7cdf3247e8c836c7102e83d0127a9ca",
+          "file_sha256": "49a7cfed199fd1bd05a2a15fd031b86783b08d86f3c5fa837b43d009e37909a4",
           "excerpt_sha256": "70a9296ad40a4c35c6e992154c42b4a748b4a41c5d17f2eae667ed49a2ba4e87"
         }
       ],
@@ -4186,10 +4186,10 @@
         {
           "path": "app/pdf_redaction.py",
           "symbol": "redact_copy",
-          "line": 221,
-          "end_line": 294,
-          "file_sha256": "fcda9deb0b01723ef901234ba81826bc1a7f79c6941223ec7aa2c407e6fbc417",
-          "excerpt_sha256": "ca79c8e0c26c9f75a833a695fe85ce451d330f428866183e2d0a67ad82f50638"
+          "line": 222,
+          "end_line": 305,
+          "file_sha256": "b6007d87c3876205c96ed758be160a6a0bad92fcd79c4680237ae554e20268b3",
+          "excerpt_sha256": "cfab6bd4e01e42e86aa32d60f19c2d5740766fb764dfd0a68c1dfce4f401c5e9"
         }
       ],
       "recorded_related_tests": [],
@@ -4235,10 +4235,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -4355,10 +4355,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [],
@@ -4414,7 +4414,7 @@
           "symbol": "ink_operation_dialog",
           "line": 8,
           "end_line": 68,
-          "file_sha256": "45970d77b28a88c3955d7783211e6e1a17c01b70ad6dc2a9c061755038494bb4",
+          "file_sha256": "5bc6a2d7bb6952156ae778cf85f5b429e0018b0945a59f49cb3665593ba9fcea",
           "excerpt_sha256": "c11da83854a8507d3d591a7a72b9df6240945b4ac90219f04569df2b555b4034"
         }
       ],
@@ -4460,10 +4460,10 @@
         {
           "path": "app/pdf_changes.py",
           "symbol": "_apply",
-          "line": 331,
-          "end_line": 579,
-          "file_sha256": "ca2938866661d24243d89fff550d88b99c0cabe824b1100b4e6f6cd995ac783d",
-          "excerpt_sha256": "ee551646339c67cf0dee9e916ffda233b6fc6b6ab68e0b110a8e8234cffdab6b"
+          "line": 332,
+          "end_line": 578,
+          "file_sha256": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+          "excerpt_sha256": "dcb22711361ce4476554dead1d5813ec12a8ebdc2d127d0068b36fded1bf1d8f"
         }
       ],
       "recorded_related_tests": [
@@ -5214,9 +5214,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._load_side_panels",
-          "line": 1375,
-          "end_line": 1397,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1376,
+          "end_line": 1398,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "fe678900bad53fca9b9ea7115818e403ab64042766da36111ca433b15cd27711"
         }
       ],
@@ -5250,9 +5250,9 @@
         {
           "path": "app/pdf_signatures.py",
           "symbol": "inspect_pdf_signatures",
-          "line": 137,
-          "end_line": 206,
-          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
+          "line": 140,
+          "end_line": 209,
+          "file_sha256": "1de1fa0e5d2b847cae4b8a3187c487145782e6b6fb526b6edb3b4c2c68086871",
           "excerpt_sha256": "164133634dba7fd06f12677d32aeb971dc96037ec5d1a4916e139d9eb74f14bc"
         }
       ],
@@ -5297,7 +5297,7 @@
           "symbol": "_verify_detached",
           "line": 45,
           "end_line": 67,
-          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
+          "file_sha256": "1de1fa0e5d2b847cae4b8a3187c487145782e6b6fb526b6edb3b4c2c68086871",
           "excerpt_sha256": "0b76e79ac96b120f59d3077403f255eddee148ce5818696c2ac3b0d65b12b440"
         }
       ],
@@ -5380,10 +5380,10 @@
         {
           "path": "app/signature_trust.py",
           "symbol": "verify_trust",
-          "line": 69,
-          "end_line": 148,
-          "file_sha256": "7a2770c6fc905f3ec13802c4b5a320ba7a4431a7dd7c5ae883ef6aa4358db918",
-          "excerpt_sha256": "52ddec5e09e86010df8f289f6b1b890ba428c0d385bd100cbfa65dccbbc7f9a5"
+          "line": 97,
+          "end_line": 179,
+          "file_sha256": "f66df3925aa6c2dc323a227b41c816f627a7785542b52726e1785f35be746755",
+          "excerpt_sha256": "147bb68ea5ac4e1e4b1da502dcd14cdc9a0f3ed277c8867b8cb78bee180af742"
         }
       ],
       "recorded_related_tests": [],
@@ -5420,9 +5420,9 @@
         {
           "path": "app/pdf_signatures.py",
           "symbol": "_verify_document_timestamp",
-          "line": 106,
-          "end_line": 134,
-          "file_sha256": "faf667b4f9237433fd8ba982e70b07b997b81d6261fba322b9863ff4e8f2afbb",
+          "line": 109,
+          "end_line": 137,
+          "file_sha256": "1de1fa0e5d2b847cae4b8a3187c487145782e6b6fb526b6edb3b4c2c68086871",
           "excerpt_sha256": "9008df51314dfa3845971b581f7ec95680cc5e92fa9ae43fba5a3e7ab9148582"
         }
       ],
@@ -5624,9 +5624,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._reading_permission",
-          "line": 2348,
-          "end_line": 2353,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 2354,
+          "end_line": 2359,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "58620b6daf9f29705392cc747851b881cc188bc5158d1fb66b3a04fb84451ee4"
         }
       ],
@@ -5737,9 +5737,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._focus_region",
-          "line": 2576,
-          "end_line": 2590,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 2590,
+          "end_line": 2604,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "e431ab8d213fbbc3c0be18393be50ed80d2ee50e2261b67d626a5a17747eacb1"
         }
       ],
@@ -5848,9 +5848,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._finish_measure",
-          "line": 1860,
-          "end_line": 1863,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1861,
+          "end_line": 1864,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "35e0d8e5330427bb4b8285e5bdee9a1e437ee071254cee12b3f42fa6fab12281"
         }
       ],
@@ -6057,9 +6057,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._layer_toggled",
-          "line": 1449,
-          "end_line": 1485,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 1450,
+          "end_line": 1486,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "915aab4840e3ffcec1dccca8fb9f30df45b2c42c3f46d4254c52eee7edc902e3"
         }
       ],
@@ -6311,9 +6311,9 @@
         {
           "path": "app/main.py",
           "symbol": "PDFWindow._reading_preferences",
-          "line": 2406,
-          "end_line": 2444,
-          "file_sha256": "0b4471d0eecd3e9ccc185d9b1dc0a478f3d274ff820bcfa91bd0935894b4cef0",
+          "line": 2420,
+          "end_line": 2458,
+          "file_sha256": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
           "excerpt_sha256": "037d89517a4f46673c86601bc0862dd361635c8e4d2038727b3691329910f804"
         }
       ],
@@ -6564,10 +6564,10 @@
         {
           "path": "app/pdf_ocr.py",
           "symbol": "create_searchable_copy",
-          "line": 99,
-          "end_line": 178,
-          "file_sha256": "62a2155982507ec6c421e83c06fec3a606b37c9c876dbabede8fcabda7186719",
-          "excerpt_sha256": "0bb747bf965c7ca67bcaaa64ec829484c1b7f475eba53011c4d8e3396b1f2e31"
+          "line": 119,
+          "end_line": 200,
+          "file_sha256": "d7407da6de7eb9bcdf806975cd66ea13e813f67483d86443da4fa584e258f9b3",
+          "excerpt_sha256": "ef43d131b6fae19ea3c62f7cf2ea9a2da6d647fc78e399397584c007b5e4374d"
         }
       ],
       "recorded_related_tests": [
