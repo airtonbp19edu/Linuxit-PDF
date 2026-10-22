@@ -53,7 +53,7 @@ class EditWindow(Gtk.Window):
         self.redo_button = Gtk.Button(label='Refazer');self.redo_button.connect('clicked',lambda *_:self._history(True))
         self.save_button = Gtk.Button(label='Salvar cópia nova…');self.save_button.connect('clicked',self._save)
         self.redact_button = Gtk.Button(label='Aplicar redação em cópia nova…');self.redact_button.connect('clicked',self._apply_redaction)
-        self.redact_button.set_tooltip_text('Remove o conteúdo sob as áreas marcadas para redação; as páginas marcadas viram imagem.')
+        self.redact_button.set_tooltip_text('Remove o conteúdo marcado em uma cópia nova; escolha rasterização ou o método vetorial para conteúdo simples.')
         for button in (self.undo_button,self.redo_button,self.save_button,self.redact_button):bar.pack_start(button,False,False,0)
         self.status = Gtk.Label(label='Lendo documento…',xalign=0);self.status.set_line_wrap(True);self.status.set_selectable(True)
         box.pack_start(self.status,False,False,0)
@@ -122,6 +122,9 @@ class EditWindow(Gtk.Window):
         # E15: apply the marks of the current draft (or of the opened file) in a new copy.
         if self.closed or self.busy or self.session is None or not self._redaction_marks():return
         from edit_dialogs import redaction_apply_dialog
+        captured_session=self.session
+        source=captured_session.preview if captured_session.cursor and captured_session.preview is not None else Path(self.path)
+        identity=captured_session.info['source_sha256']
         self.busy = True;self._refresh()
         try:
             choice = redaction_apply_dialog(self,len(self._redaction_marks()))
@@ -131,12 +134,9 @@ class EditWindow(Gtk.Window):
         finally:
             self.busy = False
             if not self.closed:self._refresh()
-        if not target or self.closed:return
-        source = self.session.preview if self.session.cursor and self.session.preview is not None else Path(self.path)
+        if not target or self.closed or self.session is not captured_session:return
         def task():
-            import hashlib
             from pdf_redaction import invoke_redaction
-            with Path(source).open('rb') as stream:identity = hashlib.file_digest(stream,'sha256').hexdigest()
             return invoke_redaction(source,target,{'source_sha256':identity,'dpi':dpi,'mode':mode},self.cancel)
         self.busy = True;self.status.set_text('Aplicando redação… Se interromper, confira o destino antes de repetir.');self._refresh()
         def done(result):

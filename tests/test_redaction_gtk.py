@@ -67,5 +67,21 @@ class RedactionDraftGTKTests(unittest.TestCase):
             return Gtk.ResponseType.OK
         with patch.object(Gtk.Dialog,'run',run):self.assertEqual(redaction_apply_dialog(self.window,1),{'mode':'vector','dpi':150})
 
+    def test_external_source_replacement_during_destination_dialog_refuses_redaction(self):
+        import hashlib
+        from pdf_changes import save_edited_copy
+        from edit_window import EditWindow
+        marked=self.root/'already-marked.pdf'
+        save_edited_copy(self.source,marked,source_sha256=hashlib.sha256(self.original).hexdigest(),operations=[dict(kind='add-redaction',page=0,rect=[30,185,240,225],text='CPF')])
+        self.window.destroy();self.window=EditWindow(self.parent,marked);self.window.show_all()
+        wait_for(lambda:self.window.session is not None and not self.window.busy)
+        self.assertEqual(self.window.session.cursor,0);self.assertTrue(self.window.redact_button.get_sensitive())
+        target=self.root/'must-not-exist.pdf';replacement=marked.read_bytes()+b'\n% externally replaced while choosing destination\n'
+        def choose(*_):marked.write_bytes(replacement);return str(target)
+        with patch('edit_dialogs.redaction_apply_dialog',return_value={'mode':'vector','dpi':150}),patch.object(self.window,'_choose_destination',side_effect=choose):
+            self.window.redact_button.clicked()
+        wait_for(lambda:not self.window.busy,timeout=60)
+        self.assertFalse(target.exists());self.assertIn('mudou',self.window.status.get_text());self.assertEqual(marked.read_bytes(),replacement)
+
 
 if __name__=='__main__':unittest.main()

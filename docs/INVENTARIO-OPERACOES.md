@@ -1,12 +1,12 @@
 # Inventário operacional provisório — P01
 
-Revisão 19, conferida em 2026-10-22T19:16:15-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 20, conferida em 2026-10-22T19:58:19-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
 **Não é percentual de reconstrução.** Código delimitado, testes próprios, observações parciais do original e aceitação integral são estados distintos. Nenhuma família integral foi aprovada; todos os 50 planos completos S12 permanecem abertos.
 
-Evidência própria atual: **742 testes Linux aprovados**, [casos e hashes](../testes/resultados/a456-passos-2-3-2026-10-22/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
+Evidência própria atual: **742 testes Linux aprovados**, [casos e hashes](../testes/resultados/0.1.19/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
 ## Estado por família
 

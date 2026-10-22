@@ -1,0 +1,1 @@
+{"schema": "linuxit-synced-folder-grant-v1", "expected_denial": true, "passed": true, "checks": {"inside_flatpak": true, "outside_home": true, "ungranted_directory_is_unreadable": true}, "real_sync_client_used": false, "desktop_portal_interaction_tested": false, "original_foxit_executed": false}
