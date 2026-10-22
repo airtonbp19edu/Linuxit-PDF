@@ -125,7 +125,7 @@ class TextSearchIndex:
                 self.panel_cache = data
         return data
 
-    def _metadata_hits(self, query, options, cancel, on_notice=None):
+    def _metadata_hits(self, query, options, cancel, on_notice=None, kinds=('bookmark', 'comment')):
         if cancel is not None and cancel.is_set():
             return
         data = self._panels(cancel)
@@ -133,9 +133,9 @@ class TextSearchIndex:
             on_notice({'metadata_notices': data['notices']})
         needle = ' '.join(normalized(query, options.match_case, options.ignore_accents).split())
         sources = []
-        if options.include_bookmarks:
+        if options.include_bookmarks and 'bookmark' in kinds:
             sources.append(('bookmark', data['bookmarks']))
-        if options.include_comments:
+        if options.include_comments and 'comment' in kinds:
             sources.append(('comment', data['comments']))
         for source, items in sources:
             for item in items:
@@ -167,6 +167,24 @@ class TextSearchIndex:
         if self._identity() != self.identity:
             raise RuntimeError('O PDF foi alterado. Reabra o documento para pesquisar.')
         hits = []
+        # Foxit order (observed in E24, 21/10/2026, "Relevance Ranking"): bookmarks, then page
+        # text, then comments, then attachments.
+        notice = [on_notice]
+
+        def metadata(kinds, scanned):
+            callback, notice[0] = notice[0], None
+            for hit in self._metadata_hits(query, options, cancel, callback, kinds):
+                if cancel is not None and cancel.is_set():
+                    return True
+                hits.append(hit)
+                if on_page is not None:
+                    on_page(scanned, [hit])
+                if len(hits) >= max_hits:
+                    return True
+            return cancel is not None and cancel.is_set()
+
+        if options.include_bookmarks and metadata(('bookmark',), 0):
+            return hits
         if options.include_page_text:
             for index in range(self.page_count):
                 if cancel is not None and cancel.is_set():
@@ -186,15 +204,8 @@ class TextSearchIndex:
                     on_page(index + 1, batch)
                 if len(hits) >= max_hits:
                     return hits
-        if options.include_bookmarks or options.include_comments:
-            for hit in self._metadata_hits(query, options, cancel, on_notice):
-                if cancel is not None and cancel.is_set():
-                    break
-                hits.append(hit)
-                if on_page is not None:
-                    on_page(self.page_count if options.include_page_text else 0, [hit])
-                if len(hits) >= max_hits:
-                    break
+        if options.include_comments and metadata(('comment',), self.page_count if options.include_page_text else 0):
+            return hits
         if options.include_attachments and len(hits) < max_hits and not (cancel is not None and cancel.is_set()):
             from attachment_search import invoke_attachment_search
             report = invoke_attachment_search(self.path, query, options, min(5000, max_hits - len(hits)), cancel)

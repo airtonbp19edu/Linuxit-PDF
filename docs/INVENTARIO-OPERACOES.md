@@ -1,6 +1,6 @@
 # Inventário operacional provisório — P01
 
-Revisão 18, conferida em 2026-10-20T20:49:00-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
+Revisão 18, conferida em 2026-10-21T21:18:14-03:00. **116 recortes conhecidos em 25 famílias; inventário global aberto.**
 
 Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Execução dos lotes](LOTES-FUNCIONALIDADES.md).
 
@@ -8,7 +8,7 @@ Fonte: [catálogo estruturado](../progresso/inventario-operacoes-v1.json). [Exec
 
 Evidência própria atual: **571 testes Linux aprovados**, [casos e hashes](../testes/resultados/sem-vm-2026-10-20/own-validated-cases.json). A evidência informa separadamente os ambientes executados. Os403 testes/106 arquivos da revisão inicial são evidência histórica, sem aprovação integral das operações.
 
-Fontes alteradas depois dessa execução (28 arquivos); a próxima execução no CI substitui esta evidência.
+Fontes alteradas depois dessa execução (30 arquivos); a próxima execução no CI substitui esta evidência.
 
 ## Estado por família
 
@@ -96,7 +96,7 @@ D12 no corpus5000: Stop ativo encerra e preserva232 resultados; troca para geome
 |`search-text/case` — Distinguir maiúsculas/minúsculas|Código em subconjunto ([fonte](../app/search_matching.py#L6))|Consulta e opção de caixa => resultados conforme configuração, inclusive expansão casefold.|
 |`search-text/normalization` — Normalizar acentos e hifenização|Código em subconjunto ([fonte](../app/search_engine.py#L33))|Texto/colunas => normalização própria sem unir colunas indevidamente; algoritmo Foxit completo aberto.|
 |`search-text/highlight` — Destacar e navegar por ocorrências|Código em subconjunto ([fonte](../app/main.py#L1929))|Resultado e destaque global => pixels/navegação atualizados sem nova busca indevida.|
-|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1987))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
+|`search-text/cancel` — Cancelar pesquisa e descartar resultados antigos|Código em subconjunto ([fonte](../app/main.py#L1989))|Consulta alterada/fechamento => encerrar tarefa antiga e não repopular resultados obsoletos.|
 
 ## Busca em marcadores
 
@@ -107,7 +107,7 @@ D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro na
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`search-bookmarks/titles` — Pesquisar títulos de marcadores|Código em subconjunto ([fonte](../app/search_engine.py#L128))|Consulta só marcadores => resultados independentes com destino local quando conhecido.|
-|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1929))|Hit com página ou sem destino => navegar apenas quando conhecido; não inventar página0. Ativação Foxit ainda inconclusiva.|
+|`search-bookmarks/destinations` — Ativar resultados com destino válido ou ausente|Código em subconjunto ([fonte](../app/main.py#L1929))|Resultado de marcador apenas seleciona o marcador no painel, sem mudar de página (como no Foxit, E24 21/10/2026); a navegação ocorre ao ativar o próprio marcador e só quando o destino é conhecido; não inventar página0.|
 
 ## Busca em comentários
 
@@ -301,7 +301,7 @@ No dynamic observation of this family found in the examined preserved reports.
 | Operação | Estado do código | Aceitação e limites do recorte |
 |---|---|---|
 |`accessibility/text` — Expor texto da página por ATK.Text|Código em subconjunto ([fonte](../app/accessible_reader.py#L13))|Página suportada => texto Poppler em Gtk.TextView/ATK.Text com limites; não é garantia de ordem semântica. E19: page text comes in reading order from an own bounded heuristic (app/reading_order.py) over Poppler line boxes: columns read one after the other, full-width lines in place, up to three levels; no gutter keeps top-to-bottom. Also applies to OCR copies. Acceptance S12-19-3 and S12-19-4.|
-|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2574))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
+|`accessibility/keyboard` — Navegar por regiões pelo teclado|Código em subconjunto ([fonte](../app/main.py#L2576))|F6/ShiftF6 e foco atual => regiões/nomes acessíveis e delegação de setas no recorte testado.|
 |`accessibility/screen-reader` — Validar leitor de tela e ordem real|Pendente/caracterizar|Desktop AT-SPI e leitor de tela real => foco, ordem e feedback conferidos; CI sem barramento não aprova.|
 |`accessibility/voice` — Ler em voz alta|Código em subconjunto ([fonte](../app/speech.py#L9))|Texto e controles de voz => disponibilidade Reader, síntese e interrupção ainda a delimitar; OCR não implementa voz.|
 

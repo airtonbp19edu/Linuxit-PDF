@@ -1934,7 +1934,9 @@ class PDFWindow(Gtk.Window):
         self._update_find_status()
         hit = self.search_hits[self.search_pos]
         self._select_metadata_search_row()
-        if hit['page'] is None:
+        # Like Foxit (E24, 21/10/2026): a bookmark result only selects the bookmark in its panel;
+        # the page changes when the user activates the bookmark itself.
+        if hit['page'] is None or hit.get('source') == 'bookmark':
             self._search_scroll_pending = False
         elif hit['page'] != self.page:
             self.goto_page(hit['page'])

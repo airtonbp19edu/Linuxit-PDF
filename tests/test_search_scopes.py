@@ -42,8 +42,8 @@ class SearchScopeTests(unittest.TestCase):
         comments=self.index.search('alvo',include_page_text=False,include_comments=True)
         self.assertEqual([(x['source'],x['page'],x['rects']) for x in comments],[('comment',0,[])])
         all_hits=self.index.search('alvo',include_bookmarks=True,include_comments=True,whole_words=True)
-        self.assertEqual([x['source'] for x in all_hits],['page_text','page_text','bookmark','comment'])
-        self.assertTrue(all(x['rects'] for x in all_hits[:2]))
+        self.assertEqual([x['source'] for x in all_hits],['bookmark','page_text','page_text','comment'])
+        self.assertTrue(all(x['rects'] for x in all_hits[1:3]))
 
     def test_comment_subject_contents_and_author_are_searchable(self):
         opts={'include_page_text':False,'include_comments':True}
@@ -59,7 +59,8 @@ class SearchScopeTests(unittest.TestCase):
         hits=self.index.search('alvo',include_bookmarks=True,include_comments=True,max_hits=4,
                                on_page=lambda scanned,batch:batches.extend(batch))
         self.assertEqual(hits,batches);self.assertEqual(len(hits),4)
-        self.assertEqual(hits[-1]['source'],'bookmark')
+        # Foxit order (E24): bookmarks first, then page text; the limit cuts the comment.
+        self.assertEqual([hit['source'] for hit in hits],['bookmark','page_text','page_text','page_text'])
         event=threading.Event();seen=[]
         def on_hit(scanned,batch):seen.extend(batch);event.set()
         hits=self.index.search('alvo',include_page_text=False,include_bookmarks=True,
@@ -87,7 +88,7 @@ class SearchScopeTests(unittest.TestCase):
 
 @unittest.skipUnless(os.environ.get('DISPLAY'),'Requires an X display')
 class SearchScopeGUITests(unittest.TestCase):
-    def test_ui_toggles_scopes_and_navigates_bookmark_result(self):
+    def test_ui_toggles_scopes_and_bookmark_result_keeps_page(self):
         from test_gui import wait_for
         from main import PDFWindow,Gtk
         with tempfile.TemporaryDirectory() as directory,patch.object(Gtk,'main_quit'):
@@ -100,7 +101,9 @@ class SearchScopeGUITests(unittest.TestCase):
                 w.find_entry.set_text('alvo')
                 wait_for(lambda:len(w.search_hits)==1 and not w.search_running)
                 self.assertEqual(w.search_hits[0]['source'],'bookmark')
-                wait_for(lambda:w.displayed_page==1)
+                # Foxit (E24): the bookmark result selects the bookmark; the page does not change.
+                wait_for(lambda:w.bookmark_list.get_selected_row() is not None)
+                self.assertEqual(w.displayed_page,0)
                 w.find_options['include_bookmarks'].set_active(False)
                 wait_for(lambda:'Selecione' in w.find_status.get_text())
                 self.assertEqual(w.search_hits,[])

@@ -785,7 +785,8 @@
           "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
           "docs/VM-FOXIT-2026-10-18.md",
           "docs/VM-BUSCA-2026-10-18-2020.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/VM-E24-2026-10-21.md"
         ],
         "runtime_observed": true,
         "unresolved": [
@@ -795,10 +796,11 @@
         "runtime_observation_refs": [
           "docs/VM-FOXIT-2026-10-18.md",
           "docs/VM-BUSCA-2026-10-18-2020.md",
-          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md"
+          "docs/P03-BUSCA-IMPRESSAO-2026-10-19.md",
+          "docs/VM-E24-2026-10-21.md"
         ],
         "full_family_runtime_verified": false,
-        "recorded_runtime_scope": "D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro navega1→2. Seleção/duplo clique no resultado não provou salto; segundo mantém página2 sem diálogo. Não inferir destino nulo."
+        "recorded_runtime_scope": "D07: dois hits selecionam marcadores no painel; ativação nativa do primeiro navega1→2. Seleção/duplo clique no resultado não provou salto; segundo mantém página2 sem diálogo. Não inferir destino nulo. E24 (21/10/2026): seleção e duplo clique no resultado de marcador mantêm a página; ordem Relevance Ranking marcadores→texto→comentário. Decisão do usuário: Linuxit segue esse comportamento."
       },
       "existing_test_refs": [
         {
@@ -807,7 +809,15 @@
         },
         {
           "path": "tests/test_search_scopes.py",
-          "test": "test_ui_toggles_scopes_and_navigates_bookmark_result"
+          "test": "test_ui_toggles_scopes_and_bookmark_result_keeps_page"
+        },
+        {
+          "path": "tests/test_search_foxit_order_gtk.py",
+          "test": "test_bookmark_result_selects_bookmark_without_changing_page"
+        },
+        {
+          "path": "tests/test_search_foxit_order_gtk.py",
+          "test": "test_results_list_bookmarks_then_page_text_then_comments"
         }
       ],
       "dynamic_case_refs": [
