@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-rea-install-review-v1",
+  "step": "E21",
+  "reviewed_at_local": "2026-10-22T00:00:00-03:00",
+  "log": {
+    "path": "analysis-local/rea-instalacao/instalacao-rea-20261021-235457.log (PC do usuário, fora do Git)",
+    "sha256": "2b6dea9ff50b796239d92da273ba238f321fbac9c9297f75a6f5d4815fe39079",
+    "bytes": 16760,
+    "started": "2026-10-21T23:54:58-03:00"
+  },
+  "node": "24.22.0",
+  "npm": "11.19.1",
+  "package": {
+    "name": "rea-agents",
+    "version": "6.7.0",
+    "repository": "git+https://github.com/morluto/rea.git"
+  },
+  "installed_version": "6.7.0",
+  "ghidra_provider": {
+    "healthy": true,
+    "checks": {
+      "node": true,
+      "ghidra": true,
+      "ghidra-platform": true,
+      "ghidra-architecture": true,
+      "ghidra-installation": true,
+      "ghidra-version": true,
+      "ghidra-headless": true,
+      "ghidra-native_decompiler": true,
+      "ghidra-java": true,
+      "ghidra-native_authority": true
+    },
+    "ghidra": "12.1.4",
+    "java": "Temurin 21.0.12.1"
+  },
+  "environment_healthy": false,
+  "environment_notes": "environment_healthy=false vem de provedores não usados (Hopper, IDA, JADX, Kuna) e de registros de clientes desatualizados antes do passo de registro; não afeta o provedor Ghidra.",
+  "registration_step": "Passo 6 (rea setup para Codex e app Claude) ainda não aparece no log na conferência: o instalador estava aguardando na janela.",
+  "verification_passed": true
+}
