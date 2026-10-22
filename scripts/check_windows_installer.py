@@ -3,11 +3,17 @@
 import argparse
 import hashlib
 import json
+import ntpath
 import os
 from pathlib import Path
 import subprocess
 import sys
 import time
+
+
+def install_command(installer, target):
+    """NSIS requires native separators and an unquoted final /D argument."""
+    return subprocess.list2cmdline([ntpath.normpath(str(installer)), '/S'])+' /D='+ntpath.normpath(str(target))
 
 
 def main():
@@ -27,9 +33,13 @@ def main():
     try:
         # NSIS /D must be last and unquoted, including when the directory has
         # spaces. A raw Windows command line is not interpreted by a shell.
-        install_command=subprocess.list2cmdline([str(args.installer.resolve()),'/S'])+' /D='+str(target)
-        install=subprocess.run(install_command,capture_output=True,timeout=600)
+        command=install_command(args.installer.resolve(),target)
+        report['installation_directory']=str(target)
+        install=subprocess.run(command,capture_output=True,timeout=600)
         report['checks']['silent_install_exit_zero']=install.returncode==0
+        deadline=time.monotonic()+90
+        while not (target/'windows-manifest.json').is_file() and time.monotonic()<deadline:
+            time.sleep(.2)
         manifest=json.loads((target/'windows-manifest.json').read_text(encoding='utf-8'))
         mismatches=[]
         for entry in manifest['records']:
