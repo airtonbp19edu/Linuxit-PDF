@@ -3564,3 +3564,10 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - D06: usuário autorizou encerrar o processo residual FoxitPDFReader na VM no início da E30 e entre casos (registrar PID e horário).
 - Novo docs/RETOMADA-2026-10-21.md; AGENTS.md e docs/RETOMADA.md apontam para ele no topo (avisos da E29 marcados como históricos).
 - Plano de subida do índice registrado no aviso de 2026/10/21 às 21:36 em AVISOS-E-STATUS.md (critérios mais próximos ≈14 pontos).
+
+
+## 2026/10/21 às 21:57 (America/Sao_Paulo, UTC-03:00) — CI da E31 aprovado
+
+- 39700044694 falhou (campanha preservada 16/17: plano-comparativo C18-D10 esperava texto primeiro) → expectativa reordenada (19dd72a).
+- 39701199175 falhou só na fumaça GTK (smoke_linuxit esperava navegação ao resultado de marcador) → fumaça ajustada a D05.
+- 39702160473 aprovado em b75c8d6. check_intermediate linux local: 666 testes, fumaça 5/5.
