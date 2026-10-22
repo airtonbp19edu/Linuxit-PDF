@@ -3578,3 +3578,9 @@ A pedido do usuário, adicionado recado direto no documento docs/PRIORIDADE-E29-
 - Log no PC: analysis-local/rea-instalacao/instalacao-rea-20261021-235457.log (fora do Git); resumo sanitizado em testes/resultados/e21-rea-pc/review.json com SHA-256 do log.
 - Doctor Ghidra: 10 checagens ok; environment_healthy=false por Hopper/IDA/JADX/Kuna ausentes e registros desatualizados (antigravity pedia 6.5.0; claude_code, claude_desktop, codex, gemini_cli e vscode sem registro) antes do rea setup.
 - Passo 6 (rea setup --client codex --client claude_desktop) pendente na janela no momento da conferência; depois dele, reiniciar o Codex. Se o registro do app Claude for refeito, fechar o app por completo antes (o app aberto pode regravar a configuração).
+
+
+## 2026/10/22 às 00:29 (America/Sao_Paulo, UTC-03:00) — E21: registro no Codex não aplicado
+
+- Log instalacao-rea-20261021-235457.log sem mudança após a janela (16760 bytes; termina no doctor). ~/.codex/config.toml (mtime 21/10 17:30) sem [mcp_servers.rea]; lido só para conferir e cópia temporária apagada.
+- Instalação 6.7.0 e doctor Ghidra continuam válidos (E21 concluída pelo critério da etapa). Registro no Codex pendente: rodar instalar-rea.cmd de novo (S para Codex, N para app Claude) ou `rea setup --client codex` no PC, depois reiniciar o Codex.

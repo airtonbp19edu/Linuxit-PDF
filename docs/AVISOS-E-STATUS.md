@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 00:00 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 00:29 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -149,3 +149,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/21 às 21:36** — Você autorizou (D06) encerrar na VM o processo do Foxit que fica ativo após fechar a janela, no início da E30 e entre casos. Passagem para o Codex em [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md). Como o índice pode subir: os critérios mais próximos de fechar são os fluxos de busca e de impressão (1,74 ponto cada, só análise estática), diagramas por subsistema (1,27), entradas/saídas/erros por funcionalidade (1,5), cenários locais D01–D20 e interações UI01–UI10 na VM (2,4 + 3,0) e, ao final, fase A consolidada (2,0) e auditoria final (0,5): cerca de 14 pontos, levando o índice a uns 59%. O restante (cerca de 41 pontos) está em critérios com "todas as famílias", que só fecham com o universo definido (25 famílias e 116 operações) e com a comparação completa na VM.
 - **2026/10/21 às 21:57** — CI do Debian 13 aprovado na E31 ([39702160473](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39702160473), `b75c8d6`). Duas execuções anteriores falharam porque dois verificadores do CI (campanha preservada e teste rápido de interface) ainda esperavam o comportamento antigo da busca; ambos foram ajustados à decisão D05. Detalhes em [CI-FALHAS-E-CORRECOES.md](CI-FALHAS-E-CORRECOES.md).
 - **2026/10/22 às 00:00** — **E21 concluída.** Você rodou o instalador no PC às 23:54. O log confirma o REA 6.7.0 (repositório oficial morluto/rea) e o diagnóstico do Ghidra 12.1.4 saudável, com o Java 21. O passo final (registrar o REA no Codex e no app Claude) estava aguardando na janela do instalador.
+- **2026/10/22 às 00:29** — Conferência do último passo da E21: o log do instalador não registrou o passo 6 e o `config.toml` do Codex (lido sem alterar, modificado pela última vez em 21/10 às 17:30) não tem o REA. Ou seja, o REA está instalado no PC, mas **ainda não está registrado no Codex**. Para registrar, rode o instalador de novo e responda S para o Codex e N para o app Claude, aprove o plano e reinicie o Codex.
