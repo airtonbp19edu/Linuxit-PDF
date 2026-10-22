@@ -450,9 +450,13 @@
             "testes/resultados/etapa-12-especificacao-2026-10-17.json",
             "docs/REVISAO-ETAPAS.md",
             "testes/resultados/revisao-etapas-2026-10-17/review.json",
-            "docs/EDICAO-COM-HISTORICO.md"
+            "docs/EDICAO-COM-HISTORICO.md",
+            "docs/contratos-operacoes-v1.json",
+            "docs/A4-CONTRATOS-OPERACIONAIS-2026-10-22.md",
+            "testes/resultados/a4-2026-10-22/review.json",
+            "testes/resultados/a456-passos-2-3-2026-10-22/review.json"
           ],
-          "note": "Own annotation extension validated400/400 source/payload/sandbox, including20 new methods. Remaining form/annotation/full-family, reference and desktop obligations stay partial. Status/weights unchanged."
+          "note": "A4:116 known operations/25 families individually specified and source symbols checked. Own source742/742 and81/81 own acceptance in CI39862477446. Criterion stays partial: global original universe/reference specifications remain open; user decisionB3 has not been given. No weight/status change."
         },
         {
           "criterion": "Fase A consolidada sem lacunas não declaradas",
