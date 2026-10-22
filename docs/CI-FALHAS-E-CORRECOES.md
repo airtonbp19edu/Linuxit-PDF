@@ -152,3 +152,17 @@ E19: a ordem das colunas saiu certa, mas o Tesseract do Flatpak leu "direita" co
 parecida (semelhança de texto) e a conferir só a ordem; um teste novo usa exatamente as linhas lidas
 no sandbox e outro garante que colunas intercaladas continuam sendo recusadas. Observação para depois
 da E29: o OCR do Flatpak reconhece pior que o do sistema (registrado em "Qualidade de OCR").
+
+## E31 — mudança de comportamento da busca (21/10/2026)
+
+A decisão D05 mudou a ordem dos resultados (marcadores primeiro) e o clique em resultado de
+marcador (não muda de página). Dois verificadores do CI ainda esperavam o comportamento antigo:
+
+- [39700044694](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39700044694): a campanha
+  preservada deu 16/17, porque `testes/plano-comparativo.json` (C18-D10-scopes) esperava o texto
+  primeiro. A expectativa própria foi reordenada; o protocolo com hash não mudou.
+- [39701199175](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39701199175): suíte
+  666/666, mas a fumaça GTK (`scripts/smoke_linuxit.py`) esperava que o resultado de marcador levasse
+  à página 2. Agora confere que a página fica e que ativar o marcador leva à página 2.
+
+Localmente, `check_intermediate.py --profile linux` passou, com 666 testes e fumaça 5/5.

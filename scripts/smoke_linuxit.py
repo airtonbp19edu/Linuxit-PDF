@@ -52,8 +52,13 @@ with tempfile.TemporaryDirectory(prefix='linuxit-smoke-') as directory:
                 window.find_options['include_page_text'].set_active(False)
                 window.find_options['include_bookmarks'].set_active(True)
                 window.find_entry.set_text('alvo');state='bookmark'
-            elif state=='bookmark' and not window.search_running and window.search_hits and window.displayed_page==1:
-                checks['bookmark_scope_navigation']=len(window.search_hits)==1 and window.search_hits[0]['source']=='bookmark'
+            elif state=='bookmark' and not window.search_running and window.search_hits and window.bookmark_list.get_selected_row() is not None:
+                # Decision D05 (Foxit, E24): the bookmark result only selects the bookmark; the page
+                # stays until the bookmark row itself is activated.
+                kept=window.displayed_page==0
+                window._bookmark_activated(window.bookmark_list,window.bookmark_list.get_selected_row())
+                state='bookmark-activated';checks['bookmark_scope_navigation']=kept and len(window.search_hits)==1 and window.search_hits[0]['source']=='bookmark'
+            elif state=='bookmark-activated' and window.displayed_page==1:
                 window.find_options['include_bookmarks'].set_active(False)
                 window.find_options['include_comments'].set_active(True)
                 window.find_entry.set_text('assunto');state='comment'
