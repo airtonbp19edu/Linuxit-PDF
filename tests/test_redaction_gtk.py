@@ -49,13 +49,23 @@ class RedactionDraftGTKTests(unittest.TestCase):
         from edit_dialogs import redaction_apply_dialog
         seen={}
         def run(dialog):
-            combo=next(w for w in descendants(dialog) if isinstance(w,Gtk.ComboBoxText))
+            combo=next(w for w in descendants(dialog) if isinstance(w,Gtk.ComboBoxText) and w.get_accessible().get_name()=='Resolução das páginas redigidas')
             seen['text']=' '.join(w.get_text() for w in descendants(dialog) if isinstance(w,Gtk.Label))
             combo.set_active_id('300');return Gtk.ResponseType.OK
         with patch.object(Gtk.Dialog,'run',run):self.assertEqual(redaction_apply_dialog(self.window,2),300)
         self.assertIn('2 área(s) marcada(s)',seen['text']);self.assertIn('vira uma imagem',seen['text'])
         with patch.object(Gtk.Dialog,'run',lambda dialog:Gtk.ResponseType.CANCEL):
             self.assertIsNone(redaction_apply_dialog(self.window,1))
+
+
+    def test_confirmation_explicit_vector_method_disables_raster_resolution(self):
+        from edit_dialogs import redaction_apply_dialog
+        def run(dialog):
+            controls={w.get_accessible().get_name():w for w in descendants(dialog) if isinstance(w,Gtk.ComboBoxText)}
+            controls['Método de redação'].set_active_id('vector')
+            self.assertFalse(controls['Resolução das páginas redigidas'].get_sensitive())
+            return Gtk.ResponseType.OK
+        with patch.object(Gtk.Dialog,'run',run):self.assertEqual(redaction_apply_dialog(self.window,1),{'mode':'vector','dpi':150})
 
 
 if __name__=='__main__':unittest.main()

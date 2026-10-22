@@ -1,5 +1,17 @@
 # Avisos de falha do GitHub Actions
 
+## A4–A6, Passos2/3 — 22/10/2026
+
+CI [39861626936](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39861626936),
+fonte65cd8d2:740/741, uma falha e zero erros/skips. O teste de resolução no
+diálogo de redação pegava o primeiro ComboBox, que agora é o método raster/vetor.
+Passou a localizar o campo pelo nome acessível e ganhou teste específico do
+método vetorial. A interface agora desabilita DPI no modo vetorial e deixa claro
+que a rasterização se refere ao método raster. Campanha17/17, fumaça5/5 e filaCUPS
+aprovadas nessa execução; aceitação não iniciada. O resultado reprovado foi
+preservado; não foi convertido em sucesso nem houve publicação de versão.
+
+
 As mensagens com “Run failed” informam que uma verificação automática falhou.
 O envio de commits ao GitHub pode ter sido concluído normalmente. Os workflows
 atuais são iniciados manualmente nos marcos de validação; um push sozinho não
