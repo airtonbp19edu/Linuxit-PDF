@@ -214,7 +214,7 @@ com o Foxit.
 
 ### 3.2 Análise estática que continua aberta (sem VM; Claude na nuvem ou Codex com REA)
 
-- **S1 — Busca (fecha 1,74):**
+- **S1 — Busca (fecha 1,74)** — *2026/10/22 às 18:47: o Claude começou a S1 a pedido do usuário, mas não concluiu; a tarefa continua aberta e livre. Nada novo foi catalogado e nenhum status mudou.*
   - algoritmo da `fxLuceneLib.dll` em `0x1003f6b0` (BooleanQuery, 7.655 bytes);
   - bytes 3/5/6/7/`+0xc`/`+0x10` das opções;
   - classes concretas de `+0x1f34` (slot `+0x1c`) e `+0x2044` (slot `+0x14`).
