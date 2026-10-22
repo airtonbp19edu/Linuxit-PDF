@@ -1,0 +1,20 @@
+{
+  "schema": "linuxit-quickjs-provenance-v1",
+  "name": "python-quickjs-ng",
+  "version": "0.15.1.1",
+  "license": "MIT",
+  "official_metadata": "https://pypi.org/pypi/python-quickjs-ng/0.15.1.1/json",
+  "verified_date": "2026-10-22",
+  "source": {
+    "url": "https://files.pythonhosted.org/packages/db/f7/f663bec646abc2ef270dad192ac39e6ab79fdf6363a3f2d1deb42ee9e23a/python_quickjs_ng-0.15.1.1.tar.gz",
+    "sha256": "fab189fb7c46d6d33561f27af8bc128a309833db48cca76ffbf311bf0ebcb542",
+    "bytes": 511547
+  },
+  "linux_x86_64_wheel": {
+    "url": "https://files.pythonhosted.org/packages/af/83/0a6eb04f5961c00bab2bb66cd8d8866846be7f878058e85272f45072ea43/python_quickjs_ng-0.15.1.1-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+    "sha256": "697576e6fb769070dc5955da84c3512f891d269c582fbe0ebe86c174ab130e8d",
+    "bytes": 2453524
+  },
+  "notice_policy": "Retain binding LICENSE and leading copyright/license comments from every engine C/H source. Package quickjs-notices.txt and quickjs-provenance.json; audit their hashes and extension origin.",
+  "build_boundary": "Network only in explicit CI dependency preparation. Linux uses the pinned official CPython ABI3 wheel; Windows UCRT64 builds the pinned sdist. build_flatpak.py only copies prepared local runtime files and performs no QuickJS download. No claim of reproducible wheel-to-source equivalence."
+}

@@ -22,12 +22,11 @@ def main():
     if os.name!='nt' or os.environ.get('GITHUB_ACTIONS')!='true':parser.error('Native ephemeral Windows runner required')
     if args.work.exists():parser.error('Fresh build directory required')
     args.work.mkdir(parents=True)
-    with urllib.request.urlopen(f'https://pypi.org/pypi/python-quickjs-ng/{VERSION}/json',timeout=60) as response:metadata=json.load(response)
-    source=next(row for row in metadata['urls'] if row['packagetype']=='sdist')
-    if not source['url'].startswith('https://files.pythonhosted.org/') or source['size']>20*1024**2:raise ValueError('Invalid QuickJS source location/size')
+    source=json.loads((Path(__file__).resolve().parents[1]/'docs/proveniencia-quickjs.json').read_text(encoding='utf-8'))['source']
+    if not source['url'].startswith('https://files.pythonhosted.org/') or source['bytes']>20*1024**2:raise ValueError('Invalid QuickJS source location/size')
     with urllib.request.urlopen(source['url'],timeout=60) as response:archive=response.read(20*1024**2+1)
     digest=hashlib.sha256(archive).hexdigest()
-    if digest!=source['digests']['sha256'] or len(archive)!=source['size']:raise ValueError('QuickJS source digest mismatch')
+    if digest!=source['sha256'] or len(archive)!=source['bytes']:raise ValueError('QuickJS source digest mismatch')
     notices=[]
     with tarfile.open(fileobj=io.BytesIO(archive),mode='r:gz') as source_tar:
         for entry in source_tar.getmembers():

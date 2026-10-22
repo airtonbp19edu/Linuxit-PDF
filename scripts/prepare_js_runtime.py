@@ -10,8 +10,16 @@ import sys
 import tarfile
 import urllib.request
 import re
+import tempfile
 
 VERSION='0.15.1.1'
+PINS=Path(__file__).resolve().parents[1]/'docs/proveniencia-quickjs.json'
+
+def download_verified(pin):
+    if not pin['url'].startswith('https://files.pythonhosted.org/'):raise ValueError('Invalid package host')
+    with urllib.request.urlopen(pin['url'],timeout=60) as reply:data=reply.read(pin['bytes']+1)
+    if len(data)!=pin['bytes'] or hashlib.sha256(data).hexdigest()!=pin['sha256']:raise ValueError('Pinned QuickJS digest/size mismatch')
+    return data
 
 
 def main():
@@ -20,14 +28,12 @@ def main():
     args=parser.parse_args();target=args.target.resolve()
     if target.exists():raise SystemExit('New runtime directory required')
     target.mkdir(parents=True)
-    subprocess.run([sys.executable,'-m','pip','install','--disable-pip-version-check','--no-deps',
-        '--target',str(target),'--report',str(target/'pip-install.json'),f'python-quickjs-ng=={VERSION}'],check=True)
-    with urllib.request.urlopen(f'https://pypi.org/pypi/python-quickjs-ng/{VERSION}/json',timeout=45) as reply:
-        metadata=json.load(reply)
-    source=next(row for row in metadata['urls'] if row['packagetype']=='sdist')
-    assert source['url'].startswith('https://files.pythonhosted.org/') and source['size']<20*1024**2
-    with urllib.request.urlopen(source['url'],timeout=60) as reply:archive=reply.read(20*1024**2+1)
-    assert len(archive)==source['size'] and hashlib.sha256(archive).hexdigest()==source['digests']['sha256']
+    pins=json.loads(PINS.read_text(encoding='utf-8'));source=pins['source'];wheel=pins['linux_x86_64_wheel']
+    archive=download_verified(source)
+    with tempfile.TemporaryDirectory(prefix='linuxit-js-download-') as folder:
+        package=Path(folder)/wheel['url'].rsplit('/',1)[1];package.write_bytes(download_verified(wheel))
+        subprocess.run([sys.executable,'-m','pip','install','--disable-pip-version-check','--no-index','--no-deps','--no-compile',
+            '--target',str(target),'--report',str(target/'pip-install.json'),str(package)],check=True)
     notices=[]
     with tarfile.open(fileobj=BytesIO(archive),mode='r:gz') as source_tar:
         for member in source_tar.getmembers():
@@ -42,7 +48,7 @@ def main():
     assert notices and any('Bellard' in n for n in notices), 'QuickJS engine notice missing'
     (target/'quickjs-notices.txt').write_text('\n\n'.join(notices),encoding='utf-8')
     (target/'quickjs-provenance.json').write_text(json.dumps({'name':'python-quickjs-ng','version':VERSION,
-        'source_url':source['url'],'source_sha256':source['digests']['sha256'],'source_bytes':len(archive),
+        'source_url':source['url'],'source_sha256':source['sha256'],'source_bytes':len(archive),'wheel_sha256':wheel['sha256'],
         'notices_sha256':hashlib.sha256((target/'quickjs-notices.txt').read_bytes()).hexdigest()},indent=2)+'\n')
 
 
