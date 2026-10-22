@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-operation-catalog-v1",
-  "revision": 18,
-  "reviewed_at_local": "2026-10-21T21:18:14-03:00",
+  "revision": 19,
+  "reviewed_at_local": "2026-10-22T19:16:15-03:00",
   "reference_target": "Foxit Reader 2025.2.0.33046 x86",
   "reference_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
   "scope": "Provisional inventory of known bounded own operations and outstanding requirements in25 families; not a complete Foxit function universe.",
@@ -9,7 +9,7 @@
   "implementation_completion_percent": null,
   "weighting_defined": false,
   "operation_count_is_recoding_percentage": false,
-  "source_evidence_interpretation": "Bounded source with own Linux0.1.16 source/payload/installed sandbox564/564,490 prior IDs preserved and74 new. New own suite is not complete operation/family acceptance or original parity. Desktop and Windows probes have separate scopes.",
+  "source_evidence_interpretation": "Own source0.1.19/e02dda2 passed742/742 Linux and81/81 own acceptance in CI39862477446. Published0.1.18 payload/sandbox evidence is separate. No new Flatpak or universal operation/family parity approved by this source run.",
   "unknowns": [
     "Unexamined Reader capabilities versus Editor-only resources",
     "Operations absent from current inventory",
@@ -4414,7 +4414,7 @@
           "symbol": "ink_operation_dialog",
           "line": 8,
           "end_line": 68,
-          "file_sha256": "5bc6a2d7bb6952156ae778cf85f5b429e0018b0945a59f49cb3665593ba9fcea",
+          "file_sha256": "3a516fdc8fdca06860815970eaa9d88a6c1807f363c2838f1ed7f7dcd0d71251",
           "excerpt_sha256": "c11da83854a8507d3d591a7a72b9df6240945b4ac90219f04569df2b555b4034"
         }
       ],
@@ -6874,5 +6874,5 @@
     "testes/resultados/lotes-2026-10-19/release-validated-cases.json",
     "testes/resultados/0.1.16/own-validated-cases.json"
   ],
-  "current_own_test_evidence_ref": "testes/resultados/sem-vm-2026-10-20/own-validated-cases.json"
+  "current_own_test_evidence_ref": "testes/resultados/a456-passos-2-3-2026-10-22/own-validated-cases.json"
 }

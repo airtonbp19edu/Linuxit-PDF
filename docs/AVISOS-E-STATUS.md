@@ -1,10 +1,12 @@
 # Avisos e situação do Linuxit PDF
 
+**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](PASSOS-2-3-A456-2026-10-22.md).
+
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00)
 
-**Retomada A4–A6:** Passo1 (backup e integração) preparado em `codex/a456-wip`; a sincronização será conferida no recibo local. A main conserva a entrega anterior. A4:116 contratos; A5:candidato ainda não construído; A6:implementação parcial sem suíte completa nova. Seguir a [ordem do Claude](ORDEM-CODEX-2026-10-22.md), perguntando antes de cada próximo passo. S1 permanece aberta. [Checkpoint detalhado](A456-EXECUCAO-2026-10-22.md).
+Passos2/3 autorizados executados: correções e verificações preparatórias, fonte742/742 e aceitação81/81 no CI39862477446/e02dda2. Código salvo na main; Flatpak0.1.19 ainda não montado. OCR no pacote instalado aguardaPasso5 e Windows permanece sem validação completa. Parar antes do Passo4.
 
 ### Feito
 

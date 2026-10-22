@@ -1,0 +1,130 @@
+{
+  "schema": "linuxit-a456-step23-review-v1",
+  "reviewed_at_local": "2026-10-22T19:14:26-03:00",
+  "source_commit": "e02dda230cbd079f9455ee5d7d35a7e533cd1ae6",
+  "ci_run_id": 39862477446,
+  "ci_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39862477446",
+  "ci_conclusion": "success",
+  "failed_run_id": 39861626936,
+  "failed_run_preserved": true,
+  "source_suite": {
+    "run": 742,
+    "passed": 742,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "acceptance": {
+    "passed": 81,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "preserved_campaign_passed": 17,
+  "gtk_smoke_passed": 5,
+  "atspi_passed": true,
+  "native_portal_passed": true,
+  "cups_queue_passed": true,
+  "source_files_matched_current_worktree": 193,
+  "source_file_mismatches": [],
+  "focused_suites": {
+    "test_forms_a6_gtk.": {
+      "passed": 3,
+      "not_passed": []
+    },
+    "test_signature_preservation.": {
+      "passed": 9,
+      "not_passed": []
+    },
+    "test_ocr_cleanup.": {
+      "passed": 3,
+      "not_passed": []
+    },
+    "test_form_javascript.": {
+      "passed": 10,
+      "not_passed": []
+    },
+    "test_xfa_flow.": {
+      "passed": 9,
+      "not_passed": []
+    },
+    "test_pdf_conversion.": {
+      "passed": 5,
+      "not_passed": []
+    },
+    "test_annotation_editing.": {
+      "passed": 6,
+      "not_passed": []
+    },
+    "test_conversion_gtk.": {
+      "passed": 1,
+      "not_passed": []
+    }
+  },
+  "artifacts": [
+    {
+      "id": 12461934762,
+      "sha256": "4c11176ab28f8ea5f7d460ceaabe08fc5dc98def8526c81dc6a9f1576af6a2f5",
+      "bytes": 760632,
+      "github_digest_matches": true
+    },
+    {
+      "id": 12463000433,
+      "sha256": "b444bc1a2c7d085f71e39e57ca32ed995b94133208a49dc46eadb76a13303446",
+      "bytes": 1066,
+      "github_digest_matches": true
+    }
+  ],
+  "local_windows": {
+    "full_run_completed": false,
+    "exit_code": 1,
+    "full_report_produced": false,
+    "partial_log": "analysis-local/step23-full-local.log",
+    "partial_log_sha256": "c502e1ef3ffabfe70f66aa38269cf15541803f859bb2ca67d75c419c7fd38013",
+    "termination_cause": null,
+    "limitations": [
+      "Full local diagnostic was not a clean source snapshot and ended before the runner produced a report; no global pass/fail counts inferred.",
+      "Cairo missing: consolidation import and annotation appearance worker confirmed.",
+      "OpenSSL missing: offline DSS validation confirmed after including local ASN.1 dependency.",
+      "Initial focused DSS command omitted ASN.1 directory; failed result preserved separately, then corrected.",
+      "Native Windows installer and complete supported runtime were not validated by this Linux CI."
+    ]
+  },
+  "step2": {
+    "implemented_gaps_checked": true,
+    "ocr_cleanup_installed_flatpak_verified": false,
+    "flatpak_ocr_followup_step": 5
+  },
+  "step3": {
+    "linux_source_suite_complete": true,
+    "acceptance_clean": true
+  },
+  "flatpak_built": false,
+  "release_published": false,
+  "foxit_executed": false,
+  "vm_touched": false,
+  "full_family_parity": false,
+  "weights_or_criteria_changed": false,
+  "scope": "Own bounded contracts; not complete A6, universal annotations, XFA/Acrobat compatibility or Foxit parity.",
+  "evidence_hashes": {
+    "acceptance.json": "533926696749314287a46bd90664810decfbc2fee26dd1c23f2895bd51e24102",
+    "atspi-text.json": "33802f8789ce6e200a4226607a519321f606afa7b2df18acd6b4ba2908feab4f",
+    "cups-queue.json": "743cdacaa7aab0d9a57f6d8c3e5775e8e4e6518f7f27af5bbf424849e7319f5d",
+    "first-ci-failed.json": "20a43f83feca3f124b0412b5e360554615a926e3e26eb340fe48786815f18876",
+    "native-portal.json": "ffb59d90aa54c797881abfc1c3a806a4bbf4b08eebc64c08905265e345c79e7f",
+    "own-validated-cases.json": "0a8b853166b84a7da35d23876654a2e15b0744f1864aaad929f331548b9d3022",
+    "preserved-campaign.json": "53ed90a2ef3046948c685f5627a203a76d0bd91e3718acf85ff1a447cec94e4a",
+    "reading-focused.json": "7b1d45b4ca24a8e6677ce4deea6cb8089357e2125563a5540bb464ad11057641",
+    "source-intermediate.json": "860ffa0e512f80acbbb2d3b903501e3ff6db7f73e6d1acce9fe96423eaa2faaa",
+    "step23-local-appearance.stderr": "0b4c715751f21685064b7f5641ec96371f49abdfde22fc937f8db31f6a8277d0",
+    "step23-local-consolidation.json": "9385124d778bbc5112294d5b4ad69336cddd1210ffcd4c2e0301a175d8d7e236",
+    "step23-local-consolidation.log": "8ee9b80925afa07dd97faf3222dc42a333ffff1863a4830550180693084175aa",
+    "step23-local-dss-fixed.json": "ceff4716abd6a70767769bde28097ace5629d38a6bc05ecd0d590e2ded3ce920",
+    "step23-local-dss-fixed.log": "2eb021b7da76664d6ddd9f4bc365e8d0ac13369b71fca85b7fcda709ff4a420f",
+    "step23-local-dss.json": "ec96f1702eb4f78188c55f0b3c12939cef870e67b70e2f201c1668406f8d9603",
+    "step23-local-resize.json": "f01e128586d63bd20466d1ca7e5e791f2c09527a0f010b6fd38503bc76eebe77",
+    "step23-local-resize.log": "a7b876d67b9f38f329f916029a50ef8e122b20a1380401079143350c4600a39b",
+    "step23-quickjs-downloads.json": "2804c07ed41491ff920ea2abfe25a8899c110dac212364d3d40a0ae79d957221"
+  },
+  "test_files_matched_ci_revision": 98
+}

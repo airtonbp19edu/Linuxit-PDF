@@ -1,0 +1,44 @@
+test_intermediate_and_crls_from_dss_complete_the_offline_chain (test_dss_validation.DSSValidationTests.test_intermediate_and_crls_from_dss_complete_the_offline_chain) ... ERROR
+test_malformed_dss_is_reported_and_ignored (test_dss_validation.DSSValidationTests.test_malformed_dss_is_reported_and_ignored) ... ok
+test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor (test_dss_validation.DSSValidationTests.test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor) ... ERROR
+
+======================================================================
+ERROR: test_intermediate_and_crls_from_dss_complete_the_offline_chain (test_dss_validation.DSSValidationTests.test_intermediate_and_crls_from_dss_complete_the_offline_chain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_dss_validation.py", line 61, in test_intermediate_and_crls_from_dss_complete_the_offline_chain
+    _,without=self.trust(self.signed,True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_dss_validation.py", line 54, in trust
+    report=inspect_pdf_signatures(path,{'trust_policy':policy})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\pdf_signatures.py", line 198, in inspect_pdf_signatures
+    trust=check(cms,covered,policy,dss)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\signature_trust.py", line 102, in verify_trust
+    if not executable:raise RuntimeError('OpenSSL indisponível para política offline.')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: OpenSSL indisponível para política offline.
+
+======================================================================
+ERROR: test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor (test_dss_validation.DSSValidationTests.test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_dss_validation.py", line 75, in test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor
+    _,trust=self.trust(revoked,True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_dss_validation.py", line 54, in trust
+    report=inspect_pdf_signatures(path,{'trust_policy':policy})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\pdf_signatures.py", line 198, in inspect_pdf_signatures
+    trust=check(cms,covered,policy,dss)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\signature_trust.py", line 102, in verify_trust
+    if not executable:raise RuntimeError('OpenSSL indisponível para política offline.')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: OpenSSL indisponível para política offline.
+
+----------------------------------------------------------------------
+Ran 3 tests in 18.173s
+
+FAILED (errors=2)

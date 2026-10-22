@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<WORKSPACE>\app\worker_cli.py", line 294, in <module>
+    main(sys.argv)
+  File "<WORKSPACE>\app\worker_cli.py", line 86, in main
+    print(json.dumps(build_text_appearance(json.loads(raw)),ensure_ascii=True));return
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\text_appearance.py", line 11, in build_text_appearance
+    import cairo,gi
+ModuleNotFoundError: No module named 'cairo'

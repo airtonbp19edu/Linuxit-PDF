@@ -1,0 +1,10 @@
+{
+  "source": {
+    "sha256": "fab189fb7c46d6d33561f27af8bc128a309833db48cca76ffbf311bf0ebcb542",
+    "bytes": 511547
+  },
+  "linux_x86_64_wheel": {
+    "sha256": "697576e6fb769070dc5955da84c3512f891d269c582fbe0ebe86c174ab130e8d",
+    "bytes": 2453524
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_annotation_resize.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 3,
+  "passed": 0,
+  "failures": 0,
+  "errors": 3,
+  "skipped": 0,
+  "elapsed_sec": 5.75,
+  "cases": [
+    {
+      "id": "test_annotation_resize.AnnotationResizeTests.test_freetext_is_laid_out_again_for_the_new_size",
+      "status": "error"
+    },
+    {
+      "id": "test_annotation_resize.AnnotationResizeTests.test_line_outside_page_and_tiny_rectangles_are_refused",
+      "status": "error"
+    },
+    {
+      "id": "test_annotation_resize.AnnotationResizeTests.test_square_and_circle_are_redrawn_in_the_new_rectangle",
+      "status": "error"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

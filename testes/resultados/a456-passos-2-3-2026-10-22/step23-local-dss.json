@@ -1,0 +1,33 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_dss_validation.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 3,
+  "passed": 1,
+  "failures": 0,
+  "errors": 2,
+  "skipped": 0,
+  "elapsed_sec": 17.593999999999824,
+  "cases": [
+    {
+      "id": "test_dss_validation.DSSValidationTests.test_intermediate_and_crls_from_dss_complete_the_offline_chain",
+      "status": "error"
+    },
+    {
+      "id": "test_dss_validation.DSSValidationTests.test_malformed_dss_is_reported_and_ignored",
+      "status": "passed",
+      "elapsed_sec": 5.843000000000075
+    },
+    {
+      "id": "test_dss_validation.DSSValidationTests.test_revoked_signer_in_dss_crl_and_dss_root_is_not_an_anchor",
+      "status": "error"
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

@@ -1,5 +1,7 @@
 # O que pode ser feito agora — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
 
+**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](PASSOS-2-3-A456-2026-10-22.md).
+
 Lista compartilhada entre o Claude e o Codex, pedida pelo usuário. Situação geral:
 [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md) e [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 

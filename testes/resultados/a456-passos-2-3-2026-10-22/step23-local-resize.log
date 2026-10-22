@@ -1,0 +1,80 @@
+test_freetext_is_laid_out_again_for_the_new_size (test_annotation_resize.AnnotationResizeTests.test_freetext_is_laid_out_again_for_the_new_size) ... ERROR
+test_line_outside_page_and_tiny_rectangles_are_refused (test_annotation_resize.AnnotationResizeTests.test_line_outside_page_and_tiny_rectangles_are_refused) ... ERROR
+test_square_and_circle_are_redrawn_in_the_new_rectangle (test_annotation_resize.AnnotationResizeTests.test_square_and_circle_are_redrawn_in_the_new_rectangle) ... ERROR
+
+======================================================================
+ERROR: test_freetext_is_laid_out_again_for_the_new_size (test_annotation_resize.AnnotationResizeTests.test_freetext_is_laid_out_again_for_the_new_size)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 17, in setUp
+    self.source=self.save(blank,[{'kind':'add-rectangle','page':0,'rect':[20,200,120,280],'text':'r'},
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 25, in save
+    save_edited_copy(source,target,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),operations=operations)
+  File "<WORKSPACE>\app\pdf_changes.py", line 601, in save_edited_copy
+    _apply(writer, operation)
+  File "<WORKSPACE>\app\pdf_changes.py", line 372, in _apply
+    writer.add_annotation(operation['page'],create_extra_annotation(writer,list(map(float,page.cropbox)),operation))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 81, in create_extra_annotation
+    appearance,resources=_text_appearance(writer,text,x1-x0,y1-y0,kind=='add-stamp')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 23, in _text_appearance
+    payload=run_search_worker('annotation-appearance','appearance',dict(text=text,width=width,height=height,stamp=stamp),get_event(),timeout=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\search_tasks.py", line 53, in run_search_worker
+    raise RuntimeError('Não foi possível concluir esta operação.')
+RuntimeError: Não foi possível concluir esta operação.
+
+======================================================================
+ERROR: test_line_outside_page_and_tiny_rectangles_are_refused (test_annotation_resize.AnnotationResizeTests.test_line_outside_page_and_tiny_rectangles_are_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 17, in setUp
+    self.source=self.save(blank,[{'kind':'add-rectangle','page':0,'rect':[20,200,120,280],'text':'r'},
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 25, in save
+    save_edited_copy(source,target,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),operations=operations)
+  File "<WORKSPACE>\app\pdf_changes.py", line 601, in save_edited_copy
+    _apply(writer, operation)
+  File "<WORKSPACE>\app\pdf_changes.py", line 372, in _apply
+    writer.add_annotation(operation['page'],create_extra_annotation(writer,list(map(float,page.cropbox)),operation))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 81, in create_extra_annotation
+    appearance,resources=_text_appearance(writer,text,x1-x0,y1-y0,kind=='add-stamp')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 23, in _text_appearance
+    payload=run_search_worker('annotation-appearance','appearance',dict(text=text,width=width,height=height,stamp=stamp),get_event(),timeout=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\search_tasks.py", line 53, in run_search_worker
+    raise RuntimeError('Não foi possível concluir esta operação.')
+RuntimeError: Não foi possível concluir esta operação.
+
+======================================================================
+ERROR: test_square_and_circle_are_redrawn_in_the_new_rectangle (test_annotation_resize.AnnotationResizeTests.test_square_and_circle_are_redrawn_in_the_new_rectangle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 17, in setUp
+    self.source=self.save(blank,[{'kind':'add-rectangle','page':0,'rect':[20,200,120,280],'text':'r'},
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_annotation_resize.py", line 25, in save
+    save_edited_copy(source,target,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),operations=operations)
+  File "<WORKSPACE>\app\pdf_changes.py", line 601, in save_edited_copy
+    _apply(writer, operation)
+  File "<WORKSPACE>\app\pdf_changes.py", line 372, in _apply
+    writer.add_annotation(operation['page'],create_extra_annotation(writer,list(map(float,page.cropbox)),operation))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 81, in create_extra_annotation
+    appearance,resources=_text_appearance(writer,text,x1-x0,y1-y0,kind=='add-stamp')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\annotation_geometry.py", line 23, in _text_appearance
+    payload=run_search_worker('annotation-appearance','appearance',dict(text=text,width=width,height=height,stamp=stamp),get_event(),timeout=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\app\search_tasks.py", line 53, in run_search_worker
+    raise RuntimeError('Não foi possível concluir esta operação.')
+RuntimeError: Não foi possível concluir esta operação.
+
+----------------------------------------------------------------------
+Ran 3 tests in 5.746s
+
+FAILED (errors=3)

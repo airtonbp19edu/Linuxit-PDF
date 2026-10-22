@@ -1,5 +1,7 @@
 # Retomada do Linuxit PDF
 
+**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](PASSOS-2-3-A456-2026-10-22.md).
+
 **REA no Codex — 2026/10/22 às 00:43:** registro aplicado e diagnóstico saudável, comunicação MCP independente aprovada (REA6.7.0/207 ferramentas), sem abrir binários ou VM. Reiniciar Codex para carregar no chat. [Resultado e capacidades](REA-CODEX-CONFIGURACAO-2026-10-22.md).
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](O-QUE-FAZER-AGORA-2026-10-22.md).

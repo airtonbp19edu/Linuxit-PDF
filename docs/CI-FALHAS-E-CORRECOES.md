@@ -178,3 +178,8 @@ marcador (não muda de página). Dois verificadores do CI ainda esperavam o comp
   à página 2. Agora confere que a página fica e que ativar o marcador leva à página 2.
 
 Localmente, `check_intermediate.py --profile linux` passou, com 666 testes e fumaça 5/5.
+
+
+## A4–A6 — repetição aprovada em 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00)
+
+CI39862477446/e02dda2:742/742 sem falhas/erros/skips e81/81 aceitações; preservada a falha anterior. Relatórios em `testes/resultados/a456-passos-2-3-2026-10-22/`. Nenhuma notificação foi silenciada para obter esse resultado.

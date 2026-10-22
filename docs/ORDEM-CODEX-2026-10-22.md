@@ -1,5 +1,7 @@
 # Ordem de trabalho para o Codex — 2026/10/22 às 12:07 (America/Sao_Paulo, UTC-03:00)
 
+**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](PASSOS-2-3-A456-2026-10-22.md).
+
 Pedido do usuário às 12:04: “deixe a ordem para o Codex continuar de forma minuciosa o que falta
 ele fazer, e também todas as outras coisas restantes”. Escrita pelo Claude depois de conferir o
 GitHub e a pasta do PC (só leitura; nada no PC foi alterado além das cópias `*-LOCAL.md` na raiz).
