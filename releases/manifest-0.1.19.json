@@ -71,7 +71,7 @@
   "ci_run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39864579949",
   "examined_reports_directory": "testes/resultados/0.1.19/",
   "runtime_packages": "releases/runtime-packages-0.1.19.tsv",
-  "publication_state": "awaiting_explicit_user_confirmation",
+  "publication_state": "superseded_pending_identity_fix",
   "published": false,
   "runtime_source_access": {
     "file": "releases/runtime-source-access-0.1.19.json",
@@ -82,5 +82,6 @@
     "tag": "v0.1.19-devel",
     "download_url": "https://github.com/airtonbp19edu/Linuxit-PDF/releases/download/v0.1.19-devel/LinuxitPDF-0.1.19-x86_64.flatpak",
     "url_state": "planned_not_published"
-  }
+  },
+  "superseded_reason": "Editor must pin known source identity before destination dialog; previous UI recalculated hash too late. Replacement candidate required."
 }

@@ -13,6 +13,7 @@ REPOSITORY = 'airtonbp19edu/Linuxit-PDF'
 
 
 def release_plan(manifest, get):
+    assert manifest.get('publication_state')!='superseded_pending_identity_fix', 'Candidate superseded: rebuild and validate before publication'
     commit = manifest['source_commit']
     tag = manifest['distribution']['tag']
     artifact = manifest['artifact']

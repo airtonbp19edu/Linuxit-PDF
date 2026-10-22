@@ -11,6 +11,10 @@ release_plan = _module.release_plan
 
 
 class ReleasePreflightTests(unittest.TestCase):
+    def test_superseded_candidate_is_refused_without_any_api_request(self):
+        manifest={'publication_state':'superseded_pending_identity_fix'}
+        def never(_):self.fail('Superseded candidate must not reach GitHub')
+        with self.assertRaisesRegex(AssertionError,'superseded'):release_plan(manifest,never)
     def setUp(self):
         self.commit = 'a' * 40
         self.main = 'b' * 40
