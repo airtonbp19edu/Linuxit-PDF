@@ -1,6 +1,6 @@
 # O que pode ser feito agora — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
 
-**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
 
 Lista compartilhada entre o Claude e o Codex, pedida pelo usuário. Situação geral:
 [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md) e [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
@@ -30,9 +30,9 @@ no projeto, está em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md).
 | A1 ✅ (22/10, Claude) | Busca: thread `+0x1e3c` e laço de busca, chamadores de `0x1770e90`, campos `+3/+6/+7/+0xc/+0x10` das opções, algoritmo `0x1003f6b0` da DLL e diagrama final do fluxo | Etapa 8, “Fluxo completo de busca” | 1,74 | Codex no PC (REA MCP) ou Claude na nuvem |
 | A2 ✅ (22/10, Claude) | Impressão: contexto de `0x138` bytes, serviços de imagem, concorrência e diagrama final | Etapa 8, “Fluxo completo de impressão” | 1,74 | Codex ou Claude |
 | A3 ✅ (22/10, Claude) | Diagramas e estados por subsistema, a partir das evidências já preservadas | Etapa 9, “Diagramas e estados” | 1,27 | Qualquer um (não precisa do Foxit) |
-| A4 🔄 (Codex, sem commit) | Entradas, saídas e erros detalhados por funcionalidade nas 25 famílias da especificação | Etapa 12 | 1,5 | Qualquer um |
-| A5 🔄 (Codex, sem commit) | Montar o candidato 0.1.19 com a E31, mantendo os workflows iguais aos da `main` | — | — | Claude ou Codex; publicar só com a confirmação do usuário |
-| A6 🔄 (Codex, sem commit) | Desenvolvimento próprio (ver a lista abaixo) | Etapas 15 e 16, parciais | — | Qualquer um |
+| A4 ✅ (E32, contrato delimitado; critério12 parcial) | Entradas, saídas e erros detalhados por funcionalidade nas 25 famílias da especificação | Etapa 12 | 1,5 | Qualquer um |
+| A5 ✅ (E33, candidato testado; sem publicação) | Montar o candidato 0.1.19 com a E31, mantendo os workflows iguais aos da `main` | — | — | Claude ou Codex; publicar só com a confirmação do usuário |
+| A6 🔄 (E34, oito recortes Linux; Windows parcial) | Desenvolvimento próprio (ver a lista abaixo) | Etapas 15 e 16, parciais | — | Qualquer um |
 
 **Itens de desenvolvimento próprio (A6):**
 
@@ -48,7 +48,7 @@ no projeto, está em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md).
 
 **Para A1 e A2:**
 
-- Consultar `engenharia-reversa/funcoes.csv` (336 entradas) antes de escolher sementes e não
+- Consultar `engenharia-reversa/funcoes.csv` (343 entradas, conferidas em22/10; referência336 abaixo é histórica) antes de escolher sementes e não
   repetir entradas.
 - Usar o pipeline: `scripts/analyze_foxit_headless.py` → `check_foxit_machine.py` →
   `catalog_foxit_headless.py` → `catalog_foxit_functions.py`.

@@ -1,10 +1,10 @@
 # Linuxit PDF — continuidade do projeto
 
-**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](docs/PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
 
-**CODEX, LEIA PRIMEIRO:** [ORDEM-CODEX-2026-10-22](docs/ORDEM-CODEX-2026-10-22.md). O diagnóstico das12:07 é histórico: o trabalho A4/A5/A6 já foi salvo e os Passos1–3 receberam registros e validação Linux. Passos4–6 receberam a autorização posterior do usuário e foram executados; a publicação e o Passo7 continuam aguardando instrução. A mesma ordem lista o restante do projeto.
+**CODEX, LEIA PRIMEIRO:** [ORDEM-CODEX-2026-10-22](docs/ORDEM-CODEX-2026-10-22.md). O diagnóstico das12:07 é histórico: o trabalho A4/A5/A6 já foi salvo e os Passos1–3 receberam registros e validação Linux. Passos4–6 receberam a autorização posterior do usuário e foram executados; o Passo7 recebeu autorização posterior e foi registrado; a publicação continua aguardando autorização específica. A mesma ordem lista o restante do projeto.
 
 **PRIORIDADE (pedido do usuário em 2026/10/20 às 17:09, America/Sao_Paulo):** antes de qualquer outra etapa, identificar por que o token do GitHub Actions recebe **HTTP 403 ao criar releases** (E29). Instruções, fatos já verificados e diagnóstico sugerido em [docs/PRIORIDADE-E29-ERRO-403-RELEASE.md](docs/PRIORIDADE-E29-ERRO-403-RELEASE.md). A 0.1.17 já está publicada; não publicar nem apagar releases.
 

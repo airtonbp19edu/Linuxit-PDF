@@ -1,6 +1,6 @@
 # Ordem de trabalho para o Codex — 2026/10/22 às 12:07 (America/Sao_Paulo, UTC-03:00)
 
-**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
 
 Pedido do usuário às 12:04: “deixe a ordem para o Codex continuar de forma minuciosa o que falta
 ele fazer, e também todas as outras coisas restantes”. Escrita pelo Claude depois de conferir o
@@ -176,7 +176,7 @@ famílias implementadas e testadas”) e 16 (“Demais interações e integraç�
 os dois critérios `partial`.** Eles falam em “todas”, e fechar depende de B3 e da comparação
 com o Foxit.
 
-### Passo 7 — Registro final do bloco A4–A6
+### Passo 7 — Registro final do bloco A4–A6 (registrado nesta rodada)
 
 1. Novas etapas pequenas em `progresso/etapas-pequenas.json`: **E32** (A4), **E33** (A5) e **E34**
    (A6, com subitens). Depois, `scripts/render_small_steps.py`.

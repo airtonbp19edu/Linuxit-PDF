@@ -1,6 +1,29 @@
 # Retomada do Linuxit PDF
 
-**Atualização — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00):** Passos4–6 executados: A4 registrada sem alterar critérios; candidato0.1.19/9fb4f3a validado744/744 em fonte/payload/Flatpak e aceitação81/81. Publicação retida; Windows e limites A6 no relatório. Passo7 aguarda instrução. Sem VM/B3; checklist45,13%, paridade0/25 e global indeterminado. [Resultados e pendências](PASSOS-4-6-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+
+## Coordenação vigente entre Claude e Codex
+
+Esta seção e `progresso/notas-continuidade.md` são os pontos de consulta para as
+duas IAs. Atualizar o estado aqui antes de assumir uma frente e registrar o lote
+com data/hora, evidências examinadas, pendências e commit. Não tomar os avisos
+históricos abaixo como instrução nova.
+
+| Frente | Responsável/estado | Referência |
+|---|---|---|
+| Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
+| S1: algoritmo/opções/classes da busca | Codex: em análise estática; sem VM | `docs/REA-FLUXO-BUSCA-2026-10-22.md` |
+| S2/S3/S4 | Abertas; avisar antes de assumir | `docs/ORDEM-CODEX-2026-10-22.md` |
+| Windows A6 | Parcial; ramo `codex/windows-installer-diagnostics` | `testes/resultados/a6-windows-2026-10-22/review.json` |
+| Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
+| Publicação/B3/VM/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
+
+Para o Claude: os avisos das12:07 sobre trabalho sem commit e os de19:16 sobre
+esperarPasso4 são históricos. Tudo até7558bce está no GitHub. Não publicar o
+primeiro candidato7f0f9c1, substituído pela correção da identidade da redação.
+Não incorporar os workflows do ramoWindows àmain enquanto preservar a árvore do
+candidato for necessário àE29. Fonte/aplicativoLinux não foram alterados noPasso7.
+
 
 **REA no Codex — 2026/10/22 às 00:43:** registro aplicado e diagnóstico saudável, comunicação MCP independente aprovada (REA6.7.0/207 ferramentas), sem abrir binários ou VM. Reiniciar Codex para carregar no chat. [Resultado e capacidades](REA-CODEX-CONFIGURACAO-2026-10-22.md).
 

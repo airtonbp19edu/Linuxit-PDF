@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-22T20:37:47-03:00. Pendente: 2, Concluída: 29.
+Atualizado em 2026-10-22T20:49:15-03:00. Pendente: 2, Em andamento: 1, Concluída: 31.
 
 **Regras**
 
@@ -11,7 +11,7 @@ Atualizado em 2026-10-22T20:37:47-03:00. Pendente: 2, Concluída: 29.
 - Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.
 - Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.
 - Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.
-- Retomada A4/A5/A6 em22/10/2026: o usuário autorizou Passos1–6 em blocos; executados com evidências emdocs/PASSOS-4-6-A456-2026-10-22.md. Fonte/payload/sandbox744/744 e aceitação81/81. Parar antes do Passo7 e da publicação real; Windows mantém limites e registros separados.
+- Autorização de22/10/2026: após Passos1–6, o usuário pediu atualizar os arquivos compartilhados e executar os dois próximos trabalhos. Codex registra Passo7 e retomaS1 estática da busca. A publicação0.1.19 eB3 exigem decisões específicas e continuam pendentes.
 
 | # | Etapa | Bloco | Precisa de | Situação |
 |---|---|---|---|---|
@@ -42,6 +42,9 @@ Atualizado em 2026-10-22T20:37:47-03:00. Pendente: 2, Concluída: 29.
 | E20 | Estudo de renderização U3D/PRC | Mídia 3D | nada | Concluída |
 | E21 | Atualizar o REA no PC | PC Windows | PC do usuário | Concluída |
 | E22 | Estática: chamadores e tipos da busca | PC Windows | PC do usuário | Concluída |
+| E32 | Registrar contratos das116 operações conhecidas | Contratos A4 | nada | Concluída |
+| E33 | Preparar e validar candidato0.1.19 sem publicar | Candidato Linux A5 | nada para preparar; confirmação específica para publicar | Concluída |
+| E34 | Recortes A6, com limites e pendência Windows | Desenvolvimento próprio A6 | implementação e testes próprios; ambientes externos quando indicados | Em andamento |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
 | E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
@@ -372,6 +375,40 @@ Evidência: [testes/resultados/e21-rea-pc/review.json](../testes/resultados/e21-
 Feita na nuvem do Claude com o FoxitPDFReader.exe e a fxLuceneLib.dll do PC (hashes conferidos) e o Ghidra 12.1.4 do PC (módulos necessários), sem VM e sem executar o Foxit. 7 entradas novas, 1.128 instruções/3.992 bytes conferidos por Capstone; catálogo 329→336. Cadeia do provedor de índice ligada: LoadLibraryW de fxLuceneLib.dll (0x172a2e0), NewIndexHandle cria fxindex::fxLuncenLib de 0x20 bytes em dialog+0x1e48 (0x1770e90/0x1728ab0), o destrutor de CFindToolDlgAdv espera a thread de busca e chama DeleteIndexHandle (0x175eb50/0x1728850), CFindToolModule chama FreeLibrary (0x1726b90). Critérios das etapas 3/5/7/8/9 continuam abertos; índice 45,13% inalterado.
 
 Evidência: [docs/REA-PROVEDOR-BUSCA-2026-10-21.md](../docs/REA-PROVEDOR-BUSCA-2026-10-21.md), [testes/resultados/static-search-provider-2026-10-21/machine-checks.json](../testes/resultados/static-search-provider-2026-10-21/machine-checks.json), [testes/resultados/static-search-provider-2026-10-21/structural-joins.json](../testes/resultados/static-search-provider-2026-10-21/structural-joins.json), [testes/resultados/static-search-provider-owner-2026-10-21/machine-checks.json](../testes/resultados/static-search-provider-owner-2026-10-21/machine-checks.json), [docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-2026-10-21.json](../docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-2026-10-21.json), [docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-owner-2026-10-21.json](../docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-provider-owner-2026-10-21.json), [engenharia-reversa/funcoes.csv](../engenharia-reversa/funcoes.csv). Commit `6d8fd2d`.
+
+### E32 — Registrar contratos das116 operações conhecidas
+
+**Objetivo:** Conferir entradas, saídas, erros, limites, efeitos e cancelamento de116 operações/25 famílias; vincular evidências sem fechar o universo do original.
+
+**Como verificar:** Validador funcional/render e oito testes adversariais aprovados; etapa12 continua parcial.
+
+**Situação:** Concluída.
+
+Registro próprio delimitado concluído; não decideB3, não fecha critério amplo12 nem estabelece cobertura integral Foxit.
+
+Evidência: [docs/A4-CONTRATOS-OPERACIONAIS-2026-10-22.md](../docs/A4-CONTRATOS-OPERACIONAIS-2026-10-22.md), [docs/contratos-operacoes-v1.json](../docs/contratos-operacoes-v1.json), [testes/resultados/a4-2026-10-22/review.json](../testes/resultados/a4-2026-10-22/review.json), [docs/PASSOS-4-6-A456-2026-10-22.md](../docs/PASSOS-4-6-A456-2026-10-22.md). Commit `7558bced59795bcf4a02ff87604ead1233fac208`.
+
+### E33 — Preparar e validar candidato0.1.19 sem publicar
+
+**Objetivo:** Montar e conferir os mesmos bytes testados em fonte/payload/sandbox, mantendo workflows elegíveis pela E29; executar preflight somente leitura.
+
+**Como verificar:** CI39869848800:744/744 por ambiente, fumaça5/5, launcher3/3,193 arquivos iguais; aceitação81/81 na mesma revisão; preflight39872660861:check_only/create_release, nove guardas, passos de publicação ignorados.
+
+**Situação:** Concluída.
+
+Concluída a preparação do candidato, não a publicação. Fonte9fb4f3a; bundle120445160bytes/SHAea5d76eb…d9818e. Entrega pública0.1.18 preservada; download público/auditoria/desktop0.1.19 ainda não executados.
+
+Evidência: [releases/manifest-0.1.19.json](../releases/manifest-0.1.19.json), [releases/notes-0.1.19.md](../releases/notes-0.1.19.md), [testes/resultados/0.1.19/review.json](../testes/resultados/0.1.19/review.json), [testes/resultados/0.1.19/release-preflight-review.json](../testes/resultados/0.1.19/release-preflight-review.json). Commit `7c0cb7ddab5b21323904c84d37b884963243eea0`.
+
+### E34 — Recortes A6, com limites e pendência Windows
+
+**Objetivo:** Revisar item por item:JavaScript,XFA,preservação,redação,anotações,recuperação,OCR,conversões e instaladorWindows.
+
+**Como verificar:** Oito grupos Linux com evidência própria na suíte744/744 por ambiente; Windows deve comprovar instalação/bytes/probe/launcher/desinstalação e executar suíte/aceitação antes de aprovado.
+
+**Situação:** Em andamento.
+
+Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nativo5/5, mas falta manifesto no destino após instalar; suíte/aceitação puladas. Ramo separado codex/windows-installer-diagnostics. Critérios15/16 permanecem parciais.
 
 ### E23 — Validações físicas
 

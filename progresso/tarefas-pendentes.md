@@ -1,8 +1,16 @@
 # Tarefas atuais e ponto de retomada
 
-**Atualização — 2026/10/22 às 19:16 (America/Sao_Paulo, UTC-03:00):** Passos2/3 autorizados executados. Fonte0.1.19: **742/742** próprios e **81/81** aceitações no CI39862477446/e02dda2; campanha17/17 e fumaça5/5; AT-SPI, portal e CUPS aprovados. Flatpak0.1.19 e instaladorWindows ainda não validados/publicados; OCR no pacote instalado aguardaPasso5. A6 permanece parcial. Parar e pedir confirmação antes do Passo4. [Relatório](../docs/PASSOS-2-3-A456-2026-10-22.md).
+**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
 
-## Fila atual — 2026/10/19 às 23:55 (America/Sao_Paulo, UTC-03:00)
+## Fila atualizada em22/10/2026
+
+- S1/busca estática:Codex assumiu nesta rodada; não duplicar sementes já catalogadas.
+- Passo7:E32/E33 registrados;E34 continua parcial por Windows/limites universais.
+- Windows:capturar InstallLocation real e conteúdo do destino antes de nova correção, conforme relatórioA6.
+- Publicar0.1.19:aguarda autorização específica; depois download público/auditoria/desktop.
+- VM/equipamentos/B3 continuam dependências externas.
+
+## Fila histórica — 2026/10/19 às 23:55 (America/Sao_Paulo, UTC-03:00)
 
 Esta tabela é a fila vigente. Tudo abaixo dela é histórico, inclusive a tabela da entrega 0.1.13 no fim do arquivo.
 

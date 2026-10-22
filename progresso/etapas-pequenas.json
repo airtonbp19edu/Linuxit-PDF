@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-22T20:37:47-03:00",
+  "updated_at_local": "2026-10-22T20:49:15-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -9,7 +9,7 @@
     "Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.",
     "Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.",
     "Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.",
-    "Retomada A4/A5/A6 em22/10/2026: o usuário autorizou Passos1–6 em blocos; executados com evidências emdocs/PASSOS-4-6-A456-2026-10-22.md. Fonte/payload/sandbox744/744 e aceitação81/81. Parar antes do Passo7 e da publicação real; Windows mantém limites e registros separados."
+    "Autorização de22/10/2026: após Passos1–6, o usuário pediu atualizar os arquivos compartilhados e executar os dois próximos trabalhos. Codex registra Passo7 e retomaS1 estática da busca. A publicação0.1.19 eB3 exigem decisões específicas e continuam pendentes."
   ],
   "steps": [
     {
@@ -456,6 +456,112 @@
         "engenharia-reversa/funcoes.csv"
       ],
       "note": "Feita na nuvem do Claude com o FoxitPDFReader.exe e a fxLuceneLib.dll do PC (hashes conferidos) e o Ghidra 12.1.4 do PC (módulos necessários), sem VM e sem executar o Foxit. 7 entradas novas, 1.128 instruções/3.992 bytes conferidos por Capstone; catálogo 329→336. Cadeia do provedor de índice ligada: LoadLibraryW de fxLuceneLib.dll (0x172a2e0), NewIndexHandle cria fxindex::fxLuncenLib de 0x20 bytes em dialog+0x1e48 (0x1770e90/0x1728ab0), o destrutor de CFindToolDlgAdv espera a thread de busca e chama DeleteIndexHandle (0x175eb50/0x1728850), CFindToolModule chama FreeLibrary (0x1726b90). Critérios das etapas 3/5/7/8/9 continuam abertos; índice 45,13% inalterado."
+    },
+    {
+      "id": "E32",
+      "block": "Contratos A4",
+      "requires": "nada",
+      "status": "concluida",
+      "title": "Registrar contratos das116 operações conhecidas",
+      "goal": "Conferir entradas, saídas, erros, limites, efeitos e cancelamento de116 operações/25 famílias; vincular evidências sem fechar o universo do original.",
+      "verification": "Validador funcional/render e oito testes adversariais aprovados; etapa12 continua parcial.",
+      "commit": "7558bced59795bcf4a02ff87604ead1233fac208",
+      "evidence": [
+        "docs/A4-CONTRATOS-OPERACIONAIS-2026-10-22.md",
+        "docs/contratos-operacoes-v1.json",
+        "testes/resultados/a4-2026-10-22/review.json",
+        "docs/PASSOS-4-6-A456-2026-10-22.md"
+      ],
+      "note": "Registro próprio delimitado concluído; não decideB3, não fecha critério amplo12 nem estabelece cobertura integral Foxit."
+    },
+    {
+      "id": "E33",
+      "block": "Candidato Linux A5",
+      "requires": "nada para preparar; confirmação específica para publicar",
+      "status": "concluida",
+      "title": "Preparar e validar candidato0.1.19 sem publicar",
+      "goal": "Montar e conferir os mesmos bytes testados em fonte/payload/sandbox, mantendo workflows elegíveis pela E29; executar preflight somente leitura.",
+      "verification": "CI39869848800:744/744 por ambiente, fumaça5/5, launcher3/3,193 arquivos iguais; aceitação81/81 na mesma revisão; preflight39872660861:check_only/create_release, nove guardas, passos de publicação ignorados.",
+      "commit": "7c0cb7ddab5b21323904c84d37b884963243eea0",
+      "evidence": [
+        "releases/manifest-0.1.19.json",
+        "releases/notes-0.1.19.md",
+        "testes/resultados/0.1.19/review.json",
+        "testes/resultados/0.1.19/release-preflight-review.json"
+      ],
+      "note": "Concluída a preparação do candidato, não a publicação. Fonte9fb4f3a; bundle120445160bytes/SHAea5d76eb…d9818e. Entrega pública0.1.18 preservada; download público/auditoria/desktop0.1.19 ainda não executados."
+    },
+    {
+      "id": "E34",
+      "block": "Desenvolvimento próprio A6",
+      "requires": "implementação e testes próprios; ambientes externos quando indicados",
+      "status": "em_andamento",
+      "title": "Recortes A6, com limites e pendência Windows",
+      "goal": "Revisar item por item:JavaScript,XFA,preservação,redação,anotações,recuperação,OCR,conversões e instaladorWindows.",
+      "verification": "Oito grupos Linux com evidência própria na suíte744/744 por ambiente; Windows deve comprovar instalação/bytes/probe/launcher/desinstalação e executar suíte/aceitação antes de aprovado.",
+      "commit": "7558bced59795bcf4a02ff87604ead1233fac208",
+      "evidence": [
+        "testes/resultados/0.1.19/a6-review.json",
+        "docs/PASSOS-4-6-A456-2026-10-22.md",
+        "testes/resultados/a6-windows-2026-10-22/review.json"
+      ],
+      "note": "Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nativo5/5, mas falta manifesto no destino após instalar; suíte/aceitação puladas. Ramo separado codex/windows-installer-diagnostics. Critérios15/16 permanecem parciais.",
+      "subitems": [
+        {
+          "id": "javascript",
+          "title": "JavaScript de formulários",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "xfa",
+          "title": "XFA dinâmico próprio",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "preservation",
+          "title": "DSS/LTV, OCSP e carimbo",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "redaction",
+          "title": "Redação sem rasterizar",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "annotations",
+          "title": "Edição de anotações",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "recovery",
+          "title": "Editar documento recuperado",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "ocr",
+          "title": "OCR com limpeza",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "conversion",
+          "title": "Conversões adicionais",
+          "status": "bounded_own_subset_validated",
+          "evidence": "testes/resultados/0.1.19/a6-review.json"
+        },
+        {
+          "id": "windows",
+          "title": "Instalador Windows",
+          "status": "partial_installer_verification_blocked",
+          "evidence": "testes/resultados/a6-windows-2026-10-22/review.json"
+        }
+      ]
     },
     {
       "id": "E23",
