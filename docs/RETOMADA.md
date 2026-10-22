@@ -2,7 +2,7 @@
 
 **REA no Codex — 2026/10/22 às 00:43:** registro aplicado e diagnóstico saudável, comunicação MCP independente aprovada (REA6.7.0/207 ferramentas), sem abrir binários ou VM. Reiniciar Codex para carregar no chat. [Resultado e capacidades](REA-CODEX-CONFIGURACAO-2026-10-22.md).
 
-**Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos.
+**Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](O-QUE-FAZER-AGORA-2026-10-22.md).
 
 **Para o Claude na retomada (2026/10/20 às 17:43):** leia o [recado direto sobre a resolução da E29](PRIORIDADE-E29-ERRO-403-RELEASE.md#recado-direto-ao-claude-na-retomada). Causa confirmada e fluxo corrigido; não refazer o diagnóstico. A próxima publicação real ainda é o comprovante pendente.
 

@@ -2,7 +2,7 @@
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 00:43 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
 
 ### Feito
 
@@ -153,3 +153,4 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 - **2026/10/22 às 00:29** — Conferência do último passo da E21: o log do instalador não registrou o passo 6 e o `config.toml` do Codex (lido sem alterar, modificado pela última vez em 21/10 às 17:30) não tem o REA. Ou seja, o REA está instalado no PC, mas **ainda não está registrado no Codex**. Para registrar, rode o instalador de novo e responda S para o Codex e N para o app Claude, aprove o plano e reinicie o Codex.
 
 - **2026/10/22 às 00:43** — Codex configurou REA6.7.0 somente neste cliente, preservou demais configurações e conferiu backup. Skill42 instalada; doctor Codex/Ghidra saudável; handshake MCP,207 ferramentas e binary_session aprovados com cliente independente. Ghidra Windows disponível para estática; anotação/renomeação do banco indisponíveis neste perfil. Precisa reiniciar o Codex para o chat carregar ferramentas. Recibo e guia publicados nesta rodada; sem análise de alvo, VM ou novo pacote.
+- **2026/10/22 às 00:45** — Correção do aviso anterior: o REA **está registrado no Codex**. O próprio Codex aplicou o registro às 00:39 (`[mcp_servers.rea]` no `config.toml`, doctor com registro `aligned`, teste MCP feito). Lista do que pode ser feito agora, compartilhada com o Codex: [O-QUE-FAZER-AGORA-2026-10-22.md](O-QUE-FAZER-AGORA-2026-10-22.md).
