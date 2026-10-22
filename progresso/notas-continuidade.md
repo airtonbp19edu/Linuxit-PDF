@@ -3595,3 +3595,8 @@ Pedido explícito do usuário: configurar conexão e explicar capacidades. Plano
 - Conferido: ~/.codex/config.toml modificado às 00:39 com [mcp_servers.rea] (node + rea.mjs mcp, GHIDRA_INSTALL_DIR e JAVA_HOME); codex-doctor-20261022.json com registration:codex ok/aligned; segundo log de instalação às 00:35 (6.7.0, Ghidra saudável). Corrige a nota anterior (registro ausente às 00:28).
 - Nova lista docs/O-QUE-FAZER-AGORA-2026-10-22.md (A1–A6 sem o usuário; B1–B3 com o usuário), apontada no topo de AGENTS.md, docs/RETOMADA.md e RETOMADA-2026-10-21.
 - Antes de pegar uma tarefa, registrar aqui quem a assumiu (Claude ou Codex).
+
+
+## 2026/10/22 às 08:25 (America/Sao_Paulo, UTC-03:00) — Claude assumiu A1, A2 e A3
+
+- Pedido do usuário: fazer A1 (fluxo de busca), A2 (fluxo de impressão) e A3 (diagramas por subsistema) da lista O-QUE-FAZER-AGORA-2026-10-22. Codex: não pegar essas três; A4–A6 continuam livres.
