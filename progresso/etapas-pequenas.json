@@ -536,6 +536,12 @@
       "status": "decidida",
       "question": "Depois da E24: o Linuxit deve seguir o Foxit (1) na ordem dos resultados (marcadores, texto, comentários) e (2) no clique em resultado de marcador (só seleciona, não muda de página)?",
       "answer": "Sim, nos dois pontos (usuário, 21/10/2026 às 21:11). Implementado na E31."
+    },
+    {
+      "id": "D06",
+      "status": "decidida",
+      "question": "Encerrar na VM o processo do Foxit que continua ativo após fechar a janela, para cada teste começar do zero?",
+      "answer": "Autorizado pelo usuário em 21/10/2026 às 21:35, para o início da E30 e entre casos, registrando PID e horário."
     }
   ]
 }
