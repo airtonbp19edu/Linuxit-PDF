@@ -11,6 +11,15 @@ configure_pdf_library()
 from pypdf import PdfReader
 
 FORMATS={'text':'.txt','png':'.zip','jpeg':'.zip','tiff':'.tiff'}
+MAX_SOURCE_BYTES=128*1024**2
+
+def source_snapshot(source):
+    """Bounded read of the PDF identity; also used before opening the export UI."""
+    source=Path(source)
+    with source.open('rb') as stream:
+        data=stream.read(MAX_SOURCE_BYTES+1)
+    if not 0<len(data)<=MAX_SOURCE_BYTES:raise ValueError('Selecione PDF de até128MiB.')
+    return data,hashlib.sha256(data).hexdigest()
 
 def convert_copy(source,destination,request):
     if (not isinstance(request,dict) or set(request)!={'source_sha256','format','dpi'}
@@ -20,8 +29,8 @@ def convert_copy(source,destination,request):
     if destination.exists() or destination.is_symlink():raise FileExistsError('Escolha um destino novo.')
     if destination.suffix.lower()!=FORMATS[request['format']] or not destination.parent.is_dir():raise ValueError('Extensão ou pasta de destino inválida.')
     if not source.is_file() or not 0<source.stat().st_size<=128*1024**2:raise ValueError('Selecione PDF de até128MiB.')
-    data=source.read_bytes()
-    if not 0<len(data)<=128*1024**2 or hashlib.sha256(data).hexdigest()!=request['source_sha256']:raise ValueError('PDF mudou ou excede128MiB.')
+    data,source_hash=source_snapshot(source)
+    if source_hash!=request['source_sha256']:raise ValueError('PDF mudou ou excede128MiB.')
     reader=PdfReader(BytesIO(data),strict=True)
     if reader.is_encrypted:raise ValueError('Exporte uma cópia sem senha antes de converter.')
     if not 1<=len(reader.pages)<=100:raise ValueError('Conversão aceita1–100 páginas.')
@@ -36,6 +45,7 @@ def convert_copy(source,destination,request):
             total=0;images=[];manifest=[]
             for index,page in enumerate(reader.pages,1):
                 box=page.cropbox;width,height=float(box.width),float(box.height)
+                if not all(math.isfinite(v) and 0<v<=100000 for v in (width,height)):raise ValueError('Dimensões da página inválidas.')
                 if int(page.rotation)%180:width,height=height,width
                 pixels=math.ceil(width*request['dpi']/72)*math.ceil(height*request['dpi']/72)
                 total+=pixels
@@ -57,7 +67,7 @@ def convert_copy(source,destination,request):
                     archive.writestr('manifest.json',json.dumps({'source_sha256':request['source_sha256'],'dpi':request['dpi'],'pages':manifest}))
         if output.stat().st_size>256*1024**2:raise ValueError('Conversão acima de256MiB.')
         def unchanged():
-            if hashlib.sha256(source.read_bytes()).hexdigest()!=request['source_sha256']:raise ValueError('PDF mudou durante a conversão.')
+            if source_snapshot(source)[1]!=request['source_sha256']:raise ValueError('PDF mudou durante a conversão.')
         digest=hashlib.sha256(output.read_bytes()).hexdigest();publish_copy(output,destination,unchanged)
     return {'schema':'linuxit-conversion-copy-v1','path':str(destination.resolve()),'source_sha256':request['source_sha256'],
             'output_sha256':digest,'format':request['format'],'pages':len(reader.pages)}

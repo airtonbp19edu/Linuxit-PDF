@@ -7,12 +7,14 @@ from gi.repository import Gtk
 from async_core import BackgroundRunner
 from folder_dialogs import prepare_chooser,remember_selection
 from search_tasks import run_search_worker
-from pdf_conversion import FORMATS
+from pdf_conversion import FORMATS,source_snapshot
 
 class ConversionWindow(Gtk.Window):
     def __init__(self,parent,path):
         super().__init__(title='Exportar PDF',transient_for=parent)
+        self.set_destroy_with_parent(True)
         self.path=Path(path);self.closed=False;self.busy=False;self.runner=BackgroundRunner();self.cancel=threading.Event()
+        self.source_sha256=source_snapshot(self.path)[1]
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
         self.format=Gtk.ComboBoxText()
         for value,label in [('text','Texto UTF-8 (até100 páginas)'),('png','PNG por página em ZIP'),('jpeg','JPEG por página em ZIP'),('tiff','TIFF multipágina')]:self.format.append(value,label)
@@ -32,12 +34,12 @@ class ConversionWindow(Gtk.Window):
         dialog.set_current_name(self.path.stem+'-exportado'+FORMATS[kind]);prepare_chooser(dialog,'save')
         try:target=dialog.get_filename() if dialog.run()==Gtk.ResponseType.OK else None
         finally:dialog.destroy()
-        if not target:return
+        if not target or self.closed:return
         remember_selection(target,'save');self.busy=True;self.create.set_sensitive(False);self.cancel=threading.Event()
         def task():
-            request={'source_sha256':hashlib.sha256(self.path.read_bytes()).hexdigest(),'format':kind,'dpi':dpi}
+            request={'source_sha256':self.source_sha256,'format':kind,'dpi':dpi}
             result=run_search_worker('convert-copy',str(self.path),request,self.cancel,600,destination=target)
-            if result is not None and (result.get('schema')!='linuxit-conversion-copy-v1' or Path(result['path']).resolve()!=Path(target).resolve()):raise ValueError('Confirmação de conversão inválida.')
+            if result is not None and (result.get('schema')!='linuxit-conversion-copy-v1' or result.get('source_sha256')!=self.source_sha256 or Path(result['path']).resolve()!=Path(target).resolve()):raise ValueError('Confirmação de conversão inválida.')
             return result
         def done(result):
             if not self.closed:self.busy=False;self.create.set_sensitive(True);self.status.set_text('Exportação salva.' if result else 'Operação cancelada; confira o destino antes de repetir.')
@@ -45,4 +47,4 @@ class ConversionWindow(Gtk.Window):
             if not self.closed:self.busy=False;self.create.set_sensitive(True);self.status.set_text(str(error))
         self.runner.submit('convert',task,done,failed)
     def _destroy(self,*_):
-        self.closed=True;self.cancel.set();self.runner.close()
+        self.closed=True;self.cancel.set();self.runner.shutdown()
