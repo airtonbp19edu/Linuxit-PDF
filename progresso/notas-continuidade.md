@@ -3855,3 +3855,11 @@ Itens repassados ao Codex listados em docs/AVISOS-E-STATUS.md (16:00). CI em and
 40006117463, 40006121895 (Flatpak de teste) e 40006125900 (Windows completo com instalador).
 Próximo passo exato se interrompido: baixar os artefatos desses quatro runs, conferir suítes/
 aceitação/instalador e registrar; não disparar runs duplicados.
+
+## 2026/10/23 às 16:27 (America/Sao_Paulo, UTC-03:00) — Claude: CI dos ramos conferido
+
+Flatpak aprovado em anotacoes-universais e exportacao-office. Windows-installer: corrigida a
+deteção de fonte (fc-match) para os testes de OCR rodarem no sandbox; Flatpak reexecutado 759/759.
+Windows nativo completo: instalador validado, aceitação 79/79, suíte 751/759 com 7 pulos só-Linux
+e 1 falha (test_viewer reading-mode, passa no Linux) repassada ao Codex. Doc docs/CI-RAMOS-2026-10-23.md
+(nos ramos). Nada na main/candidato. Próximo: Codex assume às 17:30 as frentes repassadas se eu parar.
