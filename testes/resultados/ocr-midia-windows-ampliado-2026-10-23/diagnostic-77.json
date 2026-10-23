@@ -1,0 +1,406 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "D:/a/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.14.8",
+  "test_pattern": "test*.py",
+  "test_modules": "test_ocr_cleanup,test_ocr_linux,test_ocr_gtk,test_search_formats_recovery,test_tool_preferences_ocr_selection,test_local_playback,test_pdf_ocr,test_measurement_layers_speech,test_media_3d_poster,test_media_assets_gtk,test_media_layer_persistence",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 77,
+  "passed": 76,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1,
+  "elapsed_sec": 31.873647300000016,
+  "cases": [
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_contrast_and_otsu_are_explicit_geometry_preserving_options",
+      "status": "passed",
+      "elapsed_sec": 0.021132299999976567
+    },
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_real_worker_cleanup_with_portuguese_and_english_keeps_dimensions",
+      "status": "passed",
+      "elapsed_sec": 1.9220543000000134
+    },
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_unknown_cleanup_is_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0006083999999759726
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_actual_portuguese_combined_models_and_300_dpi",
+      "status": "passed",
+      "elapsed_sec": 2.183605400000033
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_blank_page_notice_and_page_order_are_real",
+      "status": "passed",
+      "elapsed_sec": 1.4263630000000376
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_crop_and_rotation_preserve_display_size_and_raster_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.8935996999999816
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+      "status": "passed",
+      "elapsed_sec": 1.7712963000000173
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_real_english_worker_adds_searchable_text_and_keeps_scan",
+      "status": "passed",
+      "elapsed_sec": 0.8025132999999869
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_blank_page_has_explicit_no_text_notice",
+      "status": "passed",
+      "elapsed_sec": 2.665989300000035
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_cancel_and_document_close_stop_real_worker_and_ignore_stale_callbacks",
+      "status": "passed",
+      "elapsed_sec": 1.2994988000000376
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_cancelled_dialog_and_existing_destination_keep_files",
+      "status": "passed",
+      "elapsed_sec": 1.339917000000014
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_changed_source_and_changed_result_are_not_silently_opened",
+      "status": "passed",
+      "elapsed_sec": 1.8478569999999763
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_menu_workflow_recognizes_opens_and_renders_actual_copy",
+      "status": "passed",
+      "elapsed_sec": 2.675123400000018
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_backup_restore_preserves_corrupt_destination_and_source_pdf",
+      "status": "passed",
+      "elapsed_sec": 0.011564700000008088
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_changed_destination_failed_restore_and_backup_collision_preserve_files",
+      "status": "passed",
+      "elapsed_sec": 0.012666000000081112
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_new_recovery_stale_sources_stay_excluded",
+      "status": "passed",
+      "elapsed_sec": 0.007596799999987525
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_only_dead_same_host_unchanged_lock_may_be_explicitly_removed",
+      "status": "passed",
+      "elapsed_sec": 0.006248299999924711
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_writer_preserves_a_replacement_lock",
+      "status": "passed",
+      "elapsed_sec": 0.004756199999974342
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_actual_offline_attachment_ocr_recognizes_synthetic_image",
+      "status": "passed",
+      "elapsed_sec": 0.23631589999990865
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_all_pinned_language_algorithms_and_german_span",
+      "status": "passed",
+      "elapsed_sec": 0.25150489999998626
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_docx_header_footnotes_and_odt_styles_are_included_without_objects",
+      "status": "passed",
+      "elapsed_sec": 0.0024846000000025015
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_image_multiframe_refusal_precedes_any_ocr_process",
+      "status": "passed",
+      "elapsed_sec": 0.0018102000000226326
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_office_dtd_and_output_expansion_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.000835800000004383
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_rtf_unicode_surrogate_pairs_hidden_and_passive_destinations",
+      "status": "passed",
+      "elapsed_sec": 0.000654599999961647
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_xlsx_shared_inline_cached_formula_and_pptx_notes",
+      "status": "passed",
+      "elapsed_sec": 0.0015338000000610919
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_failed_settings_publication_preserves_previous_and_cleans_staging",
+      "status": "passed",
+      "elapsed_sec": 0.012961099999984071
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_selected_ocr_pages_and_layout_refuse_duplicate_or_invalid_values",
+      "status": "passed",
+      "elapsed_sec": 0.009087199999953555
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_selected_page_ocr_keeps_other_page_text_and_original_intact",
+      "status": "passed",
+      "elapsed_sec": 0.722980800000073
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_tool_preferences_roundtrip_and_invalid_file_fall_back_without_paths",
+      "status": "passed",
+      "elapsed_sec": 0.010487500000067485
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_gtk_controls_and_embedded_video_widget_are_constructed",
+      "status": "passed",
+      "elapsed_sec": 0.07657170000004498
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_real_decode_pause_resume_eos_and_close_release_pipeline",
+      "status": "passed",
+      "elapsed_sec": 1.0412575999999945
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_short_file_plays_for_its_duration_instead_of_ending_at_once",
+      "status": "passed",
+      "elapsed_sec": 3.0872616000000335
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_stop_then_play_and_malformed_media_report_without_process_leak",
+      "status": "passed",
+      "elapsed_sec": 0.036201899999923626
+    },
+    {
+      "id": "test_local_playback.MeasurementSnapTests.test_grid_and_angle_constraints_have_explicit_priority_and_keep_length",
+      "status": "passed",
+      "elapsed_sec": 0.0005976999999575128
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_blank_text_is_reported_without_claiming_recognition",
+      "status": "passed",
+      "elapsed_sec": 0.04784529999994902
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_cancelled_request_never_starts_child_and_command_requires_destination",
+      "status": "passed",
+      "elapsed_sec": 0.003306999999949767
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_changed_source_is_not_published",
+      "status": "passed",
+      "elapsed_sec": 0.045855200000005425
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_cropbox_rotation_userunit_and_nonfinite_geometry_guarded",
+      "status": "passed",
+      "elapsed_sec": 0.00405450000005203
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_destination_appearing_at_publication_is_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.047024800000031064
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_encrypted_input_is_rejected_without_attempting_empty_password",
+      "status": "passed",
+      "elapsed_sec": 0.04037940000000617
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_existing_destination_original_and_dangling_link_not_overwritten",
+      "status": "passed",
+      "elapsed_sec": 0.004028599999969629
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_external_missing_failure_and_timeout_use_bounded_local_errors",
+      "status": "passed",
+      "elapsed_sec": 0.00501340000005257
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_invalid_request_types_values_and_extra_keys_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.0034820000000763685
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_missing_language_stops_before_rendering",
+      "status": "passed",
+      "elapsed_sec": 0.03927490000000944
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_missing_wrong_geometry_and_multiple_ocr_pages_refused",
+      "status": "passed",
+      "elapsed_sec": 0.13103130000001784
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_output_budget_failure_leaves_no_destination",
+      "status": "passed",
+      "elapsed_sec": 0.04464759999996204
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_page_source_pixel_and_total_budgets_precede_external_tools",
+      "status": "passed",
+      "elapsed_sec": 0.11139270000001034
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_publication_copy_failure_cleans_staging",
+      "status": "passed",
+      "elapsed_sec": 0.05493320000005042
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original",
+      "status": "passed",
+      "elapsed_sec": 0.05791510000005928
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_renderer_missing_or_wrong_size_is_not_accepted",
+      "status": "passed",
+      "elapsed_sec": 0.08226960000001782
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_source_identity_mismatch_prevents_external_tools",
+      "status": "passed",
+      "elapsed_sec": 0.04001549999998133
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_tool_arguments_do_not_use_shell_and_thread_count_is_bounded",
+      "status": "passed",
+      "elapsed_sec": 0.003732599999921149
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_worker_reply_cannot_claim_a_different_destination_or_missing_page",
+      "status": "passed",
+      "elapsed_sec": 0.059038500000042404
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_wrong_extension_and_missing_parent_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0034521999999697073
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_crossing_degenerate_nonfinite_and_excessive_measurements_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0008343000000650136
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_distance_perimeter_area_units_and_calibration_have_known_geometric_results",
+      "status": "passed",
+      "elapsed_sec": 0.0007944999999836
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_layer_view_changes_only_private_copy_configuration",
+      "status": "passed",
+      "elapsed_sec": 0.004991900000050009
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_locked_layer_and_existing_destination_are_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.0034865000000081636
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_measurement_text_uses_portuguese_decimal_comma",
+      "status": "passed",
+      "elapsed_sec": 0.0007415000000037253
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_reading_path_replacement_keeps_active_lease_and_never_deletes_original",
+      "status": "passed",
+      "elapsed_sec": 0.2608030000000099
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersSpeechTests.test_voice_budget_and_missing_backend_are_explicit_without_creating_destination",
+      "status": "passed",
+      "elapsed_sec": 0.0011330999999472624
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_measurement_window_and_reader_layer_checkbox_use_implemented_backends",
+      "status": "passed",
+      "elapsed_sec": 1.06646180000007
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_poppler_pixels_actually_hide_selected_layer",
+      "status": "passed",
+      "elapsed_sec": 0.1703241000000162
+    },
+    {
+      "id": "test_measurement_layers_speech.MeasurementLayersVoiceLinuxTests.test_real_offline_voice_wav_export_in_both_languages",
+      "status": "passed",
+      "elapsed_sec": 0.7198426999999583
+    },
+    {
+      "id": "test_media_3d_poster.Poster3DTests.test_listing_reports_poster_model_and_views_without_a_renderer",
+      "status": "passed",
+      "elapsed_sec": 0.002915000000029977
+    },
+    {
+      "id": "test_media_3d_poster.Poster3DTests.test_poster_is_the_annotation_appearance_scaled_to_its_rectangle",
+      "status": "passed",
+      "elapsed_sec": 0.0328541999999743
+    },
+    {
+      "id": "test_media_3d_poster.Poster3DTests.test_poster_without_model_and_page_rendering_show_the_same_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.06549600000005285
+    },
+    {
+      "id": "test_media_3d_poster.Poster3DTests.test_refusals_publish_nothing",
+      "status": "passed",
+      "elapsed_sec": 0.03339740000001257
+    },
+    {
+      "id": "test_media_assets_gtk.MediaAssetGTKTests.test_layer_panel_save_action_uses_original_auth_and_worker_publishes_selected_visibility",
+      "status": "passed",
+      "elapsed_sec": 1.4503228999999465
+    },
+    {
+      "id": "test_media_assets_gtk.MediaAssetGTKTests.test_media_asset_list_and_explicit_extraction_roundtrip_through_actual_workers",
+      "status": "passed",
+      "elapsed_sec": 1.429415699999936
+    },
+    {
+      "id": "test_media_assets_gtk.Poster3DGTKTests.test_poster_window_shows_the_appearance_and_says_the_scene_is_not_interactive",
+      "status": "passed",
+      "elapsed_sec": 1.3063386999999693
+    },
+    {
+      "id": "test_media_layer_persistence.MediaLayerPersistenceTests.test_changed_source_existing_target_wrong_extension_and_copy_denial_preserve_outputs",
+      "status": "passed",
+      "elapsed_sec": 0.006484200000045348
+    },
+    {
+      "id": "test_media_layer_persistence.MediaLayerPersistenceTests.test_embedded_movie_sound_and_3d_are_passive_and_external_urls_ignored",
+      "status": "passed",
+      "elapsed_sec": 0.005979999999908614
+    },
+    {
+      "id": "test_media_layer_persistence.MediaLayerPersistenceTests.test_layer_configuration_save_preserves_encryption_and_locked_guard",
+      "status": "passed",
+      "elapsed_sec": 0.037293100000056256
+    },
+    {
+      "id": "test_media_layer_persistence.MediaLayerPersistenceTests.test_layer_configuration_saved_reopened_without_changing_original",
+      "status": "passed",
+      "elapsed_sec": 0.00588310000000547
+    },
+    {
+      "id": "test_media_layer_persistence.MediaLayerPersistenceTests.test_pdf_sound_big_endian_pcm_is_converted_to_little_endian_wave",
+      "status": "passed",
+      "elapsed_sec": 0.0056552999999439635
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}
