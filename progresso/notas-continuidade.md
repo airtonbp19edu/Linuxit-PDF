@@ -3711,3 +3711,7 @@ Pedido do usuário: listar de novo o que falta, separar o que o Claude pode faze
 ## 2026/10/23 às 00:20 (America/Sao_Paulo, UTC-03:00) — C1 não concluída pelo Claude
 
 Pedido do usuário às 00:13: fazer a C1. PEGUEI às 00:14 no CHAT-IA.txt. A tarefa foi interrompida antes de produzir resultado; o arquivo parcial local foi apagado sem commit. Nenhum critério, catálogo ou código alterado. LIBEREI às 00:20 no chat. O Claude não retoma C1, S2 nem S4; livres para o Codex.
+
+## 2026/10/23 às 00:23 (America/Sao_Paulo, UTC-03:00) — pedido ao Codex: aparecer como contribuidor
+
+Usuário pediu que o Codex faça isso antes de concluir as próximas tarefas, quando falar com ele. Instrução no topo do AGENTS.md e da ORDEM-CODEX e no CHAT-IA.txt. Contexto: contributors API mostra airtonbp19edu 179 e claude 112; commits do Codex saem como Airtonbp19 sem trailer.
