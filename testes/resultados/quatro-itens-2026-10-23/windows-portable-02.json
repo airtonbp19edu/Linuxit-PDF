@@ -1,0 +1,441 @@
+{
+  "schema": "linuxit-authorized-pdf-features-v1",
+  "observed_utc": "2026-10-23T22:02:24.894732+00:00",
+  "head": "40e8441ef6c2041675977c8088dc94977fc4814f",
+  "platform": "win32",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "portable_selection": true,
+  "modules": [
+    "test_redaction_hidden",
+    "test_vector_redaction",
+    "test_signature_vri",
+    "test_form_javascript_api",
+    "test_form_javascript",
+    "test_form_javascript_security",
+    "test_xfa_positioned_formcalc",
+    "test_xfa_flow",
+    "test_xfa_flow_security",
+    "test_pdf_xfa",
+    "test_signature_preservation.PreservationTests.test_explicit_vri_selection_appends_key_for_full_contents_and_keeps_original_bytes",
+    "test_signature_preservation.PreservationTests.test_unknown_or_duplicate_vri_selection_never_publishes"
+  ],
+  "run": 77,
+  "passed": 75,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 2,
+  "cases": [
+    {
+      "id": "test_redaction_hidden.HiddenRedactionPopplerTests.test_complete_vector_copy_uses_actual_poppler_words_without_hidden_leftovers",
+      "status": "skipped",
+      "reason": "Real Poppler word geometry required"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionPopplerTests.test_unsupported_attachment_aborts_without_publishing_or_changing_source",
+      "status": "skipped",
+      "reason": "Real Poppler word geometry required"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_bad_geometry_and_entities_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_binary_or_non_utf8_attachments_and_associated_graph_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_colliding_redacted_names_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_disabled_options_preserve_data_and_invalid_flags_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_metadata_and_recursive_bookmark_titles_removed_after_roundtrip",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_only_words_intersecting_marks_are_selected_with_nonzero_media_origin",
+      "status": "passed"
+    },
+    {
+      "id": "test_redaction_hidden.HiddenRedactionTests.test_utf8_attachment_content_names_description_and_catalog_are_consistent",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_complex_content_is_refused_without_publishing",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_no_overwrite_and_changed_source_guard",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_paths_are_removed_by_intersection_and_public_vectors_remain",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_rotation_does_not_change_page_space_selection",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_secret_bytes_and_image_removed_public_text_stays_selectable",
+      "status": "passed"
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_tj_arrays_and_quote_strings_are_really_removed",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_vri.VRITests.test_full_contents_including_padding_selects_exact_entry",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_vri.VRITests.test_invalid_der_oversized_lists_and_missing_dss",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_vri.VRITests.test_invalid_keys_and_non_stream_entries_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_vri.VRITests.test_other_signature_material_is_not_merged_into_matching_vri",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_vri.VRITests.test_unknown_signature_uses_only_global_material",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_bad_formats_and_nonfinite_helpers_fail_without_external_capabilities",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_field_properties_reset_defaults_and_calculation_read_new_value",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_maximum_applies_to_script_setters_and_calculation_results",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_percent_format_is_display_only_and_arithmetic_helper_is_finite",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_printf_numeric_string_padding_and_percent_escape",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_api.JavaScriptAPITests.test_reset_readonly_or_unknown_field_refuses_entire_transaction",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_calculation_order_and_helper_compatibility",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_endless_loop_cpu_limit_stops_transaction",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_external_api_and_python_bridge_are_absent_even_through_function_constructor",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_format_display_is_distinct_from_raw_field_value",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_getfield_value_setter_updates_other_writable_fields",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_heap_and_recursion_budgets_fail_without_crashing_parent",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_invalid_targets_and_non_finite_values_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_open_actions_and_document_scripts_are_not_executed",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_real_language_functions_arrays_conditions_and_calculated_field_roundtrip",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript.JavaScriptTests.test_validation_failure_is_atomic_and_no_output_is_published",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_security.JavaScriptSecurityTests.test_chained_action_is_refused_before_engine_and_original_is_preserved",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_security.JavaScriptSecurityTests.test_global_intrinsic_replacement_cannot_skip_validation_or_calculation",
+      "status": "passed"
+    },
+    {
+      "id": "test_form_javascript_security.JavaScriptSecurityTests.test_prototype_tojson_cannot_forge_readonly_transaction_result",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_basic_formcalc_in_flow_layout_and_rounding",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_calculated_field_cannot_be_overridden_and_failure_publishes_nothing",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_code_execution_attribute_access_loops_and_javascript_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_dependency_order_is_resolved_and_cycles_missing_fields_or_division_fail",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_invalid_units_bounds_mixed_layout_and_repetition_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_medium_content_area_and_nested_offsets_are_applied",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_positions_units_parent_offsets_calculation_and_dataset_roundtrip",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_positioned_formcalc.PositionedFormCalcTests.test_reverse_dependency_calculated_before_consumer",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_document_entities_duplicate_binding_and_unknown_fields_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_dynamic_form_becomes_coherent_hybrid_copy_with_real_widget_appearances",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_info_lists_groups_and_default_template_nodes_without_writing_source",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_instance_minimum_maximum_and_missing_paths_are_refused_atomically",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_many_repeated_rows_paginate_and_each_widget_is_on_exactly_one_page",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_no_overwrite_hash_guard_unicode_limit_and_source_preservation",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_repeat_insertion_creates_defaults_and_values_are_bound_after_insertion",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_repeat_removal_to_zero_preserves_minimum_zero_without_respawning",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow.XFAFlowTests.test_scripts_bindings_positioned_layout_and_other_controls_are_never_silently_accepted",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow_security.XFAFlowSecurityTests.test_exponential_default_instantiation_stops_during_allocation",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow_security.XFAFlowSecurityTests.test_many_tiny_xml_nodes_are_refused_before_elementtree_allocation",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow_security.XFAFlowSecurityTests.test_readonly_xfa_is_refused_before_publishing_editable_widgets",
+      "status": "passed"
+    },
+    {
+      "id": "test_xfa_flow_security.XFAFlowSecurityTests.test_repeated_draw_rows_share_the_global_row_budget",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.HybridFillTests.test_calculated_values_are_mirrored_too",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.HybridFillTests.test_edit_info_lists_bound_text_fields",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.HybridFillTests.test_empty_element_single_stream_and_ascii_declaration",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.HybridFillTests.test_text_fill_updates_acroform_and_datasets_and_preserves_the_rest",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.HybridFillTests.test_unbound_field_other_operations_and_xfa_only_are_refused_without_output",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFADocumentTests.test_elements_split_across_packets_use_the_joined_document",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFADocumentTests.test_hybrid_packet_array_is_listed_without_changing_the_file",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFADocumentTests.test_missing_datasets_and_bad_packets_are_reported_by_the_panel",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFADocumentTests.test_pdf_without_xfa_reports_none",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFADocumentTests.test_single_stream_dynamic_form_without_acroform_fields",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFAParserTests.test_doctype_entities_malformed_and_depth_are_refused",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFAParserTests.test_field_count_value_length_and_size_are_bounded",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFAParserTests.test_paths_follow_som_indices_and_skip_groups",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFAParserTests.test_rich_text_and_data_value_are_single_values",
+      "status": "passed"
+    },
+    {
+      "id": "test_pdf_xfa.XFAParserTests.test_template_and_text_outside_data_are_ignored",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_preservation.PreservationTests.test_explicit_vri_selection_appends_key_for_full_contents_and_keeps_original_bytes",
+      "status": "passed"
+    },
+    {
+      "id": "test_signature_preservation.PreservationTests.test_unknown_or_duplicate_vri_selection_never_publishes",
+      "status": "passed"
+    }
+  ],
+  "app_sha256": {
+    "app/accessible_reader.py": "ae5d76d3f59c9a16e5df43d293f8f695a1bebfaf87b7950c80492e6002d06823",
+    "app/annotation_editing.py": "a616e1425f5f15ff7f5de634e18fb6f21992ad5773cc85fb89a188ae94613558",
+    "app/annotation_geometry.py": "49a7cfed199fd1bd05a2a15fd031b86783b08d86f3c5fa837b43d009e37909a4",
+    "app/annotation_style.py": "f600d767829e041e47417d9b9c878a82f2c05d0ab764f1cc71a6eb7612d56f63",
+    "app/appearance.py": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221",
+    "app/async_core.py": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f",
+    "app/attachment_formats.py": "8d15d1d6a25fb762613d71c8a49505f3a14df263008b983c4fc4f371c9b585ac",
+    "app/attachment_images.py": "ceb364b2d9e2de2f6bb27490e0c6fc4fffd0f76691c5e6c0b90d5cba8f9f3332",
+    "app/attachment_rtf.py": "6774f70cf53721be00822e144351b66c23bc6692f5586b291cce0129364ad739",
+    "app/attachment_search.py": "99a991b80e9ad6388d46b6526cb645eece4f052bfc5cc0a36d519615b329dd8a",
+    "app/attachment_tasks.py": "344048f123e103e6c4b1660934eb51cd27d32db9379585e058344dccf4852de8",
+    "app/cancel_state.py": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820",
+    "app/character_extraction.py": "f5bc29fbdff7d3a034bfa368be81ed14053b7ea698a94e5bf7be080c61dcd56f",
+    "app/character_selection.py": "bc4e3945fd900f50a36766262771a43041822804374abd755fdd4cf72640c6c9",
+    "app/collection_index.py": "ce90f5c0a7b26469602966c09c2aef9a062099bea5f1179febaa1bc1d7585173",
+    "app/collection_recovery.py": "1653985ca8d672d3f268aa27c1503cd2243f3386b31d176f61775137619e13dc",
+    "app/collection_window.py": "ecd1f402c44600f9f09b7921336b4321454d1b2da83980e7cc23340aa8722875",
+    "app/conversion_window.py": "0ca79c7d9ffd5c0b05e49608468fec3fc40590297c3f81e3d1c4b4ad23e37e90",
+    "app/creation_window.py": "42ba1c8667efba4c93a9f7952f39208139e352c1d3867b78242ecc0ed49c32df",
+    "app/cups_backend.py": "d4d4bd3db7c39e725af7fb33de2e37900c23c3afae0e917dbdaa44535c5b01f0",
+    "app/document_session.py": "08757cb33543d325fd18921c30b65f0b28b514a672d87edaec47ee950784670d",
+    "app/edit_dialogs.py": "d6f3d1c5f1c3cbae2c3f7aebf4b39cab4ac73e94ad9d00e770164107c61a73b8",
+    "app/edit_history.py": "da7707ca12222f9e9b74c88b88634bd2d9a770cc7b0bda31688165a3f574694e",
+    "app/edit_tasks.py": "963b7178ac4419ff37b8466d86b240df6de2143eb619e966c34285f6210b3361",
+    "app/edit_window.py": "a8ea17b2114f48800d55baf6bc1e94ef5f44a17eb64c3f78abbbb1cf7f64a8c6",
+    "app/folder_dialogs.py": "4615035182cf7428281040e094076f56947d1965f7a1a64fe5c6eea01abf8824",
+    "app/imposition.py": "0d5ad9cc82648512473caf6ca5247e0f72a3ae77cc6779103967e2d30b47bf5d",
+    "app/installation_info.py": "51ab935063d8efdc03d85ed618a75181ba99b7bc6ce8ce850c7a820d84cd3677",
+    "app/local_files.py": "94bfb4d55fa59232253a667ce4cf869ea0b447d8e771ca041cfbab9e2e6b663b",
+    "app/local_playback.py": "d2e1d824957d2817ca975487863dff842e198ffed2d50c2a0211d501c9603a18",
+    "app/main.py": "d8ab100d564a576c7f43c4c19274ca7dc3a97a20356a15c082c20ed4bc614297",
+    "app/main_thread_gc.py": "fed17472db2cba4a642361b803cecdb645d39bab975fbabfdf2d6725a4058c1d",
+    "app/measurement.py": "e31cb76fcf868545fea3525bfc174f6bf39cf0426ec1dbed3d67ba8dc54a7a43",
+    "app/measurement_window.py": "fcb61ddb51e374de73f4f6513d0b834da4cbba01a36b52b258537f15f6c262a8",
+    "app/media_assets_window.py": "31614060bf2684a1bb87517246f1c79bd4a7ecd1e6ae8ea79268aade969acb17",
+    "app/media_window.py": "bcb65987e4849cb32319d4092733f210d8d2e1b2d6085e6f0814b880c82dce76",
+    "app/navigation.py": "645932295f8d5190f88aa86698bdb32027bb40e697ca6b10b735cac8fc387988",
+    "app/ocr_window.py": "14d6f6607245f6dbe3d31b0327537f165ff9868ef63941f139ba63d7f03f9706",
+    "app/page_cache.py": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856",
+    "app/page_surface.py": "bd1256c0488be3449b721233d9c7263f99c7f6d45413c9779b6dceddbcf54956",
+    "app/pdf_annotations.py": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac",
+    "app/pdf_attachments.py": "b891be766347ea11cda1bec708f6b499bb16cc8b6f529251793085bb4776e3dd",
+    "app/pdf_changes.py": "02d40659eec94d62f4c4be7554e8ae8f9be036743dff15bd3fa4b5591d56cb0e",
+    "app/pdf_comments.py": "12aab9e4588e6e54cfe5612e1c6a958e9b499acb19a42cc7b9180b11592ba23a",
+    "app/pdf_conversion.py": "2a05c06856dcadd2286f5da3e7b7b1c635f10477dfc1ad8066e9bfcf7b178872",
+    "app/pdf_creation.py": "c4fbb23a69cd21ad8f75728d78e9ee0214882ada5e9398959b484b0a7393de66",
+    "app/pdf_crypt_compat.py": "3fdb5ee794fb180e50a3581fe80eb9cee35f266acbd314a13fcf0b9edbdf179c",
+    "app/pdf_dependency.py": "8ad440283f1656748328004889bb18af02c849e22d67bcca07a4f95e78ddc20a",
+    "app/pdf_edit_security.py": "ab3e0f83e4c6b5b85686fa050be2e55c9a35a0e3fcf49c24ecf191266d61613c",
+    "app/pdf_form_controls.py": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7",
+    "app/pdf_form_events.py": "7dfc577fc7878e959e89952d71e59c2f1f0fca6841213801db30eb2dc35730ea",
+    "app/pdf_form_javascript.py": "0b73f01ad66feec19fd47ff4559f76147538cc8b9aaa44e3149e4e689f259ffd",
+    "app/pdf_layers.py": "9194ee8096fd569ef7224c84a4588f32f871189c8ebe04503f71d07910a8fc48",
+    "app/pdf_media.py": "937e11a1a03a32fc3f362f877bff4cbdb3df3bff4ffe16be07b0579708751bcc",
+    "app/pdf_ocr.py": "d7407da6de7eb9bcdf806975cd66ea13e813f67483d86443da4fa584e258f9b3",
+    "app/pdf_panels.py": "a9ce243a085d84216702d14f051bc499a22fe80d71d936a6e09e70cef0d98397",
+    "app/pdf_preservation.py": "27ab9ebbc24a934eb2209c04ab41a1e9c0a841b7a849b30a698c308fc48b2929",
+    "app/pdf_redaction.py": "81d72e64377e77116289218c2ca894de5165df3cf1269c3c8ba03f2adb098933",
+    "app/pdf_security.py": "1affcad5f55d5556024a49783ab4f9d378d4423089b1a905b247146edc810449",
+    "app/pdf_signatures.py": "ddf08152bd4c27cb12ad28fa58f6db880e70038ea1e3863875527f6f74424b6e",
+    "app/pdf_signing.py": "2004b3b70802e6b4ca952b0e58c33b793d4b0e6d8bbe05d5ef70354aad2e9c58",
+    "app/pdf_xfa.py": "0d446adc16357e0a968d3593ccb3f71dd9010576c45bac0ad12ea890ccff6d3f",
+    "app/pdf_xfa_flow.py": "f5213d8cd695b3192752a92de6865e92d510328b7a88f78beb45cb005afe997a",
+    "app/platform_runtime.py": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74",
+    "app/presentation.py": "323211b98e8665a360a72a9714b0342af21ac8c08c0369e832b8e4d54af5d4c1",
+    "app/print_queue.py": "e823e6001440ccb91bbe0b9d8a4bc7ce909773d33c02cf9234187c03aa085fd6",
+    "app/print_tasks.py": "b34961ed4e5162fe6505ce6f8d99da7990920c9de5cfd8e1f400403b144ad600",
+    "app/print_window.py": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39",
+    "app/reading_order.py": "b148ca1cd359a829fc4cf5c00f18d1d03da337bd070d130cf80b502e736e5f4c",
+    "app/reading_preferences.py": "59a2af8b93ba8916839bee7a144603422d5e7c34b485c2f8ffa22486b820fdc0",
+    "app/recovered_edit.py": "6448c50aa49a32f305faf7fd86fcf9438dbf888d4807316fbeefc096a1caa250",
+    "app/redaction_hidden.py": "8cf2ed3e42a761850c60c818e4c400147118f1249f729a3e64a176ff8929ec28",
+    "app/rendering.py": "9b05d9adfc0184c7fcdc6c2723e3220a9111d399bba0f8703e4b73324fad5186",
+    "app/search_engine.py": "c44bbc320907666cfff081e98f8e0d77723833c5684d252c5fed43fed3bfe3dc",
+    "app/search_languages.py": "c06b9e935d59ba5991c302d43c9d8344662288854b6c7cdff069a6031c6b8642",
+    "app/search_matching.py": "2b40ef4e901fa7b48cf6ce377417ffda761970d6940353f8f62fac73137e0303",
+    "app/search_tasks.py": "57a6b8751967bec0781ef1f9386ef26c519d6dad64ec3db2f2f1cecb4f97e515",
+    "app/security_window.py": "6db12e27c8240a31a993689c4661298eaf31cfa420138d0f56ca840cb6c9bbcc",
+    "app/signature_dss.py": "70d3f16d9a2b5d969842dcfb76af139c693d57df90508fa1a1a6315468445669",
+    "app/signature_ocsp.py": "d2dc37ff76e41d1aa466673e52e42b6bd5e8dab2221631cde06528178c4e1400",
+    "app/signature_trust.py": "f66df3925aa6c2dc323a227b41c816f627a7785542b52726e1785f35be746755",
+    "app/signature_window.py": "054cbe6889b4f09cf86533fead819da02d6af843af019aac2d17896326e55f65",
+    "app/speech.py": "40a3f4d6b60f4f7145509ddb3c7f27b101e761b3c86ba5ce9c9f62a43063b214",
+    "app/text_appearance.py": "c6fe5e1a9978401368e813f341c8bd33686d1a1a21a68493bc80f42d963a457e",
+    "app/text_selection.py": "2f9b88e4b53f2d5fd5ab473b8a36fbbfada8318383f5123c73f0736576dc1915",
+    "app/themes.py": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9",
+    "app/tool_preferences.py": "340b77da6e971ca4606e843a803607ba96c537c05752214c42c686e5315d688c",
+    "app/vector_redaction.py": "56eeea2f73838554ef368add451897844e13ba241dc813da0e277fc2ecc9681c",
+    "app/version.py": "1387af6073d478401f0c3a66c267172ef2d867778aa61f022c81d79b1c289126",
+    "app/windows_bootstrap.py": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8",
+    "app/windows_print.py": "72fc54b892e8900687f8d5bab3bccfc9126980d4e518ef574774c26c3af7e3a3",
+    "app/worker_cli.py": "3b6339c1572b0db67643572272c1822f0fc8a32cafb638752ecf3c9494bf5b09",
+    "app/xfa_formcalc.py": "48bb373f9bc6811473a571f5400d29a1a7fa8cc8e7bb6ef931edd8c11f7fa07b",
+    "app/xfa_positioned.py": "818952b6a9d4a87ccbf24ebb56c594f367d1350d4823a654d527318bffebc3a7",
+    "app/xfa_window.py": "205eacbba1674325c32080cfc396a5301dcce309cee2ffd8fd8037aa24b5bb14"
+  },
+  "foxit_differential_test": false,
+  "full_feature_validation": false,
+  "limitations": [
+    "Generated fixtures; no original execution, physical device, legal/LTV or complete XFA/FormCalc/Acrobat API claim."
+  ]
+}

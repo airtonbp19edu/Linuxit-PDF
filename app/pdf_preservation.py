@@ -81,16 +81,23 @@ def append_dss_copy(path, request):
     """Append validation material without rewriting any byte covered by earlier signatures.
 
     Existing DSS arrays and VRI keys are preserved; new data joins the global DSS.
+    Optional vri_fields explicitly associates incoming material with selected
+    verified signatures. It does not assert that the supplied chain is complete.
     Imported certificates are *not* trusted automatically; inspect with explicit CA.
     """
-    _require(isinstance(request, dict) and set(request) ==
-             {'destination', 'source_sha256', 'certificates', 'crls', 'ocsps'}, 'Pedido DSS inválido.')
+    required = {'destination', 'source_sha256', 'certificates', 'crls', 'ocsps'}
+    _require(isinstance(request, dict) and required <= set(request) <= required | {'vri_fields'}, 'Pedido DSS inválido.')
+    selected = request.get('vri_fields', [])
+    _require(isinstance(selected,list) and len(selected)<=16 and all(isinstance(n,str) for n in selected)
+             and len(set(selected))==len(selected), 'Seleção de assinaturas VRI inválida.')
     source = Path(path).resolve();target = Path(request['destination'])
     original = _read(source, MAX_FILE);incoming = _material(request)
     with _signing_source(source, request['source_sha256']) as (reader, fields, identity):
         report = inspect_pdf_signatures(source, {})
         _require(any(s['status'] == 'verified' for s in report['signatures']), 'DSS exige assinatura ou carimbo existente verificado.')
         _require(report['dss_error'] is None, 'DSS existente inválido; cópia recusada.')
+        verified = {s['field']:s for s in report['signatures'] if s['status']=='verified'}
+        _require(all(name in verified for name in selected), 'VRI exige selecionar assinaturas verificadas deste PDF.')
         existing = _dss_material(reader) or {'certificates': [], 'crls': [], 'ocsps': []}
         dss_ref = reader.root_object.get('/DSS')
         dss = DictionaryObject(dss_ref.get_object()) if dss_ref is not None else DictionaryObject()
@@ -101,19 +108,42 @@ def append_dss_copy(path, request):
             reference = IndirectObject(number, 0, reader);number += 1
             return reference
         sizes = {}
+        references = {}
         for key, pdf_key in (('certificates', '/Certs'), ('crls', '/CRLs'), ('ocsps', '/OCSPs')):
             merged = list(dict.fromkeys(existing.get(key, []) + incoming[key]))
             _require(len(merged) <= MATERIAL_LIMITS[key], 'Material DSS combinado acima do limite.')
-            dss[NameObject(pdf_key)] = ArrayObject(stream(raw) for raw in merged)
+            refs = {raw:stream(raw) for raw in merged};references[key]=refs
+            dss[NameObject(pdf_key)] = ArrayObject(refs.values())
             sizes[key] = len(merged)
+        vri = dss.get('/VRI');vri = DictionaryObject(vri.get_object()) if vri is not None else DictionaryObject()
+        for name in selected:
+            digest = verified[name]['vri']['key'];pdf_key = NameObject('/'+digest)
+            old = vri.get(pdf_key);entry = DictionaryObject(old.get_object()) if old is not None else DictionaryObject()
+            old_material = existing.get('_vri',{}).get(digest,{})
+            for key, local_key in (('certificates','/Cert'),('crls','/CRL'),('ocsps','/OCSP')):
+                merged = list(dict.fromkeys(old_material.get(key,[]) + incoming[key]))
+                _require(len(merged)<=MATERIAL_LIMITS[key], 'Material VRI combinado acima do limite.')
+                refs = []
+                for data in merged:
+                    if data not in references[key]:references[key][data]=stream(data)
+                    refs.append(references[key][data])
+                entry[NameObject(local_key)] = ArrayObject(refs)
+            vri[pdf_key] = entry
+        _require(len(vri)<=256, 'Acima de 256 entradas VRI.')
+        if vri:dss[NameObject('/VRI')] = vri
         new[number] = dss;updated = DictionaryObject(reader.root_object)
         updated[NameObject('/DSS')] = IndirectObject(number, 0, reader)
         reference = reader.trailer.raw_get('/Root')
         raw = original + _incremental_update(original, reader, new, {(reference.idnum, reference.generation): updated})
-    _publish(source, target, raw, identity)
+    def validate(final):
+        by_name={item['field']:item for item in final['signatures']}
+        _require(all(by_name.get(name,{}).get('vri',{}).get('matched') is True for name in selected),
+                 'Associação VRI não confirmada; nenhuma cópia publicada.')
+    _publish(source, target, raw, identity, validate)
     return dict(schema='linuxit-dss-copy-v1', path=str(target), source_sha256=identity,
                 output_sha256=_sha(target), incremental=True, material=sizes,
-                trust_assessed=False, network_used=False, pades_lta_claimed=False)
+                trust_assessed=False, network_used=False, pades_lta_claimed=False,
+                vri_fields=selected, vri_entries=len(vri))
 
 
 def prepare_document_timestamp(path, request):

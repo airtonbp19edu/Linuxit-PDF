@@ -44,6 +44,8 @@ Lê `/Cert`, `/CRL`, `/OCSP` de cada entrada com validação DER, limites de ite
 
 Cada assinatura informa chave, correspondência, origem, contagens, presença de certificados/revogação e `validation_material_complete`. Este último é nulo sem política explícita. Só fica verdadeiro com VRI correspondente, material de certificado/revogação presente, integridade da assinatura e cadeia/revogação confirmadas pela política offline existente. DER válido ou uma entrada no índice não bastam. Certificados de confiança seguem escolhidos pelo usuário; nenhuma URL é consultada.
 
+A incorporação incremental também aceita `vri_fields`: associa explicitamente o material recebido a cada assinatura verificada selecionada, preserva entradas anteriores e mescla somente seu material prévio com os arquivos recebidos. Reutiliza streams quando possível, confirma a associação na cópia reaberta e preserva todos os bytes anteriores. Sem seleção continua o armazenamento global anterior. A interface permite escolher assinaturas da última verificação; o hash dessa verificação precisa continuar atual. O painel informa VRI correspondente/fallback e distingue material não avaliado de validação offline aprovada.
+
 Limites: essa completude refere-se à verificação técnica implementada, não certifica LTV/PAdES, validade jurídica, cronologia histórica, cobertura de revisões posteriores ou todo o material de carimbos encadeados.
 
 ## Validação e próximo passo
@@ -51,3 +53,9 @@ Limites: essa completude refere-se à verificação técnica implementada, não 
 Primeira rodada local estruturada: `testes/resultados/quatro-itens-2026-10-23/windows-portable-01.json`, **75 casos: 73 aprovados, zero falhas/erros, dois pulos por ausência de Poppler**. Inclui motor QuickJS real e regressões XFA, redação vetorial e parser DSS/VRI. Essa seleção não executou o conjunto criptográfico OpenSSL nem validação GTK/Poppler integral. Não representa paridade com o original.
 
 Há casos de integração adicionais para redação com geometria real/rotações e DSS/VRI com CMS real e cadeia/CRLs de PKI sintética. A próxima validação Linux deve executá-los e a suíte existente, preservando relatórios completos e examinando falhas/pulos. Não gerar/publicar Flatpak ou integrar ramos por inferência. Main, candidato 0.1.19, workflows da main, critérios/pesos e VM preservados.
+
+## Primeira execução Linux — 23/10/2026, após 18:55
+
+CI `40030258851`, revisão `40e8441`, terminou com falha real no novo teste de redação: o fixture reutilizava `marked.pdf` nas rotações 90/270, e a proteção contra sobrescrita recusou corretamente essas duas preparações. Não foi falha do algoritmo de geometria: esses subcasos não chegaram a executá-lo. O fixture passa a usar nomes distintos por rotação. O caso sem rotação, a recusa de anexo incompatível e os quatro casos criptográficos de VRI passaram no Linux. Os logs e ZIPs originais foram baixados com SHA-256 conferido, preservados fora do Git em `analysis-local/pdf-features-ci/40030258851-*`.
+
+A primeira execução ainda não certifica a revisão corrigida. Aceitação e probes posteriores foram pulados porque a suíte falhou. A ampliação posterior de escrita VRI também exige outra validação da nova revisão. Não apresentar esse CI como sucesso ou repetir a mesma revisão sem uma mudança que justifique o novo teste.

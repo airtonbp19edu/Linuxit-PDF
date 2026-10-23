@@ -95,8 +95,8 @@ class HiddenRedactionPopplerTests(unittest.TestCase):
         writer=PdfWriter(clone_from=PdfReader(BytesIO(fixture(rotate=rotate))))
         writer.add_metadata({'/Title':'SEGREDO 123'});writer.add_outline_item('SEGREDO público',0)
         writer.add_attachment(attachment,b'SEGREDO em anexo, texto publico')
-        source=self.root/'plain.pdf';writer.write(source)
-        marked=self.root/'marked.pdf'
+        source=self.root/f'plain-{rotate}.pdf';writer.write(source)
+        marked=self.root/f'marked-{rotate}.pdf'
         save_edited_copy(source,marked,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
                          operations=[dict(kind='add-redaction',page=0,rect=[30,185,240,225],text='marcar')])
         return marked

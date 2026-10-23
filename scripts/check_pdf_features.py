@@ -13,7 +13,7 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
 MODULES=('test_redaction_hidden','test_vector_redaction','test_redaction_apply',
-         'test_signature_vri','test_signature_vri_crypto','test_dss_validation',
+         'test_signature_vri','test_signature_vri_crypto','test_dss_validation','test_signature_preservation',
          'test_form_javascript_api','test_form_javascript','test_form_javascript_security',
          'test_xfa_positioned_formcalc','test_xfa_flow','test_xfa_flow_security','test_pdf_xfa')
 
@@ -30,7 +30,9 @@ def main():
     sys.path.insert(0,str(ROOT/'tests'));sys.path.insert(0,str(ROOT/'app'))
     modules=list(MODULES)
     if args.portable:
-        modules=[m for m in modules if m not in ('test_signature_vri_crypto','test_dss_validation','test_redaction_apply')]
+        modules=[m for m in modules if m not in ('test_signature_vri_crypto','test_dss_validation','test_signature_preservation','test_redaction_apply')]
+        modules.extend(('test_signature_preservation.PreservationTests.test_explicit_vri_selection_appends_key_for_full_contents_and_keeps_original_bytes',
+                        'test_signature_preservation.PreservationTests.test_unknown_or_duplicate_vri_selection_never_publishes'))
     class Result(unittest.TextTestResult):
         def __init__(self,*a,**kw):super().__init__(*a,**kw);self.cases=[]
         def addSuccess(self,test):self.cases.append(dict(id=test.id(),status='passed'));super().addSuccess(test)

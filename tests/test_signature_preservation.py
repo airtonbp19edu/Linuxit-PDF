@@ -120,6 +120,31 @@ class PreservationTests(unittest.TestCase):
             append_dss_copy(signed, dict(request, source_sha256=hashlib.sha256(signed.read_bytes()).hexdigest(), ocsps=[str(bad)]))
         self.assertFalse(target.exists())
 
+    def test_explicit_vri_selection_appends_key_for_full_contents_and_keeps_original_bytes(self):
+        source=self.signed();before=source.read_bytes()
+        signature=inspect_pdf_signatures(source,{})['signatures'][0]
+        target=self.root/'vri.pdf'
+        result=append_dss_copy(source,dict(destination=str(target),source_sha256=hashlib.sha256(before).hexdigest(),
+            certificates=[str(self.ca_path)],crls=[],ocsps=[],vri_fields=[signature['field']]))
+        self.assertEqual(result['vri_entries'],1);self.assertEqual(result['vri_fields'],[signature['field']])
+        self.assertEqual(source.read_bytes(),before);self.assertTrue(target.read_bytes().startswith(before))
+        item=inspect_pdf_signatures(target,{})['signatures'][0]
+        self.assertTrue(item['vri']['matched']);self.assertEqual(item['vri']['key'],signature['vri']['key'])
+        self.assertEqual(item['vri']['certificates'],1);self.assertIsNone(item['vri']['validation_material_complete'])
+        another=self.root/'vri2.pdf'
+        again=append_dss_copy(target,dict(destination=str(another),source_sha256=result['output_sha256'],
+            certificates=[str(self.ca_path)],crls=[],ocsps=[],vri_fields=[signature['field']]))
+        self.assertEqual(again['vri_entries'],1);self.assertTrue(another.read_bytes().startswith(target.read_bytes()))
+
+    def test_unknown_or_duplicate_vri_selection_never_publishes(self):
+        source=self.signed();before=source.read_bytes();target=self.root/'never-vri.pdf'
+        signature=inspect_pdf_signatures(source,{})['signatures'][0]
+        for selected in (['missing'],[signature['field'],signature['field']],True):
+            with self.subTest(selected=selected),self.assertRaises(ValueError):
+                append_dss_copy(source,dict(destination=str(target),source_sha256=hashlib.sha256(before).hexdigest(),
+                    certificates=[str(self.ca_path)],crls=[],ocsps=[],vri_fields=selected))
+            self.assertFalse(target.exists());self.assertEqual(source.read_bytes(),before)
+
     def prepare(self, source=None, name='pending'):
         source = source or self.source;folder = self.root / name
         result = prepare_document_timestamp(source, dict(folder=str(folder), source_sha256=hashlib.sha256(source.read_bytes()).hexdigest()))
