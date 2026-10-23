@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-23T06:06:03.507508-03:00",
+  "updated_at_local": "2026-10-23T12:19:35.479192-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -504,9 +504,11 @@
       "evidence": [
         "testes/resultados/0.1.19/a6-review.json",
         "docs/PASSOS-4-6-A456-2026-10-22.md",
-        "testes/resultados/a6-windows-2026-10-22/review.json"
+        "testes/resultados/a6-windows-2026-10-22/review.json",
+        "testes/resultados/a6-windows-2026-10-23/review.json",
+        "testes/resultados/a6-anotacoes-2026-10-23/review.json"
       ],
-      "note": "Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nativo5/5, mas falta manifesto no destino após instalar; suíte/aceitação puladas. Ramo separado codex/windows-installer-diagnostics. Critérios15/16 permanecem parciais.",
+      "note": "Não é A6 universal concluída. Windows (ramo claude/windows-installer, 92f1708, CI 39958811654): instalação/desinstalação 8/8, suíte própria 759 executados/735 aprovados/0 falhas/0 erros/24 pulados só-Linux e aceitação 79/79 no runner Windows Server 2022. Ramo ainda não integrado à main; OCR/mídia no Windows sem validação; sem certificação de Windows de usuário. Anotações (ramo claude/anotacoes-universais, 1df4aba, CI 39967990215): regra única para todo tipo exceto formulário, suíte 753/753 e aceitação 81/81 no Linux; Flatpak/Windows dessa mudança pendentes. Critérios15/16 permanecem parciais.",
       "subitems": [
         {
           "id": "javascript",
@@ -535,8 +537,8 @@
         {
           "id": "annotations",
           "title": "Edição de anotações",
-          "status": "bounded_own_subset_validated",
-          "evidence": "testes/resultados/0.1.19/a6-review.json"
+          "status": "universal_rule_validated_linux_source",
+          "evidence": "testes/resultados/a6-anotacoes-2026-10-23/review.json"
         },
         {
           "id": "recovery",
@@ -559,8 +561,8 @@
         {
           "id": "windows",
           "title": "Instalador Windows",
-          "status": "partial_installer_verification_blocked",
-          "evidence": "testes/resultados/a6-windows-2026-10-22/review.json"
+          "status": "native_suite_and_acceptance_passed_on_ci_runner",
+          "evidence": "testes/resultados/a6-windows-2026-10-23/review.json"
         }
       ]
     },

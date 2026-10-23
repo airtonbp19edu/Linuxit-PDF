@@ -1,0 +1,59 @@
+{
+  "schema": "linuxit-a6-annotations-review-v1",
+  "reviewed_at_local": "2026-10-23T11:21:43-03:00",
+  "reviewer": "Claude",
+  "status": "bounded_universal_rule_validated_linux_source",
+  "summary": "Uma regra única (app/annotation_universal.py) decide, para cada anotação que não é campo de formulário, mover, redimensionar, excluir, editar texto, cor e opacidade, com a semântica de flags da ISO 32000-1 12.5.3. A mesma regra alimenta a lista do diálogo e é aplicada ao salvar a cópia.",
+  "branch": "claude/anotacoes-universais",
+  "branch_commit": "1df4aba",
+  "base": "main 32cb630",
+  "ci": {
+    "id": 39967990215,
+    "url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39967990215",
+    "conclusion": "success",
+    "suite": {
+      "run": 753,
+      "passed": 753,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "acceptance": {
+      "counts": {
+        "passed": 81,
+        "failed": 0,
+        "error": 0,
+        "not_run": 0
+      },
+      "revision": "1df4abaf9a2d44d295e2c0f9d2669640d6f2c69c",
+      "revision_dirty": false
+    },
+    "earlier": {
+      "id": 39966777218,
+      "result": "suíte aprovada; aceitação 79/81: S12-14-4/6 ainda esperavam recusa para nota sem aparência"
+    }
+  },
+  "acceptance_sha256_as_downloaded": "477c136b0c5b190b658b51cf20b874fbe729172e2f89cbe1fc4e4c1f78c98bdd",
+  "new_tests": [
+    "tests/test_annotation_universal.py (7)",
+    "tests/test_annotation_style_gtk.py::test_stamp_keeps_its_colours_and_locked_rows_are_explained",
+    "tests/test_annotation_resize.py::test_line_endpoints_follow_the_new_rectangle"
+  ],
+  "changed_expectations": [
+    "test_annotation_extensions: Locked permite editar conteúdo e LockedContents permite excluir (ISO 32000-1); resposta em outra página permite texto e bloqueia exclusão/movimento",
+    "test_annotation_style: nota sem aparência aceita cor; nota com aparência própria recusa cor",
+    "test_annotation_resize: linha redimensionável; recusa fora da página mantida",
+    "S12-14-4/6: recusas agora com nota travada (Locked) e ícone NoZoom; texto da especificação e registro de contratos atualizados"
+  ],
+  "test_ids_preserved": true,
+  "limits": [
+    "Campos de formulário (Widget) seguem o fluxo de formulários.",
+    "Respostas não se movem com a nota; grupos /RT Group não são editados separadamente.",
+    "Excluir anotação com respostas, ligada à árvore de acessibilidade, alvo de ação de mídia ou referenciada por outra página é recusado (use Excluir conversa quando couber).",
+    "Cor muda só onde o desenho é refeito fielmente ou em ícones sem aparência; aparências de outros programas mudam só a opacidade.",
+    "Ao redimensionar aparências de outros programas, o visualizador estica o desenho (traços podem engrossar com escala desigual).",
+    "Excluir anexo não garante apagar os bytes anexados.",
+    "Ramo não integrado à main; Flatpak e Windows desta mudança ainda não executados.",
+    "Não é paridade Foxit nem família integral."
+  ]
+}
