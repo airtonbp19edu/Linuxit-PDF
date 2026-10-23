@@ -11,7 +11,26 @@ Claude/Codex fazem sozinhos, (2) o que precisa do usuário, (3) o que usa a VM. 
 - Inventário fixo: **104/116 operações com código próprio**; **0/116 comparadas** por completo com o Foxit;
   paridade **0/25** famílias. Conclusão global da recodificação: indeterminada.
 
-## 1. Claude ou Codex fazem sozinhos (sem usuário, sem VM) — 8,25 pontos fecháveis
+## Correção — 2026/10/23 às 12:20 (Claude)
+
+Ao começar estes cinco critérios, conferi as notas de cada um em `progresso/progresso.json` e a
+classificação abaixo estava otimista:
+
+- **E12 (1,50 + 2,00):** as notas registram que o detalhamento continua parcial porque falta a
+  especificação de referência do original (comportamento observado) e a decisão B3; a Fase A só
+  consolida quando as análises e observações pendentes terminarem. Dependem da **VM e da B3**, não só
+  de nós.
+- **E8 busca e impressão (1,74 + 1,74) e E9 diagramas (1,27):** fecham sem VM e sem decisão, mas
+  exigem **decompilar funções novas** (S2: corpo do modo 5 `0x166f160`, via alternativa `0x166d990`,
+  cancelamento da fila, contexto `0x138`; S1: contratos `+3/+0xc`, proximidade, ranqueamento, erros;
+  S3: dez sementes dos motores de anotações, formulários, assinaturas e camadas). Isso precisa dos
+  binários do Foxit e do Ghidra, que ficam em `A:\Programas` no PC do usuário, fora das pastas
+  conectadas ao Claude (pedido de acesso barrado automaticamente) e acessíveis ao Codex.
+
+Assim, sem VM nem decisão restam **4,75 pontos** (E8 + E9), que dependem de ferramenta: o Codex no PC
+ou o Claude com as pastas conectadas.
+
+## 1. Claude ou Codex fazem sozinhos (sem usuário, sem VM) — classificação inicial (ver correção acima)
 
 | Etapa | Critério | Pontos | Quem |
 |---|---|---:|---|
