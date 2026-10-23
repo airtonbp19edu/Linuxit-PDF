@@ -3808,3 +3808,9 @@ proximidade +0x10, escritor de AddMatchTerms, escapes/erros. Em S3: consumidores
 fixado antes de rodar 0x10041820/0x10041bc0/0x10041bf0/0x10045380) e os motores. E12 (entradas/
 saídas/erros, Fase A) depende de VM/B3: não fechado. Próximo do Claude: lista de desenvolvimento
 (redação em metadados/marcadores/anexos no ramo `claude/redacao-completa`).
+
+## 2026/10/23 às 12:50 (America/Sao_Paulo, UTC-03:00) — Claude: item de redação pausado
+
+A implementação da redação de dados ocultos (metadados/marcadores/anexos) foi interrompida por
+um filtro automático de segurança do assistente antes de gravar qualquer arquivo. Nenhuma mudança
+em app/tests. Aguardando decisão do usuário sobre como seguir. Itens 2–6 da lista não iniciados.
