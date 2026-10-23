@@ -3723,3 +3723,7 @@ Pedido do usuário (00:44): dividir, trabalhar em paralelo, fazer tudo o possív
 ## 2026/10/23 às 01:05 (America/Sao_Paulo, UTC-03:00) — divisão ajustada; chat por arquivo
 
 Codex propôs às 00:48 ser operador exclusivo da VM; Claude aceitou. Claude não assume S2/S3/C1/S4. Claude fica com K1 (Windows), correções no app vindas da VM, K3, K4, K5. Chat: CHAT-CLAUDE.txt e CHAT-CODEX.txt, porque gravações inteiras do CHAT-IA.txt se sobrescreviam. K1: causa = ntpath do MSYS2 mantém "/" e o NSIS ignorava /D= (instalava na pasta padrão); MessageBox sem /SD travava o modo silencioso. Correção facea01, CI 39896899395.
+
+## 2026/10/23 às 01:20 (America/Sao_Paulo, UTC-03:00) — K4 proposta B3 pronta; K1 em correção
+
+K4: docs/PROPOSTA-B3-2026-10-23.md com opções A/B/C, números do inventário (104/116 com código próprio, 0/116 comparadas, paridade 0/25) e estimativa 55-70% só com A ou C. Decisão do usuário; nada alterado. K1 instalador Windows: 2a correção (native() para barras do MSYS2) fez o makensis falhar por causa do /SD IDOK; 3a correção 0e92897 troca para IfSilent + labels, CI 39897411096. O arquivo da proposta tinha entrado por engano no commit do ramo Windows; trazido para a main aqui.
