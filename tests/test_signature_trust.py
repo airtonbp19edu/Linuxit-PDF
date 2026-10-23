@@ -1,6 +1,6 @@
 """Synthetic CA/CRL/RFC3161 decisions with OpenSSL; no online identities."""
 from datetime import datetime,timedelta,timezone
-import os,sys,tempfile,unittest,subprocess
+import os,sys,tempfile,unittest,subprocess,shutil
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(Path(os.environ.get('PRINT_VIEW_TEST_APP',ROOT/'app'))))
 from signature_trust import trust_policy,verify_trust
@@ -19,7 +19,7 @@ class TrustPolicyTests(unittest.TestCase):
             with self.subTest(changed=changed),self.assertRaises(ValueError):trust_policy(dict(good,**changed))
 
 
-@unittest.skipIf(os.name=='nt','Native OpenSSL and packaged ASN.1 integration')
+@unittest.skipUnless(shutil.which('openssl'),'OpenSSL offline CA/CRL/RFC3161 backend required')
 class OfflineTrustTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name)
@@ -77,10 +77,10 @@ class OfflineTrustTests(unittest.TestCase):
         key.write_bytes(tsa_key.private_bytes(serialization.Encoding.PEM,serialization.PrivateFormat.PKCS8,serialization.NoEncryption()))
         serial=self.root/'serial';serial.write_text('01\n');data=self.root/'signature.bin';data.write_bytes(signer['signature'].native)
         config=self.root/'tsa.cnf';config.write_text(f'''[tsa_config1]
-serial = {serial}
+serial = {serial.as_posix()}
 crypto_device = builtin
-signer_cert = {cert}
-signer_key = {key}
+signer_cert = {cert.as_posix()}
+signer_key = {key.as_posix()}
 signer_digest = sha256
 default_policy = 1.2.3.4.1
 digests = sha256
@@ -121,10 +121,10 @@ ess_cert_id_chain = no
         structure=cms.ContentInfo.load(self.cms);signer=structure['content']['signer_infos'][0]
         serial=self.root/'serial2';serial.write_text('01\n');data=self.root/'signature2.bin';data.write_bytes(signer['signature'].native)
         config=self.root/'tsa2.cnf';config.write_text(f'''[tsa_config1]
-serial = {serial}
+serial = {serial.as_posix()}
 crypto_device = builtin
-signer_cert = {cert}
-signer_key = {key}
+signer_cert = {cert.as_posix()}
+signer_key = {key.as_posix()}
 signer_digest = sha256
 default_policy = 1.2.3.4.1
 digests = sha256

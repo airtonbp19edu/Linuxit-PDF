@@ -6,6 +6,13 @@ on:
         description: 'Optional completed linux-flatpak run whose unpublished candidate is tested'
         required: false
         default: ''
+      probe:
+        description: 'Desktop acceptance or offline TLS trust prerequisite'
+        type: choice
+        options:
+          - desktop
+          - tls
+        default: desktop
 permissions:
   contents: read
   actions: read
@@ -47,6 +54,7 @@ jobs:
       - name: Check actual installed update, rollback, portal persistence and association
         env:
           CANDIDATE_RUN_ID: ${{ inputs.candidate_run_id }}
+          PROBE: ${{ inputs.probe }}
         run: |
           runuser -u linuxit-desktop -- bash -c '
             set -e
@@ -64,6 +72,10 @@ jobs:
               mapfile -t bundles < <(find analysis-local/desktop-candidate -name "LinuxitPDF-*-x86_64.flatpak" -type f)
               [ "${#manifests[@]}" -eq 1 ] && [ "${#bundles[@]}" -eq 1 ]
               candidate_args=(--candidate-manifest "${manifests[0]}" --candidate-bundle "${bundles[0]}")
+            fi
+            if [ "$PROBE" = tls ]; then
+              [ -n "$CANDIDATE_RUN_ID" ]
+              exec dbus-run-session -- /usr/bin/python3 scripts/check_flatpak_tls.py --output dist/desktop-results/tls-trust.json "${candidate_args[@]}"
             fi
             exec xvfb-run -a dbus-run-session -- bash scripts/run_desktop_probe.sh --output dist/desktop-results/integrations.json "${candidate_args[@]}"
           '

@@ -1,0 +1,42 @@
+{
+  "run": 40040320947,
+  "source_commit": "b13fe561a651377feb3d6494056f0e987ed93f0d",
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+    "bytes": 120443392,
+    "sha256": "d4bd3d329dbab539bf8b0e4edb31591d785a7c43ea16a8702980c631b25e37d3",
+    "digitally_signed": false
+  },
+  "repetitions": [
+    {
+      "report": "repetition-1.json",
+      "sha256": "2a43a5bc61c90817096754c99510db3d032fddffb1d0df57c2d5127b9793512a",
+      "artifact": {
+        "run": "40040320947",
+        "id": 12538439739,
+        "name": "linuxit-own-desktop-b99640463a5ed4ed105d2014f8cca57ef2486fd0-repetition-1",
+        "sha256": "sha256:fa9a7cb1cdef898bb9e5680f0a33d5c5e36626ac0ff0eae36fed0672dc30d849",
+        "github_digest": "sha256:fa9a7cb1cdef898bb9e5680f0a33d5c5e36626ac0ff0eae36fed0672dc30d849"
+      },
+      "checks": 9,
+      "passed": 9
+    },
+    {
+      "report": "repetition-2.json",
+      "sha256": "bfe4a604c7ef95d3360f3aaca31cdbd743346dbac592b93e76ab89f4ae6c85de",
+      "artifact": {
+        "run": "40040320947",
+        "id": 12538598888,
+        "name": "linuxit-own-desktop-b99640463a5ed4ed105d2014f8cca57ef2486fd0-repetition-2",
+        "sha256": "sha256:618e839a9fa83eb2e139919f799971c81c7428581f9aa4668d027a66cebbc8fb",
+        "github_digest": "sha256:618e839a9fa83eb2e139919f799971c81c7428581f9aa4668d027a66cebbc8fb"
+      },
+      "checks": 9,
+      "passed": 9
+    }
+  ],
+  "physical_desktop": false,
+  "foxit_executed": false,
+  "release_published": false,
+  "scope": "Real installed Flatpak, persistent portal grant/restart/revocation, MIME association/launch and version upgrade/rollback on two ephemeral Linux desktops."
+}
