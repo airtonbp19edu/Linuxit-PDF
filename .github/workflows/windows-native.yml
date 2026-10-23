@@ -49,6 +49,7 @@ jobs:
             mingw-w64-ucrt-x86_64-espeak-ng
             mingw-w64-ucrt-x86_64-gst-plugins-base
             mingw-w64-ucrt-x86_64-gst-plugins-good
+            mingw-w64-ucrt-x86_64-gst-plugin-gtk
       - name: Compile pinned QuickJS for the UCRT64 Python ABI
         shell: msys2 {0}
         run: |
