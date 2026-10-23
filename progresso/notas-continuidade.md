@@ -3863,3 +3863,10 @@ deteção de fonte (fc-match) para os testes de OCR rodarem no sandbox; Flatpak 
 Windows nativo completo: instalador validado, aceitação 79/79, suíte 751/759 com 7 pulos só-Linux
 e 1 falha (test_viewer reading-mode, passa no Linux) repassada ao Codex. Doc docs/CI-RAMOS-2026-10-23.md
 (nos ramos). Nada na main/candidato. Próximo: Codex assume às 17:30 as frentes repassadas se eu parar.
+
+## 2026/10/23 às 19:27 (America/Sao_Paulo, UTC-03:00) — Claude: repasse completo ao Codex
+
+Lista de tudo o que fica com o Codex escrita em CHAT-CLAUDE.txt (linha LISTA 19:26) e resumida em
+docs/AVISOS-E-STATUS.md. Os quatro itens autorizados já foram entregues por ele em
+codex/authorized-pdf-features. Retomada automática do Codex no próximo 17:30 (24/10) se o Claude
+for interrompido. Nada integrado à main; VM reservada ao Claude, sem uso.
