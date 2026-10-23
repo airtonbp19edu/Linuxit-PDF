@@ -1,4 +1,4 @@
-"""E13: Square, Circle and FreeText get a new rectangle with a regenerated appearance."""
+"""E13/A6: annotations get a new rectangle; geometry follows and own appearances are redrawn."""
 import hashlib,os,shutil,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];APP=Path(os.environ.get('PRINT_VIEW_TEST_APP',ROOT/'app'));sys.path.insert(0,str(APP))
@@ -36,7 +36,7 @@ class AnnotationResizeTests(unittest.TestCase):
 
     def test_square_and_circle_are_redrawn_in_the_new_rectangle(self):
         square,circle=self.records['/Square'],self.records['/Circle']
-        self.assertTrue(square['resizable'] and circle['resizable'] and not self.records['/Line']['resizable'])
+        self.assertTrue(square['resizable'] and circle['resizable'] and self.records['/Line']['resizable'])
         self.assertEqual(square['rect'],[20.0,200.0,120.0,280.0])
         out=self.save(self.source,[{'kind':'resize-annotation','page':0,'index':square['index'],'rect':[40,150,200,290]},
                                    {'kind':'resize-annotation','page':0,'index':circle['index'],'rect':[210,120,290,200]}])
@@ -57,9 +57,18 @@ class AnnotationResizeTests(unittest.TestCase):
         self.assertNotEqual(note['/AP']['/N'].get_object().get_data(),old)
         self.assertEqual(note['/Contents'],'Texto livre redimensionável')
 
+    def test_line_endpoints_follow_the_new_rectangle(self):
+        record=self.records['/Line'];x0,y0,x1,y1=record['rect']
+        out=self.save(self.source,[{'kind':'resize-annotation','page':0,'index':record['index'],'rect':[x0,y0-20,x0+(x1-x0)/2,y1+20]}])
+        note=self.note(out,record['index']);a,b,c,d=[float(v) for v in note['/L']]
+        nx1=x0+(x1-x0)/2;fx=lambda x:x0+(x-x0)*(nx1-x0)/(x1-x0);fy=lambda y:y0-20+(y-y0)*(y1-y0+40)/(y1-y0)
+        for actual,expected in zip((a,b,c,d),(fx(150),fy(100),fx(280),fy(100))):self.assertAlmostEqual(actual,expected,places=3)
+        self.assertEqual([float(v) for v in note['/Rect']],[x0,y0-20,nx1,y1+20])
+        self.assertIn(b' l',note['/AP']['/N'].get_object().get_data())  # Own drawing regenerated from /L.
+
     def test_line_outside_page_and_tiny_rectangles_are_refused(self):
         before=sorted(self.root.iterdir())
-        for index,rect,message in ((self.records['/Line']['index'],[10,10,50,50],'redimensionad'),
+        for index,rect,message in ((self.records['/Line']['index'],[150,90,400,110],'CropBox'),
                                    (self.records['/Square']['index'],[10,10,400,50],'CropBox'),
                                    (self.records['/Square']['index'],[10,10,10.1,50],'0,25')):
             with self.subTest(message=message),self.assertRaisesRegex(ValueError,message):

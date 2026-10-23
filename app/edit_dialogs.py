@@ -89,6 +89,35 @@ TITLES.update({'add-polygon':'Adicionar polígono','add-polyline':'Adicionar pol
     'update-comment':'Editar comentário ou resposta','set-popup':'Configurar popup','delete-conversation':'Excluir conversa e popups'})
 
 
+CAPABILITY = {'move-annotation':'movable', 'resize-annotation':'resizable', 'style-annotation':'opacity_editable',
+              'delete-annotation':'deletable', 'update-annotation':'text_editable'}
+REASON_KEYS = {'movable':'geometry', 'resizable':'resize', 'opacity_editable':'locked', 'deletable':'delete', 'text_editable':'text'}
+
+
+def annotation_choices(info, page, kind):
+    """Annotations of `page` that accept `kind`, plus one sentence about the ones that do not."""
+    flag = CAPABILITY[kind];rows = [r for r in info.get('annotations', []) if r['page'] == page]
+    def accepts(record):
+        # Records without capability keys come from older edit-info replies, which listed only editable rows.
+        value = record.get(flag, record.get('styleable') if flag == 'opacity_editable' else True)
+        return bool(value) and (kind != 'resize-annotation' or record.get('rect'))
+    allowed = [r for r in rows if accepts(r)]
+    refused = [r for r in rows if r not in allowed]
+    note = ''
+    if refused:
+        first = refused[0];reasons = first.get('reasons', {})
+        why = (reasons.get('all') or reasons.get('locked') or reasons.get(REASON_KEYS[flag]) or reasons.get('geometry')
+               or 'operação não suportada para este tipo')
+        from annotation_universal import label
+        note = f"{len(refused)} anotação(ões) desta página não aceitam esta operação; por exemplo, {first.get('label') or label(first['subtype'])} {first['index']+1}: {why}"
+    return allowed, note
+
+
+def annotation_label(record):
+    from annotation_universal import label
+    return f"{record.get('label') or label(record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}"
+
+
 def advanced_operation_dialog(parent, kind, info, page):
     if kind == 'add-ink':return ink_operation_dialog(parent,info,page)
     if kind not in ADVANCED_KINDS:return None
@@ -147,10 +176,16 @@ def advanced_operation_dialog(parent, kind, info, page):
             except ValueError as exc:raise ValueError('Use X,Y numéricos por linha.') from exc
             return dict(kind=kind,page=page,points=coords,text=comment.get_text())
     elif kind in ('move-annotation','update-comment','delete-conversation','set-popup'):
-        records=[r for r in info.get('annotations' if kind=='move-annotation' else 'conversation_comments',[]) if r['page']==page]
-        for record in records:combo.append_text(f"{record['index']+1} · {display_attachment_name(record['text'][:80])}")
         if kind=='move-annotation':
-            hint.set_text('Move uma anotação simples sem respostas/popup. Deslocamentos em pontos PDF; a forma inteira deve ficar na página.')
+            records,refused=annotation_choices(info,page,kind)
+            for record in records:combo.append_text(annotation_label(record))
+        else:
+            records=[r for r in info.get('conversation_comments',[]) if r['page']==page];refused=''
+            for record in records:combo.append_text(f"{record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        if refused:
+            other=Gtk.Label(label=refused,xalign=0);other.set_line_wrap(True);box.add(other)
+        if kind=='move-annotation':
+            hint.set_text('Move qualquer anotação (exceto campos de formulário) junto com seu popup; respostas ficam onde estão. Deslocamentos em pontos PDF; a anotação deve continuar na página.')
             width=info['page_boxes'][page][2]-info['page_boxes'][page][0];height=info['page_boxes'][page][3]-info['page_boxes'][page][1]
             dx=Gtk.SpinButton.new_with_range(-width,width,.5);dy=Gtk.SpinButton.new_with_range(-height,height,.5)
             box.add(Gtk.Label(label='Deslocamento horizontal'));box.add(dx);box.add(Gtk.Label(label='Deslocamento vertical'));box.add(dy)
@@ -275,9 +310,10 @@ def advanced_operation_dialog(parent, kind, info, page):
             return dict(kind=kind,page=page,index=records[combo.get_active()]['index'],text=text,author=author.get_text())
     elif kind == 'resize-annotation':
         # E13: new rectangle for rectangles, ellipses and free text, appearance regenerated.
-        records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('resizable') and r.get('rect')]
-        names = {'/Square':'Retângulo','/Circle':'Elipse','/FreeText':'Texto livre','/Redact':'Redação marcada'}
-        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        records, refused = annotation_choices(info, page, kind)
+        for record in records:combo.append_text(annotation_label(record))
+        if refused:
+            other = Gtk.Label(label=refused, xalign=0);other.set_line_wrap(True);box.add(other)
         left, bottom, right, top = info['page_boxes'][page]
         grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid);spins = []
         for row, label in enumerate(('Esquerda', 'Inferior', 'Direita', 'Superior')):
@@ -288,17 +324,17 @@ def advanced_operation_dialog(parent, kind, info, page):
             if combo.get_active() < 0:return
             for spin, value in zip(spins, records[combo.get_active()]['rect']):spin.set_value(value)
         combo.connect('changed', selected_rect)
-        hint.set_text('Informe a nova área em pontos PDF, antes da rotação. O desenho é refeito no novo tamanho; o texto livre é diagramado de novo.')
+        hint.set_text('Informe a nova área em pontos PDF, antes da rotação. Linhas, vértices e traços acompanham a nova área. Desenhos do Linuxit são refeitos; aparências de outros programas (carimbos, setas, imagens) são mantidas e esticadas pelo visualizador.')
         def operation():
-            if combo.get_active() < 0:raise ValueError('Não há retângulos, elipses ou textos livres nesta página.')
+            if combo.get_active() < 0:raise ValueError('Não há anotações redimensionáveis nesta página.')
             return dict(kind=kind, page=page, index=records[combo.get_active()]['index'], rect=[round(s.get_value(), 3) for s in spins])
     elif kind == 'style-annotation':
         # E12: colour and opacity of existing simple annotations; appearance regenerated.
-        records = [r for r in info.get('annotations', []) if r['page'] == page and r.get('styleable')]
-        names = {'/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado','/StrikeOut':'Tachado',
-                 '/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho','/Polygon':'Polígono',
-                 '/PolyLine':'Polilinha','/Caret':'Inserção'}
-        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        records, refused = annotation_choices(info, page, kind)
+        for record in records:combo.append_text(annotation_label(record))
+        if refused:
+            other = Gtk.Label(label=refused, xalign=0);other.set_line_wrap(True);box.add(other)
+        keep = Gtk.CheckButton(label='Manter as cores do arquivo (muda só a opacidade)');box.add(keep)
         color_button = Gtk.ColorButton();color_button.set_use_alpha(False);color_button.get_accessible().set_name('Cor da anotação')
         opacity = Gtk.SpinButton.new_with_range(10, 100, 5);opacity.set_value(100);opacity.get_accessible().set_name('Opacidade em porcentagem')
         grid = Gtk.Grid(column_spacing=10, row_spacing=6);box.add(grid)
@@ -309,20 +345,25 @@ def advanced_operation_dialog(parent, kind, info, page):
             record = records[combo.get_active()];rgba = Gdk.RGBA()
             rgba.red, rgba.green, rgba.blue = record.get('color') or (1, 0, 0);rgba.alpha = 1
             color_button.set_rgba(rgba);opacity.set_value(round(100 * record.get('opacity', 1)))
+            colourable = bool(record.get('color_editable', record.get('styleable')))
+            keep.set_active(not colourable);keep.set_sensitive(colourable);color_button.set_sensitive(colourable)
         combo.connect('changed', selected_style)
-        hint.set_text('Muda cor e opacidade de retângulos, elipses, linhas, destaques, sublinhados, desenhos e polígonos já existentes; a aparência é redesenhada a partir da geometria. Notas, texto livre e carimbos não entram.')
+        keep.connect('toggled', lambda *_: color_button.set_sensitive(not keep.get_active() and combo.get_active() >= 0
+                                                                       and bool(records[combo.get_active()].get('color_editable', records[combo.get_active()].get('styleable')))))
+        hint.set_text('Opacidade vale para qualquer anotação: o desenho original é mantido. A cor muda onde o desenho pode ser refeito fielmente (formas, linhas sem setas, destaques, desenhos) ou em notas e anexos sem aparência própria.')
         def operation():
-            if combo.get_active() < 0:raise ValueError('Não há anotações com cor editável nesta página.')
+            if combo.get_active() < 0:raise ValueError('Não há anotações com estilo editável nesta página.')
             rgba = color_button.get_rgba()
+            color = None if keep.get_active() else [round(rgba.red, 4), round(rgba.green, 4), round(rgba.blue, 4)]
             return dict(kind=kind, page=page, index=records[combo.get_active()]['index'],
-                        color=[round(rgba.red, 4), round(rgba.green, 4), round(rgba.blue, 4)],
-                        opacity=round(opacity.get_value() / 100, 4))
+                        color=color, opacity=round(opacity.get_value() / 100, 4))
     elif kind in ('delete-annotation','update-annotation'):
-        records = [r for r in info.get('annotations', []) if r['page'] == page]
-        names = {'/Text':'Nota','/Square':'Retângulo','/Highlight':'Destaque','/Underline':'Sublinhado',
-                 '/StrikeOut':'Tachado','/Squiggly':'Ondulado','/Circle':'Elipse','/Line':'Linha','/Ink':'Desenho',
-                 '/Redact':'Redação marcada'}
-        for record in records:combo.append_text(f"{names.get(record['subtype'],record['subtype'])} {record['index']+1} · {display_attachment_name(record['text'][:80])}")
+        records, refused = annotation_choices(info, page, kind)
+        for record in records:combo.append_text(annotation_label(record))
+        if refused:
+            other = Gtk.Label(label=refused, xalign=0);other.set_line_wrap(True);box.add(other)
+        if kind == 'delete-annotation':
+            hint.set_text('Exclui a anotação e seu popup da cópia. Anotações com respostas usam "Excluir conversa"; excluir um anexo não garante apagar os bytes anexados.')
         if kind == 'update-annotation':
             box.add(Gtk.Label(label='Comentário (pode ficar vazio)', xalign=0))
             comment = Gtk.TextView();comment.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
@@ -333,8 +374,10 @@ def advanced_operation_dialog(parent, kind, info, page):
                 if combo.get_active() < 0:return
                 record = records[combo.get_active()]
                 comment.get_buffer().set_text(record['text']);author.set_text(record.get('author', ''))
+                author.set_sensitive(bool(record.get('has_author', True)))
+                if not record.get('has_author', True):author.set_text('')
             combo.connect('changed', selected_annotation)
-            hint.set_text('Edite comentário e autor. A posição e a aparência da anotação serão preservadas. Anotações com bloqueios, respostas ou popup são recusadas.')
+            hint.set_text('Edite comentário e autor (ou a descrição, em links e mídia). Posição, aparência, popup e respostas são preservados. Conteúdo travado ou somente leitura é recusado.')
         def operation():
             if combo.get_active() < 0:raise ValueError('Não há anotações editáveis suportadas nesta página.')
             result = {'kind':kind, 'page':page, 'index':records[combo.get_active()]['index']}

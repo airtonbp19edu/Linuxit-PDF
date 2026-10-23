@@ -43,13 +43,15 @@ class AnnotationStyleTests(unittest.TestCase):
         source=self.annotated()
         info=inspect_editable_document(source)
         styleable=[r for r in info['annotations'] if r['styleable']]
-        self.assertEqual(sorted(r['subtype'] for r in styleable),['/Circle','/Highlight','/Ink','/Line','/Square'])
-        self.assertFalse(next(r for r in info['annotations'] if r['subtype']=='/Text')['styleable'])
+        # A note without its own appearance is drawn by the viewer from /C, so its colour is editable too.
+        self.assertEqual(sorted(r['subtype'] for r in styleable),['/Circle','/Highlight','/Ink','/Line','/Square','/Text'])
         styled=self.save(source,[{'kind':'style-annotation','page':0,'index':r['index'],'color':BLUE,'opacity':.5} for r in styleable])
         reader=PdfReader(styled)
         for ref in reader.pages[0]['/Annots']:
             note=ref.get_object()
-            if note['/Subtype']=='/Text':continue
+            if note['/Subtype']=='/Text':
+                self.assertEqual([float(c) for c in note['/C']],[0,0,1]);self.assertEqual(float(note['/CA']),.5)
+                self.assertNotIn('/AP',note);continue
             self.assertEqual([float(c) for c in note['/C']],[0,0,1]);self.assertEqual(float(note['/CA']),.5)
             stream=note['/AP']['/N'].get_object()
             self.assertIn(b'0.0000 0.0000 1.0000',stream.get_data())
@@ -72,10 +74,23 @@ class AnnotationStyleTests(unittest.TestCase):
         self.assertEqual((record['color'],record['opacity']),([0.0,0.0,1.0],1.0))
         r,g,b=self.pixel(again,20.6,240);self.assertGreater(b,200);self.assertLess(r,60)
 
+    def with_note_appearance(self,source):
+        from pypdf.generic import DecodedStreamObject,DictionaryObject,NameObject,ArrayObject,FloatObject
+        writer=PdfWriter(clone_from=str(source));target=self.root/'note-ap.pdf'
+        for ref in writer.pages[0]['/Annots']:
+            note=ref.get_object()
+            if note['/Subtype']=='/Text':
+                stream=DecodedStreamObject();stream.set_data(b'1 0 0 rg 0 0 10 10 re f')
+                stream.update({NameObject('/Type'):NameObject('/XObject'),NameObject('/Subtype'):NameObject('/Form'),
+                               NameObject('/BBox'):ArrayObject(FloatObject(v) for v in (0,0,10,10))})
+                note[NameObject('/AP')]=DictionaryObject({NameObject('/N'):writer._add_object(stream)})
+        with open(target,'wb') as handle:writer.write(handle)
+        return target
+
     def test_notes_bad_colour_and_too_low_opacity_are_refused_without_output(self):
-        source=self.annotated();records=inspect_editable_document(source)['annotations']
+        source=self.with_note_appearance(self.annotated());records=inspect_editable_document(source)['annotations']
         note=next(r['index'] for r in records if r['subtype']=='/Text');square=next(r['index'] for r in records if r['subtype']=='/Square')
-        cases=((note,BLUE,.5,'notas'),(square,[0,0,2],.5,'Cor'),(square,BLUE,.05,'Opacidade'),(square,[0,0],.5,'Cor'))
+        cases=((note,BLUE,.5,'aparência própria'),(square,[0,0,2],.5,'Cor'),(square,BLUE,.05,'Opacidade'),(square,[0,0],.5,'Cor'))
         before=sorted(self.root.iterdir())
         for index,color,opacity,message in cases:
             with self.subTest(message=message),self.assertRaisesRegex(ValueError,message):

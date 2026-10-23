@@ -136,20 +136,26 @@ class AnnotationExtensionTests(unittest.TestCase):
         note = reader.pages[0]['/Annots'][0].get_object();self.assertEqual(note['/Contents'],'');self.assertNotIn('/T',note)
 
     def test_locked_related_and_unsupported_annotations_cannot_be_changed_or_deleted(self):
+        # ISO 32000-1 12.5.3: ReadOnly blocks everything; Locked blocks deletion/geometry but not
+        # contents; LockedContents blocks contents but not deletion.
         note = self.writer.pages[0]['/Annots'][0].get_object()
-        for flag in (64,128,512):
+        update = {'kind':'update-annotation','page':0,'index':0,'text':'new','author':''}
+        delete = {'kind':'delete-annotation','page':0,'index':0}
+        for flag,update_ok,delete_ok in ((64,False,False),(128,True,False),(512,False,True)):
             note[NameObject('/F')] = NumberObject(flag);self.writer.write(self.source);self.record()
-            for kind in ('update-annotation','delete-annotation'):
-                operation = {'kind':kind,'page':0,'index':0}
-                if kind=='update-annotation':operation.update(text='new',author='')
-                self.reject(operation)
+            for operation,allowed in ((update,update_ok),(delete,delete_ok)):
+                with self.subTest(flag=flag,kind=operation['kind']):
+                    if allowed:self.save(operation);self.output.unlink()
+                    else:self.reject(operation)
         note[NameObject('/F')] = NumberObject(4)
         for key in ('/IRT','/Popup','/Parent'):
             note[NameObject(key)] = DictionaryObject();self.writer.write(self.source);self.record()
-            self.reject({'kind':'update-annotation','page':0,'index':0,'text':'new','author':''});note.pop(key)
+            self.reject(update);note.pop(key)
         reply = Text(rect=(5,5,20,20),text='reply');reply[NameObject('/IRT')]=note.indirect_reference
         self.writer.add_annotation(1,reply);self.writer.write(self.source);self.record()
-        self.reject({'kind':'update-annotation','page':0,'index':0,'text':'new','author':''})
+        # A reply on another page keeps the text editable but blocks deletion and movement.
+        self.assertEqual(self.save(update).pages[0]['/Annots'][0].get_object()['/Contents'],'new');self.output.unlink()
+        self.reject(delete);self.reject({'kind':'move-annotation','page':0,'index':0,'dx':1,'dy':1})
         self.reject({'kind':'update-annotation','page':0,'index':1,'text':'widget','author':''})
 
     def test_deleting_new_types_uses_current_indices_and_preserves_forms_notes_and_other_page(self):

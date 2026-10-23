@@ -17,8 +17,8 @@ from pdf_form_controls import inspect_controls, fill_controls
 from pdf_annotations import ANNOTATION_KINDS, create_annotation, create_ink
 from pdf_comments import COMMENT_TYPES
 from pdf_form_events import inspect_form_events, calculate_form_values, format_form_values
-from annotation_geometry import EXTRA_KINDS, RESIZABLE, create_extra_annotation, resize_annotation, move_annotation, conversation_members
-from annotation_style import STYLEABLE, create_redaction, current_style, restyle_annotation
+from annotation_geometry import EXTRA_KINDS, create_extra_annotation, conversation_members
+from annotation_style import create_redaction
 from pdf_xfa import XFAError, field_data_path, inspect_xfa, write_field_values
 from pdf_edit_security import edit_auth, authorize_operations, preserve_encryption, permissions as edit_permissions
 
@@ -178,48 +178,6 @@ def _annotation_rect(page, rect):
     return rect
 
 
-def _removable_annotation(note):
-    return (isinstance(note, DictionaryObject) and note.get('/Subtype') in
-            ('/Text', '/Square', '/Highlight', '/Underline', '/StrikeOut', '/Squiggly', '/Circle', '/Line', '/Ink', '/Polygon', '/PolyLine', '/Caret', '/FreeText', '/Stamp', '/Redact')
-            and not int(note.get('/F', 0)) & (64 | 128 | 512)
-            and not any(key in note for key in ('/IRT', '/Popup', '/Parent')))
-
-
-def _annotation_has_dependants(reader, note):
-    for page in reader.pages:
-        annots = page.get('/Annots')
-        if annots is None or not isinstance(annots.get_object(), ArrayObject):continue
-        for ref in annots.get_object():
-            other = ref.get_object()
-            if not isinstance(other, DictionaryObject):continue
-            for key in ('/IRT', '/Parent'):
-                related = other.get(key)
-                if related is not None and related.get_object() is note:return True
-    return False
-
-
-def _annotation_records(reader):
-    rows, size, truncated = [], 0, False
-    for page_index, page in enumerate(reader.pages):
-        annots = page.get('/Annots')
-        if annots is None or not isinstance(annots.get_object(), ArrayObject):continue
-        for index, ref in enumerate(annots.get_object()):
-            note = ref.get_object()
-            if not _removable_annotation(note):continue
-            text, author = note.get('/Contents', ''), note.get('/T', '')
-            if (not isinstance(text, str) or not isinstance(author, str)
-                    or len(text.encode('utf-8')) > MAX_TEXT_BYTES or len(author.encode('utf-8')) > 4096):continue
-            cost = len(text.encode('utf-8')) + len(author.encode('utf-8'))
-            if len(rows) >= 2000 or size + cost > 1024**2:truncated = True;continue
-            size += cost
-            color, opacity = current_style(note)
-            rows.append({'page':page_index, 'index':index, 'subtype':str(note['/Subtype']), 'text':text, 'author':author,
-                         'styleable':note['/Subtype'] in STYLEABLE, 'color':color, 'opacity':opacity,
-                         'resizable':note['/Subtype'] in RESIZABLE,
-                         'rect':[float(v) for v in note['/Rect']] if isinstance(note.get('/Rect'), list) and len(note['/Rect']) == 4 else None})
-    return rows, truncated
-
-
 def _bookmark_path(value, allow_root=False):
     _require(isinstance(value, list) and (0 if allow_root else 1) <= len(value) <= 32
              and all(type(i) is int and 0 <= i < 2048 for i in value), 'Caminho de marcador inválido.')
@@ -302,7 +260,8 @@ def inspect_editable_document(path, *, auth=None):
                 except XFAError:
                     pass
             result['xfa'] = {'hybrid': True, 'operations': sorted(XFA_OPERATIONS), 'bound_text_fields': bound}
-        result['annotations'], result['annotations_truncated'] = _annotation_records(reader)
+        import annotation_universal as universal
+        result['annotations'], result['annotations_truncated'] = universal.records(reader)
         result['reply_targets'] = []
         result['conversation_comments']=[];result['conversation_comments_truncated']=False;comment_bytes=0
         for page_index,page in enumerate(reader.pages):
@@ -370,17 +329,19 @@ def _apply(writer, operation):
         _require(set(operation)=={'kind','page',geometry,'text'},'Opções de anotação inválidas.')
         page=_page(writer,operation['page'])
         writer.add_annotation(operation['page'],create_extra_annotation(writer,list(map(float,page.cropbox)),operation))
-    elif kind in ('move-annotation','update-comment','delete-conversation','set-popup'):
-        expected={'kind','page','index'}|({'dx','dy'} if kind=='move-annotation' else {'text','author'} if kind=='update-comment' else {'rect','open'} if kind=='set-popup' else set())
+    elif kind == 'move-annotation':
+        # A6: any non-form annotation, with its popup; flags and links checked by annotation_universal.
+        _require(set(operation)=={'kind','page','index','dx','dy'},'Opções de comentário inválidas.')
+        import annotation_universal as universal
+        universal.move(writer,operation['page'],_page(writer,operation['page']),operation['index'],operation['dx'],operation['dy'])
+    elif kind in ('update-comment','delete-conversation','set-popup'):
+        expected={'kind','page','index'}|({'text','author'} if kind=='update-comment' else {'rect','open'} if kind=='set-popup' else set())
         _require(set(operation)==expected,'Opções de comentário inválidas.')
         page=_page(writer,operation['page']);annots=page.get('/Annots',[]);index=operation['index']
         _require(type(index) is int and 0<=index<len(annots),'Comentário não encontrado.')
         note=annots[index].get_object()
         _require(isinstance(note,DictionaryObject) and note.get('/Subtype') in COMMENT_TYPES and not int(note.get('/F',0))&(64|128|512),'Comentário bloqueado ou não suportado.')
-        if kind=='move-annotation':
-            _require(_removable_annotation(note) and not _annotation_has_dependants(writer,note),'Movimentação exige anotação simples sem vínculos.')
-            move_annotation(page,note,operation['dx'],operation['dy'])
-        elif kind=='delete-conversation':
+        if kind=='delete-conversation':
             members=conversation_members(writer,page,index)
             page[NameObject('/Annots')]=ArrayObject(ref for ref in annots if id(ref.get_object()) not in members)
         elif kind=='set-popup':
@@ -435,48 +396,32 @@ def _apply(writer, operation):
     elif kind == 'resize-annotation':
         # E13: new rectangle for Square, Circle or FreeText, appearance regenerated.
         _require(set(operation) == {'kind', 'page', 'index', 'rect'}, 'Opções de tamanho inválidas.')
-        page = _page(writer, operation['page']);annots = page.get('/Annots')
-        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
-        annots = annots.get_object();index = operation['index']
-        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
-        annotation = annots[index].get_object()
-        _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
-                 'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
-        resize_annotation(writer, annotation, _annotation_rect(page, operation['rect']))
+        import annotation_universal as universal
+        page = _page(writer, operation['page'])
+        universal.resize(writer, operation['page'], page, operation['index'], _annotation_rect(page, operation['rect']))
     elif kind == 'style-annotation':
         # E12: colour and opacity of an existing simple annotation, appearance regenerated.
+        # color None keeps the file's own colours and only changes opacity (any appearance).
         _require(set(operation) == {'kind', 'page', 'index', 'color', 'opacity'}, 'Opções de estilo inválidas.')
-        page = _page(writer, operation['page']);annots = page.get('/Annots')
-        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
-        annots = annots.get_object();index = operation['index']
-        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
-        annotation = annots[index].get_object()
-        _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
-                 'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
-        restyle_annotation(writer, annotation, operation['color'], operation['opacity'])
+        import annotation_universal as universal
+        universal.style(writer, operation['page'], _page(writer, operation['page']), operation['index'],
+                        operation['color'], operation['opacity'])
     elif kind in ('delete-annotation', 'update-annotation'):
         _require(set(operation) == ({'kind', 'page', 'index'} if kind == 'delete-annotation'
                                     else {'kind', 'page', 'index', 'text', 'author'}), 'Opções de anotação inválidas.')
-        page = _page(writer, operation['page']);annots = page.get('/Annots')
-        _require(annots is not None and isinstance(annots.get_object(), ArrayObject), 'Página sem anotações suportadas.')
-        annots = annots.get_object();index = operation['index']
-        _require(type(index) is int and 0 <= index < len(annots), 'Índice de anotação inválido.')
-        annotation = annots[index].get_object()
-        _require(_removable_annotation(annotation) and not _annotation_has_dependants(writer, annotation),
-                 'Anotação bloqueada, com respostas/popup ou de tipo não suportado.')
+        import annotation_universal as universal
+        page = _page(writer, operation['page']);index = operation['index']
         if kind == 'delete-annotation':
-            del annots[index]
+            universal.delete(writer, operation['page'], page, index)
         else:
             text, author = operation['text'], operation['author']
-            if annotation.get('/Subtype') in ('/FreeText','/Stamp'):
+            note, caps = universal.capabilities(writer, operation['page'], page, index)
+            if caps['text_editable'] and (note.get('/Subtype') == '/FreeText' or
+                                          note.get('/Subtype') == '/Stamp' and note.get('/Name') == '/LinuxitCustom'):
+                # Text drawn by Linuxit is laid out again so the appearance matches the new contents.
                 _apply(writer,dict(kind='update-comment',page=operation['page'],index=index,text=text,author=author))
                 return
-            _require(isinstance(text, str) and len(text.encode('utf-8')) <= MAX_TEXT_BYTES,
-                     'Comentário inválido ou acima do limite de 64 KiB.')
-            _require(isinstance(author, str) and len(author.encode('utf-8')) <= 4096, 'Autor inválido.')
-            annotation[NameObject('/Contents')] = TextStringObject(text)
-            if author:annotation[NameObject('/T')] = TextStringObject(author)
-            else:annotation.pop('/T', None)
+            universal.update_text(writer, operation['page'], page, index, text, author)
     elif kind in ANNOTATION_KINDS:
         geometry_key = 'points' if kind == 'add-line' else 'rect'
         _require(set(operation) == {'kind', 'page', geometry_key, 'text'}, 'Opções de anotação inválidas.')
