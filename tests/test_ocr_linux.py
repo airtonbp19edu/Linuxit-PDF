@@ -79,7 +79,7 @@ class OCRLinuxTests(unittest.TestCase):
 
     def test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page(self):
         from pdf_creation import invoke_image_creation
-        font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',64)
+        font=scan_font(64)
         tiff=self.root/'source.tiff';imported=self.root/'imported.pdf'
         with Image.new('RGB',(1200,450),'white') as first,Image.new('RGB',(1200,450),'white') as blank:
             ImageDraw.Draw(first).text((40,100),'LINUXIT DOCUMENTO TESTE',fill='black',font=font)
