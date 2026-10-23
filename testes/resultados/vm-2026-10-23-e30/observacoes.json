@@ -13,6 +13,23 @@
       "linuxit_expected": "A abertura é transacional; invocar abrir com documento aberto mostra o seletor e cancelar preserva o documento e a página atuais.",
       "divergence": "Nenhuma observada nesta variante.",
       "status": "observed"
+    },
+    {
+      "id": "UI02",
+      "control": "Imprimir (com PDF aberto)",
+      "foxit_observed": "Ctrl+P abriu o diálogo Print completo com 'Microsoft Print to PDF' (sem impressora física, rede off), A4 210x297, intervalo Todas 1-2, Print What 'Document and markups', prévia 1 de 2; o estado trazia 'Tile Large Pages' 200%/0.1mm. Durante a montagem o FoxitPDFReader.exe (PID 2788) ficou 'Não respondendo' ~10s (enumeração de impressora com rede off) e recuperou. Cancel voltou limpo.",
+      "linuxit_expected": "A impressão própria usa CUPS (lp/lpstat) e não enumera impressoras Windows; o diálogo próprio não trava.",
+      "divergence": "'Não respondendo' transitório é comportamento do Foxit com rede off, não defeito do Linuxit.",
+      "status": "observed"
+    },
+    {
+      "id": "E24-comentario-ausente",
+      "control": "Busca avançada: por que a primeira busca do Foxit omitiu o comentário (pergunta aberta da E24)",
+      "foxit_observed": "No painel Advanced Search do Foxit, os escopos padrão são: 'Include Page Text' LIGADO, 'Include Bookmarks' LIGADO e 'Include Comments' DESLIGADO. Ou seja, por padrão a busca NÃO inclui comentários. Observado diretamente na interface, sem digitar consulta.",
+      "linuxit_expected": "O motor próprio inclui comentários conforme as opções marcadas; na E31 a ordem passou a marcadores -> texto -> comentários como no Foxit.",
+      "divergence": "Resolve a pergunta da E24: a primeira busca do Foxit omitiu o comentário porque 'Include Comments' vem desmarcado por padrão. Só marcando esse escopo o comentário aparece. Não é perda de resultado; é escopo padrão diferente.",
+      "status": "resolved",
+      "limitacao": "A comparação de CONTAGENS por consulta (D10-D12) exige digitar o termo no guest; o teclado do host não alcança a VM (teclas de atalho sim, texto não). Precisa do teclado virtual do guest (abordagem da E24). Ficou pendente."
     }
   ]
 }
