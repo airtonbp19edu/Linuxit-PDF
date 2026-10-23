@@ -8,7 +8,7 @@ Só leitura: nenhum código, teste, VM, critério ou release foi tocado.
 Registrado no GitHub às 10:23, quando o envio foi liberado. **Atualização 10:23:** o item Windows
 de "Falta" foi resolvido no runner do GitHub (suíte 735/759 sem falhas, aceitação 79/79); ver
 [evidência](../testes/resultados/a6-windows-2026-10-23/review.json). Integração do ramo à `main`
-continua pendente.
+continua pendente. **Atualização 11:21:** edição de anotações de qualquer tipo feita no ramo `claude/anotacoes-universais` ([relatório](A6-ANOTACOES-UNIVERSAIS-2026-10-23.md)).
 
 ## Feito (13/10 a 23/10/2026)
 

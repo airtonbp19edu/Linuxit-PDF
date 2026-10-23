@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-23T10:22:48-03:00. Pendente: 1, Em andamento: 3, Concluída: 31.
+Atualizado em 2026-10-23T11:21:43-03:00. Pendente: 1, Em andamento: 3, Concluída: 31.
 
 **Regras**
 
@@ -409,7 +409,7 @@ Evidência: [releases/manifest-0.1.19.json](../releases/manifest-0.1.19.json), [
 
 **Situação:** Em andamento.
 
-Não é A6 universal concluída. Windows (ramo claude/windows-installer, 92f1708, CI 39958811654): instalação/desinstalação 8/8, suíte própria 759 executados/735 aprovados/0 falhas/0 erros/24 pulados só-Linux e aceitação 79/79 no runner Windows Server 2022. Ramo ainda não integrado à main; OCR/mídia no Windows sem validação; sem certificação de Windows de usuário. Critérios15/16 permanecem parciais.
+Não é A6 universal concluída. Windows (ramo claude/windows-installer, 92f1708, CI 39958811654): instalação/desinstalação 8/8, suíte própria 759 executados/735 aprovados/0 falhas/0 erros/24 pulados só-Linux e aceitação 79/79 no runner Windows Server 2022. Ramo ainda não integrado à main; OCR/mídia no Windows sem validação; sem certificação de Windows de usuário. Anotações (ramo claude/anotacoes-universais, 1df4aba, CI 39967990215): regra única para todo tipo exceto formulário, suíte 753/753 e aceitação 81/81 no Linux; Flatpak/Windows dessa mudança pendentes. Critérios15/16 permanecem parciais.
 
 ### E35 — Completar o algoritmo e as opções da busca interna
 
