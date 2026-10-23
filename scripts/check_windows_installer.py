@@ -132,9 +132,13 @@ def main():
         for key in ('PYTHONPATH','PYTHONHOME','GI_TYPELIB_PATH','GSETTINGS_SCHEMA_DIR','GDK_PIXBUF_MODULE_FILE','GST_PLUGIN_PATH'):
             environment.pop(key,None)
         probe=args.output.with_name('installed-probe.json').resolve()
-        checked=subprocess.run([str(target/'runtime/bin/python.exe'),'-B','-I',str(target/'windows_bootstrap.py'),'--probe',str(probe)],
+        checked=subprocess.run([str(target/'runtime/bin/python.exe'),'-B','-I','-X','faulthandler',str(target/'windows_bootstrap.py'),'--probe',str(probe)],
                                env=environment,cwd=str(base),capture_output=True,timeout=120)
+        report['probe_returncode']=checked.returncode
+        report['probe_returncode_hex']=hex(checked.returncode & 0xffffffff)
+        report['probe_stdout']=checked.stdout.decode('utf-8','replace')[-4000:]
         report['probe_stderr']=checked.stderr.decode('utf-8','replace')[-4000:]
+        if probe.exists():report['probe_report']=json.loads(probe.read_text(encoding='utf-8'))
         report['checks']['installed_native_probe']=checked.returncode==0 and probe.exists() and json.loads(probe.read_text(encoding='utf-8'))['passed']
         launcher_probe=args.output.with_name('installed-launcher-probe.json').resolve()
         launched=subprocess.run([str(target/'LinuxitPDF.exe'),'--probe',str(launcher_probe)],env=environment,cwd=str(base),capture_output=True,timeout=30)
@@ -143,6 +147,9 @@ def main():
         while time.monotonic()<deadline:
             try:launcher_result=json.loads(launcher_probe.read_text(encoding='utf-8'));break
             except (FileNotFoundError,json.JSONDecodeError):time.sleep(.2)
+        report['launcher_returncode']=launched.returncode
+        report['launcher_stdout']=launched.stdout.decode('utf-8','replace')[-2000:]
+        report['launcher_stderr']=launched.stderr.decode('utf-8','replace')[-2000:]
         report['checks']['installed_exe_launcher']=launched.returncode==0 and launcher_result.get('passed') is True
         import winreg
         key=r'Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-'+manifest['version']
