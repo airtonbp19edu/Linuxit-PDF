@@ -2676,8 +2676,8 @@
         {
           "id": "S12-14-4",
           "kind": "exception",
-          "given": "O mesmo PDF, com uma nota (Text) e o retângulo.",
-          "when": "Pedir nova cor para a nota e opacidade de 5% para o retângulo.",
+          "given": "O mesmo PDF, com a nota travada (Locked, flag 128) e o retângulo.",
+          "when": "Pedir nova cor para a nota travada e opacidade de 5% para o retângulo.",
           "expected_linuxit": "Recusar os dois pedidos sem criar saída; original preservado.",
           "expected_basis": "current_linuxit_source",
           "execution_status": "passed",
@@ -2710,8 +2710,8 @@
         {
           "id": "S12-14-6",
           "kind": "exception",
-          "given": "O mesmo PDF, com uma nota e o retângulo.",
-          "when": "Redimensionar a nota e levar o retângulo para fora da página.",
+          "given": "O mesmo PDF, com a nota de ícone de tamanho fixo (NoZoom, flag 8) e o retângulo.",
+          "when": "Redimensionar a nota de tamanho fixo e levar o retângulo para fora da página.",
           "expected_linuxit": "Recusar os dois pedidos sem criar saída; original preservado.",
           "expected_basis": "current_linuxit_source",
           "execution_status": "passed",

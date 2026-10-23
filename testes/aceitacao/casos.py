@@ -439,9 +439,22 @@ def annotation_style(ctx):
     return dict(color=[0, 0, 1], opacity=0.5, rendered_border_rgb=[r, g, b], original_preserved=True)
 
 
+def _flagged_note(ctx, source, index, flag, name):
+    """Copy of `source` whose note carries an extra annotation flag (A6 capability rule)."""
+    from pypdf import PdfWriter
+    from pypdf.generic import NameObject, NumberObject
+    writer = PdfWriter(clone_from=str(source));note = writer.pages[0]['/Annots'][index].get_object()
+    note[NameObject('/F')] = NumberObject(int(note.get('/F', 0)) | flag)
+    target = ctx.work / name
+    with target.open('wb') as handle:writer.write(handle)
+    return target
+
+
 @case('S12-14-4', 'worker copy-edit (style-annotation)')
 def annotation_style_refused(ctx):
-    source, index = _styled_source(ctx);before = sha256(source);outcomes = {}
+    # A6: notes without their own appearance accept colour, so the note here is Locked (flag 128).
+    source, index = _styled_source(ctx);source = _flagged_note(ctx, source, index['/Text'], 128, 'nota-travada.pdf')
+    before = sha256(source);outcomes = {}
     for label, operation in (('nota', {'index': index['/Text'], 'opacity': 0.5}), ('opacidade_5', {'index': index['/Square'], 'opacity': 0.05})):
         output = ctx.work / f'{label}.pdf'
         request = {'source_sha256': before, 'operations': [dict(kind='style-annotation', page=0, color=[0, 0, 1], **operation)]}
@@ -473,7 +486,9 @@ def annotation_resize(ctx):
 
 @case('S12-14-6', 'worker copy-edit (resize-annotation)')
 def annotation_resize_refused(ctx):
-    source, index = _styled_source(ctx);before = sha256(source);outcomes = {}
+    # A6: notes are resizable in general; an icon with fixed size (NoZoom, flag 8) is not.
+    source, index = _styled_source(ctx);source = _flagged_note(ctx, source, index['/Text'], 8, 'nota-fixa.pdf')
+    before = sha256(source);outcomes = {}
     for label, operation in (('nota', {'index': index['/Text'], 'rect': [10, 10, 60, 60]}),
                              ('fora_da_pagina', {'index': index['/Square'], 'rect': [10, 10, 400, 60]})):
         output = ctx.work / f'{label}.pdf'
