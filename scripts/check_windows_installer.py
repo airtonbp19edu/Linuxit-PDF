@@ -11,9 +11,19 @@ import sys
 import time
 
 
+def native(path):
+    """Windows path with backslashes, independent of the Python build.
+
+    MSYS2 UCRT64 Python patches ntpath so that normpath keeps '/' while MSYSTEM
+    is set. NSIS rejects '/' in /D= and silently falls back to InstallDir, so
+    the separators are converted explicitly here (CI 39895160350).
+    """
+    return ntpath.normpath(str(path)).replace('/','\\')
+
+
 def install_command(installer, target):
     """NSIS requires native separators and an unquoted final /D argument."""
-    return subprocess.list2cmdline([ntpath.normpath(str(installer)), '/S'])+' /D='+ntpath.normpath(str(target))
+    return subprocess.list2cmdline([native(installer), '/S'])+' /D='+native(target)
 
 
 def _registry_location(version):
@@ -60,11 +70,15 @@ def diagnose_missing_install(installer,target,base,version,install):
     control=(base/'linuxit-installer-control'/'plain').resolve()
     if not control.exists():
         control.parent.mkdir(parents=True,exist_ok=True)
-        run=subprocess.run(install_command(installer,control),capture_output=True,timeout=600)
+        report['control_ascii_target']=str(control)
+        report['control_command']=install_command(installer,control)
+        try:
+            run=subprocess.run(install_command(installer,control),capture_output=True,timeout=180)
+            report['control_exit_code']=run.returncode
+        except subprocess.TimeoutExpired:
+            report['control_exit_code']='timeout_180s'
         deadline=time.monotonic()+60
         while not (control/'windows-manifest.json').is_file() and time.monotonic()<deadline:time.sleep(.2)
-        report['control_ascii_target']=str(control)
-        report['control_exit_code']=run.returncode
         report['control_manifest_present']=(control/'windows-manifest.json').is_file()
         report['registry_after_control']=_registry_location(version)
         report['manifests_found_after_control']=_find_manifests([p for p in (base,Path(local)/'Programs' if local else None) if p])

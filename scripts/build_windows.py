@@ -30,6 +30,11 @@ def sha(path):
     with Path(path).open('rb') as handle:return hashlib.file_digest(handle,'sha256').hexdigest()
 
 
+def native(path):
+    """Backslash Windows path even under MSYS2 Python, whose ntpath keeps '/'."""
+    return ntpath.normpath(str(path)).replace('/','\\')
+
+
 def nsis(value):
     return str(value).replace('$','$$').replace('"','$\\"').replace('\n','')
 
@@ -152,8 +157,8 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     script.write_text(template.replace(needle,'\n'.join('  '+line for line in lines)),encoding='utf-8')
     if not include.is_file() or not script.is_file():raise ValueError('Generated installer source missing')
     subprocess.run([str(makensis),'/V2','/INPUTCHARSET','UTF8','/DVERSION='+VERSION,
-                    '/DPAYLOAD='+ntpath.normpath(str(stage)),'/DOUTPUT='+ntpath.normpath(str(output)),
-                    ntpath.normpath(str(script))],check=True)
+                    '/DPAYLOAD='+native(stage),'/DOUTPUT='+native(output),
+                    native(script)],check=True)
     result=dict(schema='linuxit-windows-installer-build-v1',version=VERSION,path=str(output),bytes=output.stat().st_size,
                 sha256=sha(output),generated_nsis_sha256=sha(script),payload_files=len(records),runtime_packages=len(packages),installed_or_published=False)
     output.with_suffix('.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')

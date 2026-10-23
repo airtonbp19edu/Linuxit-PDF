@@ -8,6 +8,21 @@ class WindowsCacheProvenanceTests(unittest.TestCase):
         check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)
         command=check.install_command('D:/build artifacts/installer.exe','D:/temp/installed app com espaços')
         self.assertEqual(command,'"D:\\build artifacts\\installer.exe" /S /D=D:\\temp\\installed app com espaços')
+    def test_nsis_target_is_backslashed_even_when_ntpath_keeps_forward_slashes(self):
+        # MSYS2 UCRT64 Python keeps '/' in ntpath.normpath; NSIS then ignored /D= (CI 39895160350).
+        spec=importlib.util.spec_from_file_location('installer_check',ROOT/'scripts/check_windows_installer.py')
+        check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)
+        with patch.object(check.ntpath,'normpath',side_effect=lambda value:value):
+            command=check.install_command('D:/a/dist/installer.exe','D:/a/_temp/installed app com espaços')
+        self.assertEqual(command,'D:\\a\\dist\\installer.exe /S /D=D:\\a\\_temp\\installed app com espaços')
+        self.assertNotIn('/',command.replace(' /S','').replace(' /D=',''))
+        with patch.object(builder.ntpath,'normpath',side_effect=lambda value:value):
+            self.assertEqual(builder.native('D:/a/stage'),'D:\\a\\stage')
+    def test_installer_message_boxes_never_block_silent_mode(self):
+        script=(ROOT/'packaging/windows/linuxit.nsi').read_text(encoding='utf-8')
+        boxes=[line for line in script.splitlines() if 'MessageBox' in line]
+        self.assertTrue(boxes)
+        self.assertTrue(all('/SD ' in line for line in boxes),boxes)
     def test_missing_install_search_finds_only_complete_installations(self):
         spec=importlib.util.spec_from_file_location('installer_check',ROOT/'scripts/check_windows_installer.py')
         check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)
