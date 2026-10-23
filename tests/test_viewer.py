@@ -90,6 +90,7 @@ class ViewerTests(unittest.TestCase):
             self.assertEqual(p.pan_y, p._pan_bounds()[3],json.dumps(trace))
             p._goto(1)
             wait_for(lambda: p.page == 1 and not p._loading)
+            self.assertIsNone(p._render_error,json.dumps(trace))
             self.assertEqual(p.zoom, 250)
             self.assertEqual(p.pan_y, p._pan_bounds()[3],json.dumps(trace))
         finally:
