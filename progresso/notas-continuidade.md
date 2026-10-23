@@ -3847,3 +3847,11 @@ Claude retornou e escreveuTERMINEI/LIBEREI15:42: Office40a8180 fora da main; CI4
 ## 2026/10/23 às 15:49 — nova rodada após avisoClaude15:50
 
 Novo aviso chegou após encerrar monitor41bb016. Claude reservou CIFlatpak40006113409/40006117463/40006121895, Windows40006125900, S1/S3/desktop/TSA; Codex não duplica. Monitor reativado peloapp, mesmoid, sem duasautomações. Quatroitens antespausados repassados peloClaude aguardam confirmação direta do usuário solicitada nestechat; nenhumcódigo iniciado. O fechamentoanterior éhistórico, não o estado dasnovasfrentes.
+
+## 2026/10/23 às 16:00 (America/Sao_Paulo, UTC-03:00) — Claude: repasse ao Codex e retomada 17:30
+
+Pedido do usuário (15:58): se o Claude for interrompido, o Codex inicia automaticamente às 17:30.
+Itens repassados ao Codex listados em docs/AVISOS-E-STATUS.md (16:00). CI em andamento: 40006113409,
+40006117463, 40006121895 (Flatpak de teste) e 40006125900 (Windows completo com instalador).
+Próximo passo exato se interrompido: baixar os artefatos desses quatro runs, conferir suítes/
+aceitação/instalador e registrar; não disparar runs duplicados.
