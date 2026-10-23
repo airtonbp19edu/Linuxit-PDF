@@ -2665,12 +2665,16 @@ def _cleanup_stale_render_caches():
     """Remove only old, privately owned Winux temporary render directories."""
     import time
     tmp = Path(tempfile.gettempdir())
+    # os.getuid does not exist on Windows, where %TEMP% is already per user;
+    # it used to raise AttributeError there (native Windows acceptance S12-20/23).
+    getuid = getattr(os, 'getuid', None)
     try:
         for candidate in tmp.glob('linuxit-pdf-cache-*'):
             try:
                 st = candidate.lstat()
+                owned = getuid is None or st.st_uid == getuid()
                 if (candidate.is_dir() and not candidate.is_symlink() and
-                        st.st_uid == os.getuid() and time.time() - st.st_mtime > 2*86400):
+                        owned and time.time() - st.st_mtime > 2*86400):
                     shutil.rmtree(candidate)
             except OSError:
                 pass

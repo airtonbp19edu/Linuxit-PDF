@@ -15,6 +15,8 @@ if args.traceback_after:
     faulthandler.dump_traceback_later(max(1,args.traceback_after),repeat=True)
 if args.output.exists():parser.error('Use a new result path to preserve previous evidence')
 if args.app:os.environ['PRINT_VIEW_TEST_APP']=str(args.app.resolve())
+# No modal system dialog can be answered during a test run.
+os.environ['LINUXIT_NONINTERACTIVE']='1'
 if args.temp_dir:
     args.temp_dir.mkdir(parents=True,exist_ok=True)
     tempfile.tempdir=str(args.temp_dir.resolve())

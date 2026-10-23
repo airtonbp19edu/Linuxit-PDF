@@ -42,6 +42,11 @@ def list_printers():
 
 def print_dialog(parent, filepath, job):
     """Draw the already imposed PDF; the system dialog chooses device options."""
+    import os
+    if os.environ.get('LINUXIT_NONINTERACTIVE') == '1':
+        # A modal system dialog has nobody to answer it in tests/CI; fail visibly
+        # instead of blocking the whole run (Windows suite hung at test 120).
+        raise RuntimeError('Diálogo de impressão do sistema indisponível em execução não interativa.')
     import gi
     gi.require_version('Gtk', '3.0')
     from gi.repository import Gtk
