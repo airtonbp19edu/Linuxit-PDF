@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-23T11:21:43-03:00. Pendente: 1, Em andamento: 3, Concluída: 31.
+Atualizado em 2026-10-23T12:19:35.479192-03:00. Pendente: 1, Em andamento: 3, Concluída: 31.
 
 **Regras**
 
@@ -12,6 +12,7 @@ Atualizado em 2026-10-23T11:21:43-03:00. Pendente: 1, Em andamento: 3, Concluíd
 - Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.
 - Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.
 - Autorização de22/10/2026: após Passos1–6, o usuário pediu atualizar os arquivos compartilhados e executar os dois próximos trabalhos. Codex registra Passo7 e retomaS1 estática da busca. A publicação0.1.19 eB3 exigem decisões específicas e continuam pendentes.
+- Autorização de23/10/2026: Claude e Codex trabalham em paralelo sem parar a cada etapa nesta rodada, preservando exclusividade da VM, autoria e reservas de arquivos. Publicação e B3 ainda exigem decisão específica.
 
 | # | Etapa | Bloco | Precisa de | Situação |
 |---|---|---|---|---|
@@ -419,7 +420,7 @@ Não é A6 universal concluída. Windows (ramo claude/windows-installer, 92f1708
 
 **Situação:** Em andamento.
 
-Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado.
+Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado. Lote adicional de seis entradas novas BooleanWeight/scorers:557 instruções/1653bytes, RTTI/normalização/partição/interseção com filtro esclarecidos. Scorers concretos, coletor/ordenação e demais lacunas continuam abertos; status em_andamento preservado. Catálogo global424 após S2/S3/S4, não atribuir todas essas entradas à busca.
 
 ### E23 — Validações físicas
 
@@ -449,7 +450,7 @@ Evidência: [docs/VM-E24-2026-10-21.md](../docs/VM-E24-2026-10-21.md), [testes/r
 
 **Situação:** Em andamento.
 
-Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado.
+Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado. Atualização posterior atribuída a Claude: UI01/cancelar e UI02 registrados em observacoes.json. Include Comments desmarcado nesta sessão, mas default universal/causa histórica não confirmados pelo Codex. E30 continua parcial e VM reservada a Claude.
 
 ### E31 — Ordem dos resultados e clique em marcador como no Foxit (D05)
 

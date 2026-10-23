@@ -182,10 +182,14 @@ declarada como lacuna.
 |---|---|---|
 | Busca — criação do diálogo e provedor | [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md) e [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md) | mapa estrutural completo; algoritmo Lucene parcial |
 | Busca — thread de limpeza de resultados | [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md) e [errata dos objetos de UI, 23/10](REA-S1-OBJETOS-UI-2026-10-23.md) | mapa estático revisto: thread, evento e dois pares de seção crítica; helpers internos ainda parciais |
-| Busca — opções e enum do provedor | [fluxos.md, seção de 18/10](#texto-do-provedor-e-enum-de-busca--18102026) | parcial (bytes 3/5/6/7 abertos) |
+| Busca — opções e enum do provedor | [opções, 23/10](REA-S1-OPCOES-2026-10-23.md), [stemming](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md) e seção de18/10 | +5 ligado a stemming, +6/+7 a largura/acentos, +0x10 a preferência de proximidade; +3/+0xc e consumo integral continuam parciais |
 | Impressão — hierarquia de classes e estratégias | [REA-FLUXO-IMPRESSAO-2026-10-22.md](REA-FLUXO-IMPRESSAO-2026-10-22.md) | mapa estrutural; renderização/envio parcial |
 | Impressão — consumidores e geometria | [REA-IMPRESSAO-CONSUMIDORES.md](REA-IMPRESSAO-CONSUMIDORES.md) | parcial |
-| Reflow — layout, geometria, arrays e transições | [REA-REFLOW.md](REA-REFLOW.md) e relacionados | parcial |
+| Impressão — GDI, DEVMODE e transporte RAW | [S2, 23/10](REA-S2-CONTINUACAO-2026-10-23.md) | quatro diagramas delimitados; total/modos, cancelamento da fila e serviços integrais ainda parciais |
+| Busca — peso booleano e interseção com filtro | [pesos/scorers, 23/10](REA-S1-PESOS-E-SCORERS-2026-10-23.md) | dois diagramas delimitados; scores concretos e coletor/ranqueamento ainda abertos |
+| Reflow — layout, geometria, arrays e transições | [REA-REFLOW.md](REA-REFLOW.md) e [S4, 23/10](REA-S4-REFLOW-2026-10-23.md) | arrays/extensões, escalar e limites ligados; unidades e domínio integral ainda parciais |
+| Anotações, formulários, assinaturas e camadas | [S3/C1, 23/10](REA-S3-ESTADOS-2026-10-23.md) | quatro mapas com arestas S/C/R/L; recursos candidatos e lacunas explícitos, sem motores integrais |
+| Resumo de comentários — seletores | [S3, 23/10](REA-S3-ANOTACOES-RESUMO-2026-10-23.md) | cinco layouts e helper de sete controles examinados; binding MFC e geração integral ainda abertos |
 
 **Errata de 23/10/2026 na referência da limpeza de busca:** o mapa de 22/10
 descrevia a chamada ao slot `+0x14` de `dialog+0x2044` como “reinicia o modelo”.
@@ -199,8 +203,8 @@ estado histórico e foi limitada na tabela acima ao mapa estático examinado.
 [Evidências e lacunas](REA-S1-OBJETOS-UI-2026-10-23.md). S1 e o critério amplo
 de reconstrução do fluxo continuam parciais.
 
-Os diagramas Mermaid de busca e impressão estão nos dois documentos de 22/10. Eles fecham o
-desenho de **fluxo e estado** desses dois subsistemas no nível estrutural; o critério "Diagramas e
-estados rastreáveis por subsistema" (etapa 9) continua parcial enquanto houver subsistemas sem o
-mesmo nível de detalhe (anotações, formulários, assinaturas, camadas/mídia) e enquanto a
-algoritmia interna da busca e da impressão não estiver reconstruída.
+Os documentos de22/10 preservam os mapas anteriores; os complementos de23/10 refinam
+as ligações e distinguem instruções examinadas, associações de recursos, interpretações e
+lacunas. O critério "Diagramas e estados rastreáveis por subsistema" (etapa9) continua
+parcial: os mapas adicionais não recuperam por inteiro os motores de anotações, formulários,
+assinaturas, camadas/mídia, busca ou impressão, nem substituem comparação em execução.

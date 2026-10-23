@@ -1,0 +1,103 @@
+{
+  "schema": "linuxit-s1-scorer-weight-interface-links-v1",
+  "reviewed_at_local": "2026-10-23T05:51:32.594581-03:00",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "original_executed": false,
+  "rtti": {
+    "vtable_va": "0x104465a0",
+    "complete_object_locator_va": "0x104a19d0",
+    "type_descriptor_va": "0x105b2da4",
+    "type_name": ".?AVBooleanWeight@Lucene@@",
+    "hierarchy_descriptor_va": "0x104a19e4",
+    "constructor": "0x101e1560",
+    "vtable_write_site": "0x101e159c",
+    "constructor_write_verified_in_review": true,
+    "used_virtual_slots": [
+      {
+        "offset": "0x20",
+        "function_va": "0x10300c70"
+      },
+      {
+        "offset": "0x44",
+        "function_va": "0x101e3ee0"
+      },
+      {
+        "offset": "0x48",
+        "function_va": "0x101e4530"
+      },
+      {
+        "offset": "0x4c",
+        "function_va": "0x101e4970"
+      }
+    ]
+  },
+  "filtered_intersection_sentinel": {
+    "va": "0x104482c8",
+    "value": 2147483647,
+    "hex": "0x7fffffff"
+  },
+  "simple_getter_prefixes_not_new_decompiled_entries": [
+    {
+      "entry": "0x101e1e00",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x100ea790",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x100ea740",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x101f2b80",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x101f2b70",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x101f7a30",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    },
+    {
+      "entry": "0x101e79c0",
+      "body_bytes": 3,
+      "effect": "Return first pointer from receiver without dereferencing a vtable",
+      "machine_bytes_sha256": "19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa",
+      "new_decompiled_entry": false
+    }
+  ],
+  "factory_prefixes_not_new_decompiled_entries": [
+    "0x101e05d0",
+    "0x101dffe0"
+  ],
+  "private_prefix_records": [
+    "analysis-local/s1-scorer-weight-prescan-2026-10-23.json",
+    "analysis-local/s1-scorer-weight-factory-prescan-2026-10-23.json"
+  ],
+  "limitations": [
+    "RTTI establishes a concrete class and the examined vtable links; it does not recover all class fields or runtime instance lifetimes.",
+    "Prefix reads and virtual slots are not counted as new decompiled functions.",
+    "Simple pointer getters do not independently establish ownership or type of every caller argument."
+  ]
+}

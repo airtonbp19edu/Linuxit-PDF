@@ -1,0 +1,243 @@
+{
+  "schema": "linuxit-s4-reflow-static-review-v1",
+  "reviewed_at": "2026-10-23T05:59:43.083946-03:00",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "profile": "Directed supplementary Ghidra 12.1.4 headless -noanalysis with REA 6.7.0 seed script, copied completed projects; Capstone 5.0.6 byte/address checks; not MCP Evidence",
+  "catalog_baseline_commit": "452174e01ee403e4501c5edf5c649a919b8071ea",
+  "catalog_baseline_entries": 397,
+  "new_distinct_entries": [
+    "0x15c8d50",
+    "0x15ca180",
+    "0x15ca380",
+    "0x15ccea0",
+    "0x15cb180",
+    "0x15cb1d0",
+    "0x15cb8c0",
+    "0x15cd820"
+  ],
+  "new_distinct_count": 8,
+  "repeat_decompilations": [],
+  "machine_reports": [
+    {
+      "path": "testes/resultados/s4-reflow-2026-10-23/machine-consumers.json",
+      "sha256": "f674b5aa73eafc965a22c63d9c93208bd02bb4954e94ab84dc39b2b50840995f",
+      "entries": 4,
+      "instructions": 231,
+      "body_bytes": 704
+    },
+    {
+      "path": "testes/resultados/s4-reflow-2026-10-23/machine-extents.json",
+      "sha256": "67db8372ca894531f409d0f8c836ee7ea43d5161f53104e4bda32ee87ea17f41",
+      "entries": 4,
+      "instructions": 143,
+      "body_bytes": 403
+    }
+  ],
+  "new_instructions": 374,
+  "new_body_bytes": 1107,
+  "reused_previous_results": [
+    {
+      "entry": "0x15cd860",
+      "raw": "analysis-local/headless/static-reflow-arrays-2026-10-19/functions/0x15cd860.json",
+      "raw_sha256": "216f78869231135495f861e4a31f2010a8d478c6c6c9b4f42bd50fb0ade6ada1",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-arrays-2026-10-19.json",
+      "instructions": 142,
+      "body_bytes": 425,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cb840",
+      "raw": "analysis-local/headless/static-reflow-counts-2026-10-19/functions/0x15cb840.json",
+      "raw_sha256": "f06f2dcd5999edbff60fdebeaac0cc6ae2bed6d1ae6e681c90b30f7f2fd3f03b",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-counts-2026-10-19.json",
+      "instructions": 2,
+      "body_bytes": 6,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cbb90",
+      "raw": "analysis-local/headless/static-reflow-counts-2026-10-19/functions/0x15cbb90.json",
+      "raw_sha256": "cb51b602eb310db028e24fb3faaa0a63ef0bd0357e83080e723c898ee7445ed2",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-counts-2026-10-19.json",
+      "instructions": 2,
+      "body_bytes": 4,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cbbc0",
+      "raw": "analysis-local/headless/static-reflow-builders-2026-10-18/functions/0x15cbbc0.json",
+      "raw_sha256": "74c2cca7e7c30ba375cb72800e4bf5446aab111515a2f1d3ca6b2894cc25d58b",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-builders-2026-10-18.json",
+      "instructions": 32,
+      "body_bytes": 68,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cb7b0",
+      "raw": "analysis-local/headless/static-dispatch-links-2026-10-18/functions/0x15cb7b0.json",
+      "raw_sha256": "cc74012ff0dad87139548892cb8e19bcd3783b7aee01672b71a99b1da9933666",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-dispatch-links-2026-10-18.json",
+      "instructions": 9,
+      "body_bytes": 24,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cda10",
+      "raw": "analysis-local/headless/static-reflow-writers-2026-10-18/functions/0x15cda10.json",
+      "raw_sha256": "12fedb87a30bc59d8f5539b097a5069919e3199ffb2d481f357baa4c1837165e",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-writers-2026-10-18.json",
+      "instructions": 29,
+      "body_bytes": 98,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cd6e0",
+      "raw": "analysis-local/headless/static-reflow-transitions-2026-10-19/functions/0x15cd6e0.json",
+      "raw_sha256": "7702bc51a9c08526aef40d045db547d40c0d5782362d1a7264aaac345637db5c",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-reflow-transitions-2026-10-19.json",
+      "instructions": 7,
+      "body_bytes": 20,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x15cbc10",
+      "raw": "analysis-local/headless/static-geometry-state-2026-10-18/functions/0x15cbc10.json",
+      "raw_sha256": "c924b096b5ff3aba0c8be36e135ef14541a9108815d3fb374586a3faed195bee",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-geometry-state-2026-10-18.json",
+      "instructions": 8,
+      "body_bytes": 23,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    }
+  ],
+  "reused_previous_instructions_separate": 231,
+  "reused_previous_body_bytes_separate": 668,
+  "support_raw": "analysis-local/s4-reflow-support-2026-10-23.json",
+  "support_raw_sha256": "73f4ae91e2a0842510a6cfa52af975b66dfbd1ca8eeb6955816f5d72be90fb82",
+  "vtable_joins": [
+    {
+      "table": "0x53d34bc",
+      "offset": "0x94",
+      "target": "0x15cd760"
+    },
+    {
+      "table": "0x53d34bc",
+      "offset": "0x98",
+      "target": "0x15cd590"
+    },
+    {
+      "table": "0x53d34bc",
+      "offset": "0xa0",
+      "target": "0x15cd820"
+    }
+  ],
+  "constants": [
+    {
+      "va": "0x6573ec0",
+      "bytes_hex": "ffffff7fffffff7fffffff7fffffff7f",
+      "interpretation": "four 0x7fffffff words used by ANDPS"
+    },
+    {
+      "va": "0x6573a20",
+      "bytes_hex": "000000000000f0bf",
+      "float64": -1.0
+    }
+  ],
+  "bounded_findings": {
+    "rectangle_reset": {
+      "helper": "0x15c8d50",
+      "called_by": "0x15cd860",
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "copied_to": "+0x68..+0x77",
+      "meaning": "four zero DWORDs, not a calculated geometric rectangle in this path"
+    },
+    "counts_in_reviewed_builder": {
+      "count_a_helper": "0x15cb840",
+      "count_a": 1,
+      "count_b_helper": "0x15cbb90",
+      "count_b": "layout+0x78 (N)"
+    },
+    "map_writer": {
+      "entry": "0x15cb7b0",
+      "map_48_value": "i",
+      "map_4c_value": 0,
+      "caller": "0x15cbbc0",
+      "caller_skips_null_page_objects": true,
+      "global_initialization_proved": false
+    },
+    "scale_transition": {
+      "entry": "0x15ccea0",
+      "old_new_scalar_type": "float64",
+      "index_uses_maps_48_4c": true,
+      "magnitude_input_conversion": "int32 to float32 then sign-mask",
+      "sign_factor": -1.0,
+      "all_units_proved": false,
+      "direct_caller": "0x15cda10"
+    },
+    "offset_limiter": {
+      "entry": "0x15ca180",
+      "meaning": "offset limit from viewport and content extents; not an item index lookup",
+      "comparison_uses_float32": true,
+      "all_integer_and_nonfinite_extremes_validated": false,
+      "final_writer": "0x15ca380",
+      "offset_fields": [
+        "+4",
+        "+8"
+      ],
+      "float_mirror_fields": [
+        "+0x34",
+        "+0x38"
+      ]
+    },
+    "extent_cache_update": {
+      "entry": "0x15cd820",
+      "virtual_slot": "+0xa0",
+      "writes": [
+        "+0x60",
+        "+0x5c"
+      ],
+      "vertical_extent_field": "+0x60",
+      "horizontal_extent_field": "+0x5c"
+    },
+    "array_arithmetic": {
+      "builder": "0x15cd860",
+      "multiplication_overflow_saturates_allocation_size": true,
+      "b_plus_one_has_local_checked_add": false,
+      "prefix_sum_has_local_checked_add": false,
+      "reachability_of_overflow_proved": false
+    },
+    "horizontal_accumulator": {
+      "entry": "0x15cb8c0",
+      "context_states_0_2": "zero for nonpositive k, otherwise metric of current page",
+      "other_states": "sum first k entries of array at +0x40",
+      "full_index_domain_proved": false
+    }
+  },
+  "review_report": "docs/REA-S4-REFLOW-2026-10-23.md",
+  "original_executed_by_this_subtask": false,
+  "vm_used_by_this_subtask": false,
+  "application_modified_by_this_subtask": false,
+  "s4_complete": false,
+  "parity_proved": false,
+  "limitations": [
+    "Semantics are bounded to the concrete inspected layout path; all derived implementations and call sites are not characterized.",
+    "Provisional decompiler types and analyst seed names are not recovered public API names.",
+    "The index maps are filled only for non-null page objects in the examined caller; initialization for every index and all call paths is not proved.",
+    "Physical coordinate units, complete ownership/lifecycle, overflow reachability and nonfinite behavior remain open.",
+    "Source-byte equality is not runtime or differential equivalence and does not close broad family criteria."
+  ],
+  "source_rechecked_after_review": true,
+  "report_finalized_at": "2026-10-23T06:03:30.008359-03:00"
+}

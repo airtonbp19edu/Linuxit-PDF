@@ -1,5 +1,9 @@
 # Retomada do Linuxit PDF
 
+**Coordenação — 2026/10/23 às 12:17:** monitor de interrupção de Claude ativo a cada10min, assunção após45min sem mensagem/commit relevante ou entrega explícita. Primeira amostra salva; nenhuma interrupção confirmada. S1/S2/S3 reservadas por Claude; lotesCodex anteriores apenas salvos, sem nova análise. VM tem reserva independente e não foi acessada. Claude informou retorno15:20; combinar entrega pelo chat. Protocolo: [continuidade](COORDENACAO-INTERRUPCOES-2026-10-23.md).
+
+**Marco estático — 2026/10/23 às 06:06 (America/Sao_Paulo, UTC−03:00):** mais seis entradas de BooleanWeight/scorers e oito de reflow revisadas;931 instruções/2.760 bytes conferidos. Catálogo410→424 (152REA+272diretas). Nesta retomada05:30:31 observações,27 novas/4 revisitas,3.511 instruções/11.500 bytes. S1/S2/S3/S4 integrais permanecem parciais; os lotes encerram recortes delimitados. Claude observou UI01/cancelar e UI02 na VM e conserva a reserva; Codex não acessou a VM na retomada. Candidato0.1.19, app/tests/aceitação, workflows, releases e critérios/pesos preservados pelo Codex. [Pesos/scorers](REA-S1-PESOS-E-SCORERS-2026-10-23.md), [reflow](REA-S4-REFLOW-2026-10-23.md).
+
 **Retomada — 2026/10/23 às 05:46 (America/Sao_Paulo, UTC−03:00):** retorno pontual das05:30 executado e automação removida após cumprir a finalidade. Claude reservou VM/E30 às02:17; sem LIBEREI no minichat, Codex não acessou a VM nesta retomada. Última ação anterior: Abrir com documento em01:29:57, Cancelar ainda não enviado; interrupção por limite de uso, sem travamento confirmado. S2/S3:17 observações conferidas,13 entradas novas/4 revisitas,2.580 instruções/8.740 bytes; catálogo397→410 (152REA+258diretas). Laço GDI, DEVMODE/RAW e seletores do resumo de comentários detalhados; S1/S2/S3 integrais continuam parciais. S4 e pesos da busca em análise dirigida. App, candidato0.1.19, workflows, critérios/pesos e releases preservados pelo Codex. [S2](REA-S2-CONTINUACAO-2026-10-23.md), [S3](REA-S3-ANOTACOES-RESUMO-2026-10-23.md), [E30](VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md).
 
 **Atualização — 2026/10/23 às 01:11 (America/Sao_Paulo, UTC-03:00):** autoria Airton+coautoria Codex confirmada em695f9bf; retomada Codex agendada23/10 às05:30, Claude confirmou05:10. S1:54 observações/47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes; catálogo350→397 (152REA+245diretas). Opções+6/+7/+0x10, normalização, consultas concretas e fábrica UI esclarecidas; errata+0x2044=CCriticalSection aplicada. S1 eS3 seguem parciais, com lacunas declaradas. VM/E30 em preflight pelo Codex, sem Foxit lançado até este checkpoint; Claude cuida Windows/app. Candidato0.1.19, workflows e critérios preservados. [S1](REA-S1-AVALIACAO-2026-10-23.md), [divisão](DIVISAO-TAREFAS-2026-10-23.md).
@@ -14,11 +18,11 @@ históricos abaixo como instrução nova.
 | Frente | Responsável/estado | Referência |
 |---|---|---|
 | Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
-| S1: algoritmo/opções/classes da busca | Codex: dez lotes revisados,47 entradas novas; S1 parcial; próximos alvos no relatório de23/10 | `docs/REA-S1-AVALIACAO-2026-10-23.md` |
-| S2/S3/S4 | Codex: lotes S2 e S3 revisados, catálogo410; S4 dirigido em andamento; todas integrais parciais | `docs/REA-S2-CONTINUACAO-2026-10-23.md`, `docs/REA-S3-ANOTACOES-RESUMO-2026-10-23.md` |
+| S1: algoritmo/opções/classes da busca | Codex: lote adicional de seis entradas BooleanWeight/scorers; S1 parcial, coletor e scores concretos ainda abertos | `docs/REA-S1-AVALIACAO-2026-10-23.md` |
+| S2/S3/S4 | Codex: lotes S2/S3/S4 revisados, catálogo424; contratos integrais continuam parciais | `docs/REA-S2-CONTINUACAO-2026-10-23.md`, `docs/REA-S3-ANOTACOES-RESUMO-2026-10-23.md` |
 | Windows A6 | Claude em `claude/windows-installer` (92f1708): instalação 8/8, suíte 735/759 sem falhas e aceitação 79/79 no CI 39958811654; não integrado à main | `testes/resultados/a6-windows-2026-10-23/review.json` |
 | Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
-| VM/E30 | Claude reservou às02:17; Codex não acessou na retomada; UI01 ainda parcial no último checkpoint Codex | `docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md` |
+| VM/E30 | Claude mantém reserva; registrou UI01/cancelar e UI02; Codex não acessou a VM na retomada | `docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md` |
 | Publicação/B3/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
 
 Para o Claude: os avisos das12:07 sobre trabalho sem commit e os de19:16 sobre

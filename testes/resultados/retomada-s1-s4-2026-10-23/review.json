@@ -1,0 +1,134 @@
+{
+  "schema": "linuxit-static-s1-s4-consolidation-v1",
+  "reviewed_at": "2026-10-23T12:17:12.758053-03:00",
+  "baseline_commit": "96fd7a6",
+  "baseline_entries": 410,
+  "catalog_entries": 424,
+  "rea_entries": 152,
+  "direct_entries": 272,
+  "observations": [
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x101e0770",
+      "instructions": 36,
+      "body_bytes": 114
+    },
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x101e1560",
+      "instructions": 120,
+      "body_bytes": 371
+    },
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x101e3ee0",
+      "instructions": 6,
+      "body_bytes": 17
+    },
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x101e4530",
+      "instructions": 52,
+      "body_bytes": 144
+    },
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x101e4970",
+      "instructions": 213,
+      "body_bytes": 637
+    },
+    {
+      "round": "s1-scorer-weight-2026-10-23",
+      "id": "52bc60eda174:0x10241e80",
+      "instructions": 130,
+      "body_bytes": 370
+    },
+    {
+      "round": "s4-reflow-consumers-2026-10-23",
+      "id": "90208c9e8da9:0x15c8d50",
+      "instructions": 13,
+      "body_bytes": 32
+    },
+    {
+      "round": "s4-reflow-consumers-2026-10-23",
+      "id": "90208c9e8da9:0x15ca180",
+      "instructions": 39,
+      "body_bytes": 102
+    },
+    {
+      "round": "s4-reflow-consumers-2026-10-23",
+      "id": "90208c9e8da9:0x15ca380",
+      "instructions": 79,
+      "body_bytes": 216
+    },
+    {
+      "round": "s4-reflow-consumers-2026-10-23",
+      "id": "90208c9e8da9:0x15ccea0",
+      "instructions": 100,
+      "body_bytes": 354
+    },
+    {
+      "round": "s4-reflow-extents-2026-10-23",
+      "id": "90208c9e8da9:0x15cb180",
+      "instructions": 24,
+      "body_bytes": 74
+    },
+    {
+      "round": "s4-reflow-extents-2026-10-23",
+      "id": "90208c9e8da9:0x15cb1d0",
+      "instructions": 24,
+      "body_bytes": 74
+    },
+    {
+      "round": "s4-reflow-extents-2026-10-23",
+      "id": "90208c9e8da9:0x15cb8c0",
+      "instructions": 86,
+      "body_bytes": 232
+    },
+    {
+      "round": "s4-reflow-extents-2026-10-23",
+      "id": "90208c9e8da9:0x15cd820",
+      "instructions": 9,
+      "body_bytes": 23
+    }
+  ],
+  "new_entries": 14,
+  "revisits": 0,
+  "instruction_count": 931,
+  "body_bytes": 2760,
+  "metadata_and_machine_artifacts": [
+    {
+      "path": "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-scorer-weight-2026-10-23.json",
+      "sha256": "6b0c6e01a38d24ee1828e654d1f00f4d9d13d9ef8796e1f2f240c4ab263bba82"
+    },
+    {
+      "path": "testes/resultados/s1-scorer-weight-2026-10-23/machine-checks.json",
+      "sha256": "f114b37097ba86eb2502e032d26b4a9916cb6912a3687a4156ddb84d01fdb191"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/headless-cross-checks-s4-reflow-consumers-2026-10-23.json",
+      "sha256": "f6482b9a319417c2ecfd2fa5227d09971a2b7ef54dee031b05036e2ee81f4fae"
+    },
+    {
+      "path": "testes/resultados/s4-reflow-2026-10-23/machine-consumers.json",
+      "sha256": "f674b5aa73eafc965a22c63d9c93208bd02bb4954e94ab84dc39b2b50840995f"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/headless-cross-checks-s4-reflow-extents-2026-10-23.json",
+      "sha256": "87f41c732a7482f9ee7bb8d69e6436a9bb8686085a45fc462e50b0eaf117e5f4"
+    },
+    {
+      "path": "testes/resultados/s4-reflow-2026-10-23/machine-extents.json",
+      "sha256": "67db8372ca894531f409d0f8c836ee7ea43d5161f53104e4bda32ee87ea17f41"
+    }
+  ],
+  "all_raw_and_pseudocode_hashes_verified": true,
+  "app_tests_acceptance_workflows_unchanged": true,
+  "app_suite_rerun": false,
+  "original_executed_by_this_batch": false,
+  "live_vm_access_on_resume": false,
+  "criteria_or_weights_changed": false,
+  "full_S1_S2_S3_S4_complete": false,
+  "differential_parity_proved": false,
+  "passed": true
+}

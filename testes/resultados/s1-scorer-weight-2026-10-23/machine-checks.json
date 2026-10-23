@@ -1,0 +1,64 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "subject_name": "lucene++.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s1-scorer-weight-2026-10-23",
+  "entries": [
+    {
+      "entry": "0x101e0770",
+      "instructions": 36,
+      "body_bytes": 114,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e65da7f394b66246e07330d612b629574df68ec9ec2d24c1234094ef4d764782",
+      "pseudocode_sha256": "356ef608d00d2204bd22b92aa05058af10c95593fb18cb700a832168cce15185"
+    },
+    {
+      "entry": "0x101e1560",
+      "instructions": 120,
+      "body_bytes": 371,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "2d52b611b6b592b92051e7a024ddd8412f540370c770dca2984151c39ae26f20",
+      "pseudocode_sha256": "b5443d185350a3664a57d724a565f93e3f2f94ab2e456fc4f91d316ef652a974"
+    },
+    {
+      "entry": "0x101e3ee0",
+      "instructions": 6,
+      "body_bytes": 17,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4f73d45afef0fe75a75b07b232d2ce061b54ea97a979fbdd11693d9029551eca",
+      "pseudocode_sha256": "f510b940413bfcd6218257f3107a5ca52e6791e16aa33d758afd468030983c26"
+    },
+    {
+      "entry": "0x101e4530",
+      "instructions": 52,
+      "body_bytes": 144,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "3470503465be7bc73c76b18952960205fcc33fda7060a4e3749ccf1a3901c4d3",
+      "pseudocode_sha256": "b7cbe6dc4ef5e7ff5744754f92196fb854ae6092886867306fdf61bd898f54ee"
+    },
+    {
+      "entry": "0x101e4970",
+      "instructions": 213,
+      "body_bytes": 637,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "f6f9e803813ddb6b6ca574331c10143df2b9256d8a64e6e1949daf48568ef311",
+      "pseudocode_sha256": "87b3715b6328a33c6ac2640d7ae737a66c1e4796c3f8f299b132e2f95909cdd7"
+    },
+    {
+      "entry": "0x10241e80",
+      "instructions": 130,
+      "body_bytes": 370,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6ddb74beefd3188a81f21fd8810e888960285217bce88f710aa41bffaf414a9e",
+      "pseudocode_sha256": "6a17b8624d55d2b991e00fb1670eb861a5e55203a76c8cc8ae775f1f4500485e"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}
