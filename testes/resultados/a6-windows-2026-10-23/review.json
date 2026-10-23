@@ -1,0 +1,115 @@
+{
+  "schema": "linuxit-a6-windows-review-v1",
+  "reviewed_at_local": "2026-10-23T10:22:48-03:00",
+  "reviewer": "Claude",
+  "status": "native_suite_and_acceptance_passed_on_ci_runner",
+  "summary": "No runner Windows Server 2022 do GitHub, a mesma revisão 92f1708 instalou e desinstalou o pacote por usuário (8/8), passou a suíte própria inteira (759 executados, 735 aprovados, 0 falhas, 0 erros, 24 pulados só-Linux) e a aceitação própria 79/79. Correções desta etapa: PowerShell do sistema por caminho absoluto na verificação CMS (PATH mínimo do MSYS2 deixava toda assinatura 'indisponível'), seletor de arquivos comparado por caminho normalizado e com espera limitada (travava suíte e aceitação), corrida de cache no caso S12-03-2 e limpeza de pastas temporárias tolerante a arquivos ainda presos no Windows.",
+  "branch": "claude/windows-installer",
+  "branch_commit": "92f17080",
+  "runs": {
+    "full": {
+      "id": 39958811654,
+      "url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39958811654",
+      "conclusion": "success"
+    },
+    "repeat_of_timing_sensitive_modules": {
+      "id": 39958826197,
+      "modules": 6,
+      "run": 58,
+      "passed": 57,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "acceptance": "S12-03-2,S12-23-1,S12-23-2 passed",
+      "note": "diagnostic subset; never certifies"
+    },
+    "linux_validation_same_commit": {
+      "id": 39958829720,
+      "url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39958829720",
+      "conclusion": "success"
+    },
+    "earlier_this_step": [
+      {
+        "id": 39903241199,
+        "commit": "7e9a520",
+        "result": "suíte travou no teste 690 (seletor) e aceitação travou; 647 aprovados/7 falhas/13 erros até o travamento"
+      },
+      {
+        "id": 39952156628,
+        "commit": "7c3cc4c",
+        "result": "diagnóstico: assinaturas/DSS/RFC3161 passaram após PowerShell; 5 falhas de comparação de caminhos"
+      },
+      {
+        "id": 39952865560,
+        "commit": "3e863ee",
+        "result": "suíte completa 734/759, 1 erro de limpeza; aceitação 74 aprovados/1 falha, travou em S12-23-1"
+      },
+      {
+        "id": 39956902687,
+        "commit": "235f4f0",
+        "result": "aceitação 79/79; suíte 730 aprovados, 3 falhas de tempo de GUI e 2 erros de limpeza"
+      }
+    ]
+  },
+  "full_suite": {
+    "run": 759,
+    "passed": 735,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 24,
+    "python": "3.14.8",
+    "elapsed_sec": 303.0078545
+  },
+  "skipped_reasons": {
+    "Native Linux GTK/GStreamer pipeline": 4,
+    "Requires actual Linux OCR runtime": 1,
+    "Requires GTK/X11 and actual Linux OCR tools": 5,
+    "Requires actual Linux Poppler and Tesseract": 6,
+    "Native Linux Tesseract integration": 1,
+    "Linux process group verification": 1,
+    "Native OpenSSL and packaged ASN.1 integration": 5,
+    "Native Linux Poppler/Tesseract": 1
+  },
+  "acceptance": {
+    "counts": {
+      "passed": 79,
+      "failed": 0,
+      "error": 0,
+      "not_run": 0
+    },
+    "revision": "92f1708aaadad36d2ac145d31565f6bc2c304a16",
+    "revision_dirty": false,
+    "platform": "Windows-2022Server-10.0.20348-SP0"
+  },
+  "installer": {
+    "passed": true,
+    "checks": {
+      "silent_install_exit_zero": true,
+      "installed_bytes_equal_payload": true,
+      "installed_native_probe": true,
+      "installed_exe_launcher": true,
+      "per_user_uninstall_registered": true,
+      "uninstaller_removes_owned_files": true,
+      "uninstaller_preserves_foreign_files": true,
+      "uninstall_registry_removed": true
+    },
+    "bytes": 105956057,
+    "sha256": "842cad22fb163aec8d5624d13ebef579650456197f1200fef2b6497d95399970",
+    "payload_files": 8879,
+    "runtime_packages": 145,
+    "installed_or_published": false
+  },
+  "artifact_files_sha256": {
+    "full-suite.json": "911761eccfa97ab2d3ea27718e54c1d12e51f2ea1e8f9afd1b547903a238106b",
+    "acceptance.json": "7a80530fcdc81e0cb19d16ecff1777a1fafbfee06a54233516c96b8c58f652e0",
+    "installer-validation.json": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+    "LinuxitPDF-0.1.19-windows-x86_64.json": "ff05d84b1ca240d700072a44328c9b250e795287883c894df58c39bf8a1e4428"
+  },
+  "intermittency": "Em 1 de 3 execuções completas (39956902687) três testes de GUI esperaram mais que o limite (página exibida, posição no modo leitura) e passaram nas duas execuções seguintes. Sem causa no app comprovada; acompanhar.",
+  "limits": [
+    "Build de desenvolvimento sem assinatura digital; runner efêmero, não certifica Windows 10/11 de usuário.",
+    "24 testes pulados exigem ferramentas Linux (Tesseract/OCR real, GStreamer, OpenSSL nativo, grupos de processo); OCR e mídia no Windows seguem sem validação.",
+    "Ramo claude/windows-installer não integrado à main; a integração não pode alterar a árvore do candidato 0.1.19 enquanto ela for necessária à E29.",
+    "Nenhuma VM, Foxit, publicação ou mudança de critérios/pesos."
+  ]
+}

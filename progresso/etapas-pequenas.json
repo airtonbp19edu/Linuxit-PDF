@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-23T05:46:11.374849-03:00",
+  "updated_at_local": "2026-10-23T10:22:48-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -503,9 +503,10 @@
       "evidence": [
         "testes/resultados/0.1.19/a6-review.json",
         "docs/PASSOS-4-6-A456-2026-10-22.md",
-        "testes/resultados/a6-windows-2026-10-22/review.json"
+        "testes/resultados/a6-windows-2026-10-22/review.json",
+        "testes/resultados/a6-windows-2026-10-23/review.json"
       ],
-      "note": "Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nativo5/5, mas falta manifesto no destino após instalar; suíte/aceitação puladas. Ramo separado codex/windows-installer-diagnostics. Critérios15/16 permanecem parciais.",
+      "note": "Não é A6 universal concluída. Windows (ramo claude/windows-installer, 92f1708, CI 39958811654): instalação/desinstalação 8/8, suíte própria 759 executados/735 aprovados/0 falhas/0 erros/24 pulados só-Linux e aceitação 79/79 no runner Windows Server 2022. Ramo ainda não integrado à main; OCR/mídia no Windows sem validação; sem certificação de Windows de usuário. Critérios15/16 permanecem parciais.",
       "subitems": [
         {
           "id": "javascript",
@@ -558,8 +559,8 @@
         {
           "id": "windows",
           "title": "Instalador Windows",
-          "status": "partial_installer_verification_blocked",
-          "evidence": "testes/resultados/a6-windows-2026-10-22/review.json"
+          "status": "native_suite_and_acceptance_passed_on_ci_runner",
+          "evidence": "testes/resultados/a6-windows-2026-10-23/review.json"
         }
       ]
     },

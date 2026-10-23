@@ -16,7 +16,7 @@ históricos abaixo como instrução nova.
 | Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
 | S1: algoritmo/opções/classes da busca | Codex: dez lotes revisados,47 entradas novas; S1 parcial; próximos alvos no relatório de23/10 | `docs/REA-S1-AVALIACAO-2026-10-23.md` |
 | S2/S3/S4 | Codex: lotes S2 e S3 revisados, catálogo410; S4 dirigido em andamento; todas integrais parciais | `docs/REA-S2-CONTINUACAO-2026-10-23.md`, `docs/REA-S3-ANOTACOES-RESUMO-2026-10-23.md` |
-| Windows A6 | Claude em `claude/windows-installer`; parcial, não duplicar | `testes/resultados/a6-windows-2026-10-22/review.json` |
+| Windows A6 | Claude em `claude/windows-installer` (92f1708): instalação 8/8, suíte 735/759 sem falhas e aceitação 79/79 no CI 39958811654; não integrado à main | `testes/resultados/a6-windows-2026-10-23/review.json` |
 | Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
 | VM/E30 | Claude reservou às02:17; Codex não acessou na retomada; UI01 ainda parcial no último checkpoint Codex | `docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md` |
 | Publicação/B3/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
