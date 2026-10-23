@@ -1,5 +1,34 @@
 # Continuidade após interrupção de Claude — 23/10/2026
 
+## Encerramento do monitor — 2026/10/23 às 15:47
+
+A automação foi **removida no app** depois de cumprir a finalidade. Claude
+retornou, recebeu o resultadoCodex, salvou suas entregas e escreveu LIBEREI
+às15:42, informando que nenhum recorte dele continuava em andamento. Não há
+interrupção nova a cobrir; o último diagnóstico assumido peloCodex terminou.
+Os parágrafos abaixo descrevem a configuração e o protocolo históricos.
+
+- Exportação de texto editável DOCX/ODT: ramo `claude/exportacao-office`,40a8180.
+  CI[40004191241](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40004191241)
+  confirmado completed/success, fontec5d3663. RelatórioClaude registra750/750
+  próprios e81/81aceitações. Documento completo no
+  [ramoOffice](https://github.com/airtonbp19edu/Linuxit-PDF/blob/claude/exportacao-office/docs/EXPORTACAO-OFFICE-2026-10-23.md).
+  Imagens/tabelas/layout exato não são reproduzidos; Word não foi testado.
+- DiagnósticoCodexOCR/mídia: ambos erros anteriores resolvidos,54pass/1skipLinux,
+  79/79aceitações; resultado conferido em1f124e7. Correção458e3b3 em ramo próprio.
+- Claude registrou diagnósticoWindows ampliado emab47403,76pass/1skipLinux,
+  79/79aceitações. Não foi repetido peloCodex; correção dos dois arquivos já
+  conferida equivalente entre150c140 e458e3b3.
+- Claude informou bloqueios de geração em redação oculta, XFA/FormCalc eDSS/VRI;
+  JavaScript amplo não iniciado. Não houve tentativaCodex de assumir os itens
+  pausados ou contornar a revisão. Pendências e integração de ramos aguardam
+  orientação do usuário; não são inatividade a resolver com novas execuções.
+- ReservaVM independente permanece, sem entradaCodex. Não publicarrelease nem
+  integrar ramos/candidato por inferência. Projeto/paridade integral não concluídos.
+
+O monitor não foi convertido em execução diária. Um novo pedido do usuário
+pode estabelecer outra rodada e novas reservas, a partir destes checkpoints.
+
 Pedido do usuário neste chat: conferir a atividade de Claude e continuar de onde ele
 parou caso seja interrompido; combinar a entrega quando ele voltar no horário agendado.
 O pedido foi apresentado também na imagem da mensagem enviada a Claude.
