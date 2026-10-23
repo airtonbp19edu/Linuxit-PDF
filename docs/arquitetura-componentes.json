@@ -505,6 +505,12 @@
       "responsibility": "A6: serviço próprio pdf_conversion; fronteiras e limites em docs/A456-EXECUCAO-2026-10-22.md."
     },
     {
+      "id": "office_export",
+      "path": "app/office_export.py",
+      "boundary": "portable_pdf_services",
+      "responsibility": "Exportação própria do texto do PDF para DOCX/ODT editáveis (parágrafos por bloco do Poppler, uma página por página do PDF); sem imagens/tabelas/layout exato. docs/EXPORTACAO-OFFICE-2026-10-23.md."
+    },
+    {
       "id": "pdf_form_javascript",
       "path": "app/pdf_form_javascript.py",
       "boundary": "portable_pdf_services",

@@ -17,14 +17,14 @@ class ConversionWindow(Gtk.Window):
         self.source_sha256=source_snapshot(self.path)[1]
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
         self.format=Gtk.ComboBoxText()
-        for value,label in [('text','Texto UTF-8 (até100 páginas)'),('png','PNG por página em ZIP'),('jpeg','JPEG por página em ZIP'),('tiff','TIFF multipágina')]:self.format.append(value,label)
+        for value,label in [('text','Texto UTF-8 (até100 páginas)'),('docx','Documento Word editável .docx (texto)'),('odt','Documento ODF editável .odt (texto)'),('png','PNG por página em ZIP'),('jpeg','JPEG por página em ZIP'),('tiff','TIFF multipágina')]:self.format.append(value,label)
         self.format.set_active_id('text');box.add(self.format)
         self.dpi=Gtk.ComboBoxText()
         for value in (72,150,300):self.dpi.append(str(value),f'{value}DPI')
         self.dpi.set_active_id('150');box.add(self.dpi)
         self.create=Gtk.Button(label='Salvar exportação nova…');self.create.connect('clicked',self._create);box.add(self.create)
         cancel=Gtk.Button(label='Cancelar operação');cancel.connect('clicked',lambda *_:self.cancel.set());box.add(cancel)
-        self.status=Gtk.Label(label='Exportação visual não recria documentos Office editáveis.',xalign=0);self.status.set_line_wrap(True);box.add(self.status)
+        self.status=Gtk.Label(label='DOCX e ODT trazem o texto em parágrafos editáveis, página por página; imagens, tabelas e o layout exato não são reproduzidos. PNG, JPEG e TIFF são exportações visuais.',xalign=0);self.status.set_line_wrap(True);box.add(self.status)
         self.connect('destroy',self._destroy)
     def _create(self,*_):
         if self.busy or self.closed:return

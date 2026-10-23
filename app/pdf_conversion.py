@@ -1,4 +1,4 @@
-"""Export local PDF to text, image ZIP or multipage TIFF, atomically."""
+"""Export local PDF to text, editable DOCX/ODT, image ZIP or multipage TIFF, atomically."""
 from io import BytesIO
 import hashlib,json,math
 from pathlib import Path
@@ -10,7 +10,7 @@ from pdf_ocr import _run
 configure_pdf_library()
 from pypdf import PdfReader
 
-FORMATS={'text':'.txt','png':'.zip','jpeg':'.zip','tiff':'.tiff'}
+FORMATS={'text':'.txt','docx':'.docx','odt':'.odt','png':'.zip','jpeg':'.zip','tiff':'.tiff'}
 MAX_SOURCE_BYTES=128*1024**2
 
 def source_snapshot(source):
@@ -36,10 +36,20 @@ def convert_copy(source,destination,request):
     if not 1<=len(reader.pages)<=100:raise ValueError('Conversão aceita1–100 páginas.')
     with tempfile.TemporaryDirectory(prefix='linuxit-convert-') as folder:
         work=Path(folder);pinned=work/'source.pdf';pinned.write_bytes(data);output=work/destination.name
+        paragraphs=None
         if request['format']=='text':
             _run(['pdftotext','-layout','-enc','UTF-8',str(pinned),str(output)])
             if not output.exists() or output.stat().st_size>32*1024**2:raise ValueError('Texto exportado ausente ou acima de32MiB.')
             output.read_text(encoding='utf-8')
+        elif request['format'] in ('docx','odt'):
+            from office_export import paragraphs_from_bbox,verify_office,write_docx,write_odt
+            layout=work/'layout.html'
+            _run(['pdftotext','-bbox-layout','-enc','UTF-8',str(pinned),str(layout)])
+            if not layout.exists() or layout.stat().st_size>64*1024**2:raise ValueError('Leitura do texto ausente ou acima de64MiB.')
+            pages=paragraphs_from_bbox(layout.read_text(encoding='utf-8'))
+            if len(pages)!=len(reader.pages):raise ValueError('A leitura do texto não cobriu todas as páginas.')
+            (write_docx if request['format']=='docx' else write_odt)(pages,output)
+            paragraphs=verify_office(output,request['format'],len(pages))
         else:
             if len(reader.pages)>20:raise ValueError('Exportação de imagens aceita até20 páginas.')
             total=0;images=[];manifest=[]
@@ -70,4 +80,5 @@ def convert_copy(source,destination,request):
             if source_snapshot(source)[1]!=request['source_sha256']:raise ValueError('PDF mudou durante a conversão.')
         digest=hashlib.sha256(output.read_bytes()).hexdigest();publish_copy(output,destination,unchanged)
     return {'schema':'linuxit-conversion-copy-v1','path':str(destination.resolve()),'source_sha256':request['source_sha256'],
-            'output_sha256':digest,'format':request['format'],'pages':len(reader.pages)}
+            'output_sha256':digest,'format':request['format'],'pages':len(reader.pages),
+            **({'paragraphs':paragraphs,'images_exported':False,'layout_preserved':False} if paragraphs is not None else {})}
