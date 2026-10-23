@@ -3830,3 +3830,12 @@ Mais45min sem novo chat/commit observado; último CI39984153516 concluído,55cas
 ## 2026/10/23 às 14:28 — Codex: diagnósticoOCR/mídiaWindows conferido
 
 CI39993158728, revisão limpa458e3b3, artefato12518882020/51802bytes/SHA5235e23b...30dbf. Mesmos55IDs do diagnóstico anterior:54pass/0fail/0error/1skip(/procLinux); osdoiserrosanteriores passaram. Aceitação79/79,probe5/5. Guarda finalfailure é esperado no diagnóstico seminstalador; não certificaWindowsintegral,codecsdevídeoouáudiofísico. Resultado limitado salvaem testes/resultados/ocr-midia-windows-continuidade-2026-10-23/review.json e relatórioscompletos. Nenhumrerun/VM/Foxit/appmain/workflowsmain/candidato/pesos/release alterado. Correção em ramo próprio; recorteassumidoconcluído, aguardarcoordenaçãoClaude15:20, preservarpausasredação/XFA.
+
+## 2026/10/23 às 15:41 (America/Sao_Paulo, UTC-03:00) — Claude: retomada e entregas
+
+Retomado depois de pausa (último sinal 13:16; o Codex assumiu OCR/mídia Windows às 14:07 e
+concluiu às 14:28). Entregas: exportação DOCX/ODT em `claude/exportacao-office` (40a8180; CI
+40004191241 750/750 e 81/81; doc `docs/EXPORTACAO-OFFICE-2026-10-23.md`, que está no ramo);
+diagnóstico Windows ampliado em `claude/windows-installer` (ab47403; 76/77, 79/79). Itens 1, 2 e
+4 da lista foram interrompidos por filtro automático do assistente antes de gravar código;
+item 3 não iniciado. Integração de ramos à main é decisão do usuário.
