@@ -1,0 +1,136 @@
+{
+  "schema": "linuxit-s3-comments-imports-controls-v1",
+  "reviewed_at_local": "2026-10-23T05:36:33.655818-03:00",
+  "target_sha256": "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8",
+  "original_executed": false,
+  "thunks": [
+    {
+      "entry": "0x100204e0",
+      "iat_va": "0x10029234",
+      "import_library": "mfc140u.dll",
+      "import_ordinal": 5422,
+      "name_in_binary": null,
+      "name_in_ghidra_ordinal_database": "?GetDlgItem@CWnd@@QBEPAV1@H@Z",
+      "thunk_bytes_sha256": "6961d611ab269fb74cdc2177856d648c4d4b4c3de77555bfefa0b24e56c53b6c",
+      "ordinal_present_in_copied_local_mfc": true
+    },
+    {
+      "entry": "0x100204e6",
+      "iat_va": "0x10029238",
+      "import_library": "mfc140u.dll",
+      "import_ordinal": 14234,
+      "name_in_binary": null,
+      "name_in_ghidra_ordinal_database": "?ShowWindow@CWnd@@QAEHH@Z",
+      "thunk_bytes_sha256": "73718e095ffc620155e062bd81ff31a383035a451d3d68bcf4ef641c5b87c7f9",
+      "ordinal_present_in_copied_local_mfc": false
+    }
+  ],
+  "ordinal_database": {
+    "path": "A:\\Programas\\ghidra_12.1.4_PUBLIC\\Ghidra\\Features\\Base\\data\\symbols\\win32\\mfc140u.exports",
+    "sha256": "4ae2761e69f8a9a66ead6ac07f378a80b12b6851ba0e6f2d799b5937f2e227b6",
+    "scope": "Ghidra tool metadata; not a recovered runtime export name"
+  },
+  "copied_local_mfc": {
+    "sha256": "5deee7047ac0dc407ccc82e852910e55384e04c61474c8c28bb31581ce174198",
+    "matches_preserved_inventory": true,
+    "machine": "0x14c",
+    "export_count": 9280,
+    "min_ordinal": 256,
+    "max_ordinal": 9539,
+    "runtime_binding_verified": false
+  },
+  "direct_named_imports": [
+    {
+      "iat_va": "0x10029124",
+      "library": "USER32.dll",
+      "name": "SendMessageW"
+    },
+    {
+      "iat_va": "0x10029028",
+      "library": "GDI32.dll",
+      "name": "DeleteObject"
+    }
+  ],
+  "dialog": {
+    "resource_id": 8006,
+    "language": 1033,
+    "resource_sha256": "52fd946f8be8bab0987767264db18421b6af37aca300595248b4cc79c32190cf",
+    "selected_controls_in_helper_call_order": [
+      {
+        "id": 8018,
+        "class": {
+          "ordinal": 128
+        },
+        "label": "Connector Line"
+      },
+      {
+        "id": 8019,
+        "class": {
+          "ordinal": 130
+        },
+        "label": "Co&lor:"
+      },
+      {
+        "id": 8014,
+        "class": {
+          "ordinal": 128
+        },
+        "label": ""
+      },
+      {
+        "id": 8020,
+        "class": {
+          "ordinal": 130
+        },
+        "label": "Op&acity:"
+      },
+      {
+        "id": 8021,
+        "class": {
+          "ordinal": 130
+        },
+        "label": "%"
+      },
+      {
+        "id": 8015,
+        "class": "msctls_trackbar32",
+        "label": ""
+      },
+      {
+        "id": 8016,
+        "class": {
+          "ordinal": 129
+        },
+        "label": ""
+      }
+    ]
+  },
+  "layout_preview_bitmap_ids": [
+    {
+      "id": 8011,
+      "RT_BITMAP_present": true
+    },
+    {
+      "id": 8013,
+      "RT_BITMAP_present": true
+    },
+    {
+      "id": 8010,
+      "RT_BITMAP_present": true
+    },
+    {
+      "id": 8012,
+      "RT_BITMAP_present": true
+    },
+    {
+      "id": 8014,
+      "RT_BITMAP_present": true
+    }
+  ],
+  "limitations": [
+    "Imported MFC function names are tool-database ordinal mappings; runtime module/version and binding were not observed.",
+    "The pinned adjacent mfc140u.dll does not export ordinal14234; do not silently declare that copy is the loaded dependency.",
+    "Resource-control and bitmap-resource numeric IDs live in different namespaces; matching numbers do not imply identity.",
+    "Resource labels, classes and calls are static evidence; no GUI was displayed or tested."
+  ]
+}

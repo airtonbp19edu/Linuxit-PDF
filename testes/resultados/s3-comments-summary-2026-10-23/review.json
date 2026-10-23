@@ -1,0 +1,157 @@
+{
+  "schema": "linuxit-s3-comments-summary-review-v1",
+  "reviewed_at_local": "2026-10-23T05:41:26.433867-03:00",
+  "reviewer": "Codex",
+  "module": "CommentsSummary.fpi",
+  "target_sha256": "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8",
+  "profile": "Direct Ghidra -noanalysis with installed REA seed script; not REA MCP Evidence",
+  "ghidra_version": "12.1.4",
+  "java_major_version": 21,
+  "rea_package_version": "6.7.0",
+  "reused_completed_round_after_interruption": true,
+  "headless_round_repeated": false,
+  "identity_confirmed_again_at_review": true,
+  "seed_count": 9,
+  "new_distinct_entries_for_this_module": 9,
+  "local_bodies": 7,
+  "import_thunks": 2,
+  "new_product_features_inferred_from_count": false,
+  "machine_check": {
+    "report": "testes/resultados/s3-comments-summary-2026-10-23/machine-checks.json",
+    "entries": 9,
+    "instructions": 191,
+    "body_bytes": 608,
+    "all_instruction_addresses_match": true,
+    "raw_result_hashes_verified": true
+  },
+  "layout_static_checks": [
+    {
+      "control_id": 8000,
+      "entry": "0x1001f5c0",
+      "stored_offset": "0x434",
+      "stored_value": 0,
+      "preview_bitmap_id": 8011,
+      "helper_argument": 1,
+      "static_resource_route_candidate_checked": true,
+      "assembly_pattern_checks_passed": true
+    },
+    {
+      "control_id": 8001,
+      "entry": "0x1001f610",
+      "stored_offset": "0x434",
+      "stored_value": 1,
+      "preview_bitmap_id": 8013,
+      "helper_argument": 1,
+      "static_resource_route_candidate_checked": true,
+      "assembly_pattern_checks_passed": true
+    },
+    {
+      "control_id": 8002,
+      "entry": "0x1001f660",
+      "stored_offset": "0x434",
+      "stored_value": 2,
+      "preview_bitmap_id": 8010,
+      "helper_argument": 0,
+      "static_resource_route_candidate_checked": true,
+      "assembly_pattern_checks_passed": true
+    },
+    {
+      "control_id": 8003,
+      "entry": "0x1001f6b0",
+      "stored_offset": "0x434",
+      "stored_value": 3,
+      "preview_bitmap_id": 8012,
+      "helper_argument": 0,
+      "static_resource_route_candidate_checked": true,
+      "assembly_pattern_checks_passed": true
+    },
+    {
+      "control_id": 8004,
+      "entry": "0x1001f700",
+      "stored_offset": "0x434",
+      "stored_value": 4,
+      "preview_bitmap_id": 8014,
+      "helper_argument": 0,
+      "static_resource_route_candidate_checked": true,
+      "assembly_pattern_checks_passed": true
+    }
+  ],
+  "group_helper": {
+    "entry": "0x1001f8b0",
+    "zero_argument_mode": 0,
+    "nonzero_argument_mode": 5,
+    "control_ids_in_call_order": [
+      8018,
+      8019,
+      8014,
+      8020,
+      8021,
+      8015,
+      8016
+    ],
+    "explicit_call_pairs": 7,
+    "table_iteration_loop": false,
+    "automatic_pseudocode_argument_placement_correct": false,
+    "assembly_patterns_checked": true
+  },
+  "image_helper": {
+    "entry": "0x1001d430",
+    "body_bytes": 65,
+    "temporary_handle_deleted": true,
+    "transform_helpers": [
+      "0x1001d410",
+      "0x1001d290",
+      "0x10002f90"
+    ],
+    "scaling_factor_semantics_proved": false,
+    "all_handle_lifetimes_proved": false
+  },
+  "import_provenance": {
+    "report": "testes/resultados/s3-comments-summary-2026-10-23/imports-and-controls.json",
+    "MFC_names_origin": "Ghidra win32 ordinal database, not textual names in target imports",
+    "runtime_binding_verified": false,
+    "adjacent_pinned_MFC_has_ordinal14234": false
+  },
+  "thunk_decompiler_warnings": {
+    "entries": [
+      "0x100204e0",
+      "0x100204e6"
+    ],
+    "decompiler_message_fields_empty": true,
+    "warnings_in_pseudocode": "Indirect jump classified as call; do not interpret as recursion or a recovered switch."
+  },
+  "external_API_references": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/controls/stm-setimage",
+      "purpose": "Interpret image-association message semantics; not evidence of runtime execution"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow",
+      "purpose": "Explain modes0/5 conditional on the ordinal-to-name interpretation"
+    }
+  ],
+  "report": "docs/REA-S3-ANOTACOES-RESUMO-2026-10-23.md",
+  "report_sha256": "31a5e880eb62068a023f829310151c957dbbc0bd62c792ea6b508a30a09caae1",
+  "published_metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-s3-comments-summary-2026-10-23.json",
+  "metadata_sha256": "e7db2ffb4e2406ea949db111a43acaeef387dbdfc2952c04d5fa38ed53d22d83",
+  "next_unexecuted_targets": [
+    "COMMENTS+0x434 consumers/writers",
+    "0x1001d410",
+    "0x1001d290",
+    "0x10002f90",
+    "0x1001f750",
+    "0x1001f790",
+    "0x1001f7d0"
+  ],
+  "s3_complete": false,
+  "complete_annotation_editor_proved": false,
+  "complete_summary_generator_proved": false,
+  "original_executed": false,
+  "vm_touched": false,
+  "app_changed": false,
+  "new_app_tests_run": 0,
+  "shared_catalog_or_progress_changed_by_this_subtask": false,
+  "criteria_or_weights_changed": false,
+  "release_published": false,
+  "implementation_completion_percent": null
+}

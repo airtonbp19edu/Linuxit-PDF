@@ -1,0 +1,86 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x165f4d0.json",
+      "result_sha256": "83209e5dd10b3e3dec98dacb706dd285910152739c7d85319841bde2541bdede",
+      "entry_va": "0x165f4d0",
+      "analyst_name": "analyst_s2_print_state_reset_165f4d0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 164,
+      "body_ranges": "[[0165f4d0, 0165f573]]",
+      "pseudocode_sha256": "c2e7aa9b2972f4a9487f33b069fdfd7a82309a116a6508da6292840113cc7f6e",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x166d160.json",
+      "result_sha256": "a759906c87426b81be09a3fc4def54383ff70e7a8a5fbd02753eee6460902a97",
+      "entry_va": "0x166d160",
+      "analyst_name": "analyst_s2_print_page_166d160",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 681,
+      "body_ranges": "[[0166d160, 0166d408]]",
+      "pseudocode_sha256": "66eb4f0170fbcf1b1c0af637f3376177a4c6da2d2e7f692f4b3b7486f5f81c03",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x166d410.json",
+      "result_sha256": "9428c3042d837ee332021a57012ba7c5a16f07ea51ee386aa43d90ae92e447b3",
+      "entry_va": "0x166d410",
+      "analyst_name": "analyst_s2_print_page_variant_166d410",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1395,
+      "body_ranges": "[[0166d410, 0166d982]]",
+      "pseudocode_sha256": "afc1f6b3adc389ebd8eedd49853a6c5309270991a2823e683f27887679ee5454",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x166e180.json",
+      "result_sha256": "9f11c214f8887f20c292c43478c2e8718773214eb243c4b70e602e8843d7fa8e",
+      "entry_va": "0x166e180",
+      "analyst_name": "analyst_s2_print_job_166e180",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1829,
+      "body_ranges": "[[0166e180, 0166e7ef] [0166e89d, 0166e951]]",
+      "pseudocode_sha256": "0ddfa7d7569f8a6ced7caaa8052d4ffcee700b6f06aebc51db630ed360df5913",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x166e960.json",
+      "result_sha256": "023493548c2f3578b4b35eca423fd7ca2ec4827c878cce61e33705fdf20e0f3f",
+      "entry_va": "0x166e960",
+      "analyst_name": "analyst_s2_print_job_alternative_166e960",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 661,
+      "body_ranges": "[[0166e960, 0166eb76] [0166ebc0, 0166ec3d]]",
+      "pseudocode_sha256": "61105de94ffea5d0fd8faa7d38293e9c0ad4788b8598e134f10a6820d4a4d23a",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s2-print-loop-2026-10-23/functions/0x1670450.json",
+      "result_sha256": "89f0d0becadca6ba82919bad8e9f97c760b76912215f68578c539cf89c39e21f",
+      "entry_va": "0x1670450",
+      "analyst_name": "analyst_s2_print_devmode_1670450",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 914,
+      "body_ranges": "[[01670450, 016707e1]]",
+      "pseudocode_sha256": "cabce77a1d7d7510b6703f15c2749fc9ecb2c6ea3936321261431441c6620537",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 6,
+  "distinct_entries": 6,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

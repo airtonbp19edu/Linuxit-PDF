@@ -1,0 +1,250 @@
+{
+  "schema": "linuxit-s2-print-static-review-v1",
+  "reviewed_at": "2026-10-23T01:30:02.974067-03:00",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "profile": "Direct Ghidra 12.1.4 headless -noanalysis with REA 6.7.0 seed script, copied preserved projects, Capstone 5.0.6 independent address checks",
+  "machine_reports": [
+    {
+      "path": "testes/resultados/s2-print-2026-10-23/machine-print-loop.json",
+      "sha256": "b66ae12fb1861856cbfc5df55bd6d9a06b9c6b31d7c93ca6b4e6738817d36e7d",
+      "entries": 6,
+      "instructions": 1690,
+      "body_bytes": 5644
+    },
+    {
+      "path": "testes/resultados/s2-print-2026-10-23/machine-spooler-devmode.json",
+      "sha256": "7623b6dc25490e4f14be7a32616b8622b5099b1890e3becd2a02eeee108a059f",
+      "entries": 2,
+      "instructions": 699,
+      "body_bytes": 2488
+    }
+  ],
+  "new_round_observations": 8,
+  "new_round_instructions": 2389,
+  "new_round_body_bytes": 8132,
+  "new_distinct_entries": [
+    "0x165f4d0",
+    "0x1670450",
+    "0x164e2b0",
+    "0x166f480"
+  ],
+  "repeat_decompilations": [
+    "0x166e180",
+    "0x166e960",
+    "0x166d160",
+    "0x166d410"
+  ],
+  "reused_prior_results": [
+    {
+      "entry": "0x1b8e560",
+      "raw": "analysis-local/headless/static-remaining-context-2026-10-18/functions/0x1b8e560.json",
+      "raw_sha256": "c771f21168d9cf5bed2d9b81a9893bdf4ce610095435d091d6be4c7ae22b005b",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-remaining-context-2026-10-18.json",
+      "instruction_count": 290,
+      "body_bytes": 920,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1b8cf60",
+      "raw": "analysis-local/headless/static-remaining-context-2026-10-18/functions/0x1b8cf60.json",
+      "raw_sha256": "8fe8e6dba88b5bfddae43305ca925470dc5343b76b5bf578e561acf958037454",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-remaining-context-2026-10-18.json",
+      "instruction_count": 410,
+      "body_bytes": 1398,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1b88590",
+      "raw": "analysis-local/headless/static-search-print-types-2026-10-18/functions/0x1b88590.json",
+      "raw_sha256": "bcc65406eae57d956abf6b015c6d36156e08d6912c7db7ea0f269b4c72b7766a",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-search-print-types-2026-10-18.json",
+      "instruction_count": 95,
+      "body_bytes": 599,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1b8d860",
+      "raw": "analysis-local/headless/no-vm-final-2026-10-17/functions/0x1b8d860.json",
+      "raw_sha256": "2ad453f1a5d60e73f40a8c48f5d8756751bc91f3c05c5c7bf6ec54e129159ddc",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-no-vm-final-2026-10-17.json",
+      "instruction_count": 439,
+      "body_bytes": 1445,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    },
+    {
+      "entry": "0x1664c00",
+      "raw": "analysis-local/headless/no-vm-2026-10-17/functions/0x1664c00.json",
+      "raw_sha256": "27acb9031c050ed1f322ac0a5d24ad3a9686632b1caeeca18afa7ca1fe579318",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-no-vm-2026-10-17.json",
+      "instruction_count": 377,
+      "body_bytes": 1157,
+      "new_decompilation": false,
+      "all_instruction_addresses_match": true
+    }
+  ],
+  "reused_prior_instructions_separate": 1611,
+  "reused_prior_body_bytes_separate": 5519,
+  "support_raw": "analysis-local/s2-support-2026-10-23.json",
+  "support_raw_sha256": "229f94ea4c116001929adaabd008d6f4a4c819dc981f1ec565bb0ff7e8ce4bba",
+  "vtables": [
+    {
+      "table_va": "0x53d7788",
+      "type_name": ".?AVCReader_BasePrinter@@",
+      "rtti_va": "0x6598720",
+      "type_descriptor_va": "0x6cc0ae8",
+      "slots": [
+        {
+          "offset": "0x0",
+          "target": "0x165e800"
+        },
+        {
+          "offset": "0x4",
+          "target": "0x1663e80"
+        },
+        {
+          "offset": "0x8",
+          "target": "0x166a990"
+        },
+        {
+          "offset": "0xc",
+          "target": "0x1671670"
+        },
+        {
+          "offset": "0x10",
+          "target": "0x16669d0"
+        },
+        {
+          "offset": "0x14",
+          "target": "0x1666830"
+        },
+        {
+          "offset": "0x18",
+          "target": "0x166e180"
+        }
+      ]
+    },
+    {
+      "table_va": "0x54151a0",
+      "type_name": ".?AVCPDF_BackgroundDrawer@@",
+      "rtti_va": "0x65ab368",
+      "type_descriptor_va": "0x6c9c940",
+      "slots": [
+        {
+          "offset": "0x0",
+          "target": "0x1b88ea0"
+        },
+        {
+          "offset": "0x4",
+          "target": "0x1b8e560"
+        },
+        {
+          "offset": "0x8",
+          "target": "0x1b8cf60"
+        }
+      ]
+    }
+  ],
+  "bounded_contracts": {
+    "gdi_job": {
+      "entry": "0x166e180",
+      "start_doc_iat": "0x531c2a0",
+      "end_doc_iat": "0x531c2a4",
+      "page_dispatch": [
+        "0x166d160",
+        "0x166d410",
+        "0x166f160"
+      ],
+      "total_helper": "0x165f8a0",
+      "total_helper_semantics_complete": false,
+      "abortdoc_not_called_in_reviewed_job_body": true,
+      "start_doc_failure_condition": "return value < 1",
+      "start_doc_failure_function_result": 0,
+      "minus_eight_error_contract_observed": false,
+      "interruption_field": "+0x14",
+      "public_ui_cancellation_contract_complete": false
+    },
+    "devmode_acquisition": {
+      "entry": "0x164e2b0",
+      "open_printer_thunk": "0x48ed042",
+      "document_properties_thunk": "0x48ed072",
+      "two_phase_query_and_fill": true,
+      "fill_mode": 2,
+      "fill_success": 1,
+      "failure_clears_output_pointer": true
+    },
+    "devmode_page_update": {
+      "entry": "0x1670450",
+      "reset_dc_iat": "0x531c334",
+      "word_fields": {
+        "+0x4c": "dmOrientation",
+        "+0x4e": "dmPaperSize",
+        "+0x64": "dmCollate"
+      },
+      "reset_dc_result_checked_in_body": false
+    },
+    "raw_job": {
+      "entry": "0x166f480",
+      "datatype_literal_va": "0x53d7c0c",
+      "datatype": "RAW",
+      "write_printer_thunk": "0x48ed090",
+      "partial_write_rejected": true,
+      "one_buffer_one_page_in_reviewed_body": true
+    },
+    "background_context": {
+      "bytes": 312,
+      "initializer": "0x1b88590",
+      "setup": "0x1b8d860",
+      "owner_field": "CPDF_BackgroundDrawer+0x1c",
+      "rtti_class": null,
+      "fully_typed": false
+    },
+    "base_field_8c": {
+      "initial_value": 72,
+      "numeric_threshold_observed": 300,
+      "full_semantic_name": null
+    }
+  },
+  "original_executed_by_this_subtask": false,
+  "vm_used_by_this_subtask": false,
+  "app_modified_by_this_subtask": false,
+  "s2_complete": false,
+  "differential_parity_proved": false,
+  "limitations": [
+    "Static function ranges, inferred prototypes and virtual receivers remain provisional despite instruction address equality.",
+    "GDI StartDoc/EndDoc and direct RAW spooler transport are distinct paths; no unobserved connection is asserted.",
+    "Cancellation checks do not prove public UI cancellation behavior, aborted spool jobs or physical printer state.",
+    "The full field contract and concrete type of the 0x138 background rendering context remain open.",
+    "The base +0x8c field is numerically traced but its DPI/quality/scale name is unproved.",
+    "The other page variant 0x166f160, total count helper 0x165f8a0 and failure helper 0x1667620 need follow-up.",
+    "Existing prior results and excerpts are not new unique functions or fresh runtime tests."
+  ],
+  "source_rechecked_after_review": true,
+  "primary_reference_links": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew",
+    "https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-resetdcw",
+    "https://learn.microsoft.com/windows/win32/printdocs/startdocprinter"
+  ],
+  "continued_at": "2026-10-23T05:37:02.197261-03:00",
+  "catalog_baseline_commit": "452174e01ee403e4501c5edf5c649a919b8071ea",
+  "catalog_baseline_entry_count": 397,
+  "catalog_deduplication_verified": true,
+  "review_report": "docs/REA-S2-CONTINUACAO-2026-10-23.md",
+  "interruption": {
+    "cause": "explicit_account_usage_limit",
+    "tool": "apply_patch",
+    "operation": "write technical report",
+    "action_executed": false,
+    "retained_analysis_and_machine_reports": true,
+    "resumed_without_repeating_ghidra": true,
+    "evidence_message": "Automatic approval review failed: You have hit your usage limit. The action was not executed because automatic approval review could not be completed."
+  },
+  "static_checks_after_resume": {
+    "preserved_result_hashes_match": true,
+    "original_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6"
+  }
+}

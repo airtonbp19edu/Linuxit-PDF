@@ -1,18 +1,20 @@
 # Avisos e situação do Linuxit PDF
 
+**Retomada — 2026/10/23 às 05:46 (America/Sao_Paulo, UTC−03:00):** retorno pontual das05:30 executado e automação removida após cumprir a finalidade. Claude reservou VM/E30 às02:17; sem LIBEREI no minichat, Codex não acessou a VM nesta retomada. Última ação anterior: Abrir com documento em01:29:57, Cancelar ainda não enviado; interrupção por limite de uso, sem travamento confirmado. S2/S3:17 observações conferidas,13 entradas novas/4 revisitas,2.580 instruções/8.740 bytes; catálogo397→410 (152REA+258diretas). Laço GDI, DEVMODE/RAW e seletores do resumo de comentários detalhados; S1/S2/S3 integrais continuam parciais. S4 e pesos da busca em análise dirigida. App, candidato0.1.19, workflows, critérios/pesos e releases preservados pelo Codex. [S2](REA-S2-CONTINUACAO-2026-10-23.md), [S3](REA-S3-ANOTACOES-RESUMO-2026-10-23.md), [E30](VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md).
+
 **Atualização — 2026/10/23 às 01:11 (America/Sao_Paulo, UTC-03:00):** autoria Airton+coautoria Codex confirmada em695f9bf; retomada Codex agendada23/10 às05:30, Claude confirmou05:10. S1:54 observações/47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes; catálogo350→397 (152REA+245diretas). Opções+6/+7/+0x10, normalização, consultas concretas e fábrica UI esclarecidas; errata+0x2044=CCriticalSection aplicada. S1 eS3 seguem parciais, com lacunas declaradas. VM/E30 em preflight pelo Codex, sem Foxit lançado até este checkpoint; Claude cuida Windows/app. Candidato0.1.19, workflows e critérios preservados. [S1](REA-S1-AVALIACAO-2026-10-23.md), [divisão](DIVISAO-TAREFAS-2026-10-23.md).
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/23 às 01:11 (America/Sao_Paulo)
+## Situação atual — 2026/10/23 às 05:46 (America/Sao_Paulo)
 
-- Divisão aceita: Codex S1/S3/S2/S4 e operador exclusivoVM; ClaudeWindows/app/tests/aceitação,kitE23,propostaB3 e revisão0.1.19. Ler [divisão](DIVISAO-TAREFAS-2026-10-23.md) e os arquivos de chat separados.
-- Codex05:30 agendado no app; Claude confirmou05:10. Autoria escolhida confirmada pelo GitHub: Airtonautor, trailerCodex único; lista agregada não mostra contaCodex separada.
-- S1:47 entradas novas e sete revisitas nos dez lotes,7.904 instruções/27.660 bytes. Catálogo397. [Relatório](REA-S1-AVALIACAO-2026-10-23.md); opções/Unicode/UI têm documentos próprios.
-- Correção: `dialog+0x2044` é seção crítica embutida; os dois pares Enter/Unlock não reiniciam um segundo modelo de resultados.
-- [S3/C1](REA-S3-ESTADOS-2026-10-23.md): quatro diagramas,39 arestas classificadas,30 associações de recursos conferidas; sem motores completos nem nova função por esse levantamento.
-- VM respondeu ao relógio e ao Gerenciador de Tarefas; manutenção breve conferiu ausência do Foxit e hash do coletor. Preparação de observador novo em andamento; nenhuma comparação nova aprovada neste checkpoint.
-- S1/S3 e critérios amplos continuam parciais. Candidato0.1.19/fonte9fb4f3a e suas evidências744/744/81aceitações preservados; não repetidos nesta análise. Publicação/B3 ainda exigem decisão própria.
+- Codex retomou às05:30 e leu a reserva de Claude na VM/E30 às02:17. Não houve acesso à VM pelo Codex nesta retomada. Último checkpoint próprio: seletor Abrir com documento, Cancelar ainda não enviado; nenhum travamento confirmado e nenhuma nova comparação diferencial aprovada.
+- A interrupção anterior recebeu erros explícitos de limite de uso; não há evidência de esgotamento de contexto ou falha do Foxit. A automação pontual foi removida depois de executar, sem repetição diária.
+- S2: oito observações, quatro novas/quatro revisitas,2.389 instruções/8.132 bytes; GDI, DEVMODE, envioRAW e propriedade do contexto0x138 detalhados. Cancelamento integral da fila, modos restantes, serviços e tipo completo continuam abertos.
+- S3: nove entradas novas no CommentsSummary.fpi, sendo sete corpos locais/dois thunks,191 instruções/608bytes. Cinco layouts e sete controles mapeados; nomes MFC dependem do mapa de ordinais da ferramenta, com binding runtime ainda não comprovado.
+- Catálogo397→410 (152REA+258diretas). Hashes de resultados/pseudocódigo e metadados/máquinas conferidos. Contagem não mede funcionalidades concluídas; S1/S2/S3 integrais permanecem parciais. S4 e pesos da busca em lotes dirigidos.
+- Claude mantém Windows/app/tests/aceitação, kitE23, propostaB3 e revisão0.1.19. Seu registro em f366307 informa instalador8/8 no CI39900942827; suíte nativa e aceitaçãoWindows ainda parciais.
+- Candidato0.1.19/fonte9fb4f3a e evidências anteriores744/744/81aceitações preservados, sem nova execução pelo Codex. Workflows da main preservados; publicação e B3 continuam esperando decisão específica. Índice histórico45,13% não é porcentagem do código; conclusão global desconhecida, paridade integral0/25.
 
 ## Histórico de avisos
 
@@ -215,3 +217,5 @@ Candidato0.1.19 retido e validado744/744 por ambiente, aceitação81/81 na mesma
 Publicação e Passo7 aguardam instrução. Original/VM intactos, critérios e pesos preservados. [Evidências e limites](PASSOS-4-6-A456-2026-10-22.md).
 
 - **2026/10/23 às 01:11** — Codex confirmou retomada05:30 e recebeu confirmaçãoClaude05:10; coordenação com arquivos separados. Análise estática consolidou47 novas entradas/7revisitas, com errata da seção crítica e normalizaçãoUnicode. A estimativa intermediária45entradas foi substituída pela contagem deduplicada47. VM em preparação; critérios/pesos/paridade preservados.
+
+- **2026/10/23 às 05:46** — Retomada05:30: S2/S3 revisados,17 observações/13 novas/4 revisitas, catálogo410; VM reservada por Claude, sem acesso na retomadaCodex. Último casoUI01 parcial salvo; uso limitado não foi classificado como travamento.

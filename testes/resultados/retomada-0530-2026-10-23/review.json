@@ -1,0 +1,165 @@
+{
+  "schema": "linuxit-0530-static-consolidation-v1",
+  "reviewed_at": "2026-10-23T05:43:56.918292-03:00",
+  "baseline_commit": "f366307",
+  "baseline_entries": 397,
+  "catalog_entries": 410,
+  "rea_entries": 152,
+  "direct_entries": 258,
+  "observations": [
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x165f4d0",
+      "new": true,
+      "instructions": 29,
+      "body_bytes": 164
+    },
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x166d160",
+      "new": false,
+      "instructions": 214,
+      "body_bytes": 681
+    },
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x166d410",
+      "new": false,
+      "instructions": 395,
+      "body_bytes": 1395
+    },
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x166e180",
+      "new": false,
+      "instructions": 532,
+      "body_bytes": 1829
+    },
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x166e960",
+      "new": false,
+      "instructions": 223,
+      "body_bytes": 661
+    },
+    {
+      "round": "s2-print-loop-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x1670450",
+      "new": true,
+      "instructions": 297,
+      "body_bytes": 914
+    },
+    {
+      "round": "s2-spooler-devmode-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x164e2b0",
+      "new": true,
+      "instructions": 340,
+      "body_bytes": 1194
+    },
+    {
+      "round": "s2-spooler-devmode-2026-10-23",
+      "module": "FoxitPDFReader.exe",
+      "entry": "0x166f480",
+      "new": true,
+      "instructions": 359,
+      "body_bytes": 1294
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001d430",
+      "new": true,
+      "instructions": 25,
+      "body_bytes": 65
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f5c0",
+      "new": true,
+      "instructions": 22,
+      "body_bytes": 74
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f610",
+      "new": true,
+      "instructions": 22,
+      "body_bytes": 74
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f660",
+      "new": true,
+      "instructions": 22,
+      "body_bytes": 74
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f6b0",
+      "new": true,
+      "instructions": 22,
+      "body_bytes": 74
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f700",
+      "new": true,
+      "instructions": 22,
+      "body_bytes": 74
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x1001f8b0",
+      "new": true,
+      "instructions": 54,
+      "body_bytes": 161
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x100204e0",
+      "new": true,
+      "instructions": 1,
+      "body_bytes": 6
+    },
+    {
+      "round": "s3-comments-summary-2026-10-23",
+      "module": "CommentsSummary.fpi",
+      "entry": "0x100204e6",
+      "new": true,
+      "instructions": 1,
+      "body_bytes": 6
+    }
+  ],
+  "observation_count": 17,
+  "new_distinct_entries": 13,
+  "revisits": 4,
+  "instruction_count": 2580,
+  "body_bytes": 8740,
+  "raw_metadata_machine_hashes_verified": true,
+  "local_links_and_fences_verified": true,
+  "app_modified": false,
+  "app_tests_rerun": false,
+  "live_vm_access_on_resume": false,
+  "vm_reservation": "Claude PEGUEI02:17, no LIBEREI in current coordination",
+  "S1_complete": false,
+  "S2_complete": false,
+  "S3_complete": false,
+  "semantic_parity_proved": false,
+  "one_time_resumption_executed": true,
+  "automation_removed_after_execution": true,
+  "passed": true
+}

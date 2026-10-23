@@ -1,0 +1,53 @@
+{
+  "schema": "linuxit-vm-e30-interruption-v1",
+  "reviewed_at": "2026-10-23T05:35:51.129817-03:00",
+  "run_id": "vm-20261023-0110",
+  "cause_of_turn_interruption": "Explicit agent usage-limit errors received after interruption; not evidence of a VM or Foxit failure.",
+  "last_confirmed_launch": {
+    "status": "completed",
+    "pid": 2788,
+    "guest_created_at": "2026-10-23T01:18:10.8170981-03:00",
+    "finished_at": "2026-10-23T01:18:15.4268854-03:00",
+    "report_sha256": "bf62b877961446a4f56bf3e33f7f6311b5c7b8efba0253a3315d964c1b79fe7c"
+  },
+  "last_saved_collection": {
+    "status": "completed",
+    "created_at": "2026-10-23T01:26:15.5647478-03:00",
+    "finished_at": "2026-10-23T01:26:31.9312268-03:00",
+    "foxit_processes": [
+      {
+        "Id": 2788,
+        "ProcessName": "FoxitPDFReader",
+        "SessionId": 1,
+        "Responding": true,
+        "MainWindowTitle": "Foxit PDF Reader"
+      }
+    ],
+    "report_sha256": "bbe12ca2a1c1945f35280c4698f0262407325d9e5dfb19dfd43b283a4ee79eff"
+  },
+  "visual_observations": [
+    {
+      "case": "Extra startup association prompt; not formal UI05",
+      "observed": "Full prompt read, No chosen, returned to empty document area; association checkbox not changed.",
+      "state": "bounded_extra_observation_repeated_UI05_remains_pending",
+      "guest_clock": "01:23:23-01:24:01"
+    },
+    {
+      "case": "UI01 open file with document",
+      "observed": "busca-escopos.pdf loaded at page2/2 and zoom66.71%; Open dialog displayed Input and left the document visible behind.",
+      "state": "partial_cancel_not_yet_executed",
+      "guest_clock": "01:29:57"
+    }
+  ],
+  "last_confirmed_visual_clock": "01:29:57",
+  "clock_stop_confirmed": false,
+  "last_pending_action": "No Cancel input sent; Open dialog with loaded document was last observed.",
+  "differential_passes_added": 0,
+  "E30_complete": false,
+  "live_vm_inspected_on_resume": false,
+  "current_operator_from_coordination": "Claude reserved E30 at02:17; not released in latest minichat",
+  "root_vm_inputs_on_resume": 0,
+  "observer_deadline_note": "Observer had two-hour deadline from startup01:08; no presumption of current activity.",
+  "resumption_schedule_executed": "2026-10-23T05:30 America/Sao_Paulo",
+  "one_time_automation_deleted_after_execution": true
+}

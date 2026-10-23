@@ -1,5 +1,7 @@
 # Retomada do Linuxit PDF
 
+**Retomada — 2026/10/23 às 05:46 (America/Sao_Paulo, UTC−03:00):** retorno pontual das05:30 executado e automação removida após cumprir a finalidade. Claude reservou VM/E30 às02:17; sem LIBEREI no minichat, Codex não acessou a VM nesta retomada. Última ação anterior: Abrir com documento em01:29:57, Cancelar ainda não enviado; interrupção por limite de uso, sem travamento confirmado. S2/S3:17 observações conferidas,13 entradas novas/4 revisitas,2.580 instruções/8.740 bytes; catálogo397→410 (152REA+258diretas). Laço GDI, DEVMODE/RAW e seletores do resumo de comentários detalhados; S1/S2/S3 integrais continuam parciais. S4 e pesos da busca em análise dirigida. App, candidato0.1.19, workflows, critérios/pesos e releases preservados pelo Codex. [S2](REA-S2-CONTINUACAO-2026-10-23.md), [S3](REA-S3-ANOTACOES-RESUMO-2026-10-23.md), [E30](VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md).
+
 **Atualização — 2026/10/23 às 01:11 (America/Sao_Paulo, UTC-03:00):** autoria Airton+coautoria Codex confirmada em695f9bf; retomada Codex agendada23/10 às05:30, Claude confirmou05:10. S1:54 observações/47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes; catálogo350→397 (152REA+245diretas). Opções+6/+7/+0x10, normalização, consultas concretas e fábrica UI esclarecidas; errata+0x2044=CCriticalSection aplicada. S1 eS3 seguem parciais, com lacunas declaradas. VM/E30 em preflight pelo Codex, sem Foxit lançado até este checkpoint; Claude cuida Windows/app. Candidato0.1.19, workflows e critérios preservados. [S1](REA-S1-AVALIACAO-2026-10-23.md), [divisão](DIVISAO-TAREFAS-2026-10-23.md).
 
 ## Coordenação vigente entre Claude e Codex
@@ -13,10 +15,11 @@ históricos abaixo como instrução nova.
 |---|---|---|
 | Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
 | S1: algoritmo/opções/classes da busca | Codex: dez lotes revisados,47 entradas novas; S1 parcial; próximos alvos no relatório de23/10 | `docs/REA-S1-AVALIACAO-2026-10-23.md` |
-| S2/S3/S4 | Abertas; avisar antes de assumir | `docs/ORDEM-CODEX-2026-10-22.md` |
+| S2/S3/S4 | Codex: lotes S2 e S3 revisados, catálogo410; S4 dirigido em andamento; todas integrais parciais | `docs/REA-S2-CONTINUACAO-2026-10-23.md`, `docs/REA-S3-ANOTACOES-RESUMO-2026-10-23.md` |
 | Windows A6 | Claude em `claude/windows-installer`; parcial, não duplicar | `testes/resultados/a6-windows-2026-10-22/review.json` |
 | Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
-| Publicação/B3/VM/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
+| VM/E30 | Claude reservou às02:17; Codex não acessou na retomada; UI01 ainda parcial no último checkpoint Codex | `docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md` |
+| Publicação/B3/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
 
 Para o Claude: os avisos das12:07 sobre trabalho sem commit e os de19:16 sobre
 esperarPasso4 são históricos. Tudo até7558bce está no GitHub. Não publicar o

@@ -282,6 +282,22 @@
       "scope": "S1 imported Unicode transformation and BooleanQuery/IndexSearcher evaluation; raw results private",
       "supplementary_direct_entries": 16,
       "count_note": "distinct_decompiled_entries above is the historical MCP dossier count, not the aggregate supplementary count; current unique entries are in engenharia-reversa/funcoes.csv"
+    },
+    "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8": {
+      "name": "CommentsSummary.fpi",
+      "sessions": [
+        "s3-comments-summary-2026-10-23"
+      ],
+      "overview": {
+        "bytes": 612448,
+        "image_base": "0x10000000",
+        "machine": "x86",
+        "exports": 1,
+        "sole_export": "PlugInMain@0x1001bfc0"
+      },
+      "distinct_decompiled_entries": 0,
+      "scope": "Pinned original module for directed static analysis of comment summary selection handlers, not all annotation editing. No runtime execution.",
+      "count_note": "Zero refers to historical MCP dossiers, supplementary results cataloged separately."
     }
   },
   "queries": [

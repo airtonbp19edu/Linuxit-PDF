@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-23T01:11:10.399673-03:00",
+  "updated_at_local": "2026-10-23T05:46:11.374849-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -621,10 +621,16 @@
       "id": "E30",
       "block": "VM",
       "requires": "VM e autorização do usuário",
-      "status": "pendente",
+      "status": "em_andamento",
       "title": "Continuar a comparação com o Foxit",
       "goal": "UI01 com documento, UI02, UI05, UI09, UI10, D10–D20 restantes; repetir a primeira busca após reabrir (comentário ausente) e observar o processo residual ao fechar.",
-      "verification": "Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos."
+      "verification": "Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos.",
+      "evidence": [
+        "docs/VM-E30-PREFLIGHT-2026-10-23.md",
+        "docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md",
+        "testes/resultados/vm-2026-10-23-e30/interrupcao.json"
+      ],
+      "note": "Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado."
     },
     {
       "id": "E31",

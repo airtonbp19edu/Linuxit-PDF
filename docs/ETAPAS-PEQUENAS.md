@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-23T01:11:10.399673-03:00. Pendente: 2, Em andamento: 2, Concluída: 31.
+Atualizado em 2026-10-23T05:46:11.374849-03:00. Pendente: 1, Em andamento: 3, Concluída: 31.
 
 **Regras**
 
@@ -48,7 +48,7 @@ Atualizado em 2026-10-23T01:11:10.399673-03:00. Pendente: 2, Em andamento: 2, Co
 | E35 | Completar o algoritmo e as opções da busca interna | Análise estática S1 | Ghidra e referências preservadas; sem VM para análise estática | Em andamento |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
-| E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
+| E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Em andamento |
 | E31 | Ordem dos resultados e clique em marcador como no Foxit (D05) | Busca | nada | Concluída |
 
 ## Detalhes
@@ -447,7 +447,9 @@ Evidência: [docs/VM-E24-2026-10-21.md](../docs/VM-E24-2026-10-21.md), [testes/r
 
 **Como verificar:** Comparações registradas com a mesma fixture, preflight/postflight e relógio conferidos.
 
-**Situação:** Pendente.
+**Situação:** Em andamento.
+
+Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado.
 
 ### E31 — Ordem dos resultados e clique em marcador como no Foxit (D05)
 
