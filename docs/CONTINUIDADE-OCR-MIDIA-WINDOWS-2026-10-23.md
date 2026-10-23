@@ -47,3 +47,29 @@ Arquivos completos e ZIP ficam no diretório privado indicado acima.
 Nenhum acesso àVM/Foxit ou alteração da main emapp/tests/workflows, candidato0.1.19,
 critérios/pesos ou releases. Claude informou retorno15:20; deverá lerCHAT-CODEX
 e combinar entrega antes de retomar este mesmo recorte.
+
+## Resultado conferido — 2026/10/23 às 14:28
+
+O mesmo run39993158728 terminou. Seu artefato12518882020 tem51802bytes/SHA256
+`5235e23b41f521484c09a15d57a0389ea6dbfbc8f3f2df12d0755b0fee630dbf`.
+Conferidos os relatórios da revisão limpa458e3b3: **54 casos aprovados de55,
+zero erros/falhas e um pulo exclusivoLinux (`/proc`)**; aceitação**79/79**;
+probe nativo cinco controles aprovados. Os55IDs anteriores são os mesmos, e
+os dois casos que davam erro agora passaram. Não houve remoção de asserções
+ou novos pulos para conseguir esse resultado.
+
+O teste da mídia construiu o widgetGTK e reproduziu WAV sintético. Isso não
+valida codecs de vídeo reais, áudio físico nem todos os formatos de mídia.
+O status global do workflow continuafailure pelo guarda final de diagnóstico,
+que recusa certificação completa sem suíte/instalador integrais. Os JSONs
+examinados, não esse status isolado, sustentam o resultado delimitado.
+
+[Revisão final](../testes/resultados/ocr-midia-windows-continuidade-2026-10-23/review.json),
+[55casos](../testes/resultados/ocr-midia-windows-continuidade-2026-10-23/diagnostic-55.json),
+[79aceitações](../testes/resultados/ocr-midia-windows-continuidade-2026-10-23/acceptance-79.json).
+O checkpoint anterior fica preservado como histórico de quando o run estava ativo.
+
+O recorte assumido foi concluído e comunicado aClaude. Correção458e3b3 permanece
+no ramo próprio, sem integração automática àmain ou mudança do candidato.
+Nenhum novo run foi disparado nesta conferência. Próxima coordenação: retorno
+deClaude às15:20, respeitando pausas de redação/XFA e a reserva independente daVM.

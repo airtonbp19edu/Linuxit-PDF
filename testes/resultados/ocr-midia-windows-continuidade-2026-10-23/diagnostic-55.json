@@ -1,0 +1,296 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "D:/a/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.14.8",
+  "test_pattern": "test*.py",
+  "test_modules": "test_ocr_cleanup,test_ocr_linux,test_ocr_gtk,test_search_formats_recovery,test_tool_preferences_ocr_selection,test_local_playback,test_pdf_ocr",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 55,
+  "passed": 54,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1,
+  "elapsed_sec": 24.919852499999934,
+  "cases": [
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_contrast_and_otsu_are_explicit_geometry_preserving_options",
+      "status": "passed",
+      "elapsed_sec": 0.01750680000009197
+    },
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_real_worker_cleanup_with_portuguese_and_english_keeps_dimensions",
+      "status": "passed",
+      "elapsed_sec": 1.9945236000000932
+    },
+    {
+      "id": "test_ocr_cleanup.OCRCleanupTests.test_unknown_cleanup_is_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0004579000001285749
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_actual_portuguese_combined_models_and_300_dpi",
+      "status": "passed",
+      "elapsed_sec": 2.23368830000004
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_blank_page_notice_and_page_order_are_real",
+      "status": "passed",
+      "elapsed_sec": 1.4462568000001284
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_crop_and_rotation_preserve_display_size_and_raster_appearance",
+      "status": "passed",
+      "elapsed_sec": 0.8932383000001209
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+      "status": "passed",
+      "elapsed_sec": 1.713980200000151
+    },
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_real_english_worker_adds_searchable_text_and_keeps_scan",
+      "status": "passed",
+      "elapsed_sec": 0.7999072000000069
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_blank_page_has_explicit_no_text_notice",
+      "status": "passed",
+      "elapsed_sec": 2.5655472000000827
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_cancel_and_document_close_stop_real_worker_and_ignore_stale_callbacks",
+      "status": "passed",
+      "elapsed_sec": 1.314269299999978
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_cancelled_dialog_and_existing_destination_keep_files",
+      "status": "passed",
+      "elapsed_sec": 1.2749269999999342
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_changed_source_and_changed_result_are_not_silently_opened",
+      "status": "passed",
+      "elapsed_sec": 1.830149399999982
+    },
+    {
+      "id": "test_ocr_gtk.OCRGTKTests.test_menu_workflow_recognizes_opens_and_renders_actual_copy",
+      "status": "passed",
+      "elapsed_sec": 2.658468999999968
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_backup_restore_preserves_corrupt_destination_and_source_pdf",
+      "status": "passed",
+      "elapsed_sec": 0.013095900000053007
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_changed_destination_failed_restore_and_backup_collision_preserve_files",
+      "status": "passed",
+      "elapsed_sec": 0.013586199999963355
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_new_recovery_stale_sources_stay_excluded",
+      "status": "passed",
+      "elapsed_sec": 0.008382600000004459
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_only_dead_same_host_unchanged_lock_may_be_explicitly_removed",
+      "status": "passed",
+      "elapsed_sec": 0.006904500000018743
+    },
+    {
+      "id": "test_search_formats_recovery.IndexRecoveryTests.test_writer_preserves_a_replacement_lock",
+      "status": "passed",
+      "elapsed_sec": 0.005324400000063179
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_actual_offline_attachment_ocr_recognizes_synthetic_image",
+      "status": "passed",
+      "elapsed_sec": 0.25033959999996114
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_all_pinned_language_algorithms_and_german_span",
+      "status": "passed",
+      "elapsed_sec": 0.26967659999991156
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_docx_header_footnotes_and_odt_styles_are_included_without_objects",
+      "status": "passed",
+      "elapsed_sec": 0.0024169000000711094
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_image_multiframe_refusal_precedes_any_ocr_process",
+      "status": "passed",
+      "elapsed_sec": 0.0018800999998802581
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_office_dtd_and_output_expansion_are_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0008202999999866734
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_rtf_unicode_surrogate_pairs_hidden_and_passive_destinations",
+      "status": "passed",
+      "elapsed_sec": 0.0006908000000294123
+    },
+    {
+      "id": "test_search_formats_recovery.PassiveSearchTests.test_xlsx_shared_inline_cached_formula_and_pptx_notes",
+      "status": "passed",
+      "elapsed_sec": 0.0015793000000030588
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_failed_settings_publication_preserves_previous_and_cleans_staging",
+      "status": "passed",
+      "elapsed_sec": 0.01204409999991185
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_selected_ocr_pages_and_layout_refuse_duplicate_or_invalid_values",
+      "status": "passed",
+      "elapsed_sec": 0.009313499999962005
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_selected_page_ocr_keeps_other_page_text_and_original_intact",
+      "status": "passed",
+      "elapsed_sec": 0.7236329999998361
+    },
+    {
+      "id": "test_tool_preferences_ocr_selection.ToolPreferenceTests.test_tool_preferences_roundtrip_and_invalid_file_fall_back_without_paths",
+      "status": "passed",
+      "elapsed_sec": 0.010939099999859536
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_gtk_controls_and_embedded_video_widget_are_constructed",
+      "status": "passed",
+      "elapsed_sec": 0.06882650000011381
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_real_decode_pause_resume_eos_and_close_release_pipeline",
+      "status": "passed",
+      "elapsed_sec": 1.0306872000001022
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_short_file_plays_for_its_duration_instead_of_ending_at_once",
+      "status": "passed",
+      "elapsed_sec": 3.0940542000000733
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_stop_then_play_and_malformed_media_report_without_process_leak",
+      "status": "passed",
+      "elapsed_sec": 0.036431200000151875
+    },
+    {
+      "id": "test_local_playback.MeasurementSnapTests.test_grid_and_angle_constraints_have_explicit_priority_and_keep_length",
+      "status": "passed",
+      "elapsed_sec": 0.0007097000000158005
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_blank_text_is_reported_without_claiming_recognition",
+      "status": "passed",
+      "elapsed_sec": 0.03946910000013304
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_cancelled_request_never_starts_child_and_command_requires_destination",
+      "status": "passed",
+      "elapsed_sec": 0.003717300000062096
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_changed_source_is_not_published",
+      "status": "passed",
+      "elapsed_sec": 0.03882770000018354
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_cropbox_rotation_userunit_and_nonfinite_geometry_guarded",
+      "status": "passed",
+      "elapsed_sec": 0.004926000000068598
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_destination_appearing_at_publication_is_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.03891760000010436
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_encrypted_input_is_rejected_without_attempting_empty_password",
+      "status": "passed",
+      "elapsed_sec": 0.02648589999989781
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_existing_destination_original_and_dangling_link_not_overwritten",
+      "status": "passed",
+      "elapsed_sec": 0.004237300000113464
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_external_missing_failure_and_timeout_use_bounded_local_errors",
+      "status": "passed",
+      "elapsed_sec": 0.004923299999973096
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_invalid_request_types_values_and_extra_keys_rejected",
+      "status": "passed",
+      "elapsed_sec": 0.004114000000072338
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_missing_language_stops_before_rendering",
+      "status": "passed",
+      "elapsed_sec": 0.025028599999814105
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_missing_wrong_geometry_and_multiple_ocr_pages_refused",
+      "status": "passed",
+      "elapsed_sec": 0.07983109999986482
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_output_budget_failure_leaves_no_destination",
+      "status": "passed",
+      "elapsed_sec": 0.02517060000013771
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_page_source_pixel_and_total_budgets_precede_external_tools",
+      "status": "passed",
+      "elapsed_sec": 0.06224760000009155
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_publication_copy_failure_cleans_staging",
+      "status": "passed",
+      "elapsed_sec": 0.04244919999996455
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_raster_copy_pipeline_preserves_order_dimensions_hashes_and_original",
+      "status": "passed",
+      "elapsed_sec": 0.04588160000002972
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_renderer_missing_or_wrong_size_is_not_accepted",
+      "status": "passed",
+      "elapsed_sec": 0.054991199999903984
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_source_identity_mismatch_prevents_external_tools",
+      "status": "passed",
+      "elapsed_sec": 0.025020000000040454
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_tool_arguments_do_not_use_shell_and_thread_count_is_bounded",
+      "status": "passed",
+      "elapsed_sec": 0.004104199999801494
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_worker_reply_cannot_claim_a_different_destination_or_missing_page",
+      "status": "passed",
+      "elapsed_sec": 0.04766369999993003
+    },
+    {
+      "id": "test_pdf_ocr.OCRControlsTests.test_wrong_extension_and_missing_parent_refused",
+      "status": "passed",
+      "elapsed_sec": 0.0038291999999273685
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

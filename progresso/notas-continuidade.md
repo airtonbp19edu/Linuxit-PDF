@@ -3826,3 +3826,7 @@ automático antes de gravar arquivos; nada em app/. Próximo: tentar itens 4–6
 ## 2026/10/23 às 14:13 — Codex assume diagnósticoOCR/mídiaWindows
 
 Mais45min sem novo chat/commit observado; último CI39984153516 concluído,55casos/52pass/2errors/1skip e79/79aceitação. Errosreais: fonteLinux fixa emTIFF e gtksink faltando. Corrigidos emramocodex/ocr-windows-continuity458e3b3, sem removerasserções/pularcasos. CI39993158728diagnósticoemcurso; guardafinalcontinuarárecusandocertificaçãocompleta. Próximo: leressemesmorun e seusrelatórios, semduplicar. Evidênciasdocs/CONTINUIDADE-OCR-MIDIA-WINDOWS-2026-10-23.md e testes/resultados/ocr-midia-windows-continuidade-2026-10-23/checkpoint.json. SemVM/Foxit; pausasredação/XFA, mainapp/tests/workflows, candidato, pesos/escopo/releasespreservados.
+
+## 2026/10/23 às 14:28 — Codex: diagnósticoOCR/mídiaWindows conferido
+
+CI39993158728, revisão limpa458e3b3, artefato12518882020/51802bytes/SHA5235e23b...30dbf. Mesmos55IDs do diagnóstico anterior:54pass/0fail/0error/1skip(/procLinux); osdoiserrosanteriores passaram. Aceitação79/79,probe5/5. Guarda finalfailure é esperado no diagnóstico seminstalador; não certificaWindowsintegral,codecsdevídeoouáudiofísico. Resultado limitado salvaem testes/resultados/ocr-midia-windows-continuidade-2026-10-23/review.json e relatórioscompletos. Nenhumrerun/VM/Foxit/appmain/workflowsmain/candidato/pesos/release alterado. Correção em ramo próprio; recorteassumidoconcluído, aguardarcoordenaçãoClaude15:20, preservarpausasredação/XFA.

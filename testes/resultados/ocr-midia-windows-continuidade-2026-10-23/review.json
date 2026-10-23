@@ -1,0 +1,79 @@
+{
+  "schema": "linuxit-ocr-media-windows-reviewed-v1",
+  "reviewed_at_local": "2026-10-23T14:28:00.472680-03:00",
+  "source_commit": "458e3b3d66ddb4f0faabde460330b7bae6245bd3",
+  "branch": "codex/ocr-windows-continuity",
+  "run_id": 39993158728,
+  "run_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/39993158728",
+  "run_conclusion": "failure",
+  "conclusion_scope": "Expected diagnostic certification guard; actual test reports checked separately",
+  "artifact_id": 12518882020,
+  "artifact_bytes": 51802,
+  "artifact_sha256": "5235e23b41f521484c09a15d57a0389ea6dbfbc8f3f2df12d0755b0fee630dbf",
+  "reports": [
+    {
+      "path": "testes/resultados/ocr-midia-windows-continuidade-2026-10-23/diagnostic-55.json",
+      "sha256": "b256faf95d25574a96583b2b5f1e4657157480786e2cc09623e96d0096bdcbc6"
+    },
+    {
+      "path": "testes/resultados/ocr-midia-windows-continuidade-2026-10-23/acceptance-79.json",
+      "sha256": "211cd8ebf698cec94a1180d9562584400e9d89febf21e11ecbe1d2284dbda67b"
+    },
+    {
+      "path": "testes/resultados/ocr-midia-windows-continuidade-2026-10-23/native-probe.json",
+      "sha256": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+    }
+  ],
+  "previous_run": 39984153516,
+  "previous_counts": {
+    "run": 55,
+    "passed": 52,
+    "errors": 2,
+    "skipped": 1
+  },
+  "current_counts": {
+    "run": 55,
+    "passed": 54,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 1
+  },
+  "same_55_case_ids_verified": true,
+  "fixed_cases_now_passed": [
+    "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+    "test_local_playback.LocalPlaybackTests.test_gtk_controls_and_embedded_video_widget_are_constructed"
+  ],
+  "skipped_cases": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_probe_checks": {
+    "poppler_pdf_information": true,
+    "native_character_geometry": true,
+    "actual_reader_page_rendered": true,
+    "own_edited_copy_reopens": true,
+    "source_preserved": true
+  },
+  "complete_suite_executed": false,
+  "installer_built_this_run": false,
+  "video_codec_or_physical_audio_validated": false,
+  "main_app_tests_workflows_changed": false,
+  "candidate_0_1_19_changed": false,
+  "VM_or_Foxit_accessed": false,
+  "criteria_or_weights_changed": false,
+  "reference_parity_claimed": false,
+  "implementation_merged_to_main": false,
+  "release_published": false,
+  "bounded_diagnostic_passed": true,
+  "takeover_task_completed": true,
+  "next_step": "Coordinate with Claude on return15:20; retain isolated branch, no automatic integration or release."
+}
