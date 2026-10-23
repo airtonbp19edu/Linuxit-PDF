@@ -1,0 +1,86 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s2-4/functions/0x166d070.json",
+      "result_sha256": "1d618f64ead16cf02fa48bb03d11b8613da51a97ab3af69e0b7a4a4636adefef",
+      "entry_va": "0x166d070",
+      "analyst_name": "FUN_0166d070",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 237,
+      "body_ranges": "[[0166d070, 0166d15c]]",
+      "pseudocode_sha256": "348c190dc8384197d6ef8f18f3bc14f076b46c15ec93144c860f1af34e067963",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s2-4/functions/0x166e960.json",
+      "result_sha256": "e6c648665017ae3dd19496f3028d7cfae77acfbd4ce1add464c7970e0547d7c5",
+      "entry_va": "0x166e960",
+      "analyst_name": "FUN_0166e960",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 661,
+      "body_ranges": "[[0166e960, 0166eb76] [0166ebc0, 0166ec3d]]",
+      "pseudocode_sha256": "76c204d701a7f7b69deb9557b4a96e0ac098b5119e4e1b81de6b33bafb5b7688",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/claude-s2-4/functions/0x1677af0.json",
+      "result_sha256": "380c5219965cc61d88b0bcb919ebe3579b0013ab26f977335c620ec22e4eb963",
+      "entry_va": "0x1677af0",
+      "analyst_name": "FUN_01677af0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 897,
+      "body_ranges": "[[01677af0, 01677e70]]",
+      "pseudocode_sha256": "05bc3d416da0da055e911140890987ac4d211cf359ee9c64ef0cba701e88c1a3",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s2-4/functions/0x1684e10.json",
+      "result_sha256": "ea5bb591df485546aaf096644a6806cf4c8cd33736bd5dd7260363b5b8a98dd8",
+      "entry_va": "0x1684e10",
+      "analyst_name": "FUN_01684e10",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1025,
+      "body_ranges": "[[01684e10, 01685210]]",
+      "pseudocode_sha256": "547fd547bae2c8080c2cd8ba78f082ca2a79c697f11261a31a8613d0870e90ab",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s2-4/functions/0x1695380.json",
+      "result_sha256": "9a50455361e9f430d63f43c3b99b3089edbdddfea51c73c55482c7721a7b1496",
+      "entry_va": "0x1695380",
+      "analyst_name": "FUN_01695380",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 852,
+      "body_ranges": "[[01695380, 016956d3]]",
+      "pseudocode_sha256": "5c9afb4b790039d3b824ebb7fbcab14fae4093e5215b368a4a3ead9221bdffb5",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s2-4/functions/0x169aba0.json",
+      "result_sha256": "ca659e1cc6806cf6d2762a71b190a21c4cc14c06adc3cf63a83f95eaf85955d6",
+      "entry_va": "0x169aba0",
+      "analyst_name": "FUN_0169aba0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 842,
+      "body_ranges": "[[0169aba0, 0169aee9]]",
+      "pseudocode_sha256": "99080e3fe0d77876fa3cea9fecbb2d96574cffa88b31b7762d5ada10a9cbf489",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 6,
+  "distinct_entries": 6,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

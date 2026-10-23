@@ -1,0 +1,115 @@
+{
+  "schema": "linuxit-s2-static-review-v1",
+  "reviewed_at_local": "2026-10-23T12:33:00-03:00",
+  "reviewer": "Claude",
+  "work": "S2 closing: complete static print orchestration (entry points, thread/progress, per-document GDI vs file+RAW, unit loop, cancel by flag and by GetJobW, DEVMODE, batch)",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "module": "FoxitPDFReader.exe",
+  "profile": "Direct Ghidra 12.1.4 -noanalysis using installed REA 6.7.0 seed script; not REA MCP Evidence",
+  "source_identity_checked_before_after": true,
+  "original_executed": false,
+  "vm_touched": false,
+  "foxit_code_incorporated": false,
+  "rounds": [
+    "analysis-local/headless/claude-s2-1",
+    "analysis-local/headless/claude-s2-2",
+    "analysis-local/headless/claude-s2-3",
+    "analysis-local/headless/claude-s2-4"
+  ],
+  "seeds": {
+    "lote1": "4d22023d73c56179047652e091471843662dc2a1fc3560428a3c638e551e4963",
+    "lote2": "ce77001c90e7dd4345fd1ae1da145e352f484f2dc7017e26edc04bf081c5c4bd",
+    "lote3": "9f60405c952b12bb871b37ad2d31972e48d02c205dcaf43e6366e9323945bbfc",
+    "lote4": "3ef60d21c8ee44f04eb9b6f2487229f245f6aba4477da0a21ee704506315a843"
+  },
+  "machine_check": {
+    "passed": true,
+    "entries": 54,
+    "instructions": 7668,
+    "bytes": 24721,
+    "reports": [
+      "testes/resultados/s2-fechamento-2026-10-23/machine-checks-lote1.json",
+      "testes/resultados/s2-fechamento-2026-10-23/machine-checks-lote2.json",
+      "testes/resultados/s2-fechamento-2026-10-23/machine-checks-lote3.json",
+      "testes/resultados/s2-fechamento-2026-10-23/machine-checks-lote4.json"
+    ]
+  },
+  "catalog_before": 424,
+  "catalog_after": 472,
+  "new_entries": 48,
+  "existing_entries_with_added_evidence": [
+    "0x165ef50",
+    "0x166e960",
+    "0x166f160",
+    "0x1670ee0",
+    "0x1698cf0",
+    "0x1b88c60"
+  ],
+  "capstone_pefile_joins": {
+    "rtti_slots": {
+      "0x16479a0": "CReader_PrintMgrEx vtable 0x53d6bfc +0xc",
+      "0x16993c0": "CReader_DlgBatchPrint vtable 0x53d9ae0 +0x18"
+    },
+    "direct_callers": {
+      "0x1684e10": [
+        "0x1647f99"
+      ],
+      "0x166e960": [
+        "0x166f11a"
+      ],
+      "0x166ec40": [
+        "0x166f0fd"
+      ],
+      "0x1695380": [
+        "0x169969f"
+      ],
+      "0x169aba0": [
+        "0x16996b2"
+      ],
+      "0x1698cf0": [
+        "0x16955a7",
+        "0x169adcd"
+      ],
+      "0x1698f90": [
+        "0x169557e",
+        "0x169ad9e"
+      ],
+      "0x1669c10": [
+        "0x166dbf8",
+        "0x166ed3b",
+        "0x16990cc"
+      ]
+    },
+    "imports": {
+      "0x48ed07e": "WINSPOOL.DRV!GetJobW"
+    },
+    "strings": {
+      "0x53d7a58": "FILE:",
+      "0x53d7a7c": "Documents\\*.pdf",
+      "0x53d7a9c": "Desktop\\*.pdf",
+      "0x53d7ab8": "PORTPROMPT:",
+      "0x53d7ad0": "XPSPort:",
+      "0x53d6d0c": "InvoicePrint"
+    },
+    "path_selector_bytes": "0x166e1b5..0x166e1d6: call 0x166a3a0; cmp [eax+0x18],0; je GDI; cmp [config+0x13c],0; jne GDI; call 0x166d990"
+  },
+  "criterion": {
+    "stage": 8,
+    "check": "Fluxo completo de impressão reconstruído",
+    "weight": 4,
+    "status_before": "partial",
+    "status_after": "done",
+    "basis": "Prior declared gaps (print loop, DEVMODE/spooler, 0x138 context) covered at orchestration level; remaining gaps declared in docs/REA-S2-FECHAMENTO-2026-10-23.md#lacunas-declaradas",
+    "weights_changed": false
+  },
+  "declared_gaps": [
+    "unit rendering internals belong to the PDF engine subsystem",
+    "mode 3 unnamed; mode 6 booklet, +0x18 PostScript and +0x13c image are inferences",
+    "invoice pre-processing not decompiled",
+    "0x138 context constructor/class not identified",
+    "no runtime observation (VM/E23)",
+    "0x1674dc0 has no references found"
+  ],
+  "semantic_equivalence_proved": false,
+  "parity_claimed": false
+}

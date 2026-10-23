@@ -252,7 +252,7 @@
         {
           "criterion": "Fluxo completo de impressão reconstruído",
           "weight": 4,
-          "status": "partial",
+          "status": "done",
           "evidence": [
             "docs/REA-BUSCA-IMPRESSAO.md",
             "docs/windows-evidence/foxit-rea/search-print-contracts.json",
@@ -261,9 +261,12 @@
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
             "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
             "docs/REA-PROVEDOR-BUSCA-2026-10-21.md",
-            "docs/REA-FLUXO-IMPRESSAO-2026-10-22.md"
+            "docs/REA-FLUXO-IMPRESSAO-2026-10-22.md",
+            "docs/REA-S2-CONTINUACAO-2026-10-23.md",
+            "docs/REA-S2-FECHAMENTO-2026-10-23.md",
+            "testes/resultados/s2-fechamento-2026-10-23/review.json"
           ],
-          "note": "2026-10-22 A2: hierarquia por RTTI (CReader_PrintMgrEx; estratégias Dlg/Quiet/Batch/Invoice; drivers GDI vs CFX_PSPrinterDriver; CPDF_BackgroundDrawer) e dois ctors conferidos (0x1645710/0x165c230). Permanece parcial: laço de impressão/DEVMODE/spooler e contexto 0x138. | 2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "2026-10-23 12:33 S2 (Claude): fluxo de orquestração fechado estaticamente — entradas PrintMgrEx/DlgPrinter/BasePrinter/DlgBatchPrint, thread e progresso, via GDI vs arquivo+RAW, laço de unidades, cancelamento por flag e por GetJobW, DEVMODE e lote; 54 entradas (7668 instruções/24721 bytes) conferidas, catálogo 472. Lacunas declaradas: desenho interno das unidades (motor PDF), modos 3/6 e flags por inferência, fatura, ctor do contexto 0x138, execução (VM/E23). Sem paridade afirmada; peso inalterado. | 2026-10-22 A2: hierarquia por RTTI (CReader_PrintMgrEx; estratégias Dlg/Quiet/Batch/Invoice; drivers GDI vs CFX_PSPrinterDriver; CPDF_BackgroundDrawer) e dois ctors conferidos (0x1645710/0x165c230). Permanece parcial: laço de impressão/DEVMODE/spooler e contexto 0x138. | 2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         },
         {
           "criterion": "Fluxo completo de busca reconstruído",
@@ -295,8 +298,8 @@
           "note": "2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
         }
       ],
-      "verified_fraction": 0.130435,
-      "earned_percent": 1.304348
+      "verified_fraction": 0.304348,
+      "earned_percent": 3.043478
     },
     {
       "id": 9,
@@ -1786,7 +1789,7 @@
       ]
     }
   ],
-  "general_progress_percent": 45.13,
+  "general_progress_percent": 46.87,
   "verified_functional_parity": {
     "percent": 0.0,
     "verified": 0,

@@ -129,33 +129,6 @@
     {
       "stage_id": 8,
       "stage_title": "Descompilação profunda",
-      "criterion": "Fluxo completo de impressão reconstruído",
-      "criterion_status": "partial",
-      "blocker_categories": [
-        "static_analysis"
-      ],
-      "evidence_refs": [
-        "docs/REA-IMPRESSAO-CONSUMIDORES.md",
-        "docs/REA-BUSCA-IMPRESSAO.md",
-        "docs/AVANCO-SEM-VM.md",
-        "docs/COPIA-EDITADA.md",
-        "docs/BUSCA-COLECOES.md",
-        "docs/REA-REFLOW.md",
-        "docs/REA-REFLOW-SINCRONIZACAO.md",
-        "docs/REA-REFLOW-LAYOUT.md",
-        "docs/REA-REFLOW-GEOMETRIA.md",
-        "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
-        "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
-        "docs/REA-TRANSICOES-REFLOW-2026-10-19.md",
-        "docs/REA-ARRAYS-REFLOW-2026-10-19.md",
-        "docs/REA-CONTAGENS-REFLOW-2026-10-19.md"
-      ],
-      "next_action": "Catalog329=152REA+177exclusive direct;48 new entries in8lots reviewed. Preserve large-function semantic partials and37-byte boundary caveat. Next: array allocations/sizes/all callers,two transitions now reviewed in docs/REA-TRANSICOES-REFLOW-2026-10-19.md; do not repeat; active dialog1e48 assignment and remaining search fields; context0x138/services/ownership. Shared7911/7913 handler remains dynamically ambiguous; VM offline for original. Do not repeat these48 seeds as new entries. Array sizes and A=1/B=N bounded in docs/REA-ARRAYS-REFLOW-2026-10-19.md and docs/REA-CONTAGENS-REFLOW-2026-10-19.md; all callers/ownership remain open.",
-      "token_exhaustion_confirmed": null
-    },
-    {
-      "stage_id": 8,
-      "stage_title": "Descompilação profunda",
       "criterion": "Fluxo completo de busca reconstruído",
       "criterion_status": "partial",
       "blocker_categories": [
@@ -666,7 +639,7 @@
       ]
     }
   ],
-  "general_progress_percent": 45.13,
+  "general_progress_percent": 46.87,
   "criteria_revision": 1,
   "stage_13_is_partial_due_to_vm": false,
   "scope_exclusions_ref": "progresso/projeto.json",

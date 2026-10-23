@@ -1,0 +1,160 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/claude-s2-3",
+  "entries": [
+    {
+      "entry": "0x166ec40",
+      "instructions": 326,
+      "body_bytes": 968,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ff4f8d7c37617089626673ec214581cc9998541d475b989251b878e91c8f5fb3",
+      "pseudocode_sha256": "f42e8dace56d3256dfa7fccbfa565a6d1ac5967e0462392cf618ea7d3abc58b4"
+    },
+    {
+      "entry": "0x166f060",
+      "instructions": 92,
+      "body_bytes": 248,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "eef81d351ca73110cb653257f4d82bd016f77985128ad3a6d15a8573aec7b628",
+      "pseudocode_sha256": "2b01b248f6192aae33d5d251d8931e280621246ae35f9bce32fc7854319ce2e7"
+    },
+    {
+      "entry": "0x1674d40",
+      "instructions": 25,
+      "body_bytes": 59,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "7826ae3e229ab02b04968b41720d0a5df8f818bafccf22ed1a102b9d61363d47",
+      "pseudocode_sha256": "11d716381865c07994c47fd0ccbb7a2b2fcad5478b59513a45eb521d736c51d8"
+    },
+    {
+      "entry": "0x1674dc0",
+      "instructions": 2,
+      "body_bytes": 8,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "0eca834ae1d681fe449e9fbe821a26b8466fa7cd4b06c48b097e8cd88861f08c",
+      "pseudocode_sha256": "04e6a6ed32dd3b9eaffcfd3d0134b37874aa646327b0342279b28c8952d481a2"
+    },
+    {
+      "entry": "0x1677810",
+      "instructions": 17,
+      "body_bytes": 51,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "0d3fbbe08e15337e705cb31dad86aa6af5c3397eb51b8a83e98147f515c8fe6b",
+      "pseudocode_sha256": "56281037a2e226c181b221732c2e3aebd70d043345cf6cd6bec8c52524142fd3"
+    },
+    {
+      "entry": "0x167a260",
+      "instructions": 2,
+      "body_bytes": 5,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "146676259947519003b94112e4688594769642acf33d63907ebb3629f2572e70",
+      "pseudocode_sha256": "c66095e45aaa612a436019ebc3bd8e98a6f45c541893ae15f8a54de0edcc496a"
+    },
+    {
+      "entry": "0x167a2b0",
+      "instructions": 1,
+      "body_bytes": 5,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "60681b387d024e3fe22566b7e13bb34b940ca6ef013b4934e2328dd7bd65497e",
+      "pseudocode_sha256": "24f0bc38e5886a374d7f8e1b8b2f85bc76c0de209da8e8df8a245d3406d93b59"
+    },
+    {
+      "entry": "0x167ea70",
+      "instructions": 5,
+      "body_bytes": 18,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6604b552fd6d3a803e92b2ce8704dd3f3f1c15f6780c7c62136c249948a363e0",
+      "pseudocode_sha256": "e1d9f4f6aba3f4fdba9c2a00f02bce45469cb89c7513e258dbb63a30ace2bfc4"
+    },
+    {
+      "entry": "0x167f110",
+      "instructions": 6,
+      "body_bytes": 22,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e75c32165f58e181fc9d73b772fea1fad4ededcea4212d57ac5c7ee3349e6e7b",
+      "pseudocode_sha256": "75debcda964862a1282fbc694c881d2c9e9b98b80499b8ffe515057744c146a5"
+    },
+    {
+      "entry": "0x167f130",
+      "instructions": 65,
+      "body_bytes": 223,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "766e9c634c487be29bdb4993184ff54d5a356eaf00718f921852110fb5399f5d",
+      "pseudocode_sha256": "07b3884012c3c2d419857c3ba44917efdf4ea780ba089421bbbab22679da0c5c"
+    },
+    {
+      "entry": "0x167f210",
+      "instructions": 296,
+      "body_bytes": 1069,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "f7d1827e224a57a1a8af653ee4c34478648cf0fbbe1cf8c7dbbe1fc2d8523b73",
+      "pseudocode_sha256": "f133f32d32f29c4f56bbcd465cb027131d05a834eca0fd457a887a0553545dbc"
+    },
+    {
+      "entry": "0x167f6c0",
+      "instructions": 203,
+      "body_bytes": 686,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4f3d37955a73e2f1208819c1ec0dadc652716c3d160689ef11ba69ef0ed22cc9",
+      "pseudocode_sha256": "e51f1f63dd4baf4f7bd157bdb91e9d8f66998d72e60ef4e39d3ff403082a8633"
+    },
+    {
+      "entry": "0x167fa10",
+      "instructions": 9,
+      "body_bytes": 30,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b53b790689f5e26f111f52e00c99bf58885b0a5b5841dedaf1e7a0ce4a8b14b8",
+      "pseudocode_sha256": "f3d2e777bfc3d78ab532f71239b46ba486856a4395407b0aa5e3e3de011f8ea2"
+    },
+    {
+      "entry": "0x167fa40",
+      "instructions": 9,
+      "body_bytes": 30,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6afd2c69ec988b4aa3cb36f3d43a0f2077d50a0acf151d6c3cfa14585314bad8",
+      "pseudocode_sha256": "e7459a52e5c5b07dd8f0e781866de9c2264cfd0981426a39f93959b9a8c84557"
+    },
+    {
+      "entry": "0x167fa70",
+      "instructions": 9,
+      "body_bytes": 30,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "8da3a101e3743735eefa1d87351ee36fe056c428f8c201e3733a652b9d91367a",
+      "pseudocode_sha256": "9dc8430b22de18005d2b8452a7ea59529e05ee800c2b041a2cf1b9dee404d076"
+    },
+    {
+      "entry": "0x1681050",
+      "instructions": 82,
+      "body_bytes": 238,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "653c25576ae1f5a4d8d4a1a5794074c2dcf1283c3d047627e06826112c610806",
+      "pseudocode_sha256": "3b72a7a893cd17fc1533175a73b8aa251dafcb0b1e84b5af18ab989f6fab0956"
+    },
+    {
+      "entry": "0x1698cf0",
+      "instructions": 209,
+      "body_bytes": 633,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ab3e65a5d71868a98f0ae659ac597c95215a6008e70158371359ad41663ae1be",
+      "pseudocode_sha256": "35d2c843887b8cb6419997a91e40db5c7578854b1d7434f4d55c06b49e154509"
+    },
+    {
+      "entry": "0x1698f90",
+      "instructions": 344,
+      "body_bytes": 1053,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "a58145900e0a00ca90382ded7d2539d60b34c1795eb42899bb071e7616aea3d7",
+      "pseudocode_sha256": "62e1fca3cbc36f6a70e2962f5b084904b7fd285bc13fa3797ea64afbb9d46fb4"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

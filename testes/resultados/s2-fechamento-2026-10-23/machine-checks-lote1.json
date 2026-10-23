@@ -1,0 +1,88 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/claude-s2-1",
+  "entries": [
+    {
+      "entry": "0x1659ff0",
+      "instructions": 28,
+      "body_bytes": 91,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6fe875232ed6a4a8f52b8dc732eb9aa33a1f7c6e91a47b4fc1a7487215d6806d",
+      "pseudocode_sha256": "6fa2abdbd89988909427b0f6f69dae16a6e8ed5daca950963dee2ed7d4a07a52"
+    },
+    {
+      "entry": "0x165d1f0",
+      "instructions": 62,
+      "body_bytes": 191,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "22729e020dddf86dc0cb92c201450eebad4a8e173c40fa41541803439d676d86",
+      "pseudocode_sha256": "eda5b23546876bece9ba3a600ac8b9954102791fe1dbc6bfc9296da1f5c74982"
+    },
+    {
+      "entry": "0x165f8a0",
+      "instructions": 85,
+      "body_bytes": 202,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "192b3220b588284008dd043e11052b65b002e2935b6df297be4d6c03be5c7961",
+      "pseudocode_sha256": "ca9e27a251333a0d5f8a1445e65c428f85a8cde943be4dc2a81b4e99a66b2c71"
+    },
+    {
+      "entry": "0x1667620",
+      "instructions": 188,
+      "body_bytes": 582,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6a38d0b007784329c63b56b577e75837069ed393baa7a240c7673c29996820fc",
+      "pseudocode_sha256": "7150f8e3034a4e8e416c13149eb1efee8e7e63039e13befe1140c366aa684458"
+    },
+    {
+      "entry": "0x166b420",
+      "instructions": 312,
+      "body_bytes": 945,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "999e2734991a09c59a77310ab66e8cc3bde5a3c296e08907b97fb9e5ea13d128",
+      "pseudocode_sha256": "b598508f72dce757dc31876fb6a3fe5b05be54ed51978ca57e8450ebd6cad97a"
+    },
+    {
+      "entry": "0x166d990",
+      "instructions": 543,
+      "body_bytes": 1852,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b01c5d8421f611efcaf76e9ca85e2f7f83f7e755054892c2423686596899a00a",
+      "pseudocode_sha256": "cfa4c28965a04c78afc093a698e9cba86c294174b602fdcbf293898a935e9c72"
+    },
+    {
+      "entry": "0x166f160",
+      "instructions": 258,
+      "body_bytes": 794,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "a396712a4a8cddbd9320a526a666810848864bc9156e3e240e5ab7cb7d66dc2b",
+      "pseudocode_sha256": "e3091b7ecc396e8b2fda696f43f1050d60892b92e15bd03e49875ca508a1b60d"
+    },
+    {
+      "entry": "0x1671680",
+      "instructions": 96,
+      "body_bytes": 263,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "c81d1f2d4b9a04d63f446f5945984b3750c1d7fef4620fe37a4b8b8a730f0a86",
+      "pseudocode_sha256": "f1984846981a8160e361af511cbdb184c5f3645397d81e18015b2c7d9413a102"
+    },
+    {
+      "entry": "0x1b88c60",
+      "instructions": 114,
+      "body_bytes": 329,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "68ae4d434dc39864d81e73de502837c150955100e3708d61a484e65b23aeb90f",
+      "pseudocode_sha256": "c12f1488cf94544d06500c282cff5f48f3d834dee3d35d0ce8323c5635ac654e"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

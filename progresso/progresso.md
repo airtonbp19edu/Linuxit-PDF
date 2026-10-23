@@ -2,7 +2,7 @@
 
 **Conclusão total da recodificação: percentual indeterminado.** O inventário completo de operações e sua complexidade ainda não estão fechados. Não há base para publicar uma porcentagem global de implementação.
 
-**Índice histórico do checklist do roteiro: 45.13%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
+**Índice histórico do checklist do roteiro: 46.87%.** Somente critérios integralmente `done` pontuam; avanços dentro de um critério `partial` acrescentam zero. Este índice é pouco sensível às entregas incrementais e não deve ser apresentado como porcentagem do código reconstruído. [Revisão da medição](../docs/MEDICAO-PROGRESSO.md).
 
 **Pacote registrado:** 0.1.18 de desenvolvimento. [Manifesto](../releases/manifest-0.1.18.json).
 
@@ -10,7 +10,7 @@
 
 **Paridade Foxit comprovada:** 0/25 famílias identificadas por inteiro. O inventário funcional permanece aberto; esse contador não descreve quanto de cada família foi implementado. Testes próprios não contam como testes diferenciais.
 
-**Cobertura global de engenharia reversa:** não calculável. Há 350 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
+**Cobertura global de engenharia reversa:** não calculável. Há 472 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
 
 A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro original. Fração de critérios verificados não é fração de funcionalidades pronta.
 
@@ -23,7 +23,7 @@ A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro ori
 | 05 — Mapeamento de dependências | 4% | 42.9% | 1.71% |
 | 06 — Análise estática inicial | 5% | 100.0% | 5.00% |
 | 07 — Catalogação das funções | 5% | 33.3% | 1.67% |
-| 08 — Descompilação profunda | 10% | 13.0% | 1.30% |
+| 08 — Descompilação profunda | 10% | 30.4% | 3.04% |
 | 09 — Reconstrução dos fluxos internos | 7% | 9.1% | 0.64% |
 | 10 — Análise dinâmica | 6% | 20.0% | 1.20% |
 | 11 — Engenharia reversa da interface | 4% | 25.0% | 1.00% |
