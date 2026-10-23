@@ -29,7 +29,9 @@ candidato 0.1.19.
   divergente, PDF real com Poppler, recusa de sobrescrita e de extensão errada.
 - **Suíte local completa:** 566 aprovados contra 560 na `main`. As 2 falhas e os 46 erros do
   ambiente de nuvem são os mesmos nos dois casos; não há falha nova.
-- **CI Linux:** `no-vm-validation`, run 40004191241, registrado ao terminar.
+- **CI Linux:** `no-vm-validation`, run [40004191241](https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40004191241)
+  no commit c5d3663. Suíte completa **750/750** (zero falhas, erros e pulos), aceitação **81/81** e
+  smoke GTK aprovado.
 - **LibreOffice (headless, local):**
   - o DOCX convertido para PDF deu **2 páginas** com "Primeira pagina" e "Segunda pagina";
   - o ODT convertido para texto trouxe os dois parágrafos.

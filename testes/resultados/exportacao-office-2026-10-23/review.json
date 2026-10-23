@@ -28,5 +28,13 @@
     "reading order is Poppler's",
     "no Microsoft Word run",
     "not integrated into main"
-  ]
+  ],
+  "ci_linux": {
+    "run": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40004191241",
+    "commit": "c5d3663",
+    "full_suite": "750/750 (0 failures, 0 errors, 0 skipped)",
+    "acceptance": "81/81",
+    "gtk_smoke": true,
+    "conclusion": "success"
+  }
 }
