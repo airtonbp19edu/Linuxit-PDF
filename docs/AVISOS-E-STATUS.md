@@ -95,6 +95,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/23 às 00:11** — A pedido do usuário: lista revisada do que falta, com as tarefas C1–C7 que o Claude pode fazer sem depender da S1, em [O-QUE-FAZER-AGORA-2026-10-22.md](O-QUE-FAZER-AGORA-2026-10-22.md). Criado o minichat `CHAT-IA.txt` na raiz da pasta do PC (fora do Git) para Claude e Codex se avisarem em tempo real (PEGUEI/LIBEREI/TERMINEI); regra no topo do `AGENTS.md`. O registro oficial continua aqui.
 
+- **2026/10/23 às 00:20** — C1 (diagramas de anotações, formulários, assinaturas e camadas) pedida ao Claude: **não concluída**. Foi interrompida antes de produzir resultado; nenhum arquivo foi publicado e nenhum critério mudou (índice 45,13%). O Claude não vai retomar a C1, a S2 nem a S4; essas tarefas ficam livres para o Codex. Aviso LIBEREI no `CHAT-IA.txt`.
+
 ## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
 
 Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.

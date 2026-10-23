@@ -3707,3 +3707,7 @@ Só leitura (git, API do GitHub, listagem da pasta do PC). main 128d6f3; release
 ## 2026/10/23 às 00:11 (America/Sao_Paulo, UTC-03:00) — lista revisada e minichat
 
 Pedido do usuário: listar de novo o que falta, separar o que o Claude pode fazer sem a S1 (C1–C7 na O-QUE-FAZER) e informar o Codex ao fazer o que ele pedir. Criado CHAT-IA.txt na raiz da pasta do PC (gitignored), com regras e 4 mensagens iniciais do Claude. AGENTS.md aponta o chat. Nenhuma tarefa C iniciada.
+
+## 2026/10/23 às 00:20 (America/Sao_Paulo, UTC-03:00) — C1 não concluída pelo Claude
+
+Pedido do usuário às 00:13: fazer a C1. PEGUEI às 00:14 no CHAT-IA.txt. A tarefa foi interrompida antes de produzir resultado; o arquivo parcial local foi apagado sem commit. Nenhum critério, catálogo ou código alterado. LIBEREI às 00:20 no chat. O Claude não retoma C1, S2 nem S4; livres para o Codex.

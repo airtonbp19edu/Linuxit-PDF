@@ -35,7 +35,7 @@ S1. Coordenação em tempo real pelo `CHAT-IA.txt` da pasta do PC.
 
 | # | Tarefa | Ajuda em |
 |---|---|---|
-| C1 | S3: diagramas e estados de anotações, formulários, assinaturas e camadas, a partir das evidências já preservadas | Etapa 9 (1,27) |
+| C1 ⛔ (interrompida em 23/10 00:20; livre para o Codex) | S3: diagramas e estados de anotações, formulários, assinaturas e camadas, a partir das evidências já preservadas | Etapa 9 (1,27) |
 | C2 | Roteiro pronto da E30 (VM): ordem dos casos UI01/02/05/09/10 e D10–D20, arquivos de teste, o que anotar, encerramento do processo residual (D06) | Etapas 10, 11, 18, 19 |
 | C3 | Kit da E23 (equipamentos): passo a passo e verificadores para impressora, leitor de tela, áudio, dois monitores e sincronização | Etapas 10 e 16 |
 | C4 | Proposta escrita da B3, com a redação exata dos critérios e quanto o índice sobe | Decisão do usuário |
@@ -43,8 +43,7 @@ S1. Coordenação em tempo real pelo `CHAT-IA.txt` da pasta do PC.
 | C6 | Publicar a 0.1.19 (mesmos bytes testados), depois de autorização expressa do usuário | Entrega |
 | C7 | Ajudar no instalador do Windows pelo CI, se o Codex liberar no chat | E34 |
 
-**Mesmo tipo de análise da S1 (pode ser interrompida):** S2 (laço de impressão) e S4 (demais
-famílias). Melhor ficar com o Codex.
+**Ficam com o Codex:** S2 (laço de impressão), S4 (demais famílias) e, desde 23/10 00:20, a C1.
 
 **Dependem do usuário:** autorizar a 0.1.19, decidir a B3, VM (E30) e equipamentos (E23).
 
