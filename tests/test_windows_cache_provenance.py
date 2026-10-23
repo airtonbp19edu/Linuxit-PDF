@@ -28,6 +28,47 @@ class WindowsCacheProvenanceTests(unittest.TestCase):
         for i in boxes:
             guard=any('IfSilent' in lines[j] for j in range(max(0,i-3),i))
             self.assertTrue(guard,f'MessageBox at line {i+1} is not guarded by IfSilent')
+    def test_uninstall_lines_use_backslashes_for_nested_files(self):
+        # MSYS2 Python emitted 'app/x.py'; NSIS Delete ignored it and left every nested file (CI 39897411096).
+        with tempfile.TemporaryDirectory() as folder:
+            stage=pathlib.Path(folder)
+            (stage/'app'/'vendor').mkdir(parents=True)
+            (stage/'app'/'vendor'/'m.py').write_text('x');(stage/'top.txt').write_text('x')
+            lines=builder.uninstall_lines(stage)
+        self.assertIn('Delete "$INSTDIR\\app\\vendor\\m.py"',lines)
+        self.assertIn('Delete "$INSTDIR\\top.txt"',lines)
+        self.assertEqual(lines[-2:],['RMDir "$INSTDIR\\app\\vendor"','RMDir "$INSTDIR\\app"'])
+        self.assertFalse(any('/' in line for line in lines),lines)
+    def _openssl_helpers(self):
+        import ast,hashlib,os,shutil
+        source=(ROOT/'packaging/windows/windows_bootstrap.py').read_text(encoding='utf-8')
+        tree=ast.parse(source)
+        wanted=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name in ('_short_path','_openssl_path')]
+        self.assertEqual(len(wanted),2)
+        namespace=dict(os=os,hashlib=hashlib,shutil=shutil,Path=pathlib.Path)
+        exec(compile(ast.Module(body=wanted,type_ignores=[]),'windows_bootstrap','exec'),namespace)
+        return namespace['_openssl_path']
+    def test_openssl_paths_reach_openssl_as_ascii(self):
+        # A non-ASCII install folder made cryptography's Rust layer panic at import (CI 39897411096).
+        openssl_path=self._openssl_helpers()
+        with tempfile.TemporaryDirectory() as folder:
+            root=pathlib.Path(folder)
+            plain=root/'plain.cnf';plain.write_text('cfg')
+            self.assertEqual(openssl_path(plain),str(plain))
+            accented=root/'instalação';(accented/'ossl-modules').mkdir(parents=True)
+            (accented/'ossl-modules'/'legacy.dll').write_bytes(b'dll')
+            cache=root/'cache';cache.mkdir()
+            with patch.dict('os.environ',{'LOCALAPPDATA':str(cache),'PROGRAMDATA':'','PUBLIC':''}):
+                safe=openssl_path(accented/'ossl-modules')
+            self.assertTrue(safe.isascii(),safe)
+            self.assertEqual((pathlib.Path(safe)/'legacy.dll').read_bytes(),b'dll')
+            with patch.dict('os.environ',{'LOCALAPPDATA':str(root/'usuário'),'PROGRAMDATA':'','PUBLIC':''}):
+                self.assertIsNone(openssl_path(accented/'ossl-modules'))
+    def test_bootstrap_never_leaves_legacy_load_to_a_non_ascii_path(self):
+        source=(ROOT/'packaging/windows/windows_bootstrap.py').read_text(encoding='utf-8')
+        self.assertIn("('OPENSSL_MODULES','lib/ossl-modules')",source)
+        self.assertIn("os.environ['CRYPTOGRAPHY_OPENSSL_NO_LEGACY']='1'",source)
+        self.assertIn("'lib/ossl-modules'",(ROOT/'scripts/build_windows.py').read_text(encoding='utf-8'))
     def test_missing_install_search_finds_only_complete_installations(self):
         spec=importlib.util.spec_from_file_location('installer_check',ROOT/'scripts/check_windows_installer.py')
         check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)

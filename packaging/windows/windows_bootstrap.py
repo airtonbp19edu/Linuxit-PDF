@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -15,7 +16,53 @@ os.environ['GI_TYPELIB_PATH']=str(RUNTIME/'lib/girepository-1.0')
 os.environ['GSETTINGS_SCHEMA_DIR']=str(RUNTIME/'share/glib-2.0/schemas')
 os.environ['XDG_DATA_DIRS']=str(RUNTIME/'share')
 os.environ['FONTCONFIG_PATH']=str(RUNTIME/'etc/fonts')
-if (RUNTIME/'etc/ssl/openssl.cnf').is_file():os.environ['OPENSSL_CONF']=str(RUNTIME/'etc/ssl/openssl.cnf')
+def _short_path(path):
+    """Windows 8.3 name of an existing path, or None when unavailable."""
+    if os.name!='nt':return None
+    import ctypes
+    buffer=ctypes.create_unicode_buffer(32768)
+    size=ctypes.windll.kernel32.GetShortPathNameW(str(path),buffer,len(buffer))
+    return buffer.value if 0<size<len(buffer) else None
+
+
+def _openssl_path(path):
+    """Path that OpenSSL can read on any user folder.
+
+    OpenSSL gets environment strings in the ANSI code page. A folder such as
+    'C:\\Users\\João' or 'instalação' then reaches it as non-UTF-8 bytes, and the
+    Rust layer of 'cryptography' panics while formatting the resulting error
+    (CI 39897411096). ASCII paths are used as they are; otherwise the 8.3 short
+    name; otherwise a copy under an ASCII-only per-user or shared folder.
+    """
+    text=str(path)
+    if text.isascii():return text
+    short=_short_path(path)
+    if short and short.isascii():return short
+    token=hashlib.sha256(text.encode('utf-8')).hexdigest()[:16]
+    for base in (os.environ.get('LOCALAPPDATA'),os.environ.get('PROGRAMDATA'),os.environ.get('PUBLIC')):
+        if not base or not base.isascii():continue
+        target=Path(base)/'LinuxitPDF-openssl'/token/Path(path).name
+        try:
+            if Path(path).is_dir():
+                if not target.is_dir():shutil.copytree(path,target)
+            else:
+                target.parent.mkdir(parents=True,exist_ok=True)
+                if not target.is_file():shutil.copy2(path,target)
+            return str(target)
+        except OSError:continue
+    return None
+
+
+OPENSSL_LIMITS=[]
+for _name,_relative in (('OPENSSL_CONF','etc/ssl/openssl.cnf'),('OPENSSL_MODULES','lib/ossl-modules')):
+    _source=RUNTIME/_relative
+    if not _source.exists():continue
+    _safe=_openssl_path(_source)
+    if _safe:os.environ[_name]=_safe
+    else:OPENSSL_LIMITS.append(_name)
+if 'OPENSSL_MODULES' in OPENSSL_LIMITS:
+    # Last resort: skip the legacy provider instead of crashing; RC4 PDFs are then unavailable.
+    os.environ['CRYPTOGRAPHY_OPENSSL_NO_LEGACY']='1'
 os.environ['GST_PLUGIN_PATH']=str(RUNTIME/'lib/gstreamer-1.0')
 os.environ['PRINT_VIEW_WORKER_PYTHON']=str(BIN/'python.exe')
 os.environ['PYTHONUTF8']='1'
@@ -55,6 +102,17 @@ def probe(destination):
     result['checks']['gtk_initialized']=bool(Gtk.init_check()[0])
     result['checks']['quickjs_calculation']=_quickjs.Context().eval('[1,2,3].reduce((a,b)=>a+b,0)')==6
     result['checks']['quickjs_worker_dependency']=available()
+    # RC4 lives in the OpenSSL 3 legacy provider; old encrypted PDFs need it.
+    result['openssl_paths']={name:os.environ.get(name) for name in ('OPENSSL_CONF','OPENSSL_MODULES')}
+    result['openssl_unresolved']=list(OPENSSL_LIMITS)
+    try:
+        try:from cryptography.hazmat.decrepit.ciphers.algorithms import ARC4
+        except ImportError:from cryptography.hazmat.primitives.ciphers.algorithms import ARC4
+        from cryptography.hazmat.primitives.ciphers import Cipher
+        result['checks']['rc4_legacy_provider']=Cipher(ARC4(b'k'*16),mode=None).encryptor().update(b'abc')!=b'abc'
+    except Exception as exc:
+        result['rc4_error']=type(exc).__name__+': '+str(exc)[:300]
+        result['checks']['rc4_legacy_provider']=False
     from pypdf.generic import DictionaryObject,NameObject,TextStringObject,ArrayObject
     form_document=PdfWriter();form_document.add_blank_page(200,200)
     action=DictionaryObject({NameObject('/S'):NameObject('/JavaScript'),NameObject('/JS'):TextStringObject('event.value="v="+event.value;')})

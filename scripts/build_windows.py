@@ -23,7 +23,8 @@ BINARIES=('python.exe','pythonw.exe','pdftocairo.exe','pdftotext.exe','pdfinfo.e
           'openssl.exe','tesseract.exe','espeak-ng.exe','gdk-pixbuf-query-loaders.exe')
 DIRECTORIES=('lib/girepository-1.0','lib/gdk-pixbuf-2.0','lib/gtk-3.0','lib/gio/modules','lib/gstreamer-1.0',
              'share/glib-2.0/schemas','share/fonts','share/fontconfig','share/icons/Adwaita','share/themes/Default',
-             'share/locale','share/mime','share/tessdata','share/espeak-ng-data','share/licenses','etc/fonts','etc/ssl')
+             'share/locale','share/mime','share/tessdata','share/espeak-ng-data','share/licenses','etc/fonts','etc/ssl',
+             'lib/ossl-modules')
 
 
 def sha(path):
@@ -37,6 +38,21 @@ def native(path):
 
 def nsis(value):
     return str(value).replace('$','$$').replace('"','$\\"').replace('\n','')
+
+
+def relative_native(path,stage):
+    """Relative path with backslashes; MSYS2 Python would otherwise emit '/' (NSIS Delete ignores it)."""
+    return Path(path).relative_to(stage).as_posix().replace('/','\\')
+
+
+def uninstall_lines(stage):
+    """NSIS Delete/RMDir lines for exactly the files this installer owns, deepest folders last."""
+    stage=Path(stage)
+    allfiles=sorted(path for path in stage.rglob('*') if path.is_file())
+    lines=['Delete "$INSTDIR\\'+nsis(relative_native(path,stage))+'"' for path in allfiles]
+    directories=sorted({parent for path in allfiles for parent in path.parents if parent!=stage and parent.is_relative_to(stage)},key=lambda p:len(p.parts),reverse=True)
+    lines.extend('RMDir "$INSTDIR\\'+nsis(relative_native(path,stage))+'"' for path in directories)
+    return lines
 
 def source_revision():
     revision=os.environ.get('GITHUB_SHA')
@@ -104,6 +120,9 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     if len(python_libraries)!=1:raise ValueError('Prefixo precisa de um runtime Python único.')
     tree(python_libraries[0].relative_to(prefix))
     for name in DIRECTORIES:tree(Path(name))
+    # RC4 (old encrypted PDFs) needs the OpenSSL 3 legacy provider; without it the
+    # installed app could not open those files (CI 39897411096).
+    if not (runtime/'lib/ossl-modules/legacy.dll').is_file():raise ValueError('Provedor legacy do OpenSSL ausente no pacote.')
     if not list((runtime/'lib').glob('python3.*/site-packages/_quickjs*.pyd')):
         raise ValueError('QuickJS precisa ser compilado para o Python UCRT64 antes do build.')
     for language in ('por','eng'):
@@ -143,10 +162,7 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     (stage/'windows-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     output.parent.mkdir(parents=True,exist_ok=True)
     include=output.with_suffix('.delete.nsh')
-    allfiles=[path for path in stage.rglob('*') if path.is_file()]
-    lines=['Delete "$INSTDIR\\'+nsis(str(path.relative_to(stage)))+'"' for path in allfiles]
-    directories=sorted({parent for path in allfiles for parent in path.parents if parent!=stage and parent.is_relative_to(stage)},key=lambda p:len(p.parts),reverse=True)
-    lines.extend('RMDir "$INSTDIR\\'+nsis(str(path.relative_to(stage)))+'"' for path in directories)
+    lines=uninstall_lines(stage)
     include.write_text('\n'.join(lines)+'\n',encoding='utf-8')
     # Keep the generated uninstall inventory in the same compilation unit;
     # the MSYS2 NSIS !include path resolver differs from native argv handling.
