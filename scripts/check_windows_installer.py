@@ -85,6 +85,30 @@ def diagnose_missing_install(installer,target,base,version,install):
     return report
 
 
+
+def ascii_control(installer,base,environment,output):
+    control=(base/'linuxit-ascii-control'/'app').resolve()
+    result=dict(target=str(control))
+    if control.exists():
+        result['skipped']='target exists';return result
+    control.parent.mkdir(parents=True,exist_ok=True)
+    try:
+        run=subprocess.run(install_command(installer,control),capture_output=True,timeout=300)
+        result['install_exit']=run.returncode
+        deadline=time.monotonic()+60
+        while not (control/'windows-manifest.json').is_file() and time.monotonic()<deadline:time.sleep(.2)
+        result['installed']=(control/'windows-manifest.json').is_file()
+        if not result['installed']:return result
+        probe=output.with_name('ascii-control-probe.json').resolve()
+        checked=subprocess.run([str(control/'runtime/bin/python.exe'),'-B','-I','-X','faulthandler',str(control/'windows_bootstrap.py'),'--probe',str(probe)],
+                               env=environment,cwd=str(base),capture_output=True,timeout=120)
+        result['probe_returncode']=checked.returncode
+        result['probe_stderr']=checked.stderr.decode('utf-8','replace')[-3000:]
+        result['probe_report']=json.loads(probe.read_text(encoding='utf-8')) if probe.exists() else None
+    except Exception as exc:
+        result['error']=type(exc).__name__+': '+str(exc)
+    return result
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--installer',required=True,type=Path);parser.add_argument('--stage',required=True,type=Path)
@@ -178,6 +202,10 @@ def main():
         except FileNotFoundError:removed=True
         report['checks']['uninstall_registry_removed']=removed
         report['passed']=all(report['checks'].values()) and len(report['checks'])==8
+        if not report['checks'].get('installed_native_probe'):
+            # Diagnostic only (never a pass criterion): same installer and probe in an
+            # ASCII-only folder, to tell a non-ASCII-path defect from any other cause.
+            report['ascii_control']=ascii_control(args.installer.resolve(),base,environment,args.output)
     except Exception as exc:
         import traceback
         report['errors'].append(type(exc).__name__+': '+str(exc));traceback.print_exc()
