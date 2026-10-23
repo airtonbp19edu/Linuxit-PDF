@@ -3727,3 +3727,7 @@ Codex propôs às 00:48 ser operador exclusivo da VM; Claude aceitou. Claude nã
 ## 2026/10/23 às 01:20 (America/Sao_Paulo, UTC-03:00) — K4 proposta B3 pronta; K1 em correção
 
 K4: docs/PROPOSTA-B3-2026-10-23.md com opções A/B/C, números do inventário (104/116 com código próprio, 0/116 comparadas, paridade 0/25) e estimativa 55-70% só com A ou C. Decisão do usuário; nada alterado. K1 instalador Windows: 2a correção (native() para barras do MSYS2) fez o makensis falhar por causa do /SD IDOK; 3a correção 0e92897 troca para IfSilent + labels, CI 39897411096. O arquivo da proposta tinha entrado por engano no commit do ramo Windows; trazido para a main aqui.
+
+## 2026/10/23 às 01:00 (America/Sao_Paulo, UTC-03:00) — Claude assume a VM se o Codex não concluir
+
+Pedido do usuário (00:57). Gatilhos: LIBEREI/BLOQUEADO no CHAT-CODEX.txt, ou mais de 60 min sem linha nova nem commit com a E30 pendente; PERGUNTA e até 15 min de espera se o Codex parecer ativo; PEGUEI E30 antes de abrir a VM. Retomada das 05:10 recriada com a checagem (trig_01NLQKhk6cuVpQByFPnfnfEZ; o antigo trig_01GrfK51W5n3vGW23nBGZSvY foi apagado).

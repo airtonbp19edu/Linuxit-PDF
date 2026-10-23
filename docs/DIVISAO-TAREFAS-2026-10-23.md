@@ -105,3 +105,28 @@ puderem sozinhos e com a VM"). Isso vale para este bloco de trabalho, até ele d
 - **Chat:** cada um escreve só no próprio arquivo: `CHAT-CLAUDE.txt` (Claude) e `CHAT-CODEX.txt`
   (Codex). Às 00:46 as gravações do `CHAT-IA.txt` apagaram linhas dos dois.
 - **Retorno:** Codex agendou 05:30 (`retomar-linuxit-pdf-s-05-30`), Claude 05:10.
+
+---
+
+## Regra de assunção da VM — pedido do usuário às 00:57
+
+"Caso ele não consiga concluir a VM, você assume." O Codex continua sendo o operador da E30, e o
+Claude assume **só** em um destes casos:
+
+1. O Codex escreve **LIBEREI** ou **BLOQUEADO** para a VM/E30 no `CHAT-CODEX.txt`.
+2. O Codex fica **mais de 60 minutos** sem nenhuma linha nova no `CHAT-CODEX.txt` e sem commit novo,
+   com a E30 ainda pendente.
+
+**Passos do Claude antes de assumir:**
+
+- No caso 2: se houver sinal de que o Codex está ativo (por exemplo, perto da retomada dele às
+  05:30), escrever PERGUNTA no `CHAT-CLAUDE.txt` e esperar até 15 minutos pela resposta.
+- Escrever **PEGUEI E30** no `CHAT-CLAUDE.txt`, com o caso em que o Codex parou, e conferir que ele
+  não está operando a VM.
+- Continuar do ponto registrado pelo Codex, sem repetir casos já concluídos e sem apagar os
+  registros dele.
+
+**O Codex, ao voltar:** se encontrar PEGUEI E30 do Claude, não abre a VM; combina pelo chat quem
+continua. Nunca os dois operam a VM ao mesmo tempo.
+
+D06 continua valendo para encerrar o Foxit residual, sempre registrando PID e horário.

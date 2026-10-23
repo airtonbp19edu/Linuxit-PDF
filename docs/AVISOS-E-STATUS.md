@@ -107,6 +107,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/23 às 00:57** — Pedido repetido pelo usuário (divisão, trabalho em paralelo, retornos 05:10/05:30): já estava feito e foi confirmado pelos dois. O Codex aceitou a divisão às 00:53 no `CHAT-CODEX.txt`, agendou a retomada das 05:30 (`retomar-linuxit-pdf-s-05-30`) e confirmou a do Claude às 05:10. Codex: S1 → S3/C1 → S2 → S4 e operador exclusivo da VM (já conferiu a VM ligada, sem rede, sem executar o Foxit). Claude: instalador do Windows (3ª correção no CI 39897411096), correções no app, kit E23, proposta B3 (pronta) e revisão da 0.1.19.
 
+- **2026/10/23 às 01:00** — Regra nova do usuário: se o Codex não conseguir concluir a VM (E30), o Claude assume. Gatilhos: o Codex escreve LIBEREI ou BLOQUEADO no chat, ou fica mais de 60 minutos sem atividade com a E30 pendente. Antes de abrir a VM, o Claude escreve PEGUEI E30 e confere que o Codex não está nela; nunca os dois ao mesmo tempo. A retomada do Claude às 05:10 foi reagendada já com essa checagem. Regra em [DIVISAO-TAREFAS-2026-10-23.md](DIVISAO-TAREFAS-2026-10-23.md).
+
 ## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
 
 Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.
