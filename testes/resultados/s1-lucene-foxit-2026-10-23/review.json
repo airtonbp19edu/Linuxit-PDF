@@ -1,0 +1,97 @@
+{
+  "reviewer": "Claude",
+  "reviewed_at_local": "2026-10-23T12:47:00-03:00",
+  "profile": "Direct Ghidra 12.1.4 -noanalysis using installed REA 6.7.0 seed script; not REA MCP Evidence",
+  "source_identity_checked_before_after": true,
+  "original_executed": false,
+  "vm_touched": false,
+  "foxit_code_incorporated": false,
+  "semantic_equivalence_proved": false,
+  "parity_claimed": false,
+  "criteria_changed": false,
+  "weights_changed": false,
+  "schema": "linuxit-s1-static-review-v1",
+  "work": "Foxit-specific Lucene++ APIs (WildcardQuery/WildcardTermEnum StarCharPosition, termCompare, to_Stemming english-only, MatchTerms) and coordinator document filters",
+  "targets": {
+    "lucene++.dll": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+    "fxLuceneLib.dll": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1"
+  },
+  "machine_check": {
+    "passed": true,
+    "entries": 16,
+    "instructions": 1843,
+    "bytes": 6071,
+    "reports": [
+      "testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-lucene.json",
+      "testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-fxlucenelib.json"
+    ]
+  },
+  "catalog_before": 472,
+  "catalog_after": 491,
+  "new_entries_this_review": 15,
+  "revisits": [
+    "fxLuceneLib.dll:0x100243b0"
+  ],
+  "joins": {
+    "vtable_slots": {
+      "IndexSearcher(fxLuceneLib copy 0x100d75c0)": {
+        "+0x4c": "setSimilarity thunk 0x100430ee",
+        "+0x60": "AddMatchTerms thunk 0x1004303a",
+        "+0x64": "getMatchTerms thunk 0x10042cde",
+        "+0x68": "clearMatchTerms thunk 0x10042ce4"
+      },
+      "WildcardQuery(0x100d76f8)": {
+        "+0x70": "addTerm thunk 0x1004304c"
+      }
+    },
+    "direct_import_calls": {
+      "WildcardQuery(StarCharPosition) ctor": [
+        "0x100193c2",
+        "0x100194c5",
+        "0x100366d5"
+      ],
+      "to_Stemming": [
+        "0x10032712"
+      ],
+      "PDFText_UnicodeDeals": [
+        "0x1001fccb",
+        "0x10022b0d",
+        "0x10026018",
+        "0x100285fd",
+        "0x100324b2"
+      ]
+    },
+    "lucene_internal_callers": {
+      "to_Stemming": [
+        "0x1029808c"
+      ],
+      "wildcardEquals": [
+        "0x102980c0",
+        "0x102981d6"
+      ],
+      "AddMatchTerms": [],
+      "getMatchTerms": [],
+      "clearMatchTerms": []
+    },
+    "strings": {
+      "0x104188b0": "english",
+      "0x10418824": "UTF_8",
+      "0x104188c0": "language not available for stemming: english",
+      "0x1041887c": "exception stemming word:"
+    }
+  },
+  "criterion": {
+    "stage": 8,
+    "check": "Fluxo completo de busca reconstruído",
+    "status": "partial",
+    "unchanged": true
+  },
+  "declared_gaps": [
+    "options +3/+0xc consumers",
+    "proximity +0x10 unit/rule",
+    "AddMatchTerms writer",
+    "escapes and error/exception table",
+    "runtime Similarity replacement not excluded",
+    "no runtime observation"
+  ]
+}

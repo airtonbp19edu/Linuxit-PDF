@@ -1,0 +1,158 @@
+{
+  "source_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "source_module": "lucene++.dll",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s1-luc/functions/0x1003ce20.json",
+      "result_sha256": "6fcaa927b1131be9c409c4fcc3d501db2d7e6b12d81a4e4d722a3fa5ae2bb162",
+      "entry_va": "0x1003ce20",
+      "analyst_name": "?incrementToken@SnowballFilter@Lucene@@UAE_NXZ",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 366,
+      "body_ranges": "[[1003ce20, 1003cf8d]]",
+      "pseudocode_sha256": "769ae0b97d912cbeedd9541a13e02b09aac30d4000d3ac3f4e5f3782826a7b37",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x1003cfb0.json",
+      "result_sha256": "4002404a4ddc78140b4bf1f94696d5aa40b364d1c3482a174795f1547a3f754d",
+      "entry_va": "0x1003cfb0",
+      "analyst_name": "?to_Stemming@SnowballFilter@Lucene@@SA?BV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V34@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 393,
+      "body_ranges": "[[1003cfb0, 1003d138]]",
+      "pseudocode_sha256": "e3ee918bd27977c119f9bef712abefbf14f98bf9e8e8c6c689a35950c8a760ec",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x1008e400.json",
+      "result_sha256": "c70c3d2ece383dc70bb433235433efd88b446c4318695e81d57152a9c7b5038f",
+      "entry_va": "0x1008e400",
+      "analyst_name": "?clearMatchTerms@IndexReader@Lucene@@UAEXXZ",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 8,
+      "body_ranges": "[[1008e400, 1008e407]]",
+      "pseudocode_sha256": "9f906c0dfd69ba10dfb240cad88baa10ad2bd55634039ef3e70a319ce187e16b",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x100ef640.json",
+      "result_sha256": "13a584b440e838b397869e02906ac7367da6630998909feb81cdd68046132244",
+      "entry_va": "0x100ef640",
+      "analyst_name": "?clearMatchTerms@IndexSearcher@Lucene@@UAEXXZ",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 45,
+      "body_ranges": "[[1008e3d0, 1008e3f4] [100ef640, 100ef647]]",
+      "pseudocode_sha256": "847ab5f83bffc5750cfe9bc6734adcff27b714ea648c565cbc4681ae2a1be795",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x100f1a50.json",
+      "result_sha256": "fca28a39ab1814830b35476af7fde33fe9cd965e4fb5eaf1018d46dc2cb68a80",
+      "entry_va": "0x100f1a50",
+      "analyst_name": "?getMatchTerms@IndexSearcher@Lucene@@UAEABV?$vector@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@@2@@std@@XZ",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 4,
+      "body_ranges": "[[100f1a50, 100f1a53]]",
+      "pseudocode_sha256": "1fa94bd76bb79e982e7810d5695cee94a36417f0918f1d71fcba459fdae26b57",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10241410.json",
+      "result_sha256": "9ef30507538390ed4973b074ffe67cf6d71a7bf4a7e6d210c518557518e4f41b",
+      "entry_va": "0x10241410",
+      "analyst_name": "?AddMatchTerms@IndexSearcher@Lucene@@UAEXABV?$vector@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@@2@@std@@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 111,
+      "body_ranges": "[[10241410, 1024147e]]",
+      "pseudocode_sha256": "8e452b200848c3b20eeb5087261c414ce216297a5a4df8affcddd647ad9b4970",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10296a60.json",
+      "result_sha256": "64179a67dfbdac212eb48ccbfa54c2b014a7f4d8997584bacb9acd8c5733ca85",
+      "entry_va": "0x10296a60",
+      "analyst_name": "??0WildcardQuery@Lucene@@QAE@ABV?$shared_ptr@VTerm@Lucene@@@boost@@_N11W4StarCharPosition@1@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 347,
+      "body_ranges": "[[10296a60, 10296bba]]",
+      "pseudocode_sha256": "13fd8a471c7840a4c33f5d4edc57a0cac54b49411486ad9bdad466b5fffce048",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10297080.json",
+      "result_sha256": "3ce9fda3736d6b51817f1a15dc4c3137f081ba8dc3f7f96c86f71d7e13108088",
+      "entry_va": "0x10297080",
+      "analyst_name": "?addTerm@WildcardQuery@Lucene@@UAEXV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 78,
+      "body_ranges": "[[10297080, 102970cd]]",
+      "pseudocode_sha256": "74591a61defb7ccf96ff43e957bea62eb3a26c3f3deae67496f0d47fe96d4376",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10297690.json",
+      "result_sha256": "223b86e95f8b9c2d77345aa3795c60f8524af74caf173a4313fabb9bc35baaa6",
+      "entry_va": "0x10297690",
+      "analyst_name": "?rewrite@WildcardQuery@Lucene@@UAE?AV?$shared_ptr@VQuery@Lucene@@@boost@@ABV?$shared_ptr@VIndexReader@Lucene@@@4@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 380,
+      "body_ranges": "[[10297690, 1029780b]]",
+      "pseudocode_sha256": "eff5b562d066674487017ba1d042060149eff6830bdf35a22ac93b5f0818ee54",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x102979c0.json",
+      "result_sha256": "a4690bceba98c3545cb0a4ffd6b7a6cd645b3fca884b2d4531e95abaec44e3a3",
+      "entry_va": "0x102979c0",
+      "analyst_name": "??0WildcardTermEnum@Lucene@@QAE@ABV?$shared_ptr@VIndexReader@Lucene@@@boost@@ABV?$shared_ptr@VTerm@Lucene@@@3@_N22W4StarCharPosition@1@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 676,
+      "body_ranges": "[[102979c0, 10297c63]]",
+      "pseudocode_sha256": "0d13ee3e689599ac809d3e0afd3f5a63f056fd6811ba35670b4f550aaf8d4569",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10297e20.json",
+      "result_sha256": "77ee930a4220ac9603158d2bd35ab3a42074a99e11df075c0d578ce657929233",
+      "entry_va": "0x10297e20",
+      "analyst_name": "?termCompare@WildcardTermEnum@Lucene@@MAE_NABV?$shared_ptr@VTerm@Lucene@@@boost@@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 757,
+      "body_ranges": "[[10297e20, 10298114]]",
+      "pseudocode_sha256": "c71ac756af4665b7b066349e44605225fd9950b278666af5cb17a37c8b6b0e5a",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc/functions/0x10298120.json",
+      "result_sha256": "dbe68ca8d07cbc525ed0f2354941f62f4526540452b4cbaaa26f0864c75d9931",
+      "entry_va": "0x10298120",
+      "analyst_name": "?wildcardEquals@WildcardTermEnum@Lucene@@SA_NABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@H0H@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 300,
+      "body_ranges": "[[10298120, 1029824b]]",
+      "pseudocode_sha256": "4e6406d936b5471b917439ed6dedc2f0786a6b871e21ec85c740ca67007fe8c1",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 12,
+  "distinct_entries": 12,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s3-main/functions/0x195fea0.json",
+      "result_sha256": "e72c85ec6f6bfec30e9b27437b2cc13d589630464a6a33b8771756d59ebdbbaf",
+      "entry_va": "0x195fea0",
+      "analyst_name": "FUN_0195fea0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 688,
+      "body_ranges": "[[0195fea0, 0196014f]]",
+      "pseudocode_sha256": "d31dfa707df75aa2489b0d1d70e0d5fd4b635a857995b6e3546cf8d93b1fef1a",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-main/functions/0x77ad80.json",
+      "result_sha256": "102c273765ef675a4c67c906d68babd20bc4e080892e7919949122a48c8c3d41",
+      "entry_va": "0x77ad80",
+      "analyst_name": "FUN_0077ad80",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 8,
+      "body_ranges": "[[0077ad80, 0077ad87]]",
+      "pseudocode_sha256": "b5706cfc24dd4bc2c157bfa117577b372a7b8e68fca7e43d013d431f339992e8",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-main/functions/0x77fb50.json",
+      "result_sha256": "6b38cd578d945407d94e4f67b4bd3c39ddd375414e06acb175585261a95f37e2",
+      "entry_va": "0x77fb50",
+      "analyst_name": "FUN_0077fb50",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 8,
+      "body_ranges": "[[0077fb50, 0077fb57]]",
+      "pseudocode_sha256": "1feace28939ede59d80ce7d8061e5cf18ff8eaf9de747626425327cd6633c6df",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

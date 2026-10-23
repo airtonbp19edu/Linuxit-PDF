@@ -1,0 +1,50 @@
+{
+  "source_sha256": "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8",
+  "source_module": "CommentsSummary.fpi",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s3-comments/functions/0x1001f5c0.json",
+      "result_sha256": "acd22bcb653342a4c99253141579ca58aad4334c38b65aa8a7df652804478229",
+      "entry_va": "0x1001f5c0",
+      "analyst_name": "FUN_1001f5c0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 74,
+      "body_ranges": "[[1001f5c0, 1001f609]]",
+      "pseudocode_sha256": "b1706f741e5b5e90fde93311d52c074d610e5d7816df638e2a7b31787fe4e0f6",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-comments/functions/0x1001f660.json",
+      "result_sha256": "f82099116832498aeb3656b8704e33bc4bcb826251782678c08764ee8b85dce6",
+      "entry_va": "0x1001f660",
+      "analyst_name": "FUN_1001f660",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 74,
+      "body_ranges": "[[1001f660, 1001f6a9]]",
+      "pseudocode_sha256": "042151d0b068806455c7429a181c2f8474698397cb383a3173a24a84b605c87d",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-comments/functions/0x1001f750.json",
+      "result_sha256": "ce372eb1dd98e2eabae033a6f46d8f10c1a5bbdc8562965cb7273aaefec9e143",
+      "entry_va": "0x1001f750",
+      "analyst_name": "FUN_1001f750",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 55,
+      "body_ranges": "[[1001f750, 1001f786]]",
+      "pseudocode_sha256": "11acb88047c2dc466e35f7f89df07b36309111fb6228bbf5af91349fbd0ad228",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

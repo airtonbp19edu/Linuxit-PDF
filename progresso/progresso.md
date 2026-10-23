@@ -10,7 +10,7 @@
 
 **Paridade Foxit comprovada:** 0/25 famílias identificadas por inteiro. O inventário funcional permanece aberto; esse contador não descreve quanto de cada família foi implementado. Testes próprios não contam como testes diferenciais.
 
-**Cobertura global de engenharia reversa:** não calculável. Há 472 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
+**Cobertura global de engenharia reversa:** não calculável. Há 491 entradas distintas examinadas; 9.973 slots não constituem um denominador de funções únicas. Contagem de módulos também não estima cobertura de funcionalidades.
 
 A tabela abaixo preserva os critérios, pesos e a comparabilidade do roteiro original. Fração de critérios verificados não é fração de funcionalidades pronta.
 

@@ -1,0 +1,68 @@
+{
+  "reviewer": "Claude",
+  "reviewed_at_local": "2026-10-23T12:47:00-03:00",
+  "profile": "Direct Ghidra 12.1.4 -noanalysis using installed REA 6.7.0 seed script; not REA MCP Evidence",
+  "source_identity_checked_before_after": true,
+  "original_executed": false,
+  "vm_touched": false,
+  "foxit_code_incorporated": false,
+  "semantic_equivalence_proved": false,
+  "parity_claimed": false,
+  "criteria_changed": false,
+  "weights_changed": false,
+  "schema": "linuxit-s3-static-review-v1",
+  "work": "Six of ten S3 seeds: MFC handlers to static links (UpdateData/DDX, message maps, RTTI owners); CommentsSummary layout/scope state",
+  "targets": {
+    "FoxitPDFReader.exe": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+    "CommentsSummary.fpi": "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8"
+  },
+  "layers_target_sha256_checked": "d3dd66d68601a203dce417b4e9f24ac43d881b91faa0c39a91c50c540f4e759f",
+  "layers_not_run_reason": "LayerPanelToolPlugin.fpi not in pinned analysis-manifest targets",
+  "machine_check": {
+    "passed": true,
+    "entries": 6,
+    "instructions": 260,
+    "bytes": 907,
+    "reports": [
+      "testes/resultados/s3-handlers-2026-10-23/machine-checks-main.json",
+      "testes/resultados/s3-handlers-2026-10-23/machine-checks-comments.json"
+    ]
+  },
+  "new_entries_this_review": 4,
+  "revisits": [
+    "CommentsSummary.fpi:0x1001f5c0",
+    "CommentsSummary.fpi:0x1001f660"
+  ],
+  "joins": {
+    "file_offset_to_va": {
+      "0x613de58": "0x653f258",
+      "0x613cf50": "0x653e350",
+      "0x4ff8300": "0x53f9700"
+    },
+    "owners": {
+      "0x77ad80": "CPDF_DlgPreferForms vtable 0x653f294 (GetMessageMap 0x77a3c0 via 0x77a3b0)",
+      "0x77fb50": "CReader_TrustedDocumentSetDlg vtable 0x653e38c",
+      "0x195fea0": "CBF_SelFilesDlg vtable 0x53f9394"
+    },
+    "DoDataExchange": {
+      "CPDF_DlgPreferForms": "0x77a2f0, control 0x84 -> +0x2bc DDX_Check 0x4918b11",
+      "CReader_TrustedDocumentSetDlg": "0x77faa0, 0x95 -> +0x200, 0x9d -> +0x204"
+    },
+    "UpdateData": "0x48fc2d8 (static MFC CWnd::UpdateData, structural identification)",
+    "mfc140u_ordinals": {
+      "0x100204e0": 5422,
+      "0x100204ec": 4477
+    }
+  },
+  "corrections": [
+    "S-C1 owner is CReader_TrustedDocumentSetDlg (trusted documents), not a signature handler",
+    "F-C2 owner is CBF_SelFilesDlg (include recent files in a file selector)",
+    "S3 table offsets are file offsets"
+  ],
+  "criterion": {
+    "stage": 9,
+    "check": "Diagramas e estados rastreáveis por subsistema",
+    "status": "partial",
+    "unchanged": true
+  }
+}

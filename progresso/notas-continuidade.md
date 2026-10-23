@@ -3797,3 +3797,14 @@ Critério etapa 8 "Fluxo completo de impressão reconstruído" → `done` (lacun
 índice 46,87%. Não repetir as 54 entradas. Próximo: S1 (busca) — lado Foxit + fronteira Lucene++
 (APIs próprias AddMatchTerms, PDFText_UnicodeDeals, to_Stemming, WildcardQuery StarCharPosition);
 depois S3 (dez sementes de REA-S3-ESTADOS). E12 depende de VM/B3 e não será fechado.
+
+## 2026/10/23 às 12:47 (America/Sao_Paulo, UTC-03:00) — Claude: S1 e S3 (lotes), ambos parciais
+
+S1: `docs/REA-S1-LUCENE-FOXIT-2026-10-23.md` (rodadas `claude-s1-luc` e `claude-s1-fx`, 16
+entradas). S3: `docs/REA-S3-HANDLERS-2026-10-23.md` (rodadas `claude-s3-main` e
+`claude-s3-comments`, 6 entradas). Catálogo 491. Não repetir essas entradas. Faltam em S1: +3/+0xc,
+proximidade +0x10, escritor de AddMatchTerms, escapes/erros. Em S3: consumidores de
++0x434/+0x438/+0x2bc/+0x204, camadas (incluir `LayerPanelToolPlugin.fpi` `d3dd66d6…` como alvo
+fixado antes de rodar 0x10041820/0x10041bc0/0x10041bf0/0x10045380) e os motores. E12 (entradas/
+saídas/erros, Fase A) depende de VM/B3: não fechado. Próximo do Claude: lista de desenvolvimento
+(redação em metadados/marcadores/anexos no ramo `claude/redacao-completa`).

@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "0a7d7ed6178eaea5787871858f3f4e1cf15fdcae45a24f5ccf5ac441776c3ca8",
+  "subject_name": "CommentsSummary.fpi",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/claude-s3-comments",
+  "entries": [
+    {
+      "entry": "0x1001f5c0",
+      "instructions": 22,
+      "body_bytes": 74,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "acd22bcb653342a4c99253141579ca58aad4334c38b65aa8a7df652804478229",
+      "pseudocode_sha256": "b1706f741e5b5e90fde93311d52c074d610e5d7816df638e2a7b31787fe4e0f6"
+    },
+    {
+      "entry": "0x1001f660",
+      "instructions": 22,
+      "body_bytes": 74,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "f82099116832498aeb3656b8704e33bc4bcb826251782678c08764ee8b85dce6",
+      "pseudocode_sha256": "042151d0b068806455c7429a181c2f8474698397cb383a3173a24a84b605c87d"
+    },
+    {
+      "entry": "0x1001f750",
+      "instructions": 16,
+      "body_bytes": 55,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ce372eb1dd98e2eabae033a6f46d8f10c1a5bbdc8562965cb7273aaefec9e143",
+      "pseudocode_sha256": "11acb88047c2dc466e35f7f89df07b36309111fb6228bbf5af91349fbd0ad228"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}
