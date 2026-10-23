@@ -12,6 +12,8 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import re
+import ntpath
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'app'))
@@ -21,15 +23,74 @@ BINARIES=('python.exe','pythonw.exe','pdftocairo.exe','pdftotext.exe','pdfinfo.e
           'openssl.exe','tesseract.exe','espeak-ng.exe','gdk-pixbuf-query-loaders.exe')
 DIRECTORIES=('lib/girepository-1.0','lib/gdk-pixbuf-2.0','lib/gtk-3.0','lib/gio/modules','lib/gstreamer-1.0',
              'share/glib-2.0/schemas','share/fonts','share/fontconfig','share/icons/Adwaita','share/themes/Default',
-             'share/locale','share/mime','share/tessdata','share/espeak-ng-data','share/licenses','etc/fonts','etc/ssl')
+             'share/locale','share/mime','share/tessdata','share/espeak-ng-data','share/licenses','etc/fonts','etc/ssl',
+             'lib/ossl-modules')
 
 
 def sha(path):
     with Path(path).open('rb') as handle:return hashlib.file_digest(handle,'sha256').hexdigest()
 
 
+def native(path):
+    """Backslash Windows path even under MSYS2 Python, whose ntpath keeps '/'."""
+    return ntpath.normpath(str(path)).replace('/','\\')
+
+
 def nsis(value):
     return str(value).replace('$','$$').replace('"','$\\"').replace('\n','')
+
+
+def relative_native(path,stage):
+    """Relative path with backslashes; MSYS2 Python would otherwise emit '/' (NSIS Delete ignores it)."""
+    return Path(path).relative_to(stage).as_posix().replace('/','\\')
+
+
+def uninstall_lines(stage):
+    """NSIS Delete/RMDir lines for exactly the files this installer owns, deepest folders last."""
+    stage=Path(stage)
+    allfiles=sorted(path for path in stage.rglob('*') if path.is_file())
+    lines=['Delete "$INSTDIR\\'+nsis(relative_native(path,stage))+'"' for path in allfiles]
+    directories=sorted({parent for path in allfiles for parent in path.parents if parent!=stage and parent.is_relative_to(stage)},key=lambda p:len(p.parts),reverse=True)
+    lines.extend('RMDir "$INSTDIR\\'+nsis(relative_native(path,stage))+'"' for path in directories)
+    return lines
+
+def source_revision():
+    revision=os.environ.get('GITHUB_SHA')
+    if not revision:revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+    if not re.fullmatch('[0-9a-f]{40}',revision):raise ValueError('Source revision must be a full commit SHA')
+    return revision
+
+
+CACHE_GROUPS={
+    'schemas':('bin/glib-compile-schemas.exe','share/glib-2.0/schemas','*.xml'),
+    'icons':('bin/gtk-update-icon-cache.exe','share/icons/Adwaita','*'),
+    'mime':('bin/update-mime-database.exe','share/mime/packages','*.xml'),
+    'gio':('bin/gio-querymodules.exe','lib/gio/modules','*.dll'),
+    'immodules':('bin/gtk-query-immodules-3.0.exe','lib/gtk-3.0','*.dll'),
+}
+
+def cache_group(relative):
+    if relative=='runtime/share/glib-2.0/schemas/gschemas.compiled':return 'schemas'
+    if relative=='runtime/share/icons/Adwaita/icon-theme.cache':return 'icons'
+    if relative.startswith('runtime/share/mime/') and '/packages/' not in relative:return 'mime'
+    if relative=='runtime/lib/gio/modules/giomodule.cache':return 'gio'
+    if relative.startswith('runtime/lib/gtk-3.0/') and relative.endswith('/immodules.cache'):return 'immodules'
+    return None
+
+def cache_inputs(prefix,ownership,group):
+    generator,directory,pattern=CACHE_GROUPS[group]
+    sources=[prefix/generator,*sorted((prefix/directory).rglob(pattern))]
+    if group=='schemas':sources.extend(sorted((prefix/directory).rglob('*.gschema.override')))
+    records=[]
+    for path in sources:
+        if not path.is_file():continue
+        source='/ucrt64/'+path.relative_to(prefix).as_posix();owner=ownership.get(source)
+        if owner is None:
+            if path.name.endswith('.cache'):continue
+            raise ValueError('Generated cache input without provenance: '+source)
+        records.append(dict(source=source,sha256=sha(path),package=owner))
+    if len(records)<2 or not (prefix/generator).is_file():raise ValueError('Generated cache needs its packaged generator and inputs: '+group)
+    return dict(method='MSYS2 post-install generated cache; input bytes and packages recorded',generator='/ucrt64/'+generator,inputs=records)
 
 
 def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman'):
@@ -47,6 +108,7 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
         origin=prefix/relative
         if origin.exists():
             for path in origin.rglob('*'):
+                if path.name=='loaders.cache':continue  # Regenerated after relocation by windows_bootstrap.
                 if path.is_file() and '__pycache__' not in path.parts and path.suffix not in ('.pyc','.pyo','.a','.h'):
                     file(path,runtime/path.relative_to(prefix))
     for name in BINARIES:
@@ -58,6 +120,9 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     if len(python_libraries)!=1:raise ValueError('Prefixo precisa de um runtime Python único.')
     tree(python_libraries[0].relative_to(prefix))
     for name in DIRECTORIES:tree(Path(name))
+    # RC4 (old encrypted PDFs) needs the OpenSSL 3 legacy provider; without it the
+    # installed app could not open those files (CI 39897411096).
+    if not (runtime/'lib/ossl-modules/legacy.dll').is_file():raise ValueError('Provedor legacy do OpenSSL ausente no pacote.')
     if not list((runtime/'lib').glob('python3.*/site-packages/_quickjs*.pyd')):
         raise ValueError('QuickJS precisa ser compilado para o Python UCRT64 antes do build.')
     for language in ('por','eng'):
@@ -75,32 +140,43 @@ def build(prefix,stage,output,makensis,compiler,quickjs_notices,pacman='pacman')
     packages=sorted({ownership[source] for source in origins.values() if source in ownership})
     package_info=subprocess.run([pacman,'-Qi',*packages],check=True,capture_output=True,text=True,encoding='utf-8').stdout
     (stage/'runtime-package-info.txt').write_text(package_info,encoding='utf-8')
-    records=[]
+    records=[];generated={}
     for path in sorted(stage.rglob('*')):
         if not path.is_file():continue
         relative=path.relative_to(stage).as_posix();source=origins.get(relative)
         owner=ownership.get(source) if source else None
+        group=None
         if source and owner is None:
-            if 'quickjs' not in path.name and not any('quickjs' in part for part in path.parts):
-                raise ValueError('Runtime sem proveniência de pacote: '+relative)
-            owner='python-quickjs-ng==0.15.1.1 (compiled UCRT64 overlay)'
-        records.append(dict(path=relative,bytes=path.stat().st_size,sha256=sha(path),package=owner,source=source))
-    manifest=dict(schema='linuxit-windows-payload-v1',version=VERSION,development=True,source_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            group=cache_group(relative)
+            if group:
+                if group not in generated:generated[group]=cache_inputs(prefix,ownership,group)
+                owner='generated-cache:'+group
+            elif path.name.startswith('_quickjs') and path.suffix=='.pyd' or path.name=='quickjs-installation.json':
+                owner='python-quickjs-ng==0.15.1.1 (compiled UCRT64 overlay)'
+            else:raise ValueError('Runtime sem proveniência de pacote: '+relative)
+        records.append(dict(path=relative,bytes=path.stat().st_size,sha256=sha(path),package=owner,source=source,generated_from=group))
+    manifest=dict(schema='linuxit-windows-payload-v1',version=VERSION,development=True,source_revision=source_revision(),
                   native_windows=True,architecture='x86_64',runtime='MSYS2 UCRT64',administrator_required=False,
-                  records=records,packages=packages,quickjs='python-quickjs-ng==0.15.1.1',
+                  records=records,packages=packages,generated_cache_groups=generated,quickjs='python-quickjs-ng==0.15.1.1',
                   limitations=['Windows development candidate; unsigned installer.', 'Original Foxit and whole-family parity are not tested by this packaging.'])
     (stage/'windows-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     output.parent.mkdir(parents=True,exist_ok=True)
     include=output.with_suffix('.delete.nsh')
-    allfiles=[path for path in stage.rglob('*') if path.is_file()]
-    lines=['Delete "$INSTDIR\\'+nsis(str(path.relative_to(stage)))+'"' for path in allfiles]
-    directories=sorted({parent for path in allfiles for parent in path.parents if parent!=stage and parent.is_relative_to(stage)},key=lambda p:len(p.parts),reverse=True)
-    lines.extend('RMDir "$INSTDIR\\'+nsis(str(path.relative_to(stage)))+'"' for path in directories)
+    lines=uninstall_lines(stage)
     include.write_text('\n'.join(lines)+'\n',encoding='utf-8')
-    subprocess.run([str(makensis),'/V2','/INPUTCHARSET','UTF8','/DVERSION='+VERSION,'/DPAYLOAD='+str(stage),'/DOUTPUT='+str(output),
-                    '/DDELETE_INCLUDE='+str(include),str(ROOT/'packaging/windows/linuxit.nsi')],check=True)
+    # Keep the generated uninstall inventory in the same compilation unit;
+    # the MSYS2 NSIS !include path resolver differs from native argv handling.
+    template=(ROOT/'packaging/windows/linuxit.nsi').read_text(encoding='utf-8')
+    needle='  !include "${DELETE_INCLUDE}"'
+    if template.count(needle)!=1:raise ValueError('Uninstall template boundary changed')
+    script=output.with_suffix('.generated.nsi')
+    script.write_text(template.replace(needle,'\n'.join('  '+line for line in lines)),encoding='utf-8')
+    if not include.is_file() or not script.is_file():raise ValueError('Generated installer source missing')
+    subprocess.run([str(makensis),'/V2','/INPUTCHARSET','UTF8','/DVERSION='+VERSION,
+                    '/DPAYLOAD='+native(stage),'/DOUTPUT='+native(output),
+                    native(script)],check=True)
     result=dict(schema='linuxit-windows-installer-build-v1',version=VERSION,path=str(output),bytes=output.stat().st_size,
-                sha256=sha(output),payload_files=len(records),runtime_packages=len(packages),installed_or_published=False)
+                sha256=sha(output),generated_nsis_sha256=sha(script),payload_files=len(records),runtime_packages=len(packages),installed_or_published=False)
     output.with_suffix('.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result));return result
 

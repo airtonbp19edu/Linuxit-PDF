@@ -1,4 +1,5 @@
 """GTK draft actions, real dialogs/workers and serialized rendering results."""
+from gtk_cleanup import cleanup_temp
 import hashlib
 import os
 from pathlib import Path
@@ -28,7 +29,7 @@ class EditDraftGTKTests(unittest.TestCase):
         wait_for(lambda:self.window.session is not None and not self.window.busy)
     def tearDown(self):
         if not self.window.closed:self.window.destroy()
-        self.parent.destroy();self.quit.stop();self.hook.stop();self.temp.cleanup()
+        self.parent.destroy();self.quit.stop();self.hook.stop();cleanup_temp(self.temp)
         self.assertEqual(self.callback_errors,[])
     def add(self,operation):
         count=self.window.session.cursor

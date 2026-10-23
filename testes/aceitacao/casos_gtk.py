@@ -173,7 +173,9 @@ def presentation_failure(ctx):
     with Window(ctx, ctx.fixture(SCOPES)) as w:
         p = _presentation(ctx, w)
         try:
-            with patch.object(p, '_load_page_pixbuf', side_effect=RuntimeError('falha sintética de imagem')):
+            # A fast prefetch may already hold page 2; bypass the cache so the load really runs.
+            with patch.object(p, '_load_page_pixbuf', side_effect=RuntimeError('falha sintética de imagem')), \
+                 patch.object(p, '_cache_get', return_value=None):
                 p._goto(1)
                 check(wait_for(lambda: p._render_error is not None), 'falha não entregue à apresentação')
             check('falha sintética' in p._render_error and p.get_visible(), 'estado de falha ausente ou janela inválida')
@@ -300,19 +302,30 @@ def xfa_dialog(ctx):
 
 # 23 — cloud through a synced folder (user decision of 17/10/2026; external client syncs)
 
+def same_path(a, b):
+    """Windows reports chooser paths with other case/separators; compare them normalized."""
+    return bool(a) and os.path.normcase(os.path.realpath(a)) == os.path.normcase(os.path.realpath(str(b)))
+
+
 def _answer_chooser(title, target, seen):
-    """Answer the real GTK chooser like a user; record the folder it first showed."""
+    """Answer the real GTK chooser like a user; record the folder it first showed.
+
+    A chooser that never reaches the target is cancelled after about 10 s (seen['gave_up'])
+    instead of keeping the run waiting forever."""
     Gtk, _, GLib = _gtk()
     def respond():
         dialog = next((w for w in Gtk.Window.list_toplevels()
                        if isinstance(w, Gtk.FileChooserDialog) and w.get_title() == title), None)
         if dialog is None:return True
+        seen['ticks'] = seen.get('ticks', 0) + 1
+        if seen['ticks'] > 250:
+            seen['gave_up'] = True;dialog.response(Gtk.ResponseType.CANCEL);return False
         current = dialog.get_current_folder()
         if current is None:return True
         seen.setdefault('first_folder', current)
-        if current != str(target.parent):dialog.set_current_folder(str(target.parent));return True
+        if not same_path(current, target.parent):dialog.set_current_folder(str(target.parent));return True
         if dialog.get_action() == Gtk.FileChooserAction.SAVE:dialog.set_current_name(target.name)
-        elif dialog.get_filename() != str(target):dialog.select_filename(str(target));return True
+        elif not same_path(dialog.get_filename(), target):dialog.select_filename(str(target));return True
         dialog.response(Gtk.ResponseType.OK);return False
     return GLib.timeout_add(40, respond)
 
@@ -327,7 +340,8 @@ def _synced_window(ctx, w):
     try:w._open_sync_folder()
     finally:_remove_source(timer)
     check(wait_for(lambda: w.filepath == str(source) and w.current_pixbuf is not None), 'PDF da pasta não abriu')
-    check(seen.get('first_folder') == str(folder), f"seletor começou em {seen.get('first_folder')!r}")
+    check(not seen.get('gave_up'), 'seletor não chegou ao PDF da pasta')
+    check(same_path(seen.get('first_folder'), folder), f"seletor começou em {seen.get('first_folder')!r}")
     wait_for(lambda: not w._render_pending);settle(.4)
     return folder, source
 

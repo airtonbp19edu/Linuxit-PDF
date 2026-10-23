@@ -70,10 +70,11 @@ class PassiveSearchTests(unittest.TestCase):
         with patch('attachment_images.subprocess.run') as run,self.assertRaises(ValueError):image_text(stream.getvalue())
         run.assert_not_called()
 
-    @unittest.skipUnless(os.name!='nt','Native Linux Tesseract integration')
+    @unittest.skipUnless(__import__('shutil').which('tesseract'),'Requires actual Tesseract')
     def test_actual_offline_attachment_ocr_recognizes_synthetic_image(self):
-        from PIL import Image,ImageDraw,ImageFont
-        font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',48)
+        from PIL import Image,ImageDraw
+        from ocr_runtime import scan_font
+        font=scan_font(48)
         with Image.new('RGB',(1000,160),'white') as image:
             ImageDraw.Draw(image).text((30,40),'LINUXIT ALPHA 2048',font=font,fill='black')
             stream=BytesIO();image.save(stream,'PNG')

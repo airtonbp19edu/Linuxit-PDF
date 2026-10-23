@@ -121,11 +121,18 @@ class AuthenticatedPrintGUITests(unittest.TestCase):
                 seen=[]
                 def prepare(path,out,job,cancel):
                     seen.append((path,job));writer=PdfWriter();writer.add_blank_page(100,100);writer.write(out);return out
-                with patch('main.prepare_print',side_effect=prepare),patch('main.cups.print_file',return_value='request id is Lab-42 (1 file(s))') as printer:
-                    window._submit_print_job(dict(destination='printer',printer='Lab',image_dpi=600))
-                    wait_for(lambda:printer.called and getattr(window,'print_jobs',None))
+                if os.name=='nt':
+                    # Windows hands the prepared file to the system print dialog, not CUPS.
+                    with patch('main.prepare_print',side_effect=prepare),patch('windows_print.print_dialog',return_value='Trabalho enviado à impressora.') as dialog:
+                        window._submit_print_job(dict(destination='printer',printer='Lab',image_dpi=600))
+                        wait_for(lambda:dialog.called)
+                    self.assertTrue(dialog.call_args.args[2]['print_as_image'])
+                else:
+                    with patch('main.prepare_print',side_effect=prepare),patch('main.cups.print_file',return_value='request id is Lab-42 (1 file(s))') as printer:
+                        window._submit_print_job(dict(destination='printer',printer='Lab',image_dpi=600))
+                        wait_for(lambda:printer.called and getattr(window,'print_jobs',None))
+                    self.assertEqual(window.print_jobs[0]['id'],'Lab-42')
                 self.assertNotEqual(seen[0][0],str(source));self.assertTrue(seen[0][1]['print_as_image']);self.assertEqual(seen[0][1]['image_dpi'],150)
-                self.assertEqual(window.print_jobs[0]['id'],'Lab-42')
             finally:window.destroy()
 
     def test_copy_denial_refuses_pdf_output_before_preparation(self):

@@ -60,7 +60,7 @@ class AttachmentSearchTests(unittest.TestCase):
         self.assertEqual(result['source_sha256'], hashlib.sha256(before).hexdigest())
         self.assertTrue(all(hit['attachment_index'] == 0 and hit['page'] is None and hit['rects'] == [] for hit in result['hits']))
         self.assertEqual(len(search.search_attachment_text(self.pdf, request(match_case=True, whole_words=True))['hits']), 1)
-        self.assertEqual(before, self.pdf.read_bytes());self.assertEqual(list(self.root.iterdir()), [self.pdf])
+        self.assertEqual(before, self.pdf.read_bytes());self.assertEqual([p.name for p in self.root.iterdir()], [self.pdf.name])
 
     def test_embedded_pdf_page_is_distinct_from_host_and_model_keeps_scope(self):
         self.host([('inside.pdf', text_pdf(['other', 'ALVO inside']))])
@@ -154,7 +154,7 @@ class AttachmentSearchTests(unittest.TestCase):
                 result = search.invoke_attachment_search(self.pdf, 'alvo', SearchOptions(), 100, event)
             self.assertEqual(result['hits'], []);self.assertIsNotNone(self.children[0].poll())
         finally:timer.join()
-        self.assertEqual(list(self.root.iterdir()), [self.pdf])
+        self.assertEqual([p.name for p in self.root.iterdir()], [self.pdf.name])
 
     def test_timeout_terminates_the_actual_child_and_reports_failure(self):
         self.original_popen = subprocess.Popen;self.children = []

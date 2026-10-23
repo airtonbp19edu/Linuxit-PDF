@@ -1,4 +1,5 @@
 """GTK annotation dialogs and independent Poppler pixel checks of saved PDFs."""
+from gtk_cleanup import cleanup_temp
 import hashlib
 import json
 import os
@@ -33,7 +34,7 @@ class AnnotationExtensionGTKTests(unittest.TestCase):
         self.window.page.set_value(2)
     def tearDown(self):
         if not self.window.closed:self.window.destroy()
-        self.parent.destroy();self.quit.stop();self.hook.stop();self.temp.cleanup()
+        self.parent.destroy();self.quit.stop();self.hook.stop();cleanup_temp(self.temp)
         self.assertEqual(self.callback_errors,[])
     def respond(self,title,edit):
         def callback():

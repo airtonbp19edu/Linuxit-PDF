@@ -3,6 +3,7 @@ import math,os,sys,tempfile,time,unittest,wave
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(Path(os.environ.get('PRINT_VIEW_TEST_APP',ROOT/'app'))))
 from measurement import snap_point,measure
+from ocr_runtime import gstreamer_available
 
 
 class MeasurementSnapTests(unittest.TestCase):
@@ -14,7 +15,7 @@ class MeasurementSnapTests(unittest.TestCase):
         with self.assertRaises(ValueError):snap_point((1,2),grid=float('nan'))
 
 
-@unittest.skipIf(os.name=='nt','Native Linux GTK/GStreamer pipeline')
+@unittest.skipUnless(gstreamer_available(),'Requires native GStreamer decoding elements')
 class LocalPlaybackTests(unittest.TestCase):
     def setUp(self):
         from gi.repository import GLib

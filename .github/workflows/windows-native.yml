@@ -1,21 +1,36 @@
 name: Own application Windows native validation
 on:
   workflow_dispatch:
+    inputs:
+      modules:
+        description: 'Diagnostic only: comma-separated test modules (empty runs the entire suite)'
+        required: false
+        default: ''
+      acceptance_cases:
+        description: 'Diagnostic only: comma-separated acceptance cases (empty runs all)'
+        required: false
+        default: ''
+      skip_installer:
+        description: 'Diagnostic only: skip building and installing the installer'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   own-windows:
     runs-on: windows-2022
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e
         with:
           msystem: UCRT64
           update: true
           install: >-
+            git
             mingw-w64-ucrt-x86_64-python
             mingw-w64-ucrt-x86_64-python-gobject
             mingw-w64-ucrt-x86_64-python-cairo
@@ -34,6 +49,7 @@ jobs:
             mingw-w64-ucrt-x86_64-espeak-ng
             mingw-w64-ucrt-x86_64-gst-plugins-base
             mingw-w64-ucrt-x86_64-gst-plugins-good
+            mingw-w64-ucrt-x86_64-gst-plugin-gtk
       - name: Compile pinned QuickJS for the UCRT64 Python ABI
         shell: msys2 {0}
         run: |
@@ -46,33 +62,8 @@ jobs:
           export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-test-config"
           export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-test-cache"
           /ucrt64/bin/python scripts/check_windows_native.py --output dist/windows-native/report.json
-      - name: Run the entire own test suite on native Windows
-        id: suite
-        continue-on-error: true
-        shell: msys2 {0}
-        run: |
-          export PYTHONUTF8=1
-          export GDK_BACKEND=win32
-          export DISPLAY=:0
-          export LINUXIT_WINDOWS_GUI_TESTS=1
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-suite-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-suite-cache"
-          /ucrt64/bin/python scripts/run_tests.py --temp-dir "$RUNNER_TEMP/linuxit-suite-temp" \
-            --traceback-after 120 --output dist/windows-native/full-suite.json \
-            >dist/windows-native/full-suite.stdout 2>dist/windows-native/full-suite.stderr
-      - name: Run own acceptance on native Windows and retain unsupported cases
-        id: acceptance
-        continue-on-error: true
-        shell: msys2 {0}
-        run: |
-          export PYTHONUTF8=1
-          export GDK_BACKEND=win32
-          export DISPLAY=:0
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-acceptance-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-acceptance-cache"
-          /ucrt64/bin/python scripts/run_acceptance.py run --output dist/windows-native/acceptance.json \
-            >dist/windows-native/acceptance.stdout 2>dist/windows-native/acceptance.stderr
       - name: Build per-user installer with complete runtime and provenance
+        if: ${{ !inputs.skip_installer }}
         shell: msys2 {0}
         run: |
           export PYTHONUTF8=1
@@ -83,17 +74,63 @@ jobs:
             --makensis /ucrt64/bin/makensis.exe --compiler /ucrt64/bin/gcc.exe \
             --quickjs-notices "$RUNNER_TEMP/linuxit-quickjs-build/quickjs-notices.txt"
       - name: Install, verify bundled GTK and QuickJS, and uninstall in runner only
+        if: ${{ !inputs.skip_installer }}
         shell: msys2 {0}
         run: |
           export PYTHONUTF8=1
           installer=$(find dist/windows-native -maxdepth 1 -name 'LinuxitPDF-*-windows-x86_64.exe' -print -quit)
           /ucrt64/bin/python scripts/check_windows_installer.py --installer "$installer" \
             --stage dist/windows-native/payload --output dist/windows-native/installer-validation.json
+      - name: Run the entire own test suite on native Windows
+        id: suite
+        timeout-minutes: 30
+        continue-on-error: true
+        shell: msys2 {0}
+        env:
+          SUITE_MODULES: ${{ inputs.modules }}
+        run: |
+          export PYTHONUTF8=1
+          export GDK_BACKEND=win32
+          export DISPLAY=:0
+          export LINUXIT_WINDOWS_GUI_TESTS=1
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-suite-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-suite-cache"
+          subset=()
+          if [ -n "$SUITE_MODULES" ]; then subset=(--modules "$SUITE_MODULES"); fi
+          /ucrt64/bin/python scripts/run_tests.py --temp-dir "$RUNNER_TEMP/linuxit-suite-temp" "${subset[@]}" \
+            --traceback-after 120 --progress-output dist/windows-native/full-suite-progress.json --output dist/windows-native/full-suite.json \
+            >dist/windows-native/full-suite.stdout 2>dist/windows-native/full-suite.stderr
+      - name: Run own acceptance on native Windows and retain unsupported cases
+        id: acceptance
+        timeout-minutes: 20
+        continue-on-error: true
+        shell: msys2 {0}
+        env:
+          ACCEPTANCE_CASES: ${{ inputs.acceptance_cases }}
+        run: |
+          export PYTHONUTF8=1
+          export GDK_BACKEND=win32
+          export DISPLAY=:0
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/linuxit-acceptance-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/linuxit-acceptance-cache"
+          subset=()
+          if [ -n "$ACCEPTANCE_CASES" ]; then subset=(--cases "$ACCEPTANCE_CASES"); fi
+          /ucrt64/bin/python scripts/run_acceptance.py run "${subset[@]}" --output dist/windows-native/acceptance.json \
+            --progress-output dist/windows-native/acceptance-progress.json \
+            >dist/windows-native/acceptance.stdout 2>dist/windows-native/acceptance.stderr
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: linuxit-own-windows-${{ github.sha }}
-          path: dist/windows-native/
+          path: |
+            dist/windows-native/*.json
+            dist/windows-native/*.stdout
+            dist/windows-native/*.stderr
+            dist/windows-native/*.png
+            dist/windows-native/*.exe
+            dist/windows-native/payload/windows-manifest.json
+            dist/windows-native/payload/runtime-package-info.txt
+            dist/windows-native/payload/quickjs-notices.txt
           if-no-files-found: warn
           retention-days: 14
       - name: Preserve failure status instead of declaring Windows complete
@@ -102,7 +139,11 @@ jobs:
         env:
           SUITE_OUTCOME: ${{ steps.suite.outcome }}
           ACCEPTANCE_OUTCOME: ${{ steps.acceptance.outcome }}
+          DIAGNOSTIC: ${{ inputs.modules != '' || inputs.acceptance_cases != '' || inputs.skip_installer }}
         run: |
+          if ($env:DIAGNOSTIC -eq 'true') {
+            throw 'Diagnostic subset run: results are preserved, but a subset never certifies Windows.'
+          }
           if ($env:SUITE_OUTCOME -ne 'success' -or $env:ACCEPTANCE_OUTCOME -ne 'success') {
             throw 'The complete native Windows suite/acceptance has unresolved results. Read preserved reports; Windows is not certified.'
           }

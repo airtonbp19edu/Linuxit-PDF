@@ -1,4 +1,5 @@
 """Actual GTK creation, worker cancellation and Poppler opening of new PDFs."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import subprocess
@@ -32,7 +33,7 @@ class CreationGTKTests(unittest.TestCase):
         self.parent.destroy()
         for proc in self.children:
             if proc.poll() is None:proc.kill();proc.wait()
-        self.quit.stop();self.hook.stop();self.temp.cleanup();self.assertEqual(self.errors, [])
+        self.quit.stop();self.hook.stop();cleanup_temp(self.temp);self.assertEqual(self.errors, [])
 
     def choose_images(self):
         with patch.object(self.window, '_choose', return_value=[str(self.first), str(self.second)]):self.window._add()

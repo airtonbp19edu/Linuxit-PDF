@@ -1,4 +1,5 @@
 """Reading transactions, geometry and presentation through actual GTK/Poppler."""
+from gtk_cleanup import cleanup_temp
 from io import BytesIO
 import os
 from pathlib import Path
@@ -30,7 +31,7 @@ class ReadingWorkflowsGTKTests(unittest.TestCase):
 
     def tearDown(self):
         for child in self.children:child.destroy()
-        self.w.destroy(); self.quit.stop(); self.excepthook.stop(); self.temp.cleanup()
+        self.w.destroy(); self.quit.stop(); self.excepthook.stop(); cleanup_temp(self.temp)
 
     def encrypted(self):
         path = self.root / 'protected.pdf'

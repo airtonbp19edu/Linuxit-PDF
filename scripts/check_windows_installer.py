@@ -3,12 +3,111 @@
 import argparse
 import hashlib
 import json
+import ntpath
 import os
 from pathlib import Path
 import subprocess
 import sys
 import time
 
+
+def native(path):
+    """Windows path with backslashes, independent of the Python build.
+
+    MSYS2 UCRT64 Python patches ntpath so that normpath keeps '/' while MSYSTEM
+    is set. NSIS rejects '/' in /D= and silently falls back to InstallDir, so
+    the separators are converted explicitly here (CI 39895160350).
+    """
+    return ntpath.normpath(str(path)).replace('/','\\')
+
+
+def install_command(installer, target):
+    """NSIS requires native separators and an unquoted final /D argument."""
+    return subprocess.list2cmdline([native(installer), '/S'])+' /D='+native(target)
+
+
+def _registry_location(version):
+    """Return the per-user InstallLocation the installer actually recorded, if any."""
+    import winreg
+    key=r'Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-'+version
+    try:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key) as registry:
+            return winreg.QueryValueEx(registry,'InstallLocation')[0]
+    except OSError:
+        return None
+
+
+def _find_manifests(roots,limit=20,depth=6):
+    """Bounded search for installed manifests; evidence only, never deletes."""
+    found=[]
+    for root in roots:
+        root=Path(root)
+        if not root.is_dir():continue
+        base=len(root.parts)
+        for current,dirs,files in os.walk(root):
+            if len(Path(current).parts)-base>=depth:dirs[:]=[]
+            if 'windows-manifest.json' in files and 'uninstall.exe' in files:
+                found.append(str(Path(current)))
+                if len(found)>=limit:return found
+    return found
+
+
+def diagnose_missing_install(installer,target,base,version,install):
+    """Explain where a silent install went when the requested folder stayed empty."""
+    local=os.environ.get('LOCALAPPDATA','')
+    default=Path(local)/'Programs'/'Linuxit PDF'/version if local else None
+    report=dict(requested_target=str(target),requested_target_exists=target.exists(),
+                requested_parent_listing=sorted(p.name for p in target.parent.iterdir()) if target.parent.is_dir() else None,
+                registry_install_location=_registry_location(version),
+                default_install_dir=str(default) if default else None,
+                default_install_dir_has_manifest=bool(default and (default/'windows-manifest.json').is_file()),
+                manifests_found=_find_manifests([p for p in (base,Path(local)/'Programs' if local else None) if p]),
+                install_stdout=install.stdout.decode('utf-8','replace')[-2000:],
+                install_stderr=install.stderr.decode('utf-8','replace')[-2000:],
+                install_command=install.args if isinstance(install.args,str) else subprocess.list2cmdline(install.args))
+    # Control: same installer into a plain ASCII folder without spaces. If this
+    # works, the defect is in how the requested path reaches NSIS.
+    control=(base/'linuxit-installer-control'/'plain').resolve()
+    if not control.exists():
+        control.parent.mkdir(parents=True,exist_ok=True)
+        report['control_ascii_target']=str(control)
+        report['control_command']=install_command(installer,control)
+        try:
+            run=subprocess.run(install_command(installer,control),capture_output=True,timeout=180)
+            report['control_exit_code']=run.returncode
+        except subprocess.TimeoutExpired:
+            report['control_exit_code']='timeout_180s'
+        deadline=time.monotonic()+60
+        while not (control/'windows-manifest.json').is_file() and time.monotonic()<deadline:time.sleep(.2)
+        report['control_manifest_present']=(control/'windows-manifest.json').is_file()
+        report['registry_after_control']=_registry_location(version)
+        report['manifests_found_after_control']=_find_manifests([p for p in (base,Path(local)/'Programs' if local else None) if p])
+    return report
+
+
+
+def ascii_control(installer,base,environment,output):
+    control=(base/'linuxit-ascii-control'/'app').resolve()
+    result=dict(target=str(control))
+    if control.exists():
+        result['skipped']='target exists';return result
+    control.parent.mkdir(parents=True,exist_ok=True)
+    try:
+        run=subprocess.run(install_command(installer,control),capture_output=True,timeout=300)
+        result['install_exit']=run.returncode
+        deadline=time.monotonic()+60
+        while not (control/'windows-manifest.json').is_file() and time.monotonic()<deadline:time.sleep(.2)
+        result['installed']=(control/'windows-manifest.json').is_file()
+        if not result['installed']:return result
+        probe=output.with_name('ascii-control-probe.json').resolve()
+        checked=subprocess.run([str(control/'runtime/bin/python.exe'),'-B','-I','-X','faulthandler',str(control/'windows_bootstrap.py'),'--probe',str(probe)],
+                               env=environment,cwd=str(base),capture_output=True,timeout=120)
+        result['probe_returncode']=checked.returncode
+        result['probe_stderr']=checked.stderr.decode('utf-8','replace')[-3000:]
+        result['probe_report']=json.loads(probe.read_text(encoding='utf-8')) if probe.exists() else None
+    except Exception as exc:
+        result['error']=type(exc).__name__+': '+str(exc)
+    return result
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -18,15 +117,28 @@ def main():
         parser.error('Installation is allowed only on an ephemeral GitHub Windows runner')
     if args.output.exists():parser.error('Use a new report path')
     base=Path(os.environ['RUNNER_TEMP']).resolve()
-    target=(base/'linuxit-installer-validation'/'installed').resolve()
+    target=(base/'linuxit-installer-validation'/'installed app com espaços').resolve()
     if not target.is_relative_to(base) or target.exists():parser.error('Fresh installation inside RUNNER_TEMP required')
     target.parent.mkdir(parents=True,exist_ok=True)
     report=dict(schema='linuxit-windows-installer-validation-v1',passed=False,checks={},errors=[],
                 ephemeral_ci=True,host_user_installation=False,administrator_required=False,physical_hardware_tested=False)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     try:
-        install=subprocess.run([str(args.installer.resolve()),'/S','/D='+str(target)],capture_output=True,timeout=600)
+        # NSIS /D must be last and unquoted, including when the directory has
+        # spaces. A raw Windows command line is not interpreted by a shell.
+        command=install_command(args.installer.resolve(),target)
+        report['installation_directory']=str(target)
+        install=subprocess.run(command,capture_output=True,timeout=600)
         report['checks']['silent_install_exit_zero']=install.returncode==0
+        deadline=time.monotonic()+90
+        while not (target/'windows-manifest.json').is_file() and time.monotonic()<deadline:
+            time.sleep(.2)
+        report['install_command']=command
+        if not (target/'windows-manifest.json').is_file():
+            staged=json.loads((args.stage/'windows-manifest.json').read_text(encoding='utf-8'))
+            report['missing_install_diagnostics']=diagnose_missing_install(
+                args.installer.resolve(),target,base,staged['version'],install)
+            raise FileNotFoundError('Installed manifest missing in the requested folder; see missing_install_diagnostics')
         manifest=json.loads((target/'windows-manifest.json').read_text(encoding='utf-8'))
         mismatches=[]
         for entry in manifest['records']:
@@ -44,10 +156,25 @@ def main():
         for key in ('PYTHONPATH','PYTHONHOME','GI_TYPELIB_PATH','GSETTINGS_SCHEMA_DIR','GDK_PIXBUF_MODULE_FILE','GST_PLUGIN_PATH'):
             environment.pop(key,None)
         probe=args.output.with_name('installed-probe.json').resolve()
-        checked=subprocess.run([str(target/'runtime/bin/python.exe'),'-B','-I',str(target/'windows_bootstrap.py'),'--probe',str(probe)],
+        checked=subprocess.run([str(target/'runtime/bin/python.exe'),'-B','-I','-X','faulthandler',str(target/'windows_bootstrap.py'),'--probe',str(probe)],
                                env=environment,cwd=str(base),capture_output=True,timeout=120)
+        report['probe_returncode']=checked.returncode
+        report['probe_returncode_hex']=hex(checked.returncode & 0xffffffff)
+        report['probe_stdout']=checked.stdout.decode('utf-8','replace')[-4000:]
         report['probe_stderr']=checked.stderr.decode('utf-8','replace')[-4000:]
+        if probe.exists():report['probe_report']=json.loads(probe.read_text(encoding='utf-8'))
         report['checks']['installed_native_probe']=checked.returncode==0 and probe.exists() and json.loads(probe.read_text(encoding='utf-8'))['passed']
+        launcher_probe=args.output.with_name('installed-launcher-probe.json').resolve()
+        launched=subprocess.run([str(target/'LinuxitPDF.exe'),'--probe',str(launcher_probe)],env=environment,cwd=str(base),capture_output=True,timeout=30)
+        deadline=time.monotonic()+90
+        launcher_result={}
+        while time.monotonic()<deadline:
+            try:launcher_result=json.loads(launcher_probe.read_text(encoding='utf-8'));break
+            except (FileNotFoundError,json.JSONDecodeError):time.sleep(.2)
+        report['launcher_returncode']=launched.returncode
+        report['launcher_stdout']=launched.stdout.decode('utf-8','replace')[-2000:]
+        report['launcher_stderr']=launched.stderr.decode('utf-8','replace')[-2000:]
+        report['checks']['installed_exe_launcher']=launched.returncode==0 and launcher_result.get('passed') is True
         import winreg
         key=r'Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-'+manifest['version']
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key) as registry:
@@ -58,7 +185,13 @@ def main():
         retained=target/'user-created-preserve.txt';retained.write_text('keep',encoding='utf-8')
         uninstall=subprocess.run([str(target/'uninstall.exe'),'/S'],capture_output=True,timeout=120)
         deadline=time.monotonic()+90
-        while time.monotonic()<deadline and (target/'windows-manifest.json').exists():time.sleep(.2)
+        # The default NSIS uninstaller runs a temporary child. Its manifest can
+        # disappear early; the registry key is removed by its final instruction.
+        while time.monotonic()<deadline:
+            try:
+                with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key):pass
+            except FileNotFoundError:break
+            time.sleep(.2)
         remaining=[entry['path'] for entry in manifest['records'] if (target/entry['path']).exists()]
         report['remaining_owned_files']=remaining
         report['checks']['uninstaller_removes_owned_files']=uninstall.returncode==0 and not remaining
@@ -68,7 +201,11 @@ def main():
             removed=False
         except FileNotFoundError:removed=True
         report['checks']['uninstall_registry_removed']=removed
-        report['passed']=all(report['checks'].values()) and len(report['checks'])==7
+        report['passed']=all(report['checks'].values()) and len(report['checks'])==8
+        if not report['checks'].get('installed_native_probe'):
+            # Diagnostic only (never a pass criterion): same installer and probe in an
+            # ASCII-only folder, to tell a non-ASCII-path defect from any other cause.
+            report['ascii_control']=ascii_control(args.installer.resolve(),base,environment,args.output)
     except Exception as exc:
         import traceback
         report['errors'].append(type(exc).__name__+': '+str(exc));traceback.print_exc()

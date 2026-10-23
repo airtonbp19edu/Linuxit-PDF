@@ -1,4 +1,5 @@
 """Real GTK attachment workflow tests; explicitly skipped without GTK/display."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import sys
@@ -100,7 +101,7 @@ class AttachmentGTKTests(unittest.TestCase):
     def tearDown(self):
         self.window.destroy()
         self.quit_patch.stop()
-        self.temp.cleanup()
+        cleanup_temp(self.temp)
         self.assertEqual(self.callback_errors, [], 'Unhandled exception in GTK signal callback')
 
     def test_sidebar_buttons_switch_hide_and_restore_without_recursive_callbacks(self):

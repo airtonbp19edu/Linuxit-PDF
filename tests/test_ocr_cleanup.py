@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(Path(os.environ.g
 from pdf_ocr import preprocess_image,validate_request
 
 class OCRCleanupTests(unittest.TestCase):
-    @unittest.skipUnless(sys.platform.startswith('linux') and all(shutil.which(t) for t in ('tesseract','pdftocairo','pdftotext')),'Requires actual Linux OCR runtime')
+    @unittest.skipUnless(all(shutil.which(t) for t in ('tesseract','pdftocairo','pdftotext')),'Requires actual OCR runtime')
     def test_real_worker_cleanup_with_portuguese_and_english_keeps_dimensions(self):
         from test_ocr_linux import scan
         from pdf_ocr import invoke_ocr,source_identity

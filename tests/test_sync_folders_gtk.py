@@ -25,26 +25,36 @@ class SyncFolderGTKTests(_UISetup,unittest.TestCase):
         finally:self.config.stop()
 
     def run_chooser(self,title,target,action):
+        # Windows reports folders with other case/separators; compare normalized paths and
+        # never wait forever on a chooser that does not converge (cancel, then fail).
+        same=lambda a,b:bool(a) and os.path.normcase(os.path.realpath(a))==os.path.normcase(os.path.realpath(str(b)))
+        state={'ticks':0,'gave_up':False}
         def respond():
             dialog=next((w for w in Gtk.Window.list_toplevels() if isinstance(w,Gtk.FileChooserDialog) and w.get_title()==title),None)
             if dialog is None:return True
-            if dialog.get_current_folder()!=str(target.parent):dialog.set_current_folder(str(target.parent));return True
+            state['ticks']+=1
+            if state['ticks']>250:
+                state['gave_up']=True;dialog.response(Gtk.ResponseType.CANCEL);return False
             if dialog.get_action()==Gtk.FileChooserAction.SAVE:
+                if not same(dialog.get_current_folder(),target.parent):dialog.set_current_folder(str(target.parent));return True
                 dialog.set_current_name(target.name)
-            elif dialog.get_filename()!=str(target):
+            elif not same(dialog.get_filename(),target):
+                if not same(dialog.get_current_folder(),target.parent):dialog.set_current_folder(str(target.parent));return True
                 dialog.select_filename(str(target));return True
             dialog.response(Gtk.ResponseType.OK);return False
         timer=GLib.timeout_add(40,respond)
         try:action()
         finally:
             if GLib.MainContext.default().find_source_by_id(timer):GLib.source_remove(timer)
+        self.assertFalse(state['gave_up'],'O seletor real não chegou ao arquivo esperado em 10 s.')
 
     def test_real_file_chooser_uses_preferred_folder_and_shortcut(self):
         chooser=Gtk.FileChooserDialog(title='Folder fixture',transient_for=self.parent,action=Gtk.FileChooserAction.OPEN)
         try:
             folders.prepare_chooser(chooser)
-            wait_for(lambda:chooser.get_current_folder()==str(self.sync))
-            self.assertIn(str(self.sync),chooser.list_shortcut_folders())
+            same=lambda a:bool(a) and os.path.normcase(os.path.realpath(a))==os.path.normcase(os.path.realpath(str(self.sync)))
+            wait_for(lambda:same(chooser.get_current_folder()))
+            self.assertTrue(any(same(f) for f in chooser.list_shortcut_folders()))
         finally:chooser.destroy()
 
     def test_native_folder_response_and_cancel_preserve_explicit_choice(self):

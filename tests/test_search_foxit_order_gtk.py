@@ -1,6 +1,7 @@
 """E24/D05 decision (21/10/2026): result order and bookmark-result behaviour follow what was
 observed in Foxit. Own GTK checks; the Foxit observation itself is in
 testes/resultados/vm-2026-10-21-e24/observations.json."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import sys
@@ -25,7 +26,7 @@ class FoxitOrderGTKTests(unittest.TestCase):
         wait_for(lambda: self.window.current_pixbuf is not None and self.window.displayed_page == 0)
 
     def tearDown(self):
-        self.window.destroy();self.quit.stop();self.hook.stop();self.temp.cleanup()
+        self.window.destroy();self.quit.stop();self.hook.stop();cleanup_temp(self.temp)
         self.assertEqual(self.errors, [])
 
     def search_all(self):

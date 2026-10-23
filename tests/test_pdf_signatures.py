@@ -105,7 +105,7 @@ class PDFSignatureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'criptografados'):self.inspect()
 
     def test_missing_verifier_and_source_changes_do_not_approve_integrity(self):
-        with patch.object(signatures.shutil,'which',return_value=None):
+        with patch.object(signatures.shutil,'which',return_value=None),patch.object(signatures,'_windows_powershell',return_value=None):
             item=self.inspect()['signatures'][0];self.assertIsNone(item['integrity_verified']);self.assertEqual(item['status'],'unavailable')
         with patch.object(signatures,'_sha',return_value='0'*64),self.assertRaisesRegex(ValueError,'mudou'):self.inspect()
 

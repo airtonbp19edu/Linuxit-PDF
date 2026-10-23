@@ -24,9 +24,12 @@ SetCompressor /SOLID lzma
 !insertmacro MUI_LANGUAGE "PortugueseBR"
 Section "Linuxit PDF"
   SetShellVarContext current
-  IfFileExists "$INSTDIR\*.*" 0 +3
+  IfFileExists "$INSTDIR\*.*" 0 fresh_install
+    IfSilent refuse_existing
     MessageBox MB_ICONSTOP "Escolha uma pasta nova e vazia. Instalações e arquivos existentes são preservados."
+  refuse_existing:
     Abort
+  fresh_install:
   SetOutPath "$INSTDIR"
   File /r "${PAYLOAD}\*"
   WriteUninstaller "$INSTDIR\uninstall.exe"
@@ -40,12 +43,21 @@ Section "Linuxit PDF"
 SectionEnd
 Section "Uninstall"
   SetShellVarContext current
-  IfFileExists "$INSTDIR\windows-manifest.json" +3
+  IfFileExists "$INSTDIR\windows-manifest.json" manifest_present
+    IfSilent refuse_uninstall
     MessageBox MB_ICONSTOP "O manifesto desta instalação não foi encontrado. Nenhum arquivo foi removido."
+  refuse_uninstall:
     Abort
+  manifest_present:
   !include "${DELETE_INCLUDE}"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
   Delete "$SMPROGRAMS\Linuxit PDF ${VERSION}.lnk"
+  ; ASCII junction created by windows_bootstrap.py for non-ASCII folders.
+  ; RMDir on a junction removes only the link, never the target's files.
+  ReadRegStr $0 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-${VERSION}" "AsciiAlias"
+  StrCmp $0 "" alias_done
+    RMDir "$0"
+  alias_done:
   DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-${VERSION}"
 SectionEnd

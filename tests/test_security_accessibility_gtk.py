@@ -1,4 +1,5 @@
 """Actual GTK/ATK, secret clearing, workers, keyboard regions and copy edit dialogs."""
+from gtk_cleanup import cleanup_temp
 from io import BytesIO
 import os
 from pathlib import Path
@@ -36,7 +37,7 @@ class _UISetup:
         self.parent.destroy()
         for child in self.children:
             if child.poll() is None:child.kill();child.wait()
-        self.quit.stop();self.hook.stop();self.temp.cleanup();self.assertEqual(self.errors,[])
+        self.quit.stop();self.hook.stop();cleanup_temp(self.temp);self.assertEqual(self.errors,[])
 
     def security_window(self):
         self.parent._show_security();window=self.parent.security_window;self.windows.append(window);return window
