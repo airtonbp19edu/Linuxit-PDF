@@ -16,6 +16,61 @@ def install_command(installer, target):
     return subprocess.list2cmdline([ntpath.normpath(str(installer)), '/S'])+' /D='+ntpath.normpath(str(target))
 
 
+def _registry_location(version):
+    """Return the per-user InstallLocation the installer actually recorded, if any."""
+    import winreg
+    key=r'Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-'+version
+    try:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER,key) as registry:
+            return winreg.QueryValueEx(registry,'InstallLocation')[0]
+    except OSError:
+        return None
+
+
+def _find_manifests(roots,limit=20,depth=6):
+    """Bounded search for installed manifests; evidence only, never deletes."""
+    found=[]
+    for root in roots:
+        root=Path(root)
+        if not root.is_dir():continue
+        base=len(root.parts)
+        for current,dirs,files in os.walk(root):
+            if len(Path(current).parts)-base>=depth:dirs[:]=[]
+            if 'windows-manifest.json' in files and 'uninstall.exe' in files:
+                found.append(str(Path(current)))
+                if len(found)>=limit:return found
+    return found
+
+
+def diagnose_missing_install(installer,target,base,version,install):
+    """Explain where a silent install went when the requested folder stayed empty."""
+    local=os.environ.get('LOCALAPPDATA','')
+    default=Path(local)/'Programs'/'Linuxit PDF'/version if local else None
+    report=dict(requested_target=str(target),requested_target_exists=target.exists(),
+                requested_parent_listing=sorted(p.name for p in target.parent.iterdir()) if target.parent.is_dir() else None,
+                registry_install_location=_registry_location(version),
+                default_install_dir=str(default) if default else None,
+                default_install_dir_has_manifest=bool(default and (default/'windows-manifest.json').is_file()),
+                manifests_found=_find_manifests([p for p in (base,Path(local)/'Programs' if local else None) if p]),
+                install_stdout=install.stdout.decode('utf-8','replace')[-2000:],
+                install_stderr=install.stderr.decode('utf-8','replace')[-2000:],
+                install_command=install.args if isinstance(install.args,str) else subprocess.list2cmdline(install.args))
+    # Control: same installer into a plain ASCII folder without spaces. If this
+    # works, the defect is in how the requested path reaches NSIS.
+    control=(base/'linuxit-installer-control'/'plain').resolve()
+    if not control.exists():
+        control.parent.mkdir(parents=True,exist_ok=True)
+        run=subprocess.run(install_command(installer,control),capture_output=True,timeout=600)
+        deadline=time.monotonic()+60
+        while not (control/'windows-manifest.json').is_file() and time.monotonic()<deadline:time.sleep(.2)
+        report['control_ascii_target']=str(control)
+        report['control_exit_code']=run.returncode
+        report['control_manifest_present']=(control/'windows-manifest.json').is_file()
+        report['registry_after_control']=_registry_location(version)
+        report['manifests_found_after_control']=_find_manifests([p for p in (base,Path(local)/'Programs' if local else None) if p])
+    return report
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--installer',required=True,type=Path);parser.add_argument('--stage',required=True,type=Path)
@@ -40,6 +95,12 @@ def main():
         deadline=time.monotonic()+90
         while not (target/'windows-manifest.json').is_file() and time.monotonic()<deadline:
             time.sleep(.2)
+        report['install_command']=command
+        if not (target/'windows-manifest.json').is_file():
+            staged=json.loads((args.stage/'windows-manifest.json').read_text(encoding='utf-8'))
+            report['missing_install_diagnostics']=diagnose_missing_install(
+                args.installer.resolve(),target,base,staged['version'],install)
+            raise FileNotFoundError('Installed manifest missing in the requested folder; see missing_install_diagnostics')
         manifest=json.loads((target/'windows-manifest.json').read_text(encoding='utf-8'))
         mismatches=[]
         for entry in manifest['records']:

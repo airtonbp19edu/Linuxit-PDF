@@ -8,6 +8,17 @@ class WindowsCacheProvenanceTests(unittest.TestCase):
         check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)
         command=check.install_command('D:/build artifacts/installer.exe','D:/temp/installed app com espaços')
         self.assertEqual(command,'"D:\\build artifacts\\installer.exe" /S /D=D:\\temp\\installed app com espaços')
+    def test_missing_install_search_finds_only_complete_installations(self):
+        spec=importlib.util.spec_from_file_location('installer_check',ROOT/'scripts/check_windows_installer.py')
+        check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)
+        with tempfile.TemporaryDirectory() as folder:
+            root=pathlib.Path(folder)
+            real=root/'Programs'/'Linuxit PDF'/'0.1.19';real.mkdir(parents=True)
+            (real/'windows-manifest.json').write_text('{}');(real/'uninstall.exe').write_bytes(b'')
+            payload=root/'payload';payload.mkdir()
+            (payload/'windows-manifest.json').write_text('{}')  # staged payload, not an installation
+            self.assertEqual(check._find_manifests([root]),[str(real)])
+            self.assertEqual(check._find_manifests([root/'absent']),[])
     def test_ci_commit_identity_does_not_require_git_executable(self):
         with patch.dict(builder.os.environ,{'GITHUB_SHA':'a'*40}),patch.object(builder.subprocess,'check_output',side_effect=AssertionError('Git dependency')):
             self.assertEqual(builder.source_revision(),'a'*40)
