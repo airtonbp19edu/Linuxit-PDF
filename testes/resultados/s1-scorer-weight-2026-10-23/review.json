@@ -1,0 +1,142 @@
+{
+  "schema": "linuxit-s1-scorer-weight-review-v1",
+  "reviewed_at_local": "2026-10-23T06:05:36.532575-03:00",
+  "reviewer": "Codex",
+  "module": "lucene++.dll",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "profile": "Direct Ghidra -noanalysis with installed REA seed script; not REA MCP Evidence",
+  "ghidra_version": "12.1.4",
+  "java_major_version": 21,
+  "rea_package_version": "6.7.0",
+  "project_snapshot": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\analysis-local\\headless\\s1-searcher-2026-10-23\\project",
+  "original_hash_rechecked_after_round": true,
+  "previous_project_modified": false,
+  "headless_round_count": 1,
+  "requested_max_decompiled_entries": 6,
+  "decompiled_entries": 6,
+  "new_distinct_entries": 6,
+  "revisited_entries": 0,
+  "entry_vas": [
+    "0x101e0770",
+    "0x101e1560",
+    "0x101e3ee0",
+    "0x101e4530",
+    "0x101e4970",
+    "0x10241e80"
+  ],
+  "pseudocode_and_assembly_examined": true,
+  "raw_result_hashes_verified": true,
+  "machine_check": {
+    "report": "testes/resultados/s1-scorer-weight-2026-10-23/machine-checks.json",
+    "entries": 6,
+    "instructions": 557,
+    "body_bytes": 1653,
+    "all_instruction_addresses_match": true
+  },
+  "semantic_findings": [
+    {
+      "id": "S1-BooleanWeight-RTTI",
+      "state": "confirmed_in_examined_chain",
+      "result": "Constructor0x101e1560 installs0x104465a0; COL0x104a19d0/TD0x105b2da4 identify Lucene::BooleanWeight."
+    },
+    {
+      "id": "S1-BooleanWeight-children",
+      "state": "bounded_static_contract",
+      "result": "Query/similarity/child weights retained at+0x1c/+0x24/+0x2c; child createWeight calls observed."
+    },
+    {
+      "id": "S1-BooleanWeight-value",
+      "state": "confirmed_within_table",
+      "result": "Slot+0x44 delegates to query+0x40; exported BooleanQuery table maps this to Query::getBoost. Not a sum-of-squares method."
+    },
+    {
+      "id": "S1-BooleanWeight-normalize",
+      "state": "bounded_static_contract",
+      "result": "Input double multiplied by query boost, stored as double and passed to virtual+0x48 of every child weight."
+    },
+    {
+      "id": "S1-BooleanWeight-scorer-partition",
+      "state": "bounded_static_contract",
+      "result": "Non-null child scorers partitioned by required/prohibited predicates; missing required scorer leads to null output."
+    },
+    {
+      "id": "S1-BooleanWeight-scorer-selection",
+      "state": "bounded_static_contract",
+      "result": "FactoryA101e06f0 selected for flags0/nonzero, empty required list, prohibited count<32; otherwise factoryB101e0670 if positive clause presence and optional threshold permit, else null."
+    },
+    {
+      "id": "S1-searchWithFilter",
+      "state": "bounded_static_contract",
+      "result": "Reader/weight/filter/collector export signature; two-iterator docID intersection by nextDoc/advance, collector receives scorer and matching docIDs; stops at exported NO_MORE_DOCS0x7fffffff."
+    }
+  ],
+  "normalization_return_typing": {
+    "value_method_decompiler_reports_void": true,
+    "value_method_tail_dispatch_to_boost": true,
+    "full_Cpp_signatures_recovered": false
+  },
+  "scorer_local_lists": {
+    "required": "EBP-0x80",
+    "prohibited": "EBP-0x64",
+    "optional": "EBP-0x48"
+  },
+  "factory_selection": {
+    "A": "!flag1 && flag2 && required_empty && prohibited_count<32",
+    "B_if_A_not_taken": "(required_present || optional_present) && optional_count>=minimum_should_match",
+    "missing_required_child": "null output",
+    "factory_concrete_classes_proved": false
+  },
+  "minimum_should_match": {
+    "export": "?getMinimumNumberShouldMatch@BooleanQuery@Lucene@@QAEHXZ",
+    "entry": "0x101e3e10",
+    "field": "BooleanQuery+0x48",
+    "machine_prefix_bytes": 4,
+    "machine_prefix_sha256": "c457a21475f0993cd612344db74fe1c4287440f229189a422307139bc254cd00",
+    "new_decompiled_entry": false,
+    "same_as_Foxit_proximity_range": false
+  },
+  "prefix_and_pointer_observations_not_counted_as_new_decompiled_functions": true,
+  "vtable_boundary_review": {
+    "initial_unbounded_derivative_preserved_privately": true,
+    "out_of_bound_nonfunction_reads_removed": 12,
+    "final_public_data_bounded_to_examined_interfaces": true
+  },
+  "auxiliary_evidence": [
+    {
+      "path": "testes/resultados/s1-scorer-weight-2026-10-23/interface-links.json",
+      "sha256": "bd787813979960b3d24b84312de3c84cb41d8b61f9aa36d117da874a2ac3d2c8"
+    },
+    {
+      "path": "testes/resultados/s1-scorer-weight-2026-10-23/export-links.json",
+      "sha256": "3c5adaa7f94f0a873538a8bb79b74c5d09ba61eb95e768d63d79aff439c74802"
+    }
+  ],
+  "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-scorer-weight-2026-10-23.json",
+  "metadata_sha256": "6b0c6e01a38d24ee1828e654d1f00f4d9d13d9ef8796e1f2f240c4ab263bba82",
+  "report": "docs/REA-S1-PESOS-E-SCORERS-2026-10-23.md",
+  "report_sha256": "b9ee9d977d2f6906d6f38a88c7d1bcadcb6d5ede10ac1352ae9ed730857d6255",
+  "open_questions": [
+    "Concrete scorer factory bodies and per-document scoring",
+    "Weight aggregation and normalization-factor origin, remaining virtual methods",
+    "Collector TopDocs priority queue, ordering and all query/filter combinations",
+    "Full ownership, exceptions, malformed states and runtime comparisons",
+    "Foxit options+3/+0xc, complete proximity and escape contracts"
+  ],
+  "next_justified_unexecuted_targets": [
+    "0x101e06f0",
+    "0x101e0670",
+    "0x101e3350",
+    "0x101e3e20",
+    "0x10273860"
+  ],
+  "s1_complete": false,
+  "ranking_algorithm_complete": false,
+  "original_executed": false,
+  "vm_touched": false,
+  "app_changed": false,
+  "new_app_tests_run": 0,
+  "shared_catalog_progress_manifest_changed_by_this_subtask": false,
+  "criteria_weights_changed": false,
+  "release_published": false,
+  "implementation_completion_percent": null
+}

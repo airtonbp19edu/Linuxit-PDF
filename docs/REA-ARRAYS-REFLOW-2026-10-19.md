@@ -1,5 +1,11 @@
 # Alocação dos arrays de reflow —19/10/2026
 
+**Continuação de23/10/2026:** [S4 — consumidores e extensões](REA-S4-REFLOW-2026-10-23.md)
+liga os arrays a escala, posição e limites. O helper final copiado para+0x68 recebe
+quatro zeros nessa via; a referência a retângulo abaixo não significa bounds calculados
+das páginas. A=1/B=N e a escrita condicional dos mapas foram refinados, mantendo
+abertos unidades físicas, domínio integral de índices e todos os caminhos de falha.
+
 Mesmo original e perfil fixados no relatório de transições. A varredura local
 Capstone de0x15c9c90..0x15cdfff localizou atribuições a+0x3c/+0x40/+0x44/+0x48/+0x4c.
 Isso é levantamento de candidatos, não análise global de todos os chamadores.

@@ -24,3 +24,11 @@ No minichat recebido durante a retomada, Claude confirmou a assunção e observo
 Às02:17, Claude escreveu PEGUEI E30 no arquivo de coordenação, assumindo a VM pelo protocolo de ausência de sinal. Na retomada, Codex leu essa reserva e **não abriu a VM nem o VirtualBox**. Enviou confirmação e o ponto exato de parada em CHAT-CODEX.txt. Seguiu apenas a análise estática. A situação atual da VM não foi inspecionada pelo Codex nesta retomada.
 
 O observador0110 tinha prazo interno de duas horas a partir da inicialização; sua atividade atual não deve ser presumida nem comandos antigos reenviados. Quem estiver operando deve verificar relógio, resposta, estado do coletor e contenção antes de continuar, mantendo rede desligada e a regra de parada. Não inferir autorização para reinício ou duplicar operadores.
+
+## Continuação atribuída a Claude — consulta de 2026/10/23 às 06:06
+
+O registro [observacoes.json](../testes/resultados/vm-2026-10-23-e30/observacoes.json), integrado dos commits924f9df/e27d32f/bab91c2, informa que Claude cancelou Abrir e preservou o documento2/2, e abriu/cancelou Print com Microsoft Print to PDF. Isso completa essas observações delimitadas após o checkpointCodex acima; não fecha todas as variantes de UI01/UI02 ou E30. Não houve repetição independente pelo Codex.
+
+Claude também viu Include Comments desmarcado. Isso prova a configuração visual da sessão observada. A afirmação de default universal e a causa exata da consultaE24 ainda requerem estado contemporâneo da consulta ou repetição controlada com o mesmo corpus/termo e alternânciaOFF→ON. O perfil já era utilizado; a revisão foi enviada ao Claude no minichat. Seu JSON permanece preservado e a ressalva não é uma nova divergência medida.
+
+Permanecem na fila os recortes de UI05/UI09/UI10, D10–D20 ainda não observados ou comparados, teclado virtual para digitação e o postflight da campanha atual. Não enviar comandos ao coletor0110 por presumir que continua ativo; o operador exclusivo deve conferir estado e relógio. Codex continua sem acessar a VM nesta retomada.

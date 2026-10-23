@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-23T05:46:11.374849-03:00",
+  "updated_at_local": "2026-10-23T06:06:03.507508-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -9,7 +9,8 @@
     "Uma etapa só fica concluida com verificação executada, evidência registrada e commit publicado.",
     "Cada etapa concluída acrescenta pelo menos um teste ou caso de aceitação que falharia sem ela.",
     "Não alterar critérios, pesos ou paridade das 21 etapas originais por causa desta lista.",
-    "Autorização de22/10/2026: após Passos1–6, o usuário pediu atualizar os arquivos compartilhados e executar os dois próximos trabalhos. Codex registra Passo7 e retomaS1 estática da busca. A publicação0.1.19 eB3 exigem decisões específicas e continuam pendentes."
+    "Autorização de22/10/2026: após Passos1–6, o usuário pediu atualizar os arquivos compartilhados e executar os dois próximos trabalhos. Codex registra Passo7 e retomaS1 estática da busca. A publicação0.1.19 eB3 exigem decisões específicas e continuam pendentes.",
+    "Autorização de23/10/2026: Claude e Codex trabalham em paralelo sem parar a cada etapa nesta rodada, preservando exclusividade da VM, autoria e reservas de arquivos. Publicação e B3 ainda exigem decisão específica."
   ],
   "steps": [
     {
@@ -579,18 +580,21 @@
         "docs/REA-S1-OPCOES-2026-10-23.md",
         "docs/REA-S1-UNICODE-2026-10-23.md",
         "docs/REA-S1-OBJETOS-UI-2026-10-23.md",
-        "testes/resultados/s1-consolidado-2026-10-23/review.json"
+        "testes/resultados/s1-consolidado-2026-10-23/review.json",
+        "docs/REA-S1-PESOS-E-SCORERS-2026-10-23.md",
+        "testes/resultados/s1-scorer-weight-2026-10-23/review.json"
       ],
-      "note": "Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado.",
+      "note": "Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado. Lote adicional de seis entradas novas BooleanWeight/scorers:557 instruções/1653bytes, RTTI/normalização/partição/interseção com filtro esclarecidos. Scorers concretos, coletor/ordenação e demais lacunas continuam abertos; status em_andamento preservado. Catálogo global424 após S2/S3/S4, não atribuir todas essas entradas à busca.",
       "last_batch": {
         "owner": "Codex",
-        "reviewed_at_local": "2026-10-23T01:11:10.399673-03:00",
+        "reviewed_at_local": "2026-10-23T06:06:03.507508-03:00",
         "state": "checkpoint_saved",
-        "observations": 54,
-        "new_entries": 47,
-        "revisited_observations": 7,
-        "catalog_entries": 397,
-        "original_executed": false
+        "observations": 6,
+        "new_entries": 6,
+        "revisited_observations": 0,
+        "catalog_entries": 424,
+        "original_executed": false,
+        "report": "docs/REA-S1-PESOS-E-SCORERS-2026-10-23.md"
       }
     },
     {
@@ -628,9 +632,10 @@
       "evidence": [
         "docs/VM-E30-PREFLIGHT-2026-10-23.md",
         "docs/VM-E30-INTERRUPCAO-E-RETOMADA-2026-10-23.md",
-        "testes/resultados/vm-2026-10-23-e30/interrupcao.json"
+        "testes/resultados/vm-2026-10-23-e30/interrupcao.json",
+        "testes/resultados/vm-2026-10-23-e30/observacoes.json"
       ],
-      "note": "Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado."
+      "note": "Preflight0110 aprovado; último seletorAbrir com corpus carregado, Cancelar ainda não enviado antes de interrupção por limite de uso. Sem parada do relógio confirmada e sem novas comparações integrais. Claude reservou a VM às02:17; Codex respeitou a reserva na retomada05:30, sem acesso à VM. E30 parcial; não presumir atividade atual do coletor0110 nem postflight executado. Atualização posterior atribuída a Claude: UI01/cancelar e UI02 registrados em observacoes.json. Include Comments desmarcado nesta sessão, mas default universal/causa histórica não confirmados pelo Codex. E30 continua parcial e VM reservada a Claude."
     },
     {
       "id": "E31",

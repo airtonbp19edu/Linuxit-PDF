@@ -174,6 +174,10 @@ integral do intervalo de proximidade, os pesos/scorers/ranqueamento, escapes,
 erros/exceções, propriedade e ciclo de vida integral da interface e a ligação
 dinâmica dos estados. Próximos destinos justificados: `0x101e0770`,
 `0x10241e80`, helpers do coletor e consumidores do bloco de opções.
+Os dois primeiros receberam continuação no [lote de pesos/scorers de23/10](REA-S1-PESOS-E-SCORERS-2026-10-23.md):
+seis entradas adicionais, com BooleanWeight, partição dos filhos e interseção porDocID.
+O estado acima corresponde a este lote original; os próximos alvos restantes e as lacunas
+atualizadas estão no complemento, sem promover S1 a concluída.
 
 Complementos desta rodada: [opções](REA-S1-OPCOES-2026-10-23.md),
 [Unicode](REA-S1-UNICODE-2026-10-23.md) e

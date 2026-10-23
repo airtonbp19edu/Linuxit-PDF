@@ -1,0 +1,236 @@
+{
+  "schema": "linuxit-s1-scorer-export-links-v1",
+  "reviewed_at_local": "2026-10-23T05:55:40.853005-03:00",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "original_executed": false,
+  "filtered_iterator": {
+    "vtable_va": "0x1044ae94",
+    "slots": [
+      {
+        "slot": "0x3c",
+        "va": "0x102387d0",
+        "export_name": "?docID@FilteredDocIdSetIterator@Lucene@@UAEHXZ"
+      },
+      {
+        "slot": "0x40",
+        "va": "0x102387e0",
+        "export_name": "?nextDoc@FilteredDocIdSetIterator@Lucene@@UAEHXZ"
+      },
+      {
+        "slot": "0x44",
+        "va": "0x10238730",
+        "export_name": "?advance@FilteredDocIdSetIterator@Lucene@@UAEHH@Z"
+      }
+    ]
+  },
+  "NO_MORE_DOCS": {
+    "va": "0x104482c8",
+    "value": 2147483647,
+    "export_name": "?NO_MORE_DOCS@DocIdSetIterator@Lucene@@2HB"
+  },
+  "comparison_public_vtables": [
+    {
+      "class": "BooleanQuery",
+      "exported_vtable_va": "0x10444e20",
+      "slots_read": [
+        {
+          "offset": "0x38",
+          "function_va": "0x101c8780",
+          "export_name_if_present": "?getClassName@BooleanQuery@Lucene@@UAE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@XZ"
+        },
+        {
+          "offset": "0x3c",
+          "function_va": "0x102733b0",
+          "export_name_if_present": "?setBoost@Query@Lucene@@UAEXN@Z"
+        },
+        {
+          "offset": "0x40",
+          "function_va": "0x102725a0",
+          "export_name_if_present": "?getBoost@Query@Lucene@@UAENXZ"
+        },
+        {
+          "offset": "0x44",
+          "function_va": "0x101e5000",
+          "export_name_if_present": "?toString@BooleanQuery@Lucene@@UAE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@ABV34@@Z"
+        },
+        {
+          "offset": "0x48",
+          "function_va": "0x101e2fa0",
+          "export_name_if_present": "?createWeight@BooleanQuery@Lucene@@UAE?AV?$shared_ptr@VWeight@Lucene@@@boost@@ABV?$shared_ptr@VSearcher@Lucene@@@4@@Z"
+        },
+        {
+          "offset": "0x4c",
+          "function_va": "0x10273860",
+          "export_name_if_present": "?weight@Query@Lucene@@UAE?AV?$shared_ptr@VWeight@Lucene@@@boost@@ABV?$shared_ptr@VSearcher@Lucene@@@4@@Z"
+        },
+        {
+          "offset": "0x50",
+          "function_va": "0x101e4610",
+          "export_name_if_present": "?rewrite@BooleanQuery@Lucene@@UAE?AV?$shared_ptr@VQuery@Lucene@@@boost@@ABV?$shared_ptr@VIndexReader@Lucene@@@4@@Z"
+        },
+        {
+          "offset": "0x54",
+          "function_va": "0x102718e0",
+          "export_name_if_present": "?combine@Query@Lucene@@UAE?AV?$shared_ptr@VQuery@Lucene@@@boost@@V?$Collection@V?$shared_ptr@VQuery@Lucene@@@boost@@@2@@Z"
+        },
+        {
+          "offset": "0x58",
+          "function_va": "0x101e3c60",
+          "export_name_if_present": "?extractTerms@BooleanQuery@Lucene@@UAEXV?$HashSet@V?$shared_ptr@VTerm@Lucene@@@boost@@U?$luceneHash@V?$shared_ptr@VTerm@Lucene@@@boost@@@Lucene@@U?$luceneEquals@V?$shared_ptr@VTerm@Lucene@@@boost@@@4@@2@@Z"
+        },
+        {
+          "offset": "0x5c",
+          "function_va": "0x101e3ed0",
+          "export_name_if_present": "?getTerms@BooleanQuery@Lucene@@UAEXAAV?$Collection@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@Z"
+        },
+        {
+          "offset": "0x60",
+          "function_va": "0x101e3e40",
+          "export_name_if_present": "?getSimilarity@BooleanQuery@Lucene@@UAE?AV?$shared_ptr@VSimilarity@Lucene@@@boost@@ABV?$shared_ptr@VSearcher@Lucene@@@4@@Z"
+        }
+      ],
+      "last_examined_slot": "0x60"
+    },
+    {
+      "class": "Scorer",
+      "exported_vtable_va": "0x10439700",
+      "slots_read": [
+        {
+          "offset": "0x38",
+          "function_va": "0x100f1690",
+          "export_name_if_present": "?getClassName@Scorer@Lucene@@UAE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@XZ"
+        },
+        {
+          "offset": "0x3c",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x40",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x44",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x48",
+          "function_va": "0x10275960",
+          "export_name_if_present": "?score@Scorer@Lucene@@MAE_NABV?$shared_ptr@VCollector@Lucene@@@boost@@HH@Z"
+        },
+        {
+          "offset": "0x4c",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x50",
+          "function_va": "0x10275a10",
+          "export_name_if_present": "?score@Scorer@Lucene@@UAEXABV?$shared_ptr@VCollector@Lucene@@@boost@@@Z"
+        },
+        {
+          "offset": "0x54",
+          "function_va": "0x100f4bd0",
+          "export_name_if_present": "?termFreq@Scorer@Lucene@@UAEMXZ"
+        }
+      ],
+      "last_examined_slot": "0x54"
+    },
+    {
+      "class": "Weight",
+      "exported_vtable_va": "0x104395b8",
+      "slots_read": [
+        {
+          "offset": "0x38",
+          "function_va": "0x100f1750",
+          "export_name_if_present": "?getClassName@Weight@Lucene@@UAE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@XZ"
+        },
+        {
+          "offset": "0x3c",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x40",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x44",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x48",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x4c",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x50",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x54",
+          "function_va": "0x10295c20",
+          "export_name_if_present": "?scoresDocsOutOfOrder@Weight@Lucene@@UAE_NXZ"
+        }
+      ],
+      "last_examined_slot": "0x54"
+    },
+    {
+      "class": "Collector",
+      "exported_vtable_va": "0x104466b4",
+      "slots_read": [
+        {
+          "offset": "0x38",
+          "function_va": "0x101e3d60",
+          "export_name_if_present": "?getClassName@Collector@Lucene@@UAE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@XZ"
+        },
+        {
+          "offset": "0x3c",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x40",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x44",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        },
+        {
+          "offset": "0x48",
+          "function_va": "0x103604e5",
+          "export_name_if_present": null
+        }
+      ],
+      "last_examined_slot": "0x48"
+    }
+  ],
+  "top_score_collector_set_scorer": {
+    "va": "0x10295be0",
+    "export_name": "?setScorer@TopScoreDocCollector@Lucene@@UAEXABV?$shared_ptr@VScorer@Lucene@@@boost@@@Z",
+    "body_examined_this_round": false
+  },
+  "limitations": [
+    "Public vtable/exports establish method ABI examples; do not attribute one concrete implementation to every runtime scorer or collector.",
+    "These are pointer/data observations, not additional decompiled functions or differential behavior.",
+    "The actual returned scorer and collector may have other concrete classes and method bodies that remain unexamined."
+  ],
+  "range_review": {
+    "out_of_bound_reads_removed": 12,
+    "reason": "Subsequent UTF16 class names are not function pointers or extra vtable slots",
+    "unreviewed_derivative_saved_privately": "analysis-local\\s1-scorer-export-links-before-range-review.json"
+  }
+}

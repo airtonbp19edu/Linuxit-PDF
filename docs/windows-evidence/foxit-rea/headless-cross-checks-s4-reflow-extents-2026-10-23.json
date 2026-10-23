@@ -1,0 +1,62 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s4-reflow-extents-2026-10-23/functions/0x15cb180.json",
+      "result_sha256": "3cc4393ceb129d355a5834be0cc9ecfdc4cf3c05ff25e7399f25102682b09146",
+      "entry_va": "0x15cb180",
+      "analyst_name": "analyst_s4_reflow_extent_one_15cb180",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 74,
+      "body_ranges": "[[015cb180, 015cb1c9]]",
+      "pseudocode_sha256": "8d0c90965e5fb48448efae46f5829feee1d74ba4d66eb3c6dbb249625e895ef9",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s4-reflow-extents-2026-10-23/functions/0x15cb1d0.json",
+      "result_sha256": "345c47ece4addc2ff567df177319365c34d51ca1391e0652c215f4ce4880769e",
+      "entry_va": "0x15cb1d0",
+      "analyst_name": "analyst_s4_reflow_extent_two_15cb1d0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 74,
+      "body_ranges": "[[015cb1d0, 015cb219]]",
+      "pseudocode_sha256": "0482a2f1a6480ffac5fa97e01b497b59aeb40a03c768bf013e276092541415f6",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s4-reflow-extents-2026-10-23/functions/0x15cb8c0.json",
+      "result_sha256": "36b4cf69e9e3614a98ff2480b67736ff5e1f2c6efbfcffde98238de1bfddd6d2",
+      "entry_va": "0x15cb8c0",
+      "analyst_name": "analyst_s4_reflow_axis_metric_15cb8c0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 232,
+      "body_ranges": "[[015cb8c0, 015cb9a7]]",
+      "pseudocode_sha256": "a2e026f6d8e9ef3e20ea793e1a9dd2744efdda8ca558c5223d9b2574977b7f4b",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s4-reflow-extents-2026-10-23/functions/0x15cd820.json",
+      "result_sha256": "ff9dd3c9c56ffdbae3ab770fd681921c654ff37a02dadfda9e5b962acd586d1a",
+      "entry_va": "0x15cd820",
+      "analyst_name": "analyst_s4_reflow_extent_cache_15cd820",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 23,
+      "body_ranges": "[[015cd820, 015cd836]]",
+      "pseudocode_sha256": "c126429365d2a7f363e511343f5aa8ca541f5372980af6ab345806acaa85d326",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 4,
+  "distinct_entries": 4,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}
