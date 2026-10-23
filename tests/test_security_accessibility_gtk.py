@@ -1,4 +1,5 @@
 """Actual GTK/ATK, secret clearing, workers, keyboard regions and copy edit dialogs."""
+from gtk_cleanup import cleanup_temp
 from io import BytesIO
 import os
 from pathlib import Path
@@ -36,20 +37,7 @@ class _UISetup:
         self.parent.destroy()
         for child in self.children:
             if child.poll() is None:child.kill();child.wait()
-        self.quit.stop();self.hook.stop();self._cleanup_temp();self.assertEqual(self.errors,[])
-
-    def _cleanup_temp(self):
-        # Windows releases file handles of destroyed widgets/documents only after pending events
-        # and finalizers run; retry briefly there instead of failing on a handle still closing.
-        import gc,time
-        deadline=time.monotonic()+10
-        while True:
-            try:self.temp.cleanup();return
-            except PermissionError:
-                if os.name!='nt' or time.monotonic()>deadline:raise
-                context=GLib.MainContext.default()
-                while context.pending():context.iteration(False)
-                gc.collect();time.sleep(.1)
+        self.quit.stop();self.hook.stop();cleanup_temp(self.temp);self.assertEqual(self.errors,[])
 
     def security_window(self):
         self.parent._show_security();window=self.parent.security_window;self.windows.append(window);return window

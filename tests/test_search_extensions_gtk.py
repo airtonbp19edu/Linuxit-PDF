@@ -1,4 +1,5 @@
 """Real GTK/worker paths for embedded, advanced and persistent collection search."""
+from gtk_cleanup import cleanup_temp
 from io import BytesIO
 import hashlib
 import json
@@ -72,7 +73,7 @@ class SearchExtensionGTKTests(unittest.TestCase):
         self.window.destroy();self.quit.stop();self.hook.stop()
         for child in self.children:
             if child.poll() is None:child.kill();child.wait()
-        self.temp.cleanup();self.assertEqual(self.errors, [])
+        cleanup_temp(self.temp);self.assertEqual(self.errors, [])
 
     def collection(self, opener=None):
         from collection_window import CollectionWindow

@@ -1,4 +1,5 @@
 """E15: the edit draft applies its redaction marks in a new copy; the confirmation dialog picks the DPI."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import sys
@@ -27,7 +28,7 @@ class RedactionDraftGTKTests(unittest.TestCase):
 
     def tearDown(self):
         if not self.window.closed:self.window.destroy()
-        self.parent.destroy();self.quit.stop();self.hook.stop();self.temp.cleanup()
+        self.parent.destroy();self.quit.stop();self.hook.stop();cleanup_temp(self.temp)
         self.assertEqual(self.callback_errors,[])
 
     def test_marks_in_the_draft_are_applied_to_a_new_copy(self):

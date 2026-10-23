@@ -1,3 +1,4 @@
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import sys
@@ -48,7 +49,7 @@ class GUIRegressionTests(unittest.TestCase):
     def tearDown(self):
         self.window.destroy()
         self.quit_patch.stop()
-        self.temp.cleanup()
+        cleanup_temp(self.temp)
 
     def test_search_navigation_selection_and_rotation(self):
         w = self.window

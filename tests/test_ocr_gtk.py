@@ -1,4 +1,5 @@
 """Actual OCR GTK/worker, copy opening, stale results and lifecycle controls."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import subprocess
@@ -34,7 +35,7 @@ class OCRGTKTests(unittest.TestCase):
         self.parent.destroy()
         for child in self.children:
             if child.poll() is None:child.kill();child.wait()
-        self.quit.stop();self.hook.stop();self.temp.cleanup()
+        self.quit.stop();self.hook.stop();cleanup_temp(self.temp)
         self.assertEqual(self.errors,[])
 
     def create(self):

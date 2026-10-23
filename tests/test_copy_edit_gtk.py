@@ -1,4 +1,5 @@
 """GTK dialogs and real worker writes; no original/reference PDF is executed."""
+from gtk_cleanup import cleanup_temp
 import os
 from pathlib import Path
 import sys
@@ -76,7 +77,7 @@ class CopyEditGTKTests(unittest.TestCase):
         self.window.destroy()
         self.quit.stop()
         self.hook.stop()
-        self.temp.cleanup()
+        cleanup_temp(self.temp)
         self.assertEqual(self.callback_errors, [])
 
     def test_real_dialogs_and_worker_create_bookmark_note_and_form_copies(self):
