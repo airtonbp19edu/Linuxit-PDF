@@ -298,6 +298,22 @@
       "distinct_decompiled_entries": 0,
       "scope": "Pinned original module for directed static analysis of comment summary selection handlers, not all annotation editing. No runtime execution.",
       "count_note": "Zero refers to historical MCP dossiers, supplementary results cataloged separately."
+    },
+    "d3dd66d68601a203dce417b4e9f24ac43d881b91faa0c39a91c50c540f4e759f": {
+      "name": "LayerPanelToolPlugin.fpi",
+      "sessions": [
+        "claude-s3-layers"
+      ],
+      "overview": {
+        "bytes": 434784,
+        "image_base": "0x10000000",
+        "machine": "x86",
+        "exports": 218,
+        "sole_export": null
+      },
+      "distinct_decompiled_entries": 0,
+      "scope": "Pinned original module (hash from module-inventory.json) added 2026-10-23 by Claude for directed static analysis of layer-panel menu handlers listed in REA-S3-ESTADOS; not the OCG engine. No runtime execution.",
+      "count_note": "Zero refers to historical MCP dossiers, supplementary results cataloged separately."
     }
   },
   "queries": [

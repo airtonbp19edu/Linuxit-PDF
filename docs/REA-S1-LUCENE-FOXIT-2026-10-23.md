@@ -83,8 +83,8 @@ O estemizador do Foxit observado é **somente inglês**. O Linuxit tem radicais 
   (slot `+0x64`, em `0x100244ea`).
 - **Limpeza.** Nas três saídas de cancelamento ou fim, chama `clearMatchTerms` (slot `+0x68`, em
   `0x10024d1c`, `0x10024d53` e `0x10024d75`).
-- **Escrita.** Nenhuma chamada direta a `AddMatchTerms` foi encontrada no `fxLuceneLib` nem no
-  `lucene++`; o único acesso é pela vtable. Quem preenche o vetor continua aberto.
+- **Escrita (fechada no lote 2, abaixo).** Não há chamada direta a `AddMatchTerms`; a escrita é
+  virtual e passa pelo leitor do índice.
 
 ### Pontuação
 
@@ -132,14 +132,50 @@ flowchart TD
   H -. cancelamento .-> CL
 ```
 
+## Lote 2 (12:58 às 13:05) — escrita dos termos casados e mapa de páginas
+
+Rodadas `claude-s1-luc2` (`lucene++`, 5 entradas, 748 instruções / 2.641 bytes) e
+`claude-s1-fx2` (`fxLuceneLib`, 11 entradas, 5.017 instruções / 18.584 bytes), conferidas por
+Capstone ([lucene++](../testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-lucene-2.json),
+[fxLuceneLib](../testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-fxlucenelib-2.json)).
+Das 11 entradas do `fxLuceneLib`, 9 são revisitas de entradas do Codex, relidas para seguir as
+lacunas.
+
+- **Exports do leitor.** Há mais dois exports próprios do Foxit: `IndexReader::addMatchedTerms`
+  (`0x1013ad50`, slot `+0xe4` em `IndexReader`, `SegmentReader`, `DirectoryReader`,
+  `FilterIndexReader`, `MultiReader` e `ParallelReader`) e `IndexReader::getMatchedTerms`
+  (`0x1008e4f0`, slot `+0xe8`).
+- **Quem escreve.** `MultiTermQueryWrapperFilter::getDocIdSet` (`0x10256f50`) percorre os termos
+  expandidos de uma consulta multi-termo, como curinga ou prefixo reescritos em filtro, e
+  entrega a lista ao leitor por `addMatchedTerms` (chamada virtual em `0x102572bb`).
+- **Passagem ao pesquisador.** `IndexSearcher::search(Weight, Filter, Collector)` (`0x10241c50`)
+  repete, para cada subleitor: busca → `getMatchedTerms` do leitor (`0x10241d5a`) → **`AddMatchTerms`
+  do próprio pesquisador** (slot `+0x60`) → slot `+0xec` do leitor, que limpa o leitor por
+  inferência pela posição.
+- **Leitura.** O coordenador do `fxLuceneLib` lê o resultado por `getMatchTerms`.
+
+Com isso, a cadeia do realce fica fechada estaticamente: **termos expandidos → leitor →
+pesquisador → `fxLuceneLib`**.
+
+- **Falso positivo.** O slot `+0xe4` também aparece em `IndexWriter::updateDocument`
+  (`0x10158c78`), mas sobre outro objeto. Não foi somado.
+- **Mapa de páginas.** `0x1002db60` lê uma lista de pares (página, deslocamento no texto do
+  documento indexado). Devolve a primeira e a última página e grava, para cada página, o
+  comprimento até o próximo deslocamento; a última usa a sentinela `0x9fff`. Os resultados
+  aparecem como trechos por página por meio desse mapa.
+- **Proximidade.** `0x10024fc0` usa esse mapa e chama `0x1001fa90`, que percorre os deslocamentos
+  dos *term vectors* (`TermVectorOffsetInfo::getStartOffset`) por termo. A regra exata de distância
+  continua sem fórmula legível no pseudocódigo, que é dominado por variáveis de pilha.
+
 ## Lacunas que mantêm S1 parcial
 
 1. **Opções `+3` e `+0xc`.** O consumidor e o significado continuam sem prova. Os getters indicados
    antes (`0x100321f0`, `0x10032210`, `0x1002aa80`, `0x1002aac0`) acabaram sendo acessores de
    conjunto, não de opção.
-2. **Proximidade (`+0x10`).** A unidade e a regra de aplicação em `0x10024fc0`, `0x1002db60` e
-   `0x1001fa90` continuam sem fórmula.
-3. **Escrita dos termos casados.** Quem chama `AddMatchTerms` não foi identificado.
+2. **Proximidade (`+0x10`).** O caminho já está ligado (mapa de páginas `0x1002db60` e
+   deslocamentos de *term vectors* em `0x1001fa90`). Ainda faltam a unidade (caracteres ou
+   palavras) e a comparação com o limite.
+3. **Escrita dos termos casados.** Fechada no lote 2.
 4. **Escapes e erros.** Não há tabela completa de escapes da consulta. Os códigos `-8`, `-9` e
    `-10` são conhecidos só por recortes, e as exceções do estemizador não foram mapeadas até a UI.
 5. **Pontuação em runtime.** Fica tratada como a do Lucene++ público; uma troca dinâmica de

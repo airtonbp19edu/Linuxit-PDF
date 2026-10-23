@@ -1,0 +1,74 @@
+{
+  "source_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "source_module": "lucene++.dll",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s1-luc2/functions/0x1008e4f0.json",
+      "result_sha256": "3e2f71cc7768262aea387b3362b19c02e8b4774f46d66c1da911378e57bd0a32",
+      "entry_va": "0x1008e4f0",
+      "analyst_name": "?getMatchedTerms@IndexReader@Lucene@@UAEABV?$vector@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@@2@@std@@XZ",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 4,
+      "body_ranges": "[[1008e4f0, 1008e4f3]]",
+      "pseudocode_sha256": "b31e592b7a5ac42d92a1538a3f1db44bdf753691f30742a7429f4862a5a4a2b2",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc2/functions/0x100f2cd0.json",
+      "result_sha256": "d9df9b1336b69f81dfc9fca6809d09117d17cc2cfffb8b4962d2b234bc00a5dc",
+      "entry_va": "0x100f2cd0",
+      "analyst_name": "FUN_100f2cd0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 915,
+      "body_ranges": "[[100f2cd0, 100f3062]]",
+      "pseudocode_sha256": "46c6203e32b7e59db4666283be9dfc7d7a35430cd399e3bd9bbf868d6f8d5829",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc2/functions/0x1013ad50.json",
+      "result_sha256": "fd94cda9850af6eed17435ba8fdf988d1471d3c5e835117c4d2e43c06aa3eed9",
+      "entry_va": "0x1013ad50",
+      "analyst_name": "?addMatchedTerms@IndexReader@Lucene@@UAEXABV?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 73,
+      "body_ranges": "[[10138dd0, 10138e03] [1013ad50, 1013ad5b] [1013c9e0, 1013c9e8]]",
+      "pseudocode_sha256": "bbe8f5a0cd02dc6f59b228c76419541268d28290ab6e56f04e52a0bbc018f2c1",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc2/functions/0x10241c50.json",
+      "result_sha256": "a7a6c458c5f2c6bdcfaa5284535b287e0b4619583ffab5f51354f3a34d80f3ee",
+      "entry_va": "0x10241c50",
+      "analyst_name": "?search@IndexSearcher@Lucene@@UAEXABV?$shared_ptr@VWeight@Lucene@@@boost@@ABV?$shared_ptr@VFilter@Lucene@@@4@ABV?$shared_ptr@VCollector@Lucene@@@4@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 555,
+      "body_ranges": "[[10241c50, 10241e7a]]",
+      "pseudocode_sha256": "40abad54d40b7f24c15ba79b3cd090d0e6e1addd3746f530bf1d4e27a72c8984",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s1-luc2/functions/0x10256f50.json",
+      "result_sha256": "6f804cecdf6c6f5035d283991d6265a5ffe556399603765c4f6c4ddb80d495ee",
+      "entry_va": "0x10256f50",
+      "analyst_name": "?getDocIdSet@MultiTermQueryWrapperFilter@Lucene@@UAE?AV?$shared_ptr@VDocIdSet@Lucene@@@boost@@ABV?$shared_ptr@VIndexReader@Lucene@@@4@@Z",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1094,
+      "body_ranges": "[[10256f50, 102572db] [102572f6, 1025733c] [10257357, 102573c9]]",
+      "pseudocode_sha256": "ee51bb63a05a0d3110da07f6f269b29a6eb2cf75d9b82cd051036c4700e022e8",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 5,
+  "distinct_entries": 5,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "source_sha256": "d3dd66d68601a203dce417b4e9f24ac43d881b91faa0c39a91c50c540f4e759f",
+  "source_module": "LayerPanelToolPlugin.fpi",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041820.json",
+      "result_sha256": "5e20e23a360b48f4e7bb00d349ee53eb0ba4a6b6b1cdaf01ec57a771ec608026",
+      "entry_va": "0x10041820",
+      "analyst_name": "FUN_10041820",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 334,
+      "body_ranges": "[[10041820, 1004196d]]",
+      "pseudocode_sha256": "731845aec0cbc70395b7b62f816e56b4e1e0f5884689c99a3c79a7363dd7b791",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041a50.json",
+      "result_sha256": "2e98c628801d5bc1e434aae9838b92f68ed00effb8d87ee4fdbb95261b35a5fb",
+      "entry_va": "0x10041a50",
+      "analyst_name": "FUN_10041a50",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 151,
+      "body_ranges": "[[10041a50, 10041ae6]]",
+      "pseudocode_sha256": "9f87f3a838ef05850e8fae9ea2f10f6b9fcd53359f3004eb1a9f848983dbc346",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041af0.json",
+      "result_sha256": "ecba3a62e754f8032e0578ea89c63fca8201f0c1c2aef3d2adcf6ad05be59d3d",
+      "entry_va": "0x10041af0",
+      "analyst_name": "FUN_10041af0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 142,
+      "body_ranges": "[[10041af0, 10041b7d]]",
+      "pseudocode_sha256": "45fdcb2446606c44cd9e3d00bbcef911ec2185e69ca123f49780053022cafdb9",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041b80.json",
+      "result_sha256": "dad578a7a80bed9b0061c134675c4b070f0d7e5cc44984f00a0307f50adaf74e",
+      "entry_va": "0x10041b80",
+      "analyst_name": "FUN_10041b80",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 30,
+      "body_ranges": "[[10041b80, 10041b9d]]",
+      "pseudocode_sha256": "3be780468d771abd3e48b78f535174c1d82e020d81899ee17d84dd4b2a039aef",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041ba0.json",
+      "result_sha256": "54b53c439c1138f683b5a071de7e516378cb7514bebacaefc9c9f2aff6a33020",
+      "entry_va": "0x10041ba0",
+      "analyst_name": "FUN_10041ba0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 30,
+      "body_ranges": "[[10041ba0, 10041bbd]]",
+      "pseudocode_sha256": "2c1cc46851b8ba488ec8d23d341ac43c28293f350609b21dc32ece9fd6dc1d89",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041bc0.json",
+      "result_sha256": "d300adf74b6b426c1c31130faa8e0085b0d7a8a7327eb8cee92dc5f1a7e3fd77",
+      "entry_va": "0x10041bc0",
+      "analyst_name": "FUN_10041bc0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 34,
+      "body_ranges": "[[10041bc0, 10041be1]]",
+      "pseudocode_sha256": "2aa0985175f17c28d5709131fa2083c8d60090c783edf95c7bf7811bda8ea83f",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041bf0.json",
+      "result_sha256": "d8aa5b82604bdc5ce8f67343ea2c2d53e380db9174663854f20397ddaa81226f",
+      "entry_va": "0x10041bf0",
+      "analyst_name": "FUN_10041bf0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 114,
+      "body_ranges": "[[10041bf0, 10041c61]]",
+      "pseudocode_sha256": "7cf7c10052d6d1c8e145772982805b9e4ef7e4c104363f1e0e10ad033b715f3c",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041c70.json",
+      "result_sha256": "9ced48f4c45eb1029e5e2cb87ecadafb2733ff9aaa61138c5b2a66e34ae1b910",
+      "entry_va": "0x10041c70",
+      "analyst_name": "FUN_10041c70",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 114,
+      "body_ranges": "[[10041c70, 10041ce1]]",
+      "pseudocode_sha256": "2c14b103fea1cb5d41ea9a917036b53f7b8e8f60f349c413bbe2a2d2ef353854",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10041cf0.json",
+      "result_sha256": "e1b028141735994f597ebf6eef0e1a9fb577d5985e181f4327ef935aebf3952c",
+      "entry_va": "0x10041cf0",
+      "analyst_name": "FUN_10041cf0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 114,
+      "body_ranges": "[[10041cf0, 10041d61]]",
+      "pseudocode_sha256": "aadbb35829dd05c7e59991d70cf936a559943056b603ee2c0c611768cbc178d5",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10045380.json",
+      "result_sha256": "d364a295178abf2760057639b8937d6b8617621e8317915f4068937eabc34139",
+      "entry_va": "0x10045380",
+      "analyst_name": "FUN_10045380",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 113,
+      "body_ranges": "[[10045380, 100453f0]]",
+      "pseudocode_sha256": "29f5eba7c5e908f8f4d0c9337fa2788d675c10fa56855422d43d5c5f05deacc0",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10045400.json",
+      "result_sha256": "4d08f4fc587cfca42bf8cef9900ca00009cd45806377ed394b7a5a26fffdd025",
+      "entry_va": "0x10045400",
+      "analyst_name": "FUN_10045400",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 113,
+      "body_ranges": "[[10045400, 10045470]]",
+      "pseudocode_sha256": "c902f73f15cd85034d770efcf429c7bbb1b4cbb3e1d6fc5cb9a122dc5d999299",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers/functions/0x10045480.json",
+      "result_sha256": "5b13543187c8b91de1ea2aad31c5ccbf9686230cdc4d123b044ab1f70fab8975",
+      "entry_va": "0x10045480",
+      "analyst_name": "FUN_10045480",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 113,
+      "body_ranges": "[[10045480, 100454f0]]",
+      "pseudocode_sha256": "0e6acbc7c11f3ae4c397338866f0274691136c75442d794b8393203872430e0a",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 12,
+  "distinct_entries": 12,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

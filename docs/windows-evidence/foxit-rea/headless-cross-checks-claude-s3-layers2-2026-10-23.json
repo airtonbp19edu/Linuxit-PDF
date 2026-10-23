@@ -1,0 +1,86 @@
+{
+  "source_sha256": "d3dd66d68601a203dce417b4e9f24ac43d881b91faa0c39a91c50c540f4e759f",
+  "source_module": "LayerPanelToolPlugin.fpi",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/claude-s3-layers2/functions/0x1002ef60.json",
+      "result_sha256": "e2cdc7a8df8ebc9923de7d5ccaf764da7de59cc92ee875b49f56a3001cf83b5e",
+      "entry_va": "0x1002ef60",
+      "analyst_name": "FUN_1002ef60",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 1317,
+      "body_ranges": "[[1002ef60, 1002f484]]",
+      "pseudocode_sha256": "e352b9b708849cda54b0c451bf39f40ee99fc92c956b9b6f86f1c7f2f602dde9",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers2/functions/0x1002f490.json",
+      "result_sha256": "7eaf4fa8ebe92689aedc4738838a2caa4d6b492e659c92d3ca35c77935340fcc",
+      "entry_va": "0x1002f490",
+      "analyst_name": "FUN_1002f490",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 518,
+      "body_ranges": "[[1002f490, 1002f695]]",
+      "pseudocode_sha256": "bcbf837aa7f9f20da0cfa8cb657eba0c00f164ed964928270cba3846b5a4bf9b",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers2/functions/0x10034a10.json",
+      "result_sha256": "8c917a7cfb49cd3cdab664496b54c83114d47610af660af11c5bb3bb7f17d3d1",
+      "entry_va": "0x10034a10",
+      "analyst_name": "FUN_10034a10",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 487,
+      "body_ranges": "[[10034a10, 10034bf6]]",
+      "pseudocode_sha256": "1301875a27a77461401d5a4c666bd9c27368e62cfde2d357846d242a54b4a4cd",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers2/functions/0x100354a0.json",
+      "result_sha256": "c3ac907c290851b88f5695f91efe175d583aaf0d34f5fcc9c992884030593ce5",
+      "entry_va": "0x100354a0",
+      "analyst_name": "FUN_100354a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 94,
+      "body_ranges": "[[100354a0, 100354fd]]",
+      "pseudocode_sha256": "6d10aa2f54983aa105918f856846c0802b7f4734ddf56e761824e0914ecac3e3",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers2/functions/0x1003d6a0.json",
+      "result_sha256": "3d0bee32f6ea6d73d2685ed78285bd71346f9cf73b5f4ea2f50f7fb67544ba86",
+      "entry_va": "0x1003d6a0",
+      "analyst_name": "FUN_1003d6a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 610,
+      "body_ranges": "[[1003d6a0, 1003d901]]",
+      "pseudocode_sha256": "9d95b8d996e230fea583cd5ada70b38a8f95bf6f3e269d85fa8efd70ab79f9cf",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/claude-s3-layers2/functions/0x100408b0.json",
+      "result_sha256": "9606a2e78efb0cae2c8a4fc04cc0380df387b9eaff59abad7d3efe6ab60a1a50",
+      "entry_va": "0x100408b0",
+      "analyst_name": "FUN_100408b0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 155,
+      "body_ranges": "[[100408b0, 1004094a]]",
+      "pseudocode_sha256": "00896a0a09112baba2b27c68fd430ea94bda302d69fecdd0e73518f37a7aeede",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 6,
+  "distinct_entries": 6,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

@@ -64,5 +64,40 @@
     "check": "Diagramas e estados rastreáveis por subsistema",
     "status": "partial",
     "unchanged": true
-  }
+  },
+  "lot2": {
+    "reviewed_at_local": "2026-10-23T13:05:00-03:00",
+    "layers_target_pinned": "d3dd66d68601a203dce417b4e9f24ac43d881b91faa0c39a91c50c540f4e759f added to analysis-manifest.json targets",
+    "machine_check": {
+      "passed": true,
+      "entries": 18,
+      "instructions": 1535,
+      "bytes": 4583,
+      "reports": [
+        "testes/resultados/s3-layers-2026-10-23/machine-checks-layers.json",
+        "testes/resultados/s3-layers-2026-10-23/machine-checks-layers-2.json"
+      ]
+    },
+    "comments_summary": {
+      "init": "0x1001d850 reads section CommentsSummary keys Layout(default 3,+0x434) CommentType PageSize FontSize SortBy IncludePages(default 0,+0x438) PagesNoComments LineColor LineOpacity",
+      "ok": "0x1001e400 writes same keys plus PageRange SummarizeComments Comment; consumes +0x434 and switches on +0x438"
+    },
+    "layers": {
+      "override_context": "panel+0xa8: 0 none,1 print(38537),2 export(38535),3 layer(38536); toggle via 0x1002ef60",
+      "list_mode": "panel+0x88: 0 all(38547),1 visible(38548); rebuild 0x10034a10",
+      "restore": "38545 -> 0x1002f490(1)",
+      "tree": "38540/38538 -> 0x100354a0 TVM_EXPAND",
+      "show": "38546 0x10041820 -> 0x1003d6a0 -> host HFT 0x26/6(ctx,ocg,on,1) then InvalidateRect per page view",
+      "L-C3": "two handler sets equivalent; second prefixed by 0x100178a0"
+    },
+    "remaining_gaps": [
+      "consumers of +0x2bc/+0x204 in preference owner",
+      "HFT category/selector names",
+      "host OCG engine and persistence",
+      "annotation edit, form field and signature engines",
+      "no runtime observation"
+    ],
+    "criterion_status": "partial"
+  },
+  "catalog_after": 516
 }

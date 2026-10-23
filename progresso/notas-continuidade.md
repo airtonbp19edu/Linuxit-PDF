@@ -3814,3 +3814,11 @@ saídas/erros, Fase A) depende de VM/B3: não fechado. Próximo do Claude: lista
 A implementação da redação de dados ocultos (metadados/marcadores/anexos) foi interrompida por
 um filtro automático de segurança do assistente antes de gravar qualquer arquivo. Nenhuma mudança
 em app/tests. Aguardando decisão do usuário sobre como seguir. Itens 2–6 da lista não iniciados.
+
+## 2026/10/23 às 13:06 (America/Sao_Paulo, UTC-03:00) — Claude: S1/S3 lote 2
+
+Rodadas `claude-s1-luc2`, `claude-s1-fx2`, `claude-s3-layers`, `claude-s3-layers2` (nuvem do
+Claude). LayerPanelToolPlugin.fpi agora é alvo fixado em analysis-manifest.json. Catálogo 516.
+Docs: REA-S1-LUCENE-FOXIT (seção Lote 2) e REA-S3-HANDLERS (seção Lote 2). S1/S3 parciais.
+Item de desenvolvimento 2 (XFA posicionado/FormCalc) também foi interrompido por filtro
+automático antes de gravar arquivos; nada em app/. Próximo: tentar itens 4–6 da lista.

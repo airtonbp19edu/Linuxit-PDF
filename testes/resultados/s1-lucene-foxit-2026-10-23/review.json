@@ -27,7 +27,7 @@
     ]
   },
   "catalog_before": 472,
-  "catalog_after": 491,
+  "catalog_after": 516,
   "new_entries_this_review": 15,
   "revisits": [
     "fxLuceneLib.dll:0x100243b0"
@@ -93,5 +93,36 @@
     "escapes and error/exception table",
     "runtime Similarity replacement not excluded",
     "no runtime observation"
-  ]
+  ],
+  "lot2": {
+    "reviewed_at_local": "2026-10-23T13:05:00-03:00",
+    "machine_check": {
+      "passed": true,
+      "entries": 16,
+      "instructions": 5765,
+      "bytes": 21225,
+      "reports": [
+        "testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-lucene-2.json",
+        "testes/resultados/s1-lucene-foxit-2026-10-23/machine-checks-fxlucenelib-2.json"
+      ]
+    },
+    "joins": {
+      "IndexReader::addMatchedTerms": "0x1013ad50 slot +0xe4 (6 reader classes)",
+      "IndexReader::getMatchedTerms": "0x1008e4f0 slot +0xe8",
+      "writer": "MultiTermQueryWrapperFilter::getDocIdSet 0x10256f50 vcall +0xe4 at 0x102572bb",
+      "transfer": "IndexSearcher::search(Weight,Filter,Collector) 0x10241c50: reader+0xe8 -> searcher+0x60 (AddMatchTerms) -> reader+0xec",
+      "false_positive": "IndexWriter::updateDocument 0x10158c78 +0xe4 on another object"
+    },
+    "closed_gaps": [
+      "AddMatchTerms writer"
+    ],
+    "remaining_gaps": [
+      "options +3/+0xc",
+      "proximity unit and limit comparison",
+      "escapes and error/exception table",
+      "runtime Similarity",
+      "no runtime observation"
+    ],
+    "criterion_status": "partial"
+  }
 }

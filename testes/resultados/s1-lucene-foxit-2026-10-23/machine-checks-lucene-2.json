@@ -1,0 +1,56 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "subject_name": "lucene++.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/claude-s1-luc2",
+  "entries": [
+    {
+      "entry": "0x1008e4f0",
+      "instructions": 2,
+      "body_bytes": 4,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "3e2f71cc7768262aea387b3362b19c02e8b4774f46d66c1da911378e57bd0a32",
+      "pseudocode_sha256": "b31e592b7a5ac42d92a1538a3f1db44bdf753691f30742a7429f4862a5a4a2b2"
+    },
+    {
+      "entry": "0x100f2cd0",
+      "instructions": 219,
+      "body_bytes": 915,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "d9df9b1336b69f81dfc9fca6809d09117d17cc2cfffb8b4962d2b234bc00a5dc",
+      "pseudocode_sha256": "46c6203e32b7e59db4666283be9dfc7d7a35430cd399e3bd9bbf868d6f8d5829"
+    },
+    {
+      "entry": "0x1013ad50",
+      "instructions": 33,
+      "body_bytes": 73,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "fd94cda9850af6eed17435ba8fdf988d1471d3c5e835117c4d2e43c06aa3eed9",
+      "pseudocode_sha256": "bbe8f5a0cd02dc6f59b228c76419541268d28290ab6e56f04e52a0bbc018f2c1"
+    },
+    {
+      "entry": "0x10241c50",
+      "instructions": 192,
+      "body_bytes": 555,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "a7a6c458c5f2c6bdcfaa5284535b287e0b4619583ffab5f51354f3a34d80f3ee",
+      "pseudocode_sha256": "40abad54d40b7f24c15ba79b3cd090d0e6e1addd3746f530bf1d4e27a72c8984"
+    },
+    {
+      "entry": "0x10256f50",
+      "instructions": 302,
+      "body_bytes": 1094,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6f804cecdf6c6f5035d283991d6265a5ffe556399603765c4f6c4ddb80d495ee",
+      "pseudocode_sha256": "ee51bb63a05a0d3110da07f6f269b29a6eb2cf75d9b82cd051036c4700e022e8"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}
