@@ -98,3 +98,8 @@ os ramos Windows/anotações ou publicar candidato por presumir autorização no
 Continuam preservados os critérios/pesos, a decisãoB3, workflowsmain e a exclusão
 de IA/nuvemAPI/3D. CommitsCodex: autorAirtonbp19 e exatamente um trailer
 `Co-authored-by: Codex <noreply@openai.com>`, sem reescrever histórico/forcepush.
+
+
+### 2026/10/23 às 19:18:16 — Codex: quatro itens autorizados
+
+Autorização humana direta “Autorizar os quatro itens” executada no ramo `codex/authorized-pdf-features`. Fonte `f34bddd`/CI `40031881361`: 779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit. Detalhes em `docs/QUATRO-ITENS-AUTORIZADOS-2026-10-23.md` e `testes/resultados/quatro-itens-2026-10-23/`. Preservadas primeira falha de fixture e correção, resultados anteriores, ramos do Claude e reserva VM. Nenhuma integração à main/candidato ou publicação; limites e próximos passos registrados.

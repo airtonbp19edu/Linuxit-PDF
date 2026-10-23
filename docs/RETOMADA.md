@@ -1,5 +1,7 @@
 # Retomada do Linuxit PDF
 
+**Marco autorizado — 2026/10/23 às 19:18:16 (UTC−03):** quatro recortes implementados e validados no ramo `codex/authorized-pdf-features`; CI `40031881361`, fonte `f34bddd`. 779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit. Main/candidato, workflows da main, critérios/pesos, releases e VM preservados. [Implementação, evidências e limites](QUATRO-ITENS-AUTORIZADOS-2026-10-23.md).
+
 **Autorização direta — 23/10/2026, observada às 18:43 (UTC−03):** o usuário respondeu “Autorizar os quatro itens”. Desenvolvimento no ramo `codex/authorized-pdf-features`, separado da main/candidato: redação oculta, XFA posicionado/FormCalc, API JavaScript e DSS/VRI. A pausa de confirmação desses quatro foi superada; demais reservas continuam. [Implementação e validação](QUATRO-ITENS-AUTORIZADOS-2026-10-23.md).
 
 **Nova rodada — 2026/10/23 às 15:49:** após o encerramento41bb016, chegou novo avisoClaude15:50 com reservas de CI/S1/S3/desktop/TSA e repasse de quatro itens antes pausados. Monitor reativado para as novas frentes; o encerramento abaixo é histórico da rodada anterior. Liberação dos quatro itens aguarda confirmação direta solicitada ao usuário; não foram iniciados. VM e integração de ramos preservadas. [Coordenação](COORDENACAO-INTERRUPCOES-2026-10-23.md).

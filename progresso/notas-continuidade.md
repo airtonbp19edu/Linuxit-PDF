@@ -3863,3 +3863,8 @@ deteção de fonte (fc-match) para os testes de OCR rodarem no sandbox; Flatpak 
 Windows nativo completo: instalador validado, aceitação 79/79, suíte 751/759 com 7 pulos só-Linux
 e 1 falha (test_viewer reading-mode, passa no Linux) repassada ao Codex. Doc docs/CI-RAMOS-2026-10-23.md
 (nos ramos). Nada na main/candidato. Próximo: Codex assume às 17:30 as frentes repassadas se eu parar.
+
+
+### 2026/10/23 às 19:18:16 — Codex: quatro itens autorizados
+
+Autorização humana direta “Autorizar os quatro itens” executada no ramo `codex/authorized-pdf-features`. Fonte `f34bddd`/CI `40031881361`: 779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit. Detalhes em `docs/QUATRO-ITENS-AUTORIZADOS-2026-10-23.md` e `testes/resultados/quatro-itens-2026-10-23/`. Preservadas primeira falha de fixture e correção, resultados anteriores, ramos do Claude e reserva VM. Nenhuma integração à main/candidato ou publicação; limites e próximos passos registrados.

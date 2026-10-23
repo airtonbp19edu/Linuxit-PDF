@@ -61,3 +61,25 @@ Há casos de integração adicionais para redação com geometria real/rotaçõe
 CI `40030258851`, revisão `40e8441`, terminou com falha real no novo teste de redação: o fixture reutilizava `marked.pdf` nas rotações 90/270, e a proteção contra sobrescrita recusou corretamente essas duas preparações. Não foi falha do algoritmo de geometria: esses subcasos não chegaram a executá-lo. O fixture passa a usar nomes distintos por rotação. O caso sem rotação, a recusa de anexo incompatível e os quatro casos criptográficos de VRI passaram no Linux. Os logs e ZIPs originais foram baixados com SHA-256 conferido, preservados fora do Git em `analysis-local/pdf-features-ci/40030258851-*`.
 
 A primeira execução ainda não certifica a revisão corrigida. Aceitação e probes posteriores foram pulados porque a suíte falhou. A ampliação posterior de escrita VRI também exige outra validação da nova revisão. Não apresentar esse CI como sucesso ou repetir a mesma revisão sem uma mudança que justifique o novo teste.
+
+
+## Marco examinado — 2026/10/23 às 19:18:16 (America/Sao_Paulo, UTC−03)
+
+779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit.
+
+CI final: `40031881361`, revisão de código `f34bddd80aa8a55f0c740339a99249e3b610a57b`. Relatórios completos em `testes/resultados/quatro-itens-2026-10-23/linux-03-suite.json`, `linux-03-source.json`, `linux-03-acceptance.json` e `linux-03-review.json`. A revisão anterior `198c34d` passou 778/778 e 81/81; todos os seus IDs foram preservados. IDs novos nesta revisão: test_xfa_positioned_formcalc.PositionedFormCalcTests.test_generic_form_edit_refused_but_explicit_xfa_reopen_recalculates.
+
+Confirmados nos relatórios: rotações 0/90/270 com palavras reais do Poppler e cópia vetorial sem os termos nos dados selecionados; recusa atômica de anexos incompatíveis; QuickJS real, incluindo testes adversariais; posições e cálculos XFA com datasets/AcroForm coerentes; reabertura com recálculo e recusa de edição genérica que deixaria totais antigos; CMS, cadeia e CRLs reais de PKI sintética, isolamento de VRIs vizinhas, material incompleto e gravação incremental VRI.
+
+Também aprovados os recortes próprios do corpus preservado (17), leitura focada (15), probe GTK (5), acessibilidade entre processos, portal real de arquivos em X11 e fila CUPS privada. A fila não usa impressora física. Os ZIPs originais ficam em `analysis-local/pdf-features-ci/40031881361-*`, com hashes registrados nos relatórios públicos. Nenhuma execução do Foxit/VM ocorreu nesta rodada.
+
+### O que ainda não está concluído
+
+* Os limites funcionais dos quatro recortes estão enumerados acima. Não são implementações completas de XFA/FormCalc, API Acrobat/Foxit, limpeza universal de dados ocultos ou PAdES-LTV/LTA.
+* Integração com os ramos do Claude e com main/candidato não foi feita. É necessário revisar conflitos/contratos e obter a autorização de integração; os resultados desta fonte não validam uma futura fonte mesclada.
+* Nenhum Flatpak/instalador novo foi construído/publicado. As funcionalidades estão na fonte deste ramo; um pacote anterior não as contém automaticamente.
+* A suíte integral Windows da nova fonte, GTK nativo Windows, Wayland/desktop físico, impressão física e comparação com Foxit permanecem separados. Os testes locais Windows foram recortes, com dois pulos por ausência de Poppler.
+* Viewer Windows `a47309e`, OCR/mídia `458e3b3` e ramos do Claude continuam separados, com seus próprios resultados. Não aplicar duas correções equivalentes nem repetir campanhas já preservadas.
+* Reserva VM de Claude, demais análises estáticas, critérios/pesos, B3, exclusão de IA, adiamento de nuvem direta e escopo 3D permanecem como estavam. Não fechar critérios amplos por esta entrega.
+
+Próximo passo deste recorte: revisão de integração mediante instrução específica do usuário, seguida de validação da fonte consolidada. Na ausência dessa instrução, preservar o ramo e acompanhar somente entregas novas autorizadas; não repetir este diagnóstico ou a execução aprovada.
