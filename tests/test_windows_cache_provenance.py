@@ -19,10 +19,15 @@ class WindowsCacheProvenanceTests(unittest.TestCase):
         with patch.object(builder.ntpath,'normpath',side_effect=lambda value:value):
             self.assertEqual(builder.native('D:/a/stage'),'D:\\a\\stage')
     def test_installer_message_boxes_never_block_silent_mode(self):
-        script=(ROOT/'packaging/windows/linuxit.nsi').read_text(encoding='utf-8')
-        boxes=[line for line in script.splitlines() if 'MessageBox' in line]
+        # Each MessageBox must be reachable only when not silent: an `IfSilent`
+        # that skips it has to appear on one of the few lines above it. A plain
+        # MessageBox in a /S run blocks forever (CI 39896899395).
+        lines=(ROOT/'packaging/windows/linuxit.nsi').read_text(encoding='utf-8').splitlines()
+        boxes=[i for i,line in enumerate(lines) if line.strip().startswith('MessageBox')]
         self.assertTrue(boxes)
-        self.assertTrue(all('/SD ' in line for line in boxes),boxes)
+        for i in boxes:
+            guard=any('IfSilent' in lines[j] for j in range(max(0,i-3),i))
+            self.assertTrue(guard,f'MessageBox at line {i+1} is not guarded by IfSilent')
     def test_missing_install_search_finds_only_complete_installations(self):
         spec=importlib.util.spec_from_file_location('installer_check',ROOT/'scripts/check_windows_installer.py')
         check=importlib.util.module_from_spec(spec);spec.loader.exec_module(check)

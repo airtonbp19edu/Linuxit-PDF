@@ -24,9 +24,12 @@ SetCompressor /SOLID lzma
 !insertmacro MUI_LANGUAGE "PortugueseBR"
 Section "Linuxit PDF"
   SetShellVarContext current
-  IfFileExists "$INSTDIR\*.*" 0 +3
-    MessageBox MB_ICONSTOP /SD IDOK "Escolha uma pasta nova e vazia. Instalações e arquivos existentes são preservados."
+  IfFileExists "$INSTDIR\*.*" 0 fresh_install
+    IfSilent refuse_existing
+    MessageBox MB_ICONSTOP "Escolha uma pasta nova e vazia. Instalações e arquivos existentes são preservados."
+  refuse_existing:
     Abort
+  fresh_install:
   SetOutPath "$INSTDIR"
   File /r "${PAYLOAD}\*"
   WriteUninstaller "$INSTDIR\uninstall.exe"
@@ -40,9 +43,12 @@ Section "Linuxit PDF"
 SectionEnd
 Section "Uninstall"
   SetShellVarContext current
-  IfFileExists "$INSTDIR\windows-manifest.json" +3
-    MessageBox MB_ICONSTOP /SD IDOK "O manifesto desta instalação não foi encontrado. Nenhum arquivo foi removido."
+  IfFileExists "$INSTDIR\windows-manifest.json" manifest_present
+    IfSilent refuse_uninstall
+    MessageBox MB_ICONSTOP "O manifesto desta instalação não foi encontrado. Nenhum arquivo foi removido."
+  refuse_uninstall:
     Abort
+  manifest_present:
   !include "${DELETE_INCLUDE}"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
