@@ -111,5 +111,6 @@
     "24 testes pulados exigem ferramentas Linux (Tesseract/OCR real, GStreamer, OpenSSL nativo, grupos de processo); OCR e mídia no Windows seguem sem validação.",
     "Ramo claude/windows-installer não integrado à main; a integração não pode alterar a árvore do candidato 0.1.19 enquanto ela for necessária à E29.",
     "Nenhuma VM, Foxit, publicação ou mudança de critérios/pesos."
-  ]
+  ],
+  "artifact_files_hash_basis": "Bytes as downloaded from artifact of run 39958811654 (Windows CRLF); the repository copies beside this file are normalized to LF by .gitattributes, so their hashes differ."
 }
