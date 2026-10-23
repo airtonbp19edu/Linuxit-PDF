@@ -3693,3 +3693,9 @@ S1: hash dafxLuceneLib.dll20908415…c82e1 conferido antes/depois; cópia do pro
 Achados: byte+5 controla chamadaSnowball;+6/+7 alimentamUnicodeDeals mas sem contrato integral; curingasASCII/fullwidth ligados às cláusulas; um cancelamento do coordenador consulta ponteiro, chama slot+0x68, limpa contêiner e devolve-10. O pseudocódigo antigo dizia void, porém assembly retornaESI emEAX eRET0x58: não usar assinatura automática comoAPI. Não inferir que limpar esse contêiner apaga toda a lista daUI. Não relacionar sem prova os contêineresDLL aos objetosUI+0x1f34/+0x2044.
 
 S1 permanece parcial, E35 em andamento no registro (lote encerrado, nenhum processo ativo). Próxima IA pode seguir pelos alvos ainda não catalogados; ver relatório antes de começar e anotar nova posse. App/Flatpak0.1.19, manifesto global0.1.18, árvores de workflows, critérios/pesos e paridade preservados. Publicação/B3/VM/equipamentos continuam aguardando decisões/ambientes do usuário.
+
+## 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00) — Codex retoma S1 por pedido explícito do usuário
+
+O usuário pediu “façaS1”. Retomada pelas lacunas do relatórioREA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22, catálogo350. Trabalho dividido conforme a instrução de investigação paralela da habilidadeREA: coordenador naDLL/consulta/avaliação, s1_options nos campos+3/+0xc/+0x10 e origem/semântica de+6/+7, s1_ui_classes nos objetos do diálogo+0x1f34/+0x2044 e cancelamento relacionado. Cada frente preserva sementes/relatório/brutos próprios; coordenação central integra catálogo/progresso/Git. Reutilizar evidências anteriores, não contar função repetida como nova e preservar os dois primeiros lotes.
+
+Sem execução do original/VM, sem instalação ou reparoMCP, sem publicação e sem decisãoB3. A rodada visa resolver as lacunas técnicas daS1; não fechar o critério amplo sem evidência. Antes de novos processosGhidra, coordenar consumo de memória.

@@ -1,6 +1,6 @@
 # Linuxit PDF — continuidade do projeto
 
-**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
+**Atualização — 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00):** usuário pediu executar S1. Codex retomou três frentes estáticas: consulta/avaliação na DLL, campos das opções e objetosUI+0x1f34/+0x2044. Há trabalho em andamento; não duplicar essas frentes sem consultar a coordenação. S1 segue parcial até prova completa. Candidato0.1.19 preservado; sem publicação/VM/B3.
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
 

@@ -1,6 +1,6 @@
 # O que pode ser feito agora — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
 
-**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
+**Atualização — 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00):** usuário pediu executar S1. Codex retomou três frentes estáticas: consulta/avaliação na DLL, campos das opções e objetosUI+0x1f34/+0x2044. Há trabalho em andamento; não duplicar essas frentes sem consultar a coordenação. S1 segue parcial até prova completa. Candidato0.1.19 preservado; sem publicação/VM/B3.
 
 Lista compartilhada entre o Claude e o Codex, pedida pelo usuário. Situação geral:
 [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md) e [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).

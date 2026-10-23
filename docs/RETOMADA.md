@@ -1,6 +1,6 @@
 # Retomada do Linuxit PDF
 
-**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
+**Atualização — 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00):** usuário pediu executar S1. Codex retomou três frentes estáticas: consulta/avaliação na DLL, campos das opções e objetosUI+0x1f34/+0x2044. Há trabalho em andamento; não duplicar essas frentes sem consultar a coordenação. S1 segue parcial até prova completa. Candidato0.1.19 preservado; sem publicação/VM/B3.
 
 ## Coordenação vigente entre Claude e Codex
 
@@ -12,7 +12,7 @@ históricos abaixo como instrução nova.
 | Frente | Responsável/estado | Referência |
 |---|---|---|
 | Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
-| S1: algoritmo/opções/classes da busca | Codex encerrou o lote de sete funções; S1 parcial e disponível para continuidade | `docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md` |
+| S1: algoritmo/opções/classes da busca | Codex retomou agora: três frentes estáticas em andamento; S1 parcial | `docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md` |
 | S2/S3/S4 | Abertas; avisar antes de assumir | `docs/ORDEM-CODEX-2026-10-22.md` |
 | Windows A6 | Parcial; ramo `codex/windows-installer-diagnostics` | `testes/resultados/a6-windows-2026-10-22/review.json` |
 | Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
