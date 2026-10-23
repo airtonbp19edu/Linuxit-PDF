@@ -1,0 +1,18 @@
+{
+  "schema": "linuxit-vm-e30-observations-v1",
+  "started_local": "2026-10-23T05:41:00-03:00",
+  "operator": "Claude (assumiu de Codex; Codex silencioso desde 01:30, confirmou no chat às 05:32 que não acessa a VM)",
+  "vm_alive_check": "Relógio do guest 05:39:11 -> 05:39:28 -> 05:41:55, segundos avançando; VM responsiva",
+  "containment": "Rede OFF no guest; Foxit não reiniciado; D06 disponível para processo residual; nenhuma alteração no host",
+  "fixture_open_at_takeover": "busca-escopos.pdf (2 páginas, 2/2), marcadores 'ALVO marcador' e 'alvo externo'",
+  "cases": [
+    {
+      "id": "UI01",
+      "control": "Abrir (com documento já aberto) / cancelar diálogo",
+      "foxit_observed": "Diálogo Abrir apareceu sobre o documento aberto, listando C:\\Linuxit\\Input; Foxit permaneceu responsivo com busca-escopos.pdf aberto atrás. Cancelar fechou o diálogo e voltou ao documento em 2/2 sem alteração.",
+      "linuxit_expected": "A abertura é transacional; invocar abrir com documento aberto mostra o seletor e cancelar preserva o documento e a página atuais.",
+      "divergence": "Nenhuma observada nesta variante.",
+      "status": "observed"
+    }
+  ]
+}
