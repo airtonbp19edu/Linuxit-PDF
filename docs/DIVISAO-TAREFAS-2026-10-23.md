@@ -105,3 +105,63 @@ puderem sozinhos e com a VM"). Isso vale para este bloco de trabalho, até ele d
 - **Chat:** cada um escreve só no próprio arquivo: `CHAT-CLAUDE.txt` (Claude) e `CHAT-CODEX.txt`
   (Codex). Às 00:46 as gravações do `CHAT-IA.txt` apagaram linhas dos dois.
 - **Retorno:** Codex agendou 05:30 (`retomar-linuxit-pdf-s-05-30`), Claude 05:10.
+
+---
+
+## Regra de assunção da VM — pedido do usuário às 00:57
+
+"Caso ele não consiga concluir a VM, você assume." O Codex continua sendo o operador da E30, e o
+Claude assume **só** em um destes casos:
+
+1. O Codex escreve **LIBEREI** ou **BLOQUEADO** para a VM/E30 no `CHAT-CODEX.txt`.
+2. O Codex fica **mais de 60 minutos** sem nenhuma linha nova no `CHAT-CODEX.txt` e sem commit novo,
+   com a E30 ainda pendente.
+
+**Passos do Claude antes de assumir:**
+
+- No caso 2: se houver sinal de que o Codex está ativo (por exemplo, perto da retomada dele às
+  05:30), escrever PERGUNTA no `CHAT-CLAUDE.txt` e esperar até 15 minutos pela resposta.
+- Escrever **PEGUEI E30** no `CHAT-CLAUDE.txt`, com o caso em que o Codex parou, e conferir que ele
+  não está operando a VM.
+- Continuar do ponto registrado pelo Codex, sem repetir casos já concluídos e sem apagar os
+  registros dele.
+
+**O Codex, ao voltar:** se encontrar PEGUEI E30 do Claude, não abre a VM; combina pelo chat quem
+continua. Nunca os dois operam a VM ao mesmo tempo.
+
+D06 continua valendo para encerrar o Foxit residual, sempre registrando PID e horário.
+
+---
+
+## Sinal de vida da VM — pedido do usuário às 00:58
+
+"Fique monitorando ele (caso não gaste tokens) ou peça para ele mandar atualizações sobre a VM;
+caso pare, você assume de imediato."
+
+**O Codex, enquanto opera a VM (E30), a cada 15 minutos no máximo e a cada caso concluído:**
+
+- atualiza o ramo `codex/vm-status` com um commit vazio (pode ser forçado, sem tocar a `main`):
+
+```text
+git commit --allow-empty -m "VM-STATUS: ATIVO | caso UI02 | <resumo curto>"
+git push --force origin HEAD:codex/vm-status
+```
+
+- usa no texto um destes estados: `ATIVO`, `LIBEREI` (parou e libera para o Claude), `BLOQUEADO`
+  (não consegue seguir) ou `CONCLUIDO` (E30 terminada), sempre com o último caso feito.
+
+**O Claude** deixa um vigia em segundo plano que confere esse ramo a cada 2 minutos. O vigia não
+gasta nada enquanto o sinal está em dia e chama o Claude quando:
+
+- o estado é `LIBEREI` ou `BLOQUEADO`;
+- o sinal fica mais de **45 minutos** sem atualizar;
+- o ramo não aparece em 45 minutos.
+
+Nesses casos o Claude **assume de imediato**:
+
+1. confere o `CHAT-CODEX.txt`;
+2. escreve PEGUEI E30;
+3. continua do último caso informado.
+
+Com `CONCLUIDO`, o vigia para. O vigia expira a cada 2 horas e é rearmado pelo Claude; na
+retomada das 05:10 ele também é rearmado.

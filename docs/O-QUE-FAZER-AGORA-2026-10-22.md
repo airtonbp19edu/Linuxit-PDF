@@ -38,7 +38,7 @@ S1. Coordenação em tempo real pelo `CHAT-IA.txt` da pasta do PC.
 | C1 ⛔ (interrompida em 23/10 00:20; livre para o Codex) | S3: diagramas e estados de anotações, formulários, assinaturas e camadas, a partir das evidências já preservadas | Etapa 9 (1,27) |
 | C2 | Roteiro pronto da E30 (VM): ordem dos casos UI01/02/05/09/10 e D10–D20, arquivos de teste, o que anotar, encerramento do processo residual (D06) | Etapas 10, 11, 18, 19 |
 | C3 | Kit da E23 (equipamentos): passo a passo e verificadores para impressora, leitor de tela, áudio, dois monitores e sincronização | Etapas 10 e 16 |
-| C4 | Proposta escrita da B3, com a redação exata dos critérios e quanto o índice sobe | Decisão do usuário |
+| C4 ✅ (Claude, 23/10) | Proposta escrita da B3, com a redação exata dos critérios e quanto o índice sobe | Decisão do usuário |
 | C5 | Revisão independente do candidato 0.1.19 e do A6 antes da publicação | Qualidade da entrega |
 | C6 | Publicar a 0.1.19 (mesmos bytes testados), depois de autorização expressa do usuário | Entrega |
 | C7 | Ajudar no instalador do Windows pelo CI, se o Codex liberar no chat | E34 |
