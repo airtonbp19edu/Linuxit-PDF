@@ -98,7 +98,7 @@ class SignatureWindow(Gtk.Window):
         self.cancel=threading.Event();cancel=self.cancel;self.busy=True
         self.path.set_sensitive(False);self.verify.set_sensitive(False);self.sign.set_sensitive(False);self.status.set_text(message)
         def work():
-            return invoke_preservation(command,source,dict(request,source_sha256=_sha(source)),cancel)
+            return invoke_preservation(command,source,dict(request,source_sha256=request.get('source_sha256') or _sha(source)),cancel)
         def finish():
             self.busy=False;self.path.set_sensitive(True);self.verify.set_sensitive(True);self.sign.set_sensitive(True)
         def done(result):
@@ -128,6 +128,23 @@ class SignatureWindow(Gtk.Window):
             if values is None:return
             request[key]=values
         if not any(request.values()):self.status.set_text('Selecione ao menos um certificado, CRL ou OCSP.');return
+        dialog=Gtk.Dialog(title='Associar material às assinaturas',transient_for=self,modal=True)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Continuar',Gtk.ResponseType.OK)
+        box=dialog.get_content_area();box.set_spacing(8);box.set_border_width(12)
+        hint=Gtk.Label(label='O material será armazenado no DSS global. Opcionalmente, marque assinaturas verificadas para criar ou atualizar suas entradas VRI. A associação não comprova confiança nem completude; valide depois com CA/CRL. Se não houver assinaturas listadas, use Verificar primeiro.',xalign=0)
+        hint.set_line_wrap(True);hint.set_max_width_chars(70);box.add(hint)
+        choices=[]
+        for item in (self.result or {}).get('signatures',[]):
+            if item['status']=='verified':
+                control=Gtk.CheckButton.new_with_label(display_attachment_name(item['field']));box.add(control);choices.append((item['field'],control))
+        dialog.show_all()
+        try:
+            if dialog.run()!=Gtk.ResponseType.OK:return
+            selected=[name for name,control in choices if control.get_active()]
+        finally:dialog.destroy()
+        if selected:
+            request['vri_fields']=selected
+            request['source_sha256']=self.result['source_sha256']
         destination=self._identity_file('Salvar cópia com DSS em arquivo novo',True,Path(source).stem+'-dss.pdf')
         if not destination:return
         self._preserve('signature-dss',source,dict(request,destination=destination),'Acrescentando material DSS em uma cópia incremental…')
@@ -220,6 +237,12 @@ class SignatureWindow(Gtk.Window):
                     if trust['timestamps']:text+=' · carimbos '+str(sum(t['verified'] for t in trust['timestamps']))+'/'+str(len(trust['timestamps']))+' verificados'
                     used=trust.get('dss_used') or {}
                     if used.get('certificates') or used.get('crls'):text+=f" · DSS usado: {used.get('certificates',0)} certificado(s), {used.get('crls',0)} CRL(s)"
+                vri=item.get('vri')
+                if vri:
+                    text+=' · VRI '+('correspondente' if vri['matched'] else 'ausente; material global' if vri['scope']=='global_fallback' else 'ausente')
+                    if vri['matched']:
+                        complete=vri['validation_material_complete']
+                        text+=' · material '+('validado na política offline' if complete is True else 'incompleto/não validado' if complete is False else 'não avaliado com CA/revogação')
                 label=Gtk.Label(label=text,xalign=0);label.set_line_wrap(True);label.set_selectable(True)
                 label.set_margin_top(5);label.set_margin_bottom(5);self.rows.add(label)
             self.rows.show_all()

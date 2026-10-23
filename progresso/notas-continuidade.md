@@ -3864,18 +3864,8 @@ Windows nativo completo: instalador validado, aceitação 79/79, suíte 751/759 
 e 1 falha (test_viewer reading-mode, passa no Linux) repassada ao Codex. Doc docs/CI-RAMOS-2026-10-23.md
 (nos ramos). Nada na main/candidato. Próximo: Codex assume às 17:30 as frentes repassadas se eu parar.
 
-## 2026/10/23 às 19:27 (America/Sao_Paulo, UTC-03:00) — Claude: repasse completo ao Codex
-
-Lista de tudo o que fica com o Codex escrita em CHAT-CLAUDE.txt (linha LISTA 19:26) e resumida em
-docs/AVISOS-E-STATUS.md. Os quatro itens autorizados já foram entregues por ele em
-codex/authorized-pdf-features. Retomada automática do Codex no próximo 17:30 (24/10) se o Claude
-for interrompido. Nada integrado à main; VM reservada ao Claude, sem uso.
 
 
-### 2026-10-23T19:47:13.1356473-03:00 — Codex assume execução direta
+### 2026/10/23 às 19:18:16 — Codex: quatro itens autorizados
 
-Pedido humano: encerrar acompanhamento e assumir todas as demandas pendentes repassadas pelo Claude. Monitor excluído. Plano em docs/DEMANDAS-CODEX-2026-10-23-1926.md. Ramo codex/current-demands: transporte TSA HTTPS opt-in e Form XObject inteiro no modo vetorial; testes locais 13/13 vetoriais e 6/6 TSA, sem falhas/pulos. Lote S1: quatro observações, três entradas novas/uma revisita, 128 instruções/345 bytes; catálogo 516→519; S1 parcial. CI viewer Linux40034116130 success (artefatos baixados; revisão detalhada em andamento), Windows40034106367 failure (baixando relatórios; não atribuir ao viewer sem conferir), Flatpak40034126311 em execução. Nenhuma integração à main/candidato, release, decisãoB3 ou entrada na VM. Detalhes TSA/limites em docs/TSA-E-REDAÇÃO-CONTINUIDADE-2026-10-23.md; estática em docs/REA-S1-AUXILIARES-2026-10-23.md.
-
-### 2026-10-23T19:59:50.8692367-03:00 — resultados conferidos e próximo teste desktop
-
-Viewer Linux a47309e/40034116130:760/760 e81/81 aceitações; Windows40034106367:751/760,duas falhas,zero erros,sete pulos; instalador8/8 e79/79aceitações. A correção geométrica anterior é insuficiente. Diagnóstico nativo5d1b33a/40036468967 mantém as asserções e registra eventos para corrigir a causa. Flatpak de teste e1ad5d1/40034126311:779/779 em cada ambiente fonte/payload/sandbox,197arquivos fonte conferidos, todos hashes dos relatórios do candidato verificados; artefato120466216bytes/SHA2566294d9732ffc39367452b73c33627559bcd6c29c03eec2afffc22ae16059db85,sem release. TSA/vetores827443b/40035990554:754/754Linux e81/81aceitações,194arquivos app conferemGit. Relatórios completos em testes/resultados/continuidade-direta-2026-10-23/. O teste desktop passa a aceitar um par manifesto/bundle de CI, com verificação de tamanho/hash/versão; a execução atual usa o artefato de teste, sem substituir manifests de releases ou o candidato retido. VM/main/B3 preservados.
+Autorização humana direta “Autorizar os quatro itens” executada no ramo `codex/authorized-pdf-features`. Fonte `f34bddd`/CI `40031881361`: 779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit. Detalhes em `docs/QUATRO-ITENS-AUTORIZADOS-2026-10-23.md` e `testes/resultados/quatro-itens-2026-10-23/`. Preservadas primeira falha de fixture e correção, resultados anteriores, ramos do Claude e reserva VM. Nenhuma integração à main/candidato ou publicação; limites e próximos passos registrados.

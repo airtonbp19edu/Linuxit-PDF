@@ -1,0 +1,42 @@
+{
+  "schema": "linuxit-pdf-features-ci-review-v1",
+  "run": 40030258851,
+  "head": "40e8441ef6c2041675977c8088dc94977fc4814f",
+  "conclusion": "failure",
+  "suite": {
+    "run": 776,
+    "passed": 775,
+    "errors": 2,
+    "failures": 0,
+    "skipped": 0
+  },
+  "failed_method": "test_redaction_hidden.HiddenRedactionPopplerTests.test_complete_vector_copy_uses_actual_poppler_words_without_hidden_leftovers",
+  "cause": "Two rotation subcases reused existing fixture destination marked.pdf and correctly hit FileExistsError before exercising rotated geometry.",
+  "subtest_accounting": "776 methods run,775 successful methods,2 erroneous subcases in one method. Legacy recorder does not list failed subtests as individual case records.",
+  "fix": "Use independent plain-{rotation}.pdf and marked-{rotation}.pdf fixture paths; preserve overwrite refusal.",
+  "acceptance_executed": false,
+  "foxit_differential_test": false,
+  "artifacts": [
+    {
+      "run": "40030258851",
+      "id": 12534846537,
+      "name": "linuxit-reading-focused-40e8441ef6c2041675977c8088dc94977fc4814f",
+      "sha256": "sha256:bb1e2e6b14496d363b8be3e623316e5f8e7696783c54b2315565e73f11864b46",
+      "github_digest": "sha256:bb1e2e6b14496d363b8be3e623316e5f8e7696783c54b2315565e73f11864b46"
+    },
+    {
+      "run": "40030258851",
+      "id": 12534930716,
+      "name": "linuxit-cups-queue-40e8441ef6c2041675977c8088dc94977fc4814f",
+      "sha256": "sha256:f82e5328c55c0c34539b6c7fd6f347b78616873decd7f62f507378baf543b124",
+      "github_digest": "sha256:f82e5328c55c0c34539b6c7fd6f347b78616873decd7f62f507378baf543b124"
+    },
+    {
+      "run": "40030258851",
+      "id": 12535255141,
+      "name": "linuxit-no-vm-40e8441ef6c2041675977c8088dc94977fc4814f",
+      "sha256": "sha256:4f8c594d39a496b7e52c248e03b958a58a4e937549922ddcf1f7b1e1ed3366a4",
+      "github_digest": "sha256:4f8c594d39a496b7e52c248e03b958a58a4e937549922ddcf1f7b1e1ed3366a4"
+    }
+  ]
+}

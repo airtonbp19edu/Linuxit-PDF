@@ -83,6 +83,8 @@ def _xfa_state(reader, allow_xfa):
         return None
     if not allow_xfa:
         raise NotImplementedError('Gravação de formulários XFA ainda não é suportada.')
+    if '/LinuxitFormCalc' in form.get_object():
+        raise NotImplementedError('Esta cópia XFA contém cálculos FormCalc. Use a janela de cópia XFA com layout próprio para preencher e recalcular os valores; a edição genérica deixaria resultados antigos.')
     try:
         info = inspect_xfa(reader)
     except XFAError as exc:

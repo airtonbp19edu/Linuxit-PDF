@@ -61,7 +61,14 @@ def _request(document, changes):
             continue
         value = inherited(field, '/V', '')
         _require(isinstance(value, str) and len(value.encode('utf-8')) <= MAX_VALUE, 'Valor de campo acima do limite.')
-        row = dict(value=str(value), readonly=bool(int(inherited(field, '/Ff', 0)) & 1), actions={})
+        default = inherited(field, '/DV', '')
+        maximum = inherited(field, '/MaxLen', 0)
+        _require(isinstance(default, str) and len(default.encode('utf-8')) <= MAX_VALUE,
+                 'Valor padrão de campo acima do limite ou não textual.')
+        _require(isinstance(maximum, int) and not isinstance(maximum, bool) and 0 <= maximum <= MAX_VALUE,
+                 'Limite de caracteres do campo inválido.')
+        row = dict(value=str(value), default=str(default), maximum=int(maximum),
+                   readonly=bool(int(inherited(field, '/Ff', 0)) & 1), actions={})
         actions = inherited(field, '/AA')
         if actions is not None:
             actions = actions.get_object()
@@ -120,6 +127,7 @@ def run_form_javascript(document, changes):
     _require(set(display) <= set(result), 'Aparência JavaScript sem valor correspondente.')
     for name in result:
         row = request['fields'][name]
+        _require(not row['maximum'] or len(result[name]) <= row['maximum'], 'JavaScript excedeu o limite de caracteres do campo.')
         _require(not row['readonly'] or '/C' in row['actions'] and name in request['order'],
                  'JavaScript tentou alterar campo somente leitura fora do cálculo autorizado.')
     return result, display
@@ -149,22 +157,52 @@ BRIDGE = r'''
     values[name] = fields[name].value;
     const item = Object.create(null);
     Object.defineProperties(item, {
-      name: {value:name}, readonly:{value:fields[name].readonly},
+      name: {value:name}, readonly:{value:fields[name].readonly}, type:{value:'text'},
+      defaultValue:{value:fields[name].default},charLimit:{value:fields[name].maximum},
+      getArray:{value:()=>[api[name]]},
       value: {get:()=>values[name], set:v=>{
         if (fields[name].readonly && !(active && active.name === name && active.event === '/C'))
           throw Error('Campo somente leitura.');
-        values[name]=text(v);changed.add(name);
+        v=text(v);
+        if(fields[name].maximum && [...v].length>fields[name].maximum)throw Error('Limite de caracteres do campo.');
+        values[name]=v;changed.add(name);
       }},
       valueAsString: {get:()=>values[name]}
     });
     api[name]=Object.freeze(item);
   }
   function getField(name) {return own(api,String(name)) ? api[String(name)] : null;}
-  const doc = Object.freeze({getField, numFields:Object.keys(fields).length,
-    getNthFieldName:index=>Object.keys(fields)[index] ?? null});
+  function resetForm(names) {
+    if(names === undefined || names === null) names=Object.keys(fields).filter(n=>!fields[n].readonly && !own(fields[n].actions,'/C'));
+    if(!Array.isArray(names)||names.length>256||names.some(n=>typeof n!=='string'||!own(fields,n)))throw Error('Lista resetForm inválida.');
+    if(names.some(n=>fields[n].readonly || own(fields[n].actions,'/C')))throw Error('resetForm em campo protegido/calculado.');
+    for(const name of names)api[name].value=fields[name].default;
+  }
+  const doc = Object.freeze({getField, resetForm, numFields:Object.keys(fields).length,
+    getNthFieldName:index=>Number.isInteger(index) ? Object.keys(fields)[index] ?? null : null});
   Object.defineProperty(globalThis,'getField',{value:getField,writable:false,configurable:false});
   let event;
   function number(v) {let n=Number(v);if(!Number.isFinite(n))throw Error('Número inválido.');return n;}
+  function printf(format,...args) {
+    if(typeof format!=='string'||format.length>4096||args.length>32)throw Error('Formato printf acima do limite.');
+    let index=0;
+    const result=format.replace(/%%|%(-)?(0)?(\d{1,3})?(?:\.(\d{1,2}))?([dfs])|%/g,(token,left,zero,width,precision,kind)=>{
+      if(token==='%%')return '%';
+      if(!kind||index>=args.length)throw Error('Formato printf não suportado.');
+      width=Number(width||0);precision=precision===undefined?undefined:Number(precision);
+      if(width>256 || (precision!==undefined && precision>10))throw Error('Largura/precisão printf acima do limite.');
+      const arg=args[index++];
+      let value=kind==='s'?text(arg):kind==='d'?String(Math.trunc(number(arg))):number(arg).toFixed(precision===undefined?6:precision);
+      if(kind==='s'&&precision!==undefined)value=value.slice(0,precision);
+      if(value.length<width) {
+        const pad=(zero&&!left&&kind!=='s'?'0':' ').repeat(width-value.length);
+        value=left?value+pad:pad[0]==='0'&&value[0]==='-'?'-'+pad+value.slice(1):pad+value;
+      }
+      return value;
+    });
+    if(result.length>65536)throw Error('Resultado printf acima do limite.');return result;
+  }
+  Object.defineProperty(globalThis,'util',{value:Object.freeze({printf}),writable:false,configurable:false});
   Object.defineProperties(globalThis, {
     AFSimple_Calculate:{value:function(op,names){
       if(!Array.isArray(names)||!names.length||names.length>128)throw Error('Lista de cálculo inválida.');
@@ -173,6 +211,10 @@ BRIDGE = r'''
         op==='PRD'?n.reduce((a,b)=>a*b,1):op==='MIN'?Math.min(...n):op==='MAX'?Math.max(...n):NaN;
     }},
     AFRange_Validate:{value:function(low,min,high,max){let n=number(event.value);event.rc=(!low||n>=min)&&(!high||n<=max);}},
+    AFMakeNumber:{value:number},
+    AFSimple:{value:function(op,a,b){a=number(a);b=number(b);const value=op==='SUM'?a+b:op==='PRD'?a*b:op==='AVG'?(a+b)/2:op==='MIN'?Math.min(a,b):op==='MAX'?Math.max(a,b):NaN;return number(value);}},
+    AFPercent_Format:{value:function(dec,sep){event.value=number(event.value)*100;AFNumber_Format(dec,sep,0,0,'%',false);}},
+    AFPercent_Keystroke:{value:function(dec,sep){AFNumber_Keystroke(dec,sep);}},
     AFNumber_Format:{value:function(dec,sep,neg,style,currency,prepend){
       if(!Number.isInteger(dec)||dec<0||dec>10||![0,1,2,3,4].includes(sep)||![0,2].includes(neg)||style!==0)
         throw Error('Formato numérico fora do contrato.');
