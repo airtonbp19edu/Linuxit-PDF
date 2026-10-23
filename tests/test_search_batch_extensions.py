@@ -43,7 +43,7 @@ class SearchBatchExtensionTests(unittest.TestCase):
         self.assertEqual(len(result['omissions']),2)  # Office body-only contract.
         self.assertFalse(result['complete'])
         self.assertEqual(path.read_bytes(),before)
-        self.assertEqual(list(self.root.iterdir()),[path])
+        self.assertEqual([p.name for p in self.root.iterdir()],[path.name])
 
     def test_bad_zip_entities_expansion_and_unsupported_encoding_are_rejected(self):
         for raw in [b'broken',office('word/document.xml','<!DOCTYPE a [<!ENTITY a "x">]><p>&a;</p>'),

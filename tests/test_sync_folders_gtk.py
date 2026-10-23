@@ -52,8 +52,9 @@ class SyncFolderGTKTests(_UISetup,unittest.TestCase):
         chooser=Gtk.FileChooserDialog(title='Folder fixture',transient_for=self.parent,action=Gtk.FileChooserAction.OPEN)
         try:
             folders.prepare_chooser(chooser)
-            wait_for(lambda:chooser.get_current_folder()==str(self.sync))
-            self.assertIn(str(self.sync),chooser.list_shortcut_folders())
+            same=lambda a:bool(a) and os.path.normcase(os.path.realpath(a))==os.path.normcase(os.path.realpath(str(self.sync)))
+            wait_for(lambda:same(chooser.get_current_folder()))
+            self.assertTrue(any(same(f) for f in chooser.list_shortcut_folders()))
         finally:chooser.destroy()
 
     def test_native_folder_response_and_cancel_preserve_explicit_choice(self):
