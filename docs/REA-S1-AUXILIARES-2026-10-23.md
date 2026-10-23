@@ -16,3 +16,15 @@ As cópias das opções e os acessos aos vetores em `0x10024fc0`, `0x1001fa90` e
 Continuam abertos +3/+0xc, regra e unidade final de +0x10, tabela integral de escapes/erros e exceções até a interface. S1 segue parcial; critérios, pesos e observações VM permanecem como estavam.
 
 Evidências públicas: `testes/resultados/s1-followup-2026-10-23/machine-checks.json` e `docs/windows-evidence/foxit-rea/headless-cross-checks-s1-followup-2026-10-23.json`. Corpos e projeto completos permanecem fora do Git em `analysis-local/headless/s1-followup-2026-10-23-1934`.
+
+## Segundo lote: consumidor concreto de +0xc e contexto dos offsets
+
+Rodada `s1-option-consumers-2026-10-23-2010`: sete entradas, 67 instruções/158 bytes conferidos. Duas entradas de busca em conjuntos já constavam do catálogo e são revisitas. Cinco endereços acrescentam registros, sem aumentar um indicador funcional.
+
+Em `0x100243b0`, a cópia das opções começa no local `EBP-0x40` (cópias em `0x10024423/0x10024433`). O inteiro `+0xc` está, portanto, em `EBP-0x34`. `0x10024692` compara esse local com o resultado de `0x100321f0`. Se forem diferentes, a via segue; se forem iguais, chama `0x1002e060` para consultar o conjunto e descarta o documento quando essa consulta é falsa. Há também o filtro independente `0x10032210`/`0x1002e0c0`.
+
+Os corpos dos getters confirmam que `0x100321f0` e `0x10032210` retornam o campo `+4` de seus contêineres, obtidos pelos wrappers `0x1002aa80/0x1002aac0`. Não são getters do bloco de opções. A interpretação desse campo como contagem é compatível com o layout de conjunto observado; o fato forte é a leitura do campo e a condição de igualdade descrita acima. O nome público, a origem na UI e todos os valores válidos de `+0xc` ainda não foram demonstrados. O padrão `-1` sozinho não prova um domínio enumerado.
+
+`0x1001a9f0` armazena quatro palavras consecutivas no contexto usado por `0x10024fc0`. A segunda é o ponteiro das opções, consistente com as leituras de `contexto[1]+6/+7` no filtro de offsets. O construtor não aplica uma transformação oculta a uma distância. Essa ligação não resolve a regra matemática do limite `+0x10`.
+
+Evidências: `testes/resultados/s1-followup-2026-10-23/option-consumers-machine.json` e `docs/windows-evidence/foxit-rea/headless-cross-checks-s1-option-consumers-2026-10-23.json`. S1 permanece parcial; +3, distância/unidade e a tabela integral de escapes/erros continuam abertos.

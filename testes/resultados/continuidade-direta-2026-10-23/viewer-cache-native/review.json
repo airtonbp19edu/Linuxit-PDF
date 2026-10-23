@@ -1,0 +1,180 @@
+{
+  "run": 40037729739,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40037729739",
+  "report_sha256": {
+    "acceptance.json": "4e1d4f544b68b71b04061724bcdb3242bbc254c0ffb760f6eb9994f0ee59c733",
+    "full-suite.json": "fad1df3cfbc52852e9ce83cb0dce828c30b1150040a76947e93ebdf33e3ada51",
+    "full-suite.stderr": "5984c49dc87dd251ffe1541712ecc5373be61fb77bd546e3503862142c417ea9",
+    "installer-validation.json": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "test_runs": {
+    "full-suite.json": {
+      "run": 763,
+      "passed": 755,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 7
+    }
+  },
+  "source_sha256_matches_git": null,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40037729739",
+      "artifact": 12538426782,
+      "github_zip_digest": "sha256:64f7176b106ec30acb8ae23f97243869522a4862c8e7968eabd862537a1d3af0",
+      "complete_zip_sha256_verified": false,
+      "retrieval": "selected HTTPS ranges; individual member CRC checked",
+      "members": [
+        {
+          "file": "acceptance-progress.json",
+          "size": 50378,
+          "sha256": "74d90b14a4638d7f94a176dd816e0df0591a43b47ff26f618ff6903d09e66441",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.json",
+          "size": 49046,
+          "sha256": "4e1d4f544b68b71b04061724bcdb3242bbc254c0ffb760f6eb9994f0ee59c733",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stderr",
+          "size": 5156,
+          "sha256": "3041ab9ee09e8f516349347c8c53ef3c219e9cf1843b374318cbf5c21521284d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stdout",
+          "size": 2984,
+          "sha256": "6b52f238bf97db1744ebb5cf19e8e9a414087b31d9ed192b013daecdbd6b2f16",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite-progress.json",
+          "size": 156817,
+          "sha256": "be480e88514b7a406c3ce3ff8589c22ca450294443f0129179449275ff835bfb",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.json",
+          "size": 157093,
+          "sha256": "fad1df3cfbc52852e9ce83cb0dce828c30b1150040a76947e93ebdf33e3ada51",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stderr",
+          "size": 154698,
+          "sha256": "5984c49dc87dd251ffe1541712ecc5373be61fb77bd546e3503862142c417ea9",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-launcher-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installer-validation.json",
+          "size": 1903,
+          "sha256": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "LinuxitPDF-0.1.19-windows-x86_64.json",
+          "size": 470,
+          "sha256": "f6acba040733fc46761d55233c4dfc3b8b6279ecd1b606b96eb53437956f82a6",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "payload/windows-manifest.json",
+          "size": 3332980,
+          "sha256": "a5eeb64bd27f509662c9cdbaa8d6616988e020242fe7644ef4c538148d382905",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "report.json",
+          "size": 473,
+          "sha256": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89",
+          "zip_crc_verified": true
+        }
+      ],
+      "range_requests": 45
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_not_passed": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+      "status": "skipped",
+      "reason": "Linux process group verification"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_actual_rfc3161_token_is_bound_to_signer_signature_value",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_explicit_ca_trust_integrity_and_expiry_are_independent_of_revocation",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_non_ca_anchor_and_unrelated_ca_are_not_implicitly_trusted",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_offline_crl_required_missing_clear_and_revoked",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_timestamp_authority_trusted_only_by_platform_store_is_rejected",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/shutil.py\", line 701, in _rmtree_unsafe\n    os.unlink(fullname)\n    ~~~~~~~~~^^^^^^^^^^\nPermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:/a/_temp/linuxit-suite-temp/tmptiu8t0bo/input.pdf'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_viewer.py\", line 37, in tearDown\n    self.w.destroy(); self.quit.stop(); self.env.stop(); self.tearDown_fixture()\n                                                         ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_regressions.py\", line 41, in tearDown\n    self.temp.cleanup()\n    ~~~~~~~~~~~~~~~~~^^\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/tempfile.py\", line 1055, in cleanup\n    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/tempfile.py\", line 1035, in _rmtree\n    _shutil.rmtree(name, onexc=onexc, dir_fd=dir_fd, _onexc_kwargs=True)\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/shutil.py\", line 859, in rmtree\n    _rmtree_impl(path, dir_fd, onexc)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/shutil.py\", line 705, in _rmtree_unsafe\n    onexc(os.unlink, fullname, err)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/tempfile.py\", line 1002, in onexc\n    _os.unlink(base, dir_fd=dir_fd)\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:/a/_temp/linuxit-suite-temp/tmptiu8t0bo/input.pdf'\n"
+    }
+  ],
+  "installer": {
+    "passed": true,
+    "checks": {
+      "silent_install_exit_zero": true,
+      "installed_bytes_equal_payload": true,
+      "installed_native_probe": true,
+      "installed_exe_launcher": true,
+      "per_user_uninstall_registered": true,
+      "uninstaller_removes_owned_files": true,
+      "uninstaller_preserves_foreign_files": true,
+      "uninstall_registry_removed": true
+    }
+  }
+}

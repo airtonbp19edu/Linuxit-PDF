@@ -1,0 +1,55 @@
+{
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "method": "Directed rel32 call scan plus independent linear Capstone boundary check; not complete indirect-call coverage",
+  "original_executed": false,
+  "observations": [
+    {
+      "call_va": "0x77e5b0",
+      "destination": "0x77fb00",
+      "target_role": "trusted documents setter",
+      "caller_prologue_candidate": "0x77e560",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    },
+    {
+      "call_va": "0x15ca3b3",
+      "destination": "0x15ca180",
+      "target_role": "reflow displacement limit",
+      "caller_prologue_candidate": "0x15ca380",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    },
+    {
+      "call_va": "0x15ca40c",
+      "destination": "0x15ca180",
+      "target_role": "reflow displacement limit",
+      "caller_prologue_candidate": "0x15ca380",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    },
+    {
+      "call_va": "0x15ca432",
+      "destination": "0x15ca180",
+      "target_role": "reflow displacement limit",
+      "caller_prologue_candidate": "0x15ca380",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    },
+    {
+      "call_va": "0x15cd162",
+      "destination": "0x15ca180",
+      "target_role": "reflow displacement limit",
+      "caller_prologue_candidate": "0x15cd130",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    },
+    {
+      "call_va": "0x15cd517",
+      "destination": "0x15ca180",
+      "target_role": "reflow displacement limit",
+      "caller_prologue_candidate": "0x15cd1a0",
+      "linear_instruction_boundary_confirmed": true,
+      "function_boundary_provisional": true
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "/__w/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.13.5",
+  "test_pattern": "test_reading_workflows_gtk.py",
+  "test_modules": null,
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 15,
+  "passed": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 8.237486943999997,
+  "cases": [
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+      "status": "passed",
+      "elapsed_sec": 1.7336927649999865
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+      "status": "passed",
+      "elapsed_sec": 0.5098717999999991
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+      "status": "passed",
+      "elapsed_sec": 0.4463630169999959
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+      "status": "passed",
+      "elapsed_sec": 0.23914483200000802
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+      "status": "passed",
+      "elapsed_sec": 0.4039745529999976
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+      "status": "passed",
+      "elapsed_sec": 0.4437071659999958
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+      "status": "passed",
+      "elapsed_sec": 0.2896571299999948
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+      "status": "passed",
+      "elapsed_sec": 0.299894172000009
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+      "status": "passed",
+      "elapsed_sec": 0.3297306890000016
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+      "status": "passed",
+      "elapsed_sec": 0.34987411500000576
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+      "status": "passed",
+      "elapsed_sec": 0.2638599459999966
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+      "status": "passed",
+      "elapsed_sec": 0.7280887569999948
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+      "status": "passed",
+      "elapsed_sec": 0.7542087280000089
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session",
+      "status": "passed",
+      "elapsed_sec": 0.3686408970000059
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input",
+      "status": "passed",
+      "elapsed_sec": 1.07580367300001
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

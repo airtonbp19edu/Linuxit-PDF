@@ -1,0 +1,107 @@
+{
+  "schema": "linuxit-direct-execution-v1",
+  "updated_at": "2026-10-23T20:31:26.497802-03:00",
+  "agent": "Codex",
+  "authority": "Direct user order: stop monitoring and lead execution of outstanding Claude requests.",
+  "monitor_deleted": true,
+  "work_branch": "codex/current-demands",
+  "main_integrated": false,
+  "release_published": false,
+  "tested_application_commit": "b13fe561a651377feb3d6494056f0e987ed93f0d",
+  "tested_app_tree": "a89bb62cdaea6cbc4529aacdee53516b098e5ba8",
+  "own_results": {
+    "linux": {
+      "run_id": 40038012443,
+      "passed": 808,
+      "run": 808,
+      "acceptance_passed": 81
+    },
+    "flatpak": {
+      "run_id": 40038029420,
+      "source_passed": 808,
+      "payload_passed": 808,
+      "sandbox_passed": 808,
+      "skipped": 0
+    },
+    "desktop": {
+      "run_id": 40037127140,
+      "repetitions": 2,
+      "passed_each": 9,
+      "physical": false,
+      "bundle_source": "e1ad5d129abc2af83c1c9d2e6026bfae3a8d2b50"
+    },
+    "windows_first_combined": {
+      "run_id": 40038020795,
+      "run": 808,
+      "passed": 800,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 7,
+      "remaining_error": "WinError32 removing test input.pdf in ViewerTests.tearDown, after body assertions passed. Fixed by existing bounded GTK cleanup helper; fresh native validation pending."
+    }
+  },
+  "static_rounds": {
+    "observations": 16,
+    "new_catalog_entries": 13,
+    "revisits": 3,
+    "instructions": 606,
+    "bytes": 1808,
+    "catalog_entries": 529,
+    "note": "Distinct observed entry addresses, not complete algorithms or global coverage."
+  },
+  "queue": [
+    {
+      "item": "Four authorized PDF features",
+      "status": "bounded_implemented",
+      "next": "Complete native Windows validation of combined source; full XFA/FormCalc/Acrobat/LTV universality not claimed."
+    },
+    {
+      "item": "Viewer Windows",
+      "status": "cache_fix_validated_with_native_body_assertions",
+      "next": "Validate teardown fixture correction in entire native suite, then carry exact renderer/viewer correction to Claude Windows branch."
+    },
+    {
+      "item": "TSA transport",
+      "status": "bounded_implemented_and_tested_in_source_and_sandbox",
+      "next": "Live external provider acceptance requires the user-chosen endpoint and explicit CA policy; no arbitrary provider contacted."
+    },
+    {
+      "item": "Complex vector redaction",
+      "status": "bounded_form_xobjects_supported",
+      "next": "Direct complex fonts, page-level clipping/transparency and broader constructs remain unsupported and refused."
+    },
+    {
+      "item": "Desktop Linux",
+      "status": "two_ephemeral_installed_candidate_runs_passed",
+      "next": "Run same controls against final combined bundle if delivering it; physical desktop/equipment remains separate."
+    },
+    {
+      "item": "S1",
+      "status": "partial",
+      "next": "Byte+3, full proximity rule/unit, escapes/errors and complete UI exception propagation."
+    },
+    {
+      "item": "S3",
+      "status": "partial",
+      "next": "Forms+2bc output consumer; native annotation/form/signature/OCG engines; downstream trust and persistence."
+    },
+    {
+      "item": "S4",
+      "status": "partial",
+      "next": "Remaining maps initialization, metric units, edge/failure paths and full viewer consumers."
+    },
+    {
+      "item": "Broad closure",
+      "status": "requires_scope_decision",
+      "next": "Do not alter criteria/weights or decide B3; original differential evidence and physical equipment are separate dependencies."
+    }
+  ],
+  "preserved_decisions": [
+    "No main/candidate merge or publication without specific user authorization.",
+    "VM reserve independent; no VM input issued.",
+    "AI excluded; direct cloud/3D/RMS not resumed."
+  ],
+  "reports": "testes/resultados/continuidade-direta-2026-10-23/",
+  "functional_completion_percent": null,
+  "foxit_parity_claimed": false
+}

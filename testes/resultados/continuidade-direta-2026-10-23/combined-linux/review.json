@@ -1,0 +1,63 @@
+{
+  "run": 40038012443,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40038012443",
+  "report_sha256": {
+    "acceptance.json": "0b1dcda14b2f4b2a919dc7c33728383ed46b61a895f8d053e6c006c4f1b286a4",
+    "atspi-text.json": "33802f8789ce6e200a4226607a519321f606afa7b2df18acd6b4ba2908feab4f",
+    "native-portal.json": "ffb59d90aa54c797881abfc1c3a806a4bbf4b08eebc64c08905265e345c79e7f",
+    "reading-focused.json": "a6d506f1f5e7060159a563bf086f974f117ac83cccc2d349f41f5c2087aeac8a",
+    "source-intermediate.json": "6291654e3c97bf8d6ca08ff8d1db0aadbb90a70760082c7724ec42afb648019f",
+    "cups-queue.json": "bb7f375e5d1e3b1ed0b06e55b1d1890b27f9936ebd0e67a0879da74382b28eef"
+  },
+  "test_runs": {
+    "reading-focused.json": {
+      "run": 15,
+      "passed": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source": {
+      "run": 808,
+      "passed": 808,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_sha256_matches_git": true,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40038012443",
+      "id": 12537139624,
+      "name": "linuxit-no-vm-b13fe561a651377feb3d6494056f0e987ed93f0d",
+      "sha256": "sha256:6f4121a11104ee3eb252889cae3aa85a1b3436b2d5780adc697b6acdeb3090ea",
+      "github_digest": "sha256:6f4121a11104ee3eb252889cae3aa85a1b3436b2d5780adc697b6acdeb3090ea"
+    },
+    {
+      "run": "40038012443",
+      "id": 12537762245,
+      "name": "linuxit-reading-focused-b13fe561a651377feb3d6494056f0e987ed93f0d",
+      "sha256": "sha256:b27e05145aa8737d1cc4b97357a10b18d1174b920d8220c77c33634a0d0c4946",
+      "github_digest": "sha256:b27e05145aa8737d1cc4b97357a10b18d1174b920d8220c77c33634a0d0c4946"
+    },
+    {
+      "run": "40038012443",
+      "id": 12537927413,
+      "name": "linuxit-cups-queue-b13fe561a651377feb3d6494056f0e987ed93f0d",
+      "sha256": "sha256:3f94133c1ea015155806e920ca139ba90cc23cc82c5ede7537ef53f5ada85960",
+      "github_digest": "sha256:3f94133c1ea015155806e920ca139ba90cc23cc82c5ede7537ef53f5ada85960"
+    }
+  ],
+  "acceptance": {
+    "passed": 81,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "source_commit": "b13fe561a651377feb3d6494056f0e987ed93f0d",
+  "source_files_checked": 198,
+  "source_candidate_passed": true
+}

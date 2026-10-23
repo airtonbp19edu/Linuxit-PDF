@@ -10,6 +10,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import cairo
+from gtk_cleanup import cleanup_temp
 import test_regressions as fixtures
 from test_gui import wait_for
 from test_regressions import APP
@@ -34,7 +35,7 @@ class ViewerTests(unittest.TestCase):
         wait_for(lambda: self.w.displayed_page == 0)
 
     def tearDown(self):
-        self.w.destroy(); self.quit.stop(); self.env.stop(); self.tearDown_fixture()
+        self.w.destroy(); self.quit.stop(); self.env.stop(); cleanup_temp(self.temp)
 
     def test_theme_persistence_and_contrast(self):
         self.w.theme_combo.set_active_id('dark')

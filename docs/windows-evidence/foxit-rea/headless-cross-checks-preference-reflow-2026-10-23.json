@@ -1,0 +1,50 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/preference-reflow-consumers-2026-10-23-2013/functions/0x15cd130.json",
+      "result_sha256": "0901d7a0cb966d7f9ae93b738ff171e56fb0cc5328fe7d2e94ed4e1f6c0d6a57",
+      "entry_va": "0x15cd130",
+      "analyst_name": "analyst_entry_015cd130",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 98,
+      "body_ranges": "[[015cd130, 015cd191]]",
+      "pseudocode_sha256": "778fad33706eb3680218feb4465bd98c23395ba4456df415350feb3685e37682",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/preference-reflow-consumers-2026-10-23-2013/functions/0x15cd1a0.json",
+      "result_sha256": "b7b556eb239146d49de3d8b0d0a1a93b46875e61f1e03d3dd43f09c9d1700afc",
+      "entry_va": "0x15cd1a0",
+      "analyst_name": "analyst_entry_015cd1a0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 938,
+      "body_ranges": "[[015cd1a0, 015cd549]]",
+      "pseudocode_sha256": "dc64eb1ea5eb90b675967d818914cb3b5df3e171ddcdfdb987a6223f82693c20",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/preference-reflow-consumers-2026-10-23-2013/functions/0x77e560.json",
+      "result_sha256": "b50c0083f37f9ebfe154b7c15749bbcd90e45b04fd60eb64b0f4a4475183fddc",
+      "entry_va": "0x77e560",
+      "analyst_name": "analyst_entry_0077e560",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 149,
+      "body_ranges": "[[0077e560, 0077e5f4]]",
+      "pseudocode_sha256": "3fd340e2aae1622f66a892e3c3149c095aff98230f924ed71ba298dd8a5465b1",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

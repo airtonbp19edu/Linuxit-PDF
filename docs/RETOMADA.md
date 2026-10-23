@@ -1,5 +1,7 @@
 # Retomada do Linuxit PDF
 
+**Codex na execução direta — 2026-10-23T20:31:26.497802-03:00:** monitor de acompanhamento excluído por ordem humana. Fonte combinada e relatórios no ramo codex/current-demands. [Fila atual e resultados](../progresso/execucao-codex-2026-10-23.json), [plano](DEMANDAS-CODEX-2026-10-23-1926.md). Linux/Flatpak 808/808; nativo Windows com correção de limpeza de testes aguardando validação. S1/S3/S4 parciais; main/candidato/releases/B3/VM preservados. Registros abaixo são históricos quando divergirem deste estado.
+
 **Marco autorizado — 2026/10/23 às 19:18:16 (UTC−03):** quatro recortes implementados e validados no ramo `codex/authorized-pdf-features`; CI `40031881361`, fonte `f34bddd`. 779/779 testes próprios Linux, zero falhas/erros/pulos; 81/81 aceitações próprias. Fonte de 197 arquivos confere exatamente com o Git f34bddd. Não é paridade Foxit. Main/candidato, workflows da main, critérios/pesos, releases e VM preservados. [Implementação, evidências e limites](QUATRO-ITENS-AUTORIZADOS-2026-10-23.md).
 
 **Autorização direta — 23/10/2026, observada às 18:43 (UTC−03):** o usuário respondeu “Autorizar os quatro itens”. Desenvolvimento no ramo `codex/authorized-pdf-features`, separado da main/candidato: redação oculta, XFA posicionado/FormCalc, API JavaScript e DSS/VRI. A pausa de confirmação desses quatro foi superada; demais reservas continuam. [Implementação e validação](QUATRO-ITENS-AUTORIZADOS-2026-10-23.md).
