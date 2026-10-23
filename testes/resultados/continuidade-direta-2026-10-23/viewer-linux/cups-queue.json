@@ -1,0 +1,16 @@
+{
+  "schema": "linuxit-cups-queue-probe-v1",
+  "passed": true,
+  "checks": {
+    "real_submission_receipt": true,
+    "held_job_in_pending_queue": true,
+    "cancelled_job_absent_from_pending": true,
+    "no_physical_backend_used": true
+  },
+  "physical_printer": false,
+  "foxit_executed": false,
+  "server_loopback_only": true,
+  "errors": [],
+  "own_job_id": "LinuxitSynthetic-1",
+  "private_logs": "analysis-local/cups-queue-1792794724609905655"
+}

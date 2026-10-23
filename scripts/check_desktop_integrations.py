@@ -15,9 +15,14 @@ def inside(path):
     return run(['flatpak','run','--user','--nofilesystem=host','--nofilesystem=home','--command=linuxit-python',REF,'-c',code,str(path)],check=False,timeout=30)
 
 
-def install(manifest):
+def install(manifest,bundle_path=None):
     from delivery_bundle import resolve_bundle
-    artifact=manifest['artifact'];bundle=resolve_bundle(ROOT,manifest,download=True)
+    artifact=manifest['artifact']
+    if bundle_path is not None and Path(bundle_path).is_symlink():
+        raise ValueError('Candidate bundle must be a regular local artifact')
+    bundle=Path(bundle_path).resolve(strict=True) if bundle_path is not None else resolve_bundle(ROOT,manifest,download=True)
+    if bundle.is_symlink() or bundle.name!=artifact['file']:
+        raise ValueError('Candidate bundle filename differs from its examined manifest')
     if bundle.stat().st_size!=artifact['bytes'] or hashlib.sha256(bundle.read_bytes()).hexdigest()!=artifact['sha256']:
         raise ValueError('Published bundle identity does not match examined metadata')
     run(['flatpak','install','--user','--noninteractive','--reinstall','-y','--no-related',str(bundle)],timeout=120)
@@ -28,7 +33,11 @@ def install(manifest):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',required=True,type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',required=True,type=Path)
+    parser.add_argument('--candidate-manifest',type=Path)
+    parser.add_argument('--candidate-bundle',type=Path)
+    args=parser.parse_args()
+    if (args.candidate_manifest is None)!=(args.candidate_bundle is None):parser.error('Candidate manifest and bundle must be selected together')
     if args.output.exists() or os.environ.get('LINUXIT_EPHEMERAL_DESKTOP')!='1':parser.error('New output and explicit ephemeral CI desktop required')
     report=dict(schema='linuxit-desktop-integrations-v1',passed=False,checks={},errors=[],foxit_executed=False,physical_desktop=False,
         probe_code_commit=run(['git','rev-parse','HEAD']).stdout.strip(),controlled_portal_lifecycle=[])
@@ -78,11 +87,16 @@ def main():
         return {row.split()[0] for row in result.stdout.splitlines() if len(row.split())==2 and row.split()[1]==APP}
     try:
         server=start_portal()
-        manifest=json.loads((ROOT/'releases/manifest.json').read_text())
+        manifest=json.loads((args.candidate_manifest or ROOT/'releases/manifest.json').read_text())
+        if args.candidate_manifest:
+            if manifest.get('schema')!='linuxit-linux-candidate-v1' or manifest.get('application_id')!=APP or manifest.get('flatpak_branch')!='devel':
+                raise ValueError('Unexpected own candidate manifest')
+            report['candidate_source_commit']=manifest['source_commit']
+            report['candidate_is_unpublished_test_artifact']=True
         old=json.loads((ROOT/'testes/resultados/0.1.14/candidate.json').read_text())
         sentinel=Path.home()/'.var/app'/APP/'config'/('linuxit-rollback-'+uuid.uuid4().hex+'.txt');sentinel.parent.mkdir(parents=True,exist_ok=True);sentinel.write_text('preserve own synthetic preferences')
         try:
-            versions=[install(old),install(manifest),install(old),install(manifest)]
+            versions=[install(old),install(manifest,args.candidate_bundle),install(old),install(manifest,args.candidate_bundle)]
             report['checks']['actual_upgrade_rollback_and_upgrade']=versions==[old['version'],manifest['version'],old['version'],manifest['version']]
             report['checks']['synthetic_preferences_survive_update']=sentinel.read_text()=='preserve own synthetic preferences'
             report['tested_versions']=versions

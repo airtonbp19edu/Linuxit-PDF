@@ -1,0 +1,192 @@
+{
+  "run": 40034106367,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40034106367",
+  "report_sha256": {
+    "acceptance.json": "b6626cd9a78fa914f1272cf2fc4ffb2a448dcee5fd15e1f6669aed790821b18a",
+    "full-suite.json": "53a4be227efb5f7394041a9960d3fb795e6b70f1fefb52bb165438a0bf2273c3",
+    "full-suite.stderr": "325e243c395d6571994d86053e1055bc90e989a4ecb9b101972538771b7845fb",
+    "installer-validation.json": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "test_runs": {
+    "full-suite.json": {
+      "run": 760,
+      "passed": 751,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 7
+    }
+  },
+  "source_sha256_matches_git": null,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40034106367",
+      "id": 12537016656,
+      "name": "linuxit-own-windows-a47309ec2da861981f606a9ab97a299de36501e2",
+      "sha256": "sha256:d21fca8bb18fca001ded5141f4a93d8001ce45e2a818f494a52a91ac205954d7",
+      "github_digest": "sha256:d21fca8bb18fca001ded5141f4a93d8001ce45e2a818f494a52a91ac205954d7"
+    },
+    {
+      "run": "40034106367",
+      "artifact": 12537016656,
+      "github_zip_digest": "sha256:d21fca8bb18fca001ded5141f4a93d8001ce45e2a818f494a52a91ac205954d7",
+      "complete_zip_sha256_verified": false,
+      "retrieval": "selected HTTPS ranges; individual member CRC checked",
+      "members": [
+        {
+          "file": "acceptance-progress.json",
+          "size": 50380,
+          "sha256": "4bf7dbdb239a9fe88aa3a4c6fb8a5b9df1553aca4b8a22057587c424c4e6736b",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stderr",
+          "size": 5156,
+          "sha256": "3041ab9ee09e8f516349347c8c53ef3c219e9cf1843b374318cbf5c21521284d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.json",
+          "size": 49048,
+          "sha256": "b6626cd9a78fa914f1272cf2fc4ffb2a448dcee5fd15e1f6669aed790821b18a",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stdout",
+          "size": 2984,
+          "sha256": "6b52f238bf97db1744ebb5cf19e8e9a414087b31d9ed192b013daecdbd6b2f16",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite-progress.json",
+          "size": 154964,
+          "sha256": "d5d51b5d4702458819a03dd3b28577e8fd67034b07c47c655971a51e20a61211",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.json",
+          "size": 155239,
+          "sha256": "53a4be227efb5f7394041a9960d3fb795e6b70f1fefb52bb165438a0bf2273c3",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stderr",
+          "size": 151042,
+          "sha256": "325e243c395d6571994d86053e1055bc90e989a4ecb9b101972538771b7845fb",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-launcher-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installer-validation.json",
+          "size": 1903,
+          "sha256": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "LinuxitPDF-0.1.19-windows-x86_64.json",
+          "size": 470,
+          "sha256": "c90f58290032b8cca54c19b71a37199afbeef45455341edfbe0d74be46337dc7",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "payload/windows-manifest.json",
+          "size": 3332980,
+          "sha256": "4c88aebf06fe3ace5522df80cd698fb109aac87ac43b6d7450d087b97f231f2b",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "report.json",
+          "size": 473,
+          "sha256": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89",
+          "zip_crc_verified": true
+        }
+      ],
+      "range_requests": 45
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_not_passed": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 126, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    wait_for(lambda:self.w.displayed_page == 1)\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_search_extensions_gtk.py\", line 33, in wait_for\n    raise AssertionError('Search extension GTK timeout')\nAssertionError: Search extension GTK timeout\n"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+      "status": "skipped",
+      "reason": "Linux process group verification"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_actual_rfc3161_token_is_bound_to_signer_signature_value",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_explicit_ca_trust_integrity_and_expiry_are_independent_of_revocation",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_non_ca_anchor_and_unrelated_ca_are_not_implicitly_trusted",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_offline_crl_required_missing_clear_and_revoked",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_timestamp_authority_trusted_only_by_platform_store_is_rejected",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_viewer.py\", line 81, in test_historical_reading_mode_keeps_top_at_250_percent\n    self.assertEqual(p.pan_y, p._pan_bounds()[3])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0.0 != 331.0\n"
+    }
+  ],
+  "installer": {
+    "passed": true,
+    "checks": {
+      "silent_install_exit_zero": true,
+      "installed_bytes_equal_payload": true,
+      "installed_native_probe": true,
+      "installed_exe_launcher": true,
+      "per_user_uninstall_registered": true,
+      "uninstaller_removes_owned_files": true,
+      "uninstaller_preserves_foreign_files": true,
+      "uninstall_registry_removed": true
+    }
+  }
+}

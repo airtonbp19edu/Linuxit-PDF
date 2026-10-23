@@ -1,0 +1,70 @@
+{
+  "schema": "linuxit-linux-candidate-v1",
+  "date_utc": "2026-10-23T22:48:42.061820+00:00",
+  "version": "0.1.19",
+  "status": "development; full reconstruction incomplete",
+  "application_id": "io.github.airtonbp19edu.LinuxitPDF",
+  "flatpak_branch": "devel",
+  "architecture": "x86_64",
+  "runtime": "org.freedesktop.Platform/x86_64/25.08",
+  "runtime_commit_tested": "08713ee4ce58fee0b8ff2f5bb58e511ff2009c4d72209270d2ddd01fb0336a04",
+  "app_ostree_commit": "ee4149396a942c67fde675b44dea78fe87f5b19bc2d5fcac37e6cba8c4f8400e",
+  "source_commit": "e1ad5d129abc2af83c1c9d2e6026bfae3a8d2b50",
+  "validation_commit": "e1ad5d129abc2af83c1c9d2e6026bfae3a8d2b50",
+  "builder_sha256": "3aa1b4d872b55eb7fe53283d02d4cdc7f05b7e4bb49b266c0a0d36df3529416c",
+  "artifact": {
+    "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+    "bytes": 120466216,
+    "sha256": "6294d9732ffc39367452b73c33627559bcd6c29c03eec2afffc22ae16059db85",
+    "digitally_signed": false
+  },
+  "validation": {
+    "source": {
+      "run": 779,
+      "passed": 779,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "payload": {
+      "run": 779,
+      "passed": 779,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox": {
+      "run": 779,
+      "passed": 779,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_payload_matched_files": 197,
+  "bundled_runtime_files_audited": 3686,
+  "bundled_elf_files_audited": 485,
+  "bundled_debian_packages": 297,
+  "sandbox_smoke_checks_passed": 5,
+  "normal_launcher_checks_passed": 3,
+  "report_hashes": {
+    "sidebar-before.json": "87f97407709419e8401e609d7ee1e057d199ba9cdae000d81d8dd4ecf5bd212e",
+    "source-payload-integrity.json": "699c8e14a069fa10dd45fcbe9bf2a1c4a6f2c6b41a0f4013bf296445d5b9539c",
+    "sandbox-smoke.json": "dc4372c357f304e9a1b1410d98deea7d62ec93f4d9c9de3c436fb17ca719a0e2",
+    "source-intermediate.json": "02ba3dcc693941d0c9f8af0f071c755fa6ac089c8a3f641eca4783fc322fc618",
+    "sidebar-after.json": "dce37a29efea91942136c801b05b0e63edc70805fdc3ea9f9f8382b46cb2c065",
+    "sync-folder-denied.json": "3a2715caa4f16fc0e4db93926d42cb98e2dbfb564675a5223307495b4435cff8",
+    "sync-folder-granted.json": "370b488d36e1396963583e1b798cd6cbd16c5ce5e5d95980fd35b0166e7f3685",
+    "sandbox-tests.json": "cc2348a0f60b6e1224b155f520b8920914c0be7e52e1ada6cf694392d7d54473",
+    "payload-tests.json": "ed1cf2eb8806f9fa3175ce1a7974d96a29f3bf617b31897860eb20f1df794c53",
+    "runtime-source-access.json": "1c21b1c415f78843f122b23ed00876ad33bcb90e8d0f9ee8e0f83c12ef995bbc",
+    "flatpak-normal-launch.json": "181ed5dae57b86b764d1a7b633c389ace1de8eca48d82b4e5ae4ecbd9da6d010",
+    "runtime-origins.json": "253c2d64dab7d7f6f5b5e6b5cac66ca33b97617fda05391ad2fde69653efb8c2"
+  },
+  "foxit_differential_test": false,
+  "physical_printing_verified": false,
+  "restrictions": [
+    "Development build, not complete Foxit reconstruction.",
+    "Only own application and licensed dependencies; no proprietary originals or reverse-engineering payloads."
+  ]
+}
