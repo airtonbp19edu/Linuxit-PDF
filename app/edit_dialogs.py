@@ -397,7 +397,7 @@ def redaction_apply_dialog(parent, marks):
     text = Gtk.Label(label=(f'{marks} área(s) marcada(s). Numa cópia nova, o texto, os desenhos e as imagens sob as áreas são '
                             'removidos e pintados com a cor de preenchimento da marca. No método rasterizado, cada página com marcas vira uma imagem: '
                             'o texto dela deixa de ser selecionável e pesquisável. Anotações sobre as áreas são removidas; '
-                            'páginas sem marcas não mudam. Títulos de marcadores, metadados e anexos não são verificados.'), xalign=0)
+                            'páginas sem marcas não mudam. Opcionalmente, use as palavras sob as marcas para limpar dados ocultos.'), xalign=0)
     text.set_line_wrap(True);text.set_max_width_chars(70);box.add(text)
     method = Gtk.ComboBoxText();method.get_accessible().set_name('Método de redação')
     method.append('raster','Rasterizado (compatibilidade ampla)')
@@ -408,9 +408,18 @@ def redaction_apply_dialog(parent, marks):
     resolution.append('150', '150 DPI (arquivo menor)');resolution.append('300', '300 DPI (mais nítido)')
     resolution.set_active_id('150');box.add(resolution)
     method.connect('changed',lambda *_:resolution.set_sensitive(method.get_active_id()=='raster'))
+    hidden = {}
+    for key, label in (('metadata','Remover todos os metadados Info/XMP'),
+                       ('bookmarks','Redigir palavras marcadas nos títulos de marcadores'),
+                       ('attachments','Redigir nomes, descrições e conteúdo dos anexos de texto UTF-8')):
+        hidden[key] = Gtk.CheckButton.new_with_label(label);box.add(hidden[key])
+    limits = Gtk.Label(label='Dados ocultos: exige texto extraível nas áreas marcadas. Anexos binários/Office/PDF e associados são recusados; não é uma limpeza integral do documento. JSON/XML podem exigir reparo após a redação do texto.', xalign=0)
+    limits.set_line_wrap(True);limits.set_max_width_chars(70);box.add(limits)
     dialog.show_all()
     try:
         if dialog.run()!=Gtk.ResponseType.OK:return None
         dpi=int(resolution.get_active_id())
+        flags = {key:control.get_active() for key, control in hidden.items()}
+        if any(flags.values()):return {'mode':method.get_active_id(),'dpi':dpi,'hidden':flags}
         return {'mode':'vector','dpi':dpi} if method.get_active_id()=='vector' else dpi
     finally:dialog.destroy()

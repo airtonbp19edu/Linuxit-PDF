@@ -137,7 +137,9 @@ class EditWindow(Gtk.Window):
         if not target or self.closed or self.session is not captured_session:return
         def task():
             from pdf_redaction import invoke_redaction
-            return invoke_redaction(source,target,{'source_sha256':identity,'dpi':dpi,'mode':mode},self.cancel)
+            request = {'source_sha256':identity,'dpi':dpi,'mode':mode}
+            if isinstance(choice,dict) and 'hidden' in choice:request['hidden']=choice['hidden']
+            return invoke_redaction(source,target,request,self.cancel)
         self.busy = True;self.status.set_text('Aplicando redação… Se interromper, confira o destino antes de repetir.');self._refresh()
         def done(result):
             if self.closed:return

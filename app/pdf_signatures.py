@@ -80,30 +80,8 @@ def _dss_material(reader):
     They are validation material only: certificates never become trust anchors and
     nothing is fetched. OCSP is checked separately against an explicit local chain.
     """
-    dss = reader.root_object.get('/DSS')
-    if dss is None:return None
-    dss = dss.get_object()
-    if not hasattr(dss, 'get'):raise ValueError('DSS inválido.')
-    def items(key, limit):
-        values = dss.get(key)
-        values = values.get_object() if values is not None else []
-        if not isinstance(values, list) or len(values) > limit:raise ValueError('DSS acima do limite: ' + key)
-        result = []
-        for value in values:
-            data = value.get_object().get_data()
-            if not data or len(data) > MAX_DSS_ITEM:raise ValueError('Item do DSS vazio ou acima de 1 MiB.')
-            result.append(data)
-        return result
-    vri = dss.get('/VRI');vri = vri.get_object() if vri is not None else {}
-    from cryptography import x509
-    from cryptography.x509 import ocsp
-    certificates, crls = items('/Certs', MAX_DSS_CERTS), items('/CRLs', MAX_DSS_CRLS)
-    ocsps = items('/OCSPs', MAX_DSS_OCSPS)
-    for data in certificates:x509.load_der_x509_certificate(data)
-    for data in crls:x509.load_der_x509_crl(data)
-    for data in ocsps:ocsp.load_der_ocsp_response(data)
-    return {'certificates': certificates, 'crls': crls, 'ocsps': ocsps,
-            'ocsp_responses': len(ocsps), 'vri_entries': len(vri) if hasattr(vri, 'keys') else 0}
+    from signature_dss import material
+    return material(reader)
 
 
 def _verify_document_timestamp(token, content):
@@ -183,6 +161,8 @@ def inspect_pdf_signatures(path, request):
             declared = bytes(declared) if isinstance(declared, bytes) else declared.original_bytes
             if content_bytes != declared:raise ValueError('Contents não corresponde ao intervalo excluído.')
             cms = _der_payload(content_bytes)
+            from signature_dss import for_signature
+            selected_dss, record['vri'] = for_signature(dss, content_bytes)
             covered = raw[:left]+raw[right:right+tail]
             if record['kind'] == 'document_timestamp':
                 verified, backend, moment = _verify_document_timestamp(cms, covered)
@@ -195,8 +175,11 @@ def inspect_pdf_signatures(path, request):
             if policy is not None:
                 from signature_trust import verify_document_timestamp, verify_trust
                 check = verify_document_timestamp if record['kind'] == 'document_timestamp' else verify_trust
-                trust=check(cms,covered,policy,dss)
+                trust=check(cms,covered,policy,selected_dss)
                 record['trust']=trust;record['trust_chain_verified']=trust['chain_verified']
+                record['vri']['validation_material_complete'] = bool(record['vri']['matched']
+                    and record['vri']['certificates_present'] and record['vri']['revocation_material_present']
+                    and verified is True and trust['chain_verified'] and trust.get('revocation_verified') is True)
         except (ValueError, AttributeError, TypeError, KeyError, OverflowError):
             record['status'] = 'unsupported_or_malformed'
     if _sha(path) != identity:raise ValueError('O PDF mudou durante a verificação de assinaturas.')

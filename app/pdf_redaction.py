@@ -9,8 +9,8 @@ marked area are removed with the marks; form fields under a mark are refused.
 The structure tree is dropped when it exists, because it may carry the page's
 text (ActualText/Alt) and its marked-content links would point to nothing.
 
-Bounded on purpose: no text search, no partial vector editing, no overlay
-text. Outline titles, metadata, attachments and other pages are not searched.
+Hidden data can be selected explicitly: Info/XMP removal, marked-word matching
+in outline titles and UTF-8 text attachments. Other pages are not searched.
 """
 from io import BytesIO
 import hashlib
@@ -49,7 +49,9 @@ def _require(value, message):
 
 
 def validate_request(request):
-    _require(isinstance(request, dict) and {'source_sha256', 'dpi'} <= set(request) <= {'source_sha256', 'dpi', 'mode'}, 'Pedido de redação inválido.')
+    _require(isinstance(request, dict) and {'source_sha256', 'dpi'} <= set(request) <= {'source_sha256', 'dpi', 'mode', 'hidden'}, 'Pedido de redação inválido.')
+    from redaction_hidden import options
+    options(request)
     _require(request.get('mode', 'raster') in ('raster', 'vector'), 'Modo de redação inválido.')
     _require(isinstance(request['source_sha256'], str) and re.fullmatch('[0-9a-f]{64}', request['source_sha256']),
              'Identidade do PDF inválida; reabra o documento.')
@@ -248,6 +250,9 @@ def redact_copy(source, destination, request):
     vector_counts = {'text_objects_removed':0,'paths_removed':0,'images_removed':0}
     with tempfile.TemporaryDirectory(prefix='linuxit-redact-') as folder:
         work = Path(folder)
+        from redaction_hidden import options, marked_words, sanitise
+        hidden = options(request)
+        hidden_report = sanitise(writer, marked_words(reader, plan, work), hidden) if any(hidden.values()) else None
         for index, item in plan.items():
             if not vector_mode:
                 image = _paint(_render(work, data, index, dpi, item['size']), reader.pages[index], item['marks'], dpi)
@@ -302,7 +307,8 @@ def redact_copy(source, destination, request):
             'annotations_removed': removed_annotations,
             'overlay_text_ignored': sum(item['overlay_ignored'] for item in plan.values()),
             'structure_tree_removed': structure_removed, 'rasterized': not vector_mode,
-            'mode':'vector' if vector_mode else 'raster', 'objects_removed':vector_counts if vector_mode else None}
+            'mode':'vector' if vector_mode else 'raster', 'objects_removed':vector_counts if vector_mode else None,
+            'hidden_data': hidden_report}
 
 
 def invoke_redaction(source, destination, request, cancel=None, timeout=900):

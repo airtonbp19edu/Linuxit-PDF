@@ -1,9 +1,8 @@
 """Own paginated XFA flow renderer, not an Adobe/XFA layout implementation.
 
-Supported templates use top-to-bottom subforms, normal named data binding,
-repeatable subforms, text/numeric/date fields and static text. Scripts, FormCalc,
-positioned layout, explicit bindings and unsupported controls are refused before
-publication. Output contains new AcroForm widgets and matching XFA datasets.
+Top-to-bottom flow or a bounded single-page positioned layout, normal data
+binding, text fields and numeric calculate-only FormCalc. Other scripts and
+unsupported layout instructions are refused. Original styles are not preserved.
 """
 import copy
 import hashlib
@@ -100,19 +99,28 @@ def _safe_template(template):
     # A renderer must never silently accept an unimplemented layout instruction.
     allowed = {'template','subform','occur','field','draw','value','text','integer','decimal','float','date','dateTime',
                'caption','ui','textEdit','numericEdit','dateTimeEdit','font','margin','para','border','edge','fill','color',
-               'pageSet','pageArea','medium','contentArea','extras','desc'}
+               'pageSet','pageArea','medium','contentArea','extras','desc','calculate','script'}
+    parents = {id(item):node for node in template.iter() for item in node}
     count = 0
     for node in template.iter():
         count += 1
         _require(count <= 20000, 'Template XFA acima do limite de nós.')
         _require(local(node) in allowed, 'Elemento XFA não suportado na cópia fluida: ' + local(node))
         if local(node) == 'subform':
-            _require(node.get('layout', 'tb') == 'tb', 'A cópia fluida só aceita subformulários top-to-bottom (tb).')
+            _require(node.get('layout', 'tb') in ('tb','position'), 'Layout XFA fora de tb/position.')
+        if local(node) == 'calculate':
+            _require(local(parents[id(node)]) == 'field' and len(node) == 1 and local(node[0]) == 'script',
+                     'FormCalc só é aceito em calculate de campo.')
+        if local(node) == 'script':
+            _require(local(parents[id(node)]) == 'calculate' and not len(node)
+                     and node.get('contentType') == 'application/x-formcalc' and node.get('runAt','client') == 'client',
+                     'Só FormCalc numérico local em calculate é suportado.')
         if local(node) in ('field', 'subform') and node.get('name') is not None:
             _require(re.fullmatch(r'[A-Za-z_][A-Za-z_0-9-]*', node.get('name')) is not None, 'Nome XFA fora do binding normal suportado.')
         _require(node.get('presence', 'visible') == 'visible', 'Presença condicional XFA não suportada.')
         if local(node)=='field':
             _require(node.get('access','open')=='open','Campo XFA com acesso protegido/somente leitura não suportado na cópia fluida.')
+            _require(sum(local(n) == 'calculate' for n in node) <= 1, 'Mais de um calculate no campo XFA.')
         _require(not any(key.rsplit('}',1)[-1] in ('href','use','usehref') for key in node.attrib), 'Referência externa XFA não suportada.')
 
 
@@ -154,6 +162,24 @@ def flow_model(reader, values=None, instances=None):
     template_bytes, dataset_bytes = _packets(reader)
     template, datasets = _xml(template_bytes), _xml(dataset_bytes)
     _safe_template(template)
+    positioned = any(local(n) == 'subform' and n.get('layout') == 'position' for n in template.iter())
+    page_size, origin, container = (595.,842.), (0.,0.), (595.,842.)
+    if positioned:
+        from xfa_positioned import measure, geometry
+        _require(all(n.get('layout','tb') == 'position' for n in template.iter() if local(n) == 'subform'),
+                 'Mistura de fluxo tb e position não é suportada nesta cópia.')
+        _require(sum(local(n) == 'pageArea' for n in template.iter()) <= 1, 'Layout posicionado aceita uma página.')
+        media = [n for n in template.iter() if local(n) == 'medium']
+        _require(len(media) <= 1, 'Mais de um tamanho de página XFA.')
+        if media:
+            _require(media[0].get('orientation','portrait') == 'portrait', 'Orientação XFA fora do subconjunto posicionado.')
+            page_size = (measure(media[0].get('short','595pt')), measure(media[0].get('long','842pt')))
+            _require(min(page_size) > 0, 'Página XFA vazia.')
+            container = page_size
+        areas = [n for n in template.iter() if local(n) == 'contentArea']
+        _require(len(areas) <= 1, 'Mais de uma área de conteúdo XFA.')
+        if areas:
+            rect = geometry(areas[0], origin, container);origin, container = rect[:2], rect[2:]
     data = _data_root(datasets)
     values = {} if values is None else values
     instances = [] if instances is None else instances
@@ -162,19 +188,26 @@ def flow_model(reader, values=None, instances=None):
     rows, groups = [], {}
     creation_budget=[MAX_FIELDS]
 
-    def bind(parent_template, parent_data, prefix='', populate=False):
+    def bind(parent_template, parent_data, prefix='', populate=False, offset=origin, area=container):
         for node in parent_template:
             kind = local(node)
             if kind == 'draw':
-                rows.append(dict(kind='text', text=_value(node)))
+                row = dict(kind='text', text=_value(node))
+                if positioned:
+                    _require('w' in node.attrib and 'h' in node.attrib, 'Texto posicionado exige w/h explícitos.')
+                    row['rect'] = geometry(node, offset, area)
+                rows.append(row)
                 _require(len(rows)<=MAX_FIELDS,'Layout XFA acima de 5000 linhas.')
                 continue
             if kind not in ('field','subform'):
                 continue
+            node_rect = geometry(node, offset, area) if positioned else None
+            if positioned:
+                _require(_bounds(node)[1] == 1, 'Layout posicionado não admite repetição nesta versão.')
             name = node.get('name')
             if not name:
                 _require(kind == 'subform', 'Campo XFA sem nome.')
-                bind(node, parent_data, prefix, populate)
+                bind(node, parent_data, prefix, populate, node_rect[:2] if positioned else offset, node_rect[2:] if positioned else area)
                 continue
             entries = [n for n in parent_data if local(n) == name]
             low, high, initial = _bounds(node)
@@ -189,14 +222,20 @@ def flow_model(reader, values=None, instances=None):
             for index, entry in enumerate(entries):
                 path = base + '[' + str(index) + ']'
                 if kind == 'subform':
-                    bind(node, entry, path + '.', populate)
+                    bind(node, entry, path + '.', populate, node_rect[:2] if positioned else offset, node_rect[2:] if positioned else area)
                 else:
                     _require(not len(entry), 'Dados XFA ricos/compostos não suportados na cópia fluida.')
                     ui = child(node, 'ui')
                     _require(ui is None or len(ui) == 1 and local(ui[0]) in ('textEdit','numericEdit','dateTimeEdit'), 'Controle XFA fora do subconjunto textual.')
                     caption = child(node, 'caption')
                     label = _value(caption) if caption is not None else name
-                    rows.append(dict(kind='field', path=path, label=label, value=entry.text or ''))
+                    row = dict(kind='field', path=path, label=label, value=entry.text or '')
+                    calc = child(node, 'calculate')
+                    if calc is not None:row['calculate'] = calc[0].text or ''
+                    if positioned:
+                        _require('w' in node.attrib and 'h' in node.attrib, 'Campo posicionado exige w/h explícitos.')
+                        row['rect'] = node_rect
+                    rows.append(row)
                     _require(len(rows) <= MAX_FIELDS, 'Layout XFA acima de 5000 linhas.')
     bind(template, data, populate=True)
     for operation in instances:
@@ -216,17 +255,23 @@ def flow_model(reader, values=None, instances=None):
             parent.remove(entries[index])
         rows.clear(); groups.clear(); bind(template, data)
     known = {row['path'] for row in rows if row['kind'] == 'field'}
+    calculated = {row['path'] for row in rows if 'calculate' in row}
     for path, value in values.items():
         _require(path in known and isinstance(value, str) and len(value) <= MAX_VALUE, 'Campo ou valor XFA inválido.')
+        _require(path not in calculated, 'Preencha entradas, não campos FormCalc calculados.')
         _require(not any(ord(c) < 32 and c not in '\n\r\t' for c in value), 'Valor XFA contém controle XML inválido.')
         _path(data, path).text = value
     rows.clear(); groups.clear(); bind(template, data)
+    from xfa_formcalc import calculate
+    calculations = calculate(rows)
+    for row in rows:
+        if row.get('calculate') is not None:_path(data,row['path']).text = row['value']
     _require(rows, 'Template XFA sem conteúdo fluido.')
     serialized = ET.tostring(datasets, encoding='utf-8', xml_declaration=True)
     _require(len(serialized) <= MAX_BYTES, 'Dados XFA acima de 8 MiB após as alterações.')
     return dict(rows=rows, groups=[dict(path=path,count=len(entries),minimum=_bounds(node)[0],maximum=_bounds(node)[1])
                 for path, (_, node, entries) in sorted(groups.items()) if local(node)=='subform' and _bounds(node)[1] > 1],
-                template=template_bytes, datasets=serialized)
+                template=template_bytes, datasets=serialized, positioned=positioned, page_size=page_size, calculations=calculations)
 
 
 def inspect_xfa_flow(source):
@@ -236,7 +281,8 @@ def inspect_xfa_flow(source):
     model = flow_model(reader)
     return dict(source_sha256=hashlib.sha256(Path(source).read_bytes()).hexdigest(),
                 fields=[row for row in model['rows'] if row['kind']=='field'],groups=model['groups'],
-                original_layout_preserved=False,scripts_executed=False)
+                original_layout_preserved=False,scripts_executed=bool(model['calculations']),
+                calculations=model['calculations'],layout='position' if model['positioned'] else 'tb')
 
 
 def _latin(text):
@@ -249,6 +295,9 @@ def _latin(text):
 
 
 def _render(model):
+    if model.get('positioned'):
+        from xfa_positioned import render
+        return render(model)
     writer = PdfWriter()
     font = writer._add_object(DictionaryObject({NameObject('/Type'):NameObject('/Font'), NameObject('/Subtype'):NameObject('/Type1'),
                        NameObject('/BaseFont'):NameObject('/Helvetica'), NameObject('/Encoding'):NameObject('/WinAnsiEncoding')}))
@@ -283,7 +332,7 @@ def _render(model):
             _latin(row['value'])
             widget=DictionaryObject({NameObject('/Type'):NameObject('/Annot'),NameObject('/Subtype'):NameObject('/Widget'),
                 NameObject('/FT'):NameObject('/Tx'),NameObject('/T'):TextStringObject(row['path']),NameObject('/V'):TextStringObject(row['value']),
-                NameObject('/DA'):TextStringObject('/Helv 11 Tf 0 g'),NameObject('/Ff'):NumberObject(4096),NameObject('/F'):NumberObject(4),
+                NameObject('/DA'):TextStringObject('/Helv 11 Tf 0 g'),NameObject('/Ff'):NumberObject(4096 | bool(row.get('calculate'))),NameObject('/F'):NumberObject(4),
                 NameObject('/Rect'):ArrayObject(FloatObject(n) for n in (42,bottom,553,top)),NameObject('/P'):page.indirect_reference})
             appearance=[b'0.7 G 0 0 511 '+str(top-bottom).encode()+b' re S']
             for index,line in enumerate(lines):
@@ -324,4 +373,5 @@ def create_xfa_flow_copy(source, destination, request):
             _require(hashlib.sha256(source.read_bytes()).hexdigest()==before,'O PDF mudou durante a operação.')
         publish_copy(staged,destination,unchanged)
     return dict(schema='linuxit-xfa-flow-copy-v1',path=str(destination),pages=len(writer.pages),fields=len(expected),
-                source_sha256=before,original_layout_preserved=False,scripts_executed=False)
+                source_sha256=before,original_layout_preserved=False,scripts_executed=bool(model['calculations']),
+                calculations=model['calculations'],layout='position' if model['positioned'] else 'tb')

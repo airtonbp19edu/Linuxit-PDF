@@ -11,13 +11,13 @@ from search_tasks import run_search_worker
 
 class XFAFlowWindow(Gtk.Window):
     def __init__(self,parent,path,open_result):
-        super().__init__(title='Cópia XFA com layout fluido próprio',transient_for=parent)
+        super().__init__(title='Cópia XFA com layout próprio',transient_for=parent)
         self.set_destroy_with_parent(True);self.set_default_size(660,520)
         self.path=str(path);self.open_result=open_result;self.closed=False;self.busy=False
         self.cancel=threading.Event();self.runner=BackgroundRunner(workers=1);self.info=None;self.result=None
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
-        hint=Gtk.Label(label='Gera páginas novas com campos editáveis, em fluxo vertical. A aparência original é substituída. '
-            'Aceita subformulários repetidos e texto Windows-1252. Scripts, FormCalc, layout posicionado e controles incompatíveis impedem a cópia. O original é preservado.',xalign=0)
+        hint=Gtk.Label(label='Gera páginas novas em fluxo vertical ou uma página com posições x/y/w/h suportadas. A aparência original é substituída. '
+            'Aceita texto Windows-1252, repetições no fluxo vertical e cálculos FormCalc numéricos entre campos irmãos. Outros scripts/controles são recusados. O original é preservado.',xalign=0)
         hint.set_line_wrap(True);box.pack_start(hint,False,False,0)
         self.grid=Gtk.Grid(column_spacing=8,row_spacing=6)
         scroll=Gtk.ScrolledWindow();scroll.set_vexpand(True);scroll.add(self.grid);box.pack_start(scroll,True,True,0)
@@ -29,7 +29,7 @@ class XFAFlowWindow(Gtk.Window):
         self.index=Gtk.SpinButton.new_with_range(1,1001,1);self.index.get_accessible().set_name('Posição da instância');bar.pack_start(self.index,False,False,0)
         self.action.connect('changed',self._mode);self.group.connect('changed',self._mode)
         buttons=Gtk.Box(spacing=6);box.pack_start(buttons,False,False,0)
-        self.create=Gtk.Button(label='Salvar nova cópia fluida…');self.create.connect('clicked',self._create);buttons.pack_start(self.create,False,False,0)
+        self.create=Gtk.Button(label='Salvar nova cópia XFA…');self.create.connect('clicked',self._create);buttons.pack_start(self.create,False,False,0)
         self.open=Gtk.Button(label='Abrir cópia');self.open.set_sensitive(False);self.open.connect('clicked',lambda *_:self.open_result(self.result['path']) if self.result else None);buttons.pack_start(self.open,False,False,0)
         cancel=Gtk.Button(label='Cancelar operação');cancel.connect('clicked',lambda *_:self.cancel.set());buttons.pack_end(cancel,False,False,0)
         self.status=Gtk.Label(label='Lendo template e dados…',xalign=0);self.status.set_line_wrap(True);self.status.set_selectable(True);box.pack_start(self.status,False,False,0)
@@ -42,6 +42,7 @@ class XFAFlowWindow(Gtk.Window):
         for row,record in enumerate(info['fields'][:256]):
             label=Gtk.Label(label=record['path'],xalign=0);label.set_line_wrap(True)
             entry=Gtk.Entry();entry.set_text(record['value']);entry.get_accessible().set_name(record['path'])
+            if record.get('calculate') is not None:entry.set_editable(False);entry.set_tooltip_text('Valor calculado por FormCalc; altere os campos de entrada.')
             self.grid.attach(label,0,row,1,1);self.grid.attach(entry,1,row,1,1);self.entries.append((record,entry))
         for record in info['groups']:self.group.append(record['path'],record['path']+f" ({record['count']})")
         self.group.set_active(0);self.grid.show_all();self._mode()
