@@ -1,0 +1,85 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_vector_redaction*.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 13,
+  "passed": 13,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 1.8279999999995198,
+  "cases": [
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_complex_content_is_refused_without_publishing",
+      "status": "passed",
+      "elapsed_sec": 0.43800000000010186
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_no_overwrite_and_changed_source_guard",
+      "status": "passed",
+      "elapsed_sec": 0.10899999999946886
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_paths_are_removed_by_intersection_and_public_vectors_remain",
+      "status": "passed",
+      "elapsed_sec": 0.125
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_rotation_does_not_change_page_space_selection",
+      "status": "passed",
+      "elapsed_sec": 0.125
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_secret_bytes_and_image_removed_public_text_stays_selectable",
+      "status": "passed",
+      "elapsed_sec": 0.125
+    },
+    {
+      "id": "test_vector_redaction.VectorRedactionTests.test_tj_arrays_and_quote_strings_are_really_removed",
+      "status": "passed",
+      "elapsed_sec": 0.14100000000053114
+    },
+    {
+      "id": "test_vector_redaction_forms.VectorFormRedactionTests.test_form_matrix_and_page_transform_are_composed",
+      "status": "passed",
+      "elapsed_sec": 0.13999999999941792
+    },
+    {
+      "id": "test_vector_redaction_forms.VectorFormRedactionTests.test_missing_or_reversed_bbox_refused_before_publication",
+      "status": "passed",
+      "elapsed_sec": 0.31300000000010186
+    },
+    {
+      "id": "test_vector_redaction_forms.VectorFormRedactionTests.test_nested_clipping_text_removed_whole_without_raster_or_orphans",
+      "status": "passed",
+      "elapsed_sec": 0.14000000000032742
+    },
+    {
+      "id": "test_vector_redaction_forms.VectorFormRedactionTests.test_same_resource_kept_only_for_nonintersecting_invocation",
+      "status": "passed",
+      "elapsed_sec": 0.14099999999962165
+    },
+    {
+      "id": "test_vector_redaction_review.VectorReviewTests.test_repeated_finite_transforms_cannot_overflow_into_unsafe_geometry",
+      "status": "passed",
+      "elapsed_sec": 0.0
+    },
+    {
+      "id": "test_vector_redaction_review.VectorReviewTests.test_thumbnail_and_private_page_payloads_are_removed",
+      "status": "passed",
+      "elapsed_sec": 0.016000000000531145
+    },
+    {
+      "id": "test_vector_redaction_review.VectorReviewTests.test_wide_text_stroke_is_refused_instead_of_preserving_secret",
+      "status": "passed",
+      "elapsed_sec": 0.014999999999417923
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

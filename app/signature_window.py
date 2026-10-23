@@ -20,7 +20,7 @@ class SignatureWindow(Gtk.Window):
         box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10);box.set_border_width(14);self.add(box)
         self.path=Gtk.Entry();self.path.set_text(str(path or ''));self.path.get_accessible().set_name('PDF para verificar assinaturas')
         box.pack_start(self.path,False,False,0)
-        note=Gtk.Label(label='Integridade CMS offline. CA, CRL e OCSP locais; DSS incremental e carimbos RFC3161 com pedido/resposta de TSA. Nenhum serviço é contatado. Não determina validade legal nem PAdES-LTA universal.',xalign=0)
+        note=Gtk.Label(label='Integridade CMS offline. CA, CRL e OCSP locais; DSS incremental e carimbos RFC3161. A consulta HTTPS à TSA ocorre só ao confirmar sua URL. Não determina validade legal nem PAdES-LTA universal.',xalign=0)
         note.set_line_wrap(True);box.pack_start(note,False,False,0)
         actions=Gtk.Box(spacing=8);box.pack_start(actions,False,False,0)
         self.verify=Gtk.Button(label='Verificar');self.verify.connect('clicked',self._verify);actions.pack_start(self.verify,False,False,0)
@@ -29,7 +29,7 @@ class SignatureWindow(Gtk.Window):
         cancel=Gtk.Button(label='Cancelar');cancel.connect('clicked',self._cancel);actions.pack_start(cancel,False,False,0)
         preservation=Gtk.Box(spacing=8);box.pack_start(preservation,False,False,0)
         for label,callback in (('Incorporar DSS em cópia…',self._add_dss),('Exportar pedido TSA…',self._prepare_timestamp),
-                               ('Importar resposta TSA…',self._complete_timestamp)):
+                               ('Consultar TSA por HTTPS…',self._fetch_timestamp),('Importar resposta TSA…',self._complete_timestamp)):
             button=Gtk.Button(label=label);button.connect('clicked',callback);preservation.pack_start(button,False,False,0)
         self.rows=Gtk.ListBox();scroll=Gtk.ScrolledWindow();scroll.add(self.rows);box.pack_start(scroll,True,True,0)
         self.status=Gtk.Label(label='Informe um PDF local de até 64 MiB.',xalign=0);self.status.set_line_wrap(True);box.pack_start(self.status,False,False,0)
@@ -107,6 +107,8 @@ class SignatureWindow(Gtk.Window):
             if not result:return
             if command=='timestamp-prepare':
                 self.status.set_text('Pedido salvo em '+result['query']+'. A pasta contém uma revisão incompleta; obtenha uma resposta TSA e use Importar resposta TSA. Nenhuma conexão foi feita.')
+            elif command=='timestamp-fetch':
+                self.status.set_text('Resposta salva em '+result['path']+'. Use Importar resposta TSA para verificar a assinatura e a CA antes de gerar o PDF carimbado.')
             else:
                 self.path.set_text(result['path'])
                 self.status.set_text('Cópia incremental salva: '+result['path']+'. As revisões anteriores foram preservadas. Verifique com CA local; sem garantia PAdES-LTA universal.')
@@ -137,6 +139,30 @@ class SignatureWindow(Gtk.Window):
         folder=self._identity_file('Escolher nome de uma NOVA pasta para o pedido TSA',True,Path(source).stem+'-pedido-tsa')
         if not folder:return
         self._preserve('timestamp-prepare',source,dict(folder=folder),'Preparando revisão e pedido RFC3161 com nonce…')
+
+    def _fetch_timestamp(self,*_):
+        if self.busy or self.closed:return
+        source=self.path.get_text().strip()
+        if not source:self.status.set_text('Informe o PDF usado para preparar o pedido TSA.');return
+        chooser=Gtk.FileChooserDialog(title='Pasta do pedido TSA exportado',transient_for=self,modal=True,action=Gtk.FileChooserAction.SELECT_FOLDER)
+        chooser.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Selecionar',Gtk.ResponseType.OK)
+        try:folder=chooser.get_filename() if chooser.run()==Gtk.ResponseType.OK else None
+        finally:chooser.destroy()
+        if not folder:return
+        dialog=Gtk.Dialog(title='Consultar TSA escolhida',transient_for=self,modal=True)
+        dialog.add_buttons('Cancelar',Gtk.ResponseType.CANCEL,'Enviar pedido',Gtk.ResponseType.OK)
+        box=dialog.get_content_area()
+        note=Gtk.Label(label='Informe a URL HTTPS da TSA. Será enviado o resumo criptográfico e o nonce do pedido; o PDF não será enviado. A resposta ainda exigirá validação com sua CA local.')
+        note.set_line_wrap(True);box.add(note)
+        entry=Gtk.Entry();entry.set_placeholder_text('URL HTTPS da sua TSA');entry.set_max_length(2048);box.add(entry)
+        dialog.set_default_size(560,150);dialog.show_all()
+        try:url=entry.get_text().strip() if dialog.run()==Gtk.ResponseType.OK else None
+        finally:dialog.destroy()
+        if not url:return
+        destination=self._identity_file('Salvar resposta TSA em arquivo novo',True,'resposta-tsa.tsr')
+        if not destination:return
+        self._preserve('timestamp-fetch',source,dict(folder=folder,destination=destination,url=url,confirmed=True),
+                       'Consultando somente a TSA HTTPS escolhida…')
 
     def _complete_timestamp(self,*_):
         if self.busy or self.closed:return

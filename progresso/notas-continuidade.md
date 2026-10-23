@@ -3870,3 +3870,8 @@ Lista de tudo o que fica com o Codex escrita em CHAT-CLAUDE.txt (linha LISTA 19:
 docs/AVISOS-E-STATUS.md. Os quatro itens autorizados já foram entregues por ele em
 codex/authorized-pdf-features. Retomada automática do Codex no próximo 17:30 (24/10) se o Claude
 for interrompido. Nada integrado à main; VM reservada ao Claude, sem uso.
+
+
+### 2026-10-23T19:47:13.1356473-03:00 — Codex assume execução direta
+
+Pedido humano: encerrar acompanhamento e assumir todas as demandas pendentes repassadas pelo Claude. Monitor excluído. Plano em docs/DEMANDAS-CODEX-2026-10-23-1926.md. Ramo codex/current-demands: transporte TSA HTTPS opt-in e Form XObject inteiro no modo vetorial; testes locais 13/13 vetoriais e 6/6 TSA, sem falhas/pulos. Lote S1: quatro observações, três entradas novas/uma revisita, 128 instruções/345 bytes; catálogo 516→519; S1 parcial. CI viewer Linux40034116130 success (artefatos baixados; revisão detalhada em andamento), Windows40034106367 failure (baixando relatórios; não atribuir ao viewer sem conferir), Flatpak40034126311 em execução. Nenhuma integração à main/candidato, release, decisãoB3 ou entrada na VM. Detalhes TSA/limites em docs/TSA-E-REDAÇÃO-CONTINUIDADE-2026-10-23.md; estática em docs/REA-S1-AUXILIARES-2026-10-23.md.

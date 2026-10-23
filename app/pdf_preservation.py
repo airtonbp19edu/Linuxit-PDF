@@ -175,7 +175,9 @@ def complete_document_timestamp(path, request):
     token = response['time_stamp_token'];encoded = token.dump()
     info = token['content']['encap_content_info']['content'].parsed
     _require(info['nonce'].native == query['nonce'].native and info['nonce'].native is not None, 'Nonce TSA divergente ou ausente.')
-    _require(info['message_imprint'].dump() == query['message_imprint'].dump(), 'A resposta TSA pertence a outro pedido.')
+    _require(info['message_imprint']['hash_algorithm']['algorithm'].native == 'sha256' and
+             info['message_imprint']['hashed_message'].native == query['message_imprint']['hashed_message'].native,
+             'A resposta TSA pertence a outro pedido.')
     covered = pending[:left] + pending[right:]
     _require(query['message_imprint']['hash_algorithm']['algorithm'].native == 'sha256' and
              query['message_imprint']['hashed_message'].native == hashlib.sha256(covered).digest(), 'Resumo da preparação inválido.')
@@ -195,9 +197,9 @@ def complete_document_timestamp(path, request):
 def invoke_preservation(command, path, request, cancel=None):
     from search_tasks import run_search_worker
     schemas = {'signature-dss': 'linuxit-dss-copy-v1', 'timestamp-prepare': 'linuxit-timestamp-query-v1',
-               'timestamp-complete': 'linuxit-timestamp-copy-v1'}
+               'timestamp-complete': 'linuxit-timestamp-copy-v1', 'timestamp-fetch': 'linuxit-timestamp-response-v1'}
     _require(command in schemas, 'Comando de preservação inválido.')
-    result = run_search_worker(command, path, request, cancel, timeout=300)
+    result = run_search_worker(command, path, request, cancel, timeout=45 if command=='timestamp-fetch' else 300)
     if result is None:
         return None
     _require(result.get('schema') == schemas[command] and result.get('source_sha256') == request['source_sha256'],

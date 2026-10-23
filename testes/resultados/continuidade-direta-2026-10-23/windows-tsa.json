@@ -1,0 +1,50 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_timestamp_transport.py",
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 6,
+  "passed": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 2.438000000000102,
+  "cases": [
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_actual_https_to_explicit_loopback_tsa",
+      "status": "passed",
+      "elapsed_sec": 1.0780000000004293
+    },
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_bad_media_oversize_and_redirect_refused",
+      "status": "passed",
+      "elapsed_sec": 0.4849999999996726
+    },
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_changed_pending_and_existing_destination_are_preserved",
+      "status": "passed",
+      "elapsed_sec": 0.1710000000002765
+    },
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_matching_download_sends_query_only_and_does_not_claim_trust",
+      "status": "passed",
+      "elapsed_sec": 0.2820000000001528
+    },
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_no_implicit_network_or_unsafe_endpoint",
+      "status": "passed",
+      "elapsed_sec": 0.06199999999989814
+    },
+    {
+      "id": "test_timestamp_transport.TimestampTransportTests.test_wrong_nonce_or_imprint_never_publishes",
+      "status": "passed",
+      "elapsed_sec": 0.3599999999996726
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

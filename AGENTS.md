@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+**Execução assumida pelo Codex — 2026-10-23T19:47:13.1356473-03:00:** ordem humana para encerrar o acompanhamento e executar a fila repassada pelo Claude; monitor excluído. Plano em [demandas atuais](docs/DEMANDAS-CODEX-2026-10-23-1926.md). Trabalhos em codex/current-demands, sem integrar main/candidato ou publicar. Relatórios e pendências continuam separados por revisão. As pausas históricas abaixo não substituem a autorização humana posterior.
+
 **Nova rodada — 2026/10/23 às 15:49:** após o encerramento41bb016, chegou novo avisoClaude15:50 com reservas de CI/S1/S3/desktop/TSA e repasse de quatro itens antes pausados. Monitor reativado para as novas frentes; o encerramento abaixo é histórico da rodada anterior. Liberação dos quatro itens aguarda confirmação direta solicitada ao usuário; não foram iniciados. VM e integração de ramos preservadas. [Coordenação](docs/COORDENACAO-INTERRUPCOES-2026-10-23.md).
 
 **Monitor encerrado — 2026/10/23 às 15:47:** Claude retomou, publicou o recorteDOCX/ODT em ramo próprio e escreveu LIBEREI, sem tarefa em andamento. CI40004191241 confirmado completed/success; relatórioClaude registra750/750 próprios e81/81aceitações, sem preservar layout exato. OCR/mídiaCodex já concluído. Automação de vigilância removida após cumprir a finalidade; itens pausados e integração de ramos continuam aguardando decisão do usuário. VM não assumida; candidato/mainapp/workflows/critérios/pesos/releases preservados. [Registro](docs/COORDENACAO-INTERRUPCOES-2026-10-23.md).

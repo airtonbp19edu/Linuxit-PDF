@@ -1,7 +1,7 @@
 """Conservative content-stream redaction without rasterization.
 
-Admitted pages use standard fonts and simple paths/images. Text objects and
-painted objects are indivisible: an intersecting object is removed completely.
+Admitted page content uses standard fonts and simple paths/images. Form XObjects
+are bounded, indivisible painted objects: an intersecting form is removed whole.
 Unsupported rendering constructs are rejected, never covered with an overlay.
 """
 import math
@@ -83,10 +83,10 @@ def redact_page(writer, page, marks):
     operations = list(stream.operations) if stream is not None else []
     require(len(operations) <= 200_000, 'Página excede o limite de operações vetoriais.')
     ctm, width, miter, stack = IDENTITY, 1., 10., []
-    path, path_ops, output, used_images = [], [], [], set()
+    path, path_ops, output, used_objects = [], [], [], set()
     text = None
     state = {'size': 12., 'font': None, 'Tc': 0., 'Tw': 0., 'Tz': 100., 'TL': 0., 'Ts': 0., 'Tr': 0.}
-    removed_text = removed_paths = removed_images = 0
+    removed_text = removed_paths = removed_images = removed_forms = 0
     for args, op in operations:
         if text is not None:
             if op == b'ET':
@@ -170,21 +170,38 @@ def redact_page(writer, page, marks):
         elif op == b'Do':
             require(not path_ops and len(args)==1)
             objects=resources.get('/XObject',{});objects=objects.get_object() if hasattr(objects,'get_object') else objects
-            require(args[0] in objects);image=objects[args[0]].get_object()
-            require(image.get('/Subtype')=='/Image', 'Form XObject e conteúdo aninhado requerem redação rasterizada.')
-            require(not any(k in image for k in ('/SMask','/Mask','/Alternates','/OPI')))
-            rect=bbox([point(ctm,x,y) for x,y in ((0,0),(1,0),(0,1),(1,1))])
-            if intersects(rect,areas):removed_images+=1;continue
-            used_images.add(args[0])
+            require(args[0] in objects);obj=objects[args[0]].get_object()
+            subtype=obj.get('/Subtype')
+            if subtype=='/Image':
+                require(not any(k in obj for k in ('/SMask','/Mask','/Alternates','/OPI')))
+                rect=bbox([point(ctm,x,y) for x,y in ((0,0),(1,0),(0,1),(1,1))])
+            elif subtype=='/Form':
+                # PDF clips every Form XObject to its BBox after its Matrix.
+                # Drop the entire invocation instead of guessing nested glyphs,
+                # transparency, clipping or embedded-font geometry.
+                require(obj.get('/FormType',1)==1 and '/BBox' in obj and hasattr(obj,'get_data'),
+                        'Form XObject sem limites válidos; use redação rasterizada.')
+                bounds=numbers(obj['/BBox']);matrix=numbers(obj.get('/Matrix',IDENTITY))
+                require(len(bounds)==4 and len(matrix)==6 and bounds[0]<bounds[2] and bounds[1]<bounds[3])
+                transform=compose(ctm,tuple(matrix))
+                x0,y0,x1,y1=bounds
+                rect=bbox([point(transform,x,y) for x,y in ((x0,y0),(x1,y0),(x0,y1),(x1,y1))])
+            else:
+                raise ValueError('Tipo XObject não suportado pela redação vetorial.')
+            if intersects(rect,areas):
+                if subtype=='/Form':removed_forms+=1
+                else:removed_images+=1
+                continue
+            used_objects.add(args[0])
         elif op not in SAFE:
             raise ValueError('A página usa operadores não suportados pela redação vetorial; escolha o modo rasterizado.')
         output.append((args,op))
     require(text is None and not stack and not path_ops, 'Fluxo gráfico incompleto para redação vetorial.')
-    # Drop unused XObjects so removed image bytes cannot survive as orphan resources.
+    # Drop unused XObjects, including entire removed form resource subgraphs.
     copied=DictionaryObject(resources)
     objects=resources.get('/XObject',{});objects=objects.get_object() if hasattr(objects,'get_object') else objects
     if objects:
-        retained=DictionaryObject({k:v for k,v in objects.items() if k in used_images})
+        retained=DictionaryObject({k:v for k,v in objects.items() if k in used_objects})
         if retained:copied[NameObject('/XObject')]=retained
         else:copied.pop('/XObject',None)
     page[NameObject('/Resources')]=copied
@@ -201,4 +218,5 @@ def redact_page(writer, page, marks):
             final.operations.extend([([FloatObject(v) for v in (x0,y0,x1-x0,y1-y0)],b're'),([],b'f')])
         final.operations.append(([],b'Q'))
     page[NameObject('/Contents')]=writer._add_object(final)
-    return {'text_objects_removed':removed_text,'paths_removed':removed_paths,'images_removed':removed_images}
+    return {'text_objects_removed':removed_text,'paths_removed':removed_paths,
+            'images_removed':removed_images,'forms_removed':removed_forms}

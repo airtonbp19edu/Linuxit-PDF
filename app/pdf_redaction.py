@@ -245,7 +245,7 @@ def redact_copy(source, destination, request):
     writer = PdfWriter(clone_from=reader)
     removed_annotations = 0
     vector_mode = request.get('mode', 'raster') == 'vector'
-    vector_counts = {'text_objects_removed':0,'paths_removed':0,'images_removed':0}
+    vector_counts = {'text_objects_removed':0,'paths_removed':0,'images_removed':0,'forms_removed':0}
     with tempfile.TemporaryDirectory(prefix='linuxit-redact-') as folder:
         work = Path(folder)
         for index, item in plan.items():

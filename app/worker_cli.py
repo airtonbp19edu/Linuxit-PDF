@@ -116,12 +116,13 @@ def main(argv):
             print('ValueError: Não foi possível assinar. Confira o PDF, a identidade PEM, a senha e o destino novo.',file=sys.stderr)
             raise SystemExit(1) from None
         print(json.dumps(result,ensure_ascii=True));return
-    if cmd in ('signature-dss','timestamp-prepare','timestamp-complete'):
+    if cmd in ('signature-dss','timestamp-prepare','timestamp-complete','timestamp-fetch'):
         from pdf_preservation import append_dss_copy,prepare_document_timestamp,complete_document_timestamp
+        from timestamp_transport import fetch_timestamp_response
         raw=sys.stdin.buffer.read(256*1024+1)
         if len(raw)>256*1024:raise ValueError('Pedido de preservação acima de256KiB.')
         method={'signature-dss':append_dss_copy,'timestamp-prepare':prepare_document_timestamp,
-                'timestamp-complete':complete_document_timestamp}[cmd]
+                'timestamp-complete':complete_document_timestamp,'timestamp-fetch':fetch_timestamp_response}[cmd]
         print(json.dumps(method(argv[2],json.loads(raw)),ensure_ascii=True));return
     if cmd == 'document-open':
         from document_session import prepare_document, DocumentError

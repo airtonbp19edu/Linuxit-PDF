@@ -53,7 +53,7 @@ class EditWindow(Gtk.Window):
         self.redo_button = Gtk.Button(label='Refazer');self.redo_button.connect('clicked',lambda *_:self._history(True))
         self.save_button = Gtk.Button(label='Salvar cópia nova…');self.save_button.connect('clicked',self._save)
         self.redact_button = Gtk.Button(label='Aplicar redação em cópia nova…');self.redact_button.connect('clicked',self._apply_redaction)
-        self.redact_button.set_tooltip_text('Remove o conteúdo marcado em uma cópia nova; escolha rasterização ou o método vetorial para conteúdo simples.')
+        self.redact_button.set_tooltip_text('Remove o conteúdo marcado em uma cópia nova; no modo vetorial, um formulário gráfico que toca a marca é removido inteiro.')
         for button in (self.undo_button,self.redo_button,self.save_button,self.redact_button):bar.pack_start(button,False,False,0)
         self.status = Gtk.Label(label='Lendo documento…',xalign=0);self.status.set_line_wrap(True);self.status.set_selectable(True)
         box.pack_start(self.status,False,False,0)

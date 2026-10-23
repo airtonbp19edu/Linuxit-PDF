@@ -401,7 +401,7 @@ def redaction_apply_dialog(parent, marks):
     text.set_line_wrap(True);text.set_max_width_chars(70);box.add(text)
     method = Gtk.ComboBoxText();method.get_accessible().set_name('Método de redação')
     method.append('raster','Rasterizado (compatibilidade ampla)')
-    method.append('vector','Sem rasterizar (fontes padrão e objetos simples)');method.set_active_id('raster');box.add(method)
+    method.append('vector','Sem rasterizar (objetos simples; formulários gráficos removidos inteiros)');method.set_active_id('raster');box.add(method)
     explanation=Gtk.Label(label='Sem rasterizar: remove objetos inteiros que tocam a área; pode remover texto ou desenho vizinho. Conteúdo complexo é recusado. O texto restante continua selecionável.',xalign=0)
     explanation.set_line_wrap(True);explanation.set_max_width_chars(70);box.add(explanation)
     resolution = Gtk.ComboBoxText();resolution.get_accessible().set_name('Resolução das páginas redigidas')
