@@ -4,6 +4,7 @@ import threading
 import time
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import cairo
@@ -78,6 +79,35 @@ class ViewerTests(unittest.TestCase):
             wait_for(lambda: p.page == 1 and not p._loading)
             self.assertEqual(p.zoom, 250)
             self.assertEqual(p.pan_y, p._pan_bounds()[3])
+        finally:
+            p.destroy()
+
+    def test_reading_anchor_follows_allocation_and_controls_height(self):
+        p = PresentationWindow(self.w, self.w.runner, str(self.pdf), self.w.page_sizes, 0, self.w.cache_dir)
+        try:
+            wait_for(lambda: p.pixbuf is not None and not p._loading)
+            p.fit_combo.set_active_id('reading')
+            wait_for(lambda: p.rendered_zoom == 250 and not p._loading)
+            allocation = SimpleNamespace(width=800, height=1400)
+            controls_height = [0]
+            page = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, False, 8, 400, 1262)
+            with patch.object(p.canvas, 'get_allocation', return_value=allocation), \
+                    patch.object(p, '_controls_height', side_effect=lambda: controls_height[0]), \
+                    patch.object(p, '_request_render'):
+                p._alloc_size = (800, 1400)
+                p._apply_pixbuf(page, 250)
+                self.assertEqual(p.pan_y, 0)
+                allocation.height = 600
+                p._size_allocate(p.canvas, allocation)
+                self.assertEqual((p.pan_y, p.target_pan_y), (331, 331))
+                controls_height[0] = 80
+                p._size_allocate(p.canvas, allocation)
+                self.assertEqual((p.pan_y, p.target_pan_y), (371, 371))
+                p._pan_by(dy=-50)
+                self.assertFalse(p._top_anchor)
+                allocation.height = 500
+                p._size_allocate(p.canvas, allocation)
+                self.assertEqual((p.pan_y, p.target_pan_y), (321, 321))
         finally:
             p.destroy()
 

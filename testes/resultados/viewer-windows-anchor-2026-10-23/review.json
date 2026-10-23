@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-10-23T16:32:48.170450-03:00",
+  "branch": "codex/viewer-windows-anchor",
+  "base_commit": "bc17502",
+  "reference_run": 40006125900,
+  "reference_result": {
+    "run": 759,
+    "passed": 751,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 7,
+    "installer_passed": true,
+    "acceptance_passed": 79
+  },
+  "reference_failure": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent:80: 0.0 != 331.0",
+  "confirmed_defect": "_size_allocate clamps previous pan but does not reanchor to the new top bound while _top_anchor remains true",
+  "link_to_native_failure": "Synthetic source-method reproduction produces the same 0.0 versus331.0. The failing native event sequence was not traced; native regression confirmation remains pending.",
+  "geometry_probe": {
+    "scope": "four actual source methods with synthetic viewport/pixbuf values; no GTK window or native Windows validation",
+    "before_passed": 1,
+    "after_passed": 3,
+    "total_scenarios": 3
+  },
+  "new_gtk_regression": "test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height",
+  "gtk_regression_executed": false,
+  "existing_native_regression_rerun": false,
+  "ci_dispatched": false,
+  "main_or_candidate_changed": false,
+  "source_sha256": {
+    "app/presentation.py": "abd2866af02ad1faf67eca3c95d6615679036f9d88451ae2fa4c69da66f771bf",
+    "tests/test_viewer.py": "47326edc21f1337fb3f4f987eda3722b7d443db9e283b9565d66b6a9ff336e6e"
+  },
+  "next_step": "Run test_viewer on native Windows and Linux/GTK in an authorized new validation round; inspect original and new cases. Do not certify Windows or merge automatically."
+}
