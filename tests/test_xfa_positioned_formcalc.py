@@ -73,6 +73,7 @@ class PositionedFormCalcTests(unittest.TestCase):
     def test_invalid_units_bounds_mixed_layout_and_repetition_are_refused(self):
         for template in (TEMPLATE.replace(b'x="1in"',b'x="999in"'),TEMPLATE.replace(b'w="180pt"',b'w="1em"'),
                          TEMPLATE.replace(b'<field name="a"',b'<subform layout="tb"/><field name="a"'),
+                         TEMPLATE.replace(b'<ui><numericEdit/></ui>',b'<caption><value><text>Importante</text></value></caption><ui><numericEdit/></ui>',1),
                          TEMPLATE.replace(b'<ui><numericEdit/></ui>',b'<occur min="1" max="2" initial="1"/><ui><numericEdit/></ui>',1)):
             with self.subTest(template=template),self.assertRaises(XFAError):self.create(self.fixture(template))
 
@@ -99,3 +100,14 @@ class PositionedFormCalcTests(unittest.TestCase):
         rect=reader.pages[0]['/Annots'][0].get_object()['/Rect']
         self.assertAlmostEqual(float(rect[0]),107)
         self.assertAlmostEqual(float(rect[1]),720-30-20-72/2.54-30,places=5)
+
+    def test_generic_form_edit_refused_but_explicit_xfa_reopen_recalculates(self):
+        from pdf_changes import save_edited_copy
+        source=self.fixture();self.create(source)
+        copy=self.root/'copy.pdf';before=copy.read_bytes();target=self.root/'edited.pdf'
+        with self.assertRaisesRegex(NotImplementedError,'recalcular'):
+            save_edited_copy(copy,target,source_sha256=hashlib.sha256(before).hexdigest(),
+                             operations=[dict(kind='fill-text-fields',values={'form[0].a[0]':'99'})])
+        self.assertFalse(target.exists());self.assertEqual(copy.read_bytes(),before)
+        create_xfa_flow_copy(copy,target,dict(source_sha256=hashlib.sha256(before).hexdigest(),values={'form[0].a[0]':'4'},instances=[]))
+        self.assertEqual(PdfReader(target).get_fields()['form[0].total[0]']['/V'],'11.25')

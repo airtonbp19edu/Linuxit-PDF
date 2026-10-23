@@ -228,6 +228,7 @@ def flow_model(reader, values=None, instances=None):
                     ui = child(node, 'ui')
                     _require(ui is None or len(ui) == 1 and local(ui[0]) in ('textEdit','numericEdit','dateTimeEdit'), 'Controle XFA fora do subconjunto textual.')
                     caption = child(node, 'caption')
+                    _require(not positioned or caption is None, 'Caption em campo posicionado exige layout de legenda ainda não suportado; nenhum texto será omitido silenciosamente.')
                     label = _value(caption) if caption is not None else name
                     row = dict(kind='field', path=path, label=label, value=entry.text or '')
                     calc = child(node, 'calculate')
@@ -346,6 +347,7 @@ def _render(model):
     form=DictionaryObject({NameObject('/Fields'):fields,NameObject('/DA'):TextStringObject('/Helv 11 Tf 0 g'),NameObject('/DR'):resources,
         NameObject('/XFA'):ArrayObject([TextStringObject('template'),_new_stream(writer,model['template']),TextStringObject('datasets'),_new_stream(writer,model['datasets'])])})
     writer.root_object[NameObject('/AcroForm')]=writer._add_object(form)
+    if model['calculations']:form[NameObject('/LinuxitFormCalc')] = BooleanObject(True)
     writer.root_object[NameObject('/NeedsRendering')]=BooleanObject(False)
     writer.add_metadata({'/Producer':'Linuxit PDF — own XFA flow layout','/Subject':'Layout fluido próprio; não preserva a aparência original XFA'})
     return writer

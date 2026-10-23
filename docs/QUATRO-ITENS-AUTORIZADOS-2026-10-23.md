@@ -24,7 +24,9 @@ FormCalc: apenas script local `application/x-formcalc` dentro do `calculate` de 
 
 Atualiza datasets e valores AcroForm juntos, marca campos calculados como somente leitura e não permite sobrescrevê-los no pedido. A interface mostra esses campos sem edição. `scripts_executed` e `calculations` informam o cálculo realmente realizado; sem cálculo mantêm o comportamento anterior.
 
-Limites: não é o motor XFA completo, um interpretador geral FormCalc ou uma reprodução da aparência original. Não preserva fontes, estilos ou paginação original; usa Helvetica/Windows-1252, 11 pontos. SOM amplo, scripts de eventos, controles adicionais, repetição/paginação posicionada e layouts mistos continuam fora deste recorte.
+As cópias próprias com cálculo recebem um marcador interno `/LinuxitFormCalc`. A edição genérica AcroForm dessas cópias é recusada para não deixar totais antigos após mudar uma entrada. É possível reabri-las na janela de cópia XFA e gerar outra cópia com recálculo. Isso não executa scripts XFA implicitamente no editor genérico; o marcador identifica esse contrato próprio, não é uma barreira de segurança contra alterações por outros programas.
+
+Limites: não é o motor XFA completo, um interpretador geral FormCalc ou uma reprodução da aparência original. Não preserva fontes, estilos ou paginação original; usa Helvetica/Windows-1252, 11 pontos. Captions de campos posicionados são recusados: a disposição da legenda ainda não é suportada, e seu texto não será omitido silenciosamente. SOM amplo, scripts de eventos, controles adicionais, repetição/paginação posicionada e layouts mistos continuam fora deste recorte.
 
 ## 3. API JavaScript de formulários
 

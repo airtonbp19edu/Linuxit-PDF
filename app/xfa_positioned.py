@@ -66,6 +66,7 @@ def render(model):
     form = DictionaryObject({NameObject('/Fields'):fields,NameObject('/DR'):resources,NameObject('/DA'):TextStringObject('/Helv 11 Tf 0 g'),
            NameObject('/XFA'):ArrayObject([TextStringObject('template'),_new_stream(writer,model['template']),TextStringObject('datasets'),_new_stream(writer,model['datasets'])])})
     writer.root_object[NameObject('/AcroForm')] = writer._add_object(form)
+    if model['calculations']:form[NameObject('/LinuxitFormCalc')] = BooleanObject(True)
     writer.root_object[NameObject('/NeedsRendering')] = BooleanObject(False)
     writer.add_metadata({'/Producer':'Linuxit PDF — own positioned XFA subset','/Subject':'Posições suportadas; fontes/estilos originais não preservados'})
     return writer
