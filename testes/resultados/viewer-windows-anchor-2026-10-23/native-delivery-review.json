@@ -1,0 +1,161 @@
+{
+  "observed_at": "2026-10-23T20:52:50.626494-03:00",
+  "run": 40040312193,
+  "source_commit": "b99640463a5ed4ed105d2014f8cca57ef2486fd0",
+  "source_app_commit": "b13fe561a651377feb3d6494056f0e987ed93f0d",
+  "run_count": 808,
+  "passed": 801,
+  "skipped": 7,
+  "failures": 0,
+  "errors": 0,
+  "viewer_cases": [
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+      "status": "passed",
+      "elapsed_sec": 2.299824600000079
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+      "status": "passed",
+      "elapsed_sec": 1.2705170000000408
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+      "status": "passed",
+      "elapsed_sec": 1.045710999999983
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+      "status": "passed",
+      "elapsed_sec": 0.6291459999999915
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+      "status": "passed",
+      "elapsed_sec": 1.0132158000000118
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+      "status": "passed",
+      "elapsed_sec": 0.9845165000000407
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+      "status": "passed",
+      "elapsed_sec": 0.8221906999999646
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+      "status": "passed",
+      "elapsed_sec": 0.9826204999999391
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+      "status": "passed",
+      "elapsed_sec": 0.8258080000000518
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+      "status": "passed",
+      "elapsed_sec": 1.043436300000053
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+      "status": "passed",
+      "elapsed_sec": 0.7492838000000575
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+      "status": "passed",
+      "elapsed_sec": 1.8776983999999857
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+      "status": "passed",
+      "elapsed_sec": 2.015872300000069
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session",
+      "status": "passed",
+      "elapsed_sec": 1.0739563000000771
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input",
+      "status": "passed",
+      "elapsed_sec": 1.88113629999998
+    },
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_existing_valid_entry_is_reused_while_reader_holds_file",
+      "status": "passed",
+      "elapsed_sec": 0.0028699000000642627
+    },
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_invalid_cache_is_replaced_by_complete_image",
+      "status": "passed",
+      "elapsed_sec": 0.002318199999990611
+    },
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_two_renderers_publish_same_key_without_overwriting_open_result",
+      "status": "passed",
+      "elapsed_sec": 0.006695799999988594
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_cached_presentation_page_invalidates_old_render",
+      "status": "passed",
+      "elapsed_sec": 1.3265029000000368
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent",
+      "status": "passed",
+      "elapsed_sec": 1.2102108999999928
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_latest_renderer_skips_obsolete_queue_entries",
+      "status": "passed",
+      "elapsed_sec": 0.7457104000000072
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_prefetched_reader_page_is_immediate",
+      "status": "passed",
+      "elapsed_sec": 0.7552014999999983
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_fit_fill_center_and_error",
+      "status": "passed",
+      "elapsed_sec": 1.1980220000000372
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_handles_portrait_and_landscape",
+      "status": "passed",
+      "elapsed_sec": 1.0729243999999198
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height",
+      "status": "passed",
+      "elapsed_sec": 1.4150964000000386
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_render_is_not_blocked_by_auxiliary_workers",
+      "status": "passed",
+      "elapsed_sec": 0.8826411999999664
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_repeated_requests_do_not_cancel_same_running_render",
+      "status": "passed",
+      "elapsed_sec": 0.8139427000000978
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_theme_persistence_and_contrast",
+      "status": "passed",
+      "elapsed_sec": 0.7663761000000022
+    }
+  ],
+  "exact_lf_sha256": {
+    "app/presentation.py": "abd2866af02ad1faf67eca3c95d6615679036f9d88451ae2fa4c69da66f771bf",
+    "app/rendering.py": "a80e5aca9b5d43430cebf64c2185f6977576caf73c2ce7d69760f32d17f90693",
+    "tests/test_viewer.py": "7f63d4686ff96fb853599aa62617e181329ca5231cb2203cbef399b360ad202c",
+    "tests/test_reading_workflows_gtk.py": "19cdd960e141c8df10c878ea9ba5b80c9931bffb366ca13426da422202389ebb",
+    "tests/test_render_cache_publication.py": "aeb8fde9100fb7718218c6f78ecf19dcfedc737d7fae913c085d82b9ef1b4cc7"
+  },
+  "limitation": "Full native validation used the combined Codex source. Only these exact viewer/cache files are carried to the separate Windows baseline; that resulting branch is not certified as the entire combined source."
+}

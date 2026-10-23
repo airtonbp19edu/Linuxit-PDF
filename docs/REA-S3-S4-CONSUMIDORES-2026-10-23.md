@@ -33,3 +33,24 @@ O corpo de `0x77a3d0` confirma dez atribuições ao diálogo, incluindo `+0x2bc`
 As condições por modo e flags, efeito final sobre o viewer, todos os caminhos de inicialização dos mapas e a ligação integral de OCG, anotações, formulários e assinaturas continuam pendentes. S3/S4 e os critérios amplos seguem parciais; B3 e pesos não foram alterados.
 
 Evidências públicas em `testes/resultados/s3-s4-followup-2026-10-23/` e nos arquivos de metadados `headless-cross-checks-preference-reflow-2026-10-23.json`/`headless-cross-checks-preference-results-2026-10-23.json`. Resultados completos ficam em `analysis-local/headless/preference-reflow-consumers-2026-10-23-2013` e `preference-results-2026-10-23-2018`.
+
+## Ciclo do diálogo de formulários — lote adicional
+
+Rodada `s3-forms-owner-2026-10-23-2058`: seis entradas novas,379 instruções/1.377 bytes conferidos por Capstone. Catálogo532→538. A busca da referência à vtable fixada localizou o construtor `0x77a070`, que instala `0x653f294`, usa o diálogo599 e inicializa os membros. Essa ligação confirma a classe concreta dos membros observados; não estabelece a persistência deles.
+
+`0x77a9a0`, destino do slot+0x178 na tabela examinada, decompõe os sete bits do campo+0x21c nas caixas+0x2a0…+0x2b8 e prepara a interface. `0x77a440` faz o caminho inverso após `UpdateData(TRUE)`: se+0x2a0 está ligado, acrescenta o bit1 e retorna; caso contrário, limpa esse bit e atualiza separadamente2,0x10,0x20,4,8,0x40 a partir de+0x2a4,+0x2a8,+0x2ac,+0x2b8,+0x2b4,+0x2b0. Não limpa os demais bits por suposição. **Esse campo+0x21c é distinto do+0x2bc cujo consumidor ainda falta.**
+
+`0x77afd0` é o destino+0x10c: filtra mensagens de teclado, incluindo Enter/Escape, consulta controles habilitados e encaminha cancelamento pela mensagemWM_COMMAND/ID2 em uma das vias. Não se trata de gravação do valor de realce.
+
+As entradas adjacentes `0x77a000/0x77a020` chamam atualização de dados e helpers sobre+0x594/+0x598. A inspeção ampla ultrapassou o conjunto de slots cuja propriedade pela classe foi confirmada; elas ficam **sem atribuição à classe de formulários**, e não são prova de consumidores de+0x2bc nem motor PDF. Foram conferidas como endereços candidatos, não como duas funcionalidades recuperadas.
+
+```mermaid
+flowchart TD
+  Bits[Campo+0x21c] --> Init[77a9a0: sete estados de caixas]
+  Init --> Edit[Edição no diálogo599]
+  Edit --> Sync[77a440: UpdateData e recomposição dos bits]
+  Sync --> Bits
+  Highlight[Membro+0x2bc] -. consumidor ainda aberto .-> Owner[Persistência e realce do documento]
+```
+
+O construtor é alcançável por mecanismos indiretos ainda não caracterizados: a busca de CALL rel32 não encontrou referência direta a ele. Ausência nessa busca não prova código morto. Evidência: `forms-owner-machine.json` e `headless-cross-checks-s3-forms-owner-2026-10-23.json`. S3 permanece parcial; nenhum critério/peso foi modificado.

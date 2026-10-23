@@ -1,0 +1,64 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s3-forms-owner-2026-10-23-2058",
+  "entries": [
+    {
+      "entry": "0x77a000",
+      "instructions": 9,
+      "body_bytes": 29,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "5337445f8aff9f6d67b237b32f0d9702f461b4b8c3e6aa714f10a08c94c51cac",
+      "pseudocode_sha256": "82f38eff0e70c5714d4014a91bfeb56b39e468a0172840c0751190e707c0f652"
+    },
+    {
+      "entry": "0x77a020",
+      "instructions": 9,
+      "body_bytes": 29,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "548f26cebdbde1d7c6313ff839db5e86fc669a03adc7e3b05b3008a589d6328a",
+      "pseudocode_sha256": "00cd0a959ca00d3a2648810735e8da1e6b4dee2c377d464b5f00f95e74cd21ce"
+    },
+    {
+      "entry": "0x77a070",
+      "instructions": 78,
+      "body_bytes": 374,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "2a0887d993d8cac30b7739208b00782c24e84053c42a22aacf8be0011d83d068",
+      "pseudocode_sha256": "70e9aec2ff0f75e45964930c85b196fe8f55b08fddfe1f8993cda2cc973c67b9"
+    },
+    {
+      "entry": "0x77a440",
+      "instructions": 47,
+      "body_bytes": 165,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6719030683db95b9addb2b2fe93522f65c8208c75af214be1aa7e598ec98dd1f",
+      "pseudocode_sha256": "0e73c3871ef4470a70ca7a4ad9fefb7df19856b971e84f878b4c3174ba5b5922"
+    },
+    {
+      "entry": "0x77a9a0",
+      "instructions": 161,
+      "body_bytes": 571,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "c3f178af530436d83e12959588c57a8fe2178a6131ada540efd913b624307dd6",
+      "pseudocode_sha256": "ee5126d6b57177d351bc46f074b62c617194f5105b5eef72fac9250df48c61f0"
+    },
+    {
+      "entry": "0x77afd0",
+      "instructions": 75,
+      "body_bytes": 209,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "96ff9c8e105971e3a65a82d9a44ffef9c3365b88db598f5507f9dfbe22a8d839",
+      "pseudocode_sha256": "ff5c872575a6951715f00961ad12d35e6dc91c0f3f3ef9c1a6880a96b396c7b6"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

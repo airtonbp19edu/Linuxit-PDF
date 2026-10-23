@@ -1,0 +1,50 @@
+{
+  "source_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "source_module": "fxLuceneLib.dll",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s1-error-character-2026-10-23-2052/functions/0x100308e0.json",
+      "result_sha256": "e0863088c574b3c99feb76226fe587d6fa3a7bb4435002c1bed0097ec77de7b5",
+      "entry_va": "0x100308e0",
+      "analyst_name": "analyst_entry_100308e0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 24,
+      "body_ranges": "[[100308e0, 100308f7]]",
+      "pseudocode_sha256": "271c6f71d9f2fe2b4381197e45d5d542a40422104ddc6f7c78cc9d15f61f737e",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-error-character-2026-10-23-2052/functions/0x100309b0.json",
+      "result_sha256": "9e2df6ad88435a62e6ffecff95d033ae1b0ffd890abe8a737565a9cfaffd8ce3",
+      "entry_va": "0x100309b0",
+      "analyst_name": "analyst_entry_100309b0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 20,
+      "body_ranges": "[[100309b0, 100309c3]]",
+      "pseudocode_sha256": "d626522ff98e78889895b18765fc6f589aa1b49325c13d9d5fe80ce78cbfa8dd",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-error-character-2026-10-23-2052/functions/0x10030a60.json",
+      "result_sha256": "5bd67b2ce1d551b537a25cc26f7403b83fddf3320ccf45779d4287e3b80b1ddc",
+      "entry_va": "0x10030a60",
+      "analyst_name": "analyst_entry_10030a60",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 4,
+      "body_ranges": "[[10030a60, 10030a63]]",
+      "pseudocode_sha256": "4734f7f69037f8b7751fa7be148bb16be30b50575d05def3b3e823be07d107b3",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

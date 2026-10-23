@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-direct-execution-v1",
-  "updated_at": "2026-10-23T20:31:26.497802-03:00",
+  "updated_at": "2026-10-23T20:58:34.141536-03:00",
   "agent": "Codex",
   "authority": "Direct user order: stop monitoring and lead execution of outstanding Claude requests.",
   "monitor_deleted": true,
@@ -24,11 +24,12 @@
       "skipped": 0
     },
     "desktop": {
-      "run_id": 40037127140,
+      "run_id": 40040320947,
       "repetitions": 2,
       "passed_each": 9,
       "physical": false,
-      "bundle_source": "e1ad5d129abc2af83c1c9d2e6026bfae3a8d2b50"
+      "bundle_source": "b13fe561a651377feb3d6494056f0e987ed93f0d",
+      "bundle_sha256": "d4bd3d329dbab539bf8b0e4edb31591d785a7c43ea16a8702980c631b25e37d3"
     },
     "windows_first_combined": {
       "run_id": 40038020795,
@@ -38,32 +39,52 @@
       "errors": 1,
       "skipped": 7,
       "remaining_error": "WinError32 removing test input.pdf in ViewerTests.tearDown, after body assertions passed. Fixed by existing bounded GTK cleanup helper; fresh native validation pending."
+    },
+    "windows_fixed": {
+      "run_id": 40040312193,
+      "run": 808,
+      "passed": 801,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "acceptance_passed": 79,
+      "installer_checks": 8,
+      "note": "All viewer/cache body assertions and fixture cleanup passed. Five crypto cases historically skipped by OS are being enabled in a separate full native run."
+    },
+    "tls_default_before_fix": {
+      "run_id": 40041602989,
+      "repetitions": 2,
+      "passed": 0,
+      "network_requests": 0,
+      "cause": "Debian OpenSSL default CA locations do not exist inside Freedesktop runtime.",
+      "fix": "df1cedc: select readable runtime roots in wrapper; explicit trust environment preserved.",
+      "validated": false
     }
   },
   "static_rounds": {
-    "observations": 16,
-    "new_catalog_entries": 13,
+    "observations": 25,
+    "new_catalog_entries": 22,
     "revisits": 3,
-    "instructions": 606,
-    "bytes": 1808,
-    "catalog_entries": 529,
+    "instructions": 1004,
+    "bytes": 3233,
+    "catalog_entries": 538,
     "note": "Distinct observed entry addresses, not complete algorithms or global coverage."
   },
   "queue": [
     {
       "item": "Four authorized PDF features",
-      "status": "bounded_implemented",
-      "next": "Complete native Windows validation of combined source; full XFA/FormCalc/Acrobat/LTV universality not claimed."
+      "status": "bounded_implemented_linux_flatpak_windows_validated",
+      "next": "Additional native CA tests and packaging CA trust correction in progress; universal family support not claimed."
     },
     {
       "item": "Viewer Windows",
-      "status": "cache_fix_validated_with_native_body_assertions",
-      "next": "Validate teardown fixture correction in entire native suite, then carry exact renderer/viewer correction to Claude Windows branch."
+      "status": "native_viewer_fix_validated_and_delivered",
+      "next": "Correction delivered to Claude Windows branch after exact five-file and 28-case comparison; no main integration."
     },
     {
       "item": "TSA transport",
-      "status": "bounded_implemented_and_tested_in_source_and_sandbox",
-      "next": "Live external provider acceptance requires the user-chosen endpoint and explicit CA policy; no arbitrary provider contacted."
+      "status": "bounded_transport_validated_packaging_ca_fix_in_validation",
+      "next": "Finish packaged trust-root validation; any live external provider acceptance needs a user-chosen URL, none contacted."
     },
     {
       "item": "Complex vector redaction",
@@ -72,8 +93,8 @@
     },
     {
       "item": "Desktop Linux",
-      "status": "two_ephemeral_installed_candidate_runs_passed",
-      "next": "Run same controls against final combined bundle if delivering it; physical desktop/equipment remains separate."
+      "status": "combined_bundle_two_ephemeral_runs_passed",
+      "next": "Validate final rebuilt TLS package; physical desktop/equipment remains separate."
     },
     {
       "item": "S1",
@@ -103,5 +124,22 @@
   ],
   "reports": "testes/resultados/continuidade-direta-2026-10-23/",
   "functional_completion_percent": null,
-  "foxit_parity_claimed": false
+  "foxit_parity_claimed": false,
+  "active_validations": {
+    "windows_additional_ca": {
+      "run_id": 40041628886,
+      "source": "e77cf3c"
+    },
+    "flatpak_runtime_ca_fix": {
+      "run_id": 40041956548,
+      "source": "df1cedc"
+    }
+  },
+  "viewer_delivery": {
+    "branch": "claude/windows-installer",
+    "commit": "8cc295f33000352a2d89bfddffedfd4cb7de2d14",
+    "normal_fast_forward": true,
+    "exact_files": 5,
+    "passed_related_cases": 28
+  }
 }

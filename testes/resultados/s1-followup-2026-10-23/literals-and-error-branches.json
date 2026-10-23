@@ -1,0 +1,108 @@
+{
+  "target_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "method": "Bounded read of pinned literals referenced by the preserved query-preparation body; no execution",
+  "values": [
+    {
+      "va": "0x100d7890",
+      "utf16le": "*",
+      "value_sha256": "e8a4b2ee7ede79a3afb332b5b6cc3d952a65fd8cffb897f5d18016577c33d7cc"
+    },
+    {
+      "va": "0x100d7894",
+      "utf16le": "contents",
+      "value_sha256": "5be507cb731ac098fe2cd9ecd4135f4b62238cdae373d183d9407f60263d45c2"
+    },
+    {
+      "va": "0x100d7ae0",
+      "utf16le": "?",
+      "value_sha256": "1b9e0fe7b740b4e583727aa1c9d27ff8c01491f911d2de0747f8c997ef6b3498"
+    },
+    {
+      "va": "0x100d7ae4",
+      "utf16le": "ï¼Š",
+      "value_sha256": "e1e7691e3b206e96b1b9e2487bfc3883218d2369ad74ca167217f8d61423e1a2"
+    },
+    {
+      "va": "0x100d7ae8",
+      "utf16le": "ï¼Ÿ",
+      "value_sha256": "fed1d8d4b1bf3773b9610de91806a654821d26c5c442916b20477ba39ccb7d1a"
+    }
+  ],
+  "observed_at": "2026-10-23T20:53:51.342595-03:00",
+  "scope": "Bounded literal and branch review; not complete input escaping, exception propagation or runtime parity.",
+  "references": [
+    {
+      "entry": "0x100216c0",
+      "path": "analysis-local/headless/s1-query-pipeline-2026-10-22/functions/0x100216c0.json",
+      "sha256": "9d4c3d7fd09e33881996babca302e194cbe5c536e231f5175c66fa2ac197aa3a"
+    },
+    {
+      "entry": "0x10026860",
+      "path": "analysis-local/headless/s1-query-pipeline-2026-10-22/functions/0x10026860.json",
+      "sha256": "550bdf205084405638c666124b7dcd02cdad1632e064e1ddfe615f951436130e"
+    },
+    {
+      "entry": "0x10032410",
+      "path": "analysis-local/headless/s1-query-pipeline-2026-10-22/functions/0x10032410.json",
+      "sha256": "7b26492b3a4c06107cbb9879a2db8f918305584f0b03c26ab6a8c6ccbe34cd45"
+    },
+    {
+      "entry": "0x1003f6b0",
+      "path": "analysis-local/headless/static-index-options-2026-10-18/functions/0x1003f6b0.json",
+      "sha256": "ab6392ca5df07424b64d9a00e6e6fa12b35624648864cb67aac7acc61f6919ee"
+    }
+  ],
+  "facts": [
+    {
+      "entry": "0x10026860",
+      "condition": "third boolean true, matched standalone token",
+      "mapping": {
+        "U+002A": "U+FF0A",
+        "U+003F": "U+FF1F"
+      },
+      "caller": "0x100243b0 passes copied option byte+6 at 0x10024518"
+    },
+    {
+      "entry": "0x100308e0",
+      "condition": "AL true for unsigned16(code_unit-0x600)<0x100",
+      "range_inclusive": [
+        "U+0600",
+        "U+06FF"
+      ]
+    },
+    {
+      "entry": "0x100309b0",
+      "condition": "AL true for unsigned16(code_unit-0x590)<0x70",
+      "range_inclusive": [
+        "U+0590",
+        "U+05FF"
+      ]
+    },
+    {
+      "entry": "0x10030a60",
+      "result": "Read DWORD at receiver+0x10; length field for the string callers reviewed"
+    },
+    {
+      "entry": "0x1003f6b0",
+      "site": "0x1003f848",
+      "result": -9,
+      "condition": "String length getter returned zero after 0x10028f90"
+    },
+    {
+      "entry": "0x100216c0",
+      "result": -9,
+      "condition": "Nonzero mode+8 outside {1,2,3} in the branch reviewed"
+    },
+    {
+      "entry": "0x100216c0",
+      "result": -8,
+      "condition": "0x1001dff0 reports null pointer for the query object at the end"
+    },
+    {
+      "entry": "0x1003f6b0",
+      "site": "0x10041414",
+      "result": -10,
+      "condition": "Cleanup/status path; originating exception class and UI translation unresolved"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "subject_name": "fxLuceneLib.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s1-error-character-2026-10-23-2052",
+  "entries": [
+    {
+      "entry": "0x100308e0",
+      "instructions": 9,
+      "body_bytes": 24,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "e0863088c574b3c99feb76226fe587d6fa3a7bb4435002c1bed0097ec77de7b5",
+      "pseudocode_sha256": "271c6f71d9f2fe2b4381197e45d5d542a40422104ddc6f7c78cc9d15f61f737e"
+    },
+    {
+      "entry": "0x100309b0",
+      "instructions": 8,
+      "body_bytes": 20,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "9e2df6ad88435a62e6ffecff95d033ae1b0ffd890abe8a737565a9cfaffd8ce3",
+      "pseudocode_sha256": "d626522ff98e78889895b18765fc6f589aa1b49325c13d9d5fe80ce78cbfa8dd"
+    },
+    {
+      "entry": "0x10030a60",
+      "instructions": 2,
+      "body_bytes": 4,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "5bd67b2ce1d551b537a25cc26f7403b83fddf3320ccf45779d4287e3b80b1ddc",
+      "pseudocode_sha256": "4734f7f69037f8b7751fa7be148bb16be30b50575d05def3b3e823be07d107b3"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

@@ -12,6 +12,7 @@ on:
         options:
           - desktop
           - tls
+          - desktop-and-tls
         default: desktop
 permissions:
   contents: read
@@ -77,7 +78,11 @@ jobs:
               [ -n "$CANDIDATE_RUN_ID" ]
               exec dbus-run-session -- /usr/bin/python3 scripts/check_flatpak_tls.py --output dist/desktop-results/tls-trust.json "${candidate_args[@]}"
             fi
-            exec xvfb-run -a dbus-run-session -- bash scripts/run_desktop_probe.sh --output dist/desktop-results/integrations.json "${candidate_args[@]}"
+            xvfb-run -a dbus-run-session -- bash scripts/run_desktop_probe.sh --output dist/desktop-results/integrations.json "${candidate_args[@]}"
+            if [ "$PROBE" = desktop-and-tls ]; then
+              [ -n "$CANDIDATE_RUN_ID" ]
+              dbus-run-session -- /usr/bin/python3 scripts/check_flatpak_tls.py --output dist/desktop-results/tls-trust.json "${candidate_args[@]}"
+            fi
           '
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
