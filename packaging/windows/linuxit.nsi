@@ -53,5 +53,11 @@ Section "Uninstall"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
   Delete "$SMPROGRAMS\Linuxit PDF ${VERSION}.lnk"
+  ; ASCII junction created by windows_bootstrap.py for non-ASCII folders.
+  ; RMDir on a junction removes only the link, never the target's files.
+  ReadRegStr $0 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-${VERSION}" "AsciiAlias"
+  StrCmp $0 "" alias_done
+    RMDir "$0"
+  alias_done:
   DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LinuxitPDF-${VERSION}"
 SectionEnd

@@ -64,6 +64,26 @@ class WindowsCacheProvenanceTests(unittest.TestCase):
             self.assertEqual((pathlib.Path(safe)/'legacy.dll').read_bytes(),b'dll')
             with patch.dict('os.environ',{'LOCALAPPDATA':str(root/'usuário'),'PROGRAMDATA':'','PUBLIC':''}):
                 self.assertIsNone(openssl_path(accented/'ossl-modules'))
+    def test_bootstrap_relaunches_from_an_ascii_alias_and_uninstaller_removes_it(self):
+        # Poppler aborted opening any PDF from 'installed app com espaços'; the same
+        # installer in an ASCII folder rendered (CI 39899979222).
+        source=(ROOT/'packaging/windows/windows_bootstrap.py').read_text(encoding='utf-8')
+        self.assertIn("ROOT=Path(os.path.abspath(__file__)).parent",source)
+        self.assertNotIn("ROOT=Path(__file__).resolve()",source)
+        self.assertIn("LINUXIT_ASCII_ALIAS",source)
+        self.assertIn("_winapi.CreateJunction",source)
+        script=(ROOT/'packaging/windows/linuxit.nsi').read_text(encoding='utf-8')
+        self.assertIn('"AsciiAlias"',script)
+        self.assertLess(script.index('"AsciiAlias"'),script.index('DeleteRegKey HKCU'))
+        import ast,hashlib,os,json
+        tree=ast.parse(source)
+        wanted=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ('_short_path','_uninstall_key','_ascii_alias')]
+        namespace=dict(os=os,hashlib=hashlib,json=json,Path=pathlib.Path,__file__=str(ROOT/'packaging/windows/windows_bootstrap.py'))
+        exec(compile(ast.Module(body=wanted,type_ignores=[]),'windows_bootstrap','exec'),namespace)
+        plain=pathlib.Path('/opt/linuxit/app')
+        self.assertEqual(namespace['_ascii_alias'](plain),plain)
+        if os.name!='nt':  # no junction support here: must decline, not crash
+            self.assertIsNone(namespace['_ascii_alias'](pathlib.Path('/opt/instalação')))
     def test_bootstrap_never_leaves_legacy_load_to_a_non_ascii_path(self):
         source=(ROOT/'packaging/windows/windows_bootstrap.py').read_text(encoding='utf-8')
         self.assertIn("('OPENSSL_MODULES','lib/ossl-modules')",source)
