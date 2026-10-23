@@ -1,0 +1,38 @@
+{
+  "source_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "source_module": "lucene++.dll",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s1-unicode-2026-10-22/functions/0x10297d80.json",
+      "result_sha256": "ac025d4f9ff940a9e664007bd5ccf936adf9a8697db4e11abd5b7f719db21663",
+      "entry_va": "0x10297d80",
+      "analyst_name": "analyst_entry_10297d80",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 119,
+      "body_ranges": "[[10297d80, 10297df6]]",
+      "pseudocode_sha256": "8c47d3a3c17a13d27e620d5f38638cc0567906c2fa59ed50058732cf7e0572c5",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-unicode-2026-10-22/functions/0x102c9540.json",
+      "result_sha256": "126816186b631a7b55dbc0399bf4e4a71bcdf1b793e069eab9592cf08f842a2e",
+      "entry_va": "0x102c9540",
+      "analyst_name": "analyst_entry_102c9540",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 794,
+      "body_ranges": "[[102c9540, 102c9859]]",
+      "pseudocode_sha256": "adc3558136dd37187a07f36e7fbf3454d76762402acac40377af2de42021d6ef",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 2,
+  "distinct_entries": 2,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

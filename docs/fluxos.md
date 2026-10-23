@@ -181,11 +181,23 @@ declarada como lacuna.
 | Subsistema | Diagrama | Estado |
 |---|---|---|
 | Busca — criação do diálogo e provedor | [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md) e [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md) | mapa estrutural completo; algoritmo Lucene parcial |
-| Busca — thread de limpeza de resultados | REA-FLUXO-BUSCA-2026-10-22.md | completo (thread, evento, seção crítica) |
+| Busca — thread de limpeza de resultados | [REA-FLUXO-BUSCA-2026-10-22.md](REA-FLUXO-BUSCA-2026-10-22.md) e [errata dos objetos de UI, 23/10](REA-S1-OBJETOS-UI-2026-10-23.md) | mapa estático revisto: thread, evento e dois pares de seção crítica; helpers internos ainda parciais |
 | Busca — opções e enum do provedor | [fluxos.md, seção de 18/10](#texto-do-provedor-e-enum-de-busca--18102026) | parcial (bytes 3/5/6/7 abertos) |
 | Impressão — hierarquia de classes e estratégias | [REA-FLUXO-IMPRESSAO-2026-10-22.md](REA-FLUXO-IMPRESSAO-2026-10-22.md) | mapa estrutural; renderização/envio parcial |
 | Impressão — consumidores e geometria | [REA-IMPRESSAO-CONSUMIDORES.md](REA-IMPRESSAO-CONSUMIDORES.md) | parcial |
 | Reflow — layout, geometria, arrays e transições | [REA-REFLOW.md](REA-REFLOW.md) e relacionados | parcial |
+
+**Errata de 23/10/2026 na referência da limpeza de busca:** o mapa de 22/10
+descrevia a chamada ao slot `+0x14` de `dialog+0x2044` como “reinicia o modelo”.
+Essa leitura foi superada por construção, RTTI e assembly: o campo é uma
+`CCriticalSection` embutida, e o slot executa `Unlock` da seção nativa em
+`dialog+0x204c`. `0x1770a60` contém dois pares sucessivos de entrada/liberação,
+ambos sobre o mesmo vetor em `dialog+0x2038`; não são um reset de modelo nem
+uma operação comprovada sobre outro vetor de páginas. A classificação anterior
+“completo (thread, evento, seção crítica)” fica preservada neste registro como
+estado histórico e foi limitada na tabela acima ao mapa estático examinado.
+[Evidências e lacunas](REA-S1-OBJETOS-UI-2026-10-23.md). S1 e o critério amplo
+de reconstrução do fluxo continuam parciais.
 
 Os diagramas Mermaid de busca e impressão estão nos dois documentos de 22/10. Eles fecham o
 desenho de **fluxo e estado** desses dois subsistemas no nível estrutural; o critério "Diagramas e

@@ -3723,3 +3723,13 @@ Pedido do usuário (00:44): dividir, trabalhar em paralelo, fazer tudo o possív
 ## 2026/10/23 às 01:05 (America/Sao_Paulo, UTC-03:00) — divisão ajustada; chat por arquivo
 
 Codex propôs às 00:48 ser operador exclusivo da VM; Claude aceitou. Claude não assume S2/S3/C1/S4. Claude fica com K1 (Windows), correções no app vindas da VM, K3, K4, K5. Chat: CHAT-CLAUDE.txt e CHAT-CODEX.txt, porque gravações inteiras do CHAT-IA.txt se sobrescreviam. K1: causa = ntpath do MSYS2 mantém "/" e o NSIS ignorava /D= (instalava na pasta padrão); MessageBox sem /SD travava o modo silencioso. Correção facea01, CI 39896899395.
+
+
+## 2026/10/23 às 01:11 — Codex: retomada, coautoria, divisão e lote S1
+
+- Autoria escolhida: Airtonautor + trailerCodex. Commit695f9bf enviado; API200 confirmou autoria vinculada e trailerúnico, sem nova conta na lista de contribuidores. Configuração global não recebeu chave não confirmada.
+- Retomada Codex agendada23/10/2026 05:30 (automação retomar-linuxit-pdf-s-05-30); Claude informou05:10. Divisão aceita em docs/DIVISAO-TAREFAS-2026-10-23.md. Cada agente escreve só seu chat.
+- Dez lotes S1:54 observações,47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes. Catálogo350→397,152REA+245diretas. Recibo testes/resultados/s1-consolidado-2026-10-23/review.json; relatóriosREA-S1-AVALIACAO/OPCOES/UNICODE/OBJETOS-UI-2026-10-23.md.
+- Resolvidos no recorte: campos+6/+7/+0x10, categoria Unicode e tatweel inativo, TermQuery/WildcardQuery, IndexSearcher/clearMatchTerms, CCriticalSection inline e fábricaTreeCtrl. S1 parcial: +3/+0xc, scorer/pesos/ranqueamento, proximidade integral e lifecycle ainda abertos. S3 levantou39arestas classificadas, sem declarar motores completos.
+- VM: relógio avança, TaskManager respondeu, Foxit ausente; manutenção autorizada confirmou hashb20ad4...cac1 e todos coletores antigosReady (0930resultado0). Novoobservador em preparação. Sem teste diferencial novo até este registro. Operação VM exclusivaCodex; não iniciar concorrente.
+- Aplicativo/workflows/releases não alterados pelo Codex. Fontecandidata9fb4f3a preservada; nenhuma alegação de percentual global ou paridade integral.

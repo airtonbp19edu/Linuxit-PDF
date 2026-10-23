@@ -1,0 +1,58 @@
+{
+  "schema": "linuxit-vm-e30-preflight-v1",
+  "reviewed_at": "2026-10-23T01:19:33.708263-03:00",
+  "run_id": "vm-20261023-0110",
+  "startup_status": "ready",
+  "elevated": false,
+  "session": 1,
+  "script_sha256": "b20ad4dca54ff33e7524df9d08702190539e0172ce3174dfe30b9118a277cac1",
+  "original_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "input_count": 10,
+  "inputs_equal_to_previous": true,
+  "write_denied": {
+    "Reference": true,
+    "Protocol": true,
+    "Input": true
+  },
+  "host_containment": {
+    "schema": "linuxit-host-containment-v1",
+    "run_id": "vm-20261023-0110",
+    "created_at": "2026-10-23T01:11:57.4116074-03:00",
+    "verified_offline": true,
+    "connected_adapters": 0,
+    "shared_folders": 0,
+    "captured_usb_devices": 0,
+    "clipboard": "disabled",
+    "draganddrop": "disabled",
+    "vrde": "off",
+    "audio_in": "off",
+    "audio_out": "off"
+  },
+  "guest_adapters": [
+    {
+      "Name": "Ethernet",
+      "Status": "Disconnected"
+    }
+  ],
+  "smb_mappings_count": 0,
+  "startup_report_sha256": "a17fe6111130383af51b4a7fbb54cc2e43fca725b43bb3cf5c3c441509f7c615",
+  "preflight_report_sha256": "0bfb1171cfed79a90a3eb3c69b73f413a3cbe50137ffb8c9e987039eec42fc45",
+  "visual_control": "Notepad marker displayed and Edit menu opened",
+  "clock_observations": [
+    "00:48:47",
+    "00:49:18",
+    "01:05:32",
+    "01:10:39",
+    "01:13:12",
+    "01:15:40"
+  ],
+  "maintenance_authorized": true,
+  "previous_collectors_running": 0,
+  "network_disconnected_after_maintenance": true,
+  "dynamic_cases_completed_in_this_preflight": 0,
+  "E30_complete": false,
+  "raw_roots": [
+    "analysis-local/vm-20261023-e30",
+    "analysis-local/vm-20261023-0110"
+  ]
+}

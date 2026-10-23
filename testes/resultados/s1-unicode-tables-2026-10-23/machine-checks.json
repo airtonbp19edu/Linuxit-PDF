@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "subject_name": "lucene++.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s1-unicode-tables-2026-10-23",
+  "entries": [
+    {
+      "entry": "0x102c8cc0",
+      "instructions": 14,
+      "body_bytes": 35,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b064f2c876b53f4b86d525fca6fce2544d7481c25eb43aab81bc7e2238a0d4a6",
+      "pseudocode_sha256": "f68fc307343c926610dbf452dbcb3b3eb819f7bdcb8c6922ef74a7e7448ca361"
+    },
+    {
+      "entry": "0x102c93c0",
+      "instructions": 105,
+      "body_bytes": 316,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "5698fa63f9dab4c0b33507780650904fc95b2a0a0e7f29ab65b6c186dfa84f4c",
+      "pseudocode_sha256": "e20421eca08ff67c52940cb370a84d8c36c6ce9b0b5ceb6c822cf87c10ea2c33"
+    },
+    {
+      "entry": "0x102c9f40",
+      "instructions": 26,
+      "body_bytes": 87,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "6a8fea9d1d7d566276fee6947527af924a24c83aa77ddee71c63a114d2f99db3",
+      "pseudocode_sha256": "4b748e1c242cfa4bb89ebc1898069b04a4a627bf9716797372e6f97740756ad4"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

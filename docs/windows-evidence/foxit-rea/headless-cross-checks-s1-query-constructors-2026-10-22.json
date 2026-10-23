@@ -1,0 +1,86 @@
+{
+  "source_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "source_module": "fxLuceneLib.dll",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x10011290.json",
+      "result_sha256": "30d7d4c28c2276a40c186625f947d57ffd33c81df4e93aa1341ba937b937896a",
+      "entry_va": "0x10011290",
+      "analyst_name": "analyst_entry_10011290",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 40,
+      "body_ranges": "[[10011290, 100112b7]]",
+      "pseudocode_sha256": "450d03ff215d5d2f8301fa5ee2ef9a6f884d43fc077456e18f26cab37d1c557a",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x10011350.json",
+      "result_sha256": "b8e96da61df8095ad895c570b55a0e9fe63739c4f3971b22c0168c1d0408ab46",
+      "entry_va": "0x10011350",
+      "analyst_name": "analyst_entry_10011350",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 40,
+      "body_ranges": "[[10011350, 10011377]]",
+      "pseudocode_sha256": "9828f22ab8da9fae785a8aac527556b9b595934a52f69103ffd1a71394de1d82",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x1001a060.json",
+      "result_sha256": "6cdc890d717373efe72423dd3f5a236ff7e2dc60dac568ccbe176fd48a53e92a",
+      "entry_va": "0x1001a060",
+      "analyst_name": "analyst_entry_1001a060",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 111,
+      "body_ranges": "[[1001a060, 1001a0ce]]",
+      "pseudocode_sha256": "f8aee74a47ed7e3a2193e13cde32bc6a5fb5d4354e02fe7398abc7af4986c665",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x1001a0d0.json",
+      "result_sha256": "a69a916fd06908d767143146020ce4b3bbd29955ee18a1084a8b10a01db20da1",
+      "entry_va": "0x1001a0d0",
+      "analyst_name": "analyst_entry_1001a0d0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 114,
+      "body_ranges": "[[1001a0d0, 1001a141]]",
+      "pseudocode_sha256": "a506213c6592c39e58b89e8f3f1ba46278f26f0b53f248ed610aec03123eade2",
+      "also_examined_through_mcp": true
+    },
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x1001dff0.json",
+      "result_sha256": "a72d0e5d82cded89ff8036837a4d9a45dccb755f4575a7a7c01e87afac768224",
+      "entry_va": "0x1001dff0",
+      "analyst_name": "analyst_entry_1001dff0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 7,
+      "body_ranges": "[[1001dff0, 1001dff6]]",
+      "pseudocode_sha256": "9ad4d36fd9ffcf68b8f08c653435ad6f23e6f03ddd921dd6216f59dd50a43590",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s1-query-constructors-2026-10-22/functions/0x100243b0.json",
+      "result_sha256": "40215ff2d02a8ef2e2c75e3b071576479f5ecdfae4fd409149e2c1e6154dff5f",
+      "entry_va": "0x100243b0",
+      "analyst_name": "analyst_entry_100243b0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 2514,
+      "body_ranges": "[[100243b0, 10024d81]]",
+      "pseudocode_sha256": "06246829d098d4715c5db174a14ec0796d3c12a9b1c7a8b0889c855397db665d",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 6,
+  "distinct_entries": 6,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

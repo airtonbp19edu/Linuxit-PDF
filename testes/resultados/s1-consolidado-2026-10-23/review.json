@@ -1,0 +1,94 @@
+{
+  "schema": "linuxit-static-milestone-v1",
+  "reviewed_at": "2026-10-23T01:11:10.399673-03:00",
+  "baseline_commit": "1850aef",
+  "previous_catalog_entries": 350,
+  "current_catalog_entries": 397,
+  "new_distinct_entries": 47,
+  "observations": 54,
+  "revisited_observations": 7,
+  "instructions": 7904,
+  "body_bytes": 27660,
+  "rea_distinct_entries": 152,
+  "supplementary_direct_distinct_entries": 245,
+  "rounds": [
+    {
+      "round": "s1-index-provider-2026-10-23",
+      "entries": 7,
+      "instructions": 810,
+      "body_bytes": 2595,
+      "machine_report_sha256": "0b01a8dbd76ad0c9293eff26e5174f9f2156dacb0884779dde35ecc8154eba62"
+    },
+    {
+      "round": "s1-options-2026-10-22",
+      "entries": 6,
+      "instructions": 2553,
+      "body_bytes": 8709,
+      "machine_report_sha256": "b939d059e8396aa05143afdb8d21557ca636655ad5286928df2f3f0747f3899c"
+    },
+    {
+      "round": "s1-query-constructors-2026-10-22",
+      "entries": 6,
+      "instructions": 751,
+      "body_bytes": 2826,
+      "machine_report_sha256": "faa7bbb3ae4ef28634430718a209417e19c7c2efa4423f28be6143050b0b57cb"
+    },
+    {
+      "round": "s1-query-evaluation-2026-10-23",
+      "entries": 7,
+      "instructions": 2020,
+      "body_bytes": 7375,
+      "machine_report_sha256": "9ff9be00ca57745dce798d5fd439e6f76fbe3580e493d9b29c186ea56d836679"
+    },
+    {
+      "round": "s1-searcher-2026-10-23",
+      "entries": 7,
+      "instructions": 410,
+      "body_bytes": 1194,
+      "machine_report_sha256": "b645f4aa0d10a1d9b9d4c85161807d71a22f26249ad9dc4cddb7397de536cd64"
+    },
+    {
+      "round": "s1-ui-factory-2026-10-23",
+      "entries": 4,
+      "instructions": 132,
+      "body_bytes": 438,
+      "machine_report_sha256": "b84af45b129b364fca8074b72efd68131fbf1297c44747380516b479c9a4b98c"
+    },
+    {
+      "round": "s1-ui-objects-2026-10-22",
+      "entries": 8,
+      "instructions": 591,
+      "body_bytes": 2628,
+      "machine_report_sha256": "6156cd8936c0072caa49ff9d47f5a32664ed8fe979cca73b93f16f9af819cd2f"
+    },
+    {
+      "round": "s1-unicode-2026-10-22",
+      "entries": 2,
+      "instructions": 299,
+      "body_bytes": 913,
+      "machine_report_sha256": "6124d227e8b5a0e05f989f61df9b03174e688a82b4522f0fb4a315f8560d40e0"
+    },
+    {
+      "round": "s1-unicode-internals-2026-10-23",
+      "entries": 4,
+      "instructions": 193,
+      "body_bytes": 544,
+      "machine_report_sha256": "f1534f7d0832a0413b3e2c544c5d22c82fb02bdea56db8bc4fb36c2f6a4a7a3f"
+    },
+    {
+      "round": "s1-unicode-tables-2026-10-23",
+      "entries": 3,
+      "instructions": 145,
+      "body_bytes": 438,
+      "machine_report_sha256": "f30e14254e6c850d56b544ff50ef613af708f8ab49f81bb0153015846ea047e8"
+    }
+  ],
+  "original_executed_for_static_analysis": false,
+  "app_changed": false,
+  "S1_complete": false,
+  "S3_complete": false,
+  "global_completion_percent": null,
+  "checklist_percent_preserved": 45.13,
+  "candidate_preserved": "0.1.19/source9fb4f3a",
+  "workflow_tree_preserved": "df2e143226f31343781b1598f3bcf6b6e8dae5e7"
+}

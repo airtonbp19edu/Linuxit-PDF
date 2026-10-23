@@ -1,0 +1,557 @@
+{
+  "schema": "linuxit-s3-four-subsystems-review-v1",
+  "reviewed_at_local": "2026-10-23T01:04:19.625564-03:00",
+  "reviewer": "Codex",
+  "method": "Review existing published static metadata and preserved reports; no new decompilation or target execution",
+  "report": "docs/REA-S3-ESTADOS-2026-10-23.md",
+  "report_sha256": "760d6385576718e3f415806a4f5c48f6c62ae5cba4eee4da40a5afac1875c7f7",
+  "source_metadata": [
+    {
+      "path": "docs/windows-evidence/foxit-rea/module-inventory.json",
+      "sha256": "d79765d5a121ad47b09fc4d5d19e80cb1de5d5ee49e57426091d87335cae56fc"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/plugin-ui-command-map.json",
+      "sha256": "a256c972d0eb51a1ae7e252c584f953666465ac6ac1ecb990cc8154707dbaa36"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/ui-command-map.json",
+      "sha256": "c4eb5140bdd7fdbf6290643136e36b3e823cdccbbe93f866f23b5d0ca4c24ba2"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/headless-cross-checks-no-vm-2026-10-17.json",
+      "sha256": "2e743d0f2286a38e97bc774c7743c87d1a253a20d7243484db13c4a7f8039857"
+    },
+    {
+      "path": "docs/windows-evidence/foxit-rea/headless-cross-checks-windows-followup-2026-10-16.json",
+      "sha256": "e095dfb820ae5dc72f4b62366fe357711e968e73b840079617023832b2156df7"
+    }
+  ],
+  "resource_associations_checked": [
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8000,
+      "handler_vas": [
+        "0x1001f5c0"
+      ],
+      "map_file_offsets": [
+        "0x29e58"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8001,
+      "handler_vas": [
+        "0x1001f610"
+      ],
+      "map_file_offsets": [
+        "0x29e70"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8002,
+      "handler_vas": [
+        "0x1001f660"
+      ],
+      "map_file_offsets": [
+        "0x29e88"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8003,
+      "handler_vas": [
+        "0x1001f6b0"
+      ],
+      "map_file_offsets": [
+        "0x29ea0"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8004,
+      "handler_vas": [
+        "0x1001f700"
+      ],
+      "map_file_offsets": [
+        "0x29eb8"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 22655,
+      "handler_vas": [
+        "0x1001f750"
+      ],
+      "map_file_offsets": [
+        "0x29ed0"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 22656,
+      "handler_vas": [
+        "0x1001f790"
+      ],
+      "map_file_offsets": [
+        "0x29ee8"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 22657,
+      "handler_vas": [
+        "0x1001f7d0"
+      ],
+      "map_file_offsets": [
+        "0x29f00"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 8006,
+      "handler_vas": [
+        "0x1001d840"
+      ],
+      "map_file_offsets": [
+        "0x29f18"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 22684,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 22682,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "source": "dialog",
+      "resource": 8006,
+      "id": 2,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "dialog",
+      "resource": 599,
+      "id": 132,
+      "handler_vas": [
+        "0x77ad80"
+      ],
+      "map_file_offsets": [
+        "0x613de58"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "dialog",
+      "resource": 2748,
+      "id": 2318,
+      "handler_vas": [
+        "0x195fea0"
+      ],
+      "map_file_offsets": [
+        "0x4ff8300"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "menu",
+      "resource": 2750,
+      "id": 33574,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "menu",
+      "resource": 2750,
+      "id": 33575,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "menu",
+      "resource": 2750,
+      "id": 33576,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "menu",
+      "resource": 2750,
+      "id": 33577,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "menu",
+      "resource": 2750,
+      "id": 33573,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "source": "dialog",
+      "resource": 574,
+      "id": 157,
+      "handler_vas": [
+        "0x77fb50"
+      ],
+      "map_file_offsets": [
+        "0x613cf50"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/InkSign.fpi",
+      "source": "menu",
+      "resource": 1126,
+      "id": 32774,
+      "handler_vas": [],
+      "map_file_offsets": [],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38547,
+      "handler_vas": [
+        "0x10041a50"
+      ],
+      "map_file_offsets": [
+        "0x4efe0",
+        "0x4f808"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38548,
+      "handler_vas": [
+        "0x10041af0"
+      ],
+      "map_file_offsets": [
+        "0x4eff8",
+        "0x4f820"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38545,
+      "handler_vas": [
+        "0x10041bc0"
+      ],
+      "map_file_offsets": [
+        "0x4f040",
+        "0x4f868"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38537,
+      "handler_vas": [
+        "0x10041bf0",
+        "0x10045380"
+      ],
+      "map_file_offsets": [
+        "0x4f058",
+        "0x4f880"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38535,
+      "handler_vas": [
+        "0x10041c70",
+        "0x10045400"
+      ],
+      "map_file_offsets": [
+        "0x4f070",
+        "0x4f898"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38536,
+      "handler_vas": [
+        "0x10041cf0",
+        "0x10045480"
+      ],
+      "map_file_offsets": [
+        "0x4f088",
+        "0x4f8b0"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38540,
+      "handler_vas": [
+        "0x10041ba0"
+      ],
+      "map_file_offsets": [
+        "0x4f028",
+        "0x4f850"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10556,
+      "id": 38538,
+      "handler_vas": [
+        "0x10041b80"
+      ],
+      "map_file_offsets": [
+        "0x4f010",
+        "0x4f838"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "source": "menu",
+      "resource": 10557,
+      "id": 38546,
+      "handler_vas": [
+        "0x10041820"
+      ],
+      "map_file_offsets": [
+        "0x4efb0"
+      ],
+      "association_type": "resource_and_candidate_MFC_only",
+      "passed": true
+    }
+  ],
+  "diagram_count": 4,
+  "diagram_edges": [
+    [
+      "A-R1",
+      "A-R2",
+      "A-R3",
+      "A-R4",
+      "A-C1",
+      "A-C2",
+      "A-C3",
+      "A-L1",
+      "A-L2",
+      "A-L3",
+      "A-L4",
+      "A-L5"
+    ],
+    [
+      "F-C1",
+      "F-L1",
+      "F-L2",
+      "F-C2",
+      "F-L3",
+      "F-S1",
+      "F-S2",
+      "F-S3",
+      "F-L4"
+    ],
+    [
+      "S-C1",
+      "S-L1",
+      "S-L2",
+      "S-L3",
+      "S-L4"
+    ],
+    [
+      "L-R1",
+      "L-R2",
+      "L-R3",
+      "L-R4",
+      "L-C1",
+      "L-C2",
+      "L-C3",
+      "L-C4",
+      "L-C5",
+      "L-L1",
+      "L-L2",
+      "L-L3",
+      "L-L4"
+    ]
+  ],
+  "total_edge_count": 39,
+  "edge_legend": {
+    "S": "Preserved static code/RTTI linkage",
+    "C": "Structural MFC candidate, not runtime handler proof",
+    "R": "Resource/template membership only",
+    "L": "Documented evidence gap, not proved transition"
+  },
+  "preserved_XFA_body_checks": [
+    {
+      "entry": "0x2d226d0",
+      "metadata": "headless-cross-checks-no-vm-2026-10-17.json",
+      "raw_present_locally": true,
+      "raw_result_sha256": "dcf317222fabc2a5a2e317d3832e556751872e88c4f1102cea10a521a7b7dc7a",
+      "raw_hash_verified_this_review": true
+    },
+    {
+      "entry": "0x166fe90",
+      "metadata": "headless-cross-checks-windows-followup-2026-10-16.json",
+      "raw_present_locally": true,
+      "raw_result_sha256": "db8125eaec7af8a2dec6736100875211f2e7a8f0cd348de2211c4c64088341aa",
+      "raw_hash_verified_this_review": true
+    }
+  ],
+  "proposed_next_lots": [
+    {
+      "module": "plugins/CommentsSummary.fpi",
+      "addresses": [
+        "0x1001f5c0",
+        "0x1001f660",
+        "0x1001f750"
+      ],
+      "state": "proposed_not_executed",
+      "seed_source": "Exact resource-ID/MFC candidate checked above; not an identified engine"
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "addresses": [
+        "0x77ad80",
+        "0x195fea0"
+      ],
+      "state": "proposed_not_executed",
+      "seed_source": "Exact resource-ID/MFC candidate checked above; not an identified engine"
+    },
+    {
+      "module": "FoxitPDFReader.exe",
+      "addresses": [
+        "0x77fb50"
+      ],
+      "state": "proposed_not_executed",
+      "seed_source": "Exact resource-ID/MFC candidate checked above; not an identified engine"
+    },
+    {
+      "module": "plugins/LayerPanelToolPlugin.fpi",
+      "addresses": [
+        "0x10041820",
+        "0x10041bc0",
+        "0x10041bf0",
+        "0x10045380"
+      ],
+      "state": "proposed_not_executed",
+      "seed_source": "Exact resource-ID/MFC candidate checked above; not an identified engine"
+    }
+  ],
+  "new_decompiled_entries": 0,
+  "original_executed": false,
+  "vm_touched": false,
+  "app_tests_run": 0,
+  "implementation_changed": false,
+  "catalog_changed_by_this_task": false,
+  "criteria_or_weights_changed": false,
+  "release_published": false,
+  "s3_complete": false,
+  "complete_subsystem_state_machines_proved": 0,
+  "limitations": [
+    "Detailed interactive editing, undo/redo and serialization state machines are not available in the examined original evidence.",
+    "Form preference/data interfaces and XFA print renderer are separate frontiers, not a proven common form engine.",
+    "Signature preference, visual application and cryptographic module dependencies are not joined by invented calls.",
+    "Layer menu routes have multiple candidate contexts; class ownership and OCG/OCMD mutations remain open.",
+    "Diagrams were checked as traceable Markdown/Mermaid text; no browser rendering or runtime interaction was performed."
+  ]
+}

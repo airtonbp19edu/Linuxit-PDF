@@ -1,0 +1,174 @@
+{
+  "schema": "linuxit-s1-ui-static-review-v1",
+  "reviewed_at_local": "2026-10-23T00:49:33.973651-03:00",
+  "reviewer": "Codex",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "module": "FoxitPDFReader.exe",
+  "profile": "Direct Ghidra 12.1.4 -noanalysis using REA 6.7.0 seed script; supplementary static PE/RTTI and Capstone reads; not REA MCP Evidence",
+  "original_executed": false,
+  "vm_touched": false,
+  "app_source_changed": false,
+  "criteria_weights_changed": false,
+  "s1_complete": false,
+  "implementation_completion_percent": null,
+  "reviewed_rounds": [
+    {
+      "round": "s1-ui-objects-2026-10-22",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "machine_check": "testes/resultados/s1-ui-objects-2026-10-22/machine-checks.json",
+      "entries": 8,
+      "instructions": 591,
+      "body_bytes": 2628,
+      "source_manifest_sha256": "4a355fff66c5366db69f85ba8b9a241cfbae62ec8631ee83fb7866380f1e04d2",
+      "result_hashes": [
+        {
+          "entry": "0x1756230",
+          "sha256": "4b668183cc77318db0e7985af1c421b0c0e9505f16631b993574e5e573ae88ba"
+        },
+        {
+          "entry": "0x1785590",
+          "sha256": "aefdf204de5f59a6c0d09782d91917b1bfc6850972cf805abc7c781457a45512"
+        },
+        {
+          "entry": "0x5aa0e0",
+          "sha256": "a78b706264da78c7486621a93b08054dabcb603f8d5606dc43353a1e89f8e5de"
+        },
+        {
+          "entry": "0x5aa210",
+          "sha256": "968ba48ffb3a5e8fa45ecef27933bc23bbfdb216aad85f273a8223a15df9cacc"
+        },
+        {
+          "entry": "0x5aa230",
+          "sha256": "19484667f4c2c066a339843f931a2f873ff1515df5745d59071ea8f9d3291e54"
+        },
+        {
+          "entry": "0x5aa250",
+          "sha256": "ba243b445890e6e108fc70ccd03cd3ba3cf2820e0963ade8887fc77469597350"
+        },
+        {
+          "entry": "0x7b9850",
+          "sha256": "4eddb52acf1faeeb84b9f5b57eacb4516407a44aa34ad9951ab21fdc21958e03"
+        },
+        {
+          "entry": "0xbdf0f0",
+          "sha256": "0e7063d6b6f3e77af55ea4a15d052447ec0ae1f25a3b0d48f68e0bab27d51a89"
+        }
+      ]
+    },
+    {
+      "round": "s1-ui-factory-2026-10-23",
+      "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+      "machine_check": "testes/resultados/s1-ui-factory-2026-10-23/machine-checks.json",
+      "entries": 4,
+      "instructions": 132,
+      "body_bytes": 438,
+      "source_manifest_sha256": "0d1f6206ad836aab646d2992cb87835408b2ac1027a4eee39090ac921ff68533",
+      "result_hashes": [
+        {
+          "entry": "0x5a48c0",
+          "sha256": "dced34da0e69313b07ca3a5921beb153dbf3717200a0905f3a8e83ea6209d05f"
+        },
+        {
+          "entry": "0x5a5610",
+          "sha256": "be9eefcc08135a82d8fca538b8f9dbb3e693fa3de38b30204a09f21453807c97"
+        },
+        {
+          "entry": "0x5ac320",
+          "sha256": "f5744a0c4828cfbbfe10296b4ce52855ec72dd7728e74fc684a40a8b6cd9eda8"
+        },
+        {
+          "entry": "0x5adfb0",
+          "sha256": "ede18988e3bce15ecfc7c984ba1d74c20d5e4221f9d7c5112f21de1e3726f8e6"
+        }
+      ]
+    }
+  ],
+  "static_auxiliary": {
+    "path": "analysis-local/s1-ui-static-2026-10-23.json",
+    "sha256": "ea9efebcb01486351962b5632913aef35f58a01f32c66e55e608b7e48c0361bc"
+  },
+  "rtti": [
+    {
+      "vtable": "0x53e0198",
+      "col": "0x659b148",
+      "object_offset": 0,
+      "type_descriptor": "0x6cc2480",
+      "class_name": ".?AV?$CVector@V?$unique_ptr@VDataNode@@U?$default_delete@VDataNode@@@std@@@std@@@@"
+    },
+    {
+      "vtable": "0x532dc84",
+      "col": "0x6625728",
+      "object_offset": 0,
+      "type_descriptor": "0x6d15178",
+      "class_name": ".?AVCCriticalSection@@"
+    },
+    {
+      "vtable": "0x652109c",
+      "col": "0x661c52c",
+      "object_offset": 0,
+      "type_descriptor": "0x6d10870",
+      "class_name": ".?AVCFXBCGStyleTreeCtrl@@"
+    }
+  ],
+  "default_factory": {
+    "vtable": "0x6533b38",
+    "col": "0x66204b8",
+    "object_offset": 0,
+    "td": "0x6d12630",
+    "name": ".?AVCFXBCGControlManager@@"
+  },
+  "type16_dispatch": {
+    "table": "0x5a49a8",
+    "index": 16,
+    "branch": "0x5a495c",
+    "factory": "0x5a5610",
+    "constructor": "0x5ac320",
+    "allocation_bytes": 7808,
+    "wrapper_offset": 0,
+    "native_control_offset": 8
+  },
+  "reused_constructor": {
+    "entry": "0x1758c70",
+    "call": "0x1759885",
+    "this_offset": "0x2034",
+    "result": "analysis-local/headless/static-ui-contexts-2026-10-18/functions/0x1758c70.json",
+    "result_sha256": "4a14bc0f6a82fdc542b7b0b9fb010678312534b526c4c6ed5ead1052be21c3f8",
+    "new_entry": false
+  },
+  "errata": [
+    {
+      "previous_document": "docs/REA-FLUXO-BUSCA-2026-10-22.md",
+      "previous_interpretation": "dialog+0x2044 is results model reset by virtual+0x14",
+      "corrected_interpretation": "Inline CCriticalSection. virtual+0x14 is0x7b9850 Unlock, calling LeaveCriticalSection(this+8). Clear procedure enters/unlocks twice on the same storage, not a separate page-vector model."
+    }
+  ],
+  "findings": [
+    {
+      "id": "S1-ui-critical-section",
+      "state": "answered_static",
+      "conclusion": "dialog+0x2044 is inline CCriticalSection; native section at+0x204c; nested in CVector<unique_ptr<DataNode>> at+0x2034."
+    },
+    {
+      "id": "S1-ui-default-tree",
+      "state": "answered_for_default_factory",
+      "conclusion": "dialog initializer stores controlID8026/type16 factory return at+0x1f34 without adjustment; default CFXBCGControlManager dispatch constructs CFXBCGStyleTreeCtrl wrapper with native control at+8."
+    },
+    {
+      "id": "S1-ui-lifetime",
+      "state": "partial",
+      "conclusion": "Constructor/destructor pair for allocated tree linked, but universal owner binding and every dialog destruction path not proved."
+    }
+  ],
+  "open_questions": [
+    "Runtime identity or alternate owner-factory implementations",
+    "All native tree operations and complete DataNode layout",
+    "Complete owner lifetime of dialog+0x1f34",
+    "Cancellation flag writer and synchronization in other search paths",
+    "Dynamic behavior and Foxit/Linuxit comparison"
+  ],
+  "limitations": [
+    "Automatic decompiler signatures remain provisional.0x5a5610 local return/liveness needed assembly confirmation.",
+    "RTTI word reads beyond virtual tables are not counted as methods.",
+    "No new app tests/build/Flatpak/release in this static review."
+  ]
+}

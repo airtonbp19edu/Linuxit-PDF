@@ -1,15 +1,18 @@
 # Avisos e situação do Linuxit PDF
 
-**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
+**Atualização — 2026/10/23 às 01:11 (America/Sao_Paulo, UTC-03:00):** autoria Airton+coautoria Codex confirmada em695f9bf; retomada Codex agendada23/10 às05:30, Claude confirmou05:10. S1:54 observações/47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes; catálogo350→397 (152REA+245diretas). Opções+6/+7/+0x10, normalização, consultas concretas e fábrica UI esclarecidas; errata+0x2044=CCriticalSection aplicada. S1 eS3 seguem parciais, com lacunas declaradas. VM/E30 em preflight pelo Codex, sem Foxit lançado até este checkpoint; Claude cuida Windows/app. Candidato0.1.19, workflows e critérios preservados. [S1](REA-S1-AVALIACAO-2026-10-23.md), [divisão](DIVISAO-TAREFAS-2026-10-23.md).
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/23 às 01:11 (America/Sao_Paulo)
 
-- Passo7 registrado e salvo em2c96d64: E32/A4 eE33/candidato concluídos no escopo delimitado; E34/A6 parcial.
-- S1 recebeu sete entradas novas, todas decompiladas e conferidas contra os bytes originais:1.593 instruções/5.278 bytes. Catálogo350. Identificados stemming condicional, ramos de curingas e um caminho de cancelamento; classes/flags/avaliação completa ainda abertos.
-- Nenhum processo de análise permanece ativo após o checkpoint. Próxima IA segue os alvos em [S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md), sem repetir o lote.
-- Publicação0.1.19 segue aguardando autorização específica. Fonte/payload/sandbox744/744 e aceitação81/81 já preservados; app não mudou nesta rodada. Windows e equipamentos continuam parciais; VM intocada.
+- Divisão aceita: Codex S1/S3/S2/S4 e operador exclusivoVM; ClaudeWindows/app/tests/aceitação,kitE23,propostaB3 e revisão0.1.19. Ler [divisão](DIVISAO-TAREFAS-2026-10-23.md) e os arquivos de chat separados.
+- Codex05:30 agendado no app; Claude confirmou05:10. Autoria escolhida confirmada pelo GitHub: Airtonautor, trailerCodex único; lista agregada não mostra contaCodex separada.
+- S1:47 entradas novas e sete revisitas nos dez lotes,7.904 instruções/27.660 bytes. Catálogo397. [Relatório](REA-S1-AVALIACAO-2026-10-23.md); opções/Unicode/UI têm documentos próprios.
+- Correção: `dialog+0x2044` é seção crítica embutida; os dois pares Enter/Unlock não reiniciam um segundo modelo de resultados.
+- [S3/C1](REA-S3-ESTADOS-2026-10-23.md): quatro diagramas,39 arestas classificadas,30 associações de recursos conferidas; sem motores completos nem nova função por esse levantamento.
+- VM respondeu ao relógio e ao Gerenciador de Tarefas; manutenção breve conferiu ausência do Foxit e hash do coletor. Preparação de observador novo em andamento; nenhuma comparação nova aprovada neste checkpoint.
+- S1/S3 e critérios amplos continuam parciais. Candidato0.1.19/fonte9fb4f3a e suas evidências744/744/81aceitações preservados; não repetidos nesta análise. Publicação/B3 ainda exigem decisão própria.
 
 ## Histórico de avisos
 
@@ -200,3 +203,5 @@ Passos2/3 autorizados executados: correções e verificações preparatórias, f
 Candidato0.1.19 retido e validado744/744 por ambiente, aceitação81/81 na mesma revisão9fb4f3a. O candidato inicial foi substituído pela correção de identidade da redação; seus resultados foram preservados. Windows: QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.
 
 Publicação e Passo7 aguardam instrução. Original/VM intactos, critérios e pesos preservados. [Evidências e limites](PASSOS-4-6-A456-2026-10-22.md).
+
+- **2026/10/23 às 01:11** — Codex confirmou retomada05:30 e recebeu confirmaçãoClaude05:10; coordenação com arquivos separados. Análise estática consolidou47 novas entradas/7revisitas, com errata da seção crítica e normalizaçãoUnicode. A estimativa intermediária45entradas foi substituída pela contagem deduplicada47. VM em preparação; critérios/pesos/paridade preservados.

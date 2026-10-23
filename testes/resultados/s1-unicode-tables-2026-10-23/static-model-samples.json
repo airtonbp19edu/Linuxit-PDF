@@ -1,0 +1,178 @@
+{
+  "schema": "linuxit-s1-unicode-static-model-samples-v1",
+  "reviewed_at_local": "2026-10-23T00:45:11.829727-03:00",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "original_executed": false,
+  "static_samples_only": true,
+  "runtime_equivalence_proved": false,
+  "additional_machine_prefixes_not_counted_as_new_catalog_entries": [
+    {
+      "entry": "0x102c9ee0",
+      "bytes": 83,
+      "sha256": "eda9e352d4181644d3c88e453383e518536d6b0da891ffc6051c69a493ad4ee6"
+    },
+    {
+      "entry": "0x102c9e40",
+      "bytes": 65,
+      "sha256": "f940b410836a834c45433809145d709cccda78365e4d4265aaa265a0a433e736"
+    },
+    {
+      "entry": "0x102ca100",
+      "bytes": 77,
+      "sha256": "a66fd425c9422cb8bda4a676900faf97eb5eeb217aace435891391189e485b44"
+    }
+  ],
+  "prefix_disassembly_private": "analysis-local/s1-unicode-decomp-lookup.asm",
+  "samples": [
+    {
+      "input": "é",
+      "input_codepoints": [
+        "U+00E9"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "é",
+        "width=1,accents=0,tatweel=0": "é",
+        "width=0,accents=1,tatweel=0": "e",
+        "width=1,accents=1,tatweel=0": "e"
+      },
+      "static_predicted_with_third_flag_only": "é"
+    },
+    {
+      "input": "é",
+      "input_codepoints": [
+        "U+0065",
+        "U+0301"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "é",
+        "width=1,accents=0,tatweel=0": "é",
+        "width=0,accents=1,tatweel=0": "e",
+        "width=1,accents=1,tatweel=0": "e"
+      },
+      "static_predicted_with_third_flag_only": "é"
+    },
+    {
+      "input": "Ａ",
+      "input_codepoints": [
+        "U+FF21"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "Ａ",
+        "width=1,accents=0,tatweel=0": "A",
+        "width=0,accents=1,tatweel=0": "Ａ",
+        "width=1,accents=1,tatweel=0": "A"
+      },
+      "static_predicted_with_third_flag_only": "Ａ"
+    },
+    {
+      "input": "＊",
+      "input_codepoints": [
+        "U+FF0A"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "＊",
+        "width=1,accents=0,tatweel=0": "*",
+        "width=0,accents=1,tatweel=0": "＊",
+        "width=1,accents=1,tatweel=0": "*"
+      },
+      "static_predicted_with_third_flag_only": "＊"
+    },
+    {
+      "input": "ﬁ",
+      "input_codepoints": [
+        "U+FB01"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "ﬁ",
+        "width=1,accents=0,tatweel=0": "ﬁ",
+        "width=0,accents=1,tatweel=0": "ﬁ",
+        "width=1,accents=1,tatweel=0": "ﬁ"
+      },
+      "static_predicted_with_third_flag_only": "ﬁ"
+    },
+    {
+      "input": "Æ",
+      "input_codepoints": [
+        "U+00C6"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "Æ",
+        "width=1,accents=0,tatweel=0": "Æ",
+        "width=0,accents=1,tatweel=0": "Æ",
+        "width=1,accents=1,tatweel=0": "Æ"
+      },
+      "static_predicted_with_third_flag_only": "Æ"
+    },
+    {
+      "input": "Œ",
+      "input_codepoints": [
+        "U+0152"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "Œ",
+        "width=1,accents=0,tatweel=0": "Œ",
+        "width=0,accents=1,tatweel=0": "Œ",
+        "width=1,accents=1,tatweel=0": "Œ"
+      },
+      "static_predicted_with_third_flag_only": "Œ"
+    },
+    {
+      "input": "ᾈ",
+      "input_codepoints": [
+        "U+1F88"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "ᾈ",
+        "width=1,accents=0,tatweel=0": "ᾈ",
+        "width=0,accents=1,tatweel=0": "Α",
+        "width=1,accents=1,tatweel=0": "Α"
+      },
+      "static_predicted_with_third_flag_only": "ᾈ"
+    },
+    {
+      "input": "कः",
+      "input_codepoints": [
+        "U+0915",
+        "U+0903"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "कः",
+        "width=1,accents=0,tatweel=0": "कः",
+        "width=0,accents=1,tatweel=0": "कः",
+        "width=1,accents=1,tatweel=0": "कः"
+      },
+      "static_predicted_with_third_flag_only": "कः"
+    },
+    {
+      "input": "҈",
+      "input_codepoints": [
+        "U+0488"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "҈",
+        "width=1,accents=0,tatweel=0": "҈",
+        "width=0,accents=1,tatweel=0": "҈",
+        "width=1,accents=1,tatweel=0": "҈"
+      },
+      "static_predicted_with_third_flag_only": "҈"
+    },
+    {
+      "input": "ـ",
+      "input_codepoints": [
+        "U+0640"
+      ],
+      "static_predicted_outputs": {
+        "width=0,accents=0,tatweel=0": "ـ",
+        "width=1,accents=0,tatweel=0": "ـ",
+        "width=0,accents=1,tatweel=0": "ـ",
+        "width=1,accents=1,tatweel=0": "ـ"
+      },
+      "static_predicted_with_third_flag_only": ""
+    }
+  ],
+  "limitations": [
+    "Derived by a Python model of examined branches and read-only PE tables; these are predictions, not original runtime outputs.",
+    "Sample corpus limited to BMP characters and does not establish all Unicode combinations, malformed UTF-16, memory failures, or full search behavior.",
+    "The model covers UnicodeDeals only; tokenization, lowercasing, stemming and query evaluation are separate."
+  ]
+}

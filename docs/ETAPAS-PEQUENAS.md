@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-22T21:00:49-03:00. Pendente: 2, Em andamento: 2, Concluída: 31.
+Atualizado em 2026-10-23T01:11:10.399673-03:00. Pendente: 2, Em andamento: 2, Concluída: 31.
 
 **Regras**
 
@@ -419,7 +419,7 @@ Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nati
 
 **Situação:** Em andamento.
 
-Lote desta rodada encerrado:7 novas entradas/1593 instruções/5278 bytes, catálogo343→350. S1 segue parcial; não há processo de análise ativo após checkpoint. Próximos alvos no relatório. Nenhuma VM/app/pacote/release alterado.
+Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado.
 
 ### E23 — Validações físicas
 

@@ -1,0 +1,31 @@
+{
+  "schema": "linuxit-s1-static-review-v1",
+  "reviewed_at": "2026-10-23T01:03:33.248812-03:00",
+  "round": "s1-query-constructors-2026-10-22",
+  "subject_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "source_module": "fxLuceneLib.dll",
+  "observations": 6,
+  "new_entries_against_catalog_350": [
+    "0x10011290",
+    "0x10011350",
+    "0x1001dff0",
+    "0x100243b0"
+  ],
+  "revisited_entries": [
+    "0x1001a060",
+    "0x1001a0d0"
+  ],
+  "instructions": 751,
+  "body_bytes": 2826,
+  "machine_report_sha256": "faa7bbb3ae4ef28634430718a209417e19c7c2efa4423f28be6143050b0b57cb",
+  "pseudocode_and_machine_examined": true,
+  "report": "docs/REA-S1-AVALIACAO-2026-10-23.md",
+  "original_executed": false,
+  "global_S1_complete": false,
+  "limits": [
+    "Automatic signatures and hidden output parameters remain provisional.",
+    "Additional called helpers and scoring algorithms remain open.",
+    "No proprietary implementation code is published; metadata and descriptions only.",
+    "Full bodies can include tail-jump regions and must not be counted again."
+  ]
+}

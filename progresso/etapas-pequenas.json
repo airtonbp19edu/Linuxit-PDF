@@ -1,7 +1,7 @@
 {
   "schema": "linuxit-small-steps-v1",
   "created_at_local": "2026-10-20T00:27:00-03:00",
-  "updated_at_local": "2026-10-22T21:00:49-03:00",
+  "updated_at_local": "2026-10-23T01:11:10.399673-03:00",
   "request": "Usuário em 20/10/2026: organizar o que falta em etapas pequenas, salvar nos repositórios e começar já, priorizando o que não precisa da VM.",
   "rules": [
     "A ordem da lista é a prioridade. Etapas sem VM vêm primeiro.",
@@ -574,14 +574,22 @@
       "evidence": [
         "docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md",
         "testes/resultados/s1-query-pipeline-2026-10-22/review.json",
-        "testes/resultados/s1-query-pipeline-2026-10-22/machine-checks.json"
+        "testes/resultados/s1-query-pipeline-2026-10-22/machine-checks.json",
+        "docs/REA-S1-AVALIACAO-2026-10-23.md",
+        "docs/REA-S1-OPCOES-2026-10-23.md",
+        "docs/REA-S1-UNICODE-2026-10-23.md",
+        "docs/REA-S1-OBJETOS-UI-2026-10-23.md",
+        "testes/resultados/s1-consolidado-2026-10-23/review.json"
       ],
-      "note": "Lote desta rodada encerrado:7 novas entradas/1593 instruções/5278 bytes, catálogo343→350. S1 segue parcial; não há processo de análise ativo após checkpoint. Próximos alvos no relatório. Nenhuma VM/app/pacote/release alterado.",
+      "note": "Dez lotes revisados:54 observações/47 entradas novas/7 revisitas,7904 instruções/27660 bytes, catálogo350→397. Opções/Unicode/classes/escrita de resultados esclarecidas no recorte; S1 continua parcial por contratos+3/+c, pesos/scorers/ranqueamento, proximidade integral e lifecycle. Original não executado para análise estática; VM tem trabalho E30 separado.",
       "last_batch": {
         "owner": "Codex",
-        "reviewed_at_local": "2026-10-22T21:00:49-03:00",
+        "reviewed_at_local": "2026-10-23T01:11:10.399673-03:00",
         "state": "checkpoint_saved",
-        "new_entries": 7,
+        "observations": 54,
+        "new_entries": 47,
+        "revisited_observations": 7,
+        "catalog_entries": 397,
         "original_executed": false
       }
     },

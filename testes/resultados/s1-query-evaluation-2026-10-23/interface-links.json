@@ -1,0 +1,54 @@
+{
+  "schema": "linuxit-s1-interface-links-v1",
+  "reviewed_at": "2026-10-23T01:03:33.248812-03:00",
+  "subject_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "constructor_import": {
+    "name": "??0IndexSearcher@Lucene@@QAE@ABV?$shared_ptr@VIndexReader@Lucene@@@boost@@@Z",
+    "module": "lucene++.dll"
+  },
+  "constructor_entry": "0x10018df0",
+  "links": [
+    {
+      "vtable": "0x100d75c0",
+      "slot": "0x28",
+      "thunk": "0x10043004",
+      "iat": "0x100d624c",
+      "name": "?doc@IndexSearcher@Lucene@@UAE?AV?$shared_ptr@VDocument@Lucene@@@boost@@H@Z",
+      "module": "lucene++.dll",
+      "vtable_pointer_bytes_sha256": "e86ce4a208bdd19c9362cf7ab211d2c25030b8f199f3021237b3da157fa1eb5a",
+      "thunk_bytes_sha256": "c2baa9cb5b7c91c93dd0f650e9d937aec0b30f00644fb6f2efc737256487de01"
+    },
+    {
+      "vtable": "0x100d75c0",
+      "slot": "0x34",
+      "thunk": "0x100430ca",
+      "iat": "0x100d62d0",
+      "name": "?search@Searcher@Lucene@@UAE?AV?$shared_ptr@VTopDocs@Lucene@@@boost@@ABV?$shared_ptr@VQuery@Lucene@@@4@H@Z",
+      "module": "lucene++.dll",
+      "vtable_pointer_bytes_sha256": "3f9fa7b8d941c6677e5f6979d122072ca64c974dabe244d91b0f72a69615d186",
+      "thunk_bytes_sha256": "fd765797978d0fa3b3f541887239962ba08baff07315f9e6aa6e5be47dce8bc3"
+    },
+    {
+      "vtable": "0x100d75c0",
+      "slot": "0x64",
+      "thunk": "0x10042cde",
+      "iat": "0x100d67e8",
+      "name": "?getMatchTerms@IndexSearcher@Lucene@@UAEABV?$vector@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@V?$allocator@V?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@@2@@std@@@2@@std@@XZ",
+      "module": "lucene++-contrib.dll",
+      "vtable_pointer_bytes_sha256": "342f6ce46920c7a9297e88da94c3fbfec9dfc4cf801426c3e5b1489195ecc2bd",
+      "thunk_bytes_sha256": "235f69babc8ef68406d31de7dcd65987a8970947537ebd7571f1f3207ead1422"
+    },
+    {
+      "vtable": "0x100d75c0",
+      "slot": "0x68",
+      "thunk": "0x10042ce4",
+      "iat": "0x100d67e4",
+      "name": "?clearMatchTerms@IndexSearcher@Lucene@@UAEXXZ",
+      "module": "lucene++-contrib.dll",
+      "vtable_pointer_bytes_sha256": "1284f095b57aba5500a81342be8c4a7e64aa001ab42c22b4064b94ce120bfb3c",
+      "thunk_bytes_sha256": "658e5a5d02952e3058e3c8f01ce3d47b7df09b281f1de5424a39fa9c8f09c172"
+    }
+  ],
+  "scope": "Exact vtable/IAT observations for constructed IndexSearcher path; not all virtual calls in all objects",
+  "original_executed": false
+}

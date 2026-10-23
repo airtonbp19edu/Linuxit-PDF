@@ -1,6 +1,6 @@
 # Retomada do Linuxit PDF
 
-**Atualização — 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00):** usuário pediu executar S1. Codex retomou três frentes estáticas: consulta/avaliação na DLL, campos das opções e objetosUI+0x1f34/+0x2044. Há trabalho em andamento; não duplicar essas frentes sem consultar a coordenação. S1 segue parcial até prova completa. Candidato0.1.19 preservado; sem publicação/VM/B3.
+**Atualização — 2026/10/23 às 01:11 (America/Sao_Paulo, UTC-03:00):** autoria Airton+coautoria Codex confirmada em695f9bf; retomada Codex agendada23/10 às05:30, Claude confirmou05:10. S1:54 observações/47 entradas novas/7 revisitas,7.904 instruções/27.660 bytes; catálogo350→397 (152REA+245diretas). Opções+6/+7/+0x10, normalização, consultas concretas e fábrica UI esclarecidas; errata+0x2044=CCriticalSection aplicada. S1 eS3 seguem parciais, com lacunas declaradas. VM/E30 em preflight pelo Codex, sem Foxit lançado até este checkpoint; Claude cuida Windows/app. Candidato0.1.19, workflows e critérios preservados. [S1](REA-S1-AVALIACAO-2026-10-23.md), [divisão](DIVISAO-TAREFAS-2026-10-23.md).
 
 ## Coordenação vigente entre Claude e Codex
 
@@ -12,9 +12,9 @@ históricos abaixo como instrução nova.
 | Frente | Responsável/estado | Referência |
 |---|---|---|
 | Registro A4–A6, Passo7 | Codex: registrado nesta rodada | `progresso/etapas-pequenas.json`:E32/E33/E34 |
-| S1: algoritmo/opções/classes da busca | Codex retomou agora: três frentes estáticas em andamento; S1 parcial | `docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md` |
+| S1: algoritmo/opções/classes da busca | Codex: dez lotes revisados,47 entradas novas; S1 parcial; próximos alvos no relatório de23/10 | `docs/REA-S1-AVALIACAO-2026-10-23.md` |
 | S2/S3/S4 | Abertas; avisar antes de assumir | `docs/ORDEM-CODEX-2026-10-22.md` |
-| Windows A6 | Parcial; ramo `codex/windows-installer-diagnostics` | `testes/resultados/a6-windows-2026-10-22/review.json` |
+| Windows A6 | Claude em `claude/windows-installer`; parcial, não duplicar | `testes/resultados/a6-windows-2026-10-22/review.json` |
 | Candidato0.1.19 | Fonte9fb4f3a, CI39869848800,744/744 por ambiente; retido | `testes/resultados/0.1.19/review.json` |
 | Publicação/B3/VM/equipamentos | Aguardam decisão ou ambiente do usuário | Não iniciar por inferência |
 

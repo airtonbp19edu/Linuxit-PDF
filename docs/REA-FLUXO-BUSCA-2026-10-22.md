@@ -1,5 +1,17 @@
 # Fluxo de busca do Foxit — mapa estrutural completo — 22/10/2026
 
+**Errata posterior — 2026/10/23 (America/Sao_Paulo, UTC-03:00):** a redação
+original dizia “reinicia o modelo `+0x2044` pelo slot virtual `+0x14`” e tratava
+a segunda região como redução de outro vetor de itens de página. A revisão de
+construção, RTTI e assembly mostrou que `dialog+0x2044` é uma
+**`CCriticalSection` embutida** e esse slot chama `Unlock`, com
+`LeaveCriticalSection(dialog+0x204c)`. O procedimento contém **dois pares
+separados de entrada/liberação da mesma seção crítica**, ambos sobre o vetor
+de `dialog+0x2038`. O parágrafo e o diagrama de limpeza abaixo foram corrigidos;
+a afirmação anterior fica registrada aqui como interpretação superada.
+[Provas, offsets, fábrica da árvore e limites](REA-S1-OBJETOS-UI-2026-10-23.md).
+Esta errata não conclui S1 nem constitui observação dinâmica.
+
 **Complemento posterior — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Codex examinou sete funções novas da DLL; catálogo350. Byte+5 ligado a stemming, ramos de curingas e um cancelamento interno documentados; S1 continua parcial. [Continuação e limites](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md). O texto abaixo preserva a rodada estrutural anterior.
 
 Registrado em 2026/10/22 (America/Sao_Paulo, UTC-03:00). Tarefa **A1** da lista
@@ -54,10 +66,16 @@ foi confirmado por um texto de log embutido no binário:
   `CreateEventW`. `ResetEvent`, cria a thread (wrapper de 0x44 bytes, `0x48f4b59`, proc
   `0x1770a60`) guardada em `+0x1e3c` liberando a anterior, zera `+0x28` e `ResumeThread` no
   handle `+0x2c`.
-- **Procedimento `0x1770a60` (ClearDataFindThreadProc).** `EnterCriticalSection(+0x204c)`, loga
-  "ClearAllItem----start", percorre o vetor de resultados `+0x2038..+0x203c` chamando o destrutor
-  `0x175dea0` por elemento, reduz o vetor de itens de página, reinicia o modelo `+0x2044` pelo
-  slot virtual `+0x14`, `LeaveCriticalSection`, `SetEvent(+0x1e40)` e marca `+0x2064=1`.
+- **Procedimento `0x1770a60` (ClearDataFindThreadProc).** Prepara o registro
+  "ClearAllItem----start", entra em `EnterCriticalSection(+0x204c)` e percorre o vetor de resultados
+  `+0x2038..+0x203c`, chamando `0x175dea0` por elemento e igualando fim a início.
+  A chamada virtual em `0x1770b45`, no objeto `CCriticalSection` em `+0x2044`,
+  libera essa primeira entrada. Em `0x1770b4f`, entra novamente na mesma seção,
+  compara fim e capacidade do mesmo vetor e pode chamar `0x17ab3a0` ou
+  `0x174e6f0`; o efeito completo desses helpers continua parcial. A chamada
+  virtual em `0x1770b91` libera a segunda entrada. Depois executa
+  `SetEvent(+0x1e40)` e marca `+0x2064=1`. Não há reset de modelo comprovado
+  pelas chamadas ao slot `+0x14`.
 
 Ou seja, `+0x1e3c` é a **thread de limpeza**, `+0x1e40` o **evento de limpeza concluída** e
 `+0x204c` a **seção crítica** que protege o vetor de resultados. No destrutor `0x175eb50` (E24) é
@@ -74,9 +92,13 @@ flowchart TD
   CE --> Reset
   Reset --> Th[cria thread +0x1e3c, ResumeThread no handle +0x2c]
   Th --> Proc[0x1770a60: ClearDataFindThreadProc]
-  Proc --> CS[EnterCriticalSection +0x204c]
-  CS --> Clear[destroi cada resultado +0x2038..+0x203c; reinicia modelo +0x2044]
-  Clear --> Done[LeaveCriticalSection; SetEvent +0x1e40]
+  Proc --> CS1[EnterCriticalSection +0x204c]
+  CS1 --> Clear[destroi elementos +0x2038..+0x203c; fim recebe inicio]
+  Clear --> Unlock1[CCriticalSection em +0x2044: Unlock]
+  Unlock1 --> CS2[EnterCriticalSection +0x204c novamente]
+  CS2 --> Storage[compara limites; helpers sobre o mesmo vetor]
+  Storage --> Unlock2[CCriticalSection em +0x2044: Unlock]
+  Unlock2 --> Done[SetEvent +0x1e40; depois +0x2064 recebe 1]
 ```
 
 ## Opções da busca
@@ -97,8 +119,11 @@ algorítmica interna:
 - O algoritmo da DLL `0x1003f6b0` (montagem de BooleanQuery, 7.655 bytes) continua examinado só
   em recortes; a avaliação Lucene, o cancelamento interno e todas as combinações de consulta não
   estão reconstruídos.
-- O objeto `+0x1f34` (slot `+0x1c`) e o modelo `+0x2044` (slot `+0x14`) têm os papéis observados,
-  mas não a classe concreta.
+- Na rodada original, faltavam as classes de `+0x1f34` e `+0x2044`. A
+  [revisão de 23/10](REA-S1-OBJETOS-UI-2026-10-23.md) identificou a segunda
+  como `CCriticalSection` embutida e ligou a primeira a `CFXBCGStyleTreeCtrl`
+  no caminho da fábrica padrão. Posse integral do controle, fábrica alternativa
+  e comportamento em runtime permanecem parciais.
 - Os bytes 3/5/6/7/`+0xc`/`+0x10` das opções seguem parciais.
 
 Por isso o critério "Fluxo completo de busca reconstruído" (etapa 8) **permanece parcial**: o

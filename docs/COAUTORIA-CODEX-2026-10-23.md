@@ -27,3 +27,7 @@ Antes do novo commit, consulta somente leitura retornou HTTP 200 e dois contribu
 A coautoria no texto do commit é verificável. A lista agregada de contribuidores e a associação do e-mail a uma conta do GitHub são coisas distintas; não se promete que o trailer crie uma conta ou um terceiro avatar. A conferência posterior será acrescentada após o envio deste commit.
 
 Aplicativo, testes de funcionalidades, workflows, releases e VM não foram alterados nesta tarefa.
+
+## Conferência posterior — 2026/10/23 às 01:11
+
+O commit `695f9bf7534761aa1c043b2d498d8b2841731552` foi enviado e consultado pela API: HTTP200, autor vinculado a `airtonbp19edu`, trailerCodex presente exatamente uma vez. A lista agregada continuou com `airtonbp19edu` e `claude`; nenhuma conta separadaCodex foi criada. [Recibo posterior](../testes/resultados/coautoria-codex-2026-10-23/depois.json).

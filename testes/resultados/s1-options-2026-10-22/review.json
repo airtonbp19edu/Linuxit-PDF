@@ -1,0 +1,126 @@
+{
+  "schema": "linuxit-static-options-review-v1",
+  "reviewed_at": "2026-10-23T00:45:47.776400-03:00",
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "raw_round": "analysis-local/headless/s1-options-2026-10-22",
+  "profile": "Preserved supplementary direct Ghidra 12.1.4 headless -noanalysis, REA 6.7.0 seed script; additional Capstone excerpts; no target execution",
+  "machine_report": "testes/resultados/s1-options-2026-10-22/machine-checks.json",
+  "machine_report_sha256": "b939d059e8396aa05143afdb8d21557ca636655ad5286928df2f3f0747f3899c",
+  "machine_entries": 6,
+  "machine_instructions": 2553,
+  "machine_body_bytes": 8709,
+  "new_distinct_entries": [
+    "0x1724390",
+    "0x17bf8c0",
+    "0x17c14f0",
+    "0x17fcc30"
+  ],
+  "repeated_entries": [
+    "0x1783ac0",
+    "0x17901e0"
+  ],
+  "supplemental_excerpts_are_not_new_decompiled_functions": true,
+  "supplement_raw": "analysis-local/headless/s1-options-2026-10-23-supplement.json",
+  "supplement_raw_sha256": "97d49e72e22860351c9d673fb77148e6529fe8c5a8977ef084e6177ccfc178e0",
+  "resource_identity_verified": [
+    {
+      "resource_id": 6515,
+      "language_id": 1033,
+      "resource_rva": "0x7ad5640",
+      "resource_size": 1414,
+      "resource_sha256": "fefbcd358f93002961a02c74eb44bac2d6a1fea4d841f70f52e15c135b87b23b"
+    }
+  ],
+  "supplemental_excerpts": [
+    {
+      "name": "defaults_to_dialog_conditional_copy",
+      "start_va": "0x17907b0",
+      "end_exclusive_va": "0x17907e5",
+      "sha256": "fc51667a4d6b6b4348a65f29ba07bfc63eb714e5b521a972c561adf8dd9d711f",
+      "bytes": 53,
+      "instruction_count": 10
+    },
+    {
+      "name": "preferences_data_exchange",
+      "start_va": "0x17fc130",
+      "end_exclusive_va": "0x17fc223",
+      "sha256": "7bdcd13566104c75cdd6b6d80183475f63e64cb76cc660433f08570ea2250ad6",
+      "bytes": 243,
+      "instruction_count": 77
+    },
+    {
+      "name": "incoming_dialog_values_and_signed_clamps",
+      "start_va": "0x17cb850",
+      "end_exclusive_va": "0x17cb935",
+      "sha256": "eef4b8ab7a7c12ec0b023392a7c8b4c86b0a7e5dc89209acd86e977a810aa2b8",
+      "bytes": 229,
+      "instruction_count": 57
+    }
+  ],
+  "options": [
+    {
+      "offset": "+0x6",
+      "meaning": "ignore Asian character width",
+      "preference_key": "bIgnoreFullWidth",
+      "default": 0,
+      "global_va": "0x6d1ec2c",
+      "dialog_offset": "+0x20e4",
+      "preferences_page_offset": "+0x390",
+      "control_id": 8016,
+      "status": "statically_traced"
+    },
+    {
+      "offset": "+0x7",
+      "meaning": "ignore diacritics and accents",
+      "preference_key": "bIgnoreAccents",
+      "default": 0,
+      "global_va": "0x6b6fb14",
+      "dialog_offset": "+0x20e0",
+      "preferences_page_offset": "+0x38c",
+      "control_id": 8023,
+      "status": "statically_traced"
+    },
+    {
+      "offset": "+0x10",
+      "meaning": "proximity range",
+      "preference_key": "iProxRange",
+      "default": 900,
+      "signed_clamp": [
+        1,
+        10000
+      ],
+      "global_va": "0x6b6fb1c",
+      "dialog_offset": "+0x20ec",
+      "preferences_page_offset": "+0x39c",
+      "control_id": 8021,
+      "status": "statically_traced"
+    },
+    {
+      "offset": "+0x3",
+      "meaning": null,
+      "observed_value": 1,
+      "status": "constant_in_reviewed_construction_path_consumer_unresolved"
+    },
+    {
+      "offset": "+0xc",
+      "meaning": null,
+      "observed_value": -1,
+      "status": "sentinel_in_reviewed_construction_path_consumer_unresolved"
+    }
+  ],
+  "source_rechecked_after_review": true,
+  "original_executed": false,
+  "vm_used": false,
+  "application_modified": false,
+  "semantic_equivalence_proved": false,
+  "s1_complete": false,
+  "limitations": [
+    "The decompiler expands 0x17901e0 beyond its returned body_ranges and emits malformed external paths. The relevant 0x17907b0..0x17907e5 copy was separately decoded from original bytes.",
+    "The six machine records validate 2553 instruction addresses, not all statements reached through undefined external decompiler paths.",
+    "Selected instructions and preference literals establish a bounded field mapping, not complete UI behavior or all normalization semantics.",
+    "The external incoming structure in 0x17cb490 has different offsets from the 24-byte engine options; its +8/+9/+0xc must not be substituted for engine +7/+6/+0x10.",
+    "Options +0x3 and +0xc still need their consumers and semantics resolved; constant values alone are not semantic names.",
+    "No public runtime behavior, Foxit parity, dynamic Unicode corpus or global completion is established."
+  ]
+}

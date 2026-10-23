@@ -1,0 +1,32 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "subject_name": "lucene++.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s1-unicode-2026-10-22",
+  "entries": [
+    {
+      "entry": "0x10297d80",
+      "instructions": 41,
+      "body_bytes": 119,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "ac025d4f9ff940a9e664007bd5ccf936adf9a8697db4e11abd5b7f719db21663",
+      "pseudocode_sha256": "8c47d3a3c17a13d27e620d5f38638cc0567906c2fa59ed50058732cf7e0572c5"
+    },
+    {
+      "entry": "0x102c9540",
+      "instructions": 258,
+      "body_bytes": 794,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "126816186b631a7b55dbc0399bf4e4a71bcdf1b793e069eab9592cf08f842a2e",
+      "pseudocode_sha256": "adc3558136dd37187a07f36e7fbf3454d76762402acac40377af2de42021d6ef"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

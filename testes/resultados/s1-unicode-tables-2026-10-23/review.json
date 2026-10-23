@@ -1,0 +1,127 @@
+{
+  "schema": "linuxit-s1-static-unicode-review-v1",
+  "reviewed_at_local": "2026-10-23T00:47:34.717478-03:00",
+  "reviewer": "Codex",
+  "module": "lucene++.dll",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "profile": "Direct Ghidra -noanalysis with installed REA seed script; not REA MCP Evidence",
+  "ghidra_version": "12.1.4",
+  "rea_package_version": "6.7.0",
+  "java_major_version": 21,
+  "hash_checked_before_after_each_headless_round": true,
+  "prior_projects_modified": false,
+  "new_distinct_entries_relative_to_preserved_catalog_350": 9,
+  "repeated_entries_in_three_lots": 0,
+  "entries": [
+    "0x10297d80",
+    "0x102c9540",
+    "0x102c8e30",
+    "0x102c90f0",
+    "0x102c9500",
+    "0x102c9520",
+    "0x102c8cc0",
+    "0x102c93c0",
+    "0x102c9f40"
+  ],
+  "batches": [
+    {
+      "round": "s1-unicode-2026-10-22",
+      "machine_check": "testes/resultados/s1-unicode-2026-10-22/machine-checks.json",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-unicode-2026-10-22.json",
+      "entry_count": 2,
+      "instructions": 299,
+      "body_bytes": 913,
+      "raw_result_hashes_verified": true
+    },
+    {
+      "round": "s1-unicode-internals-2026-10-23",
+      "machine_check": "testes/resultados/s1-unicode-internals-2026-10-23/machine-checks.json",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-unicode-internals-2026-10-23.json",
+      "entry_count": 4,
+      "instructions": 193,
+      "body_bytes": 544,
+      "raw_result_hashes_verified": true
+    },
+    {
+      "round": "s1-unicode-tables-2026-10-23",
+      "machine_check": "testes/resultados/s1-unicode-tables-2026-10-23/machine-checks.json",
+      "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-unicode-tables-2026-10-23.json",
+      "entry_count": 3,
+      "instructions": 145,
+      "body_bytes": 438,
+      "raw_result_hashes_verified": true
+    }
+  ],
+  "machine_totals": {
+    "entries": 9,
+    "instructions": 637,
+    "body_bytes": 1895,
+    "all_instruction_addresses_match": true
+  },
+  "tail_jump_targets_not_double_counted": [
+    "0x102ca2c0",
+    "0x102ca2e0"
+  ],
+  "additional_disassembled_prefixes_not_counted_as_decompiled_functions": [
+    "0x102c9ee0",
+    "0x102c9e40",
+    "0x102ca100"
+  ],
+  "semantic_review": [
+    {
+      "question": "Flags order",
+      "status": "answered_in_examined_path",
+      "result": "fxLuceneLib options+6,+7,0 are forwarded unchanged by wrapper0x10297d80 to helper0x102c9540."
+    },
+    {
+      "question": "Ignore fullwidth",
+      "status": "bounded_static_contract",
+      "result": "First boolean bypasses property-byte3==0 preservation; fullwidth A and asterisk map to ASCII in static samples. Full property-byte3 name unresolved."
+    },
+    {
+      "question": "Ignore accents",
+      "status": "bounded_static_contract",
+      "result": "Second boolean enables one-base decompositions and filters original category0x0c, preserving multi-base expansions and other mark categories."
+    },
+    {
+      "question": "Third flag",
+      "status": "answered_in_examined_helper",
+      "result": "Filters exactly U+0640 ARABIC TATWEEL; disabled by examined search caller."
+    },
+    {
+      "question": "Unicode category set",
+      "status": "read_only_BMP_table_examined",
+      "result": "1024 category0x0c units; Unicode15 classification:1023Mn and U+1734Mc. Do not substitute all modern Mn or all marks."
+    },
+    {
+      "question": "Runtime equivalence",
+      "status": "not_tested",
+      "result": "Original not executed; static model predictions are not differential outputs."
+    }
+  ],
+  "static_table_check": "testes/resultados/s1-unicode-tables-2026-10-23/static-table-check.json",
+  "static_model_samples": "testes/resultados/s1-unicode-tables-2026-10-23/static-model-samples.json",
+  "checker_first_hypothesis": {
+    "assertion": "All original category0x0c BMP units are modern Mn",
+    "result": "rejected",
+    "observed": "Counter(Mn=1023,Mc=1)",
+    "correction": "Record actual set and modern-category difference instead of assuming equality."
+  },
+  "report": "docs/REA-S1-UNICODE-2026-10-23.md",
+  "report_sha256": "29303bf3ca154f2aca6bc9d0fd22a260ca429380bda2bff3d022123f60642675",
+  "open_questions": [
+    "Full property-byte3 semantic name and original Unicode database version",
+    "Supplementary-plane and malformed UTF16 behavior",
+    "All Unicode combinations, allocation failures and optional-vector consumers",
+    "Full search/index evaluation, cancellation and UI outside this subfront"
+  ],
+  "s1_complete": false,
+  "original_executed": false,
+  "vm_touched": false,
+  "app_changed": false,
+  "new_app_tests_run": 0,
+  "candidate_rebuilt": false,
+  "release_published": false,
+  "criteria_changed": false,
+  "implementation_completion_percent": null
+}

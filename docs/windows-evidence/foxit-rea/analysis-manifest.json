@@ -264,6 +264,24 @@
         "string_count": 97851
       },
       "distinct_decompiled_entries": 76
+    },
+    "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d": {
+      "name": "lucene++.dll",
+      "sessions": [
+        "s1-lucene-runtime-2026-10-22"
+      ],
+      "overview": {
+        "document": "lucene++.dll",
+        "image_base": "0x10000000",
+        "bytes": 6297576,
+        "machine": "0x14c",
+        "export_count": 5282
+      },
+      "distinct_decompiled_entries": 0,
+      "identity_origin": "Preserved module-inventory.json hash, rechecked original installed bytes22/10/2026; no target execution",
+      "scope": "S1 imported Unicode transformation and BooleanQuery/IndexSearcher evaluation; raw results private",
+      "supplementary_direct_entries": 16,
+      "count_note": "distinct_decompiled_entries above is the historical MCP dossier count, not the aggregate supplementary count; current unique entries are in engenharia-reversa/funcoes.csv"
     }
   },
   "queries": [

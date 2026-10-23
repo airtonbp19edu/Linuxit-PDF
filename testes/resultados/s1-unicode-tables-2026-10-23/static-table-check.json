@@ -1,0 +1,184 @@
+{
+  "schema": "linuxit-s1-static-unicode-table-check-v1",
+  "reviewed_at_local": "2026-10-23T00:43:57.283751-03:00",
+  "target_sha256": "52bc60eda1744d5d354e216baeb1692611262ca064a0f2f54b5b064b8ad0484d",
+  "original_executed": false,
+  "method": "Read-only PE data lookup translated from verified machine code at0x102c9f40; no target execution.",
+  "lookup_tables_va": [
+    "0x1045afb8",
+    "0x1045c0b8",
+    "0x1045ebf8"
+  ],
+  "property_records_base_va": "0x10451570",
+  "property_record_size": 6,
+  "comparison_database": {
+    "provider": "Python unicodedata",
+    "version": "15.0.0"
+  },
+  "bmp_domain_size": 65536,
+  "category_0c_count": 1024,
+  "category_0c_python_category_counts": {
+    "Mn": 1023,
+    "Mc": 1
+  },
+  "category_0c_modern_non_Mn_entries": [
+    {
+      "codepoint": "U+1734",
+      "name": "HANUNOO SIGN PAMUDPOD",
+      "python_unicode_category": "Mc"
+    }
+  ],
+  "category_0c_codepoints_sha256": "91374198a7bc21b551cea860540a2aba56072169b65a5676080a860a02cfb5ec",
+  "samples": [
+    {
+      "codepoint": "U+0041",
+      "name": "LATIN CAPITAL LETTER A",
+      "category_byte": 9,
+      "gate_byte_3": 3,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lu"
+    },
+    {
+      "codepoint": "U+00E9",
+      "name": "LATIN SMALL LETTER E WITH ACUTE",
+      "category_byte": 5,
+      "gate_byte_3": 4,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Ll"
+    },
+    {
+      "codepoint": "U+0301",
+      "name": "COMBINING ACUTE ACCENT",
+      "category_byte": 12,
+      "gate_byte_3": 4,
+      "ignore_accents_filter_matches": true,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Mn"
+    },
+    {
+      "codepoint": "U+0020",
+      "name": "SPACE",
+      "category_byte": 29,
+      "gate_byte_3": 3,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Zs"
+    },
+    {
+      "codepoint": "U+FF21",
+      "name": "FULLWIDTH LATIN CAPITAL LETTER A",
+      "category_byte": 9,
+      "gate_byte_3": 0,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lu"
+    },
+    {
+      "codepoint": "U+FF0A",
+      "name": "FULLWIDTH ASTERISK",
+      "category_byte": 21,
+      "gate_byte_3": 0,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Po"
+    },
+    {
+      "codepoint": "U+0640",
+      "name": "ARABIC TATWEEL",
+      "category_byte": 6,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": true,
+      "python_unicode_category": "Lm"
+    },
+    {
+      "codepoint": "U+00C6",
+      "name": "LATIN CAPITAL LETTER AE",
+      "category_byte": 9,
+      "gate_byte_3": 4,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lu"
+    },
+    {
+      "codepoint": "U+0152",
+      "name": "LATIN CAPITAL LIGATURE OE",
+      "category_byte": 9,
+      "gate_byte_3": 4,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lu"
+    },
+    {
+      "codepoint": "U+FB01",
+      "name": "LATIN SMALL LIGATURE FI",
+      "category_byte": 5,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Ll"
+    },
+    {
+      "codepoint": "U+212B",
+      "name": "ANGSTROM SIGN",
+      "category_byte": 9,
+      "gate_byte_3": 4,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lu"
+    },
+    {
+      "codepoint": "U+1F88",
+      "name": "GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI",
+      "category_byte": 8,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Lt"
+    },
+    {
+      "codepoint": "U+05B0",
+      "name": "HEBREW POINT SHEVA",
+      "category_byte": 12,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": true,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Mn"
+    },
+    {
+      "codepoint": "U+064B",
+      "name": "ARABIC FATHATAN",
+      "category_byte": 12,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": true,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Mn"
+    },
+    {
+      "codepoint": "U+0903",
+      "name": "DEVANAGARI SIGN VISARGA",
+      "category_byte": 10,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Mc"
+    },
+    {
+      "codepoint": "U+0488",
+      "name": "COMBINING CYRILLIC HUNDRED THOUSANDS SIGN",
+      "category_byte": 11,
+      "gate_byte_3": 5,
+      "ignore_accents_filter_matches": false,
+      "third_flag_tatweel_filter_matches": false,
+      "python_unicode_category": "Me"
+    }
+  ],
+  "limitations": [
+    "The original category0x0c is predominantly nonspacing marks but is not identical to the modern Unicode Mn set; exact differing samples are recorded. The original Unicode database version is not established.",
+    "UTF-16 surrogate composition is not implemented in the caller loop; supplementary-plane behavior remains unproved.",
+    "Byte3 is used only as a branch condition here; its full property name is not established.",
+    "This checker does not execute or emulate PDFText_UnicodeDeals and is not a differential test."
+  ]
+}
