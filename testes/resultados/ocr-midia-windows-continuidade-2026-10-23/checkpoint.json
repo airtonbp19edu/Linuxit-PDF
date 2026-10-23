@@ -1,0 +1,68 @@
+{
+  "schema": "linuxit-ocr-windows-takeover-v1",
+  "reviewed_at_local": "2026-10-23T14:13:43.234427-03:00",
+  "owner": "Codex",
+  "reason": "More than45minutes without new Claude message or relevant commit, observed since13:16UTC-03; previous Windows diagnostic completed, no concurrent run found.",
+  "previous_source": "c140765bbeac6e7661af6ed27e123722ad125669",
+  "previous_run": 39984153516,
+  "previous_artifact_id": 12514358528,
+  "artifact_sha256": "ff79ccf7342e0b0a1f273aef5adb2e50eae0d8eba2b015ea51fceebc56520412",
+  "artifact_bytes": 53518,
+  "previous_diagnostic": {
+    "full_suite_requested": false,
+    "test_modules": "test_ocr_cleanup,test_ocr_linux,test_ocr_gtk,test_search_formats_recovery,test_tool_preferences_ocr_selection,test_local_playback,test_pdf_ocr",
+    "run": 55,
+    "passed": 52,
+    "failures": 0,
+    "errors": 2,
+    "skipped": 1
+  },
+  "previous_error_cases": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_ocr_linux.py\", line 82, in test_multipage_tiff_import_feeds_searchable_ocr_without_losing_blank_page\n    font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',64)\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/site-packages/PIL/ImageFont.py\", line 891, in truetype\n    return freetype(font)\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/site-packages/PIL/ImageFont.py\", line 888, in freetype\n    return FreeTypeFont(font, size, index, encoding, layout_engine)\n  File \"D:/a/_temp/msys64/ucrt64/lib/python3.14/site-packages/PIL/ImageFont.py\", line 302, in __init__\n    self.font = core.getfont(\n                ~~~~~~~~~~~~^\n        font, size, index, encoding, layout_engine=layout_engine\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nOSError: cannot open resource\n"
+    },
+    {
+      "id": "test_local_playback.LocalPlaybackTests.test_gtk_controls_and_embedded_video_widget_are_constructed",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_local_playback.py\", line 68, in test_gtk_controls_and_embedded_video_widget_are_constructed\n    window=MediaWindow(parent,self.path,audio_sink='fakesink');self.addCleanup(window.destroy)\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/app/media_window.py\", line 14, in __init__\n    self.player=LocalPlayback(path,self._event,**sinks)\n                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/app/local_playback.py\", line 25, in __init__\n    self.video_queue=self._element('queue');vconvert=self._element('videoconvert');self.video=self._element(video_sink)\n                                                                                              ~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/app/local_playback.py\", line 43, in _element\n    if element is None:raise RuntimeError('Componente de mídia indisponível:'+name)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Componente de mídia indisponível:gtksink\n"
+    }
+  ],
+  "previous_acceptance_counts": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "report_hashes": {
+    "full-suite.json": "8fa289107632209be23afd9785e2b6eebebeb9bbb600f5da98dac7aedfa8d6cd",
+    "acceptance.json": "eaf4d2da346757de7fbdabd7593c1c05f11fe2239df40b33db5aea44d29ab400",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "correction_branch": "codex/ocr-windows-continuity",
+  "correction_commit": "458e3b3d66ddb4f0faabde460330b7bae6245bd3",
+  "changes": [
+    "Use scan_font(64) in remaining TIFF OCR test instead of fixed Linux font path",
+    "Install MSYS2 UCRT64 gst-plugin-gtk alongside GStreamer good/base in branch workflow"
+  ],
+  "assertions_removed": false,
+  "additional_tests_skipped": false,
+  "new_run_id": 39993158728,
+  "new_run_state": "in_progress",
+  "new_run_is_diagnostic": true,
+  "final_guard_expected_to_reject_full_certification": true,
+  "native_CI_validation_complete": false,
+  "host_check": {
+    "real_windows_font_loaded_at_size64": true,
+    "ocr_test_module_AST_parsed": true,
+    "git_diff_check_passed": true
+  },
+  "VM_accessed": false,
+  "redaction_XFA_pauses_preserved": true,
+  "main_app_tests_workflows_modified": false,
+  "candidate_0_1_19_modified": false,
+  "criteria_weights_modified": false,
+  "release_published": false,
+  "source_package_reference": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-gst-plugin-gtk"
+}
