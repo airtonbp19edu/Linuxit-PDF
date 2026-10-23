@@ -57,3 +57,12 @@ Em uma nova rodada de validação autorizada, executar `test_viewer` no Windows
 nativo e no Linux/GTK, verificando tanto o caso histórico quanto o novo teste.
 Examinar os JSONs e o comportamento de navegação antes de considerar o defeito
 encerrado. Não integrar este ramo à main/candidato nem publicar versão por inferência.
+
+
+## Validação efetiva posterior — 2026-10-23T20:52:50.626494-03:00
+
+Os avisos acima de testes pendentes descrevem o marco sintético anterior. A continuidade autorizada executou Linux/GTK e Windows nativo com instalador. O teste geométrico sozinho não resolveu todas as falhas: o diagnóstico nativo revelou também WinError5 ao substituir uma imagem do cache ainda aberta. A publicação agora usa seção crítica curta, valida o arquivo e reaproveita somente uma entrada final íntegra; no Windows usa renomeação exclusiva. Nenhuma asserção geométrica foi relaxada.
+
+O CI Windows40040312193, fonteb996404/appb13fe56, passou: **801 aprovados de808, sete pulos examinados, zero falhas/erros**, aceitação79/79 e oito controles de instalação/desinstalação. Os sete pulos são dois controles de processos Linux e cinco testes criptográficos que recebem uma validação separada habilitada posteriormente. Os casos históricos de âncora e navegação, o novo controle GTK e os três testes reais de publicação de cache passaram. O erro anterior de limpeza de fixture foi corrigido com o helper GTK existente, com espera limitada e falha preservada se os recursos não forem liberados.
+
+Linux/GTK da fonte combinada:808/808 e81/81 aceitações (CI40038012443); Flatpak anterior à correção de caminhos CA:808/808 em fonte/payload/sandbox (CI40038029420). Os cinco arquivos da correção foram comparados byte a byte após normalização LF com os testados no Windows; identidades e casos estão em `testes/resultados/viewer-windows-anchor-2026-10-23/native-delivery-review.json`. A base Windows do Claude foi incorporada por merge normal no ramo de entrega do viewer, preservando a correção de fontes. A entrega ao ramo Windows não equivale à integração na main nem certifica os demais recortes presentes somente na fonte combinada.
