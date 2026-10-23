@@ -1,0 +1,72 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "subject_name": "fxLuceneLib.dll",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s1-query-pipeline-2026-10-22",
+  "entries": [
+    {
+      "entry": "0x100216c0",
+      "instructions": 566,
+      "body_bytes": 1982,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "9d4c3d7fd09e33881996babca302e194cbe5c536e231f5175c66fa2ac197aa3a",
+      "pseudocode_sha256": "c6d81ac641057f014012a97dbc40185ee597f2b3292224d1b289cd5522c6a62d"
+    },
+    {
+      "entry": "0x10024d90",
+      "instructions": 187,
+      "body_bytes": 558,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "18d2715195f510d28d35cc5cfcdac264af53e871b1cf4c8ae560eeb37f347f4f",
+      "pseudocode_sha256": "1a895b2ad34d7e3e4ab564c8bf76d3b3f87f83a42bd205e7cd7f322156915864"
+    },
+    {
+      "entry": "0x10026860",
+      "instructions": 380,
+      "body_bytes": 1222,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "550bdf205084405638c666124b7dcd02cdad1632e064e1ddfe615f951436130e",
+      "pseudocode_sha256": "cf02059f42001a746fea9d8dcae41aadcc6385200ea993d55ced41b49a2a321d"
+    },
+    {
+      "entry": "0x100321c0",
+      "instructions": 8,
+      "body_bytes": 24,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "47e3eea5d4e831554740072716ce1e79323f54284387736923cd0f5d172c8e0a",
+      "pseudocode_sha256": "de3ffc79f423544efcd222bc8e9270a12117345c8a9e4dd9ee47f97ec9bb4de0"
+    },
+    {
+      "entry": "0x10032260",
+      "instructions": 9,
+      "body_bytes": 23,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "969f14279bef6e5b02fbb0f3440ee975da8951642094fc52c4398ee9e97503ca",
+      "pseudocode_sha256": "328501c74636b84bf062496afe14f6e5eb23ebb8a376261e3c1d741c1be0f4a0"
+    },
+    {
+      "entry": "0x10032410",
+      "instructions": 426,
+      "body_bytes": 1432,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "7b26492b3a4c06107cbb9879a2db8f918305584f0b03c26ab6a8c6ccbe34cd45",
+      "pseudocode_sha256": "c073ab5f16ea3a904ce646691cb979a7b19fd9d25d978d35a3a27621fc943495"
+    },
+    {
+      "entry": "0x10041fd0",
+      "instructions": 17,
+      "body_bytes": 37,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "b1f632a65d29712cd93090305936aa1b552315f8f2b967a8df61487c38397cfc",
+      "pseudocode_sha256": "9b476bbc6a8e29b21fffc0a48f5345c5356327710cdf20fa0c0db166aaeab090"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

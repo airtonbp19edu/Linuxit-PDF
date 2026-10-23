@@ -2,7 +2,7 @@
 
 Gerado de `progresso/etapas-pequenas.json` por `scripts/render_small_steps.py`. A ordem é a prioridade: o que não precisa da VM vem primeiro. Situação geral e avisos: [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
 
-Atualizado em 2026-10-22T20:49:15-03:00. Pendente: 2, Em andamento: 1, Concluída: 31.
+Atualizado em 2026-10-22T21:00:49-03:00. Pendente: 2, Em andamento: 2, Concluída: 31.
 
 **Regras**
 
@@ -45,6 +45,7 @@ Atualizado em 2026-10-22T20:49:15-03:00. Pendente: 2, Em andamento: 1, Concluíd
 | E32 | Registrar contratos das116 operações conhecidas | Contratos A4 | nada | Concluída |
 | E33 | Preparar e validar candidato0.1.19 sem publicar | Candidato Linux A5 | nada para preparar; confirmação específica para publicar | Concluída |
 | E34 | Recortes A6, com limites e pendência Windows | Desenvolvimento próprio A6 | implementação e testes próprios; ambientes externos quando indicados | Em andamento |
+| E35 | Completar o algoritmo e as opções da busca interna | Análise estática S1 | Ghidra e referências preservadas; sem VM para análise estática | Em andamento |
 | E23 | Validações físicas | Equipamentos reais | equipamentos | Pendente |
 | E24 | Retomar a comparação com o Foxit | VM | VM e autorização do usuário | Concluída |
 | E30 | Continuar a comparação com o Foxit | VM | VM e autorização do usuário | Pendente |
@@ -409,6 +410,16 @@ Evidência: [releases/manifest-0.1.19.json](../releases/manifest-0.1.19.json), [
 **Situação:** Em andamento.
 
 Não é A6 universal concluída. ÚltimoWindows39871829847 geraNSIS e probe nativo5/5, mas falta manifesto no destino após instalar; suíte/aceitação puladas. Ramo separado codex/windows-installer-diagnostics. Critérios15/16 permanecem parciais.
+
+### E35 — Completar o algoritmo e as opções da busca interna
+
+**Objetivo:** Ligação de preparação, cláusulas, avaliação, cancelamento e classes concretas, com contratos de todos os campos relevantes; sem promover evidência estática a comportamento observado.
+
+**Como verificar:** Cada lote confere hashes e assembly com Capstone; fechamento exige resolver ou delimitar os gaps do critério amplo8, sem inferir tipos da assinatura automática.
+
+**Situação:** Em andamento.
+
+Lote desta rodada encerrado:7 novas entradas/1593 instruções/5278 bytes, catálogo343→350. S1 segue parcial; não há processo de análise ativo após checkpoint. Próximos alvos no relatório. Nenhuma VM/app/pacote/release alterado.
 
 ### E23 — Validações físicas
 

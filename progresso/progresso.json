@@ -275,9 +275,13 @@
             "docs/REA-ESTATICA-BUSCA-IMPRESSAO-2026-10-18.md",
             "docs/REA-ESTATICA-CONTINUACAO-2026-10-18.md",
             "docs/REA-PROVEDOR-BUSCA-2026-10-21.md",
-            "docs/REA-FLUXO-BUSCA-2026-10-22.md"
+            "docs/REA-FLUXO-BUSCA-2026-10-22.md",
+            "docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md",
+            "testes/resultados/s1-query-pipeline-2026-10-22/review.json",
+            "testes/resultados/s1-query-pipeline-2026-10-22/machine-checks.json",
+            "docs/windows-evidence/foxit-rea/headless-cross-checks-s1-query-pipeline-2026-10-22.json"
           ],
-          "note": "2026-10-22 A1: fluxo da busca ligado de ponta a ponta (acessor 0x17c6d60 -> módulo 0x17be860 -> dialogo 0x1770e90 -> provedor fxLuceneLib) e thread de limpeza CFindToolDlgAdv::ClearDataFindThreadProc (0x1770920/0x1770a60, evento +0x1e40, seção crítica +0x204c). Permanece parcial: algoritmo Lucene 0x1003f6b0 e bytes de opções abertos. Catálogo 343. | 2026-10-21 E22: 7 new entries (1128 instructions/3992 bytes), catalog 336; index provider load/create/release/unload chain joined statically (fxLuceneLib NewIndexHandle/DeleteIndexHandle, CFindToolDlgAdv, CFindToolModule). Criterion stays open; status/weights preserved. Previous: Static follow-up48 entries:6830 selected instructions/25919 bytes;323 catalog rows. Reflow page/viewer and search dialog RTTI, index interface, effective stemming and drawer lifecycle refined; large algorithms, types/all callers and original runtime remain partial. Status/weights preserved."
+          "note": "S1 follow-up22/10:7 new DLL entries,1593 instructions/5278 bytes cross-checked; query preparation, byte+5 stemming, wildcard branches and one cancellation return-10 path. Complete evaluation, remaining options and UI concrete classes stay open. Static only; status/weights unchanged."
         },
         {
           "criterion": "Demais famílias funcionais investigadas profundamente",

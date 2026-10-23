@@ -1,0 +1,90 @@
+{
+  "schema": "linuxit-s1-static-review-v1",
+  "reviewed_at_local": "2026-10-22T20:59:20-03:00",
+  "reviewer": "Codex",
+  "work": "Second authorized work after step7; directed S1 static follow-up",
+  "target_sha256": "20908415a56a8bf63ad4500a2696e6da38a10191402a36b4d84fc577b61c82e1",
+  "module": "fxLuceneLib.dll",
+  "profile": "Direct Ghidra -noanalysis using installed REA seed script; not REA MCP Evidence",
+  "ghidra_version": "12.1.4",
+  "java_identity": [
+    "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+    "OpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)",
+    "OpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)"
+  ],
+  "rea_package_version": "6.7.0",
+  "seed_script_sha256": "27892a70bf0fbc72d1edc9bf070ddb21268f8d0e4edea074164488e68f45d51a",
+  "source_identity_checked_before_after": true,
+  "previous_project_modified": false,
+  "original_executed": false,
+  "vm_touched": false,
+  "new_entries": 7,
+  "catalog_before": 343,
+  "catalog_after": 350,
+  "catalog_states": {
+    "REA/Ghidra dossier": 152,
+    "Supplementary direct Ghidra": 198
+  },
+  "machine_check": {
+    "passed": true,
+    "entries": 7,
+    "instructions": 1593,
+    "bytes": 5278,
+    "report": "testes/resultados/s1-query-pipeline-2026-10-22/machine-checks.json"
+  },
+  "existing_core": {
+    "entry": "0x1003f6b0",
+    "new_entry": false,
+    "preserved_result_hash_matches": true,
+    "result_sha256": "ab6392ca5df07424b64d9a00e6e6fa12b35624648864cb67aac7acc61f6919ee",
+    "metadata": "docs/windows-evidence/foxit-rea/headless-cross-checks-static-index-options-2026-10-18.json"
+  },
+  "findings": [
+    {
+      "id": "S1-stemming",
+      "evidence_type": "static_code_and_import_ABI",
+      "state": "answered_within_consumer",
+      "conclusion": "Options byte+5 gates SnowballFilter.to_Stemming in0x10032410; UI origin and universal stemming equivalence not established."
+    },
+    {
+      "id": "S1-normalization",
+      "evidence_type": "static_code_and_import_ABI",
+      "state": "partial",
+      "conclusion": "Options+6/+7 feed PDFText_UnicodeDeals and clause branches; individual normalization semantics remain unknown."
+    },
+    {
+      "id": "S1-wildcards",
+      "evidence_type": "static_code_and_PE_UTF16_literals",
+      "state": "partial",
+      "conclusion": "ASCII and fullwidth * and ? constants participate in transformation and BooleanQuery.add paths; complete escapes/runtime unknown."
+    },
+    {
+      "id": "S1-cancel",
+      "evidence_type": "preserved_core_assembly_and_new_container_helper",
+      "state": "one_static_path_confirmed",
+      "conclusion": "Nonzero pointer check branches to virtual+0x68, container clear and return-10 in EAX; caller/UI relationship and writer synchronization unknown."
+    },
+    {
+      "id": "S1-typing",
+      "evidence_type": "machine_code_vs_provisional_decompiler_signature",
+      "state": "confirmed_caveat",
+      "conclusion": "Old core pseudo reports void, but assembly moves ESI to EAX then RET0x58; do not use automatic signatures as recovered API contracts."
+    }
+  ],
+  "open_questions": [
+    "Options+3/+0xc/+0x10 semantics",
+    "UI concrete objects dialog+0x1f34 and+0x2044",
+    "Full Lucene evaluation/scoring and all query combinations",
+    "Concrete classes of clause wrappers and Occur numeric ABI names",
+    "Cancellation writer, synchronization and UI effects",
+    "Exact per-flag UnicodeDeals implementation"
+  ],
+  "s1_complete": false,
+  "stage8_status": "partial",
+  "criteria_weights_changed": false,
+  "app_source_changed": false,
+  "new_app_tests_run": 0,
+  "new_flatpak_built": false,
+  "release_published": false,
+  "implementation_completion_percent": null
+}

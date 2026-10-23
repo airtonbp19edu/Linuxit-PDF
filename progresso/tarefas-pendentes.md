@@ -1,10 +1,10 @@
 # Tarefas atuais e ponto de retomada
 
-**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](../docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
 
 ## Fila atualizada em22/10/2026
 
-- S1/busca estática:Codex assumiu nesta rodada; não duplicar sementes já catalogadas.
+- S1/busca estática:loteCodex concluído em sete entradas novas, catálogo350; S1 parcial. Retomar pelos alvos do relatório, sem duplicar sementes catalogadas.
 - Passo7:E32/E33 registrados;E34 continua parcial por Windows/limites universais.
 - Windows:capturar InstallLocation real e conteúdo do destino antes de nova correção, conforme relatórioA6.
 - Publicar0.1.19:aguarda autorização específica; depois download público/auditoria/desktop.

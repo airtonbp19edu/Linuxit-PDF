@@ -1,6 +1,6 @@
 # O que pode ser feito agora — 2026/10/22 às 00:45 (America/Sao_Paulo, UTC-03:00)
 
-**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
 
 Lista compartilhada entre o Claude e o Codex, pedida pelo usuário. Situação geral:
 [RETOMADA-2026-10-21.md](RETOMADA-2026-10-21.md) e [AVISOS-E-STATUS.md](AVISOS-E-STATUS.md).
@@ -48,7 +48,7 @@ no projeto, está em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md).
 
 **Para A1 e A2:**
 
-- Consultar `engenharia-reversa/funcoes.csv` (343 entradas, conferidas em22/10; referência336 abaixo é histórica) antes de escolher sementes e não
+- Consultar `engenharia-reversa/funcoes.csv` (350 entradas após o lote S1; referências336/343 abaixo são históricas) antes de escolher sementes e não
   repetir entradas.
 - Usar o pipeline: `scripts/analyze_foxit_headless.py` → `check_foxit_machine.py` →
   `catalog_foxit_headless.py` → `catalog_foxit_functions.py`.

@@ -1,6 +1,6 @@
 # Ordem de trabalho para o Codex — 2026/10/22 às 12:07 (America/Sao_Paulo, UTC-03:00)
 
-**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
 
 Pedido do usuário às 12:04: “deixe a ordem para o Codex continuar de forma minuciosa o que falta
 ele fazer, e também todas as outras coisas restantes”. Escrita pelo Claude depois de conferir o
@@ -216,7 +216,7 @@ com o Foxit.
 
 ### 3.2 Análise estática que continua aberta (sem VM; Claude na nuvem ou Codex com REA)
 
-- **S1 — Busca (fecha 1,74)** — *2026/10/22 às 18:47: o Claude começou a S1 a pedido do usuário, mas não concluiu; a tarefa continua aberta e livre. Nada novo foi catalogado e nenhum status mudou.*
+- **S1 — Busca (critério amplo ainda parcial)** — *Atualização Codex 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00): lote de sete funções encerrado, catálogo350; stemming do byte+5, consumo de+6/+7, curingas e um cancelamento interno parcialmente ligados. [Evidências e alvos seguintes](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md). A tentativa anterior do Claude às18:47 permanece histórica.*
   - algoritmo da `fxLuceneLib.dll` em `0x1003f6b0` (BooleanQuery, 7.655 bytes);
   - bytes 3/5/6/7/`+0xc`/`+0x10` das opções;
   - classes concretas de `+0x1f34` (slot `+0x1c`) e `+0x2044` (slot `+0x14`).
@@ -233,7 +233,7 @@ com o Foxit.
   - descompilação profunda e algoritmos família por família;
   - arrays do reflow pendentes de [REA-ARRAYS-REFLOW-2026-10-19.md](REA-ARRAYS-REFLOW-2026-10-19.md).
   - Só fecha com B3 (universo definido).
-- Sempre: consultar `engenharia-reversa/funcoes.csv` (**343** entradas) antes de escolher sementes;
+- Sempre: consultar `engenharia-reversa/funcoes.csv` (**350** entradas) antes de escolher sementes;
   usar o pipeline `analyze_foxit_headless.py` → `check_foxit_machine.py` →
   `catalog_foxit_headless.py` → `catalog_foxit_functions.py`.
 - **Coordenação:** quem pegar S1–S4 anota antes na nota de continuidade, como foi feito com A1–A6.

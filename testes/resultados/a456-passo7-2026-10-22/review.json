@@ -1,0 +1,46 @@
+{
+  "schema": "linuxit-a456-step7-review-v1",
+  "recorded_at_local": "2026-10-22T20:59:20-03:00",
+  "step7_commit": "2c96d64",
+  "shared_files_updated": [
+    "AGENTS.md",
+    "docs/RETOMADA.md",
+    "docs/ORDEM-CODEX-2026-10-22.md",
+    "docs/O-QUE-FAZER-AGORA-2026-10-22.md",
+    "progresso/notas-continuidade.md",
+    "progresso/tarefas-pendentes.md"
+  ],
+  "registry": [
+    "E32:bounded contract complete",
+    "E33:held candidate complete",
+    "E34:partial with9 subitems; Windows unresolved"
+  ],
+  "candidate_ci": 39869848800,
+  "tests_per_linux_environment": 744,
+  "source_acceptance_ci": 39869853238,
+  "source_acceptance_passed": 81,
+  "preflight_ci": 39872660861,
+  "release_published": false,
+  "scope_or_weights_changed": false,
+  "original_or_vm_executed": false,
+  "final_registry_check": {
+    "concluida": 31,
+    "em_andamento": 2,
+    "pendente": 2
+  },
+  "architecture_check": {
+    "application_modules": 91,
+    "interfaces": 60,
+    "families": 25,
+    "unfinished_criteria": 19
+  },
+  "operation_catalog_check": {
+    "operations": 116,
+    "bounded_source": 104,
+    "pending": 9,
+    "deferred": 3,
+    "current_evidence_stale_sources": []
+  },
+  "app_files_equal_approved_candidate": 193,
+  "criteria_weights_statuses_and_public_delivery_preserved": true
+}

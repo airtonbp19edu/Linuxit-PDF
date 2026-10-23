@@ -1,5 +1,7 @@
 # Fluxo de busca do Foxit — mapa estrutural completo — 22/10/2026
 
+**Complemento posterior — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Codex examinou sete funções novas da DLL; catálogo350. Byte+5 ligado a stemming, ramos de curingas e um cancelamento interno documentados; S1 continua parcial. [Continuação e limites](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md). O texto abaixo preserva a rodada estrutural anterior.
+
 Registrado em 2026/10/22 (America/Sao_Paulo, UTC-03:00). Tarefa **A1** da lista
 [O-QUE-FAZER-AGORA-2026-10-22.md](O-QUE-FAZER-AGORA-2026-10-22.md). Continua o provedor do índice
 de [REA-PROVEDOR-BUSCA-2026-10-21.md](REA-PROVEDOR-BUSCA-2026-10-21.md).

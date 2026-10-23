@@ -1,6 +1,6 @@
 # Linuxit PDF — continuidade do projeto
 
-**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](docs/REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
 

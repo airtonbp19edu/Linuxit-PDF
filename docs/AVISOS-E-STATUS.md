@@ -1,14 +1,15 @@
 # Avisos e situação do Linuxit PDF
 
-**Atualização — 2026/10/22 às 20:49 (America/Sao_Paulo, UTC-03:00):** arquivos compartilhados conferidos local/remoto em7558bce, sem novos commits do Claude. Passo7 registrado:E32/A4 eE33/candidato concluídos no escopo delimitado;E34/A6 em andamento, Windows com instalação não validada. Codex assumeS1/busca estática como segundo trabalho autorizado. Candidato0.1.19:744/744 por ambiente, aceitação81/81, não publicado. VM intacta;B3 pendente, critérios/pesos preservados.
+**Atualização — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00):** Passo 7 registrado (E32/A4 e E33/candidato delimitado concluídos; E34/A6 parcial). Segundo trabalho: lote S1 da busca examinado, sete funções novas/1.593 instruções/5.278 bytes; catálogo 343→350 (152 REA + 198 diretas). S1 continua parcial, com próximos alvos documentados; nenhuma análise está rodando após este checkpoint. Candidato 0.1.19 permanece validado 744/744 por ambiente e aceitação81/81, sem publicação. Windows parcial; VM intacta, B3 pendente, critérios/pesos preservados. [Evidências S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md).
 
 Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica registrado aqui, no GitHub, e é copiado para a pasta local do projeto como `AVISOS-LOCAL.md`. Esse arquivo local é ignorado pelo Git para nunca bloquear um `git pull`. A seção "Situação atual" é substituída a cada atualização; o histórico de avisos só recebe novas entradas.
 
-## Situação atual — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00)
+## Situação atual — 2026/10/22 às 21:00 (America/Sao_Paulo, UTC-03:00)
 
-Candidato0.1.19 retido e validado744/744 por ambiente, aceitação81/81 na mesma revisão9fb4f3a. O candidato inicial foi substituído pela correção de identidade da redação; seus resultados foram preservados. Windows: QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.
-
-Publicação e Passo7 aguardam instrução. Original/VM intactos, critérios e pesos preservados. [Evidências e limites](PASSOS-4-6-A456-2026-10-22.md).
+- Passo7 registrado e salvo em2c96d64: E32/A4 eE33/candidato concluídos no escopo delimitado; E34/A6 parcial.
+- S1 recebeu sete entradas novas, todas decompiladas e conferidas contra os bytes originais:1.593 instruções/5.278 bytes. Catálogo350. Identificados stemming condicional, ramos de curingas e um caminho de cancelamento; classes/flags/avaliação completa ainda abertos.
+- Nenhum processo de análise permanece ativo após o checkpoint. Próxima IA segue os alvos em [S1](REA-S1-CONSULTA-E-CANCELAMENTO-2026-10-22.md), sem repetir o lote.
+- Publicação0.1.19 segue aguardando autorização específica. Fonte/payload/sandbox744/744 e aceitação81/81 já preservados; app não mudou nesta rodada. Windows e equipamentos continuam parciais; VM intocada.
 
 ## Histórico de avisos
 
@@ -180,3 +181,10 @@ Passos2/3 autorizados executados: correções e verificações preparatórias, f
 - Nuvem: atendida pelo fluxo de pastas sincronizadas (E28, decisão de 17/10/2026). Login em provedor, envio por API e colaboração remota seguem adiados por decisão do usuário. Falta testar com um cliente sincronizador real.
 - Renderização 3D: adiada para atualização futura (D04).
 - Recursos de IA estão excluídos.
+
+
+## Histórico da situação anterior — 2026/10/22 às 20:37 (America/Sao_Paulo, UTC-03:00)
+
+Candidato0.1.19 retido e validado744/744 por ambiente, aceitação81/81 na mesma revisão9fb4f3a. O candidato inicial foi substituído pela correção de identidade da redação; seus resultados foram preservados. Windows: QuickJS UCRT64 compilado e probe nativo5/5 aprovado; instalador NSIS gerado (105.925.705bytes). A instalação retorna0, mas o manifesto não aparece no destino com espaços/Unicode mesmo após a correção de separadores e espera90s. Suíte completa e aceitação foram puladas após essa falha; desinstalação/probe do aplicativo instalado não aprovados. A causa do destino real ainda não foi determinada.
+
+Publicação e Passo7 aguardam instrução. Original/VM intactos, critérios e pesos preservados. [Evidências e limites](PASSOS-4-6-A456-2026-10-22.md).
