@@ -1,0 +1,146 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "D:/a/Linuxit-PDF/Linuxit-PDF/app",
+  "python": "3.14.9",
+  "test_pattern": "test*.py",
+  "test_modules": "test_viewer,test_reading_workflows_gtk",
+  "full_suite_requested": false,
+  "display_present": true,
+  "run": 25,
+  "passed": 24,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 47.41814790000001,
+  "cases": [
+    {
+      "id": "test_viewer.ViewerTests.test_cached_presentation_page_invalidates_old_render",
+      "status": "passed",
+      "elapsed_sec": 1.4979069000000322
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent",
+      "status": "passed",
+      "elapsed_sec": 1.1867647999999917
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_latest_renderer_skips_obsolete_queue_entries",
+      "status": "passed",
+      "elapsed_sec": 0.697702100000015
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_prefetched_reader_page_is_immediate",
+      "status": "passed",
+      "elapsed_sec": 0.7641950000000293
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_fit_fill_center_and_error",
+      "status": "passed",
+      "elapsed_sec": 1.15116519999998
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_presentation_handles_portrait_and_landscape",
+      "status": "passed",
+      "elapsed_sec": 1.064419799999996
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height",
+      "status": "passed",
+      "elapsed_sec": 1.0651665999999977
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_render_is_not_blocked_by_auxiliary_workers",
+      "status": "passed",
+      "elapsed_sec": 0.8114606999999978
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_repeated_requests_do_not_cancel_same_running_render",
+      "status": "passed",
+      "elapsed_sec": 0.792034200000046
+    },
+    {
+      "id": "test_viewer.ViewerTests.test_theme_persistence_and_contrast",
+      "status": "passed",
+      "elapsed_sec": 0.7433467999999834
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source",
+      "status": "passed",
+      "elapsed_sec": 2.2003623999999604
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document",
+      "status": "passed",
+      "elapsed_sec": 1.2683847000000128
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit",
+      "status": "passed",
+      "elapsed_sec": 0.973211899999967
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls",
+      "status": "passed",
+      "elapsed_sec": 0.6239843000000178
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image",
+      "status": "passed",
+      "elapsed_sec": 1.0287275000000022
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate",
+      "status": "passed",
+      "elapsed_sec": 0.926899800000001
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list",
+      "status": "passed",
+      "elapsed_sec": 0.7421731999999679
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request",
+      "status": "passed",
+      "elapsed_sec": 0.9165788000000248
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 126, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    try:wait_for(lambda:self.w.displayed_page == 1)\n        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_search_extensions_gtk.py\", line 33, in wait_for\n    raise AssertionError('Search extension GTK timeout')\nAssertionError: Search extension GTK timeout\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 128, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    raise AssertionError(dict(page=self.w.page,displayed=self.w.displayed_page,\n    ...<2 lines>...\n        status_entry=self.w.status_page_entry.get_text())) from exc\nAssertionError: {'page': 1, 'displayed': 0, 'render_pending': False, 'status': \"Falha ao renderizar: [WinError 5] Access is denied: 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/.f3c31992f26ec978b16b-main-r0-p2-w701-kzcnub2h.jpg' -> 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/f3c31992f26ec978b16b-main-r0-p2-w701.jpg'\", 'errors': [], 'page_entry': '2', 'status_entry': '2'}\n"
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus",
+      "status": "passed",
+      "elapsed_sec": 1.0547743000000196
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry",
+      "status": "passed",
+      "elapsed_sec": 0.6512046000000282
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content",
+      "status": "passed",
+      "elapsed_sec": 1.760060199999998
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation",
+      "status": "passed",
+      "elapsed_sec": 1.9509173999999803
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session",
+      "status": "passed",
+      "elapsed_sec": 0.9915408000000525
+    },
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input",
+      "status": "passed",
+      "elapsed_sec": 1.901814399999978
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

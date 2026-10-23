@@ -27,10 +27,13 @@ class SignatureWindow(Gtk.Window):
         self.trust=Gtk.Button(label='Validar com CA/CRL…');self.trust.connect('clicked',self._verify_trust);actions.pack_start(self.trust,False,False,0)
         self.sign=Gtk.Button(label='Assinar cópia com PEM…');self.sign.connect('clicked',self._sign);actions.pack_start(self.sign,False,False,0)
         cancel=Gtk.Button(label='Cancelar');cancel.connect('clicked',self._cancel);actions.pack_start(cancel,False,False,0)
-        preservation=Gtk.Box(spacing=8);box.pack_start(preservation,False,False,0)
+        preservation=Gtk.FlowBox();preservation.set_selection_mode(Gtk.SelectionMode.NONE)
+        preservation.set_min_children_per_line(1);preservation.set_max_children_per_line(2)
+        preservation.set_column_spacing(8);preservation.set_row_spacing(6)
+        box.pack_start(preservation,False,False,0)
         for label,callback in (('Incorporar DSS em cópia…',self._add_dss),('Exportar pedido TSA…',self._prepare_timestamp),
                                ('Consultar TSA por HTTPS…',self._fetch_timestamp),('Importar resposta TSA…',self._complete_timestamp)):
-            button=Gtk.Button(label=label);button.connect('clicked',callback);preservation.pack_start(button,False,False,0)
+            button=Gtk.Button(label=label);button.connect('clicked',callback);preservation.add(button)
         self.rows=Gtk.ListBox();scroll=Gtk.ScrolledWindow();scroll.add(self.rows);box.pack_start(scroll,True,True,0)
         self.status=Gtk.Label(label='Informe um PDF local de até 64 MiB.',xalign=0);self.status.set_line_wrap(True);box.pack_start(self.status,False,False,0)
         self.path.connect('changed',self._changed);self.connect('destroy',self._destroy)

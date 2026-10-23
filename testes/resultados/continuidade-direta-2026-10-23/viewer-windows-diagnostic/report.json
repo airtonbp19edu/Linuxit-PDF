@@ -1,0 +1,18 @@
+{
+  "schema": "linuxit-windows-native-v1",
+  "passed": true,
+  "checks": {
+    "poppler_pdf_information": true,
+    "native_character_geometry": true,
+    "actual_reader_page_rendered": true,
+    "own_edited_copy_reopens": true,
+    "source_preserved": true
+  },
+  "errors": [],
+  "foxit_executed": false,
+  "native_windows": true,
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "physical_printing": false,
+  "whole_family_acceptance": false,
+  "reader_errors": []
+}

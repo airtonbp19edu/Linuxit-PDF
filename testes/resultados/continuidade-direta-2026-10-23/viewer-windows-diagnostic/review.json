@@ -1,0 +1,44 @@
+{
+  "run": 40036468967,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40036468967",
+  "report_sha256": {
+    "acceptance.json": "c36e04781ad63fe7122e48f132634efec9e4e1d6bf478938f3a7beeae371b780",
+    "full-suite.json": "7badc9929eb6a6b197b89ad3b68dcce70479ec90b10dc0db710e7eb716728a00",
+    "full-suite.stderr": "a2fa945574de7ffbc8aec179b2fe1c380ca84613713e5ed2b6642b80d95deb62",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "test_runs": {
+    "full-suite.json": {
+      "run": 25,
+      "passed": 24,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_sha256_matches_git": null,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40036468967",
+      "id": 12537247914,
+      "name": "linuxit-own-windows-5d1b33a503b05c2eaa774f6c7a1834dbd9cec2e0",
+      "sha256": "sha256:4044d42214546e3c2723883b30b45221c1a0bb54c931a2ff24291b14d133b9cc",
+      "github_digest": "sha256:4044d42214546e3c2723883b30b45221c1a0bb54c931a2ff24291b14d133b9cc"
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_not_passed": [
+    {
+      "id": "test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 126, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    try:wait_for(lambda:self.w.displayed_page == 1)\n        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_search_extensions_gtk.py\", line 33, in wait_for\n    raise AssertionError('Search extension GTK timeout')\nAssertionError: Search extension GTK timeout\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 128, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    raise AssertionError(dict(page=self.w.page,displayed=self.w.displayed_page,\n    ...<2 lines>...\n        status_entry=self.w.status_page_entry.get_text())) from exc\nAssertionError: {'page': 1, 'displayed': 0, 'render_pending': False, 'status': \"Falha ao renderizar: [WinError 5] Access is denied: 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/.f3c31992f26ec978b16b-main-r0-p2-w701-kzcnub2h.jpg' -> 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/f3c31992f26ec978b16b-main-r0-p2-w701.jpg'\", 'errors': [], 'page_entry': '2', 'status_entry': '2'}\n"
+    }
+  ]
+}

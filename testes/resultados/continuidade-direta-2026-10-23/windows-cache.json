@@ -1,0 +1,36 @@
+{
+  "schema": "linuxit-test-run-v1",
+  "tested_app": "A:\\OneDrive\\Airton - Profissional\\Airton - Professor\\Desenvolvimento\\Codex\\Linuxit-PDF\\app",
+  "python": "3.12.14",
+  "test_pattern": "test_render_cache_publication.py",
+  "test_modules": null,
+  "full_suite_requested": false,
+  "display_present": false,
+  "run": 3,
+  "passed": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_sec": 0.23499999999967258,
+  "cases": [
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_existing_valid_entry_is_reused_while_reader_holds_file",
+      "status": "passed",
+      "elapsed_sec": 0.17199999999957072
+    },
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_invalid_cache_is_replaced_by_complete_image",
+      "status": "passed",
+      "elapsed_sec": 0.016000000000531145
+    },
+    {
+      "id": "test_render_cache_publication.RenderCachePublicationTests.test_two_renderers_publish_same_key_without_overwriting_open_result",
+      "status": "passed",
+      "elapsed_sec": 0.04699999999957072
+    }
+  ],
+  "foxit_differential_test": false,
+  "limitations": [
+    "Tests own application behavior with generated fixtures; no original Foxit execution equivalence is asserted."
+  ]
+}

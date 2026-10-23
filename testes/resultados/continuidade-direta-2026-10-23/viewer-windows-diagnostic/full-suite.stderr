@@ -1,0 +1,50 @@
+test_cached_presentation_page_invalidates_old_render (test_viewer.ViewerTests.test_cached_presentation_page_invalidates_old_render) ... ok
+test_historical_reading_mode_keeps_top_at_250_percent (test_viewer.ViewerTests.test_historical_reading_mode_keeps_top_at_250_percent) ... ok
+test_latest_renderer_skips_obsolete_queue_entries (test_viewer.ViewerTests.test_latest_renderer_skips_obsolete_queue_entries) ... ok
+test_prefetched_reader_page_is_immediate (test_viewer.ViewerTests.test_prefetched_reader_page_is_immediate) ... ok
+test_presentation_fit_fill_center_and_error (test_viewer.ViewerTests.test_presentation_fit_fill_center_and_error) ... ok
+test_presentation_handles_portrait_and_landscape (test_viewer.ViewerTests.test_presentation_handles_portrait_and_landscape) ... ok
+test_reading_anchor_follows_allocation_and_controls_height (test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height) ... ok
+test_render_is_not_blocked_by_auxiliary_workers (test_viewer.ViewerTests.test_render_is_not_blocked_by_auxiliary_workers) ... ok
+test_repeated_requests_do_not_cancel_same_running_render (test_viewer.ViewerTests.test_repeated_requests_do_not_cancel_same_running_render) ... ok
+test_theme_persistence_and_contrast (test_viewer.ViewerTests.test_theme_persistence_and_contrast) ... ok
+test_authenticated_open_renders_searches_and_presents_without_mutating_source (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_authenticated_open_renders_searches_and_presents_without_mutating_source) ... ok
+test_cancel_password_and_wrong_password_preserve_previous_document (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_cancel_password_and_wrong_password_preserve_previous_document) ... ok
+test_changed_source_after_initial_render_does_not_commit (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_changed_source_after_initial_render_does_not_commit) ... ok
+test_document_close_cancels_open_and_resets_controls (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_document_close_cancels_open_and_resets_controls) ... ok
+test_failed_open_preserves_document_page_and_image (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_failed_open_preserves_document_page_and_image) ... ok
+test_first_render_failure_does_not_commit_candidate (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_first_render_failure_does_not_commit_candidate) ... ok
+test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_keyboard_page_changes_do_not_move_focus_to_thumbnail_list) ... ok
+test_monitor_selection_removal_and_fullscreen_request (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_monitor_selection_removal_and_fullscreen_request) ... ok
+test_page_entries_clamp_and_restore_invalid_value_and_disable_edges (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges) ... FAIL
+test_presentation_keys_respect_control_focus_and_restore_parent_focus (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_presentation_keys_respect_control_focus_and_restore_parent_focus) ... ok
+test_real_password_dialog_masks_and_clears_entry (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_real_password_dialog_masks_and_clears_entry) ... ok
+test_recovery_decline_then_accept_preserves_original_and_content (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_recovery_decline_then_accept_preserves_original_and_content) ... ok
+test_rotated_cropbox_geometry_matches_selection_and_presentation (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_rotated_cropbox_geometry_matches_selection_and_presentation) ... ok
+test_superseded_open_cannot_replace_newer_document_and_cleans_session (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_superseded_open_cannot_replace_newer_document_and_cleans_session) ... ok
+test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_zoom_extremes_use_logical_surface_and_reject_nonfinite_input) ... ok
+
+======================================================================
+FAIL: test_page_entries_clamp_and_restore_invalid_value_and_disable_edges (test_reading_workflows_gtk.ReadingWorkflowsGTKTests.test_page_entries_clamp_and_restore_invalid_value_and_disable_edges)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py", line 126, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges
+    try:wait_for(lambda:self.w.displayed_page == 1)
+        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_search_extensions_gtk.py", line 33, in wait_for
+    raise AssertionError('Search extension GTK timeout')
+AssertionError: Search extension GTK timeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py", line 128, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges
+    raise AssertionError(dict(page=self.w.page,displayed=self.w.displayed_page,
+    ...<2 lines>...
+        status_entry=self.w.status_page_entry.get_text())) from exc
+AssertionError: {'page': 1, 'displayed': 0, 'render_pending': False, 'status': "Falha ao renderizar: [WinError 5] Access is denied: 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/.f3c31992f26ec978b16b-main-r0-p2-w701-kzcnub2h.jpg' -> 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/f3c31992f26ec978b16b-main-r0-p2-w701.jpg'", 'errors': [], 'page_entry': '2', 'status_entry': '2'}
+
+----------------------------------------------------------------------
+Ran 25 tests in 47.418s
+
+FAILED (failures=1)

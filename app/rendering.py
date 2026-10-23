@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from threading import Lock
 from pathlib import Path
 
 from pdf_dependency import configure_pdf_library
@@ -88,6 +89,31 @@ def document_info(path):
 
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+_CACHE_PUBLICATION_LOCK = Lock()
+
+
+def _publish_render_cache(temporary, output, valid):
+    """Serialize only publication; concurrent Poppler work remains independent.
+
+    Windows image readers can hold a completed cache file without delete sharing.
+    A second renderer must reuse that valid entry, not replace its open file.
+    """
+    with _CACHE_PUBLICATION_LOCK:
+        if valid(output):
+            return
+        if os.name == 'nt':
+            # Remove only an invalid entry, under the same publication lock.
+            # No partial render is ever written to this shared final pathname.
+            output.unlink(missing_ok=True)
+        try:
+            if os.name == 'nt':
+                os.rename(temporary, output)
+            else:
+                os.replace(temporary, output)
+        except OSError:
+            # Another process may have published the same complete key meanwhile.
+            if not valid(output):
+                raise
 
 
 def _valid_png(filename):
@@ -164,11 +190,8 @@ def render_page(path, page_index, target_width, cache_dir, key='main', image_for
 
     if valid(output):
         return str(output)
-    # Broken cache entries must never be reused.
-    try:
-        output.unlink(missing_ok=True)
-    except OSError:
-        pass
+    # Invalid entries are replaced only during serialized publication. Deleting
+    # here could remove a valid entry another renderer published after our check.
 
     if not shutil.which('pdftocairo'):
         raise RuntimeError('pdftocairo não está instalado (pacote poppler-utils).')
@@ -195,7 +218,7 @@ def render_page(path, page_index, target_width, cache_dir, key='main', image_for
             raise RuntimeError('O renderizador produziu uma imagem incompleta ou inválida.')
 
         # Atomic on same filesystem: no partial image is exposed to GTK.
-        os.replace(temporary_output, output)
+        _publish_render_cache(temporary_output, output, valid)
         _prune_image_cache(cache, keep=str(output))
         if not valid(output):
             try:
