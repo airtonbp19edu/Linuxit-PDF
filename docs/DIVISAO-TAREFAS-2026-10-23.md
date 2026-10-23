@@ -130,3 +130,38 @@ Claude assume **só** em um destes casos:
 continua. Nunca os dois operam a VM ao mesmo tempo.
 
 D06 continua valendo para encerrar o Foxit residual, sempre registrando PID e horário.
+
+---
+
+## Sinal de vida da VM — pedido do usuário às 00:58
+
+"Fique monitorando ele (caso não gaste tokens) ou peça para ele mandar atualizações sobre a VM;
+caso pare, você assume de imediato."
+
+**O Codex, enquanto opera a VM (E30), a cada 15 minutos no máximo e a cada caso concluído:**
+
+- atualiza o ramo `codex/vm-status` com um commit vazio (pode ser forçado, sem tocar a `main`):
+
+```text
+git commit --allow-empty -m "VM-STATUS: ATIVO | caso UI02 | <resumo curto>"
+git push --force origin HEAD:codex/vm-status
+```
+
+- usa no texto um destes estados: `ATIVO`, `LIBEREI` (parou e libera para o Claude), `BLOQUEADO`
+  (não consegue seguir) ou `CONCLUIDO` (E30 terminada), sempre com o último caso feito.
+
+**O Claude** deixa um vigia em segundo plano que confere esse ramo a cada 2 minutos. O vigia não
+gasta nada enquanto o sinal está em dia e chama o Claude quando:
+
+- o estado é `LIBEREI` ou `BLOQUEADO`;
+- o sinal fica mais de **45 minutos** sem atualizar;
+- o ramo não aparece em 45 minutos.
+
+Nesses casos o Claude **assume de imediato**:
+
+1. confere o `CHAT-CODEX.txt`;
+2. escreve PEGUEI E30;
+3. continua do último caso informado.
+
+Com `CONCLUIDO`, o vigia para. O vigia expira a cada 2 horas e é rearmado pelo Claude; na
+retomada das 05:10 ele também é rearmado.

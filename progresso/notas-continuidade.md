@@ -3731,3 +3731,7 @@ K4: docs/PROPOSTA-B3-2026-10-23.md com opções A/B/C, números do inventário (
 ## 2026/10/23 às 01:00 (America/Sao_Paulo, UTC-03:00) — Claude assume a VM se o Codex não concluir
 
 Pedido do usuário (00:57). Gatilhos: LIBEREI/BLOQUEADO no CHAT-CODEX.txt, ou mais de 60 min sem linha nova nem commit com a E30 pendente; PERGUNTA e até 15 min de espera se o Codex parecer ativo; PEGUEI E30 antes de abrir a VM. Retomada das 05:10 recriada com a checagem (trig_01NLQKhk6cuVpQByFPnfnfEZ; o antigo trig_01GrfK51W5n3vGW23nBGZSvY foi apagado).
+
+## 2026/10/23 às 01:05 (America/Sao_Paulo, UTC-03:00) — sinal de vida da VM
+
+Pedido do usuário (00:58). Codex: commit vazio forçado em codex/vm-status a cada 15 min ou caso concluído, "VM-STATUS: ATIVO|LIBEREI|BLOQUEADO|CONCLUIDO | caso | resumo". Claude: vigia em segundo plano (gh api a cada 120 s) que sai em LIBEREI/BLOQUEADO, CONCLUIDO, sinal parado > 45 min ou ramo ausente por 45 min; rearmar a cada 2 h e na retomada das 05:10.

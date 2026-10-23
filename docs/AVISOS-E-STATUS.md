@@ -109,6 +109,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/23 às 01:00** — Regra nova do usuário: se o Codex não conseguir concluir a VM (E30), o Claude assume. Gatilhos: o Codex escreve LIBEREI ou BLOQUEADO no chat, ou fica mais de 60 minutos sem atividade com a E30 pendente. Antes de abrir a VM, o Claude escreve PEGUEI E30 e confere que o Codex não está nela; nunca os dois ao mesmo tempo. A retomada do Claude às 05:10 foi reagendada já com essa checagem. Regra em [DIVISAO-TAREFAS-2026-10-23.md](DIVISAO-TAREFAS-2026-10-23.md).
 
+- **2026/10/23 às 01:05** — Monitoramento da VM sem gastar tokens, a pedido do usuário: o Codex manda um sinal de vida ao ramo `codex/vm-status` a cada 15 minutos (estados ATIVO, LIBEREI, BLOQUEADO, CONCLUIDO, com o último caso). Um vigia em segundo plano confere a cada 2 minutos e só chama o Claude se o Codex parar (LIBEREI/BLOQUEADO ou mais de 45 minutos sem sinal); aí o Claude assume a VM de imediato.
+
 ## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
 
 Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.
