@@ -20,11 +20,28 @@ def gui_display():
 
 def font_path():
     candidates = [Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),
-                  Path(sys.prefix) / 'share/fonts/TTF/DejaVuSans.ttf']
+                  Path(sys.prefix) / 'share/fonts/TTF/DejaVuSans.ttf',
+                  Path('/app/share/fonts/DejaVuSans.ttf'),
+                  Path('/usr/share/fonts/dejavu/DejaVuSans.ttf')]
     windows = os.environ.get('WINDIR') or os.environ.get('SystemRoot')
     if windows:
         candidates += [Path(windows) / 'Fonts' / name for name in ('arial.ttf', 'segoeui.ttf', 'tahoma.ttf')]
-    return next((str(path) for path in candidates if path.is_file()), None)
+    for path in candidates:
+        if path.is_file():
+            return str(path)
+    # Fontconfig knows where a usable TrueType font is in Flatpak runtimes and other
+    # layouts whose paths are not fixed. Ask it for a scalable, non-bitmap face.
+    import shutil as _shutil
+    import subprocess as _subprocess
+    if _shutil.which('fc-match'):
+        try:
+            found = _subprocess.run(['fc-match', '-f', '%{file}', ':scalable=true:outline=true'],
+                                    stdout=_subprocess.PIPE, stderr=_subprocess.DEVNULL, timeout=15).stdout.decode().strip()
+        except (OSError, _subprocess.SubprocessError):
+            found = ''
+        if found and found.lower().endswith(('.ttf', '.otf')) and Path(found).is_file():
+            return found
+    return None
 
 
 def scan_font(size):
