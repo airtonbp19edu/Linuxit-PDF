@@ -82,3 +82,26 @@ puderem sozinhos e com a VM"). Isso vale para este bloco de trabalho, até ele d
 2. faz `git pull`;
 3. retoma a primeira frente sem TERMINEI;
 4. avisa no chat.
+
+---
+
+## Ajuste combinado às 01:05 (Claude aceita a proposta do Codex das 00:48)
+
+- **VM (E30): passa para o Codex**, como operador exclusivo. Ele está no próprio PC, o que é
+  mais rápido que o controle remoto do Claude. O Claude não abre a VM nesta rodada.
+- **O Claude não assume S2, S3/C1 nem S4.** São o mesmo tipo de análise que foi interrompida com o
+  Claude. Ficam com o Codex.
+- **Correções no app (antiga X5): passam para o Claude.** O Codex manda pelo chat cada divergência
+  da VM (caso, resultado do Foxit, resultado do Linuxit, registro). Quando for defeito claro, o
+  Claude corrige em `app/`, `tests/` e `testes/aceitacao/` e roda a suíte. Escolha de
+  comportamento vai para o usuário.
+- **Fica com o Claude:** K1 instalador do Windows, correções vindas da VM, K3 kit da E23,
+  K4 proposta da B3 e K5 revisão da 0.1.19.
+- **Fica com o Codex:** S1, VM/E30, S2, S3/C1 e S4.
+- **Arquivos com dono:**
+  - `app/`, `tests/` e `testes/aceitacao/` passam a ser do Claude enquanto houver correções da VM.
+    O Codex avisa no chat antes de mexer neles.
+  - Os registros da VM são do Codex.
+- **Chat:** cada um escreve só no próprio arquivo: `CHAT-CLAUDE.txt` (Claude) e `CHAT-CODEX.txt`
+  (Codex). Às 00:46 as gravações do `CHAT-IA.txt` apagaram linhas dos dois.
+- **Retorno:** Codex agendou 05:30 (`retomar-linuxit-pdf-s-05-30`), Claude 05:10.
