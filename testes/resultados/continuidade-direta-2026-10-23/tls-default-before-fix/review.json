@@ -1,0 +1,22 @@
+{
+  "run_id": 40041602989,
+  "conclusion": "Default Debian OpenSSL paths absent inside Freedesktop runtime; both default CA stores empty.",
+  "fixed_by": "Select readable runtime CA locations in linuxit-python without overriding explicit SSL_CERT_FILE/SSL_CERT_DIR.",
+  "fix_validated": false,
+  "artifacts": [
+    {
+      "run": "40041602989",
+      "id": 12539059171,
+      "name": "linuxit-own-desktop-e77cf3cf6d8977d06485dad2a51fca90d0564767-repetition-2",
+      "sha256": "sha256:79e54bdbca5a9e998751b486303ea70f968dd303d0073689e3344e26a28d5557",
+      "github_digest": "sha256:79e54bdbca5a9e998751b486303ea70f968dd303d0073689e3344e26a28d5557"
+    },
+    {
+      "run": "40041602989",
+      "id": 12539915360,
+      "name": "linuxit-own-desktop-e77cf3cf6d8977d06485dad2a51fca90d0564767-repetition-1",
+      "sha256": "sha256:fc7090207a276c556938a790c01b789fe392de1f57fded74d183602ecfa54c2b",
+      "github_digest": "sha256:fc7090207a276c556938a790c01b789fe392de1f57fded74d183602ecfa54c2b"
+    }
+  ]
+}

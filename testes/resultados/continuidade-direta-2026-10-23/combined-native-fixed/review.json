@@ -1,0 +1,175 @@
+{
+  "run": 40040312193,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40040312193",
+  "report_sha256": {
+    "acceptance.json": "e2d6d06636317628c451daed1eddd9869bff26b5b847567db017f9de3eb257f1",
+    "full-suite.json": "704c31a1039c0d0a7b1b06b07780f21a57fd7d8f1a428fec03c44fd359df8a28",
+    "full-suite.stderr": "abc98a96aaa663663c667513f4024727ea81cb4179d6c3db89ad074ac163d3c3",
+    "installer-validation.json": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "test_runs": {
+    "full-suite.json": {
+      "run": 808,
+      "passed": 801,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7
+    }
+  },
+  "source_sha256_matches_git": null,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40040312193",
+      "artifact": 12539491749,
+      "github_zip_digest": "sha256:7c970a51038cb3d9f634c6be791a0c4c8ebb1e3ff3396792ec78d461a72654f6",
+      "complete_zip_sha256_verified": false,
+      "retrieval": "selected HTTPS ranges; individual member CRC checked",
+      "members": [
+        {
+          "file": "acceptance-progress.json",
+          "size": 50380,
+          "sha256": "b9e863cf62060c65e4b0bb18f8e0f98fc344359ab899ae2d727ffbad6550e50e",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.json",
+          "size": 49048,
+          "sha256": "e2d6d06636317628c451daed1eddd9869bff26b5b847567db017f9de3eb257f1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stderr",
+          "size": 5156,
+          "sha256": "3041ab9ee09e8f516349347c8c53ef3c219e9cf1843b374318cbf5c21521284d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stdout",
+          "size": 2984,
+          "sha256": "6b52f238bf97db1744ebb5cf19e8e9a414087b31d9ed192b013daecdbd6b2f16",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite-progress.json",
+          "size": 164174,
+          "sha256": "fc28f0434f2dd4d5006c0083835a53ac7a98f372276effbc382577f37f09feca",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.json",
+          "size": 164449,
+          "sha256": "704c31a1039c0d0a7b1b06b07780f21a57fd7d8f1a428fec03c44fd359df8a28",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stderr",
+          "size": 162156,
+          "sha256": "abc98a96aaa663663c667513f4024727ea81cb4179d6c3db89ad074ac163d3c3",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-launcher-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installer-validation.json",
+          "size": 1903,
+          "sha256": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "LinuxitPDF-0.1.19-windows-x86_64.json",
+          "size": 470,
+          "sha256": "fe3c52e0c40457bceb44de33974c02b650d6f93cb913545356ab00f9ef7feaa1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "payload/windows-manifest.json",
+          "size": 3334180,
+          "sha256": "6f8d01c541ea2bf98372d75b9e1de6009c0db6ad4468121850808cf99db40f25",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "report.json",
+          "size": 473,
+          "sha256": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89",
+          "zip_crc_verified": true
+        }
+      ],
+      "range_requests": 45
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_not_passed": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+      "status": "skipped",
+      "reason": "Linux process group verification"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_actual_rfc3161_token_is_bound_to_signer_signature_value",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_explicit_ca_trust_integrity_and_expiry_are_independent_of_revocation",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_non_ca_anchor_and_unrelated_ca_are_not_implicitly_trusted",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_offline_crl_required_missing_clear_and_revoked",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    },
+    {
+      "id": "test_signature_trust.OfflineTrustTests.test_timestamp_authority_trusted_only_by_platform_store_is_rejected",
+      "status": "skipped",
+      "reason": "Native OpenSSL and packaged ASN.1 integration"
+    }
+  ],
+  "installer": {
+    "passed": true,
+    "checks": {
+      "silent_install_exit_zero": true,
+      "installed_bytes_equal_payload": true,
+      "installed_native_probe": true,
+      "installed_exe_launcher": true,
+      "per_user_uninstall_registered": true,
+      "uninstaller_removes_owned_files": true,
+      "uninstaller_preserves_foreign_files": true,
+      "uninstall_registry_removed": true
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "linuxit-windows-installer-validation-v1",
+  "passed": true,
+  "checks": {
+    "silent_install_exit_zero": true,
+    "installed_bytes_equal_payload": true,
+    "installed_native_probe": true,
+    "installed_exe_launcher": true,
+    "per_user_uninstall_registered": true,
+    "uninstaller_removes_owned_files": true,
+    "uninstaller_preserves_foreign_files": true,
+    "uninstall_registry_removed": true
+  },
+  "errors": [],
+  "ephemeral_ci": true,
+  "host_user_installation": false,
+  "administrator_required": false,
+  "physical_hardware_tested": false,
+  "installation_directory": "D:/a/_temp/linuxit-installer-validation/installed app com espa\u00e7os",
+  "install_command": "D:\\a\\Linuxit-PDF\\Linuxit-PDF\\dist\\windows-native\\LinuxitPDF-0.1.19-windows-x86_64.exe /S /D=D:\\a\\_temp\\linuxit-installer-validation\\installed app com espa\u00e7os",
+  "payload_mismatches": [],
+  "probe_returncode": 0,
+  "probe_returncode_hex": "0x0",
+  "probe_stdout": "",
+  "probe_stderr": "",
+  "probe_report": {
+    "schema": "linuxit-windows-installed-probe-v1",
+    "version": "0.1.19",
+    "checks": {
+      "gtk_initialized": true,
+      "quickjs_calculation": true,
+      "quickjs_worker_dependency": true,
+      "rc4_legacy_provider": true,
+      "quickjs_worker_executed": true,
+      "poppler_pdf_opened": true,
+      "cairo_rendered": true
+    },
+    "openssl_paths": {
+      "OPENSSL_CONF": "C:/Users/Public/LinuxitPDF/d25656df086bfb7f/runtime/etc/ssl/openssl.cnf",
+      "OPENSSL_MODULES": "C:/Users/Public/LinuxitPDF/d25656df086bfb7f/runtime/lib/ossl-modules"
+    },
+    "openssl_unresolved": [],
+    "installation_root": "C:/Users/Public/LinuxitPDF/d25656df086bfb7f",
+    "ascii_alias_used": true,
+    "passed": true
+  },
+  "launcher_returncode": 0,
+  "launcher_stdout": "",
+  "launcher_stderr": "",
+  "remaining_owned_files": []
+}

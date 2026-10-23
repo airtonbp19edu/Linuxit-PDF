@@ -129,6 +129,17 @@ base="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 export PYTHONHOME="$base/python"
 export PYTHONPATH="$base/python/lib/python3.13/site-packages"
 export OPENSSL_MODULES="$base/runtime-lib/ossl-modules"
+if [ "${SSL_CERT_FILE+x}" != x ]; then
+    for certificates in /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/cert.pem; do
+        if [ -r "$certificates" ]; then
+            export SSL_CERT_FILE="$certificates"
+            break
+        fi
+    done
+fi
+if [ "${SSL_CERT_DIR+x}" != x ] && [ -d /etc/ssl/certs ]; then
+    export SSL_CERT_DIR=/etc/ssl/certs
+fi
 export GST_PLUGIN_SYSTEM_PATH_1_0="$base/lib/gstreamer-1.0"
 export GST_PLUGIN_PATH_1_0=""
 export GST_REGISTRY_FORK=no
