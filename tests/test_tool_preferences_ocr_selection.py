@@ -32,7 +32,7 @@ class ToolPreferenceTests(unittest.TestCase):
         for kwargs in [dict(pages=[]),dict(pages=[1,1]),dict(pages=[True]),dict(pages=[21]),dict(psm=13),dict(psm=True)]:
             with self.subTest(kwargs=kwargs),self.assertRaises(ValueError):validate_request(dict(good,**kwargs))
 
-    @unittest.skipIf(os.name=='nt','Native Linux Poppler/Tesseract')
+    @unittest.skipUnless(__import__('ocr_runtime').ocr_tools(),'Requires actual Poppler and Tesseract')
     def test_selected_page_ocr_keeps_other_page_text_and_original_intact(self):
         source=self.root/'source.pdf';source.write_bytes(text_pdf(['ALPHA EXAMPLE','PRESERVE VECTOR TEXT']))
         before=source.read_bytes();target=self.root/'ocr.pdf'

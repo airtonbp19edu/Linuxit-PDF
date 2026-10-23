@@ -9,12 +9,13 @@ import unittest
 from unittest.mock import patch
 
 from test_ocr_linux import TOOLS, scan
+from ocr_runtime import gui_display
 from test_pdf_ocr import PdfReader
 from test_search_extensions_gtk import Gtk, wait_for, capture
 
 
-@unittest.skipUnless(Gtk is not None and bool(os.environ.get('DISPLAY')) and TOOLS and sys.platform.startswith('linux'),
-                     'Requires GTK/X11 and actual Linux OCR tools')
+@unittest.skipUnless(Gtk is not None and gui_display() and TOOLS,
+                     'Requires GTK with a display and actual OCR tools')
 class OCRGTKTests(unittest.TestCase):
     def setUp(self):
         from main import PDFWindow,load_css

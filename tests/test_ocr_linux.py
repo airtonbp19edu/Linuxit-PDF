@@ -14,12 +14,13 @@ from unittest.mock import patch
 from test_pdf_ocr import ocr, PdfReader, PdfWriter
 from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageStat
 from pdf_creation import _image_page
+from ocr_runtime import ocr_tools, scan_font
 
-TOOLS = all(shutil.which(name) for name in ('tesseract','pdftocairo','pdftotext'))
+TOOLS = ocr_tools()
 
 
 def scan(path, texts=('LINUXIT DOCUMENTO TESTE',), dpi=150):
-    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',64)
+    font = scan_font(64)
     writer = PdfWriter()
     for text in texts:
         with Image.new('RGB',(1200,450),'white') as image:
@@ -31,7 +32,7 @@ def scan(path, texts=('LINUXIT DOCUMENTO TESTE',), dpi=150):
     writer.write(path)
 
 
-@unittest.skipUnless(TOOLS and sys.platform.startswith('linux'),'Requires actual Linux Poppler and Tesseract')
+@unittest.skipUnless(TOOLS,'Requires actual Poppler and Tesseract')
 class OCRLinuxTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(prefix='linuxit-ocr-real-')
@@ -115,6 +116,7 @@ class OCRLinuxTests(unittest.TestCase):
         finally:
             for image in rendered:image.close()
 
+    @unittest.skipUnless(sys.platform.startswith('linux'),'Linux /proc child-process verification')
     def test_cancel_stops_worker_and_its_actual_tesseract_child(self):
         import search_tasks
         # Observe the actual ELF child. Payload launchers intentionally prepend
