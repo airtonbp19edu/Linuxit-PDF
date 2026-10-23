@@ -1,0 +1,32 @@
+{
+  "schema": "linuxit-office-export-review-v1",
+  "reviewed_at_local": "2026-10-23T15:40:00-03:00",
+  "reviewer": "Claude",
+  "branch": "claude/exportacao-office",
+  "commit": "c5d3663",
+  "tests": {
+    "new": 6,
+    "local_linux": "11/11 in test_office_export+test_pdf_conversion; full local suite 566 passed vs 560 on main with the same 2 failures/46 errors of this cloud environment (no new failure)"
+  },
+  "interoperability": {
+    "tool": "LibreOffice headless (local)",
+    "source_pdf_sha256": "efd1acd5091af33627d92d4c2797bb133a13ea0d1ef9a1f30cd3d02151b8f7e0",
+    "docx_sha256": "6cfc7d82692c6333682c751a2922ec0356b84ded1fcfc8aacd5bfad4bf1346c9",
+    "odt_sha256": "9076377efe5940f90e9b7b38bf98a660b9f240b02e666ef7e4ac1ad89ce47f9f",
+    "docx_to_pdf_pages": 2,
+    "docx_to_pdf_text": [
+      "Primeira pagina",
+      "Segunda pagina"
+    ],
+    "odt_to_text": [
+      "Primeira pagina",
+      "Segunda pagina"
+    ]
+  },
+  "limits": [
+    "images, tables, columns, colours and exact fonts not reproduced",
+    "reading order is Poppler's",
+    "no Microsoft Word run",
+    "not integrated into main"
+  ]
+}
