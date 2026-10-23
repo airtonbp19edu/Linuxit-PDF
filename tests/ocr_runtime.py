@@ -46,10 +46,15 @@ def font_path():
 
 def scan_font(size):
     from PIL import ImageFont
-    path = font_path()
-    if path is None:
-        raise unittest_skip('No TrueType font available for the synthetic scan')
-    return ImageFont.truetype(path, size)
+    # Pillow also searches the system font directories by file name (Flatpak runtimes keep
+    # DejaVu outside /usr/share/fonts/truetype), so try the bare name before skipping.
+    for name in (font_path(), 'DejaVuSans.ttf', 'arial.ttf'):
+        if name:
+            try:
+                return ImageFont.truetype(name, size)
+            except OSError:
+                continue
+    raise unittest_skip('No TrueType font available for the synthetic scan')
 
 
 def unittest_skip(message):
