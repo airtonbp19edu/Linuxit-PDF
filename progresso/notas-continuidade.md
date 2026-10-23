@@ -3703,3 +3703,7 @@ Sem execução do original/VM, sem instalação ou reparoMCP, sem publicação e
 ## 2026/10/23 às 00:06 (America/Sao_Paulo, UTC-03:00) — Claude: verificação de status
 
 Só leitura (git, API do GitHub, listagem da pasta do PC). main 128d6f3; releases: última v0.1.18-devel; 39872660861 check_only sem release. Windows: 53d4247/4f9a6f0/691ee0d/350ae12/459f618 falharam (instalador sem arquivos no destino). S1: pastas s1-options/s1-query-constructors/s1-ui-objects/s1-unicode no PC com última escrita 21:20 de 22/10, sem relatório nem commit — a próxima IA deve conferir esses brutos antes de repetir as sementes. Nada alterado no app, critérios ou pesos.
+
+## 2026/10/23 às 00:11 (America/Sao_Paulo, UTC-03:00) — lista revisada e minichat
+
+Pedido do usuário: listar de novo o que falta, separar o que o Claude pode fazer sem a S1 (C1–C7 na O-QUE-FAZER) e informar o Codex ao fazer o que ele pedir. Criado CHAT-IA.txt na raiz da pasta do PC (gitignored), com regras e 4 mensagens iniciais do Claude. AGENTS.md aponta o chat. Nenhuma tarefa C iniciada.

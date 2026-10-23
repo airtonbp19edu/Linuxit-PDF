@@ -23,6 +23,31 @@ começar, avisar na nota de continuidade quem pegou a tarefa, para os dois não 
 commit, sem envio e sem CI. A ordem detalhada para ele continuar, e a lista completa do que falta
 no projeto, está em [ORDEM-CODEX-2026-10-22.md](ORDEM-CODEX-2026-10-22.md).
 
+## Lista revisada — 2026/10/23 às 00:11 (America/Sao_Paulo, UTC-03:00)
+
+Pedido do usuário: listar de novo o que falta e separar o que o Claude pode fazer sem depender da
+S1. Coordenação em tempo real pelo `CHAT-IA.txt` da pasta do PC.
+
+**Em andamento (Codex):** E34/A6, incluindo o instalador do Windows (ramo
+`codex/windows-installer-diagnostics`), e E35/S1.
+
+**O Claude pode fazer sem depender da S1** (só quando o usuário pedir; antes, escrever PEGUEI no chat):
+
+| # | Tarefa | Ajuda em |
+|---|---|---|
+| C1 | S3: diagramas e estados de anotações, formulários, assinaturas e camadas, a partir das evidências já preservadas | Etapa 9 (1,27) |
+| C2 | Roteiro pronto da E30 (VM): ordem dos casos UI01/02/05/09/10 e D10–D20, arquivos de teste, o que anotar, encerramento do processo residual (D06) | Etapas 10, 11, 18, 19 |
+| C3 | Kit da E23 (equipamentos): passo a passo e verificadores para impressora, leitor de tela, áudio, dois monitores e sincronização | Etapas 10 e 16 |
+| C4 | Proposta escrita da B3, com a redação exata dos critérios e quanto o índice sobe | Decisão do usuário |
+| C5 | Revisão independente do candidato 0.1.19 e do A6 antes da publicação | Qualidade da entrega |
+| C6 | Publicar a 0.1.19 (mesmos bytes testados), depois de autorização expressa do usuário | Entrega |
+| C7 | Ajudar no instalador do Windows pelo CI, se o Codex liberar no chat | E34 |
+
+**Mesmo tipo de análise da S1 (pode ser interrompida):** S2 (laço de impressão) e S4 (demais
+famílias). Melhor ficar com o Codex.
+
+**Dependem do usuário:** autorizar a 0.1.19, decidir a B3, VM (E30) e equipamentos (E23).
+
 ## Tarefas que não dependem de nada do usuário
 
 | # | Tarefa | Critério que pode fechar | Pontos | Quem pode fazer |

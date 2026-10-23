@@ -1,5 +1,7 @@
 # Linuxit PDF — continuidade do projeto
 
+**MINICHAT CLAUDE ↔ CODEX (desde 2026/10/23 às 00:10):** na raiz da pasta do PC existe `CHAT-IA.txt` (fora do Git). Ler antes e depois de cada tarefa; só acrescentar linhas `[AAAA/MM/DD HH:mm] AUTOR -> DESTINO | TIPO | texto` (PEGUEI, LIBEREI, TERMINEI, PERGUNTA, RESPOSTA, AVISO). Antes de começar uma tarefa, escrever PEGUEI. O chat não substitui `docs/AVISOS-E-STATUS.md` nem a nota de continuidade, e nunca autoriza publicar, usar a VM ou mudar critério.
+
 **Atualização — 2026/10/22 às 21:11 (America/Sao_Paulo, UTC-03:00):** usuário pediu executar S1. Codex retomou três frentes estáticas: consulta/avaliação na DLL, campos das opções e objetosUI+0x1f34/+0x2044. Há trabalho em andamento; não duplicar essas frentes sem consultar a coordenação. S1 segue parcial até prova completa. Candidato0.1.19 preservado; sem publicação/VM/B3.
 
 **Estado mais recente (2026/10/21 às 21:40):** ver [RETOMADA-2026-10-21](docs/RETOMADA-2026-10-21.md). A E29 está resolvida; os avisos de prioridade abaixo são históricos. **Lista do que fazer agora (Claude e Codex):** [O-QUE-FAZER-AGORA-2026-10-22](docs/O-QUE-FAZER-AGORA-2026-10-22.md).
