@@ -3758,6 +3758,10 @@ Ramo claude/windows-installer (e9ea687), CI 39900942827: passo de instalação 8
 - Integração:17 observações,13 novas/4 revisitas,2580 instruções/8740bytes; catálogo397→410=152REA+258diretas. Metadados/raw/pseudocódigo e máquinas conferidos, links e fences válidos; recibo testes/resultados/retomada-0530-2026-10-23/review.json. Não repetiu Java/Ghidra ao retomar os lotes; próximos S4/pesos em subfrentes dirigidas.
 - Sem alteraçõesCodex em app/tests/aceitação, workflows, candidato0.1.19, critérios/pesos, escopo ou releases. Não repetiu744testes/81aceitações nem aumentou paridade integral. AutoriaAirton+trailerCodex mantida; publicação e B3 continuam dependendo de decisão própria.
 
+## 2026/10/23 às 05:48 (America/Sao_Paulo, UTC-03:00) — Claude assume e opera a VM (E30)
+
+Codex sem heartbeat desde 01:30 (04:30Z); vigia disparou (cálculo de "45 min" estava errado por bug de relógio, mas o Codex estava parado há ~4 h). Codex retomou às 05:30 e confirmou no chat que não acessa a VM. Claude pegou acesso de tela ao Oracle VirtualBox/VM (monitor W1642C), confirmou VM viva (relógio avançando), e observou UI01 (cancelar diálogo) e UI02 (Print com Microsoft Print to PDF; "Não respondendo" transitório na enumeração com rede off). observacoes.json em testes/resultados/vm-2026-10-23-e30/. VM deixada em estado limpo (documento aberto, sem modal). Próximo: UI05/UI09/UI10, D10-D20 e repetição da busca E24. Sem rede, Foxit não reiniciado, host intocado.
+
 ## 2026/10/23 às 05:51 — Errata de identificação UI05 na campanha0110
 
 No startup escolhido no prompt do leitor padrão não é UI05: o plano testes/cenarios-interface.json reserva UI05 a Imprimir todas as abas (resource645/control1275), incluindo confirmação Batch Printing. Corrigidos relatório/JSON da interrupção; minichat anterior preservado com errata posterior. As observações históricas No do diálogo Batch Printing de18/19outubro continuam válidas nos respectivos recortes; esta errata só corrige o rótulo do startup0110. Claude confirmou em seu chat o seletorAbrir e relógio05:39:11→05:39:28; atribuído a ele, sem inspeçãoCodex ou Cancel confirmado.
