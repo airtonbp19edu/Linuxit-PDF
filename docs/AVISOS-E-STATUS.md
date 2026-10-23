@@ -99,6 +99,8 @@ Regra pedida pelo usuário em 20/10/2026: todo aviso dado ao usuário fica regis
 
 - **2026/10/23 às 00:23** — A pedido do usuário, deixado para o Codex (topo do `AGENTS.md`, da ordem e no `CHAT-IA.txt`): antes de concluir as próximas tarefas, fazer o Codex aparecer como contribuidor no GitHub. Passo 1: coautoria `Co-authored-by: Codex <noreply@openai.com>` pelo `commit_attribution`. Passo 2: para entrar na lista lateral, autor ligado a uma conta do GitHub (perguntar ao usuário sobre criar uma conta de máquina). Sem reescrever commits antigos.
 
+- **2026/10/23 às 00:50** — Pedido do usuário: Claude e Codex dividem as tarefas e trabalham ao mesmo tempo, fazendo tudo o que puderem sozinhos e com a VM. Divisão em [DIVISAO-TAREFAS-2026-10-23.md](DIVISAO-TAREFAS-2026-10-23.md): Claude fica com o instalador do Windows (E34), a E30 na VM, o kit da E23, a proposta da B3 e a revisão da 0.1.19; o Codex com S1, diagramas C1, S2, S4 e as correções do que a VM revelar. Retorno após interrupção: Claude às 05:10 (agendado) e Codex às 05:30 (ele agenda o próprio). Publicação e B3 continuam esperando o usuário.
+
 ## 2026/10/22 às 18:51 (America/Sao_Paulo, UTC-03:00) — A4–A6: Passo 1 salvo; aguardar confirmação
 
 Pedido atual do usuário: buscar atualizações do Claude, executar em ordem e sempre perguntar antes de passar ao próximo passo, começando por A4/A5/A6. Lidos ORDEM-CODEX-2026-10-22.md e os commits até e215a6b. Integração por merge preservou o histórico e as notas de ambas as IAs. O commit local cabe2f0 já existia antes da leitura da nova ordem; não reescrito para simular commits temáticos. Nenhum push desse trabalho para main ocorreu. Destino de segurança: codex/a456-wip, com prefixo de ramo do Codex.
