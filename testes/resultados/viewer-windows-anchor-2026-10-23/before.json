@@ -1,0 +1,23 @@
+{
+  "scope": "source methods with synthetic allocations; no GTK or native Windows execution",
+  "cases": [
+    {
+      "case": "reading page becomes taller than viewport",
+      "actual": 0.0,
+      "expected": 331.0,
+      "passed": false
+    },
+    {
+      "case": "controls reveal without canvas size change",
+      "actual": 331.0,
+      "expected": 371.0,
+      "passed": false
+    },
+    {
+      "case": "manual panning stays at user position",
+      "actual": 281.0,
+      "expected": 281,
+      "passed": true
+    }
+  ]
+}

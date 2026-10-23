@@ -123,7 +123,12 @@ class ReadingWorkflowsGTKTests(unittest.TestCase):
 
     def test_page_entries_clamp_and_restore_invalid_value_and_disable_edges(self):
         self.w.status_page_entry.set_text('999'); self.w.status_page_entry.emit('activate')
-        wait_for(lambda:self.w.displayed_page == 1)
+        try:wait_for(lambda:self.w.displayed_page == 1)
+        except AssertionError as exc:
+            raise AssertionError(dict(page=self.w.page,displayed=self.w.displayed_page,
+                render_pending=self.w._render_pending,status=self.w.status_file.get_text(),
+                errors=self.errors,page_entry=self.w.page_entry.get_text(),
+                status_entry=self.w.status_page_entry.get_text())) from exc
         self.assertEqual(self.w.status_page_entry.get_text(), '2')
         self.assertFalse(self.w._status_navigation[1].get_sensitive())
         self.w.status_page_entry.set_text('nan'); self.w.status_page_entry.emit('activate')

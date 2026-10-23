@@ -496,8 +496,11 @@ class PresentationWindow(Gtk.Window):
                     self._request_render()
                     return False
                 self._resize_source = GLib.timeout_add(1 if first else 150, render_now)
-        self._clamp_target_pan()
-        self._set_pan_target(self.target_pan_x, self.target_pan_y, animate=False)
+        # GTK can allocate the viewport again after a page has been applied,
+        # including while the controls are revealing. Keep reading mode at the
+        # current top edge until the user explicitly pans away from it.
+        target_y = self._pan_bounds()[3] if self._top_anchor else self.target_pan_y
+        self._set_pan_target(self.target_pan_x, target_y, animate=False)
 
     def _draw(self, widget, cr):
         alloc = widget.get_allocation()
