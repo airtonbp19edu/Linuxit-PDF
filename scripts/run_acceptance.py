@@ -102,6 +102,7 @@ def run(args):
         with tempfile.TemporaryDirectory(prefix='linuxit-aceitacao-') as work:
             context = casos.Context(ROOT, app, work)
             began = time.monotonic()
+            if args.progress_output:print(f'{case_id}: started', flush=True)
             record = dict(id=case_id, family=family, kind=kind, boundary=entry['boundary'],
                           started_at_local=local_now().isoformat(timespec='seconds'))
             try:
@@ -119,7 +120,15 @@ def run(args):
             record['elapsed_sec'] = round(time.monotonic() - began, 3)
             record['fixtures_sha256'] = dict(context.fixtures)
         results.append(record)
-        print(f"{case_id}: {record['status']}" + (f" — {record.get('message', '')}" if record['status'] != 'passed' else ''))
+        print(f"{case_id}: {record['status']}" + (f" — {record.get('message', '')}" if record['status'] != 'passed' else ''), flush=True)
+        if args.progress_output:
+            # Partial checkpoint so a later hang keeps the finished cases; never an approval record.
+            progress = Path(args.progress_output);progress.parent.mkdir(parents=True, exist_ok=True)
+            pending = progress.with_name(progress.name + '.pending')
+            pending.write_text(json.dumps({'schema': 'linuxit-acceptance-progress-v1', 'complete': False,
+                                           'approval_report': False, 'selected': selected, 'results': results},
+                                          ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            os.replace(pending, progress)
     deferred = sorted(cid for cid, (_, contract, _) in planned.items() if contract == 'proposed_only')
     report = {
         'schema': 'linuxit-acceptance-run-v1',
@@ -174,6 +183,7 @@ def main():
     sub = parser.add_subparsers(dest='command', required=True)
     runner = sub.add_parser('run');runner.add_argument('--output', required=True)
     runner.add_argument('--app', default=str(ROOT / 'app'));runner.add_argument('--cases')
+    runner.add_argument('--progress-output', help='Optional partial checkpoint written after each case')
     recorder = sub.add_parser('apply');recorder.add_argument('--results', required=True)
     args = parser.parse_args()
     return run(args) if args.command == 'run' else apply(args)

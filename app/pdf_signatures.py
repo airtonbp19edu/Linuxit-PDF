@@ -18,7 +18,7 @@ from search_tasks import run_search_worker
 MAX_PDF = 64 * 1024**2
 MAX_CMS = 2 * 1024**2
 POWERSHELL_VERIFY = r"""$ErrorActionPreference='Stop'; try {
-Add-Type -AssemblyName System.Security.Cryptography.Pkcs
+try { Add-Type -AssemblyName System.Security.Cryptography.Pkcs } catch { Add-Type -AssemblyName System.Security }
 $r=[Console]::In.ReadToEnd() | ConvertFrom-Json
 $data=[System.IO.File]::ReadAllBytes($r.content)
 $ci=[System.Security.Cryptography.Pkcs.ContentInfo]::new($data)
@@ -42,9 +42,21 @@ def _der_payload(value):
     return value[:end]
 
 
+def _windows_powershell():
+    """System Windows PowerShell first (always shipped, not PATH-dependent), then PowerShell 7.
+
+    A minimal PATH (MSYS2 shells, some launchers) must not make CMS verification unavailable;
+    Windows PowerShell 5.1 keeps SignedCms in System.Security, PowerShell 7 in its own assembly.
+    """
+    root = os.environ.get('SystemRoot') or os.environ.get('WINDIR') or r'C:\Windows'
+    system = Path(root)/'System32'/'WindowsPowerShell'/'v1.0'/'powershell.exe'
+    if system.is_file():return str(system)
+    return shutil.which('pwsh') or shutil.which('powershell')
+
+
 def _verify_detached(cms, content):
     if os.name == 'nt':
-        executable = shutil.which('pwsh') or shutil.which('powershell')
+        executable = _windows_powershell()
         backend = 'Windows .NET SignedCms, signature only'
     else:
         executable = shutil.which('openssl');backend = 'OpenSSL CMS -noverify, signature only'
