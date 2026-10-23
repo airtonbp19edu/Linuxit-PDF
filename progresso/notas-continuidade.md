@@ -3744,3 +3744,7 @@ Pedido do usuário (00:57). Gatilhos: LIBEREI/BLOQUEADO no CHAT-CODEX.txt, ou ma
 ## 2026/10/23 às 01:05 (America/Sao_Paulo, UTC-03:00) — sinal de vida da VM
 
 Pedido do usuário (00:58). Codex: commit vazio forçado em codex/vm-status a cada 15 min ou caso concluído, "VM-STATUS: ATIVO|LIBEREI|BLOQUEADO|CONCLUIDO | caso | resumo". Claude: vigia em segundo plano (gh api a cada 120 s) que sai em LIBEREI/BLOQUEADO, CONCLUIDO, sinal parado > 45 min ou ramo ausente por 45 min; rearmar a cada 2 h e na retomada das 05:10.
+
+## 2026/10/23 às 01:58 (America/Sao_Paulo, UTC-03:00) — instalador Windows aprovado; suíte Windows com falhas reais
+
+Ramo claude/windows-installer (e9ea687), CI 39900942827: passo de instalação 8/8 (pasta com espaço e ç, bytes, probe, launcher, HKCU, desinstalação). Correções: native() para barras do MSYS2; IfSilent nas MessageBox; OpenSSL com caminhos ASCII e lib/ossl-modules empacotado; relançar via nome 8.3 ou junção ASCII (Poppler abortava em pasta com ç, provado por controle ASCII); lista de desinstalação com "\". Suíte nativa: 117 ok, 2 falhas (test_attachment_search), travou no teste 120 (diálogo real de impressão Windows, timeout 120 s). Aceitação: 62/5/12 (os.getuid e assinatura). Próximo: Claude corrige app/tests para Windows no mesmo ramo, começando pelo travamento.
