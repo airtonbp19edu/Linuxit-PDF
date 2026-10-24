@@ -1,0 +1,345 @@
+{
+  "run": 40041956548,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40041956548",
+  "report_sha256": {
+    "candidate.json": "9863e5804428865bfe49f9a8547cb697b4854115af5a8730e818a6d4bfc77a9e",
+    "payload-tests.json": "ec5f7565bc244366cda85dbfef8457fb2530b17eff15fb1c7b03d881ad97611c",
+    "sandbox-tests.json": "74cacc76add3aff169ddfad3a9caf56027e8af8f0cadc7343b7ff69560e3d098",
+    "source-intermediate.json": "0364cf5124df8175cb98e10cf5b32d5a582a3e2112d4f601dab3a3bf70e26cd5",
+    "source-payload-integrity.json": "b85f6b726c1c318d62f860ea5d1f3adebb4ef84b9b3bf2ef0a2f7a2e375414c7"
+  },
+  "test_runs": {
+    "payload-tests.json": {
+      "run": 808,
+      "passed": 808,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sandbox-tests.json": {
+      "run": 808,
+      "passed": 808,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source": {
+      "run": 808,
+      "passed": 808,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_sha256_matches_git": true,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40041956548",
+      "artifact": 12539299686,
+      "github_zip_digest": "sha256:61a71a026cedc3d7c9ff48f1d59f26ad7e0145d0d520fa107ee670c02af791eb",
+      "complete_zip_sha256_verified": false,
+      "retrieval": "selected HTTPS ranges; individual member CRC checked",
+      "members": [
+        {
+          "file": "dist/ci-results/candidate.json",
+          "size": 3039,
+          "sha256": "9863e5804428865bfe49f9a8547cb697b4854115af5a8730e818a6d4bfc77a9e",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/flatpak-normal-launch.json",
+          "size": 294,
+          "sha256": "181ed5dae57b86b764d1a7b633c389ace1de8eca48d82b4e5ae4ecbd9da6d010",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/payload-tests.json",
+          "size": 160676,
+          "sha256": "ec5f7565bc244366cda85dbfef8457fb2530b17eff15fb1c7b03d881ad97611c",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/runtime-origins.json",
+          "size": 2027555,
+          "sha256": "253c2d64dab7d7f6f5b5e6b5cac66ca33b97617fda05391ad2fde69653efb8c2",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/runtime-source-access.json",
+          "size": 74361,
+          "sha256": "1c21b1c415f78843f122b23ed00876ad33bcb90e8d0f9ee8e0f83c12ef995bbc",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sandbox-smoke.json",
+          "size": 339,
+          "sha256": "023f9a9ec084e89f019f2ce49aa9c4936ae464b2f5b22813dce26aa0308e2137",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sandbox-tests.json",
+          "size": 160516,
+          "sha256": "74cacc76add3aff169ddfad3a9caf56027e8af8f0cadc7343b7ff69560e3d098",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/accessible-page-text.json",
+          "size": 164,
+          "sha256": "61eaed2bb3136abbb9724d76ede12806371c99bdb9920f5d6b83ea44c71f73db",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/annotation-comment.json",
+          "size": 164,
+          "sha256": "3df8dfb439fbcdfdc9d7e49e0f032967741aa3288243a0e27fe78008f02401a6",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/annotation-extensions.json",
+          "size": 164,
+          "sha256": "0e91d45afeaccbffd028b11cba30fbd0a4dc73d57ca64f4fac91c7e9da05e763",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/annotation-render.json",
+          "size": 188,
+          "sha256": "130c3d6977a163a197a51b44518ed471c6608ffb13f8ff49b6d8af76fda9ec0d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/attachment-search.json",
+          "size": 165,
+          "sha256": "a4e8115bd0943365043e05a0a616fca19ad1deb54f617add37c4a249a2705ca7",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/collection-search.json",
+          "size": 164,
+          "sha256": "6c6809c948d45e59b7ae7127639859eea5a1a656c7da10a5fa88a743d2a9d6c0",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/embedded-media-assets.json",
+          "size": 164,
+          "sha256": "8c91c116ce99ba6d28a598e0c2312e89bfb447e9229b0ec7a53b750d9af0112b",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/image-creation.json",
+          "size": 164,
+          "sha256": "70d070a88ff113952132b2f87b04c3062a7d84df8ec1f035966d3f34c60df00e",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/media-3d-poster.json",
+          "size": 164,
+          "sha256": "0942d84c23b9710285861757ad562e89cb246e0e555e6c1001a733f3619ea2db",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/ocr-copy.json",
+          "size": 164,
+          "sha256": "9d5dde44a45aa3c6abc11155dabe9133d5a319893453a8a7b9135945e03d1018",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/pdf-security.json",
+          "size": 164,
+          "sha256": "df72fc5754803734241bab1ff058a617820d2cf26f11a510651a8421a7d404c3",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/proximity-search.json",
+          "size": 165,
+          "sha256": "8a36a6804200bf51d75d6adbb1001c00a452189c4d06fae0e353611f1e2e2190",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/reading-authenticated-presentation.json",
+          "size": 166,
+          "sha256": "e1b84086885a6a31020a4de3f0338a16d801920db8e72e4cad2962eef641bb9d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/reading-authenticated.json",
+          "size": 165,
+          "sha256": "c40b7d8d3982f82e661a816fe8576dbf37307ac8286c0ae81c5ffdc7af2c0753",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/reading-fit-page.json",
+          "size": 165,
+          "sha256": "089ecd09a75f7f0becf1c5b74fb876d802865b6fcbe68c2167c554e67b8eb495",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/signature-integrity.json",
+          "size": 164,
+          "sha256": "288644efb5304411e146da170c91cede7b6a73f906c8c3f875032b37716f416e",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/synced-local-folder.json",
+          "size": 165,
+          "sha256": "00d4896a43e70a5269b7f8c5147fc6f4f12564478bba5a232091eef5de3368dc",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/search-ui/tiff-creation.json",
+          "size": 164,
+          "sha256": "63253d65c6ba6ac5ec4ca7963e7563e4da824986d9d9fb4180dc8e853bc83dd4",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sidebar-after.json",
+          "size": 14358,
+          "sha256": "cece8097893f83fdd94389081f5d38b651d12178b0a940be58a722e670d6a21a",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sidebar-before.json",
+          "size": 14548,
+          "sha256": "a490256607c2ff3fbe78fd7b28356c297a986fce30949cfd28d4b672553ba147",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/source-intermediate.json",
+          "size": 212403,
+          "sha256": "0364cf5124df8175cb98e10cf5b32d5a582a3e2112d4f601dab3a3bf70e26cd5",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/source-payload-integrity.json",
+          "size": 27912,
+          "sha256": "b85f6b726c1c318d62f860ea5d1f3adebb4ef84b9b3bf2ef0a2f7a2e375414c7",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sync-folder-denied.json",
+          "size": 297,
+          "sha256": "3a2715caa4f16fc0e4db93926d42cb98e2dbfb564675a5223307495b4435cff8",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "dist/ci-results/sync-folder-granted.json",
+          "size": 393,
+          "sha256": "370b488d36e1396963583e1b798cd6cbd16c5ce5e5d95980fd35b0166e7f3685",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/gtk-smoke.stderr",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/gtk-smoke.stdout",
+          "size": 338,
+          "sha256": "2cbd366b13242a2d3ae02447396275a4a6d3dde7c33c3b1b919de45eb08af177",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/linux-probe.stderr",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/tests-0.stderr",
+          "size": 139890,
+          "sha256": "dd4a9b70b5e44142901febc4700beca6c9d6713b3cf65b614484967a7bfbcde2",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/linux-probe.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "analysis-local/ci-source/tests-0.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        }
+      ],
+      "range_requests": 114
+    }
+  ],
+  "candidate": {
+    "schema": "linuxit-linux-candidate-v1",
+    "date_utc": "2026-10-24T00:06:35.776135+00:00",
+    "version": "0.1.19",
+    "status": "development; full reconstruction incomplete",
+    "application_id": "io.github.airtonbp19edu.LinuxitPDF",
+    "flatpak_branch": "devel",
+    "architecture": "x86_64",
+    "runtime": "org.freedesktop.Platform/x86_64/25.08",
+    "runtime_commit_tested": "08713ee4ce58fee0b8ff2f5bb58e511ff2009c4d72209270d2ddd01fb0336a04",
+    "app_ostree_commit": "84f874b22b0660c6af3fa48b505f2a3ec866a048c4dd06bcd700162536a986c2",
+    "source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+    "validation_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+    "builder_sha256": "a8995f6667c019e55f317dca547e8d6a36feecd22555c8f53acfe72bf5b7f4ce",
+    "artifact": {
+      "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+      "bytes": 120443376,
+      "sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+      "digitally_signed": false
+    },
+    "validation": {
+      "source": {
+        "run": 808,
+        "passed": 808,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "payload": {
+        "run": 808,
+        "passed": 808,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "sandbox": {
+        "run": 808,
+        "passed": 808,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "source_payload_matched_files": 198,
+    "bundled_runtime_files_audited": 3686,
+    "bundled_elf_files_audited": 485,
+    "bundled_debian_packages": 297,
+    "sandbox_smoke_checks_passed": 5,
+    "normal_launcher_checks_passed": 3,
+    "report_hashes": {
+      "sidebar-before.json": "a490256607c2ff3fbe78fd7b28356c297a986fce30949cfd28d4b672553ba147",
+      "source-payload-integrity.json": "b85f6b726c1c318d62f860ea5d1f3adebb4ef84b9b3bf2ef0a2f7a2e375414c7",
+      "sandbox-smoke.json": "023f9a9ec084e89f019f2ce49aa9c4936ae464b2f5b22813dce26aa0308e2137",
+      "source-intermediate.json": "0364cf5124df8175cb98e10cf5b32d5a582a3e2112d4f601dab3a3bf70e26cd5",
+      "sidebar-after.json": "cece8097893f83fdd94389081f5d38b651d12178b0a940be58a722e670d6a21a",
+      "sync-folder-denied.json": "3a2715caa4f16fc0e4db93926d42cb98e2dbfb564675a5223307495b4435cff8",
+      "sync-folder-granted.json": "370b488d36e1396963583e1b798cd6cbd16c5ce5e5d95980fd35b0166e7f3685",
+      "sandbox-tests.json": "74cacc76add3aff169ddfad3a9caf56027e8af8f0cadc7343b7ff69560e3d098",
+      "payload-tests.json": "ec5f7565bc244366cda85dbfef8457fb2530b17eff15fb1c7b03d881ad97611c",
+      "runtime-source-access.json": "1c21b1c415f78843f122b23ed00876ad33bcb90e8d0f9ee8e0f83c12ef995bbc",
+      "flatpak-normal-launch.json": "181ed5dae57b86b764d1a7b633c389ace1de8eca48d82b4e5ae4ecbd9da6d010",
+      "runtime-origins.json": "253c2d64dab7d7f6f5b5e6b5cac66ca33b97617fda05391ad2fde69653efb8c2"
+    },
+    "foxit_differential_test": false,
+    "physical_printing_verified": false,
+    "restrictions": [
+      "Development build, not complete Foxit reconstruction.",
+      "Only own application and licensed dependencies; no proprietary originals or reverse-engineering payloads."
+    ]
+  },
+  "source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+  "source_files_checked": 198,
+  "source_candidate_passed": true,
+  "all_candidate_report_hashes_verified": true
+}

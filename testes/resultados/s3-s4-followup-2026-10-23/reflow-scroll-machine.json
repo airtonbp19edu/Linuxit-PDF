@@ -1,0 +1,40 @@
+{
+  "schema": "linuxit-machine-cross-check-v1",
+  "target_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "subject_name": "FoxitPDFReader.exe",
+  "capstone_version": "5.0.6",
+  "pefile_version": "2024.8.26",
+  "round": "analysis-local/headless/s4-scroll-consumers-2026-10-23-2100",
+  "entries": [
+    {
+      "entry": "0x15c7d20",
+      "instructions": 14,
+      "body_bytes": 41,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "4af8e5f9538e8a83c98ff86ca9c4b33f4db4f79074c95b9ce3ed7d994fa4d9bb",
+      "pseudocode_sha256": "888a6a44aa90e132151868ba272a6464828ec8a2301a64e4b7d0d55412211875"
+    },
+    {
+      "entry": "0x15cb3f0",
+      "instructions": 2,
+      "body_bytes": 6,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "fcfb2916c01f313cee83bbf687590ce150c5f71b045d539056fb79f819b48ba3",
+      "pseudocode_sha256": "c9b53c00b4c6784039ec174c41d6433b74eb1bfeca634444062771f80f150c46"
+    },
+    {
+      "entry": "0x15cb7d0",
+      "instructions": 5,
+      "body_bytes": 10,
+      "all_instruction_addresses_match": true,
+      "result_sha256": "20b365fe0da5d7bb5b9966b5ebceb3db99502ab564d38b55f89efabcf816d3ff",
+      "pseudocode_sha256": "04e6b53745f763e329a3532f14d41c912747bd93a10612b6f2d61c530c33e3ee"
+    }
+  ],
+  "original_executed": false,
+  "semantic_equivalence_proved": false,
+  "limitations": [
+    "Instruction boundaries do not establish complete types, semantics or function boundaries.",
+    "Body ranges may include tail-jump helpers; do not count them again as unique functions."
+  ]
+}

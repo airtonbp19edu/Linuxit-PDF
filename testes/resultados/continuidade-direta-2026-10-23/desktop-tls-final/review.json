@@ -1,0 +1,81 @@
+{
+  "run_id": 40043352222,
+  "source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+    "bytes": 120443376,
+    "sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+    "digitally_signed": false
+  },
+  "repetitions": [
+    {
+      "desktop_checks": 9,
+      "passed": 9,
+      "tls": {
+        "stats": {
+          "x509": 118,
+          "crl": 0,
+          "x509_ca": 118
+        },
+        "paths": {
+          "cafile": "/etc/ssl/certs/ca-certificates.crt",
+          "capath": "/etc/ssl/certs",
+          "openssl_cafile_env": "SSL_CERT_FILE",
+          "openssl_cafile": "/usr/lib/ssl/cert.pem",
+          "openssl_capath_env": "SSL_CERT_DIR",
+          "openssl_capath": "/usr/lib/ssl/certs"
+        },
+        "check_hostname": true,
+        "verify_required": true,
+        "lazy_hashed_capath": false,
+        "trust_present": true
+      },
+      "artifacts": {
+        "run": "40043352222",
+        "id": 12539804967,
+        "name": "linuxit-own-desktop-ec52cc5027a9b4f7e68b593e9c0cbd320b6f28d7-repetition-1",
+        "sha256": "sha256:989c32c1feb75bc85d3da53ef66fa8964f87b4254c1f2f5ee7e49eee1cffdde6",
+        "github_digest": "sha256:989c32c1feb75bc85d3da53ef66fa8964f87b4254c1f2f5ee7e49eee1cffdde6"
+      },
+      "desktop_raw_sha256": "333666d10b724d665230f785c611c74f723a15334463974dbb70f325e8d3ba1b",
+      "tls_raw_sha256": "ed05cc4ef0f57e4f9e13887fc79b2b993a97fe55c18a913bc9f9233218e33179"
+    },
+    {
+      "desktop_checks": 9,
+      "passed": 9,
+      "tls": {
+        "stats": {
+          "x509": 118,
+          "crl": 0,
+          "x509_ca": 118
+        },
+        "paths": {
+          "cafile": "/etc/ssl/certs/ca-certificates.crt",
+          "capath": "/etc/ssl/certs",
+          "openssl_cafile_env": "SSL_CERT_FILE",
+          "openssl_cafile": "/usr/lib/ssl/cert.pem",
+          "openssl_capath_env": "SSL_CERT_DIR",
+          "openssl_capath": "/usr/lib/ssl/certs"
+        },
+        "check_hostname": true,
+        "verify_required": true,
+        "lazy_hashed_capath": false,
+        "trust_present": true
+      },
+      "artifacts": {
+        "run": "40043352222",
+        "id": 12540023387,
+        "name": "linuxit-own-desktop-ec52cc5027a9b4f7e68b593e9c0cbd320b6f28d7-repetition-2",
+        "sha256": "sha256:17a507b314dfc0ef8e3b971da613af6ec80b42352f37a0e7d9c437a27b7b0ccd",
+        "github_digest": "sha256:17a507b314dfc0ef8e3b971da613af6ec80b42352f37a0e7d9c437a27b7b0ccd"
+      },
+      "desktop_raw_sha256": "710f5085672635e7fdfba97fbc3f7df7d58cbe81dff651d41fbf1a514a591c06",
+      "tls_raw_sha256": "ed05cc4ef0f57e4f9e13887fc79b2b993a97fe55c18a913bc9f9233218e33179"
+    }
+  ],
+  "foxit_executed": false,
+  "physical_desktop": false,
+  "external_tsa_contacted": false,
+  "release_published": false,
+  "scope": "Same new bundle installed on two ephemeral Linux desktops; 9 real desktop checks each plus default verified TLS trust inspection without external requests."
+}

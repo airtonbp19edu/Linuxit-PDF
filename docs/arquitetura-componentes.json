@@ -1,9 +1,9 @@
 {
   "schema": "linuxit-architecture-v1",
-  "reviewed_at_local": "2026-10-22T18:57:04.807627-03:00",
+  "reviewed_at_local": "2026-10-23T21:02:54.085918-03:00",
   "timezone": "America/Sao_Paulo",
   "application_version": "0.1.19",
-  "baseline_commit": "052da732b410fa9919d4050a21d4f1e1eb8bafdb",
+  "baseline_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
   "scope": "Architecture design and current source boundaries; not full implementation or Foxit parity.",
   "modules": [
     {
@@ -551,6 +551,36 @@
       "path": "app/annotation_editing.py",
       "boundary": "portable_pdf_services",
       "responsibility": "Valida topologia de comentários e preserva aparência em alterações limitadas; docs/A6-ANOTACOES-2026-10-22.md."
+    },
+    {
+      "id": "timestamp_transport",
+      "path": "app/timestamp_transport.py",
+      "boundary": "worker_io",
+      "responsibility": "Consulta RFC3161 HTTPS opt-in de pedido preparado; envia resumo/nonce, não PDF, e mantém validação de confiança separada."
+    },
+    {
+      "id": "redaction_hidden",
+      "path": "app/redaction_hidden.py",
+      "boundary": "pdf_model",
+      "responsibility": "Remoção opt-in de palavras marcadas em propriedades, marcadores e anexos selecionados; sem sanitização universal."
+    },
+    {
+      "id": "xfa_positioned",
+      "path": "app/xfa_positioned.py",
+      "boundary": "pdf_model",
+      "responsibility": "Renderização própria de um subconjunto XFA posicionado de página única, com unidades e geometria limitadas."
+    },
+    {
+      "id": "xfa_formcalc",
+      "path": "app/xfa_formcalc.py",
+      "boundary": "pdf_model",
+      "responsibility": "Expressões numéricas FormCalc delimitadas, referências a campos irmãos e funções permitidas, sem eval ou execução geral."
+    },
+    {
+      "id": "signature_dss",
+      "path": "app/signature_dss.py",
+      "boundary": "pdf_model",
+      "responsibility": "Leitura delimitada de materiais DSS/VRI e seleção por Contents; certificados auxiliares nunca viram âncoras."
     }
   ],
   "no_gtk_or_cairo_import_closure": [
@@ -1222,6 +1252,7 @@
     }
   ],
   "runtime_limitations": [
+    "Current Codex branch:808/808 Linux/source/payload/Flatpak;806/808 native Windows with two Linux-only skips, zero errors/failures; final-bundle desktop9/9 twice and TLS118 CAs twice. Bounded contracts only; no physical hardware/original parity. Historical statements below are scoped to their earlier snapshots.",
     "0.1.16:564/564 próprios fonte/payload/sandbox,74 novos e490 IDs anteriores preservados. Windows nativo5/5 e desktop0.1.15 portal/associação/atualização9/9 em probes separados. Contratos limitados; famílias integrais,50S12, validação física/original/serviços continuam abertos. Auditoria instalada0.1.16 aprovada11controles/5smoke/3GTK sem rebuild; desktop0.1.16 portal/associação/atualização9/9 também aprovado.",
     "0.1.15:490/490 próprios fonte/payload/sandbox,58 novos casos e432 anteriores preservados. AT-SPI/portal X11 sintéticos e camadas por pixels aprovados. Famílias amplas, original, hardware/desktop físico, Windows e nuvem direta continuam pendentes/adiados; histórico abaixo.",
     "0.1.14:432/432 próprios por ambiente fonte/payload/sandbox,14 portáveis e15 GTK novos; leitura transacional/senha/recuperação/zoom/monitor. Original e hardware físico permanecem pendentes; histórico abaixo.",
@@ -1244,5 +1275,5 @@
   "excluded_feature_ids": [
     "foxit-ai"
   ],
-  "source_changes_unreleased": false
+  "source_changes_unreleased": true
 }

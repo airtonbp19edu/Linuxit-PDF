@@ -23,3 +23,12 @@ Referências sem uso são removidas; o salvamento existente elimina objetos sem 
 Os relatórios locais preservam **13/13 testes vetoriais e 6/6 de transporte**, sem falhas, erros ou pulos. Um teste realiza HTTPS real contra uma TSA sintética no loopback, com certificado de teste explicitamente confiado apenas no teste; confirma o conteúdo efetivamente recebido e que nenhum PDF é transmitido. Outros verificam nonce/resumo incompatíveis, mídia/tamanho inválidos, redirecionamento, falta de consentimento, alterações na preparação e destino existente. As formas são verificadas por remoção de bytes e de recursos órfãos, matrizes compostas, reutilização fora da marca e recusa de BBox inválido.
 
 Relatórios: `testes/resultados/continuidade-direta-2026-10-23/windows-vector.json` e `windows-tsa.json`. A suíte integral Linux/GTK desta nova fonte ainda precisa ser executada. Os CIs iniciados anteriormente testam as revisões antigas identificadas no plano; não validam automaticamente este código novo. Não há pacote publicado destas alterações.
+
+
+## Validação posterior — 2026-10-23T21:10:52.788922-03:00
+
+Os avisos acima de suíte integral pendente são históricos. Os recursos estão na fonte combinada testada:808/808 Linux e808/808 em fonte/payload/Flatpak,81/81 aceitações Linux;806/808 Windows nativo, dois pulos exclusivos Linux e zero falhas/erros,79/79 aceitações e instalador8/8. Os cinco testes reais de CA/CRL/RFC3161 foram habilitados no Windows e passaram.
+
+O teste no sandbox encontrou uma lacuna real no empacotamento: os caminhos CA Debian do Python não existiam no runtime Freedesktop. O wrapper corrigido seleciona arquivos/diretório CA legíveis do runtime quando a variável correspondente não foi definida explicitamente. O mesmo bundle reconstruído carregou118 CAs, com CERT_REQUIRED/hostname ativos, em duas instalações de teste. Não foi desabilitada a validação TLS e nenhuma TSA externa foi escolhida. Falha e correção em `testes/resultados/continuidade-direta-2026-10-23/tls-default-before-fix/` e `desktop-tls-final/`.
+
+A redação permanece delimitada a Form XObjects indivisíveis e aos demais caminhos já suportados. Conteúdo complexo direto na página fora desses contratos continua recusado; não há aprovação de redação vetorial universal, equipamento físico ou paridade Foxit.

@@ -61,7 +61,7 @@ def render(catalog):
         'As contagens não têm pesos de complexidade e o denominador completo é desconhecido. '
         'Recortes e testes relacionados não aprovam operações inteiras. '
         'Nuvem direta permanece adiada; IA generativa está excluída. '
-        'A VM continua suspensa no checkpoint documentado em RETOMADA.md.', '']
+        'O checkpoint e a reserva da VM estão documentados em RETOMADA.md.', '']
     return '\n'.join(lines)
 
 

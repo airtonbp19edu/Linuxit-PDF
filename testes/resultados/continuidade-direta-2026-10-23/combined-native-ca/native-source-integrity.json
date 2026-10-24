@@ -1,0 +1,802 @@
+{
+  "run_id": 40041628886,
+  "source_commit": "e77cf3cf6d8977d06485dad2a51fca90d0564767",
+  "source_files_checked": 198,
+  "source_sha256_matches_git": true,
+  "manifest_sha256": "6bc55f476ea2666de6d83f606e4d310f797c746dbfbb3ddac97198003eefb05e",
+  "files": {
+    "app/accessible_reader.py": {
+      "bytes": 6507,
+      "sha256": "ae5d76d3f59c9a16e5df43d293f8f695a1bebfaf87b7950c80492e6002d06823"
+    },
+    "app/annotation_editing.py": {
+      "bytes": 9119,
+      "sha256": "a616e1425f5f15ff7f5de634e18fb6f21992ad5773cc85fb89a188ae94613558"
+    },
+    "app/annotation_geometry.py": {
+      "bytes": 7306,
+      "sha256": "49a7cfed199fd1bd05a2a15fd031b86783b08d86f3c5fa837b43d009e37909a4"
+    },
+    "app/annotation_style.py": {
+      "bytes": 9932,
+      "sha256": "f600d767829e041e47417d9b9c878a82f2c05d0ab764f1cc71a6eb7612d56f63"
+    },
+    "app/appearance.py": {
+      "bytes": 6564,
+      "sha256": "be597144f649927b8a25500c11d60f163c52fff98b3b83e8377a1d5d89c82221"
+    },
+    "app/async_core.py": {
+      "bytes": 3827,
+      "sha256": "b38ee3f425c924bc9a681a46095f99d0903079caf7d5f125887c61060a990d0f"
+    },
+    "app/attachment_formats.py": {
+      "bytes": 6271,
+      "sha256": "8d15d1d6a25fb762613d71c8a49505f3a14df263008b983c4fc4f371c9b585ac"
+    },
+    "app/attachment_images.py": {
+      "bytes": 2194,
+      "sha256": "ceb364b2d9e2de2f6bb27490e0c6fc4fffd0f76691c5e6c0b90d5cba8f9f3332"
+    },
+    "app/attachment_rtf.py": {
+      "bytes": 4437,
+      "sha256": "6774f70cf53721be00822e144351b66c23bc6692f5586b291cce0129364ad739"
+    },
+    "app/attachment_search.py": {
+      "bytes": 9631,
+      "sha256": "99a991b80e9ad6388d46b6526cb645eece4f052bfc5cc0a36d519615b329dd8a"
+    },
+    "app/attachment_tasks.py": {
+      "bytes": 9290,
+      "sha256": "344048f123e103e6c4b1660934eb51cd27d32db9379585e058344dccf4852de8"
+    },
+    "app/cancel_state.py": {
+      "bytes": 235,
+      "sha256": "c56c1cca7cb33f8375bc716ab60751952067f9eb720f48bd3df4746f36d5c820"
+    },
+    "app/character_extraction.py": {
+      "bytes": 2433,
+      "sha256": "f5bc29fbdff7d3a034bfa368be81ed14053b7ea698a94e5bf7be080c61dcd56f"
+    },
+    "app/character_selection.py": {
+      "bytes": 5572,
+      "sha256": "bc4e3945fd900f50a36766262771a43041822804374abd755fdd4cf72640c6c9"
+    },
+    "app/collection_index.py": {
+      "bytes": 12936,
+      "sha256": "ce90f5c0a7b26469602966c09c2aef9a062099bea5f1179febaa1bc1d7585173"
+    },
+    "app/collection_recovery.py": {
+      "bytes": 5390,
+      "sha256": "1653985ca8d672d3f268aa27c1503cd2243f3386b31d176f61775137619e13dc"
+    },
+    "app/collection_window.py": {
+      "bytes": 14905,
+      "sha256": "ecd1f402c44600f9f09b7921336b4321454d1b2da83980e7cc23340aa8722875"
+    },
+    "app/conversion_window.py": {
+      "bytes": 3568,
+      "sha256": "0ca79c7d9ffd5c0b05e49608468fec3fc40590297c3f81e3d1c4b4ad23e37e90"
+    },
+    "app/creation_window.py": {
+      "bytes": 9737,
+      "sha256": "42ba1c8667efba4c93a9f7952f39208139e352c1d3867b78242ecc0ed49c32df"
+    },
+    "app/cups_backend.py": {
+      "bytes": 18924,
+      "sha256": "d4d4bd3db7c39e725af7fb33de2e37900c23c3afae0e917dbdaa44535c5b01f0"
+    },
+    "app/document_session.py": {
+      "bytes": 17962,
+      "sha256": "08757cb33543d325fd18921c30b65f0b28b514a672d87edaec47ee950784670d"
+    },
+    "app/edit_dialogs.py": {
+      "bytes": 32745,
+      "sha256": "4fd0556b184ec634d6f8ba32d4889fe86e6edd3fc6b2dbe25f5540de121bef54"
+    },
+    "app/edit_history.py": {
+      "bytes": 4139,
+      "sha256": "da7707ca12222f9e9b74c88b88634bd2d9a770cc7b0bda31688165a3f574694e"
+    },
+    "app/edit_tasks.py": {
+      "bytes": 3818,
+      "sha256": "963b7178ac4419ff37b8466d86b240df6de2143eb619e966c34285f6210b3361"
+    },
+    "app/edit_window.py": {
+      "bytes": 12156,
+      "sha256": "11347d8a1b2567d6883df28b23021da9d9577a9401f3a779c3f4b43353b12ed9"
+    },
+    "app/folder_dialogs.py": {
+      "bytes": 2360,
+      "sha256": "4615035182cf7428281040e094076f56947d1965f7a1a64fe5c6eea01abf8824"
+    },
+    "app/imposition.py": {
+      "bytes": 28096,
+      "sha256": "0d5ad9cc82648512473caf6ca5247e0f72a3ae77cc6779103967e2d30b47bf5d"
+    },
+    "app/installation_info.py": {
+      "bytes": 1090,
+      "sha256": "51ab935063d8efdc03d85ed618a75181ba99b7bc6ce8ce850c7a820d84cd3677"
+    },
+    "app/local_files.py": {
+      "bytes": 6028,
+      "sha256": "94bfb4d55fa59232253a667ce4cf869ea0b447d8e771ca041cfbab9e2e6b663b"
+    },
+    "app/local_playback.py": {
+      "bytes": 6531,
+      "sha256": "d2e1d824957d2817ca975487863dff842e198ffed2d50c2a0211d501c9603a18"
+    },
+    "app/main.py": {
+      "bytes": 154653,
+      "sha256": "ab677cbc02efe9a0e1bf55f6ec8d0cefa813e8ce3a3e24416d9108122993868a"
+    },
+    "app/main_thread_gc.py": {
+      "bytes": 2066,
+      "sha256": "fed17472db2cba4a642361b803cecdb645d39bab975fbabfdf2d6725a4058c1d"
+    },
+    "app/measurement.py": {
+      "bytes": 4252,
+      "sha256": "e31cb76fcf868545fea3525bfc174f6bf39cf0426ec1dbed3d67ba8dc54a7a43"
+    },
+    "app/measurement_window.py": {
+      "bytes": 5333,
+      "sha256": "fcb61ddb51e374de73f4f6513d0b834da4cbba01a36b52b258537f15f6c262a8"
+    },
+    "app/media_assets_window.py": {
+      "bytes": 8177,
+      "sha256": "31614060bf2684a1bb87517246f1c79bd4a7ecd1e6ae8ea79268aade969acb17"
+    },
+    "app/media_window.py": {
+      "bytes": 2613,
+      "sha256": "bcb65987e4849cb32319d4092733f210d8d2e1b2d6085e6f0814b880c82dce76"
+    },
+    "app/navigation.py": {
+      "bytes": 1336,
+      "sha256": "645932295f8d5190f88aa86698bdb32027bb40e697ca6b10b735cac8fc387988"
+    },
+    "app/ocr_window.py": {
+      "bytes": 9297,
+      "sha256": "14d6f6607245f6dbe3d31b0327537f165ff9868ef63941f139ba63d7f03f9706"
+    },
+    "app/page_cache.py": {
+      "bytes": 1080,
+      "sha256": "d339231d4d4dc06cc9c7c08190bdf72874294f7e0e2a609e1a772254c09ae856"
+    },
+    "app/page_surface.py": {
+      "bytes": 4451,
+      "sha256": "bd1256c0488be3449b721233d9c7263f99c7f6d45413c9779b6dceddbcf54956"
+    },
+    "app/pdf_annotations.py": {
+      "bytes": 8248,
+      "sha256": "12a8e089566f9a13d15eee72242443550167eaf10a01ebb71bf4e539a8e369ac"
+    },
+    "app/pdf_attachments.py": {
+      "bytes": 9696,
+      "sha256": "b891be766347ea11cda1bec708f6b499bb16cc8b6f529251793085bb4776e3dd"
+    },
+    "app/pdf_changes.py": {
+      "bytes": 39623,
+      "sha256": "1314f4c3cd6ceaa6653da1457ec4dc9d1eac6d52adb67cfafaca1c29683f6c6c"
+    },
+    "app/pdf_comments.py": {
+      "bytes": 6543,
+      "sha256": "12aab9e4588e6e54cfe5612e1c6a958e9b499acb19a42cc7b9180b11592ba23a"
+    },
+    "app/pdf_conversion.py": {
+      "bytes": 5068,
+      "sha256": "2a05c06856dcadd2286f5da3e7b7b1c635f10477dfc1ad8066e9bfcf7b178872"
+    },
+    "app/pdf_creation.py": {
+      "bytes": 13487,
+      "sha256": "c4fbb23a69cd21ad8f75728d78e9ee0214882ada5e9398959b484b0a7393de66"
+    },
+    "app/pdf_crypt_compat.py": {
+      "bytes": 4120,
+      "sha256": "3fdb5ee794fb180e50a3581fe80eb9cee35f266acbd314a13fcf0b9edbdf179c"
+    },
+    "app/pdf_dependency.py": {
+      "bytes": 404,
+      "sha256": "8ad440283f1656748328004889bb18af02c849e22d67bcca07a4f95e78ddc20a"
+    },
+    "app/pdf_edit_security.py": {
+      "bytes": 2404,
+      "sha256": "ab3e0f83e4c6b5b85686fa050be2e55c9a35a0e3fcf49c24ecf191266d61613c"
+    },
+    "app/pdf_form_controls.py": {
+      "bytes": 10922,
+      "sha256": "146c4472cd9c41e627ac4636b6ed77b161a95c33c50644e7ad153bb7be5e3bc7"
+    },
+    "app/pdf_form_events.py": {
+      "bytes": 15877,
+      "sha256": "7dfc577fc7878e959e89952d71e59c2f1f0fca6841213801db30eb2dc35730ea"
+    },
+    "app/pdf_form_javascript.py": {
+      "bytes": 16116,
+      "sha256": "0b73f01ad66feec19fd47ff4559f76147538cc8b9aaa44e3149e4e689f259ffd"
+    },
+    "app/pdf_layers.py": {
+      "bytes": 4262,
+      "sha256": "9194ee8096fd569ef7224c84a4588f32f871189c8ebe04503f71d07910a8fc48"
+    },
+    "app/pdf_media.py": {
+      "bytes": 12189,
+      "sha256": "937e11a1a03a32fc3f362f877bff4cbdb3df3bff4ffe16be07b0579708751bcc"
+    },
+    "app/pdf_ocr.py": {
+      "bytes": 13525,
+      "sha256": "d7407da6de7eb9bcdf806975cd66ea13e813f67483d86443da4fa584e258f9b3"
+    },
+    "app/pdf_panels.py": {
+      "bytes": 2498,
+      "sha256": "a9ce243a085d84216702d14f051bc499a22fe80d71d936a6e09e70cef0d98397"
+    },
+    "app/pdf_preservation.py": {
+      "bytes": 15220,
+      "sha256": "fad9ddb551a39a526c8da103390ff273c353a839da7aaea12ddd199cf883213a"
+    },
+    "app/pdf_redaction.py": {
+      "bytes": 17921,
+      "sha256": "fbee759a4b7d149b9711ff69b298b4f83a340bfbaf15b1ef3e8fd968098f8a87"
+    },
+    "app/pdf_security.py": {
+      "bytes": 14172,
+      "sha256": "1affcad5f55d5556024a49783ab4f9d378d4423089b1a905b247146edc810449"
+    },
+    "app/pdf_signatures.py": {
+      "bytes": 12157,
+      "sha256": "b084ce0fb599c8166e8c38be00bcd24720c460af78a981b682940d0246ec8654"
+    },
+    "app/pdf_signing.py": {
+      "bytes": 14614,
+      "sha256": "2004b3b70802e6b4ca952b0e58c33b793d4b0e6d8bbe05d5ef70354aad2e9c58"
+    },
+    "app/pdf_xfa.py": {
+      "bytes": 12679,
+      "sha256": "0d446adc16357e0a968d3593ccb3f71dd9010576c45bac0ad12ea890ccff6d3f"
+    },
+    "app/pdf_xfa_flow.py": {
+      "bytes": 22581,
+      "sha256": "89c60b2e8ad51d94eb42cde8590f0b7617284756e033198ffdc05ce1ebbc9f16"
+    },
+    "app/platform_runtime.py": {
+      "bytes": 531,
+      "sha256": "7c6d03d0f6032a4d0888be248e299ea43a009ae563ed89cd18fed85cdbbbfe74"
+    },
+    "app/presentation.py": {
+      "bytes": 29618,
+      "sha256": "abd2866af02ad1faf67eca3c95d6615679036f9d88451ae2fa4c69da66f771bf"
+    },
+    "app/print_queue.py": {
+      "bytes": 3153,
+      "sha256": "e823e6001440ccb91bbe0b9d8a4bc7ce909773d33c02cf9234187c03aa085fd6"
+    },
+    "app/print_tasks.py": {
+      "bytes": 1892,
+      "sha256": "b34961ed4e5162fe6505ce6f8d99da7990920c9de5cfd8e1f400403b144ad600"
+    },
+    "app/print_window.py": {
+      "bytes": 73737,
+      "sha256": "94fcab4bfe97d9745997270ce940438560580b90e1dc711ef0f3d61de7f8ea39"
+    },
+    "app/reading_order.py": {
+      "bytes": 4473,
+      "sha256": "b148ca1cd359a829fc4cf5c00f18d1d03da337bd070d130cf80b502e736e5f4c"
+    },
+    "app/reading_preferences.py": {
+      "bytes": 1517,
+      "sha256": "59a2af8b93ba8916839bee7a144603422d5e7c34b485c2f8ffa22486b820fdc0"
+    },
+    "app/recovered_edit.py": {
+      "bytes": 1401,
+      "sha256": "6448c50aa49a32f305faf7fd86fcf9438dbf888d4807316fbeefc096a1caa250"
+    },
+    "app/redaction_hidden.py": {
+      "bytes": 10670,
+      "sha256": "8cf2ed3e42a761850c60c818e4c400147118f1249f729a3e64a176ff8929ec28"
+    },
+    "app/rendering.py": {
+      "bytes": 17364,
+      "sha256": "a80e5aca9b5d43430cebf64c2185f6977576caf73c2ce7d69760f32d17f90693"
+    },
+    "app/search_engine.py": {
+      "bytes": 10783,
+      "sha256": "c44bbc320907666cfff081e98f8e0d77723833c5684d252c5fed43fed3bfe3dc"
+    },
+    "app/search_languages.py": {
+      "bytes": 1859,
+      "sha256": "c06b9e935d59ba5991c302d43c9d8344662288854b6c7cdff069a6031c6b8642"
+    },
+    "app/search_matching.py": {
+      "bytes": 5608,
+      "sha256": "2b40ef4e901fa7b48cf6ce377417ffda761970d6940353f8f62fac73137e0303"
+    },
+    "app/search_tasks.py": {
+      "bytes": 4099,
+      "sha256": "e41beaab326a1a5cd505e5f4154d37610a0e7f59545df7e3ba3196f6066aaaf8"
+    },
+    "app/security_window.py": {
+      "bytes": 9694,
+      "sha256": "6db12e27c8240a31a993689c4661298eaf31cfa420138d0f56ca840cb6c9bbcc"
+    },
+    "app/signature_dss.py": {
+      "bytes": 3575,
+      "sha256": "70d3f16d9a2b5d969842dcfb76af139c693d57df90508fa1a1a6315468445669"
+    },
+    "app/signature_ocsp.py": {
+      "bytes": 7027,
+      "sha256": "d2dc37ff76e41d1aa466673e52e42b6bd5e8dab2221631cde06528178c4e1400"
+    },
+    "app/signature_trust.py": {
+      "bytes": 14076,
+      "sha256": "f66df3925aa6c2dc323a227b41c816f627a7785542b52726e1785f35be746755"
+    },
+    "app/signature_window.py": {
+      "bytes": 19195,
+      "sha256": "fafd1c0a902b065d1ecf20a7508268605e3b9170699d8287aefe9cb5b5f8781a"
+    },
+    "app/speech.py": {
+      "bytes": 2235,
+      "sha256": "40a3f4d6b60f4f7145509ddb3c7f27b101e761b3c86ba5ce9c9f62a43063b214"
+    },
+    "app/style-dark.css": {
+      "bytes": 3433,
+      "sha256": "953be596e18feb2adb245b981770489f3a08852285b93df59aeb686a461c50fe"
+    },
+    "app/style.css": {
+      "bytes": 5406,
+      "sha256": "6b8c2e35197b3228e6129352798a6933fbf07e4bb5ea527bcd929251c380829b"
+    },
+    "app/text_appearance.py": {
+      "bytes": 1741,
+      "sha256": "c6fe5e1a9978401368e813f341c8bd33686d1a1a21a68493bc80f42d963a457e"
+    },
+    "app/text_selection.py": {
+      "bytes": 1226,
+      "sha256": "2f9b88e4b53f2d5fd5ab473b8a36fbbfada8318383f5123c73f0736576dc1915"
+    },
+    "app/themes.py": {
+      "bytes": 1613,
+      "sha256": "c5263f1a61d5e72db45704a597f0214fb48c5e47d79b55492cc30575d2b7edc9"
+    },
+    "app/timestamp_transport.py": {
+      "bytes": 5285,
+      "sha256": "868f6f39dedc9d091fa1b1668d0fab821565114eb890e130326ab15d9641e056"
+    },
+    "app/tool_preferences.py": {
+      "bytes": 1549,
+      "sha256": "340b77da6e971ca4606e843a803607ba96c537c05752214c42c686e5315d688c"
+    },
+    "app/vector_redaction.py": {
+      "bytes": 11928,
+      "sha256": "302add624885736686270a5ef2a9de17add77dda62accac3b497a5a7567a6447"
+    },
+    "app/vendor/pypdf/__init__.py": {
+      "bytes": 1494,
+      "sha256": "d7786f1b3cb2e52e28b1085f0ea150fa7f029baad252b29af7415c790871f7df"
+    },
+    "app/vendor/pypdf/_cmap.py": {
+      "bytes": 21013,
+      "sha256": "d298554fd352442d4384e13395f1f5e768a5f3916baa1deaa599eb017fe1cc60"
+    },
+    "app/vendor/pypdf/_codecs/__init__.py": {
+      "bytes": 1510,
+      "sha256": "bd56ce01215af54c771e42b4228dd415aba640fe0970d2f1f63341353351d980"
+    },
+    "app/vendor/pypdf/_codecs/_codecs.py": {
+      "bytes": 10717,
+      "sha256": "f377c8779e1713e6916f798d8bfa75a2526d67375487df07b3159708e193b512"
+    },
+    "app/vendor/pypdf/_codecs/adobe_glyphs.py": {
+      "bytes": 577665,
+      "sha256": "69ac4e46ea50409ee46cb0c76e35a280b67aa60f06f7fe5ea832a2349c72923e"
+    },
+    "app/vendor/pypdf/_codecs/core_font_metrics.py": {
+      "bytes": 114976,
+      "sha256": "dbb26cac9a39511246215ed90ce09427259f066e8b0567aaeefdce5b3a05f21f"
+    },
+    "app/vendor/pypdf/_codecs/pdfdoc.py": {
+      "bytes": 4269,
+      "sha256": "c5f4af30562cbf1b9a490d14bbdbd90ca681d16bbce61d6e0a20758bdac07145"
+    },
+    "app/vendor/pypdf/_codecs/std.py": {
+      "bytes": 2630,
+      "sha256": "0f240cb84a40184a52f6ecb58d67f87278fe92a4a13ce0228f9b08ed0d580fc1"
+    },
+    "app/vendor/pypdf/_codecs/symbol.py": {
+      "bytes": 4642,
+      "sha256": "08fe958d172c72b9bcca6007f74c6977155a7a5c22e8c49bd536f5c0d0e1d359"
+    },
+    "app/vendor/pypdf/_codecs/zapfding.py": {
+      "bytes": 4655,
+      "sha256": "e39a9c635d716c1c2da21ebfb7467fef33631bbfaa238d752d14155d828faf65"
+    },
+    "app/vendor/pypdf/_configuration.py": {
+      "bytes": 11280,
+      "sha256": "dd2b41d34cedc9113c33be3555c662b6692f038d0d8ae29a2ea0ad9fb49823a9"
+    },
+    "app/vendor/pypdf/_crypt_providers/__init__.py": {
+      "bytes": 2770,
+      "sha256": "c5441b160310bca31a38e4f7454756ddb4bc7d94a147c3c13b3eab7ac7f05855"
+    },
+    "app/vendor/pypdf/_crypt_providers/_base.py": {
+      "bytes": 1735,
+      "sha256": "34505711d85bae0f64d353d57cd37f93b94401897606481720e8b9a1f53ff91f"
+    },
+    "app/vendor/pypdf/_crypt_providers/_cryptography.py": {
+      "bytes": 7313,
+      "sha256": "33183bb4201aa15e950085a97ee874e2af254be0aaeb9ab0de643d7e93100526"
+    },
+    "app/vendor/pypdf/_crypt_providers/_fallback.py": {
+      "bytes": 3382,
+      "sha256": "81772ba3f2bbab82180cbe57195471a059978d75cc6ba4e57830f0c56c828f81"
+    },
+    "app/vendor/pypdf/_crypt_providers/_pycryptodome.py": {
+      "bytes": 4050,
+      "sha256": "bd9102129a13f4ebe9a46ebb74aec456de51e5aa491bd5fce588a3479ed2a6f6"
+    },
+    "app/vendor/pypdf/_doc_common.py": {
+      "bytes": 63337,
+      "sha256": "ec79163bf5cc977b2a723feba53473e6ebe5896bd97ce428012d3b0651026103"
+    },
+    "app/vendor/pypdf/_encryption.py": {
+      "bytes": 53681,
+      "sha256": "44f9db6e619c04fd81d37c1c8dc2a65ed0a87e4fd014f9940e03c236cf0c6231"
+    },
+    "app/vendor/pypdf/_page.py": {
+      "bytes": 103943,
+      "sha256": "a431cf8af6baed1a7f7e0dd19fb4ffe6f6fdc6417932305f8400517d30afd96e"
+    },
+    "app/vendor/pypdf/_page_labels.py": {
+      "bytes": 11385,
+      "sha256": "55ae47e2e1fcec75ea33d3f97478c1fae1684883414cd8ee04a0a066dec40e06"
+    },
+    "app/vendor/pypdf/_protocols.py": {
+      "bytes": 2397,
+      "sha256": "4e4ea32b83d1f71cc4ec44e7a9a7f6ef5494299913b3a2254672d118f9588ff7"
+    },
+    "app/vendor/pypdf/_reader.py": {
+      "bytes": 72487,
+      "sha256": "dedbfa826d5e1660e6d5718d3b10c52de975ad5eefd9a3bb8518487ec8ad4390"
+    },
+    "app/vendor/pypdf/_text_extraction/__init__.py": {
+      "bytes": 11093,
+      "sha256": "08ee4beeccbae52c021c87c61eed6f9bbfeaef5a9ea1f994170921a2de15e4fb"
+    },
+    "app/vendor/pypdf/_text_extraction/_layout_mode/__init__.py": {
+      "bytes": 348,
+      "sha256": "56adb80f37575f9af91995d319579011c9212ed332099acdf207db4a506efecc"
+    },
+    "app/vendor/pypdf/_text_extraction/_layout_mode/_fixed_width_page.py": {
+      "bytes": 18283,
+      "sha256": "6200c194cdf49dde9b70900a1600e314e040b885875ee519de3815f6b22ee8b6"
+    },
+    "app/vendor/pypdf/_text_extraction/_layout_mode/_text_state_manager.py": {
+      "bytes": 7569,
+      "sha256": "b1600d432c5add07cb442b02a0b6daf228b737457c0ea92184f35274c02d68f4"
+    },
+    "app/vendor/pypdf/_text_extraction/_layout_mode/_text_state_params.py": {
+      "bytes": 6625,
+      "sha256": "a0c4b8cb2f4763835c4ebded2f1272235182e1c759e46cc3ad43f425ac5f5261"
+    },
+    "app/vendor/pypdf/_text_extraction/_text_extractor.py": {
+      "bytes": 15295,
+      "sha256": "376ae42d43e318bda3603734a3493cb2ae8084d0bdad9a8f4a92c76c3021eede"
+    },
+    "app/vendor/pypdf/_utils.py": {
+      "bytes": 23663,
+      "sha256": "1f1e47f3b8ee728f3a05143eef5e370684cd54ddf751fe631ccf1d3eabc14309"
+    },
+    "app/vendor/pypdf/_version.py": {
+      "bytes": 23,
+      "sha256": "3d176cbc1f25f912bda4dac8a2424cffb162e969c4bf94a837d8289bdb54e0f9"
+    },
+    "app/vendor/pypdf/_writer.py": {
+      "bytes": 140929,
+      "sha256": "598baaa8215415d1d12fbc732eb79b07767101550a86d6e945fffa9bcf1210f4"
+    },
+    "app/vendor/pypdf/actions/__init__.py": {
+      "bytes": 391,
+      "sha256": "d8bdd81ef60846bab097640490991e4b63bd6b521eb0356ed696e24854299518"
+    },
+    "app/vendor/pypdf/actions/_actions.py": {
+      "bytes": 7648,
+      "sha256": "9ad300bde70c006ba9484e0d78296103c0dcdafa75038248f3bde6a988cd6c4b"
+    },
+    "app/vendor/pypdf/annotations/__init__.py": {
+      "bytes": 990,
+      "sha256": "7f693ffa3027dfd082076ecac50fdef771a29e7ce40076d49e749e1899758f21"
+    },
+    "app/vendor/pypdf/annotations/_base.py": {
+      "bytes": 961,
+      "sha256": "608453cd3764aa3f035164939b2d1fae47d3af88e87b91d41b344e5287f8a08a"
+    },
+    "app/vendor/pypdf/annotations/_markup_annotations.py": {
+      "bytes": 11858,
+      "sha256": "c210635217f7c5195cae67829cd82a1679ad2767fb07c2289f82b8e88f74a079"
+    },
+    "app/vendor/pypdf/annotations/_non_markup_annotations.py": {
+      "bytes": 3695,
+      "sha256": "fd2cd3ce864ce01dff1bf57a33ff266c9e7b630d2d024f601db347ea5211ab70"
+    },
+    "app/vendor/pypdf/constants.py": {
+      "bytes": 24233,
+      "sha256": "579bd3b09defab4b63ac63f7effb4713ade10722c8c7799b8566aa80917c3624"
+    },
+    "app/vendor/pypdf/errors.py": {
+      "bytes": 1947,
+      "sha256": "070d56f61c4eb03830ab053a628436974f89894c93aba979423542afe5b81850"
+    },
+    "app/vendor/pypdf/filters.py": {
+      "bytes": 38450,
+      "sha256": "7567a0838190cd5e03508d9e945ab11bf4fe1822a80834b5bf958c58efa76aa9"
+    },
+    "app/vendor/pypdf/generic/__init__.py": {
+      "bytes": 3468,
+      "sha256": "56ba9d61fb5010278f0d4dab5d532012a45a60547ccce57f7ef260a35f71feec"
+    },
+    "app/vendor/pypdf/generic/_appearance_stream.py": {
+      "bytes": 43800,
+      "sha256": "4f572ec49a2c290b0389ed7b30758ac21855f1c3b8efc71eeb013e29ebfe22b4"
+    },
+    "app/vendor/pypdf/generic/_base.py": {
+      "bytes": 34314,
+      "sha256": "90c50d931fdc97db44bf57894fa2fe6239ece307e1b831896e54e5c2de6698b7"
+    },
+    "app/vendor/pypdf/generic/_color.py": {
+      "bytes": 3187,
+      "sha256": "2b10852d96453098d4b9b2f437ad85042a552b37038403c1f6719ba29e3c795c"
+    },
+    "app/vendor/pypdf/generic/_data_structures.py": {
+      "bytes": 73017,
+      "sha256": "a29bb9c51e8a87872c3196fe74ac9a191cc0361556615d6513928f0f5ab134f2"
+    },
+    "app/vendor/pypdf/generic/_files.py": {
+      "bytes": 19061,
+      "sha256": "d28b3ece6aa1cec4ed623e83ab52e2cd70fd592118e5855508415352223d9ebd"
+    },
+    "app/vendor/pypdf/generic/_fit.py": {
+      "bytes": 5550,
+      "sha256": "607a2571a31e1c67d84fdb0d1a3dbfd04b52a09619d9a261b4aa9525c03887f9"
+    },
+    "app/vendor/pypdf/generic/_font.py": {
+      "bytes": 43622,
+      "sha256": "ce07922ffa1f27b84fb25c41f2612aa409ba8319fae4c38e0248da8b60c79ef3"
+    },
+    "app/vendor/pypdf/generic/_image_inline.py": {
+      "bytes": 15158,
+      "sha256": "a708cc06e98c88b0972a6367e6513282b0fd35599c8429c26ff0573a0058f7cc"
+    },
+    "app/vendor/pypdf/generic/_image_xobject.py": {
+      "bytes": 28136,
+      "sha256": "5c4d6498633962f41592771f24993dfd9742b30d73f783a60c2a0c72ed2f05cd"
+    },
+    "app/vendor/pypdf/generic/_link.py": {
+      "bytes": 6207,
+      "sha256": "90835ae593a2a461f163f616fdf231178cf44d134a970c388d161a1822d34116"
+    },
+    "app/vendor/pypdf/generic/_outline.py": {
+      "bytes": 1094,
+      "sha256": "3c4b924f86fe2a6010203009d05872c4dec036626376c59a4ddc4aa3b862ab78"
+    },
+    "app/vendor/pypdf/generic/_rectangle.py": {
+      "bytes": 3969,
+      "sha256": "ec7ac97ce31ab906ad0368245a17074a4cc1ec5e245a671afba90d03a1d5a3a3"
+    },
+    "app/vendor/pypdf/generic/_utils.py": {
+      "bytes": 7875,
+      "sha256": "0dcef7c1b7cfeb17d2f962d63fa77b98d116c9b0cee7779de94dbb243f5f1df9"
+    },
+    "app/vendor/pypdf/generic/_viewerpref.py": {
+      "bytes": 7577,
+      "sha256": "20912ec8cd304ebd6a36004e0bede202e3c1e4f9630ee771f7de14a2c3eb05dc"
+    },
+    "app/vendor/pypdf/pagerange.py": {
+      "bytes": 7907,
+      "sha256": "0209c3144e2959cf34d1800cfec3dc1afcb6f747f70f93588abaf6e478753b46"
+    },
+    "app/vendor/pypdf/papersizes.py": {
+      "bytes": 1413,
+      "sha256": "e93cf9b1f34dff724e51aa58f3753e95a928867a57600d2148440d98e54b14bf"
+    },
+    "app/vendor/pypdf/py.typed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "app/vendor/pypdf/types.py": {
+      "bytes": 1915,
+      "sha256": "b09ef01f393b111fc227b90ffacf2ef5ac459e40979c5a6bf27cdc8f50314dab"
+    },
+    "app/vendor/pypdf/xmp.py": {
+      "bytes": 32148,
+      "sha256": "0853e82701b820b96d14ecfdd9f49cf04f1a734ce2314ff0e9b16976e753d494"
+    },
+    "app/vendor/snowballstemmer/__init__.py": {
+      "bytes": 3437,
+      "sha256": "b7deb373e5cfeb67267dde276350bebfc4b35221949145806090706cec3f681a"
+    },
+    "app/vendor/snowballstemmer/among.py": {
+      "bytes": 395,
+      "sha256": "4b8b17bf3f97d46a1a536c288defe193147b15bd8edb01bbd3f64c57b8b5e2af"
+    },
+    "app/vendor/snowballstemmer/arabic_stemmer.py": {
+      "bytes": 29486,
+      "sha256": "c818ef417c954a0885ed2fef0c7a2d25925ad89847ddd67eb3e0587df90df59d"
+    },
+    "app/vendor/snowballstemmer/armenian_stemmer.py": {
+      "bytes": 9287,
+      "sha256": "36cd1e1d7228703eecd053c22c2ddee4872be06c91a99b77dc5aa33dbf99d9e6"
+    },
+    "app/vendor/snowballstemmer/basestemmer.py": {
+      "bytes": 7948,
+      "sha256": "e60fd08f93826b9c428f038ace77500a68ba594d504cd64b1501a6fab2becbc1"
+    },
+    "app/vendor/snowballstemmer/basque_stemmer.py": {
+      "bytes": 18805,
+      "sha256": "37ebc30e041a9ac3c5f724c2b4ab6fbca3762994fb37677c80285852f4a2e0d8"
+    },
+    "app/vendor/snowballstemmer/catalan_stemmer.py": {
+      "bytes": 22451,
+      "sha256": "f579a75c10a38560074b9362ef3859dda3edd17e0689406aaa51859007903581"
+    },
+    "app/vendor/snowballstemmer/COPYING": {
+      "bytes": 1630,
+      "sha256": "880802872ce34f313df826e96131b1b147dcfa09c76fc82129f25503a922a678"
+    },
+    "app/vendor/snowballstemmer/czech_stemmer.py": {
+      "bytes": 9983,
+      "sha256": "86f21cd6174875068f48eb7920e75173ba4a5645406899c396f0d5e5644d6739"
+    },
+    "app/vendor/snowballstemmer/danish_stemmer.py": {
+      "bytes": 7073,
+      "sha256": "03100fecc5e24ca2ab756e2470c0c6ffb25e1cbbacff01e04ca1c91c3882306d"
+    },
+    "app/vendor/snowballstemmer/dutch_porter_stemmer.py": {
+      "bytes": 12913,
+      "sha256": "4907e89a0578b44d2c0147772ea1774e6aa8ecd0a218ee7cba8fb6dc0fb67a06"
+    },
+    "app/vendor/snowballstemmer/dutch_stemmer.py": {
+      "bytes": 37474,
+      "sha256": "349e3db58f84283eec6f87071b46d433eeae04ceca8918259cdc2c44f62e6c35"
+    },
+    "app/vendor/snowballstemmer/english_stemmer.py": {
+      "bytes": 21408,
+      "sha256": "350d71588d33ce8e2dd5084efa48c50cbaec90bec9ac3f7e97623fd640856dea"
+    },
+    "app/vendor/snowballstemmer/esperanto_stemmer.py": {
+      "bytes": 17181,
+      "sha256": "ab99603f1e55d9eecd265204c86aef296e6de8bb387cafde74aa2ba336bcd7b4"
+    },
+    "app/vendor/snowballstemmer/estonian_stemmer.py": {
+      "bytes": 23805,
+      "sha256": "f885ce9633f7e823a4d6e4351be21c2a4a1257b41f8c3d9ff1863d61f4036f00"
+    },
+    "app/vendor/snowballstemmer/finnish_stemmer.py": {
+      "bytes": 18697,
+      "sha256": "229e2632d754cd39f8d20715e38b683a840a9f0fce48c93063d79556f9ef68fb"
+    },
+    "app/vendor/snowballstemmer/french_stemmer.py": {
+      "bytes": 31603,
+      "sha256": "9ccd70188e427475cfe4adcdd407bc4c03f3627b4542dfb9d4839831122d5214"
+    },
+    "app/vendor/snowballstemmer/german_stemmer.py": {
+      "bytes": 13550,
+      "sha256": "c0b65d824d9ff6277a23e6e80605e96caced9f725d73678fe24061237f376fee"
+    },
+    "app/vendor/snowballstemmer/greek_stemmer.py": {
+      "bytes": 62627,
+      "sha256": "c0a3bee5d15cef7b10a042cb7a217f7ca53bec3a89fab39d86a4fc9c52ec2020"
+    },
+    "app/vendor/snowballstemmer/hindi_stemmer.py": {
+      "bytes": 7524,
+      "sha256": "3484dcbdd74c8253be1b53e263dad3de6858ab07e4315d0d35a1b79b4894f2b5"
+    },
+    "app/vendor/snowballstemmer/hungarian_stemmer.py": {
+      "bytes": 11989,
+      "sha256": "601d83718b0e4d48cb0b1fd7ba89128c844a9853349773bec0d0be7d0c0cc581"
+    },
+    "app/vendor/snowballstemmer/indonesian_stemmer.py": {
+      "bytes": 11094,
+      "sha256": "2d4771b8dff5265ebc49ca48d4b43d2c186b5fb59cde6f98b72325c11deaa738"
+    },
+    "app/vendor/snowballstemmer/irish_stemmer.py": {
+      "bytes": 6304,
+      "sha256": "bf8d482787fa72874859f1d3f7ded0b39eb1a56752e870fc876c199ecd248cb3"
+    },
+    "app/vendor/snowballstemmer/italian_stemmer.py": {
+      "bytes": 21650,
+      "sha256": "a8fcea14594afdb5d2c97c942a117e896e9f753767faeb80769fb0a828a8c838"
+    },
+    "app/vendor/snowballstemmer/lithuanian_stemmer.py": {
+      "bytes": 12640,
+      "sha256": "ee1bf0a18b74dbffc941eee1772729cfbe3d60b1451f80c05faa8ccb54da967d"
+    },
+    "app/vendor/snowballstemmer/nepali_stemmer.py": {
+      "bytes": 8301,
+      "sha256": "0e0b12b9e783596f43a87f81eb639d410efb419efd04426a6c25b23466c2fa80"
+    },
+    "app/vendor/snowballstemmer/norwegian_stemmer.py": {
+      "bytes": 7563,
+      "sha256": "b87a7d8400b09dcf2b81d4dc64cf035897be074e8f6178a0d47a43938e82cacd"
+    },
+    "app/vendor/snowballstemmer/persian_stemmer.py": {
+      "bytes": 13268,
+      "sha256": "6abde5e8042414cad8b60af020b806c679986b0bff28936ab4c43ecdf3f66586"
+    },
+    "app/vendor/snowballstemmer/polish_stemmer.py": {
+      "bytes": 8512,
+      "sha256": "2fdc4f94e3c8018d1617861519d6774280f537f21f158540a4c68c0b7cd9a09f"
+    },
+    "app/vendor/snowballstemmer/porter_stemmer.py": {
+      "bytes": 12728,
+      "sha256": "b7e27d0486805a9ce69be3362dc3f995b988c4d607de438df189c21e4482b8b0"
+    },
+    "app/vendor/snowballstemmer/portuguese_stemmer.py": {
+      "bytes": 19412,
+      "sha256": "a643258d3c4e3347e35a8bdb7d2864a5c9194a8e6d815fce77c3c8201245ca04"
+    },
+    "app/vendor/snowballstemmer/romanian_stemmer.py": {
+      "bytes": 18939,
+      "sha256": "d2e92930f4c6aa344e568e1827f5ffeaed71f44b761163ceb79a01e039be74d8"
+    },
+    "app/vendor/snowballstemmer/russian_stemmer.py": {
+      "bytes": 13335,
+      "sha256": "502e03c7941acfe4d28bea3c7d1e356ba8d19ee728561cd0142315648779b6cd"
+    },
+    "app/vendor/snowballstemmer/serbian_stemmer.py": {
+      "bytes": 103043,
+      "sha256": "5e7b7db45543bcaf011fa4fdad5a32a7d08e3ddfb9af38525d9d9efda7373031"
+    },
+    "app/vendor/snowballstemmer/sesotho_stemmer.py": {
+      "bytes": 3614,
+      "sha256": "2f920803df570c347e3f121aaec63a5bec66f531487c17a19ec566d6c1e9a539"
+    },
+    "app/vendor/snowballstemmer/spanish_stemmer.py": {
+      "bytes": 20209,
+      "sha256": "d6ff9ce6ef516103c1cb1f1996aa038bc865316159e76f21a9b82c90d621aba3"
+    },
+    "app/vendor/snowballstemmer/swedish_stemmer.py": {
+      "bytes": 7127,
+      "sha256": "b1d9c429e6e7e9ca82a2ed230a4771ff5a6f35084817fc862b5af090166beb5b"
+    },
+    "app/vendor/snowballstemmer/tamil_stemmer.py": {
+      "bytes": 28721,
+      "sha256": "08fb989839946518bba347b88dea433117d1ebdca7b35f02a6ef4c34dc92f5ab"
+    },
+    "app/vendor/snowballstemmer/turkish_stemmer.py": {
+      "bytes": 55586,
+      "sha256": "567caf1a76293fda9708373325ca7c7bf872797a75c89b33e0ef604ad0fac965"
+    },
+    "app/vendor/snowballstemmer/yiddish_stemmer.py": {
+      "bytes": 27006,
+      "sha256": "cf0884891894faf4d47867946c9e88def419bd29b81a08a7ef3d77dfa0f7db81"
+    },
+    "app/version.py": {
+      "bytes": 19,
+      "sha256": "1387af6073d478401f0c3a66c267172ef2d867778aa61f022c81d79b1c289126"
+    },
+    "app/windows_bootstrap.py": {
+      "bytes": 1951,
+      "sha256": "537bf137e997dec1e61f19bb9adaa178ad1307118b793583b8c4cf3bc3e894f8"
+    },
+    "app/windows_print.py": {
+      "bytes": 4905,
+      "sha256": "19a70383a95da1a47a161f13517eb505ce3cb204469dc839ae9c0d225f6628c4"
+    },
+    "app/worker_cli.py": {
+      "bytes": 15287,
+      "sha256": "77d12ea0a407614775243e9edd09985e572d81bd3219e957c756b8f79e5d213b"
+    },
+    "app/xfa_formcalc.py": {
+      "bytes": 6003,
+      "sha256": "48bb373f9bc6811473a571f5400d29a1a7fa8cc8e7bb6ef931edd8c11f7fa07b"
+    },
+    "app/xfa_positioned.py": {
+      "bytes": 4877,
+      "sha256": "64ed03cf48a2bfabcd5b186bff8e6c428e39d0fd8cef91b7db86f0b1d27786ea"
+    },
+    "app/xfa_window.py": {
+      "bytes": 7036,
+      "sha256": "205eacbba1674325c32080cfc396a5301dcce309cee2ffd8fd8037aa24b5bb14"
+    }
+  },
+  "scope": "Exact source records in the native payload manifest versus Git archive; full downloaded installer bytes are not claimed."
+}

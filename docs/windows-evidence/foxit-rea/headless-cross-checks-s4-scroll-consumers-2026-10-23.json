@@ -1,0 +1,50 @@
+{
+  "source_sha256": "90208c9e8da92c8e546b76c8f4a2f8fb999105d124e663bbea6744fb6bb6b3a6",
+  "source_module": "FoxitPDFReader.exe",
+  "origin": "Supplementary direct Ghidra headless -noanalysis, using the REA seed script. Not REA MCP Evidence.",
+  "entries": [
+    {
+      "result": "headless/s4-scroll-consumers-2026-10-23-2100/functions/0x15c7d20.json",
+      "result_sha256": "4af8e5f9538e8a83c98ff86ca9c4b33f4db4f79074c95b9ce3ed7d994fa4d9bb",
+      "entry_va": "0x15c7d20",
+      "analyst_name": "analyst_entry_015c7d20",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 41,
+      "body_ranges": "[[015c7d20, 015c7d48]]",
+      "pseudocode_sha256": "888a6a44aa90e132151868ba272a6464828ec8a2301a64e4b7d0d55412211875",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s4-scroll-consumers-2026-10-23-2100/functions/0x15cb3f0.json",
+      "result_sha256": "fcfb2916c01f313cee83bbf687590ce150c5f71b045d539056fb79f819b48ba3",
+      "entry_va": "0x15cb3f0",
+      "analyst_name": "analyst_entry_015cb3f0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 6,
+      "body_ranges": "[[015cb3f0, 015cb3f5]]",
+      "pseudocode_sha256": "c9b53c00b4c6784039ec174c41d6433b74eb1bfeca634444062771f80f150c46",
+      "also_examined_through_mcp": false
+    },
+    {
+      "result": "headless/s4-scroll-consumers-2026-10-23-2100/functions/0x15cb7d0.json",
+      "result_sha256": "20b365fe0da5d7bb5b9966b5ebceb3db99502ab564d38b55f89efabcf816d3ff",
+      "entry_va": "0x15cb7d0",
+      "analyst_name": "analyst_entry_015cb7d0",
+      "decompile_completed": true,
+      "decompiler_message": "",
+      "body_bytes": 10,
+      "body_ranges": "[[015cb7d0, 015cb7d9]]",
+      "pseudocode_sha256": "04e6b53745f763e329a3532f14d41c912747bd93a10612b6f2d61c530c33e3ee",
+      "also_examined_through_mcp": false
+    }
+  ],
+  "observation_count": 3,
+  "distinct_entries": 3,
+  "limitations": [
+    "Successful decompilation is not proof of types, boundaries, full semantics or Linux equivalence.",
+    "Repeated entries can differ by analysis profile and must not be counted as new functions.",
+    "Pseudocode and assembly remain outside the repository."
+  ]
+}

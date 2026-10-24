@@ -1,0 +1,161 @@
+{
+  "run": 40041628886,
+  "github_url": "https://github.com/airtonbp19edu/Linuxit-PDF/actions/runs/40041628886",
+  "report_sha256": {
+    "acceptance.json": "81835246410b4cf1c98e7d19b5e3dfc88afa28b56de42cf3e24d36d1e920512b",
+    "full-suite.json": "9e5f9d4100a709c05c68e139369a8b04a8e3def7a6abf82e38bf9f50b3fabea5",
+    "full-suite.stderr": "5ba2df406e4a2c4a414a912092fb30c411e6ca57dca0787035f81575abf08f03",
+    "installer-validation.json": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "test_runs": {
+    "full-suite.json": {
+      "run": 808,
+      "passed": 806,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    }
+  },
+  "source_sha256_matches_git": true,
+  "foxit_executed": false,
+  "main_integrated": false,
+  "artifact_retrieval": [
+    {
+      "run": "40041628886",
+      "artifact": 12540096487,
+      "github_zip_digest": "sha256:2a857dc4152a9c07fef933923906dbe1ef70b8fdcb14511e3ec46fe14567f267",
+      "complete_zip_sha256_verified": false,
+      "retrieval": "selected HTTPS ranges; individual member CRC checked",
+      "members": [
+        {
+          "file": "acceptance-progress.json",
+          "size": 50378,
+          "sha256": "766f454bbe8ae51a9aae9564b3fea99c5a5ff02b061176171eb7ba8c56567fff",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.json",
+          "size": 49046,
+          "sha256": "81835246410b4cf1c98e7d19b5e3dfc88afa28b56de42cf3e24d36d1e920512b",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stderr",
+          "size": 5156,
+          "sha256": "3041ab9ee09e8f516349347c8c53ef3c219e9cf1843b374318cbf5c21521284d",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "acceptance.stdout",
+          "size": 2984,
+          "sha256": "6b52f238bf97db1744ebb5cf19e8e9a414087b31d9ed192b013daecdbd6b2f16",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite-progress.json",
+          "size": 164059,
+          "sha256": "b1756c48c258383179f1b6cd5e4efcdd0875af7f8fcd8c001f8d5162141c183c",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.json",
+          "size": 164334,
+          "sha256": "9e5f9d4100a709c05c68e139369a8b04a8e3def7a6abf82e38bf9f50b3fabea5",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stderr",
+          "size": 162287,
+          "sha256": "5ba2df406e4a2c4a414a912092fb30c411e6ca57dca0787035f81575abf08f03",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "full-suite.stdout",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-launcher-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installed-probe.json",
+          "size": 705,
+          "sha256": "658d5f0056734fa73ffc47303e820bcf5201b46b8d58ef2a81dd64866ad6ffad",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "installer-validation.json",
+          "size": 1903,
+          "sha256": "888c16466a22503cfcfe5fcd4151195ff14e4236a1fc5562b39b2499c005fae1",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "LinuxitPDF-0.1.19-windows-x86_64.json",
+          "size": 470,
+          "sha256": "3b4bb8ff911bf9d39f879b52a417b2dd4621746ca09160603f649110233eb3c8",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "payload/windows-manifest.json",
+          "size": 3334180,
+          "sha256": "6bc55f476ea2666de6d83f606e4d310f797c746dbfbb3ddac97198003eefb05e",
+          "zip_crc_verified": true
+        },
+        {
+          "file": "report.json",
+          "size": 473,
+          "sha256": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89",
+          "zip_crc_verified": true
+        }
+      ],
+      "range_requests": 45
+    }
+  ],
+  "acceptance": {
+    "passed": 79,
+    "failed": 0,
+    "error": 0,
+    "not_run": 0
+  },
+  "native_not_passed": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+      "status": "skipped",
+      "reason": "Linux process group verification"
+    }
+  ],
+  "installer": {
+    "passed": true,
+    "checks": {
+      "silent_install_exit_zero": true,
+      "installed_bytes_equal_payload": true,
+      "installed_native_probe": true,
+      "installed_exe_launcher": true,
+      "per_user_uninstall_registered": true,
+      "uninstaller_removes_owned_files": true,
+      "uninstaller_preserves_foreign_files": true,
+      "uninstall_registry_removed": true
+    }
+  },
+  "source_commit": "e77cf3cf6d8977d06485dad2a51fca90d0564767",
+  "source_files_checked": 198,
+  "source_integrity_ref": "native-source-integrity.json",
+  "repository_canonical_lf_sha256": {
+    "acceptance.json": "81835246410b4cf1c98e7d19b5e3dfc88afa28b56de42cf3e24d36d1e920512b",
+    "full-suite.json": "9766c35de6a5a83d340664539b03cd52ce636e18882917c914eca235eb85275a",
+    "full-suite.stderr": "23183cdef7c725a82eb9f75d78d4605da5a6b8f7458cc4775778698864d0b857",
+    "installer-validation.json": "8deecbf04ae4d8ce69c12e01a1e0b04d8a5a6b45efd178343c4a5c4d9c9446b3",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "report_hash_provenance": "report_sha256 identifies original CI report bytes. Git text files normalize CRLF to LF; repository_canonical_lf_sha256 identifies those versioned bytes. Original raw reports remain in ignored analysis-local storage."
+}

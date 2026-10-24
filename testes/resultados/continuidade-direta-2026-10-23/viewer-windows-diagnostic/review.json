@@ -40,5 +40,12 @@
       "status": "failed",
       "detail": "Traceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 126, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    try:wait_for(lambda:self.w.displayed_page == 1)\n        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_search_extensions_gtk.py\", line 33, in wait_for\n    raise AssertionError('Search extension GTK timeout')\nAssertionError: Search extension GTK timeout\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"D:/a/Linuxit-PDF/Linuxit-PDF/tests/test_reading_workflows_gtk.py\", line 128, in test_page_entries_clamp_and_restore_invalid_value_and_disable_edges\n    raise AssertionError(dict(page=self.w.page,displayed=self.w.displayed_page,\n    ...<2 lines>...\n        status_entry=self.w.status_page_entry.get_text())) from exc\nAssertionError: {'page': 1, 'displayed': 0, 'render_pending': False, 'status': \"Falha ao renderizar: [WinError 5] Access is denied: 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/.f3c31992f26ec978b16b-main-r0-p2-w701-kzcnub2h.jpg' -> 'D:/a/_temp/linuxit-suite-temp/linuxit-pdf-cache-j7kv4dqz/f3c31992f26ec978b16b-main-r0-p2-w701.jpg'\", 'errors': [], 'page_entry': '2', 'status_entry': '2'}\n"
     }
-  ]
+  ],
+  "repository_canonical_lf_sha256": {
+    "acceptance.json": "c36e04781ad63fe7122e48f132634efec9e4e1d6bf478938f3a7beeae371b780",
+    "full-suite.json": "6dc305f0b077daec1573c5329809ec4d507fc47e5e2c2e8df08404c6a217472f",
+    "full-suite.stderr": "17324c379814472a05d834286b2ccbb03b3d8431684602a8973608d4ab68e4b2",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "report_hash_provenance": "report_sha256 identifies original CI report bytes. Git text files normalize CRLF to LF; repository_canonical_lf_sha256 identifies those versioned bytes. Original raw reports remain in ignored analysis-local storage."
 }

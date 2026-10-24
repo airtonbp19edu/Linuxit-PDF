@@ -188,5 +188,13 @@
       "uninstaller_preserves_foreign_files": true,
       "uninstall_registry_removed": true
     }
-  }
+  },
+  "repository_canonical_lf_sha256": {
+    "acceptance.json": "b6626cd9a78fa914f1272cf2fc4ffb2a448dcee5fd15e1f6669aed790821b18a",
+    "full-suite.json": "ed70f0314056ed36d45ac8c527c15bc2c94949ebe166032fd617e2fa5a71ae81",
+    "full-suite.stderr": "b38bbc0e9a57a0f48297efd4d05f2803c6ebdeae1936b224ef347c337a1bcd08",
+    "installer-validation.json": "8deecbf04ae4d8ce69c12e01a1e0b04d8a5a6b45efd178343c4a5c4d9c9446b3",
+    "report.json": "56541f4137aa9a5d8f617700067faf9e2d76044d0730daa40a302828e46dcb89"
+  },
+  "report_hash_provenance": "report_sha256 identifies original CI report bytes. Git text files normalize CRLF to LF; repository_canonical_lf_sha256 identifies those versioned bytes. Original raw reports remain in ignored analysis-local storage."
 }

@@ -53,4 +53,12 @@ flowchart TD
   Highlight[Membro+0x2bc] -. consumidor ainda aberto .-> Owner[Persistência e realce do documento]
 ```
 
-O construtor é alcançável por mecanismos indiretos ainda não caracterizados: a busca de CALL rel32 não encontrou referência direta a ele. Ausência nessa busca não prova código morto. Evidência: `forms-owner-machine.json` e `headless-cross-checks-s3-forms-owner-2026-10-23.json`. S3 permanece parcial; nenhum critério/peso foi modificado.
+A ligação do construtor aos chamadores continua em aberto: a busca de CALL rel32 não encontrou referência direta a ele. Ausência nessa busca não prova código morto nem comprova alcance por uma chamada indireta. Evidência: `forms-owner-machine.json` e `headless-cross-checks-s3-forms-owner-2026-10-23.json`. S3 permanece parcial; nenhum critério/peso foi modificado.
+
+## Efeito delimitado do deslocamento no reflow
+
+Rodada `s4-scroll-consumers-2026-10-23-2100`: três novas entradas,21 instruções/57 bytes conferidos. Catálogo538→541. O helper `0x15c7d20`, chamado pelas duas vias de deslocamento já examinadas, só age se pelo menos um dos dois primeiros deltas for diferente de zero: subtrai o deltaX de receptor+0x5c e o deltaY de receptor+0x60, grava1 em+0x50 e0 em+0x48. Se os dois são zero, não faz essas gravações.
+
+O receptor da chamada vem de `viewer+0x98`, tanto em `0x15cd130` quanto em `0x15cd1a0`. Portanto, os offsets desse helper pertencem ao objeto apontado, **não devem ser confundidos com o mapa+0x48 do próprio viewer**. X encaminha(pedido−calculado,0); Y encaminha(0,pedido−calculado), após atualizar o deslocamento inteiro e sua cópia float. As vias também empilham os offsets finais; o corpo curto examinado não os lê e não foi atribuída uma assinatura pública estável a esses argumentos adicionais.
+
+Isso fecha a aresta até as atualizações locais de deslocamento/cache desse objeto. Não demonstra ainda repintura do sistema de janelas, unidade física ou todos os consumidores das flags. `0x15cb3f0` devolve1 e `0x15cb7d0` devolve seu argumento, sem estabelecer transformações adicionais de unidade. Persistem inicialização integral dos mapas, limites de todas as métricas, classes derivadas e caminhos de falha. Evidências em `reflow-scroll-machine.json` e `headless-cross-checks-s4-scroll-consumers-2026-10-23.json`; S4 permanece parcial.

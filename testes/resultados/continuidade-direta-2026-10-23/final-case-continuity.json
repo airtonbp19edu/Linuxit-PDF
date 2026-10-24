@@ -1,0 +1,53 @@
+{
+  "old_four_feature_cases": 779,
+  "current_linux_cases": 808,
+  "native_windows_cases": 808,
+  "old_ids_removed": [],
+  "linux_and_windows_same_ids": true,
+  "linux_passed": 808,
+  "native_passed": 806,
+  "native_skips": [
+    {
+      "id": "test_ocr_linux.OCRLinuxTests.test_cancel_stops_worker_and_its_actual_tesseract_child",
+      "status": "skipped",
+      "reason": "Linux /proc child-process verification"
+    },
+    {
+      "id": "test_security_accessibility_gtk.AccessibleGTKTests.test_closing_text_worker_terminates_its_real_descendant_on_linux",
+      "status": "skipped",
+      "reason": "Linux process group verification"
+    }
+  ],
+  "new_case_ids": [
+    "test_render_cache_publication.RenderCachePublicationTests.test_existing_valid_entry_is_reused_while_reader_holds_file",
+    "test_render_cache_publication.RenderCachePublicationTests.test_invalid_cache_is_replaced_by_complete_image",
+    "test_render_cache_publication.RenderCachePublicationTests.test_two_renderers_publish_same_key_without_overwriting_open_result",
+    "test_test_runner_progress.TestRunnerProgressTests.test_abrupt_exit_keeps_completed_case_and_active_test_without_approval",
+    "test_test_runner_progress.TestRunnerProgressTests.test_success_retains_normal_final_report_and_distinct_partial_schema",
+    "test_timestamp_transport.TimestampTransportTests.test_actual_https_to_explicit_loopback_tsa",
+    "test_timestamp_transport.TimestampTransportTests.test_bad_media_oversize_and_redirect_refused",
+    "test_timestamp_transport.TimestampTransportTests.test_changed_pending_and_existing_destination_are_preserved",
+    "test_timestamp_transport.TimestampTransportTests.test_matching_download_sends_query_only_and_does_not_claim_trust",
+    "test_timestamp_transport.TimestampTransportTests.test_no_implicit_network_or_unsafe_endpoint",
+    "test_timestamp_transport.TimestampTransportTests.test_wrong_nonce_or_imprint_never_publishes",
+    "test_vector_redaction_forms.VectorFormRedactionTests.test_form_matrix_and_page_transform_are_composed",
+    "test_vector_redaction_forms.VectorFormRedactionTests.test_missing_or_reversed_bbox_refused_before_publication",
+    "test_vector_redaction_forms.VectorFormRedactionTests.test_nested_clipping_text_removed_whole_without_raster_or_orphans",
+    "test_vector_redaction_forms.VectorFormRedactionTests.test_same_resource_kept_only_for_nonintersecting_invocation",
+    "test_viewer.ViewerTests.test_reading_anchor_follows_allocation_and_controls_height",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_arbitrary_cache_path_is_not_automatically_attributed",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_bootstrap_never_leaves_legacy_load_to_a_non_ascii_path",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_bootstrap_relaunches_from_an_ascii_alias_and_uninstaller_removes_it",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_ci_commit_identity_does_not_require_git_executable",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_generator_and_input_hashes_are_individually_retained",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_installer_message_boxes_never_block_silent_mode",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_malformed_ci_identity_is_never_recorded_as_a_commit",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_missing_input_owner_is_refused",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_missing_install_search_finds_only_complete_installations",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_nsis_target_is_backslashed_even_when_ntpath_keeps_forward_slashes",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_nsis_target_uses_native_separators_and_unquoted_final_directory",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_openssl_paths_reach_openssl_as_ascii",
+    "test_windows_cache_provenance.WindowsCacheProvenanceTests.test_uninstall_lines_use_backslashes_for_nested_files"
+  ],
+  "original_equivalence_claimed": false
+}

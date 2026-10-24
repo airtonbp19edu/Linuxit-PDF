@@ -1,0 +1,33 @@
+{
+  "schema": "linuxit-flatpak-tls-trust-v1",
+  "passed": true,
+  "observed": {
+    "stats": {
+      "x509": 118,
+      "crl": 0,
+      "x509_ca": 118
+    },
+    "paths": {
+      "cafile": "/etc/ssl/certs/ca-certificates.crt",
+      "capath": "/etc/ssl/certs",
+      "openssl_cafile_env": "SSL_CERT_FILE",
+      "openssl_cafile": "/usr/lib/ssl/cert.pem",
+      "openssl_capath_env": "SSL_CERT_DIR",
+      "openssl_capath": "/usr/lib/ssl/certs"
+    },
+    "check_hostname": true,
+    "verify_required": true,
+    "lazy_hashed_capath": false,
+    "trust_present": true
+  },
+  "installed_version": "0.1.19",
+  "candidate_source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+    "bytes": 120443376,
+    "sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+    "digitally_signed": false
+  },
+  "network_requests_sent": 0,
+  "scope": "Default TLS context and available default CA sources inside the installed candidate; no external TSA acceptance."
+}

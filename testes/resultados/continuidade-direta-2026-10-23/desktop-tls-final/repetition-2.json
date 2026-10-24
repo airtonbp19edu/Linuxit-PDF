@@ -1,0 +1,58 @@
+{
+  "schema": "linuxit-desktop-integrations-v1",
+  "passed": true,
+  "checks": {
+    "actual_upgrade_rollback_and_upgrade": true,
+    "synthetic_preferences_survive_update": true,
+    "outside_home_denied_before_grant": true,
+    "granted_document_reads_expected_bytes": true,
+    "persistent_grant_survives_portal_restart": true,
+    "revoked_grant_denies_new_app_process": true,
+    "portal_never_changes_source": true,
+    "pdf_association_points_to_installed_app": true,
+    "associated_launch_opens_expected_reader_document": true
+  },
+  "errors": [],
+  "foxit_executed": false,
+  "physical_desktop": false,
+  "probe_code_commit": "ec52cc5027a9b4f7e68b593e9c0cbd320b6f28d7",
+  "controlled_portal_lifecycle": [
+    {
+      "action": "started_before_flatpak_or_restarted",
+      "pid": 7011,
+      "mount": "/tmp/linuxit-desktop-l8atVJ/doc"
+    },
+    {
+      "action": "stopped_and_fuse_unmounted"
+    },
+    {
+      "action": "started_before_flatpak_or_restarted",
+      "pid": 7276,
+      "mount": "/tmp/linuxit-desktop-l8atVJ/doc"
+    }
+  ],
+  "candidate_source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+  "candidate_is_unpublished_test_artifact": true,
+  "tested_versions": [
+    "0.1.14",
+    "0.1.19",
+    "0.1.14",
+    "0.1.19"
+  ],
+  "grant_probe": {
+    "host_mount": "/tmp/linuxit-desktop-l8atVJ/doc",
+    "app_path": "/run/user/1001/doc/6483a456/portal.pdf",
+    "returncode": 0,
+    "stderr": ""
+  },
+  "restart_probe": {
+    "returncode": 0,
+    "stderr": ""
+  },
+  "tested_bundle": {
+    "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+    "bytes": 120443376,
+    "sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+    "digitally_signed": false
+  }
+}

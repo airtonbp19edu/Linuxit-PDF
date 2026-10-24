@@ -1,6 +1,6 @@
 {
   "schema": "linuxit-direct-execution-v1",
-  "updated_at": "2026-10-23T20:58:34.141536-03:00",
+  "updated_at": "2026-10-23T21:10:52.788922-03:00",
   "agent": "Codex",
   "authority": "Direct user order: stop monitoring and lead execution of outstanding Claude requests.",
   "monitor_deleted": true,
@@ -17,11 +17,20 @@
       "acceptance_passed": 81
     },
     "flatpak": {
-      "run_id": 40038029420,
+      "run_id": 40041956548,
+      "source_commit": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
       "source_passed": 808,
       "payload_passed": 808,
       "sandbox_passed": 808,
-      "skipped": 0
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "artifact": {
+        "file": "LinuxitPDF-0.1.19-x86_64.flatpak",
+        "bytes": 120443376,
+        "sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+        "digitally_signed": false
+      }
     },
     "desktop": {
       "run_id": 40040320947,
@@ -58,23 +67,49 @@
       "network_requests": 0,
       "cause": "Debian OpenSSL default CA locations do not exist inside Freedesktop runtime.",
       "fix": "df1cedc: select readable runtime roots in wrapper; explicit trust environment preserved.",
-      "validated": false
+      "validated": true,
+      "fix_validation_ref": "testes/resultados/continuidade-direta-2026-10-23/desktop-tls-final/review.json"
+    },
+    "windows_final": {
+      "run_id": 40041628886,
+      "source_commit": "e77cf3cf6d8977d06485dad2a51fca90d0564767",
+      "run": 808,
+      "passed": 806,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "skipped_scope": "Linux /proc and Linux process groups only",
+      "acceptance_passed": 79,
+      "installer_checks": 8,
+      "source_files_checked": 198,
+      "five_ca_cases_passed": true
+    },
+    "desktop_final": {
+      "run_id": 40043352222,
+      "bundle_source": "df1cedc748aa662fd99e11ff905c9315bd4047a4",
+      "bundle_sha256": "508013b3837e4bb18821042b26da2673bf7fb4d5df8742aebf0a716d90ea530d",
+      "repetitions": 2,
+      "desktop_passed_each": 9,
+      "tls_roots_each": 118,
+      "tls_hostname_verification": true,
+      "external_tsa_contacted": false,
+      "physical": false
     }
   },
   "static_rounds": {
-    "observations": 25,
-    "new_catalog_entries": 22,
+    "observations": 28,
+    "new_catalog_entries": 25,
     "revisits": 3,
-    "instructions": 1004,
-    "bytes": 3233,
-    "catalog_entries": 538,
+    "instructions": 1025,
+    "bytes": 3290,
+    "catalog_entries": 541,
     "note": "Distinct observed entry addresses, not complete algorithms or global coverage."
   },
   "queue": [
     {
       "item": "Four authorized PDF features",
       "status": "bounded_implemented_linux_flatpak_windows_validated",
-      "next": "Additional native CA tests and packaging CA trust correction in progress; universal family support not claimed."
+      "next": "Full XFA/FormCalc/Acrobat/LTV universality not claimed; source/Flatpak808 cases and Windows806+2 Linux-only skips examined."
     },
     {
       "item": "Viewer Windows",
@@ -83,8 +118,8 @@
     },
     {
       "item": "TSA transport",
-      "status": "bounded_transport_validated_packaging_ca_fix_in_validation",
-      "next": "Finish packaged trust-root validation; any live external provider acceptance needs a user-chosen URL, none contacted."
+      "status": "bounded_transport_and_packaged_tls_trust_validated",
+      "next": "Live external provider acceptance needs a user-chosen URL; none contacted. Transport never replaces explicit signature/TSA CA validation."
     },
     {
       "item": "Complex vector redaction",
@@ -93,8 +128,8 @@
     },
     {
       "item": "Desktop Linux",
-      "status": "combined_bundle_two_ephemeral_runs_passed",
-      "next": "Validate final rebuilt TLS package; physical desktop/equipment remains separate."
+      "status": "final_bundle_desktop_and_tls_passed_twice",
+      "next": "Physical desktop, real sync clients and user equipment remain separate validation dependencies."
     },
     {
       "item": "S1",
@@ -125,21 +160,22 @@
   "reports": "testes/resultados/continuidade-direta-2026-10-23/",
   "functional_completion_percent": null,
   "foxit_parity_claimed": false,
-  "active_validations": {
-    "windows_additional_ca": {
-      "run_id": 40041628886,
-      "source": "e77cf3c"
-    },
-    "flatpak_runtime_ca_fix": {
-      "run_id": 40041956548,
-      "source": "df1cedc"
-    }
-  },
+  "active_validations": {},
   "viewer_delivery": {
     "branch": "claude/windows-installer",
     "commit": "8cc295f33000352a2d89bfddffedfd4cb7de2d14",
     "normal_fast_forward": true,
     "exact_files": 5,
     "passed_related_cases": 28
+  },
+  "documentation_checks": {
+    "architecture_modules": 96,
+    "interfaces": 60,
+    "families": 25,
+    "operations": 116,
+    "source_symbols": 83,
+    "stale_current_source_hashes": 0,
+    "scope_or_operation_states_changed": false,
+    "criteria_or_weights_changed": false
   }
 }
